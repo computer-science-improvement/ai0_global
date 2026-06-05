@@ -1,0 +1,628 @@
+[
+  {
+    "recipe_name": "Classic Chicken Cacciatore with Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_chicken_cacciatore_with_pasta_20250625_154309_79af7e96.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:43:09.570189000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "mushroom",
+      "pasta",
+      "onion",
+      "bell pepper",
+      "garlic",
+      "parmesan cheese",
+      "carrot",
+      "oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Classic Chicken Cacciatore is presented in a shallow, rustic ceramic bowl with a subtly imperfect rim, set on a warm, well-used wooden dining table. Tender, braised chicken thighs, cooked to a rich mahogany color, rest atop a bed of al dente penne pasta. The vibrant red-brown cacciatore sauce, thick with diced tomatoes, bell peppers, carrots, onions, and sliced mushrooms, generously coats the pasta and chicken. Steam gently rises from the comforting dish. A light scattering of freshly grated Parmesan cheese and bright green chopped parsley adds color and freshness. The scene is lit by warm, natural light, highlighting the dish's inviting textures and colors. A simple fork and spoon are casually placed beside the bowl on a folded linen napkin. In the background, slightly out of focus, a small basket of crusty bread hints at the complete Italian home dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (about 800 g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Cremini mushrooms, sliced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "350 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden brown and crispy. This takes about 6-8 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pot and set aside.",
+      "Reduce heat to medium. Add diced onion, carrot, and bell pepper to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook for another 3-5 minutes until mushrooms soften.",
+      "Pour in red wine, if using. Scrape up any browned bits from the bottom of the pot. Cook until wine is mostly evaporated.",
+      "Stir in crushed tomatoes, chicken broth, and oregano. Bring the sauce to a simmer.",
+      "Return chicken thighs to the pot. Ensure chicken is mostly submerged in sauce. Cover the pot, reduce heat to low, and simmer for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is very tender.",
+      "While chicken simmers, cook penne pasta according to package directions until al dente. Drain well.",
+      "Taste cacciatore sauce and adjust seasoning as needed.",
+      "Serve chicken cacciatore over cooked pasta. Garnish each serving with fresh chopped parsley and grated Parmesan cheese."
+    ],
+    "traditional_techniques": [
+      "Soffritto (aromatic base)",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 848.2,
+      "cholesterol_mg": 160.08,
+      "dietary_fiber_g": 7.59,
+      "protein_g": 52.03,
+      "saturated_fat_g": 9.19,
+      "sodium_mg": 1440.64,
+      "total_carbs_g": 83.45,
+      "total_fat_g": 30.84,
+      "total_sugars_g": 12.63,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 104.7,
+      "cholesterol_mg": 19.76,
+      "dietary_fiber_g": 0.94,
+      "protein_g": 6.42,
+      "saturated_fat_g": 1.13,
+      "sodium_mg": 177.86,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 3.81,
+      "total_sugars_g": 1.56,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.36,
+      "dietary_fiber": 27.11,
+      "protein": 104.06,
+      "saturated_fat": 45.95,
+      "sodium": 62.64,
+      "total_carbs": 30.35,
+      "total_fat": 39.54
+    },
+    "serving_size_g": 810,
+    "total_recipe_weight_g": 3240
+  },
+  {
+    "recipe_name": "Creamy Carrot Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_carrot_risotto_20250625_154226_e445e6c0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:42:27.138972000Z",
+    "selected_ingredients": [
+      "chicken stock",
+      "onion",
+      "rice",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Creamy Carrot Risotto is presented in a shallow, clean white porcelain bowl, showcasing a single refined portion. The risotto itself is a vibrant, creamy, pale orange hue, flowing naturally with a glossy sheen, indicating its perfect fluid consistency. Interspersed throughout are small, tender cubes of bright orange carrot, providing visual contrast and texture. A generous sprinkle of finely grated Parmigiano-Reggiano cheese rests on top, melting slightly into the warm rice. Fresh, finely chopped dark green parsley is scattered artfully over the cheese, adding a fresh, aromatic pop of color. The bowl sits on a simple light wooden table surface. A polished fork rests beside the bowl on a crisp white cotton napkin. Natural, even lighting highlights the dish's warmth and inviting texture. The background is minimal, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately upon preparation to enjoy optimal creaminess.",
+      "Accompany with a simple green salad dressed with olive oil and lemon.",
+      "Offer additional grated Parmigiano-Reggiano at the table."
+    ],
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1.5 L (hot)"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium (finely diced)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g (peeled, diced into 5mm cubes)"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g (cold, diced)"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese",
+        "quantity": "80 g (freshly grated)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g (finely chopped, for garnish)"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium heat. Add diced onion. Sauté until translucent, about 5 minutes. Do not brown.",
+      "Add diced carrots to the pot. Cook for 5-7 minutes, stirring occasionally, until slightly softened.",
+      "Add Arborio rice to the pot. Stir constantly for 2-3 minutes until the edges of the grains become translucent but the center remains opaque.",
+      "Pour in white wine. Stir until completely absorbed by the rice.",
+      "Begin adding hot chicken stock, one ladleful (about 120-150 ml) at a time. Stir continuously. Wait until each ladleful is almost completely absorbed before adding the next.",
+      "Continue adding stock and stirring for 18-20 minutes, or until the rice is al dente. The risotto should be creamy and flow freely, not stiff.",
+      "Remove from heat. Stir in cold butter and grated Parmigiano-Reggiano vigorously.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately in warm bowls. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Tostatura",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 748.1,
+      "cholesterol_mg": 49.9,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 19.8,
+      "saturated_fat_g": 12.9,
+      "sodium_mg": 1237.9,
+      "total_carbs_g": 77.7,
+      "total_fat_g": 26.5,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117.5,
+      "cholesterol_mg": 7.8,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 3.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 194.4,
+      "total_carbs_g": 12.2,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 25,
+      "dietary_fiber": 14,
+      "protein": 40,
+      "saturated_fat": 65,
+      "sodium": 54,
+      "total_carbs": 28,
+      "total_fat": 34
+    },
+    "serving_size_g": 636.5,
+    "total_recipe_weight_g": 2546
+  },
+  {
+    "recipe_name": "Crispy Garlic Chicken Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_garlic_chicken_bites_20250625_153939_e7389072.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:39:39.911122000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Crispy golden-brown chicken chunks, irregularly shaped, are piled casually in the center of a modest, round, off-white ceramic plate. The chicken pieces show varied textures: some with visible crispy edges, others with a softer, tender interior. A small, simple ceramic bowl of creamy, pale orange dipping sauce sits slightly off-center beside the chicken. A light scattering of finely chopped fresh parsley adds a touch of green to the golden bites. The plate rests on a well-worn, natural wood kitchen table. A casually folded, plain linen napkin is nearby. Soft, warm light from an overhead kitchen fixture illuminates the scene, creating a cozy, inviting atmosphere. The overall presentation is homely and approachable, suitable for a family starter.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "100g"
+      },
+      {
+        "name": "Sriracha (optional)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Fresh parsley (for garnish)",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry with paper towels. Cut chicken into 2-3 cm irregular chunks.",
+      "In a mixing bowl, toss chicken chunks with garlic powder, smoked paprika, salt, and black pepper.",
+      "Add cornstarch to the seasoned chicken. Toss until each piece is evenly coated.",
+      "Heat vegetable oil in a large frying pan or cast-iron skillet over medium-high heat.",
+      "Carefully add chicken chunks to the hot oil in a single layer. Do not overcrowd the pan; fry in batches if necessary.",
+      "Fry for 4-5 minutes per side, turning once, until chicken is golden brown and cooked through. Ensure internal temperature reaches 75°C (167°F).",
+      "Remove cooked chicken with a slotted spoon. Place on a wire rack lined with paper towels to drain excess oil.",
+      "For the dipping sauce, combine mayonnaise, sriracha (if using), and lemon juice in a small bowl. Stir until well combined.",
+      "Serve hot crispy chicken bites immediately with the prepared dipping sauce."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.8,
+      "calories": 482.4,
+      "cholesterol_mg": 128,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 26.6,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 831.6,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 36.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 273.9,
+      "cholesterol_mg": 72.7,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 15.1,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 472.1,
+      "total_carbs_g": 6,
+      "total_fat_g": 20.7,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.7,
+      "dietary_fiber": 3.4,
+      "protein": 53.2,
+      "saturated_fat": 32,
+      "sodium": 36.2,
+      "total_carbs": 3.9,
+      "total_fat": 46.8
+    },
+    "serving_size_g": 176.2,
+    "total_recipe_weight_g": 704.6
+  },
+  {
+    "recipe_name": "Tuscan Herb Roasted Chicken with Crispy Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_herb_roasted_chicken_with_crispy_potatoes_20250625_153933_15eb8efc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:39:33.672255000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tuscan Herb Roasted Chicken is presented on a clean, round white porcelain dinner plate, centered on a simple wooden table. Two golden-brown, crispy-skinned chicken thighs are nestled. Around them, chunky, golden-crisp potato wedges are artfully arranged, showcasing their fluffy interior. Bright green fresh rosemary and thyme sprigs drape over the chicken and potatoes, adding vibrant color. A bright yellow lemon wedge is positioned beside the chicken. Pan drippings lightly glaze the plate, enhancing savory appeal. Natural, even lighting illuminates the dish, highlighting textures and rich, warm colors. A white cotton napkin rests beside the plate with traditional flatware. The clean, slightly blurred background suggests a modern bistro setting, keeping focus on the inviting meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty ciabatta bread for dipping in pan juices.",
+      "Pair with a simple green salad dressed with a light vinaigrette.",
+      "Accompany with a glass of dry white wine, such as a Vermentino or Pinot Grigio."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "700g"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "15g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Pat chicken thighs dry thoroughly with paper towels. Season generously with salt and pepper. Set aside.",
+      "Wash potatoes. Cut into 2cm thick wedges. In a large bowl, toss potato wedges with 30ml olive oil, 10g salt, 3g pepper, and crushed garlic cloves. Ensure even coating.",
+      "Strip leaves from 2 rosemary sprigs and 4 thyme sprigs. Roughly chop the leaves. Rub chopped herbs over the chicken skin.",
+      "Heat remaining 30ml olive oil in a large oven-safe skillet or cast-iron pan over medium-high heat.",
+      "Place chicken thighs skin-side down in the hot skillet. Sear for 6-8 minutes until skin is deep golden brown and crispy. Do not move chicken during searing.",
+      "Flip chicken thighs. Arrange potato wedges around the chicken in the skillet. Add remaining whole rosemary and thyme sprigs to the pan.",
+      "Transfer skillet to the preheated oven. Roast for 25-30 minutes, or until internal temperature of chicken reaches 75°C (167°F) and potatoes are tender and golden-brown.",
+      "Remove from oven. Squeeze half of the lemon over the chicken and potatoes. Rest for 5 minutes before serving.",
+      "Garnish with remaining lemon wedges and fresh herb sprigs."
+    ],
+    "notes": [
+      "Ensure chicken is patted very dry before seasoning for the crispiest skin.",
+      "Do not overcrowd the skillet during searing and roasting to allow for proper browning."
+    ],
+    "traditional_techniques": [
+      "Roasting (Arrosto)",
+      "Searing (Scottare)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 681,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4,
+      "protein_g": 40.3,
+      "saturated_fat_g": 10,
+      "sodium_mg": 1605,
+      "total_carbs_g": 32.3,
+      "total_fat_g": 43,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 218,
+      "cholesterol_mg": 58,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 12.9,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 514,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 13.8,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 14,
+      "protein": 81,
+      "saturated_fat": 50,
+      "sodium": 70,
+      "total_carbs": 12,
+      "total_fat": 55
+    },
+    "serving_size_g": 313,
+    "total_recipe_weight_g": 1250
+  },
+  {
+    "recipe_name": "Piña Asada y Frutas con Crema de Queso Azul y Canela",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pi%C3%B1a_asada_y_frutas_con_crema_de_queso_azul_y_canela_20250625_153859_fcd890e9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:39:00.122267000Z",
+    "selected_ingredients": [
+      {
+        "name": "blue cheese"
+      },
+      {
+        "name": "pineapple"
+      },
+      {
+        "name": "apple"
+      },
+      {
+        "name": "banana"
+      },
+      {
+        "name": "grape"
+      },
+      {
+        "name": "cinnamon"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Mexican",
+    "visual_description": "The dish is presented on a clean white porcelain dessert plate, set on a simple wooden table surface in a modern bistro style. The composition is clean and professional, with moderate negative space. Golden-brown grilled pineapple rings form the base, topped with artfully arranged golden sautéed apple wedges, lightly caramelized banana rounds, and vibrant halved red grapes. A creamy, off-white blue cheese crema, subtly speckled with blue cheese, is generously drizzled over the fruits. Toasted pecans or pepitas are scattered for texture. A light dusting of cinnamon and a few fresh mint leaves add a touch of color and freshness. The colors are natural and appealing, with varying textures from the juicy fruits to the creamy sauce and crunchy nuts. The entire plate is visible, showcasing the individual portion with an appealing, approachable arrangement. A cotton napkin is placed beside the plate, and the natural, even lighting highlights the dish without distractions. The setting subtly evokes a casual Mexican-inspired dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican Dessert",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a small glass of chilled Agua Fresca de Piña (Pineapple Water) or Horchata.",
+      "Offer a small side of extra agave syrup for those who prefer more sweetness."
+    ],
+    "hero_ingredient": "Grilled Pineapple",
+    "ingredients": [
+      {
+        "name": "Fresh Pineapple",
+        "quantity": "1/2 medium, cored, cut into 1 cm thick rings"
+      },
+      {
+        "name": "Apples",
+        "quantity": "2 medium (e.g., Gala or Fuji), cored, cut into 1.5 cm wedges"
+      },
+      {
+        "name": "Firm Ripe Bananas",
+        "quantity": "2, peeled, sliced into 1 cm thick rounds"
+      },
+      {
+        "name": "Red Grapes",
+        "quantity": "200g, halved"
+      },
+      {
+        "name": "Blue Cheese",
+        "quantity": "75g, crumbled"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Agave Syrup",
+        "quantity": "50ml, plus extra for brushing"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, zest and juice"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": "5g, plus extra for dusting"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "5ml (Mexican vanilla preferred)"
+      },
+      {
+        "name": "Ancho Chili Powder",
+        "quantity": "1g (a pinch)"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Toasted Pecans or Pepitas",
+        "quantity": "50g, chopped"
+      },
+      {
+        "name": "Fresh Mint Leaves",
+        "quantity": "Small handful, for garnish"
+      },
+      {
+        "name": "Pinch of Salt",
+        "quantity": "1g"
+      }
+    ],
+    "instructions": [
+      "Prepare fruit. Cut pineapple into 1 cm thick rings. Core apples, cut into 1.5 cm wedges. Peel bananas, slice into 1 cm thick rounds. Halve red grapes.",
+      "Grill pineapple. Heat a grill pan over medium-high heat. Add 5g butter. Brush pineapple rings lightly with agave syrup. Grill 2-3 minutes per side until caramelized with grill marks. Remove and set aside.",
+      "Sauté apples and bananas. Add remaining 10g butter to the same pan. Add apple wedges. Sauté 3-4 minutes until slightly softened and golden. Add banana slices. Sauté 1-2 minutes until lightly golden. Remove all fruit and set aside with grilled pineapple.",
+      "Make blue cheese crema. In a medium bowl, whisk heavy cream until soft peaks form. Gently fold in crumbled blue cheese, 30ml agave syrup, lime zest, 3g ground cinnamon, vanilla extract, ancho chili powder, and a pinch of salt. Taste and adjust sweetness or lime if needed.",
+      "Assemble the plates. Arrange 1-2 grilled pineapple rings on each of four clean white dessert plates. Artfully arrange sautéed apple wedges, caramelized banana slices, and halved red grapes around and on top of the pineapple.",
+      "Drizzle and garnish. Spoon generous dollops of blue cheese crema over the fruit arrangement. Sprinkle with chopped toasted pecans or pepitas. Lightly dust the entire plate with a small amount of extra ground cinnamon. Garnish with a few fresh mint leaves."
+    ],
+    "notes": [
+      "Ensure bananas are firm-ripe to prevent them from becoming mushy when sautéed.",
+      "The ancho chili powder is for a subtle depth of flavor, not heat; adjust to personal preference.",
+      "The blue cheese crema should be light and balanced, not overwhelmingly cheesy."
+    ],
+    "traditional_techniques": [
+      "Caramelization (Caramelización)",
+      "Using Agave as a sweetener"
+    ]
+  }
+]

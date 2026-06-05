@@ -1,0 +1,645 @@
+[
+  {
+    "recipe_name": "Savory Spinach and Feta Bread Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_spinach_and_feta_bread_pudding_20250624_104557_66350163.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:45:58.126709000Z",
+    "selected_ingredients": [
+      "egg",
+      "milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous square portion of Savory Spinach and Feta Bread Pudding is centered on a clean white porcelain dinner plate. The pudding has a beautiful golden-brown, slightly puffed crust, indicating its perfect bake. Beneath the crust, the interior reveals distinct, soft cubes of sourdough bread, generously interspersed with vibrant green wilted spinach and creamy white crumbles of feta cheese. The texture appears custardy and moist, with the bread fully saturated. A sprinkle of fresh, bright green chopped parsley adorns the top. The plate is set on a simple wooden table surface, characteristic of a modern bistro. A neatly folded cotton napkin is placed beside the plate. The scene is illuminated by natural, even lighting, creating a warm and inviting atmosphere. The background is minimal and slightly blurred, keeping the focus entirely on the inviting dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a lemon vinaigrette.",
+      "Offer a side of Kalamata olives."
+    ],
+    "hero_ingredient": "Feta Cheese",
+    "ingredients": [
+      {
+        "name": "Stale sourdough bread",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "6"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Feta cheese, crumbled",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Nutmeg, freshly grated",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Grease a 23x33 cm baking dish with butter.",
+      "Cut stale sourdough bread into 2-3 cm cubes. Distribute evenly in the prepared baking dish.",
+      "Melt butter in a large skillet over medium heat. Add diced yellow onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Add fresh spinach to the skillet. Cook, stirring, until spinach wilts completely. Remove from heat. Squeeze out excess liquid from the spinach.",
+      "In a large bowl, whisk together eggs, milk, salt, pepper, and grated nutmeg until well combined.",
+      "Sprinkle the wilted spinach and crumbled feta cheese evenly over the bread cubes in the baking dish.",
+      "Pour the egg and milk mixture over the bread, spinach, and feta. Gently press down on the bread cubes to ensure they absorb the liquid.",
+      "Let stand for 15 minutes to allow the bread to soak.",
+      "Bake for 40-45 minutes, or until the top is golden brown and the center is set. A knife inserted into the center should come out clean.",
+      "Remove from oven. Let cool for 10 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 681,
+      "cholesterol_mg": 353,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 33.8,
+      "saturated_fat_g": 16.8,
+      "sodium_mg": 1746,
+      "total_carbs_g": 68.6,
+      "total_fat_g": 31,
+      "total_sugars_g": 14,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139,
+      "cholesterol_mg": 72,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.9,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 357,
+      "total_carbs_g": 14,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 118,
+      "dietary_fiber": 19,
+      "protein": 68,
+      "saturated_fat": 84,
+      "sodium": 76,
+      "total_carbs": 25,
+      "total_fat": 40
+    },
+    "serving_size_g": 489,
+    "total_recipe_weight_g": 1956
+  },
+  {
+    "recipe_name": "Fermented Black Pepper Cacio e Pepe with Braised Greens",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_black_pepper_cacio_e_pepe_with_braised_greens_20250624_104555_76601987.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:45:55.964242000Z",
+    "selected_ingredients": [
+      "cheese",
+      "black pepper",
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of spaghetti, twirled into a natural, slightly elevated mound, sits centered on a handcrafted, matte cream ceramic plate. The pasta is coated in a rich, creamy, emulsified sauce, flecked generously with dark, coarsely ground black pepper. A small, artful cluster of vibrant, braised dark green Swiss chard or kale leaves rests gently beside the pasta, adding a pop of contrasting color and texture. The overall presentation is minimalistic, highlighting the pure ingredients. The plate is placed on a light, textured reclaimed wood surface. A natural, undyed linen napkin is folded simply beside the plate. Soft, natural light illuminates the scene from the side, emphasizing the pasta's sheen and the greens' texture. The background is clean and uncluttered, with a hint of an earthy-toned wall or a blurred natural plant element.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately, as the sauce can tighten as it cools.",
+      "Traditionally eaten with a fork, twirling the pasta.",
+      "A simple crusty bread can be served alongside to mop up any remaining sauce."
+    ],
+    "hero_ingredient": "Black Pepper",
+    "ingredients": [
+      {
+        "name": "Spaghetti or bucatini pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Pecorino Romano cheese, finely grated",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Whole black peppercorns",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Lacto-fermented black pepper paste",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Seasonal greens (e.g., Swiss chard, kale), roughly chopped",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Vegetable scraps (carrots, celery, onion peels, herb stems) for broth",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare concentrated vegetable broth: Combine vegetable scraps with 750 ml water in a pot. Simmer for 30 minutes. Strain. Reduce broth over medium-high heat until approximately 200 ml remains. Set aside.",
+      "Prepare fermented black pepper paste: Grind 10 g black peppercorns coarsely. Mix with 15 ml brine from another lacto-ferment (e.g., sauerkraut or pickle jar). Stir well. (Note: For best results, this paste should be prepared days in advance and fermented. For immediate use, a quick blend with a touch of vinegar can simulate tang.)",
+      "Cook pasta: Bring a large pot of salted water to a rolling boil. Add pasta. Cook according to package instructions until al dente. Reserve 250 ml pasta water. Drain pasta.",
+      "Toast pepper: While pasta cooks, toast remaining 10 g whole black peppercorns in a dry, wide pan over medium heat for 2-3 minutes until fragrant. Grind coarsely using a mortar and pestle or spice grinder. Set aside a small amount for garnish.",
+      "Braise greens: In the same wide pan, heat olive oil over medium heat. Add chopped greens. Sauté until wilted. Add 50 ml of the concentrated vegetable broth. Braise until tender, about 5-7 minutes. Season lightly with salt. Remove greens from pan and set aside.",
+      "Make sauce: In the same pan (no need to clean), combine toasted ground pepper, fermented black pepper paste, and 50 ml of the reserved pasta water. Stir to combine.",
+      "Emulsify sauce (Mantecatura): Add grated Pecorino Romano to the pan. Gradually add remaining reserved pasta water and concentrated vegetable broth, stirring vigorously with tongs or a whisk. Continuously stir and toss to create a creamy, emulsified sauce. The consistency should be fluid and coats the back of a spoon.",
+      "Combine: Add cooked pasta to the sauce in the pan. Toss vigorously to coat all pasta strands evenly. If the sauce is too thick, add a tiny splash more hot water.",
+      "Plate: Serve pasta immediately, twirling into individual portions. Top each serving with the braised greens. Garnish with reserved fresh ground black pepper."
+    ],
+    "notes": [
+      "The lacto-fermented black pepper paste adds a unique depth, tang, and umami to the dish, enhancing the classic Cacio e Pepe flavor profile.",
+      "Adjust the amount of pasta water and broth to achieve your desired sauce consistency. The sauce should be creamy and fluid, not dry.",
+      "This recipe champions zero-waste by utilizing vegetable scraps for a flavorful, concentrated broth and incorporates fermentation for enhanced flavor and complexity."
+    ],
+    "traditional_techniques": [
+      "Mantecatura (emulsification of the pasta sauce)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 608,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 6.84,
+      "protein_g": 27.28,
+      "saturated_fat_g": 11.35,
+      "sodium_mg": 1381,
+      "total_carbs_g": 71.05,
+      "total_fat_g": 24.98,
+      "total_sugars_g": 3.92,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 275,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 12.36,
+      "saturated_fat_g": 5.14,
+      "sodium_mg": 626,
+      "total_carbs_g": 32.2,
+      "total_fat_g": 11.32,
+      "total_sugars_g": 1.78,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15,
+      "dietary_fiber": 24.4,
+      "protein": 54.5,
+      "saturated_fat": 56.8,
+      "sodium": 60,
+      "total_carbs": 25.8,
+      "total_fat": 32
+    },
+    "serving_size_g": 220.65,
+    "total_recipe_weight_g": 882.6
+  },
+  {
+    "recipe_name": "Japanese Beef and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_japanese_beef_and_potato_stew_20250624_104546_9289c596.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:45:46.527976000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "carrot",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Japanese Beef and Potato Stew is presented in a deep, traditional ceramic donburi bowl, showcasing a rich, savory broth. Tender, bite-sized beef chunks (approximately 5cm) are nestled amongst large, irregular potato chunks (4cm), vibrant orange carrot rounds (3cm), and soft white onion wedges. The ingredients are gently simmered, maintaining their distinct shapes and natural colors, with the beef exhibiting a slight caramelization from initial searing. A scattering of bright green chopped spring onions garnishes the top, adding a fresh contrast. The bowl sits on a simple wooden table, accompanied by a small, perfectly steamed white rice bowl and a pair of dark wooden chopsticks. Natural, even lighting highlights the stew's comforting warmth and inviting texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Served with steamed white rice",
+      "Accompanied by miso soup",
+      "Traditionally paired with tsukemono (Japanese pickled vegetables)"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or chuck",
+        "quantity": "400g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dashi stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sake",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Shirataki noodles (optional)",
+        "quantity": "100g"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 5cm bite-sized pieces. Cut potatoes into 4cm irregular chunks. Cut carrots into 3cm thick rounds. Cut onion into 8 wedges.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat. Add beef. Sear until lightly browned on all sides. Do not overcrowd. Remove beef from pot. Set aside.",
+      "Add onion wedges to the same pot. Sauté until translucent, about 3-4 minutes.",
+      "Return beef to the pot. Add potatoes and carrots.",
+      "Pour in dashi stock, soy sauce, mirin, sake, and sugar. Bring to a boil.",
+      "Skim any foam or scum that rises to the surface.",
+      "Reduce heat to low. Cover the pot. Simmer for 25-30 minutes, or until vegetables are tender and beef is cooked through.",
+      "If using shirataki noodles, add them during the last 10 minutes of simmering.",
+      "Taste and adjust seasonings if necessary.",
+      "Serve hot. Garnish with chopped green onions."
+    ],
+    "notes": [
+      "This dish tastes even better the next day as flavors meld.",
+      "Adjust sugar and soy sauce to taste based on personal preference."
+    ],
+    "traditional_techniques": [
+      "Nimono (simmering technique)",
+      "Skimming foam (aku-tori)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.75,
+      "calories": 462.36,
+      "cholesterol_mg": 84,
+      "dietary_fiber_g": 6.06,
+      "protein_g": 35.62,
+      "saturated_fat_g": 3.78,
+      "sodium_mg": 969.06,
+      "total_carbs_g": 44.37,
+      "total_fat_g": 12.94,
+      "total_sugars_g": 14.79,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 86.02,
+      "cholesterol_mg": 15.63,
+      "dietary_fiber_g": 1.13,
+      "protein_g": 6.63,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 180.29,
+      "total_carbs_g": 8.26,
+      "total_fat_g": 2.41,
+      "total_sugars_g": 2.75,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 21.6,
+      "protein": 71.2,
+      "saturated_fat": 18.9,
+      "sodium": 42.1,
+      "total_carbs": 16.1,
+      "total_fat": 16.6
+    },
+    "serving_size_g": 537.5,
+    "total_recipe_weight_g": 2150
+  },
+  {
+    "recipe_name": "Baked Rigatoni with Sausage and Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_rigatoni_with_sausage_and_mushrooms_20250624_104544_7273971f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:45:44.766629000Z",
+    "selected_ingredients": [
+      "pasta",
+      "cheese",
+      "mushroom",
+      "tomato",
+      "sausage",
+      "mozzarella"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of baked rigatoni, presented in a rustic white porcelain gratin dish. The top layer features golden-brown, bubbly melted mozzarella cheese, revealing hints of rich red tomato sauce and tender, browned Italian sausage chunks beneath. Sliced cremini mushrooms are interspersed throughout. The rigatoni pasta is al dente, holding the savory sauce. A sprinkle of vibrant green, fresh basil leaves and chopped parsley contrasts beautifully with the warm colors. The dish sits on a simple wooden table surface, accompanied by a folded white cotton napkin. Natural, even lighting highlights the textures and depth of the dish, creating an inviting, comforting appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping.",
+      "Pair with a simple green salad dressed with vinaigrette.",
+      "Enjoy with a glass of dry red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Rigatoni",
+        "quantity": "400g"
+      },
+      {
+        "name": "Italian Sausage",
+        "quantity": "400g, casings removed"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "200g, sliced"
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Fresh Mozzarella",
+        "quantity": "250g, cubed or shredded"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "small bunch, leaves torn"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "small bunch, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": "2g (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat. Add crumbled Italian sausage. Brown sausage, breaking it apart. Cook until no pink remains. Remove sausage with a slotted spoon. Set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes (if using). Cook 1 minute until fragrant.",
+      "Add sliced mushrooms. Cook until tender and lightly browned, about 5-7 minutes.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine mostly evaporates.",
+      "Stir in crushed tomatoes and browned sausage. Bring to a simmer. Reduce heat to low. Simmer for 20 minutes, allowing flavors to meld. Season with salt and pepper.",
+      "While sauce simmers, cook rigatoni according to package directions until al dente. Drain pasta.",
+      "Add drained pasta to the sauce. Stir well to combine. Add half of the grated Parmesan cheese.",
+      "Transfer half of the pasta mixture to a 23x33 cm baking dish. Distribute half of the cubed mozzarella over the pasta.",
+      "Add remaining pasta mixture to the dish. Top with remaining mozzarella and remaining Parmesan cheese.",
+      "Bake for 20-25 minutes, or until cheese is bubbly and golden brown.",
+      "Let rest 5 minutes. Garnish with fresh basil and parsley before serving."
+    ],
+    "notes": [
+      "Ensure sausage is well browned for maximum flavor development.",
+      "For best results, use good quality Italian crushed tomatoes."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow simmering",
+      "Al Forno"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1034,
+      "cholesterol_mg": 119,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 52.2,
+      "saturated_fat_g": 18.3,
+      "sodium_mg": 967,
+      "total_carbs_g": 92.7,
+      "total_fat_g": 48,
+      "total_sugars_g": 11.7,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 173,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.7,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 162,
+      "total_carbs_g": 15.5,
+      "total_fat_g": 8,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 27,
+      "protein": 104,
+      "saturated_fat": 92,
+      "sodium": 42,
+      "total_carbs": 34,
+      "total_fat": 62
+    },
+    "serving_size_g": 598,
+    "total_recipe_weight_g": 2392
+  },
+  {
+    "recipe_name": "Creamy Garlic Parmesan Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_garlic_parmesan_chicken_20250624_104537_fc6edd52.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:45:37.563361000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "parmesan"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown pan-seared chicken breast, cooked whole, is the focal point on a round, clean white porcelain dinner plate. It is generously coated with a creamy, pale ivory garlic Parmesan sauce, which pools invitingly around its base. The chicken displays a crisp, caramelized exterior from searing. Freshly chopped vibrant green parsley is scattered over the chicken and sauce, providing a pop of color and freshness. The dish is presented on a light, natural wood table surface, with a folded off-white cotton napkin beside the plate. Traditional silver flatware is placed neatly alongside. The background is a subtly blurred modern bistro setting. Natural, even light illuminates the dish, highlighting its rich textures and warm tones. The arrangement is professional, balanced, and approachable, with moderate negative space on the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pasta, polenta, or crusty Italian bread to soak up the sauce.",
+      "Accompany with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Dried Italian herbs (oregano, thyme)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt, pepper, and Italian herbs.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear chicken breasts 5-7 minutes per side. Cook until internal temperature reaches 75°C. Remove chicken. Set aside.",
+      "Add shallot to skillet. Sauté 2 minutes until softened.",
+      "Add minced garlic. Sauté 1 minute until fragrant. Do not brown.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits. Reduce by half.",
+      "Stir in heavy cream and Parmesan cheese. Whisk until smooth. Simmer 2-3 minutes until sauce thickens slightly.",
+      "Return chicken to skillet. Spoon sauce over chicken.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 555,
+      "cholesterol_mg": 209,
+      "dietary_fiber_g": 1,
+      "protein_g": 63.8,
+      "saturated_fat_g": 12.8,
+      "sodium_mg": 475,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 29.1,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 177,
+      "cholesterol_mg": 67,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 20.3,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 151,
+      "total_carbs_g": 2.1,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 4,
+      "protein": 128,
+      "saturated_fat": 64,
+      "sodium": 21,
+      "total_carbs": 2,
+      "total_fat": 37
+    },
+    "serving_size_g": 314.25,
+    "total_recipe_weight_g": 1257
+  }
+]

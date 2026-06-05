@@ -1,0 +1,595 @@
+[
+  {
+    "recipe_name": "Cottage Cheese and Chicken Stuffed Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cottage_cheese_and_chicken_stuffed_bell_peppers_20250903_073906_b296fea6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T07:39:06.674444000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "для диабетика",
+    "visual_description": "A single, halved bell pepper, roasted to a tender, slightly wrinkled state, cradles a generous portion of filling on a simple, round ceramic plate. The bell pepper, a vibrant red, shows a gentle char on its edges from roasting. The filling, a hearty blend of finely diced lean ground chicken and creamy cottage cheese, is mixed with small, distinct grains of brown rice and a rich tomato base. The top surface of the filling is lightly browned and bubbly. Fresh, bright green chopped parsley is sprinkled over the center. The plate, an everyday off-white, rests on a worn wooden kitchen table. A plain cloth napkin is casually folded beside it. Soft, warm light from an overhead kitchen fixture highlights the natural textures and comforting appearance of the home-cooked dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "hero_ingredient": "Bell Peppers",
+    "ingredients": [
+      {
+        "name": "Large bell peppers",
+        "quantity": "4"
+      },
+      {
+        "name": "Lean ground chicken",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium (about 150 g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Cooked brown rice",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Crushed tomatoes (no added sugar)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried basil",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Halve bell peppers lengthwise. Remove seeds and membranes. Place cut-side up in a baking dish.",
+      "Heat olive oil in a large pan over medium heat.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add ground chicken. Break it apart. Cook until browned and no longer pink. Drain any excess fat.",
+      "Stir in crushed tomatoes, oregano, and basil. Simmer for 5 minutes.",
+      "Remove from heat. Stir in cottage cheese and cooked brown rice. Season with salt and pepper.",
+      "Divide chicken mixture evenly among bell pepper halves.",
+      "Pour 125 ml water into the bottom of the baking dish.",
+      "Bake for 30-35 minutes, or until peppers are tender and filling is heated through (internal temperature of chicken should reach 75°C).",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "This recipe is suitable for a diabetic diet. It uses lean protein, plenty of vegetables, and a controlled amount of whole grain rice. Always monitor portion sizes and consult with a healthcare professional for personalized dietary advice."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 348,
+      "cholesterol_mg": 69.9,
+      "dietary_fiber_g": 6.45,
+      "protein_g": 27.58,
+      "saturated_fat_g": 3.14,
+      "sodium_mg": 366.5,
+      "total_carbs_g": 27.08,
+      "total_fat_g": 14.26,
+      "total_sugars_g": 12.82,
+      "trans_fat_g": 0.08
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 78,
+      "cholesterol_mg": 15.7,
+      "dietary_fiber_g": 1.45,
+      "protein_g": 6.19,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 82.2,
+      "total_carbs_g": 6.08,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 2.88,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23.3,
+      "dietary_fiber": 23,
+      "protein": 55.2,
+      "saturated_fat": 15.7,
+      "sodium": 15.9,
+      "total_carbs": 9.9,
+      "total_fat": 18.3
+    },
+    "serving_size_g": 445.75,
+    "total_recipe_weight_g": 1783
+  },
+  {
+    "recipe_name": "Savory Cottage Cheese & Herb Patties",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_cottage_cheese_%26_herb_patties_20250903_073806_7b87e1a9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T07:38:07.055019000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "без сахара, без  быстрых углеводов",
+    "visual_description": "Two golden-brown, pan-fried cottage cheese patties are casually arranged on a simple, round, white ceramic plate. The patties are round with slightly irregular edges, showcasing a crispy exterior. A generous dollop of creamy white sour cream or Greek yogurt is placed atop one patty. Freshly chopped green dill is sprinkled over the patties and the yogurt, adding a vibrant color contrast. Alongside the patties, a small portion of thinly sliced cucumber salad, tossed with fresh dill, provides a refreshing element. The plate is set on a well-used wooden dining table, with a plain fork and knife casually placed. Warm, cozy lighting from an overhead kitchen fixture illuminates the scene, creating a homely, inviting atmosphere. The background is minimally cluttered, suggesting a lived-in family kitchen setting. The portions are modest and comforting, reflecting a home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of sour cream (smetana) or Greek yogurt.",
+      "Often accompanied by a simple fresh vegetable salad, such as cucumber and dill.",
+      "While traditionally served with bread, this recipe omits it to adhere to the 'no fast carbs' requirement."
+    ],
+    "hero_ingredient": "Cottage Cheese",
+    "ingredients": [
+      {
+        "name": "Cottage cheese (full fat)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh dill, finely chopped",
+        "quantity": "20g"
+      },
+      {
+        "name": "Fresh parsley, finely chopped",
+        "quantity": "10g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2g"
+      },
+      {
+        "name": "Olive oil or butter (for frying)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sour cream or Greek yogurt (for serving)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cucumber, thinly sliced",
+        "quantity": "1 large"
+      }
+    ],
+    "instructions": [
+      "Drain cottage cheese thoroughly through a sieve or cheesecloth for 15-20 minutes.",
+      "In a large mixing bowl, combine the drained cottage cheese, eggs, finely chopped dill, finely chopped parsley, minced garlic, finely diced onion, almond flour, salt, and black pepper.",
+      "Mix all ingredients until well combined and a consistent mixture forms.",
+      "Divide the mixture into 8-10 equal portions. Form each portion into a round, slightly flattened patty, approximately 2-3 cm thick.",
+      "Heat olive oil or butter in a large non-stick pan over medium heat.",
+      "Carefully place the patties into the hot pan. Do not overcrowd the pan; cook in batches if necessary.",
+      "Fry patties for 4-5 minutes per side, until golden brown and cooked through.",
+      "While patties cook, prepare a simple cucumber salad: combine thinly sliced cucumber with a pinch of salt and a small amount of fresh dill.",
+      "Serve the hot patties immediately with a dollop of sour cream or Greek yogurt and the fresh cucumber salad on the side."
+    ],
+    "notes": [
+      "Ensure cottage cheese is very well-drained to prevent the patties from being too soft. Excess moisture can make them difficult to form and fry.",
+      "Do not overmix the patty mixture; combine just until ingredients are incorporated.",
+      "Adjust the amount of fresh herbs and garlic according to personal preference."
+    ],
+    "traditional_techniques": [
+      "Pan-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 282,
+      "cholesterol_mg": 115,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 22.7,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 924,
+      "total_carbs_g": 12.1,
+      "total_fat_g": 16.7,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 143,
+      "cholesterol_mg": 58,
+      "dietary_fiber_g": 1,
+      "protein_g": 11.5,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 468,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 7,
+      "protein": 45,
+      "saturated_fat": 27,
+      "sodium": 40,
+      "total_carbs": 4,
+      "total_fat": 21
+    },
+    "serving_size_g": 197.5,
+    "total_recipe_weight_g": 790
+  },
+  {
+    "recipe_name": "Cottage Cheese and Chicken Vegetable Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cottage_cheese_and_chicken_vegetable_bake_20250903_073738_bddf2fce.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T07:37:38.952359000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "без сахара, без риса",
+    "visual_description": "A single, generous portion of the Cottage Cheese and Chicken Vegetable Bake is served on a simple, off-white ceramic plate. The bake is presented as a hearty, irregularly shaped scoop, filling a good portion of the plate. The top crust is a rich golden-brown from the melted and slightly crisped shredded cheese. Visible within the bake are tender, diced chicken chunks, vibrant green broccoli florets, and colorful red and yellow diced bell pepper, all bound in a creamy, savory cottage cheese mixture. A sprinkle of fresh, roughly chopped green parsley provides a final touch of color. The setting is a well-used wooden dining table, with warm, natural lighting. A simple metal fork rests beside the plate, and a casually placed cloth napkin completes the homely, comforting scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "cottage cheese",
+    "ingredients": [
+      {
+        "name": "cottage cheese, full-fat",
+        "quantity": "500 g"
+      },
+      {
+        "name": "chicken breast",
+        "quantity": "2 (approx. 400 g)"
+      },
+      {
+        "name": "broccoli",
+        "quantity": "1 head (approx. 300 g)"
+      },
+      {
+        "name": "bell pepper, red or yellow",
+        "quantity": "1 large"
+      },
+      {
+        "name": "onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "shredded cheddar or mozzarella cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Grease a 20x30 cm baking dish.",
+      "Dice chicken breast into 2 cm cubes. Cut broccoli into small florets. Dice bell pepper and onion into 1.5 cm pieces. Mince garlic.",
+      "Heat olive oil in a large pan over medium heat. Add diced onion and bell pepper. Sauté for 5 minutes until softened.",
+      "Add minced garlic to the pan. Cook for 1 minute until fragrant.",
+      "Add diced chicken to the pan. Cook for 5-7 minutes until browned on all sides and mostly cooked through. Transfer chicken and vegetables to a large bowl.",
+      "Blanch broccoli florets in boiling water for 2 minutes. Drain well. Add to the bowl with chicken and vegetables.",
+      "In a separate bowl, combine cottage cheese, eggs, milk, dried oregano, salt, and pepper. Mix until well combined.",
+      "Pour the cottage cheese mixture over the chicken and vegetables. Stir gently to combine all ingredients evenly.",
+      "Transfer the mixture into the prepared baking dish. Spread evenly.",
+      "Sprinkle shredded cheese over the top of the bake.",
+      "Bake for 25-30 minutes, or until the top is golden brown and the mixture is set and bubbly. Ensure chicken reaches an internal temperature of 75°C.",
+      "Remove from oven. Let stand for 5 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to an internal temperature of 75°C (167°F) for food safety.",
+      "Allow the bake to rest for 5 minutes after baking to help it set before serving."
+    ]
+  },
+  {
+    "recipe_name": "Creamy Spinach and Cottage Cheese Stuffed Shells",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_spinach_and_cottage_cheese_stuffed_shells_20250903_073708_f34bfb12.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T07:37:08.731952000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "без сахара, без риса",
+    "visual_description": "A single generous serving of Creamy Spinach and Cottage Cheese Stuffed Shells rests on a simple, round, off-white ceramic plate. Three golden-baked pasta shells, plump with a creamy, vibrant green spinach and cottage cheese filling, are nestled together. They are generously coated with a rich, ruby-red marinara sauce, bubbling gently. A thick layer of melted, golden-brown mozzarella cheese blankets the shells, with delicate browning. The textured filling peeks slightly from the shell openings. Fresh, whole basil leaves casually garnish the dish, adding a bright green pop. The plate sits on a well-worn wooden dining table, illuminated by warm kitchen light, evoking a comforting, homely atmosphere. A standard fork is placed to the side. A casually folded cloth napkin completes the rustic setting. The entire plate is visible, showcasing the hearty, home-style portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty Italian bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Cottage Cheese",
+    "ingredients": [
+      {
+        "name": "Jumbo pasta shells",
+        "quantity": "24 (approximately 250g)"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "500g"
+      },
+      {
+        "name": "Frozen chopped spinach, thawed and squeezed dry",
+        "quantity": "250g"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "60g, plus extra for serving"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Marinara sauce",
+        "quantity": "700g jar"
+      },
+      {
+        "name": "Shredded mozzarella cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "a pinch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook pasta shells according to package directions until al dente. Drain and rinse with cold water to prevent sticking.",
+      "In a large bowl, combine cottage cheese, thawed and squeezed spinach, 60g Parmesan cheese, egg, minced garlic, salt, pepper, and nutmeg. Mix well.",
+      "Spread a thin layer of marinara sauce (about 200g) on the bottom of a 23x33 cm baking dish.",
+      "Carefully stuff each cooked shell with the cottage cheese mixture.",
+      "Arrange stuffed shells in a single layer in the baking dish over the marinara sauce.",
+      "Pour remaining marinara sauce over the shells.",
+      "Sprinkle mozzarella cheese evenly over the top.",
+      "Bake for 20-25 minutes, or until cheese is melted and bubbly and sauce is heated through.",
+      "Remove from oven. Let stand 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure spinach is very dry after thawing to prevent a watery filling.",
+      "For best results, cook pasta shells slightly less than al dente as they will finish cooking in the oven."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.5,
+      "calories": 627,
+      "cholesterol_mg": 88,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 44.5,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 1553,
+      "total_carbs_g": 65.7,
+      "total_fat_g": 21.4,
+      "total_sugars_g": 13.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 127,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 314,
+      "total_carbs_g": 13.3,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 22,
+      "protein": 89,
+      "saturated_fat": 48,
+      "sodium": 68,
+      "total_carbs": 24,
+      "total_fat": 27
+    },
+    "serving_size_g": 495,
+    "total_recipe_weight_g": 1980
+  },
+  {
+    "recipe_name": "Hearty Cottage Cheese and Spinach Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_cottage_cheese_and_spinach_bake_20250903_073617_8650c984.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T07:36:18.047887000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "без сахара, без риса",
+    "visual_description": "A modest, homely square portion of the Hearty Cottage Cheese and Spinach Bake is presented on a simple, everyday ceramic plate. The bake displays a golden-brown, slightly crisp crust from the melted cheddar cheese on top. Beneath the crust, the interior is creamy and moist, showcasing visible flecks of dark green chopped spinach and small, soft pieces of diced onion. The textures are comforting and soft, contrasting with the light crispness of the top. A few fresh dill sprigs are casually placed on the side of the plate as a simple garnish. The plate rests on a well-used wooden dining table in a warm, cozy kitchen setting. The lighting is soft and natural, emphasizing the comforting appeal of the dish. The background shows a relaxed family dining area, possibly with a casually folded cloth napkin or simple paper towel nearby. The entire plate is visible, with ample negative space. A standard fork and knife are placed beside the plate, ready for a home-style meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve warm directly from the baking dish.",
+      "Pairs well with a simple green salad with a vinaigrette.",
+      "Accompany with crusty bread for a complete meal."
+    ],
+    "hero_ingredient": "Cottage cheese",
+    "ingredients": [
+      {
+        "name": "Cottage cheese",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Dried dill",
+        "quantity": "3 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Lightly grease a 20x20 cm baking dish.",
+      "Dice the onion finely. Mince the garlic cloves. Coarsely chop the fresh spinach.",
+      "Heat olive oil in a large pan over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic to the pan. Sauté for 1 minute until fragrant.",
+      "Add chopped spinach to the pan. Cook until spinach wilts completely, about 3-4 minutes. Remove from heat. Squeeze out excess water from spinach.",
+      "In a large bowl, combine cottage cheese, eggs, salt, black pepper, and dried dill. Mix well.",
+      "Stir in the sautéed onion, garlic, and spinach mixture. Add 75 g of the shredded cheddar cheese. Mix to combine.",
+      "Pour the mixture into the prepared baking dish. Spread evenly.",
+      "Sprinkle the remaining 25 g of shredded cheddar cheese over the top.",
+      "Bake for 30-35 minutes, or until the top is golden brown and the bake is set in the center.",
+      "Remove from oven. Let it rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "This bake can be prepared ahead of time and refrigerated. Bake just before serving, adding 5-10 minutes to the baking time.",
+      "Adjust the amount of salt and pepper to your personal taste."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 288,
+      "cholesterol_mg": 131,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 26.7,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1114,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 17.7,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 111,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.3,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 429,
+      "total_carbs_g": 4.2,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43.6,
+      "dietary_fiber": 6.7,
+      "protein": 53.5,
+      "saturated_fat": 42.9,
+      "sodium": 48.5,
+      "total_carbs": 4,
+      "total_fat": 22.7
+    },
+    "serving_size_g": 259.95,
+    "total_recipe_weight_g": 1039.8
+  }
+]

@@ -1,0 +1,730 @@
+[
+  {
+    "recipe_name": "Beer-Braised Pork Shoulder with Onion Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_pork_shoulder_with_onion_risotto_20250624_141643_fb51a2ea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:16:44.331087000Z",
+    "selected_ingredients": [
+      "pork",
+      "oil",
+      "beer",
+      "onion",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, substantial chunk of rich, dark beer-braised pork shoulder, its surface showing a deep, caramelized crust, rests elegantly on a classic white porcelain plate. Beside it, a generous, creamy mound of pale, onion-flecked risotto flows gently. The risotto is moist and glistening, not stiff. A glossy, dark brown reduction sauce, from the braising liquid, pools around the base of the pork, reflecting light. The dish is garnished simply with a sprinkle of vibrant green, freshly chopped parsley. The composition is balanced and inviting, with moderate negative space. The pork is tender, showcasing its slow-cooked texture. The overall presentation is refined yet approachable, set on a simple wooden table with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Boneless pork shoulder",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dark beer (e.g., stout or ale)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Chicken or beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Hot vegetable or chicken stock (for risotto)",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g, grated"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C (320°F).",
+      "Cut pork shoulder into 4 large, rustic chunks. Pat pork dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear pork chunks until deeply browned on all sides. This will take about 3-4 minutes per side. Remove pork from pot. Set aside.",
+      "Add diced onion, carrot, and celery to the pot. Sauté for 8 minutes until softened.",
+      "Stir in minced garlic and tomato paste. Cook for 1 minute, stirring constantly.",
+      "Pour in dark beer. Scrape up any browned bits from the bottom of the pot with a wooden spoon. Bring to a simmer.",
+      "Return seared pork chunks to the pot. Add chicken stock, thyme sprigs, and bay leaves. Liquid should mostly cover the pork.",
+      "Bring the liquid back to a gentle simmer. Cover the pot with a lid. Transfer to the preheated oven.",
+      "Braise for 2.5 to 3 hours, or until the pork is fork-tender and easily pulls apart.",
+      "Remove pork from the pot. Tent with foil to keep warm. Strain the braising liquid into a separate saucepan.",
+      "Discard the cooked vegetables and herbs. Reduce the strained liquid over medium-high heat until it thickens to a glossy sauce consistency. Season the sauce to taste.",
+      "For the risotto: Heat a separate large saucepan or pot over medium heat. Add a splash of olive oil.",
+      "Add finely diced shallots. Sauté for 2 minutes until translucent.",
+      "Add Arborio rice. Stir for 1 minute until the grains are lightly toasted and opaque.",
+      "Pour in white wine. Stir continuously until the wine is fully absorbed by the rice.",
+      "Begin adding the hot stock, one ladle at a time. Stir continuously until each addition of stock is almost completely absorbed before adding the next ladle. Continue this process for 18-20 minutes, or until the risotto is creamy and the rice is al dente (firm to the bite).",
+      "Remove risotto from heat. Stir in unsalted butter and grated Parmesan cheese until melted and creamy. Taste and adjust seasoning.",
+      "To serve: Place a generous portion of creamy risotto on each plate. Arrange a braised pork chunk beside the risotto. Spoon the rich reduction sauce generously over the pork. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Choose a good quality dark beer for braising; a stout or dark ale works well and adds depth without bitterness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1266,
+      "cholesterol_mg": 222.3,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 77.3,
+      "saturated_fat_g": 22.8,
+      "sodium_mg": 2028.5,
+      "total_carbs_g": 88.9,
+      "total_fat_g": 60.4,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 137,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 0.59,
+      "protein_g": 8.35,
+      "saturated_fat_g": 2.47,
+      "sodium_mg": 219.3,
+      "total_carbs_g": 9.61,
+      "total_fat_g": 6.52,
+      "total_sugars_g": 0.98,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74.1,
+      "dietary_fiber": 19.6,
+      "protein": 154.5,
+      "saturated_fat": 114.1,
+      "sodium": 88.2,
+      "total_carbs": 32.3,
+      "total_fat": 77.4
+    },
+    "serving_size_g": 925,
+    "total_recipe_weight_g": 3700
+  },
+  {
+    "recipe_name": "Sustainable Shrimp & Broccoli Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_shrimp_%26_broccoli_risotto_20250624_141642_84a56598.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:16:42.575946000Z",
+    "selected_ingredients": [
+      "rice",
+      "cheese",
+      "basil",
+      "broccoli",
+      "mozzarella",
+      "shrimp"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A creamy, vibrant green risotto is plated centrally on a handcrafted, light cream-colored ceramic bowl. The risotto, cooked to a fluid consistency, shows small, tender broccoli florets folded throughout. On top, three perfectly pan-seared, plump shrimp are arranged naturally, their golden-pink exteriors contrasting with the green. Torn pieces of fresh mozzarella melt slightly into the warm rice. A few bright green whole basil leaves are scattered artfully. Small, pale green fermented broccoli florets are placed sparingly for textural and visual contrast. A drizzle of bright green basil stem oil adds a final flourish. The bowl sits on a light reclaimed wood surface. An undyed linen napkin and simple, elegant fork are beside it. The background is clean and minimalist with soft natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Italian",
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 large head (approx. 500 g)"
+      },
+      {
+        "name": "Large shrimp, peeled and deveined",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh mozzarella, torn or small bocconcini",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon, zest only",
+        "quantity": "0.5"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fermented broccoli florets (pre-prepared)",
+        "quantity": "60 g"
+      }
+    ],
+    "instructions": [
+      "Prepare vegetable broth: Trim broccoli stalk. Chop into chunks. Simmer stalk pieces in 1.5 L water for 20 minutes to create a light broth. Strain. Keep hot.",
+      "Separate broccoli florets from the head. Reserve small, firm florets for fermentation (if not pre-prepared). Blanch remaining florets briefly in boiling water for 2 minutes. Drain. Set aside.",
+      "Heat 15 ml olive oil in a large, heavy-bottomed pot over medium heat. Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice. Toast rice for 2 minutes, stirring constantly, until edges are translucent.",
+      "Pour in white wine (if using). Stir until liquid is absorbed.",
+      "Begin adding hot vegetable broth, one ladleful at a time. Stir constantly. Wait for liquid to be almost fully absorbed before adding the next ladleful.",
+      "After 10 minutes of adding broth, add blanched broccoli florets to the risotto. Continue adding broth and stirring.",
+      "Cook risotto for 18-20 minutes total, or until rice is al dente and creamy. Risotto should be fluid, not stiff.",
+      "Remove from heat. Stir in butter, grated Parmesan, and lemon zest. Season with salt and pepper to taste. Cover and let rest for 2 minutes.",
+      "While risotto rests, pat shrimp dry. Season with salt and pepper. Heat remaining 15 ml olive oil in a separate pan over medium-high heat. Sear shrimp for 2-3 minutes per side until pink and cooked through.",
+      "For basil stem oil: Blend basil stems with 30 ml olive oil until smooth. Strain through a fine-mesh sieve for a clear oil, or use as is.",
+      "Spoon risotto into individual serving bowls. Arrange 3-4 seared shrimp on top. Scatter torn fresh mozzarella and whole fresh basil leaves. Add a few pre-prepared fermented broccoli florets. Drizzle with basil stem oil. Serve immediately."
+    ],
+    "notes": [
+      "To make fermented broccoli: Cut small broccoli florets. Combine 250 ml water with 5 g salt. Pour over florets in a clean jar. Seal. Ferment at room temperature for 3-5 days, burping daily, until desired tanginess is achieved. Refrigerate.",
+      "This recipe utilizes broccoli stalks for broth and basil stems for oil, promoting zero-waste cooking.",
+      "Ensure shrimp are cooked through to an internal temperature of 63°C (145°F)."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 740,
+      "cholesterol_mg": 211.6,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 46.2,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 1051.9,
+      "total_carbs_g": 81.9,
+      "total_fat_g": 25.6,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102.1,
+      "cholesterol_mg": 29.2,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.4,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 145.1,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70.5,
+      "dietary_fiber": 20,
+      "protein": 92.4,
+      "saturated_fat": 60.4,
+      "sodium": 45.7,
+      "total_carbs": 29.8,
+      "total_fat": 32.8
+    },
+    "serving_size_g": 725,
+    "total_recipe_weight_g": 2900
+  },
+  {
+    "recipe_name": "Slow-Braised Beef with Tomato, Roasted Potatoes, and Garden Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-braised_beef_with_tomato%2C_roasted_potatoes%2C_and_garden_vegetables_20250624_141634_032022c7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:16:34.548515000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "tomato",
+      "green pea",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of slow-braised beef is elegantly presented on a clean, round white porcelain dinner plate, centered on a simple wooden table surface. Three to four rich, dark brown, succulent beef chunks, approximately 5 cm each, are the focal point, coated in a glossy, deep red-brown tomato-infused sauce that pools slightly at the base. Surrounding the beef are golden-brown roasted potato cubes, about 2.5 cm, with slightly crisp exteriors and fluffy interiors. Alongside, vibrant orange carrot batons, glazed with a subtle sheen, are arranged artfully. Bright green blanched peas are scattered for color and freshness. The arrangement is natural and balanced, with moderate negative space. A sprinkle of fresh, finely chopped parsley garnishes the dish, adding a pop of green. A clean cotton napkin and classic silver flatware are placed beside the plate. Natural, even lighting illuminates the dish, creating a warm, inviting restaurant atmosphere. The background is minimal, subtly suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Could be served with crusty bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef Chuck or Brisket",
+        "quantity": "1 kg, cut into 5 cm chunks"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600 g, peeled, cut into 2.5 cm cubes"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g, peeled, cut into 2 cm batons"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "200 g (fresh or frozen)"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Red Wine",
+        "quantity": "200 ml (optional)"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped (for garnish)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Thyme",
+        "quantity": "5 g (fresh sprigs or dried)"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g (for glazing carrots)"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5 g (for glazing carrots)"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat.",
+      "Sear beef chunks on all sides until deeply browned. Do in batches if necessary. Remove beef and set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine, if using. Scrape up any browned bits from the bottom of the pot. Reduce by half.",
+      "Return beef to the pot. Add diced tomatoes, beef broth, thyme, and bay leaf.",
+      "Bring to a simmer. Cover the pot.",
+      "Transfer to a preheated oven at 160°C. Braise for 2.5-3 hours, or until beef is fork-tender.",
+      "While beef braises, prepare vegetables.",
+      "Toss potato cubes with a drizzle of olive oil, salt, and pepper. Roast in a separate pan at 200°C for 25-30 minutes, or until golden and tender.",
+      "Steam or blanch carrot batons until tender-crisp.",
+      "In a small pan, melt butter with sugar. Add carrots and toss to glaze lightly.",
+      "Blanch green peas in boiling salted water for 1-2 minutes. Drain immediately.",
+      "Once beef is tender, remove from oven. Skim any excess fat from the sauce. Adjust seasoning.",
+      "To serve, place several beef chunks on each plate. Spoon generous amount of sauce over beef. Arrange roasted potatoes, glazed carrots, and green peas around the beef.",
+      "Garnish with fresh chopped parsley. Serve hot."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 1036.5,
+      "cholesterol_mg": 241.1,
+      "dietary_fiber_g": 10.6,
+      "protein_g": 73.9,
+      "saturated_fat_g": 20.5,
+      "sodium_mg": 1318.2,
+      "total_carbs_g": 56.9,
+      "total_fat_g": 52.7,
+      "total_sugars_g": 14.5,
+      "trans_fat_g": 2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 117.4,
+      "cholesterol_mg": 27.3,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 149.3,
+      "total_carbs_g": 6.4,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80.4,
+      "dietary_fiber": 37.8,
+      "protein": 147.8,
+      "saturated_fat": 102.5,
+      "sodium": 57.3,
+      "total_carbs": 20.7,
+      "total_fat": 67.6
+    },
+    "serving_size_g": 883.2,
+    "total_recipe_weight_g": 3532.6
+  },
+  {
+    "recipe_name": "Sweet Potato Hash with Poached Eggs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_potato_hash_with_poached_eggs_20250624_141632_c3cb6679.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:16:33.465829000Z",
+    "selected_ingredients": [
+      "sweet potato",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant and rustic sweet potato hash is carefully mounded on a clean white porcelain dinner plate. The hash features small, irregular cubes of roasted sweet potato, exhibiting a golden-orange hue and slightly caramelized edges, interspersed with finely diced red onion and red bell pepper, adding contrasting pops of purple and crimson. Specks of fresh green parsley are mixed throughout, providing freshness. Perched atop the hash, a perfectly poached egg presents a delicate, opaque white exterior. A gentle slice into the egg reveals a rich, golden-orange yolk, ready to cascade over the savory hash. The dish is presented on a simple wooden table surface, accompanied by a folded white cotton napkin and standard silver flatware. Natural, even lighting highlights the textures and warm colors of the dish, creating an inviting and wholesome appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Poached Egg",
+    "ingredients": [
+      {
+        "name": "Sweet potatoes",
+        "quantity": "800 g, peeled, diced into 1.5 cm cubes"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Heat 30 ml olive oil in a large non-stick pan over medium-high heat.",
+      "Add diced sweet potatoes. Cook 10-12 minutes. Stir occasionally. Sweet potatoes should be tender and lightly browned. Remove from pan. Set aside.",
+      "Add remaining 30 ml olive oil to the same pan. Reduce heat to medium.",
+      "Add diced red onion and red bell pepper. Cook 5-7 minutes. Vegetables should soften.",
+      "Add minced garlic, smoked paprika, and dried thyme. Cook 1 minute. Stir constantly.",
+      "Return cooked sweet potatoes to the pan. Stir to combine. Season with salt and black pepper. Keep warm over low heat.",
+      "Fill a medium pot with water. Bring to a gentle simmer. Add white vinegar.",
+      "Carefully crack each egg into a small bowl. Gently slide each egg into the simmering water.",
+      "Poach eggs 3-4 minutes for runny yolks. Whites should be set.",
+      "Remove poached eggs with a slotted spoon. Drain excess water.",
+      "Divide sweet potato hash among four plates.",
+      "Top each portion of hash with one poached egg.",
+      "Garnish generously with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 424.1,
+      "cholesterol_mg": 186.5,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 10.8,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 692.8,
+      "total_carbs_g": 50.9,
+      "total_fat_g": 19.9,
+      "total_sugars_g": 13.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110.7,
+      "cholesterol_mg": 48.7,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 2.8,
+      "saturated_fat_g": 1,
+      "sodium_mg": 180.9,
+      "total_carbs_g": 13.3,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 93.3,
+      "dietary_fiber": 29.3,
+      "protein": 21.7,
+      "saturated_fat": 18.3,
+      "sodium": 30.1,
+      "total_carbs": 18.5,
+      "total_fat": 25.5
+    },
+    "serving_size_g": 383,
+    "total_recipe_weight_g": 1532
+  },
+  {
+    "recipe_name": "Pasta with Russian-Style Vegetable Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_with_russian-style_vegetable_sauce_20250624_141628_5cbb2455.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:16:28.653444000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian, Russian cuisine",
+    "visual_description": "The dish is presented in a deep, rustic ceramic bowl on a well-worn wooden dining table. A generous portion of penne pasta is coated in a vibrant, rich red-orange vegetable sauce. The sauce is thick with tender, identifiable chunks of diced red, yellow, and green bell peppers, soft diced tomatoes, and finely diced onions and carrots. Vegetables are gently simmered, maintaining shape. A scattering of fresh, bright green chopped dill and parsley is sprinkled over the top. The pasta and sauce are naturally arranged, slightly overflowing the bowl, suggesting a hearty, home-cooked meal. A simple, sturdy metal fork rests beside the bowl on a linen napkin. Warm, inviting lighting fills the cozy kitchen scene. The background is minimal, hinting at a lived-in family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of dark rye bread.",
+      "Offer a dollop of smetana (sour cream) on the side for individual preference.",
+      "Pair with pickled cucumbers or fermented cabbage (sauerkraut)."
+    ],
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., penne, fusilli, macaroni)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Bell peppers (red, yellow, or green)",
+        "quantity": "3 large (about 600g), diced"
+      },
+      {
+        "name": "Tomatoes (fresh or canned diced)",
+        "quantity": "400g fresh, diced OR 1 can (400g) diced tomatoes"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, grated or finely diced"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Paprika (sweet)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dill (fresh)",
+        "quantity": "a small bunch, chopped for garnish"
+      },
+      {
+        "name": "Parsley (fresh)",
+        "quantity": "a small bunch, chopped for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Water or vegetable broth",
+        "quantity": "100-150ml (if needed)"
+      }
+    ],
+    "instructions": [
+      "Boil water for pasta. Add salt. Cook pasta according to package directions until al dente. Drain.",
+      "Heat vegetable oil in a large pot or deep pan over medium heat.",
+      "Add diced onion and grated carrot. Sauté 5-7 minutes until softened.",
+      "Add diced bell peppers. Cook 8-10 minutes, stirring occasionally, until slightly tender.",
+      "Stir in minced garlic, tomato paste, and paprika. Cook 1 minute until fragrant.",
+      "Add diced tomatoes and sugar. Stir well.",
+      "Bring to a simmer. Reduce heat to low. Cover and cook 20-25 minutes, stirring occasionally, until vegetables are very tender and sauce thickens. Add water or broth if sauce is too thick.",
+      "Season with salt and black pepper to taste.",
+      "Combine sauce with drained pasta. Stir gently to coat.",
+      "Serve hot, garnished with fresh chopped dill and parsley."
+    ],
+    "traditional_techniques": [
+      "Slow simmering",
+      "Sautéing mirepoix-like base"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 546,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 16.8,
+      "saturated_fat_g": 0.99,
+      "sodium_mg": 34,
+      "total_carbs_g": 96.05,
+      "total_fat_g": 9.21,
+      "total_sugars_g": 15.53,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.27,
+      "calories": 117,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.07,
+      "protein_g": 3.58,
+      "saturated_fat_g": 0.21,
+      "sodium_mg": 7,
+      "total_carbs_g": 20.49,
+      "total_fat_g": 1.96,
+      "total_sugars_g": 3.31,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 34.6,
+      "protein": 33.6,
+      "saturated_fat": 5,
+      "sodium": 1.5,
+      "total_carbs": 34.9,
+      "total_fat": 11.8
+    },
+    "serving_size_g": 468.75,
+    "total_recipe_weight_g": 1875
+  }
+]

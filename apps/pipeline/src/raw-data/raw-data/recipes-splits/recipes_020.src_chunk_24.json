@@ -1,0 +1,676 @@
+[
+  {
+    "recipe_name": "Chicken and Gnocchi Bake with Fontina",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_gnocchi_bake_with_fontina_20250624_171649_565ba6fa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:16:49.918772000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Chicken and Gnocchi Bake is presented in a clean, white porcelain bowl, showcasing its rustic yet refined appearance. Golden-brown, melted Fontina cheese forms a bubbly crust over tender chicken chunks and plump, soft potato gnocchi. The chicken is cut into substantial 3cm chunks, seared to a rich golden hue. The gnocchi are light ivory, subtly coated in a creamy, off-white cheese sauce. Flecks of fresh green parsley are scattered over the top, adding a vibrant contrast. The dish is arranged with a moderate amount of negative space on the plate, allowing the textures and colors to stand out. The setting is a modern bistro, featuring a simple light wooden table surface. A folded cotton napkin is placed beside the bowl. Natural, even lighting highlights the dish’s warmth and inviting texture. A single individual portion is shown.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Accompany with crusty Italian bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potato gnocchi",
+        "quantity": "500g"
+      },
+      {
+        "name": "Fontina cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion, small diced",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "40g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut chicken thighs into 3cm chunks. Season with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat. Add chicken. Sear chicken chunks until golden brown on all sides, about 6-8 minutes. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add butter to the skillet. Once melted, add diced onion. Cook until softened, about 5 minutes. Add minced garlic and thyme. Cook 1 minute until fragrant.",
+      "Sprinkle flour over the onion mixture. Cook, stirring, for 1 minute to create a roux.",
+      "Gradually whisk in chicken broth until smooth. Bring to a simmer. Cook 2 minutes until thickened.",
+      "Stir in heavy cream. Bring to a gentle simmer. Remove from heat.",
+      "Stir in 150g of shredded Fontina cheese until melted and smooth. Season sauce with salt and pepper.",
+      "Cook gnocchi according to package directions in salted boiling water until they float, about 2-3 minutes. Drain well.",
+      "Add cooked gnocchi and seared chicken chunks to the cheese sauce in the skillet. Stir gently to combine.",
+      "Sprinkle remaining 50g Fontina cheese over the top.",
+      "Bake for 15-20 minutes, or until bubbling and golden brown on top.",
+      "Let rest 5 minutes before serving. Garnish with fresh parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety."
+    ],
+    "traditional_techniques": [
+      "Making a roux for the sauce base",
+      "Soffritto (for onion and garlic base)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 922,
+      "cholesterol_mg": 261,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 52.2,
+      "saturated_fat_g": 28.2,
+      "sodium_mg": 1039,
+      "total_carbs_g": 48.5,
+      "total_fat_g": 55.1,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 193,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 10.9,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 217,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 11.5,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 87,
+      "dietary_fiber": 10,
+      "protein": 104,
+      "saturated_fat": 141,
+      "sodium": 45,
+      "total_carbs": 18,
+      "total_fat": 71
+    },
+    "serving_size_g": 479,
+    "total_recipe_weight_g": 1915
+  },
+  {
+    "recipe_name": "Fermented Pasta & Mushroom Broth",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_pasta_%26_mushroom_broth_20250624_171644_5a518ffb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:16:44.488325000Z",
+    "selected_ingredients": [
+      "pasta",
+      "bacon",
+      "mushroom"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of the clear, amber-hued mushroom and bacon broth is presented in a handcrafted, unglazed ceramic bowl with organic, slightly uneven edges, reflecting earth tones like cream or pale beige. Tender, al dente ditalini pasta pieces are visible at the bottom, partially submerged. Thinly sliced, golden-brown sautéed mushroom caps are naturally arranged on the surface. A scattering of finely diced, crispy bacon bits rests atop the mushrooms and broth. Freshly chopped bright green chives are sprinkled sparingly over the dish. The overall presentation is minimalistic and natural, emphasizing the pure beauty of each ingredient. The bowl rests on a light, naturally textured reclaimed wood surface. A simple, undyed linen napkin in a neutral beige lies beside it. Soft, natural light illuminates the scene, highlighting the rich colors and inviting textures of the soup.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Bacon",
+        "quantity": "150g, diced"
+      },
+      {
+        "name": "Mushrooms (e.g., cremini or shiitake)",
+        "quantity": "400g, caps sliced, stems reserved for broth"
+      },
+      {
+        "name": "Small pasta (e.g., ditalini or small shells)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable scraps (onion skins, carrot peels, celery ends)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Water (for broth)",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, smashed"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15g, finely chopped"
+      },
+      {
+        "name": "Water (for pasta brine)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Salt (for pasta brine)",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Prepare Broth: In a large pot, combine mushroom stems, vegetable scraps, smashed garlic, bay leaf, and peppercorns. Add 1.5 litres of water. Bring to a simmer. Cook for 45 minutes. Strain broth, discarding solids. Set broth aside.",
+      "Briefly Ferment Pasta: In a bowl, dissolve 5g salt in 500ml water. Add pasta. Let stand at room temperature for 12-24 hours. Drain pasta before cooking.",
+      "Render Bacon: Dice bacon into small pieces. In a separate pan, cook diced bacon over medium heat until crispy. Remove crispy bacon bits with a slotted spoon. Reserve bacon fat in the pan.",
+      "Sauté Mushrooms: Add 15ml olive oil to the pan with bacon fat (if needed). Add sliced mushroom caps. Sauté until golden brown and tender, about 5-7 minutes. Season lightly with salt.",
+      "Cook Pasta: Bring a pot of water to a boil. Add briefly fermented pasta. Cook according to package directions until al dente. Drain.",
+      "Assemble Soup: Add cooked pasta and sautéed mushrooms to the strained broth. Bring soup to a gentle simmer. Taste and adjust salt.",
+      "Serve: Ladle soup into bowls. Garnish each serving with crispy bacon bits and chopped fresh chives."
+    ],
+    "notes": [
+      "The brief fermentation of pasta imparts a subtle tang and utilizes a simple preservation technique, enhancing flavor with minimal waste.",
+      "Maximize flavor and minimize waste by using all parts of the mushroom and vegetable scraps for the broth."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 443,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 23.7,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 1539,
+      "total_carbs_g": 41,
+      "total_fat_g": 20.3,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 66,
+      "cholesterol_mg": 5,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 3.5,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 228,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 3,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 12,
+      "dietary_fiber": 9.3,
+      "protein": 47.4,
+      "saturated_fat": 29.5,
+      "sodium": 66.9,
+      "total_carbs": 14.9,
+      "total_fat": 26
+    },
+    "serving_size_g": 675,
+    "total_recipe_weight_g": 2700
+  },
+  {
+    "recipe_name": "Creamy Chicken Fettuccine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_fettuccine_20250624_171641_10d7c442.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:16:41.908212000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "heavy cream",
+      "nutmeg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Creamy Chicken Fettuccine is presented on a clean, round white porcelain dinner plate. Golden fettuccine noodles are artfully swirled, generously coated in a rich, creamy off-white sauce. Thick, browned chicken medallions or substantial chunks are nestled atop the pasta, showcasing their seared exterior. Vibrant green flecks of fresh chopped parsley and a dusting of finely grated white Parmesan cheese add color and texture. The composition is balanced, with moderate negative space. Chicken is presented as whole pieces, not fanned. The plate rests on a simple wooden table. A neatly folded light grey cotton napkin and standard silver flatware are arranged beside it. Natural, even lighting creates a professional yet approachable presentation. The softly blurred background suggests a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the sauce.",
+      "Offer a simple green salad dressed with vinaigrette as an accompaniment."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "600g"
+      },
+      {
+        "name": "Fettuccine pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g, freshly grated"
+      },
+      {
+        "name": "Fresh nutmeg",
+        "quantity": "1/4 teaspoon, grated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season all sides with salt and black pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat.",
+      "Add chicken breasts to skillet. Sear 5-7 minutes per side until golden brown and cooked through. Internal temperature must reach 75°C.",
+      "Remove chicken from skillet. Rest on a cutting board for 5 minutes.",
+      "While chicken rests, cook fettuccine according to package directions in salted boiling water until al dente. Reserve 120ml pasta water before draining.",
+      "Reduce skillet heat to medium. Add 15ml olive oil and 30g butter to the same skillet.",
+      "Add diced shallots. Sauté 3 minutes until softened.",
+      "Add minced garlic. Sauté 1 minute until fragrant. Do not brown.",
+      "Pour in heavy cream. Bring to a gentle simmer.",
+      "Grate fresh nutmeg into the cream. Stir in 80g grated Parmesan cheese.",
+      "Season sauce with salt and black pepper to taste. Simmer 2-3 minutes until slightly thickened.",
+      "Slice rested chicken breasts into thick medallions or bite-sized chunks.",
+      "Add cooked fettuccine and sliced chicken to the sauce in the skillet.",
+      "Toss well to coat. Add reserved pasta water gradually if sauce is too thick.",
+      "Serve immediately. Garnish with fresh chopped parsley and additional grated Parmesan."
+    ],
+    "notes": [
+      "Ensure chicken is cooked through to 75°C for food safety.",
+      "Adjust sauce consistency by adding more reserved pasta water if needed.",
+      "Freshly grated nutmeg provides a superior flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1273,
+      "cholesterol_mg": 311,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 71.1,
+      "saturated_fat_g": 38,
+      "sodium_mg": 1006,
+      "total_carbs_g": 86.2,
+      "total_fat_g": 70.7,
+      "total_sugars_g": 9.2,
+      "trans_fat_g": 2.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 204,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.4,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 161,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 11.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 104,
+      "dietary_fiber": 16,
+      "protein": 142,
+      "saturated_fat": 190,
+      "sodium": 44,
+      "total_carbs": 31,
+      "total_fat": 91
+    },
+    "serving_size_g": 623.25,
+    "total_recipe_weight_g": 2493
+  },
+  {
+    "recipe_name": "Fermented Rice Bowl with Seared Sustainable Cod",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_rice_bowl_with_seared_sustainable_cod_20250624_171638_8e7af910.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:16:38.751352000Z",
+    "selected_ingredients": [
+      "rice",
+      "fish"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single individual portion is presented in a wide, shallow, handcrafted ceramic bowl with a matte, unglazed exterior and a smooth, off-white interior. The bowl rests on a light, textured bamboo placemat set on a reclaimed natural wood table. The base of the dish is a generous mound of pale, slightly off-white fermented rice, its individual grains distinct and slightly glossy. A perfectly seared cod fillet, its surface a light golden-brown with subtle crisp edges, is positioned gracefully atop the rice, slightly off-center to create visual interest. The fish is presented as a whole piece. Around the fish, an artful scattering of quick-pickled vegetables adds vibrant pops of color and texture: translucent thin rounds of daikon, bright orange julienned carrot strips, and pale green half-moon cucumber slices. Each vegetable piece is distinct, showcasing precise knife work. Ample negative space surrounds the components within the bowl, emphasizing the minimalistic aesthetic. A few fresh, vibrant green dill fronds are placed delicately on the fish and rice. The overall composition is clean, natural, and unfussy, highlighting the pure beauty of each ingredient. Lighting is soft, natural, and even, casting gentle shadows. A simple undyed linen napkin in a natural beige tone is folded neatly beside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "N/A",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Sustainable Cod",
+    "ingredients": [
+      {
+        "name": "Cod fillets, sustainably sourced",
+        "quantity": "600g"
+      },
+      {
+        "name": "Medium-grain rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Daikon radish",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "150g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "60g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh dill, finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Rinse rice thoroughly under cold water. Place rinsed rice in a large bowl. Add 600ml filtered water. Cover loosely and let stand at room temperature for 12-24 hours to initiate natural fermentation.",
+      "Drain fermented rice. Transfer to a saucepan. Add 150ml fresh water and a pinch of salt. Bring to a boil. Reduce heat to low, cover, and simmer for 15-18 minutes, or until water is absorbed and rice is tender. Remove from heat, keep covered, and let steam for 10 minutes. Fluff with a fork.",
+      "Peel daikon and carrots. Slice daikon into thin rounds. Julienne carrots into thin strips. Halve cucumber lengthwise, scoop out seeds, and slice into thin half-moons.",
+      "In a small saucepan, combine rice vinegar, sugar, and 10g salt. Heat gently, stirring until sugar and salt dissolve. Let cool completely.",
+      "Place prepared daikon, carrots, and cucumber in separate clean jars or bowls. Pour cooled pickling brine over vegetables, ensuring they are submerged. Cover and refrigerate for at least 30 minutes.",
+      "Pat cod fillets dry thoroughly with paper towels. Season both sides with remaining salt and black pepper.",
+      "Heat olive oil in a large non-stick skillet over medium-high heat. Carefully place cod fillets in the hot skillet. Sear for 4-5 minutes until golden.",
+      "Flip cod fillets. Continue cooking for another 3-4 minutes, or until fish is opaque and cooked through to an internal temperature of 63°C (145°F).",
+      "Divide fermented rice evenly among four shallow serving bowls.",
+      "Carefully place one seared cod fillet on top of the rice in each bowl.",
+      "Arrange a portion of quick-pickled daikon, carrots, and cucumber artfully around the fish, allowing for negative space.",
+      "Garnish with fresh chopped dill. Serve immediately."
+    ],
+    "notes": [
+      "Choosing sustainably sourced fish is key for this recipe's eco-conscious ethos.",
+      "This recipe utilizes a simple overnight rice fermentation, enhancing flavor and digestibility.",
+      "The quick-pickling method is a zero-waste technique, extending the life of seasonal vegetables.",
+      "Any leftover pickling brine can be reused for a second batch of vegetables."
+    ],
+    "traditional_techniques": [
+      "Simple Fermentation",
+      "Quick-Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 15,
+      "calories": 558,
+      "cholesterol_mg": 65,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 33.1,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 1579,
+      "total_carbs_g": 97,
+      "total_fat_g": 9,
+      "total_sugars_g": 19.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2,
+      "calories": 76,
+      "cholesterol_mg": 9,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 4.5,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 215,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 1.2,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 22,
+      "dietary_fiber": 16,
+      "protein": 66,
+      "saturated_fat": 7,
+      "sodium": 69,
+      "total_carbs": 35,
+      "total_fat": 12
+    },
+    "serving_size_g": 735.6,
+    "total_recipe_weight_g": 2942.5
+  },
+  {
+    "recipe_name": "Hearty Italian Sausage, Pasta, and Rice Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_italian_sausage%2C_pasta%2C_and_rice_soup_20250624_171628_cc4d17f4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:16:29.035478000Z",
+    "selected_ingredients": [
+      "pasta",
+      "rice",
+      "sausage"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous single portion of hearty Italian sausage, pasta, and rice soup is presented in a deep, rustic ceramic bowl with a subtly chipped rim, reflecting a well-loved kitchen. The robust tomato-based broth is a warm, inviting reddish-orange, brimming with texture. Large, browned chunks of savory Italian sausage are visible alongside small, tender ditalini pasta and plump, creamy grains of arborio rice. Bright green, wilted spinach leaves are interspersed throughout, adding a fresh contrast. Diced carrots and celery are softly cooked, retaining their shape. A light sprinkling of finely grated Parmesan cheese melts gently on top, with a scattering of vibrant green chopped fresh parsley. The bowl sits on a well-worn, warm-toned wooden dining table. A simple, folded linen napkin and a sturdy, everyday spoon rest beside it. Warm, natural light illuminates the scene, suggesting a cozy, lived-in family kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian American",
+    "cultural_origin": "Italian American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Offer extra grated Parmesan cheese at the table"
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausage (bulk or removed from casings)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Onion (diced)",
+        "quantity": "1 medium (approx 150g)"
+      },
+      {
+        "name": "Carrots (diced)",
+        "quantity": "2 medium (approx 120g)"
+      },
+      {
+        "name": "Celery (diced)",
+        "quantity": "2 stalks (approx 80g)"
+      },
+      {
+        "name": "Garlic (minced)",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Chicken or Vegetable broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Short pasta (e.g., ditalini, small shells)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "80g"
+      },
+      {
+        "name": "Fresh spinach (roughly chopped)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Parmesan cheese (grated, for serving)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh parsley (chopped, for garnish)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Remove sausage from casings. Crumble into large pot or Dutch oven.",
+      "Cook sausage over medium-high heat until browned. Break up with spoon. Drain excess fat.",
+      "Add olive oil, diced onion, carrots, and celery to pot. Sauté 8-10 minutes until softened.",
+      "Stir in minced garlic. Cook 1 minute until fragrant.",
+      "Pour in crushed tomatoes and broth. Bring to a simmer.",
+      "Add arborio rice. Cook 15 minutes, stirring occasionally.",
+      "Add short pasta. Continue cooking 8-10 minutes, or until pasta and rice are tender.",
+      "Stir in fresh spinach. Cook 2-3 minutes until wilted.",
+      "Season soup with salt and pepper to taste.",
+      "Ladle hot soup into bowls. Serve with grated Parmesan and fresh parsley."
+    ],
+    "notes": [
+      "Adjust broth quantity for desired soup consistency.",
+      "Ground beef or turkey can substitute sausage.",
+      "Any small pasta shape works."
+    ],
+    "traditional_techniques": [
+      "Sautéing a soffritto base",
+      "Simmering to combine flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 723.4,
+      "cholesterol_mg": 98.5,
+      "dietary_fiber_g": 4.81,
+      "protein_g": 40.33,
+      "saturated_fat_g": 14.53,
+      "sodium_mg": 1511.64,
+      "total_carbs_g": 51.55,
+      "total_fat_g": 41.08,
+      "total_sugars_g": 6.91,
+      "trans_fat_g": 0.76
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 92.62,
+      "cholesterol_mg": 12.61,
+      "dietary_fiber_g": 0.62,
+      "protein_g": 5.16,
+      "saturated_fat_g": 1.86,
+      "sodium_mg": 193.56,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 5.26,
+      "total_sugars_g": 0.89,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32.8,
+      "dietary_fiber": 17.2,
+      "protein": 80.7,
+      "saturated_fat": 72.7,
+      "sodium": 65.7,
+      "total_carbs": 18.8,
+      "total_fat": 52.7
+    },
+    "serving_size_g": 781,
+    "total_recipe_weight_g": 3124
+  }
+]

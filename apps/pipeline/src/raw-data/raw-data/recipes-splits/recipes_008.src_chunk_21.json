@@ -1,0 +1,630 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Beer-Glazed Mushrooms and Chili-Garlic Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_beer-glazed_mushrooms_and_chili-garlic_noodles_20250810_084311_e19c9fe2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T08:43:12.271266000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "chili",
+      "mushroom",
+      "noodle",
+      "beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of pan-seared chicken, beer-glazed mushrooms, and chili-garlic noodles on a clean white porcelain dinner plate. The chicken thigh, cooked whole or sliced into two thick medallions, rests prominently, its skin a deep, crispy golden-brown. Beside it, a neat coil of wide, pale yellow egg noodles, lightly tossed with chili flakes and minced garlic, gleams softly. Earthy brown, thickly sliced cremini mushrooms, glistening with a rich, reduced beer and soy sauce glaze, are artfully arranged over the chicken and draped onto the noodles. A vibrant sprinkle of fresh green chopped parsley provides a pop of color and freshness. The plate has appropriate negative space, with elements harmoniously balanced. The setting is a modern bistro, featuring a simple wooden table surface, a casually folded cotton napkin, and standard stainless steel flatware, all under natural, even lighting. The background is softly blurred, hinting at a casual restaurant ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Contemporary Fusion",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Wide egg noodles",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cremini mushrooms, thickly sliced",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red chilies, thinly sliced",
+        "quantity": "1-2 (or 1 tsp chili flakes)"
+      },
+      {
+        "name": "Pale ale or lager beer",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley or cilantro, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat. Place chicken, skin-side down. Sear until skin is golden brown and crispy, about 6-8 minutes.",
+      "Flip chicken. Transfer skillet to a preheated oven at 190°C (375°F). Cook until internal temperature reaches 75°C (167°F), about 10-15 minutes. Remove from oven. Rest chicken on a cutting board.",
+      "While chicken cooks, bring a large pot of salted water to a boil for noodles. Cook noodles according to package directions until al dente. Drain. Toss with a drizzle of olive oil to prevent sticking.",
+      "In the same skillet used for chicken, add butter. Reduce heat to medium. Add sliced mushrooms. Sauté until golden brown and tender, about 5-7 minutes.",
+      "Add minced garlic and sliced chilies to mushrooms. Sauté for 1 minute until fragrant.",
+      "Deglaze skillet with beer. Scrape up any browned bits. Simmer for 2 minutes.",
+      "Add chicken broth and soy sauce. Bring to a simmer. Cook until sauce slightly thickens and reduces, about 5-7 minutes. Season with salt and pepper as needed.",
+      "To serve, place a portion of noodles onto each plate. Slice chicken thighs into thick medallions or serve whole. Arrange chicken next to noodles. Spoon beer-glazed mushrooms and sauce over chicken and noodles. Garnish with chopped fresh parsley or cilantro."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 815,
+      "cholesterol_mg": 241.8,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 50.3,
+      "saturated_fat_g": 13,
+      "sodium_mg": 739.9,
+      "total_carbs_g": 49.3,
+      "total_fat_g": 43.5,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 48.9,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 10.2,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 149.5,
+      "total_carbs_g": 10,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80.6,
+      "dietary_fiber": 9.6,
+      "protein": 100.6,
+      "saturated_fat": 65,
+      "sodium": 32.2,
+      "total_carbs": 17.9,
+      "total_fat": 55.8
+    },
+    "serving_size_g": 495,
+    "total_recipe_weight_g": 1979
+  },
+  {
+    "recipe_name": "Lavender Honey Mousse Cubes with Blackcurrant Gelee",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lavender_honey_mousse_cubes_with_blackcurrant_gelee_20250810_082035_fcbbe52c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T08:20:35.650780000Z",
+    "selected_ingredients": [
+      "lavender"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "Six to nine pristine miniature Lavender Honey Mousse Cubes are artfully arranged on a rectangular white bone china platter. Each cube, precisely 3x3x3 cm, presents a smooth, pale lavender-hued exterior, subtly reflecting ambient light. A delicate Sable Breton square, golden-brown and crisp, forms the base of each cube. A small, vibrant square of deep purple Blackcurrant Gelee is nestled within the mousse, its sharp geometric form providing a visual counterpoint. The only garnish is a tiny, precisely placed flake of edible silver leaf on the top surface of each mousse cube, adding a subtle shimmer. Abundant negative space surrounds the arrangement, emphasizing the architectural precision and minimalist elegance. The platter rests on a polished dark wood table, illuminated by dramatic professional lighting that creates soft, deliberate shadows. A pristine white linen napkin, folded into a precise triangle, is placed discreetly to the side. The background is utterly minimalist, ensuring the focus remains entirely on the sophisticated petit fours.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Lavender",
+    "ingredients": [
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Dried culinary lavender",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Gelatin leaves (silver grade)",
+        "quantity": "3 (approx. 6g)"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "2"
+      },
+      {
+        "name": "Granulated sugar (for mousse)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Mild honey (e.g., acacia)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Blackcurrant purée (unsweetened)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar (for gelee)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "1.5 g"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Egg yolk (for sable)",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Edible silver leaf",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Prepare Sable Breton: Cream butter and icing sugar until light. Beat in egg yolk. Sift flour, baking powder, and salt together. Fold into butter mixture until just combined. Form dough into a disc. Chill 30 minutes. Roll dough 3 mm thick between two parchment sheets. Cut into 3x3 cm squares. Bake at 160°C for 12-15 minutes until golden. Cool completely on a wire rack.",
+      "Infuse Lavender Cream: Heat 100 ml of heavy cream with dried lavender in a small saucepan. Bring to a gentle simmer. Remove from heat. Cover and steep 15 minutes. Strain cream through a fine-mesh sieve, pressing lavender. Discard lavender. Chill infused cream.",
+      "Prepare Blackcurrant Gelee: Combine blackcurrant purée, sugar, and agar-agar in a small saucepan. Bring to a boil, whisking constantly. Boil 1 minute to activate agar-agar. Remove from heat. Stir in lemon juice. Pour gelee 5 mm thick into a small square mold or container (e.g., 10x10 cm) lined with cling film. Chill until firm (approx. 30 minutes). Cut into 1.5x1.5 cm squares.",
+      "Prepare Lavender Honey Mousse: Bloom gelatin leaves in cold water for 5 minutes. In a heatproof bowl, whisk egg yolks and 30g sugar until pale. Heat remaining 100 ml heavy cream with honey in a saucepan until simmering. Gradually pour hot cream-honey mixture over egg yolks, whisking constantly. Return mixture to saucepan. Cook over medium-low heat, stirring constantly, until mixture thickens slightly (82°C). Do not boil. Remove from heat. Squeeze excess water from gelatin. Stir gelatin into hot custard until dissolved. Stir in chilled lavender-infused cream. Pass mixture through a fine-mesh sieve. Chill over an ice bath until cool (20-25°C).",
+      "Assemble Mousse Cubes: Whip the remaining 100 ml of heavy cream to soft peaks. Gently fold whipped cream into the cooled lavender-honey base. Pour mousse into individual silicone cube molds (e.g., 3x3x3 cm). Insert one blackcurrant gelee square into the center of each mousse cube. Level the tops. Freeze for at least 4 hours, or preferably overnight.",
+      "Finish and Serve: Carefully demold frozen mousse cubes. Let them temper in the refrigerator for 20-30 minutes. Place each mousse cube on a prepared Sable Breton square. Arrange 6-9 pieces on an elegant serving platter. Garnish each with a tiny piece of edible silver leaf. Serve chilled."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 22.5,
+      "calories": 529.3,
+      "cholesterol_mg": 239.1,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 6.7,
+      "saturated_fat_g": 20.4,
+      "sodium_mg": 179.3,
+      "total_carbs_g": 52.6,
+      "total_fat_g": 33.9,
+      "total_sugars_g": 36.5,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.9,
+      "calories": 327.4,
+      "cholesterol_mg": 147.9,
+      "dietary_fiber_g": 1,
+      "protein_g": 4.1,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 110.9,
+      "total_carbs_g": 32.5,
+      "total_fat_g": 21,
+      "total_sugars_g": 22.6,
+      "trans_fat_g": 0.8
+    },
+    "daily_value_percentages": {
+      "cholesterol": 79.7,
+      "dietary_fiber": 6.3,
+      "protein": 13.4,
+      "saturated_fat": 101.9,
+      "sodium": 7.8,
+      "total_carbs": 17.5,
+      "total_fat": 52.2
+    },
+    "serving_size_g": 161.7,
+    "total_recipe_weight_g": 646.8
+  },
+  {
+    "recipe_name": "Hungarian Beef Goulash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hungarian_beef_goulash_20250810_081751_37520baf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T08:17:52.138112000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot",
+      "garlic",
+      "onion",
+      "tomato",
+      "potato",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a wide, shallow white porcelain bowl on a dark oak table. The focus is a hearty portion of Hungarian beef stew. The beef is cut into 3cm chunks, appearing dark red and tender. Vibrant orange carrots are cut into 2cm rounds. Potatoes are 2cm cubes, absorbing the deep red sauce. The sauce is thick and glossy, colored intensely by sweet paprika. Red bell peppers are cut into 2cm squares. A single dollop of white sour cream is placed on the side. A sprig of fresh parsley is the garnish. A side of crusty rye bread rests on a small ceramic plate next to the bowl. Natural light creates soft shadows and highlights the rich textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Galuska or Nokedli dumplings",
+      "Accompany with pickled cucumbers or fermented cabbage",
+      "Provide thick slices of fresh rye bread for dipping"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Sweet Hungarian Paprika",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Lard or vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 3cm chunks.",
+      "Finely dice onions and mince garlic.",
+      "Cut carrots into 2cm rounds and potatoes into 2cm cubes.",
+      "Dice tomatoes and cut bell pepper into 2cm squares.",
+      "Heat lard in a heavy pot over medium heat.",
+      "Sauté onions until translucent and golden.",
+      "Remove pot from heat and stir in paprika and caraway seeds.",
+      "Add beef chunks and return to heat.",
+      "Sear meat for 5 minutes until browned.",
+      "Add garlic, tomatoes, and bell pepper.",
+      "Pour in beef stock and add bay leaf.",
+      "Cover and simmer on low heat for 90 minutes.",
+      "Add potatoes and carrots.",
+      "Simmer for 30 minutes until vegetables are tender.",
+      "Season with salt and pepper."
+    ],
+    "notes": [
+      "Do not boil the paprika over high heat to avoid bitterness.",
+      "The stew is even better when reheated the next day.",
+      "Ensure the beef is chuck or a similar braising cut for tenderness."
+    ],
+    "traditional_techniques": [
+      "pörkölt technique",
+      "tempering paprika",
+      "slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 756,
+      "cholesterol_mg": 162.3,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 44.6,
+      "saturated_fat_g": 17.8,
+      "sodium_mg": 1195,
+      "total_carbs_g": 39.1,
+      "total_fat_g": 46.1,
+      "total_sugars_g": 10.9,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129.8,
+      "cholesterol_mg": 27.9,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 7.7,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 205.1,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54.1,
+      "dietary_fiber": 30.7,
+      "protein": 89.2,
+      "saturated_fat": 89,
+      "sodium": 52,
+      "total_carbs": 14.2,
+      "total_fat": 59.1
+    },
+    "serving_size_g": 582.5,
+    "total_recipe_weight_g": 2330
+  },
+  {
+    "recipe_name": "Lebanese Lemon Garlic Chicken and Rice Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lebanese_lemon_garlic_chicken_and_rice_soup_20250810_080049_b7f2363e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T08:00:50.366888000Z",
+    "selected_ingredients": [
+      {
+        "name": "white wine"
+      },
+      {
+        "name": "lemon"
+      },
+      {
+        "name": "garlic"
+      },
+      {
+        "name": "rice"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Lebanese",
+    "visual_description": "A single generous portion of Lebanese Lemon Garlic Chicken and Rice Soup is presented in a clean, shallow white porcelain bowl, centered on a light wooden table. The soup is pale, opaque, and fluid, revealing tender, small diced chicken pieces and plump rice grains. It has a comforting, savory aroma. The surface is garnished with vibrant, finely chopped fresh parsley. A thin, bright yellow lemon slice rests on the rim, emphasizing the citrus notes. The professional, clean presentation includes moderate negative space around the bowl. A plain cotton napkin is folded neatly beside it. Natural, even lighting highlights the soup's texture and fresh garnishes. The setting suggests a modern bistro, focusing on quality ingredients and approachable elegance, reflecting Lebanese culinary traditions.",
+    "number_of_servings": 4,
+    "cuisine_type": "Lebanese",
+    "cultural_origin": "Lebanese",
+    "cultural_serving_suggestions": [
+      "Serve hot with warm pita bread for dipping.",
+      "Offer additional lemon wedges on the side for those who prefer more tang."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast or thigh",
+        "quantity": "500 g, diced into 1.5 cm cubes"
+      },
+      {
+        "name": "Medium grain rice",
+        "quantity": "150 g, rinsed"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, minced"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "2 medium, juiced (approx. 80 ml)"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lebanese Seven Spice blend",
+        "quantity": "1 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic to the pot. Cook for 1 minute until fragrant. Do not brown.",
+      "Add diced chicken to the pot. Sear chicken until lightly browned on all sides, about 5-7 minutes. Ensure chicken reaches 75°C (167°F) internal temperature.",
+      "Deglaze the pot with white wine. Scrape up any browned bits from the bottom. Cook until wine is mostly evaporated, about 2 minutes.",
+      "Add rinsed rice, chicken broth, Seven Spice, salt, and black pepper to the pot. Stir well.",
+      "Bring soup to a boil. Reduce heat to low, cover, and simmer for 15-20 minutes, or until rice is tender and chicken is fully cooked.",
+      "Stir in fresh lemon juice. Taste and adjust seasoning as needed.",
+      "Ladle soup into individual bowls. Garnish generously with fresh chopped parsley."
+    ]
+  },
+  {
+    "recipe_name": "Pad See Ew Gai",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pad_see_ew_gai_20250810_051209_b0f4fbf4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T05:12:09.534035000Z",
+    "selected_ingredients": [
+      "chicken",
+      "noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a round, clean white porcelain dinner plate. Wide, flat rice noodles, wok-charred and slightly glossy, form the base. Succulent, irregularly cut pieces of seared chicken, golden-brown from high-heat cooking, are interspersed throughout. Vibrant green Chinese broccoli florets and stems, slightly tender-crisp, add color contrast. Scrambled egg pieces are visible, contributing a soft yellow hue. The dish has a rich, dark brown sheen from the savory sauce, clinging evenly to all components. Textures are varied: chewy noodles, tender chicken, crunchy broccoli. It is arranged naturally with moderate negative space. The plate rests on a simple wooden table. Dark wooden chopsticks and a small white porcelain spoon are beside the plate. A folded cotton napkin completes the setting. Natural, even lighting highlights the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with prik nam pla (fish sauce with sliced bird's eye chilies) on the side.",
+      "Offer dried chili flakes for additional heat.",
+      "Serve with a lime wedge for a fresh citrus squeeze."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thigh",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Fresh wide rice noodles (sen yai)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chinese broccoli (gai lan)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Palm sugar (or brown sugar)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "1 tsp"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into irregular bite-sized pieces. Cut Chinese broccoli stems into 2 cm pieces, and leaves into 5 cm pieces. Separate fresh rice noodles carefully to prevent sticking.",
+      "Combine dark soy sauce, light soy sauce, oyster sauce, fish sauce, palm sugar, and white vinegar in a small bowl. Stir until sugar dissolves.",
+      "Heat 1 tablespoon of vegetable oil in a large wok or skillet over high heat until smoking. Add chicken and stir-fry until seared and cooked through, about 4-5 minutes. Ensure internal temperature reaches 75°C (167°F). Remove chicken and set aside.",
+      "Add remaining 2 tablespoons of oil to the wok. Add minced garlic and stir-fry for 15 seconds until fragrant.",
+      "Add Chinese broccoli stems and stir-fry for 1 minute. Add leaves and continue to stir-fry until tender-crisp, about 1-2 minutes.",
+      "Push vegetables to one side of the wok. Crack eggs into the empty space. Scramble eggs until just set, then break into smaller pieces.",
+      "Add separated rice noodles to the wok. Pour the prepared sauce over the noodles and ingredients. Return cooked chicken to the wok.",
+      "Stir-fry vigorously, tossing all ingredients to coat evenly with sauce and achieve some char on the noodles, about 2-3 minutes.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure fresh wide rice noodles are fully separated before adding to the wok to prevent clumping.",
+      "Cook chicken to a safe internal temperature of 75°C (167°F).",
+      "Adjust the amount of sugar and fish sauce in the sauce to balance sweet and savory notes according to your preference."
+    ],
+    "traditional_techniques": [
+      "Wok Hei (high-heat stir-frying)",
+      "Balancing sweet, sour, salty, and spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5.8,
+      "calories": 473,
+      "cholesterol_mg": 210.75,
+      "dietary_fiber_g": 2.55,
+      "protein_g": 31.85,
+      "saturated_fat_g": 5.12,
+      "sodium_mg": 2990.69,
+      "total_carbs_g": 35.58,
+      "total_fat_g": 22.93,
+      "total_sugars_g": 7.32,
+      "trans_fat_g": 0.04
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.5,
+      "calories": 122,
+      "cholesterol_mg": 54.41,
+      "dietary_fiber_g": 0.66,
+      "protein_g": 8.22,
+      "saturated_fat_g": 1.32,
+      "sodium_mg": 772.06,
+      "total_carbs_g": 9.19,
+      "total_fat_g": 5.92,
+      "total_sugars_g": 1.89,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70.25,
+      "dietary_fiber": 9.11,
+      "protein": 63.7,
+      "saturated_fat": 25.6,
+      "sodium": 130.03,
+      "total_carbs": 12.94,
+      "total_fat": 29.4
+    },
+    "serving_size_g": 387.38,
+    "total_recipe_weight_g": 1549.5
+  }
+]

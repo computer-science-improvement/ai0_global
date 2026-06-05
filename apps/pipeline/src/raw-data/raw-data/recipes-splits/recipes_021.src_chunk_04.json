@@ -1,0 +1,627 @@
+[
+  {
+    "recipe_name": "Beer-Braised Chicken Gizzard & Moong Dal Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_chicken_gizzard_%26_moong_dal_stew_20250624_142450_cd7b70f4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:51.379909000Z",
+    "selected_ingredients": [
+      "chicken gizzard",
+      "cheese",
+      "hot sauce",
+      "moong dal",
+      "dark beer"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest serving of Beer-Braised Chicken Gizzard & Moong Dal Stew is presented in a sturdy, everyday ceramic bowl. The stew is rich and hearty, with a deep brown color, adequately filling the bowl. Visible are tender, dark chicken gizzard chunks, soft pale yellow moong dal, and small, evenly diced pieces of orange carrot and green celery. A generous layer of bright yellow shredded cheddar cheese is melted over the top, creating a comforting, gooey texture. A few casual drops of vibrant red hot sauce are drizzled over the melted cheese. The bowl rests directly on a well-used, light-colored wooden kitchen table. A simple, off-white cloth napkin is casually placed beside the bowl. A plain metal spoon is resting in the bowl. The lighting is warm and inviting, typical of a home kitchen, with soft, natural shadows. The background is gently blurred, hinting at a lived-in family kitchen setting, perhaps with simple, everyday kitchen items in the distance.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American Comfort",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Chicken Gizzard",
+    "ingredients": [
+      {
+        "name": "Chicken gizzards",
+        "quantity": "500g"
+      },
+      {
+        "name": "Moong dal",
+        "quantity": "200g"
+      },
+      {
+        "name": "Dark beer",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "150g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Medium onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Carrots, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse moong dal under cold water until clear. Set aside.",
+      "Clean chicken gizzards. Trim any excess fat or connective tissue. Halve large gizzards if desired.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat.",
+      "Add gizzards to the pot. Sear until browned on all sides, about 5-7 minutes. Remove gizzards and set aside.",
+      "Add diced onion, carrots, and celery to the pot. Cook until softened, about 8 minutes, scraping up any browned bits from the bottom.",
+      "Stir in minced garlic and tomato paste. Cook for 1 minute until fragrant.",
+      "Pour in dark beer. Scrape bottom of pot to release any stuck-on bits. Bring to a simmer.",
+      "Return gizzards to the pot. Add rinsed moong dal, chicken broth, bay leaf, dried thyme, salt, and black pepper.",
+      "Bring the stew to a boil. Reduce heat to low. Cover and simmer for 1.5 to 2 hours, or until gizzards are very tender and moong dal is cooked through. Internal temperature of gizzards must reach 75°C (167°F).",
+      "Remove bay leaf. Stir in hot sauce.",
+      "Ladle stew into bowls. Top each serving with shredded cheddar cheese. Serve immediately."
+    ],
+    "notes": [
+      "Adjust hot sauce to your preferred spice level.",
+      "For extra richness, a splash of cream can be stirred in at the end."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 695.7,
+      "cholesterol_mg": 501.9,
+      "dietary_fiber_g": 10.59,
+      "protein_g": 54.51,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 1105.53,
+      "total_carbs_g": 49.55,
+      "total_fat_g": 29.63,
+      "total_sugars_g": 5.99,
+      "trans_fat_g": 0.49
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108.09,
+      "cholesterol_mg": 77.91,
+      "dietary_fiber_g": 1.65,
+      "protein_g": 8.47,
+      "saturated_fat_g": 1.79,
+      "sodium_mg": 171.72,
+      "total_carbs_g": 7.7,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.93,
+      "trans_fat_g": 0.08
+    },
+    "daily_value_percentages": {
+      "cholesterol": 167.29,
+      "dietary_fiber": 37.83,
+      "protein": 109.01,
+      "saturated_fat": 57.49,
+      "sodium": 48.07,
+      "total_carbs": 18.02,
+      "total_fat": 37.98
+    },
+    "serving_size_g": 643.5,
+    "total_recipe_weight_g": 2574
+  },
+  {
+    "recipe_name": "Hearty Chicken and Bean Bake with Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_bean_bake_with_cheese_20250624_142448_65d385f9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:49.298519000Z",
+    "selected_ingredients": [
+      "chicken",
+      "parmesan cheese",
+      "onion",
+      "bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "Русская cuisine",
+    "visual_description": "A single, generous portion of hearty chicken and bean bake sits in a deep, rustic ceramic bowl, reflecting a well-loved home kitchen. Diced chicken chunks, tender 2cm potato cubes, and soft cannellini beans are nestled in a rich, savory gravy. The dish is topped with a golden-brown, bubbly layer of melted Parmesan cheese. A sprinkle of fresh green dill or parsley adds a pop of color. The bowl rests on a well-used wooden dining table. A plain, folded linen napkin and simple metal fork and spoon are casually placed alongside. In the background, a small bowl of pickled gherkins and a slice of dark rye bread hint at the dish's Russian comfort food origins. Warm, inviting light from kitchen fixtures illuminates the scene, creating a cozy, lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with slices of dark rye bread (черный хлеб).",
+      "Offer a side of pickled vegetables (marinované ovoshchi), such as gherkins or sauerkraut.",
+      "A dollop of smetana (sour cream) can be served on the side for richness."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "400g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh dill or parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Dice chicken thighs into 2-3cm chunks. Dice onion and carrot into 1cm pieces. Dice potatoes into 2cm pieces. Mince garlic.",
+      "Heat vegetable oil in a large oven-safe pot or Dutch oven over medium-high heat. Add chicken chunks. Sear until browned on all sides. Remove chicken from pot. Set aside.",
+      "Add diced onion and carrot to the pot. Sauté for 5-7 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes. Pour in chicken broth. Bring to a simmer. Scrape bottom of pot to loosen any browned bits.",
+      "Return chicken to the pot. Add diced potatoes and drained, rinsed cannellini beans. Season with salt and black pepper.",
+      "Cover the pot. Transfer to preheated oven. Bake for 30 minutes.",
+      "Remove pot from oven. Stir the contents. Sprinkle grated Parmesan cheese evenly over the top.",
+      "Return to oven, uncovered. Bake for another 15-20 minutes. Cook until cheese is golden and bubbly, and chicken reaches 75°C internal temperature.",
+      "Let the bake rest for 5 minutes before serving. Garnish generously with fresh dill or parsley."
+    ],
+    "traditional_techniques": [
+      "Stewing (тушение - tusheniye)",
+      "Sautéing aromatics"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 675,
+      "cholesterol_mg": 166,
+      "dietary_fiber_g": 10.5,
+      "protein_g": 54.8,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 1149,
+      "total_carbs_g": 49.6,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 9.5,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 199,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 38,
+      "protein": 110,
+      "saturated_fat": 44,
+      "sodium": 50,
+      "total_carbs": 18,
+      "total_fat": 36
+    },
+    "serving_size_g": 578,
+    "total_recipe_weight_g": 2312
+  },
+  {
+    "recipe_name": "Orecchiette with Salami and Creamy Ricotta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orecchiette_with_salami_and_creamy_ricotta_20250624_142440_f0e2701d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:41.236514000Z",
+    "selected_ingredients": [
+      "pasta",
+      "ricotta",
+      "salami"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Orecchiette with Salami and Creamy Ricotta is presented on a clean, round white porcelain dinner plate. The al dente orecchiette pasta is generously coated in a rich, creamy white ricotta sauce, subtly swirled to create an inviting texture. Vibrant red halved cherry tomatoes are nestled throughout, some slightly burst, adding pops of color and juicy freshness. Small, crisped pieces of diced Genoa salami are distributed evenly, providing savory contrast and a slight textural crunch. A scattering of fresh, verdant green torn basil leaves brightens the dish. A light dusting of finely grated Pecorino Romano cheese finishes the presentation. The dish maintains a professional, organized yet approachable arrangement with moderate negative space. The plate rests on a simple, light-colored wooden table surface, accompanied by standard silver flatware and a folded cotton napkin beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, blurred restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Salami",
+    "ingredients": [
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Genoa salami, diced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic cloves, thinly sliced",
+        "quantity": "3"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil leaves, torn",
+        "quantity": "1/2 cup"
+      },
+      {
+        "name": "Pecorino Romano cheese, grated",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil. Add orecchiette pasta. Cook according to package directions until al dente.",
+      "While pasta cooks, heat olive oil in a large skillet over medium heat. Add diced salami. Cook, stirring occasionally, until crisp and fat is rendered. Remove about 2 tablespoons of crispy salami for garnish. Set aside.",
+      "Add sliced garlic to the skillet with remaining salami and rendered fat. Sauté for 1 minute until fragrant. Do not brown.",
+      "Add halved cherry tomatoes to the skillet. Cook for 5-7 minutes, stirring occasionally, until tomatoes soften and begin to burst.",
+      "Drain pasta, reserving 250 ml of pasta cooking water. Add drained pasta directly to the skillet with the salami and tomatoes.",
+      "Add ricotta cheese to the skillet. Gradually add reserved pasta water, 60 ml at a time, stirring constantly. Toss to create a creamy sauce that coats the pasta. Continue adding pasta water until desired consistency is reached.",
+      "Stir in torn fresh basil and grated Pecorino Romano cheese. Season with salt and black pepper to taste.",
+      "Serve immediately, garnished with reserved crispy salami."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 711.2,
+      "cholesterol_mg": 79.65,
+      "dietary_fiber_g": 3.28,
+      "protein_g": 31.07,
+      "saturated_fat_g": 14.4,
+      "sodium_mg": 1427.65,
+      "total_carbs_g": 66.22,
+      "total_fat_g": 35.54,
+      "total_sugars_g": 5.66,
+      "trans_fat_g": 0.76
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 274.3,
+      "cholesterol_mg": 30.72,
+      "dietary_fiber_g": 1.26,
+      "protein_g": 11.98,
+      "saturated_fat_g": 5.55,
+      "sodium_mg": 550.68,
+      "total_carbs_g": 25.54,
+      "total_fat_g": 13.71,
+      "total_sugars_g": 2.18,
+      "trans_fat_g": 0.29
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26.6,
+      "dietary_fiber": 11.7,
+      "protein": 62.1,
+      "saturated_fat": 72,
+      "sodium": 62.1,
+      "total_carbs": 24.1,
+      "total_fat": 45.6
+    },
+    "serving_size_g": 259.25,
+    "total_recipe_weight_g": 1037
+  },
+  {
+    "recipe_name": "Creamy Chicken and Vegetable Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_vegetable_bake_20250624_142438_9a421c8d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:38.511542000Z",
+    "selected_ingredients": [
+      "squash",
+      "celery",
+      "onion",
+      "chicken",
+      "bell pepper",
+      "mayonnaise",
+      "chili",
+      "paprika"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Creamy Chicken and Vegetable Bake is served on a modest, round, off-white ceramic plate with subtle imperfections, resting on a well-used, warm-toned wooden dining table. The dish features tender, roasted chicken chunks, golden-orange 2 cm cubes of butternut squash, vibrant red 2 cm squares of bell pepper, soft diced onion, and thinly sliced celery, all coated in a rich, creamy, lightly spiced sauce with visible flecks of red paprika and chili. The ingredients are naturally arranged, slightly overlapping, filling the plate without overcrowding. A sprinkle of fresh, chopped green parsley adds a touch of color and freshness. A casually folded, light-colored cloth napkin and simple, everyday stainless steel fork and knife are placed beside the plate. The scene is bathed in warm, cozy lighting, evoking a relaxed family dining area with a lived-in atmosphere.",
+    "number_of_servings": 2,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "300g"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium (approx. 150g)"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small (approx. 100g)"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1 (approx. 50g)"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut chicken thighs into 3 cm chunks. Peel butternut squash. Cut squash into 2 cm cubes. Deseed red bell pepper. Cut bell pepper into 2 cm squares. Dice yellow onion. Thinly slice celery stalk. Mince garlic cloves.",
+      "In a large bowl, combine chicken chunks, squash cubes, bell pepper squares, diced onion, and sliced celery.",
+      "Add mayonnaise, chili powder, smoked paprika, minced garlic, olive oil, salt, and black pepper to the bowl.",
+      "Toss all ingredients until well coated.",
+      "Spread the mixture evenly in a 20x20 cm baking dish.",
+      "Bake for 30-35 minutes, or until chicken reaches an internal temperature of 75°C and vegetables are tender.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Chop fresh parsley. Garnish with chopped parsley. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.18,
+      "calories": 647.11,
+      "cholesterol_mg": 171.6,
+      "dietary_fiber_g": 7.98,
+      "protein_g": 31.9,
+      "saturated_fat_g": 8.48,
+      "sodium_mg": 962.97,
+      "total_carbs_g": 34.35,
+      "total_fat_g": 44.59,
+      "total_sugars_g": 10.43,
+      "trans_fat_g": 0.12
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.04,
+      "calories": 130.62,
+      "cholesterol_mg": 34.64,
+      "dietary_fiber_g": 1.61,
+      "protein_g": 6.44,
+      "saturated_fat_g": 1.71,
+      "sodium_mg": 194.39,
+      "total_carbs_g": 6.93,
+      "total_fat_g": 9,
+      "total_sugars_g": 2.11,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57.2,
+      "dietary_fiber": 28.5,
+      "protein": 63.8,
+      "saturated_fat": 42.4,
+      "sodium": 41.9,
+      "total_carbs": 12.5,
+      "total_fat": 57.2
+    },
+    "serving_size_g": 495.4,
+    "total_recipe_weight_g": 990.8
+  },
+  {
+    "recipe_name": "Beer-Braised Chicken with Basil Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_chicken_with_basil_brown_rice_20250624_142430_d74f730c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:31.326979000Z",
+    "selected_ingredients": [
+      "chicken",
+      "basil",
+      "brown rice",
+      "beer",
+      "oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of Beer-Braised Chicken with Basil Brown Rice is presented on a simple, everyday ceramic plate with a subtle cream glaze. One whole, deeply browned chicken thigh rests centrally on a bed of fluffy, light brown rice flecked with vibrant green basil. The chicken skin is slightly crisp from searing, while the meat appears tender and moist. A rich, amber-colored braising liquid pools around the chicken and rice, glistening subtly. The rice grains are separate and distinct. The plate sits on a well-worn, warm-toned wooden dining table, showing natural grain and minor imperfections. A plain, off-white cloth napkin is casually folded beside the plate. The lighting is warm and inviting, typical of a cozy kitchen, highlighting the natural textures and comforting colors of the dish. Portions are modest and hearty, suitable for a home-cooked meal. No decorative garnishes are used; only functional fresh basil in the rice and the natural reduction of the braising liquid.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (bone-in, skin-on)",
+        "quantity": "4 pieces (approx. 800g)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Light beer (lager or ale)",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves (minced)"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken pieces dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken pieces until deeply browned on all sides. Remove chicken from pot.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return chicken to the pot. Add chicken stock. Liquid should come halfway up the chicken.",
+      "Bring to a simmer. Cover the pot. Reduce heat to low.",
+      "Braise for 30-40 minutes, or until chicken reaches an internal temperature of 75°C and is tender.",
+      "While chicken braises, cook brown rice according to package directions. Use 500ml water for 250g rice.",
+      "Once rice is cooked, stir in chopped fresh basil.",
+      "Serve braised chicken pieces with a generous portion of basil brown rice. Spoon braising liquid over chicken and rice."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 791,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 50,
+      "saturated_fat_g": 10,
+      "sodium_mg": 738,
+      "total_carbs_g": 53.9,
+      "total_fat_g": 39.8,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 198,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 12.5,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 185,
+      "total_carbs_g": 13.5,
+      "total_fat_g": 10,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 10,
+      "protein": 100,
+      "saturated_fat": 50,
+      "sodium": 32,
+      "total_carbs": 20,
+      "total_fat": 51
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  }
+]

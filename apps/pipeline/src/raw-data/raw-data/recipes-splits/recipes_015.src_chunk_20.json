@@ -1,0 +1,635 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Mustard Sauce and Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_mustard_sauce_and_caramelized_onions_20250628_070008_d4374381.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:00:09.436919000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "salad green",
+      "mustard",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of pan-seared chicken breast rests centrally on a clean white porcelain dinner plate. The chicken is golden-brown with a crisp exterior, presented as a whole piece or thick chunk, not sliced. Alongside, a generous mound of glistening, deep amber caramelized red onions adds warmth. A rich, creamy Dijon mustard sauce is artfully spooned over and around the chicken, its smooth texture contrasting with the dish's other elements. A vibrant pile of fresh, crisp mixed salad greens, lightly dressed with a chili vinaigrette, occupies a portion of the plate, providing a fresh, bright green counterpoint with flecks of red chili. The overall composition is balanced, with moderate negative space. The plate sits on a simple wooden table surface in a modern bistro setting, illuminated by natural, even light. A neatly folded white cotton napkin and polished silver flatware (fork and knife) are placed beside the plate, completing a professional, inviting presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Bistro",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Red onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "200g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "60g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh red chili",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Slice red onions thinly into half-moons.",
+      "Heat 15ml olive oil and 15g butter in a large skillet over medium-low heat. Add sliced onions. Cook, stirring occasionally, for 20-25 minutes until deeply caramelized and tender. Remove onions and set aside.",
+      "Increase heat to medium-high. Add remaining 30ml olive oil to the same skillet. Sear chicken breasts for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C/167°F). Remove chicken and rest on a cutting board.",
+      "Reduce heat to medium. Add minced garlic to the skillet; cook for 30 seconds until fragrant. Deglaze with chicken broth, scraping up any browned bits. Stir in Dijon mustard. Bring to a simmer.",
+      "Pour in heavy cream. Simmer gently for 3-5 minutes until sauce thickens slightly. Stir in remaining 15g butter until melted and smooth. Season sauce with salt and pepper to taste.",
+      "For the vinaigrette, finely mince the fresh red chili. In a small bowl, whisk together red wine vinegar, 30ml olive oil, minced chili, salt, and pepper.",
+      "Slice each chicken breast in half lengthwise or into thick chunks, if desired. Do not fan out slices.",
+      "Divide mixed salad greens among four plates. Drizzle with chili vinaigrette.",
+      "Place chicken on each plate. Spoon caramelized onions next to the chicken. Generously spoon creamy mustard sauce over the chicken.",
+      "Garnish with chopped fresh parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 628,
+      "cholesterol_mg": 205.2,
+      "dietary_fiber_g": 4,
+      "protein_g": 60.5,
+      "saturated_fat_g": 14.1,
+      "sodium_mg": 264.9,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 34.9,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 39.3,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 11.6,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 50.8,
+      "total_carbs_g": 2.9,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.4,
+      "dietary_fiber": 14.1,
+      "protein": 121.1,
+      "saturated_fat": 70.3,
+      "sodium": 11.5,
+      "total_carbs": 5.5,
+      "total_fat": 44.7
+    },
+    "serving_size_g": 522,
+    "total_recipe_weight_g": 2088
+  },
+  {
+    "recipe_name": "Lemon Herb Roasted Chicken with Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_roasted_chicken_with_potatoes_20250628_065616_5dd38824.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:56:17.099049000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Lemon Herb Roasted Chicken with Potatoes is presented on a clean, round white porcelain dinner plate. A golden-brown, crispy-skinned roasted chicken thigh is the centerpiece. Thick-cut potato wedges, roasted to a tender interior and crisp, golden exterior, are arranged organically around it. The potatoes exhibit varied shades of golden yellow. Bright green flecks of roasted oregano and thyme are visible on both chicken and potatoes. Vibrant yellow roasted lemon wedges are nestled among the components, adding color. A sprig of fresh oregano garnishes the dish. The overall impression is rustic yet refined, with natural colors and appealing textures. The plate sits on a simple wooden table, accompanied by a folded cotton napkin and traditional flatware. Natural, even lighting highlights the dish against a soft, restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with a side of tzatziki sauce.",
+      "Offer a simple Greek salad.",
+      "Accompany with crusty bread for dipping in pan juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (bone-in, skin-on)",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Potatoes (e.g., Maris Piper or Yukon Gold)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15g fresh (or 5g dried)"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "10g fresh (or 3g dried)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "Wash potatoes. Cut into thick wedges, approximately 2 cm thick.",
+      "Finely chop garlic. Zest one lemon, then cut both lemons into thick wedges.",
+      "Roughly chop fresh oregano and thyme.",
+      "In a large roasting pan, combine chicken, potato wedges, chopped garlic, lemon zest, chopped herbs, and olive oil. Toss well to coat everything evenly.",
+      "Arrange chicken and potatoes in a single layer in the roasting pan. Place lemon wedges among the ingredients.",
+      "Pour chicken stock into the bottom of the pan.",
+      "Roast for 40-50 minutes, or until chicken skin is golden brown and crispy.",
+      "Check internal temperature of chicken. It must reach 75°C.",
+      "If needed, return to oven for further cooking.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety.",
+      "For extra crispiness, broil for the last 5 minutes, watching carefully."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 720,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 38.8,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 731,
+      "total_carbs_g": 41.9,
+      "total_fat_g": 44.5,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.6,
+      "saturated_fat_g": 2,
+      "sodium_mg": 144,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 23,
+      "protein": 78,
+      "saturated_fat": 51,
+      "sodium": 32,
+      "total_carbs": 15,
+      "total_fat": 57
+    },
+    "serving_size_g": 507,
+    "total_recipe_weight_g": 2028
+  },
+  {
+    "recipe_name": "Myaso po Frantsuzski (Russian Baked Pork with Potatoes and Cheese)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_myaso_po_frantsuzski_%28russian_baked_pork_with_potatoes_and_cheese%29_20250628_065216_c2a2d6de.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:52:17.489377000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "cheese",
+      "mayonnaise",
+      "potato",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "russian cuisine",
+    "visual_description": "A single, generous portion of Myaso po Frantsuzski is presented on a sturdy, simple ceramic plate with a subtle floral pattern, typical of Russian home dining. The dish features distinct, rustic layers: a base of tender, thin-sliced baked potatoes, topped with juicy, thick pork medallions that are not fanned but naturally arranged. Over the pork are translucent, softened onion half-rings and bright red tomato rounds. The entire top is covered with a thick, golden-brown crust of melted, bubbly cheese and creamy, baked mayonnaise, showing slight charring at the edges. A scattering of fresh, vibrant green chopped dill or parsley provides a final, authentic garnish. The plate sits on a well-used wooden dining table, revealing its natural grain and minor imperfections. Beside the plate, a small, clear glass contains a serving of traditional Russian pickled cucumbers (solenye ogurtsy), and a slice of dark rye bread rests on a simple, folded linen napkin. Warm, inviting light from a kitchen fixture illuminates the scene, creating a cozy, lived-in atmosphere with minimal background clutter to keep the focus on the hearty, comforting food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with pickled cucumbers (solenye ogurtsy) or sauerkraut (kvashenaya kapusta).",
+      "Serve with a side of rye bread.",
+      "Often accompanied by a glass of kvass (fermented bread drink) or mors (fruit drink)."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork loin",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Hard cheese",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh dill or parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Lightly grease a large baking dish (approximately 25x35 cm) with vegetable oil.",
+      "Slice pork loin into 1.5 cm thick medallions. Gently pound each medallion to about 1 cm thickness.",
+      "Peel potatoes. Slice into thin rounds, about 3 mm thick.",
+      "Peel onions. Slice into thin half-rings.",
+      "Slice tomatoes into thin rounds.",
+      "Grate hard cheese.",
+      "Arrange half of the potato rounds in a single layer at the bottom of the prepared baking dish. Season with salt and pepper.",
+      "Place pork medallions over the potatoes in a single layer. Season with salt and pepper.",
+      "Spread onion half-rings evenly over the pork.",
+      "Arrange tomato rounds over the onions.",
+      "Spread mayonnaise evenly over the tomatoes.",
+      "Sprinkle grated cheese generously over the mayonnaise layer.",
+      "Bake for 45-55 minutes, or until pork is cooked through to 75°C (167°F) and cheese is golden brown and bubbly.",
+      "Remove from oven. Let rest for 5 minutes before serving.",
+      "Garnish with chopped fresh dill or parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 972,
+      "cholesterol_mg": 187,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 55.3,
+      "saturated_fat_g": 19.1,
+      "sodium_mg": 653,
+      "total_carbs_g": 49.4,
+      "total_fat_g": 62.2,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 173,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.9,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 116,
+      "total_carbs_g": 8.8,
+      "total_fat_g": 11.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 19,
+      "protein": 111,
+      "saturated_fat": 96,
+      "sodium": 28,
+      "total_carbs": 18,
+      "total_fat": 80
+    },
+    "serving_size_g": 560.9,
+    "total_recipe_weight_g": 2243.6
+  },
+  {
+    "recipe_name": "Hachis Parmentier au Porc",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hachis_parmentier_au_porc_20250628_065140_01a575fa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:51:41.032436000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "cheese",
+      "mayonnaise",
+      "potato",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "france cuisine",
+    "visual_description": "A single generous portion of Hachis Parmentier au Porc is presented in a rustic, deep ceramic baking dish, showing its entire form on a well-used wooden dining table. The top layer of mashed potatoes is golden-brown and lightly crisp from the melted, gratinéed Gruyère cheese, displaying subtle fork ridges across its surface. The creamy, soft mashed potato layer is visible beneath the crust. Below the potato, the rich, savory pork mince base, containing finely diced onions and minced garlic cooked with chopped tomatoes, is subtly visible at the edges where the mash meets the dish rim. The colors are warm: golden-brown cheese, creamy white potato, and a deep reddish-brown for the pork base. A simple, folded linen napkin and a robust, everyday fork and knife are casually placed beside the dish. The lighting is warm and natural, mimicking cozy kitchen overhead lights, casting soft shadows. The background is minimal, hinting at a lived-in family kitchen environment with perhaps a faint blur of everyday items, ensuring the focus remains on the comforting dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork mince",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Tinned chopped tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Gruyère or Emmental cheese, grated",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "1 tablespoon (optional)"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Cut into large chunks. Place in a large pot. Cover with cold salted water. Bring to a boil. Cook until tender, about 15-20 minutes.",
+      "While potatoes cook, prepare pork base. Heat olive oil in a large, oven-safe pan or Dutch oven over medium heat. Add diced onions. Sauté until softened, about 5-7 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add pork mince to the pan. Increase heat to medium-high. Brown pork thoroughly, breaking up any lumps with a spoon. Cook until no pink remains. Drain any excess fat.",
+      "Stir in chopped tomatoes, salt, and black pepper. Bring to a simmer. Reduce heat to low. Cover and cook for 15-20 minutes, allowing the sauce to thicken.",
+      "Drain cooked potatoes well. Return to the hot pot. Mash with butter and milk until smooth. Season with salt and pepper to taste. Stir in mayonnaise until fully incorporated.",
+      "Preheat oven to 180°C (350°F).",
+      "Spread the pork mixture evenly in a baking dish (if not using an oven-safe pan). Top with the mashed potato layer. Use a fork to create decorative ridges on the potato surface.",
+      "Sprinkle grated cheese evenly over the mashed potato.",
+      "Bake for 25-30 minutes, or until the top is golden brown and bubbling. If needed, broil for the last 2-3 minutes for extra browning.",
+      "Remove from oven. Let rest for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 996,
+      "cholesterol_mg": 193,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 43.6,
+      "saturated_fat_g": 27.8,
+      "sodium_mg": 372,
+      "total_carbs_g": 55.1,
+      "total_fat_g": 66.9,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.7,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 58,
+      "total_carbs_g": 8.5,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 27,
+      "protein": 87,
+      "saturated_fat": 139,
+      "sodium": 16,
+      "total_carbs": 20,
+      "total_fat": 86
+    },
+    "serving_size_g": 646,
+    "total_recipe_weight_g": 2584
+  },
+  {
+    "recipe_name": "Tagliatelle ai Funghi Selvatici",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tagliatelle_ai_funghi_selvatici_20250628_064416_44b88372.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:44:16.593522000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tagliatelle ai Funghi Selvatici is presented in a shallow, clean white porcelain bowl. The tagliatelle is gently coiled, generously coated in a rich, earthy brown mushroom ragu. Visible are varied mushroom pieces: cremini quartered, shiitake sliced, and oyster mushrooms torn into rustic chunks, all displaying a meaty, browned texture. The pasta has a creamy, off-white hue. A light dusting of freshly grated Parmigiano Reggiano covers the top, adding a golden-white contrast. A small, vibrant green sprig of fresh parsley is placed artfully on top, alongside a subtle drizzle of golden olive oil. The dish is centrally placed on a simple, natural wooden table surface. A neatly folded cotton napkin and standard silver flatware (fork and spoon) are positioned beside the bowl. The background is minimal, suggesting a modern bistro setting with natural, even lighting that highlights the dish's warmth and textures. The composition is professional yet approachable, with moderate negative space surrounding the well-proportioned elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread (pane casareccio) to sop up the ragu.",
+      "Offer additional grated Parmigiano Reggiano at the table."
+    ],
+    "hero_ingredient": "Wild Mushrooms",
+    "ingredients": [
+      {
+        "name": "Tagliatelle",
+        "quantity": "400g"
+      },
+      {
+        "name": "Mixed wild mushrooms (e.g., cremini, shiitake, oyster)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Dried porcini mushrooms",
+        "quantity": "20g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 (finely diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves (minced)"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "80g (grated)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g (chopped)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      }
+    ],
+    "instructions": [
+      "Rehydrate dried porcini mushrooms: Place dried porcini in 200ml hot water for 20 minutes. Remove mushrooms, finely chop. Reserve liquid, strain through a fine mesh sieve to remove grit.",
+      "Prepare fresh mushrooms: Clean fresh mushrooms with a damp cloth. Slice cremini and shiitake. Tear oyster mushrooms into rustic pieces.",
+      "Sauté aromatics: Heat olive oil in a large skillet over medium heat. Add diced shallots. Cook until softened, about 3 minutes. Add minced garlic. Cook 1 minute until fragrant.",
+      "Cook mushrooms: Add fresh sliced and torn mushrooms to the skillet. Increase heat to medium-high. Cook, stirring occasionally, until mushrooms release their liquid and brown, about 8-10 minutes. Add chopped rehydrated porcini.",
+      "Deglaze: Pour in white wine. Scrape up any browned bits from the bottom of the skillet. Cook until wine mostly evaporates, about 3-4 minutes.",
+      "Simmer ragu: Add reserved porcini liquid and vegetable broth. Bring to a gentle simmer. Reduce heat to low. Cook for 15-20 minutes, allowing sauce to thicken slightly. Season with salt and black pepper.",
+      "Cook pasta: While ragu simmers, bring a large pot of salted water to a rolling boil. Add tagliatelle. Cook according to package directions until al dente.",
+      "Combine and finish: Drain tagliatelle, reserving 100ml pasta water. Add pasta directly to the mushroom ragu. Add butter and grated Parmigiano Reggiano. Toss well to combine, adding reserved pasta water as needed to create a creamy sauce. Stir in chopped fresh parsley.",
+      "Serve: Taste and adjust seasoning. Serve immediately."
+    ],
+    "notes": [
+      "Using a mix of fresh and dried mushrooms enhances the depth of flavor.",
+      "Do not overcook the pasta; it should be al dente for best texture."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecare"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 676,
+      "cholesterol_mg": 83.7,
+      "dietary_fiber_g": 8,
+      "protein_g": 27.8,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 722.9,
+      "total_carbs_g": 85.2,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146,
+      "cholesterol_mg": 18.1,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 6,
+      "saturated_fat_g": 2,
+      "sodium_mg": 156.1,
+      "total_carbs_g": 18.4,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 29,
+      "protein": 56,
+      "saturated_fat": 47,
+      "sodium": 31,
+      "total_carbs": 31,
+      "total_fat": 28
+    },
+    "serving_size_g": 463,
+    "total_recipe_weight_g": 1852
+  }
+]

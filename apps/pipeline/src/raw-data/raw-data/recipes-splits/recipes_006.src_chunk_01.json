@@ -1,0 +1,663 @@
+[
+  {
+    "recipe_name": "Dark Chocolate Cornmeal Cakes with Blackberry Wine Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251103_115847_722bf28f.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 14,
+    "timestamp": "2025-11-03T11:58:47.945727000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "flour",
+      "blackberry wine",
+      "cornmeal"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "The dessert features a rich, dark chocolate cornmeal cake, individually baked, presented on a clean white porcelain plate. The cake is round, approximately 7-8 cm in diameter and 4-5 cm high, with a slightly domed top. A glossy, deep purple-red blackberry wine glaze cascades elegantly over the cake's surface and down its sides, creating natural rivulets. Beside the cake, a small cluster of 3-4 plump, fresh blackberries provides a contrasting burst of deep purple-black color and natural texture. A vibrant green sprig of fresh mint is carefully placed among the berries, offering a fresh accent. The presentation is balanced, with moderate negative space. Colors are natural: dark brown from chocolate, deep jewel-toned glaze, vibrant berries and mint. The setting is a modern bistro with a simple wooden table surface, natural, even lighting, and a plain cotton napkin beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Dark chocolate (vegan, 70% cacao or higher)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fine cornmeal",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Plant-based milk (e.g., almond or soy)",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Blackberry wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh blackberries (for garnish)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh mint leaves (for garnish)",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour four individual ramekins or small cake molds.",
+      "Melt 100 g dark chocolate. Use a double boiler or microwave. Set aside to cool slightly.",
+      "In a large bowl, whisk together flour, cornmeal, sugar, cocoa powder, baking powder, and salt.",
+      "In a separate bowl, combine plant-based milk, vegetable oil, and vanilla extract. Add melted chocolate. Mix well.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Do not overmix.",
+      "Divide batter evenly among prepared ramekins.",
+      "Bake for 20-25 minutes, or until a skewer inserted into the center comes out with moist crumbs.",
+      "Cool cakes in ramekins for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Pour blackberry wine into a small saucepan. Bring to a simmer over medium heat.",
+      "Reduce wine by half, about 5-7 minutes. It should be slightly syrupy.",
+      "Remove from heat. Let cool slightly.",
+      "In a bowl, whisk powdered sugar with 2-3 tablespoons of the reduced blackberry wine until smooth. Add more reduction slowly if needed for desired consistency.",
+      "Place one cooled chocolate cornmeal cake on each plate.",
+      "Pour a generous spoonful of blackberry wine glaze over the top of each cake, allowing it to drizzle down the sides.",
+      "Arrange a few fresh blackberries beside the cake.",
+      "Garnish with a small sprig of fresh mint."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 82.5,
+      "calories": 977,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.48,
+      "protein_g": 10.87,
+      "saturated_fat_g": 14.55,
+      "sodium_mg": 637,
+      "total_carbs_g": 138.76,
+      "total_fat_g": 42.18,
+      "total_sugars_g": 86.71,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 26.16,
+      "calories": 309.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.64,
+      "protein_g": 3.44,
+      "saturated_fat_g": 4.61,
+      "sodium_mg": 202,
+      "total_carbs_g": 44,
+      "total_fat_g": 13.37,
+      "total_sugars_g": 27.49,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 40.99,
+      "protein": 21.73,
+      "saturated_fat": 72.74,
+      "sodium": 27.7,
+      "total_carbs": 50.46,
+      "total_fat": 54.07
+    },
+    "serving_size_g": 315.4,
+    "total_recipe_weight_g": 1261.6
+  },
+  {
+    "recipe_name": "Cheesy Chicken and Tuna Potato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251103_093414_d3bee215.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-11-03T09:34:14.849973000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "broccoli",
+      "carrot",
+      "corn",
+      "cheese",
+      "potato",
+      "bread",
+      "cheddar",
+      "onion",
+      "tuna"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of the Cheesy Chicken and Tuna Potato Bake is served in a clean, white oval gratin dish, or on a simple round white porcelain plate. The bake presents a golden-brown, bubbly crust of melted cheddar and crispy breadcrumbs, hinting at the creamy layers beneath. Visible through the crust are tender, thinly sliced potatoes, interspersed with chunks of diced chicken and flakes of tuna. Vibrant green broccoli florets, bright orange diced carrots, and yellow corn kernels add pops of color and texture, all bound by a rich, savory cheese sauce. The edges show a slight crispness, while the interior remains soft and comforting. A small, simple sprig of fresh parsley is placed on top for a touch of green. The dish is set on a light wooden table surface, with a plain white cotton napkin folded neatly beside it, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Rustic",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer a side of crusty bread for dipping into the cheesy sauce."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned tuna in oil, drained",
+        "quantity": "200g"
+      },
+      {
+        "name": "Potatoes, peeled and thinly sliced",
+        "quantity": "800g"
+      },
+      {
+        "name": "Broccoli, cut into small florets",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrots, diced",
+        "quantity": "150g"
+      },
+      {
+        "name": "Sweet corn kernels (frozen or canned)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cooked white rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Stale bread, processed into coarse breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk, full-fat",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 tsp, plus more to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1/2 tsp, plus more to taste"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "1/2 tsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Grease a 20x30 cm baking dish.",
+      "Dice chicken breast into 1.5 cm cubes. Season with 1/2 tsp salt and 1/4 tsp pepper.",
+      "Heat 1 tbsp olive oil in a large pan over medium-high heat. Add chicken. Cook for 5-7 minutes until browned and cooked through. Ensure internal temperature reaches 75°C. Remove chicken from pan.",
+      "Add remaining 1 tbsp olive oil to the pan. Add diced onion and carrots. Sauté for 5 minutes until softened. Add broccoli florets and corn. Cook for another 3 minutes. Season with 1/4 tsp salt and 1/4 tsp pepper. Remove vegetables from pan.",
+      "Prepare cheese sauce: Melt butter in a saucepan over medium heat. Stir in flour. Cook for 1 minute, stirring constantly, to form a roux.",
+      "Gradually whisk in milk until smooth. Bring to a simmer, stirring, until sauce thickens. Remove from heat. Stir in 150g grated cheddar cheese, 1/4 tsp salt, and garlic powder until melted and smooth.",
+      "Layer the baking dish: Arrange half of the thinly sliced potatoes evenly on the bottom. Season lightly with salt and pepper.",
+      "Spread half of the cooked chicken, flaked tuna, cooked rice, and sautéed vegetables over the potatoes. Pour half of the cheese sauce over this layer.",
+      "Repeat layering with remaining potatoes, chicken, tuna, rice, and vegetables. Pour remaining cheese sauce over the top.",
+      "Sprinkle remaining 50g grated cheddar cheese and breadcrumbs evenly over the bake.",
+      "Bake for 30-40 minutes, or until potatoes are tender and the top is golden brown and bubbly. Let rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "For best results, par-boil potatoes for 5-7 minutes before slicing to ensure they cook through evenly in the bake.",
+      "You can assemble the bake ahead of time and refrigerate. Add 10-15 minutes to baking time if baking from cold."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 1048,
+      "cholesterol_mg": 202,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 72.8,
+      "saturated_fat_g": 22.4,
+      "sodium_mg": 1324,
+      "total_carbs_g": 82.7,
+      "total_fat_g": 45.6,
+      "total_sugars_g": 14.4,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 131,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.1,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 166,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 32,
+      "protein": 146,
+      "saturated_fat": 112,
+      "sodium": 58,
+      "total_carbs": 30,
+      "total_fat": 58
+    },
+    "serving_size_g": 800,
+    "total_recipe_weight_g": 3200
+  },
+  {
+    "recipe_name": "Basil Panna Cotta with Mixed Berry Coulis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251103_070513_3864e8b8.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 8,
+    "timestamp": "2025-11-03T07:05:13.684358000Z",
+    "selected_ingredients": [
+      "basil"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Basil Panna Cotta sits elegantly on a simple, round, off-white ceramic plate with a slight rim. The panna cotta itself is a pristine, creamy white dome, perfectly unmolded, showcasing its smooth, silken texture. A generous, glossy pool of vibrant ruby-red mixed berry coulis cascades gently down one side of the panna cotta and pools around its base. The coulis has a natural, slightly rustic texture from the berries. Perched delicately on top of the panna cotta, slightly off-center, is a single, fresh, bright green basil leaf, offering a pop of contrasting color and hinting at the infused flavor. The plate is positioned on a warm, well-used wooden dining table. A simple, silver dessert spoon rests beside the plate. Warm, cozy lighting from overhead kitchen fixtures illuminates the scene, highlighting the dessert's inviting appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve chilled as a light, refreshing dessert.",
+      "Can be accompanied by a small espresso or digestivo after a meal."
+    ],
+    "hero_ingredient": "Basil",
+    "ingredients": [
+      {
+        "name": "Heavy cream",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "2 sheets"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Mixed berries (fresh or frozen)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated sugar (for coulis)",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Soften gelatin. If using sheets, place in cold water for 5-10 minutes. If using powder, sprinkle over 30 ml cold water; let sit 5 minutes.",
+      "Combine cream, 75g sugar, and basil leaves in a saucepan. Heat gently over medium-low heat. Do not boil.",
+      "Simmer for 10 minutes, stirring occasionally, to infuse basil flavor.",
+      "Remove from heat. Strain cream through a fine-mesh sieve into a clean bowl. Discard basil.",
+      "Stir in vanilla extract.",
+      "Squeeze excess water from gelatin sheets. Add softened gelatin to warm cream. Stir until completely dissolved. If using powdered gelatin, add the bloomed gelatin mixture and stir until dissolved.",
+      "Pour mixture into four 150 ml molds or ramekins.",
+      "Chill in refrigerator for at least 4 hours, or until set.",
+      "Make berry coulis: Combine mixed berries, 2 tbsp sugar, and lemon juice in a small saucepan. Cook over medium heat for 5-7 minutes. Berries will soften and release juices.",
+      "Mash berries with a fork or potato masher. For a smoother coulis, pass through a fine-mesh sieve.",
+      "Let coulis cool completely.",
+      "To serve, briefly dip bottom of each mold in warm water. Invert panna cotta onto individual plates.",
+      "Spoon berry coulis over and around each panna cotta. Garnish with a small fresh basil leaf."
+    ],
+    "notes": [
+      "For best results, use good quality heavy cream.",
+      "Adjust sugar in coulis to your preference, depending on berry sweetness.",
+      "Ensure panna cotta is thoroughly chilled before unmolding to prevent breakage."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 25,
+      "calories": 558,
+      "cholesterol_mg": 163.5,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 4.7,
+      "saturated_fat_g": 28.9,
+      "sodium_mg": 47.7,
+      "total_carbs_g": 35.8,
+      "total_fat_g": 45.6,
+      "total_sugars_g": 33.1,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.8,
+      "calories": 264,
+      "cholesterol_mg": 77.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 2.2,
+      "saturated_fat_g": 13.7,
+      "sodium_mg": 22.5,
+      "total_carbs_g": 16.9,
+      "total_fat_g": 21.5,
+      "total_sugars_g": 15.6,
+      "trans_fat_g": 0.9
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 8,
+      "protein": 9,
+      "saturated_fat": 145,
+      "sodium": 2,
+      "total_carbs": 13,
+      "total_fat": 58
+    },
+    "serving_size_g": 212,
+    "total_recipe_weight_g": 847
+  },
+  {
+    "recipe_name": "Arugula and Fig Salad with Pan-Seared Beef Liver",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251103_051745_bb79a2f3.jpg",
+    "dish_type": "salad",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-11-03T05:17:46.004328000Z",
+    "selected_ingredients": [
+      "beef liver"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on an expensive bone china plate with a subtle rim pattern, resting on a white Carrara marble surface. A pristine white linen napkin, precisely folded into a triangle, sits to the side with silver fine-dining cutlery. An irregular, flowing mound of vibrant green arugula and thinly sliced red onion forms the base. Halved or quartered deep purple figs are scattered artfully among the greens. Two to three small, irregularly shaped pieces of perfectly pan-seared beef liver, boasting a rich brown crust, are nestled within the composition. A delicate, glossy dark balsamic glaze is drizzled sparingly over the entire dish. A few golden toasted pine nuts are sprinkled for textural contrast. The arrangement is organic and spacious, with intentional negative space. Dramatic professional lighting creates soft shadows, highlighting the textures and sophisticated color palette. The background is ultra-minimalist.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Arugula",
+    "ingredients": [
+      {
+        "name": "Beef liver",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Arugula",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh figs",
+        "quantity": "8 medium"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Pine nuts",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Reduce balsamic vinegar in a small saucepan over medium heat until thickened to a glaze. Set aside.",
+      "Toast pine nuts in a dry pan over medium heat until golden. Remove from pan. Set aside.",
+      "Halve or quarter the fresh figs. Very thinly slice the red onion.",
+      "Prepare the dressing: Whisk 30 ml olive oil, Dijon mustard, salt, and pepper in a small bowl.",
+      "Pat beef liver dry. Season with salt and pepper. Cut into 8-12 small, irregular pieces.",
+      "Heat remaining 30 ml olive oil in a skillet over medium-high heat. Sear liver pieces for 1-2 minutes per side until a rich brown crust forms and liver is cooked through. Do not overcook.",
+      "In a large bowl, gently toss arugula and sliced red onion with the dressing.",
+      "Arrange dressed arugula and onion mixture as an organic mound on individual plates. Scatter fig pieces artfully around the greens.",
+      "Place 2-3 seared beef liver pieces among the greens and figs on each plate.",
+      "Drizzle balsamic glaze over the salad. Sprinkle with toasted pine nuts. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 340,
+      "cholesterol_mg": 69,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 64,
+      "total_carbs_g": 33.4,
+      "total_fat_g": 20.6,
+      "total_sugars_g": 26.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.7,
+      "calories": 137,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 3.5,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 26,
+      "total_carbs_g": 13.5,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 10.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 16,
+      "protein": 17,
+      "saturated_fat": 13,
+      "sodium": 3,
+      "total_carbs": 12,
+      "total_fat": 26
+    },
+    "serving_size_g": 248,
+    "total_recipe_weight_g": 991
+  },
+  {
+    "recipe_name": "Lengua en Salsa Roja con Frijoles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251103_051449_a42c8449.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-11-03T05:14:49.963977000Z",
+    "selected_ingredients": [
+      "beef tongue",
+      "tomato",
+      "bean",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a generous portion of Lengua en Salsa Roja. Thick, irregular chunks of tender, braised beef tongue, exhibiting a rich, earthy brown color, are generously coated and nestled within a vibrant, deep red salsa. The salsa has a smooth, glossy texture with subtle specks of chili and tomato. Alongside, a mound of creamy, rustic pinto beans, either whole or lightly mashed, provides a gentle contrast in color and texture. The entire composition is garnished with a sprinkle of fresh, bright green cilantro leaves, adding a pop of freshness. The meal is served on a clean white porcelain plate with a slightly rustic edge, placed on a simple wooden table surface. Warm corn tortillas are presented in a traditional woven basket or tortilla warmer beside the plate. A small, simple white bowl holds a dollop of Mexican crema, and another contains crumbled queso fresco. Natural, even lighting highlights the dish's rich colors and textures, with a subtle, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping.",
+      "Offer Mexican crema for a cooling contrast.",
+      "Provide crumbled queso fresco for a salty, tangy element."
+    ],
+    "hero_ingredient": "Beef Tongue",
+    "ingredients": [
+      {
+        "name": "Beef Tongue",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Pinto Beans (canned, drained and rinsed)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dried Guajillo Chiles",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Chicken or Beef Broth",
+        "quantity": "1 L"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Mexican Oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Corn Tortillas",
+        "quantity": "12"
+      },
+      {
+        "name": "Mexican Crema",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Queso Fresco",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Place beef tongue in a large pot. Cover with water. Add 1/2 onion, 3 garlic cloves, 1 bay leaf, 1 tsp salt. Bring to boil. Reduce heat. Simmer 2.5-3 hours until very tender.",
+      "Remove tongue from pot. Cool slightly. Peel off outer skin. Trim any excess fat or gristle. Cut tongue into 2-3 cm thick chunks. Set aside. Strain and reserve 500 ml cooking liquid.",
+      "Remove stems and seeds from dried chiles. Place chiles in a bowl. Cover with hot water. Soak 20 minutes until softened.",
+      "Drain softened chiles. Place in blender with 2 garlic cloves, remaining 1/2 onion (roughly chopped), 500g tomatoes (fresh or canned), 1 tsp cumin, 1 tsp Mexican oregano, 1/2 tsp salt, 1/4 tsp black pepper. Add 250 ml reserved tongue cooking liquid. Blend until smooth. Strain salsa through a fine-mesh sieve into a bowl, pressing solids. Discard solids.",
+      "Heat 2 tbsp vegetable oil in a large pot or Dutch oven over medium heat. Pour strained salsa into hot oil. Cook, stirring frequently, 10-15 minutes until it darkens and thickens.",
+      "Add tongue chunks to salsa. Add remaining 250 ml reserved cooking liquid (or chicken/beef broth if needed). Bring to simmer. Reduce heat. Cover and cook 30 minutes, allowing flavors to meld.",
+      "Drain and rinse canned pinto beans. Place in a small saucepan. Add 125 ml water or broth. Simmer gently 5-7 minutes to heat through. Mash lightly if desired, or keep whole. Season with salt.",
+      "Serve Lengua en Salsa Roja hot. Garnish with fresh cilantro. Serve alongside warm corn tortillas, Mexican crema, and crumbled queso fresco."
+    ],
+    "traditional_techniques": [
+      "Braising beef tongue until tender",
+      "Preparing salsa from rehydrated dried chiles"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1209,
+      "cholesterol_mg": 360,
+      "dietary_fiber_g": 16.12,
+      "protein_g": 67.4,
+      "saturated_fat_g": 27.27,
+      "sodium_mg": 2026,
+      "total_carbs_g": 76.77,
+      "total_fat_g": 72.7,
+      "total_sugars_g": 8.36,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 7.11,
+      "saturated_fat_g": 2.87,
+      "sodium_mg": 214,
+      "total_carbs_g": 8.09,
+      "total_fat_g": 7.66,
+      "total_sugars_g": 0.88,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 120,
+      "dietary_fiber": 58,
+      "protein": 135,
+      "saturated_fat": 136,
+      "sodium": 88,
+      "total_carbs": 28,
+      "total_fat": 93
+    },
+    "serving_size_g": 948.5,
+    "total_recipe_weight_g": 3794
+  }
+]

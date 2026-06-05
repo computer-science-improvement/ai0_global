@@ -1,0 +1,662 @@
+[
+  {
+    "recipe_name": "Belgian Beer Braised Pork with Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_belgian_beer_braised_pork_with_tomatoes_20250626_094641_96d992dd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:46:42.261444000Z",
+    "selected_ingredients": [
+      "pork",
+      "beer",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of rich, Belgian Beer Braised Pork with Tomatoes is presented in a deep, clean white porcelain bowl. Tender, thick chunks of braised pork shoulder, approximately 3-4 cm cubes, are nestled in a glossy, dark reddish-brown sauce. The sauce is thick and unctuous, with visible strands of caramelized onion and hints of softened tomato. A quenelle of creamy, smooth mashed potatoes sits elegantly beside the pork. The dish is garnished with a vibrant sprinkle of fresh, finely chopped parsley. The presentation is clean, professional, and inviting. The bowl rests on a simple wooden table, with a folded white cotton napkin and classic silver flatware, under natural, even lighting, evoking a cozy bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Belgian",
+    "cultural_origin": "Belgian",
+    "cultural_serving_suggestions": [
+      "Serve with traditional Belgian frites or creamy mashed potatoes",
+      "Pair with a glass of the same dark Belgian beer used in the recipe"
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "800 g, cut into 3-4 cm cubes"
+      },
+      {
+        "name": "Smoked bacon or pancetta",
+        "quantity": "150 g, diced"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Dark Belgian beer",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat pork cubes dry. Season with salt and pepper. Dredge pork lightly in flour. Shake off excess.",
+      "Heat vegetable oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Brown pork cubes in batches until golden on all sides. Do not overcrowd the pot. Remove pork and set aside.",
+      "Add diced bacon to the pot. Cook until crispy. Remove bacon with a slotted spoon, leaving rendered fat in the pot.",
+      "Add sliced onions to the pot. Cook over medium heat until softened and caramelized, about 8-10 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in Belgian beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Stir in crushed tomatoes, beef broth, Dijon mustard, brown sugar, bay leaves, and thyme sprigs. Bring to a gentle boil.",
+      "Return browned pork and cooked bacon to the pot. Ensure pork is mostly submerged in liquid.",
+      "Reduce heat to low. Cover the pot. Simmer for 2 to 2.5 hours, or until pork is very tender. Stir occasionally.",
+      "Remove bay leaves and thyme sprigs. Taste and adjust seasoning with salt and pepper.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 800,
+      "cholesterol_mg": 176,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 61.8,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 1429,
+      "total_carbs_g": 21.5,
+      "total_fat_g": 47,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 140,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 10.8,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 251,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 7,
+      "protein": 124,
+      "saturated_fat": 63,
+      "sodium": 62,
+      "total_carbs": 8,
+      "total_fat": 60
+    },
+    "serving_size_g": 570,
+    "total_recipe_weight_g": 2280
+  },
+  {
+    "recipe_name": "Creamy Mushroom Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_mushroom_chicken_20250626_094635_5ffb8136.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:46:35.589177000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of pan-seared chicken breast rests on a simple, slightly imperfect off-white ceramic dinner plate. The golden-brown chicken, presented as a whole piece, is generously covered with a rich, creamy, off-white mushroom sauce. Sliced, earthy-brown cremini mushrooms and diced onions are visible within the velvety sauce, which pools naturally around the chicken. A sprinkle of bright green, freshly chopped parsley garnishes the dish, adding a pop of color. The plate is positioned on a well-used, warm-toned wooden dining table. A simple metal fork and knife are casually placed beside the plate. The scene is bathed in warm, cozy kitchen lighting, evoking a comfortable family meal setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry with paper towels. Season generously with salt and black pepper.",
+      "Heat olive oil and 15g butter in a large skillet over medium-high heat.",
+      "Sear chicken breasts for 4-5 minutes per side until golden brown. Internal temperature must reach 75°C (167°F). Remove chicken from skillet and set aside. Keep warm.",
+      "Add remaining 15g butter to the skillet. Add sliced cremini mushrooms and diced yellow onion. Sauté for 5-7 minutes until mushrooms are browned and tender and onion is softened.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Sprinkle flour over the mushroom mixture. Stir for 1 minute to cook the flour.",
+      "Gradually whisk in chicken broth, scraping up any browned bits from the bottom of the skillet. Bring to a simmer.",
+      "Stir in heavy cream. Reduce heat to medium-low. Simmer for 3-5 minutes until sauce thickens slightly.",
+      "Return cooked chicken breasts to the skillet. Spoon sauce over the chicken. Simmer for 2-3 minutes to heat through.",
+      "Taste and adjust seasoning if needed. Garnish with chopped fresh parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 568,
+      "cholesterol_mg": 215,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 63.3,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 222,
+      "total_carbs_g": 13,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141,
+      "cholesterol_mg": 53,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 15.7,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 55,
+      "total_carbs_g": 3.2,
+      "total_fat_g": 7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71.7,
+      "dietary_fiber": 6.4,
+      "protein": 126.6,
+      "saturated_fat": 67.5,
+      "sodium": 9.7,
+      "total_carbs": 4.7,
+      "total_fat": 36
+    },
+    "serving_size_g": 402.5,
+    "total_recipe_weight_g": 1609.8
+  },
+  {
+    "recipe_name": "Mediterranean Roasted Chicken with Garlic Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_roasted_chicken_with_garlic_brown_rice_20250626_094555_576fca11.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:45:55.448934000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "brown rice",
+      "oil",
+      "tomato",
+      "salad green"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, centrally placed on a simple wooden table. A single, golden-brown roasted chicken thigh, cooked whole, is the focal point, its exterior lightly seared and glistening. Beside it, a neat mound of fluffy brown rice infused with roasted garlic. Scattered around the chicken are vibrant, blistered red cherry tomato halves and tender roasted garlic cloves. A fresh, crisp mixed green salad, lightly dressed, is arranged alongside the main components. A few fresh parsley leaves are sprinkled over the chicken and rice for color. The scene is bathed in natural, even lighting, with a cotton napkin placed neatly beside the plate. The overall presentation is professional and approachable, showcasing a single, generous casual dining portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty artisan bread for dipping in pan juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 pieces (approx. 700g total)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250g dry"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6 (4 minced, 2 sliced)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g, halved"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (half for chicken, half for dressing)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Rinse brown rice. Cook according to package instructions, using 400ml water and a pinch of salt. Add 2 minced garlic cloves to the cooking water.",
+      "Pat chicken thighs dry. In a bowl, toss chicken with 2 minced garlic cloves, 30ml olive oil, dried oregano, salt, and pepper.",
+      "On a baking tray, arrange chicken thighs, halved cherry tomatoes, and sliced garlic cloves. Ensure ingredients are in a single layer.",
+      "Roast for 25-30 minutes, or until chicken reaches an internal temperature of 75°C. Chicken should be golden brown.",
+      "While chicken roasts, prepare salad dressing. Whisk together 30ml olive oil, red wine vinegar, juice from half a lemon, salt, and pepper.",
+      "In a large bowl, combine mixed salad greens and half of the chopped fresh parsley. Toss with the prepared dressing.",
+      "Fluff cooked brown rice with a fork. Stir in remaining fresh parsley.",
+      "Plate one roasted chicken thigh. Place a neat mound of garlic brown rice beside it. Arrange roasted cherry tomatoes and garlic cloves around the chicken. Serve with a portion of the fresh salad on the side."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for safety."
+    ],
+    "traditional_techniques": [
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 660.74,
+      "cholesterol_mg": 164.5,
+      "dietary_fiber_g": 4.42,
+      "protein_g": 47.3,
+      "saturated_fat_g": 6.14,
+      "sodium_mg": 2478.68,
+      "total_carbs_g": 55.46,
+      "total_fat_g": 29.98,
+      "total_sugars_g": 3.25,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139.06,
+      "cholesterol_mg": 34.62,
+      "dietary_fiber_g": 0.93,
+      "protein_g": 9.95,
+      "saturated_fat_g": 1.29,
+      "sodium_mg": 521.67,
+      "total_carbs_g": 11.67,
+      "total_fat_g": 6.31,
+      "total_sugars_g": 0.68,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54.83,
+      "dietary_fiber": 15.79,
+      "protein": 94.6,
+      "saturated_fat": 30.7,
+      "sodium": 107.77,
+      "total_carbs": 20.17,
+      "total_fat": 38.44
+    },
+    "serving_size_g": 475.15,
+    "total_recipe_weight_g": 1900.6
+  },
+  {
+    "recipe_name": "Fermented Raspberry & Avocado Bliss Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_raspberry_%26_avocado_bliss_bites_20250626_094513_5b793fec.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:45:13.875417000Z",
+    "selected_ingredients": [
+      "avocado",
+      "raspberry",
+      "sugar",
+      "egg",
+      "milk",
+      "butter",
+      "flour",
+      "cream"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Pastry cuisine",
+    "visual_description": "Six to nine perfectly uniform miniature square \"Bliss Bites\" are elegantly arranged on a smooth, matte white rectangular porcelain platter. Each bite features distinct layers: a compact, golden-brown oat and almond base, topped with a creamy, pale green avocado layer, and finished with vibrant crimson swirls of fermented raspberry compote. The edges are clean and precise, showcasing the distinct textures. A delicate dusting of fine, light brown avocado pit powder graces the top of each piece, adding an earthy, subtle detail. The platter sits on a light, naturally textured reclaimed wood table, accented by an undyed linen napkin in a soft beige tone. Soft, natural light illuminates the scene, highlighting the natural colors and inviting textures against a clean, minimalist background with subtle green plant foliage in soft focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Pastry",
+    "cultural_origin": "Contemporary Pastry",
+    "hero_ingredient": "Avocado",
+    "ingredients": [
+      {
+        "name": "rolled oats",
+        "quantity": "100 g"
+      },
+      {
+        "name": "blanched almonds",
+        "quantity": "50 g"
+      },
+      {
+        "name": "pitted Medjool dates",
+        "quantity": "70 g"
+      },
+      {
+        "name": "unsalted butter, melted",
+        "quantity": "20 g"
+      },
+      {
+        "name": "sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "fresh raspberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "maple syrup",
+        "quantity": "30 g"
+      },
+      {
+        "name": "water",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "probiotic capsule (contents only) OR whey from yogurt/kefir",
+        "quantity": "1"
+      },
+      {
+        "name": "ripe medium avocados",
+        "quantity": "2"
+      },
+      {
+        "name": "heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "maple syrup",
+        "quantity": "50 g"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "fresh lime juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "avocado pit, cleaned and dried",
+        "quantity": "1"
+      },
+      {
+        "name": "fresh mint leaves",
+        "quantity": "Optional"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Raspberry Compote: Combine raspberries, 30g maple syrup, and water in a non-reactive bowl. Stir in probiotic capsule contents or whey. Cover loosely with a cloth. Let sit at room temperature (20-24°C) for 24-48 hours. Taste for desired tanginess. Refrigerate until use.",
+      "Prepare Oat & Almond Base: Pulse oats, almonds, dates, and salt in a food processor until a coarse, sticky mixture forms. Add melted butter; pulse until combined.",
+      "Form the Base: Press mixture evenly into an 18x18 cm square pan lined with parchment paper, leaving an overhang on all sides. Chill for 30 minutes.",
+      "Prepare Avocado Cream Layer: Scoop avocado flesh into a food processor. Add heavy cream, 50g maple syrup, vanilla extract, and lime juice. Process until completely smooth and creamy. Scrape down sides as needed.",
+      "Assemble Layers: Spread avocado cream evenly over the chilled base.",
+      "Add Raspberry Compote: Gently dollop and swirl the fermented raspberry compote over the avocado layer. Do not mix completely; leave distinct swirls.",
+      "Chill: Cover the pan and chill in the refrigerator for at least 4 hours, or preferably overnight, until firm.",
+      "Prepare Avocado Pit Powder: While chilling, clean and dry the avocado pit. Grate it finely or blend into a powder using a high-speed blender. Store in an airtight container.",
+      "Cut and Serve: Carefully lift the chilled block from the pan using the parchment paper overhang. Cut into 6-9 uniform miniature squares or rectangles.",
+      "Garnish: Lightly dust each bite with avocado pit powder. Garnish with a small fresh mint leaf if desired. Serve immediately."
+    ],
+    "notes": [
+      "This recipe emphasizes natural fermentation for flavor complexity and preservation.",
+      "Utilizing the avocado pit reduces food waste, transforming a discarded element into a unique garnish.",
+      "Adjust sweetness to taste, as natural sweeteners vary."
+    ],
+    "traditional_techniques": [
+      "Fermentation (for raspberries)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12,
+      "calories": 545,
+      "cholesterol_mg": 38.25,
+      "dietary_fiber_g": 13.96,
+      "protein_g": 9.96,
+      "saturated_fat_g": 10.81,
+      "sodium_mg": 18.03,
+      "total_carbs_g": 59.25,
+      "total_fat_g": 33.24,
+      "total_sugars_g": 28.07,
+      "trans_fat_g": 0.49
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 5.11,
+      "calories": 232,
+      "cholesterol_mg": 16.28,
+      "dietary_fiber_g": 5.94,
+      "protein_g": 4.24,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 7.67,
+      "total_carbs_g": 25.21,
+      "total_fat_g": 14.14,
+      "total_sugars_g": 11.94,
+      "trans_fat_g": 0.21
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19.13,
+      "dietary_fiber": 49.85,
+      "protein": 19.92,
+      "saturated_fat": 54.03,
+      "sodium": 0.78,
+      "total_carbs": 21.55,
+      "total_fat": 42.61
+    },
+    "serving_size_g": 235,
+    "total_recipe_weight_g": 940
+  },
+  {
+    "recipe_name": "Rustic Chicken and Potato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_potato_bake_20250626_094453_f5024ff2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:44:53.818424000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "в духовке",
+    "visual_description": "A single, generous portion of rustic oven-baked chicken and potatoes. Two bone-in, skin-on chicken thighs, roasted to a deep golden-brown with slightly crisped skin, are nestled amidst large, irregular chunks of tender, golden-edged potatoes and soft, caramelized onion wedges. The dish boasts warm, earthy tones from the roasted vegetables and savory chicken, accented by vibrant green flecks of freshly chopped dill and parsley. Components naturally overlap, filling an everyday, slightly imperfect ceramic plate, leaving comfortable negative space. The setting is a well-used wooden dining table under warm kitchen lighting. A simple, off-white linen napkin is casually placed, alongside a rustic metal fork. A small side bowl of tangy pickled cucumbers and a slice of dark rye bread complete the authentic Eastern European home meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled cucumbers (ogurtsy).",
+      "Offer slices of dark rye bread."
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "8 pieces (approx. 1.2 kg)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg, peeled and cut into thick rustic chunks"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large, cut into thick wedges"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Dried dill",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30 g, chopped, for garnish"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt, pepper, paprika, and dried dill.",
+      "In a large bowl, combine potato chunks and onion wedges. Drizzle with olive oil. Add minced garlic, salt, and pepper. Toss to coat evenly.",
+      "Arrange the seasoned potatoes and onions in a single layer in a large oven-safe baking dish.",
+      "Place chicken thighs on top of the vegetables.",
+      "Pour chicken broth around the chicken and vegetables.",
+      "Cover the baking dish tightly with aluminum foil.",
+      "Bake for 45 minutes.",
+      "Remove foil. Continue baking for another 25-35 minutes, or until chicken skin is golden brown and crispy, and chicken internal temperature reaches 75°C. Potatoes should be tender.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Garnish generously with fresh dill and parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1134.4,
+      "cholesterol_mg": 270,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 63,
+      "saturated_fat_g": 14.4,
+      "sodium_mg": 827,
+      "total_carbs_g": 59,
+      "total_fat_g": 59.3,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146.4,
+      "cholesterol_mg": 34.9,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 106.8,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 90,
+      "dietary_fiber": 31.8,
+      "protein": 126,
+      "saturated_fat": 72,
+      "sodium": 36,
+      "total_carbs": 21.5,
+      "total_fat": 76
+    },
+    "serving_size_g": 774.8,
+    "total_recipe_weight_g": 3099
+  }
+]

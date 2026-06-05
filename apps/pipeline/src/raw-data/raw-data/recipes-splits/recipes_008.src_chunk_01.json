@@ -1,0 +1,656 @@
+[
+  {
+    "recipe_name": "Coconut Molasses Sphere, Cinnamon Coconut Emulsion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coconut_molasses_sphere%2C_cinnamon_coconut_emulsion_20250812_120052_9fabfc36.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T12:00:52.530732000Z",
+    "selected_ingredients": [
+      {
+        "name": "molasses"
+      },
+      {
+        "name": "cinnamon"
+      },
+      {
+        "name": "coconut"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Vietnamese",
+    "visual_description": "A single, pristine white bone china plate holds a perfectly spherical, glossy, dark amber Molasses & Cinnamon Coconut Sphere (approx. 6 cm diameter), positioned elegantly off-center. Adjacent, a cloud-like, ethereal Coconut Nước Cốt Emulsion, a soft, pristine white, forms an organic, flowing streak. Precisely scattered are three small, translucent, shimmering Coconut Gelee cubes (approx. 1 cm), reflecting light. A whisper of finely toasted coconut flakes adds a delicate golden-brown accent. The presentation emphasizes abundant negative space, showcasing the dish's architectural precision. The setting is a smooth white Carrara marble surface. A sleek, dark ceramic spoon rests beside the plate. Lighting is dramatic, casting subtle shadows, with an ultra-minimalist background, highlighting the sophisticated simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "hero_ingredient": "Coconut",
+    "ingredients": [
+      {
+        "name": "Full-fat coconut cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Dark molasses",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "45 g"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (or 0.5 g ground cinnamon)"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "2 (approx. 4 g)"
+      },
+      {
+        "name": "Light coconut milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Soy lecithin powder",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Coconut water",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Toasted unsweetened coconut flakes",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "For the Molasses & Cinnamon Coconut Sphere: Gently warm coconut cream, 20g caster sugar, and cinnamon stick in a saucepan. Do not boil. Remove from heat. Steep cinnamon for 15 minutes. Remove cinnamon stick.",
+      "Bloom gelatin sheets in cold water for 5 minutes. Squeeze out excess water. Stir bloomed gelatin into warm coconut cream mixture until dissolved. Stir in molasses until fully combined.",
+      "Pour mixture into spherical silicone molds (approx. 6 cm diameter). Freeze until solid, at least 4 hours.",
+      "For the Coconut Nước Cốt Emulsion: Gently warm light coconut milk, 10g caster sugar, and a pinch of salt in a small saucepan. Cool completely.",
+      "Transfer cooled coconut milk mixture to a tall container. Add soy lecithin powder. Use an immersion blender to emulsify until light and airy. Chill until ready to serve.",
+      "For the Coconut Gelee: In a small saucepan, combine coconut water, 15g caster sugar, and agar-agar powder. Bring to a simmer, whisking constantly, for 1 minute until agar is fully dissolved.",
+      "Pour mixture into a shallow, flat dish to a thickness of 0.5 cm. Chill in refrigerator until firm, about 30 minutes. Once set, carefully cut into precise 1 cm cubes.",
+      "To Plate: Gently unmold frozen Molasses & Cinnamon Coconut Sphere. Let it temper slightly at room temperature for 5 minutes.",
+      "Place the sphere elegantly off-center on a pristine white bone china plate. Spoon a flowing, organic streak of the Coconut Nước Cốt Emulsion beside the sphere.",
+      "Carefully place three small Coconut Gelee cubes precisely around the sphere and emulsion. Garnish with a few strategically placed toasted coconut flakes."
+    ]
+  },
+  {
+    "recipe_name": "Pan-Seared Crab Cakes with Peach-Chili Salsa and Hemp Milk Aioli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_crab_cakes_with_peach-chili_salsa_and_hemp_milk_aioli_20250812_115541_2d3d51ed.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T11:55:41.396101000Z",
+    "selected_ingredients": [
+      "bee pollen",
+      "crab",
+      "psyllium husk",
+      "peach",
+      "hemp milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate, set on a simple wooden table. Two golden-brown, pan-seared crab cakes, approximately 8 cm in diameter and 2 cm thick, are positioned slightly offset in the center. Their surfaces are textured with a crisp, slightly irregular crust from the panko. Beside the crab cakes, a vibrant mound of Peach-Chili Salsa adds a burst of color. The salsa features small diced peaches, showing hints of their orange-yellow flesh, intermingled with finely diced red onion and green cilantro, and tiny flecks of red jalapeño. A creamy, off-white Hemp Milk Aioli is artfully drizzled across the plate, creating gentle, flowing lines. A light dusting of golden bee pollen granules is scattered over the salsa and aioli, with a small sprig of fresh cilantro resting on top. The overall composition is balanced with moderate negative space, showcasing refined yet approachable plating. A folded white cotton napkin lies to the side.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "lump crab meat, picked over for shells",
+        "quantity": "450 g"
+      },
+      {
+        "name": "panko breadcrumbs",
+        "quantity": "60 g"
+      },
+      {
+        "name": "large egg, lightly beaten",
+        "quantity": "1"
+      },
+      {
+        "name": "finely diced shallot",
+        "quantity": "30 g"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "psyllium husk powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "fresh lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "vegetable oil, for searing",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "ripe peaches, small diced",
+        "quantity": "2"
+      },
+      {
+        "name": "finely diced red onion",
+        "quantity": "30 g"
+      },
+      {
+        "name": "jalapeño, seeded and finely minced",
+        "quantity": "1"
+      },
+      {
+        "name": "fresh cilantro, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "fresh lime juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "good quality mayonnaise",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "unsweetened hemp milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "fresh lemon juice",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "bee pollen",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh cilantro sprigs",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Crab Cakes: In a large bowl, gently combine crab meat, panko breadcrumbs, egg, shallot, parsley, psyllium husk powder, 15 ml lemon juice, and Dijon mustard. Season with salt and pepper. Mix until just combined. Form into 8 patties, about 60-70g each. Refrigerate for 20 minutes to firm up.",
+      "Make Peach-Chili Salsa: In a medium bowl, combine diced peaches, red onion, minced jalapeño, chopped cilantro, and lime juice. Season with salt. Stir gently. Set aside.",
+      "Prepare Hemp Milk Aioli: In a small bowl, whisk together mayonnaise, hemp milk, minced garlic, and 10 ml lemon juice until smooth. Season with salt and pepper.",
+      "Sear Crab Cakes: Heat vegetable oil in a large non-stick skillet over medium heat. Place crab cakes into the skillet. Sear for 4-5 minutes per side, until golden brown and heated through. Cook in batches if necessary.",
+      "Serve: Place two seared crab cakes on each plate. Spoon a generous amount of Peach-Chili Salsa alongside or on top. Drizzle with Hemp Milk Aioli. Garnish with a sprinkle of bee pollen and a fresh cilantro sprig. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 478,
+      "cholesterol_mg": 118,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 25.7,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 633,
+      "total_carbs_g": 26.1,
+      "total_fat_g": 31.4,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 152,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 202,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 10,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.2,
+      "dietary_fiber": 12,
+      "protein": 51.4,
+      "saturated_fat": 22.8,
+      "sodium": 27.5,
+      "total_carbs": 9.5,
+      "total_fat": 40.3
+    },
+    "serving_size_g": 313.55,
+    "total_recipe_weight_g": 1254.2
+  },
+  {
+    "recipe_name": "Eggplant, Halloumi, and Confit Tomato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_eggplant%2C_halloumi%2C_and_confit_tomato_salad_20250812_114419_3a936dce.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T11:44:19.446008000Z",
+    "selected_ingredients": [
+      "tomato",
+      "cucumber",
+      "bell pepper",
+      "onion",
+      "coriander",
+      "halloumi cheese",
+      "eggplant"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A meticulously composed fine-dining salad is presented on a pristine white bone china plate, resting on a polished grey marble surface. The organic, flowing arrangement showcases five distinct elements. Three to four golden-brown roasted eggplant discs form the base. Around them, four to five golden-seared halloumi cubes are artfully placed, their crispy exteriors contrasting. Five to six vibrant red confit cherry tomatoes glisten beside three to four translucent compressed cucumber rounds. A delicate scattering of pale pink pickled red onion adds a sharp accent. The composition is elegantly drizzled with a bright green coriander vinaigrette. Abundant negative space emphasizes minimalist elegance. A precisely folded white linen napkin rests beside the plate. Dramatic, focused lighting creates soft shadows, highlighting textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Eggplant",
+        "quantity": "1 large (approx. 400g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Halloumi cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "Olive oil (for halloumi)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, thinly sliced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil (for confit tomatoes)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large (approx. 300g)"
+      },
+      {
+        "name": "Water (for cucumber compression)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "White wine vinegar (for cucumber)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sugar (for cucumber)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small (approx. 80g)"
+      },
+      {
+        "name": "Red wine vinegar (for pickling)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water (for pickling)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sugar (for pickling)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "30g"
+      },
+      {
+        "name": "Extra virgin olive oil (for vinaigrette)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "20ml"
+      },
+      {
+        "name": "White wine vinegar (for vinaigrette)",
+        "quantity": "5ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Eggplant: Slice eggplant into 1 cm thick rounds. Lightly salt both sides. Let sit 15 minutes. Pat dry thoroughly. Brush with olive oil. Roast in a preheated oven at 200°C (392°F) for 20-25 minutes until tender and golden brown. Let cool. Using a 4cm round cutter, cut out perfect discs.",
+      "Prepare Halloumi: Cut halloumi into 1.5 cm cubes. Heat 15ml olive oil in a non-stick pan over medium-high heat. Sear halloumi cubes for 2-3 minutes per side until golden brown and crispy. Set aside.",
+      "Prepare Confit Tomatoes: Place cherry tomatoes, thyme, sliced garlic, and 50ml olive oil in a small oven-safe dish. Season with a pinch of salt. Roast in a preheated oven at 140°C (284°F) for 45-60 minutes, until tomatoes are soft and slightly shriveled but not burst. Remove thyme sprigs.",
+      "Prepare Compressed Cucumber: Peel cucumber. Cut into 1.5 cm thick rounds. Place cucumber rounds with 100ml water, 50ml white wine vinegar, 10g sugar, and a pinch of salt in a vacuum sealable bag. Vacuum seal to compress. If no vacuum sealer, lightly press under a weight for 30 minutes.",
+      "Prepare Pickled Red Onion: Thinly slice red onion. Bring red wine vinegar, 50ml water, 5g sugar, and a pinch of salt to a simmer. Pour hot liquid over sliced red onion. Let steep for at least 20 minutes until softened and lightly pickled. Drain before plating.",
+      "Prepare Coriander Vinaigrette: In a small blender, combine coriander leaves, extra virgin olive oil, lemon juice, white wine vinegar, salt, and pepper. Blend until smooth and emulsified.",
+      "Assemble Salad: Arrange 3-4 eggplant discs artfully on each plate. Place 4-5 seared halloumi cubes around the eggplant. Scatter 5-6 confit cherry tomatoes. Place 3-4 compressed cucumber pieces. Distribute a small amount of pickled red onion. Drizzle generously with coriander vinaigrette."
+    ],
+    "notes": [
+      "Use high-quality extra virgin olive oil for the vinaigrette to achieve optimal flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 592,
+      "cholesterol_mg": 61,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 15.8,
+      "saturated_fat_g": 15.3,
+      "sodium_mg": 1185,
+      "total_carbs_g": 18.5,
+      "total_fat_g": 52,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 141,
+      "cholesterol_mg": 14,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 3.8,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 282,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20,
+      "dietary_fiber": 19,
+      "protein": 32,
+      "saturated_fat": 77,
+      "sodium": 52,
+      "total_carbs": 7,
+      "total_fat": 67
+    },
+    "serving_size_g": 420.9,
+    "total_recipe_weight_g": 1683.6
+  },
+  {
+    "recipe_name": "Heirloom Tomato Carpaccio with Compressed Cucumber and Seared Duck Breast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_heirloom_tomato_carpaccio_with_compressed_cucumber_and_seared_duck_breast_20250812_113913_72c3c04f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T11:39:14.328783000Z",
+    "selected_ingredients": [
+      "tomato",
+      "cucumber",
+      "bell pepper",
+      "onion",
+      "coriander"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on an expensive bone china plate with a subtle, modern pattern, centered on a pristine white Carrara marble surface. A crisp white linen napkin, folded into a precise triangle, rests elegantly beside the plate. Dramatic, professional lighting casts soft shadows, highlighting the dish's architectural precision against an ultra-minimalist background with abundant negative space. The salad itself is a vibrant, artistic composition. Thinly sliced heirloom tomato carpaccio, in shades of ruby red, sunny yellow, and deep purple, forms an organic, flowing base, interspersed with translucent, pale green compressed cucumber ribbons. These delicate vegetable layers are arranged with intentional artistry, creating movement across the plate. Strategically placed are small, perfectly seared duck breast chunks, their crisp, golden-brown skin contrasting with the tender pink interior, nestled amongst the vegetables. A vibrant, glossy roasted red bell pepper coulis is artfully dotted and swiped across the plate, adding a rich, sweet counterpoint of color. Scattered sparingly are delicate, translucent pickled red onion petals, providing a subtle pop of fuchsia. A few fresh, bright green coriander leaves are precisely placed as the final garnish, adding a touch of freshness. Each component is visible, contributing to a sophisticated and restrained visual narrative.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Heirloom Tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "English Cucumber",
+        "quantity": "150g"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "50g (1 small)"
+      },
+      {
+        "name": "Coriander leaves",
+        "quantity": "10g"
+      },
+      {
+        "name": "Duck Breast",
+        "quantity": "120g (skin on)"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "White Balsamic Vinegar",
+        "quantity": "20ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "5ml (1 tsp)"
+      },
+      {
+        "name": "Honey or Maple Syrup",
+        "quantity": "5ml (1 tsp)"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White Wine Vinegar",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Prepare Pickled Red Onion: Thinly slice red onion into rings or half-moons. In a small saucepan, combine white wine vinegar, water, sugar, and salt. Bring to a simmer, stirring until sugar and salt dissolve. Pour hot liquid over sliced red onion in a heatproof bowl. Let cool to room temperature, then refrigerate for at least 30 minutes.",
+      "Prepare Roasted Bell Pepper Coulis: Halve and deseed red bell pepper. Place cut-side down on a baking sheet. Roast in a preheated oven at 200°C for 20-25 minutes until skin is blistered and charred. Transfer to a bowl, cover with plastic wrap, and let steam for 10 minutes. Peel off skin. Blend roasted bell pepper flesh with a splash of water until very smooth. Pass through a fine-mesh sieve to remove any solids. Season with salt and pepper. Set aside.",
+      "Prepare Compressed Cucumber: Peel cucumber. Using a mandoline, slice cucumber into very thin ribbons lengthwise. Lay ribbons flat on a plate. Sprinkle lightly with salt. Cover with another plate and gently press for 15 minutes to draw out excess moisture. Pat dry with paper towels.",
+      "Prepare Heirloom Tomatoes: Wash and gently slice heirloom tomatoes into varied thicknesses, some very thin carpaccio-style, others slightly thicker for texture, ensuring irregular shapes for organic plating. Season lightly with salt.",
+      "Cook Duck Breast: Score duck skin in a crosshatch pattern without cutting into the meat. Season skin with salt. Place duck breast skin-side down in a cold, oven-safe pan. Render fat over medium-low heat for 8-10 minutes until skin is crispy and golden brown. Flip and sear flesh side for 2-3 minutes. Transfer pan to preheated oven at 180°C and cook for 5-7 minutes until internal temperature reaches 75°C. Rest duck breast for 5 minutes before slicing into small, elegant chunks or thick medallions.",
+      "Make Dressing: In a small bowl, whisk together olive oil, white balsamic vinegar, Dijon mustard, and honey/maple syrup. Season with salt and pepper to taste.",
+      "Assemble Salad: On four individual fine-dining plates, artfully arrange the heirloom tomato slices and compressed cucumber ribbons, creating an organic, flowing composition. Drizzle with a small amount of dressing. Place a few small chunks of seared duck breast among the vegetables. Dot the plate with the vibrant red bell pepper coulis. Scatter a few pickled red onion petals and fresh coriander leaves for garnish. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 242,
+      "cholesterol_mg": 25.2,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 7.6,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 248.2,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 18.5,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 85.7,
+      "cholesterol_mg": 8.9,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 2.7,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 87.9,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 8.4,
+      "dietary_fiber": 11,
+      "protein": 15.2,
+      "saturated_fat": 17.2,
+      "sodium": 10.8,
+      "total_carbs": 4.5,
+      "total_fat": 23.8
+    },
+    "serving_size_g": 282.25,
+    "total_recipe_weight_g": 1129
+  },
+  {
+    "recipe_name": "Fermented Tomato and Cucumber Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_and_cucumber_salad_20250812_113344_8b19b956.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T11:33:45.137312000Z",
+    "selected_ingredients": [
+      "tomato",
+      "cucumber",
+      "bell pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The salad is presented in a handcrafted, matte cream ceramic bowl, set against a light, reclaimed wood surface. Vibrant halved fermented cherry tomatoes, their skins slightly softened and deepened in color, are gently mixed with thinly sliced crisp cucumber and finely diced orange bell pepper. Scattered amongst these are plump, cooked chickpeas, providing a subtle contrast in texture and color. The components are lightly tossed with a clear, herb-flecked vinaigrette, ensuring each piece glistens. The dish rests on a bed of fresh, vibrant arugula. Garnish includes delicate fresh dill sprigs and a few finely julienned cucumber peels, adding a touch of natural green. The overall presentation is minimalistic and clean, highlighting the natural beauty and fresh colors of the ingredients, with ample negative space. A natural beige linen napkin and a simple, unadorned ceramic spoon complete the eco-conscious setting under soft, diffused natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Sea salt (for fermentation)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Water (for fermentation)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Bell pepper (any color)",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cooked chickpeas",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh arugula or mixed greens",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1, minced"
+      },
+      {
+        "name": "Fresh dill, chopped",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Bell pepper trimmings (cores, seeds, inner white bits)",
+        "quantity": "From 1 bell pepper"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented tomatoes: Halve cherry tomatoes. Dissolve 10 g sea salt in 250 ml water to make a brine. Place halved tomatoes in a clean jar. Pour brine over tomatoes, ensuring they are fully submerged. Seal jar loosely. Ferment at room temperature for 2-3 days, or until slightly tangy and bubbly. Refrigerate once desired tang is reached.",
+      "Make bell pepper infused oil: Gently heat olive oil with bell pepper trimmings in a small saucepan over low heat for 10 minutes. Do not brown. Strain oil and discard trimmings. Let cool.",
+      "Prepare vegetables: Thinly slice or dice cucumber. Dice bell pepper into small cubes. Rinse and drain cooked chickpeas.",
+      "Prepare dressing: In a small bowl, whisk together infused olive oil, white wine vinegar, Dijon mustard, minced garlic, chopped fresh dill, and chopped fresh parsley. Season with salt and black pepper. Add 15-30 ml of the fermented tomato brine for extra flavor and probiotics.",
+      "Assemble salad: In a large bowl, gently combine the fermented tomatoes, sliced cucumber, diced bell pepper, and chickpeas. Pour dressing over ingredients and toss gently to coat.",
+      "Serve: Arrange fresh arugula or mixed greens on individual plates. Spoon the salad mixture over the greens. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 262,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 520,
+      "total_carbs_g": 25.4,
+      "total_fat_g": 15.8,
+      "total_sugars_g": 9.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 76,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 2.1,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 150,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 28,
+      "protein": 15,
+      "saturated_fat": 11,
+      "sodium": 23,
+      "total_carbs": 9,
+      "total_fat": 20
+    },
+    "serving_size_g": 345.75,
+    "total_recipe_weight_g": 1383
+  }
+]

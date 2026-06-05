@@ -1,0 +1,617 @@
+[
+  {
+    "recipe_name": "Umami Glazed Trumpet Mushrooms with Kimchi Yogurt",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_umami_glazed_trumpet_mushrooms_with_kimchi_yogurt_20250627_033930_1c1b63d1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:39:31.038235000Z",
+    "selected_ingredients": [
+      "kimchi",
+      "yogurt cheese",
+      "chinese sweet bean paste",
+      "trumpet mushroom",
+      "dark miso"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of umami-glazed trumpet mushroom steaks is artfully arranged on a clean, white porcelain dinner plate. Two thick, pan-seared trumpet mushroom 'steaks', deeply caramelized with a dark, glossy miso-sweet bean glaze, are prominently placed over a vibrant, creamy base of finely chopped kimchi mixed with smooth yogurt cheese. The mushrooms exhibit a beautiful golden-brown sear on their scored surfaces and a tender, moist interior. A light drizzle of the rich, dark glaze cascades over the mushrooms. The dish is garnished with thinly sliced bright green scallions and a sprinkle of toasted white sesame seeds, adding color and texture contrast. The presentation is clean and balanced, allowing moderate negative space. It sits on a simple wooden table with a folded cotton napkin beside the plate, under natural, even lighting, evoking a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "hero_ingredient": "Trumpet Mushroom",
+    "ingredients": [
+      {
+        "name": "Large Trumpet Mushrooms",
+        "quantity": "8"
+      },
+      {
+        "name": "Kimchi",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yogurt Cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Chinese Sweet Bean Paste",
+        "quantity": "40g"
+      },
+      {
+        "name": "Dark Miso",
+        "quantity": "60g"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "15g, grated"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water or Vegetable Stock",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": "2 stalks, thinly sliced"
+      },
+      {
+        "name": "Toasted Sesame Seeds",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Prepare mushrooms: Trim woody ends from trumpet mushrooms. Slice each mushroom lengthwise into two 1.5 cm thick 'steaks'. Lightly score one flat side of each mushroom steak in a crosshatch pattern.",
+      "Make glaze: In a small saucepan, combine dark miso, Chinese sweet bean paste, soy sauce, mirin, rice vinegar, sesame oil, minced garlic, grated ginger, sugar, and water or vegetable stock. Bring to a simmer over medium heat. Cook, stirring occasionally, for 5-7 minutes until the glaze thickens slightly and becomes glossy. Set aside.",
+      "Prepare kimchi yogurt: Finely chop the kimchi. In a small bowl, combine the chopped kimchi with the yogurt cheese. Mix well until incorporated.",
+      "Sear mushrooms: Heat vegetable oil in a large non-stick pan over medium-high heat. Place mushroom steaks scored side down in the hot pan. Sear for 4-5 minutes until deeply golden brown and caramelized. Flip the mushrooms and sear for another 3-4 minutes until tender.",
+      "Glaze mushrooms: Generously brush the seared mushrooms with the prepared umami glaze. Return mushrooms to the pan for 1 minute, scored side down, to allow the glaze to caramelize slightly onto the mushrooms.",
+      "Plate the dish: Spoon a generous dollop of the kimchi yogurt onto the center of each serving plate. Arrange two glazed trumpet mushroom steaks on top of the kimchi yogurt. Drizzle any remaining glaze over the mushrooms. Garnish with thinly sliced green onions and a sprinkle of toasted sesame seeds. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 269,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 12.2,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 1605,
+      "total_carbs_g": 27.1,
+      "total_fat_g": 16.8,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 90,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 4.1,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 539,
+      "total_carbs_g": 9.1,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 19,
+      "protein": 24,
+      "saturated_fat": 24,
+      "sodium": 70,
+      "total_carbs": 10,
+      "total_fat": 22
+    },
+    "serving_size_g": 298,
+    "total_recipe_weight_g": 1191
+  },
+  {
+    "recipe_name": "Spicy Tomato Mushroom Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_tomato_mushroom_pasta_20250627_033701_78f34ccd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:37:01.848661000Z",
+    "selected_ingredients": [
+      "pasta",
+      "garlic",
+      "tomato",
+      "chili",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Spicy Tomato Mushroom Pasta is presented on a clean, round white porcelain dinner plate, centrally placed on a simple wooden table surface. The pasta, likely penne or spaghetti, is tossed with a vibrant, reddish-orange tomato sauce, visibly coating each strand or piece. Sliced, lightly browned cremini mushrooms are evenly distributed throughout the pasta, adding earthy tones and varied texture. Small flecks of minced garlic and thinly sliced red chili are discernible within the sauce, indicating its savory and spicy character. A generous sprinkle of bright green, freshly chopped parsley garnishes the top, providing a fresh contrast. The overall presentation is clean and organized, with moderate negative space around the pasta mound, allowing the dish to be the clear focal point. Standard European flatware, a fork and spoon, rest beside the plate on a folded cotton napkin. The scene is illuminated by soft, natural, even lighting from the side, creating subtle shadows and highlighting the food's textures. The background is minimal, evoking a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with warm, crusty Italian bread to sop up the sauce.",
+      "Offer a simple green salad dressed with olive oil and vinegar on the side.",
+      "Pair with a glass of red wine."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh Red Chili",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Cook pasta according to package directions until al dente. Reserve 120ml pasta water. Drain pasta.",
+      "While pasta cooks, slice mushrooms thinly. Mince garlic. Thinly slice red chili.",
+      "Heat olive oil in a large skillet over medium heat. Add minced garlic and sliced chili. Cook for 1 minute until fragrant. Do not brown garlic.",
+      "Add sliced mushrooms to the skillet. Sauté for 5-7 minutes until mushrooms are tender and lightly browned.",
+      "Pour in crushed tomatoes. Season with salt and black pepper. Bring sauce to a simmer. Cook for 10-12 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Add cooked pasta to the skillet with the sauce. Toss to coat evenly. Add reserved pasta water gradually, if needed, to achieve desired consistency.",
+      "Chop fresh parsley.",
+      "Serve immediately. Garnish with fresh parsley and grated Parmesan cheese, if desired."
+    ],
+    "notes": [
+      "Adjust chili quantity based on desired spice level.",
+      "Freshly grated Parmesan cheese enhances flavor."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al Dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 545,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 21.5,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 854,
+      "total_carbs_g": 86.7,
+      "total_fat_g": 12.6,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 175,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 6.9,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 274,
+      "total_carbs_g": 27.8,
+      "total_fat_g": 4,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 24,
+      "protein": 43,
+      "saturated_fat": 18,
+      "sodium": 37,
+      "total_carbs": 32,
+      "total_fat": 16
+    },
+    "serving_size_g": 312,
+    "total_recipe_weight_g": 1248
+  },
+  {
+    "recipe_name": "Spicy Chicken and Broccoli Cheddar Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_broccoli_cheddar_skillet_20250627_033628_b091982d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:36:28.915173000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cayenne pepper",
+      "onion",
+      "broccoli",
+      "cheddar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Spicy Chicken and Broccoli Cheddar Skillet is presented on a clean white porcelain dinner plate, showcasing a refined casual dining aesthetic. Golden-brown seared chicken chunks, approximately 3cm cubes, are nestled among vibrant green, tender-crisp broccoli florets. A creamy, rich, orange-yellow cheddar sauce generously coats all elements, with a smooth, glossy texture. The sauce subtly hints at cayenne pepper with its warm hue. The dish is arranged organically, allowing for moderate negative space on the plate. A sprinkle of fresh, bright green chopped parsley provides a final pop of color and freshness. The scene is set on a simple wooden table surface, complemented by a neatly folded cotton napkin beside the plate. Natural, even lighting illuminates the dish, highlighting its appealing textures and colors against a minimal, unobtrusive restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken cubes dry. Cut chicken breast into 3cm cubes. Season with half the cayenne pepper, salt, and black pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken cubes. Sear until golden brown on all sides and cooked through. Ensure internal temperature reaches 75°C. This takes approximately 6-8 minutes. Remove chicken from skillet. Set aside.",
+      "Dice the onion. Mince the garlic. Add diced onion to the same skillet. Cook until softened, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Cut broccoli into small florets. Add broccoli florets to the skillet. Pour in chicken broth. Bring to a simmer. Cover the skillet. Cook for 5-7 minutes until broccoli is tender-crisp.",
+      "Reduce heat to low. Shred the cheddar cheese. Stir in remaining cayenne pepper, milk, and shredded cheddar cheese. Stir constantly until cheese is melted and sauce is smooth.",
+      "Mix cornstarch with cold water to make a slurry. Slowly whisk cornstarch slurry into the sauce until it thickens to desired consistency.",
+      "Return cooked chicken cubes to the skillet. Stir to coat chicken and broccoli evenly with the sauce.",
+      "Taste the dish. Adjust seasoning with salt and black pepper as needed. Chop fresh parsley for garnish. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 611,
+      "cholesterol_mg": 183,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 64.9,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 1026,
+      "total_carbs_g": 19,
+      "total_fat_g": 32.1,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 13.1,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 207,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 15,
+      "protein": 130,
+      "saturated_fat": 68,
+      "sodium": 45,
+      "total_carbs": 7,
+      "total_fat": 41
+    },
+    "serving_size_g": 496.65,
+    "total_recipe_weight_g": 1986.6
+  },
+  {
+    "recipe_name": "Spicy Chicken and Broccoli Cheddar Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_broccoli_cheddar_gratin_20250627_033607_687b1834.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:36:07.803086000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cayenne pepper",
+      "onion",
+      "broccoli",
+      "cheddar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Spicy Chicken and Broccoli Cheddar Gratin is artfully scooped onto a clean, round white porcelain dinner plate. The plate rests on a simple, light-toned wooden table. A neatly folded cotton napkin is placed beside the plate. The background features a softly blurred, modern bistro setting, creating a casual yet refined atmosphere. Natural, even lighting illuminates the dish, highlighting its textures and colors. The gratin displays a golden-brown, bubbly top crust of melted cheddar cheese. Beneath the crust, tender, roasted chicken chunks and vibrant green broccoli florets are visible, coated in a rich, creamy, savory sauce. The chicken pieces are substantial and whole. A sprinkle of fresh, chopped green parsley provides a vibrant garnish and adds a touch of freshness to the warm, comforting dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve alongside a crisp green salad with a light vinaigrette.",
+      "Offer with warm, crusty bread for dipping into the sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Sharp cheddar cheese, shredded",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Whole milk, warm",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease a 2-liter gratin dish.",
+      "Cut chicken breasts into 2-3 cm chunks. Season chicken with salt, pepper, and half the cayenne pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat. Sear chicken chunks until golden-brown on all sides, about 6-8 minutes. Do not fully cook through. Remove chicken and set aside.",
+      "Add diced onion to the same skillet. Sauté until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Blanch broccoli florets in boiling salted water for 2 minutes. Drain well and pat dry.",
+      "Melt butter in the skillet over medium heat. Stir in flour to form a roux. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in warm milk until sauce is smooth and thickened. Stir in 200 g of shredded cheddar cheese and remaining cayenne pepper until melted and smooth. Season with salt and pepper to taste.",
+      "Return seared chicken and blanched broccoli to the skillet with the cheese sauce. Stir to combine all ingredients.",
+      "Transfer the mixture to the prepared gratin dish. Sprinkle remaining 100 g of shredded cheddar cheese evenly over the top.",
+      "Bake for 20-25 minutes, or until the gratin is bubbly and the top is golden-brown. Chicken should reach an internal temperature of 75°C (167°F).",
+      "Let rest for 5 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust cayenne pepper to your preferred spice level."
+    ]
+  },
+  {
+    "recipe_name": "Spicy Chicken and Broccoli Cheddar Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_broccoli_cheddar_bake_20250627_033545_1aa11ce9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:35:45.638509000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cayenne pepper",
+      "onion",
+      "broccoli",
+      "cheddar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spicy Chicken and Broccoli Cheddar Bake is presented on a clean, round white porcelain dinner plate. The dish features a golden-brown, bubbly top from the baked cheddar, with visible charred edges. Large, irregular chunks of seared chicken, approximately 2-3 cm cubes, are nestled amongst bright green, tender-crisp broccoli florets. Finely diced, caramelized onions are subtly integrated within the creamy, rich cheddar sauce that binds all ingredients. The texture appears invitingly soft and creamy beneath the crispy crust. A light sprinkle of fresh, vibrant green chopped parsley garnishes the top, adding a fresh contrast. The plate is centered on a simple wooden table surface with a natural finish. A folded white cotton napkin rests beside the plate. The scene is illuminated by soft, natural, even lighting, creating a warm, inviting atmosphere with a minimal, casual bistro-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping",
+      "Pair with a simple green salad"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "600g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "500g"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease a 2.5-liter baking dish.",
+      "Cut chicken breasts into 2-3 cm cubes. Season chicken with salt, pepper, and half of the cayenne pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add chicken cubes. Sear chicken for 4-5 minutes until browned on all sides. Do not cook through. Remove chicken and set aside.",
+      "Add remaining 15ml olive oil to the skillet. Add diced onion. Sauté for 5 minutes until softened.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Add butter to the skillet. Once melted, stir in flour to create a roux. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in milk, a little at a time, until the sauce is smooth and thickened. Continue whisking until no lumps remain.",
+      "Reduce heat to low. Stir in shredded cheddar cheese and remaining cayenne pepper until cheese is melted and sauce is smooth. Season with salt and pepper to taste.",
+      "Add blanched broccoli florets and seared chicken cubes to the cheese sauce. Stir to combine.",
+      "Pour the mixture into the prepared baking dish. Spread evenly.",
+      "Bake for 20-25 minutes, or until the top is golden brown and bubbly. Chicken internal temperature must reach 75°C.",
+      "Remove from oven. Let stand for 5 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For a milder flavor, reduce the amount of cayenne pepper."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 794.89,
+      "cholesterol_mg": 219.75,
+      "dietary_fiber_g": 4.93,
+      "protein_g": 68.63,
+      "saturated_fat_g": 21.91,
+      "sodium_mg": 1008.83,
+      "total_carbs_g": 31.49,
+      "total_fat_g": 44.02,
+      "total_sugars_g": 10.75,
+      "trans_fat_g": 1.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145.03,
+      "cholesterol_mg": 40.08,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 12.52,
+      "saturated_fat_g": 4,
+      "sodium_mg": 184.01,
+      "total_carbs_g": 5.74,
+      "total_fat_g": 8.03,
+      "total_sugars_g": 1.96,
+      "trans_fat_g": 0.21
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73.25,
+      "dietary_fiber": 17.62,
+      "protein": 137.26,
+      "saturated_fat": 109.56,
+      "sodium": 43.86,
+      "total_carbs": 11.45,
+      "total_fat": 56.43
+    },
+    "serving_size_g": 548.25,
+    "total_recipe_weight_g": 2193
+  }
+]

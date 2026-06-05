@@ -1,0 +1,635 @@
+[
+  {
+    "recipe_name": "Fermented Cherry Semolina Cake with Cherry Pit Elixir",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_cherry_semolina_cake_with_cherry_pit_elixir_20250630_052217_466347c2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:22:17.972378000Z",
+    "selected_ingredients": [
+      "cherry",
+      "flour",
+      "semolina flour"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, elegantly cut rectangular slice of golden-hued semolina cake rests on a handcrafted, matte cream ceramic plate. The cake's surface is subtly textured, hinting at the semolina, with small, deep red pieces of fermented cherry visible within its crumb. Adjacent to the cake, a small, organic pool of glistening, amber-toned cherry pit elixir reflects the soft natural light. A few whole, plump, deep ruby-red fermented cherries are artfully placed near the cake, their slightly wrinkled skins offering a natural, rustic texture. A single, vibrant green mint sprig is gently laid beside the cake, providing a fresh contrast. The composition is clean and unforced, with ample white space on the plate. The plate sits on a light, textured reclaimed wood surface, accompanied by a folded undyed linen napkin in natural beige. The background is minimalist, with a hint of soft green foliage from a nearby plant, enhancing the eco-conscious aesthetic. The lighting is soft and natural, emphasizing the pure beauty and natural colors of each ingredient.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Cherries",
+    "ingredients": [
+      {
+        "name": "fresh cherries, pitted",
+        "quantity": "250g"
+      },
+      {
+        "name": "filtered water",
+        "quantity": "250ml"
+      },
+      {
+        "name": "non-iodized salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "pits from 250g cherries",
+        "quantity": "approximately 15g"
+      },
+      {
+        "name": "water",
+        "quantity": "200ml"
+      },
+      {
+        "name": "maple syrup (or agave)",
+        "quantity": "20g"
+      },
+      {
+        "name": "fine semolina flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "all-purpose flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "baking powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "baking soda",
+        "quantity": "2g"
+      },
+      {
+        "name": "salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "plant-based milk (oat or almond)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "maple syrup (or agave)",
+        "quantity": "100g"
+      },
+      {
+        "name": "neutral oil (e.g., sunflower or grapeseed)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "fermented cherries, roughly chopped",
+        "quantity": "50g"
+      },
+      {
+        "name": "fresh mint sprigs or small edible flowers",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Wash cherries. Pit cherries. Reserve pits for elixir.",
+      "Place pitted cherries in a clean jar. Dissolve 5g salt in 250ml filtered water. Pour brine over cherries, ensuring they are fully submerged.",
+      "Seal jar loosely. Ferment at room temperature (20-24°C) for 3-5 days. Burp daily. Refrigerate once desired tanginess is achieved.",
+      "Rinse cherry pits. Place pits in a small saucepan with 200ml water. Bring to a simmer. Reduce heat. Simmer gently for 15 minutes. Strain out pits. Discard pits. Return liquid to saucepan. Stir in 20g maple syrup. Simmer until slightly reduced and syrupy, about 5-7 minutes. Cool completely.",
+      "Preheat oven to 180°C. Lightly grease and flour a 20cm x 10cm loaf pan or a small 15cm round cake pan.",
+      "In a large bowl, whisk together semolina flour, all-purpose flour, baking powder, baking soda, and 2g salt.",
+      "In a separate bowl, whisk together plant-based milk, 100g maple syrup, neutral oil, and vanilla extract.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Do not overmix.",
+      "Gently fold in 50g of roughly chopped fermented cherries.",
+      "Pour batter into prepared pan. Bake for 25-30 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Remove cake from oven. Let cool in pan for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Slice cooled cake into 4 equal rectangular portions. Place one slice on each serving plate.",
+      "Drizzle generously with cherry pit elixir. Arrange a few whole fermented cherries next to the cake. Garnish with a fresh mint sprig or edible flower."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 18,
+      "calories": 404.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 6.2,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 471.9,
+      "total_carbs_g": 60.9,
+      "total_fat_g": 14.9,
+      "total_sugars_g": 21.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 9.2,
+      "calories": 206.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 3.2,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 240.8,
+      "total_carbs_g": 31.1,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 10.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 7.9,
+      "protein": 12.5,
+      "saturated_fat": 7.8,
+      "sodium": 20.5,
+      "total_carbs": 22.1,
+      "total_fat": 19.1
+    },
+    "serving_size_g": 196,
+    "total_recipe_weight_g": 784
+  },
+  {
+    "recipe_name": "Cherry & Ricotta Ravioli with Brown Butter Sage Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cherry_%26_ricotta_ravioli_with_brown_butter_sage_sauce_20250630_052043_d0e8bce7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:20:43.919635000Z",
+    "selected_ingredients": [
+      "cherry",
+      "flour",
+      "semolina flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Cherry & Ricotta Ravioli is presented on a clean, round white porcelain dinner plate. Four to five plump, golden-yellow ravioli are arranged naturally, slightly overlapping, at the center of the plate. The pasta surface is smooth, with subtle hints of the dark red cherry filling visible beneath. A glossy, rich brown butter sauce liberally coats each raviolo, pooling slightly around them. Crisp, deep green sage leaves are scattered artfully over the dish, providing a textural contrast. A generous sprinkle of finely grated Parmesan cheese adds a light, powdery finish. The setting features a simple wooden table surface, a grey cotton napkin folded neatly beside the plate, and standard Italian-style flatware. Natural, even light illuminates the dish, highlighting its warmth and rustic elegance. The background is softly blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra freshly grated Pecorino Romano or Parmesan cheese on the side.",
+      "Offer crusty Italian bread to sop up the delicious brown butter sauce."
+    ],
+    "hero_ingredient": "Fresh Ravioli",
+    "ingredients": [
+      {
+        "name": "Semolina flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "'00' flour (or all-purpose flour)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Water",
+        "quantity": "2-4 tablespoons (if needed)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh cherries, pitted and finely diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "15-20"
+      },
+      {
+        "name": "Fresh parsley, chopped (for garnish)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "On a clean surface, combine semolina and '00' flour. Make a well in the center. Crack eggs into the well. Add a pinch of salt.",
+      "Gradually incorporate flour into eggs using a fork, then hands. Knead dough for 10-15 minutes until smooth and elastic. Add water sparingly if dough is too dry.",
+      "Wrap dough in plastic film. Let rest at room temperature for 30 minutes.",
+      "In a bowl, combine ricotta, finely diced cherries, grated Parmesan, lemon zest, salt, and pepper. Mix well.",
+      "Divide pasta dough into four portions. Roll one portion thinly using a pasta machine or rolling pin. Aim for a thickness of about 1 mm.",
+      "Place small spoonfuls of filling (about 1 teaspoon) onto half of the pasta sheet, spaced 3 cm apart.",
+      "Moisten edges around filling with water. Fold the other half of the pasta sheet over the filling. Press down gently to seal, removing air pockets.",
+      "Cut individual ravioli using a fluted pastry wheel or knife. Repeat with remaining dough and filling.",
+      "Bring a large pot of salted water to a rolling boil. Carefully add ravioli. Cook for 3-4 minutes, or until they float and are tender. Do not overcrowd the pot.",
+      "While ravioli cooks, melt butter in a large skillet over medium heat. Cook until butter turns golden brown and smells nutty (beurre noisette). Add sage leaves. Cook until crispy.",
+      "Using a slotted spoon, transfer cooked ravioli directly into the brown butter sage sauce. Gently toss to coat.",
+      "Serve immediately. Garnish with additional grated Parmesan and fresh chopped parsley."
+    ],
+    "notes": [
+      "For best results, use fresh, firm cherries.",
+      "The pasta dough should be firm but pliable. Adjust flour or water as needed.",
+      "Do not overfill the ravioli to prevent bursting during cooking."
+    ],
+    "traditional_techniques": [
+      "Pasta making (Sfloglia)",
+      "Brown butter (Beurre Noisette)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 795,
+      "cholesterol_mg": 283.25,
+      "dietary_fiber_g": 3.83,
+      "protein_g": 30.1,
+      "saturated_fat_g": 22.16,
+      "sodium_mg": 323.13,
+      "total_carbs_g": 81.4,
+      "total_fat_g": 38.31,
+      "total_sugars_g": 5.95,
+      "trans_fat_g": 0.85
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 278,
+      "cholesterol_mg": 98.95,
+      "dietary_fiber_g": 1.34,
+      "protein_g": 10.52,
+      "saturated_fat_g": 7.74,
+      "sodium_mg": 112.88,
+      "total_carbs_g": 28.44,
+      "total_fat_g": 13.38,
+      "total_sugars_g": 2.08,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 94.42,
+      "dietary_fiber": 13.68,
+      "protein": 60.2,
+      "saturated_fat": 110.8,
+      "sodium": 14.05,
+      "total_carbs": 29.6,
+      "total_fat": 49.12
+    },
+    "serving_size_g": 286.25,
+    "total_recipe_weight_g": 1145
+  },
+  {
+    "recipe_name": "Blueberry Lemon Ricotta Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_blueberry_lemon_ricotta_cake_20250630_052042_cda21733.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:20:42.837531000Z",
+    "selected_ingredients": [
+      "blueberry"
+    ],
+    "complexity": "standard",
+    "special_requests": "без добавления сахара",
+    "visual_description": "A single elegant slice of Blueberry Lemon Ricotta Cake is presented on a clean, round white porcelain dinner plate. The cake slice is moist and tender, revealing a scattering of whole, plump blueberries within its pale, creamy yellow crumb. A few additional whole blueberries are artfully placed around the base of the slice. The cake has a delicate golden-brown crust on top, adorned with a few slightly burst, caramelized blueberries. A fine dusting of lemon zest provides a vibrant visual and aromatic counterpoint. The setting is a modern bistro style with a simple wooden table surface. A crisp white cotton napkin is neatly folded beside the plate. In the background, a portion of the whole cake rests on a minimalist cake stand, hinting at its full, inviting form. Natural, even lighting illuminates the scene, highlighting the cake's inviting texture and fresh colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Blueberry",
+    "ingredients": [
+      {
+        "name": "Blueberries",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "3 large"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 20 cm round cake pan.",
+      "In a large bowl, whisk together ricotta cheese, eggs, olive oil, lemon zest, lemon juice, and vanilla extract until smooth.",
+      "In a separate bowl, combine flour, baking powder, and salt.",
+      "Gradually add dry ingredients to wet ingredients. Mix until just combined. Do not overmix.",
+      "Gently fold in 200 g of blueberries into the batter.",
+      "Pour batter into prepared cake pan. Scatter remaining 100 g blueberries on top.",
+      "Bake for 40-45 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Cool cake in pan for 10 minutes. Invert onto a wire rack to cool completely."
+    ],
+    "notes": [
+      "Use very ripe, sweet blueberries to maximize natural sweetness since no sugar is added.",
+      "The cake's sweetness level relies entirely on the natural sugars in the blueberries. For those accustomed to traditional sugary cakes, this will be a subtly sweet, more dessert-like bread."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 503.53,
+      "cholesterol_mg": 171.75,
+      "dietary_fiber_g": 3.37,
+      "protein_g": 17.12,
+      "saturated_fat_g": 8.41,
+      "sodium_mg": 465.68,
+      "total_carbs_g": 49.51,
+      "total_fat_g": 26.59,
+      "total_sugars_g": 10.38,
+      "trans_fat_g": 0.32
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 201.21,
+      "cholesterol_mg": 68.63,
+      "dietary_fiber_g": 1.34,
+      "protein_g": 6.84,
+      "saturated_fat_g": 3.36,
+      "sodium_mg": 186.08,
+      "total_carbs_g": 19.78,
+      "total_fat_g": 10.63,
+      "total_sugars_g": 4.15,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57.25,
+      "dietary_fiber": 12.02,
+      "protein": 34.23,
+      "saturated_fat": 42.06,
+      "sodium": 20.25,
+      "total_carbs": 18,
+      "total_fat": 34.09
+    },
+    "serving_size_g": 250.25,
+    "total_recipe_weight_g": 1001
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Potato Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_potato_gratin_20250630_051909_a50e6fb0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:19:10.243780000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown square of creamy potato gratin, its bubbly Gruyère crust glistening, forms the inviting base on a pristine white porcelain plate. Thick-cut, pan-seared chicken medallions, displaying a beautiful golden crust and tender interior, are artfully placed on top of the gratin, slightly overlapping. The dish showcases rich golden-browns, creamy whites, and vibrant green flecks from fresh parsley. Textures include the crispy chicken skin, creamy potato layers, and melted cheese. A delicate sprinkle of chopped fresh parsley garnishes the entire dish. The plate sits on a simple wooden table surface, accompanied by a folded grey cotton napkin and standard silver flatware. Natural, even lighting illuminates the scene, highlighting the dish as the centerpiece in a clean, modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Yukon Gold)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or chives, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Lightly butter a 20x20 cm baking dish.",
+      "Peel potatoes. Slice thinly, about 2-3 mm thick, using a mandoline or sharp knife.",
+      "In a medium saucepan, combine cream, minced garlic, and thyme sprigs. Bring to a gentle simmer over medium heat. Remove from heat. Season with salt and pepper.",
+      "Arrange one-third of the sliced potatoes in a single layer in the prepared baking dish. Season lightly with salt and pepper.",
+      "Pour one-third of the cream mixture over the potatoes. Sprinkle with one-third of the grated Gruyère.",
+      "Repeat layering with remaining potatoes, cream, and cheese. Ensure top layer of potatoes is covered with cream and cheese.",
+      "Bake for 50-60 minutes, or until potatoes are tender and top is golden and bubbly. If browning too quickly, cover with foil.",
+      "While gratin bakes, pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat olive oil and butter in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 5-7 minutes per side, until deep golden brown. Transfer skillet to oven for 10-15 minutes, or until internal temperature reaches 75°C. Let rest 5 minutes.",
+      "Slice chicken breasts into thick-cut medallions.",
+      "Remove gratin from oven. Let rest 5 minutes.",
+      "To serve, cut gratin into four portions. Place one portion on each plate. Arrange chicken medallions on top. Garnish with fresh parsley or chives."
+    ],
+    "traditional_techniques": [
+      "Gratin"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1238,
+      "cholesterol_mg": 386,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 78.6,
+      "saturated_fat_g": 44.8,
+      "sodium_mg": 363,
+      "total_carbs_g": 49.1,
+      "total_fat_g": 80.6,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 2.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 199,
+      "cholesterol_mg": 62,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 12.7,
+      "saturated_fat_g": 7.2,
+      "sodium_mg": 58,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 13,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 128.5,
+      "dietary_fiber": 19.8,
+      "protein": 157.3,
+      "saturated_fat": 224.1,
+      "sodium": 15.8,
+      "total_carbs": 17.9,
+      "total_fat": 103.3
+    },
+    "serving_size_g": 621.5,
+    "total_recipe_weight_g": 2486
+  },
+  {
+    "recipe_name": "Blueberry Mousse with Almond Oat Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_blueberry_mousse_with_almond_oat_crisp_20250630_051701_3a66cd5a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:17:01.854007000Z",
+    "selected_ingredients": [
+      "blueberry"
+    ],
+    "complexity": "standard",
+    "special_requests": "без добавления сахара",
+    "visual_description": "A single portion of light purple blueberry mousse sits elegantly in a clear, stemmed dessert glass on a clean white porcelain plate. The mousse, with its airy texture, fills the glass to about two-thirds, showing its delicate, pale lavender hue. A scattering of whole, plump, fresh blueberries, deep indigo in color, rests on top, some gently nestled into the mousse. Beside the glass, a small pile of golden-brown almond oat crisp pieces provides a textural contrast, their irregular shapes adding a rustic yet refined touch. The plate has ample negative space. The setting is a modern bistro, with a simple wooden table surface and a white cotton napkin folded beside the plate. Natural, soft light illuminates the scene, highlighting the mousse's sheen and the blueberries' natural bloom.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Dessert",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Blueberry",
+    "ingredients": [
+      {
+        "name": "Fresh blueberries",
+        "quantity": "250g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Gelatin powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "Zest of 1/2 lemon"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "50g"
+      },
+      {
+        "name": "Almond flour (or finely ground almonds)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "20g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Bloom gelatin in cold water. Set aside.",
+      "Blend 200g blueberries until smooth. Strain through a fine-mesh sieve to remove skins. Set aside. Keep 50g blueberries for garnish.",
+      "Whisk egg yolks in a heatproof bowl. Heat milk in a saucepan until simmering. Gradually whisk hot milk into egg yolks.",
+      "Return mixture to saucepan. Cook over medium-low heat, stirring constantly, until thickened to coat the back of a spoon. Do not boil.",
+      "Remove from heat. Stir in bloomed gelatin until dissolved. Stir in blueberry puree and lemon zest.",
+      "Pour mixture into a clean bowl. Place bowl over an ice bath. Stir occasionally until mixture cools and thickens slightly, about 15-20 minutes.",
+      "In a separate chilled bowl, whip heavy cream to soft peaks.",
+      "Gently fold whipped cream into the cooled blueberry base in two additions. Mix until just combined.",
+      "Pour mousse into four individual serving glasses or molds. Chill in refrigerator for at least 4 hours, or until set.",
+      "Preheat oven to 160°C. Combine oats, almond flour, melted butter, and salt in a bowl. Mix until crumbly.",
+      "Spread mixture thinly on a baking sheet lined with parchment paper. Bake for 10-15 minutes, or until golden brown and crisp. Let cool completely. Break into small pieces.",
+      "Spoon or pipe mousse into serving dishes. Garnish with remaining fresh blueberries and crumbled almond oat crisp."
+    ],
+    "notes": [
+      "This recipe relies on the natural sweetness of ripe blueberries. No additional sugar is used."
+    ],
+    "traditional_techniques": [
+      "Blooming gelatin",
+      "Tempering egg yolks",
+      "Folding whipped cream",
+      "Baking crisp"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 455,
+      "cholesterol_mg": 220,
+      "dietary_fiber_g": 3.74,
+      "protein_g": 9.58,
+      "saturated_fat_g": 16.73,
+      "sodium_mg": 141,
+      "total_carbs_g": 22.8,
+      "total_fat_g": 31.91,
+      "total_sugars_g": 10.15,
+      "trans_fat_g": 0.98
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 229,
+      "cholesterol_mg": 111,
+      "dietary_fiber_g": 1.88,
+      "protein_g": 4.82,
+      "saturated_fat_g": 8.42,
+      "sodium_mg": 71,
+      "total_carbs_g": 11.47,
+      "total_fat_g": 16.06,
+      "total_sugars_g": 5.11,
+      "trans_fat_g": 0.49
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 13,
+      "protein": 19,
+      "saturated_fat": 84,
+      "sodium": 6,
+      "total_carbs": 8,
+      "total_fat": 41
+    },
+    "serving_size_g": 198.75,
+    "total_recipe_weight_g": 795
+  }
+]

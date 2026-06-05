@@ -1,0 +1,640 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Buckwheat and Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_buckwheat_and_caramelized_onions_20250624_104801_29233d8b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:48:01.478405000Z",
+    "selected_ingredients": [
+      "onion",
+      "basil",
+      "buckwheat groat",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Chicken with Creamy Buckwheat and Caramelized Onions is centrally plated on a round, clean white porcelain dinner plate. The creamy, light brown buckwheat groats, cooked to a fluid consistency, form a rounded base. A whole, golden-brown pan-seared chicken thigh, exhibiting a rich, seared crust, is nestled beside the buckwheat. A generous spoonful of deeply amber, thinly sliced caramelized onions is artfully placed over the chicken. Vibrant green fresh basil leaves are scattered over the dish, providing a fresh pop of color. The composition is balanced with appropriate negative space. The dish rests on a simple light wooden table, with a folded white cotton napkin and standard silver flatware. Natural, even lighting highlights the textures and warm colors. The background is clean, suggesting a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Roasted buckwheat groats (kasha)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Slice onions thinly. Heat 15ml olive oil and 15g butter in a large pan over medium-low heat. Add onions. Cook, stirring occasionally, for 30-40 minutes until deeply golden brown and caramelized. Season with salt and pepper. Set aside.",
+      "Rinse buckwheat groats under cold water. Drain well.",
+      "In a medium pot, heat 15ml olive oil and 15g butter over medium heat. Add minced garlic. Sauté 1 minute until fragrant. Add buckwheat groats. Stir for 2 minutes.",
+      "Pour in 250ml chicken broth. Bring to a simmer. Cook, stirring occasionally, until liquid is absorbed. Continue adding broth, 125ml at a time, allowing each addition to absorb before adding more. Stir frequently. Cook until buckwheat is tender and creamy, about 20-25 minutes. You may not use all broth. Season with salt and pepper.",
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat a large cast-iron or heavy-bottomed pan over medium-high heat. Add 15ml olive oil.",
+      "Place chicken thighs presentation-side down. Sear for 6-8 minutes until golden brown and crispy. Flip. Cook an additional 8-10 minutes, or until internal temperature reaches 75°C.",
+      "Remove chicken from pan. Let rest 5 minutes before serving.",
+      "To plate, spoon creamy buckwheat onto the center of each plate. Place one whole pan-seared chicken thigh beside or slightly on top of the buckwheat. Top chicken with a generous spoonful of caramelized onions. Garnish with fresh basil leaves."
+    ],
+    "notes": [
+      "Ensure buckwheat is cooked to a creamy, fluid consistency, not dry, similar to a risotto.",
+      "Allow chicken to rest briefly after cooking to ensure juiciness."
+    ],
+    "traditional_techniques": [
+      "Kasha preparation",
+      "Caramelization"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 757,
+      "cholesterol_mg": 223,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 46.5,
+      "saturated_fat_g": 11,
+      "sodium_mg": 830,
+      "total_carbs_g": 60.2,
+      "total_fat_g": 37.7,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 135,
+      "total_carbs_g": 9.8,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 32,
+      "protein": 93,
+      "saturated_fat": 55,
+      "sodium": 36,
+      "total_carbs": 22,
+      "total_fat": 48
+    },
+    "serving_size_g": 614,
+    "total_recipe_weight_g": 2456
+  },
+  {
+    "recipe_name": "Warm Beef and Rocket Salad with Crispy Poached Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_warm_beef_and_rocket_salad_with_crispy_poached_egg_20250624_104753_02968092.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:54.157881000Z",
+    "selected_ingredients": [
+      "salad green",
+      "beef",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Warm Beef and Rocket Salad is presented on a clean white porcelain dinner plate, centered on a simple wooden table. Thick, tender slices of seared beef, cooked medium-rare with a visible brown crust, are arranged neatly on one side of the plate. Beside the beef, a vibrant mound of fresh, lightly dressed rocket leaves adds height and color. A perfectly golden-brown, crispy poached egg rests prominently on the plate, its exterior subtly textured. A dark, glossy balsamic glaze is artfully drizzled over the beef and egg, adding a rich sheen. The composition is balanced and inviting, with moderate negative space. A folded white cotton napkin is placed beside the plate. Natural, soft lighting illuminates the dish, highlighting its fresh ingredients and refined execution.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or flank steak",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Rocket (arugula) leaves",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Honey or maple syrup (optional)",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Garlic cloves (minced)",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh rosemary sprigs (optional)",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Vegetable oil (for frying)",
+        "quantity": "500 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Balsamic Glaze: Combine balsamic vinegar and optional honey in a small saucepan. Bring to a simmer. Reduce heat to low. Simmer for 10-15 minutes until thickened to a syrupy consistency. Set aside.",
+      "Prepare Crispy Poached Eggs: Bring a pot of water to a gentle simmer. Add a splash of vinegar. Carefully crack each egg into the simmering water. Poach for 3-4 minutes until whites are set but yolk is still runny. Remove with a slotted spoon. Transfer to an ice bath to stop cooking.",
+      "Drain poached eggs. Pat very dry with paper towels.",
+      "Set up a dredging station: one plate with flour, one shallow bowl with 1 beaten egg (from the 4 large eggs), one plate with panko breadcrumbs.",
+      "Gently dredge each poached egg in flour, then egg wash, then coat thoroughly in panko breadcrumbs.",
+      "Heat vegetable oil in a deep pot or fryer to 175°C (350°F). Carefully lower each breaded egg into the hot oil. Fry for 1-2 minutes until golden brown and crispy. Remove with a slotted spoon. Drain on paper towels. Season with a pinch of salt.",
+      "Cook Beef: Pat beef dry. Season generously with salt and pepper.",
+      "Heat 20 ml olive oil in a heavy-bottomed pan or cast-iron skillet over high heat until shimmering.",
+      "Add beef to the hot pan. Sear for 3-4 minutes per side for medium-rare. Add minced garlic and rosemary during the last minute of cooking, if using.",
+      "Remove beef from pan. Transfer to a cutting board. Tent loosely with foil. Let rest for 5-10 minutes.",
+      "Slice beef against the grain into thick pieces or chunks.",
+      "Prepare Dressing: In a small bowl, whisk together remaining 40 ml olive oil, Dijon mustard, a pinch of salt, and pepper.",
+      "Assemble Dish: In a large bowl, gently toss rocket leaves with the whisked dressing. Divide dressed rocket among 4 plates. Arrange sliced beef alongside the rocket on each plate. Carefully place one crispy poached egg on top of or beside the beef and rocket on each plate. Drizzle the beef, egg, and salad with the prepared balsamic glaze. Serve immediately."
+    ],
+    "notes": [
+      "Adjust beef cooking time to desired doneness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 702.8,
+      "cholesterol_mg": 285.5,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 43.6,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 291.7,
+      "total_carbs_g": 35.6,
+      "total_fat_g": 40.9,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 222.4,
+      "cholesterol_mg": 90.3,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 13.8,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 92.3,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 12.9,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 95.2,
+      "dietary_fiber": 5.7,
+      "protein": 87.2,
+      "saturated_fat": 46.6,
+      "sodium": 12.7,
+      "total_carbs": 13,
+      "total_fat": 52.4
+    },
+    "serving_size_g": 316.1,
+    "total_recipe_weight_g": 1264.2
+  },
+  {
+    "recipe_name": "Hearty Beef Stew with Herb Dumplings",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_stew_with_herb_dumplings_20250624_104751_39bcf6d3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:52.049575000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "flour"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of hearty beef stew is presented in a deep, rustic ceramic bowl with a subtly imperfect glaze. The stew features tender, large chunks of browned beef, vibrant orange carrot rounds, soft white potato cubes, and green flecks of herbs, all suspended in a rich, reddish-brown gravy. Two or three irregular, fluffy herb dumplings are nestled atop the stew, their pale surfaces showing hints of green parsley. The components are naturally arranged, slightly overlapping, creating a comforting and inviting appearance. The bowl sits on a well-used wooden kitchen table. A simple, sturdy ceramic spoon rests casually beside the bowl. A plain, casually folded linen napkin is placed nearby. The scene is illuminated by warm, soft overhead kitchen lighting, enhancing the cozy, lived-in atmosphere of a family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck, trimmed and cut into 3-4 cm cubes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, peeled and cut into 2 cm chunks",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Celery stalks, cut into 2 cm chunks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Potatoes, peeled and cut into 3 cm cubes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "For the Dumplings:",
+        "quantity": ""
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Cold butter, cubed",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry with paper towels. Toss beef with 30g of flour, salt, and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Brown beef in batches until deeply colored on all sides. Remove beef and set aside.",
+      "Add onion, carrots, and celery to the pot. Cook, stirring, until softened, about 5-7 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in remaining 30g of flour. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in beef broth and diced tomatoes. Scrape up any browned bits from the bottom of the pot.",
+      "Return beef to the pot. Add bay leaf and dried thyme. Bring to a simmer.",
+      "Reduce heat to low, cover, and cook for 1.5 hours, or until beef is tender.",
+      "Add cubed potatoes to the pot. Continue to simmer, covered, for another 20 minutes, or until potatoes are tender.",
+      "While potatoes cook, prepare dumplings: In a bowl, whisk together flour and baking powder. Cut in cold butter with your fingertips or a pastry blender until mixture resembles coarse crumbs.",
+      "Stir in milk and fresh parsley until just combined to form a soft dough.",
+      "Drop spoonfuls of dumpling dough directly onto the simmering stew. Do not overcrowd.",
+      "Cover the pot tightly and cook dumplings for 15-20 minutes, or until puffed and cooked through. Do not lift the lid during cooking.",
+      "Remove bay leaf. Taste and adjust seasoning as needed. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 953.58,
+      "cholesterol_mg": 1497.08,
+      "dietary_fiber_g": 9.06,
+      "protein_g": 55.3,
+      "saturated_fat_g": 16.84,
+      "sodium_mg": 278.51,
+      "total_carbs_g": 84.26,
+      "total_fat_g": 41.31,
+      "total_sugars_g": 9.03,
+      "trans_fat_g": 0.43
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113.63,
+      "cholesterol_mg": 178.4,
+      "dietary_fiber_g": 1.08,
+      "protein_g": 6.59,
+      "saturated_fat_g": 2.01,
+      "sodium_mg": 33.19,
+      "total_carbs_g": 10.04,
+      "total_fat_g": 4.92,
+      "total_sugars_g": 1.08,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 499,
+      "dietary_fiber": 32.4,
+      "protein": 110.6,
+      "saturated_fat": 84.2,
+      "sodium": 12.1,
+      "total_carbs": 30.6,
+      "total_fat": 53
+    },
+    "serving_size_g": 839.1,
+    "total_recipe_weight_g": 3356.4
+  },
+  {
+    "recipe_name": "Skillet Frittata with Herbs and Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_skillet_frittata_with_herbs_and_cheese_20250624_104747_60326da1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:48.199177000Z",
+    "selected_ingredients": [
+      "egg",
+      "milk"
+    ],
+    "complexity": "simple",
+    "special_requests": "Without oven",
+    "visual_description": "A generous, golden-yellow wedge of Skillet Frittata sits centrally on a simple, round ceramic plate. Its surface is lightly browned and bubbly from melted cheddar cheese. Visible within the fluffy egg are vibrant pieces of diced red bell pepper and dark green wilted spinach. The frittata's edges are slightly irregular, showing its pan-cooked origin. A light sprinkle of fresh, chopped green parsley adds a touch of freshness on top. The plate rests on a well-worn wooden dining table, suggesting a cozy kitchen setting. A casually draped cloth napkin and a simple fork lie nearby. Warm, inviting light illuminates the dish, emphasizing its comforting, homely appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American Comfort",
+    "cultural_serving_suggestions": [
+      "Serve with slices of crusty bread.",
+      "Accompany with a simple green salad."
+    ],
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "8"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Medium onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "Optional, for garnish"
+      }
+    ],
+    "instructions": [
+      "Dice onion into small cubes. Dice red bell pepper into small cubes.",
+      "Heat olive oil in a 25 cm non-stick skillet over medium heat.",
+      "Add diced onion and bell pepper to the skillet. Sauté for 5-7 minutes until softened.",
+      "Add fresh spinach to the skillet. Cook for 2-3 minutes until wilted. Spread vegetables evenly in the skillet.",
+      "In a large bowl, whisk eggs, milk, salt, and black pepper until well combined.",
+      "Pour the egg mixture evenly over the vegetables in the skillet.",
+      "Reduce heat to low. Cook uncovered for 5-7 minutes until the edges of the frittata begin to set.",
+      "Sprinkle the grated cheddar cheese evenly over the top of the frittata.",
+      "Cover the skillet with a lid. Continue cooking on low heat for another 10-15 minutes, or until the center of the frittata is fully set and the cheese is melted and bubbly. Gently shake the skillet to check for doneness.",
+      "Remove skillet from heat. Let the frittata rest for 5 minutes before serving.",
+      "Slice the frittata into 4 generous wedges. Serve warm. Garnish with fresh chopped parsley if desired."
+    ],
+    "notes": [
+      "Cooking on low heat and covering the skillet is crucial for even cooking without an oven, ensuring the top sets properly.",
+      "Do not overcrowd the skillet; a 25 cm skillet is ideal for this recipe to ensure proper thickness and cooking."
+    ],
+    "traditional_techniques": [
+      "Skillet cooking",
+      "Pan-frying"
+    ]
+  },
+  {
+    "recipe_name": "Mexican Chicken Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mexican_chicken_skillet_20250624_104747_bee19047.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:47.828694000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Mexican Chicken Skillet is presented on a clean white porcelain dinner plate, showcasing a single generous portion. Tender, browned chicken chunks are nestled among vivid red and yellow bell pepper strips and translucent onion strips. The ingredients are coated in a rich, rustic tomato-based sauce with visible specks of chili and herbs. A scattering of freshly chopped bright green cilantro leaves provides a fresh contrast. The dish is arranged organically, allowing the textures and colors to speak. The plate sits on a simple wooden table. Beside the plate, a stack of warm corn tortillas, a lime wedge, and a simple cotton napkin are placed, reflecting an authentic Mexican casual dining experience. Natural, even lighting illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve immediately with warm corn tortillas.",
+      "Offer fresh lime wedges for squeezing over the dish.",
+      "A side of Mexican rice or refried beans can also be offered."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "white onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "fresh cilantro, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "lime wedges",
+        "quantity": "for serving"
+      },
+      {
+        "name": "warm corn tortillas",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Season with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Add chicken to skillet. Sear until browned on all sides, about 5-7 minutes. Cook to an internal temperature of 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "Add onion and bell pepper strips to skillet. Sauté until softened, about 6-8 minutes.",
+      "Stir in minced garlic, chili powder, cumin, and oregano. Cook for 1 minute until fragrant.",
+      "Add diced tomatoes and chicken broth to skillet. Bring to a simmer.",
+      "Return chicken to skillet. Stir to combine.",
+      "Reduce heat to medium-low. Simmer uncovered for 10-15 minutes, allowing sauce to thicken slightly.",
+      "Taste and adjust seasoning with salt and pepper."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 319,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 5,
+      "protein_g": 26.8,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 301,
+      "total_carbs_g": 17.1,
+      "total_fat_g": 16.4,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 72.2,
+      "cholesterol_mg": 35.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.1,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 68.1,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 18,
+      "protein": 54,
+      "saturated_fat": 19,
+      "sodium": 13,
+      "total_carbs": 6,
+      "total_fat": 21
+    },
+    "serving_size_g": 441.6,
+    "total_recipe_weight_g": 1766.5
+  }
+]

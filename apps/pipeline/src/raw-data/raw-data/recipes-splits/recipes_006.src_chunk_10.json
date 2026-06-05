@@ -1,0 +1,652 @@
+[
+  {
+    "recipe_name": "Panang Beef Curry with Coconut Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251028_095927_0952c745.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-10-28T09:59:27.988947000Z",
+    "selected_ingredients": [
+      "beef",
+      "chili",
+      "cherry",
+      "coconut",
+      "onion",
+      "sugar",
+      "beer",
+      "panang curry paste",
+      "mustard",
+      "rice",
+      "ginger",
+      "garlic",
+      "butter"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A rich and creamy Panang Beef Curry is presented in a deep, rustic ceramic bowl, showcasing tender 3-4 cm beef cubes nestled in a vibrant red-orange sauce. The curry's surface glistens with coconut oil. Bright red pitted cherries are interspersed, adding a subtle sweet-tart counterpoint. A generous portion of fluffy white coconut jasmine rice is served in a smaller, matching bowl. The dish is garnished with finely julienned kaffir lime leaves, thin slices of red chili, and fresh Thai basil sprigs. The setting is a warm, homely family kitchen on a well-used wooden dining table. Ceramic bowls show natural imperfections. The table is set with traditional Thai utensils: a wide-bowled Asian spoon and chopsticks. A small plate of 'Ajaad' (cucumber relish) and a casually placed cloth napkin complete the authentic Thai dining experience. Warm, cozy lighting illuminates the scene, highlighting the dish as the centerpiece.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with additional steamed jasmine rice.",
+      "Offer a side of 'Ajaad' (cucumber relish) to cut through the richness.",
+      "Provide extra fish sauce and chili flakes for individual seasoning.",
+      "Enjoy family-style, sharing dishes from the center of the table."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Panang curry paste",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Red onion, chopped",
+        "quantity": "1 medium (150 g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves (20 g)"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Red chilies, thinly sliced",
+        "quantity": "2"
+      },
+      {
+        "name": "Pitted cherries",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Palm sugar (or brown sugar)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Kaffir lime leaves, bruised",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Coconut cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Thai basil or cilantro",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Rinse jasmine rice. Combine rice with 600 ml water, 100 ml coconut cream, and a pinch of salt in a pot. Bring to a boil. Reduce heat, cover, and simmer 15 minutes. Remove from heat, let stand 10 minutes, then fluff with a fork.",
+      "Cut beef chuck into 3-4 cm cubes. Pat dry.",
+      "Heat 15 ml vegetable oil in a large pot or Dutch oven over medium-high heat. Sear beef cubes in batches until browned on all sides. Remove beef and set aside.",
+      "Add 15 g butter and remaining 15 ml vegetable oil to the pot. Add chopped red onion, minced garlic, and grated ginger. Sauté until softened, about 5 minutes.",
+      "Add 80 g Panang curry paste to the pot. Stir and cook for 2-3 minutes until fragrant.",
+      "Return seared beef to the pot. Pour in 800 ml full-fat coconut milk. Add 4-5 bruised kaffir lime leaves. Stir well.",
+      "Bring the curry to a gentle simmer. Reduce heat to low, cover, and cook for 1.5 to 2 hours, or until beef is very tender. Stir occasionally.",
+      "Stir in 30 ml fish sauce, 30 g palm sugar, and 2 thinly sliced red chilies. Simmer uncovered for 10 minutes to allow flavors to meld and sauce to thicken slightly.",
+      "Add 100 g pitted cherries. Cook for another 5 minutes until cherries are heated through.",
+      "Taste and adjust seasoning with more fish sauce or sugar if needed.",
+      "Serve hot Panang beef curry over fluffy coconut rice. Garnish with fresh Thai basil or cilantro."
+    ],
+    "traditional_techniques": [
+      "Phad prik gaeng (frying curry paste to release aroma)",
+      "Gati taek mun (cooking coconut milk until oil separates for richer curry)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.4,
+      "calories": 1483,
+      "cholesterol_mg": 148,
+      "dietary_fiber_g": 8.8,
+      "protein_g": 49.3,
+      "saturated_fat_g": 61.6,
+      "sodium_mg": 1388,
+      "total_carbs_g": 104.9,
+      "total_fat_g": 96.8,
+      "total_sugars_g": 21.2,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 236,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.8,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 221,
+      "total_carbs_g": 16.7,
+      "total_fat_g": 15.4,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 31,
+      "protein": 99,
+      "saturated_fat": 308,
+      "sodium": 60,
+      "total_carbs": 38,
+      "total_fat": 124
+    },
+    "serving_size_g": 628.75,
+    "total_recipe_weight_g": 2515
+  },
+  {
+    "recipe_name": "Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251028_081646_163a0d2e.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-10-28T08:16:47.184805000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo presented on a clean white porcelain plate. Two whole, bone-in chicken thighs with deeply browned, crispy skin sit atop a bed of golden, saffron-stained rice. The rice grains are plump and distinct, interspersed with fine bits of softened onion and concentrated red tomato. The dish shows vibrant yellow and orange hues from the saffron and paprika. A generous sprinkle of bright green, finely chopped parsley is scattered over the top. A single lemon wedge is placed neatly on the side. The plate sits on a light oak wooden table with a folded white cotton napkin. Lighting is bright, natural, and even, highlighting the textures of the crispy skin and the moist rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Alioli (garlic mayonnaise)",
+      "Accompany with crusty bread and a glass of chilled white wine",
+      "Present in a traditional terracotta cazuela for family-style dining"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip and brown the other side. Remove chicken from pan.",
+      "Add onion to the same pan. Sauté until translucent.",
+      "Stir in garlic and grated tomato. Cook until liquid evaporates and mixture darkens.",
+      "Add smoked paprika and rice. Stir to coat rice in oil for 2 minutes.",
+      "Pour in white wine. Deglaze the pan. Simmer until wine reduces by half.",
+      "Add hot stock and saffron. Stir once to distribute.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer undisturbed over medium-low heat for 18-20 minutes.",
+      "Ensure chicken reaches internal temperature of 75°C.",
+      "Remove from heat. Cover with a clean cloth. Rest for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form on the bottom.",
+      "Use a wide pan to ensure even rice cooking."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice absorption method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1414,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 8.6,
+      "protein": 66.4,
+      "saturated_fat": 46.5,
+      "sodium": 61.5,
+      "total_carbs": 24.5,
+      "total_fat": 52.1
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Pollo all'Arrabbiata con Parmigiano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_192542_553d5c9b.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-26T19:25:42.744892000Z",
+    "selected_ingredients": [
+      "chicken",
+      "parmesan cheese",
+      "tomato",
+      "onion",
+      "cayenne pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single seared chicken cutlet rests centrally on a clean white porcelain dinner plate. The chicken is golden-brown with a slightly crisp exterior. A generous portion of vibrant, rustic red arrabbiata sauce is spooned over and around the chicken, showcasing small pieces of cooked tomato and flecks of red pepper. Fresh, bright green basil leaves are scattered artfully over the sauce and chicken. A mound of finely grated Parmigiano Reggiano is piled atop the chicken and sauce. The composition is balanced and inviting. The plate sits on a simple wooden table, with a classic silver fork and knife to the side. A folded white cotton napkin rests beside the plate. The setting evokes a modern Italian bistro with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread (pane casereccio) for dipping in the sauce.",
+      "Accompanied by a simple green salad with a vinaigrette dressing.",
+      "Traditionally served as a 'secondo' (main course) after a pasta dish or appetizer."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Slice each horizontally into two thinner cutlets. Season all sides with salt and black pepper.",
+      "Heat 30 ml olive oil in a large pan over medium-high heat. Sear chicken cutlets for 3-4 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add remaining 30 ml olive oil to the pan. Add diced red onion. Sauté for 5 minutes until softened.",
+      "Add minced garlic, cayenne pepper, and red pepper flakes. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Bring to a simmer. Season with salt and black pepper. Cook for 15-20 minutes, stirring occasionally, until the sauce thickens slightly.",
+      "Return seared chicken cutlets to the pan with the sauce. Simmer for 5 minutes to heat through.",
+      "Remove from heat. Stir in chopped fresh basil leaves.",
+      "Serve chicken cutlets with arrabbiata sauce. Grate Parmigiano Reggiano generously over each portion."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 462,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 44.5,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 899,
+      "total_carbs_g": 17.5,
+      "total_fat_g": 23.9,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.5,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 213,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 12,
+      "protein": 89,
+      "saturated_fat": 33,
+      "sodium": 39,
+      "total_carbs": 6,
+      "total_fat": 31
+    },
+    "serving_size_g": 423,
+    "total_recipe_weight_g": 1691
+  },
+  {
+    "recipe_name": "Creamy Tuscan Chicken with Bell Pepper",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_185609_bbfb0505.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2025-10-26T18:56:09.737572000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "onion",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a golden-brown seared chicken breast, nestled in a rich, creamy sauce. The sauce, a warm ivory hue, is generously studded with earthy sliced cremini mushrooms, vibrant julienned red and yellow bell peppers, and wilted dark green spinach. A scattering of bright red sun-dried tomatoes adds visual depth. The chicken maintains its whole form, displaying a perfectly seared crust. The dish is plated on a clean white porcelain dinner plate, with the creamy mixture artfully mounded. A sprinkle of fresh chopped parsley garnishes the top, adding a pop of green. The setting is a modern bistro with a simple wooden table, a folded linen napkin, and classic Italian flatware.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with al dente tagliatelle or fettuccine pasta.",
+      "Offer crusty artisan bread for dipping in the sauce.",
+      "Accompany with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "500g, sliced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, julienned"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1, julienned"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil",
+        "quantity": "50g, drained and sliced"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "100g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt, pepper, and oregano.",
+      "Heat olive oil in a large pan over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown and cooked to 75°C. Remove chicken from pan. Set aside.",
+      "Add diced onion to the pan. Sauté 3-4 minutes until softened.",
+      "Add sliced mushrooms and julienned bell peppers. Sauté 5-7 minutes until vegetables are tender and mushrooms release their liquid.",
+      "Stir in minced garlic. Cook 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the pan. Bring to a simmer.",
+      "Add sliced sun-dried tomatoes. Simmer 5 minutes to reduce slightly.",
+      "Stir in heavy cream and grated Parmesan cheese. Cook 2-3 minutes until sauce thickens.",
+      "Return chicken breasts to the pan. Add fresh spinach. Cook until spinach wilts.",
+      "Taste and adjust seasoning. Serve immediately."
+    ],
+    "notes": [],
+    "traditional_techniques": []
+  },
+  {
+    "recipe_name": "Tomato and Bell Pepper Mediterranean Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_173843_1e2a1a57.jpg",
+    "dish_type": "salad",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2025-10-26T17:38:44.344723000Z",
+    "selected_ingredients": [
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented in a clean, white ceramic bowl, showcasing a vibrant medley of colors. Diced red tomatoes, yellow and red bell pepper cubes, and green cucumber pieces are interspersed with deep purple Kalamata olives and delicate, thinly sliced red onion. Crumbled white feta cheese is scattered throughout, adding a creamy texture contrast. Fresh green parsley leaves are lightly tossed in, providing a final herbaceous touch. A glistening lemon-oregano vinaigrette lightly coats all ingredients, emphasizing their freshness. The arrangement is natural and inviting, with elements visible and well-distributed. The bowl rests on a simple wooden table, accompanied by a folded cotton napkin and standard European flatware.",
+    "number_of_servings": 1,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Tomatoes",
+        "quantity": "150g"
+      },
+      {
+        "name": "Bell Pepper (red or yellow)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "50g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "20g"
+      },
+      {
+        "name": "Kalamata Olives",
+        "quantity": "30g"
+      },
+      {
+        "name": "Feta Cheese",
+        "quantity": "40g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare vegetables: Dice tomatoes, bell pepper, and cucumber. Thinly slice red onion. Halve pitted Kalamata olives.",
+      "Combine salad ingredients: In a medium bowl, combine diced tomatoes, bell pepper, cucumber, red onion, and Kalamata olives.",
+      "Make dressing: In a small bowl, whisk together olive oil, lemon juice, dried oregano, salt, and black pepper.",
+      "Dress salad: Pour dressing over salad ingredients. Toss gently to coat.",
+      "Add cheese and herbs: Gently fold in crumbled feta cheese and chopped fresh parsley.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "For best flavor, use ripe, seasonal tomatoes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 464,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 7,
+      "protein_g": 9.4,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 1071,
+      "total_carbs_g": 21.8,
+      "total_fat_g": 39.5,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 2.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 244,
+      "total_carbs_g": 5,
+      "total_fat_g": 9,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 25,
+      "protein": 19,
+      "saturated_fat": 51,
+      "sodium": 47,
+      "total_carbs": 8,
+      "total_fat": 51
+    },
+    "serving_size_g": 439,
+    "total_recipe_weight_g": 439
+  }
+]

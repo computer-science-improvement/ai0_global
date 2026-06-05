@@ -1,0 +1,765 @@
+[
+  {
+    "recipe_name": "Simple Roasted Lamb with Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_simple_roasted_lamb_with_vegetables_20250624_023726_5ba9332e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:37:27.351608000Z",
+    "selected_ingredients": [
+      "lamb",
+      "rosemary",
+      "parsley",
+      "olive oil",
+      "mustard"
+    ],
+    "complexity": "simple",
+    "special_requests": "turkish cuisine",
+    "visual_description": "A single portion of Simple Roasted Lamb with Vegetables is presented on an everyday, slightly imperfect ceramic plate with earthy tones. The dish features golden-brown, tender roasted lamb chunks, approximately 4-5 cm in size, nestled among large, rustic potato wedges, softened red and green bell pepper chunks, and caramelized onion wedges. Smashed garlic cloves are visible throughout. The overall color palette is warm and natural, with rich browns, vibrant reds, and greens. A generous scattering of bright green, fresh chopped parsley provides a final visual lift. The components are arranged naturally, touching and overlapping, reflecting a homely, casual plating style. The plate is adequately filled but not overcrowded, leaving some negative space. The setting is a well-used wooden dining table, with warm, cozy lighting from kitchen fixtures. A simple, folded cloth napkin rests casually beside the plate. A small, white ceramic bowl of plain yogurt is placed nearby, along with torn pieces of warm lavash bread in a rustic basket, enhancing the authentic Turkish dining experience. The background shows a lived-in family kitchen atmosphere with minimal, natural clutter.",
+    "number_of_servings": 4,
+    "cuisine_type": "Turkish",
+    "cultural_origin": "Turkish",
+    "cultural_serving_suggestions": [
+      "Serve with warm lavash or pide bread for scooping.",
+      "Offer a side of plain yogurt or cacık (cucumber and yogurt dip).",
+      "Pair with a simple Shepherd's Salad (Çoban Salatası) of finely diced tomatoes, cucumbers, and onions."
+    ],
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Boneless lamb shoulder or leg",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "large bunch"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Red pepper flakes (Pul Biber)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Water or broth",
+        "quantity": "125 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut lamb into 4-5 cm thick chunks. Pat dry with paper towels.",
+      "In a large bowl, combine 45 ml olive oil, Dijon mustard, finely chopped rosemary leaves, salt, black pepper, dried oregano, and red pepper flakes. Mix well.",
+      "Add lamb chunks to the bowl. Toss to coat evenly. Let marinate at room temperature for 30 minutes.",
+      "Cut potatoes, bell peppers, and onion into large, rustic chunks. Smash garlic cloves.",
+      "Add cut vegetables and smashed garlic to the lamb in the bowl. Add tomato paste and remaining 15 ml olive oil. Toss everything together to combine.",
+      "Transfer the lamb and vegetable mixture to a large roasting pan. Spread in a single layer.",
+      "Pour water or broth into the bottom of the roasting pan.",
+      "Roast for 45-60 minutes, stirring occasionally, until lamb is tender and vegetables are browned and cooked through. Ensure lamb reaches an internal temperature of 75°C.",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Serve hot. Garnish generously with fresh chopped parsley."
+    ],
+    "notes": [
+      "This recipe is designed for ease and comfort, using basic kitchen equipment.",
+      "Marinating the lamb for longer, even overnight in the refrigerator, will enhance flavor and tenderness."
+    ],
+    "traditional_techniques": [
+      "Roasting (Fırında Pişirme)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 589,
+      "cholesterol_mg": 126,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 46.7,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 193,
+      "total_carbs_g": 44,
+      "total_fat_g": 25.5,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 10.5,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 43,
+      "total_carbs_g": 9.9,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 26,
+      "protein": 93,
+      "saturated_fat": 31,
+      "sodium": 8,
+      "total_carbs": 16,
+      "total_fat": 33
+    },
+    "serving_size_g": 443.75,
+    "total_recipe_weight_g": 1775
+  },
+  {
+    "recipe_name": "Pork Chili Verde",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_chili_verde_20250624_023651_8f114568.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:36:51.536133000Z",
+    "selected_ingredients": [
+      "chili",
+      "pork"
+    ],
+    "complexity": "simple",
+    "special_requests": "不用烤箱",
+    "visual_description": "A single, generous portion of Pork Chili Verde is presented in a rustic, deep ceramic bowl. Tender, shredded pork chunks are nestled within a vibrant, rich green sauce. The sauce has a natural, slightly textured appearance from the blended tomatillos and chilies, clinging well to the pork. A sprinkle of fresh, bright green cilantro is casually scattered over the top. The bowl sits on a well-worn, light wooden kitchen table, indicating a homely family setting. Next to the bowl, a stack of warm, soft corn tortillas is wrapped in a simple, off-white cloth napkin. A small ceramic plate holds a few extra lime wedges and a scattering of fresh cilantro leaves, ready for customization. The scene is illuminated by warm, inviting light, suggesting a cozy, lived-in atmosphere. The overall presentation is natural and unpretentious, focusing on the hearty, comforting essence of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping.",
+      "Offer crumbled queso fresco or Mexican crema as toppings.",
+      "Provide extra lime wedges and fresh cilantro for garnish."
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Tomatillos",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Serrano chilies",
+        "quantity": "3-5 (or jalapeños for less heat)"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 4-5 cm thick chunks. Season generously with salt.",
+      "Heat vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear pork chunks in batches until browned on all sides. Remove pork from pot. Set aside.",
+      "Remove husks from tomatillos. Rinse well. Cut tomatillos in half.",
+      "Stem serrano chilies. Roughly chop onion and garlic.",
+      "Add tomatillos, serrano chilies, onion, and garlic to the same pot. Cook for 8-10 minutes until softened and lightly charred. Stir occasionally.",
+      "Transfer cooked vegetables and chilies to a blender. Add 120 ml chicken broth, cumin, and oregano. Blend until smooth.",
+      "Pour the blended sauce back into the pot. Add remaining chicken broth. Bring to a simmer.",
+      "Return seared pork chunks to the pot. Ensure pork is mostly submerged in sauce. If not, add a little more broth or water.",
+      "Reduce heat to low. Cover pot. Simmer for 2-3 hours, or until pork is very tender and easily shreds with a fork.",
+      "Stir occasionally to prevent sticking. Add more liquid if sauce becomes too thick.",
+      "Remove pork from pot. Shred pork chunks into smaller pieces using two forks. Return shredded pork to the sauce.",
+      "Stir in freshly chopped cilantro. Taste and adjust salt as needed.",
+      "Serve hot."
+    ],
+    "notes": [
+      "Ensure pork reaches an internal temperature of at least 70°C (158°F) for tenderness, though it will cook much higher during the long braise.",
+      "For spicier chili verde, include the seeds from the serrano chilies. For milder, remove seeds or use fewer chilies."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 758.4,
+      "cholesterol_mg": 197.5,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 55.6,
+      "saturated_fat_g": 17.6,
+      "sodium_mg": 761.2,
+      "total_carbs_g": 16.2,
+      "total_fat_g": 53.5,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124.8,
+      "cholesterol_mg": 32.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.2,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 125.2,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65.8,
+      "dietary_fiber": 20.6,
+      "protein": 111.2,
+      "saturated_fat": 87.9,
+      "sodium": 33.1,
+      "total_carbs": 5.9,
+      "total_fat": 68.6
+    },
+    "serving_size_g": 607.65,
+    "total_recipe_weight_g": 2430.6
+  },
+  {
+    "recipe_name": "Spicy Korean Beef and Pork Jeongol",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_korean_beef_and_pork_jeongol_20250624_023641_365976f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:36:41.522395000Z",
+    "selected_ingredients": [
+      "beef",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, steaming Korean hot pot (Jeongol) presented in a wide, shallow, dark-colored ceramic or cast-iron pot. The thinly sliced, marinated beef and pork are arranged artfully over a bed of napa cabbage, shiitake mushrooms, and tofu rectangles. Bright red gochujang-based broth bubbles gently around the ingredients. Slices of onion and long segments of green onion add contrast. Cooked dangmyeon noodles and delicate enoki mushrooms are nestled among the meats and vegetables. The dish is garnished with fresh, vibrant green scallion batons. The pot sits on a simple wooden table surface, accompanied by small white porcelain bowls of steamed white rice and a few traditional Korean banchan (side dishes like kimchi and pickled radishes) in small, simple ceramic dishes. A set of metal chopsticks rests beside a clean white porcelain serving bowl, ready for individual portions. Natural, even lighting highlights the textures and rich colors of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve communally directly from the hot pot.",
+      "Provide individual bowls of steamed white rice.",
+      "Offer a selection of banchan (small side dishes) such as kimchi, pickled radishes, and seasoned spinach.",
+      "Use metal chopsticks and a deep spoon for serving broth."
+    ],
+    "hero_ingredient": "Spicy Beef and Pork",
+    "ingredients": [
+      {
+        "name": "Thinly sliced beef brisket or sirloin",
+        "quantity": "300g"
+      },
+      {
+        "name": "Thinly sliced pork belly or shoulder",
+        "quantity": "300g"
+      },
+      {
+        "name": "Napa cabbage, cut into large pieces",
+        "quantity": "300g"
+      },
+      {
+        "name": "Shiitake mushrooms, sliced",
+        "quantity": "150g"
+      },
+      {
+        "name": "Enoki mushrooms",
+        "quantity": "100g"
+      },
+      {
+        "name": "Firm tofu, sliced into 1 cm thick rectangles",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion, thinly sliced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green onions, cut into 5 cm lengths",
+        "quantity": "3 stalks"
+      },
+      {
+        "name": "Dangmyeon (Korean glass noodles), soaked",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Ginger, grated",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Gochugaru (Korean chili flakes)",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Beef broth or water",
+        "quantity": "1 litre"
+      }
+    ],
+    "instructions": [
+      "Prepare marinade: Combine minced garlic, grated ginger, gochujang, gochugaru, soy sauce, sesame oil, mirin, sugar, and black pepper in a large bowl.",
+      "Marinate meat: Add thinly sliced beef and pork to the marinade. Mix well. Marinate for at least 30 minutes, or up to 2 hours in the refrigerator.",
+      "Prepare vegetables: Cut napa cabbage into large pieces. Slice shiitake mushrooms. Separate enoki mushrooms. Slice tofu. Slice onion. Cut green onions. Soak dangmyeon in warm water for 20 minutes, then drain.",
+      "Assemble hot pot: Arrange napa cabbage, sliced onion, shiitake mushrooms, and tofu in the bottom of a wide, shallow pot (jeongol pot or similar).",
+      "Add meat: Place marinated beef and pork slices attractively on top of the vegetables.",
+      "Add broth: Pour beef broth or water into the pot.",
+      "Cook: Bring to a boil over medium-high heat. Reduce heat to medium-low. Simmer for 15-20 minutes, or until meats are cooked through and vegetables are tender.",
+      "Add noodles and enoki: Add soaked dangmyeon and enoki mushrooms during the last 5 minutes of cooking.",
+      "Garnish: Sprinkle with fresh green onions just before serving.",
+      "Serve: Serve hot directly from the pot, with individual bowls of rice and banchan."
+    ],
+    "notes": [
+      "Adjust gochugaru for desired spice level.",
+      "Skim any foam from the broth during cooking for a clearer soup."
+    ],
+    "traditional_techniques": [
+      "Marinating meat for flavor absorption",
+      "Jeongol (hot pot) communal cooking method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.4,
+      "calories": 906,
+      "cholesterol_mg": 128,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 34.8,
+      "saturated_fat_g": 23.7,
+      "sodium_mg": 2038,
+      "total_carbs_g": 49.8,
+      "total_fat_g": 69.7,
+      "total_sugars_g": 12.8,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 120,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 4.6,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 269,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 18,
+      "protein": 70,
+      "saturated_fat": 119,
+      "sodium": 89,
+      "total_carbs": 18,
+      "total_fat": 89
+    },
+    "serving_size_g": 757.2,
+    "total_recipe_weight_g": 3028.8
+  },
+  {
+    "recipe_name": "Smoky Mushroom & Black Bean 'Chorizo' with Red Rice and Fermented Tomatillo Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoky_mushroom_%26_black_bean_%27chorizo%27_with_red_rice_and_fermented_tomatillo_salsa_20250624_023631_7dc56af8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:36:32.229127000Z",
+    "selected_ingredients": [
+      "sausage",
+      "rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Mexican cuisine",
+    "visual_description": "The dish presents a rustic yet refined single portion on a handcrafted, cream-colored ceramic plate. At the center, a generous mound of vibrant red rice, each grain distinct, offers a soft, earthy base. Adjacent, substantial chunks of smoky mushroom and black bean 'chorizo' are artfully arranged, showcasing their rich, dark brown color and textural crumble. Scattered around the plate are roasted root vegetable wedges – golden sweet potato, orange carrot – with slightly caramelized edges, glistening from their agave glaze. A bright green fermented tomatillo salsa is spooned alongside, its fresh hue providing a striking contrast. The entire composition is garnished sparingly with fresh cilantro leaves and a bright lime wedge. The plate sits on a light bamboo table surface, accompanied by a natural undyed linen napkin and traditional flatware, and soft, diffused natural lighting illuminates the scene from the side, enhancing the dish's natural colors and textures. No overcrowding, ample white space emphasizes the sustainable ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas on the side.",
+      "Offer additional lime wedges for squeezing over the dish."
+    ],
+    "hero_ingredient": "Smoky Mushroom & Black Bean 'Chorizo'",
+    "ingredients": [
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Black beans, cooked",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Chipotle peppers in adobo",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Adobo sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Dried Mexican oregano",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Long-grain brown rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Tomatillos, husked",
+        "quantity": "250g"
+      },
+      {
+        "name": "Serrano peppers",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Chipotle powder",
+        "quantity": "1 tsp (optional)"
+      },
+      {
+        "name": "Sweet potatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Agave nectar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Peel sweet potatoes and carrots. Cut into 2cm wedges and chunks. Reserve peels for broth.",
+      "Toss sweet potato and carrot pieces with 2 tbsp olive oil, 1 tbsp agave nectar, 1 tbsp lime juice, salt, and pepper.",
+      "Spread vegetables on a baking sheet. Roast for 25-30 minutes, or until tender and slightly caramelized. Flip halfway.",
+      "While vegetables roast, prepare the 'chorizo'. Finely dice mushrooms, including stems. Mash rinsed black beans.",
+      "Finely dice red onion. Mince garlic. Mince chipotle peppers.",
+      "Heat 2 tbsp vegetable oil in a large skillet over medium heat.",
+      "Add diced red onion. Sauté until softened, about 3 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add diced mushrooms. Cook until mushrooms release their liquid and begin to brown, about 8-10 minutes.",
+      "Stir in mashed black beans, minced chipotle, adobo sauce, smoked paprika, ground cumin, and dried Mexican oregano. Cook for 5 minutes, stirring occasionally. Season with salt and pepper. Set aside.",
+      "Rinse brown rice. In a medium saucepan, combine rice, 500ml vegetable broth, and 2 tbsp tomato paste. Add 0.5 tsp salt.",
+      "Bring to a boil, then reduce heat to low. Cover and simmer for 40-45 minutes, or until liquid is absorbed and rice is tender. Let stand covered for 5 minutes.",
+      "Prepare the fermented tomatillo salsa. Husk and rinse tomatillos. Roughly chop tomatillos, 1 small onion, and serrano peppers. Mince 1 clove garlic.",
+      "Combine chopped tomatillos, onion, serrano peppers, garlic, 0.5 tsp salt, and 0.25 cup water in a blender. Blend until smooth. Add chipotle powder if desired.",
+      "Pour salsa into a clean glass jar. Loosely cover. Let ferment at room temperature for 1-2 days, or until desired tanginess is achieved. Refrigerate after fermenting.",
+      "To serve, spoon a mound of red rice onto each plate. Arrange 'chorizo' chunks alongside the rice. Place roasted root vegetable wedges around. Spoon fermented tomatillo salsa generously over the dish. Garnish with fresh cilantro leaves and a lime wedge. Serve immediately."
+    ],
+    "notes": [
+      "Utilize root vegetable peels and mushroom stems for making vegetable broth to minimize food waste.",
+      "The salsa fermentation time can be extended for a deeper, more complex flavor profile. Ensure proper hygiene during fermentation."
+    ],
+    "traditional_techniques": [
+      "Fermentation (for salsa)",
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 665,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 19.4,
+      "protein_g": 18.2,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 266,
+      "total_carbs_g": 110.7,
+      "total_fat_g": 17.8,
+      "total_sugars_g": 17.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 103.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3,
+      "protein_g": 2.8,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 41.3,
+      "total_carbs_g": 17.2,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 69,
+      "protein": 36,
+      "saturated_fat": 11,
+      "sodium": 12,
+      "total_carbs": 40,
+      "total_fat": 23
+    },
+    "serving_size_g": 643.6,
+    "total_recipe_weight_g": 2574.3
+  },
+  {
+    "recipe_name": "Hearty Pork and Bean Chili",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_pork_and_bean_chili_20250624_023610_fcb34ffa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:36:10.978342000Z",
+    "selected_ingredients": [
+      "chili",
+      "pork"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, hearty portion of chili fills a deep, sturdy ceramic bowl, its rich reddish-brown hue indicating robust flavor. The chili is thick and chunky, with visible pieces of browned pork, soft kidney and black beans, and diced tomatoes in a savory sauce. A generous layer of melted shredded yellow cheddar cheese blankets the top, slightly bubbling. A dollop of cool white sour cream sits off-center, its smooth texture contrasting. A sprinkle of bright green, thinly sliced spring onions adds fresh color. The bowl rests on a well-used, warm-toned wooden kitchen table, bathed in soft, natural light. A simple metal spoon is tucked into the side. A small piece of golden cornbread is casually placed nearby, completing this quintessential homely comfort meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with shredded cheddar cheese, sour cream, and chopped green onions.",
+      "Offer cornbread, crackers, or tortilla chips on the side.",
+      "Enjoy as a comforting family meal."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Ground pork",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Canned kidney beans",
+        "quantity": "400 g, rinsed and drained"
+      },
+      {
+        "name": "Canned black beans",
+        "quantity": "400 g, rinsed and drained"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat.",
+      "Add ground pork. Cook, breaking it apart with a spoon, until browned. Drain excess fat.",
+      "Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add chili powder, ground cumin, dried oregano, and smoked paprika. Stir and cook for 1 minute until aromatic.",
+      "Pour in diced tomatoes, kidney beans, black beans, and beef broth. Stir well.",
+      "Bring the mixture to a simmer. Reduce heat to low, cover, and let it simmer for at least 30 minutes, or up to 1 hour, stirring occasionally. The longer it simmers, the richer the flavor.",
+      "Season with salt and black pepper to taste.",
+      "Serve hot."
+    ],
+    "notes": [
+      "For extra heat, add a diced jalapeño or a pinch of cayenne pepper with the other spices.",
+      "Chili tastes even better the next day; store leftovers in an airtight container in the refrigerator for up to 3-4 days.",
+      "This chili freezes well for future meals."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 713,
+      "cholesterol_mg": 110,
+      "dietary_fiber_g": 21.32,
+      "protein_g": 54.7,
+      "saturated_fat_g": 10.78,
+      "sodium_mg": 1138,
+      "total_carbs_g": 63.88,
+      "total_fat_g": 32.3,
+      "total_sugars_g": 8.35,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102,
+      "cholesterol_mg": 16,
+      "dietary_fiber_g": 3.04,
+      "protein_g": 7.81,
+      "saturated_fat_g": 1.54,
+      "sodium_mg": 162,
+      "total_carbs_g": 9.12,
+      "total_fat_g": 4.61,
+      "total_sugars_g": 1.19,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 76,
+      "protein": 109,
+      "saturated_fat": 54,
+      "sodium": 50,
+      "total_carbs": 23,
+      "total_fat": 41
+    },
+    "serving_size_g": 700.75,
+    "total_recipe_weight_g": 2803
+  }
+]

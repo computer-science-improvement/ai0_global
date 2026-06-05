@@ -1,0 +1,728 @@
+[
+  {
+    "recipe_name": "Braised Beef with Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_caramelized_onions_20250624_122344_513d7965.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:23:44.667529000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Braised Beef with Caramelized Onions is presented on a clean, round white porcelain dinner plate. A large, rustic chunk of dark brown, fork-tender braised beef, its surface glistening, is positioned slightly off-center. Beneath and around the beef is a generous bed of deeply caramelized, soft, golden-brown onion slices, showing their rich, glossy texture. A dark, glossy, rich pan sauce is artfully spooned over the beef and pooled around the base, creating a sheen. A small sprig of fresh thyme rests gently on top of the beef, adding a touch of green. The overall presentation is clean and organized, with moderate negative space. The plate sits on a simple light wooden table. A neatly folded light grey cotton napkin is placed to the left of the plate. The scene is illuminated with natural, even lighting, creating a warm, inviting bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Bistro",
+    "cultural_origin": "European",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck steak",
+        "quantity": "1.2 kg, cut into 4 equal chunks"
+      },
+      {
+        "name": "Large yellow onions",
+        "quantity": "4, thinly sliced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, peeled and roughly chopped"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Red wine",
+        "quantity": "250 ml, dry"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper. Dredge beef in flour, shaking off excess.",
+      "Heat olive oil in a large oven-safe Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef and set aside.",
+      "Add sliced onions to the pot. Reduce heat to medium-low. Cook, stirring occasionally, for 20-25 minutes until deeply caramelized and soft. Add a pinch of sugar if needed to aid caramelization.",
+      "Add chopped carrots, celery, and minced garlic to the pot. Cook for 5 minutes until vegetables soften slightly.",
+      "Pour in red wine. Scrape the bottom of the pot to deglaze. Bring to a simmer and cook for 5 minutes, reducing slightly.",
+      "Pour in beef broth. Add thyme sprigs and bay leaves. Bring to a simmer.",
+      "Return seared beef chunks to the pot. Ensure beef is mostly submerged in liquid. Cover the pot with a lid.",
+      "Transfer to a preheated oven at 160°C. Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Carefully remove beef from the pot. Strain the braising liquid through a fine-mesh sieve into a saucepan, pressing on solids to extract all liquid. Discard solids.",
+      "Skim any excess fat from the strained liquid. Bring to a simmer over medium heat. Reduce until the sauce slightly thickens and coats the back of a spoon. Stir in butter. Season with salt and pepper to taste.",
+      "Serve each beef chunk with a generous portion of the caramelized onions and a ladle of the rich pan sauce."
+    ],
+    "notes": [
+      "For best flavor, braise the beef a day in advance. Cool completely, then refrigerate. Reheat gently on the stovetop or in the oven.",
+      "Adjust the consistency of the sauce by reducing it further for a thicker glaze or adding a splash of broth for a thinner consistency."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Caramelizing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 947,
+      "cholesterol_mg": 242,
+      "dietary_fiber_g": 5,
+      "protein_g": 67,
+      "saturated_fat_g": 21.7,
+      "sodium_mg": 1389,
+      "total_carbs_g": 35.2,
+      "total_fat_g": 54.3,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.1,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 168,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81,
+      "dietary_fiber": 18,
+      "protein": 134,
+      "saturated_fat": 108,
+      "sodium": 60,
+      "total_carbs": 13,
+      "total_fat": 70
+    },
+    "serving_size_g": 828,
+    "total_recipe_weight_g": 3312
+  },
+  {
+    "recipe_name": "Pollo al Ragù con Orecchiette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_al_rag%C3%B9_con_orecchiette_20250624_122336_9391fa67.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:23:36.779968000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "chicken",
+      "parmesan cheese",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single individual portion of Pollo al Ragù con Orecchiette is presented on a clean white porcelain dinner plate, centrally placed. Tender, shredded chicken pieces are generously mixed throughout the al dente orecchiette pasta, coated in a rich, deep red tomato ragù. The sauce is rustic, with visible finely diced carrot, celery, and onion, creating a harmonious texture. A generous sprinkle of freshly grated Parmigiano-Reggiano covers the top, adding a creamy white contrast. Fresh green oregano leaves are scattered lightly for color and aroma. The dish maintains a natural, inviting form, avoiding rigid shapes, with moderate negative space around the edges. The setting features a simple light wooden table surface, a folded cotton napkin beside the plate, and traditional silver flatware. Natural, even lighting illuminates the dish, highlighting its vibrant colors and inviting textures. The background is subtly blurred, suggesting a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for soaking up the ragù.",
+      "Pair with a simple green salad dressed with olive oil and red wine vinegar.",
+      "Accompany with a glass of dry red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Crushed tomatoes (passata)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh oregano or basil leaves, for garnish",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry red wine (e.g., Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2-3 cm chunks. Season with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear chicken chunks in batches until golden brown on all sides. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion, carrot, and celery to the pot. Sauté for 8-10 minutes until softened and aromatic. This is the soffritto base.",
+      "Add minced garlic to the pot. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is mostly evaporated, about 2-3 minutes.",
+      "Stir in crushed tomatoes and dried oregano. Return seared chicken to the pot.",
+      "Add chicken stock. Bring the sauce to a gentle simmer. Reduce heat to low, cover the pot, and cook for 45-60 minutes. Cook until chicken is very tender and easily shredded.",
+      "Remove chicken from the sauce. Using two forks, shred the chicken into smaller pieces. Return shredded chicken to the sauce. Stir well.",
+      "While ragù simmers, bring a large pot of salted water to a rolling boil. Add orecchiette pasta and cook according to package directions until al dente.",
+      "Drain pasta, reserving about 60 ml of pasta water. Add drained pasta directly to the chicken ragù. Add a splash of reserved pasta water if needed to loosen the sauce.",
+      "Stir in 60 g of grated Parmigiano-Reggiano cheese. Toss thoroughly to coat pasta and chicken.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve immediately, garnished with remaining Parmigiano-Reggiano and fresh oregano or basil leaves."
+    ],
+    "notes": [
+      "For best flavor, use high-quality canned tomatoes.",
+      "Ensure chicken is cooked to an internal temperature of 75°C (167°F) for food safety.",
+      "The ragù can be made ahead of time and reheated; flavors often improve the next day."
+    ],
+    "traditional_techniques": [
+      "Soffritto (aromatic base of diced vegetables)",
+      "Slow simmering (for ragù development)",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 787.46,
+      "cholesterol_mg": 220.1,
+      "dietary_fiber_g": 6.58,
+      "protein_g": 53.12,
+      "saturated_fat_g": 8.23,
+      "sodium_mg": 1162.2,
+      "total_carbs_g": 76.03,
+      "total_fat_g": 26.81,
+      "total_sugars_g": 9.62,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 151.29,
+      "cholesterol_mg": 42.3,
+      "dietary_fiber_g": 1.26,
+      "protein_g": 10.21,
+      "saturated_fat_g": 1.58,
+      "sodium_mg": 223.3,
+      "total_carbs_g": 14.61,
+      "total_fat_g": 5.15,
+      "total_sugars_g": 1.85,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73.37,
+      "dietary_fiber": 23.5,
+      "protein": 106.24,
+      "saturated_fat": 41.15,
+      "sodium": 50.53,
+      "total_carbs": 27.65,
+      "total_fat": 34.37
+    },
+    "serving_size_g": 520.5,
+    "total_recipe_weight_g": 2082
+  },
+  {
+    "recipe_name": "Carne Asada with Pico de Gallo and Cilantro Lime Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_carne_asada_with_pico_de_gallo_and_cilantro_lime_salad_20250624_122326_733d4cf3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:23:26.512652000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "chili",
+      "salad green"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of seared beef chunks, cooked to a perfect medium-rare, is centrally arranged on a clean white porcelain dinner plate. The beef exhibits a dark, caramelized crust and a tender, pink interior. Adjacent to the beef, a vibrant scoop of fresh pico de gallo showcases finely diced red tomatoes, white onion, and green jalapeños, studded with bright green cilantro. A crisp mound of mixed salad greens, lightly dressed with a cilantro-lime vinaigrette, completes the arrangement. The dish is presented on a simple wooden table, with a neatly folded cotton napkin and a small ceramic bowl of warm corn tortillas beside the plate. Natural, even lighting highlights the dish’s fresh colors and varied textures, creating an inviting, authentic Mexican casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas",
+      "Offer extra lime wedges"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef flank steak",
+        "quantity": "600g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Jalapeños",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Limes",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150g"
+      }
+    ],
+    "instructions": [
+      "Slice beef against the grain into 2cm thick pieces.",
+      "Combine juice from 2 limes, 30ml olive oil, minced garlic, cumin, chili powder, oregano, salt, and pepper in a bowl.",
+      "Add beef to marinade. Toss to coat. Marinate for at least 30 minutes, up to 4 hours, refrigerated.",
+      "Finely dice tomatoes, red onion, and jalapeños for Pico de Gallo.",
+      "Chop half of the cilantro. Combine diced vegetables and cilantro with juice from 1 lime and salt. Mix well.",
+      "Wash and dry salad greens.",
+      "For vinaigrette, whisk juice from remaining 1 lime, 30ml olive oil, salt, and pepper.",
+      "Heat a cast iron skillet or grill over high heat until very hot.",
+      "Sear marinated beef pieces for 3-4 minutes per side for medium-rare, or until desired doneness.",
+      "Remove beef from heat. Rest for 5 minutes.",
+      "Slice rested beef into serving portions.",
+      "Toss salad greens with cilantro lime vinaigrette.",
+      "Plate beef chunks with a generous scoop of Pico de Gallo and a side of dressed salad greens."
+    ],
+    "notes": [
+      "For best flavor, marinate beef for at least 2 hours."
+    ],
+    "traditional_techniques": [
+      "Marinating",
+      "Grilling/Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 405.8,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 35.3,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 641,
+      "total_carbs_g": 19.4,
+      "total_fat_g": 23.2,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93.9,
+      "cholesterol_mg": 22.9,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 148.3,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 22,
+      "protein": 71,
+      "saturated_fat": 28,
+      "sodium": 28,
+      "total_carbs": 7,
+      "total_fat": 30
+    },
+    "serving_size_g": 432.25,
+    "total_recipe_weight_g": 1729
+  },
+  {
+    "recipe_name": "Lemon-Herb Pasta with Seared Apples and White Wine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon-herb_pasta_with_seared_apples_and_white_wine_20250624_122323_3ee45a2e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:23:24.440575000Z",
+    "selected_ingredients": [
+      "pasta",
+      "apple",
+      "rice",
+      "flour",
+      "pineapple",
+      "orange",
+      "dark chocolate",
+      "peach",
+      "lemon",
+      "sugar",
+      "coffee",
+      "coconut",
+      "almond",
+      "raspberry",
+      "grape",
+      "lime",
+      "vanilla",
+      "cocoa powder",
+      "peanut butter",
+      "white chocolate",
+      "mint",
+      "grapefruit",
+      "mango",
+      "blueberry",
+      "honey",
+      "plum",
+      "sweet wine",
+      "blackberry",
+      "milk chocolate",
+      "white wine",
+      "caramel"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Lemon-Herb Pasta is presented on a clean, round white porcelain plate, centrally positioned. Al dente linguine is lightly twirled, forming a modest mound, glistening with a delicate, bright lemon-white wine sauce. Interspersed throughout the pasta are golden-brown seared apple wedges, their edges subtly caramelized, adding warmth and texture. Freshly chopped mint leaves are scattered over the dish, providing vibrant green pops against the pale pasta and golden apples. A few whole mint leaves and fine lemon zest are artfully placed as garnish. The composition is balanced, with moderate negative space on the plate. The setting features a simple wooden table, a folded white cotton napkin beside the plate, and standard silver flatware. Natural, even lighting illuminates the dish, highlighting its fresh, appealing colors and inviting textures against a softly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Pasta",
+        "quantity": "300g linguine or spaghetti"
+      },
+      {
+        "name": "Apples",
+        "quantity": "2 medium, firm"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large (juice and zest)"
+      },
+      {
+        "name": "White Wine",
+        "quantity": "100ml dry white wine"
+      },
+      {
+        "name": "Mint",
+        "quantity": "15g fresh mint leaves"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g (for searing apples)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Pasta Water",
+        "quantity": "150ml (reserved)"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions. Reserve 150ml pasta water before draining.",
+      "While pasta cooks, prepare apples. Core apples. Cut into 1 cm thick wedges.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add apple wedges. Sprinkle lightly with sugar.",
+      "Sear apples 3-4 minutes per side until golden and slightly tender. Remove from skillet.",
+      "Add remaining 15ml olive oil to skillet. Add minced garlic and diced shallot. Sauté 2 minutes until fragrant. Do not brown garlic.",
+      "Pour in white wine. Bring to a simmer. Cook 2 minutes to reduce slightly.",
+      "Add drained pasta to skillet. Add lemon juice and zest. Add reserved pasta water. Toss well to combine.",
+      "Return seared apples to skillet. Gently toss with pasta.",
+      "Season with salt and black pepper to taste.",
+      "Finely chop fresh mint leaves. Stir half into pasta.",
+      "Serve immediately. Garnish with remaining fresh mint leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 433,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 11,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 204,
+      "total_carbs_g": 76.4,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 14.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 152.2,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 3.9,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 71.7,
+      "total_carbs_g": 26.8,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 22,
+      "protein": 22,
+      "saturated_fat": 6,
+      "sodium": 9,
+      "total_carbs": 28,
+      "total_fat": 11
+    },
+    "serving_size_g": 284.5,
+    "total_recipe_weight_g": 1138
+  },
+  {
+    "recipe_name": "Spicy Pork and Mushroom Pasta Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_pork_and_mushroom_pasta_bake_20250624_122321_84e3f441.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:23:22.288281000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "mushroom",
+      "hot sauce",
+      "tomato",
+      "cheese",
+      "mayonnaise",
+      "pasta",
+      "tortilla"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of Spicy Pork and Mushroom Pasta Bake rests on a simple, rustic ceramic plate on a well-used wooden dining table. The cooked penne pasta is coated in a rich, reddish-brown tomato sauce, studded with tender 2cm cubes of browned pork and thick slices of sautéed mushrooms. A generous layer of melted, golden-brown cheddar cheese bubbles on top, showing slight charring at the edges. The dish is casually garnished with a scattering of crisp, golden-brown crushed corn tortilla pieces and a zigzag drizzle of creamy, pale orange spicy mayonnaise. A few fresh green coriander leaves are sprinkled over. The scene is bathed in warm, cozy kitchen light, highlighting the comforting textures and vibrant colors of the dish, ready for a family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Brown mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "300g"
+      },
+      {
+        "name": "Shredded cheddar cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "100g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook pasta according to package directions. Drain well.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Brown pork cubes on all sides. Remove pork from pot.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and thickly sliced mushrooms. Sauté until mushrooms are tender and browned, about 7 minutes.",
+      "Stir in crushed tomatoes, chili powder, cumin, oregano, 30ml hot sauce, salt, and pepper. Bring sauce to a simmer.",
+      "Return browned pork to the sauce. Simmer for 15 minutes, allowing flavors to meld.",
+      "Stir cooked pasta into the sauce with pork and vegetables. Mix thoroughly.",
+      "Sprinkle shredded cheese evenly over the top of the pasta mixture. Do not stir.",
+      "Bake for 20-25 minutes, until cheese is melted and bubbly with golden edges.",
+      "While pasta bakes, cut corn tortillas into small triangles. Fry or bake until crisp and golden. Drain excess oil.",
+      "Mix mayonnaise with additional hot sauce to taste for a spicy mayo drizzle.",
+      "Serve hot, topped with crisp tortilla pieces, spicy mayo drizzle, and fresh chopped coriander."
+    ],
+    "notes": [
+      "Adjust hot sauce quantity to your preferred spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.15,
+      "calories": 1029.1,
+      "cholesterol_mg": 154.25,
+      "dietary_fiber_g": 9.83,
+      "protein_g": 54.81,
+      "saturated_fat_g": 17.44,
+      "sodium_mg": 659.38,
+      "total_carbs_g": 88.16,
+      "total_fat_g": 52.95,
+      "total_sugars_g": 11.58,
+      "trans_fat_g": 0.38
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.02,
+      "calories": 147.49,
+      "cholesterol_mg": 22.11,
+      "dietary_fiber_g": 1.41,
+      "protein_g": 7.85,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 94.5,
+      "total_carbs_g": 12.64,
+      "total_fat_g": 7.59,
+      "total_sugars_g": 1.66,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.42,
+      "dietary_fiber": 35.11,
+      "protein": 109.62,
+      "saturated_fat": 87.2,
+      "sodium": 28.67,
+      "total_carbs": 32.06,
+      "total_fat": 67.88
+    },
+    "serving_size_g": 697.75,
+    "total_recipe_weight_g": 2791
+  }
+]

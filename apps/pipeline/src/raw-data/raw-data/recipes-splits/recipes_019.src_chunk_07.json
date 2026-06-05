@@ -1,0 +1,652 @@
+[
+  {
+    "recipe_name": "Rustic Beef & Tomato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_beef_%26_tomato_stew_20250625_083714_e7657a05.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:37:14.691994000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of Rustic Beef & Tomato Stew fills a deep, slightly imperfect rustic ceramic bowl. Thick, seared beef chunks, roughly chopped softened onions, and bright red tomato pieces are generously nestled in a rich, reddish-brown gravy. The beef shows a deep caramelized crust, while the stew's natural colors are prominent. A scattering of fresh, vibrant green chopped parsley provides a functional garnish. The bowl is placed on a well-used, light wooden dining table, suggesting a homely family kitchen setting. A simple, off-white cloth napkin is casually draped beside the bowl. The lighting is warm and inviting, creating a cozy atmosphere. The plating is natural and unforced, with components overlapping comfortably, filling the plate without overcrowding. A sturdy, everyday metal spoon rests on the table, completing the unpretentious, comforting scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef stewing cuts",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 3-4 cm chunks. Pat beef dry with paper towels. Toss beef with flour, salt, and pepper until evenly coated.",
+      "Roughly chop onions. Mince garlic.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Do not overcrowd the pot. Remove seared beef and set aside.",
+      "Add chopped onions to the pot. Sauté until softened and translucent, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in beef broth, scraping up any browned bits from the bottom of the pot.",
+      "Return seared beef to the pot. Add crushed tomatoes, bay leaf, and thyme sprigs.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for 2 to 2.5 hours, or until beef is fork-tender. Stir occasionally.",
+      "Remove bay leaf and thyme sprigs before serving.",
+      "Chop fresh parsley for garnish. Taste and adjust seasoning if needed."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 591,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 60.6,
+      "saturated_fat_g": 11,
+      "sodium_mg": 765,
+      "total_carbs_g": 18,
+      "total_fat_g": 31.4,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 12,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 151,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 10,
+      "protein": 121,
+      "saturated_fat": 55,
+      "sodium": 33,
+      "total_carbs": 7,
+      "total_fat": 40
+    },
+    "serving_size_g": 506,
+    "total_recipe_weight_g": 2024
+  },
+  {
+    "recipe_name": "Crab Risotto with Lemon and Saffron",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crab_risotto_with_lemon_and_saffron_20250625_083712_827a1532.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:37:13.141472000Z",
+    "selected_ingredients": [
+      "crab"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of creamy, saffron-infused Crab Risotto is presented in a wide, shallow white porcelain bowl. The risotto, a pale golden-yellow, maintains a fluid, natural consistency, pooling gently within the bowl. Visible throughout are delicate, tender chunks of white-pink crab meat, gently folded in, showcasing its pristine quality. A vibrant sprinkle of finely chopped fresh flat-leaf parsley crowns the dish, adding a pop of green. A thin, bright yellow lemon wheel or a twist of lemon peel is placed artfully on the rim. The setting features a simple wooden table surface, with a silver fork and spoon placed on a folded cotton napkin beside the bowl, set against a softly blurred, modern bistro background with natural, even lighting. The presentation is clean, professional, and inviting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a 'primo piatto' (first course) or a light main course.",
+      "Pair with a crisp, dry white wine like Pinot Grigio."
+    ],
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Fresh lump crab meat",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 large, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Fish or vegetable stock",
+        "quantity": "1.5 litres, warm"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g, divided"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese",
+        "quantity": "80 g, freshly grated"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large, zest and juice"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30 g, finely chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Warm stock in a saucepan. Keep it at a gentle simmer.",
+      "Heat olive oil and 20 g butter in a large, heavy-bottomed pan over medium heat.",
+      "Add finely diced shallots. Cook until translucent, about 3 minutes. Add minced garlic. Cook 1 minute.",
+      "Add Arborio rice. Stir constantly for 2 minutes until edges are translucent. Do not brown.",
+      "Pour in white wine. Stir until completely absorbed by the rice.",
+      "Add one ladleful of warm stock. Stir constantly until liquid is absorbed. Continue adding stock, one ladleful at a time, stirring frequently, allowing each addition to be absorbed before adding the next. This takes 18-20 minutes.",
+      "Dissolve saffron threads in a small amount of warm stock. Add to risotto halfway through cooking.",
+      "Risotto should be creamy and al dente. It should flow slightly when the pan is tilted.",
+      "Remove from heat. Stir in remaining 40 g butter, grated Parmigiano-Reggiano, lemon zest, and lemon juice.",
+      "Gently fold in crab meat. Season with sea salt and black pepper to taste.",
+      "Cover the pan and let risotto rest for 2 minutes.",
+      "Ladle risotto into warm bowls. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Use high-quality fresh lump crab meat for the best flavor and texture.",
+      "Do not overcook the crab; it should be added at the very end and gently folded in to maintain its delicate texture.",
+      "Risotto should be 'all'onda' (wavy) in consistency, not stiff or dry."
+    ],
+    "traditional_techniques": [
+      "Tostatura (toasting the rice)",
+      "Soffritto (sautéing aromatics)",
+      "Mantecatura (creaming the risotto with butter and cheese)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 699,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 33.5,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 1285,
+      "total_carbs_g": 74.3,
+      "total_fat_g": 26.7,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 4.8,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 185,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 7.6,
+      "protein": 67.1,
+      "saturated_fat": 62.8,
+      "sodium": 55.9,
+      "total_carbs": 27,
+      "total_fat": 34.2
+    },
+    "serving_size_g": 694,
+    "total_recipe_weight_g": 2776
+  },
+  {
+    "recipe_name": "Roasted Tomato and White Bean Pasta Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_tomato_and_white_bean_pasta_salad_20250625_083635_b1b4bccc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:36:35.666897000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Roasted Tomato and White Bean Pasta Salad is presented on a clean white porcelain dinner plate, showcasing a harmonious blend of colors and textures. Tender farfalle pasta, light ivory in hue, forms the base. Scattered throughout are vibrant red roasted cherry tomato halves, some slightly blistered, alongside creamy white cannellini beans. Small, neatly diced cubes of cooked chicken breast are interspersed, providing a lean protein element. Halved fresh mozzarella bocconcini add soft white contrasts. Fresh, dark green baby arugula leaves are gently folded in, adding a pop of color and freshness. The salad is lightly coated with a glistening lemon-herb vinaigrette, visible on the pasta and vegetables. The composition is balanced, with ingredients artfully distributed but not overly arranged, allowing for moderate negative space. A cotton napkin is placed beside the plate on a simple wooden table surface, under natural, even lighting, creating a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread on the side."
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Farfalle pasta",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400 g, halved"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "400 g, drained and rinsed"
+      },
+      {
+        "name": "Baby arugula",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh mozzarella (bocconcini)",
+        "quantity": "125 g, halved"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "30 g, finely chopped"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "5 g, finely chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss halved cherry tomatoes with 5 ml olive oil, salt, and pepper on a baking sheet. Roast for 15-20 minutes until slightly softened and blistered.",
+      "Cook farfalle pasta according to package directions until al dente. Drain and rinse with cold water to cool.",
+      "While pasta cooks, season chicken breast with salt and pepper. Heat 10 ml olive oil in a large pan over medium-high heat. Cook chicken for 6-8 minutes per side, or until internal temperature reaches 75°C. Let rest, then dice into 2 cm cubes.",
+      "For the vinaigrette, whisk together extra virgin olive oil, red wine vinegar, Dijon mustard, minced garlic, chopped basil, chopped oregano, salt, and pepper in a small bowl.",
+      "In a large mixing bowl, combine cooled pasta, roasted cherry tomatoes, drained cannellini beans, diced chicken, and halved mozzarella balls.",
+      "Pour vinaigrette over the salad ingredients. Toss gently to combine.",
+      "Fold in baby arugula just before serving."
+    ],
+    "notes": [
+      "This salad is excellent served at room temperature or chilled.",
+      "For best flavor, let the salad sit for 15 minutes after dressing before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 775,
+      "cholesterol_mg": 88.4,
+      "dietary_fiber_g": 11.3,
+      "protein_g": 50,
+      "saturated_fat_g": 7.9,
+      "sodium_mg": 708.4,
+      "total_carbs_g": 78.7,
+      "total_fat_g": 28.9,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 175,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 11.3,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 160.2,
+      "total_carbs_g": 17.8,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29.5,
+      "dietary_fiber": 40.4,
+      "protein": 100,
+      "saturated_fat": 39.3,
+      "sodium": 30.8,
+      "total_carbs": 28.6,
+      "total_fat": 37
+    },
+    "serving_size_g": 442.3,
+    "total_recipe_weight_g": 1769.3
+  },
+  {
+    "recipe_name": "Mediterranean Roasted Chicken with Garlic Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_roasted_chicken_with_garlic_potatoes_20250625_083617_eac655c5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:36:17.587783000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "tomato",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "no onion",
+    "visual_description": "A single, generous portion of Mediterranean Roasted Chicken is presented on a clean white porcelain dinner plate, showcasing a golden-brown, crisp-skinned chicken thigh as the centerpiece. It rests beside a pile of golden-roasted baby potato wedges and tender, roasted whole garlic cloves. Vibrant red, burst cherry tomatoes and fresh green oregano leaves are scattered amongst the components, adding pops of color. A light, glistening pan sauce, infused with chicken broth and lemon, pools subtly around the base. Fresh chopped parsley is generously sprinkled over the dish. The plating is organized yet organic, allowing natural textures and colors to shine. The plate is set on a simple wooden table, with a neatly folded white cotton napkin and a fork and knife placed beside it. Natural, even lighting highlights the dish’s inviting warmth and rustic elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty rustic bread to soak up the pan juices",
+      "Accompany with a simple green salad dressed with olive oil and lemon"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 large (approx. 800g total)"
+      },
+      {
+        "name": "Baby potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8, unpeeled"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "20g (about 4 sprigs)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g (for garnish)"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and pat chicken thighs dry. Season generously with salt and pepper.",
+      "Wash baby potatoes. Cut larger potatoes in half. Toss with 30ml olive oil, salt, and pepper on a baking tray.",
+      "Add unpeeled garlic cloves to the potato tray. Roast for 20 minutes.",
+      "Heat remaining 30ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken thighs skin-side down for 8-10 minutes until golden and crispy. Flip and sear for 2 minutes.",
+      "Remove skillet from heat. Carefully transfer chicken to the baking tray with potatoes and garlic.",
+      "Add cherry tomatoes and fresh oregano sprigs to the tray. Toss gently.",
+      "Roast for an additional 25-30 minutes, or until chicken internal temperature reaches 75°C and potatoes are tender.",
+      "While chicken roasts, deglaze the skillet with chicken broth. Scrape up any browned bits. Simmer for 2 minutes.",
+      "Squeeze juice from half a lemon into the broth. Season with salt and pepper. Set aside.",
+      "Once cooked, let chicken rest on the tray for 5 minutes.",
+      "To serve, place a roasted chicken thigh on a plate. Arrange roasted potatoes, garlic, and cherry tomatoes alongside.",
+      "Spoon the pan sauce over the chicken and vegetables. Garnish generously with fresh chopped parsley and a lemon wedge."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "The garlic cloves become soft and sweet when roasted and can be squeezed out of their skins onto the plate."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 718.3,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 43.9,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 230.7,
+      "total_carbs_g": 37.9,
+      "total_fat_g": 45.2,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174.1,
+      "cholesterol_mg": 43.6,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 10.6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 55.9,
+      "total_carbs_g": 9.2,
+      "total_fat_g": 11,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 90,
+      "dietary_fiber": 25,
+      "protein": 88,
+      "saturated_fat": 52,
+      "sodium": 10,
+      "total_carbs": 14,
+      "total_fat": 58
+    },
+    "serving_size_g": 412.5,
+    "total_recipe_weight_g": 1650
+  },
+  {
+    "recipe_name": "Pan-Seared Tofu with Creamy Buckwheat and Roasted Radishes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_tofu_with_creamy_buckwheat_and_roasted_radishes_20250625_083553_23d7ff7c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:35:54.380806000Z",
+    "selected_ingredients": [
+      "tofu",
+      "buckwheat groat",
+      "olive oil",
+      "radish"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "Plated on a clean, round white porcelain dinner plate, a generous mound of creamy, pale golden buckwheat forms the base. Two thick, golden-brown pan-seared tofu slabs, with a distinct crisp exterior, are positioned neatly atop the buckwheat. Scattered around the tofu and buckwheat are vibrant red and pink roasted radish halves and quarters, their edges slightly caramelized, adding pops of color. A sprinkle of bright green chopped fresh chives provides a delicate garnish. The arrangement is balanced and professional, allowing for moderate negative space. The dish is presented on a simple light wooden table surface, accompanied by a folded white cotton napkin and standard restaurant flatware. Natural, even lighting illuminates the scene, highlighting the textures and colors of the dish in a clean bistro-style setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Plant-Based",
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Extra-firm tofu",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Unroasted buckwheat groats",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 L"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Nutritional yeast",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Press tofu for 30 minutes to remove excess water. Cut pressed tofu into 8 thick slabs.",
+      "Preheat oven to 200°C. Halve or quarter radishes. Toss radishes with 15 ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 15-20 minutes until tender-crisp.",
+      "While radishes roast, heat 15 ml olive oil in a medium saucepan over medium heat. Add diced onion. Sauté for 3 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add buckwheat groats to the saucepan. Stir for 1 minute to coat.",
+      "Pour in 250 ml vegetable broth. Bring to a simmer. Cook, stirring occasionally, until broth is absorbed.",
+      "Continue adding remaining broth, 125 ml at a time, stirring until each addition is absorbed before adding more. Cook until buckwheat is tender and creamy, about 20-25 minutes total.",
+      "Stir nutritional yeast, remaining 15 ml olive oil, salt, and pepper into the cooked buckwheat. Adjust consistency with more broth if needed.",
+      "Heat remaining 15 ml olive oil in a large non-stick pan over medium-high heat.",
+      "Sear tofu slabs for 4-5 minutes per side until golden brown and crisp.",
+      "Plate creamy buckwheat. Top with two seared tofu slabs per serving. Arrange roasted radishes around the dish.",
+      "Garnish with chopped fresh chives. Squeeze lemon juice over the entire dish before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 514.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.2,
+      "protein_g": 28.5,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 1024.8,
+      "total_carbs_g": 51.7,
+      "total_fat_g": 25.9,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 78.9,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 4.4,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 157.1,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 4,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 36,
+      "protein": 57,
+      "saturated_fat": 19,
+      "sodium": 45,
+      "total_carbs": 19,
+      "total_fat": 33
+    },
+    "serving_size_g": 652.5,
+    "total_recipe_weight_g": 2610
+  }
+]

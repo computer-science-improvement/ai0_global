@@ -1,0 +1,613 @@
+[
+  {
+    "recipe_name": "Taiwanese Tomato Beef Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_212447_175026b2.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2026-05-04T21:24:48.194769000Z",
+    "selected_ingredients": [
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "Taiwan cuisine",
+    "visual_description": "A deep, wide ceramic bowl sits on a dark wood table. The broth is a rich, vibrant orange-red, shimmering with oil and concentrated tomato essence. Large, 4cm chunks of tender beef shank are nestled atop thick, chewy white wheat noodles. Several soft, skinless tomato wedges, cooked until tender but holding their shape, are placed around the beef. Two vibrant green baby bok choy halves provide a fresh color contrast. The dish is garnished with finely sliced scallions and fresh cilantro leaves. Beside the bowl lies a pair of dark wood chopsticks and a ceramic soup spoon on a white rest. A small side dish of chopped pickled mustard greens completes the authentic Taiwanese presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Taiwanese",
+    "cultural_origin": "Taiwan",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Suan Cai (pickled mustard greens) to cut through the richness",
+      "Provide chili oil for diners to adjust spice levels",
+      "Pair with cold side dishes like braised tofu or seaweed salad"
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Beef shank, cut into 4cm chunks",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Roma tomatoes, quartered",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Fresh wheat noodles",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Ginger, sliced",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "6 pieces"
+      },
+      {
+        "name": "Scallions, cut into 5cm lengths",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Spicy fermented bean paste (Doubanjiang)",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Rock sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "3 pieces"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Baby bok choy, halved",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Pickled mustard greens (Suan Cai), chopped",
+        "quantity": "100 g"
+      }
+    ],
+    "instructions": [
+      "Place beef chunks in a pot of cold water. Bring to a boil for 5 minutes. Drain and rinse beef under cold water to remove impurities.",
+      "Heat 2 tablespoons of oil in a large heavy-bottomed pot. Sauté ginger, garlic, and scallions until fragrant.",
+      "Add fermented bean paste. Fry for 1 minute until the oil turns red.",
+      "Add beef chunks and rock sugar. Stir to coat the meat.",
+      "Pour in soy sauce, beef stock, star anise, and half of the tomatoes.",
+      "Bring to a boil, then reduce heat to low. Cover and simmer for 90 minutes.",
+      "Add remaining tomatoes. Simmer for another 30 minutes until beef is tender but intact.",
+      "Cook wheat noodles in boiling water according to package instructions. Drain.",
+      "Blanch bok choy in boiling water for 1 minute.",
+      "Divide noodles into four deep bowls. Top with beef chunks, tomato wedges, and bok choy.",
+      "Ladle hot broth over the noodles. Serve with pickled mustard greens on the side."
+    ],
+    "notes": [
+      "Beef shank is preferred for its high collagen content which creates a silky broth",
+      "Adding tomatoes in two stages ensures both deep flavor and visible, whole fruit pieces",
+      "Rock sugar provides a cleaner sweetness than granulated white sugar"
+    ],
+    "traditional_techniques": [
+      "Blanching meat for purity",
+      "Slow braising",
+      "Tempering aromatics",
+      "Building umami with fermented bean paste"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 1065,
+      "cholesterol_mg": 175,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 91.3,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 4870,
+      "total_carbs_g": 107,
+      "total_fat_g": 27.8,
+      "total_sugars_g": 14.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 112.1,
+      "cholesterol_mg": 18.4,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 9.6,
+      "saturated_fat_g": 1,
+      "sodium_mg": 512.6,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.3,
+      "dietary_fiber": 24.3,
+      "protein": 182.6,
+      "saturated_fat": 47.5,
+      "sodium": 211.7,
+      "total_carbs": 38.9,
+      "total_fat": 35.6
+    },
+    "serving_size_g": 950,
+    "total_recipe_weight_g": 3800
+  },
+  {
+    "recipe_name": "Jasmine Tea Glazed Brussels Sprouts and Tatsoi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_211839_e2d6e409.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-04T21:18:39.797191000Z",
+    "selected_ingredients": [
+      "maple syrup",
+      "brussels sprout",
+      "tatsoi",
+      "jasmine tea",
+      "cinnamon"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish is presented on a clean, matte-white ceramic plate. A vibrant base of flash-sautéed tatsoi leaves forms an organic, deep green bed. The leaves are glossy and intact, showing bright green stems. Piled atop the greens are halved Brussels sprouts, their cut faces deeply caramelized to a dark, rich brown. A thick, amber-colored jasmine tea and maple glaze coats the sprouts, giving them a high-gloss finish that catches the light. The arrangement is natural and centered, leaving ample white space around the edges. Tiny toasted sesame seeds are scattered precisely over the top. The setting includes a dark wood table, a gray linen napkin, and polished dark wood chopsticks resting on a ceramic holder.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Asian",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Serve in wide, shallow stoneware bowls",
+      "Pair with steamed jasmine rice",
+      "Accompany with hot jasmine tea"
+    ],
+    "hero_ingredient": "Brussels sprouts",
+    "ingredients": [
+      {
+        "name": "Brussels sprouts",
+        "quantity": "600g"
+      },
+      {
+        "name": "Tatsoi leaves",
+        "quantity": "200g"
+      },
+      {
+        "name": "Jasmine tea leaves",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh ginger, minced",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Grapeseed oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Boiling water",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "1 tsp"
+      }
+    ],
+    "instructions": [
+      "Steep jasmine tea leaves in boiling water for 5 minutes.",
+      "Strain tea into a small saucepan.",
+      "Add maple syrup, cinnamon stick, and soy sauce to the tea.",
+      "Simmer over medium heat until liquid reduces by half and thickens.",
+      "Trim and halve Brussels sprouts.",
+      "Heat 30ml oil in a large skillet over medium-high heat.",
+      "Place sprouts cut-side down in the skillet.",
+      "Sear for 4 minutes until dark brown and caramelized.",
+      "Pour the tea reduction over the sprouts.",
+      "Toss sprouts to coat and cook for 2 minutes until tender.",
+      "In a separate pan, heat remaining oil.",
+      "Sauté ginger and garlic for 30 seconds.",
+      "Add tatsoi and flash-sauté until just wilted.",
+      "Remove cinnamon stick from sprouts.",
+      "Serve sprouts over the bed of tatsoi.",
+      "Garnish with sesame seeds."
+    ],
+    "notes": [
+      "Ensure the skillet is very hot before adding sprouts to achieve a deep sear.",
+      "Do not overcook the tatsoi; it should retain its structural integrity and bright color."
+    ],
+    "traditional_techniques": [
+      "Infusing",
+      "Glazing",
+      "Flash-sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 11.7,
+      "calories": 231,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.48,
+      "protein_g": 6.88,
+      "saturated_fat_g": 1.13,
+      "sodium_mg": 573,
+      "total_carbs_g": 29.33,
+      "total_fat_g": 11.25,
+      "total_sugars_g": 15.73,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 5.5,
+      "calories": 108.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.05,
+      "protein_g": 3.24,
+      "saturated_fat_g": 0.53,
+      "sodium_mg": 269.6,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 5.29,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 23,
+      "protein": 14,
+      "saturated_fat": 6,
+      "sodium": 25,
+      "total_carbs": 11,
+      "total_fat": 14
+    },
+    "serving_size_g": 212.5,
+    "total_recipe_weight_g": 850
+  },
+  {
+    "recipe_name": "Nikyu Udon (Savory Beef Udon)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_201721_c56dfa3f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-04T20:17:21.681369000Z",
+    "selected_ingredients": [
+      "udon noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single deep, dark-glazed ceramic donburi bowl sits on a minimalist dark wood table. Inside, thick, glossy white udon noodles are submerged in a clear, deep amber dashi broth. Five or six substantial 3cm chunks of dark, braised beef are clustered on one side, showing a moist, fibrous texture. A vibrant mound of finely sliced green spring onions provides a color contrast in the center. The scene is lit with soft, natural side lighting, highlighting the steam rising from the liquid. A pair of bamboo chopsticks and a flat-bottomed wooden soup spoon rest on a small ceramic holder to the right. A folded navy cotton napkin sits neatly beside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Shichimi Togarashi (seven-spice powder) for heat.",
+      "Provide a small dish of pickled daikon radish (Takuan) as a palate cleanser.",
+      "Accompany with hot green tea (Sencha)."
+    ],
+    "hero_ingredient": "Udon noodles",
+    "ingredients": [
+      {
+        "name": "Fresh or frozen udon noodles",
+        "quantity": "800g"
+      },
+      {
+        "name": "Beef chuck, cut into 3cm cubes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Dashi stock",
+        "quantity": "1.5L"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Fresh ginger, sliced into rounds",
+        "quantity": "30g"
+      },
+      {
+        "name": "Spring onions, finely sliced",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "200ml"
+      }
+    ],
+    "instructions": [
+      "Heat oil in a heavy-bottomed pot over medium heat.",
+      "Brown the 3cm beef cubes on all sides.",
+      "Add 200ml water, 20ml soy sauce, 20ml mirin, ginger, and sugar to the beef.",
+      "Cover and simmer on low for 45 minutes until beef is tender.",
+      "In a separate pot, combine dashi stock, remaining soy sauce, and remaining mirin.",
+      "Bring the dashi mixture to a simmer to create the soup base.",
+      "Boil udon noodles in a large pot of water according to package instructions.",
+      "Drain noodles and divide into four deep ceramic bowls.",
+      "Pour hot dashi soup over the noodles.",
+      "Top each bowl with the simmered beef chunks and a portion of the braising liquid.",
+      "Garnish with sliced spring onions."
+    ],
+    "notes": [
+      "Ensure the dashi is high quality for the best umami profile.",
+      "Do not overcook the noodles; they should maintain a chewy, elastic texture.",
+      "The beef should be tender but hold its cube shape perfectly."
+    ],
+    "traditional_techniques": [
+      "Dashi preparation",
+      "Simmering",
+      "Noodle blanching"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 11.3,
+      "calories": 702,
+      "cholesterol_mg": 97.5,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 34,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 1615,
+      "total_carbs_g": 76,
+      "total_fat_g": 27.9,
+      "total_sugars_g": 12,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.5,
+      "calories": 93.6,
+      "cholesterol_mg": 13,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 4.5,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 215.3,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32.5,
+      "dietary_fiber": 9.3,
+      "protein": 68,
+      "saturated_fat": 50.5,
+      "sodium": 70.2,
+      "total_carbs": 27.6,
+      "total_fat": 35.8
+    },
+    "serving_size_g": 750,
+    "total_recipe_weight_g": 3000
+  },
+  {
+    "recipe_name": "Niku Udon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_201335_c9a2dcaa.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-04T20:13:35.920886000Z",
+    "selected_ingredients": [
+      "udon noodle"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is served in a deep, dark-toned ceramic bowl on a rustic wooden table. Thick, white, glossy udon noodles are submerged in a clear, light-amber dashi broth. A generous mound of savory simmered beef strips and chunks sits in the center, glistening with a dark soy glaze. The meat is piled naturally in a rustic heap, never fanned. Bright green scallion rounds are scattered over one side of the beef. A small dollop of pale yellow grated ginger rests on the edge of the meat. A pair of dark wood chopsticks lies on a ceramic rest to the right. A small side dish of yellow pickled daikon radish is placed nearby. The lighting is warm and soft.",
+    "number_of_servings": 1,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japan",
+    "cultural_serving_suggestions": [
+      "Serve with shichimi togarashi on the side",
+      "Use a flat-bottomed ceramic renge spoon for the broth",
+      "Slurping noodles is encouraged as a sign of appreciation"
+    ],
+    "hero_ingredient": "udon noodle",
+    "ingredients": [
+      {
+        "name": "frozen udon noodles",
+        "quantity": "200g"
+      },
+      {
+        "name": "beef ribeye strips",
+        "quantity": "100g"
+      },
+      {
+        "name": "dashi stock",
+        "quantity": "400ml"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "mirin",
+        "quantity": "15ml"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "scallions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "fresh ginger",
+        "quantity": "5g"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "5ml"
+      }
+    ],
+    "instructions": [
+      "Slice scallions into thin rounds.",
+      "Grate the ginger.",
+      "Heat oil in a pan over medium-high heat.",
+      "Sauté beef strips until browned.",
+      "Stir in sugar, 5ml soy sauce, and 5ml mirin.",
+      "Simmer until the liquid forms a thick glaze on the beef.",
+      "Remove beef from the pan.",
+      "In a separate pot, combine dashi, remaining soy sauce, and remaining mirin.",
+      "Bring the broth to a boil.",
+      "Add udon noodles to the boiling broth.",
+      "Cook for 2 minutes or until tender.",
+      "Pour noodles and broth into a deep ceramic bowl.",
+      "Place the glazed beef in a natural mound in the center.",
+      "Top with scallions and grated ginger."
+    ],
+    "notes": [
+      "Frozen udon noodles often have a better chewy texture than shelf-stable ones",
+      "Do not overcook the beef to maintain tenderness"
+    ],
+    "traditional_techniques": [
+      "simmering",
+      "dashi preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 13,
+      "calories": 653,
+      "cholesterol_mg": 80,
+      "dietary_fiber_g": 3,
+      "protein_g": 27.5,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 2072,
+      "total_carbs_g": 81,
+      "total_fat_g": 24.3,
+      "total_sugars_g": 14,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.7,
+      "calories": 83.6,
+      "cholesterol_mg": 10.2,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 3.5,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 265.5,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26.7,
+      "dietary_fiber": 10.7,
+      "protein": 55,
+      "saturated_fat": 43.5,
+      "sodium": 90.1,
+      "total_carbs": 29.5,
+      "total_fat": 31.2
+    },
+    "serving_size_g": 780.5,
+    "total_recipe_weight_g": 780.5
+  },
+  {
+    "recipe_name": "Bavarian Pork Roast with Dark Beer Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_180342_6f3e0e44.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-04T18:03:43.206836000Z",
+    "selected_ingredients": [
+      "pork",
+      "beer",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A thick, whole piece of slow-roasted pork shoulder sits centered on a clean white porcelain plate. The meat features a dark, mahogany-colored crust from the beer glaze. A glossy, deep brown onion gravy pools at the base, containing translucent, soft onion strips. Two perfectly round, pale potato dumplings sit neatly to the side. A small mound of finely shredded, vibrant purple braised cabbage provides a sharp color contrast. The dish is presented on a light oak bistro table with a natural cotton napkin and a heavy glass of dark lager. The lighting is soft and directional, highlighting the textures of the crackled pork skin and the smooth sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Serve with Kartoffelknödel (potato dumplings)",
+      "Accompany with Blaukraut (braised red cabbage)",
+      "Pair with a chilled glass of Dunkel or Doppelbock beer"
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, bone-in",
+        "quantity": "1.2 kg"
+      },
+      {
+        "name": "Yellow onions, thick sliced",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Dark Bavarian lager (Dunkel)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Pork stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Caraway seeds, toasted and crushed",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "4"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Score the pork skin in a diamond pattern.",
+      "Rub pork with salt, pepper, and crushed caraway seeds.",
+      "Heat oil in a heavy Dutch oven over medium-high heat.",
+      "Sear pork on all sides until deeply browned.",
+      "Remove pork from the pot and set aside.",
+      "Add onions to the pot and sauté until dark golden brown.",
+      "Stir in garlic and cook for 1 minute.",
+      "Pour in dark beer and scrape the bottom of the pot.",
+      "Return pork to the pot and add pork stock.",
+      "Roast uncovered for 2.5 hours.",
+      "Baste the meat with pan juices every 30 minutes.",
+      "Remove pork and rest for 15 minutes.",
+      "Strain cooking liquid and reduce over high heat until glossy."
+    ],
+    "notes": [
+      "Do not cover the pot during roasting to ensure the skin becomes crispy.",
+      "Ensure the beer is a traditional dark lager for the correct malt profile.",
+      "Resting the meat is essential for moisture retention."
+    ],
+    "traditional_techniques": [
+      "slow roasting",
+      "deglazing",
+      "basting"
+    ]
+  }
+]

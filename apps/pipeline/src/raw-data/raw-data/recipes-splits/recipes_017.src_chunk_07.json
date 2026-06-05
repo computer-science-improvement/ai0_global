@@ -1,0 +1,695 @@
+[
+  {
+    "recipe_name": "Chicken and Potato Gratin Dauphinois with Tomato and Caramelized Onion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_potato_gratin_dauphinois_with_tomato_and_caramelized_onion_20250626_095741_033a8977.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:57:41.591298000Z",
+    "selected_ingredients": [
+      "chicken",
+      "nutmeg",
+      "onion",
+      "potato",
+      "parmesan cheese",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rectangular ceramic gratin dish holds a golden-brown, bubbling Chicken and Potato Gratin Dauphinois. The surface is a rich, crusted blend of melted Parmesan and tender potato slices, with hints of roasted tomato and caramelized onion peeking through. A single generous portion is plated on a clean white porcelain dinner plate, showcasing thick medallions of pan-seared chicken nestled within layers of thinly sliced potatoes. The creamy béchamel sauce coats each element, creating a harmonious texture. The dish has a comforting, rustic elegance. A sprig of fresh thyme garnishes the top. The table is a simple wooden surface, with a folded white cotton napkin placed beside the plate. Traditional silver flatware is arranged neatly. Natural, even lighting illuminates the dish, highlighting its warmth and rich colors. The background is clean and slightly blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty baguette slices on the side."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Nutmeg, freshly grated",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Full-fat milk, warmed",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper. Heat 15ml olive oil in a large oven-safe pan over medium-high heat. Sear chicken thighs 4 minutes per side until golden. Cook chicken to an internal temperature of 75°C (167°F). Remove chicken. Let rest, then slice into 2 cm thick medallions.",
+      "In the same pan, add 15g butter and the sliced onions. Cook over medium-low heat for 20-25 minutes, stirring occasionally, until deeply golden brown and soft. Set aside.",
+      "Preheat oven to 180°C. Toss halved tomatoes with 15ml olive oil, minced garlic, and thyme sprigs. Spread on a baking tray. Roast for 20 minutes until softened and slightly shriveled.",
+      "Peel potatoes. Slice thinly, 2-3 mm thick, using a mandoline or sharp knife.",
+      "In a saucepan, melt 35g butter over medium heat. Stir in 50g flour. Cook 1 minute, stirring constantly, to make a roux. Gradually whisk in warmed milk until smooth. Bring to a simmer, whisking, until thickened. Stir in 0.5 teaspoon grated nutmeg, salt, and pepper.",
+      "Lightly butter a 20x30 cm baking dish. Arrange a layer of potato slices. Top with half the caramelized onions, half the roasted tomatoes, and half the chicken medallions. Pour one-third of the béchamel over. Sprinkle with one-third of the grated Parmesan. Repeat layers once more. Finish with a final layer of potatoes, remaining béchamel, and remaining Parmesan.",
+      "Cover dish loosely with foil. Bake for 40 minutes. Remove foil. Bake for another 20-25 minutes, or until potatoes are tender and top is golden brown and bubbly. Insert a knife to check potato tenderness.",
+      "Let gratin rest 10 minutes before serving."
+    ],
+    "traditional_techniques": [
+      "Béchamel",
+      "Gratin",
+      "Caramelization"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 787.1,
+      "cholesterol_mg": 201,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 46.1,
+      "saturated_fat_g": 17.5,
+      "sodium_mg": 681.8,
+      "total_carbs_g": 62.8,
+      "total_fat_g": 40,
+      "total_sugars_g": 12.8,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 112.5,
+      "cholesterol_mg": 28.7,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 97.4,
+      "total_carbs_g": 9,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 24.5,
+      "protein": 92.1,
+      "saturated_fat": 87.4,
+      "sodium": 29.6,
+      "total_carbs": 22.9,
+      "total_fat": 51.3
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2799
+  },
+  {
+    "recipe_name": "Penne with Gorgonzola, Caramelized Apple, and Toasted Walnuts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_penne_with_gorgonzola%2C_caramelized_apple%2C_and_toasted_walnuts_20250626_095733_2765dcdd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:57:34.443873000Z",
+    "selected_ingredients": [
+      "apple",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Penne pasta coated in a creamy, pale yellow Gorgonzola sauce is presented on a clean, round white porcelain plate. Golden-brown diced caramelized apple pieces are interspersed throughout the pasta, alongside irregular, dark brown toasted walnut chunks. A generous sprinkle of fresh, vibrant green chiffonade sage leaves garnishes the dish, adding aromatic contrast. The pasta is loosely piled in the center of the plate, allowing for moderate negative space. A silver fork is placed to the right. The setting features a simple wooden table surface with a neutral cotton napkin. Natural, even lighting highlights the dish's textures and colors, creating an inviting, professional bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread (pane)",
+      "Serve with a simple green salad (insalata mista)"
+    ],
+    "hero_ingredient": "Gorgonzola cheese",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Apples",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Gorgonzola dolce",
+        "quantity": "150g, crumbled"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "80g, roughly chopped"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 small, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "10-12, thinly sliced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil.",
+      "Place walnuts in a dry pan over medium heat. Toast for 3-5 minutes until fragrant and lightly browned. Remove and set aside.",
+      "In the same pan, melt 15g butter with olive oil over medium heat.",
+      "Add diced apples. Cook for 5-7 minutes, stirring occasionally, until caramelized and tender. Remove apples and set aside.",
+      "Add remaining 15g butter to the pan. Add finely diced shallots. Sauté for 3 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add penne to boiling water. Cook according to package directions until al dente.",
+      "Before draining, reserve 250ml of pasta cooking water.",
+      "Drain penne. Return penne to the pot.",
+      "Add Gorgonzola to the pot with penne. Add 120ml reserved pasta water. Stir vigorously until Gorgonzola melts and creates a creamy sauce, adding more pasta water as needed for desired consistency.",
+      "Stir in caramelized apples, toasted walnuts, and thinly sliced sage.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately, topped with grated Parmesan cheese."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Emulsifying sauce with pasta water"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 817,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 28.8,
+      "saturated_fat_g": 15,
+      "sodium_mg": 467,
+      "total_carbs_g": 94.2,
+      "total_fat_g": 38.6,
+      "total_sugars_g": 14,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 285,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 10.1,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 163,
+      "total_carbs_g": 32.9,
+      "total_fat_g": 13.5,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 26,
+      "protein": 58,
+      "saturated_fat": 75,
+      "sodium": 20,
+      "total_carbs": 34,
+      "total_fat": 49
+    },
+    "serving_size_g": 286.5,
+    "total_recipe_weight_g": 1145.8
+  },
+  {
+    "recipe_name": "Rustic Chicken Cacciatore with Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_cacciatore_with_rigatoni_20250626_095710_68cb64d6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:57:11.338452000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "pasta",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Rustic Chicken Cacciatore with Rigatoni is presented on a simple, rustic ceramic plate. Large, tender chicken chunks are nestled among al dente rigatoni pasta and vibrant diced bell peppers (red, green, yellow), all coated in a rich, deep red tomato sauce. The dish is casually plated, allowing components to naturally overlap, showcasing the rustic texture of the sauce and the substantial chicken pieces. A sprinkle of fresh, bright green chopped parsley adds a functional garnish. The scene is set on a well-used wooden dining table, illuminated by warm, cozy kitchen lighting, reflecting a homely, lived-in atmosphere. Italian flatware and a casually folded checkered cloth napkin complete the authentic, comfort-focused presentation. A small bowl of grated Parmesan cheese and a few slices of crusty bread are nearby, enhancing the Italian home dining feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Offer grated Parmesan cheese at the table for individual preference."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried basil",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4 cm chunks. Season with salt and pepper.",
+      "Dice all bell peppers and onion into 2 cm pieces. Mince garlic.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken chunks in batches until golden brown on all sides. Remove chicken from pot. Ensure internal temperature reaches 75°C (167°F).",
+      "Add diced onion and bell peppers to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic, oregano, and basil. Cook for 1 minute until fragrant.",
+      "Pour in diced tomatoes and chicken broth. Bring to a simmer.",
+      "Return chicken chunks to the pot. Reduce heat to medium-low. Simmer, uncovered, for 20-25 minutes. Stir occasionally.",
+      "While sauce simmers, cook rigatoni pasta according to package directions until al dente.",
+      "Drain pasta. Add cooked pasta directly to the chicken cacciatore sauce. Toss to combine.",
+      "Serve immediately. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Always cook chicken to an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for aromatics)",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 782,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 48.7,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 750,
+      "total_carbs_g": 96.3,
+      "total_fat_g": 21.5,
+      "total_sugars_g": 14.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.2,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 111,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 35,
+      "protein": 97,
+      "saturated_fat": 24,
+      "sodium": 33,
+      "total_carbs": 35,
+      "total_fat": 28
+    },
+    "serving_size_g": 677.25,
+    "total_recipe_weight_g": 2709
+  },
+  {
+    "recipe_name": "Kale and Tofu Miso Pasta Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_kale_and_tofu_miso_pasta_salad_20250626_095654_6598dd92.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:56:54.981482000Z",
+    "selected_ingredients": [
+      "tofu",
+      "soy sauce",
+      "kale",
+      "onion",
+      "miso paste",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A vibrant, homely Kale and Tofu Miso Pasta Salad is presented in a deep, rustic ceramic bowl on a well-used wooden dining table. The salad features tender fusilli pasta, vibrant dark green chopped kale, golden-brown pan-fried tofu cubes, and thinly sliced purple-red onion. Each component is visible, generously coated in a light brown, glossy miso-soy dressing. The ingredients are casually mixed, creating an inviting, unpretentious appearance. A few white sesame seeds are sprinkled over the top for garnish. The scene is lit by warm, natural kitchen light, highlighting the fresh textures and colors. A pair of simple wooden chopsticks rests beside the bowl on a casually placed cloth napkin. The overall presentation is comforting and familiar, typical of a family kitchen meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled ginger.",
+      "Accompany with a small bowl of clear miso soup."
+    ],
+    "hero_ingredient": "Kale",
+    "ingredients": [
+      {
+        "name": "Extra-firm tofu",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh kale",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Short pasta (e.g., fusilli, penne)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "White miso paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Sesame seeds",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Press tofu for 20 minutes to remove excess water. Cut into 2 cm cubes.",
+      "Toss tofu cubes with 15 ml soy sauce. Heat 15 ml vegetable oil in a large pan over medium-high heat.",
+      "Cook tofu for 8-10 minutes until golden and firm on all sides. Set aside.",
+      "Cook pasta according to package directions until al dente. Drain and rinse with cold water to cool.",
+      "Wash kale. Remove tough stems. Chop kale leaves into bite-sized pieces.",
+      "Bring a pot of salted water to a boil. Blanch chopped kale for 1-2 minutes. Drain immediately and plunge into ice water. Drain well and squeeze out excess water.",
+      "Thinly slice red onion.",
+      "In a small bowl, whisk together miso paste, remaining 45 ml soy sauce, rice vinegar, sesame oil, maple syrup, and 30 ml water until smooth.",
+      "In a large bowl, combine cooked pasta, blanched kale, cooked tofu, and sliced red onion.",
+      "Pour dressing over the salad. Toss gently to combine all ingredients.",
+      "Serve immediately or chill for later. Garnish with sesame seeds."
+    ],
+    "notes": [
+      "This salad can be prepared ahead of time and stored in the refrigerator.",
+      "Adjust the amount of dressing to your preference.",
+      "Can be served warm or cold."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 448,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 21.3,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 652,
+      "total_carbs_g": 62.1,
+      "total_fat_g": 14.3,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 5.5,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 168,
+      "total_carbs_g": 16,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 23,
+      "protein": 43,
+      "saturated_fat": 9,
+      "sodium": 28,
+      "total_carbs": 23,
+      "total_fat": 18
+    },
+    "serving_size_g": 389,
+    "total_recipe_weight_g": 1556
+  },
+  {
+    "recipe_name": "Chicken and Kidney Bean Chili",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_kidney_bean_chili_20250626_095539_fbb4552f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:55:39.719894000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of hearty chicken and kidney bean chili is presented in a deep, rustic ceramic bowl, showcasing its rich, reddish-brown hue. The chili is thick, with visible chunks of tender, braised chicken and plump, dark red kidney beans. Small diced pieces of bell pepper and onion are interspersed throughout, adding specks of green and white. A modest dollop of white sour cream melts slightly into the warm chili, and a sprinkle of bright green chopped fresh cilantro rests on top. The bowl sits on a well-worn wooden dining table, alongside a small stack of golden-brown tortilla chips. A simple, off-white cloth napkin is casually draped beside the bowl. Warm, inviting light from an overhead kitchen fixture casts soft shadows, creating a cozy, homely atmosphere. The background is slightly blurred, hinting at a comfortable family kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with tortilla chips for dipping.",
+      "Offer shredded cheddar cheese as a topping.",
+      "Provide a dollop of sour cream or Greek yogurt.",
+      "Serve with warm cornbread on the side."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Canned kidney beans, rinsed",
+        "quantity": "2 x 400 g cans"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "1 x 400 g can"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2-3 cm chunks.",
+      "Heat olive oil in a large pot over medium-high heat.",
+      "Brown chicken chunks on all sides. Remove chicken from pot.",
+      "Add diced onion and bell pepper to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic, chili powder, cumin, and smoked paprika. Cook 1 minute until fragrant.",
+      "Return chicken to the pot. Add diced tomatoes, rinsed kidney beans, and chicken broth.",
+      "Bring the mixture to a boil, then reduce heat to low.",
+      "Simmer, covered, for 30 minutes, stirring occasionally.",
+      "Uncover and simmer for another 15-20 minutes, or until chili thickens and chicken is tender. Ensure chicken internal temperature reaches 75°C (167°F).",
+      "Season with salt and black pepper to taste."
+    ],
+    "notes": [
+      "For extra heat, add a pinch of cayenne pepper or a chopped jalapeño with the onion.",
+      "Chili flavors deepen overnight; consider making it a day ahead."
+    ],
+    "traditional_techniques": [
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 646,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 19.5,
+      "protein_g": 50.1,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 969,
+      "total_carbs_g": 61.1,
+      "total_fat_g": 23.7,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 95.1,
+      "cholesterol_mg": 20.8,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 7.4,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 142.8,
+      "total_carbs_g": 9,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 70,
+      "protein": 100,
+      "saturated_fat": 26,
+      "sodium": 42,
+      "total_carbs": 22,
+      "total_fat": 30
+    },
+    "serving_size_g": 679,
+    "total_recipe_weight_g": 2716
+  }
+]

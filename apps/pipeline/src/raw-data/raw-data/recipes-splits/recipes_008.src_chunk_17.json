@@ -1,0 +1,699 @@
+[
+  {
+    "recipe_name": "Caramelized Onion & Carrot Blondie Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_onion_%26_carrot_blondie_bites_20250810_145148_c328f7f0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T14:51:48.925666000Z",
+    "selected_ingredients": [
+      "potato",
+      "carrot",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "Six to nine golden-brown blondie bites are meticulously arranged on a sophisticated rectangular white ceramic serving platter. Each bite, approximately 3x3 cm, displays a slightly crisp, chewy exterior with a subtle crackle. The interior reveals a moist, dense crumb, flecked with bright orange specks of grated carrot and subtle, darker swirls of deeply caramelized onion. The natural colors of the ingredients are prominent. The blondies are placed with consistent spacing, creating an inviting visual flow. The platter rests on a well-used wooden dining table, illuminated by warm, cozy kitchen lighting, suggesting a relaxed family dining area. A casually placed, folded linen napkin in a neutral tone lies nearby. The background is minimal, keeping the focus on the delicately prepared sweets.",
+    "number_of_servings": 2,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Caramelized Onion",
+    "ingredients": [
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Russet potato",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 ml"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1 ml"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "0.5 ml"
+      }
+    ],
+    "instructions": [
+      "Slice onion thinly. Melt 15 g butter in a pan over low heat. Add onion. Cook slowly for 30-40 minutes, stirring occasionally, until deeply caramelized and jam-like. Set aside.",
+      "Peel and dice potato. Boil until very tender. Drain and mash thoroughly. Set aside.",
+      "Peel and finely grate carrot. Set aside.",
+      "Preheat oven to 175°C. Line an 18x18 cm baking pan with parchment paper.",
+      "Melt remaining 45 g butter in a bowl. Whisk in brown sugar and granulated sugar until combined.",
+      "Beat in egg and vanilla extract until smooth.",
+      "In a separate bowl, whisk together flour, baking powder, salt, cinnamon, and nutmeg.",
+      "Gradually add dry ingredients to wet ingredients. Mix until just combined.",
+      "Fold in mashed potato and grated carrot.",
+      "Pour half the batter into the prepared pan. Spoon dollops of caramelized onion over the batter. Cover with remaining batter. Swirl gently with a knife.",
+      "Bake for 20-25 minutes, or until a toothpick inserted into the center comes out with moist crumbs.",
+      "Cool completely in the pan on a wire rack. Cut into 6-9 uniform squares."
+    ],
+    "notes": [
+      "The deeply caramelized onion transforms into a sweet, complex flavor that complements the carrot and potato, offering an unexpected yet delightful twist.",
+      "Ensure onions are caramelized very slowly until almost jam-like for the best flavor integration."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 73.7,
+      "calories": 839,
+      "cholesterol_mg": 157.8,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 11.5,
+      "saturated_fat_g": 16.5,
+      "sodium_mg": 594.7,
+      "total_carbs_g": 137.3,
+      "total_fat_g": 27.8,
+      "total_sugars_g": 78.2,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 22.7,
+      "calories": 258.2,
+      "cholesterol_mg": 48.6,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 3.5,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 183,
+      "total_carbs_g": 42.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 24.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 16,
+      "protein": 23,
+      "saturated_fat": 83,
+      "sodium": 26,
+      "total_carbs": 50,
+      "total_fat": 36
+    },
+    "serving_size_g": 324.63,
+    "total_recipe_weight_g": 649.25
+  },
+  {
+    "recipe_name": "Braised Chicken with Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_root_vegetables_20250810_144942_9028309c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T14:49:42.495503000Z",
+    "selected_ingredients": [
+      "potato",
+      "carrot",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, individual portion of braised chicken with root vegetables is presented on a clean, round white porcelain dinner plate. Two golden-brown, seared chicken thighs are nestled amidst chunky, tender roasted potatoes and vibrant orange carrot pieces, with softened, quartered onion segments. The rich, glossy braising liquid lightly coats the ingredients and pools at the bottom of the plate. Freshly chopped green parsley is sprinkled over the dish, adding a pop of color. The arrangement is organic and inviting, showcasing the textures of the crispy chicken skin against the soft vegetables. The scene is set on a light wooden table surface, with a simple white cotton napkin and classic French flatware placed beside the plate. Natural, even lighting highlights the dish's warmth and appealing textures. A small piece of crusty baguette is casually placed to the side.",
+    "number_of_servings": 2,
+    "cuisine_type": "French Countryside",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "2 (approx. 500-600g total)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium (approx. 300g), cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (approx. 150g), peeled and cut into 2 cm thick rounds"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200g), quartered"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy, about 8-10 minutes. Flip and sear other side for 2 minutes. Remove chicken from pot.",
+      "Add quartered onions and carrot rounds to the pot. Sauté until lightly browned, about 5 minutes.",
+      "Stir in minced garlic and tomato paste. Cook for 1 minute until fragrant.",
+      "Deglaze with white wine, scraping up any browned bits from the bottom of the pot. Cook until liquid reduces by half, about 2 minutes.",
+      "Return chicken to the pot. Add potato chunks, chicken broth, thyme sprigs, and bay leaf. Bring to a simmer.",
+      "Cover pot and transfer to a preheated oven at 180°C. Braise for 45-50 minutes, or until chicken is tender and reaches an internal temperature of 75°C.",
+      "Remove thyme sprigs and bay leaf. Season sauce with salt and pepper to taste.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For a richer flavor, use chicken stock instead of broth."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Searing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 898.4,
+      "cholesterol_mg": 264,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 61,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 833.7,
+      "total_carbs_g": 47.4,
+      "total_fat_g": 45,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109.5,
+      "cholesterol_mg": 32.2,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.4,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 101.6,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 88,
+      "dietary_fiber": 26.9,
+      "protein": 122,
+      "saturated_fat": 56.3,
+      "sodium": 36.2,
+      "total_carbs": 17.2,
+      "total_fat": 57.6
+    },
+    "serving_size_g": 820.8,
+    "total_recipe_weight_g": 1641.5
+  },
+  {
+    "recipe_name": "Classic Shepherd's Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_shepherd%27s_pie_20250810_144855_68fb1a65.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T14:48:56.131562000Z",
+    "selected_ingredients": [
+      "potato",
+      "mincemeat",
+      "oil",
+      "bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Classic Shepherd's Pie is presented in a pristine white oval gratin dish, centrally placed on a dark wooden table. The golden-brown mashed potato topping, with delicate fork ridges, forms a rustic crust. Peeking from beneath the potato, the rich, savory lamb mincemeat filling reveals a deep, earthy brown color with flecks of green herbs and diced vegetables. A sprinkle of fresh, vibrant green chopped parsley garnishes the potato. Beside the gratin dish, a slice of perfectly toasted, crusty bread rests on the table. The setting is a modern bistro: a simple cotton napkin is folded neatly to the left, and a classic silver fork and knife are positioned to the right. Natural, even lighting illuminates the dish, highlighting its comforting textures and warm tones against a subtly blurred background.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Often served with green vegetables like peas or green beans.",
+      "A dollop of HP Sauce or ketchup is a common accompaniment in British homes."
+    ],
+    "hero_ingredient": "Lamb Mincemeat",
+    "ingredients": [
+      {
+        "name": "Lamb Mincemeat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery",
+        "quantity": "1 stalk"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red Wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "5g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmesan Cheese (grated)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Crusty Bread",
+        "quantity": "4 slices"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley (for garnish)",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "Peel and cut potatoes into equal chunks. Place in a large pot, cover with cold salted water. Bring to a boil, then reduce heat and simmer until very tender (about 15-20 minutes). Drain well.",
+      "Return drained potatoes to the hot pot over low heat for 1 minute to dry. Mash thoroughly. Add milk, 30g butter, salt, and pepper. Mash until smooth and creamy. Set aside.",
+      "Heat olive oil in a large oven-safe pan or Dutch oven over medium-high heat. Add lamb mincemeat. Cook, breaking it up with a spoon, until browned. Drain excess fat.",
+      "Add diced onion, carrot, and celery to the pan. Cook until softened, about 5-7 minutes. Add minced garlic and cook for 1 minute more until fragrant.",
+      "Stir in tomato paste and cook for 2 minutes. Pour in red wine and deglaze the pan. Let it simmer until reduced by half.",
+      "Add beef stock, Worcestershire sauce, chopped thyme, and rosemary. Bring to a simmer. Reduce heat to low, cover, and cook for 20-25 minutes. Season with salt and pepper to taste.",
+      "Preheat oven to 190°C (375°F). Spoon the mincemeat filling evenly into individual oven-safe gratin dishes or a single large oven-safe dish. Spread the mashed potato evenly over the mincemeat, using a fork to create ridges on top. Sprinkle with grated Parmesan cheese if desired.",
+      "Bake for 25-30 minutes, or until the potato topping is golden brown and the filling is bubbling.",
+      "While pie bakes, toast or grill the bread slices until golden.",
+      "Let the pies rest for a few minutes before serving. Garnish with fresh parsley. Serve with toasted bread on the side."
+    ],
+    "notes": [
+      "For a thicker sauce, stir in 15g of flour with the tomato paste before adding liquids.",
+      "Ensure potatoes are very dry before mashing for a smooth, lump-free texture."
+    ],
+    "traditional_techniques": [
+      "Browning mincemeat",
+      "Sautéing mirepoix",
+      "Deglazing with wine",
+      "Making classic mashed potato"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 927,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 8,
+      "protein_g": 36,
+      "saturated_fat_g": 24.7,
+      "sodium_mg": 665,
+      "total_carbs_g": 68.6,
+      "total_fat_g": 53.5,
+      "total_sugars_g": 8,
+      "trans_fat_g": 2.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 173,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.7,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 124,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 10,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 28,
+      "protein": 72,
+      "saturated_fat": 123,
+      "sodium": 29,
+      "total_carbs": 25,
+      "total_fat": 69
+    },
+    "serving_size_g": 536,
+    "total_recipe_weight_g": 2144
+  },
+  {
+    "recipe_name": "Indian Chicken and Potato Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_indian_chicken_and_potato_curry_20250810_142342_f3eadc82.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T14:23:42.700883000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "chili",
+      "onion",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Aloo Murgh is presented in a shallow white porcelain bowl. A mound of fluffy, steamed long-grain basmati rice occupies one side. Beside it, the curry features large 4cm chunks of moist chicken and 3cm cubes of tender potato. The sauce is a rich, deep orange-brown with visible textures of sautéed onions. Two bright green chilies, slit lengthwise, are nestled among the chicken pieces. Freshly chopped green coriander is scattered across the curry for contrast. The bowl rests on a rustic dark wood surface. A small side dish of pickled vegetables and a copper spoon accompany the meal. Natural light emphasizes the glossy sauce and soft textures of the rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "North Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of lime wedges",
+      "Accompany with mango chutney",
+      "Traditional copper serving spoon",
+      "Serve with warm garlic naan"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless and skinless",
+        "quantity": "800g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Potatoes, peeled and cubed",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onions, finely diced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Green chilies, slit lengthwise",
+        "quantity": "2"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "10g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Wash rice until water runs clear. Soak in water for 20 minutes.",
+      "Boil 600ml water. Add soaked rice. Simmer 12 minutes until tender. Drain.",
+      "Heat oil in a heavy-based pot over medium heat. Add cumin seeds.",
+      "Add diced onions. Sauté until deep golden brown.",
+      "Stir in ginger-garlic paste and slit chilies. Cook for 1 minute.",
+      "Cut chicken into 4cm chunks. Add to pot. Sear until browned.",
+      "Add turmeric, garam masala, and 3cm potato cubes. Season with salt.",
+      "Pour in 200ml water. Cover with a tight lid. Simmer for 20 minutes.",
+      "Check chicken internal temperature reaches 75°C.",
+      "Garnish with chopped coriander. Serve hot with rice."
+    ],
+    "notes": [
+      "Ensure onions are well-browned for a deep sauce color",
+      "Use waxy potatoes so they do not break apart during the simmer",
+      "Soaking the basmati rice ensures long, separate grains"
+    ],
+    "traditional_techniques": [
+      "Bhuna",
+      "Tempering spices",
+      "Tarka"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 759,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 50.8,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 763.8,
+      "total_carbs_g": 101.2,
+      "total_fat_g": 16.2,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168.7,
+      "cholesterol_mg": 42.2,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 11.3,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 169.7,
+      "total_carbs_g": 22.5,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.3,
+      "dietary_fiber": 12.1,
+      "protein": 101.6,
+      "saturated_fat": 16,
+      "sodium": 33.2,
+      "total_carbs": 36.8,
+      "total_fat": 20.8
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Mediterranean Roasted Chicken with Smashed Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_roasted_chicken_with_smashed_potatoes_20250810_142228_19ffb990.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T14:22:29.323364000Z",
+    "selected_ingredients": [
+      "potato",
+      "onion",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, perfectly roasted bone-in chicken thigh, its skin deeply golden and crispy, rests centrally on a clean white porcelain dinner plate. Surrounding the chicken are several irregularly shaped, crispy smashed potatoes, their golden-brown exteriors contrasting with fluffy white interiors. Adjacent, a generous mound of deeply amber-colored, thinly sliced caramelized red onions adds a soft texture and rich hue. The dish is subtly drizzled with a light pan sauce. Fresh green sprigs of rosemary and thyme are placed, along with a bright yellow lemon wedge, providing pops of color. The presentation is professional yet approachable, with moderate negative space. The plate sits on a simple wooden table, accompanied by a folded cotton napkin and standard flatware. Natural, even lighting highlights textures and vibrant colors against a minimal bistro-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a lemon vinaigrette.",
+      "Offer crusty bread to sop up the flavorful pan juices."
+    ],
+    "hero_ingredient": "Roasted Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Small waxy potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Red onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "6"
+      },
+      {
+        "name": "Lemons",
+        "quantity": "2 (1 zested and juiced, 1 cut into wedges)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Boil potatoes: Place potatoes in a large pot. Cover with cold salted water. Bring to a boil. Cook until fork-tender, about 15-20 minutes. Drain. Let cool slightly.",
+      "Prepare chicken: Pat chicken thighs very dry. Season generously with salt and pepper.",
+      "Sear chicken: Heat 15 ml olive oil in a large oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear 8-10 minutes until skin is deep golden and crispy. Flip chicken.",
+      "Roast chicken: Add minced garlic, 2 rosemary sprigs, and 4 thyme sprigs to the skillet. Transfer skillet to oven. Roast 20-25 minutes, or until internal temperature reaches 75°C. Remove chicken from skillet. Let rest.",
+      "Caramelize onions: While chicken roasts, thinly slice red onions into half-moons. Heat 15 ml olive oil in a separate pan over medium-low heat. Add onions. Cook slowly, stirring occasionally, for 20-25 minutes until deeply caramelized and soft. Season with a pinch of salt.",
+      "Prepare smashed potatoes: On a baking sheet, gently smash each boiled potato with the back of a fork. Drizzle with remaining 30 ml olive oil. Season with salt, pepper, remaining 1 rosemary sprig, and 2 thyme sprigs.",
+      "Roast potatoes: Place baking sheet in the oven with the chicken for the last 15-20 minutes of chicken cooking, or roast separately until golden brown and crispy.",
+      "Make pan sauce: While chicken rests, place skillet from chicken over medium heat on stovetop. Add chicken broth and lemon juice. Scrape up any browned bits. Simmer 2-3 minutes until slightly reduced.",
+      "Plate: Place a roasted chicken thigh on each plate. Arrange crispy smashed potatoes around the chicken. Spoon caramelized red onions beside the chicken. Drizzle with pan sauce. Garnish with chopped fresh parsley and a lemon wedge."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For best caramelization, cook onions slowly over low heat."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 731,
+      "cholesterol_mg": 171,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 41.5,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 154.6,
+      "total_carbs_g": 46.2,
+      "total_fat_g": 42.7,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 30.1,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.3,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 27.2,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 22,
+      "protein": 83,
+      "saturated_fat": 48,
+      "sodium": 7,
+      "total_carbs": 17,
+      "total_fat": 55
+    },
+    "serving_size_g": 568,
+    "total_recipe_weight_g": 2272
+  }
+]

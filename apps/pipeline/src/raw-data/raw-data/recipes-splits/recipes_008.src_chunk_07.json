@@ -1,0 +1,630 @@
+[
+  {
+    "recipe_name": "Classic Homestyle Meatloaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_homestyle_meatloaf_20250811_150921_bc8780a7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T15:09:21.699827000Z",
+    "selected_ingredients": [
+      "mincemeat"
+    ],
+    "complexity": "simple",
+    "special_requests": "Не пирог",
+    "visual_description": "A thick slice of golden-brown meatloaf sits centrally on a simple, cream-colored ceramic plate. The meatloaf has a slightly irregular, rustic shape, showcasing its homemade quality. Its exterior is a rich, caramelized brown, hinting at a savory crust. The interior, visible from the cut edge, reveals a dense, meaty texture with finely diced onions and herbs interspersed. A thin, glossy layer of tangy tomato glaze coats the top. Beside the meatloaf, a small mound of creamy mashed potatoes, showing a few natural lumps, nestles against a cluster of vibrant green, steamed green beans. The plate, with its subtle imperfections, rests on a well-worn wooden dining table. A simple metal fork and knife are placed beside it. Warm, soft light from an overhead kitchen fixture illuminates the scene, creating a cozy, inviting atmosphere. A casually folded linen napkin is near the plate. The portion is modest, typical of a comforting home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with mashed potatoes.",
+      "Offer a side of steamed green beans or corn.",
+      "Serve with additional gravy or ketchup."
+    ],
+    "hero_ingredient": "Ground Beef",
+    "ingredients": [
+      {
+        "name": "Ground beef (mincemeat)",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2.5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C.",
+      "Finely dice onion and mince garlic.",
+      "In a large bowl, combine ground beef, breadcrumbs, egg, diced onion, minced garlic, milk, Worcestershire sauce, parsley, salt, and pepper.",
+      "Mix ingredients thoroughly by hand until just combined. Do not overmix.",
+      "Shape the mixture into a loaf and place it in a loaf pan or on a baking sheet.",
+      "Spread ketchup evenly over the top of the loaf.",
+      "Bake for 60-75 minutes, or until internal temperature reaches 75°C.",
+      "Remove from oven. Let rest 10 minutes before slicing."
+    ],
+    "notes": [
+      "Ensure meatloaf reaches an internal temperature of 75°C (167°F) for food safety."
+    ]
+  },
+  {
+    "recipe_name": "Hearty Mincemeat and Potato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_mincemeat_and_potato_bake_20250811_150855_a8a4580d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T15:08:56.071748000Z",
+    "selected_ingredients": [
+      "mincemeat"
+    ],
+    "complexity": "simple",
+    "special_requests": "Не пирог",
+    "visual_description": "A single, generous portion of Hearty Mincemeat and Potato Bake is presented in a deep, rustic ceramic bowl with natural imperfections. The base layer of savory, rich brown mincemeat, featuring diced carrots and onions, is visible beneath a thick, golden-brown layer of creamy mashed potatoes. The potato topping shows slight browning and peaks from the oven, suggesting a comforting texture. A sprinkle of vibrant green, freshly chopped parsley garnishes the top, providing a fresh contrast. The bowl sits on a well-used, warm-toned wooden dining table. A simple, silver fork is casually placed beside the bowl, and a rumpled cloth napkin rests nearby. The scene is bathed in soft, inviting kitchen lighting, creating a homely, lived-in atmosphere. The overall presentation is unpretentious and focuses on the comforting, hearty nature of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Classic Home",
+    "hero_ingredient": "Mincemeat",
+    "ingredients": [
+      {
+        "name": "Beef Mincemeat",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Large Onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium Carrots",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Dried Thyme",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Cheddar Cheese (optional)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Peel and dice the onion and carrots. Mince the garlic.",
+      "Peel potatoes. Cut into large chunks. Boil potatoes in salted water until very tender. Drain and mash with a fork or masher. Season with salt and pepper.",
+      "Heat olive oil in a large oven-safe pan or pot over medium-high heat. Add mincemeat. Break up with a spoon. Brown mincemeat thoroughly. Drain excess fat.",
+      "Add diced onion and carrots to the pan. Cook until softened, about 5-7 minutes. Stir in minced garlic and dried thyme. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and beef broth. Add bay leaf. Bring to a simmer. Reduce heat to low. Cover and cook for 15-20 minutes, allowing flavors to meld. Season with salt and pepper. Remove bay leaf.",
+      "Pour mincemeat mixture into a 20x30 cm baking dish if not using an oven-safe pan. Spread evenly.",
+      "Spoon mashed potatoes over the mincemeat layer. Spread gently to cover. If using, sprinkle grated cheddar cheese over the potatoes.",
+      "Bake for 25-30 minutes, or until the potato topping is lightly golden and the mincemeat mixture is bubbling.",
+      "Remove from oven. Let stand for 5 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 726,
+      "cholesterol_mg": 125,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 46.6,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 668,
+      "total_carbs_g": 55.2,
+      "total_fat_g": 34.6,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 112,
+      "cholesterol_mg": 19.2,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.2,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 102.6,
+      "total_carbs_g": 8.5,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 30,
+      "protein": 93,
+      "saturated_fat": 69,
+      "sodium": 29,
+      "total_carbs": 20,
+      "total_fat": 44
+    },
+    "serving_size_g": 651.2,
+    "total_recipe_weight_g": 2604.6
+  },
+  {
+    "recipe_name": "Shepherd's Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_shepherd%27s_pie_20250811_150808_7800643b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T15:08:08.737267000Z",
+    "selected_ingredients": [
+      "mincemeat"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A deep, oval ceramic baking dish, filled with golden-brown Shepherd's Pie. The mashed potato topping is textured with fork tines, some peaks are slightly crisped and golden. Visible patches of the rich, dark meat and vegetable filling peek through the sides. Diced carrots and peas are discernible within the savory lamb mincemeat gravy. The overall impression is hearty and comforting. A single, generous portion is scooped directly from the baking dish onto a simple, round ceramic plate with a slight rim. The edges of the potato crust are slightly uneven, indicating a home-cooked feel. The plate rests on a well-used, warm-toned wooden dining table. A simple, folded off-white linen napkin is casually placed to the side. A basic fork is next to the plate. Lighting is warm and inviting, typical of a cozy kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad on the side",
+      "Serve with crusty bread for soaking up any extra gravy"
+    ],
+    "hero_ingredient": "Lamb Mincemeat",
+    "ingredients": [
+      {
+        "name": "Lamb mincemeat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Beef or lamb stock",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Peel potatoes. Cut into large chunks. Place in a large pot. Cover with cold salted water. Bring to a boil. Cook until very tender, about 15-20 minutes.",
+      "While potatoes cook, heat vegetable oil in a large oven-safe casserole dish or deep frying pan over medium-high heat. Add lamb mincemeat. Brown thoroughly, breaking up clumps. Cook until no pink remains. Drain excess fat.",
+      "Add diced onion and diced carrots to the pan with the mincemeat. Cook, stirring occasionally, for 5-7 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in plain flour. Cook for 1 minute, stirring constantly. Add tomato paste, Worcestershire sauce, and stock. Stir well. Bring mixture to a simmer. Reduce heat to low. Cook for 10-15 minutes, stirring occasionally, until sauce thickens.",
+      "Stir in frozen peas. Season the meat mixture with salt and black pepper.",
+      "Drain cooked potatoes. Return to the pot. Add butter and milk. Mash until smooth. Season mashed potatoes with salt and black pepper.",
+      "Spoon the meat mixture evenly into the oven-safe dish. Top with mashed potatoes. Spread evenly with a spoon or spatula. Create peaks and ridges on the potato topping using a fork.",
+      "Bake for 25-30 minutes, or until the potato topping is golden brown and the filling is bubbling. Let stand for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 727,
+      "cholesterol_mg": 130,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 39.7,
+      "saturated_fat_g": 16,
+      "sodium_mg": 314,
+      "total_carbs_g": 67.2,
+      "total_fat_g": 35.1,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 112,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.1,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 48,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 35,
+      "protein": 79,
+      "saturated_fat": 80,
+      "sodium": 14,
+      "total_carbs": 24,
+      "total_fat": 45
+    },
+    "serving_size_g": 650,
+    "total_recipe_weight_g": 2600
+  },
+  {
+    "recipe_name": "Polpette al Sugo con Verdure Arrosto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_polpette_al_sugo_con_verdure_arrosto_20250811_150723_a620e3df.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T15:07:24.319207000Z",
+    "selected_ingredients": [
+      "mincemeat"
+    ],
+    "complexity": "simple",
+    "special_requests": "Italian cuisine, Без хлеба",
+    "visual_description": "A single, modest portion of hearty Italian meatballs in a rich, rustic tomato sauce. The browned, tender meatballs are nestled in a vibrant red sauce, flecked with green basil and softened soffritto vegetables. Alongside, roasted zucchini chunks, bell pepper chunks, and whole cherry tomatoes display slightly caramelized edges and natural, appealing colors. The dish is served in an everyday, deep ceramic bowl with a slight imperfection, placed on a well-used wooden dining table. Italian flatware rests casually beside the bowl. Warm, cozy lighting from a kitchen fixture illuminates the scene, highlighting the comforting textures and natural appearance of the home-cooked meal. The overall presentation is unpretentious, focused on satisfying, expertly prepared comfort food, with no bread or additional accompaniments to emphasize the 'без хлеба' request.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve directly from the cooking pot at the family table for a communal, homely feel.",
+      "Pair with simple green salad dressed with olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Mincemeat",
+    "ingredients": [
+      {
+        "name": "Mixed mincemeat (beef and pork)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Plain breadcrumbs",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Crushed tomatoes (passata or polpa)",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "10-12"
+      },
+      {
+        "name": "Zucchini, cut into thick chunks",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Bell peppers (mixed colors), cut into thick chunks",
+        "quantity": "2"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Prepare a baking tray with parchment paper.",
+      "Combine mincemeat, egg, Parmesan, breadcrumbs, parsley, and one minced garlic clove in a large bowl. Season with salt and pepper. Mix well until just combined. Do not overmix.",
+      "Form the mixture into 16-20 golf-ball sized meatballs. Set aside.",
+      "Heat 30 ml olive oil in a large, deep pan or Dutch oven over medium-high heat. Brown the meatballs in batches on all sides. Remove browned meatballs and set aside.",
+      "Reduce heat to medium. Add remaining 30 ml olive oil to the same pan. Add diced onion, carrot, and celery. Cook for 8-10 minutes until softened, stirring occasionally. This is the soffritto.",
+      "Add remaining minced garlic to the soffritto. Cook for 1 minute until fragrant.",
+      "Pour in the crushed tomatoes. Add half the fresh basil leaves, torn. Season the sauce with salt and pepper. Bring to a simmer.",
+      "Gently return the browned meatballs to the simmering sauce. Ensure they are mostly submerged. Cover the pan. Reduce heat to low. Simmer for 20-25 minutes, or until meatballs are cooked through.",
+      "While meatballs simmer, prepare the roasted vegetables. Toss zucchini chunks, bell pepper chunks, and whole cherry tomatoes with a drizzle of olive oil, salt, and pepper on the prepared baking tray. Roast for 20-25 minutes, or until tender and slightly charred.",
+      "Remove meatballs from heat. Stir in remaining fresh basil leaves.",
+      "Serve individual portions of meatballs with sauce alongside the roasted vegetables. Garnish with extra fresh basil if desired."
+    ],
+    "notes": [
+      "For best flavor, use a mix of beef and pork mincemeat.",
+      "Do not overmix the meatball mixture; this keeps them tender.",
+      "The soffritto base (onion, carrot, celery) is crucial for an authentic Italian tomato sauce flavor."
+    ],
+    "traditional_techniques": [
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 670,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 46.7,
+      "saturated_fat_g": 13,
+      "sodium_mg": 427,
+      "total_carbs_g": 30.2,
+      "total_fat_g": 41.7,
+      "total_sugars_g": 14,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 94,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.6,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 60,
+      "total_carbs_g": 4.2,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 27,
+      "protein": 93,
+      "saturated_fat": 65,
+      "sodium": 19,
+      "total_carbs": 11,
+      "total_fat": 53
+    },
+    "serving_size_g": 711.5,
+    "total_recipe_weight_g": 2846
+  },
+  {
+    "recipe_name": "Cottage Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cottage_pie_20250811_150419_29179e7c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T15:04:19.751080000Z",
+    "selected_ingredients": [
+      "mincemeat"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of Cottage Pie rests on a simple, off-white ceramic plate with a slightly uneven rim. The dish is centered on a well-used, rustic wooden dining table. The golden-brown mashed potato topping is visibly crusted with fork marks, showing areas of deeper browning. The potato layer is thick and hearty. Along the edges, the rich, savory beef mincemeat filling, with its bits of diced carrot and green peas, can be seen bubbling slightly. The beef is finely minced and appears tender. The overall colors are warm browns, golden yellows, and hints of green. The plate is modestly filled, allowing some negative space. A small amount of fresh, chopped green parsley is sprinkled on top for a touch of freshness. Natural, warm kitchen light illuminates the scene, highlighting the comforting texture of the pie. A simple, folded cloth napkin and a traditional fork are placed casually beside the plate. The background is softly blurred, hinting at a lived-in family kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Served often with steamed green vegetables like broccoli or green beans."
+    ],
+    "hero_ingredient": "Beef Mincemeat",
+    "ingredients": [
+      {
+        "name": "Beef mincemeat",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Potatoes, peeled and cut into large chunks",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, finely diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "a few sprigs"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (fan 160°C).",
+      "Heat oil in a large oven-safe pan or casserole dish over medium heat.",
+      "Add diced onion and carrots. Cook until softened, about 5-7 minutes.",
+      "Add beef mincemeat to the pan. Break it up with a spoon. Cook until browned, about 8-10 minutes. Drain any excess fat.",
+      "Stir in flour. Cook for 1 minute.",
+      "Add beef stock, tomato paste, and Worcestershire sauce. Bring to a simmer.",
+      "Reduce heat to low. Simmer for 15-20 minutes, stirring occasionally, until sauce thickens.",
+      "Stir in frozen peas. Season with salt and pepper.",
+      "While filling simmers, boil potatoes in salted water until very tender, about 15-20 minutes.",
+      "Drain potatoes well. Return to hot pan. Mash thoroughly.",
+      "Add milk and butter to mashed potatoes. Season with salt and pepper. Mash until smooth and creamy.",
+      "Spoon the mincemeat filling into an ovenproof dish if not already in one.",
+      "Carefully spoon mashed potato over the mincemeat filling. Spread evenly to cover.",
+      "Use a fork to create ridges on the potato topping.",
+      "Bake for 25-30 minutes, or until topping is golden brown and filling is bubbling.",
+      "Let stand for 5 minutes before serving."
+    ],
+    "traditional_techniques": [
+      "Simmering",
+      "Mashing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 764,
+      "cholesterol_mg": 130,
+      "dietary_fiber_g": 9.4,
+      "protein_g": 43.8,
+      "saturated_fat_g": 14.9,
+      "sodium_mg": 903,
+      "total_carbs_g": 62.7,
+      "total_fat_g": 37.4,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 117,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6.7,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 138,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 34,
+      "protein": 88,
+      "saturated_fat": 75,
+      "sodium": 39,
+      "total_carbs": 23,
+      "total_fat": 48
+    },
+    "serving_size_g": 655,
+    "total_recipe_weight_g": 2620
+  }
+]

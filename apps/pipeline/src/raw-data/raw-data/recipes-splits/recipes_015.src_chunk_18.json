@@ -1,0 +1,649 @@
+[
+  {
+    "recipe_name": "Shaved Asparagus and Wagyu Tataki Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_shaved_asparagus_and_wagyu_tataki_salad_20250628_073500_46065b9c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:35:00.602926000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a large, pristine round bone china plate with a subtle, elegant pattern, resting on a polished white Carrara marble surface. The composition is organic and flowing, centered with abundant negative space. A delicate, airy mound of thinly shaved green asparagus ribbons, interwoven with crisp shaved crimson radish and vibrant baby rocket, forms the central element. A few thin, rosy-red slices of seared wagyu beef, exhibiting a perfect seared crust and a rare, glistening interior, are artfully placed atop or nestled within the vegetable mound, showcasing their exquisite marbling. A glossy, amber-hued yuzu-soy vinaigrette is precisely drizzled around the base and over parts of the salad, creating subtle pools and sheen. A light sprinkle of golden-brown toasted sesame seeds adds a textural contrast and subtle warmth. The overall impression is one of sophisticated simplicity and refined artistry, highlighting premium ingredients through precise knife work and thoughtful arrangement. The plate is viewed from a slightly elevated angle, with dramatic professional lighting casting soft shadows, emphasizing the textures and layers against an ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Asparagus",
+    "ingredients": [
+      {
+        "name": "green asparagus",
+        "quantity": "500 g"
+      },
+      {
+        "name": "wagyu beef tenderloin or sirloin, centre-cut",
+        "quantity": "150 g"
+      },
+      {
+        "name": "red radishes",
+        "quantity": "4 large"
+      },
+      {
+        "name": "baby rocket or watercress",
+        "quantity": "50 g"
+      },
+      {
+        "name": "toasted sesame seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "fresh yuzu juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "light soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "toasted sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "grated fresh ginger",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "white pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Using a vegetable peeler, shave asparagus spears lengthwise into thin ribbons. Discard tips and tough ends.",
+      "Season wagyu beef lightly with sea salt and white pepper.",
+      "Heat a heavy-bottomed pan or cast iron skillet over high heat until smoking. Sear wagyu beef for 30 seconds to 1 minute per side. Create a thin crust. Keep interior rare. Remove from heat. Rest beef for 5 minutes.",
+      "Using a very sharp knife, thinly slice the rested wagyu beef against the grain into 3-4 mm thick slices.",
+      "In a small bowl, whisk together yuzu juice, soy sauce, rice vinegar, sesame oil, grated ginger, salt, and pepper.",
+      "Slowly drizzle in the extra virgin olive oil while whisking continuously until emulsified.",
+      "In a mixing bowl, gently toss the shaved asparagus ribbons, shaved radish, and baby rocket with a small amount of the yuzu-soy vinaigrette.",
+      "On each plate, create an artistic mound of the dressed vegetable mix.",
+      "Place 2-3 slices of wagyu tataki artfully on top or nestled within the vegetable mound.",
+      "Drizzle additional dressing around the salad. Sprinkle lightly with toasted sesame seeds. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Creamy Chicken & Cheese Buckwheat Blini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_%26_cheese_buckwheat_blini_20250628_072923_acf83132.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:29:24.147234000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "onion",
+      "buckwheat groat"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A warm, inviting starter. Three or four golden-brown buckwheat blini are arranged slightly overlapping on a simple, round, off-white ceramic plate. Each blini is generously topped with a mound of creamy chicken and cheese mixture. The chicken pieces are small, uniform cubes, visible within the melted, slightly golden cheese sauce. The sauce has a rich, unctuous texture, clinging to the chicken and gently spreading over the blini. A sprinkle of vibrant green chopped parsley adds a fresh contrast on top. The plate sits on a well-used, rustic wooden dining table, showing natural grain and slight imperfections. A simple, patterned cloth napkin is casually folded beside the plate. The lighting is warm and soft, suggestive of natural light filtering through a kitchen window or cozy overhead kitchen lighting. The background is minimally cluttered, showing hints of a home kitchen environment, perhaps a blur of a spice rack or a ceramic mug, reinforcing the homely atmosphere. A simple, sturdy fork and knife are placed beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Buckwheat flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt (for blini)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Butter (for cooking blini)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Chicken breast (boneless, skinless)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cheddar cheese (or similar meltable cheese), grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cream cheese or crème fraîche",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt (for topping)",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Whisk egg and milk in a bowl.",
+      "Combine buckwheat flour, all-purpose flour, baking powder, and 2g salt in a separate bowl.",
+      "Gradually add wet ingredients to dry ingredients. Whisk until smooth batter forms. Let rest 10 minutes.",
+      "Heat a non-stick pan over medium heat. Add a small amount of butter.",
+      "Pour 30ml of batter per blini. Cook 2-3 minutes per side until golden brown and cooked through.",
+      "Transfer blini to a plate. Keep warm. Repeat with remaining batter.",
+      "Dice chicken breast into 1 cm cubes.",
+      "Chop onion into small cubes.",
+      "Heat olive oil in a pan over medium heat. Add diced onion. Sauté 5-7 minutes until softened and translucent.",
+      "Add diced chicken to the pan. Cook 8-10 minutes, stirring occasionally, until chicken is cooked through (internal temperature 75°C). Season with salt and pepper.",
+      "Reduce heat to low. Stir in cream cheese or crème fraîche until melted and combined.",
+      "Remove pan from heat. Stir in grated cheese until melted and creamy.",
+      "Place 3-4 blini on each serving plate.",
+      "Spoon generous portion of creamy chicken and cheese topping onto each blini.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 506,
+      "cholesterol_mg": 153,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 35,
+      "saturated_fat_g": 12.9,
+      "sodium_mg": 652,
+      "total_carbs_g": 34.1,
+      "total_fat_g": 25.3,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 189.3,
+      "cholesterol_mg": 57.3,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 13.1,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 243.9,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 12,
+      "protein": 70,
+      "saturated_fat": 65,
+      "sodium": 28,
+      "total_carbs": 12,
+      "total_fat": 32
+    },
+    "serving_size_g": 267.3,
+    "total_recipe_weight_g": 1069
+  },
+  {
+    "recipe_name": "Braised Beef Chuck with Rosemary Roasted Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_chuck_with_rosemary_roasted_potatoes_20250628_072839_8658fd90.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:28:39.694776000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Braised Beef Chuck with Rosemary Roasted Potatoes is presented on a clean, round white porcelain dinner plate. Centrally, a generous portion of dark-brown, fork-tender braised beef chunks, approximately 5cm in size, are arranged. The beef is glistening with a rich, glossy, reduced sauce that pools slightly around the chunks. Beside the beef, golden-brown roasted potato wedges are neatly placed, showcasing their slightly crisp exterior and tender interior, with visible flecks of green rosemary adhering to their surfaces. A scattering of bright green, freshly chopped parsley leaves provides a vibrant contrast over the beef. The overall presentation is refined yet approachable, with ample negative space on the plate. The setting features a natural wooden table surface, a simple white linen napkin placed to the side, and standard polished silver flatware (fork and knife) complementing the dish. Natural, even lighting illuminates the food, highlighting its textures and colors against a soft, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Crusty bread for dipping into the sauce"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "1 kg, cut into 5cm chunks"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Yukon Gold)",
+        "quantity": "800 g, cut into large wedges"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, roughly chopped"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, roughly chopped"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, smashed"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Dry red wine (e.g., Cabernet Sauvignon)",
+        "quantity": "250 ml (optional)"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Pat beef chunks dry. Season generously with salt and pepper. Dredge lightly in flour.",
+      "Heat 30 ml olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear beef chunks in batches until deeply browned on all sides. Remove beef from pot. Set aside.",
+      "Add remaining 30 ml olive oil to the pot. Add chopped carrots, onion, and celery. Sauté 8-10 minutes until softened and lightly browned.",
+      "Add smashed garlic and tomato paste. Cook 2 minutes, stirring constantly.",
+      "Pour in red wine, if using. Scrape up any browned bits from the bottom of the pot. Cook until liquid reduces by half.",
+      "Return seared beef to the pot. Add beef broth, rosemary, thyme, and bay leaves. Bring to a simmer.",
+      "Cover pot tightly. Transfer to preheated oven. Braise 2.5-3 hours, or until beef is fork-tender. Check internal temperature of beef, ensuring it is at least 75°C.",
+      "While beef braises, prepare potatoes. Toss potato wedges with 30 ml olive oil, salt, pepper, and 2 rosemary sprigs (leaves removed and chopped).",
+      "Spread potatoes in a single layer on a baking sheet. Roast in the same oven as beef for 40-50 minutes, or until golden brown and tender. Flip halfway through.",
+      "Remove beef from oven. Discard bay leaves and herb sprigs. Skim any excess fat from the sauce, if desired. Stir in butter until melted. Adjust seasoning.",
+      "Serve braised beef chunks with a generous portion of sauce. Arrange roasted potato wedges alongside. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure beef reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1122.52,
+      "cholesterol_mg": 206.13,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 60.58,
+      "saturated_fat_g": 25.26,
+      "sodium_mg": 814.53,
+      "total_carbs_g": 55.7,
+      "total_fat_g": 67.83,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 2.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131.79,
+      "cholesterol_mg": 24.2,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.11,
+      "saturated_fat_g": 2.96,
+      "sodium_mg": 95.63,
+      "total_carbs_g": 6.54,
+      "total_fat_g": 7.96,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.29
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.7,
+      "dietary_fiber": 24.3,
+      "protein": 121.2,
+      "saturated_fat": 126.3,
+      "sodium": 35.4,
+      "total_carbs": 20.3,
+      "total_fat": 87
+    },
+    "serving_size_g": 851.75,
+    "total_recipe_weight_g": 3407
+  },
+  {
+    "recipe_name": "Spanish Chicken and Chorizo with Saffron Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_chorizo_with_saffron_potatoes_20250628_072508_121165c3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:25:08.925295000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single seared chicken thigh, skin-on and golden-brown, is the focal point, positioned centrally on a clean white porcelain dinner plate. Surrounding the chicken are vibrant saffron-tinted potato wedges, some showing slight crisp edges. Interspersed are bright red, slightly blistered cherry tomatoes and thick, smoky slices of chorizo. A light, glossy pan sauce, rich with paprika and tomato notes, pools subtly at the base of the chicken and potatoes. Freshly chopped green parsley is scattered generously over the dish, providing a contrasting color and fresh aroma. The arrangement is balanced and natural, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface. A white cotton napkin is placed beside the plate, with standard flatware. Natural, even lighting highlights the textures and colors of the ingredients, creating an appetizing and approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the flavorful sauce.",
+      "Offer a small side of aioli for dipping.",
+      "Pair with a glass of Spanish red wine, such as Rioja or Tempranillo."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Chorizo, cooking type, thick slices",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Potatoes, peeled, cut into wedges",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.1 g (small pinch)"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat. Sear chicken thighs skin-side down for 5-7 minutes until golden and crispy. Flip and sear for 2-3 minutes. Remove chicken and set aside.",
+      "Add chorizo slices to the skillet. Cook for 3-4 minutes, turning once, until slightly crispy and fat is rendered. Remove chorizo and set aside, leaving rendered fat in the skillet.",
+      "Add diced onion, minced garlic, and diced red bell pepper to the skillet. Sauté for 5-7 minutes until softened, stirring occasionally.",
+      "Stir in smoked paprika and saffron threads. Cook for 1 minute until fragrant.",
+      "Deglaze the skillet with white wine, scraping up any browned bits. Cook for 2 minutes until liquid is reduced by half.",
+      "Pour in chicken stock. Bring to a simmer.",
+      "Add potato wedges to the skillet. Stir to coat.",
+      "Nestle the seared chicken thighs back into the skillet among the potatoes. Scatter cherry tomatoes and cooked chorizo around the chicken and potatoes.",
+      "Transfer the skillet to the preheated oven. Bake for 25-30 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are tender.",
+      "Remove from oven. Garnish generously with fresh chopped parsley. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Guiso (stewing/braising)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 835,
+      "cholesterol_mg": 221.8,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 50.4,
+      "saturated_fat_g": 14.6,
+      "sodium_mg": 859.2,
+      "total_carbs_g": 36.3,
+      "total_fat_g": 52.1,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 166,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 10,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 170.4,
+      "total_carbs_g": 7.2,
+      "total_fat_g": 10.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73.9,
+      "dietary_fiber": 22.9,
+      "protein": 100.8,
+      "saturated_fat": 73,
+      "sodium": 37.4,
+      "total_carbs": 13.2,
+      "total_fat": 66.8
+    },
+    "serving_size_g": 504.3,
+    "total_recipe_weight_g": 2017.1
+  },
+  {
+    "recipe_name": "Hearty Beef Chili with Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_chili_with_beans_20250628_071947_7e005c31.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:19:47.729502000Z",
+    "selected_ingredients": [
+      "bean",
+      "tomato",
+      "cayenne pepper",
+      "beef stock",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of beef and bean chili is served in a deep, clean white porcelain bowl. The chili presents a rich, dark reddish-brown hue, showcasing tender ground beef chunks, plump kidney beans, and softened tomato pieces suspended in a thick, savory sauce. A generous swirl of cool white sour cream sits centrally on top, lightly melting into the warmth below. It is generously sprinkled with bright green, finely chopped scallions and a scattering of golden shredded cheddar cheese, adding contrasting color and texture. The bowl rests on a simple wooden table, alongside a neatly folded cotton napkin and a sturdy spoon. A small side bowl contains golden, crisp tortilla chips, ready for dipping. The scene is bathed in natural, even lighting, highlighting the chili's inviting warmth and robust texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with warm cornbread or tortilla chips.",
+      "Offer shredded cheddar cheese, sour cream, and chopped green onions as toppings."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "600g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1, chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Kidney beans",
+        "quantity": "2 x 400g cans, drained and rinsed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium-high heat.",
+      "Add ground beef. Brown thoroughly. Break up meat with a spoon.",
+      "Drain excess fat from the pot.",
+      "Add chopped onion to the pot. Cook until softened, about 5 minutes.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add chili powder, cayenne pepper, ground cumin, and dried oregano. Stir well. Cook for 1 minute.",
+      "Pour in crushed tomatoes and beef stock. Stir to combine.",
+      "Add drained kidney beans.",
+      "Bring the mixture to a simmer. Reduce heat to low.",
+      "Cover the pot and simmer for 60-90 minutes, stirring occasionally. Ensure beef reaches an internal temperature of 75°C (167°F).",
+      "Remove lid for the last 15 minutes if a thicker consistency is desired.",
+      "Season with salt and black pepper to taste."
+    ],
+    "notes": [
+      "Adjust cayenne pepper quantity to your preferred spice level.",
+      "This chili can be made ahead and reheats well, often tasting even better the next day."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 692,
+      "cholesterol_mg": 134,
+      "dietary_fiber_g": 13.1,
+      "protein_g": 51.1,
+      "saturated_fat_g": 11.6,
+      "sodium_mg": 1832,
+      "total_carbs_g": 45.3,
+      "total_fat_g": 36.7,
+      "total_sugars_g": 8.2,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 105.3,
+      "cholesterol_mg": 20.3,
+      "dietary_fiber_g": 2,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 278.9,
+      "total_carbs_g": 6.9,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 47,
+      "protein": 102,
+      "saturated_fat": 58,
+      "sodium": 80,
+      "total_carbs": 16,
+      "total_fat": 47
+    },
+    "serving_size_g": 657,
+    "total_recipe_weight_g": 2627
+  }
+]

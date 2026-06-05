@@ -1,0 +1,660 @@
+[
+  {
+    "recipe_name": "Mimicry Crab Egg Whites with Tomato Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_062829_de8d1807.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-04T06:28:31.930962000Z",
+    "selected_ingredients": [
+      "tomato",
+      "egg white"
+    ],
+    "complexity": "standard",
+    "special_requests": "中文 cuisine",
+    "visual_description": "A single portion features a central mound of velvetted egg whites, cooked into soft, pillowy white clouds with a delicate matte texture. Interspersed throughout the whites are fine, golden-brown threads of shredded dried scallops. A vibrant, translucent red tomato-ginger reduction is pooled around the base of the egg whites, creating a sharp color contrast against the white porcelain plate. The arrangement is organic and free-flowing with moderate negative space. A small garnish of julienned ginger batons sits atop the whites. The dish is set on a dark wood table with bamboo chopsticks on a ceramic rest and a small side bowl of steamed jasmine rice. Natural side lighting highlights the soft textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with a small side dish of extra Chinkiang vinegar and ginger slivers",
+      "Accompany with a bowl of steamed jasmine rice",
+      "Present with traditional ceramic spoons and bamboo chopsticks"
+    ],
+    "hero_ingredient": "Egg whites",
+    "ingredients": [
+      {
+        "name": "Egg whites",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Chinkiang black vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Dried scallops (conpoy)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Peanut oil",
+        "quantity": "40 ml"
+      }
+    ],
+    "instructions": [
+      "Rehydrate dried scallops in hot water for 30 minutes. Shred into fine threads.",
+      "Score tomato skins. Blanch in boiling water. Peel and remove seeds.",
+      "Dice tomatoes into 5mm pieces.",
+      "Sauté minced ginger in 10ml oil. Add diced tomatoes.",
+      "Stir in black vinegar and sugar. Simmer 10 minutes. Strain through a fine mesh sieve to create a smooth reduction.",
+      "Whisk egg whites, milk, and salt in a bowl until combined. Do not create foam.",
+      "Heat remaining 30ml oil in a wok over medium-low heat.",
+      "Pour egg mixture into the wok. Stir slowly and continuously in one direction.",
+      "Cook until whites form soft, opaque, pillowy clouds.",
+      "Fold in the shredded scallop threads. Remove from heat immediately.",
+      "Divide the egg whites into four portions. Pour tomato reduction around the base of each."
+    ],
+    "notes": [
+      "Maintain low heat for the egg whites to prevent any browning or toughness",
+      "The addition of milk is essential for the snowy white color and tender mouthfeel",
+      "Ensure the tomato reduction is strained well for a professional restaurant finish"
+    ],
+    "traditional_techniques": [
+      "velvetting",
+      "reduction",
+      "infusing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 185.08,
+      "cholesterol_mg": 6.5,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 14.25,
+      "saturated_fat_g": 1.88,
+      "sodium_mg": 769.25,
+      "total_carbs_g": 9.55,
+      "total_fat_g": 10.2,
+      "total_sugars_g": 6.73,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.12,
+      "calories": 83.07,
+      "cholesterol_mg": 2.92,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 6.39,
+      "saturated_fat_g": 0.84,
+      "sodium_mg": 345.03,
+      "total_carbs_g": 4.28,
+      "total_fat_g": 4.58,
+      "total_sugars_g": 3.02,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 2.17,
+      "dietary_fiber": 4.64,
+      "protein": 28.5,
+      "saturated_fat": 9.4,
+      "sodium": 33.45,
+      "total_carbs": 3.47,
+      "total_fat": 13.08
+    },
+    "serving_size_g": 222.95,
+    "total_recipe_weight_g": 891.8
+  },
+  {
+    "recipe_name": "Vietnamese Shaking Beef (Bo Luc Lac)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_062013_53fddb5a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-04T06:20:13.954670000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "beef protein full meal without much carbs but with veggies cuisine",
+    "visual_description": "The dish features seared 2.5cm beef sirloin cubes, glistening with a dark soy glaze and showing deep caramelized edges from the high-heat wok sear. The beef is piled naturally in the center of a clean white porcelain plate, mixed with softened red onion wedges. It rests atop a vibrant bed of fresh, bright green watercress and halved ruby-red cherry tomatoes. The arrangement is organic and uncrowded, leaving white space around the perimeter. Beside the plate sits a small ceramic ramekin containing a clear lime juice and coarse black pepper dipping sauce. The setting is a modern bistro with a dark wood table, a folded white cotton napkin, and dark wooden chopsticks. Natural side lighting highlights the succulent meat and crisp greens.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve with Muoi Tieu Chanh (salt, pepper, and lime dipping sauce)",
+      "Use chopsticks for dining",
+      "Can be accompanied by pickled daikon and carrots"
+    ],
+    "hero_ingredient": "Beef Sirloin",
+    "ingredients": [
+      {
+        "name": "Beef sirloin, cut into 2.5cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Watercress, washed and trimmed",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red onion, cut into thin wedges",
+        "quantity": "1"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "250g"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Black pepper, coarsely ground",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry with paper towels.",
+      "Marinate beef with garlic, soy sauce, fish sauce, oyster sauce, and sugar for 30 minutes.",
+      "Whisk lime juice and black pepper in a small bowl for the dipping sauce.",
+      "Arrange watercress and cherry tomatoes on a large platter or individual plates.",
+      "Heat oil in a wok over high heat until smoking.",
+      "Add beef cubes in a single layer to ensure a hard sear.",
+      "Sear without moving for 2 minutes until a dark crust forms.",
+      "Add red onion wedges to the wok.",
+      "Shake the wok vigorously to sear all sides of the beef for 2 minutes.",
+      "Remove from heat immediately to keep the beef medium-rare.",
+      "Tumble the beef and onions directly onto the bed of watercress and tomatoes."
+    ],
+    "notes": [
+      "Ensure the wok is smoking hot before adding meat to achieve authentic wok hei flavor.",
+      "Do not overcrowd the pan; cook in batches if necessary to maintain high heat.",
+      "The residual heat from the beef will slightly wilt the watercress, creating a warm salad effect."
+    ],
+    "traditional_techniques": [
+      "wok hei",
+      "high-heat searing",
+      "quick tossing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 625.5,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 1.75,
+      "protein_g": 56.28,
+      "saturated_fat_g": 11,
+      "sodium_mg": 1066,
+      "total_carbs_g": 10,
+      "total_fat_g": 38,
+      "total_sugars_g": 2.88,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.33,
+      "calories": 165.15,
+      "cholesterol_mg": 42.24,
+      "dietary_fiber_g": 0.46,
+      "protein_g": 14.86,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 281.45,
+      "total_carbs_g": 2.64,
+      "total_fat_g": 10.03,
+      "total_sugars_g": 0.76,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.3,
+      "dietary_fiber": 6.3,
+      "protein": 112.6,
+      "saturated_fat": 55,
+      "sodium": 46.3,
+      "total_carbs": 3.6,
+      "total_fat": 48.7
+    },
+    "serving_size_g": 378.75,
+    "total_recipe_weight_g": 1515
+  },
+  {
+    "recipe_name": "Dark Chocolate and Beef Tallow Tart with Candied Beef Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_060908_2efebb19.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-04T06:09:17.935717000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single 8cm tart sits off-center on a matte black designer plate. The tart shell is golden and crisp, filled with a glass-like, dark chocolate ganache. A textured mound of candied beef brisket, cut into precise 2mm cubes, is placed organically on one side of the ganache surface. Three flakes of Maldon sea salt catch the light. The plate rests on a grey-veined white Carrara marble surface. A single, heavy silver dessert spoon is placed to the right. The lighting is dramatic and directional, casting soft shadows that emphasize the architectural edges of the tart and the rugged texture of the beef crumble. Minimalist negative space surrounds the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "cultural_origin": "French Modernist",
+    "cultural_serving_suggestions": [
+      "Serve with a small glass of aged Pedro Ximénez sherry",
+      "Present on a chilled marble plinth for temperature contrast"
+    ],
+    "hero_ingredient": "Beef Tallow",
+    "ingredients": [
+      {
+        "name": "Beef brisket, finely diced (2mm)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Beef tallow, chilled",
+        "quantity": "120g"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "250g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Maldon sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1 unit"
+      }
+    ],
+    "instructions": [
+      "Pulse flour, 50g sugar, and 80g chilled tallow in a food processor until sandy.",
+      "Add egg yolk and 20ml cold water. Process until dough forms.",
+      "Chill dough for 30 minutes. Roll to 3mm thickness.",
+      "Line four 8cm tart rings. Blind bake at 180°C for 15 minutes.",
+      "Simmer diced brisket in 100g sugar and 30ml water until syrup thickens.",
+      "Drain beef. Spread on parchment. Bake at 150°C until crisp and dark brown.",
+      "Bring cream to a simmer. Pour over chopped chocolate and 40g tallow.",
+      "Whisk gently from the center to create a smooth emulsion.",
+      "Pour ganache into tart shells. Set at room temperature for 2 hours.",
+      "Top with candied beef crumble and sea salt before serving."
+    ],
+    "notes": [
+      "Ensure beef tallow is highly filtered for a neutral, creamy profile",
+      "The brisket must be diced extremely fine to ensure a pleasant texture when candied",
+      "Do not refrigerate the tart to maintain the gloss of the ganache"
+    ],
+    "traditional_techniques": [
+      "emulsification",
+      "rendering",
+      "blind baking",
+      "sugar tempering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 52,
+      "calories": 1141,
+      "cholesterol_mg": 137.5,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 16.9,
+      "saturated_fat_g": 38.2,
+      "sodium_mg": 520,
+      "total_carbs_g": 109.2,
+      "total_fat_g": 70.8,
+      "total_sugars_g": 53,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 22.1,
+      "calories": 485.5,
+      "cholesterol_mg": 58.5,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 7.2,
+      "saturated_fat_g": 16.3,
+      "sodium_mg": 221.3,
+      "total_carbs_g": 46.5,
+      "total_fat_g": 30.1,
+      "total_sugars_g": 22.6,
+      "trans_fat_g": 0.8
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45.8,
+      "dietary_fiber": 26.1,
+      "protein": 33.8,
+      "saturated_fat": 191,
+      "sodium": 22.6,
+      "total_carbs": 39.7,
+      "total_fat": 108.9
+    },
+    "serving_size_g": 235,
+    "total_recipe_weight_g": 940
+  },
+  {
+    "recipe_name": "Pollo alla Cacciatora",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_055903_387c6c82.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-04T05:59:04.056744000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented on a wide, matte white porcelain plate. Two whole, bone-in chicken thighs are stacked slightly in the center, featuring deeply browned, caramelized skin. A thick, rustic sauce covers the base of the plate, filled with visible small cubes of orange carrots, green celery, and translucent onions. Whole, dark purple kalamata olives are nestled within the vibrant red tomato sauce. A light dusting of bright green chopped parsley and a single fresh rosemary sprig garnish the top. Two thick batons of grilled sourdough bread lean against the side of the chicken. The lighting is natural and soft, emphasizing the glossy texture of the braised sauce and the crispness of the chicken skin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with toasted sourdough bread to soak up the sauce",
+      "Accompany with a glass of medium-bodied Italian red wine",
+      "Place on a bed of soft, buttery polenta"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine (Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide braising pan over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is deep golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add onion, carrot, and celery to the remaining fat.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in garlic, rosemary, and sage. Cook for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pan to deglaze.",
+      "Simmer wine for 3 minutes until reduced by half.",
+      "Add crushed tomatoes and stir to combine.",
+      "Place chicken thighs back into the sauce.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in olives and simmer uncovered for 5 minutes.",
+      "Remove rosemary sprigs before serving.",
+      "Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Always use a meat thermometer to ensure chicken reaches the safe internal temperature of 75°C",
+      "Browning the skin thoroughly at the start is essential for the final texture",
+      "The sauce should be thick and chunky, not watery"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1604,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 428,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 83,
+      "saturated_fat": 43,
+      "sodium": 70,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Sichuan Minced Chicken with Pickled Long Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_034507_30ef3745.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-04T03:45:07.905232000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "牛肉沫 cuisine",
+    "visual_description": "The dish is presented as a single portion in a shallow, matte-white ceramic bowl. The primary focus is a mound of savory stir-fry featuring minced chicken cut into uniform 5mm pieces. This is mixed with vibrant green 5mm rounds of pickled long beans. Small cubes of bright red chili add contrast throughout. The chicken appears well-seared with a light, glossy soy glaze. A scattering of fresh green onion batons garnishes the top. The bowl sits on a dark walnut table next to a small porcelain bowl of steamed white jasmine rice. Dark bamboo chopsticks rest on a small stone holder. The lighting is soft and natural, highlighting the textures of the finely diced ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Sichuan",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice",
+      "Accompany with a side of plain congee",
+      "Pair with a light clear vegetable soup"
+    ],
+    "hero_ingredient": "Minced Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast, finely minced",
+        "quantity": "400g"
+      },
+      {
+        "name": "Pickled long beans, 5mm rounds",
+        "quantity": "250g"
+      },
+      {
+        "name": "Fresh red bird's eye chilies, diced",
+        "quantity": "3"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Ginger, minced",
+        "quantity": "15g"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Green onions, sliced into batons",
+        "quantity": "2 stalks"
+      }
+    ],
+    "instructions": [
+      "Finely chop chicken breast into small 5mm pieces.",
+      "Rinse pickled long beans and dice into 5mm rounds.",
+      "Heat vegetable oil in a wok over high heat until smoking.",
+      "Add minced chicken to the wok.",
+      "Stir-fry chicken until white and opaque.",
+      "Add ginger, garlic, and red chilies.",
+      "Sauté for 1 minute until fragrant.",
+      "Add pickled long beans and stir-fry for 2 minutes over high heat.",
+      "Pour in Shaoxing wine, light soy sauce, dark soy sauce, and sugar.",
+      "Toss ingredients continuously for 2 minutes to develop wok hei.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Drizzle with sesame oil and toss to combine.",
+      "Remove from heat and garnish with green onion batons."
+    ],
+    "notes": [
+      "Ensure the wok is extremely hot before adding oil to achieve wok hei flavor.",
+      "If pickled long beans are very salty, soak them in fresh water for 10 minutes before dicing.",
+      "Do not overcook the beans to maintain their crunchy texture."
+    ],
+    "traditional_techniques": [
+      "Wok hei",
+      "Stir-frying",
+      "Flash frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 355.5,
+      "cholesterol_mg": 122.5,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 28.4,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 840.3,
+      "total_carbs_g": 7.7,
+      "total_fat_g": 22.8,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 166.1,
+      "cholesterol_mg": 57.2,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 13.3,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 392.7,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 10.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.8,
+      "dietary_fiber": 5.7,
+      "protein": 56.8,
+      "saturated_fat": 26,
+      "sodium": 36.5,
+      "total_carbs": 2.8,
+      "total_fat": 29.2
+    },
+    "serving_size_g": 214,
+    "total_recipe_weight_g": 856
+  }
+]

@@ -1,0 +1,678 @@
+[
+  {
+    "recipe_name": "Baked Banana Chocolate Oat Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_banana_chocolate_oat_pudding_20250624_172301_767ceb93.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:23:01.953215000Z",
+    "selected_ingredients": [
+      "cottage cheese",
+      "banana",
+      "egg",
+      "cacao",
+      "oat"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of warm, baked banana chocolate oat pudding is presented in a rustic, off-white ceramic bowl. The pudding has a soft, custardy texture with visible flecks of rolled oats and a rich cocoa brown color. A light dusting of cacao powder garnishes the top. The bowl sits on a well-worn, natural wooden dining table. A simple metal spoon rests beside the bowl on a casually draped, textured cloth napkin. Warm, inviting light from a kitchen fixture illuminates the scene, creating a cozy, homely atmosphere. The background is softly blurred, showing hints of a lived-in family kitchen, emphasizing comfort and warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Style",
+    "hero_ingredient": "Banana",
+    "ingredients": [
+      {
+        "name": "Cottage cheese",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Ripe bananas",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Cacao powder",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "1 gram"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Lightly grease a 20x20 cm baking dish.",
+      "In a large bowl, mash the ripe bananas thoroughly with a fork.",
+      "Add cottage cheese, eggs, granulated sugar, and vanilla extract to the mashed bananas. Mix until well combined and smooth.",
+      "In a separate bowl, whisk together rolled oats, cacao powder, baking powder, and salt.",
+      "Add the dry oat mixture to the wet banana mixture. Stir gently until just combined. Do not overmix.",
+      "Pour the pudding mixture into the prepared baking dish. Spread evenly.",
+      "Bake for 30-35 minutes, or until the pudding is set and a toothpick inserted into the center comes out clean.",
+      "Remove from oven. Let cool slightly before serving warm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.5,
+      "calories": 383,
+      "cholesterol_mg": 99.5,
+      "dietary_fiber_g": 9.6,
+      "protein_g": 26.3,
+      "saturated_fat_g": 3,
+      "sodium_mg": 632,
+      "total_carbs_g": 61.4,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 28.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4.3,
+      "calories": 130.8,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 9,
+      "saturated_fat_g": 1,
+      "sodium_mg": 215.9,
+      "total_carbs_g": 21,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.8,
+      "dietary_fiber": 34.3,
+      "protein": 52.6,
+      "saturated_fat": 15,
+      "sodium": 27.5,
+      "total_carbs": 22.3,
+      "total_fat": 9.7
+    },
+    "serving_size_g": 292.75,
+    "total_recipe_weight_g": 1171
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Cheddar Broccoli Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_cheddar_broccoli_sauce_20250624_172256_9974a18d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:22:56.714854000Z",
+    "selected_ingredients": [
+      "chicken",
+      "broccoli",
+      "cheddar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Chicken with Cheddar Broccoli Sauce is presented on a clean, round white porcelain dinner plate, set on a simple light wooden table. Two thick, golden-brown chicken breast medallions, seared until cooked through, are positioned slightly off-center. Alongside are vibrant green, roasted broccoli florets, some with subtle charring, arranged organically. A rich, creamy cheddar sauce, containing small, tender blanched broccoli pieces, pools generously beneath and beside the chicken. The sauce is a warm, inviting yellow-orange hue. Fresh, finely chopped green parsley garnishes the chicken and sauce, adding a contrasting pop of color. The plate is well-proportioned with moderate negative space. A folded white cotton napkin lies beside the plate, illuminated by natural, even lighting, creating a professional bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Modern",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "2 medium heads (approx. 800g total)"
+      },
+      {
+        "name": "Sharp cheddar cheese, grated",
+        "quantity": "150g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1 (approx. 50g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut broccoli into small florets. Divide in half. Toss one half with 15ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 15-20 minutes, until tender-crisp with slight charring.",
+      "Blanch the remaining broccoli florets in boiling salted water for 2 minutes. Drain immediately and plunge into ice water to stop cooking. Drain again.",
+      "Pat chicken breasts dry with paper towels. Season generously with salt and pepper.",
+      "Heat remaining 15ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken breasts for 4-5 minutes per side until golden brown. Transfer skillet to preheated oven. Bake for 10-15 minutes, or until internal temperature reaches 75°C (167°F). Remove chicken from skillet and rest on a cutting board for 5 minutes.",
+      "While chicken rests, melt butter in the same skillet over medium heat. Add diced onion and sauté for 3-4 minutes until softened. Add minced garlic and cook for 1 minute until fragrant.",
+      "Pour in chicken stock, scraping up any browned bits from the bottom of the skillet. Bring to a simmer.",
+      "Stir in heavy cream and bring back to a gentle simmer. Reduce heat to low.",
+      "Gradually stir in grated cheddar cheese until melted and smooth. Add the blanched broccoli florets to the sauce. Season with salt and pepper to taste.",
+      "Slice each rested chicken breast into thick medallions. Do not fan.",
+      "To serve, arrange roasted broccoli on each plate. Place chicken medallions beside. Spoon generous amounts of cheddar broccoli sauce over the chicken and around the plate. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 812,
+      "cholesterol_mg": 277,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 72.9,
+      "saturated_fat_g": 26.1,
+      "sodium_mg": 995,
+      "total_carbs_g": 17.7,
+      "total_fat_g": 50.7,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150.8,
+      "cholesterol_mg": 51.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 13.5,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 184.9,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 92.3,
+      "dietary_fiber": 20,
+      "protein": 145.8,
+      "saturated_fat": 130.5,
+      "sodium": 43.3,
+      "total_carbs": 6.4,
+      "total_fat": 65
+    },
+    "serving_size_g": 538.25,
+    "total_recipe_weight_g": 2153
+  },
+  {
+    "recipe_name": "Hearty Eastern European Beef and Pork Stew with Cheesy Potato Dumplings",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_eastern_european_beef_and_pork_stew_with_cheesy_potato_dumplings_20250624_172249_07d24762.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:22:50.315014000Z",
+    "selected_ingredients": [
+      "pork",
+      "cabbage",
+      "beet",
+      "potato",
+      "carrot",
+      "garlic",
+      "beef",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of hearty Eastern European Beef and Pork Stew is presented in a deep, rustic ceramic bowl. The stew features substantial chunks of tender, braised beef and pork, alongside vibrant red beet wedges, bright orange carrot chunks, and pale potato pieces, all intertwined with tender, coarsely chopped green cabbage. The rich, reddish-brown broth coats all ingredients. Several small, irregularly shaped cheesy potato dumplings are nestled within the stew. A swirl of creamy white sour cream contrasts beautifully on the surface, generously garnished with finely chopped fresh green dill. The bowl rests on a simple wooden table, accompanied by a crisp white cotton napkin and classic silver flatware. The background suggests a warm bistro setting. Natural, even lighting highlights the dish's textures and vibrant colors. The entire plate is visible with appropriate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with dark rye bread.",
+      "Traditionally accompanied by a side of pickled vegetables, such as pickled cucumbers."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "400g"
+      },
+      {
+        "name": "Pork shoulder",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Beets",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes (for stew)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Potatoes (for dumplings, starchy)",
+        "quantity": "300g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Hard cheese (e.g., Gruyere or aged Cheddar), grated",
+        "quantity": "75g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck and pork shoulder into 4-5 cm chunks. Pat dry. Season generously with salt and pepper.",
+      "Heat vegetable oil in a large, heavy-bottomed pot over medium-high heat. Sear beef chunks in batches until deeply browned on all sides. Remove and set aside. Sear pork chunks until browned. Remove and set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook, stirring, until softened, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste and smoked paprika. Cook for 2 minutes, stirring constantly.",
+      "Add a splash of beef broth to deglaze the pot, scraping up any browned bits from the bottom.",
+      "Return seared beef and pork to the pot. Add remaining beef broth and bay leaves. Bring to a boil, then reduce heat to low. Cover and simmer for 1.5 hours.",
+      "While stew simmers, peel and cut carrots into thick 2-3 cm rounds or chunks. Peel and cut beets into thick wedges or chunks. Peel and cut potatoes (for stew) into 2-3 cm chunks. Coarsely chop green cabbage.",
+      "After 1.5 hours, add carrots, beets, and potatoes (for stew) to the pot. Continue simmering, covered, for 45 minutes, or until vegetables are tender.",
+      "For cheesy potato dumplings: Boil potatoes (for dumplings) until very tender. Drain and mash thoroughly. In a bowl, combine mashed potato with flour, egg, grated hard cheese, a pinch of salt, and pepper. Mix until just combined. Form into small, irregularly shaped dumplings, about 2-3 cm in diameter.",
+      "Stir chopped cabbage into the stew. Add potato dumplings gently to the simmering stew. Cook for 15-20 minutes, or until cabbage is tender and dumplings float and are cooked through.",
+      "Taste the stew and adjust seasoning as needed. Remove bay leaves before serving.",
+      "Ladle the hot stew into deep bowls. Garnish each serving with a dollop of sour cream and a sprinkle of fresh, chopped dill."
+    ],
+    "traditional_techniques": [
+      "Slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 910.44,
+      "cholesterol_mg": 204.63,
+      "dietary_fiber_g": 11.76,
+      "protein_g": 60.18,
+      "saturated_fat_g": 17.29,
+      "sodium_mg": 1056.5,
+      "total_carbs_g": 64.78,
+      "total_fat_g": 47.66,
+      "total_sugars_g": 14.66,
+      "trans_fat_g": 1.23
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99.23,
+      "cholesterol_mg": 22.3,
+      "dietary_fiber_g": 1.28,
+      "protein_g": 6.56,
+      "saturated_fat_g": 1.88,
+      "sodium_mg": 115.15,
+      "total_carbs_g": 7.06,
+      "total_fat_g": 5.19,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.21,
+      "dietary_fiber": 42,
+      "protein": 120.36,
+      "saturated_fat": 86.45,
+      "sodium": 45.93,
+      "total_carbs": 23.56,
+      "total_fat": 61.1
+    },
+    "serving_size_g": 917.5,
+    "total_recipe_weight_g": 3670
+  },
+  {
+    "recipe_name": "Arroz con Pollo with Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_with_potatoes_20250624_172233_15a610ee.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:22:33.823348000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "onion",
+      "rice",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a traditional shallow terracotta cazuela placed on a rustic oak table. The central focus is four whole, golden-brown seared chicken thighs with crisp skin, positioned atop a vibrant, saffron-yellow bed of rice. Evenly distributed throughout the rice are 2cm roasted potato cubes with browned edges and finely diced translucent onions. Small bright green specks of chopped parsley and deep red flakes of smoked paprika provide color contrast. The rice appears moist but distinct, with a slight crust visible at the pan edges. A clean white cotton napkin and a simple glass of white wine sit beside the dish under soft, natural side lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with fresh lemon wedges to brighten the fats",
+      "Accompany with a side of authentic garlic aioli",
+      "Pair with a crisp Spanish white wine like Albariño"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Potatoes, peeled and cut into 2cm cubes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Smoked paprika (Pimentón)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs generously with salt and pepper.",
+      "Heat olive oil in a wide, shallow pan over medium-high heat.",
+      "Brown chicken skin-side down for 6 minutes until golden and fat renders.",
+      "Flip chicken and cook for 4 minutes. Remove chicken and set aside.",
+      "Add potato cubes to the same pan. Sauté for 5 minutes until edges are crisp. Remove and set aside.",
+      "Add onion to the pan. Sauté 5 minutes until translucent.",
+      "Stir in garlic, smoked paprika, and saffron. Cook for 1 minute until fragrant.",
+      "Add rice to the pan. Stir for 2 minutes to toast the grains.",
+      "Pour in hot chicken stock. Stir once to distribute rice evenly.",
+      "Nestle chicken thighs and potato cubes back into the rice.",
+      "Reduce heat to low. Simmer uncovered for 18-20 minutes without stirring.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Remove from heat. Cover with a clean cloth and rest for 5 minutes before serving.",
+      "Garnish with fresh parsley."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust (socarrat) to form.",
+      "Ensure the stock is hot before adding to the pan to maintain cooking temperature."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "toasting rice",
+      "rendering chicken fat"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 935.5,
+      "cholesterol_mg": 190.5,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 48.8,
+      "saturated_fat_g": 10.6,
+      "sodium_mg": 1317.8,
+      "total_carbs_g": 79.9,
+      "total_fat_g": 46,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 187.1,
+      "cholesterol_mg": 38.1,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 9.8,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 263.6,
+      "total_carbs_g": 16,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.5,
+      "dietary_fiber": 13.9,
+      "protein": 97.6,
+      "saturated_fat": 53,
+      "sodium": 57.3,
+      "total_carbs": 29.1,
+      "total_fat": 59
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Hearty Beef and Mushroom Baked Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_mushroom_baked_pasta_20250624_172232_89937279.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:22:33.075525000Z",
+    "selected_ingredients": [
+      "pasta",
+      "rice",
+      "onion",
+      "tomato",
+      "garlic",
+      "mushroom",
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A modest, comforting portion of baked pasta is presented on an everyday, rustic ceramic plate, nestled on a well-used wooden dining table. The dish showcases a golden-brown, bubbly crust of melted mozzarella cheese, with browned edges. Beneath the cheese, rich red-brown beef and tomato sauce is visible, studded with tender sliced mushrooms and small, irregular chunks of browned ground beef. Short pasta shapes, like penne, and fluffy rice grains are thoroughly integrated into the hearty sauce, creating a satisfying texture. The colors are natural and warm, inviting a casual, homely feel. A simple fork and knife rest beside the plate on a casually placed cloth napkin. Warm, cozy lighting illuminates the scene, emphasizing the comfort food appeal of the dish in a relaxed, family kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "cultural_origin": "American Homestyle",
+    "cultural_serving_suggestions": [
+      "Served with a simple green salad and crusty bread."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Ground Beef",
+        "quantity": "500g"
+      },
+      {
+        "name": "Short Pasta (e.g., Penne)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cooked Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Mushrooms, sliced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Dried Basil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Mozzarella Cheese, shredded",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh Parsley, chopped (optional)",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook pasta according to package directions until al dente. Drain well.",
+      "Cook rice according to package directions. Set aside.",
+      "Heat olive oil in a large pot over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add ground beef to the pot. Break up with a spoon. Brown beef completely. Drain excess fat.",
+      "Add sliced mushrooms. Cook until softened and liquid evaporates, about 5-7 minutes.",
+      "Stir in tomato paste. Cook for 1 minute.",
+      "Pour in crushed tomatoes and beef broth. Add dried oregano and basil. Season with salt and pepper.",
+      "Bring sauce to a simmer. Reduce heat to low. Simmer for 10 minutes, stirring occasionally.",
+      "Add cooked pasta and cooked rice to the sauce. Stir to combine thoroughly.",
+      "Transfer mixture to a 20x30 cm baking dish.",
+      "Sprinkle shredded mozzarella evenly over the top.",
+      "Bake for 20-25 minutes, or until cheese is melted and golden brown and sauce is bubbly.",
+      "Let rest 5 minutes before serving. Garnish with fresh chopped parsley if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 827,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 52.1,
+      "saturated_fat_g": 14.1,
+      "sodium_mg": 1022,
+      "total_carbs_g": 73.3,
+      "total_fat_g": 35.4,
+      "total_sugars_g": 9.2,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148.3,
+      "cholesterol_mg": 24.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.3,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 183.3,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 19,
+      "protein": 104,
+      "saturated_fat": 70,
+      "sodium": 44,
+      "total_carbs": 27,
+      "total_fat": 45
+    },
+    "serving_size_g": 557.9,
+    "total_recipe_weight_g": 2231.5
+  }
+]

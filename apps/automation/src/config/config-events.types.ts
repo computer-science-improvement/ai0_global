@@ -1,5 +1,5 @@
 // apps/automation/src/config/config-events.types.ts
-export type ConfigChangedKind = 'bot' | 'channel' | 'strategy' | 'forward-route' | 'all';
+export type ConfigChangedKind = 'bot' | 'channel' | 'strategy' | 'forward-route' | 'telegraph' | 'all';
 
 export interface ConfigChangedEvent {
   kind: ConfigChangedKind;

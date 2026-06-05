@@ -1,0 +1,651 @@
+[
+  {
+    "recipe_name": "Murgh Makhani (Butter Chicken)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_murgh_makhani_%28butter_chicken%29_20250628_083154_b734f716.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:31:55.134432000Z",
+    "selected_ingredients": [
+      "butter"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features large, succulent chunks of tandoor-style seared chicken submerged in a vibrant, velvety orange-red tomato gravy. The sauce has a glossy, emulsified texture from the melted butter and cream. It is served in a traditional hammered copper kadai placed on a clean wooden surface. A swirl of fresh white cream and a small pat of melting yellow butter sit on top. Finely chopped green cilantro and crushed dried fenugreek leaves provide a textured garnish. The chicken chunks are kept whole and prominent. Beside the bowl, a stack of warm, charred garlic naan is folded neatly. The lighting is warm and natural, highlighting the rich sheen of the butter-based sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm garlic naan or laccha paratha",
+      "Accompany with sliced red onions and lemon wedges",
+      "Pair with fragrant steamed basmati rice"
+    ],
+    "hero_ingredient": "Butter",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (boneless)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Tomato puree",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Kashmiri chili powder",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Dried fenugreek leaves (Kasuri Methi)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Honey",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 4cm chunks.",
+      "Marinate chicken with lemon juice, salt, 1 tbsp ginger-garlic paste, and 1/2 tbsp chili powder for 30 minutes.",
+      "Heat oil in a pan over medium-high heat.",
+      "Sear chicken chunks until golden and internal temperature reaches 75°C.",
+      "Remove chicken from pan.",
+      "Melt 50g butter in the same pan.",
+      "Add remaining ginger-garlic paste and sauté for 1 minute.",
+      "Add tomato puree and simmer for 15 minutes on low heat.",
+      "Stir in remaining chili powder, garam masala, and honey.",
+      "Whisk in remaining 50g butter and heavy cream until smooth.",
+      "Add chicken chunks back to the sauce.",
+      "Crush fenugreek leaves between palms and sprinkle over gravy.",
+      "Simmer for 5 minutes before serving."
+    ],
+    "notes": [
+      "Kashmiri chili powder provides the signature red color without high heat levels.",
+      "Ensure the butter is cold when whisking into the sauce for a better emulsion.",
+      "Do not boil the sauce vigorously after adding cream to prevent splitting."
+    ],
+    "traditional_techniques": [
+      "tandoor-style searing",
+      "tempering spices",
+      "emulsifying makhani gravy"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 633.6,
+      "cholesterol_mg": 248,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 42.23,
+      "saturated_fat_g": 20.99,
+      "sodium_mg": 715,
+      "total_carbs_g": 16.43,
+      "total_fat_g": 44.45,
+      "total_sugars_g": 9.55,
+      "trans_fat_g": 1.08
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.14,
+      "calories": 167.73,
+      "cholesterol_mg": 65.65,
+      "dietary_fiber_g": 0.66,
+      "protein_g": 11.18,
+      "saturated_fat_g": 5.56,
+      "sodium_mg": 189.28,
+      "total_carbs_g": 4.35,
+      "total_fat_g": 11.77,
+      "total_sugars_g": 2.53,
+      "trans_fat_g": 0.29
+    },
+    "daily_value_percentages": {
+      "cholesterol": 82.7,
+      "dietary_fiber": 8.9,
+      "protein": 84.5,
+      "saturated_fat": 105,
+      "sodium": 31.1,
+      "total_carbs": 6,
+      "total_fat": 57
+    },
+    "serving_size_g": 377.75,
+    "total_recipe_weight_g": 1511
+  },
+  {
+    "recipe_name": "Smoked Paprika Quinoa Pilaf with Pan-Seared Halloumi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_paprika_quinoa_pilaf_with_pan-seared_halloumi_20250628_083050_4ae9ab5d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:30:50.737099000Z",
+    "selected_ingredients": [
+      "quinoa",
+      "oil",
+      "smoked paprika",
+      "garlic",
+      "ginger"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of Smoked Paprika Quinoa Pilaf with Pan-Seared Halloumi is presented on a clean white porcelain dinner plate. The base is a vibrant, fluffy quinoa pilaf, infused with the warm orange hue of smoked paprika, interspersed with small dice of red bell pepper and wilted green spinach. Three golden-brown, pan-seared halloumi planks, each about one centimeter thick, are neatly arranged on top of the quinoa, showcasing their beautifully seared crust. A bright green sprig of fresh parsley is delicately placed beside the halloumi, and a quarter lemon wedge rests on the edge of the plate, ready to be squeezed. The arrangement is balanced and inviting, with moderate negative space. The dish sits on a simple wooden table surface, accompanied by a folded white cotton napkin and standard silverware. Natural, even lighting illuminates the dish, creating a professional yet approachable restaurant-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Halloumi Cheese",
+    "ingredients": [
+      {
+        "name": "quinoa",
+        "quantity": "200g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15ml, plus more for searing"
+      },
+      {
+        "name": "halloumi cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "red bell pepper",
+        "quantity": "1, small dice"
+      },
+      {
+        "name": "garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "fresh ginger",
+        "quantity": "15g, grated"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "fresh spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "lemon",
+        "quantity": "1/2, for wedges"
+      },
+      {
+        "name": "fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse quinoa thoroughly under cold water.",
+      "Heat 15ml olive oil in a medium saucepan over medium heat. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add diced red bell pepper, minced garlic, and grated ginger. Cook for 2 minutes until fragrant.",
+      "Stir in smoked paprika. Cook for 1 minute.",
+      "Add rinsed quinoa to the saucepan. Pour in vegetable broth. Bring to a boil.",
+      "Reduce heat to low, cover, and simmer for 15 minutes, or until liquid is absorbed and quinoa is fluffy.",
+      "Remove from heat. Let stand, covered, for 5 minutes. Fluff with a fork. Stir in fresh spinach until wilted. Season with salt and pepper.",
+      "While quinoa cooks, slice halloumi into 1 cm thick planks.",
+      "Heat a non-stick pan over medium-high heat. Add a splash of olive oil.",
+      "Sear halloumi planks for 2-3 minutes per side until golden brown and a crust forms.",
+      "To serve, spoon a generous portion of quinoa pilaf onto each plate. Arrange seared halloumi planks on top of the pilaf.",
+      "Garnish with fresh chopped parsley and a lemon wedge."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 499.9,
+      "cholesterol_mg": 57.5,
+      "dietary_fiber_g": 6.58,
+      "protein_g": 23.48,
+      "saturated_fat_g": 11.79,
+      "sodium_mg": 1207.5,
+      "total_carbs_g": 40.76,
+      "total_fat_g": 24.25,
+      "total_sugars_g": 3.87,
+      "trans_fat_g": 0.31
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134,
+      "cholesterol_mg": 15.4,
+      "dietary_fiber_g": 1.76,
+      "protein_g": 6.29,
+      "saturated_fat_g": 3.16,
+      "sodium_mg": 323.6,
+      "total_carbs_g": 10.92,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1.04,
+      "trans_fat_g": 0.08
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19.2,
+      "dietary_fiber": 23.5,
+      "protein": 47,
+      "saturated_fat": 59,
+      "sodium": 52.5,
+      "total_carbs": 14.8,
+      "total_fat": 31.1
+    },
+    "serving_size_g": 373.1,
+    "total_recipe_weight_g": 1492.4
+  },
+  {
+    "recipe_name": "Pollo al Forno con Pomodoro e Provolone",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_al_forno_con_pomodoro_e_provolone_20250628_083005_804aef5a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:30:05.839344000Z",
+    "selected_ingredients": [
+      "tomato",
+      "chicken",
+      "onion",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, pan-seared chicken breast is centered on a clean white porcelain plate. The chicken is a whole piece, richly golden-brown from searing, partially submerged and generously topped with a vibrant, rustic red tomato and onion sauce. Melted provolone cheese drapes over the chicken and sauce, showing soft, gooey folds with subtle golden-brown spots from baking. Fresh, bright green basil leaves, either whole or roughly torn, are scattered artfully over the cheese and sauce, providing a pop of color and freshness. The sauce itself appears chunky with visible pieces of softened onion and crushed tomato. The overall presentation is professional and approachable, with balanced composition and moderate negative space. The dish sits on a simple wooden table surface, with a clean white cotton napkin placed beside the plate. Natural, even lighting illuminates the scene, highlighting the textures and rich colors of the ingredients, creating an inviting, casual bistro atmosphere. The entire plate is visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to soak up the sauce",
+      "Pair with a simple green salad dressed with olive oil and red wine vinegar",
+      "Accompany with a glass of dry red wine, such as Chianti or Sangiovese"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200 g each)"
+      },
+      {
+        "name": "San Marzano crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Provolone cheese",
+        "quantity": "150 g, sliced"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 3-4 minutes per side until golden brown. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Cook for 5-7 minutes until softened and translucent.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Pour in crushed San Marzano tomatoes. Stir in dried oregano. Season with salt and black pepper.",
+      "Bring sauce to a gentle simmer. Cook for 10 minutes, stirring occasionally, until slightly thickened.",
+      "Return seared chicken breasts to the skillet, nestling them into the sauce.",
+      "Place a slice or two of provolone cheese over each chicken breast.",
+      "Transfer skillet to the preheated oven. Bake for 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and cheese is melted and bubbly.",
+      "Remove skillet from oven. Let rest for a few minutes.",
+      "Garnish with fresh basil leaves before serving."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 577,
+      "cholesterol_mg": 191,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 71.5,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 977,
+      "total_carbs_g": 15.8,
+      "total_fat_g": 24.3,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115.9,
+      "cholesterol_mg": 38.4,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 14.4,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 196.3,
+      "total_carbs_g": 3.2,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 13,
+      "protein": 143,
+      "saturated_fat": 46,
+      "sodium": 42,
+      "total_carbs": 6,
+      "total_fat": 31
+    },
+    "serving_size_g": 497.5,
+    "total_recipe_weight_g": 1990
+  },
+  {
+    "recipe_name": "Braised Beef with Tomatoes and Herbs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_tomatoes_and_herbs_20250628_082848_65b2e4b1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:28:49.087598000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Braised Beef with Tomatoes and Herbs is presented on a clean, round white porcelain dinner plate. Thick, irregular chunks of dark brown, fall-apart tender braised beef are nestled within a rich, glossy reddish-brown tomato and herb sauce. A generous sprinkle of vibrant green, finely chopped fresh parsley garnishes the top, providing a pop of color. The beef chunks are prominently displayed. Moderate negative space surrounds the dish. The setting is a modern bistro: a simple, light-colored wooden table surface, with a folded white cotton napkin beside the plate. Natural, even light illuminates the dish. A small, rustic white bowl with fluffy rice pilaf is placed to the side, completing the Mediterranean casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with rice pilaf or crusty bread for dipping.",
+      "Offer a side of Greek yogurt or feta cheese."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck or short ribs",
+        "quantity": "1 kg, cut into 5 cm chunks"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef chunks in batches until browned on all sides. Remove beef and set aside.",
+      "Add diced onions to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine reduces by half.",
+      "Return beef to the pot. Add diced tomatoes, beef broth, dried oregano, and bay leaves.",
+      "Bring to a simmer. Reduce heat to low, cover, and braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Stir occasionally to prevent sticking. Add a splash of water or broth if sauce becomes too thick.",
+      "Remove bay leaves. Taste and adjust seasoning with salt and pepper.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 890,
+      "cholesterol_mg": 225,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 69.1,
+      "saturated_fat_g": 18.7,
+      "sodium_mg": 1084,
+      "total_carbs_g": 28,
+      "total_fat_g": 53,
+      "total_sugars_g": 13.8,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.5,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 181,
+      "total_carbs_g": 4.7,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 22.9,
+      "protein": 138.2,
+      "saturated_fat": 93.5,
+      "sodium": 47.1,
+      "total_carbs": 10.2,
+      "total_fat": 67.9
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2400
+  },
+  {
+    "recipe_name": "Mediterranean Quinoa Stuffed Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_quinoa_stuffed_peppers_20250628_082829_920c09e1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:28:30.134603000Z",
+    "selected_ingredients": [
+      "quinoa"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish presents two vibrant, halved bell peppers – one red and one yellow – baked until tender-crisp. Each pepper half is generously filled with a savory Mediterranean quinoa mixture. The quinoa is studded with finely diced zucchini and bright red diced tomatoes, vibrant green wilted spinach, and crumbled white feta cheese. Ingredients are evenly distributed, showcasing their distinct colors and textures. The peppers are arranged neatly on a rustic, matte white ceramic plate, allowing moderate negative space around them. A sprinkle of fresh, chopped parsley garnishes the top of each pepper half, adding a pop of green. The plate rests on a simple wooden surface, accompanied by a folded linen napkin and a small side bowl of creamy Greek yogurt. Natural, even lighting highlights the dish's warmth and freshness.",
+    "number_of_servings": 3,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of plain Greek yogurt or tzatziki sauce.",
+      "Accompany with a simple green salad dressed with lemon and olive oil."
+    ],
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Quinoa",
+        "quantity": "150g dry"
+      },
+      {
+        "name": "Bell Peppers",
+        "quantity": "3 medium (mixed colors)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "400g, drained"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": "1 small, diced"
+      },
+      {
+        "name": "Fresh Spinach",
+        "quantity": "100g, chopped"
+      },
+      {
+        "name": "Feta Cheese",
+        "quantity": "75g, crumbled"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "2 tbsp, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Rinse quinoa under cold water. Combine quinoa and vegetable broth in a saucepan. Bring to a boil, then reduce heat to low. Cover and simmer for 15 minutes, or until liquid is absorbed and quinoa is fluffy. Set aside.",
+      "Halve the bell peppers lengthwise. Remove seeds and membranes.",
+      "Heat olive oil in a large pan over medium heat. Add diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and diced zucchini. Cook for 3-4 minutes, stirring occasionally.",
+      "Stir in drained diced tomatoes and dried oregano. Cook for 5 minutes, allowing flavors to meld.",
+      "Add chopped spinach to the pan. Cook until spinach wilts, about 2-3 minutes.",
+      "Remove pan from heat. Stir in cooked quinoa, crumbled feta cheese, and fresh parsley. Season with salt and black pepper to taste. Mix well.",
+      "Arrange bell pepper halves in a baking dish. Spoon the quinoa mixture generously into each pepper half.",
+      "Bake for 25-30 minutes, or until peppers are tender and filling is heated through.",
+      "Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 429,
+      "cholesterol_mg": 22.3,
+      "dietary_fiber_g": 9.9,
+      "protein_g": 16.3,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 1408.7,
+      "total_carbs_g": 52.8,
+      "total_fat_g": 18.9,
+      "total_sugars_g": 12.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 72.3,
+      "cholesterol_mg": 3.8,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 2.8,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 237.5,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7,
+      "dietary_fiber": 35,
+      "protein": 33,
+      "saturated_fat": 28,
+      "sodium": 61,
+      "total_carbs": 19,
+      "total_fat": 24
+    },
+    "serving_size_g": 593.2,
+    "total_recipe_weight_g": 1779.6
+  }
+]

@@ -1,0 +1,628 @@
+[
+  {
+    "recipe_name": "Dark Beer Braised Cabbage & Mushroom with Cheesy Green Banana Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dark_beer_braised_cabbage_%26_mushroom_with_cheesy_green_banana_gratin_20250630_031517_2dae63a6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:15:18.207328000Z",
+    "selected_ingredients": [
+      "asadero cheese",
+      "dark beer",
+      "green banana",
+      "swiss chard",
+      "mushroom",
+      "cabbage",
+      "sauerkraut"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single serving is presented on a clean, round white porcelain dinner plate. A generous mound of dark beer-braised shredded cabbage, sliced mushrooms, and roughly chopped swiss chard occupies one side. The braised vegetables are rich earthy browns and deep greens, with a slight sheen. Adjacent is a rectangular portion of golden-brown cheesy green banana gratin, its top visibly crisp with bubbly melted asadero. The mashed banana beneath is creamy. A sprinkle of fresh chopped parsley adds a vibrant green accent. The plate sits on a simple, light wooden table. A folded white cotton napkin and standard silver flatware are beside it. Natural, soft, even lighting creates a professional, approachable restaurant-style presentation with moderate negative space, set against a blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "cultural_origin": "Central European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty rye bread for dipping in the braising liquid.",
+      "Pair with a glass of dark beer or a dry white wine."
+    ],
+    "hero_ingredient": "Cabbage",
+    "ingredients": [
+      {
+        "name": "Green bananas",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Asadero cheese",
+        "quantity": "200 g, shredded"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "400 g, sliced"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "500 g, shredded"
+      },
+      {
+        "name": "Sauerkraut",
+        "quantity": "300 g, drained"
+      },
+      {
+        "name": "Dark beer",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "200 g, stems removed, leaves roughly chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Lightly grease a medium baking dish (approx. 20x20 cm).",
+      "Boil green bananas in their skins for 20-25 minutes until very tender. Drain. Peel immediately. Mash thoroughly in a bowl. Season with salt and pepper. Spread mashed banana evenly in the prepared baking dish.",
+      "Sprinkle shredded asadero cheese over the mashed banana. Bake for 15-20 minutes, or until cheese is melted and golden brown and edges are bubbly. Set aside.",
+      "Heat olive oil in a large pot or Dutch oven over medium heat. Add sliced onion. Cook for 5-7 minutes until softened and translucent.",
+      "Add minced garlic and sliced mushrooms. Cook for 5-7 minutes until mushrooms are browned and their liquid has evaporated.",
+      "Add shredded green cabbage and drained sauerkraut to the pot. Stir well. Cook for 5 minutes, stirring occasionally.",
+      "Pour in dark beer. Scrape up any browned bits from the bottom of the pot. Add vegetable broth.",
+      "Bring to a simmer. Reduce heat to low. Cover and cook for 20-25 minutes, or until cabbage is tender.",
+      "Stir in chopped swiss chard. Cook for another 5 minutes, or until chard is wilted. Season with salt and pepper to taste.",
+      "To serve, spoon a generous portion of the braised cabbage and mushroom mixture onto each plate. Place a portion of the cheesy green banana gratin alongside. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Adjust the amount of sauerkraut to your preference for tanginess. Rinse if you prefer less tartness.",
+      "Ensure green bananas are very tender before mashing for a smooth gratin texture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 599,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 13.8,
+      "protein_g": 21.1,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 1146,
+      "total_carbs_g": 83.7,
+      "total_fat_g": 21,
+      "total_sugars_g": 37.9,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 79,
+      "cholesterol_mg": 5,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 2.8,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 151,
+      "total_carbs_g": 11,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13,
+      "dietary_fiber": 49,
+      "protein": 42,
+      "saturated_fat": 47,
+      "sodium": 50,
+      "total_carbs": 30,
+      "total_fat": 27
+    },
+    "serving_size_g": 760.25,
+    "total_recipe_weight_g": 3041
+  },
+  {
+    "recipe_name": "Stuffed Green Bananas with Beer-Braised Mushrooms and Asadero",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_stuffed_green_bananas_with_beer-braised_mushrooms_and_asadero_20250630_031033_48e487c1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:10:33.734947000Z",
+    "selected_ingredients": [
+      "asadero cheese",
+      "dark beer",
+      "green banana",
+      "swiss chard",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate. Two golden-yellow halves of cooked green banana (plantain) are neatly arranged, their surfaces slightly charred. Each banana half is mounded with a rich, dark filling of sautéed, thinly sliced mushrooms and wilted Swiss chard. A thick layer of melted, bubbly Asadero cheese crowns the filling, with golden-brown patches. The cheese drapes slightly over the banana edges, revealing its gooey texture. Fresh, vibrant green cilantro leaves garnish the top. The plate sits on a simple light wooden table. A folded cotton napkin is beside the plate. The background hints at a casual bistro atmosphere with natural, even lighting. A small, rustic ceramic bowl with simple salsa roja sits unobtrusively.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a side of simple salsa roja or crema."
+    ],
+    "hero_ingredient": "Green Banana",
+    "ingredients": [
+      {
+        "name": "Green bananas (unripe plantains)",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Mushrooms (cremini or button)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "1 large bunch (about 200g)"
+      },
+      {
+        "name": "Asadero cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Dark beer",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Boil green bananas. Cut off ends. Score skin lengthwise. Boil in salted water for 20-25 minutes until tender. Drain. Peel while warm.",
+      "Slice mushrooms thinly. Chop Swiss chard leaves, stems separately. Dice onion. Mince garlic.",
+      "Heat olive oil in a large skillet over medium heat. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic, thinly sliced mushroom, and chopped chard stems. Sauté for 7-8 minutes until mushrooms are browned and tender.",
+      "Stir in ground cumin and smoked paprika. Cook for 1 minute until fragrant.",
+      "Pour in dark beer and vegetable broth. Bring to a simmer. Cook for 5-7 minutes, reducing liquid slightly.",
+      "Add chopped chard leaves. Cook until wilted, about 2-3 minutes. Season filling with salt and pepper.",
+      "Halve cooked green bananas lengthwise. Scoop out a portion of the flesh from each half, creating a cavity. Chop scooped flesh and add to the mushroom mixture. Mix well.",
+      "Fill each banana half generously with the mushroom and chard mixture.",
+      "Grate Asadero cheese. Top each stuffed banana half with grated cheese.",
+      "Place stuffed bananas on a baking sheet. Bake for 10-15 minutes, until cheese is melted and bubbly.",
+      "Serve hot. Garnish with fresh cilantro."
+    ],
+    "notes": [
+      "Ensure to use unripe green plantains, not sweet ripe bananas, for this savory dish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 679,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 10,
+      "protein_g": 21.7,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 439,
+      "total_carbs_g": 109.6,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 10.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107,
+      "cholesterol_mg": 6,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 3.4,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 69,
+      "total_carbs_g": 17.2,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13.3,
+      "dietary_fiber": 35.5,
+      "protein": 43.4,
+      "saturated_fat": 46.6,
+      "sodium": 19.1,
+      "total_carbs": 39.9,
+      "total_fat": 28.5
+    },
+    "serving_size_g": 637,
+    "total_recipe_weight_g": 2547
+  },
+  {
+    "recipe_name": "One-Pan Chicken and Rice with Peas and Cashews",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_one-pan_chicken_and_rice_with_peas_and_cashews_20250630_031022_7b727b55.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:10:23.103103000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "green pea",
+      "cashew"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A modest individual portion of One-Pan Chicken and Rice with Peas and Cashews is presented on a simple, round, off-white ceramic plate. The dish is casually mounded in the center, allowing some negative space. Golden-brown chicken cubes, approximately 2.5 cm, are nestled among fluffy, pale yellow basmati rice. Vibrant green peas are scattered throughout the rice and on top, adding pops of color. Roasted cashews, whole and halved, are visible, providing a contrasting texture. The chicken shows a seared exterior. The rice appears tender and moist. The plate sits on a well-used wooden dining table. A plain, light-colored cloth napkin is casually folded beside the plate. Everyday metal flatware rests next to the dish. Warm, cozy kitchen lighting illuminates the scene, casting soft, natural shadows. The background is softly blurred, hinting at a lived-in kitchen environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Raw cashews",
+        "quantity": "75g"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1 (diced)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2 (minced)"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 teaspoon (or to taste)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 teaspoon (or to taste)"
+      },
+      {
+        "name": "Mild curry powder",
+        "quantity": "1 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 2.5 cm cubes. Season chicken with salt and pepper.",
+      "Heat olive oil in a large pan or pot over medium-high heat.",
+      "Add chicken cubes to pan. Sear until golden on all sides. Cook chicken to an internal temperature of 75°C. Remove chicken from pan. Set aside.",
+      "Add diced onion to the same pan. Cook until softened, about 5 minutes.",
+      "Add minced garlic and curry powder. Cook for 1 minute until fragrant.",
+      "Stir in basmati rice. Cook for 2 minutes, coating grains.",
+      "Pour in chicken broth. Bring mixture to a boil.",
+      "Return seared chicken to the pan. Reduce heat to low. Cover pan tightly.",
+      "Simmer for 15 minutes, or until liquid is absorbed and rice is tender. Do not lift lid during simmering.",
+      "Stir in frozen green peas and raw cashews. Cover pan again. Let stand off heat for 5 minutes.",
+      "Fluff rice gently with a fork. Serve hot."
+    ]
+  },
+  {
+    "recipe_name": "Green Pea and Chicken Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_green_pea_and_chicken_rice_salad_20250630_030956_20d7679d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:09:57.039487000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "green pea",
+      "cashew"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Green Pea and Chicken Rice Salad is presented in a pristine white porcelain bowl. Fluffy rice, mixed with bright emerald green peas, forms the base. Small, evenly diced seared chicken pieces are interspersed throughout. Crisp, julienned strips of vibrant orange carrot, cool green cucumber, and red bell pepper are scattered for crunch and color. The salad is lightly coated in a glistening, savory Asian dressing. Roughly chopped, golden-brown toasted cashews, thinly sliced spring onions, and fresh coriander leaves garnish the top, adding texture and aroma. The presentation is clean, organized, and inviting, with moderate negative space. The bowl rests on a simple light wooden table, accompanied by a cotton napkin and chopsticks, evoking a modern bistro setting with natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a refreshing main course or side dish.",
+      "Can be accompanied by small bowls of chili oil or sriracha for those who prefer extra heat."
+    ],
+    "hero_ingredient": "Green Pea",
+    "ingredients": [
+      {
+        "name": "Cooked Chicken Breast",
+        "quantity": "200g"
+      },
+      {
+        "name": "Basmati Rice",
+        "quantity": "200g dry"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "80g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Spring Onions",
+        "quantity": "3-4 stalks"
+      },
+      {
+        "name": "Fresh Coriander (Cilantro)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Honey or Maple Syrup",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "10g grated"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove minced"
+      },
+      {
+        "name": "Lime Juice",
+        "quantity": "15ml (optional)"
+      }
+    ],
+    "instructions": [
+      "Cook rice according to package directions. Fluff with a fork. Let cool completely.",
+      "Dice chicken breast into 1.5 cm cubes. Heat a pan over medium-high heat. Add a little oil. Sear chicken cubes until cooked through and lightly browned. Ensure internal temperature reaches 75°C. Season with salt and pepper. Let cool.",
+      "Bring a pot of salted water to a boil. Add green peas. Cook for 1-2 minutes until tender-crisp. Drain immediately and plunge into ice water. Drain well.",
+      "Spread cashews on a baking sheet. Toast in a preheated oven at 160°C for 5-7 minutes, or in a dry pan over medium heat until golden and fragrant. Let cool. Chop roughly.",
+      "Julienne cucumber, carrot, and red bell pepper. Thinly slice spring onions. Chop fresh coriander.",
+      "In a small bowl, whisk together soy sauce, rice vinegar, sesame oil, honey/maple syrup, grated ginger, minced garlic, and lime juice (if using).",
+      "In a large bowl, combine cooled cooked rice, blanched green peas, cooled cooked chicken, julienned cucumber, carrot, red bell pepper, and most of the sliced spring onions and chopped coriander.",
+      "Pour dressing over salad ingredients. Toss gently to combine all ingredients evenly.",
+      "Transfer salad to individual serving bowls or plates. Garnish with remaining sliced spring onions, chopped coriander, and toasted chopped cashews."
+    ],
+    "notes": [
+      "Ensure rice is completely cooled before mixing to prevent sogginess.",
+      "Adjust dressing sweetness and tanginess to personal preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 510,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 29.3,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 1095,
+      "total_carbs_g": 69,
+      "total_fat_g": 15,
+      "total_sugars_g": 13.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 137,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 7.9,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 294,
+      "total_carbs_g": 18.5,
+      "total_fat_g": 4,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14,
+      "dietary_fiber": 25,
+      "protein": 59,
+      "saturated_fat": 14,
+      "sodium": 48,
+      "total_carbs": 25,
+      "total_fat": 19
+    },
+    "serving_size_g": 372.25,
+    "total_recipe_weight_g": 1489
+  },
+  {
+    "recipe_name": "Seared Chicken Roulade, Pea Puree, Crispy Rice, Cashew Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_roulade%2C_pea_puree%2C_crispy_rice%2C_cashew_crumble_20250630_030904_f7f2dfb9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:09:04.654220000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "green pea",
+      "cashew"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A sophisticated, minimalist composition on a pristine white Carrara marble surface. The dish is presented on an elegant, elongated white ceramic platter. Precisely cut, seared chicken roulade medallions, showcasing a delicate golden crust and a tender, white interior, are artfully arranged in a natural, flowing line. Beside the chicken, vibrant green pea puree forms small, deliberate swooshes, adding a pop of color and smooth texture. Irregularly shaped, golden-brown crispy rice shards are scattered with intention, providing architectural height and a contrasting texture. A coarse, nutty cashew crumble is sparingly sprinkled, adding an earthy tone and subtle crunch. Abundant negative space surrounds the components, emphasizing the clean lines and meticulous placement of each element. Dramatic professional lighting casts soft shadows, highlighting the textures. A crisp white linen napkin, folded precisely, rests subtly in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast, boneless, skinless",
+        "quantity": "2 (approx. 200g each)"
+      },
+      {
+        "name": "Chicken thigh, boneless, skinless",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh or frozen green peas",
+        "quantity": "200g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "50g"
+      },
+      {
+        "name": "Raw cashews",
+        "quantity": "50g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh chives, finely chopped",
+        "quantity": "5g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Microgreens (for garnish)",
+        "quantity": "Small handful"
+      }
+    ],
+    "instructions": [
+      "For the Chicken Roulade: Pound chicken breasts to 5mm thickness. Finely mince chicken thigh. Blend thigh meat with 20ml cream, 2g chives, salt, and pepper to form a farce.",
+      "Spread farce thinly over pounded chicken breasts. Roll tightly into a cylinder. Wrap each roulade in plastic film, twisting ends to secure. Sous-vide at 63°C for 1 hour. Chill completely.",
+      "For the Pea Puree: Blanch green peas in salted boiling water for 2 minutes. Immediately transfer to an ice bath. Drain well.",
+      "Blend peas with 20ml cream, 50ml chicken stock, 3g chives, 10g butter, salt, and pepper until very smooth. Pass through a fine mesh sieve. Keep warm.",
+      "For the Crispy Rice: Cook Arborio rice according to package directions. Drain any excess water. Blend cooked rice with 50ml chicken stock and cornstarch until a thin batter forms.",
+      "Spread batter very thinly on a silpat-lined baking sheet. Bake at 150°C for 20-25 minutes, or until golden and crispy. Break into irregular shards. Store in an airtight container.",
+      "For the Cashew Crumble: Toast cashews lightly in a dry pan until fragrant. Cool. Pulse in a food processor with a pinch of salt until a coarse, crumbly texture forms. Do not over-process.",
+      "To Assemble: Unwrap chilled chicken roulades. Heat olive oil and 20g butter in a non-stick pan over medium-high heat. Sear roulades until golden brown on all sides. Cook to 75°C internal temperature.",
+      "Slice each roulade into 1.5cm thick medallions. Arrange medallions artfully on a sharing platter. Place small dots or swooshes of pea puree next to the chicken.",
+      "Scatter crispy rice shards and cashew crumble over and around the components. Garnish with microgreens. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 490.5,
+      "cholesterol_mg": 134.3,
+      "dietary_fiber_g": 3.17,
+      "protein_g": 40.66,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 144.8,
+      "total_carbs_g": 22.79,
+      "total_fat_g": 24.59,
+      "total_sugars_g": 4.07,
+      "trans_fat_g": 0.41
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 205.7,
+      "cholesterol_mg": 56.3,
+      "dietary_fiber_g": 1.33,
+      "protein_g": 17.05,
+      "saturated_fat_g": 4.03,
+      "sodium_mg": 60.7,
+      "total_carbs_g": 9.56,
+      "total_fat_g": 10.31,
+      "total_sugars_g": 1.71,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44.8,
+      "dietary_fiber": 11.3,
+      "protein": 81.3,
+      "saturated_fat": 48,
+      "sodium": 6.3,
+      "total_carbs": 8.3,
+      "total_fat": 31.5
+    },
+    "serving_size_g": 238.45,
+    "total_recipe_weight_g": 953.8
+  }
+]

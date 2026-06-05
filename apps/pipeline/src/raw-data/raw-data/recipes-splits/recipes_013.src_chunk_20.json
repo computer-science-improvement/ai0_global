@@ -1,0 +1,595 @@
+[
+  {
+    "recipe_name": "Sustainable Chicken & Fermented Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_chicken_%26_fermented_tomato_rice_20250701_144030_5c2762a4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:40:30.867867000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "rice",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A clean, artisanal cream-colored ceramic plate holds a mound of fluffy, light brown rice. Two or three substantial, seared, golden-brown chicken chunks are placed organically atop the rice; chicken is not sliced. Vibrant, glossy fermented cherry tomatoes, some whole, some slightly burst, are scattered around, displaying deep red and orange hues. A light drizzle of clear, tangy tomato brine moistens the rice. Fresh, bright green chopped parsley is sparsely sprinkled. The minimalistic plating highlights natural textures and leaves ample white space. The setting features a light bamboo or reclaimed wood table with an undyed linen napkin. Soft, diffused natural light enhances earthy tones, with a clean background and subtle plant element.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken & Fermented Tomato",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": "4 boneless, skinless (approx. 600g)"
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "500g ripe"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Vegetable Scrap Broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml (for tomato fermentation)"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Tomatoes: Wash cherry tomatoes. Pierce each tomato once with a fork. In a clean jar, combine 500ml water and 15g sea salt to make a brine. Add tomatoes and 1 clove sliced garlic to the jar. Ensure tomatoes are submerged. Cover loosely. Let ferment at room temperature for 24-48 hours until slightly bubbly and tangy. Refrigerate.",
+      "Make Vegetable Scrap Broth: Combine 1 litre water with 200g saved vegetable scraps (e.g., onion peels, carrot ends, celery stalks, mushroom stems) in a pot. Add 1 clove garlic, smashed. Bring to a boil. Reduce heat. Simmer for 30 minutes. Strain broth. Discard solids.",
+      "Cook Rice: Rinse brown rice. In a medium pot, combine rice with 600ml prepared vegetable scrap broth. Bring to a boil. Reduce heat to low. Cover. Simmer for 35-40 minutes until liquid is absorbed and rice is tender. Fluff with a fork.",
+      "Prepare Chicken: Pat chicken thighs dry. Season with salt and pepper. Heat 15ml olive oil in a large pan over medium-high heat. Sear chicken thighs for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove from pan. Rest for 5 minutes. Cut each thigh into 2-3 large chunks.",
+      "Sauté Aromatics: In the same pan, add remaining 15ml olive oil. Add diced onion and remaining 2 cloves minced garlic. Sauté for 5-7 minutes until softened and translucent.",
+      "Assemble and Serve: Divide cooked rice among four plates. Arrange chicken chunks on top of rice. Spoon fermented tomatoes and a little brine over the chicken and rice. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing vegetable scraps for broth and fermenting tomatoes to extend their shelf life and enhance flavor.",
+      "For fermentation, ensure tomatoes remain submerged to prevent mold. A small fermentation weight or a clean ziploc bag filled with water can help."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 454,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 3.76,
+      "protein_g": 35.42,
+      "saturated_fat_g": 4.71,
+      "sodium_mg": 133,
+      "total_carbs_g": 30.29,
+      "total_fat_g": 21.11,
+      "total_sugars_g": 5.57,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 86,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 0.71,
+      "protein_g": 6.69,
+      "saturated_fat_g": 0.89,
+      "sodium_mg": 25,
+      "total_carbs_g": 5.72,
+      "total_fat_g": 3.99,
+      "total_sugars_g": 1.05,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 13,
+      "protein": 71,
+      "saturated_fat": 24,
+      "sodium": 6,
+      "total_carbs": 11,
+      "total_fat": 27
+    },
+    "serving_size_g": 529.7,
+    "total_recipe_weight_g": 2118.6
+  },
+  {
+    "recipe_name": "Sous Vide Chicken Thigh, Pressed Potato Terrine, Black Garlic Gel, Mustard Seed Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sous_vide_chicken_thigh%2C_pressed_potato_terrine%2C_black_garlic_gel%2C_mustard_seed_vinaigrette_20250701_143955_f72ea6d6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:39:55.521647000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "potato",
+      "mustard"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is a minimalist culinary artwork on a pristine white bone china plate. A single, perfectly seared chicken thigh, its skin a deep golden-amber crispness, rests elegantly. Adjacent, a precisely cut rectangular block of pressed potato terrine stands, its layers visible, with a golden-brown, buttery crust. Dark, glossy dots and delicate swooshes of rich black garlic gel are artfully placed, contrasting against the white plate. A small, clear pool of vibrant, amber-hued mustard seed vinaigrette glistens nearby. The arrangement is organic and asymmetrical, leaving abundant negative space. A single vibrant microgreen or delicate edible flower is precisely positioned, adding refined elegance. The plate rests on a luxurious white Carrara marble surface. A crisp white linen napkin and polished silver flatware enhance the high-end, minimalist setting with dramatic, focused lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "50g"
+      },
+      {
+        "name": "Black garlic cloves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Chicken stock (low sodium)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Whole grain mustard seeds",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Microgreens or edible flowers",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Potato Terrine: Peel potatoes. Slice thinly, 1-2mm, using a mandoline. Season slices with salt and pepper. Arrange slices in a greased rectangular mold (approx. 15x10cm), layering tightly. Brush each layer with melted butter. Press firmly between layers. Cover with foil. Bake at 180°C for 60-75 minutes until tender. Remove foil. Place a weight on top. Chill overnight or for at least 4 hours. Unmold. Cut into 4 precise rectangular portions.",
+      "Prepare Black Garlic Gel: Combine black garlic cloves and chicken stock in a small saucepan. Simmer gently for 5 minutes. Transfer to a blender. Blend until very smooth. Pass through a fine-mesh sieve. Season with salt. Transfer to a squeeze bottle.",
+      "Prepare Mustard Seed Vinaigrette: Combine mustard seeds, white wine vinegar, sugar, salt, and pepper in a small bowl. Slowly whisk in extra virgin olive oil until emulsified. Adjust seasoning.",
+      "Cook Chicken Thighs (Sous Vide): Season chicken thighs generously with salt and pepper. Vacuum seal individually. Cook in a sous vide water bath at 68°C for 2 hours. Remove from water bath. Plunge bags into ice bath to chill quickly. Remove chicken from bags. Pat skin very dry.",
+      "Final Cooking & Plating: Preheat oven to 200°C. Heat a heavy-bottomed, oven-safe skillet over medium-high heat. Add 1 tbsp olive oil and a knob of butter. Place potato terrine portions in the skillet. Sear 3-4 minutes per side until golden brown and crispy. Transfer to a wire rack. In the same skillet, place chicken thighs skin-side down. Sear for 5-7 minutes until skin is deeply golden and crispy. Flip chicken. Transfer skillet to preheated oven. Cook for 5-7 minutes, or until internal temperature reaches 75°C. Rest chicken for 5 minutes.",
+      "Plating: Place one crispy potato terrine portion slightly off-center on each plate. Place one chicken thigh (skin-side up) next to the terrine. Do not slice or fan. Artistically dot or drizzle black garlic gel around the chicken and terrine. Spoon a small pool or drizzle of mustard seed vinaigrette on the plate, near the chicken. Garnish with a few microgreens or a single edible flower. Ensure abundant negative space."
+    ]
+  },
+  {
+    "recipe_name": "Gourmet Cheeseburger Steak with Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_gourmet_cheeseburger_steak_with_caramelized_onions_20250701_143948_1c96e7ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:39:49.336984000Z",
+    "selected_ingredients": [
+      "onion",
+      "beef",
+      "american cheese",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, substantial, round beef patty rests centrally on a clean, white porcelain dinner plate. The patty, about 2.5 cm thick, displays a rich, dark brown seared crust. Cascading over the top of the patty is a generous mound of deeply caramelized yellow onions, their amber-brown color contrasting with the golden-orange hue of melted American cheese, which is draped smoothly over the beef and onions. A glossy, rich brown beef gravy pools elegantly around the base of the patty, catching the light. The dish is garnished with a scattering of vibrant green, finely chopped fresh parsley, adding a pop of color. The setting features a simple wooden table surface, with a white cotton napkin folded neatly beside the plate. Standard polished silver flatware is arranged to the side, maintaining a professional yet approachable bistro aesthetic. Natural, even lighting highlights the textures and colors of the dish, creating a clean, inviting presentation with appropriate negative space around the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Seared beef patty",
+    "ingredients": [
+      {
+        "name": "Ground beef (80/20 lean-fat ratio)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "American cheese slices",
+        "quantity": "4"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Thinly slice yellow onions into half-moons.",
+      "Mince garlic cloves.",
+      "Heat olive oil and 15g butter in a large skillet over medium-low heat.",
+      "Add sliced onions. Cook slowly for 30-40 minutes until deeply caramelized and tender. Stir occasionally. Season with salt.",
+      "While onions caramelize, divide ground beef into four equal portions. Form each portion into a thick, round patty, about 2.5 cm thick. Season generously with salt and black pepper on both sides.",
+      "Remove caramelized onions from the skillet and set aside.",
+      "Increase heat to medium-high. Add remaining 15g butter to the skillet. Once melted, add beef patties.",
+      "Sear patties for 4-5 minutes per side for medium-rare, or longer to desired doneness. Do not overcrowd the pan; cook in batches if necessary.",
+      "During the last minute of cooking, place one slice of American cheese on top of each patty. Cover the skillet briefly to melt the cheese.",
+      "Remove patties from skillet and keep warm.",
+      "To make the gravy, reduce heat to medium. Add minced garlic to the skillet. Cook for 30 seconds until fragrant.",
+      "Sprinkle flour into the skillet. Whisk constantly for 1 minute to create a roux.",
+      "Gradually whisk in beef broth and Worcestershire sauce. Bring to a simmer, stirring until gravy thickens. Season with salt and pepper to taste.",
+      "To serve, place a beef patty on each plate. Top generously with caramelized onions. Spoon gravy over and around the patty. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Use good quality ground beef for best flavor and texture.",
+      "Adjust cooking time for beef patties to achieve desired doneness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 602,
+      "cholesterol_mg": 143.1,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 37.6,
+      "saturated_fat_g": 18.9,
+      "sodium_mg": 1162.5,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 43.9,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 168,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 10.5,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 325.1,
+      "total_carbs_g": 4.2,
+      "total_fat_g": 12.3,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47.7,
+      "dietary_fiber": 6.8,
+      "protein": 75.2,
+      "saturated_fat": 94.5,
+      "sodium": 50.5,
+      "total_carbs": 5.5,
+      "total_fat": 56.3
+    },
+    "serving_size_g": 357.6,
+    "total_recipe_weight_g": 1430.4
+  },
+  {
+    "recipe_name": "Mini Turkey & Broccoli Meatballs with White Bean Dip",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mini_turkey_%26_broccoli_meatballs_with_white_bean_dip_20250701_143938_3bfc9201.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:39:38.658537000Z",
+    "selected_ingredients": [
+      "bean",
+      "onion",
+      "turkey",
+      "broccoli"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Golden-brown mini turkey meatballs, flecked with finely chopped green broccoli and subtle onion pieces, are casually arranged on a rustic wooden board or a simple off-white ceramic platter. Each meatball is irregularly shaped, showing a homemade touch. A small bowl of creamy, smooth white bean dip sits alongside, or small dollops of dip are placed next to some meatballs. The dip is a soft off-white color. A few fresh parsley sprigs are scattered for a touch of green. Lighting is warm and natural, mimicking a cozy kitchen setting. The scene is uncluttered, focusing on the comforting appeal of the bite-sized appetizers, presented as ready for a family gathering. Portions are natural, with components touching slightly.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Ground Turkey",
+    "ingredients": [
+      {
+        "name": "Ground turkey",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking sheet with parchment paper.",
+      "Finely chop broccoli florets. Dice onion very finely.",
+      "In a large bowl, combine ground turkey, chopped broccoli, diced onion, breadcrumbs, egg, garlic powder, salt, and pepper.",
+      "Mix ingredients thoroughly until just combined. Do not overmix.",
+      "Roll mixture into small, bite-sized meatballs, about 2.5 cm in diameter. You should get 20-24 meatballs.",
+      "Place meatballs on the prepared baking sheet. Bake for 18-20 minutes, or until internal temperature reaches 75°C. Meatballs should be golden brown.",
+      "While meatballs bake, prepare white bean dip. Drain and rinse cannellini beans.",
+      "In a food processor, combine drained beans, olive oil, lemon juice, and a pinch of salt and pepper.",
+      "Process until smooth and creamy. Add a tablespoon of water if needed to reach desired consistency.",
+      "Chop fresh parsley for garnish.",
+      "Arrange baked meatballs on a serving platter. Serve with the white bean dip on the side or dolloped next to each meatball. Garnish with chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 465,
+      "cholesterol_mg": 141.6,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 39.3,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 930.9,
+      "total_carbs_g": 36.2,
+      "total_fat_g": 19,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139,
+      "cholesterol_mg": 42.3,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 11.7,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 277.9,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 31,
+      "protein": 79,
+      "saturated_fat": 21,
+      "sodium": 40,
+      "total_carbs": 13,
+      "total_fat": 24
+    },
+    "serving_size_g": 335,
+    "total_recipe_weight_g": 1339.9
+  },
+  {
+    "recipe_name": "Beer-Braised Chicken with Spicy Tomato Gravy",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_chicken_with_spicy_tomato_gravy_20250701_143938_fcf5c2d9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:39:38.597392000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cayenne pepper",
+      "onion",
+      "beer",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, bone-in, skin-on braised chicken thigh is positioned centrally on a clean white porcelain dinner plate. The chicken is a rich, deep golden-brown, with visible crispy skin. It rests in a generous pool of vibrant, rustic, reddish-brown tomato gravy, studded with tender diced onions and bell peppers. A sprinkle of fresh, chopped green parsley adds a pop of color and freshness over the chicken and sauce. The chicken skin is slightly crisp, contrasting with the tender, moist meat beneath. The sauce is thick but flowing, showcasing the soft texture of the braised vegetables. Colors are warm: golden-brown chicken, rich red-brown sauce, green parsley. The plate sits on a simple, light-colored wooden table surface. Beside it, a folded natural cotton napkin. Lighting is natural and even, highlighting the dish's warmth. The background is a slightly blurred, casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "Southern American",
+    "cultural_serving_suggestions": [
+      "Serve with creamy grits or fluffy white rice to soak up the rich gravy.",
+      "Accompany with a side of cornbread or collard greens."
+    ],
+    "hero_ingredient": "chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Dark beer (e.g., stout or amber ale)",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken skin-side down until golden brown and crispy, about 6-8 minutes. Flip and sear other side for 2-3 minutes. Remove chicken from pot and set aside.",
+      "Add diced onion and green bell pepper to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in cayenne pepper, smoked paprika, and dried thyme. Cook for 1 minute, stirring constantly.",
+      "Pour in the beer. Scrape up any browned bits from the bottom of the pot with a wooden spoon. Bring to a simmer.",
+      "Add crushed tomatoes and chicken broth. Stir well. Add bay leaf. Bring to a gentle simmer.",
+      "Return chicken thighs to the pot, skin-side up. Ensure liquid comes about halfway up the chicken. If needed, add a little more broth.",
+      "Cover the pot. Reduce heat to low. Simmer for 35-40 minutes, or until chicken is tender and internal temperature reaches 75°C (167°F).",
+      "Remove chicken from the pot. Increase heat to medium-high. Simmer sauce, uncovered, for 5-7 minutes, or until slightly thickened to your preference.",
+      "Adjust salt and pepper to taste.",
+      "Serve chicken with the spicy tomato gravy. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Adjust cayenne pepper to desired spice level for more or less heat.",
+      "A dark amber ale or stout works best for the braising liquid, adding depth of flavor."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 593,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 40.4,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 493,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 28.6,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.7,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 106,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 10,
+      "protein": 81,
+      "saturated_fat": 34,
+      "sodium": 21,
+      "total_carbs": 5,
+      "total_fat": 37
+    },
+    "serving_size_g": 465,
+    "total_recipe_weight_g": 1860
+  }
+]

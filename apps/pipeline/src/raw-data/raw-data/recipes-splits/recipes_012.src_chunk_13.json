@@ -1,0 +1,648 @@
+[
+  {
+    "recipe_name": "Chicken Roulade with Mango-Walnut Stuffing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_roulade_with_mango-walnut_stuffing_20250702_215219_3956c989.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:52:20.455858000Z",
+    "selected_ingredients": [
+      "chicken",
+      "salad green",
+      "mozzarella",
+      "basil",
+      "walnut",
+      "mango",
+      "mint"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegantly sliced chicken roulade is centered on a clean white porcelain dinner plate. The pan-seared chicken is golden-brown on the exterior, revealing a vibrant, creamy filling when sliced diagonally. Inside, tender chicken encases a rich blend of melted white mozzarella, bright orange diced mango, and flecks of green basil and mint. Beside the roulade, a modest, artfully mounded portion of fresh, crisp green salad provides a contrasting texture and color. Scattered over the dish are additional chopped walnuts, offering a textural crunch. Fresh basil leaves and delicate mint sprigs are placed thoughtfully as a final garnish. The setting is a modern bistro: a simple wooden table surface, natural, even lighting, and standard polished flatware beside a folded cotton napkin, creating an approachable yet refined presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "4 (approx. 180g each), boneless, skinless"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "150g, low-moisture, shredded"
+      },
+      {
+        "name": "Ripe mango",
+        "quantity": "1 large, diced small"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "80g, chopped"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30g, chopped, plus extra for garnish"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "15g, chopped, plus extra for garnish"
+      },
+      {
+        "name": "Salad greens",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Place each chicken breast between two sheets of plastic wrap. Pound evenly to 6mm thickness.",
+      "In a bowl, combine diced mango, shredded mozzarella, half of the chopped walnuts, chopped basil, and chopped mint. Mix well.",
+      "Season chicken breasts lightly with salt and pepper.",
+      "Spoon an equal portion of the mango-mozzarella mixture onto one end of each chicken breast.",
+      "Roll each chicken breast tightly, tucking in the sides to form a roulade. Secure with toothpicks if needed.",
+      "Heat olive oil in an oven-safe pan over medium-high heat.",
+      "Sear chicken roulades for 3-4 minutes per side until golden brown.",
+      "Transfer the pan to the preheated oven. Bake for 15-20 minutes, or until internal temperature reaches 75°C.",
+      "While chicken bakes, dress salad greens with lemon juice, a drizzle of olive oil, salt, and pepper.",
+      "Remove chicken from oven. Let rest for 5 minutes. Remove toothpicks.",
+      "Slice each roulade diagonally into 2-3 thick pieces.",
+      "Arrange sliced roulade on plates alongside dressed salad greens. Garnish with remaining chopped walnuts, fresh basil leaves, and mint sprigs."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 636,
+      "cholesterol_mg": 173,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 71,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 565,
+      "total_carbs_g": 16.7,
+      "total_fat_g": 33.1,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 18.7,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 149,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 13,
+      "protein": 142,
+      "saturated_fat": 39,
+      "sodium": 25,
+      "total_carbs": 6,
+      "total_fat": 42
+    },
+    "serving_size_g": 379.75,
+    "total_recipe_weight_g": 1519
+  },
+  {
+    "recipe_name": "Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_20250702_212507_4d6ad0bc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:25:07.862291000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "high protein",
+    "visual_description": "A single portion of rustic chicken cacciatore served in a shallow, cream-colored ceramic bowl with minor surface imperfections. Two whole, bone-in chicken thighs are the centerpiece, their skin appearing dark golden and tender from braising. The chicken is partially submerged in a thick, chunky tomato sauce featuring visible pieces of softened translucent onions and whole black olives. A single fresh rosemary sprig is placed casually on top. The bowl sits on a weathered dark wood kitchen table. Beside the bowl is a thick piece of torn crusty bread. The scene is illuminated by warm, soft overhead kitchen lighting, creating a cozy, authentic Italian home-dining atmosphere. A simple linen napkin and a stainless steel fork are placed to the left of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough bread to soak up the tomato sauce",
+      "Pair with a side of simple polenta or rustic mashed potatoes",
+      "Traditional family-style dining involves placing the skillet in the center of the table"
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Heat olive oil in a large deep skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden brown.",
+      "Flip chicken and sear for 4 minutes. Remove chicken from skillet.",
+      "Add diced onion to the skillet. Sauté for 5 minutes until soft.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes, oregano, and the rosemary sprig.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Simmer on low heat for 30 minutes until chicken reaches 75°C internally.",
+      "Stir in the olives 5 minutes before serving."
+    ],
+    "notes": [
+      "Use bone-in thighs for maximum flavor and protein content",
+      "Ensure the sauce reduces until thick to concentrate the savory tomato profile",
+      "Always check the thickest part of the chicken for a safe internal temperature of 75°C"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1716,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 444.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 53,
+      "sodium": 75,
+      "total_carbs": 7,
+      "total_fat": 54
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1543
+  },
+  {
+    "recipe_name": "Chicken and Potato Flautas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_potato_flautas_20250702_212429_1e455329.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:24:29.730627000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "tortilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken and Potato Flautas is presented on a clean, round white porcelain plate. Three golden-brown, crispy flautas, tightly rolled and baked, are arranged diagonally across the plate. The tortillas are uniformly golden with a slight sheen from baking. One flauta is gently broken at the end, revealing the creamy, light-colored shredded chicken and mashed potato filling within, flecked with melted cheese. A vibrant green sprig of fresh cilantro garnishes the center of the flautas. Alongside, a small dollop of bright red salsa roja and a scoop of pale green guacamole are neatly placed in a small Mexican ceramic dish. A delicate drizzle of white crema artfully zigzags over one flauta. The dish rests on a simple light wooden table. A folded off-white cotton napkin is positioned beside the plate. The background is softly blurred, hinting at a casual restaurant setting with warm, even natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Salsa roja",
+      "Guacamole",
+      "Mexican crema"
+    ],
+    "hero_ingredient": "Shredded Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "300g"
+      },
+      {
+        "name": "Monterey Jack cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "12 small"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "3g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "for brushing"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Salsa roja",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Guacamole",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Mexican crema",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking sheet with parchment paper.",
+      "Boil potatoes until fork-tender. Drain and mash.",
+      "Cook chicken breast until internal temperature reaches 75°C. Shred finely.",
+      "In a large pan, sauté diced onion over medium heat until softened, about 5 minutes.",
+      "Add minced garlic to the pan. Cook for 1 minute until fragrant.",
+      "Stir in shredded chicken, mashed potatoes, shredded Monterey Jack cheese, chili powder, cumin, smoked paprika, salt, and pepper.",
+      "Add chicken broth. Mix well until cheese melts and ingredients are fully combined. Cook for 2-3 minutes.",
+      "Warm corn tortillas to make them pliable. Microwave for 15-20 seconds or quickly heat in a dry pan.",
+      "Spoon approximately 30g of filling onto one edge of each warm tortilla. Roll tightly.",
+      "Place rolled flautas seam-side down on the prepared baking sheet. Brush lightly with vegetable oil.",
+      "Bake for 15-20 minutes, or until golden brown and crispy.",
+      "Serve hot with salsa roja, guacamole, and Mexican crema."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 609,
+      "cholesterol_mg": 119,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 47.8,
+      "saturated_fat_g": 9,
+      "sodium_mg": 518,
+      "total_carbs_g": 57.7,
+      "total_fat_g": 21.7,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 13.2,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 143,
+      "total_carbs_g": 15.9,
+      "total_fat_g": 6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 28,
+      "protein": 96,
+      "saturated_fat": 45,
+      "sodium": 23,
+      "total_carbs": 21,
+      "total_fat": 28
+    },
+    "serving_size_g": 363,
+    "total_recipe_weight_g": 1452
+  },
+  {
+    "recipe_name": "Lemon-Mint Pesto Pasta with Roasted Chickpeas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon-mint_pesto_pasta_with_roasted_chickpeas_20250702_211922_be7fa940.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:19:23.361333000Z",
+    "selected_ingredients": [
+      "mint",
+      "lemon",
+      "chickpea",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Lemon-Mint Pesto Pasta with Roasted Chickpeas is presented in a wide, shallow white porcelain bowl. The pasta, such as orecchiette, is generously coated in a vibrant, verdant green lemon-mint pesto. Scattered throughout the pasta are golden-brown, irregularly shaped roasted chickpeas, adding textural contrast. Halved bright red cherry tomatoes and dark green baby spinach leaves are interspersed, providing bursts of color. The dish is garnished with a few fresh, whole mint leaves and delicate strands of bright yellow lemon zest, artfully placed on top. The overall presentation is clean and inviting, with a balanced composition and moderate negative space. The dish sits on a simple wooden table surface, accompanied by a folded cotton napkin and standard silver flatware, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in any leftover sauce.",
+      "A simple green salad can accompany this dish."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Orecchiette Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned Chickpeas",
+        "quantity": "400g can, drained and rinsed"
+      },
+      {
+        "name": "Fresh Mint Leaves",
+        "quantity": "60g"
+      },
+      {
+        "name": "Fresh Lemon",
+        "quantity": "2 (juice of 1.5 lemons, zest of 1 lemon)"
+      },
+      {
+        "name": "Pine Nuts",
+        "quantity": "50g, toasted"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, peeled"
+      },
+      {
+        "name": "Parmesan Cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "180ml (150ml for pesto, 30ml for roasting)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Cherry Tomatoes, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Baby Spinach",
+        "quantity": "100g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss drained chickpeas with 30ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 20-25 minutes, until golden and slightly crisp.",
+      "While chickpeas roast, prepare the pesto. In a food processor, combine mint leaves, toasted pine nuts, garlic, lemon zest, and grated Parmesan. Pulse until finely chopped.",
+      "With the food processor running, slowly drizzle in 150ml extra virgin olive oil and the juice of one lemon until a smooth pesto forms. Season with salt and pepper to taste. Adjust lemon juice if needed.",
+      "Cook pasta according to package instructions in salted boiling water until al dente. Reserve 120ml of pasta cooking water before draining.",
+      "In a large serving bowl, combine the drained pasta with the pesto. Add the baby spinach and halved cherry tomatoes.",
+      "Add reserved pasta water gradually, stirring until the sauce coats the pasta evenly and reaches desired consistency.",
+      "Gently fold in the roasted chickpeas.",
+      "Serve immediately, garnished with fresh mint leaves and a sprinkle of lemon zest."
+    ],
+    "notes": [
+      "Adjust pesto consistency with more olive oil or pasta water as desired.",
+      "For a richer flavor, toast pine nuts until fragrant before adding to pesto."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1011,
+      "cholesterol_mg": 13.4,
+      "dietary_fiber_g": 10.88,
+      "protein_g": 27.78,
+      "saturated_fat_g": 9.36,
+      "sodium_mg": 294.3,
+      "total_carbs_g": 99.45,
+      "total_fat_g": 57.12,
+      "total_sugars_g": 7.77,
+      "trans_fat_g": 0.17
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 299,
+      "cholesterol_mg": 3.9,
+      "dietary_fiber_g": 3.21,
+      "protein_g": 8.21,
+      "saturated_fat_g": 2.77,
+      "sodium_mg": 87,
+      "total_carbs_g": 29.38,
+      "total_fat_g": 16.88,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 6.7,
+      "dietary_fiber": 38.8,
+      "protein": 55.6,
+      "saturated_fat": 46.8,
+      "sodium": 12.8,
+      "total_carbs": 36.2,
+      "total_fat": 73.2
+    },
+    "serving_size_g": 338.5,
+    "total_recipe_weight_g": 1354
+  },
+  {
+    "recipe_name": "Spiced Chicken with Harissa Tomato Ragout and Lemon Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_chicken_with_harissa_tomato_ragout_and_lemon_brown_rice_20250702_211729_9fbdb1f6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:17:30.018868000Z",
+    "selected_ingredients": [
+      "chicken",
+      "green pea",
+      "chili",
+      "tomato",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of Spiced Chicken with Harissa Tomato Ragout and Lemon Brown Rice rests on a clean, round white porcelain plate. A golden-brown seared chicken breast, cooked whole, is positioned as the centerpiece. Adjacent to the chicken, a vibrant mound of rich red-orange harissa tomato ragout, studded with bright green peas and softened cherry tomato halves, is artfully spooned. Beside the ragout, a neatly formed portion of fluffy brown rice, infused with lemon zest, provides a subtle contrast in color and texture. The dish is garnished with a sprinkle of fresh, finely chopped green parsley or coriander, adding a pop of fresh color. The composition is balanced, with moderate negative space. The plate sits on a simple wooden table surface, accompanied by standard silver cutlery and a folded cotton napkin, all illuminated by soft, natural, even lighting from above, creating a modern bistro ambiance. The background is minimal, focusing entirely on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, skin-on or boneless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Green peas, frozen",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Harissa paste",
+        "quantity": "2 tablespoons (adjust to taste)"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Lemon, fresh",
+        "quantity": "1 (for zest and juice)"
+      },
+      {
+        "name": "Fresh parsley or coriander, chopped",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse brown rice thoroughly. Cook rice according to package directions, typically 40-45 minutes. Once cooked, fluff with a fork. Stir in lemon zest and 1 tablespoon lemon juice. Season with salt.",
+      "Preheat oven to 200°C (390°F). Halve cherry tomatoes. Toss with 1 tablespoon olive oil, salt, and pepper on a baking sheet. Roast for 15-20 minutes until slightly softened and caramelized. Set aside.",
+      "Pat chicken breasts dry. Season generously with salt and pepper. Heat 2 tablespoons olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts, skin-side down if applicable, for 5-7 minutes until golden brown and crispy. Flip chicken. Transfer skillet to preheated oven. Roast for 10-15 minutes, or until internal temperature reaches 75°C (167°F). Remove from oven. Let rest 5 minutes.",
+      "While chicken roasts, prepare ragout. In the same skillet (or a separate pan if skillet is in oven), sauté diced red onion over medium heat until softened, about 5 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant. Stir in harissa paste. Cook 1 minute, stirring constantly.",
+      "Pour in chicken stock. Bring to a simmer. Add roasted cherry tomatoes and frozen green peas. Cook 3-5 minutes, until peas are tender and sauce slightly thickens.",
+      "Stir in 1 tablespoon fresh lemon juice and 2 tablespoons chopped parsley or coriander. Season ragout with salt and pepper to taste.",
+      "To serve, place a portion of lemon brown rice on each plate. Spoon a generous amount of harissa tomato ragout alongside or slightly over the rice. Place a seared chicken breast next to the ragout. Garnish with remaining fresh parsley or coriander."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 628.24,
+      "cholesterol_mg": 115.2,
+      "dietary_fiber_g": 6.39,
+      "protein_g": 49.95,
+      "saturated_fat_g": 3.33,
+      "sodium_mg": 403.19,
+      "total_carbs_g": 64.19,
+      "total_fat_g": 18.62,
+      "total_sugars_g": 7.71,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120.49,
+      "cholesterol_mg": 22.1,
+      "dietary_fiber_g": 1.22,
+      "protein_g": 9.58,
+      "saturated_fat_g": 0.64,
+      "sodium_mg": 77.33,
+      "total_carbs_g": 12.31,
+      "total_fat_g": 3.57,
+      "total_sugars_g": 1.48,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.4,
+      "dietary_fiber": 22.82,
+      "protein": 99.9,
+      "saturated_fat": 16.65,
+      "sodium": 17.53,
+      "total_carbs": 23.34,
+      "total_fat": 23.87
+    },
+    "serving_size_g": 521.38,
+    "total_recipe_weight_g": 2085.5
+  }
+]

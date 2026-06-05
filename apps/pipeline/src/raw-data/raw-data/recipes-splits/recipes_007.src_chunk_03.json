@@ -1,0 +1,683 @@
+[
+  {
+    "recipe_name": "Greek Pork Chunks with Lemon Potatoes and Tomato-Walnut Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_greek_pork_chunks_with_lemon_potatoes_and_tomato-walnut_relish_20250903_130124_3d9a9b2b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T13:01:24.961597000Z",
+    "selected_ingredients": [
+      "potato",
+      "pork",
+      "tomato",
+      "chili pepper flake",
+      "lime",
+      "walnut"
+    ],
+    "complexity": "standard",
+    "special_requests": "Greek cuisine cuisine",
+    "visual_description": "A single individual portion of Greek Pork Chunks with Lemon Potatoes and Tomato-Walnut Relish is presented on a clean, round white porcelain dinner plate. The seared pork chunks, golden-brown with a savory crust, are arranged centrally. Each chunk is about 3-4 cm. Scattered around the pork are golden-roasted potato wedges, showing slight charring and a fluffy interior. A vibrant, fresh tomato-walnut relish, featuring diced red tomatoes, bright green parsley, and chopped walnuts, is spooned artfully over the pork and potatoes, adding a burst of color and texture. The relish provides a fresh, acidic contrast to the rich pork and earthy potatoes. The dish is garnished with a small sprig of fresh oregano. The setting is a modern bistro: a simple light wooden table surface with a linen napkin beside the plate. Natural, even lighting highlights the dish's textures and colors. A small, traditional Greek ceramic bowl for a side sauce is placed subtly in the background, out of focus. The entire plate is visible, with moderate negative space, showcasing a balanced and appealing composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with a side of tzatziki (cucumber-yogurt dip).",
+      "Offer warm pita bread for dipping.",
+      "Pair with a simple Greek salad."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork loin or shoulder",
+        "quantity": "600g, cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800g, peeled and cut into 2-3 cm wedges"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "400g, diced"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "50g, roughly chopped"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 large, juiced and zested"
+      },
+      {
+        "name": "Chili flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "90ml, divided"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "10g, divided"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15ml, divided"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Combine pork chunks with 30ml olive oil, half the minced garlic, 5g oregano, 5ml red wine vinegar, salt, and pepper. Mix well. Marinate for at least 30 minutes, or up to 4 hours refrigerated.",
+      "Preheat oven to 200\b0C. In a large bowl, toss potato wedges with 30ml olive oil, remaining 5g oregano, salt, and pepper.",
+      "Spread potatoes in a single layer on a baking tray. Roast for 30-35 minutes, or until golden brown and tender. Turn once during cooking.",
+      "In a medium bowl, combine diced tomatoes, chopped walnuts, chili flakes, lime juice, lime zest, remaining 10ml red wine vinegar, remaining minced garlic, and chopped parsley. Season with salt and pepper. Mix gently.",
+      "Heat remaining 30ml olive oil in a large pan over medium-high heat. Add marinated pork chunks in a single layer. Do not overcrowd. Sear for 4-5 minutes per side until golden brown and cooked through (internal temperature 75\b0C). Cook in batches if necessary.",
+      "Divide roasted potatoes among 4 plates. Arrange seared pork chunks beside the potatoes. Spoon a generous portion of the tomato-walnut relish over the pork and potatoes. Serve immediately."
+    ],
+    "notes": [
+      "Ensure pork reaches an internal temperature of 75\b0C (167\b0F).",
+      "Adjust chili flakes to desired spice level."
+    ],
+    "traditional_techniques": [
+      "Marinating meat for flavor infusion.",
+      "Roasting vegetables until tender and caramelized."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 673,
+      "cholesterol_mg": 110,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 46.1,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 116,
+      "total_carbs_g": 44.3,
+      "total_fat_g": 36.9,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9.2,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 23,
+      "total_carbs_g": 8.8,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 27,
+      "protein": 92,
+      "saturated_fat": 31,
+      "sodium": 5,
+      "total_carbs": 16,
+      "total_fat": 47
+    },
+    "serving_size_g": 503,
+    "total_recipe_weight_g": 2010
+  },
+  {
+    "recipe_name": "Seared King Oyster Mushroom, Parsnip Puree, Savory Confetti, Truffle Butter Emulsion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_king_oyster_mushroom%2C_parsnip_puree%2C_savory_confetti%2C_truffle_butter_emulsion_20250903_125554_416bf7d4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T12:55:55.297503000Z",
+    "selected_ingredients": [
+      "100s and 1000s",
+      "butter"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "plant-based",
+    "visual_description": "A single seared king oyster mushroom, cut into thick rounds, is the focal point, positioned elegantly on a round, white bone china plate with a subtle, organic texture. The mushroom, deeply caramelized with a rich, golden-brown crust and a tender interior, is placed slightly off-center. Beside it, a perfectly formed quenelle of creamy, off-white parsnip puree creates a soft, flowing line. The vibrant 'Savory Confetti' – small, irregular pieces of dehydrated beetroot, carrot, and spinach – are scattered artfully over the mushroom and puree, providing a striking contrast of color (deep red, bright orange, rich green) and a delicate crunch. A rich, glossy truffle butter emulsion is drizzled in an organic, flowing pattern around the main elements. A single, perfectly crisp sage leaf, fried to a golden hue, rests delicately on the mushroom. The composition utilizes abundant negative space, highlighting the precision and artistry of each component. The setting features a premium grey-veined marble surface, dramatic professional lighting casting soft shadows, and a pristine white linen napkin folded into a precise triangle. Utensils are minimalist, high-quality modern flatware.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Plant-based",
+    "hero_ingredient": "King Oyster Mushroom",
+    "ingredients": [
+      {
+        "name": "King Oyster Mushrooms",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Plant-based butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Truffle oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "8"
+      },
+      {
+        "name": "Beetroot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Spinach",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Nutritional yeast",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Savory Confetti: Steam beetroot, carrot, and spinach separately until tender. Puree each vegetable with a pinch of salt and 0.5 g agar-agar powder until very smooth. Spread each puree thinly (1 mm) onto separate silicone mats. Dehydrate in an oven at 60°C for 2-3 hours until brittle. Break dried sheets into small, irregular confetti pieces. Set aside.",
+      "Make Parsnip Puree: Peel and roughly chop parsnips. Cook in simmering salted vegetable stock until very tender. Drain, reserving some stock. Blend parsnips with 30 g plant-based butter and a splash of reserved stock until silky smooth. Season with salt and pepper. Keep warm.",
+      "Prepare King Oyster Mushrooms: Trim mushroom stems. Score the cut surfaces in a crosshatch pattern. Season with salt and pepper.",
+      "Sear Mushrooms: Heat 15 ml olive oil and 30 g plant-based butter in a heavy-bottomed pan over medium-high heat. Sear mushrooms, scored side down, for 4-5 minutes until deeply golden brown. Flip and sear other side for 3-4 minutes. Reduce heat. Baste mushrooms with pan drippings until tender, about 2-3 minutes.",
+      "Make Truffle Butter Emulsion: Mince shallots and garlic. In a small saucepan, sauté shallots and garlic in 10 g plant-based butter until soft. Deglaze with white wine, reduce by half. Add 50 ml vegetable stock. Bring to a simmer. Remove from heat. Whisk in remaining 30 g cold plant-based butter, piece by piece, until emulsified. Stir in truffle oil and nutritional yeast. Season with salt and pepper. Keep warm.",
+      "Crispy Sage: In a small pan, melt 10 g plant-based butter. Fry sage leaves until crisp. Remove and drain on paper towel.",
+      "Assemble Dish: Spoon a generous quenelle of parsnip puree onto the center of each plate. Place a seared king oyster mushroom artfully beside the puree. Drizzle truffle butter emulsion around the mushroom and puree. Scatter Savory Confetti over the mushroom and puree. Garnish with crispy sage leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 467.04,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 12.9,
+      "protein_g": 8.85,
+      "saturated_fat_g": 14.26,
+      "sodium_mg": 785.58,
+      "total_carbs_g": 39.58,
+      "total_fat_g": 31.42,
+      "total_sugars_g": 12.03,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120.92,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.34,
+      "protein_g": 2.29,
+      "saturated_fat_g": 3.69,
+      "sodium_mg": 203.39,
+      "total_carbs_g": 10.25,
+      "total_fat_g": 8.13,
+      "total_sugars_g": 3.12,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 46.07,
+      "protein": 17.7,
+      "saturated_fat": 71.3,
+      "sodium": 34.16,
+      "total_carbs": 14.39,
+      "total_fat": 40.28
+    },
+    "serving_size_g": 386.25,
+    "total_recipe_weight_g": 1545
+  },
+  {
+    "recipe_name": "Pan-Seared Rosemary Chicken with Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_rosemary_chicken_with_caramelized_onions_20250903_121021_09b32b3e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T12:10:22.345828000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "garlic",
+      "rosemary",
+      "dried chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Two pan-seared chicken thighs, skin-on and golden-brown with a crispy finish, are centrally placed on a clean white porcelain dinner plate. The chicken, presented as whole pieces, rests atop a generous mound of deeply caramelized, glossy, thinly sliced onions. A light drizzle of the savory pan sauce coats the chicken and onions. Fresh green rosemary sprigs are placed beside the chicken, adding a vibrant color contrast. The composition is balanced and professional, with moderate negative space. The setting features a simple wooden table, a clean white cotton napkin placed beside standard European flatware. Natural, even lighting highlights the rich golden-browns and deep amber tones of the dish. The background is minimal, suggesting a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the pan sauce.",
+      "Pair with a glass of dry white wine."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs, finely chopped, plus extra for garnish"
+      },
+      {
+        "name": "Dried chili flakes",
+        "quantity": "1 teaspoon (or to taste)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat 15 ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Place chicken thighs, skin-side down, in the hot skillet. Sear for 8-10 minutes until skin is crispy and golden brown.",
+      "Flip chicken. Sear for another 5 minutes on the flesh side. Remove chicken from skillet and set aside.",
+      "Reduce heat to medium. Add remaining 15 ml olive oil to the skillet. Add thinly sliced onions. Cook, stirring occasionally, for 15-20 minutes until deeply caramelized and tender.",
+      "Add minced garlic, chopped rosemary, and dried chili flakes to the onions. Cook for 1 minute until fragrant.",
+      "Deglaze the skillet with red wine vinegar, scraping up any browned bits. Pour in chicken broth.",
+      "Return chicken thighs to the skillet, skin-side up. Bring liquid to a simmer.",
+      "Transfer skillet to a preheated oven at 190°C (375°F). Roast for 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Remove chicken from oven. Let rest in the skillet for 5 minutes before serving."
+    ],
+    "notes": [
+      "Adjust chili flakes to your preferred spice level.",
+      "Ensure chicken skin is thoroughly dried for maximum crispiness."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Caramelizing onions",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 485,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 30.9,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 443,
+      "total_carbs_g": 12.4,
+      "total_fat_g": 34.4,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 56,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.5,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 151,
+      "total_carbs_g": 4.2,
+      "total_fat_g": 11.7,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 8,
+      "protein": 62,
+      "saturated_fat": 43,
+      "sodium": 19,
+      "total_carbs": 5,
+      "total_fat": 44
+    },
+    "serving_size_g": 293,
+    "total_recipe_weight_g": 1173
+  },
+  {
+    "recipe_name": "Pumpernickel Custard, Candied Bratwurst Crumble, Apple Gel, and Lemon Thyme Meringue",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pumpernickel_custard%2C_candied_bratwurst_crumble%2C_apple_gel%2C_and_lemon_thyme_meringue_20250903_120225_1f882269.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T12:02:26.462490000Z",
+    "selected_ingredients": [
+      {
+        "name": "sausage"
+      },
+      {
+        "name": "rye bread"
+      },
+      {
+        "name": "egg"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "The dessert is presented on a round, matte bone china plate, stark white, with abundant negative space. A single, inverted pumpernickel custard forms a smooth, dark brown dome, perfectly centered. Around its base, an artful scattering of candied bratwurst crumble, made from finely diced and caramelized bratwurst, creates an organic, textural contrast with its rich, deep brown hue and subtle sheen. Delicate, irregular shards of pale, off-white lemon thyme meringue are strategically placed, some leaning against the custard, others standing vertically, offering architectural height and a crisp, airy texture. Small, vibrant dots of translucent apple gel, a pale green-yellow, are piped with precision across the plate, providing a fresh color accent and a subtle sheen. The composition is flowing and natural, avoiding rigid geometry. The scene features a pristine white linen napkin folded into a sharp triangle, placed on a dark, polished wooden table surface. Dramatic professional lighting casts soft shadows, highlighting the textures and elegant simplicity of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Enjoyed with a strong, black coffee or a digestif like Jägermeister or Obstler.",
+      "Served after a traditional German main course, offering a sophisticated, modern take on familiar flavors."
+    ],
+    "hero_ingredient": "Pumpernickel",
+    "ingredients": [
+      {
+        "name": "Full-fat milk",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Pumpernickel bread, crusts removed, roughly torn",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Large egg yolks",
+        "quantity": "4"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "High-quality mild bratwurst (without casing)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Fresh Granny Smith apple juice",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Large egg whites (approx. 60g)",
+        "quantity": "2"
+      },
+      {
+        "name": "Superfine sugar",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Fresh thyme leaves, finely chopped",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Combine milk, cream, and torn pumpernickel in a saucepan. Heat gently to a simmer. Remove from heat. Steep 30 minutes.",
+      "Strain mixture through a fine-mesh sieve, pressing solids to extract liquid. Discard solids.",
+      "Whisk egg yolks, sugar, and salt in a bowl.",
+      "Slowly whisk warm pumpernickel liquid into egg mixture.",
+      "Pour custard into four 120 ml ramekins. Place ramekins in a baking dish. Fill dish with hot water halfway up ramekin sides.",
+      "Bake at 150°C (300°F) for 25-30 minutes, until edges are set but centers still slightly jiggle.",
+      "Remove from water bath. Chill completely, at least 4 hours.",
+      "Finely dice bratwurst. Render in a dry pan over medium heat until crispy and fat is rendered.",
+      "Drain fat. Return crispy bratwurst to pan.",
+      "Add sugar, salt, and nutmeg. Cook, stirring constantly, until sugar melts and coats bratwurst, forming a candied crumble.",
+      "Spread on parchment paper to cool completely.",
+      "Combine apple juice and agar-agar in a small saucepan. Bring to a boil, whisking constantly for 1 minute.",
+      "Remove from heat. Stir in lemon juice.",
+      "Pour into a shallow dish. Chill until set, about 30 minutes.",
+      "Once set, blend gel until smooth. Pass through a fine-mesh sieve for a perfectly smooth texture. Transfer to a piping bag.",
+      "Preheat oven to 90°C (195°F). Line a baking sheet with parchment paper.",
+      "Whisk egg whites and a pinch of sugar over a bain-marie until sugar dissolves and mixture is warm to touch (about 60°C / 140°F).",
+      "Remove from heat. Whip with an electric mixer until stiff, glossy peaks form.",
+      "Fold in remaining sugar, lemon juice, and chopped thyme.",
+      "Pipe small, irregular shards or dots onto prepared baking sheet.",
+      "Bake for 1.5-2 hours, until meringues are dry and crisp. Cool completely.",
+      "Carefully invert each chilled pumpernickel custard onto the center of a chilled dessert plate.",
+      "Artistically scatter a generous portion of candied bratwurst crumble around the custard.",
+      "Pipe small, precise dots or a flowing line of apple gel onto the plate.",
+      "Arrange 2-3 irregular meringue crisps upright against the custard or on the plate for height and texture.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure the bratwurst is finely diced for an even crumble.",
+      "The pumpernickel custard should be silky smooth; straining is crucial.",
+      "Meringues must be completely dry for maximum crispness."
+    ],
+    "traditional_techniques": [
+      "Bain-marie",
+      "Infusion"
+    ]
+  },
+  {
+    "recipe_name": "Spätburgunder Consommé Gelee, Carrot & Spice Sponge",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sp%C3%A4tburgunder_consomm%C3%A9_gelee%2C_carrot_%26_spice_sponge_20250903_120119_3763dac8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T12:01:19.621260000Z",
+    "selected_ingredients": [
+      {
+        "name": "red wine"
+      },
+      {
+        "name": "carrot"
+      },
+      {
+        "name": "chicken"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single portion of this sophisticated dessert is presented on an elegant, matte white bone china plate, resting on a premium white Carrara marble surface. Abundant negative space frames the minimalist composition. The centerpiece features translucent, deep ruby Spätburgunder Consommé Gelee, cut into organic, irregular shards, glistening under dramatic lighting. Adjacent are small, airy pieces of light orange Carrot Aerated Sponge, their soft texture contrasting with the gelee. A fine, glossy line of dark ruby Red Wine Reduction Caramel artfully sweeps across the plate. Standing tall are one or two delicate, vibrant orange Candied Carrot Crisps, their thin, slightly curled forms adding verticality. A single, tiny bronze fennel frond provides a precise, fresh green accent. The setting includes a pristine white linen napkin and minimalist silver dessert cutlery, emphasizing refined simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "hero_ingredient": "Spätburgunder Wine",
+    "ingredients": [
+      {
+        "name": "Chicken bones/carcasses",
+        "quantity": "500g"
+      },
+      {
+        "name": "Mirepoix (carrot, celery, onion)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Spätburgunder (German Pinot Noir)",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "4"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "1"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "130g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Carrot purée",
+        "quantity": "100g"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "2"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Ground ginger",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Small carrots (for crisps)",
+        "quantity": "2"
+      },
+      {
+        "name": "Bronze fennel fronds or lemon balm leaves",
+        "quantity": "Few"
+      }
+    ],
+    "instructions": [
+      "Roast chicken bones until golden. Combine roasted bones, mirepoix, and 1 litre water in a large pot. Simmer gently for 2 hours. Skim impurities regularly. Strain liquid through a fine-mesh sieve. Chill thoroughly. Remove any fat.",
+      "For Consommé Clarification: In a clean pot, combine chilled consommé, 2 egg whites, and a splash of cold water. Whisk gently to combine. Heat slowly, stirring occasionally, until egg whites form a raft on the surface. Stop stirring. Simmer for 20 minutes without disturbing. Carefully ladle clear consommé through a cheesecloth-lined sieve.",
+      "For Consommé Gelee: Return clarified consommé to a clean pot. Add 200ml Spätburgunder, cinnamon stick, star anise, cloves, and 30g sugar. Simmer gently for 10 minutes. Strain to remove spices. Reheat consommé. Whisk in agar-agar until fully dissolved. Pour into a shallow tray to a depth of 5mm. Chill until firm. Cut into small, irregular shapes.",
+      "For Carrot Aerated Sponge: Preheat oven to 160°C. Blend carrot purée with egg yolks, 25g sugar, flour, ground ginger, and ground nutmeg until smooth. In a separate bowl, whip remaining 2 egg whites with 25g sugar to soft peaks. Gently fold carrot mixture into egg whites. Pour into a small, greased square mold (approx. 15x15 cm). Bake for 15-20 minutes, until a skewer comes out clean. Let cool completely. Tear into small, organic shapes.",
+      "For Red Wine Reduction Caramel: Combine 100ml Spätburgunder and 20ml water in a small saucepan. Reduce by half over medium heat. In another small saucepan, melt 50g sugar over medium heat until it caramelizes to a light amber. Carefully add the reduced red wine mixture to the caramel. Stir until smooth. Simmer for 2 minutes. Let cool slightly to thicken.",
+      "For Candied Carrot Crisps: Slice carrots very thinly using a mandoline. In a small saucepan, combine remaining 50g sugar and 100ml water. Bring to a simmer until sugar dissolves. Add carrot slices. Simmer gently for 5 minutes. Remove carrots and place on a silicone mat. Bake at 100°C for 30-45 minutes, or until crisp. Let cool.",
+      "Assemble Dish: On a cold, minimalist plate, artfully arrange 3-4 pieces of consommé gelee. Place 2-3 pieces of carrot sponge next to them. Drizzle a small amount of red wine reduction caramel in an organic line or dot pattern. Place 1-2 candied carrot crisps upright for height. Garnish with a few small fronds of bronze fennel or lemon balm. Serve immediately."
+    ],
+    "notes": [
+      "Use high-quality Spätburgunder for the best flavor.",
+      "Precision is key for all components, especially for the fine-dining presentation."
+    ],
+    "traditional_techniques": [
+      "Consommé Clarification"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 32.5,
+      "calories": 270,
+      "cholesterol_mg": 108,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 3.8,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 149,
+      "total_carbs_g": 44.6,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 34.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 9,
+      "calories": 75,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 1,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 41,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 0.8,
+      "total_sugars_g": 9.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36,
+      "dietary_fiber": 5,
+      "protein": 8,
+      "saturated_fat": 5,
+      "sodium": 6,
+      "total_carbs": 16,
+      "total_fat": 4
+    },
+    "serving_size_g": 361.5,
+    "total_recipe_weight_g": 1446
+  }
+]

@@ -1,0 +1,730 @@
+[
+  {
+    "recipe_name": "Cucumber, Chicken, and Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cucumber%2C_chicken%2C_and_rice_salad_20250630_044454_13a2c613.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:44:55.096271000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented in a wide, shallow white porcelain bowl, creating a professional yet approachable aesthetic. A generous mound of vibrant, chopped ingredients forms the centerpiece. Diced English cucumber and red bell pepper cubes, approximately 1 cm, are interspersed with halved bright red cherry tomatoes and dark Kalamata olives. Cool, fluffy basmati rice and small, 2 cm chunks of cooked chicken breast are visible, integrated throughout the colorful medley. Finely diced red onion adds a subtle purple hue. Freshly chopped green parsley and mint leaves are generously scattered, providing bursts of verdant color and texture. A light, glistening lemon-herb vinaigrette lightly coats all components, enhancing their natural sheen. Crumbled white feta cheese adds creamy contrast. The bowl is placed on a simple light wooden table. A folded white cotton napkin rests beside the plate. Natural, soft light illuminates the scene, highlighting the freshness of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm pita bread or crusty bread for dipping."
+    ],
+    "hero_ingredient": "Cucumber",
+    "ingredients": [
+      {
+        "name": "Cooked Chicken Breast",
+        "quantity": "200 g, diced into 2 cm cubes"
+      },
+      {
+        "name": "Cooked Basmati Rice",
+        "quantity": "250 g, cooled"
+      },
+      {
+        "name": "English Cucumber",
+        "quantity": "1 large (approx. 300 g), diced into 1 cm cubes"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200 g, halved"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large (approx. 200 g), cored, seeded, diced into 1 cm cubes"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "50 g, finely diced"
+      },
+      {
+        "name": "Kalamata Olives",
+        "quantity": "80 g, pitted, halved"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Fresh Mint",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Feta Cheese",
+        "quantity": "100 g, crumbled"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Fresh Lemon Juice",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5 ml (1 teaspoon)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2.5 ml (1/2 teaspoon)"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "1.25 ml (1/4 teaspoon)"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken: Cook chicken breast until internal temperature reaches 75°C. Let cool. Dice into 2 cm cubes.",
+      "Cook and cool rice: Cook basmati rice according to package instructions. Spread on a tray to cool completely.",
+      "Prepare vegetables: Dice cucumber, red bell pepper, and finely dice red onion. Halve cherry tomatoes and Kalamata olives. Chop fresh parsley and mint.",
+      "Make vinaigrette: In a small bowl, whisk together olive oil, lemon juice, minced garlic, dried oregano, salt, and black pepper until emulsified.",
+      "Combine salad: In a large mixing bowl, combine cooled diced chicken, cooled rice, diced cucumber, red bell pepper, red onion, halved cherry tomatoes, halved olives, chopped parsley, and chopped mint.",
+      "Dress and serve: Pour the vinaigrette over the salad mixture. Toss gently to coat all ingredients. Fold in crumbled feta cheese. Serve immediately."
+    ],
+    "notes": [
+      "For best results, ensure all ingredients are well-chilled before tossing.",
+      "Adjust dressing to taste, adding more lemon or herbs as desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 490.3,
+      "cholesterol_mg": 64.8,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 23.5,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 789.8,
+      "total_carbs_g": 28.9,
+      "total_fat_g": 30.6,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128.1,
+      "cholesterol_mg": 16.9,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 206.4,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 8,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 22,
+      "dietary_fiber": 17,
+      "protein": 47,
+      "saturated_fat": 38,
+      "sodium": 34,
+      "total_carbs": 11,
+      "total_fat": 39
+    },
+    "serving_size_g": 382.6,
+    "total_recipe_weight_g": 1530.3
+  },
+  {
+    "recipe_name": "Black Bean and Bell Pepper Enchiladas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_black_bean_and_bell_pepper_enchiladas_20250630_044236_33fb39f8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:42:36.670560000Z",
+    "selected_ingredients": [
+      "onion",
+      "bell pepper",
+      "bean",
+      "coriander"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The finished dish presents as two golden-brown enchiladas, nestled side-by-side on a warm white ceramic plate, generously coated in a rich, vibrant red enchilada sauce. The sauce glistens under natural light. A blanket of melted, bubbling cheddar cheese, golden and slightly browned in spots, covers the top, revealing glimpses of the rolled corn tortillas beneath. The tortillas are plump, filled with a hearty mixture of dark, earthy black beans and brightly diced red and green bell peppers. The diced vegetables are visible at the ends of the enchiladas. A generous sprinkle of fresh, vibrant green chopped coriander leaves contrasts beautifully. Beside the plate, a small, rustic ceramic bowl holds a dollop of fresh cream or a sprinkle of cotija cheese, and a lime wedge is placed. The setting features a simple wooden table, a folded cotton napkin, and a fork, suggesting a casual yet refined Mexican dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Mexican rice.",
+      "Offer refried beans as an accompaniment.",
+      "Provide extra salsa or guacamole on the side.",
+      "Accompany with a simple green salad with lime vinaigrette.",
+      "Serve with Mexican crema or sour cream for topping."
+    ],
+    "hero_ingredient": "Black Beans",
+    "ingredients": [
+      {
+        "name": "Black beans",
+        "quantity": "2 cans (400g each), rinsed and drained"
+      },
+      {
+        "name": "Bell peppers",
+        "quantity": "2 large (e.g., red and green), diced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Coriander",
+        "quantity": "1 bunch, chopped (reserve some for garnish)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "12"
+      },
+      {
+        "name": "Enchilada sauce",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "200 g, shredded"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Heat olive oil in a large skillet over medium heat. Add diced onion and bell peppers. Sauté until softened, about 8-10 minutes.",
+      "Add minced garlic, cumin, and chili powder. Cook for 1 minute until fragrant.",
+      "Stir in rinsed black beans. Cook for 5 minutes, mashing some beans lightly with a spoon to create a thicker consistency.",
+      "Remove from heat. Stir in half of the chopped coriander. Season with salt and pepper.",
+      "Pour a thin layer of enchilada sauce into a 23x33 cm baking dish.",
+      "Warm tortillas briefly to make them pliable.",
+      "Spoon bean mixture down the center of each tortilla. Roll tightly and place seam-side down in the baking dish.",
+      "Pour remaining enchilada sauce over the rolled enchiladas. Ensure all tortillas are covered.",
+      "Sprinkle shredded cheese evenly over the top.",
+      "Bake for 20-25 minutes, or until cheese is melted and bubbly and sauce is simmering.",
+      "Garnish with remaining fresh coriander before serving."
+    ],
+    "notes": [
+      "For homemade enchilada sauce, toast dried chilies, rehydrate, blend with aromatics and spices.",
+      "Different bean types like pinto or kidney beans can be used.",
+      "Adjust chili powder for desired spice level."
+    ],
+    "traditional_techniques": [
+      "Sautéing aromatics for the filling base.",
+      "Warming tortillas for pliability.",
+      "Layering flavors in the sauce and filling."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.88,
+      "calories": 852.45,
+      "cholesterol_mg": 52.5,
+      "dietary_fiber_g": 26.77,
+      "protein_g": 39.67,
+      "saturated_fat_g": 12.58,
+      "sodium_mg": 1935.28,
+      "total_carbs_g": 110.52,
+      "total_fat_g": 32,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.13,
+      "calories": 126.28,
+      "cholesterol_mg": 7.78,
+      "dietary_fiber_g": 3.97,
+      "protein_g": 5.88,
+      "saturated_fat_g": 1.86,
+      "sodium_mg": 286.86,
+      "total_carbs_g": 16.38,
+      "total_fat_g": 4.74,
+      "total_sugars_g": 1.56,
+      "trans_fat_g": 0.09
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.5,
+      "dietary_fiber": 95.6,
+      "protein": 79.3,
+      "saturated_fat": 62.9,
+      "sodium": 84.1,
+      "total_carbs": 40.2,
+      "total_fat": 41
+    },
+    "serving_size_g": 674.65,
+    "total_recipe_weight_g": 2698.6
+  },
+  {
+    "recipe_name": "Bell Pepper and Onion Masala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bell_pepper_and_onion_masala_20250630_044134_9fb07960.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:41:35.012426000Z",
+    "selected_ingredients": [
+      "onion",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A vibrant Indian Bell Pepper and Onion Masala is presented in a deep, clean white porcelain bowl. The rich, glossy red-orange gravy, thickened by pureed tomatoes and aromatic spices, forms the base. Scattered throughout are distinct, tender-crisp 2 cm cubes of bright green bell pepper and softened pieces of diced onion, showcasing the dish's primary ingredients. The surface is generously adorned with a sprinkle of freshly chopped vibrant green cilantro, adding a fresh contrast. The bowl sits on a simple light wooden table surface, accompanied by a small, perfectly folded white cotton napkin and a polished fork. A small white bowl of fluffy basmati rice or a piece of folded naan bread rests beside it, completing the traditional Indian meal setting. Natural, even lighting highlights the dish's rich colors and inviting textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with basmati rice or naan bread.",
+      "Offer a side of cooling raita (yogurt dip) or a simple kachumber salad."
+    ],
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Green bell peppers",
+        "quantity": "3 medium (about 450g), deseeded, cut into 2 cm cubes"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium (about 300g), finely diced"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "4 medium (about 600g), pureed or finely chopped"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "20g"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2, slit lengthwise"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30g, chopped"
+      }
+    ],
+    "instructions": [
+      "Heat oil in a large pan over medium heat. Add cumin seeds. Let them splutter.",
+      "Add diced onions. Sauté until translucent, about 8-10 minutes.",
+      "Add ginger-garlic paste and green chilies. Sauté for 2 minutes until fragrant.",
+      "Add turmeric powder, coriander powder, and red chili powder. Cook for 1 minute, stirring constantly.",
+      "Add pureed tomatoes and salt. Mix well. Cook until oil separates from the masala, about 10-12 minutes. Stir occasionally.",
+      "Add cubed bell peppers and 120 ml water. Mix well.",
+      "Cover the pan. Simmer for 10-15 minutes, or until bell peppers are tender-crisp.",
+      "Stir in garam masala. Cook for 2 minutes.",
+      "Remove from heat. Garnish with fresh cilantro."
+    ],
+    "notes": [
+      "Adjust green chilies and red chili powder for desired spice level.",
+      "Ensure bell peppers are cooked until tender-crisp, not mushy."
+    ],
+    "traditional_techniques": [
+      "Tempering (Tadka)",
+      "Layering Spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 160,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 4.2,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 596,
+      "total_carbs_g": 21.6,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 40.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 1.1,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 151,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 2.1,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 23,
+      "protein": 8,
+      "saturated_fat": 4,
+      "sodium": 26,
+      "total_carbs": 8,
+      "total_fat": 10
+    },
+    "serving_size_g": 393.5,
+    "total_recipe_weight_g": 1574
+  },
+  {
+    "recipe_name": "Chicken Fajitas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_fajitas_20250630_044059_751a8bcd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:41:00.048721000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "bell pepper",
+      "salad green"
+    ],
+    "complexity": "simple",
+    "special_requests": "mexican cuisine, fajitas",
+    "visual_description": "A single, individual portion of chicken fajitas is presented on an everyday, round ceramic plate with a natural, unpretentious arrangement. Seared chicken strips, caramelized onion slices, and vibrant red and green bell pepper strips are generously mixed and piled in the center. The chicken has a golden-brown sear, and the vegetables retain a tender-crisp texture. A scattering of fresh, chopped cilantro provides a bright green contrast. Two lime wedges rest casually on the plate's edge. The plate is set on a well-used wooden dining table. Adjacent are a small stack of warm, soft corn tortillas, a small bowl of chunky red salsa, and a dollop of creamy white sour cream. The scene is illuminated by warm, cozy kitchen lighting, creating a relaxed, homely family dining atmosphere.",
+    "number_of_servings": 2,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn or flour tortillas for wrapping.",
+      "Offer traditional accompaniments like salsa, guacamole, and Mexican crema.",
+      "Provide lime wedges for fresh citrus flavor."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Corn or flour tortillas",
+        "quantity": "4-6 small"
+      },
+      {
+        "name": "Salsa",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Sour cream or Mexican crema",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Guacamole",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Slice chicken breast into 1 cm thick strips.",
+      "In a medium bowl, combine chicken strips, 15 ml olive oil, juice of half a lime, garlic powder, chili powder, cumin, oregano, salt, and black pepper. Mix well to coat. Marinate for 15 minutes.",
+      "Slice bell peppers and onion into thin strips.",
+      "Heat remaining 15 ml olive oil in a large skillet or cast-iron pan over medium-high heat.",
+      "Add marinated chicken to the hot skillet. Cook for 5-7 minutes, stirring occasionally, until chicken is cooked through and reaches an internal temperature of 75°C. Remove chicken from skillet and set aside.",
+      "Add sliced onions and bell peppers to the same skillet. Cook for 5-8 minutes, stirring, until vegetables are tender-crisp.",
+      "Return cooked chicken to the skillet with the vegetables. Toss everything to combine and heat through for 1-2 minutes.",
+      "Warm tortillas according to package directions (microwave, dry skillet, or oven).",
+      "Serve the sizzling chicken and vegetable mixture immediately with warm tortillas, fresh cilantro, remaining lime half cut into wedges, salsa, sour cream, and guacamole."
+    ],
+    "notes": [
+      "Marinating the chicken briefly enhances flavor and tenderness.",
+      "Ensure your skillet is hot enough to get a good sear on the chicken and vegetables."
+    ],
+    "traditional_techniques": [
+      "Marinating",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 649,
+      "cholesterol_mg": 127.5,
+      "dietary_fiber_g": 8.21,
+      "protein_g": 50.53,
+      "saturated_fat_g": 4.63,
+      "sodium_mg": 1470.3,
+      "total_carbs_g": 49.72,
+      "total_fat_g": 25.17,
+      "total_sugars_g": 7.81,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149,
+      "cholesterol_mg": 29.3,
+      "dietary_fiber_g": 1.88,
+      "protein_g": 11.6,
+      "saturated_fat_g": 1.06,
+      "sodium_mg": 337.4,
+      "total_carbs_g": 11.41,
+      "total_fat_g": 5.78,
+      "total_sugars_g": 1.79,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.5,
+      "dietary_fiber": 29.3,
+      "protein": 101.1,
+      "saturated_fat": 23.2,
+      "sodium": 63.9,
+      "total_carbs": 18.1,
+      "total_fat": 32.3
+    },
+    "serving_size_g": 435.8,
+    "total_recipe_weight_g": 871.6
+  },
+  {
+    "recipe_name": "Pan-Seared Fish with Spiced Mango Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_fish_with_spiced_mango_salsa_20250630_043311_9a98f76b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:33:11.917039000Z",
+    "selected_ingredients": [
+      "mango"
+    ],
+    "complexity": "standard",
+    "special_requests": "ayurveda cuisine",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate, set on a simple light wooden table surface in a modern bistro style. A single portion of the pan-seared fish fillet, with its golden-brown, slightly spiced crust, sits prominently. The fish is a whole piece, not sliced. Adjacent to the fish is a neat mound of fluffy, bright yellow turmeric-infused quinoa, its individual grains visible. A vibrant, generous spoonful of fresh Spiced Mango Salsa cascades over the fish, with some pieces resting on the quinoa. The salsa bursts with color: bright orange-yellow mango cubes, speckled with finely diced red onion, vibrant green fresh coriander, and tiny flecks of red chili. The textures are varied: the firm, flaky fish, the soft quinoa, and the crisp-tender mango salsa. A folded plain white cotton napkin is placed beside the plate. The overall composition is balanced and inviting, with appropriate negative space highlighting the dish. Natural, even lighting illuminates the scene from above, casting soft shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Ayurvedic",
+    "cultural_origin": "Ayurvedic",
+    "cultural_serving_suggestions": [
+      "Serve with a small side of plain yogurt or a cooling raita to balance the spices.",
+      "Eat with a mindful approach, savoring each taste and texture.",
+      "Offer warm water or a light herbal tea alongside the meal to aid digestion."
+    ],
+    "hero_ingredient": "Mango",
+    "ingredients": [
+      {
+        "name": "White fish fillets (e.g., cod, snapper)",
+        "quantity": "4 x 180 g fillets"
+      },
+      {
+        "name": "Ghee or coconut oil",
+        "quantity": "30 mL"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Ripe mangoes",
+        "quantity": "2 large, diced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 small, finely diced"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "30 g, finely chopped"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "10 g, grated"
+      },
+      {
+        "name": "Green chili",
+        "quantity": "1, deseeded and finely minced (optional)"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30 mL"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "2 g, toasted and crushed"
+      },
+      {
+        "name": "Black salt (Kala Namak)",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "1 g (optional)"
+      },
+      {
+        "name": "Quinoa",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "400 mL"
+      },
+      {
+        "name": "Turmeric powder (for quinoa)",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Ghee or coconut oil (for quinoa)",
+        "quantity": "10 mL"
+      },
+      {
+        "name": "Sea salt (for quinoa)",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Rinse quinoa thoroughly under cold water. Combine quinoa, water, 3g turmeric powder, 10mL ghee, and 2g salt in a medium saucepan. Bring to a boil. Reduce heat to low, cover, and simmer for 15 minutes, or until water is absorbed and quinoa is fluffy. Let stand covered 5 minutes. Fluff with a fork.",
+      "In a medium bowl, combine diced mango (small cubes), finely diced red onion, chopped coriander, grated ginger, minced green chili (if using), lime juice, crushed toasted cumin seeds, black salt, and chili flakes (if using). Gently mix to combine. Set aside.",
+      "Pat fish fillets dry with paper towels. Mix 5g turmeric powder, 5g cumin powder, 5g sea salt, and 2g black pepper in a small bowl. Rub this spice mixture evenly over both sides of each fish fillet.",
+      "Heat 30mL ghee or coconut oil in a large non-stick pan or cast-iron skillet over medium-high heat. Once hot, carefully place fish fillets in the pan. Sear for 3-4 minutes per side, depending on thickness, until golden brown and cooked through. Fish should flake easily with a fork.",
+      "Place a portion of turmeric quinoa on each plate. Gently place a seared fish fillet next to or slightly on top of the quinoa. Spoon a generous amount of spiced mango salsa over each fish fillet. Serve immediately."
+    ],
+    "notes": [
+      "Use fresh, ripe mangoes for best flavor and balance. Avoid overly sweet or sour mangoes.",
+      "Adjust chili and ginger quantities according to individual preference and dosha balance.",
+      "Ghee is preferred for its digestive benefits in Ayurveda, but coconut oil is a suitable vegan alternative."
+    ],
+    "traditional_techniques": [
+      "Tadka (tempering spices): Used for the cumin seeds in the salsa, though done by dry-roasting and crushing here.",
+      "Mindful cooking: Emphasis on preparing food with positive intention."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 554,
+      "cholesterol_mg": 77,
+      "dietary_fiber_g": 7.83,
+      "protein_g": 41.56,
+      "saturated_fat_g": 7.73,
+      "sodium_mg": 981,
+      "total_carbs_g": 65.83,
+      "total_fat_g": 12.66,
+      "total_sugars_g": 28.01,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 94,
+      "cholesterol_mg": 13,
+      "dietary_fiber_g": 1.33,
+      "protein_g": 7.04,
+      "saturated_fat_g": 1.31,
+      "sodium_mg": 166,
+      "total_carbs_g": 11.16,
+      "total_fat_g": 2.14,
+      "total_sugars_g": 4.75,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 25.8,
+      "dietary_fiber": 27.96,
+      "protein": 83.12,
+      "saturated_fat": 38.65,
+      "sodium": 42.64,
+      "total_carbs": 23.94,
+      "total_fat": 16.23
+    },
+    "serving_size_g": 590,
+    "total_recipe_weight_g": 2360
+  }
+]

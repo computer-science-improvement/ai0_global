@@ -1,0 +1,640 @@
+[
+  {
+    "recipe_name": "Creamy Bacon, Potato & Cheddar Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_bacon%2C_potato_%26_cheddar_pasta_20250624_104318_4d981fe5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:18.527523000Z",
+    "selected_ingredients": [
+      "potato",
+      "pasta",
+      "cheddar",
+      "basil",
+      "bacon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of creamy pasta presented on a clean white porcelain dinner plate. The pasta, such as rigatoni, is coated in a rich, pale yellow sauce. Interspersed throughout are golden-brown roasted potato chunks, approximately 2cm in size, showing slightly crisped edges. Scattered over the pasta are irregular pieces of crispy, dark reddish-brown bacon. Melted, grated sharp cheddar cheese lightly blankets sections of the dish, creating a glossy texture. Fresh, vibrant green basil leaves, some whole, some torn, are scattered over the top, providing a pop of color and freshness. The dish is presented on a simple wooden table surface, accompanied by a white cotton napkin and standard silver flatware. Natural, even lighting highlights the textures and colors. The plate is not overcrowded, allowing for moderate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "hero_ingredient": "Bacon",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Small waxy potatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Streaky bacon",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Sharp cheddar cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Cut potatoes into 2cm chunks. Toss with 15 ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 25-30 minutes until golden and tender. Turn once during roasting.",
+      "Dice bacon into 1cm pieces. Cook bacon in a large skillet over medium heat until crispy. Remove bacon with a slotted spoon. Drain excess fat, leaving 15 ml in the skillet.",
+      "Cook pasta according to package directions in salted water until al dente. Drain, reserving 120 ml pasta water.",
+      "While pasta cooks, finely dice shallot and mince garlic. Add butter to the skillet with bacon fat. Sauté shallot until softened, about 3 minutes. Add garlic; cook 1 minute until fragrant.",
+      "Pour in chicken broth and heavy cream. Bring to a gentle simmer. Cook for 5 minutes, stirring occasionally, until sauce slightly thickens.",
+      "Add cooked pasta, roasted potato chunks, and crispy bacon to the sauce. Stir to combine. If needed, add reserved pasta water gradually to reach desired consistency.",
+      "Grate cheddar cheese. Stir half of the grated cheddar into the pasta mixture until melted and creamy. Season with salt and pepper to taste.",
+      "Divide pasta among serving plates. Top each portion with remaining grated cheddar. Garnish generously with fresh basil leaves, some whole, some torn."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1135,
+      "cholesterol_mg": 162.3,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 37.5,
+      "saturated_fat_g": 32.3,
+      "sodium_mg": 1036.8,
+      "total_carbs_g": 96,
+      "total_fat_g": 66.8,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 262.1,
+      "cholesterol_mg": 37.5,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.7,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 239.4,
+      "total_carbs_g": 22.2,
+      "total_fat_g": 15.4,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54.1,
+      "dietary_fiber": 19.3,
+      "protein": 74.9,
+      "saturated_fat": 161.5,
+      "sodium": 45.1,
+      "total_carbs": 34.9,
+      "total_fat": 85.6
+    },
+    "serving_size_g": 433,
+    "total_recipe_weight_g": 1732
+  },
+  {
+    "recipe_name": "Panang Chocolate Chicken with Cherry Walnut Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_panang_chocolate_chicken_with_cherry_walnut_relish_20250624_104311_23325bb6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:12.108364000Z",
+    "selected_ingredients": [
+      "chocolate",
+      "milk",
+      "cherry",
+      "walnut",
+      "panang curry paste"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Panang Chocolate Chicken is presented on a clean white porcelain dinner plate. A thick, seared chicken thigh, cooked to a rich golden-brown exterior, rests centrally. A luscious, glossy reddish-brown Panang chocolate sauce pools around the chicken, with some gently spooned over the top. The sauce is smooth with a subtle sheen. A vibrant mound of cherry walnut relish is artfully placed beside the chicken, showcasing roughly chopped toasted walnuts and plump, quartered dried cherries, flecked with bright green cilantro. The colors are earthy and warm, with the deep reds of the sauce and cherries contrasting with the golden chicken and green herbs. The plate has moderate negative space. The setting is a modern bistro, with a simple wooden table surface and a white cotton napkin placed beside the plate. Natural, even lighting highlights the dish. A Thai-style spoon and fork are placed alongside the plate, completing the culturally authentic table setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai Fusion",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Panang curry paste",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Dark chocolate (70% cacao or higher), finely chopped",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Dried cherries",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Walnuts, toasted",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime, juiced",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat vegetable oil in a large skillet over medium-high heat. Sear chicken thighs 4-5 minutes per side until golden brown. Transfer chicken to a plate. Set aside.",
+      "Reduce heat to medium. Add Panang curry paste to the skillet. Sauté 1 minute until fragrant.",
+      "Pour in coconut milk and chicken stock. Stir well to combine with the paste. Bring to a simmer.",
+      "Add chopped dark chocolate, fish sauce, and brown sugar. Stir until chocolate melts and sauce is smooth.",
+      "Return chicken thighs to the skillet. Reduce heat to low. Cover and simmer 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F). Turn chicken once halfway through.",
+      "While chicken simmers, prepare the relish. Roughly chop dried cherries and toasted walnuts. In a small bowl, combine chopped cherries, walnuts, fresh cilantro, and lime juice. Mix well.",
+      "Taste the sauce. Adjust seasoning if needed.",
+      "Serve chicken thighs with Panang chocolate sauce. Top generously with the cherry walnut relish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 824,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 7,
+      "protein_g": 39.2,
+      "saturated_fat_g": 30.1,
+      "sodium_mg": 1460,
+      "total_carbs_g": 36.6,
+      "total_fat_g": 60.9,
+      "total_sugars_g": 22.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.5,
+      "calories": 257,
+      "cholesterol_mg": 63,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 12.2,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 455,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 19,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.6,
+      "dietary_fiber": 25,
+      "protein": 78.4,
+      "saturated_fat": 150.3,
+      "sodium": 63.5,
+      "total_carbs": 13.3,
+      "total_fat": 78.1
+    },
+    "serving_size_g": 320.5,
+    "total_recipe_weight_g": 1282
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs with Potato and White Bean Ragout",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_with_potato_and_white_bean_ragout_20250624_104308_09c25048.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:08.999702000Z",
+    "selected_ingredients": [
+      "beef",
+      "bean",
+      "onion",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generously portioned braised beef short rib sits centrally on a clean white porcelain dinner plate. The short rib is dark, rich brown, deeply caramelized, presented as a whole, unsliced chunk. Beneath and around it, a savory ragout of golden-brown roasted potato cubes and creamy white cannellini beans is neatly spooned. The beans and potatoes are coated in a glossy, rich, dark amber braising sauce, thick enough to cling. A sprinkle of bright green, freshly chopped flat-leaf parsley garnishes the dish. The plate rests on a simple wooden table, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting highlights the dish's textures and colors, creating an inviting, sophisticated yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Beef short ribs, bone-in",
+        "quantity": "1.5 kg (4 pieces)"
+      },
+      {
+        "name": "Onions, medium",
+        "quantity": "2 (diced)"
+      },
+      {
+        "name": "Carrots, medium",
+        "quantity": "2 (diced)"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2 (diced)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4 (minced)"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "400 g (drained, rinsed)"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "500 g (peeled, cut into 2 cm cubes)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15 g (chopped)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Pat short ribs dry. Season generously with salt and pepper.",
+      "Heat 30 ml olive oil in a large oven-safe Dutch oven over medium-high heat.",
+      "Sear short ribs on all sides until deeply browned. Remove ribs.",
+      "Add diced onions, carrots, and celery to the Dutch oven. Sauté 8-10 minutes until softened.",
+      "Add minced garlic and tomato paste. Cook 2 minutes, stirring.",
+      "Pour in red wine. Scrape up browned bits from the bottom. Simmer 5 minutes until reduced by half.",
+      "Stir in beef broth, thyme, and bay leaves. Bring to a simmer.",
+      "Return seared short ribs to the Dutch oven. Liquid should mostly cover ribs. Add more broth if needed.",
+      "Cover Dutch oven. Transfer to preheated oven. Braise 2.5-3 hours, or until ribs are very tender.",
+      "While ribs braise, prepare potatoes. Toss potato cubes with 15 ml olive oil, salt, and pepper.",
+      "Spread potatoes on a baking sheet. Roast in the same oven during the last 45 minutes of braising, or roast separately at 200°C for 25-30 minutes until golden and tender.",
+      "Once ribs are tender, remove them from Dutch oven. Set aside, covered.",
+      "Strain braising liquid through a fine-mesh sieve into a saucepan. Discard solids.",
+      "Skim fat from braising liquid. Bring liquid to a simmer over medium-high heat. Reduce until slightly thickened, about 10-15 minutes.",
+      "Add drained cannellini beans to the reduced sauce. Simmer 5 minutes.",
+      "Gently stir in roasted potato cubes. Season ragout with salt and pepper.",
+      "Serve braised short ribs over the potato and white bean ragout. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1746.5,
+      "cholesterol_mg": 345,
+      "dietary_fiber_g": 12.2,
+      "protein_g": 96.3,
+      "saturated_fat_g": 43.7,
+      "sodium_mg": 752.4,
+      "total_carbs_g": 61.7,
+      "total_fat_g": 111.2,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 4.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 151,
+      "cholesterol_mg": 29.8,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.3,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 65.1,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 115,
+      "dietary_fiber": 44,
+      "protein": 193,
+      "saturated_fat": 219,
+      "sodium": 33,
+      "total_carbs": 22,
+      "total_fat": 143
+    },
+    "serving_size_g": 1156.6,
+    "total_recipe_weight_g": 4626.4
+  },
+  {
+    "recipe_name": "Classic Spanish Tortilla",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_spanish_tortilla_20250624_104302_f0ff8cbd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:02.625120000Z",
+    "selected_ingredients": [
+      "onion",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A thick, golden-brown Classic Spanish Tortilla sits centrally on a simple, round ceramic plate. The tortilla is round, with rustic, slightly uneven edges, showcasing its home-cooked nature. Its surface is a rich golden brown, indicating a perfectly cooked crust. A cross-section reveals a moist, tender interior, pale yellow in color, with visible, soft slices of potato and translucent, caramelized onion pieces embedded throughout. The texture is invitingly soft inside with a firm exterior. A few flecks of chopped fresh parsley are sprinkled over the top. The plate rests on a well-used wooden dining table. Adjacent to the plate, a simple, rustic fork and a casually folded cloth napkin complete the homely setting. The lighting is warm and cozy, suggestive of a family kitchen.",
+    "number_of_servings": 2,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve at room temperature or slightly warm.",
+      "Serve with crusty bread for dipping.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar.",
+      "Cut into wedges for individual portions."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Slice into thin medallions, about 2-3mm thick. Peel onion. Slice thinly.",
+      "Heat olive oil in a 20cm non-stick frying pan over medium-low heat. Add sliced potatoes and onion. Ensure they are submerged in oil.",
+      "Cook slowly for 20-25 minutes. Potatoes and onions should be very tender, almost confit, but not browned. Stir occasionally to prevent sticking.",
+      "Carefully drain almost all olive oil from the pan, reserving about 2 tablespoons in the pan. Transfer cooked potatoes and onions to a large bowl.",
+      "Crack eggs into the bowl with potatoes and onions. Season generously with salt and pepper. Gently mix to combine, mashing some potato slices slightly.",
+      "Return the pan with reserved oil to medium heat. Pour the egg and potato mixture into the hot pan. Spread evenly.",
+      "Cook for 5-7 minutes. Edges should set and turn golden. Center should still be slightly soft.",
+      "Place a large plate over the pan. Invert the pan to flip the tortilla onto the plate. Slide the tortilla back into the pan, uncooked side down.",
+      "Cook for another 3-5 minutes until golden brown and set through. Internal temperature should reach 75°C (167°F).",
+      "Slide the tortilla onto a serving plate. Let it rest for a few minutes before slicing."
+    ],
+    "traditional_techniques": [
+      "Confit-style frying of potatoes and onions in olive oil",
+      "Flipping the tortilla using a plate"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 949,
+      "cholesterol_mg": 373,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 17.4,
+      "saturated_fat_g": 13,
+      "sodium_mg": 140.4,
+      "total_carbs_g": 43.1,
+      "total_fat_g": 79.9,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 213.7,
+      "cholesterol_mg": 84,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 3.9,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 31.6,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 18,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 124.3,
+      "dietary_fiber": 20.3,
+      "protein": 34.9,
+      "saturated_fat": 65.1,
+      "sodium": 6.1,
+      "total_carbs": 15.7,
+      "total_fat": 102.4
+    },
+    "serving_size_g": 444,
+    "total_recipe_weight_g": 888
+  },
+  {
+    "recipe_name": "Creamy Chicken, Mushroom, and Potato Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken%2C_mushroom%2C_and_potato_gratin_20250624_104300_85d557ec.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:00.710785000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "mushroom",
+      "mozzarella",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Creamy Chicken, Mushroom, and Potato Gratin presented in a white oval gratin dish, placed on a simple wooden table. The gratin features a golden-brown, bubbly crust of melted mozzarella and thinly sliced, roasted potatoes. Beneath the crust, layers of tender, 3cm chicken chunks, sautéed mushrooms, and creamy brown rice are visible, bathed in a rich, savory sauce. A few fresh thyme sprigs are casually placed on top for garnish, adding a touch of vibrant green. The dish exhibits a harmonious blend of textures—crispy edges, soft interior, and slightly chewy rice. The overall presentation is professional yet comforting, with natural, even lighting highlighting the inviting warmth and rich colors of the dish. A folded white cotton napkin rests beside the dish, creating a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Shredded mozzarella cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Cook brown rice according to package directions. Set aside.",
+      "Peel and thinly slice potatoes into 2-3 mm rounds. Set aside.",
+      "Cut chicken thighs into 3 cm chunks. Season with salt and pepper.",
+      "Heat 1 tbsp olive oil in a large oven-safe pan or Dutch oven over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Do not cook through. Remove chicken from pan. Set aside.",
+      "Add remaining 1 tbsp olive oil to the pan. Add chopped onion and sauté until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook until mushrooms are tender and browned, about 7-8 minutes.",
+      "Melt butter in the pan. Sprinkle flour over vegetables. Stir for 1 minute to create a roux.",
+      "Gradually whisk in chicken broth and heavy cream. Bring to a simmer, stirring constantly, until sauce thickens. Season with salt, pepper, and fresh thyme leaves.",
+      "Add seared chicken chunks back into the sauce. Simmer for 2 minutes.",
+      "Lightly grease a 23x33 cm (9x13 inch) baking dish.",
+      "Spread half of the cooked brown rice evenly on the bottom of the baking dish.",
+      "Arrange half of the thinly sliced potatoes over the rice.",
+      "Pour half of the chicken and mushroom sauce mixture over the potatoes.",
+      "Repeat layers with remaining brown rice, potatoes, and chicken-mushroom sauce.",
+      "Top evenly with shredded mozzarella cheese.",
+      "Bake for 30-35 minutes, or until potatoes are tender, cheese is golden and bubbly, and chicken reaches an internal temperature of 75°C (167°F).",
+      "Let rest for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 942.4,
+      "cholesterol_mg": 241.1,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 47,
+      "saturated_fat_g": 22.5,
+      "sodium_mg": 950.5,
+      "total_carbs_g": 73.5,
+      "total_fat_g": 50.2,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160.4,
+      "cholesterol_mg": 41.1,
+      "dietary_fiber_g": 1,
+      "protein_g": 8,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 161.8,
+      "total_carbs_g": 12.5,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80.4,
+      "dietary_fiber": 21.8,
+      "protein": 94,
+      "saturated_fat": 112.4,
+      "sodium": 41.3,
+      "total_carbs": 26.7,
+      "total_fat": 64.3
+    },
+    "serving_size_g": 587.4,
+    "total_recipe_weight_g": 2349.6
+  }
+]

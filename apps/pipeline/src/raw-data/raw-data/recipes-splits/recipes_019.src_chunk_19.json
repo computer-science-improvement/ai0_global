@@ -1,0 +1,625 @@
+[
+  {
+    "recipe_name": "Chicken Penne with Rustic Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_penne_with_rustic_tomato_sauce_20250625_081627_8eba3a0e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:16:28.422364000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "pasta",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of penne pasta is presented in an everyday white ceramic bowl, resting on a well-used wooden dining table. The pasta is coated thoroughly in a rich, deep red rustic tomato sauce, with visible specks of herbs and softened, small diced onion. Tender, irregularly cut chunks of browned chicken, approximately 2-3 cm, are nestled throughout the pasta, some peeking out from the sauce. A scattering of roughly chopped fresh basil leaves adds a vibrant green contrast on top. The plating is natural and casual, allowing components to touch and overlap, reflecting a comforting home-cooked meal. A simple fork and spoon are placed beside the bowl. A plain, casually folded linen napkin and a clear water glass complete the setting. In the background, hints of a cozy, lived-in kitchen environment are subtly visible, with warm, natural light illuminating the scene. The entire bowl is visible with appropriate negative space around it.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce",
+      "Offer extra grated Parmesan cheese at the table"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Handful"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2-3 cm chunks. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat. Sear chicken chunks until browned on all sides. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Dice the large onion. Add diced onion to the pot. Cook until softened, about 5-7 minutes.",
+      "Mince garlic cloves. Add minced garlic to the pot. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Stir in dried oregano. Bring to a simmer.",
+      "Return chicken chunks to the sauce. Reduce heat to low. Cover and simmer for 20 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "While sauce simmers, cook penne pasta according to package directions until al dente. Drain well.",
+      "Toss cooked pasta with the chicken and tomato sauce. Taste and adjust seasoning with salt and pepper.",
+      "Roughly chop fresh basil leaves. Serve immediately. Garnish with chopped fresh basil and grated Parmesan cheese."
+    ],
+    "notes": [
+      "For extra flavor, use good quality canned San Marzano tomatoes."
+    ],
+    "traditional_techniques": [
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 756,
+      "cholesterol_mg": 142,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 47.5,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 483,
+      "total_carbs_g": 90.5,
+      "total_fat_g": 21.8,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.2,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 84,
+      "total_carbs_g": 15.7,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 25,
+      "protein": 95,
+      "saturated_fat": 24,
+      "sodium": 21,
+      "total_carbs": 33,
+      "total_fat": 28
+    },
+    "serving_size_g": 577,
+    "total_recipe_weight_g": 2308
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Mustard-Mushroom Sauce and Rosemary Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_mustard-mushroom_sauce_and_rosemary_potatoes_20250625_081627_9edfe297.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:16:27.700204000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "mustard",
+      "mushroom",
+      "potato",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "Пп cuisine, Не запеченная",
+    "visual_description": "The golden-brown pan-seared chicken breast rests slightly off-center on a pristine white round porcelain dinner plate, generously coated with the creamy mustard-mushroom sauce pooled beneath. Visible sautéed mushroom slices and minced garlic are integrated into the rich sauce. Alongside, a neatly arranged pile of golden-crisp rosemary potato wedges, showcasing fluffy interiors. Bright red halved cherry tomatoes are artfully scattered, adding bursts of color and freshness. The dish is garnished with a sprinkle of vibrant green chopped fresh parsley over the chicken and sauce. Moderate negative space ensures a balanced composition. The setting features a simple, light-colored wooden table, with a folded white cotton napkin and contemporary silver flatware. Natural, even lighting illuminates the scene, highlighting textures. The background is clean, suggesting a modern bistro.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Healthy",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Light cream (10% fat) or milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Small new potatoes or Yukon Gold potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a large non-stick pan over medium-high heat. Sear chicken breasts for 4-5 minutes per side until golden brown. Remove chicken from pan and set aside. Ensure internal temperature reaches 75°C.",
+      "Wash potatoes thoroughly. Cut into 2cm wedges. Place potatoes in a pot of cold salted water. Bring to a boil, then reduce heat and simmer for 8-10 minutes until tender but still firm. Drain well.",
+      "Heat 2 tablespoons olive oil in a separate large pan over medium-high heat. Add drained potato wedges and fresh rosemary sprigs. Pan-roast for 10-15 minutes, turning occasionally, until golden and crispy.",
+      "While potatoes cook, slice mushrooms thinly. Mince garlic.",
+      "In the pan used for chicken, add mushrooms. Sauté over medium heat for 5-7 minutes until softened and browned. Add minced garlic and cook for 1 minute until fragrant.",
+      "Deglaze pan with a splash of chicken stock, scraping up any browned bits. Add remaining chicken stock, Dijon mustard, and light cream. Bring to a gentle simmer. Cook for 3-5 minutes, stirring, until sauce slightly thickens.",
+      "Return seared chicken breasts to the sauce. Reduce heat to low. Simmer for 5-7 minutes, turning chicken once, ensuring it is cooked through and coated in sauce.",
+      "Halve cherry tomatoes.",
+      "To serve, place a chicken breast on each plate, generously spooning creamy mustard-mushroom sauce over it. Arrange crispy rosemary potato wedges alongside. Scatter halved cherry tomatoes for freshness. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 597,
+      "cholesterol_mg": 170.3,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 66.5,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 364.6,
+      "total_carbs_g": 35,
+      "total_fat_g": 20.7,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 30.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 12,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 65.9,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.8,
+      "dietary_fiber": 19.9,
+      "protein": 133,
+      "saturated_fat": 25.3,
+      "sodium": 15.8,
+      "total_carbs": 12.7,
+      "total_fat": 26.5
+    },
+    "serving_size_g": 553.1,
+    "total_recipe_weight_g": 2213
+  },
+  {
+    "recipe_name": "Black Bean and Pineapple Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_black_bean_and_pineapple_salad_20250625_081627_04699a4c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:16:27.590562000Z",
+    "selected_ingredients": [
+      "bean",
+      "cheddar",
+      "pineapple",
+      "dark chocolate",
+      "vanilla"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Black Bean and Pineapple Salad is presented in a modest, round, off-white ceramic bowl, typical of a home kitchen. Diced black beans form the base, interspersed with bright yellow cubes of fresh pineapple and small white-orange cubes of sharp cheddar cheese. Finely diced red onion and red bell pepper add pops of color and crisp texture. Freshly chopped cilantro is scattered throughout, providing a vibrant green contrast. The entire salad is lightly coated with a subtle, savory chili-chocolate vinaigrette, giving a slight sheen to the ingredients. The presentation is natural and unpretentious, with ingredients casually tossed and filling the bowl, reflecting a comforting, homemade meal. It sits on a well-worn wooden kitchen table, bathed in soft, natural light, with a simple fork resting beside the bowl on a plain cloth napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Black Bean",
+    "ingredients": [
+      {
+        "name": "Canned black beans, rinsed and drained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh pineapple, peeled and diced into 1 cm cubes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Sharp cheddar cheese, diced into 0.5 cm cubes",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red bell pepper, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "0.5 small"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Dark chocolate (70% cacao or higher), finely grated",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "2 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Combine black beans, diced pineapple, cheddar cheese, red bell pepper, and red onion in a large mixing bowl.",
+      "In a small bowl, whisk together olive oil, lime juice, chili powder, ground cumin, grated dark chocolate, and vanilla extract.",
+      "Season the dressing with salt and black pepper to taste.",
+      "Pour the dressing over the salad ingredients. Toss gently to coat all components evenly.",
+      "Stir in the chopped fresh cilantro.",
+      "Serve immediately, or chill for 15 minutes before serving for flavors to meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 479.61,
+      "cholesterol_mg": 37.54,
+      "dietary_fiber_g": 11.31,
+      "protein_g": 19.78,
+      "saturated_fat_g": 10.42,
+      "sodium_mg": 497.02,
+      "total_carbs_g": 41.17,
+      "total_fat_g": 27.88,
+      "total_sugars_g": 10.95,
+      "trans_fat_g": 0.41
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 158.43,
+      "cholesterol_mg": 12.4,
+      "dietary_fiber_g": 3.74,
+      "protein_g": 6.53,
+      "saturated_fat_g": 3.44,
+      "sodium_mg": 164.17,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 9.21,
+      "total_sugars_g": 3.62,
+      "trans_fat_g": 0.14
+    },
+    "daily_value_percentages": {
+      "cholesterol": 12.5,
+      "dietary_fiber": 40.4,
+      "protein": 39.6,
+      "saturated_fat": 52.1,
+      "sodium": 21.6,
+      "total_carbs": 15,
+      "total_fat": 35.7
+    },
+    "serving_size_g": 303,
+    "total_recipe_weight_g": 1211
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Thighs with Fermented Garlic Cream and Root Vegetable Crisps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_thighs_with_fermented_garlic_cream_and_root_vegetable_crisps_20250625_081624_bf93bbf1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:16:25.305799000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "cheese"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken thigh, its skin deeply golden and crisp, rests atop a bed of vibrant, roughly chopped braised hardy greens. The chicken is presented as a whole, succulent piece, not sliced. A creamy, off-white fermented garlic sauce, studded with softened garlic cloves, pools gently around the chicken. Beside the chicken, steamed root vegetable chunks, cut into organic, irregular shapes, display their natural earthy colors of orange, white, and pale yellow. Scattered around are delicate, irregularly shaped root vegetable crisps, made from the peels, adding a textural crunch and light golden hue. Fine shavings of aged, pale yellow hard cheese are scattered across the dish. The plating is minimalistic, allowing ample white space on a handcrafted cream-colored ceramic plate. The dish is set on a light reclaimed wood surface, accompanied by a natural beige undyed linen napkin. Soft, diffused natural light illuminates the scene, with a clean, unobtrusive background featuring subtle natural elements like a hint of green foliage.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skin-on",
+        "quantity": "4 (approx. 180g each, total 720g)"
+      },
+      {
+        "name": "Lacto-fermented garlic cloves",
+        "quantity": "12 (approx. 60g)"
+      },
+      {
+        "name": "Pecorino Romano cheese",
+        "quantity": "50g, finely grated, plus 20g for shaving"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "freshly ground, to taste"
+      },
+      {
+        "name": "Seasonal root vegetables (e.g., carrot, parsnip)",
+        "quantity": "2 large (approx. 400g total), with peels"
+      },
+      {
+        "name": "Seasonal hardy greens (e.g., kale, chard)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Water",
+        "quantity": "for blanching greens"
+      }
+    ],
+    "instructions": [
+      "Prepare root vegetables: Wash root vegetables thoroughly. Peel thinly using a vegetable peeler; reserve peels. Cut peeled root vegetables into 2 cm chunks.",
+      "Prepare greens: Wash hardy greens. Roughly chop leaves.",
+      "Prepare chicken: Pat chicken thighs very dry with paper towels. Season generously with salt and black pepper on both sides.",
+      "Sear chicken: Heat 30ml olive oil in a large oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear undisturbed until skin is deeply golden and crisp, about 8-10 minutes. Flip chicken. Transfer skillet to a preheated oven at 180°C (350°F). Roast until chicken reaches an internal temperature of 75°C (167°F), about 10-15 minutes. Remove chicken from skillet, set aside on a plate, tent loosely with foil.",
+      "Make sauce: Return skillet to stovetop over medium heat. Add lacto-fermented garlic cloves to the skillet, sauté for 1 minute. Deglaze with white wine, scraping up any browned bits from the bottom. Simmer for 1 minute. Add chicken stock. Bring to a gentle simmer and reduce by one-third, about 3-4 minutes. Stir in 50g grated Pecorino Romano until melted and smooth. Stir in heavy cream. Season sauce with salt and pepper to taste. Keep warm.",
+      "Cook root vegetables: Steam or boil root vegetable chunks until tender-crisp, about 5-7 minutes. Drain.",
+      "Make crisps: Heat 15ml olive oil in a small pan over medium heat. Fry reserved root vegetable peels in batches until golden and crisp, about 2-3 minutes per batch. Alternatively, air fry at 180°C (350°F) for 5-8 minutes. Transfer to a paper towel-lined plate. Lightly salt immediately.",
+      "Braise greens: Bring a pot of salted water to a boil. Blanch chopped hardy greens for 1-2 minutes until tender-crisp. Drain well.",
+      "Assemble and serve: Divide braised greens among four handcrafted ceramic plates. Place one seared chicken thigh on each bed of greens. Spoon generous amount of fermented garlic cream sauce over and around the chicken. Arrange steamed root vegetable chunks and root vegetable crisps beside the chicken. Shave additional Pecorino Romano over each dish. Garnish with fresh thyme sprigs. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 691.4,
+      "cholesterol_mg": 199,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 40.7,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 592.8,
+      "total_carbs_g": 24.5,
+      "total_fat_g": 48.9,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146.2,
+      "cholesterol_mg": 42.1,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.6,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 125.4,
+      "total_carbs_g": 5.2,
+      "total_fat_g": 10.3,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.3,
+      "dietary_fiber": 21.8,
+      "protein": 81.4,
+      "saturated_fat": 73.8,
+      "sodium": 25.8,
+      "total_carbs": 8.9,
+      "total_fat": 62.7
+    },
+    "serving_size_g": 472.8,
+    "total_recipe_weight_g": 1891
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Herbed Cream Cheese and Potato Rosti",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_herbed_cream_cheese_and_potato_rosti_20250625_081617_eb7584a2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:16:17.683976000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared chicken with herbed cream cheese and potato rosti is presented on a clean, round white porcelain dinner plate. The golden-brown pan-seared chicken breast, sliced diagonally into two thick pieces, reveals a creamy, herb-flecked cream cheese stuffing. The chicken is moist and succulent. Beside it, a perfectly round, golden-crisp potato rosti, with visible strands of potato, provides a textural contrast. A light, glistening pan sauce is elegantly spooned around the chicken and rosti. A sprinkle of fresh green chives garnishes the dish, adding a pop of color. The overall composition is balanced and inviting, with moderate negative space. The plate rests on a simple, light-colored wooden table surface, accompanied by a folded white cotton napkin and polished silver flatware, under natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Pan-Seared Chicken Breast",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "cream cheese, softened",
+        "quantity": "100g"
+      },
+      {
+        "name": "fresh parsley, finely chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "fresh chives, finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "olive oil, divided",
+        "quantity": "60ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "60ml (optional)"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Butterfly each chicken breast horizontally, cutting almost all the way through to create a pocket. Season both sides with salt and pepper.",
+      "In a small bowl, combine softened cream cheese, chopped parsley, chopped chives, and minced garlic. Mix well.",
+      "Divide the cream cheese mixture evenly among the chicken breasts. Spoon the mixture into the pocket of each breast. Press to seal.",
+      "Peel potatoes. Grate them using a coarse grater. Place grated potatoes in a clean kitchen towel and squeeze out as much liquid as possible. Season grated potatoes with salt and pepper.",
+      "Heat 30ml olive oil and 15g butter in a large non-stick skillet over medium-high heat. Form four round patties with the grated potatoes. Place patties in the hot skillet. Cook for 5-7 minutes per side, until golden brown and crispy. Keep warm.",
+      "Heat remaining 30ml olive oil and 15g butter in a separate large oven-safe skillet over medium-high heat. Place stuffed chicken breasts in the hot skillet. Sear for 4-5 minutes per side until golden brown.",
+      "Transfer skillet with chicken to a preheated oven at 180°C (350°F) for 10-12 minutes, or until internal temperature reaches 75°C (167°F). Remove from oven. Let chicken rest for 5 minutes.",
+      "While chicken rests, return the skillet used for chicken to medium heat on the stovetop. Deglaze with white wine (if using), scraping up any browned bits. Reduce by half. Add chicken broth and simmer for 3-4 minutes until slightly reduced. Season with salt and pepper.",
+      "Place one crispy potato rosti on each white porcelain dinner plate. Slice each chicken breast in half on the bias to reveal the stuffing. Place the two chicken pieces alongside the rosti. Spoon pan sauce generously around the chicken and rosti. Garnish with a sprinkle of fresh chopped chives or parsley."
+    ],
+    "notes": [
+      "Ensure potatoes are very dry before cooking rosti for maximum crispiness.",
+      "Do not overcrowd the pan when searing chicken or cooking rosti. Cook in batches if necessary."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 714,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 64.5,
+      "saturated_fat_g": 12.9,
+      "sodium_mg": 343,
+      "total_carbs_g": 29.3,
+      "total_fat_g": 35.3,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 15.2,
+      "saturated_fat_g": 3,
+      "sodium_mg": 81,
+      "total_carbs_g": 6.9,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 13,
+      "protein": 129,
+      "saturated_fat": 65,
+      "sodium": 15,
+      "total_carbs": 11,
+      "total_fat": 45
+    },
+    "serving_size_g": 425,
+    "total_recipe_weight_g": 1700
+  }
+]

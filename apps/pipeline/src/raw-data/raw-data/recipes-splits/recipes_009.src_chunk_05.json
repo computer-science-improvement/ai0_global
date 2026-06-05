@@ -1,0 +1,579 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Caramelized Onion & Herb Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_caramelized_onion_%26_herb_crumble_20250724_080057_94861773.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T08:00:58.189078000Z",
+    "selected_ingredients": [
+      {
+        "name": "rosemary"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "sausage"
+      },
+      {
+        "name": "thyme"
+      },
+      {
+        "name": "chicken"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Australian",
+    "visual_description": "A single portion of pan-seared chicken is centered on a clean, round white porcelain plate. Two succulent, golden-brown boneless chicken thighs, presented as whole pieces, are arranged slightly overlapping. They are generously topped with a rich, dark amber caramelized onion and rustic pork sausage crumble. Vibrant green flecks of fresh rosemary and thyme are visibly mixed throughout, adding a pop of color and freshness. The chicken exhibits a tender, cooked texture with a golden sear. The onions are soft and glossy. A subtle sheen of pan sauce glazes the plate. The composition is balanced and inviting. The plate rests on a simple light wooden table surface. A neatly folded cotton napkin in a neutral tone sits beside the plate. Natural, even lighting illuminates the scene, highlighting textures. The background is minimally blurred, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Australian",
+    "cultural_origin": "Australian",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp green salad dressed with a light vinaigrette.",
+      "Offer with crusty sourdough bread to soak up the delicious pan juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Good quality pork sausage",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Brown onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Remove casings from pork sausage. Crumble sausage into a large, oven-safe pan. Cook over medium-high heat for 5-7 minutes until browned. Break up large pieces with a spoon. Remove cooked sausage from pan and set aside.",
+      "Pat chicken thighs dry. Season generously with salt and black pepper. Add 1 tablespoon of olive oil to the same pan if needed. Sear chicken thighs over medium-high heat for 6-8 minutes per side, until golden brown and cooked through. Ensure internal temperature reaches 75°C (167°F). Remove chicken from pan and set aside to rest.",
+      "Thinly slice brown onions. Add remaining 1 tablespoon of olive oil to the pan. Add sliced onions. Reduce heat to medium-low. Cook onions slowly for 15-20 minutes, stirring occasionally, until deeply caramelized and soft.",
+      "Mince garlic. Finely chop fresh rosemary leaves and thyme leaves. Add minced garlic, chopped rosemary, and chopped thyme to the pan with caramelized onions. Cook for 1 minute until fragrant.",
+      "Pour chicken stock into the pan. Scrape up any browned bits from the bottom of the pan with a wooden spoon. Bring the mixture to a gentle simmer.",
+      "Return the cooked sausage crumble to the pan. Stir to combine with the caramelized onions and pan sauce.",
+      "Serve each pan-seared chicken thigh topped generously with the caramelized onion and herb crumble."
+    ]
+  },
+  {
+    "recipe_name": "Classic Chocolate Fudge Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_chocolate_fudge_cake_20250724_075222_97193774.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T07:52:22.599454000Z",
+    "selected_ingredients": [
+      "chorizo"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single triangular slice of classic chocolate fudge cake is casually plated on a simple, round white ceramic plate with a slight rim. The cake features two moist, rich chocolate layers generously frosted with a thick, dark chocolate fudge frosting. The frosting is spread unevenly, showing a homemade, comforting texture, with some peaks and swirls. A few crumbs of cake may cling to the frosting, enhancing its rustic appeal. The cut side of the slice reveals the dense, dark brown crumb and the thick layer of frosting between the cake layers. The plate sits on a well-used wooden dining table, showcasing its natural grain. In the background, partially visible, is the rest of the 15 cm whole chocolate cake on a simple, low cake stand, also generously frosted. A casually folded white cloth napkin is nearby. Lighting is warm and cozy, as if from kitchen overhead lights, creating soft shadows. The scene evokes a relaxed, homely family dining atmosphere, focusing on the comforting appeal of the dessert. A simple glass of milk is placed beside the cake, completing the wholesome presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of cold milk",
+      "Enjoy with a scoop of vanilla ice cream",
+      "Pair with a cup of coffee or tea"
+    ],
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Boiling water",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter (for frosting)",
+        "quantity": "115 g"
+      },
+      {
+        "name": "Powdered sugar (for frosting)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder (for frosting)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Milk (for frosting)",
+        "quantity": "30-45 ml"
+      },
+      {
+        "name": "Vanilla extract (for frosting)",
+        "quantity": "2.5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour a 15 cm round cake pan.",
+      "In a large bowl, whisk together flour, sugar, cocoa powder, baking soda, baking powder, and salt.",
+      "In a separate bowl, whisk together egg, milk, oil, and vanilla extract.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined.",
+      "Slowly add boiling water to the batter. Stir until smooth. Batter will be thin.",
+      "Pour batter into the prepared cake pan.",
+      "Bake for 30-35 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Cool cake in the pan for 10 minutes. Invert onto a wire rack to cool completely.",
+      "For frosting: In a medium bowl, beat softened butter until creamy.",
+      "Gradually add powdered sugar and cocoa powder. Beat until combined.",
+      "Add milk and vanilla extract. Beat until light and fluffy. Add more milk if needed for desired consistency.",
+      "Once cake is completely cool, frost generously."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 87.5,
+      "calories": 802,
+      "cholesterol_mg": 111,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 9.3,
+      "saturated_fat_g": 17.7,
+      "sodium_mg": 478,
+      "total_carbs_g": 123,
+      "total_fat_g": 35.2,
+      "total_sugars_g": 89.5,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 38.3,
+      "calories": 351.1,
+      "cholesterol_mg": 48.7,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 4.1,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 209.3,
+      "total_carbs_g": 53.9,
+      "total_fat_g": 15.4,
+      "total_sugars_g": 39.2,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 26,
+      "protein": 19,
+      "saturated_fat": 89,
+      "sodium": 21,
+      "total_carbs": 45,
+      "total_fat": 45
+    },
+    "serving_size_g": 228.4,
+    "total_recipe_weight_g": 913.5
+  },
+  {
+    "recipe_name": "Creamy Chicken and Potato Penne Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_potato_penne_bake_20250724_065559_f5715a4f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T06:55:59.773197000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion",
+      "cheese",
+      "pasta",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Creamy Chicken and Potato Penne Bake is presented in a clean white porcelain bowl. The golden-brown top crust of melted cheese is visibly bubbling. Tender penne pasta is coated in a creamy, golden-white cheese sauce. Roasted chicken chunks, their surfaces lightly browned, are interspersed with soft, roasted potato cubes and deeply caramelized onion strands. Freshly chopped vibrant green parsley is sprinkled over the top. The dish is arranged naturally, appealingly. The setting is a modern bistro, featuring a simple wooden table, white cotton napkin, and standard silver flatware. Natural, even lighting highlights the dish. The entire plate is visible, showcasing a well-proportioned, approachable restaurant-style serving.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Shredded Cheddar cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Shredded Mozzarella cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Cut chicken thighs into 3 cm chunks. Cut potatoes into 2 cm cubes. Mince 2 garlic cloves.",
+      "Toss chicken and potatoes with 15 ml olive oil, half minced garlic, 2 g dried thyme, salt, and pepper on a baking sheet. Spread in a single layer.",
+      "Roast for 25-30 minutes, until chicken is cooked through (75°C internal) and potatoes are tender and golden. Flip halfway.",
+      "While chicken and potatoes roast, slice onions thinly. Mince remaining 2 garlic cloves.",
+      "Heat 15 ml olive oil in a large pan over medium-low heat. Add sliced onions. Cook slowly for 25-30 minutes, stirring occasionally, until deeply caramelized and soft. Add a splash of water if sticking. Remove onions from pan.",
+      "Cook penne pasta according to package directions until al dente. Drain well.",
+      "In the same pan used for onions, melt butter over medium heat. Add minced garlic. Cook 1 minute until fragrant.",
+      "Whisk in flour. Cook for 1-2 minutes, stirring constantly, to form a roux.",
+      "Gradually whisk in milk and chicken broth. Bring to a simmer, stirring, until sauce thickens.",
+      "Remove from heat. Stir in 100 g Cheddar cheese and 50 g Mozzarella cheese until melted and smooth. Season with salt, pepper, and remaining dried thyme.",
+      "Combine cooked pasta, roasted chicken and potatoes, caramelized onions, and cheese sauce in a large mixing bowl. Stir gently to coat.",
+      "Transfer mixture to a 2.5-liter baking dish.",
+      "Sprinkle remaining 50 g Cheddar and 50 g Mozzarella cheese over the top.",
+      "Bake for 20-25 minutes, until bubbly and cheese is golden-brown.",
+      "Chop fresh parsley. Garnish baked dish with parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1167,
+      "cholesterol_mg": 243,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 62,
+      "saturated_fat_g": 24.6,
+      "sodium_mg": 1241,
+      "total_carbs_g": 99.2,
+      "total_fat_g": 54.6,
+      "total_sugars_g": 12.5,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.9,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 179,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81,
+      "dietary_fiber": 24,
+      "protein": 124,
+      "saturated_fat": 123,
+      "sodium": 54,
+      "total_carbs": 36,
+      "total_fat": 70
+    },
+    "serving_size_g": 693.15,
+    "total_recipe_weight_g": 2772.6
+  },
+  {
+    "recipe_name": "Sustainable Roasted Chicken & Buckwheat with Carrot-Top Pesto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_roasted_chicken_%26_buckwheat_with_carrot-top_pesto_20250724_054323_aeed472c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T05:43:23.548340000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "chicken",
+      "olive oil",
+      "carrot",
+      "garlic",
+      "bread"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, generous individual portion of Sustainable Roasted Chicken & Buckwheat with Carrot-Top Pesto is presented on a round, handcrafted ceramic plate in an earthy cream tone. The plate rests on a light, textured reclaimed wood surface. At the center, a bed of fluffy, light-brown roasted buckwheat groats forms the base. Nestled atop the buckwheat are two large, golden-brown roasted chicken thighs, their skin visibly crispy and unsliced. Around the chicken, vibrant orange roasted carrot batons are artfully arranged, some slightly caramelized at the edges. A bright, verdant dollop of carrot-top pesto sits beside the chicken, adding a pop of fresh green color. Scattered across the dish and around the main elements are irregular, golden-brown sourdough croutons, providing textural contrast. The composition is clean, with ample negative space around the food, highlighting each ingredient. Soft, natural light illuminates the scene from the side, enhancing the natural colors and textures. A natural beige, undyed linen napkin is subtly folded to the side. The background is minimalist, with a hint of natural greenery, keeping the focus entirely on the sustainably prepared dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (bone-in, skin-on)",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Buckwheat groats",
+        "quantity": "250g"
+      },
+      {
+        "name": "Carrots (with green tops attached)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Stale sourdough bread",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "80ml (divided)"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (for zest and juice)"
+      },
+      {
+        "name": "Parmesan cheese (optional, for pesto)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Sunflower seeds (for pesto)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Peel carrots. Cut carrots into thick batons or wedges. Reserve carrot tops for pesto.",
+      "In a large roasting pan, toss carrot batons with 20ml olive oil, 2 minced garlic cloves, salt, and pepper. Spread evenly.",
+      "Place chicken thighs skin-side up on top of carrots in the roasting pan.",
+      "Roast for 30 minutes.",
+      "While chicken roasts, prepare buckwheat. Rinse buckwheat groats. In a medium saucepan, combine buckwheat with 750ml vegetable broth. Bring to a boil, then reduce heat to low. Cover and simmer for 15 minutes, or until liquid is absorbed and buckwheat is tender. Fluff with a fork.",
+      "Prepare carrot-top pesto. Wash carrot tops thoroughly. In a food processor, combine carrot tops, remaining 2 minced garlic cloves, sunflower seeds, lemon zest and juice, and Parmesan (if using). Pulse while slowly drizzling in 50ml olive oil until a smooth pesto forms. Season with salt and pepper.",
+      "Prepare sourdough croutons. Cut stale sourdough bread into 2cm cubes. Toss with 10ml olive oil, salt, and pepper.",
+      "After 30 minutes of chicken roasting, add sourdough croutons to the roasting pan, scattering them around chicken and carrots.",
+      "Continue roasting for another 15-20 minutes, or until chicken internal temperature reaches 75°C (167°F) and chicken skin is golden and crispy. Croutons should be golden and crunchy.",
+      "Let chicken rest for 5 minutes.",
+      "To serve, spoon a portion of roasted buckwheat onto each plate. Arrange roasted chicken pieces and carrot batons over the buckwheat. Spoon a generous dollop of carrot-top pesto beside the chicken. Scatter crispy sourdough croutons over the dish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1068,
+      "cholesterol_mg": 191,
+      "dietary_fiber_g": 11.4,
+      "protein_g": 52.6,
+      "saturated_fat_g": 14.6,
+      "sodium_mg": 1383,
+      "total_carbs_g": 80.6,
+      "total_fat_g": 61.9,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 8,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 211,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 41,
+      "protein": 105,
+      "saturated_fat": 73,
+      "sodium": 60,
+      "total_carbs": 29,
+      "total_fat": 79
+    },
+    "serving_size_g": 655.9,
+    "total_recipe_weight_g": 2623.6
+  },
+  {
+    "recipe_name": "Creamy Walnut and Dijon Oat Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_walnut_and_dijon_oat_soup_20250724_040038_767631a2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T04:00:38.783496000Z",
+    "selected_ingredients": [
+      {
+        "name": "walnut"
+      },
+      {
+        "name": "mustard"
+      },
+      {
+        "name": "oat"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Australian",
+    "visual_description": "A single portion of creamy Walnut and Dijon Oat Soup is presented in a pristine white porcelain bowl. The soup is a smooth, inviting light beige color, showcasing its rich, velvety texture. It is garnished thoughtfully with a sprinkle of finely chopped toasted walnuts, providing a subtle contrast in texture and a darker hue. A scattering of bright green, finely chopped fresh chives adds a pop of color and freshness. The bowl is centered on a simple, clean wooden table surface, complemented by a neatly folded white cotton napkin and standard silver flatware placed beside it. The lighting is natural and even, casting soft shadows that enhance the dish's appeal. The background is minimally blurred, suggesting a modern bistro setting, keeping the focus entirely on the elegantly presented soup.",
+    "number_of_servings": 4,
+    "cuisine_type": "Australian",
+    "cultural_origin": "Australian",
+    "hero_ingredient": "Walnut",
+    "ingredients": [
+      {
+        "name": "Walnuts",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Roughly chop 100 g walnuts. Reserve 50 g walnuts for garnish.",
+      "Heat olive oil in a large pot over medium heat. Add diced onion and minced garlic. Sauté until softened, about 5 minutes.",
+      "Add chopped walnuts and rolled oats to the pot. Stir for 1 minute.",
+      "Pour in vegetable broth. Bring to a simmer. Reduce heat to low. Cook for 15-20 minutes, or until oats are tender and soup slightly thickens. Stir occasionally.",
+      "Remove pot from heat. Use an immersion blender to blend the soup until smooth and creamy. Alternatively, carefully transfer to a regular blender and blend in batches.",
+      "Stir in Dijon mustard and heavy cream. Season with salt and black pepper to taste. Return to low heat briefly to warm through, do not boil.",
+      "Toast reserved 50 g walnuts in a dry pan over medium heat for 3-5 minutes until fragrant. Chop finely.",
+      "Finely chop fresh chives.",
+      "Ladle soup into individual bowls. Garnish each serving with toasted chopped walnuts and fresh chives."
+    ]
+  }
+]

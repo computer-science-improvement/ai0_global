@@ -1,0 +1,646 @@
+[
+  {
+    "recipe_name": "Baked Ziti with Rustic Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_ziti_with_rustic_tomato_sauce_20250722_235141_6c36103c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T23:51:42.138919000Z",
+    "selected_ingredients": [
+      "bread",
+      "pasta",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, hearty portion of Baked Ziti sits on a rustic ceramic plate, its surface a mosaic of golden-brown melted mozzarella and crispy, toasted breadcrumbs. Beneath, rich red tomato sauce envelops tubular ziti pasta, with glimpses of the sauce's deep color and tender pasta peeking through. The dish is casually scooped, creating natural peaks and valleys, reflecting a true home-cooked meal. A light sprinkle of fresh green basil leaves adds a touch of color. The plate rests on a well-worn wooden kitchen table, alongside a simple fork and a casually folded cloth napkin. Warm, inviting light from an overhead kitchen fixture illuminates the scene, emphasizing the comforting textures and inviting aroma.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Comfort",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmesan cheese.",
+      "Offer a simple green salad on the side.",
+      "Provide crusty bread for dipping into the sauce."
+    ],
+    "hero_ingredient": "Ziti Pasta",
+    "ingredients": [
+      {
+        "name": "Ziti pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Beef mince (optional)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Mozzarella cheese",
+        "quantity": "200g, shredded"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "Handful, chopped"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook ziti according to package directions until al dente. Drain well.",
+      "In a large pot, heat olive oil over medium heat. Add diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Add beef mince (if using) and cook, breaking it up, until browned. Drain excess fat.",
+      "Stir in crushed tomatoes, dried oregano, salt, and black pepper. Bring to a simmer.",
+      "Reduce heat and cook for 15 minutes, stirring occasionally. Remove from heat.",
+      "Stir cooked ziti into the sauce. Add 150g shredded mozzarella and 30g grated Parmesan. Mix well.",
+      "Transfer half of the ziti mixture to a 20x30 cm baking dish. Top with remaining 50g mozzarella.",
+      "Add remaining ziti mixture. Sprinkle with remaining 20g Parmesan and breadcrumbs.",
+      "Bake for 20-25 minutes, or until bubbly and breadcrumbs are golden.",
+      "Let rest 5 minutes before serving. Garnish with fresh basil."
+    ],
+    "notes": [
+      "This dish reheats well for leftovers."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1051.32,
+      "cholesterol_mg": 132.13,
+      "dietary_fiber_g": 8.03,
+      "protein_g": 60.83,
+      "saturated_fat_g": 16.01,
+      "sodium_mg": 78.13,
+      "total_carbs_g": 110.27,
+      "total_fat_g": 38.39,
+      "total_sugars_g": 11.9,
+      "trans_fat_g": 1.64
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 190.54,
+      "cholesterol_mg": 23.95,
+      "dietary_fiber_g": 1.46,
+      "protein_g": 11.03,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 14.16,
+      "total_carbs_g": 19.99,
+      "total_fat_g": 6.96,
+      "total_sugars_g": 2.16,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44.04,
+      "dietary_fiber": 28.68,
+      "protein": 121.66,
+      "saturated_fat": 80.05,
+      "sodium": 3.4,
+      "total_carbs": 40.1,
+      "total_fat": 49.22
+    },
+    "serving_size_g": 551.8,
+    "total_recipe_weight_g": 2207
+  },
+  {
+    "recipe_name": "Slow-Braised Beef Ragu with Fermented Tomato and Sourdough Pangrattato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-braised_beef_ragu_with_fermented_tomato_and_sourdough_pangrattato_20250722_234551_1105cb3c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T23:45:51.588558000Z",
+    "selected_ingredients": [
+      "bread",
+      "pasta",
+      "tomato",
+      "onion",
+      "beef"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Slow-Braised Beef Ragu with Fermented Tomato and Sourdough Pangrattato is presented on a handcrafted ceramic plate in a natural cream or beige tone. The plate sits on a light bamboo table surface, reflecting a commitment to sustainable aesthetics. A generous mound of al dente pasta forms the base, topped with rich, dark red beef ragu. The ragu features tender, slow-braised beef chuck, visible in substantial, un-sliced chunks, alongside the deep red, concentrated fermented tomato sauce. A scattering of golden-brown, irregularly torn sourdough pangrattato provides a textural contrast. The dish is subtly garnished with a few fresh, vibrant green basil leaves, placed artfully to enhance the natural colors without overwhelming the composition. The overall plating is minimalistic, with ample white space around the food, emphasizing the inherent beauty and texture of each ingredient. The scene is illuminated by soft, natural lighting, creating gentle shadows. A clean, uncluttered background features a subtle, natural plant element. An undyed linen napkin in natural beige is carefully folded beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Tomato",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "500g, cut into 4-6 large chunks"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Fermented tomato paste",
+        "quantity": "60g"
+      },
+      {
+        "name": "Canned whole peeled tomatoes",
+        "quantity": "800g, crushed by hand"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Large pasta shape (e.g., pappardelle, rigatoni)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Stale sourdough bread",
+        "quantity": "200g, torn into small pieces"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil or parsley",
+        "quantity": "small handful for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef chuck chunks dry. Season generously with salt and pepper.",
+      "Heat 15ml olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef on all sides until deeply browned. Remove beef from pot and set aside.",
+      "Add remaining 15ml olive oil to the pot. Add roughly chopped onions and cook until softened, about 8-10 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in fermented tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is mostly reduced.",
+      "Add crushed tomatoes and beef broth. Bring to a simmer.",
+      "Return seared beef chunks to the pot. Ensure beef is mostly submerged. Cover and reduce heat to low. Simmer for 2.5-3 hours, or until beef is fork-tender. Stir occasionally.",
+      "While ragu simmers, prepare sourdough pangrattato. Heat a dry pan over medium heat. Add torn sourdough pieces. Toast, stirring frequently, until golden brown and crispy. Remove from pan and set aside.",
+      "Once beef is tender, remove it from the ragu. Shred beef with two forks. Return shredded beef to the sauce. Stir well. Simmer ragu uncovered for 15-20 minutes to thicken slightly. Adjust seasoning.",
+      "Cook pasta according to package directions in salted boiling water until al dente.",
+      "Drain pasta. Add cooked pasta directly to the ragu. Toss to coat.",
+      "Serve hot. Top each portion with a sprinkle of sourdough pangrattato and a few fresh basil or parsley leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1033,
+      "cholesterol_mg": 100,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 56.9,
+      "saturated_fat_g": 10,
+      "sodium_mg": 983,
+      "total_carbs_g": 125,
+      "total_fat_g": 28.4,
+      "total_sugars_g": 15.5,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 12.9,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.3,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 126.5,
+      "total_carbs_g": 16.1,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33.3,
+      "dietary_fiber": 34.6,
+      "protein": 113.9,
+      "saturated_fat": 50,
+      "sodium": 42.7,
+      "total_carbs": 45.5,
+      "total_fat": 36.4
+    },
+    "serving_size_g": 777,
+    "total_recipe_weight_g": 3108
+  },
+  {
+    "recipe_name": "Fermented Banana & Oat Milk Overnight Oats",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_banana_%26_oat_milk_overnight_oats_20250722_233855_aad7222e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T23:38:56.447505000Z",
+    "selected_ingredients": [
+      "milk",
+      "banana",
+      "oatmeal",
+      "egg"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "Individual clear glass jars showcase layers of creamy, off-white oat milk overnight oats, interspersed with swirls of golden-brown fermented banana compote. A delicate, pale yellow banana egg custard is subtly swirled within, adding a soft, inviting hue. Each jar is topped with thinly sliced fresh banana rounds, neatly arranged, and a light sprinkling of raw rolled oats for a textural contrast. The presentation is minimalistic, highlighting the natural colors and textures of the ingredients. Jars rest on a light, textured reclaimed wood surface, accompanied by a handcrafted ceramic coaster in an earth tone. Soft, natural light illuminates the scene, emphasizing cleanliness and simplicity, with ample negative space. The background is clean and unobtrusive, perhaps with a hint of natural greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Banana",
+    "ingredients": [
+      {
+        "name": "Rolled oats",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Oat milk",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Ripe bananas",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Live plain yogurt or kefir (for fermentation)",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Peel 2 ripe bananas. Mash thoroughly. Mix with yogurt or kefir in a clean glass jar. Cover loosely. Let stand at room temperature for 12-24 hours until slightly tangy and bubbly. This is the fermented banana compote.",
+      "In a large bowl, combine rolled oats, 500 ml oat milk, 15 ml maple syrup, vanilla extract, and salt. Stir well. Divide evenly into 4 serving jars or bowls.",
+      "In a small saucepan, whisk the egg with the remaining 100 ml oat milk and 15 ml maple syrup. Peel and mash 1 fresh banana. Add mashed banana to the egg mixture. Cook over low heat, stirring constantly, until the mixture thickens to a light custard consistency. Do not boil.",
+      "Spoon equal portions of the fermented banana compote over the oat mixture in each jar. Gently swirl the banana compote into the oats. Add a dollop of the banana egg custard to each jar. Swirl again minimally.",
+      "Cover jars and refrigerate for at least 4 hours, or preferably overnight.",
+      "Just before serving, slice the remaining fresh banana into thin rounds. Garnish each serving with a few fresh banana slices and a sprinkle of raw rolled oats."
+    ],
+    "notes": [
+      "Banana peels can be used for tea or composted as a zero-waste practice."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.7,
+      "calories": 410,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 9.6,
+      "protein_g": 11.3,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 105,
+      "total_carbs_g": 76.8,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 28,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.9,
+      "calories": 119,
+      "cholesterol_mg": 13.7,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 3.3,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 30.4,
+      "total_carbs_g": 22.3,
+      "total_fat_g": 2.2,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16,
+      "dietary_fiber": 34,
+      "protein": 23,
+      "saturated_fat": 8,
+      "sodium": 5,
+      "total_carbs": 28,
+      "total_fat": 10
+    },
+    "serving_size_g": 344,
+    "total_recipe_weight_g": 1377
+  },
+  {
+    "recipe_name": "Savory Banana Oat Fritters",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_banana_oat_fritters_20250722_233637_f59fcc0c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T23:36:37.572964000Z",
+    "selected_ingredients": [
+      "milk",
+      "banana",
+      "oatmeal",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Golden-brown fritters, approximately 6-7 cm in diameter and 1.5 cm thick, are presented on a clean white porcelain plate. Each plate features three to four slightly overlapping fritters arranged in an organic cluster. The exterior boasts a crisp, golden crust from pan-frying, contrasting with a soft, tender interior. Visible within the fritters are flecks of green chives and finely diced red onion, adding subtle color and texture. A light sprinkle of fresh chives garnishes the top of the fritters, enhancing their fresh appeal. The plating is clean and uncluttered, leaving ample negative space. Served on a simple wooden table, bathed in natural, even light, with a plain cotton napkin folded beside the plate. The overall presentation is professional yet approachable, highlighting the fritters as refined, savory snacks.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Casual",
+    "hero_ingredient": "Oatmeal",
+    "ingredients": [
+      {
+        "name": "Rolled oats",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Ripe banana",
+        "quantity": "1 (about 100 g)"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Combine rolled oats and milk in a bowl. Let soak for 10 minutes.",
+      "Mash the ripe banana thoroughly in a separate bowl.",
+      "Finely dice the red onion and mince the garlic clove.",
+      "Heat a small amount of olive oil in a pan over medium heat. Sauté diced red onion and minced garlic for 3 minutes until softened. Remove from heat.",
+      "Finely chop the fresh chives. Grate the Parmesan cheese.",
+      "Add mashed banana, egg, sautéed onion and garlic, chopped chives, grated Parmesan, salt, and black pepper to the soaked oat mixture. Mix well to combine all ingredients.",
+      "Form the mixture into 12 small, round patties, approximately 6-7 cm in diameter and 1.5 cm thick.",
+      "Heat the remaining olive oil in a large non-stick pan over medium heat. Place patties in the hot pan without overcrowding.",
+      "Cook fritters for 3-4 minutes per side, until golden brown and cooked through.",
+      "Remove fritters from pan and place on a wire rack lined with paper towels to drain excess oil.",
+      "Serve warm."
+    ],
+    "notes": [
+      "Ensure banana is ripe but firm to avoid overly moist fritters.",
+      "Serve immediately for best texture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 315.8,
+      "cholesterol_mg": 56.4,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 12.9,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 644.5,
+      "total_carbs_g": 34.8,
+      "total_fat_g": 14.6,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 204.4,
+      "cholesterol_mg": 36.5,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 417.2,
+      "total_carbs_g": 22.5,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18.8,
+      "dietary_fiber": 18.1,
+      "protein": 25.8,
+      "saturated_fat": 20.3,
+      "sodium": 28,
+      "total_carbs": 12.7,
+      "total_fat": 18.7
+    },
+    "serving_size_g": 154.5,
+    "total_recipe_weight_g": 618
+  },
+  {
+    "recipe_name": "Savory Green Banana and Oat Fritters with Poached Eggs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_green_banana_and_oat_fritters_with_poached_eggs_20250722_233215_1c67fd26.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T23:32:16.381640000Z",
+    "selected_ingredients": [
+      "milk",
+      "banana",
+      "oatmeal",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Two golden-brown, round fritters are neatly arranged at the center of a clean white porcelain dinner plate. A perfectly poached egg with a visible, runny yolk rests on top of one fritter. A generous drizzle of creamy, pale orange Chipotle Crema sweeps artfully across the fritters and around the egg. Finely chopped fresh cilantro and chives are sprinkled over the top, adding vibrant green color. A fresh lime wedge is placed beside the fritters. The overall presentation is clean, professional, and balanced, with moderate negative space. The setting is a modern bistro: a light-colored wooden table surface, a neatly folded light grey cotton napkin to the left, and standard polished silver flatware to the right. Natural, even overhead lighting creates soft shadows. The background is softly blurred, showing hints of a casual restaurant atmosphere, emphasizing the dish as the main subject.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Green Banana",
+    "ingredients": [
+      {
+        "name": "Rolled oats",
+        "quantity": "200g"
+      },
+      {
+        "name": "Very green (unripe) bananas, peeled and grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "6"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "50g"
+      },
+      {
+        "name": "Bell pepper, finely diced",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh chives, chopped",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil for frying",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water for poaching eggs",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "White vinegar for poaching eggs",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sour cream or crème fraîche",
+        "quantity": "100g"
+      },
+      {
+        "name": "Chipotle in adobo, minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pulse 100g of rolled oats in a food processor until a coarse flour forms. Keep the remaining 100g whole.",
+      "In a large bowl, combine grated green banana, pulsed oat flour, whole rolled oats, 2 large eggs, milk, diced red onion, diced bell pepper, minced garlic, chopped cilantro, chopped chives, smoked paprika, and cumin powder.",
+      "Season generously with salt and black pepper. Mix until just combined. Do not overmix.",
+      "Heat vegetable oil in a large non-stick pan over medium heat.",
+      "Spoon about 60-70g of the fritter mixture per fritter into the hot pan. Gently flatten to about 1.5 cm thick.",
+      "Cook fritters for 4-5 minutes per side. Cook until golden brown and cooked through.",
+      "Transfer cooked fritters to a paper towel-lined plate. Keep warm.",
+      "In a small bowl, whisk together sour cream, minced chipotle in adobo, and lime juice.",
+      "Season the chipotle crema with a pinch of salt. Set aside.",
+      "Fill a large pot with water. Add white vinegar and a pinch of salt. Bring to a gentle simmer.",
+      "Crack each of the remaining 4 large eggs into separate small bowls.",
+      "Gently slide one egg at a time into the simmering water. Cook for 3-4 minutes for a runny yolk.",
+      "Remove poached eggs carefully with a slotted spoon. Drain excess water.",
+      "Place two warm fritters on each plate.",
+      "Top each serving with a freshly poached egg.",
+      "Drizzle generously with Chipotle Crema.",
+      "Garnish with chopped fresh cilantro and chives. Serve immediately with a lime wedge."
+    ],
+    "notes": [
+      "Ensure you use very green, unripe bananas for this recipe. Ripe bananas will be too sweet and alter the flavor profile significantly."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 510,
+      "cholesterol_mg": 297,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 20.1,
+      "saturated_fat_g": 7,
+      "sodium_mg": 358,
+      "total_carbs_g": 72.7,
+      "total_fat_g": 20,
+      "total_sugars_g": 15.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 164,
+      "cholesterol_mg": 95.8,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 6.5,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 115.4,
+      "total_carbs_g": 23.4,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 99.1,
+      "dietary_fiber": 35,
+      "protein": 40.3,
+      "saturated_fat": 34.8,
+      "sodium": 15.6,
+      "total_carbs": 26.4,
+      "total_fat": 25.6
+    },
+    "serving_size_g": 310.5,
+    "total_recipe_weight_g": 1242
+  }
+]

@@ -1,0 +1,666 @@
+[
+  {
+    "recipe_name": "Homestyle Shrimp and Cashew Quesadillas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_shrimp_and_cashew_quesadillas_20250702_190042_f7dc65b9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:00:43.434708000Z",
+    "selected_ingredients": [
+      {
+        "name": "cashew"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "shrimp"
+      },
+      {
+        "name": "cheese"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Mexican",
+    "visual_description": "Golden-brown quesadilla wedges are arranged casually on a rustic ceramic plate. Each wedge reveals a generous, melted interior of Monterey Jack cheese, plump, pink chopped shrimp, and soft, sweet caramelized onion slices. Toasted, roughly chopped cashew pieces are visible within the filling, adding a textural contrast. A small, vibrant red bowl of salsa roja sits beside the quesadillas, along with a few fresh lime wedges and a sprig of cilantro. The plate rests on a well-used wooden dining table, under warm, inviting kitchen lighting, evoking a lived-in, homely atmosphere. A simple folded cloth napkin is casually placed nearby. The scene is unpretentious and focused on comforting, satisfying portions.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve immediately with salsa roja or guacamole.",
+      "Offer lime wedges for fresh acidity.",
+      "Enjoy as a casual snack or light meal."
+    ],
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Shrimp",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Unsalted cashews",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Monterey Jack cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large flour tortillas",
+        "quantity": "8"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Peel and finely dice the yellow onion.",
+      "Grate the Monterey Jack cheese.",
+      "Roughly chop the cashews.",
+      "Heat 15 ml vegetable oil in a large frying pan over medium heat.",
+      "Add diced onion. Cook, stirring occasionally, until deeply caramelized, about 10-15 minutes.",
+      "Remove caramelized onions from pan. Set aside.",
+      "Add remaining 15 ml vegetable oil to the pan.",
+      "Add shrimp. Cook until pink and opaque, about 3-4 minutes. Ensure internal temperature reaches 75°C (167°F).",
+      "Chop cooked shrimp into small pieces.",
+      "In a bowl, combine chopped shrimp, caramelized onions, half of the grated cheese, chopped cashews, chili powder, and cumin. Season with salt and pepper. Mix well.",
+      "Lay a tortilla flat. Sprinkle a small amount of remaining cheese on one half.",
+      "Spoon a generous portion of the shrimp mixture over the cheese.",
+      "Fold the other half of the tortilla over the filling.",
+      "Heat a clean frying pan over medium heat. Place a filled quesadilla in the pan.",
+      "Cook for 2-3 minutes per side, until golden brown and cheese is melted.",
+      "Repeat with remaining tortillas and filling.",
+      "Cut each quesadilla into 2-3 wedges.",
+      "Roughly chop fresh cilantro.",
+      "Slice lime into wedges."
+    ],
+    "notes": [
+      "For extra spice, add a pinch of cayenne pepper to the shrimp mixture.",
+      "Any mild, melty cheese like a Mexican blend or mild cheddar can be substituted for Monterey Jack."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Pan-frying"
+    ]
+  },
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Risotto with Roasted Bell Pepper",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_risotto_with_roasted_bell_pepper_20250702_185949_f64549ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:59:50.335618000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "rice",
+      "parmesan",
+      "onion",
+      "parsley",
+      "garlic",
+      "heavy cream",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "American cuisine",
+    "visual_description": "A single serving of creamy risotto is presented on a clean white porcelain dinner plate. The risotto forms a natural, flowing mound in the center, exhibiting a pale golden hue. Tender, browned chicken chunks are nestled within the risotto, alongside earthy sliced cremini mushrooms and vibrant red dice of roasted bell pepper. The texture is lusciously creamy yet holds the al dente bite of the rice. A generous sprinkle of fresh, bright green chopped parsley garnishes the top, adding a pop of color and freshness. The plate is positioned on a simple wooden table surface, accompanied by a folded white cotton napkin and standard silver flatware. Natural, even light illuminates the dish, highlighting its comforting and refined appearance. The background is softly blurred, hinting at a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve hot as a main course.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "450 grams"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 grams"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Chicken broth, hot",
+        "quantity": "1.2 liters"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve the red bell pepper. Remove seeds. Place cut-side down on a baking sheet. Roast 20-25 minutes until skin is blistered. Transfer to a bowl, cover with plastic wrap. Let cool 10 minutes. Peel off skin. Dice the roasted bell pepper.",
+      "Dice chicken breasts into 2 cm chunks. Season chicken with salt and pepper. Heat 15 ml olive oil in a large skillet over medium-high heat. Add chicken. Sear 5-7 minutes until cooked through. Internal temperature must reach 75°C. Remove chicken from skillet. Set aside.",
+      "Slice cremini mushrooms. Heat remaining 15 ml olive oil in the same skillet over medium-high heat. Add mushrooms. Sauté 5-7 minutes until golden brown and tender. Remove mushrooms from skillet. Set aside.",
+      "Finely dice the yellow onion. Mince garlic cloves. In a large, heavy-bottomed pot or Dutch oven, melt 15 grams butter over medium heat. Add onion. Sauté 3-5 minutes until softened. Add minced garlic. Sauté 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Stir 2 minutes to toast grains. Pour in 250 ml hot chicken broth. Stir constantly until liquid is absorbed.",
+      "Continue adding hot chicken broth, 125 ml at a time. Stir constantly, allowing each addition to be absorbed before adding more. This process takes 20-25 minutes. Rice should be creamy and al dente.",
+      "Stir in remaining 15 grams butter, heavy cream, grated Parmesan, cooked chicken, sautéed mushrooms, and diced roasted bell pepper. Stir until well combined and creamy. Add a splash more broth if needed for desired consistency.",
+      "Stir in fresh chopped parsley. Season with additional salt and pepper to taste. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety.",
+      "The constant stirring of risotto is crucial for its creamy texture.",
+      "Use good quality chicken broth for best flavor."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering",
+      "Risotto method (gradual liquid addition)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 776.43,
+      "cholesterol_mg": 146.05,
+      "dietary_fiber_g": 3.26,
+      "protein_g": 54.59,
+      "saturated_fat_g": 13.51,
+      "sodium_mg": 729.69,
+      "total_carbs_g": 71.01,
+      "total_fat_g": 29.55,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0.69
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 111.6,
+      "cholesterol_mg": 20.99,
+      "dietary_fiber_g": 0.47,
+      "protein_g": 7.85,
+      "saturated_fat_g": 1.94,
+      "sodium_mg": 104.88,
+      "total_carbs_g": 10.21,
+      "total_fat_g": 4.25,
+      "total_sugars_g": 0.78,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 48.68,
+      "dietary_fiber": 11.66,
+      "protein": 109.18,
+      "saturated_fat": 67.53,
+      "sodium": 31.72,
+      "total_carbs": 25.82,
+      "total_fat": 37.88
+    },
+    "serving_size_g": 695.75,
+    "total_recipe_weight_g": 2783
+  },
+  {
+    "recipe_name": "Dark Chocolate and Rum Pear Terrine, Cherry Fluid Gel, Rum Meringue",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dark_chocolate_and_rum_pear_terrine%2C_cherry_fluid_gel%2C_rum_meringue_20250702_185308_41ced6a6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:53:08.453661000Z",
+    "selected_ingredients": [
+      "salad green",
+      "pear",
+      "cherry",
+      "rum",
+      "dark chocolate",
+      "egg white"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A pristine white bone china plate serves as the canvas, featuring a single, elegantly portioned Dark Chocolate and Rum Pear Terrine. The terrine, a rectangular block of deep, glossy dark chocolate with subtle layers of pale, rum-infused pear visible at its edges, sits slightly off-center. Its surface is smooth and reflective. Beside it, a delicate, organic swirl of vibrant ruby-red Cherry Fluid Gel creates a bold color contrast, its sheen catching the light. Perched artfully atop or alongside the terrine is a single, crisp, irregular Rum Meringue shard, its pure white form offering a textural counterpoint. A few micro rocket cress leaves are precisely placed near the terrine, providing a tiny burst of green and a hint of peppery freshness. The arrangement is minimalist, with abundant negative space around the elements, emphasizing their individual beauty and flawless execution. The lighting is dramatic, casting soft shadows that enhance the dish's architectural quality. The setting is a polished dark wood table, with a crisp white linen napkin folded into a precise triangle beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "firm pears (e.g., Conference or Bosc)",
+        "quantity": "2 large"
+      },
+      {
+        "name": "water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "dark rum",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "dark chocolate (70-80% cacao), finely chopped",
+        "quantity": "200 g"
+      },
+      {
+        "name": "heavy cream (35% fat)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "gelatin leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "fresh or frozen cherries, pitted",
+        "quantity": "200 g"
+      },
+      {
+        "name": "water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "gellan gum (Type F)",
+        "quantity": "1.5 g"
+      },
+      {
+        "name": "egg whites",
+        "quantity": "2 large (approx. 60g)"
+      },
+      {
+        "name": "superfine sugar",
+        "quantity": "120 g"
+      },
+      {
+        "name": "dark rum",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "micro rocket cress",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 80°C. Line a baking sheet with parchment paper.",
+      "Whisk egg whites in a clean bowl until soft peaks form. Gradually add superfine sugar, whisking until stiff, glossy peaks form. Gently fold in rum.",
+      "Transfer meringue to a piping bag with a small round tip. Pipe small, irregular shapes or thin lines onto parchment paper. Bake 1.5-2 hours until completely dry and crisp. Cool completely. Store in an airtight container.",
+      "Peel, halve, and core pears. In a saucepan, combine 200ml water, 100g sugar, and 50ml rum. Bring to a simmer. Add pear halves. Poach gently for 15-20 minutes until tender but still firm. Remove pears, drain well, and let cool. Reduce poaching liquid by half.",
+      "Line a small terrine mold (approx. 15x5 cm) or small individual molds with cling film, leaving overhang.",
+      "Melt chopped dark chocolate over a bain-marie or in a microwave. Heat heavy cream until simmering. Bloom gelatin leaves in cold water. Squeeze excess water from gelatin. Whisk bloomed gelatin into hot cream until dissolved. Pour hot cream mixture over melted chocolate. Stir until smooth and emulsified.",
+      "Slice cooled poached pear halves into thin, even slices or small, neat cubes. Arrange a layer of pear slices/cubes at the bottom of the prepared mold. Pour a thin layer of chocolate mixture over pears. Repeat layering, pressing gently, until mold is filled. Finish with a layer of chocolate. Cover with cling film. Refrigerate for at least 4 hours, or preferably overnight, until firm.",
+      "Combine pitted cherries, 50ml water, and 20g sugar in a saucepan. Bring to a simmer. Cook until cherries are soft. Blend mixture until very smooth. Pass through a fine-mesh sieve to remove any skin or pulp. Return liquid to a clean saucepan. Whisk in gellan gum. Bring to a boil, whisking constantly, and boil for 1 minute.",
+      "Pour mixture into a shallow dish. Chill until set (approx. 1 hour). Once set, transfer gel to a blender. Blend until smooth and fluid. Pass through a fine-mesh sieve for ultimate smoothness. Transfer to a squeeze bottle or piping bag. Keep chilled.",
+      "To plate, unmold the terrine and slice into individual portions. Arrange a terrine slice on a pristine white bone china plate. Pipe an organic swirl of Cherry Fluid Gel beside it. Place a Rum Meringue Crisp artfully. Garnish with a few micro rocket cress leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 70,
+      "calories": 775,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 10.4,
+      "protein_g": 8,
+      "saturated_fat_g": 18,
+      "sodium_mg": 49,
+      "total_carbs_g": 110.9,
+      "total_fat_g": 30.6,
+      "total_sugars_g": 91.4,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 17.4,
+      "calories": 193,
+      "cholesterol_mg": 9,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 2,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 12,
+      "total_carbs_g": 27.6,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 22.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 12,
+      "dietary_fiber": 37,
+      "protein": 16,
+      "saturated_fat": 90,
+      "sodium": 2,
+      "total_carbs": 40,
+      "total_fat": 39
+    },
+    "serving_size_g": 401.4,
+    "total_recipe_weight_g": 1605.5
+  },
+  {
+    "recipe_name": "Mexican Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mexican_chicken_and_rice_20250702_185300_c0e36bfa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:53:01.169026000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "corn",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mexican Chicken and Rice is presented on a clean, white porcelain dinner plate. A golden-brown, seared bone-in chicken thigh is nestled prominently atop a vibrant bed of red-orange rice. The rice is studded with bright yellow corn kernels and small, uniform dice of orange carrots. Fresh, bright green cilantro leaves are scattered over the chicken and rice. The dish is arranged naturally, allowing some negative space on the plate. Beside the plate, two warm corn tortillas are neatly stacked, and a bright green lime wedge sits ready for squeezing. The setting is a modern bistro, with a simple wooden table surface. A folded white cotton napkin is placed next to the plate. Natural, even lighting highlights the textures and colors of the food. The background is softly blurred, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas to scoop up the rice and chicken.",
+      "Offer lime wedges for a fresh, zesty finish.",
+      "A small bowl of salsa verde or pickled jalapeños can be served on the side for added flavor and heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Frozen corn kernels",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "8"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden brown and crispy, about 6-8 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pot and set aside. Ensure internal temperature reaches 75°C (167°F) during final cooking.",
+      "Reduce heat to medium. Add diced onion and finely diced carrots to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic, ground cumin, and dried oregano. Cook for 1 minute until fragrant.",
+      "Stir in the long-grain rice. Toast rice for 2-3 minutes, stirring constantly.",
+      "Pour in diced tomatoes and chicken broth. Bring mixture to a simmer.",
+      "Return seared chicken thighs to the pot, nestling them into the rice mixture.",
+      "Cover the pot tightly. Reduce heat to low. Simmer for 20 minutes.",
+      "Stir in frozen corn kernels. Re-cover and cook for another 5-10 minutes, or until rice is tender and liquid is absorbed. Do not stir excessively.",
+      "Remove pot from heat. Let it rest, covered, for 5 minutes.",
+      "Fluff rice gently with a fork. Garnish with chopped fresh cilantro. Serve with lime wedges and warm corn tortillas."
+    ],
+    "notes": [
+      "Avoid over-stirring the rice once the liquid is added to prevent it from becoming mushy.",
+      "For extra flavor, toast the rice lightly before adding liquids."
+    ],
+    "traditional_techniques": [
+      "Sofrito (sautéing aromatics)",
+      "Browning chicken for flavor depth"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 993,
+      "cholesterol_mg": 184,
+      "dietary_fiber_g": 8.84,
+      "protein_g": 49.9,
+      "saturated_fat_g": 9.85,
+      "sodium_mg": 1724.9,
+      "total_carbs_g": 109.18,
+      "total_fat_g": 41,
+      "total_sugars_g": 9.82,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 25.6,
+      "dietary_fiber_g": 1.23,
+      "protein_g": 6.94,
+      "saturated_fat_g": 1.37,
+      "sodium_mg": 240,
+      "total_carbs_g": 15.19,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 1.37,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 32,
+      "protein": 100,
+      "saturated_fat": 49,
+      "sodium": 75,
+      "total_carbs": 40,
+      "total_fat": 53
+    },
+    "serving_size_g": 719,
+    "total_recipe_weight_g": 2875
+  },
+  {
+    "recipe_name": "Pan-Seared Lamb Loin with Black Pepper Jus and Sunflower Sprouts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_lamb_loin_with_black_pepper_jus_and_sunflower_sprouts_20250702_185124_26874c83.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:51:24.974038000Z",
+    "selected_ingredients": [
+      "lamb",
+      "black pepper",
+      "sunflower sprout"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared lamb loin is elegantly plated on a clean white porcelain dinner plate. The lamb, cooked to a perfect medium-rare, is cut into three thick, juicy medallions, showcasing its tender pink interior and a deep, crusty, dark brown exterior from the sear and black pepper rub. A rich, glossy, dark brown black pepper jus is spooned around the base of the lamb, creating a subtle pool of flavor. Beside the lamb, a vibrant mound of fresh, bright green sunflower sprouts, lightly dressed, adds a pop of color and delicate texture. The arrangement is clean and balanced, with moderate negative space. The plate rests on a simple wooden table surface, accompanied by a folded light grey cotton napkin and classic silver flatware, under soft, natural lighting. The overall scene is refined, appealing, and highlights the quality ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Lamb loin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Black pepper, freshly cracked coarse",
+        "quantity": "30g"
+      },
+      {
+        "name": "Sunflower sprouts",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Lemon, juiced",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Pat lamb loin dry. Season generously with salt and half of the cracked black pepper.",
+      "Heat olive oil in a heavy-bottomed pan over medium-high heat.",
+      "Sear lamb loin 4-5 minutes per side until well-browned. Add butter and thyme during the last minute. Baste lamb.",
+      "Transfer lamb to a cutting board. Rest for 10 minutes, loosely tented with foil.",
+      "In the same pan, add shallots and garlic. Sauté 2 minutes until fragrant.",
+      "Deglaze pan with red wine. Scrape up any browned bits. Reduce by half.",
+      "Add beef stock and remaining cracked black pepper. Bring to a simmer. Reduce until slightly thickened to a jus consistency. Strain jus for smoother texture if desired.",
+      "While lamb rests and jus reduces, gently toss sunflower sprouts with a squeeze of lemon juice, a drizzle of extra virgin olive oil, and a pinch of salt.",
+      "Slice rested lamb into thick medallions (2-3 cm thick chunks).",
+      "Plate lamb medallions. Spoon black pepper jus around them. Arrange a generous portion of dressed sunflower sprouts beside the lamb. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 673.3,
+      "cholesterol_mg": 161.6,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 38.5,
+      "saturated_fat_g": 19.5,
+      "sodium_mg": 791.8,
+      "total_carbs_g": 12.4,
+      "total_fat_g": 49.4,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 201,
+      "cholesterol_mg": 48.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 11.5,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 236.4,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 14.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.9,
+      "dietary_fiber": 12,
+      "protein": 77,
+      "saturated_fat": 97.7,
+      "sodium": 34.4,
+      "total_carbs": 4.5,
+      "total_fat": 63.3
+    },
+    "serving_size_g": 335,
+    "total_recipe_weight_g": 1340
+  }
+]

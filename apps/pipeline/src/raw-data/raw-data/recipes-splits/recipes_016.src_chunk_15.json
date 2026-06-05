@@ -1,0 +1,638 @@
+[
+  {
+    "recipe_name": "HP Glazed Pork Chops with Roasted Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hp_glazed_pork_chops_with_roasted_root_vegetables_20250627_030208_2ce2befd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:02:08.644197000Z",
+    "selected_ingredients": [
+      "hp steak sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, thick, bone-in pork chop, boasting a rich, dark golden-brown sear, is the focal point on a clean, white porcelain dinner plate. A glossy, dark HP steak sauce glaze generously coats the chop, with some sauce pooled subtly at its base. Alongside, a vibrant medley of roasted root vegetables is thoughtfully arranged. Golden-hued potato wedges, bright orange carrot batons, and pale parsnip batons exhibit tender, caramelized edges. Each vegetable piece is distinct, showcasing proper cutting and roasting. A few fresh green flecks of chopped parsley are scattered over the pork chop for a pop of color and freshness. The plating is clean, professional, and uncrowded, allowing for moderate negative space. The dish is presented on a simple wooden table surface, accompanied by standard silver flatware and a folded cotton napkin, all under natural, even lighting that highlights the food's texture and color in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Pork Chop",
+    "ingredients": [
+      {
+        "name": "Pork Chops (bone-in, thick-cut)",
+        "quantity": "4 (approx. 250g each)"
+      },
+      {
+        "name": "HP Steak Sauce",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold), cut into 2.5 cm wedges",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Carrots, peeled and cut into 5 cm long, 1.5 cm thick batons",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Parsnips, peeled and cut into 5 cm long, 1.5 cm thick batons",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh Rosemary sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper, freshly ground",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley, chopped",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Wash and prepare potatoes, carrots, and parsnips as specified.",
+      "On a large baking tray, toss vegetables with 30 ml olive oil, 2 smashed garlic cloves, 2 rosemary sprigs, salt, and pepper.",
+      "Roast vegetables for 30-35 minutes, or until tender and lightly caramelized. Turn once halfway.",
+      "Pat pork chops dry with paper towels. Season generously with salt and pepper.",
+      "Heat remaining 30 ml olive oil in a large oven-safe skillet over medium-high heat until shimmering.",
+      "Add pork chops to the hot skillet. Sear for 3-4 minutes per side until deeply golden brown and a crust forms.",
+      "Reduce heat to medium. Add remaining 2 smashed garlic cloves and 1 rosemary sprig to the skillet.",
+      "Pour HP steak sauce over the pork chops, ensuring they are well coated.",
+      "Transfer skillet to the preheated oven. Cook for 8-12 minutes, or until internal temperature reaches 63°C (145°F) for medium doneness. Baste occasionally with sauce.",
+      "Remove pork chops from oven. Let rest on a cutting board for 5-7 minutes. This allows juices to redistribute.",
+      "Plate one pork chop per person. Arrange roasted root vegetables neatly alongside the chop.",
+      "Spoon any remaining pan sauce over the pork. Garnish with chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 674.4,
+      "cholesterol_mg": 182.5,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 60.3,
+      "saturated_fat_g": 7,
+      "sodium_mg": 6393.5,
+      "total_carbs_g": 45.7,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 14.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.7,
+      "calories": 151,
+      "cholesterol_mg": 40.9,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 13.5,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 1431.9,
+      "total_carbs_g": 10.2,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 26,
+      "protein": 121,
+      "saturated_fat": 35,
+      "sodium": 278,
+      "total_carbs": 17,
+      "total_fat": 36
+    },
+    "serving_size_g": 446.5,
+    "total_recipe_weight_g": 1786
+  },
+  {
+    "recipe_name": "Fermented Spiced Almond-Coconut Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_spiced_almond-coconut_bites_20250627_030104_f6a19517.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:01:04.972799000Z",
+    "selected_ingredients": [
+      {
+        "name": "egg"
+      },
+      {
+        "name": "sugar"
+      },
+      {
+        "name": "almond"
+      },
+      {
+        "name": "coconut"
+      },
+      {
+        "name": "cinnamon"
+      },
+      {
+        "name": "ginger"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Ethiopian",
+    "visual_description": "The Fermented Spiced Almond-Coconut Bites are presented on a minimalist, off-white handcrafted ceramic plate. Each bite, a small, imperfectly spherical shape (approx. 3 cm), is coated in desiccated coconut, giving it a soft, matte appearance. The interior reveals a dense, moist texture with flecks of almond and spice. Colors are natural and warm: creamy beige, subtle golden-brown from baking, and deep tones of cinnamon and ginger. Bites are arranged organically on one side, leaving ample white space for clean composition. A single, delicate sprig of fresh mint or a few small edible leaves are placed alongside for natural freshness, not as ornate garnish. The plate rests on a light, natural wood surface, enhancing the sustainable aesthetic. Soft, diffused natural light illuminates the scene, highlighting the pure form and wholesome nature of the snack.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Ethiopian",
+    "cultural_origin": "Modern Ethiopian",
+    "cultural_serving_suggestions": [
+      "Served alongside traditional Ethiopian coffee ('buna') in small, handle-less cups ('sini') during a casual coffee ceremony.",
+      "These bites are meant for communal sharing, placed on a simple platter for easy access."
+    ],
+    "hero_ingredient": "Almond-Coconut Blend",
+    "ingredients": [
+      {
+        "name": "Desiccated coconut",
+        "quantity": "150g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Coconut cream (full fat)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Live vegan yogurt culture",
+        "quantity": "10g"
+      },
+      {
+        "name": "Medjool dates (pitted)",
+        "quantity": "80g"
+      },
+      {
+        "name": "Egg (medium)",
+        "quantity": "1"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground ginger",
+        "quantity": "3g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Coconut Cream: Gently warm 100ml coconut cream to 35°C. Stir in 10g live culture. Pour into a clean jar. Cover loosely. Let ferment at room temperature (20-25°C) for 12-18 hours until tangy. Refrigerate.",
+      "Prepare Date Paste: Soak 80g pitted dates in warm water for 15 minutes. Drain. Blend dates with 30ml water until a smooth paste forms.",
+      "Combine Dry Ingredients: In a bowl, mix almond flour, 100g desiccated coconut, cinnamon, ginger, and salt.",
+      "Combine Wet Ingredients: In another bowl, whisk the egg. Add the fermented coconut cream and date paste. Mix well.",
+      "Form Dough: Pour wet mixture into dry ingredients. Mix until a firm dough forms. Adjust consistency with more almond flour or fermented coconut cream if needed.",
+      "Shape Bites: Roll dough into small balls, about 20g each. Roll each ball in the remaining 50g desiccated coconut to coat.",
+      "Bake: Place bites on a baking tray lined with parchment paper. Bake at 160°C for 15-20 minutes, until lightly golden and firm.",
+      "Cool: Let cool completely on a wire rack."
+    ],
+    "notes": [
+      "This recipe utilizes fermentation to enhance flavor complexity and digestibility, aligning with sustainable culinary practices.",
+      "Consider using almond or coconut pulp leftover from making homemade nut milks for a truly zero-waste approach.",
+      "Adjust spice levels to personal preference."
+    ]
+  },
+  {
+    "recipe_name": "Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_20250627_024822_7db41233.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T02:48:22.549353000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo presented on a clean white porcelain plate. Two whole, bone-in chicken thighs with deeply browned, crispy skin sit atop a bed of golden, saffron-stained rice. The rice grains are plump and distinct, interspersed with fine bits of softened onion and concentrated red tomato. The dish shows vibrant yellow and orange hues from the saffron and paprika. A generous sprinkle of bright green, finely chopped parsley is scattered over the top. A single lemon wedge is placed neatly on the side. The plate sits on a light oak wooden table with a folded white cotton napkin. Lighting is bright, natural, and even, highlighting the textures of the crispy skin and the moist rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Alioli (garlic mayonnaise)",
+      "Accompany with crusty bread and a glass of chilled white wine",
+      "Present in a traditional terracotta cazuela for family-style dining"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip and brown the other side. Remove chicken from pan.",
+      "Add onion to the same pan. Sauté until translucent.",
+      "Stir in garlic and grated tomato. Cook until liquid evaporates and mixture darkens.",
+      "Add smoked paprika and rice. Stir to coat rice in oil for 2 minutes.",
+      "Pour in white wine. Deglaze the pan. Simmer until wine reduces by half.",
+      "Add hot stock and saffron. Stir once to distribute.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer undisturbed over medium-low heat for 18-20 minutes.",
+      "Ensure chicken reaches internal temperature of 75°C.",
+      "Remove from heat. Cover with a clean cloth. Rest for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form on the bottom.",
+      "Use a wide pan to ensure even rice cooking."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice absorption method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1414,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 8.6,
+      "protein": 66.4,
+      "saturated_fat": 46.5,
+      "sodium": 61.5,
+      "total_carbs": 24.5,
+      "total_fat": 52.1
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Creamy Tuscan Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tuscan_chicken_pasta_20250627_024537_0044f680.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T02:45:38.090297000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Tuscan Chicken Pasta is artfully plated on a round, clean white porcelain dinner plate. The creamy fettuccine, intertwined with golden-brown chicken chunks and vibrant green spinach, forms a neat mound in the center. Interspersed are deep red sun-dried tomato slices and earthy brown mushroom slices. The chicken chunks are irregularly shaped, about 2 cm, displaying a seared crust. A light drizzle of the creamy sauce coats the pasta, showing its rich texture. A sprinkle of freshly grated Parmesan cheese and finely chopped fresh basil leaves garnish the top, adding contrasting color and freshness. The arrangement is organic, allowing ingredients to show naturally. The plate is positioned on a simple light wooden table. A folded white cotton napkin and classic silver fork and spoon are placed beside the plate, with a small Italian-style bread roll. Natural, soft lighting highlights the textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty Italian bread for dipping in the sauce.",
+      "Pair with a glass of dry white wine, like a Chianti Classico."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs, boneless, skinless",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Fettuccine pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Brown mushrooms, sliced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Sun-dried tomatoes, oil-packed, drained and sliced",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2 g (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Sear chicken thighs 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken. Let rest. Cut into 2 cm chunks.",
+      "Add diced onion to the skillet. Sauté 3 minutes until softened.",
+      "Add minced garlic and sliced mushrooms. Sauté 5-7 minutes until mushrooms are tender and browned.",
+      "Stir in sun-dried tomatoes and red pepper flakes (if using). Cook 1 minute.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Add heavy cream and grated Parmesan cheese. Stir until cheese is melted and sauce slightly thickens.",
+      "While sauce simmers, cook fettuccine according to package directions in salted water until al dente. Drain, reserving 120 ml pasta water.",
+      "Add fresh spinach to the sauce. Cook until wilted, about 1-2 minutes.",
+      "Add cooked pasta and chicken chunks to the sauce. Toss to combine. If sauce is too thick, add reserved pasta water as needed.",
+      "Taste and adjust seasoning with salt and pepper."
+    ],
+    "notes": [
+      "For extra richness, add a knob of butter at the end.",
+      "Adjust red pepper flakes to desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 968,
+      "cholesterol_mg": 253,
+      "dietary_fiber_g": 6.62,
+      "protein_g": 50.39,
+      "saturated_fat_g": 22.83,
+      "sodium_mg": 1124,
+      "total_carbs_g": 76.69,
+      "total_fat_g": 52.03,
+      "total_sugars_g": 10.44,
+      "trans_fat_g": 1.07
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 199.16,
+      "cholesterol_mg": 52.06,
+      "dietary_fiber_g": 1.36,
+      "protein_g": 10.37,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 231.18,
+      "total_carbs_g": 15.78,
+      "total_fat_g": 10.7,
+      "total_sugars_g": 2.15,
+      "trans_fat_g": 0.22
+    },
+    "daily_value_percentages": {
+      "cholesterol": 84.4,
+      "dietary_fiber": 23.6,
+      "protein": 100.8,
+      "saturated_fat": 114.2,
+      "sodium": 48.9,
+      "total_carbs": 27.9,
+      "total_fat": 66.7
+    },
+    "serving_size_g": 486.15,
+    "total_recipe_weight_g": 1944.6
+  },
+  {
+    "recipe_name": "Potato Textures Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_textures_salad_20250627_024518_5bd8b463.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T02:45:18.650306000Z",
+    "selected_ingredients": [
+      "potato",
+      "onion"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The plated Potato Textures Salad presents a sophisticated, minimalist composition on a pristine bone china plate. At the center, a warm mound of precisely cut 1.5 cm confit potato cubes forms the base, showcasing a rich golden hue. Artfully scattered are soft, translucent charred sweet onion petals with delicate browned edges, providing a smoky contrast. A small, vibrant cluster of thinly sliced, pale pink pickled red onion adds a sharp, acidic pop of color. Ultra-thin, golden potato crisps are elegantly placed for dramatic height and delicate crunch. The dish is subtly dressed with a light chive and shallot vinaigrette, glistening on the components. A sparse scattering of fresh microgreens provides a final touch of verdant freshness. Abundant negative space emphasizes the architectural precision and natural flow of the components. The presentation highlights refined simplicity and nuanced textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes (Yukon Gold or similar)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, crushed"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Potato (Russet or Desiree)",
+        "quantity": "1 small (approx. 100g)"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "for frying"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sweet onion (Vidalia or Walla Walla)",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 small (approx. 50g)"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "1 small, finely minced"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "2 tbsp, finely chopped"
+      },
+      {
+        "name": "White balsamic vinegar",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "6 tbsp"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Microgreens (e.g., chervil, dill)",
+        "quantity": "small handful"
+      }
+    ],
+    "instructions": [
+      "Peel and dice 400g potatoes into 1.5 cm cubes. Place in a small saucepan. Add 200ml olive oil, 2 crushed garlic cloves, 2 thyme sprigs. Season with salt and pepper. Heat gently over very low heat. Cook for 25-30 minutes until tender. Do not boil. Remove potatoes with a slotted spoon. Drain on paper towels.",
+      "Peel and thinly slice 100g potato using a mandoline, paper-thin. Rinse slices thoroughly in cold water. Pat completely dry with paper towels. Heat vegetable oil in a small saucepan to 160°C. Fry potato slices in batches until golden and crisp. Drain on paper towels. Season immediately with fine sea salt.",
+      "Peel 1 large sweet onion. Cut into thick rings. Separate into individual petals. Toss petals with 1 tbsp olive oil, salt, and pepper. Heat a cast iron pan over high heat. Char onion petals for 2-3 minutes per side until softened and slightly blackened.",
+      "Thinly slice 1/2 small red onion. In a small saucepan, combine 50ml white wine vinegar, 50ml water, 1 tsp sugar, 1/2 tsp salt. Bring to a simmer until sugar and salt dissolve. Pour hot liquid over sliced red onion in a small bowl. Let steep for at least 15 minutes. Drain before serving.",
+      "Finely mince 1 small shallot. Finely chop 2 tbsp fresh chives. In a small bowl, whisk together 3 tbsp white balsamic vinegar, 1 tsp Dijon mustard, salt, and pepper. Slowly whisk in 6 tbsp extra virgin olive oil until emulsified. Stir in minced shallot and chopped chives.",
+      "On each of four plates, artfully arrange a small mound of warm confit potato cubes. Scatter a few charred onion petals around. Add a small cluster of pickled red onion. Delicately place a few potato crisps for height and texture. Drizzle vinaigrette sparingly over the salad elements. Garnish with a few microgreens. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 796.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4,
+      "protein_g": 3.5,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 704.2,
+      "total_carbs_g": 29.9,
+      "total_fat_g": 75.5,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 258.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 1.1,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 228.5,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 24.5,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 14.3,
+      "protein": 6.9,
+      "saturated_fat": 52.2,
+      "sodium": 30.6,
+      "total_carbs": 10.9,
+      "total_fat": 96.8
+    },
+    "serving_size_g": 308,
+    "total_recipe_weight_g": 1233
+  }
+]

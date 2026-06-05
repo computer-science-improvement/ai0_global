@@ -1,0 +1,625 @@
+[
+  {
+    "recipe_name": "Chicken and Broccoli Risotto with White Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_broccoli_risotto_with_white_beans_20250625_082038_c6f8da20.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:20:38.804537000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "onion",
+      "rice",
+      "broccoli",
+      "bean",
+      "cheese",
+      "pork stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of creamy, vibrant risotto is centered on a clean, round white porcelain dinner plate. The risotto is fluid and spreads slightly, not stiff or mounded. Interspersed throughout are golden-brown seared chicken chunks, approximately 2-3 cm in size, visible as whole pieces. Bright green, tender-crisp broccoli florets, about 2-3 cm, provide pops of color and texture, alongside creamy white cannellini beans. The dish is uniformly coated in a light, glossy sauce from the melted Parmesan and butter, indicating a rich, balanced consistency. A light sprinkle of freshly grated Parmesan cheese and finely chopped fresh parsley garnishes the top, adding a final touch of color and freshness. The plate rests on a simple, light-colored wooden table surface. A neatly folded white cotton napkin is placed to the side. The lighting is natural and even, highlighting the dish's textures and colors against a soft, unfocused background, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 g, cut into 2-3 cm chunks"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (approx. 150 g), finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "300 g, cut into small florets"
+      },
+      {
+        "name": "Cannellini beans",
+        "quantity": "400 g can, rinsed and drained"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g, freshly grated, plus more for serving"
+      },
+      {
+        "name": "Pork stock",
+        "quantity": "1.5 L, hot"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat 15 ml olive oil in a large pan over medium-high heat.",
+      "Add chicken chunks. Sear until golden brown and cooked through. Ensure internal temperature reaches 75°C. Remove chicken and set aside.",
+      "In the same pan, add remaining 15 ml olive oil and butter. Reduce heat to medium.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice. Stir for 2 minutes to toast the grains.",
+      "If using, pour in white wine. Stir until absorbed.",
+      "Add one ladleful of hot pork stock. Stir constantly until liquid is absorbed.",
+      "Continue adding stock, one ladleful at a time, stirring until each addition is absorbed before adding the next. This process takes about 15-20 minutes.",
+      "Five minutes before rice is al dente, add broccoli florets and cannellini beans to the risotto.",
+      "When rice is creamy and al dente, remove from heat.",
+      "Stir in grated Parmesan cheese and the cooked chicken chunks.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately, garnished with fresh parsley and extra Parmesan."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 948,
+      "cholesterol_mg": 144.38,
+      "dietary_fiber_g": 10.67,
+      "protein_g": 71.41,
+      "saturated_fat_g": 11.53,
+      "sodium_mg": 1127.39,
+      "total_carbs_g": 99.94,
+      "total_fat_g": 27.53,
+      "total_sugars_g": 3.44,
+      "trans_fat_g": 0.23
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110,
+      "cholesterol_mg": 16.71,
+      "dietary_fiber_g": 1.24,
+      "protein_g": 8.27,
+      "saturated_fat_g": 1.33,
+      "sodium_mg": 130.49,
+      "total_carbs_g": 11.57,
+      "total_fat_g": 3.19,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 48.1,
+      "dietary_fiber": 38.1,
+      "protein": 142.8,
+      "saturated_fat": 57.7,
+      "sodium": 49,
+      "total_carbs": 36.3,
+      "total_fat": 35.3
+    },
+    "serving_size_g": 864,
+    "total_recipe_weight_g": 3456
+  },
+  {
+    "recipe_name": "Roasted Cherry and Mushroom Consommé",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_cherry_and_mushroom_consomm%C3%A9_20250625_082036_239ed35a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:20:36.989736000Z",
+    "selected_ingredients": [
+      "cherry"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A clear, amber-hued consommé is presented in a handcrafted, unglazed ceramic bowl, reflecting earth tones. The bowl sits on a light, reclaimed wood table surface, accompanied by an undyed linen napkin. Inside the consommé, a few whole roasted cherry halves and thin, tender slices of roasted mushroom caps are arranged organically at the bottom. A delicate sprig of fresh dill, with its feathery green leaves, rests gracefully on the surface. A few glossy droplets of dark cherry gastrique are artfully placed near the dill. The composition is clean and minimalistic, allowing ample negative space to highlight the natural textures and deep, earthy colors of the ingredients. Soft, natural light illuminates the scene from the side, enhancing the clarity of the broth and the subtle sheen of the garnishes. The background is simple and uncluttered, with a hint of natural greenery visible, emphasizing an eco-conscious aesthetic. The bowl is shown in its entirety, showcasing a single, elegant portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Roasted Cherry",
+    "ingredients": [
+      {
+        "name": "Fresh Cherries",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Mushroom Stems (from Shiitake or Cremini)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Mushroom Caps (Shiitake or Cremini)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Vegetable Scraps (carrot peels, celery ends, leek greens)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 litres"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Egg Whites",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Prepare Mushroom Stem Broth: Combine mushroom stems, chopped onion, garlic cloves, and vegetable scraps in a large pot. Add 2 litres of water. Bring to a simmer. Cook for 45 minutes. Strain broth through a fine-mesh sieve. Reserve liquid. Discard solids.",
+      "Roast Cherries and Mushrooms: Pit 300 g of fresh cherries. Halve 100 g of pitted cherries. Slice 100 g of mushroom caps thinly. Roast remaining whole mushroom caps. Toss all with a drizzle of oil, salt, and pepper. Roast at 180°C for 15-20 minutes. Set aside.",
+      "Prepare Fermented Cherry Gastrique: Place 200 g of unpitted cherries and their pits in a jar. Cover with water. Let ferment for 3-5 days until slightly fizzy. Strain liquid. Combine 100 ml of fermented cherry liquid with red wine vinegar and sugar in a small saucepan. Simmer until reduced to a syrupy consistency. Season with salt.",
+      "Clarify Consommé: Whisk egg whites until frothy. Add cooled mushroom stem broth to egg whites. Slowly bring mixture to a simmer, stirring constantly until egg whites coagulate and rise to the surface, trapping impurities. Stop stirring. Simmer gently for 10 minutes. Carefully ladle clear consommé through a cheesecloth-lined sieve. Discard egg raft.",
+      "Combine and Serve: Gently warm the clarified consommé. Add roasted cherry halves and thin mushroom slices to each serving bowl. Ladle hot consommé over them. Drizzle with a few drops of fermented cherry gastrique. Garnish with fresh dill sprigs. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 187.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 6.4,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 298,
+      "total_carbs_g": 42.3,
+      "total_fat_g": 0.9,
+      "total_sugars_g": 28.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 22.2,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 0.8,
+      "saturated_fat_g": 0,
+      "sodium_mg": 35.3,
+      "total_carbs_g": 5,
+      "total_fat_g": 0.1,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 24,
+      "protein": 13,
+      "saturated_fat": 1,
+      "sodium": 13,
+      "total_carbs": 15,
+      "total_fat": 1
+    },
+    "serving_size_g": 845,
+    "total_recipe_weight_g": 3380
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Tomato-Potato Ragout and Crispy Onion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_tomato-potato_ragout_and_crispy_onion_20250625_082017_caa46608.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:20:18.296144000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "potato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, elegantly composed portion rests on a round, handcrafted ceramic plate in a muted beige tone. The centerpiece is a rustic mound of rich, deep red tomato-potato ragout, showcasing the natural textures of unpeeled diced potatoes and tender, cooked onion. A golden-brown, crisped chicken thigh, presented whole, sits gracefully beside the ragout, its glossy skin contrasting with the earthy tones. Scattered lightly over the ragout and chicken are thin, golden-crisp onion strands, providing a textural counterpoint and a subtle sheen. A small cluster of vibrant green thyme leaves offers a fresh, natural garnish. The composition is clean and minimalist, with ample white space on the plate emphasizing the purity of the ingredients. The setting features a light, textured bamboo or reclaimed wood table surface. An undyed, natural beige linen napkin is subtly placed. Soft, diffused natural light illuminates the dish, highlighting its natural colors and textures, with a blurred background suggesting a tranquil, plant-filled environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes (firm, unpeeled)",
+        "quantity": "600g, diced into 2cm cubes"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium (1 diced, 1 thinly sliced)"
+      },
+      {
+        "name": "Lacto-fermented chopped tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh thyme or rosemary sprigs",
+        "quantity": "2 (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry with paper towels. Season generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large, heavy-bottomed pan over medium-high heat. Add thinly sliced onion.",
+      "Cook, stirring frequently, for 8-10 minutes until deeply golden brown and crispy. Remove crispy onions with a slotted spoon. Place on paper towel to drain. Season lightly with salt. Reserve the onion-infused oil in the pan.",
+      "Place chicken thighs, skin-side down, in the pan with reserved onion oil. Sear for 8-10 minutes until skin is deeply golden and crispy. Flip chicken. Sear for 2-3 minutes on the other side. Remove chicken from pan. Set aside.",
+      "Add diced onion to the same pan. Sauté over medium heat for 5 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add diced potatoes (skins on) to the pan. Stir. Add lacto-fermented chopped tomatoes and vegetable broth. Bring to a simmer.",
+      "Cover the pan. Cook for 15-20 minutes, or until potatoes are tender. Stir occasionally.",
+      "Return seared chicken thighs to the ragout, skin-side up. Ensure internal temperature reaches 75°C (167°F). Cook for another 5-7 minutes, or until chicken is cooked through and heated through.",
+      "Stir in apple cider vinegar. Taste and adjust seasoning.",
+      "Spoon a generous portion of the tomato-potato ragout onto the center of each plate. Place one seared chicken thigh gracefully beside the ragout. Garnish with a scattering of crispy onions and a small sprig of fresh thyme or rosemary leaves."
+    ],
+    "notes": [
+      "For the lacto-fermented chopped tomatoes, you can either source pre-made varieties or prepare them in advance. A simple method involves combining chopped tomatoes with 2% of their weight in non-chlorinated salt, packing tightly into a clean jar, ensuring they are submerged under brine, and fermenting at room temperature for 3-5 days until tangy, then refrigerating.",
+      "To further reduce waste, chicken bones can be simmered with onion scraps and other vegetable trimmings to create a flavorful stock for the ragout."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 661,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 41.1,
+      "saturated_fat_g": 9,
+      "sodium_mg": 238,
+      "total_carbs_g": 38.8,
+      "total_fat_g": 37.2,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129.6,
+      "cholesterol_mg": 35.3,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 46.6,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 21,
+      "protein": 82,
+      "saturated_fat": 45,
+      "sodium": 10,
+      "total_carbs": 14,
+      "total_fat": 48
+    },
+    "serving_size_g": 510,
+    "total_recipe_weight_g": 2040
+  },
+  {
+    "recipe_name": "Slow-Cooked Pork Ragu with Fermented Garlic & Onion Skin Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_pork_ragu_with_fermented_garlic_%26_onion_skin_pasta_20250625_081905_7bebba03.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:19:05.636156000Z",
+    "selected_ingredients": [
+      "pork",
+      "garlic",
+      "onion",
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Slow-Cooked Pork Ragu with Fermented Garlic & Onion Skin Pasta is presented in a wide, shallow handcrafted ceramic bowl with an earthy, natural tone. The pappardelle pasta is swirled organically, generously coated with the rich, deep reddish-brown ragu. Rustic chunks of fork-tender slow-cooked pork are visible throughout the sauce, not sliced or fanned. A few shards of golden, crisp onion skin are scattered over the top, adding textural contrast. A small sprig of fresh parsley provides a touch of vibrant green. The scene is bathed in soft, natural light on a reclaimed wood surface, with an undyed linen napkin subtly placed. The background is clean and minimalist, allowing the dish to be the sole focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Slow-Cooked Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "800g"
+      },
+      {
+        "name": "Pork bones",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fermented garlic cloves",
+        "quantity": "12 cloves, mashed"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, roughly chopped (reserve skins)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, roughly chopped (reserve ends/peels)"
+      },
+      {
+        "name": "Celery",
+        "quantity": "2 stalks, roughly chopped (reserve ends/leaves)"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "70g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Zero-waste stock (from bones/veg scraps)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Pasta (e.g., pappardelle)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Zero-Waste Stock: Combine pork bones, carrot ends/peels, celery ends/leaves, and 1 quartered onion in a large pot. Cover with 2 litres of water. Bring to a boil, then reduce heat. Simmer for 2-3 hours. Strain, discard solids, and reserve 500ml for the ragu.",
+      "Prepare Crispy Onion Skins: Preheat oven to 180°C. Wash and dry reserved onion skins. Toss skins with a drizzle of olive oil and a pinch of salt. Spread in a single layer on a baking sheet. Bake for 8-12 minutes until crisp. Cool and crush into shards. Set aside for garnish.",
+      "Prepare Pork Ragu: Pat pork chunks dry. Season generously with salt and pepper. Heat olive oil in a large heavy-bottomed pot over medium-high heat. Sear pork chunks in batches until browned on all sides. Remove pork and set aside.",
+      "Add chopped onions, carrots, and celery to the pot. Sauté until softened, about 8-10 minutes. Stir in mashed fermented garlic and tomato paste. Cook for 2-3 minutes, stirring constantly.",
+      "Deglaze the pot with red wine, scraping up any browned bits. Simmer until wine reduces by half. Return seared pork to the pot.",
+      "Add crushed tomatoes, 500ml of zero-waste stock, bay leaves, and thyme sprigs. Bring to a gentle simmer. Reduce heat to low, cover, and cook for 2.5-3 hours, or until pork is fork-tender.",
+      "Remove bay leaves and thyme stems. Using two forks, shred the pork directly in the pot. Stir to combine with the sauce. Taste and adjust seasoning.",
+      "Cook Pasta: Bring a large pot of salted water to a rolling boil. Add pasta and cook until al dente. Drain pasta, reserving about 120ml of pasta cooking water.",
+      "Combine Pasta and Ragu: Add drained pasta directly to the ragu. Toss to coat thoroughly. If sauce is too thick, add a little reserved pasta water until desired consistency.",
+      "Serve: Plate individual portions of pasta with ragu in shallow ceramic bowls. Garnish with crushed crispy onion skins and fresh parsley leaves."
+    ],
+    "notes": [
+      "Fermented garlic adds a unique umami depth and tangy note, reducing food waste.",
+      "Using pork bones and vegetable scraps for stock is a core zero-waste practice.",
+      "Crispy onion skins offer a textural contrast and utilize a commonly discarded part of the vegetable.",
+      "Seasonal vegetables can be added to the ragu (e.g., roasted root vegetables or wilted greens)."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1052.2,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 66,
+      "saturated_fat_g": 11.6,
+      "sodium_mg": 949.1,
+      "total_carbs_g": 99.4,
+      "total_fat_g": 37.4,
+      "total_sugars_g": 13.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155.9,
+      "cholesterol_mg": 23.4,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.8,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 140.6,
+      "total_carbs_g": 14.7,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.7,
+      "dietary_fiber": 27.8,
+      "protein": 131.9,
+      "saturated_fat": 57.9,
+      "sodium": 41.3,
+      "total_carbs": 36.1,
+      "total_fat": 47.9
+    },
+    "serving_size_g": 675,
+    "total_recipe_weight_g": 2700
+  },
+  {
+    "recipe_name": "Lemon Herb Roasted Chicken Thighs with Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_roasted_chicken_thighs_with_root_vegetables_20250625_081846_c935b71c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:18:46.606529000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Lemon Herb Roasted Chicken Thighs and Root Vegetables is presented on a rustic, cream-colored ceramic plate. A golden-brown, crispy-skinned chicken thigh, cooked to perfection, is the centerpiece. It rests amidst a natural arrangement of roasted potato and carrot chunks, each piece showing caramelized edges. The potatoes are cut into rough 2-3 cm cubes, while the carrots are 2-3 cm thick batons, showcasing their tender, roasted texture. A few vibrant green sprigs of fresh rosemary and thyme are casually scattered over the dish, adding a touch of freshness. The overall color palette is warm, with rich browns, golden yellows, and earthy oranges. The plate is adequately filled but not overcrowded, allowing for some negative space. The setting is a well-used wooden kitchen table, bathed in warm, natural light, with a simple cloth napkin beside the plate, creating a cozy, homely atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx 200g each)"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold or red potatoes)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Cut potatoes into 2-3 cm chunks. Peel and cut carrots into 2-3 cm chunks.",
+      "In a large bowl, toss potato and carrot chunks with olive oil, chopped rosemary, chopped thyme, minced garlic, salt, and pepper.",
+      "Arrange vegetables in a single layer on a large baking tray.",
+      "Place chicken thighs skin-side up among the vegetables.",
+      "Squeeze half a lemon over chicken and vegetables. Arrange lemon slices around.",
+      "Roast for 30 minutes.",
+      "Flip vegetables. Continue roasting for another 20-30 minutes, or until chicken reaches 75°C internal temperature. Chicken skin should be golden brown and crispy. Vegetables should be tender.",
+      "Rest chicken for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 698.9,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 40.6,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 202.1,
+      "total_carbs_g": 36.2,
+      "total_fat_g": 44.3,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153.2,
+      "cholesterol_mg": 39.5,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.9,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 44.3,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 21,
+      "protein": 81,
+      "saturated_fat": 51,
+      "sodium": 9,
+      "total_carbs": 13,
+      "total_fat": 57
+    },
+    "serving_size_g": 456.25,
+    "total_recipe_weight_g": 1825
+  }
+]

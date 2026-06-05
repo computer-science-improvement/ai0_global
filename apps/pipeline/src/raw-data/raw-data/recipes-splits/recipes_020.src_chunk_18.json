@@ -1,0 +1,664 @@
+[
+  {
+    "recipe_name": "Skovoroda Govyadina s Lapshoy (Beef Skillet with Noodles)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_skovoroda_govyadina_s_lapshoy_%28beef_skillet_with_noodles%29_20250624_172120_bb41f7ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:21:20.977230000Z",
+    "selected_ingredients": [
+      "pasta",
+      "bread",
+      "beef",
+      "bacon",
+      "tomato",
+      "oregano",
+      "basil",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "Russian cuisine",
+    "visual_description": "A single portion of Skovoroda Govyadina s Lapshoy is presented in a deep, rustic white porcelain bowl. Tender, rich brown beef cubes, approximately 3-4 cm, are nestled atop a generous bed of golden, wide egg noodles, lightly coated in a creamy, reddish-brown tomato-based sauce. Sprinkled over the dish is a light layer of melted, grated white cheese and crisp, diced pieces of smoked bacon. A vibrant green garnish of freshly chopped dill or parsley adds a pop of color to the top. The composition is hearty and inviting, with a natural, flowing arrangement. The bowl is centered on a simple wooden table surface, complemented by a clean white cotton napkin placed to the side. A slice of dark rye bread rests beside the bowl, hinting at traditional Russian accompaniment. Natural, even lighting highlights the textures and colors of the dish, with a softly blurred, casual restaurant-style background. The entire plate is visible, showcasing a well-proportioned, comforting meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled cucumbers (solyonye ogurtsy) or sauerkraut (kvashenaya kapusta).",
+      "Offer extra sour cream (smetana) on the side for individual preference."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or short ribs",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Smoked bacon",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1, finely chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried basil",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Wide egg noodles (lapsha)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Sour cream (smetana)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Hard cheese (e.g., Emmental, Poshekhonsky)",
+        "quantity": "80 g, grated"
+      },
+      {
+        "name": "Fresh dill or parsley",
+        "quantity": "2 tablespoons, chopped, for garnish"
+      },
+      {
+        "name": "Rye bread",
+        "quantity": "4 slices, for serving"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 3-4 cm cubes. Pat dry. Season with salt and pepper.",
+      "Heat vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef cubes in batches until browned on all sides. Remove beef and set aside.",
+      "Add diced bacon to the pot. Cook until crispy. Remove bacon and set aside, leaving rendered fat in the pot.",
+      "Add finely chopped onion to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Return seared beef to the pot. Add crushed tomatoes, beef broth, dried oregano, dried basil, and bay leaf. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer for 2-2.5 hours, or until beef is very tender. Stir occasionally.",
+      "While beef simmers, cook wide egg noodles according to package instructions until al dente. Drain well.",
+      "Remove bay leaf from the beef stew. Stir in sour cream until well combined and heated through. Do not boil after adding sour cream.",
+      "Serve the beef stew over the cooked egg noodles. Top with grated cheese and crispy bacon. Garnish with fresh chopped dill or parsley.",
+      "Serve immediately with slices of rye bread."
+    ],
+    "traditional_techniques": [
+      "Slow braising (Tusheniye)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1207.9,
+      "cholesterol_mg": 260,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 67.9,
+      "saturated_fat_g": 29.4,
+      "sodium_mg": 804.8,
+      "total_carbs_g": 67,
+      "total_fat_g": 73.7,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 2.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 188.5,
+      "cholesterol_mg": 40.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.6,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 125.6,
+      "total_carbs_g": 10.5,
+      "total_fat_g": 11.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 86.7,
+      "dietary_fiber": 17.1,
+      "protein": 135.8,
+      "saturated_fat": 147,
+      "sodium": 35,
+      "total_carbs": 24.4,
+      "total_fat": 94.5
+    },
+    "serving_size_g": 640.6,
+    "total_recipe_weight_g": 2562.5
+  },
+  {
+    "recipe_name": "Fermented Rice Risotto with Coconut, Macadamia, and Savory Cherry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_rice_risotto_with_coconut%2C_macadamia%2C_and_savory_cherry_20250624_172112_2d8dadca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:21:13.215742000Z",
+    "selected_ingredients": [
+      "coconut",
+      "macadamia",
+      "rice",
+      "white chocolate",
+      "cherry"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish presents a creamy, pale ivory risotto, forming a gentle mound in the center of a handcrafted, off-white ceramic bowl. The Arborio rice grains are plump and distinct, suspended in a rich, velvety coconut-infused base, showcasing a natural, unforced texture. A small, organic pool of deep ruby-red savory cherry reduction sits nestled within the risotto's gentle curve, its vibrant color a striking contrast. Scattered across the surface are irregularly crushed, golden-brown toasted macadamia nuts, providing visual texture and a hint of their earthy hue. The presentation is clean and minimalist, allowing the natural colors and textures of each ingredient to shine. The bowl rests on a light, reclaimed wood table surface, accompanied by an undyed linen napkin in a natural beige tone. Soft, diffused natural light illuminates the scene, emphasizing the purity and simplicity of the ingredients. The background is clean and unobtrusive, featuring subtle green plant foliage, reinforcing the eco-conscious theme. A single portion is presented, highlighting the dish's refined elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Rice",
+    "ingredients": [
+      {
+        "name": "Arborio Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Coconut Milk (full fat)",
+        "quantity": "400ml can"
+      },
+      {
+        "name": "Macadamia Nuts, raw",
+        "quantity": "80g"
+      },
+      {
+        "name": "Cherries, pitted (fresh or frozen)",
+        "quantity": "200g"
+      },
+      {
+        "name": "White Chocolate, high quality, unsweetened",
+        "quantity": "20g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Vegetable Broth (from scraps)",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "Fermented Rice Water",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Nutritional Yeast",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Rice Water: Soak 100g rice in 500ml filtered water for 24-48 hours at room temperature. Strain. Reserve the rice for other use. (This yields more than needed, use 200ml for the recipe).",
+      "Prepare Vegetable Broth: Combine 1.5 litres water with assorted vegetable scraps (carrot peels, onion skins, celery ends, mushroom stems). Simmer 30 minutes. Strain.",
+      "Toast Macadamias: Dry toast macadamia nuts in a pan over medium heat until lightly golden and fragrant. Roughly crush. Set aside.",
+      "Start Risotto: Heat olive oil in a large pot or deep pan over medium heat. Add diced onion. Sauté until translucent, about 5 minutes. Add minced garlic. Cook 1 minute until fragrant.",
+      "Add Rice: Stir in Arborio rice. Toast for 2 minutes until edges are translucent.",
+      "Add Liquids: Pour in 200ml fermented rice water. Stir until absorbed. Gradually add vegetable broth, one ladleful at a time, stirring continuously. Allow each addition to be absorbed before adding more. This takes 18-20 minutes.",
+      "Add Coconut Milk: When rice is almost al dente, stir in coconut milk. Continue stirring until creamy.",
+      "Prepare Savory Cherry: While risotto cooks, combine pitted cherries with 50ml water and a pinch of salt in a small saucepan. Simmer gently for 5-7 minutes until cherries soften and liquid slightly reduces. Mash lightly.",
+      "Finish Risotto: Stir nutritional yeast into risotto. Season with salt and pepper. Stir in half of the crushed macadamias.",
+      "Incorporate White Chocolate: Grate white chocolate directly into the hot risotto. Stir until melted and combined, adding subtle richness.",
+      "Plate: Ladle risotto onto warm plates. Create a small well in the center. Spoon a portion of the savory cherry reduction into the well. Garnish with remaining crushed macadamias."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 846.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 15,
+      "saturated_fat_g": 28,
+      "sodium_mg": 821.5,
+      "total_carbs_g": 86.5,
+      "total_fat_g": 52.3,
+      "total_sugars_g": 12.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 2.3,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 125.5,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 8,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 30.2,
+      "protein": 30,
+      "saturated_fat": 140.1,
+      "sodium": 35.7,
+      "total_carbs": 31.5,
+      "total_fat": 67.1
+    },
+    "serving_size_g": 654.5,
+    "total_recipe_weight_g": 2618
+  },
+  {
+    "recipe_name": "Braised Beef with Tomato Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_tomato_risotto_20250624_172109_8d2e07e7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:21:10.354658000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Braised Beef with Tomato Risotto is presented on a clean, round white porcelain plate. A mound of creamy, vibrant orange-red tomato risotto, cooked to a fluid consistency, sits gracefully on one side. Next to the risotto, two or three substantial, dark reddish-brown chunks of braised beef are artfully placed, showcasing their tender, fall-apart texture. A rich, glossy braising sauce is drizzled over the beef. The dish is garnished with a scattering of fresh, bright green chopped parsley, providing a contrasting color and fresh aroma. The beef chunks are not sliced or fanned. The plate is positioned on a light, natural wooden table surface. A neatly folded white linen napkin and a silver fork and knife are placed beside the plate. The scene is illuminated by soft, even natural light, highlighting the food's inviting textures and colors with moderate negative space. The background is simple and subtly blurred, maintaining focus on the dish while evoking a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800 g, cut into 4-5 cm chunks"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 medium (1 diced for beef, 1 finely diced for risotto)"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "1.2 litres, warm"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g, freshly grated"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley or basil",
+        "quantity": "Small bunch, chopped for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef chunks in batches until well browned on all sides. Do not overcrowd the pot. Remove beef and set aside.",
+      "Reduce heat to medium. Add remaining 15 ml olive oil to the pot. Add 1 diced onion and cook until softened, about 5-7 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is mostly evaporated.",
+      "Return seared beef to the pot. Add crushed tomatoes and 800 ml warm beef broth. Bring to a simmer. Cover the pot. Reduce heat to low. Braise for 2 to 2.5 hours, or until beef is very tender. Stir occasionally.",
+      "While beef braises, prepare tomato risotto. In a separate medium saucepan, melt 15 g butter with 10 ml olive oil over medium heat. Add remaining finely diced onion. Cook until translucent, about 5 minutes.",
+      "Add Arborio rice. Stir for 2 minutes to toast grains. Rice should be slightly translucent around the edges.",
+      "Add 200 ml warm beef broth to the rice. Stir constantly until liquid is absorbed.",
+      "Continue adding remaining warm beef broth, 150 ml at a time. Stir constantly after each addition until liquid is absorbed before adding more. This process takes about 18-20 minutes. Risotto should be creamy and al dente.",
+      "Remove risotto from heat. Stir in remaining 15 g butter and grated Parmesan cheese. Stir vigorously for 1 minute. Season with salt and pepper to taste. The risotto should be fluid, not stiff.",
+      "Taste braised beef and adjust seasoning. Remove beef chunks from the sauce. Reduce sauce slightly over medium-high heat if desired, until thickened to your liking.",
+      "Serve braised beef chunks alongside or on top of the creamy tomato risotto. Spoon some braising sauce over the beef. Garnish with fresh chopped parsley or basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1094,
+      "cholesterol_mg": 166,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 67,
+      "saturated_fat_g": 19.3,
+      "sodium_mg": 1054,
+      "total_carbs_g": 82.9,
+      "total_fat_g": 48.6,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116.7,
+      "cholesterol_mg": 17.7,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 112.4,
+      "total_carbs_g": 8.8,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 16,
+      "protein": 134,
+      "saturated_fat": 96,
+      "sodium": 46,
+      "total_carbs": 30,
+      "total_fat": 62
+    },
+    "serving_size_g": 937.5,
+    "total_recipe_weight_g": 3750
+  },
+  {
+    "recipe_name": "Garlic Herb Roasted Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_herb_roasted_chicken_and_potatoes_20250624_172105_826277fc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:21:05.626171000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of golden-brown roasted chicken and potatoes rests on a rustic ceramic plate. Two crispy-skinned chicken thighs are positioned naturally. Thick-cut potato wedges, roasted to a deep golden hue with soft interiors, are scattered around the chicken. Bright red, blistered cherry tomato halves and softened, light brown roasted garlic cloves are interspersed among the potatoes, adding pops of color and texture. Fresh green rosemary and thyme leaves cling to the roasted ingredients. The arrangement is casual, as if scooped directly from a family pan, filling the plate without overcrowding. The plate sits on a well-used wooden dining table. Simple, everyday flatware and a casually folded cloth napkin are nearby. Warm, natural light illuminates the scene, enhancing the comforting, homely atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Roasted Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Potatoes, medium",
+        "quantity": "1 kg, cut into 3 cm wedges"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g, halved"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "8 cloves, peeled, smashed"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Place chicken thighs, potato wedges, halved cherry tomatoes, and smashed garlic cloves in a large roasting pan.",
+      "Add rosemary sprigs and thyme sprigs to the pan.",
+      "Drizzle with olive oil. Season with salt and black pepper.",
+      "Toss all ingredients together to coat evenly.",
+      "Arrange in a single layer in the roasting pan.",
+      "Roast for 45-55 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are tender and golden.",
+      "Rest chicken for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 600.4,
+      "cholesterol_mg": 161,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 33.2,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 654.4,
+      "total_carbs_g": 39.5,
+      "total_fat_g": 33.6,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 186.2,
+      "cholesterol_mg": 49.9,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 10.3,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 202.9,
+      "total_carbs_g": 12.2,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.7,
+      "dietary_fiber": 17.1,
+      "protein": 66.4,
+      "saturated_fat": 40.7,
+      "sodium": 28.5,
+      "total_carbs": 14.4,
+      "total_fat": 43.1
+    },
+    "serving_size_g": 322.5,
+    "total_recipe_weight_g": 1290
+  },
+  {
+    "recipe_name": "Eastern European Pork Borscht",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_eastern_european_pork_borscht_20250624_172043_75955872.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:20:44.289598000Z",
+    "selected_ingredients": [
+      "pork",
+      "cabbage",
+      "beet",
+      "potato",
+      "carrot",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Eastern European Pork Borscht is presented in a deep white porcelain soup bowl. The soup is a rich, vibrant ruby-red. Visible are tender pork chunks, neatly julienned beets and carrots, finely shredded cabbage, and distinct 2 cm potato cubes. Ingredients are evenly distributed for a balanced composition. A smooth dollop of bright white sour cream rests in the center, slightly melting. Fresh, vibrant green chopped dill sprinkles over the sour cream and soup. The bowl sits on a simple, textured light wooden table, suggesting a modern bistro. A folded light grey cotton napkin and a classic silver soup spoon are beside the bowl. The background is softly blurred, indicating a casual restaurant ambiance, focusing on the dish while honoring its cultural context.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of sour cream (smetana).",
+      "Garnish generously with fresh dill.",
+      "Traditionally served with dark rye bread or pampushky (garlic bread)."
+    ],
+    "hero_ingredient": "Beet",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "400 g, cut into 3 cm cubes"
+      },
+      {
+        "name": "Beets",
+        "quantity": "350 g, peeled, julienned"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "300 g, thinly shredded"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "300 g, peeled, diced into 2 cm cubes"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "200 g, peeled, julienned"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Beef or vegetable broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "White vinegar or lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Sour cream (or smetana)",
+        "quantity": "60 g"
+      }
+    ],
+    "instructions": [
+      "Sear pork cubes in oil in a large pot until browned on all sides. Remove pork from pot.",
+      "Add diced onion and julienned carrots to the pot. Sauté 5-7 minutes until softened.",
+      "Add minced garlic and tomato paste. Cook 1 minute, stirring constantly.",
+      "Return pork to the pot. Add broth and bay leaf. Bring to a boil, then reduce heat to low. Simmer 45 minutes.",
+      "Add diced potatoes and julienned beets to the pot. Simmer 15 minutes.",
+      "Add shredded cabbage. Simmer 10-15 minutes, or until all vegetables are tender.",
+      "Stir in white vinegar or lemon juice. Season with salt and pepper to taste.",
+      "Ladle hot soup into individual bowls. Garnish each serving with a dollop of sour cream and fresh chopped dill."
+    ],
+    "notes": [
+      "Adding vinegar or lemon juice at the end helps preserve the vibrant red color of the beets."
+    ],
+    "traditional_techniques": [
+      "Zazharka (sautéing vegetables)",
+      "Long simmering for depth of flavor"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 424,
+      "cholesterol_mg": 78,
+      "dietary_fiber_g": 8.4,
+      "protein_g": 30.5,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 1067,
+      "total_carbs_g": 38.8,
+      "total_fat_g": 17.1,
+      "total_sugars_g": 14.6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 55.5,
+      "cholesterol_mg": 10.2,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 4,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 139.4,
+      "total_carbs_g": 5.1,
+      "total_fat_g": 2.2,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26,
+      "dietary_fiber": 30,
+      "protein": 61,
+      "saturated_fat": 24,
+      "sodium": 46,
+      "total_carbs": 14,
+      "total_fat": 22
+    },
+    "serving_size_g": 765,
+    "total_recipe_weight_g": 3060
+  }
+]

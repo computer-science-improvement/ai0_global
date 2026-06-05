@@ -1,0 +1,640 @@
+[
+  {
+    "recipe_name": "Black Bean Terrine with Smoked Tomato Essence",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_black_bean_terrine_with_smoked_tomato_essence_20250702_182008_f99c85f0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:20:09.225527000Z",
+    "selected_ingredients": [
+      "bean",
+      "tomato",
+      "rice",
+      "onion",
+      "chili",
+      "garlic"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a pristine, matte white bone china plate, embracing abundant negative space. A precisely cut, rectangular block of deep black bean terrine, about 2x4 cm, is positioned slightly off-center, its surface lightly seared to a subtle crust. Adjacent to it, a small pool of crystal-clear, amber-hued smoked tomato consommé shimmers, reflecting light. Two to three ethereal, irregular shards of crispy rice tuile, off-white and translucent, lean artfully against the bean terrine, providing height and delicate crunch. A single, delicate curl of pale pink pickled red onion is placed with precision atop the terrine, offering a vibrant accent. A few strategic drops of vibrant red chili-garlic oil are dotted around the plate, providing a final pop of color and aromatic complexity. The composition is minimalist, organic, and elegant, emphasizing the purity of each component.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Black Bean",
+    "ingredients": [
+      {
+        "name": "Dried black beans",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Ripe Roma tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cooked short-grain rice",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Dried red chilies (e.g., Arbol)",
+        "quantity": "5"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Water (for pickling)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "For the Black Bean Terrine: Soak dried black beans overnight. Drain. Dice the small onion and mince 2 garlic cloves. Sauté diced onion and minced garlic in olive oil in a saucepan until softened. Add soaked beans and 500 ml vegetable stock. Bring to a boil, then reduce heat and simmer for 1.5 to 2 hours until beans are very tender. Season with salt and pepper. Drain beans, reserving 100 ml of the cooking liquid. Blend the cooked beans with the reserved liquid until extremely smooth. Pass the puree through a fine-mesh sieve to ensure velvety texture. In a separate small saucepan, heat 100 ml fresh vegetable stock. Whisk in agar-agar powder until fully dissolved. Stir this agar mixture into the bean puree. Pour the bean puree into a shallow, rectangular mold (approximately 10x15 cm, 2 cm deep). Chill in the refrigerator for at least 4 hours, or until completely firm. Once set, carefully unmold and cut into precise 2x4 cm rectangular blocks.",
+      "For the Smoked Tomato Consommé: Roughly chop the ripe Roma tomatoes. Blend them with smoked paprika until coarsely pureed. Line a fine-mesh sieve with several layers of cheesecloth. Pour the tomato mixture into the cheesecloth-lined sieve set over a bowl. Refrigerate for 6-8 hours, or overnight, allowing the clear consommé to drip through naturally. Do not press the solids. Gently strain the collected clear liquid. Season the consommé with salt and a pinch of sugar to taste. Gently warm before serving.",
+      "For the Crispy Rice Tuile: Combine cooked short-grain rice, 50 ml water, and a pinch of salt in a blender. Blend until a smooth, thick paste forms. Spread the rice paste very thinly and evenly onto a silicone mat or parchment paper-lined baking sheet. Bake in a preheated oven at 120°C (250°F) for 1 to 1.5 hours, or until the rice paste is completely dry, brittle, and translucent. Remove from oven and let cool completely. Break the crispy rice sheet into irregular, artistic shards.",
+      "For the Chili-Garlic Oil: Thinly slice the remaining 2 garlic cloves. In a small saucepan, combine neutral oil, dried red chilies, and sliced garlic. Heat gently over very low heat for 15-20 minutes, ensuring the garlic turns golden brown and fragrant without burning. Remove from heat and let cool. Strain the oil through a fine-mesh sieve, discarding the solids.",
+      "For the Pickled Red Onion: Slice the small red onion very thinly, preferably using a mandoline. In a small saucepan, combine rice vinegar, 50 ml water, sugar, and salt. Heat gently, stirring, until sugar and salt are fully dissolved. Pour the hot brine over the thinly sliced red onions in a heatproof bowl. Let cool to room temperature. Marinate for at least 30 minutes before serving.",
+      "To Assemble: Arrange a single black bean terrine block slightly off-center on a pristine, matte white bone china plate. Gently spoon a small, clear pool of warm smoked tomato consommé next to the terrine. Lean two or three crispy rice tuile shards artfully against the terrine. Place one delicate curl of pickled red onion precisely on top of the terrine. Finish by dotting a few strategic drops of the vibrant chili-garlic oil around the plate for visual interest and flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 509.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.7,
+      "protein_g": 14.5,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 214.7,
+      "total_carbs_g": 55.1,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 10.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 96,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 2.7,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 40.4,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 38,
+      "protein": 29,
+      "saturated_fat": 16,
+      "sodium": 9,
+      "total_carbs": 20,
+      "total_fat": 36
+    },
+    "serving_size_g": 530.95,
+    "total_recipe_weight_g": 2123.8
+  },
+  {
+    "recipe_name": "Creamy Tomato and Basil Pasta with Herbed Cottage Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_and_basil_pasta_with_herbed_cottage_cheese_20250702_181745_beb1b79b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:17:46.304583000Z",
+    "selected_ingredients": [
+      "tomato",
+      "garlic",
+      "basil",
+      "cottage cheese",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of al dente rigatoni pasta, generously coated in a rich, deep red tomato and basil sauce, is artfully mounded in the center of a clean, round white porcelain pasta bowl. The sauce exhibits a vibrant color with subtle flecks of green basil and hints of garlic. On top, several soft, creamy dollops of white herbed cottage cheese are placed, offering a striking color and texture contrast against the vibrant red. Fresh, bright green basil leaves, some whole, some gently torn, are scattered over the dish. A delicate swirl of golden extra virgin olive oil glistens on the sauce. The presentation is clean and inviting, set on a warm, light wooden table surface, accompanied by a simple, rustic fork and a neatly folded beige linen napkin. Natural, even light illuminates the dish, highlighting its fresh ingredients and comforting appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta bread for dipping",
+      "Pair with a simple green salad dressed with vinaigrette",
+      "Enjoy with a glass of light-bodied red wine"
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil. Add rigatoni pasta. Cook according to package directions until al dente.",
+      "While pasta cooks, heat olive oil in a large skillet or pot over medium heat. Add diced onion. Sauté for 5 minutes until softened.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant. Do not brown.",
+      "Pour in crushed tomatoes and vegetable broth. Stir in dried oregano, salt, and black pepper. Bring to a simmer.",
+      "Reduce heat to low. Let sauce simmer gently for 15-20 minutes, stirring occasionally, until slightly thickened.",
+      "Remove about 100g of cottage cheese. Set aside for garnish. Add remaining cottage cheese to the simmering tomato sauce. Stir well to combine. For a smoother sauce, carefully blend a portion of the sauce with cottage cheese using an immersion blender, then return to the pot.",
+      "Tear or roughly chop half of the fresh basil leaves. Stir them into the sauce during the last 2 minutes of cooking.",
+      "Drain cooked pasta. Add pasta directly to the sauce. Toss gently to coat all pasta evenly.",
+      "Serve hot. Garnish each portion with a few dollops of the reserved fresh cottage cheese and remaining whole or torn fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 573,
+      "cholesterol_mg": 3.13,
+      "dietary_fiber_g": 6.69,
+      "protein_g": 24.09,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 728.22,
+      "total_carbs_g": 92.49,
+      "total_fat_g": 12.81,
+      "total_sugars_g": 12.11,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126,
+      "cholesterol_mg": 0.69,
+      "dietary_fiber_g": 1.47,
+      "protein_g": 5.29,
+      "saturated_fat_g": 0.46,
+      "sodium_mg": 159.92,
+      "total_carbs_g": 20.31,
+      "total_fat_g": 2.81,
+      "total_sugars_g": 2.66,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 1.56,
+      "dietary_fiber": 23.89,
+      "protein": 48.17,
+      "saturated_fat": 10.48,
+      "sodium": 31.66,
+      "total_carbs": 33.63,
+      "total_fat": 16.42
+    },
+    "serving_size_g": 455.38,
+    "total_recipe_weight_g": 1821.5
+  },
+  {
+    "recipe_name": "Creamy Garlic Mushroom Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_garlic_mushroom_chicken_20250702_181636_14a07c69.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:16:36.599433000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown seared chicken breast, cooked whole, sits prominently on a clean white porcelain dinner plate. The chicken has a rich, caramelized crust. A generous portion of creamy, savory mushroom sauce is spooned artfully over and around the chicken. The sauce is off-white with varying shades of earthy brown from the sliced mushrooms. The mushrooms are tender, with some retaining a slight chew. The dish is garnished with a sprinkle of bright green, freshly chopped parsley, providing a fresh contrast. The overall composition is balanced and inviting, with moderate negative space on the plate. The chicken is presented as a whole piece, showcasing its succulent texture. The plate rests on a simple wooden table surface beside a folded cotton napkin. Standard European flatware is neatly placed. Natural, even lighting highlights the textures and colors of the dish, creating a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Mixed mushrooms (cremini, shiitake, oyster), sliced",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "All-purpose flour (optional)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper. Lightly dredge chicken in flour if using.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken. Sear 5-7 minutes per side until golden brown and cooked to an internal temperature of 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "Add butter to the same skillet. Add sliced mushrooms. Sauté 5-7 minutes until browned and tender.",
+      "Add diced onion and minced garlic to the skillet. Cook 2-3 minutes until fragrant.",
+      "Pour in white wine if using. Scrape up any browned bits from the bottom of the skillet. Simmer 1 minute until reduced.",
+      "Stir in chicken stock. Bring to a simmer. Cook 2-3 minutes until slightly reduced.",
+      "Reduce heat to low. Stir in heavy cream. Bring to a gentle simmer. Do not boil vigorously.",
+      "Return chicken breasts to the skillet. Spoon sauce over chicken. Simmer 2 minutes to heat through.",
+      "Stir in chopped fresh parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 672,
+      "cholesterol_mg": 246,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 64,
+      "saturated_fat_g": 18.3,
+      "sodium_mg": 282,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 38.4,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 187,
+      "cholesterol_mg": 69,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 17.8,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 79,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 10.7,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 82,
+      "dietary_fiber": 12,
+      "protein": 128,
+      "saturated_fat": 91,
+      "sodium": 12,
+      "total_carbs": 5,
+      "total_fat": 49
+    },
+    "serving_size_g": 359,
+    "total_recipe_weight_g": 1436
+  },
+  {
+    "recipe_name": "Garlic Herb Crusted Cauliflower Steaks",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_herb_crusted_cauliflower_steaks_20250702_181615_557ea429.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:16:16.259027000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single thick-cut, golden-brown cauliflower steak is centered on a clean white porcelain dinner plate. The crust is visibly textured from the panko and herbs, with flecks of green parsley and thyme, and a slight golden hue from roasting. A few roasted cauliflower florets are artfully arranged beside the steak, providing visual variety and depth. A light drizzle of the pan juices/broth and a squeeze of fresh lemon juice create a subtle sheen. Dominant colors are golden-brown from the crust, vibrant green from fresh herbs, and creamy white from the cauliflower interior. Textures include crispy crust and tender cauliflower. Cauliflower is cut into thick \"steaks\" (approx. 2.5 cm) and florets. A small sprig of fresh parsley garnishes the dish. Ample negative space frames the cauliflower. The plate rests on a simple, light-colored wooden table. A neatly folded cotton napkin is placed to the left. Natural, even lighting creates soft shadows. The background is blurred, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Vegetarian",
+    "hero_ingredient": "Cauliflower",
+    "ingredients": [
+      {
+        "name": "Cauliflower",
+        "quantity": "1 large head"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "15g"
+      },
+      {
+        "name": "Panko Breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Vegetarian Parmesan Cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Remove outer leaves from cauliflower. Trim stem.",
+      "Slice cauliflower into 2.5 cm thick \"steaks\". You will get 2-3 steaks. Break remaining florets into bite-sized pieces.",
+      "Finely chop garlic, parsley, and thyme.",
+      "In a bowl, combine panko, vegetarian parmesan, chopped garlic, parsley, and thyme. Mix well.",
+      "Brush cauliflower steaks and florets with olive oil. Season with salt and pepper.",
+      "Press cauliflower steaks and florets into breadcrumb mixture to coat.",
+      "Place coated cauliflower on a baking tray.",
+      "Roast for 20 minutes.",
+      "Flip cauliflower. Pour vegetable broth onto the tray.",
+      "Continue roasting for 15-20 minutes, or until cauliflower is tender and crust is golden.",
+      "Squeeze fresh lemon juice over roasted cauliflower before serving."
+    ],
+    "notes": [
+      "Ensure cauliflower is cooked until very tender throughout."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 344.5,
+      "cholesterol_mg": 11.1,
+      "dietary_fiber_g": 6.37,
+      "protein_g": 12.79,
+      "saturated_fat_g": 4.65,
+      "sodium_mg": 534.8,
+      "total_carbs_g": 34.88,
+      "total_fat_g": 19.08,
+      "total_sugars_g": 6.02,
+      "trans_fat_g": 0.14
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108.7,
+      "cholesterol_mg": 3.5,
+      "dietary_fiber_g": 2.01,
+      "protein_g": 4.04,
+      "saturated_fat_g": 1.47,
+      "sodium_mg": 168.7,
+      "total_carbs_g": 11,
+      "total_fat_g": 6.02,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 3.7,
+      "dietary_fiber": 22.7,
+      "protein": 25.6,
+      "saturated_fat": 23.2,
+      "sodium": 23.3,
+      "total_carbs": 12.7,
+      "total_fat": 24.5
+    },
+    "serving_size_g": 317,
+    "total_recipe_weight_g": 1268
+  },
+  {
+    "recipe_name": "Smoked Paprika Potato & Lentil Patties with Fermented Cabbage Slaw",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_paprika_potato_%26_lentil_patties_with_fermented_cabbage_slaw_20250702_180702_199dd0e2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:07:03.017218000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single round Smoked Paprika Potato & Lentil Patty is precisely centered on a light, handcrafted ceramic plate with a matte, unglazed finish. The patty boasts a beautifully seared, golden-brown exterior and a tender, earthy interior. To its side, a vibrant mound of thinly shredded fermented green cabbage and orange carrot slaw provides a contrasting pop of color and crisp texture. A verdant drizzle of bright green carrot top pesto elegantly sweeps across the patty's surface and extends onto the ample white space of the plate, creating a dynamic visual line. The composition is clean and minimalistic, allowing each natural ingredient to shine. The plate rests on a textured light bamboo surface, complemented by an undyed linen napkin. Soft, diffused natural light bathes the scene, ensuring textures and colors are prominent against a clean, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Green Lentils",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 ml, chopped"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Green Cabbage",
+        "quantity": "500 g, shredded (for slaw)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "100 g, shredded (for slaw)"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "10 g (for slaw)"
+      },
+      {
+        "name": "Carrot Tops",
+        "quantity": "From 1 bunch of carrots"
+      },
+      {
+        "name": "Toasted Pumpkin Seeds",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Nutritional Yeast",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Cook lentils: Rinse lentils. Combine lentils and 500 ml water in a pot. Bring to boil, then reduce heat. Simmer 20-25 minutes until tender. Drain excess water.",
+      "Cook potatoes: Peel and dice potatoes into 2 cm cubes. Place in a pot, cover with cold water. Add a pinch of salt. Bring to boil, cook 15-20 minutes until tender. Drain well. Mash thoroughly.",
+      "Prepare patty base: Heat 15 ml olive oil in a pan over medium heat. Add diced onion. Sauté 5 minutes until softened. Add 2 minced garlic cloves. Cook 1 minute more. Remove from heat.",
+      "Form patties: In a large bowl, combine mashed potatoes, cooked lentils, sautéed onion and garlic, smoked paprika, cumin powder, and chopped parsley. Season with salt and pepper. Mix well. Form mixture into 4 equal round patties, about 2 cm thick.",
+      "Sear patties: Heat 30 ml olive oil in a large non-stick pan over medium-high heat. Carefully place patties in the pan. Sear 4-5 minutes per side until golden brown and crisp.",
+      "Make Carrot Top Pesto: Wash carrot tops well. In a food processor, combine carrot tops, 1 minced garlic clove, toasted pumpkin seeds, nutritional yeast, and lemon juice. Pulse until finely chopped. Gradually drizzle in 60-80 ml olive oil while processing until a smooth pesto forms. Season with salt and pepper.",
+      "Plate: Place one seared patty on each plate. Serve with a generous portion of Fermented Cabbage Slaw. Drizzle Carrot Top Pesto over the patty and around the plate."
+    ],
+    "notes": [
+      "Fermented Cabbage Slaw requires advance preparation. To make: Combine shredded cabbage, shredded carrots, and sea salt in a clean jar. Massage until liquid forms. Pack tightly, ensuring vegetables are submerged. Seal loosely. Ferment at room temperature for 5-7 days until tangy. Refrigerate.",
+      "This recipe utilizes zero-waste principles by repurposing carrot tops into pesto. Consider composting other vegetable scraps."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 504,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 21.9,
+      "protein_g": 23,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 1033,
+      "total_carbs_g": 81.8,
+      "total_fat_g": 12,
+      "total_sugars_g": 9.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 89,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 4.1,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 183,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 2.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 78,
+      "protein": 46,
+      "saturated_fat": 9,
+      "sodium": 45,
+      "total_carbs": 30,
+      "total_fat": 15
+    },
+    "serving_size_g": 564.25,
+    "total_recipe_weight_g": 2257
+  }
+]

@@ -1,0 +1,702 @@
+[
+  {
+    "recipe_name": "Pollo Tinga Tostadas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_tinga_tostadas_20250624_173310_af471500.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:33:10.537908000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tortilla",
+      "tomato",
+      "onion",
+      "hot sauce",
+      "bell pepper",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single golden-brown, crisp fried corn tostada is centrally placed on a clean white porcelain dinner plate. Piled high on the tostada is rich, reddish-brown shredded chicken tinga, showcasing tender chicken fibers with finely diced onions and bell peppers, coated in a smoky chipotle-tomato sauce. A vibrant layer of thinly shredded crisp green lettuce sits atop the tinga. A delicate drizzle of pale white Crema Mexicana zigzags across, complemented by a scattering of bright white, crumbly Cotija cheese. Fresh green cilantro leaves are strategically placed as a garnish. The plate is clean, with moderate negative space. The setting is a modern bistro, with the plate on a simple wooden table surface. A neatly folded white cotton napkin is beside the plate. Natural, even lighting highlights textures and vibrant colors. A small ceramic bowl of salsa roja and lime wedges are subtly in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with fresh lime wedges for squeezing over the tostadas.",
+      "Offer a side of traditional salsa roja or pico de gallo.",
+      "Serve with additional hot sauce on the side for those who prefer more heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "400 grams (canned crushed or fresh diced)"
+      },
+      {
+        "name": "Chipotle peppers in adobo sauce",
+        "quantity": "2-3 (from can, adjust to taste)"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 milliliters"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "12"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500 milliliters (for frying)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Lettuce",
+        "quantity": "150 grams (shredded)"
+      },
+      {
+        "name": "Crema Mexicana",
+        "quantity": "100 milliliters"
+      },
+      {
+        "name": "Cotija cheese",
+        "quantity": "50 grams (crumbled)"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 grams (chopped)"
+      }
+    ],
+    "instructions": [
+      "Place chicken thighs in a pot. Cover with water. Add a pinch of salt and the bay leaf. Bring to a boil, then reduce heat and simmer for 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F). Remove chicken, shred finely using two forks. Set aside.",
+      "Drain and discard cooking liquid and bay leaf.",
+      "Chop half the onion into small dice. Mince garlic. Dice red bell pepper into small cubes.",
+      "In a large skillet, heat 15 milliliters of vegetable oil over medium heat. Sauté diced onion, garlic, and bell pepper for 5-7 minutes until softened.",
+      "Add crushed tomatoes and chipotle peppers (chopped if large) to the skillet. Stir in chicken broth. Bring to a simmer. Cook for 10 minutes, allowing flavors to meld.",
+      "Carefully transfer the sauce mixture to a blender. Blend until smooth. Return sauce to the skillet.",
+      "Stir the shredded chicken into the sauce. Season with salt and black pepper to taste. Simmer for 5-7 minutes, allowing chicken to absorb the sauce. Keep warm.",
+      "Heat remaining vegetable oil in a deep pan or pot over medium-high heat. Fry corn tortillas one at a time for 30-60 seconds per side until golden brown and crisp. Transfer to a paper towel-lined plate to drain excess oil. Season lightly with salt.",
+      "Finely slice the remaining half onion for garnish.",
+      "To assemble each tostada: Spread a generous layer of chicken tinga on a crisp fried tostada. Top with shredded lettuce. Drizzle with Crema Mexicana. Sprinkle with crumbled Cotija cheese and fresh cilantro. Add a few slices of fresh onion if desired."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust the amount of chipotle peppers based on desired spice level."
+    ],
+    "traditional_techniques": [
+      "Salsa preparation (blending cooked ingredients)",
+      "Frying tortillas (for tostadas)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 654.21,
+      "cholesterol_mg": 190.13,
+      "dietary_fiber_g": 9.91,
+      "protein_g": 37.11,
+      "saturated_fat_g": 10.73,
+      "sodium_mg": 2125.29,
+      "total_carbs_g": 53.18,
+      "total_fat_g": 34.43,
+      "total_sugars_g": 9.51,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114.62,
+      "cholesterol_mg": 33.31,
+      "dietary_fiber_g": 1.74,
+      "protein_g": 6.5,
+      "saturated_fat_g": 1.88,
+      "sodium_mg": 372.37,
+      "total_carbs_g": 9.32,
+      "total_fat_g": 6.03,
+      "total_sugars_g": 1.67,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.38,
+      "dietary_fiber": 35.39,
+      "protein": 74.22,
+      "saturated_fat": 53.65,
+      "sodium": 92.4,
+      "total_carbs": 19.34,
+      "total_fat": 44.14
+    },
+    "serving_size_g": 570.75,
+    "total_recipe_weight_g": 2283
+  },
+  {
+    "recipe_name": "Spicy Cashew Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_cashew_chicken_pasta_20250624_173245_f0895794.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:32:45.586068000Z",
+    "selected_ingredients": [
+      "mint",
+      "cashew",
+      "tomato",
+      "chicken",
+      "chili",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, single portion of Spicy Cashew Chicken Pasta rests centrally on a clean white porcelain dinner plate. The penne pasta is coated in a rich, creamy, orange-red sauce, showcasing flecks of finely minced red chili and softened tomato. Golden-brown, seared 3cm chicken cubes are nestled among the pasta, their surfaces slightly crusted. Scattered across the dish are pieces of lightly toasted cashews, adding a contrasting pale brown hue and visual texture. A generous scattering of roughly chopped fresh green mint leaves provides a bright color pop and herbaceous freshness. The dish is presented with moderate negative space, appearing abundant yet refined. It sits on a simple wooden table surface, beside a folded light grey cotton napkin and a polished metal fork. Natural, even light illuminates the dish from above, highlighting its inviting colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g, cut into 3cm cubes"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Raw cashews",
+        "quantity": "100g"
+      },
+      {
+        "name": "Ripe plum tomatoes",
+        "quantity": "400g, finely diced"
+      },
+      {
+        "name": "Fresh red chilies",
+        "quantity": "2, deseeded and finely minced (adjust to heat preference)"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "30g, roughly chopped, plus extra for garnish"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (approx. 150g), finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2cm piece, grated"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, juiced"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Toast cashews. Heat a dry pan over medium heat. Add cashews. Toast for 3-5 minutes until golden and fragrant. Stir frequently. Remove from pan. Set aside.",
+      "Cook pasta. Bring a large pot of salted water to a boil. Add penne. Cook according to package directions until al dente. Drain pasta. Reserve 100ml pasta water.",
+      "Sear chicken. Heat 1 tablespoon vegetable oil in a large pan or Dutch oven over medium-high heat. Add chicken cubes. Sear for 5-7 minutes until browned on all sides. Internal temperature must reach 75°C (167°F). Remove chicken from pan. Set aside.",
+      "Sauté aromatics. Reduce heat to medium. Add remaining 1 tablespoon oil to the pan. Add diced onion. Sauté for 5 minutes until softened. Add minced garlic, grated ginger, and minced chilies. Sauté for 1 minute until fragrant.",
+      "Build sauce. Stir in ground coriander, ground cumin, and ground turmeric. Cook for 30 seconds, stirring constantly. Add diced tomatoes. Cook for 5 minutes, stirring occasionally, until tomatoes soften. Pour in coconut milk and chicken broth. Bring to a simmer.",
+      "Blend sauce. Transfer half of the sauce mixture to a blender. Add half of the toasted cashews. Blend until smooth. Return blended mixture to the pan with the remaining sauce. Stir well.",
+      "Combine. Add seared chicken and cooked pasta to the sauce. Add reserved pasta water as needed to achieve desired consistency. Stir well to coat. Simmer for 2-3 minutes.",
+      "Finish dish. Remove from heat. Stir in lime juice and chopped fresh mint. Season with salt and black pepper to taste."
+    ],
+    "notes": [
+      "The spiciness can be adjusted by varying the amount of fresh chili.",
+      "For a creamier sauce, soak cashews in hot water for 15 minutes before blending."
+    ],
+    "traditional_techniques": [
+      "None specifically, standard cooking techniques"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 991.97,
+      "cholesterol_mg": 202.5,
+      "dietary_fiber_g": 8.05,
+      "protein_g": 50.61,
+      "saturated_fat_g": 17.72,
+      "sodium_mg": 798.93,
+      "total_carbs_g": 97.32,
+      "total_fat_g": 46.02,
+      "total_sugars_g": 10.32,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 180.85,
+      "cholesterol_mg": 36.92,
+      "dietary_fiber_g": 1.47,
+      "protein_g": 9.23,
+      "saturated_fat_g": 3.23,
+      "sodium_mg": 145.66,
+      "total_carbs_g": 17.74,
+      "total_fat_g": 8.39,
+      "total_sugars_g": 1.88,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.5,
+      "dietary_fiber": 28.75,
+      "protein": 101.22,
+      "saturated_fat": 88.6,
+      "sodium": 34.74,
+      "total_carbs": 35.39,
+      "total_fat": 58.99
+    },
+    "serving_size_g": 548.5,
+    "total_recipe_weight_g": 2194
+  },
+  {
+    "recipe_name": "Roasted Chicken Thighs with Broccoli and Savory Cherry Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_thighs_with_broccoli_and_savory_cherry_sauce_20250624_173234_cd569248.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:32:34.994103000Z",
+    "selected_ingredients": [
+      "chicken",
+      "broccoli",
+      "cherry"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of roasted chicken thighs and broccoli is presented on a simple, off-white ceramic plate. Two golden-brown chicken thighs, cooked to a crisp skin and tender interior, are positioned slightly off-center. Medium-sized roasted broccoli florets, retaining their vibrant green hue with hints of charring, are arranged casually around the chicken, some touching the meat. A rich, glossy, deep reddish-brown savory cherry sauce is generously drizzled over the chicken and pools slightly on the plate. The chicken is served whole, not sliced. The plate rests on a well-used wooden dining table. A plain, light-colored cloth napkin is casually placed beside the plate. The scene is lit with warm, cozy kitchen lighting, creating a comfortable, inviting atmosphere typical of a family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 large (approx. 800g total)"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500g, cut into medium florets"
+      },
+      {
+        "name": "Fresh or frozen pitted cherries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2.5ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "In a large bowl, toss broccoli florets with 15ml olive oil, 2.5ml salt, and 1.25ml black pepper. Spread on a large baking sheet.",
+      "Pat chicken thighs dry. Season generously with remaining salt and pepper. Place chicken on the same baking sheet as broccoli, skin-side up.",
+      "Roast for 25-30 minutes, or until chicken reaches an internal temperature of 75°C and broccoli is tender-crisp.",
+      "While chicken roasts, prepare sauce. Heat remaining 15ml olive oil in a small saucepan over medium heat. Add red onion; cook until softened, about 5 minutes. Add minced garlic; cook 1 minute more.",
+      "Stir in pitted cherries, chicken broth, balsamic vinegar, honey, and dried thyme. Bring to a simmer.",
+      "Reduce heat to low. Simmer for 10-15 minutes, stirring occasionally, until sauce thickens slightly. Mash some cherries with a spoon for a chunkier sauce, if desired.",
+      "Remove chicken and broccoli from oven. Serve immediately with savory cherry sauce drizzled over."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 612,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 43.2,
+      "saturated_fat_g": 9,
+      "sodium_mg": 956,
+      "total_carbs_g": 26.7,
+      "total_fat_g": 37.6,
+      "total_sugars_g": 15.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 117,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 183,
+      "total_carbs_g": 5.1,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 18.8,
+      "protein": 86.3,
+      "saturated_fat": 45.1,
+      "sodium": 41.6,
+      "total_carbs": 9.7,
+      "total_fat": 48.2
+    },
+    "serving_size_g": 523.4,
+    "total_recipe_weight_g": 2093.5
+  },
+  {
+    "recipe_name": "Chicken Marsala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_marsala_20250624_173207_3d583fa7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:32:08.419038000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast is centrally placed on a round white porcelain plate. The chicken, a golden-brown whole piece, is partially covered with a rich, glossy Marsala mushroom sauce. Thinly sliced, tender cremini mushrooms and finely diced shallots are visible within the deep brown sauce. A generous sprinkle of vibrant green chopped fresh parsley garnishes the chicken and sauce, adding a pop of color. The dish exhibits a clean, organized, yet organic plating style with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface. A white cotton napkin is neatly folded beside the plate. Standard polished flatware (fork and knife) are arranged next to the plate. Natural, even lighting illuminates the scene, creating a warm, inviting atmosphere with a softly blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve alongside creamy polenta or a simple pasta like fettuccine or linguine.",
+      "Offer a side of steamed green beans or asparagus.",
+      "Crusty Italian bread is ideal for soaking up the Marsala sauce."
+    ],
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry Marsala wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Heavy cream (optional)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Place each chicken breast between two sheets of plastic wrap. Pound to an even 1.5 cm thickness. Season both sides with salt and pepper.",
+      "Dredge each chicken breast lightly in flour, shaking off excess.",
+      "Slice mushrooms thinly. Finely dice shallots. Mince garlic.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken. Sear for 3-4 minutes per side until golden brown. Internal temperature should reach 75°C (167°F). Remove chicken from skillet and set aside.",
+      "Reduce heat to medium. Add butter to the skillet. Add sliced mushrooms and diced shallots. Sauté for 5-7 minutes until softened and browned. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour Marsala wine into the skillet. Bring to a simmer. Scrape up any browned bits from the bottom of the pan. Reduce liquid by half, about 3-5 minutes.",
+      "Stir in chicken stock. Bring to a simmer. Cook for 5 minutes until sauce slightly thickens. Stir in heavy cream, if using.",
+      "Return chicken breasts to the skillet. Simmer in the sauce for 2-3 minutes, ensuring chicken is fully heated through. Chop fresh parsley.",
+      "Remove skillet from heat. Stir in half of the chopped parsley. Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately, garnished with remaining fresh parsley."
+    ],
+    "notes": [
+      "Pounding the chicken ensures even cooking and tenderness.",
+      "Ensure Marsala wine is dry, not sweet, for a savory dish."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 507.4,
+      "cholesterol_mg": 169.1,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 60.4,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 358.9,
+      "total_carbs_g": 17.9,
+      "total_fat_g": 16.7,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134.9,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 16.1,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 95.4,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.4,
+      "dietary_fiber": 9,
+      "protein": 120.8,
+      "saturated_fat": 31,
+      "sodium": 15.6,
+      "total_carbs": 6.5,
+      "total_fat": 21.4
+    },
+    "serving_size_g": 376.2,
+    "total_recipe_weight_g": 1504.8
+  },
+  {
+    "recipe_name": "Chocolate Pecan Brownie with Roasted Apples, Cherry Coulis, and Banana Ice Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chocolate_pecan_brownie_with_roasted_apples%2C_cherry_coulis%2C_and_banana_ice_cream_20250624_173142_5d5cedfc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:31:42.450350000Z",
+    "selected_ingredients": [
+      "apple",
+      "banana",
+      "cherry",
+      "chocolate",
+      "pecan"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of a sophisticated dessert is presented on a clean, round white porcelain plate, resting on a simple light wooden table. A rich, dark chocolate pecan brownie square, approximately 6x6 cm, sits prominently, displaying a fudgy texture and visible pecan pieces. Beside it, a cluster of golden-brown roasted apple small cubes offers warmth and a hint of caramelization. A vibrant, glossy cherry coulis is artfully swirled across the plate, providing a striking contrast in color. A creamy, pale yellow scoop of banana ice cream melts gently, indicating its fresh, cool nature. The arrangement is balanced, with moderate negative space, allowing each component to stand out. A folded white cotton napkin rests nearby, completing the modern bistro setting. Natural, even lighting highlights the dessert's textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Pecans, chopped",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Apples (e.g., Gala or Honeycrisp)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh or frozen cherries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Ripe bananas",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Line a 20x20 cm baking pan with parchment paper.",
+      "Melt chocolate and butter in a heatproof bowl over a simmering pot of water. Stir until smooth. Remove from heat. Let cool slightly.",
+      "In a large bowl, whisk eggs and granulated sugar until light and fluffy.",
+      "Gradually add the cooled chocolate mixture to the egg mixture. Mix until combined.",
+      "In a separate bowl, whisk together flour, cocoa powder, baking powder, and salt.",
+      "Fold dry ingredients into wet ingredients. Do not overmix.",
+      "Fold in chopped pecans.",
+      "Pour batter into prepared pan. Spread evenly. Bake 25-30 minutes. A toothpick inserted should come out with moist crumbs.",
+      "Cool brownies completely in the pan. Cut into 9 squares.",
+      "Peel, core, and cut apples into small cubes (approximately 1.5 cm).",
+      "Toss apple cubes with 15g melted butter and brown sugar. Spread on a baking sheet.",
+      "Roast apples 15-20 minutes, or until tender and slightly caramelized. Let cool.",
+      "Combine cherries, 30g granulated sugar, and lemon juice in a saucepan. Simmer over medium heat 10-15 minutes. Cherries should soften and release juices.",
+      "Remove from heat. Mash cherries or blend briefly for a smoother consistency. Strain through a fine-mesh sieve for a clean coulis. Chill.",
+      "Peel ripe bananas. Slice into chunks. Freeze banana chunks for at least 2 hours.",
+      "Combine frozen banana chunks, heavy cream, 30g granulated sugar, and vanilla extract in a high-speed blender or food processor.",
+      "Blend until smooth and creamy, scraping down sides as needed. Serve immediately or freeze briefly for a firmer consistency.",
+      "To plate, place one brownie square on a white porcelain plate.",
+      "Arrange a spoonful of roasted apple cubes beside the brownie.",
+      "Spoon a swirl of cherry coulis onto the plate. Create a small pool or artistic streak.",
+      "Place a scoop of banana ice cream next to the brownie. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 69.8,
+      "calories": 1326.3,
+      "cholesterol_mg": 256.3,
+      "dietary_fiber_g": 16.8,
+      "protein_g": 18.9,
+      "saturated_fat_g": 41.2,
+      "sodium_mg": 396.6,
+      "total_carbs_g": 148.5,
+      "total_fat_g": 83.4,
+      "total_sugars_g": 102.1,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.4,
+      "calories": 254.4,
+      "cholesterol_mg": 49.2,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 3.6,
+      "saturated_fat_g": 7.9,
+      "sodium_mg": 76.1,
+      "total_carbs_g": 28.5,
+      "total_fat_g": 16,
+      "total_sugars_g": 19.6,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85,
+      "dietary_fiber": 60,
+      "protein": 38,
+      "saturated_fat": 206,
+      "sodium": 17,
+      "total_carbs": 54,
+      "total_fat": 107
+    },
+    "serving_size_g": 521.25,
+    "total_recipe_weight_g": 2085
+  }
+]

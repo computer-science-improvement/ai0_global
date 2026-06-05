@@ -1,0 +1,713 @@
+[
+  {
+    "recipe_name": "Arroz con Cerdo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_cerdo_20250624_030050_c1a29409.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:00:50.968917000Z",
+    "selected_ingredients": [
+      "pork",
+      "garlic",
+      "rice",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "Puerto Rican cuisine",
+    "visual_description": "The dish features a vibrant, orange-hued rice known as Arroz con Cerdo, served on a clean white porcelain plate. Large, golden-brown seared pork chunks are distributed throughout the fluffy medium-grain rice. Visible pieces of translucent diced onions, minced garlic, green olives, and small capers add textural variety. The rice is garnished with fresh, bright green chopped cilantro. A side of thick-cut fried sweet plantains rests beside the rice. The setting is a modern bistro with a light wood table and a neutral cotton napkin. Lighting is natural and even, highlighting the moist texture of the meat and individual grains. The entire plate is visible, showing a balanced restaurant portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Puerto Rican",
+    "cultural_origin": "Puerto Rico",
+    "cultural_serving_suggestions": [
+      "Serve with fried sweet plantains (amarillos)",
+      "Accompany with thick slices of fresh avocado",
+      "Serve with a side of crispy tostones"
+    ],
+    "hero_ingredient": "Pork shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, cut into 3cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Medium-grain rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomato sauce",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sazón with achiote",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Green olives, pitted",
+        "quantity": "50g"
+      },
+      {
+        "name": "Capers",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season pork chunks with salt, pepper, and oregano.",
+      "Heat olive oil in a heavy-bottomed pot over medium-high heat.",
+      "Brown pork chunks on all sides until golden. Remove pork from pot.",
+      "Sauté diced onion and minced garlic in the same pot until translucent.",
+      "Stir in tomato sauce, sazón, green olives, and capers.",
+      "Return pork to the pot. Add rice and stir to coat grains.",
+      "Pour in water. Bring the mixture to a boil.",
+      "Reduce heat to low. Cover the pot with a tight-fitting lid.",
+      "Simmer for 20 minutes until rice is tender and liquid is absorbed.",
+      "Fluff rice gently with a fork. Rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Use a caldero for the most authentic rice texture.",
+      "Do not stir the rice while simmering to allow a crust (pegao) to form at the bottom.",
+      "Ensure pork reaches an internal temperature of 75°C."
+    ],
+    "traditional_techniques": [
+      "Sufreír",
+      "Pegao"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 906,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 43,
+      "saturated_fat_g": 14,
+      "sodium_mg": 1675,
+      "total_carbs_g": 84.5,
+      "total_fat_g": 44,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 201.3,
+      "cholesterol_mg": 33.3,
+      "dietary_fiber_g": 0.78,
+      "protein_g": 9.56,
+      "saturated_fat_g": 3.11,
+      "sodium_mg": 372.2,
+      "total_carbs_g": 18.78,
+      "total_fat_g": 9.78,
+      "total_sugars_g": 0.44,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 13,
+      "protein": 86,
+      "saturated_fat": 70,
+      "sodium": 73,
+      "total_carbs": 31,
+      "total_fat": 56
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Beef and Mushroom Ragu with Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_and_mushroom_ragu_with_tagliatelle_20250624_025931_7b95f2ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:59:32.059527000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "garlic",
+      "basil",
+      "onion",
+      "pasta",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of tagliatelle pasta is elegantly twirled into a mound within a pristine white porcelain bowl. The pasta is richly coated with a dark reddish-brown beef and mushroom ragu. Prominently featured are tender, browned beef chunks, approximately 2-3 cm, interspersed with soft, diced red and yellow bell peppers and earthy sliced mushrooms. The sauce possesses a glossy, thick consistency. Fresh, vibrant green basil leaves are scattered over the top, offering a bright color contrast and aromatic garnish. A light dusting of finely grated Parmesan cheese completes the presentation. The bowl sits on a simple wooden table. A classic silver fork rests beside it, with a white cotton napkin. Natural, even lighting illuminates the dish, hinting at a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Pair with a glass of red wine, such as Chianti or Sangiovese",
+      "Serve alongside a simple green salad dressed with vinaigrette"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or stewing beef",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dry red wine (e.g., Chianti)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large handful"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 2-3 cm chunks. Pat dry. Season beef generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef chunks in batches until well browned on all sides. Do not overcrowd the pot. Remove beef and set aside.",
+      "Reduce heat to medium. Add diced onion and diced bell peppers to the pot. Sauté for 5-7 minutes until softened. Add minced garlic and sliced mushrooms. Cook for another 5 minutes until mushrooms are browned.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is almost evaporated.",
+      "Return seared beef to the pot. Add crushed tomatoes and beef broth. Bring to a simmer. Reduce heat to low, cover, and cook for 2-2.5 hours, or until beef is very tender. Stir occasionally.",
+      "Uncover the pot for the last 30 minutes of cooking to allow the sauce to thicken. Adjust seasoning with salt and pepper as needed.",
+      "While ragu finishes, cook tagliatelle pasta according to package directions in salted boiling water until al dente.",
+      "Drain pasta. Add pasta directly to the ragu in the pot, or serve ragu over individual pasta portions. Toss gently to combine. Stir in most of the fresh basil, reserving some for garnish.",
+      "Serve immediately. Garnish with remaining fresh basil and grated Parmesan cheese."
+    ],
+    "notes": [
+      "For a richer flavor, use beef stock instead of broth.",
+      "The ragu can be made a day ahead; flavors deepen overnight."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 861,
+      "cholesterol_mg": 122.5,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 62.8,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 706.9,
+      "total_carbs_g": 96.2,
+      "total_fat_g": 22.5,
+      "total_sugars_g": 13.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113,
+      "cholesterol_mg": 16.1,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.2,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 92.7,
+      "total_carbs_g": 12.6,
+      "total_fat_g": 3,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.8,
+      "dietary_fiber": 29.6,
+      "protein": 125.7,
+      "saturated_fat": 33.5,
+      "sodium": 30.7,
+      "total_carbs": 35,
+      "total_fat": 28.8
+    },
+    "serving_size_g": 763,
+    "total_recipe_weight_g": 3052
+  },
+  {
+    "recipe_name": "Savory Ham and Sausage Strata",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_ham_and_sausage_strata_20250624_025858_8bfa8cd1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:58:59.127074000Z",
+    "selected_ingredients": [
+      "ham",
+      "sausage",
+      "bread",
+      "cream cheese",
+      "tomato",
+      "onion",
+      "pimento pepper",
+      "mayonnaise"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous square portion of the golden-brown strata is centrally placed on a clean white porcelain dinner plate. The top crust is visibly crisp and golden, with some bubbling and browned edges from baking. Inside, the strata reveals layers of soft, custard-soaked bread cubes interspersed with chunks of savory, browned crumbled sausage, diced pink ham, vibrant red diced tomatoes, translucent sautéed onions, and bright orange-red diced pimento pieces. The creamy white of the melted cream cheese is subtly visible throughout the moist interior. The overall color palette is warm and inviting, dominated by golden browns, rich reds, and creamy whites. A light sprinkle of fresh, vibrant green chopped parsley is scattered over the top of the strata, providing a fresh contrast and pop of color. The plate rests on a simple, light-colored wooden table surface, suggesting a modern bistro setting. A neatly folded plain cotton napkin is placed beside the plate. The background is softly blurred, hinting at a casual restaurant atmosphere without distraction. Natural, even lighting illuminates the dish, enhancing its textures and colors without harsh shadows. A single, substantial individual portion is presented.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Stale bread",
+        "quantity": "400 g, cubed"
+      },
+      {
+        "name": "Cooked ham",
+        "quantity": "200 g, diced"
+      },
+      {
+        "name": "Italian sausage",
+        "quantity": "300 g, cooked and crumbled"
+      },
+      {
+        "name": "Cream cheese",
+        "quantity": "200 g, softened"
+      },
+      {
+        "name": "Large tomato",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Pimento peppers (jarred)",
+        "quantity": "100 g, drained and diced"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Milk",
+        "quantity": "350 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare vegetables: Dice onion, tomato, and pimento.",
+      "Cook sausage: Brown sausage in a large pan. Crumble as it cooks. Drain excess fat.",
+      "Sauté aromatics: Melt butter in the same pan. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Combine filling: In a large bowl, combine cooked sausage, diced ham, diced tomato, diced pimento, and sautéed onion.",
+      "Prepare custard: In a separate bowl, whisk eggs, milk, softened cream cheese, mayonnaise, salt, and pepper until smooth.",
+      "Assemble strata: Grease a 20x30 cm baking dish. Arrange half of the bread cubes evenly in the bottom.",
+      "Layer filling: Spread half of the meat and vegetable mixture over the bread.",
+      "Repeat layers: Add remaining bread cubes, then top with the remaining meat and vegetable mixture.",
+      "Pour custard: Slowly pour the egg mixture evenly over the layers, ensuring all bread is moistened.",
+      "Chill: Cover the dish and refrigerate for at least 2 hours, or preferably overnight, to allow bread to absorb custard.",
+      "Bake: Preheat oven to 180°C. Uncover the strata. Bake for 45-55 minutes, or until golden brown and set in the center. A knife inserted into the center should come out clean.",
+      "Rest and serve: Let strata rest for 10 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 1046,
+      "cholesterol_mg": 347.6,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 45.8,
+      "saturated_fat_g": 27.1,
+      "sodium_mg": 2050.3,
+      "total_carbs_g": 63.3,
+      "total_fat_g": 67.9,
+      "total_sugars_g": 15.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 195,
+      "cholesterol_mg": 64.8,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.5,
+      "saturated_fat_g": 5,
+      "sodium_mg": 382.3,
+      "total_carbs_g": 11.8,
+      "total_fat_g": 12.7,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 116,
+      "dietary_fiber": 15,
+      "protein": 92,
+      "saturated_fat": 135,
+      "sodium": 89,
+      "total_carbs": 23,
+      "total_fat": 87
+    },
+    "serving_size_g": 536.3,
+    "total_recipe_weight_g": 2145
+  },
+  {
+    "recipe_name": "Braised Beef with Mushrooms and Dark Beer",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_mushrooms_and_dark_beer_20250624_025809_33defcc4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:58:09.645881000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "mushroom",
+      "dark beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of rich Braised Beef with Mushrooms and Dark Beer is presented on a clean white porcelain dinner plate. Three or four generous, thick chunks of dark brown, tender-looking braised beef are nestled centrally. The beef is coated in a glossy, deep brown, thick beer-infused sauce. Around the beef, soft, slightly caramelized sliced onions and golden-brown quartered cremini mushrooms are arranged. The dish has a rustic yet refined appearance, showcasing the deep, savory colors of the braised ingredients. A sprinkle of bright green chopped fresh parsley adds a vibrant contrast and fresh aroma. The plate is moderately filled, leaving appropriate negative space around the edges. The setting is a modern bistro, with the plate resting on a simple wooden table surface. A neatly folded white cotton napkin and standard silver flatware are placed beside the plate. Natural, even lighting highlights the textures and colors of the food. The background is subtly blurred, suggesting a casual yet sophisticated restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Bistro",
+    "cultural_origin": "European Bistro",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the rich sauce.",
+      "Accompany with creamy mashed potatoes or buttered egg noodles."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800 g, cut into 4-5 cm chunks"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large, sliced"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300 g, quartered"
+      },
+      {
+        "name": "Dark beer (stout or dubbel)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat.",
+      "Sear beef in batches until deeply browned on all sides. Do not overcrowd the pot. Remove beef and set aside.",
+      "Add sliced onions to the pot. Sauté until softened and translucent, about 8-10 minutes.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Sprinkle flour over the onions. Cook for 1 minute, stirring to combine.",
+      "Gradually pour in the dark beer, scraping up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Stir in beef broth, thyme sprigs, and bay leaf. Return the seared beef to the pot.",
+      "Bring the liquid back to a gentle simmer. Cover the pot tightly.",
+      "Transfer to a preheated oven at 160°C (325°F). Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "While beef braises, heat a separate pan over medium-high heat. Add a splash of olive oil.",
+      "Add quartered mushrooms. Sauté until golden brown and tender, about 5-7 minutes. Season with salt and pepper. Set aside.",
+      "Once beef is tender, remove the pot from the oven. Discard thyme sprigs and bay leaf.",
+      "Taste the sauce and adjust seasoning as needed. If sauce is too thin, simmer uncovered on the stovetop until desired consistency.",
+      "Stir in the sautéed mushrooms just before serving.",
+      "Ladle the braised beef and mushroom mixture onto individual plates. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best results, ensure beef is seared deeply for maximum flavor development.",
+      "Adjust braising time based on beef cut and desired tenderness; it should be very tender but still hold its shape."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 654,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 48.2,
+      "saturated_fat_g": 12.3,
+      "sodium_mg": 220,
+      "total_carbs_g": 26.8,
+      "total_fat_g": 36.1,
+      "total_sugars_g": 10,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8,
+      "saturated_fat_g": 2,
+      "sodium_mg": 36,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 12,
+      "protein": 96,
+      "saturated_fat": 62,
+      "sodium": 10,
+      "total_carbs": 10,
+      "total_fat": 46
+    },
+    "serving_size_g": 605.75,
+    "total_recipe_weight_g": 2423
+  },
+  {
+    "recipe_name": "Turkish Chocolate Wet Cake (Islak Kek)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_turkish_chocolate_wet_cake_%28islak_kek%29_20250624_025744_b5608178.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:57:44.608876000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "flour",
+      "butter",
+      "heavy cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "Turkish cuisine",
+    "visual_description": "A single, generous square slice of dark, moist Turkish Chocolate Wet Cake (Islak Kek) rests on a simple, slightly off-white ceramic dessert plate. The cake is deeply rich brown, almost black, and appears intensely moist, glistening from the absorbed chocolate sauce. The top surface shows a smooth, slightly glossy finish from the sauce. The cake is cut cleanly, revealing its dense, uniform crumb. A few delicate curls of dark chocolate are scattered on top as a simple garnish. A small, unadorned silver fork lies beside the plate. The setting is a well-used wooden dining table, showing subtle grain and natural wear. In the softly blurred background, a traditional Turkish tea glass (ince belli çay bardağı) filled with dark, amber tea sits on a small, unpatterned coaster, suggesting a cozy, lived-in family kitchen atmosphere with warm, natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Turkish",
+    "cultural_origin": "Turkish",
+    "cultural_serving_suggestions": [
+      "Serve alongside a small glass of traditional Turkish black tea (çay)."
+    ],
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "200g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Unsweetened Cocoa Powder",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "20g"
+      },
+      {
+        "name": "Milk (for sauce)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Granulated Sugar (for sauce)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsweetened Cocoa Powder (for sauce)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dark Chocolate (60-70% cocoa, for sauce)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Heavy Cream (for sauce)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Vegetable Oil (for sauce)",
+        "quantity": "50ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 170°C. Grease and flour a 20x20 cm baking pan.",
+      "In a large bowl, whisk eggs and 200g sugar until light and fluffy.",
+      "Add 100ml milk, 100ml vegetable oil, 50g cocoa powder, and vanilla extract. Mix until combined.",
+      "Sift in 200g flour and 10g baking powder. Gently fold until just combined. Do not overmix.",
+      "Pour batter into prepared pan. Bake for 30-35 minutes, or until a toothpick inserted into the center comes out clean.",
+      "While cake bakes, prepare the sauce. In a saucepan, combine 200ml milk, 100g sugar, 30g cocoa powder, 50ml heavy cream, and 50ml vegetable oil.",
+      "Bring mixture to a gentle boil over medium heat, stirring constantly. Reduce heat to low.",
+      "Add 100g dark chocolate and 20g butter to the sauce. Stir until chocolate and butter are fully melted and sauce is smooth.",
+      "Remove sauce from heat. Set aside.",
+      "Once cake is baked, remove from oven. Immediately pour the hot chocolate sauce evenly over the warm cake. Ensure full coverage.",
+      "Let cake cool completely at room temperature. Allow sauce to fully absorb, about 1-2 hours.",
+      "Cut cake into squares or rectangles before serving."
+    ],
+    "notes": [
+      "Ensure the cake is warm and the sauce is hot when pouring for best absorption.",
+      "Patience is key; allow ample time for the cake to soak up all the sauce for maximum moisture."
+    ],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 85,
+      "calories": 1148,
+      "cholesterol_mg": 176,
+      "dietary_fiber_g": 10.5,
+      "protein_g": 17.85,
+      "saturated_fat_g": 17.13,
+      "sodium_mg": 361,
+      "total_carbs_g": 145.23,
+      "total_fat_g": 60.58,
+      "total_sugars_g": 92.05,
+      "trans_fat_g": 0.38
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 23.74,
+      "calories": 321,
+      "cholesterol_mg": 49,
+      "dietary_fiber_g": 2.93,
+      "protein_g": 4.99,
+      "saturated_fat_g": 4.78,
+      "sodium_mg": 101,
+      "total_carbs_g": 40.57,
+      "total_fat_g": 16.92,
+      "total_sugars_g": 25.71,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.6,
+      "dietary_fiber": 37.5,
+      "protein": 35.7,
+      "saturated_fat": 85.6,
+      "sodium": 15.7,
+      "total_carbs": 52.8,
+      "total_fat": 77.7
+    },
+    "serving_size_g": 358,
+    "total_recipe_weight_g": 1432
+  }
+]

@@ -1,0 +1,613 @@
+[
+  {
+    "recipe_name": "Creamy Garlic Chicken with Roasted Potatoes and Carrots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_garlic_chicken_with_roasted_potatoes_and_carrots_20250706_222540_7d1db91b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T22:25:41.081277000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken",
+      "carrot",
+      "garlic",
+      "cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Garlic Chicken with Roasted Potatoes and Carrots rests on a simple, round, off-white ceramic plate. A golden-brown, seared chicken thigh is positioned prominently on one side. Alongside, roasted potato wedges and thick carrot chunks display their natural earthy colors with slightly caramelized edges. A rich, creamy white garlic sauce is generously spooned over the chicken and vegetables, creating a comforting sheen. The arrangement is casual and natural, with components touching and slightly overlapping. A light sprinkle of vibrant green chopped fresh parsley adds a fresh contrast. The plate sits on a well-used wooden dining table, illuminated by warm, inviting kitchen light, evoking a homely family meal setting. Standard everyday flatware is casually placed beside the plate. The background is minimal, focusing on the hearty, comforting food.",
+    "number_of_servings": 1,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thigh, boneless, skin-on",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Potato",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "5 grams"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and cut potato into 2 cm wedges. Wash and cut carrot into 3 cm chunks.",
+      "Toss potato and carrot with 5 ml olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast vegetables for 25-30 minutes, or until tender and lightly browned.",
+      "Pat chicken thigh dry. Season both sides with salt and pepper.",
+      "Heat remaining 10 ml olive oil in an oven-safe skillet over medium-high heat.",
+      "Place chicken skin-side down in the hot skillet. Sear for 6-8 minutes until skin is golden and crispy.",
+      "Flip chicken. Transfer skillet to the preheated oven. Bake for 10-15 minutes, or until internal temperature reaches 75°C.",
+      "Remove chicken from skillet. Set aside. Keep warm.",
+      "Mince garlic. Add minced garlic to the skillet. Sauté for 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the skillet. Bring to a simmer.",
+      "Stir in heavy cream. Simmer for 3-5 minutes, until sauce slightly thickens.",
+      "Taste and adjust seasoning if needed.",
+      "Plate roasted chicken with potato wedges and carrot chunks. Spoon creamy garlic sauce generously over the chicken and vegetables.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 894.2,
+      "cholesterol_mg": 244.6,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 35.3,
+      "saturated_fat_g": 26.7,
+      "sodium_mg": 1057.4,
+      "total_carbs_g": 42.4,
+      "total_fat_g": 65.9,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156.9,
+      "cholesterol_mg": 42.9,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.2,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 185.6,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 11.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81.5,
+      "dietary_fiber": 23,
+      "protein": 70.6,
+      "saturated_fat": 133.3,
+      "sodium": 46,
+      "total_carbs": 15.4,
+      "total_fat": 84.5
+    },
+    "serving_size_g": 569.8,
+    "total_recipe_weight_g": 569.8
+  },
+  {
+    "recipe_name": "Savory Oat Porridge with Pan-Seared Banana and Herbs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_oat_porridge_with_pan-seared_banana_and_herbs_20250706_221917_9866cef0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T22:19:18.002979000Z",
+    "selected_ingredients": [
+      "oats",
+      "milk",
+      "banana"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of savory oat porridge rests in a well-used, deep ceramic bowl with natural imperfections. The porridge is thick, creamy, and a light off-white color, appearing invitingly warm. Pan-seared banana slices, about 1 cm thick, are casually arranged on top, displaying golden-brown caramelized edges and soft interiors. A sprinkle of bright green chopped chives adds a fresh pop of color and texture. The bowl sits on a rustic, well-worn wooden dining table, illuminated by warm, soft kitchen lighting. A simple metal spoon is placed beside the bowl. A casually folded, plain cloth napkin is nearby. The background is minimal, showing glimpses of a lived-in family kitchen, creating a comforting, homely atmosphere. The plating is natural and unforced, reflecting everyday home cooking with a focus on simple, hearty satisfaction.",
+    "number_of_servings": 1,
+    "cuisine_type": "Home Style",
+    "hero_ingredient": "Oats",
+    "ingredients": [
+      {
+        "name": "Rolled Oats",
+        "quantity": "80 grams"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "250 millilitres"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100 millilitres"
+      },
+      {
+        "name": "Ripe Banana",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Butter",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Small Onion",
+        "quantity": "50 grams, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "5 grams, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat a small saucepan over medium heat. Add diced onion. Cook until softened, about 3 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in rolled oats. Toast for 1 minute.",
+      "Pour in vegetable broth and milk. Bring to a simmer. Reduce heat to low.",
+      "Cook, stirring occasionally, until oats are creamy and liquid is absorbed, about 8-10 minutes. Adjust consistency with more broth or milk if needed. Season with salt and pepper.",
+      "While oats cook, slice banana into 1 cm thick rounds.",
+      "Heat a small non-stick pan over medium-high heat. Add butter. Once melted, add banana slices in a single layer.",
+      "Sear banana for 2-3 minutes per side until golden brown and slightly caramelized. Season lightly with salt and a pinch of black pepper.",
+      "Spoon savory oat porridge into a bowl. Arrange pan-seared banana slices on top.",
+      "Garnish with chopped fresh chives. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 541,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 12.6,
+      "protein_g": 20.2,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 1221,
+      "total_carbs_g": 93,
+      "total_fat_g": 12.3,
+      "total_sugars_g": 23.2,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88,
+      "cholesterol_mg": 3.1,
+      "dietary_fiber_g": 2,
+      "protein_g": 3.3,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 198.1,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 2,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 9,
+      "dietary_fiber": 45,
+      "protein": 40,
+      "saturated_fat": 24,
+      "sodium": 53,
+      "total_carbs": 34,
+      "total_fat": 16
+    },
+    "serving_size_g": 616,
+    "total_recipe_weight_g": 616
+  },
+  {
+    "recipe_name": "Confit Poulet Gésiers avec Pommes de Terre Rôties",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_confit_poulet_g%C3%A9siers_avec_pommes_de_terre_r%C3%B4ties_20250706_221201_174dd3fa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T22:12:01.759786000Z",
+    "selected_ingredients": [
+      "chicken gizzard"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, white porcelain dinner plate, capturing a modern bistro aesthetic. Central to the plate are several whole, golden-brown confit chicken gizzards, their surfaces showing a beautifully seared, slightly crispy texture. Their natural, irregular shapes are maintained, showcasing the richness of the confit. Alongside the gizzards, a vibrant medley of roasted potatoes and bright green beans is artfully arranged. The small potatoes, some halved, some quartered, are roasted to a tender, golden finish, their skins slightly blistered. The green beans retain their vivid green hue and crisp-tender texture. Thinly sliced shallots are interspersed throughout the potato and bean mixture, adding delicate rings of white and purple. A light vinaigrette glistens subtly on the vegetables. The plate has appropriate negative space, ensuring the focus remains on the food. A scattering of fresh, finely chopped parsley provides a final touch of verdant color and freshness. The setting includes a simple wooden table, a white linen napkin, and classic flatware, with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Bistro",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp baguette to sop up any remaining duck fat or vinaigrette.",
+      "Pair with a light-bodied red wine, suchs as a Beaujolais or Pinot Noir.",
+      "Offer a simple green salad dressed with a classic French vinaigrette as a starter."
+    ],
+    "hero_ingredient": "Chicken Gizzard",
+    "ingredients": [
+      {
+        "name": "Chicken Gizzards",
+        "quantity": "800g"
+      },
+      {
+        "name": "Duck Fat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Coarse Sea Salt",
+        "quantity": "15g"
+      },
+      {
+        "name": "Black Peppercorns",
+        "quantity": "5g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Green Beans",
+        "quantity": "300g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Clean gizzards thoroughly. Pat dry. In a bowl, combine gizzards with salt, crushed peppercorns, thyme, and bay leaves. Mix well. Cover. Refrigerate for 12-24 hours.",
+      "Preheat oven to 150°C. Rinse gizzards under cold water. Pat very dry. Place gizzards in a heavy-bottomed pot or oven-safe dish. Add duck fat, ensuring gizzards are fully submerged. Add garlic cloves.",
+      "Cover the pot. Cook in oven for 2.5 to 3 hours, or until gizzards are fork-tender. Internal temperature must reach 75°C. Remove from oven. Let cool slightly in fat.",
+      "Wash potatoes. Cut larger ones into halves or quarters. Toss with 15ml olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast in oven at 200°C for 25-30 minutes, or until golden and tender.",
+      "Blanch green beans in boiling salted water for 3-4 minutes until crisp-tender. Drain. Immediately plunge into ice water to stop cooking. Drain well.",
+      "Remove gizzards from duck fat. Reserve fat for future use. Heat a large skillet over medium-high heat. Add 30ml of reserved duck fat. Add cooked gizzards. Sear for 5-7 minutes until crispy and golden brown on all sides.",
+      "In a small bowl, whisk together Dijon mustard, red wine vinegar, 15ml olive oil, salt, and pepper.",
+      "In a large bowl, combine roasted potatoes, blanched green beans, and thinly sliced shallots. Drizzle with vinaigrette. Toss gently.",
+      "Arrange seared confit gizzards on plates. Serve alongside the potato and green bean salad. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Properly cleaned gizzards are essential for taste and texture.",
+      "Duck fat can be reused multiple times after straining.",
+      "Ensure gizzards are very dry before searing for optimal crispness."
+    ],
+    "traditional_techniques": [
+      "Confit",
+      "Blanching"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1651,
+      "cholesterol_mg": 858.8,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 56.4,
+      "saturated_fat_g": 45.9,
+      "sodium_mg": 1666.3,
+      "total_carbs_g": 35.5,
+      "total_fat_g": 145.5,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 279,
+      "cholesterol_mg": 145.1,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.5,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 281.6,
+      "total_carbs_g": 6,
+      "total_fat_g": 24.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 286,
+      "dietary_fiber": 23,
+      "protein": 113,
+      "saturated_fat": 230,
+      "sodium": 72,
+      "total_carbs": 13,
+      "total_fat": 187
+    },
+    "serving_size_g": 591.75,
+    "total_recipe_weight_g": 2367
+  },
+  {
+    "recipe_name": "Tuscan Chicken and Vegetable Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken_and_vegetable_tagliatelle_20250706_220954_e6c722d1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T22:09:55.127414000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "bell pepper",
+      "carrot",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tuscan Chicken and Vegetable Tagliatelle is presented on a round, clean white porcelain plate, centrally placed on a simple wooden table. The dish features a generous swirl of golden tagliatelle pasta, richly coated in a vibrant, rustic red tomato sauce. Nestled within the pasta are two large, golden-brown seared chicken thigh chunks, showcasing their tender, moist texture. Abundant diced red and green bell peppers and small, tender carrot pieces are visibly integrated throughout the sauce, adding pops of color and texture. Fresh green basil leaves are scattered over the top, providing a verdant contrast. A light dusting of grated Parmesan cheese completes the presentation. The plate is surrounded by a simple cotton napkin and standard European flatware. The scene is illuminated by soft, natural, even lighting from above, creating a warm and inviting casual dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the sauce.",
+      "Offer extra grated Parmesan cheese at the table.",
+      "Pair with a simple green salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare vegetables: Dice onion. Mince garlic. Dice bell peppers into 2 cm pieces. Dice carrots into 1 cm pieces.",
+      "Season chicken: Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Sear chicken: Heat olive oil in a large pot or Dutch oven over medium-high heat. Sear chicken thighs 4-5 minutes per side until golden brown. Remove chicken from pot. Set aside.",
+      "Sauté aromatics: Add onion to pot. Sauté 3 minutes until softened. Add carrots and bell peppers. Sauté 5-7 minutes until slightly tender. Add garlic and thyme sprigs. Sauté 1 minute until fragrant.",
+      "Deglaze: Pour in chicken broth. Scrape bottom of pot to release browned bits. Simmer 2 minutes.",
+      "Add tomatoes: Stir in crushed tomatoes. Bring to a simmer.",
+      "Simmer chicken: Return seared chicken thighs to pot. Ensure chicken is mostly submerged. Reduce heat to low. Cover and simmer 20-25 minutes, or until chicken reaches internal temperature of 75°C (167°F).",
+      "Cook pasta: While chicken simmers, cook tagliatelle according to package directions in salted water until al dente. Drain pasta.",
+      "Combine: Discard thyme sprigs from sauce. Return chicken thighs to sauce, or cut into 2-3 large chunks. Add cooked tagliatelle to the pot with the sauce and chicken. Toss to coat pasta evenly.",
+      "Serve: Serve immediately. Garnish with grated Parmesan cheese and fresh basil leaves."
+    ],
+    "notes": [
+      "Adjust seasoning to taste before serving.",
+      "Chicken can be kept whole or cut into large chunks for serving. Do not shred too finely."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 825,
+      "cholesterol_mg": 162,
+      "dietary_fiber_g": 8,
+      "protein_g": 53.3,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 644,
+      "total_carbs_g": 94.5,
+      "total_fat_g": 23.5,
+      "total_sugars_g": 13.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113.8,
+      "cholesterol_mg": 22.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.3,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 88.8,
+      "total_carbs_g": 13,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 29,
+      "protein": 107,
+      "saturated_fat": 27,
+      "sodium": 28,
+      "total_carbs": 34,
+      "total_fat": 30
+    },
+    "serving_size_g": 725,
+    "total_recipe_weight_g": 2899
+  },
+  {
+    "recipe_name": "Strawberry Rose Ma'amoul Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_strawberry_rose_ma%27amoul_bites_20250706_220048_cc725d0f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T22:00:49.188467000Z",
+    "selected_ingredients": [
+      {
+        "name": "strawberry"
+      },
+      {
+        "name": "sugar"
+      },
+      {
+        "name": "rose"
+      },
+      {
+        "name": "butter"
+      },
+      {
+        "name": "egg"
+      },
+      {
+        "name": "vanilla"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Lebanese",
+    "visual_description": "Six to nine delicate, perfectly formed Strawberry Rose Ma'amoul Bites are arranged artfully on a traditional Lebanese ceramic serving platter. Each miniature pastry is golden-brown on the bottom with a pale, soft top, lightly dusted with a fine layer of powdered sugar. The Ma'amoul display intricate patterns from the traditional molds, suggesting a tender, crumbly texture. A hint of the pink strawberry-rose filling peeks from a few pieces where the dough has subtly cracked. The platter rests on a well-used wooden dining table in a homely family kitchen, bathed in warm, cozy lighting. A casually placed cloth napkin in a muted tone sits beside the platter. The background is minimal, focusing on the authentic, homemade comfort of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Lebanese",
+    "cultural_origin": "Lebanese",
+    "cultural_serving_suggestions": [
+      "Serve with strong, hot Arabic coffee or a glass of refreshing mint tea.",
+      "Traditionally offered to guests during special occasions, holidays like Eid, or family gatherings.",
+      "Presented on ornate trays or platters as a symbol of hospitality."
+    ],
+    "hero_ingredient": "Strawberry",
+    "ingredients": [
+      {
+        "name": "Fine Semolina",
+        "quantity": "250 g"
+      },
+      {
+        "name": "All-purpose Flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Rose Water",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Large Egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh Strawberries, finely diced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated Sugar (for filling)",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Powdered Sugar",
+        "quantity": "for dusting"
+      }
+    ],
+    "instructions": [
+      "Prepare strawberry filling: Combine diced strawberries and 75g granulated sugar in a small saucepan. Cook over medium heat. Stir until sugar dissolves and strawberries soften. Simmer for 10-15 minutes until mixture thickens into a jam-like consistency. Cool completely.",
+      "Prepare dough: Melt unsalted butter in a small pot. Combine semolina, flour, and 50g granulated sugar in a large bowl. Pour melted butter over dry ingredients. Mix well with hands until crumbly. Cover and let rest for at least 4 hours, or preferably overnight, at room temperature.",
+      "Finish dough: Add rose water, vanilla extract, and egg to the semolina mixture. Knead until a soft, pliable dough forms. Do not over-knead.",
+      "Shape Ma'amoul: Take small portions of dough (about 20g each). Roll into a ball. Create a well in the center using your thumb. Fill with about 1 teaspoon of cooled strawberry filling. Carefully close the dough around the filling, sealing completely. Shape into an oval or round, or press into a traditional ma'amoul mold to create patterns. Gently tap to release.",
+      "Bake: Preheat oven to 180°C (350°F). Place shaped ma'amoul on a baking sheet lined with parchment paper. Bake for 15-20 minutes, or until bottoms are lightly golden. Tops should remain pale.",
+      "Cool and dust: Remove from oven. Let cool completely on a wire rack. Once cool, dust generously with powdered sugar before serving."
+    ],
+    "notes": [
+      "Resting the semolina dough for several hours or overnight is crucial for the perfect texture.",
+      "Using a ma'amoul mold creates beautiful, traditional patterns; however, you can also hand-shape them into simple balls or ovals."
+    ],
+    "traditional_techniques": [
+      "Preparing semolina-based dough (farina)",
+      "Stuffing and shaping ma'amoul using molds or by hand"
+    ]
+  }
+]

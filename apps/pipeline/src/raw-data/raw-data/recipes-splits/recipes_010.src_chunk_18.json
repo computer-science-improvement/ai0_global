@@ -1,0 +1,584 @@
+[
+  {
+    "recipe_name": "Japanese Chicken Soba Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_japanese_chicken_soba_stir-fry_20250713_085838_fa07f8c4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T08:58:39.375964000Z",
+    "selected_ingredients": [
+      "soba noodle",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of Japanese Chicken Soba Stir-fry is casually plated on an everyday, off-white ceramic dish, resting on a well-worn wooden dining table. Seared chicken chunks, approximately 2 cm, are nestled among a mound of springy soba noodles. Vibrant julienned red bell pepper and carrots, along with bright green snap peas, are interspersed throughout, adding pops of color and texture. Fresh, thinly sliced spring onions are sprinkled over the top. The noodles and ingredients are coated in a glossy, savory sauce. A pair of dark wooden chopsticks rests beside the plate. The scene is bathed in warm, natural kitchen light, creating a comforting, lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with chopsticks.",
+      "Offer a small dish of shichimi togarashi (Japanese seven-spice blend) for optional added heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Soba noodles",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Snap peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "3"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Cook soba noodles according to package instructions. Drain well. Rinse with cold water. Drain again.",
+      "Cut chicken thighs into 2 cm chunks. Pat dry.",
+      "Julienne red bell pepper and carrot. Trim snap peas. Thinly slice spring onions.",
+      "Grate ginger. Mince garlic.",
+      "In a small bowl, whisk together soy sauce, mirin, toasted sesame oil, grated ginger, minced garlic, and water. Set aside.",
+      "Heat vegetable oil in a large wok or deep frying pan over high heat.",
+      "Add chicken chunks. Stir-fry for 5-7 minutes until cooked through. Ensure internal temperature reaches 75°C. Remove chicken from wok. Set aside.",
+      "Add julienned bell pepper and carrot to the wok. Stir-fry for 3 minutes until slightly tender-crisp.",
+      "Add snap peas and most of the sliced spring onions to the wok. Stir-fry for 1 minute.",
+      "Return cooked chicken to the wok. Add cooked soba noodles and the prepared sauce.",
+      "Toss everything together for 1-2 minutes until ingredients are well coated and heated through.",
+      "Serve immediately. Garnish with remaining fresh spring onions."
+    ],
+    "traditional_techniques": [
+      "Mise en place (preparation of all ingredients before cooking)",
+      "Stir-frying (Itame)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 600,
+      "cholesterol_mg": 125,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 37.3,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 1230,
+      "total_carbs_g": 67.2,
+      "total_fat_g": 19.8,
+      "total_sugars_g": 11.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.1,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 267,
+      "total_carbs_g": 14.6,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41.7,
+      "dietary_fiber": 23.4,
+      "protein": 74.6,
+      "saturated_fat": 21.6,
+      "sodium": 53.5,
+      "total_carbs": 24.4,
+      "total_fat": 25.4
+    },
+    "serving_size_g": 461,
+    "total_recipe_weight_g": 1844
+  },
+  {
+    "recipe_name": "Savory Beef & Mushroom Crostini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_beef_%26_mushroom_crostini_20250713_081614_18a16644.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T08:16:14.835700000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "onion",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A rustic wooden board or simple white ceramic platter holds 8-12 bite-sized Savory Beef & Mushroom Crostini. Each crostini features a golden-brown, toasted baguette slice, about 1.5 cm thick, topped generously with a hearty, dark brown mixture of minced beef, sliced mushrooms, finely diced onion, minced garlic, and diced tomatoes. The beef and mushroom mixture has a rich, savory appearance with visible textures of tender cooked beef and softened mushroom slices. Flecks of bright red from the tomato are interspersed. Each piece is garnished with a sprinkle of vibrant green, finely chopped fresh parsley. The crostini are arranged casually with some pieces touching, forming an inviting, natural cluster on the board. The setting is a homely family kitchen, with the board placed on a well-used wooden dining table. Natural, warm lighting illuminates the scene, creating a cozy and inviting atmosphere. The entire platter is visible, showcasing the comfort-focused presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef mince",
+        "quantity": "250g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Diced tomatoes",
+        "quantity": "100g"
+      },
+      {
+        "name": "Baguette",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Dice onion. Mince garlic. Slice mushrooms. Dice tomatoes.",
+      "Brown beef mince in a large pan over medium-high heat. Break up lumps. Cook until no pink remains. Drain excess fat.",
+      "Add diced onion and minced garlic to the pan with beef. Cook for 5 minutes until onion softens.",
+      "Stir in sliced mushrooms and diced tomatoes. Cook for 8-10 minutes until mushrooms are tender and liquid reduces. Season with salt and pepper.",
+      "Preheat oven to 180°C. Slice baguette into 1.5 cm thick rounds. Brush both sides lightly with olive oil.",
+      "Arrange baguette slices on a baking tray. Bake for 5-7 minutes, until golden and crisp.",
+      "Spoon the beef and mushroom mixture generously onto each toasted baguette slice.",
+      "Finely chop fresh parsley. Garnish each crostini with chopped parsley. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Arroz de Forno com Frango e Urucum",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_de_forno_com_frango_e_urucum_20250713_080045_95579701.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T08:00:46.316672000Z",
+    "selected_ingredients": [
+      {
+        "name": "ketchup"
+      },
+      {
+        "name": "rice"
+      },
+      {
+        "name": "annatto"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Brazilian",
+    "visual_description": "A single, generous portion of Arroz de Forno com Frango e Urucum rests on a simple, rustic ceramic plate with natural imperfections. The plate sits on a well-used wooden dining table. Tender, bone-in chicken thighs, deeply golden-brown from searing, are nestled into a bed of vibrant reddish-orange rice. The rice is infused with annatto, displaying a comforting, slightly irregular texture from the baking process. Diced red bell pepper and onion pieces are visible throughout the rice, adding flecks of color. A sprinkle of fresh, bright green chopped parsley garnishes the dish. The components touch and slightly overlap, creating a natural, homely presentation. The scene is bathed in warm, cozy kitchen lighting, reflecting a relaxed family dining atmosphere. A simple glass of water and a plain fork and knife are placed beside the plate. The entire plate is visible, showcasing a hearty, inviting portion. The chicken is presented as whole pieces, not sliced or fanned.",
+    "number_of_servings": 4,
+    "cuisine_type": "Brazilian",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Annatto (urucum) seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, medium",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Season chicken thighs generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Add annatto seeds. Cook 1 minute until oil is deep orange. Discard seeds.",
+      "Sear chicken thighs, skin-side down, in the annatto oil for 5-7 minutes until golden brown and crispy. Flip and sear other side for 3-4 minutes. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add diced onion and red bell pepper to the pot. Sauté 5 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in crushed tomatoes and ketchup. Cook 2 minutes, stirring constantly.",
+      "Pour in chicken broth. Bring to a simmer.",
+      "Add uncooked rice to the pot. Stir to combine. Nestle seared chicken thighs into the rice mixture, skin-side up.",
+      "Cover the pot tightly with a lid or foil. Transfer to the preheated oven.",
+      "Bake 30-35 minutes, or until rice is tender and liquid is absorbed. Chicken internal temperature should reach 75°C (167°F).",
+      "Remove pot from oven. Let rest, covered, for 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ]
+  },
+  {
+    "recipe_name": "Sustainable Pork & Macaroni Gratin with Fermented Root Slaw",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_pork_%26_macaroni_gratin_with_fermented_root_slaw_20250713_075637_6202b5ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T07:56:37.974868000Z",
+    "selected_ingredients": [
+      "pork",
+      "macaroni",
+      "smoked paprika",
+      "onion",
+      "mustard",
+      "oil"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of Sustainable Pork & Macaroni Gratin rests in a handcrafted, shallow ceramic bowl with a natural, unglazed rim. The gratin features a golden-brown, crispy breadcrumb crust, revealing tender, slow-cooked pork chunks and al dente macaroni beneath, coated in a creamy, subtly spiced sauce. The pork is presented in natural, rustic chunks, not sliced. Colors are warm and inviting, primarily golden-brown and creamy beige. Beside the gratin, a small, vibrant mound of julienned fermented root vegetable slaw adds a burst of contrasting color—orange from carrots, pale yellow from parsnips, and light green from cabbage—and a fresh, crisp texture. The dish is placed on a light, reclaimed wood surface. An undyed linen napkin in a natural beige tone is gently folded beside the bowl. Soft, diffused natural light illuminates the scene, creating gentle shadows and highlighting the organic textures of the food and serving ware. The background is clean and minimalist, with a hint of green from a blurred plant, emphasizing the dish as the focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder or belly",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Macaroni",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Vegetable or pork stock",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Non-iodized salt",
+        "quantity": "1 tbsp (for brine) + to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml (for brine)"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented root slaw first. Thinly slice carrots, parsnips, and green cabbage into julienne strips. Combine vegetables in a clean jar.",
+      "Dissolve 1 tablespoon non-iodized salt in 500 ml water to make brine. Pour brine over vegetables in jar. Ensure vegetables are fully submerged. Seal jar loosely. Let ferment at room temperature for 3-5 days. Refrigerate once desired tanginess is achieved.",
+      "Preheat oven to 180°C (350°F).",
+      "Cut pork shoulder into 3 cm chunks. Pat dry. Season with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a large oven-safe pot over medium-high heat. Sear pork chunks until browned on all sides. Remove pork from pot. Reserve.",
+      "Dice one onion. Add remaining 1 tablespoon olive oil to the pot. Sauté diced onion until softened, about 5 minutes. Stir in smoked paprika. Cook for 1 minute.",
+      "Return pork to pot. Add bay leaf and thyme sprigs. Pour in 400 ml stock. Bring to a simmer. Cover pot. Transfer to preheated oven. Braise for 90-120 minutes, or until pork is fork-tender.",
+      "Remove pork from oven. Discard bay leaf and thyme. Shred pork into smaller pieces using two forks. Reserve braising liquid.",
+      "Cook macaroni according to package directions until al dente. Drain well. Reserve a small amount of pasta water if needed for sauce consistency.",
+      "Finely dice remaining onion. In a separate saucepan, melt 30 g butter (if using) or 1 tbsp oil. Add diced onion. Sauté until translucent.",
+      "Whisk in flour to create a roux. Cook for 1 minute. Gradually whisk in 300 ml milk and 300 ml reserved braising liquid until smooth. Bring to a gentle simmer. Cook until sauce thickens.",
+      "Stir Dijon mustard into the sauce. Season with salt and pepper to taste. Add shredded pork and cooked macaroni to the sauce. Mix well.",
+      "Transfer pork and macaroni mixture to an oven-safe gratin dish. Top evenly with breadcrumbs.",
+      "Bake for 20-25 minutes, or until gratin is golden brown and bubbling. If breadcrumbs brown too quickly, cover loosely with foil.",
+      "Serve hot with a side of the fermented root slaw."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 876,
+      "cholesterol_mg": 126.23,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 48.14,
+      "saturated_fat_g": 12.21,
+      "sodium_mg": 2447.73,
+      "total_carbs_g": 86.55,
+      "total_fat_g": 38.22,
+      "total_sugars_g": 13.6,
+      "trans_fat_g": 0.08
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128.7,
+      "cholesterol_mg": 18.54,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.07,
+      "saturated_fat_g": 1.79,
+      "sodium_mg": 359.56,
+      "total_carbs_g": 12.71,
+      "total_fat_g": 5.61,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.1,
+      "dietary_fiber": 29.3,
+      "protein": 96.3,
+      "saturated_fat": 61.1,
+      "sodium": 106.4,
+      "total_carbs": 31.5,
+      "total_fat": 49
+    },
+    "serving_size_g": 680.75,
+    "total_recipe_weight_g": 2723
+  },
+  {
+    "recipe_name": "Peach and Tomato Glazed Chicken with Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_peach_and_tomato_glazed_chicken_with_roasted_vegetables_20250713_075611_9666420b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T07:56:11.506581000Z",
+    "selected_ingredients": [
+      "squash",
+      "tomato",
+      "onion",
+      "bell pepper",
+      "garlic",
+      "peach"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Peach and Tomato Glazed Chicken is presented on a clean white porcelain dinner plate, centrally composed. A seared chicken breast, golden-brown with a slight char, rests as the focal point. Alongside the chicken, a vibrant mix of roasted butternut squash cubes, red and yellow bell pepper squares, and caramelized red onion wedges are neatly arranged. A rich, glossy peach and tomato glaze is generously spooned over the chicken, with some pooling subtly on the plate. The colors are natural and balanced: warm browns of the chicken, bright oranges and reds from the vegetables, and a deep, inviting hue from the glaze. A fresh sprig of green thyme garnishes the dish. The plate sits on a simple wooden table surface, accompanied by a folded cotton napkin, under natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, Skinless Chicken Breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Butternut Squash",
+        "quantity": "600g"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Ripe Peaches",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Peel butternut squash. Cut squash into 2cm cubes. Cut bell peppers into 2cm squares. Cut red onion into 2cm wedges. Mince garlic cloves.",
+      "Toss squash, bell peppers, onion, and minced garlic with 30ml olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast vegetables for 25-30 minutes, or until tender and lightly caramelized. Stir halfway through.",
+      "While vegetables roast, prepare chicken. Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat remaining 30ml olive oil in a large skillet over medium-high heat. Sear chicken breasts for 5-7 minutes per side until golden brown and cooked to an internal temperature of 75°C.",
+      "Remove chicken from skillet. Keep warm.",
+      "For the glaze, dice peaches and tomatoes. Add diced peaches and tomatoes to the same skillet. Cook for 5 minutes, stirring occasionally.",
+      "Stir in chicken broth, apple cider vinegar, and honey. Bring to a simmer. Cook for 8-10 minutes, stirring, until sauce thickens slightly and peaches break down.",
+      "Season glaze with salt and pepper to taste.",
+      "Plate roasted vegetables on white porcelain plates. Place one seared chicken breast beside the vegetables. Spoon peach and tomato glaze generously over chicken. Garnish each plate with a fresh thyme sprig. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 602,
+      "cholesterol_mg": 153,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 61.3,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 258,
+      "total_carbs_g": 45.9,
+      "total_fat_g": 21.3,
+      "total_sugars_g": 23.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 83.1,
+      "cholesterol_mg": 21.2,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 35.6,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 30,
+      "protein": 123,
+      "saturated_fat": 19,
+      "sodium": 11,
+      "total_carbs": 17,
+      "total_fat": 27
+    },
+    "serving_size_g": 724.5,
+    "total_recipe_weight_g": 2898
+  }
+]

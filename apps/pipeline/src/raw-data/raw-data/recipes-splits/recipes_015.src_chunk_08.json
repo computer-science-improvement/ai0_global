@@ -1,0 +1,666 @@
+[
+  {
+    "recipe_name": "Creamy Tomato Chicken Udon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_chicken_udon_20250628_083641_87d2a6b4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:36:41.836504000Z",
+    "selected_ingredients": [
+      "tomato",
+      "chicken",
+      "onion",
+      "cheese",
+      "udon noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous individual portion of Creamy Tomato Chicken Udon is presented in a deep white porcelain bowl. A vibrant, creamy red-orange sauce coats thick, chewy udon noodles, which form a central mound. Large, golden-brown chicken chunks are nestled within and around the noodles, not fanned, showcasing their seared exterior and tender interior. The dish is generously sprinkled with pale yellow, freshly grated Parmesan cheese. A few vibrant green fresh basil leaves are scattered on top, providing a pop of color and freshness. The onion is diced and integrated into the sauce. The bowl rests on a simple, clean wooden table surface, enhancing the casual bistro aesthetic. A folded white cotton napkin is placed beside the bowl. Natural, even lighting illuminates the dish from above, creating soft shadows and highlighting textures. The background is a subtly blurred modern bistro setting, keeping the focus entirely on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Dried udon noodles",
+        "quantity": "400g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into large irregular chunks. Season with salt and pepper.",
+      "Dice the yellow onion. Mince the garlic cloves.",
+      "Heat olive oil in a large pan or Dutch oven over medium-high heat. Add chicken chunks. Sear until golden brown on all sides. Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add diced onion to the pan. Cook until softened, about 5 minutes.",
+      "Add minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a simmer. Cook for 10 minutes, stirring occasionally.",
+      "Return seared chicken to the pan. Stir well to coat. Simmer for 15-20 minutes, or until chicken is cooked through.",
+      "While sauce simmers, cook udon noodles according to package directions. Drain well.",
+      "Stir heavy cream into the sauce. Add half of the grated Parmesan cheese. Stir until cheese melts and sauce is creamy.",
+      "Add drained udon noodles to the pan with the sauce and chicken. Toss gently to combine all ingredients.",
+      "Serve immediately, garnished with remaining grated Parmesan cheese and fresh basil leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 953,
+      "cholesterol_mg": 198,
+      "dietary_fiber_g": 6,
+      "protein_g": 51.1,
+      "saturated_fat_g": 18.4,
+      "sodium_mg": 841,
+      "total_carbs_g": 86.2,
+      "total_fat_g": 43.7,
+      "total_sugars_g": 10.3,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 158,
+      "cholesterol_mg": 32.7,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 139.2,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 21.4,
+      "protein": 102.2,
+      "saturated_fat": 92,
+      "sodium": 36.6,
+      "total_carbs": 31.3,
+      "total_fat": 56
+    },
+    "serving_size_g": 604.4,
+    "total_recipe_weight_g": 2417.5
+  },
+  {
+    "recipe_name": "Rustic Buckwheat and Brown Rice Vegetable Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_buckwheat_and_brown_rice_vegetable_soup_20250628_083628_ea9d49f6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:36:29.192299000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "hemp seed",
+      "vegetable stock",
+      "brown rice",
+      "verjus"
+    ],
+    "complexity": "simple",
+    "special_requests": "plant-based",
+    "visual_description": "A single, generous portion of hearty Rustic Buckwheat and Brown Rice Vegetable Soup is presented in a deep, round, earthy-toned ceramic bowl with a slightly irregular rim. The soup is thick and comforting, showcasing the textural contrast of tender buckwheat groats and brown rice, interspersed with small cubes of cooked carrots, celery, and potatoes, and softened roughly chopped spinach. The broth has a warm, inviting brown hue. A light scattering of white hemp seeds rests on the surface, along with a few vibrant green sprigs of freshly chopped dill or parsley. The bowl sits on a well-used wooden dining table, revealing its natural grain and minor imperfections. Beside the bowl, a simple, slightly wrinkled linen napkin in a neutral tone is casually draped. The scene is illuminated by warm, cozy lighting, suggesting a relaxed family kitchen atmosphere. A sturdy, plain spoon is placed next to the bowl. The background is minimal, focusing on the homely comfort of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Buckwheat Groats",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrots, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Potatoes, peeled and diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Buckwheat groats, rinsed",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Brown rice, rinsed",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Fresh spinach, roughly chopped",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Verjus",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Hemp seeds",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley or dill, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion, carrots, and celery. Sauté for 5-7 minutes until softened.",
+      "Stir in diced potatoes, rinsed buckwheat groats, and rinsed brown rice.",
+      "Pour in vegetable stock. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 25-30 minutes.",
+      "Cook until buckwheat and rice are tender.",
+      "Stir in chopped spinach. Cook for 2-3 minutes until wilted.",
+      "Remove from heat. Stir in verjus. Season with salt and black pepper to taste.",
+      "Ladle soup into individual bowls.",
+      "Garnish each serving with a sprinkle of hemp seeds and fresh chopped parsley or dill."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 419,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 13.5,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 1190,
+      "total_carbs_g": 68.9,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 65,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 2.1,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 183,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 1.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 31.8,
+      "protein": 26.9,
+      "saturated_fat": 6.4,
+      "sodium": 51.8,
+      "total_carbs": 25.1,
+      "total_fat": 12.5
+    },
+    "serving_size_g": 648.9,
+    "total_recipe_weight_g": 2595.7
+  },
+  {
+    "recipe_name": "Miso-Glazed Chickpea & Edamame Buckwheat Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_miso-glazed_chickpea_%26_edamame_buckwheat_bowl_20250628_083523_6dee3eae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:35:23.792890000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "hemp seed",
+      "chickpea",
+      "edamame",
+      "soy sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A vibrant, modern Asian-inspired grain bowl is presented on a clean, white porcelain dinner plate, centrally placed on a simple wooden table surface. The base consists of fluffy, light brown buckwheat groats, forming a natural, organic mound. Artfully arranged around and over the buckwheat are distinct clusters of golden-brown roasted chickpeas, their surfaces slightly crinkled, and bright green shelled edamame, appearing plump and tender-crisp. Thinly shredded deep purple red cabbage and bright orange julienned carrots add striking color contrast and texture. A glossy, amber-hued miso dressing is drizzled over the components, catching the light. The bowl is garnished with thinly sliced vibrant green spring onions and a scattering of tiny, pale green hemp seeds and golden toasted sesame seeds, adding delicate texture. The overall composition is balanced with moderate negative space, showcasing the natural colors and varied textures of the ingredients. A pair of dark wooden chopsticks rests beside the plate, on a simple cotton napkin. Natural, even light illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Asian",
+    "cultural_origin": "Modern Asian (Fusion)",
+    "cultural_serving_suggestions": [
+      "Serve with an additional small bowl of miso dressing on the side for individual preference.",
+      "Offer a side of pickled ginger or kimchi for an extra tangy element."
+    ],
+    "hero_ingredient": "Buckwheat Groats",
+    "ingredients": [
+      {
+        "name": "Buckwheat Groats",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Canned Chickpeas",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Shelled Edamame",
+        "quantity": "200 g"
+      },
+      {
+        "name": "White Miso Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": "3"
+      },
+      {
+        "name": "Hemp Seeds",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Toasted Sesame Seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Red Cabbage",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      }
+    ],
+    "instructions": [
+      "Rinse buckwheat groats. Combine groats, 400 ml water, and salt in a saucepan. Bring to a boil. Reduce heat to low. Cover and simmer 15-20 minutes, until water is absorbed and groats are tender. Fluff with a fork.",
+      "Preheat oven to 200°C. In a bowl, combine chickpeas, 15 ml soy sauce, 10 ml olive oil, minced garlic, and grated ginger. Toss to coat. Spread on a baking sheet. Roast 20-25 minutes, until slightly crispy.",
+      "Bring a small pot of water to a boil. Add frozen edamame. Cook 2-3 minutes, until tender-crisp. Drain and rinse with cold water to stop cooking.",
+      "In a small bowl, whisk together miso paste, remaining 30 ml soy sauce, rice vinegar, maple syrup, and sesame oil until smooth.",
+      "Divide cooked buckwheat among 4 serving bowls. Arrange roasted chickpeas, blanched edamame, shredded red cabbage, and julienned carrot artfully over the buckwheat.",
+      "Drizzle generously with miso dressing. Sprinkle with sliced green onions, hemp seeds, and toasted sesame seeds. Serve immediately."
+    ],
+    "notes": [
+      "Adjust sweetness or tanginess of the dressing to your liking.",
+      "Add other vegetables like cucumber slices or avocado chunks for more variety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.4,
+      "calories": 541,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 17.4,
+      "protein_g": 25.9,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 1059,
+      "total_carbs_g": 79.5,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 12.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 135,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 6.4,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 263,
+      "total_carbs_g": 19.8,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 62.1,
+      "protein": 51.8,
+      "saturated_fat": 14.1,
+      "sodium": 46,
+      "total_carbs": 28.9,
+      "total_fat": 22.6
+    },
+    "serving_size_g": 402.25,
+    "total_recipe_weight_g": 1609
+  },
+  {
+    "recipe_name": "Chicken Parmesan with Spaghetti",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_parmesan_with_spaghetti_20250628_083419_7585981c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:34:20.214267000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown chicken cutlet, generously topped with melted, bubbly mozzarella and Parmesan cheese, rests on a bed of perfectly cooked spaghetti. A rich, vibrant red marinara sauce pools around the chicken and coats the pasta. The chicken cutlet is a thick, substantial piece, not sliced. Fresh green basil leaves are scattered over the dish for a pop of color and freshness. The dish is presented on a simple, slightly off-white ceramic plate with natural imperfections, placed on a well-used wooden dining table. A basic silver fork lies beside the plate. The scene is illuminated by warm, cozy light, typical of a family kitchen, creating a lived-in, comforting atmosphere. The portion is modest and homely, filling the plate adequately without overcrowding.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty bread for dipping in the extra sauce."
+    ],
+    "hero_ingredient": "Breaded Chicken Cutlet",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "4 (about 180g each)"
+      },
+      {
+        "name": "Spaghetti",
+        "quantity": "400g"
+      },
+      {
+        "name": "Marinara sauce",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g (plus more for pasta water)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Prepare chicken: Place each chicken breast between two sheets of plastic wrap. Pound to 1.5 cm thickness using a mallet or rolling pin.",
+      "Set up breading station: Place flour in a shallow dish. Whisk eggs in a second shallow dish. Combine breadcrumbs, garlic powder, oregano, salt, and pepper in a third shallow dish.",
+      "Dredge each chicken cutlet in flour, shaking off excess. Dip in egg, coating completely. Press into breadcrumb mixture, ensuring full coverage.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear breaded chicken for 3-4 minutes per side until golden brown. Do not fully cook through. Transfer chicken to a plate.",
+      "Pour half of the marinara sauce into the skillet. Arrange seared chicken cutlets over the sauce.",
+      "Top each chicken cutlet with remaining marinara sauce. Sprinkle generously with mozzarella cheese, then Parmesan cheese.",
+      "Bake for 15-20 minutes, or until chicken reaches an internal temperature of 75°C and cheese is bubbly and golden.",
+      "While chicken bakes, cook spaghetti according to package directions in salted boiling water until al dente. Drain well.",
+      "Serve baked chicken parmesan over a bed of spaghetti. Garnish with fresh basil leaves."
+    ],
+    "notes": [
+      "Pounding the chicken ensures even cooking and tenderness.",
+      "Using an oven-safe skillet reduces cleanup."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1626,
+      "cholesterol_mg": 638,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 107.4,
+      "saturated_fat_g": 24.7,
+      "sodium_mg": 1351,
+      "total_carbs_g": 142.4,
+      "total_fat_g": 69,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 215,
+      "cholesterol_mg": 84,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 14.2,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 179,
+      "total_carbs_g": 18.8,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 213,
+      "dietary_fiber": 35,
+      "protein": 215,
+      "saturated_fat": 124,
+      "sodium": 59,
+      "total_carbs": 52,
+      "total_fat": 88
+    },
+    "serving_size_g": 756.5,
+    "total_recipe_weight_g": 3026
+  },
+  {
+    "recipe_name": "Creamy Herb Roasted Vegetable Quinoa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_herb_roasted_vegetable_quinoa_20250628_083236_62c59f80.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:32:36.817689000Z",
+    "selected_ingredients": [
+      "quinoa"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A single, modest portion of Creamy Herb Roasted Vegetable Quinoa sits on a simple, off-white ceramic plate. The quinoa forms a soft, creamy base, its light tan grains fluffy and slightly glistening. Mixed throughout are robust, rustic chunks of roasted vegetables: vibrant orange sweet potato cubes, deep orange carrot batons, pale parsnip wedges, and tender red onion slivers, all showing subtle caramelization and browned edges. Scattered across are dark green specks of chopped fresh parsley and small, fragrant rosemary leaves. The dish has a natural, unarranged appearance, as if scooped directly from a pot. The plate rests on a well-used, warm-toned wooden dining table, alongside a casual, folded cloth napkin and a plain fork. Soft, warm lighting illuminates the scene, creating a cozy, inviting atmosphere typical of a home kitchen.",
+    "number_of_servings": 3,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Quinoa",
+    "ingredients": [
+      {
+        "name": "Quinoa",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Sweet potato",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Nutritional yeast (optional)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Peel and chop carrots into 2cm batons. Peel and chop parsnip into 2cm wedges. Peel and chop sweet potato into 2cm cubes. Quarter the red onion.",
+      "Place chopped vegetables on a baking tray. Add crushed garlic cloves, olive oil, rosemary sprigs, and thyme sprigs. Season with salt and pepper.",
+      "Toss to coat. Roast for 25-30 minutes, or until tender and slightly caramelized. Stir halfway through.",
+      "While vegetables roast, rinse quinoa thoroughly under cold water.",
+      "Combine rinsed quinoa and vegetable broth in a medium saucepan. Bring to a boil.",
+      "Reduce heat to low, cover, and simmer for 15 minutes, or until liquid is absorbed and quinoa is fluffy.",
+      "Remove from heat. Let stand, covered, for 5 minutes.",
+      "Fluff quinoa with a fork. Stir in nutritional yeast, if using, for extra creaminess and flavor.",
+      "Add roasted vegetables to the cooked quinoa. Gently mix to combine.",
+      "Chop fresh parsley. Garnish each serving with chopped parsley.",
+      "Serve warm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 460,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.6,
+      "protein_g": 14.6,
+      "saturated_fat_g": 1.86,
+      "sodium_mg": 233,
+      "total_carbs_g": 71.3,
+      "total_fat_g": 13.8,
+      "total_sugars_g": 11.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.26,
+      "protein_g": 4.1,
+      "saturated_fat_g": 0.52,
+      "sodium_mg": 66,
+      "total_carbs_g": 20.1,
+      "total_fat_g": 3.88,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 41,
+      "protein": 29,
+      "saturated_fat": 9,
+      "sodium": 10,
+      "total_carbs": 26,
+      "total_fat": 18
+    },
+    "serving_size_g": 355,
+    "total_recipe_weight_g": 1065
+  }
+]

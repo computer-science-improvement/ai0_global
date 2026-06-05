@@ -1,0 +1,748 @@
+[
+  {
+    "recipe_name": "Dark Chocolate Apple Mousse Domes with Almond Dacquoise",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dark_chocolate_apple_mousse_domes_with_almond_dacquoise_20250630_010058_94378b03.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T01:00:58.785294000Z",
+    "selected_ingredients": [
+      {
+        "name": "apple"
+      },
+      {
+        "name": "flour"
+      },
+      {
+        "name": "dark chocolate"
+      },
+      {
+        "name": "almond"
+      },
+      {
+        "name": "vanilla"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegan",
+    "visual_description": "Six to nine perfectly uniform miniature dark chocolate mousse domes are artfully arranged on a pristine white French porcelain serving platter. Each dome, approximately 5 cm in diameter, boasts a flawlessly smooth, intensely glossy dark chocolate mirror glaze that reflects the ambient light with subtle drama. The glaze appears deep, almost black, with a luxurious sheen. At the base of each dome, a delicate almond dacquoise disc is visible, providing a subtle textural contrast in its light golden-brown hue. The domes are spaced with architectural precision, allowing abundant negative space on the elegant platter. The only garnish is a single, tiny, precisely placed gold leaf or a delicate, razor-thin chocolate curl atop each dome, providing a singular, refined accent. The entire presentation is set on a premium white Carrara marble surface, complemented by a pristine white linen napkin folded into a sharp triangle. Dramatic professional lighting casts soft shadows, enhancing the sculptural quality of the desserts and emphasizing their sophisticated simplicity and flawless execution.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve chilled on an elegant multi-tiered dessert stand or a sophisticated flat porcelain platter.",
+      "Accompanied by small espresso cups or delicate flutes of sparkling wine.",
+      "Designed to be picked up and eaten in 2-3 bites."
+    ],
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Almond flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Aquafaba (liquid from unsalted chickpeas)",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Cream of tartar",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "2 ml"
+      },
+      {
+        "name": "Granny Smith apples, peeled, cored, small diced (5mm cubes)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar (for compote)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Vanilla bean paste",
+        "quantity": "2 ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa), finely chopped",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Aquafaba (for mousse)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Granulated sugar (for mousse)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cocoa powder (unsweetened)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegan heavy cream (chilled, e.g., full-fat coconut cream)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Agar-agar powder (for mousse)",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa), finely chopped (for glaze)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar (for glaze)",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Water (for glaze)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Cocoa powder (unsweetened, for glaze)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Vegan heavy cream (for glaze)",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Agar-agar powder (for glaze)",
+        "quantity": "1.5 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Apple Compote: Combine diced apples, sugar, lemon juice, cinnamon stick, and vanilla bean paste in a small saucepan. Cook over medium-low heat. Stir occasionally. Simmer until apples are tender and liquid reduces. Remove cinnamon stick. Cool completely. Set aside.",
+      "Prepare Almond Dacquoise: Preheat oven to 160°C. Line a baking sheet with parchment paper. Sift almond flour and icing sugar together. In a stand mixer, whip aquafaba with cream of tartar until foamy. Gradually add granulated sugar. Whip until stiff, glossy peaks form. Add vanilla extract. Gently fold in sifted almond flour and icing sugar mixture. Do not overmix. Spread batter thinly (about 5mm) onto prepared baking sheet. Bake 15-20 minutes, until light golden and firm. Cool completely. Cut out round bases (approx. 4cm diameter) for domes. Set aside.",
+      "Prepare Dark Chocolate Mousse: Melt chopped dark chocolate over a double boiler or in microwave. Stir until smooth. Let cool slightly. In a saucepan, whisk aquafaba, sugar, cocoa powder, and agar-agar powder. Bring to a gentle simmer. Cook 1 minute, stirring constantly. Remove from heat. Stir in vegan heavy cream. Gradually whisk hot aquafaba mixture into melted chocolate until smooth. Pour mousse into silicone dome molds (approx. 5cm diameter). Fill halfway. Place a spoonful of cooled apple compote in the center of each dome. Top with more mousse to fill molds. Gently place a dacquoise disc on top of each mousse dome, pressing lightly. Freeze domes for at least 4 hours, or overnight, until solid.",
+      "Prepare Dark Chocolate Mirror Glaze: Melt chopped dark chocolate over a double boiler or in microwave. In a saucepan, combine sugar, water, cocoa powder, vegan heavy cream, and agar-agar powder. Bring to a boil, stirring constantly. Simmer 1 minute. Remove from heat. Pour hot mixture over melted chocolate. Blend with an immersion blender until smooth and emulsified. Avoid incorporating air bubbles. Strain glaze through a fine-mesh sieve. Let glaze cool to 30-35°C (lukewarm).",
+      "Assemble and Glaze: Remove frozen mousse domes from molds. Place on a wire rack set over a baking sheet. Pour warm glaze evenly over each frozen dome. Ensure full coverage. Let excess glaze drip off. Carefully transfer glazed domes to a serving platter using an offset spatula. Refrigerate for at least 1 hour to thaw and set glaze."
+    ],
+    "notes": [
+      "Ensure all components are completely chilled or frozen as specified for best results.",
+      "Precision in measurements and temperatures is crucial for fine patisserie.",
+      "Work quickly when glazing to achieve a smooth, even finish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 65,
+      "calories": 746.2,
+      "cholesterol_mg": 1.9,
+      "dietary_fiber_g": 12,
+      "protein_g": 10,
+      "saturated_fat_g": 21.5,
+      "sodium_mg": 26.5,
+      "total_carbs_g": 96.6,
+      "total_fat_g": 39.6,
+      "total_sugars_g": 72.4,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 25.4,
+      "calories": 291.3,
+      "cholesterol_mg": 0.7,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 3.9,
+      "saturated_fat_g": 8.4,
+      "sodium_mg": 10.3,
+      "total_carbs_g": 37.7,
+      "total_fat_g": 15.5,
+      "total_sugars_g": 28.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0.9,
+      "dietary_fiber": 42.7,
+      "protein": 20,
+      "saturated_fat": 107.4,
+      "sodium": 1.2,
+      "total_carbs": 35.1,
+      "total_fat": 50.7
+    },
+    "serving_size_g": 256.1,
+    "total_recipe_weight_g": 1024.5
+  },
+  {
+    "recipe_name": "Hearty Beef and Root Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_root_vegetable_stew_20250630_004946_b0dda5a0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T00:49:46.992590000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hearty Beef and Root Vegetable Stew is presented in a deep, rustic ceramic bowl with natural imperfections. Tender, dark brown beef chunks are nestled among vibrant orange carrot chunks, pale yellow potato chunks, and flecks of green celery. The rich, glossy, dark brown gravy coats all ingredients, creating a cohesive, appetizing appearance. A scattering of bright green chopped fresh parsley provides a fresh contrast on top. The bowl sits on a well-used wooden dining table. A simple metal spoon rests beside the bowl on a casually placed beige cloth napkin. The setting evokes a warm, cozy home kitchen with natural, soft lighting and a slightly blurred, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with warm, crusty bread for dipping."
+    ],
+    "hero_ingredient": "Beef chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g, cut into 3-4 cm cubes"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g, or to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g, or to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "3 medium, peeled and cut into 2 cm chunks"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, cut into 1 cm slices"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium, peeled and cut into 2-3 cm chunks"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry with paper towels. In a large bowl, toss beef with flour, salt, and pepper until evenly coated.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef in batches until browned on all sides. Do not overcrowd the pot. Remove seared beef and set aside.",
+      "Add diced onion, carrot chunks, and celery slices to the pot. Cook, stirring occasionally, until vegetables soften, about 8-10 minutes.",
+      "Add minced garlic and tomato paste to the pot. Cook for 1 minute, stirring constantly, until fragrant.",
+      "Pour in beef broth and Worcestershire sauce. Scrape the bottom of the pot to loosen any browned bits.",
+      "Return seared beef to the pot. Add potato chunks, dried thyme, and bay leaves. Stir to combine.",
+      "Bring the stew to a gentle simmer. Reduce heat to low, cover the pot, and cook for 2 to 2.5 hours, or until beef is fork-tender.",
+      "Remove bay leaves before serving. Skim any excess fat from the surface if desired. Taste and adjust seasoning as needed.",
+      "Ladle hot stew into individual serving bowls. Garnish generously with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure beef is cooked until very tender, easily pulled apart with a fork."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.48,
+      "calories": 672,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 6.42,
+      "protein_g": 47.11,
+      "saturated_fat_g": 10.17,
+      "sodium_mg": 1375,
+      "total_carbs_g": 45.4,
+      "total_fat_g": 30.01,
+      "total_sugars_g": 6.53,
+      "trans_fat_g": 0.75
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.08,
+      "calories": 107,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 1.02,
+      "protein_g": 7.48,
+      "saturated_fat_g": 1.61,
+      "sodium_mg": 218,
+      "total_carbs_g": 7.21,
+      "total_fat_g": 4.76,
+      "total_sugars_g": 1.04,
+      "trans_fat_g": 0.12
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 23,
+      "protein": 94,
+      "saturated_fat": 51,
+      "sodium": 60,
+      "total_carbs": 17,
+      "total_fat": 38
+    },
+    "serving_size_g": 630,
+    "total_recipe_weight_g": 2520
+  },
+  {
+    "recipe_name": "Braised Beef Cheek, Pomme Purée, Glazed Carrots, Tomato Confit, Red Wine Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_cheek%2C_pomme_pur%C3%A9e%2C_glazed_carrots%2C_tomato_confit%2C_red_wine_jus_20250630_004727_4936e790.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T00:47:27.916367000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "carrot",
+      "onion",
+      "potato",
+      "mustard",
+      "garlic",
+      "oil",
+      "cheese"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is meticulously plated on an elegant, large round bone china plate with a subtle, refined off-white glaze, resting on a polished white Carrara marble surface. A single, perfectly braised beef cheek, deep mahogany with a seared, slightly crisp exterior, anchors the composition slightly off-center. Its rich, dark hue contrasts beautifully with a creamy, ethereal quenelle of silky pomme purée, positioned beside the beef. Two or three precisely trimmed, vibrant orange baby carrots, glazed to a subtle sheen, are artfully placed, providing a pop of color and texture. A cluster of three to four jewel-toned confit cherry tomatoes, their skins gently burst and glistening with olive oil, adds a touch of acidity and visual interest. A rich, dark red wine jus, glossy and viscous, forms an organic pool around the beef, its deep color intensifying the visual depth. A delicate, golden-brown Parmesan crisp stands upright, offering a subtle architectural element and a hint of crisp texture. The plating features abundant negative space, allowing each component to shine with precision and purpose. Lighting is dramatic, casting soft shadows that highlight the textures and contours of the food. A pristine white linen napkin, folded into a precise triangle, and elegant silver flatware are positioned to the side, completing the sophisticated setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Beef Cheek",
+    "ingredients": [
+      {
+        "name": "Beef cheeks",
+        "quantity": "1 kg (4 pieces)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Carrot (for braise)",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Celery",
+        "quantity": "1 stalk, diced"
+      },
+      {
+        "name": "Garlic (for braise)",
+        "quantity": "4 cloves, crushed"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red wine (full-bodied)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Fresh thyme (for braise)",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Unsalted butter (for purée)",
+        "quantity": "150g, cold, cubed"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "150 ml, warmed"
+      },
+      {
+        "name": "Baby carrots",
+        "quantity": "12 small"
+      },
+      {
+        "name": "Water (for carrots)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted butter (for carrots)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Sugar (for carrots)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil (for confit)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Garlic (for confit)",
+        "quantity": "2 cloves, sliced"
+      },
+      {
+        "name": "Fresh thyme (for confit)",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, finely grated"
+      }
+    ],
+    "instructions": [
+      "Season beef cheeks generously with salt and pepper. Heat 30 ml olive oil in a heavy-bottomed pot over medium-high heat. Sear beef cheeks on all sides until deeply browned. Remove beef and set aside.",
+      "Add diced onion, carrot, and celery to the pot. Sauté until softened, about 8 minutes. Add crushed garlic and tomato paste; cook for 2 minutes, stirring constantly.",
+      "Pour in red wine, scraping up any browned bits. Bring to a simmer and reduce by half. Return beef cheeks to the pot. Add beef stock, thyme, and bay leaf. Ensure beef is mostly submerged. Bring to a gentle simmer.",
+      "Cover the pot and transfer to a preheated oven at 150°C. Braise for 3-4 hours, or until beef is fork-tender.",
+      "Remove beef from the pot. Strain the braising liquid through a fine-mesh sieve, discarding solids. Return liquid to a clean saucepan. Skim any excess fat. Reduce the liquid over medium heat until it forms a rich, glossy jus. Whisk in Dijon mustard. Season with salt and pepper. Keep warm.",
+      "Peel and cut potatoes into equal-sized pieces. Place in a saucepan, cover with cold salted water. Bring to a boil, then reduce heat and simmer until very tender. Drain thoroughly. Pass potatoes through a ricer or fine-mesh sieve into a clean pot. Over low heat, gradually whisk in cold butter cubes until fully incorporated. Gradually add warm milk, whisking until smooth and creamy. Season with salt. Keep warm.",
+      "Trim and peel baby carrots. Place in a small saucepan with water, butter, a pinch of sugar, and salt. Bring to a simmer. Cook until water evaporates and carrots are tender-crisp and glossy.",
+      "Preheat oven to 150°C. Place cherry tomatoes in a small oven-safe dish. Add olive oil, sliced garlic, and thyme sprigs. Season with salt and pepper. Bake for 25-30 minutes, or until tomatoes are soft and slightly burst.",
+      "Preheat oven to 180°C. Line a baking sheet with parchment paper. Spoon small mounds of grated Parmesan onto the paper, leaving space. Bake for 5-7 minutes, or until golden and crisp. Let cool, then carefully peel off.",
+      "Gently re-warm beef cheeks if needed, searing lightly in a hot pan for a crisp exterior. Place a generous quenelle of pomme purée on one side of the plate. Position a braised beef cheek next to it. Arrange 2-3 glazed baby carrots and a few confit cherry tomatoes artfully around the beef and purée. Spoon a rich pool of red wine jus over and around the beef. Garnish with a Parmesan crisp. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 1468.81,
+      "cholesterol_mg": 322.99,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 70.25,
+      "saturated_fat_g": 39.6,
+      "sodium_mg": 809.75,
+      "total_carbs_g": 46.94,
+      "total_fat_g": 95.22,
+      "total_sugars_g": 11.22,
+      "trans_fat_g": 1.54
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.15,
+      "calories": 172.8,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 0.67,
+      "protein_g": 8.27,
+      "saturated_fat_g": 4.66,
+      "sodium_mg": 95.27,
+      "total_carbs_g": 5.52,
+      "total_fat_g": 11.2,
+      "total_sugars_g": 1.32,
+      "trans_fat_g": 0.18
+    },
+    "daily_value_percentages": {
+      "cholesterol": 107.66,
+      "dietary_fiber": 20.35,
+      "protein": 140.51,
+      "saturated_fat": 197.98,
+      "sodium": 35.21,
+      "total_carbs": 17.08,
+      "total_fat": 122.07
+    },
+    "serving_size_g": 850,
+    "total_recipe_weight_g": 3400
+  },
+  {
+    "recipe_name": "Sheet Pan Roast Chicken and Potatoes with Cherry Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sheet_pan_roast_chicken_and_potatoes_with_cherry_tomatoes_20250630_004415_b7c03f95.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T00:44:16.285198000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty, comforting single serving of Sheet Pan Roast Chicken and Potatoes is presented on a simple, round, off-white ceramic plate with natural speckles. A golden-brown roasted chicken thigh, skin crispy and slightly charred, is placed centrally. Beside it are several irregular, rustic chunks of roasted potato, their skins golden and interiors fluffy, some slightly overlapping. Scattered around the plate are vibrant red cherry tomato halves, softened and bursting, with a few still retaining their round shape. A light sprinkle of fresh green chopped parsley adds a touch of freshness. The components are arranged naturally, as if scooped from a family pan, allowing them to touch and meld. The plate sits on a well-used wooden dining table. A simple, folded cloth napkin in a neutral tone and basic silver flatware are casually placed nearby. Warm, inviting lighting from an overhead kitchen fixture casts soft shadows, creating a cozy, lived-in family kitchen atmosphere. The portion is modest and approachable, typical of a home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad",
+      "Serve with crusty bread for soaking up pan juices"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs and drumsticks",
+        "quantity": "800 g (4 pieces, bone-in, skin-on)"
+      },
+      {
+        "name": "Potatoes (Yukon Gold or red)",
+        "quantity": "700 g, cut into 3 cm chunks"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g, halved"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig, chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 sprig, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 ml, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken pieces dry with paper towels. Season generously with salt and pepper.",
+      "In a large bowl, combine potato chunks, olive oil, minced garlic, chopped rosemary, and chopped thyme. Toss to coat evenly.",
+      "Arrange chicken pieces and seasoned potatoes in a single layer on a large sheet pan. Ensure chicken skin is facing up.",
+      "Roast for 30 minutes.",
+      "Remove sheet pan from oven. Add halved cherry tomatoes to the pan, scattering them among the chicken and potatoes. Gently toss tomatoes with pan drippings.",
+      "Return to oven. Roast for another 20-25 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are tender and golden brown.",
+      "Rest chicken for 5 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 741.9,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 46.49,
+      "saturated_fat_g": 10.96,
+      "sodium_mg": 1328.42,
+      "total_carbs_g": 39.56,
+      "total_fat_g": 44.19,
+      "total_sugars_g": 3.39,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 157.1,
+      "cholesterol_mg": 40.23,
+      "dietary_fiber_g": 1.08,
+      "protein_g": 9.84,
+      "saturated_fat_g": 2.32,
+      "sodium_mg": 281.26,
+      "total_carbs_g": 8.38,
+      "total_fat_g": 9.36,
+      "total_sugars_g": 0.72,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.3,
+      "dietary_fiber": 18.2,
+      "protein": 93,
+      "saturated_fat": 54.8,
+      "sodium": 57.8,
+      "total_carbs": 14.4,
+      "total_fat": 56.7
+    },
+    "serving_size_g": 472.3,
+    "total_recipe_weight_g": 1889.2
+  },
+  {
+    "recipe_name": "Chicken Marsala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_marsala_20250630_004222_18d17085.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T00:42:23.077259000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast is centrally placed on a round white porcelain plate. The chicken, a golden-brown whole piece, is partially covered with a rich, glossy Marsala mushroom sauce. Thinly sliced, tender cremini mushrooms and finely diced shallots are visible within the deep brown sauce. A generous sprinkle of vibrant green chopped fresh parsley garnishes the chicken and sauce, adding a pop of color. The dish exhibits a clean, organized, yet organic plating style with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface. A white cotton napkin is neatly folded beside the plate. Standard polished flatware (fork and knife) are arranged next to the plate. Natural, even lighting illuminates the scene, creating a warm, inviting atmosphere with a softly blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve alongside creamy polenta or a simple pasta like fettuccine or linguine.",
+      "Offer a side of steamed green beans or asparagus.",
+      "Crusty Italian bread is ideal for soaking up the Marsala sauce."
+    ],
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry Marsala wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Heavy cream (optional)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Place each chicken breast between two sheets of plastic wrap. Pound to an even 1.5 cm thickness. Season both sides with salt and pepper.",
+      "Dredge each chicken breast lightly in flour, shaking off excess.",
+      "Slice mushrooms thinly. Finely dice shallots. Mince garlic.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken. Sear for 3-4 minutes per side until golden brown. Internal temperature should reach 75°C (167°F). Remove chicken from skillet and set aside.",
+      "Reduce heat to medium. Add butter to the skillet. Add sliced mushrooms and diced shallots. Sauté for 5-7 minutes until softened and browned. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour Marsala wine into the skillet. Bring to a simmer. Scrape up any browned bits from the bottom of the pan. Reduce liquid by half, about 3-5 minutes.",
+      "Stir in chicken stock. Bring to a simmer. Cook for 5 minutes until sauce slightly thickens. Stir in heavy cream, if using.",
+      "Return chicken breasts to the skillet. Simmer in the sauce for 2-3 minutes, ensuring chicken is fully heated through. Chop fresh parsley.",
+      "Remove skillet from heat. Stir in half of the chopped parsley. Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately, garnished with remaining fresh parsley."
+    ],
+    "notes": [
+      "Pounding the chicken ensures even cooking and tenderness.",
+      "Ensure Marsala wine is dry, not sweet, for a savory dish."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 507.4,
+      "cholesterol_mg": 169.1,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 60.4,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 358.9,
+      "total_carbs_g": 17.9,
+      "total_fat_g": 16.7,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134.9,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 16.1,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 95.4,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.4,
+      "dietary_fiber": 9,
+      "protein": 120.8,
+      "saturated_fat": 31,
+      "sodium": 15.6,
+      "total_carbs": 6.5,
+      "total_fat": 21.4
+    },
+    "serving_size_g": 376.2,
+    "total_recipe_weight_g": 1504.8
+  }
+]

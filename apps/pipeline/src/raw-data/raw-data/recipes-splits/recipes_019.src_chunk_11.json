@@ -1,0 +1,647 @@
+[
+  {
+    "recipe_name": "Pork Tenderloin with Cherry-Port Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_tenderloin_with_cherry-port_reduction_20250625_082935_50971dce.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:29:35.828583000Z",
+    "selected_ingredients": [
+      "cherry"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of succulent pork tenderloin medallions rests centrally on a clean, round white porcelain plate. Each medallion, about 2-3 cm thick, reveals a perfectly cooked, pale pink interior with a golden-brown seared crust. A generous pool of glossy, deep ruby-red cherry-port reduction sauce cascades around the pork, studded with plump, soft pitted cherries. A few fresh thyme leaves are scattered artfully over the sauce for a touch of green. The plate sits on a warm, natural wood table surface. A simple grey cotton napkin and classic silver flatware are placed beside the plate. The scene is bathed in soft, even natural light, creating a professional yet inviting casual dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Pork Tenderloin",
+    "ingredients": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Fresh Cherries",
+        "quantity": "250g"
+      },
+      {
+        "name": "Red Wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat pork tenderloins dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pan over medium-high heat. Sear pork tenderloins on all sides until golden brown. This takes about 6-8 minutes.",
+      "Transfer pan to a preheated oven at 180°C (350°F). Roast for 15-20 minutes, or until internal temperature reaches 65°C (149°F). Remove pork from pan. Let rest on a cutting board, loosely covered, for 10 minutes.",
+      "While pork rests, make the sauce. In the same pan, add butter. Sauté diced shallots until softened, about 3 minutes. Add minced garlic and thyme sprigs. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Deglaze the pan, scraping up any browned bits. Simmer for 3 minutes until reduced by half.",
+      "Add pitted cherries and chicken stock. Simmer for 5-7 minutes, until cherries soften and sauce slightly thickens.",
+      "Remove thyme sprigs. Season sauce with salt and pepper.",
+      "Slice pork tenderloin into 2-3 cm thick medallions.",
+      "Serve pork medallions with cherry-port reduction."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 347.5,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 33.2,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 98,
+      "total_carbs_g": 15.8,
+      "total_fat_g": 14,
+      "total_sugars_g": 10.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113,
+      "cholesterol_mg": 34.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.8,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 32,
+      "total_carbs_g": 5.1,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 8,
+      "protein": 66,
+      "saturated_fat": 29,
+      "sodium": 4,
+      "total_carbs": 6,
+      "total_fat": 18
+    },
+    "serving_size_g": 307.5,
+    "total_recipe_weight_g": 1230
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Roasted Potatoes and Tomato-Basil Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_roasted_potatoes_and_tomato-basil_sauce_20250625_082913_1121eb1a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:29:13.560975000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "garlic",
+      "potato",
+      "basil",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Pan-Seared Chicken with Roasted Potatoes and Tomato-Basil Sauce is presented on a clean, round white porcelain dinner plate. The seared chicken thigh, with its golden-brown crust, is placed centrally on the plate. Beside the chicken, several golden-brown roasted potato wedges are arranged neatly. A vibrant, rich red tomato-basil sauce is generously spooned over the chicken and partially coats the potatoes, creating a pleasing contrast. The sauce contains visible flecks of green basil and soft, diced tomatoes. Fresh, bright green basil leaves are scattered over the dish as a final garnish, adding a pop of color. The textures are varied: crispy chicken skin, tender chicken meat, fluffy interior of the potatoes, and the smooth, rustic sauce. The plate sits on a simple wooden table surface. A neatly folded white cotton napkin and standard silver flatware are placed beside the plate. Natural, even lighting illuminates the scene, highlighting the food without harsh shadows. The background is minimal, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the sauce.",
+      "A side of simple green salad with vinaigrette.",
+      "A glass of dry white wine or light red wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (boneless, skinless)",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Potatoes (Yukon Gold or similar)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Tomatoes (canned crushed)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (approx. 150g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "1 large bunch (approx. 30g)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and cut potatoes into 2.5 cm wedges or chunks. Toss with 30ml olive oil, salt, and pepper. Spread on a baking tray.",
+      "Roast potatoes for 30-35 minutes, or until tender and golden brown. Flip halfway through.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat remaining 30ml olive oil in a large skillet over medium-high heat.",
+      "Sear chicken thighs for 5-7 minutes per side until golden brown and cooked to an internal temperature of 75°C. Remove chicken from skillet and set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Sauté for 5 minutes until softened.",
+      "Add minced garlic to the skillet. Sauté for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a simmer. Cook for 10 minutes, stirring occasionally, until sauce slightly thickens.",
+      "Stir in fresh basil leaves, roughly torn. Season sauce with salt and pepper to taste.",
+      "Serve chicken over roasted potatoes. Spoon tomato-basil sauce generously over chicken and potatoes. Garnish with additional fresh basil leaves."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for food safety.",
+      "Adjust seasoning of sauce to personal preference."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 581.2,
+      "cholesterol_mg": 169.2,
+      "dietary_fiber_g": 5.36,
+      "protein_g": 42.4,
+      "saturated_fat_g": 6.08,
+      "sodium_mg": 185.1,
+      "total_carbs_g": 36.2,
+      "total_fat_g": 29.78,
+      "total_sugars_g": 5.45,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 111,
+      "cholesterol_mg": 32.3,
+      "dietary_fiber_g": 1.02,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.16,
+      "sodium_mg": 35.3,
+      "total_carbs_g": 6.91,
+      "total_fat_g": 5.69,
+      "total_sugars_g": 1.04,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.4,
+      "dietary_fiber": 19.2,
+      "protein": 84.8,
+      "saturated_fat": 30.4,
+      "sodium": 8.1,
+      "total_carbs": 13.2,
+      "total_fat": 38.2
+    },
+    "serving_size_g": 523.75,
+    "total_recipe_weight_g": 2095
+  },
+  {
+    "recipe_name": "Chicken Marsala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_marsala_20250625_082844_e4949d0c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:28:45.230101000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast is centrally placed on a round white porcelain plate. The chicken, a golden-brown whole piece, is partially covered with a rich, glossy Marsala mushroom sauce. Thinly sliced, tender cremini mushrooms and finely diced shallots are visible within the deep brown sauce. A generous sprinkle of vibrant green chopped fresh parsley garnishes the chicken and sauce, adding a pop of color. The dish exhibits a clean, organized, yet organic plating style with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface. A white cotton napkin is neatly folded beside the plate. Standard polished flatware (fork and knife) are arranged next to the plate. Natural, even lighting illuminates the scene, creating a warm, inviting atmosphere with a softly blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve alongside creamy polenta or a simple pasta like fettuccine or linguine.",
+      "Offer a side of steamed green beans or asparagus.",
+      "Crusty Italian bread is ideal for soaking up the Marsala sauce."
+    ],
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry Marsala wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Heavy cream (optional)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Place each chicken breast between two sheets of plastic wrap. Pound to an even 1.5 cm thickness. Season both sides with salt and pepper.",
+      "Dredge each chicken breast lightly in flour, shaking off excess.",
+      "Slice mushrooms thinly. Finely dice shallots. Mince garlic.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken. Sear for 3-4 minutes per side until golden brown. Internal temperature should reach 75°C (167°F). Remove chicken from skillet and set aside.",
+      "Reduce heat to medium. Add butter to the skillet. Add sliced mushrooms and diced shallots. Sauté for 5-7 minutes until softened and browned. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour Marsala wine into the skillet. Bring to a simmer. Scrape up any browned bits from the bottom of the pan. Reduce liquid by half, about 3-5 minutes.",
+      "Stir in chicken stock. Bring to a simmer. Cook for 5 minutes until sauce slightly thickens. Stir in heavy cream, if using.",
+      "Return chicken breasts to the skillet. Simmer in the sauce for 2-3 minutes, ensuring chicken is fully heated through. Chop fresh parsley.",
+      "Remove skillet from heat. Stir in half of the chopped parsley. Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately, garnished with remaining fresh parsley."
+    ],
+    "notes": [
+      "Pounding the chicken ensures even cooking and tenderness.",
+      "Ensure Marsala wine is dry, not sweet, for a savory dish."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 507.4,
+      "cholesterol_mg": 169.1,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 60.4,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 358.9,
+      "total_carbs_g": 17.9,
+      "total_fat_g": 16.7,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134.9,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 16.1,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 95.4,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.4,
+      "dietary_fiber": 9,
+      "protein": 120.8,
+      "saturated_fat": 31,
+      "sodium": 15.6,
+      "total_carbs": 6.5,
+      "total_fat": 21.4
+    },
+    "serving_size_g": 376.2,
+    "total_recipe_weight_g": 1504.8
+  },
+  {
+    "recipe_name": "Carne Deshebrada (Mexican Shredded Beef)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_carne_deshebrada_%28mexican_shredded_beef%29_20250625_082742_6ee2d213.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:27:43.062880000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Carne Deshebrada is presented on a clean white porcelain dinner plate, showcasing a mound of rich, reddish-brown shredded beef. The beef is loosely piled in the center, allowing some of the thick, savory tomato-chile sauce to pool naturally around its base. The texture of the beef is tender and fibrous, coated in the vibrant sauce. Garnishes include a scattering of finely diced white onion and a generous amount of fresh, bright green cilantro leaves over the top, adding contrasting color and freshness. A lime wedge is placed neatly beside the beef. The plate rests on a simple wooden table surface. In the background, a small, rustic woven basket holds warm corn tortillas. A small ceramic ramekin of salsa roja is visible. The scene is illuminated by natural, even lighting, creating a professional yet approachable restaurant-style atmosphere. The overall presentation is clean and inviting, with moderate negative space, highlighting the dish as the main subject.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for making tacos or sopes",
+      "Offer various salsas (e.g., salsa roja, salsa verde) on the side",
+      "Serve with a side of refried beans or Mexican rice"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "White onion",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Dried ancho chiles",
+        "quantity": "2"
+      },
+      {
+        "name": "Dried chipotle chiles",
+        "quantity": "1"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Limes",
+        "quantity": "2"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "16"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck roast into 5 cm chunks. Season generously with salt and pepper.",
+      "Heat vegetable oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef from pot. Set aside.",
+      "Remove stems and seeds from dried ancho and chipotle chiles. Place chiles in a bowl. Cover with hot water. Let soak for 20 minutes until softened.",
+      "While chiles soak, slice one onion thinly. Add to the pot. Cook until softened and lightly caramelized, about 8-10 minutes.",
+      "Mince garlic. Add to pot. Cook for 1 minute until fragrant.",
+      "Drain softened chiles. Add chiles, diced tomatoes, cumin, and oregano to a blender. Add 125 ml of beef broth. Blend until smooth.",
+      "Pour chile mixture into the pot with onions and garlic. Bring to a simmer. Cook for 5 minutes, stirring occasionally.",
+      "Return seared beef to the pot. Add remaining beef broth and bay leaf. Bring to a boil. Reduce heat to low. Cover. Simmer for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Remove beef from pot. Shred beef using two forks. Discard bay leaf.",
+      "If sauce is too thin, simmer uncovered for 10-15 minutes until desired consistency. Stir shredded beef back into the sauce.",
+      "Finely dice remaining white onion. Chop fresh cilantro.",
+      "Serve carne deshebrada hot with warm corn tortillas, diced white onion, and fresh cilantro. Offer lime wedges on the side."
+    ],
+    "notes": [
+      "For extra spice, add a serrano or jalapeño pepper to the blender with the chiles.",
+      "The beef can be cooked in a slow cooker on low for 6-8 hours or high for 3-4 hours after searing and sauce preparation."
+    ],
+    "traditional_techniques": [
+      "Slow braising (estofado)",
+      "Rehydrating dried chiles",
+      "Building a complex sauce base (sofrito-like)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 967,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 10.9,
+      "protein_g": 80.9,
+      "saturated_fat_g": 13.9,
+      "sodium_mg": 1144,
+      "total_carbs_g": 71.4,
+      "total_fat_g": 42.2,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 10.3,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 145,
+      "total_carbs_g": 9.1,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 39,
+      "protein": 162,
+      "saturated_fat": 69,
+      "sodium": 50,
+      "total_carbs": 26,
+      "total_fat": 54
+    },
+    "serving_size_g": 788.25,
+    "total_recipe_weight_g": 3153
+  },
+  {
+    "recipe_name": "Hearty Chicken and Root Vegetable Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_root_vegetable_soup_20250625_082718_22aa2002.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:27:18.956561000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Hearty Chicken and Root Vegetable Soup is presented in a deep, rustic ceramic bowl with a slightly irregular rim. The bowl sits on a well-used wooden dining table, showing natural grain and minor imperfections. The soup fills the bowl, showcasing chunky, irregular 1.5 cm diced pieces of tender potato, vibrant orange carrots, and pale green celery, along with substantial 2 cm chunks of cooked chicken. The broth is a comforting, golden hue. A light scattering of fresh, bright green chopped parsley rests on the surface, adding a pop of color and freshness. The overall arrangement is natural and casual, as if served in a home kitchen. A simple, folded cloth napkin in a neutral tone is casually draped beside the bowl. Warm, soft light from an overhead kitchen fixture illuminates the scene, creating a cozy and inviting atmosphere. The background is minimally blurred, hinting at a lived-in family dining area with subtle, unobtrusive elements like a simple salt and pepper shaker set. The entire bowl is visible, with adequate negative space around it.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2 cm chunks. Season with salt and pepper.",
+      "Dice onion, carrots, and celery into 1.5 cm cubes. Dice potatoes into 1.5 cm cubes. Mince garlic.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add chicken chunks. Sear until browned on all sides. Remove chicken from pot and set aside.",
+      "Add diced onion, carrots, and celery to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in chicken stock. Add diced potatoes, dried thyme, and bay leaf. Bring to a boil.",
+      "Reduce heat to low. Return seared chicken to the pot. Simmer, uncovered, for 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and vegetables are tender.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper.",
+      "Ladle hot soup into individual bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 417,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 42.7,
+      "saturated_fat_g": 4,
+      "sodium_mg": 1280,
+      "total_carbs_g": 24.4,
+      "total_fat_g": 16.4,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 61,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 6.3,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 188,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 13,
+      "protein": 85,
+      "saturated_fat": 20,
+      "sodium": 56,
+      "total_carbs": 9,
+      "total_fat": 21
+    },
+    "serving_size_g": 683,
+    "total_recipe_weight_g": 2730
+  }
+]

@@ -1,0 +1,703 @@
+[
+  {
+    "recipe_name": "Chicken and Tomato Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_tomato_risotto_20250623_142544_6915f150.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:25:44.760203000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "parmesan cheese",
+      "onion",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy Chicken and Tomato Risotto is presented on a clean, round white porcelain dinner plate. The risotto is free-flowing and spread naturally. Its vibrant orange-red hue contrasts with golden-brown seared chicken chunks, interspersed throughout. Halved, bright red cherry tomatoes add bursts of color and texture. Freshly grated Parmesan cheese lightly dusts the top, providing a pale yellow accent. A few fresh basil leaves are scattered as garnish, offering a pop of green. The plate sits on a simple light wooden table. A folded cotton napkin and traditional Italian flatware are placed beside it. Natural, even lighting illuminates the dish from the side, enhancing its inviting appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and balsamic vinegar.",
+      "Offer crusty ciabatta bread for dipping."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast or thigh",
+        "quantity": "400 g, cut into 2 cm cubes"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g, halved"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g, freshly grated, plus extra for serving"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.2 litres, hot"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "15 g, chopped, plus sprigs for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat 15 ml olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Add chicken cubes. Sear until golden brown on all sides. Cook chicken to an internal temperature of 75°C (167°F). Remove chicken from pot. Set aside.",
+      "Add remaining 15 ml olive oil to the pot. Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice. Stir constantly for 2 minutes until grains are translucent at the edges.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add a ladleful of hot chicken broth. Stir continuously until broth is absorbed.",
+      "Continue adding broth one ladleful at a time. Stir constantly. Wait for each addition to be absorbed before adding the next. This process takes about 18-20 minutes.",
+      "After 10 minutes, add halved cherry tomatoes to the risotto. Continue cooking and stirring.",
+      "When rice is al dente (creamy but with a slight bite), remove from heat.",
+      "Stir in cooked chicken, grated Parmesan cheese, and butter. Stir vigorously for 1 minute for mantecatura (creamy finish).",
+      "Stir in chopped fresh basil.",
+      "Season with salt and black pepper to taste. Serve immediately."
+    ],
+    "notes": [
+      "Risotto requires constant stirring for optimal creaminess.",
+      "Ensure broth is hot for continuous cooking."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 756.9,
+      "cholesterol_mg": 123.1,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 51.9,
+      "saturated_fat_g": 10.9,
+      "sodium_mg": 1261.1,
+      "total_carbs_g": 73,
+      "total_fat_g": 25.3,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 216.3,
+      "cholesterol_mg": 35.2,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 14.8,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 360.3,
+      "total_carbs_g": 20.9,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 8.6,
+      "protein": 103.8,
+      "saturated_fat": 54.5,
+      "sodium": 54.8,
+      "total_carbs": 26.5,
+      "total_fat": 32.4
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Chicken and Bell Pepper Paella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_bell_pepper_paella_20250623_142523_e547d36d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:25:23.591139000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Chicken and Bell Pepper Paella is presented in a traditional wide, shallow, polished steel paella pan, centered on a simple wooden bistro table. The Bomba rice, cooked to al dente perfection, exhibits a rich golden-orange hue from saffron and smoked paprika, with a desirable crispy 'socarrat' visible at the pan's edges. Succulent, golden-brown seared chicken chunks are nestled throughout the rice. Bright red and green bell pepper pieces, diced into 1 cm cubes, provide contrasting color and texture. A generous scattering of fresh, finely chopped green parsley garnishes the top. Two plump lemon wedges are placed along the rim of the pan. The paella pan sits on a clean white porcelain trivet, with a folded cotton napkin beside it. Natural, even lighting highlights the dish's textures and colors. The background is a subtly blurred, warm-toned restaurant interior, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly from the paella pan at the table.",
+      "Offer extra lemon wedges for individual squeezing.",
+      "Accompany with crusty bread for soaking up juices."
+    ],
+    "hero_ingredient": "Saffron-infused Bomba rice",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Bomba rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1, large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1, medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm chunks. Season with salt and pepper.",
+      "Heat 30 ml olive oil in a 32 cm paella pan over medium-high heat. Sear chicken chunks until golden brown on all sides. Remove chicken and set aside. Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Dice onion and bell peppers into 1 cm pieces. Mince garlic.",
+      "Add remaining 30 ml olive oil to the pan. Add diced onion and cook until softened, about 5 minutes.",
+      "Add diced red and green bell peppers. Cook for 5-7 minutes until slightly tender.",
+      "Stir in minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes. Cook for 5 minutes, stirring occasionally, until sauce thickens. This is the sofrito.",
+      "Return seared chicken to the pan. Stir to combine with the sofrito.",
+      "Add Bomba rice to the pan. Stir for 1 minute to coat rice grains with the sofrito and oil.",
+      "Gently warm chicken stock. Add saffron threads to the warm stock. Pour saffron-infused stock evenly over the rice.",
+      "Distribute ingredients evenly in the pan. Do not stir the rice after this point.",
+      "Bring liquid to a boil. Reduce heat to medium-low. Simmer for 15-20 minutes, or until most liquid is absorbed and rice is al dente.",
+      "Increase heat to medium-high for the last 2-3 minutes to create a 'socarrat' (crispy rice crust at the bottom). Listen for crackling sounds. Do not burn.",
+      "Remove paella from heat. Cover pan with foil or a clean kitchen towel. Let rest for 5-10 minutes.",
+      "Garnish with fresh chopped parsley and lemon wedges before serving."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Socarrat"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 716,
+      "cholesterol_mg": 164,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 36.9,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 347,
+      "total_carbs_g": 74,
+      "total_fat_g": 30,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.6,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 62,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 20,
+      "protein": 74,
+      "saturated_fat": 32,
+      "sodium": 15,
+      "total_carbs": 27,
+      "total_fat": 38
+    },
+    "serving_size_g": 559,
+    "total_recipe_weight_g": 2235
+  },
+  {
+    "recipe_name": "Greek Chicken with Braised Greens and Pickled Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_greek_chicken_with_braised_greens_and_pickled_onions_20250623_142312_fed3fe44.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:23:12.498076000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Greek cuisine",
+    "visual_description": "A single, whole seared chicken thigh, with crispy golden-brown skin, rests atop a generous bed of vibrant, roughly chopped braised Swiss chard. The deep green of the chard provides a rich contrast to the chicken's golden hue. Thinly sliced, bright pink quick-pickled red onions are artfully scattered around the chicken and greens, adding a pop of color and texture. Crumbled white feta cheese is delicately sprinkled over the dish. Fresh green oregano and dill leaves are lightly garnished. The dish is presented on a handcrafted, unglazed ceramic plate in an earthy cream tone, set on a light, textured wooden surface. An undyed linen napkin and a subtle hint of green plant life in the background complete the natural, minimalist scene under soft, natural lighting. The composition is clean and uncluttered, highlighting the pure ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with crusty village bread (psomi) for dipping into the pan juices.",
+      "Accompany with a simple Greek salad (Horiatiki Salata) on the side."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approximately 800g total)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large, thinly sliced"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Swiss chard or spinach",
+        "quantity": "500g, tough stems removed, roughly chopped"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, juiced"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100g, crumbled"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "2 tablespoons, chopped"
+      }
+    ],
+    "instructions": [
+      "Prepare Pickled Onions: Combine red wine vinegar, water, sugar, and 1/2 teaspoon salt in a small pot. Bring to a boil. Add thinly sliced red onion. Simmer for 1 minute. Remove from heat. Let cool completely.",
+      "Prepare Chicken: Pat chicken thighs dry with paper towels. Season generously with salt and black pepper on both sides.",
+      "Sear Chicken: Heat 2 tablespoons of olive oil in a large, heavy-bottomed pan over medium-high heat. Place chicken thighs skin-side down in the hot pan. Sear for 8-10 minutes until the skin is deeply golden and crispy. Flip the chicken. Cook for another 5-7 minutes, or until the internal temperature reaches 75°C (167°F). Remove chicken from the pan and set aside.",
+      "Braise Greens: Add the remaining 1 tablespoon of olive oil to the same pan. Add minced garlic. Sauté for 30 seconds until fragrant. Add roughly chopped Swiss chard or spinach. Sauté until wilted. Pour in chicken stock. Bring to a simmer. Cook for 3-5 minutes until greens are tender. Stir in fresh lemon juice. Season with salt and pepper to taste.",
+      "Assemble Dish: Create a bed of braised greens on each plate. Place one seared chicken thigh on top of the greens. Garnish generously with crumbled feta cheese, drained quick-pickled red onions, chopped fresh oregano, and fresh dill. Serve immediately."
+    ],
+    "notes": [
+      "For zero-waste, save chicken bones to make homemade chicken stock for future recipes.",
+      "Adjust the amount of quick-pickled onions to your taste; they add a wonderful tangy brightness."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Braising",
+      "Quick-pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 654.6,
+      "cholesterol_mg": 210.3,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 47.8,
+      "saturated_fat_g": 13.4,
+      "sodium_mg": 953,
+      "total_carbs_g": 16.1,
+      "total_fat_g": 45.3,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 113.1,
+      "cholesterol_mg": 36.3,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 164.6,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 12,
+      "protein": 96,
+      "saturated_fat": 67,
+      "sodium": 41,
+      "total_carbs": 6,
+      "total_fat": 58
+    },
+    "serving_size_g": 578.6,
+    "total_recipe_weight_g": 2314.5
+  },
+  {
+    "recipe_name": "Spanish Chicken and Rice with Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_rice_with_potatoes_20250623_142227_35e0eb74.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:22:27.766257000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "chili",
+      "onion",
+      "garlic",
+      "rice",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant single portion of Spanish Chicken and Rice with Potatoes is presented in a wide, shallow white porcelain bowl, resting on a rustic wooden table. Golden-brown seared chicken thighs, cooked to tender perfection, are placed atop a bed of saffron-infused short-grain rice. The rice is studded with diced ripe red tomatoes, small diced white potatoes, and bright green peas, creating a mosaic of colors and textures. Minced garlic and finely diced onions are subtly integrated into the rice. The dish is garnished with a generous sprinkle of freshly chopped flat-leaf parsley, adding a pop of verdant green. Natural, even lighting illuminates the dish, highlighting the rich colors and inviting textures. A simple white cotton napkin is folded neatly beside the bowl, with a small, culturally authentic Spanish ceramic olive dish nearby, adding to the bistro-style setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly from the pan in the center of the table.",
+      "Offer with crusty bread to soak up the juices.",
+      "Serve with a simple green salad dressed with olive oil and vinegar.",
+      "Accompany with a glass of dry Spanish red wine or sangria."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (bone-in, skin-on)",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion (large)",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Tomatoes (ripe)",
+        "quantity": "400g, diced"
+      },
+      {
+        "name": "Short-grain rice (e.g., Bomba or Arborio)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "a pinch (approx. 0.1g), steeped in 60ml warm water"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "800ml, warm"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold or Red Bliss)",
+        "quantity": "300g, peeled and diced into 2cm cubes"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, wide, shallow pan or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down for 6-8 minutes until golden and crispy. Flip and sear for another 2-3 minutes. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion and bell pepper to the pan. Cook for 5-7 minutes until softened, scraping up any browned bits.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Stir in diced tomatoes. Cook for 5 minutes, breaking them down with a spoon.",
+      "Add rice to the pan. Stir for 2 minutes to coat rice grains with the mixture.",
+      "Pour in warm chicken broth and saffron liquid. Stir well. Add diced potatoes.",
+      "Return seared chicken thighs to the pan, nestling them into the rice mixture.",
+      "Bring to a simmer. Reduce heat to low, cover the pan, and cook for 20-25 minutes.",
+      "Check chicken internal temperature with a thermometer. It must reach 75°C (167°F).",
+      "Remove lid. Stir in frozen green peas. If rice is too dry, add a little more broth.",
+      "Cook uncovered for another 5 minutes, allowing any excess liquid to evaporate and peas to warm through.",
+      "Remove from heat. Let the dish rest, covered, for 5-10 minutes before serving.",
+      "Garnish generously with fresh chopped parsley."
+    ],
+    "notes": [
+      "Using a short-grain rice like Bomba rice will yield the best texture for absorbing flavors.",
+      "Adjust chili (bell pepper) for heat preference; a pinch of red pepper flakes can be added for more spice.",
+      "Ensure the pan is wide enough for the rice to cook evenly in a thin layer."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 897,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 53.5,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 379,
+      "total_carbs_g": 88.2,
+      "total_fat_g": 37.4,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115.1,
+      "cholesterol_mg": 24.1,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.9,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 48.6,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 33,
+      "protein": 107,
+      "saturated_fat": 46,
+      "sodium": 16,
+      "total_carbs": 32,
+      "total_fat": 48
+    },
+    "serving_size_g": 780,
+    "total_recipe_weight_g": 3119
+  },
+  {
+    "recipe_name": "Hearty Beef and Tomato Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_tomato_noodles_20250623_142157_33f61c66.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:21:57.530329000Z",
+    "selected_ingredients": [
+      "tomato",
+      "garlic",
+      "beef",
+      "noodle"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of Hearty Beef and Tomato Noodles is presented in a deep, rustic ceramic bowl with a matte, earthy glaze. The dish features browned ground beef, short egg noodles, and chunky diced tomatoes, all coated in a rich, savory sauce. The colors are natural and comforting: warm browns from the beef, vibrant reds from the tomatoes, and pale yellow from the noodles. The components are naturally intertwined, with the sauce clinging to the pasta and beef, creating a hearty, comforting texture. A few scattered flecks of fresh parsley provide a touch of green. The bowl sits on a well-worn, light-colored wooden kitchen table, showing subtle signs of use. A simple, slightly creased white cloth napkin is casually placed beside the bowl, along with a plain silver fork. Warm, soft light illuminates the scene from above, creating a cozy, inviting atmosphere typical of a family dinner.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad",
+      "Serve with crusty bread for dipping"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Short egg noodles",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 millilitres"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 millilitres"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 millilitres"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 grams"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add ground beef. Cook, breaking it apart, until browned and crumbled. Drain excess fat.",
+      "Dice the onion. Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Mince the garlic. Add minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Stir in diced tomatoes with their juice and beef broth. Bring to a simmer.",
+      "Reduce heat to medium-low. Cover and simmer for 15 minutes, allowing flavors to meld.",
+      "Add short egg noodles to the pot. Stir well. Ensure noodles are mostly submerged.",
+      "Continue to simmer, stirring occasionally, until noodles are tender, about 8-10 minutes. Add a splash more broth or water if needed.",
+      "Season with salt and black pepper to taste.",
+      "Chop fresh parsley. Stir in half of the chopped parsley just before serving.",
+      "Garnish individual servings with remaining fresh parsley."
+    ],
+    "notes": [
+      "Adjust seasoning to your preference.",
+      "For a thicker sauce, simmer uncovered for a few extra minutes after adding noodles."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 650,
+      "cholesterol_mg": 119,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 44.7,
+      "saturated_fat_g": 8.9,
+      "sodium_mg": 1398,
+      "total_carbs_g": 57.5,
+      "total_fat_g": 25.9,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.9,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 248,
+      "total_carbs_g": 10.2,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 18,
+      "protein": 89,
+      "saturated_fat": 45,
+      "sodium": 61,
+      "total_carbs": 21,
+      "total_fat": 33
+    },
+    "serving_size_g": 563,
+    "total_recipe_weight_g": 2251
+  }
+]

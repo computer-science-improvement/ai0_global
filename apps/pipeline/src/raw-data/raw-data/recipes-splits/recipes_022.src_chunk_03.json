@@ -1,0 +1,684 @@
+[
+  {
+    "recipe_name": "Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_20250624_122401_b139b0b1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:24:02.153719000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo presented on a clean white porcelain plate. Two whole, bone-in chicken thighs with deeply browned, crispy skin sit atop a bed of golden, saffron-stained rice. The rice grains are plump and distinct, interspersed with fine bits of softened onion and concentrated red tomato. The dish shows vibrant yellow and orange hues from the saffron and paprika. A generous sprinkle of bright green, finely chopped parsley is scattered over the top. A single lemon wedge is placed neatly on the side. The plate sits on a light oak wooden table with a folded white cotton napkin. Lighting is bright, natural, and even, highlighting the textures of the crispy skin and the moist rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Alioli (garlic mayonnaise)",
+      "Accompany with crusty bread and a glass of chilled white wine",
+      "Present in a traditional terracotta cazuela for family-style dining"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip and brown the other side. Remove chicken from pan.",
+      "Add onion to the same pan. Sauté until translucent.",
+      "Stir in garlic and grated tomato. Cook until liquid evaporates and mixture darkens.",
+      "Add smoked paprika and rice. Stir to coat rice in oil for 2 minutes.",
+      "Pour in white wine. Deglaze the pan. Simmer until wine reduces by half.",
+      "Add hot stock and saffron. Stir once to distribute.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer undisturbed over medium-low heat for 18-20 minutes.",
+      "Ensure chicken reaches internal temperature of 75°C.",
+      "Remove from heat. Cover with a clean cloth. Rest for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form on the bottom.",
+      "Use a wide pan to ensure even rice cooking."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice absorption method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1414,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 8.6,
+      "protein": 66.4,
+      "saturated_fat": 46.5,
+      "sodium": 61.5,
+      "total_carbs": 24.5,
+      "total_fat": 52.1
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Baltic Sausage and Potato Beer Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baltic_sausage_and_potato_beer_bake_20250624_122359_462c6c4c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:24:00.320187000Z",
+    "selected_ingredients": [
+      "sausage",
+      "potato",
+      "american cheese",
+      "onion",
+      "dark beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "baltic cuisine",
+    "visual_description": "A single portion of Baltic Sausage and Potato Beer Bake is presented in a deep, rustic white ceramic gratin dish. Layers of tender, golden-brown potato slices (5mm thick) and robust, browned sausage chunks (2cm thick) are visible, interwoven with beer-caramelized onions. A rich, bubbly, golden-orange cheese sauce, lightly browned on top, covers the dish. The creamy American cheese sauce provides a smooth, golden blanket. The dish features warm golden-brown, deep amber, and rich brown tones. Textures include tender potatoes, juicy sausage, and creamy sauce with a slight top crispness. Freshly chopped parsley adds a vibrant green garnish. The gratin dish rests on a light wooden table. A folded linen napkin and standard flatware are placed alongside. Soft, natural lighting highlights the dish's comforting appeal in a modern bistro setting, with a subtle background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Baltic",
+    "cultural_origin": "Baltic",
+    "cultural_serving_suggestions": [
+      "Pickled cucumbers"
+    ],
+    "hero_ingredient": "Smoked Sausage",
+    "ingredients": [
+      {
+        "name": "Robust pork sausages",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dark Beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "American Cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Cut into 5 mm thick rounds. Place in cold water.",
+      "Heat oil in a large oven-safe skillet or Dutch oven over medium heat. Add thinly sliced onions. Cook, stirring, until deeply caramelized, about 15-20 minutes.",
+      "Remove onions from skillet. Add sausages to the same skillet. Brown on all sides. Remove sausages and slice into 2 cm thick pieces.",
+      "Return caramelized onions to the skillet. Add minced garlic and fresh thyme sprigs. Pour in dark beer. Bring to a simmer, scraping up browned bits. Simmer for 5 minutes.",
+      "Drain potatoes well. Layer half the potato slices in the bottom of the skillet or a 20x30 cm baking dish. Arrange half the sliced sausages over the potatoes. Pour half the beer-onion mixture over.",
+      "In a small saucepan, gently heat heavy cream. Add American cheese slices. Stir until cheese is completely melted and smooth. Season with salt and pepper.",
+      "Layer remaining potatoes over the sausage. Arrange remaining sausage pieces on top. Pour the remaining beer-onion mixture evenly over. Pour the melted cheese sauce over the entire dish.",
+      "Cover the baking dish tightly with foil. Bake in a preheated oven at 180°C for 40 minutes. Remove foil. Continue baking for another 20-25 minutes, or until potatoes are tender and the top is golden and bubbly.",
+      "Let the bake rest for 5-10 minutes before serving. Garnish with chopped fresh parsley."
+    ],
+    "notes": [
+      "For best results, use a high-quality smoked pork sausage traditional to Baltic regions, such as a kielbasa or a robust farmer's sausage."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 801,
+      "cholesterol_mg": 141.3,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 27.5,
+      "saturated_fat_g": 24.3,
+      "sodium_mg": 1743.5,
+      "total_carbs_g": 50.2,
+      "total_fat_g": 52.8,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 5.1,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 320.5,
+      "total_carbs_g": 9.2,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47.1,
+      "dietary_fiber": 21.8,
+      "protein": 54.9,
+      "saturated_fat": 121.3,
+      "sodium": 75.8,
+      "total_carbs": 18.3,
+      "total_fat": 67.7
+    },
+    "serving_size_g": 544,
+    "total_recipe_weight_g": 2176
+  },
+  {
+    "recipe_name": "Chuncheon Dakgalbi (Spicy Stir-fried Chicken)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chuncheon_dakgalbi_%28spicy_stir-fried_chicken%29_20250624_122356_4bd2804b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:23:57.163621000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "Korean cuisine",
+    "visual_description": "A single portion of Chuncheon Dakgalbi is presented on a simple, round, deep Korean ceramic plate, showcasing its vibrant red-orange color. Bite-sized chicken chunks, coated in the spicy sauce, are nestled amongst large, tender squares of cabbage and thick, soft slices of sweet potato. Onion wedges and lengths of green onion are visible throughout the dish. The ingredients are casually arranged, slightly overlapping, creating a natural, hearty mound. A light sprinkle of toasted sesame seeds and a few fresh, roughly torn perilla leaves garnish the top, adding a touch of green and a nutty aroma. The plate rests on a well-used wooden dining table, alongside metal chopsticks and a small white rice bowl. A couple of small, traditional banchan bowls, perhaps holding kimchi and pickled radish, are placed nearby. Warm, natural kitchen lighting illuminates the scene, creating a cozy, lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with steamed white rice.",
+      "Offer various banchan (side dishes) like kimchi and pickled radishes.",
+      "Provide fresh lettuce or perilla leaves for ssam (wraps), allowing diners to wrap the chicken and rice.",
+      "Traditionally enjoyed communally, often cooked at the table on a portable burner."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (boneless, skinless)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Sweet potato",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cabbage",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green onion",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Perilla leaves (optional)",
+        "quantity": "10-15 leaves"
+      },
+      {
+        "name": "Tteok (Korean rice cakes, optional)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "80g"
+      },
+      {
+        "name": "Gochugaru (Korean chili flakes)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Minced garlic",
+        "quantity": "30g"
+      },
+      {
+        "name": "Minced ginger",
+        "quantity": "15g"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm bite-sized chunks.",
+      "In a large bowl, combine gochujang, gochugaru, soy sauce, sugar, minced garlic, minced ginger, sesame oil, and black pepper. Mix well to form the marinade.",
+      "Add chicken chunks to the marinade. Mix thoroughly. Cover and refrigerate for at least 30 minutes, or up to 4 hours.",
+      "Peel and slice sweet potato into 0.5 cm thick rounds.",
+      "Cut cabbage into large 4-5 cm squares.",
+      "Slice onion into thick wedges.",
+      "Cut green onions into 5 cm lengths.",
+      "If using, separate tteok.",
+      "Heat a large skillet or wide pan over medium-high heat. Add marinated chicken. Stir-fry for 5-7 minutes until chicken is mostly cooked through and browned.",
+      "Add sweet potato, cabbage, onion, and tteok (if using) to the pan. Continue to stir-fry, mixing all ingredients well with the sauce.",
+      "Cover the pan and cook for 8-10 minutes, stirring occasionally, until vegetables are tender and chicken is cooked through (internal temperature 75°C).",
+      "Stir in green onions and perilla leaves (if using) during the last minute of cooking.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Adjust gochugaru to control spice level.",
+      "For an even richer dish, add a small amount of cheese over the top during the last few minutes of cooking, melting it over the hot dakgalbi.",
+      "Leftovers can be mixed with rice and seaweed flakes to make bokkeumbap (fried rice) directly in the pan."
+    ],
+    "traditional_techniques": [
+      "Marinating for flavor infusion",
+      "Stir-frying (bokkeum) in a large, wide pan"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.5,
+      "calories": 561,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 8,
+      "protein_g": 41.7,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 1221.4,
+      "total_carbs_g": 61.8,
+      "total_fat_g": 18.1,
+      "total_sugars_g": 17.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3,
+      "calories": 135.4,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 10.1,
+      "saturated_fat_g": 1,
+      "sodium_mg": 294.9,
+      "total_carbs_g": 14.9,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 29,
+      "protein": 83,
+      "saturated_fat": 22,
+      "sodium": 53,
+      "total_carbs": 22,
+      "total_fat": 23
+    },
+    "serving_size_g": 414.2,
+    "total_recipe_weight_g": 1656.8
+  },
+  {
+    "recipe_name": "Mushroom Stroganoff with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom_stroganoff_with_pappardelle_20250624_122350_59a1ef26.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:23:50.585234000Z",
+    "selected_ingredients": [
+      "pasta",
+      "garlic",
+      "mushroom",
+      "sour cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a generous, yet refined, individual portion of al dente pappardelle pasta, twirled into an elegant mound on a clean white porcelain dinner plate. Each broad ribbon of pasta is generously coated in a luscious, creamy, pale-yellow sauce. Sautéed cremini mushroom slices and finely diced caramelized onions are visibly interspersed throughout the pasta and gently arranged on top, showcasing their earthy brown hues. A light sprinkle of vibrant green, freshly chopped dill provides a contrasting pop of color and freshness. The sauce has a smooth, velvety texture, while the mushrooms offer a tender bite. The plate is presented on a simple wooden table, accompanied by a silver fork and a neatly folded cotton napkin, under natural, even lighting, creating a warm, inviting bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled cucumbers or gherkins for a traditional acidic contrast.",
+      "Offer crusty rye bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "320 grams"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Sour cream (full-fat)",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil.",
+      "Cook pappardelle according to package directions until al dente.",
+      "Reserve 120 ml of pasta cooking water. Drain pasta.",
+      "While pasta cooks, slice mushrooms thinly.",
+      "Dice onion finely. Mince garlic.",
+      "Heat vegetable oil and 15 grams butter in a large skillet over medium-high heat.",
+      "Add sliced mushrooms. Sauté until browned and tender, about 5-7 minutes. Remove mushrooms from skillet. Set aside.",
+      "Add remaining 15 grams butter to the skillet. Add diced onion. Cook until softened and translucent, about 4-5 minutes.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Stir in flour. Cook for 1 minute, creating a roux.",
+      "Gradually whisk in vegetable broth. Bring to a simmer, stirring constantly, until sauce thickens.",
+      "Reduce heat to low. Stir in sour cream until smooth. Do not boil.",
+      "Return cooked mushrooms to the skillet. Stir to combine.",
+      "Add drained pasta to the skillet. Toss to coat evenly with the sauce.",
+      "If sauce is too thick, add reserved pasta water, 30 ml at a time, until desired consistency is reached.",
+      "Season with salt and black pepper to taste.",
+      "Chop fresh dill. Stir half into the pasta. Reserve remaining for garnish.",
+      "Serve immediately, garnished with fresh dill."
+    ],
+    "traditional_techniques": [
+      "Sautéing vegetables to build flavor base",
+      "Creating a roux for sauce thickening"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 536,
+      "cholesterol_mg": 42.7,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 15.5,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 575.1,
+      "total_carbs_g": 73.8,
+      "total_fat_g": 20.1,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154,
+      "cholesterol_mg": 12.3,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 4.5,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 165,
+      "total_carbs_g": 21.2,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14,
+      "dietary_fiber": 23,
+      "protein": 31,
+      "saturated_fat": 48,
+      "sodium": 25,
+      "total_carbs": 27,
+      "total_fat": 26
+    },
+    "serving_size_g": 348.5,
+    "total_recipe_weight_g": 1394
+  },
+  {
+    "recipe_name": "Slow-Cooked Beef Cheek with Pickled Kohlrabi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_cheek_with_pickled_kohlrabi_20250624_122347_3addbdcc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:23:47.766314000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, substantial portion of slow-cooked beef cheek, deep mahogany brown with a slightly crisp exterior, rests prominently on a handcrafted ceramic plate in a natural cream tone. The beef is presented as a whole, tender chunk. Beside it, a smooth, artfully swirled mound of creamy white parsnip puree provides a soft contrast. Thin, translucent rounds of pale green pickled kohlrabi are meticulously arranged to add a vibrant, fresh element and visual texture. A delicate sprinkle of finely chopped chives garnishes the beef, adding a subtle touch of green. The plate is set on a light, reclaimed wood surface, accompanied by an undyed linen napkin in a soft beige. Soft, natural light illuminates the dish, highlighting its textures and natural colors. The background is clean and minimalist, allowing the dish to be the sole focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beef Cheek",
+    "ingredients": [
+      {
+        "name": "Beef cheeks",
+        "quantity": "1 kg (approx. 4 pieces)"
+      },
+      {
+        "name": "Rendered beef fat or olive oil",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Parsnips, peeled",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Kohlrabi, medium",
+        "quantity": "2"
+      },
+      {
+        "name": "Water (for pickling liquid)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "White wine vinegar (for pickling liquid)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Granulated sugar (for pickling liquid)",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt (for pickling liquid)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Butter or cream (optional, for puree)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh chives, finely chopped (for garnish)",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 140°C. Trim excess fat from beef cheeks. Season generously with salt and pepper.",
+      "Heat a large, oven-safe pot or Dutch oven over high heat. Add a splash of beef fat or oil. Sear beef cheeks on all sides until deeply browned. Remove beef.",
+      "Add remaining beef fat or oil to the pot. Place seared beef cheeks back in. Add garlic cloves, thyme sprigs, bay leaves, and black peppercorns. Ensure beef is mostly submerged in fat. Add more fat if needed.",
+      "Cover pot tightly. Slow cook in the preheated oven for 3-4 hours, or until beef is fork-tender. Remove from oven. Let beef cool in its fat. Refrigerate overnight for best flavor and texture.",
+      "For pickled kohlrabi: Peel kohlrabi. Cut into thin rounds or small batons.",
+      "In a small saucepan, combine water, white wine vinegar, sugar, and salt for pickling liquid. Bring to a boil, stirring until sugar and salt dissolve. Remove from heat.",
+      "Place kohlrabi in a heat-proof jar or bowl. Pour hot pickling liquid over kohlrabi. Let cool to room temperature. Refrigerate for at least 1 hour, or overnight.",
+      "For parsnip puree: Peel and chop parsnips into 2 cm pieces. Place in a saucepan. Cover with water. Bring to a boil. Cook until very tender, about 15-20 minutes.",
+      "Drain parsnips. Return to saucepan. Mash or blend until smooth. Add butter or cream, salt, and pepper to taste. Adjust consistency with a little cooking liquid if needed.",
+      "To serve: Gently reheat beef cheeks in their fat on the stovetop or in the oven until warmed through. If desired, sear briefly in a hot pan to crisp the exterior.",
+      "Plate a single beef cheek. Spoon a generous portion of parsnip puree beside it. Arrange several pickled kohlrabi rounds or batons artfully next to the puree. Garnish with chopped chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 976,
+      "cholesterol_mg": 241,
+      "dietary_fiber_g": 11.6,
+      "protein_g": 71.9,
+      "saturated_fat_g": 28.5,
+      "sodium_mg": 1266,
+      "total_carbs_g": 34.6,
+      "total_fat_g": 61.6,
+      "total_sugars_g": 21.5,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 229.5,
+      "cholesterol_mg": 56.7,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 16.9,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 298,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 14.5,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80,
+      "dietary_fiber": 41,
+      "protein": 144,
+      "saturated_fat": 143,
+      "sodium": 55,
+      "total_carbs": 13,
+      "total_fat": 79
+    },
+    "serving_size_g": 425,
+    "total_recipe_weight_g": 1700
+  }
+]

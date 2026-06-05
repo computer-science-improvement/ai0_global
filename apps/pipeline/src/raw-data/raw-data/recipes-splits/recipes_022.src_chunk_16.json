@@ -1,0 +1,664 @@
+[
+  {
+    "recipe_name": "Creamy Mushroom Tagliatelle with Parmesan",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_mushroom_tagliatelle_with_parmesan_20250624_121754_6b712017.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:54.874290000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mushroom",
+      "parmesan"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous swirl of golden tagliatelle pasta centrally plated on a round, clean white porcelain dinner plate. The pasta is coated in a rich, creamy, light brown mushroom sauce. Irregular chunks of deeply caramelized mixed mushrooms are scattered throughout, providing textural contrast. A small cluster of vibrant green chopped fresh parsley is sprinkled on top. Fine shreds of freshly grated Parmesan cheese lightly dust the dish. The pasta forms a natural, elevated mound, with mushrooms and parsley integrated. A few additional whole, sautéed mushroom caps garnish the top. The plate rests on a simple, light wooden table. A neatly folded white cotton napkin and silver flatware are beside it. Natural, soft, even lighting illuminates the dish. The background is a subtly blurred modern bistro setting with warm tones. A single, generous individual portion is presented.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the sauce.",
+      "Offer extra grated Parmesan at the table.",
+      "Pair with a light Italian white wine."
+    ],
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Mixed mushrooms (cremini, shiitake)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable or chicken broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Clean mushrooms. Slice larger mushrooms.",
+      "Heat olive oil and butter in a large pan over medium-high heat.",
+      "Add sliced mushrooms. Cook until golden brown and liquid has evaporated, about 8-10 minutes. Remove half of the cooked mushrooms and set aside for garnish.",
+      "Add diced shallots to the pan with remaining mushrooms. Cook until softened, about 3 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in white wine. Simmer until almost evaporated, about 2 minutes.",
+      "Add broth and heavy cream. Bring to a gentle simmer.",
+      "Reduce heat to low. Stir in 70 g grated Parmesan cheese until melted and sauce thickens slightly. Season with salt and pepper.",
+      "Cook tagliatelle according to package instructions until al dente. Reserve 150 ml pasta water.",
+      "Drain pasta. Add cooked pasta directly to the mushroom sauce.",
+      "Add reserved pasta water gradually, stirring to emulsify and create a creamy sauce.",
+      "Stir in remaining 30 g grated Parmesan and chopped fresh parsley. Toss to combine.",
+      "Serve immediately. Garnish each portion with reserved sautéed mushrooms and extra grated Parmesan."
+    ],
+    "notes": [
+      "Use a mix of mushrooms for best flavor depth (e.g., cremini, shiitake, oyster).",
+      "Do not overcook the pasta; it should be al dente.",
+      "The pasta water is crucial for achieving a silky, emulsified sauce."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecare"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 838,
+      "cholesterol_mg": 103,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 28.8,
+      "saturated_fat_g": 21.2,
+      "sodium_mg": 57,
+      "total_carbs_g": 86.6,
+      "total_fat_g": 40.1,
+      "total_sugars_g": 9.2,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 190,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.5,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 13,
+      "total_carbs_g": 19.7,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 34,
+      "dietary_fiber": 19,
+      "protein": 58,
+      "saturated_fat": 106,
+      "sodium": 2,
+      "total_carbs": 31,
+      "total_fat": 51
+    },
+    "serving_size_g": 440.5,
+    "total_recipe_weight_g": 1762
+  },
+  {
+    "recipe_name": "Hearty Pork and Rice Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_pork_and_rice_pilaf_20250624_121750_9e381a68.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:51.316200000Z",
+    "selected_ingredients": [
+      "pork",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "low-cost",
+    "visual_description": "A single, modest portion of Hearty Pork and Rice Pilaf rests on a simple, round, cream-colored ceramic plate. The pilaf forms a natural, slightly mounded shape, showcasing tender, golden-brown seared pork chunks (2-3 cm) nestled among fluffy, light brown rice. Visible within the rice are soft, translucent diced onions, bright orange diced carrots, and hints of green from celery. A sprinkle of fresh, vibrant green chopped parsley adds a touch of color to the top. The dish is presented on a well-used, warm-toned wooden dining table. A simple metal fork and knife are casually placed beside the plate. A loosely folded, off-white cloth napkin lies nearby. The scene is bathed in warm, cozy lighting, evoking a relaxed, lived-in family kitchen atmosphere. The focus remains on the comforting, hearty food, with a clear view of the entire plate.",
+    "number_of_servings": 2,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder or loin",
+        "quantity": "300 g, diced into 2-3 cm chunks"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 small, diced"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "450 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 ml, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Season diced pork with salt and pepper.",
+      "Heat olive oil in a heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear pork chunks until browned on all sides. Remove pork from pot.",
+      "Add diced onion, carrot, and celery to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and tomato paste. Cook for 1 minute, stirring constantly.",
+      "Stir in rice until well coated.",
+      "Return pork to the pot. Add broth, bay leaf, and dried thyme. Bring mixture to a boil.",
+      "Reduce heat to low. Cover the pot tightly. Simmer for 18-20 minutes, or until rice is tender and liquid is absorbed. Do not lift lid during cooking.",
+      "Remove pot from heat. Let stand, covered, for 5 minutes.",
+      "Fluff the pilaf with a fork. Taste and adjust seasoning as needed.",
+      "Serve immediately, garnished with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 761.5,
+      "cholesterol_mg": 112.5,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 49.1,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 875,
+      "total_carbs_g": 72.1,
+      "total_fat_g": 32.3,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 19.7,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 152.8,
+      "total_carbs_g": 12.6,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.5,
+      "dietary_fiber": 11.4,
+      "protein": 98.1,
+      "saturated_fat": 47.8,
+      "sodium": 38,
+      "total_carbs": 26.2,
+      "total_fat": 41.3
+    },
+    "serving_size_g": 573,
+    "total_recipe_weight_g": 1145
+  },
+  {
+    "recipe_name": "Chicken and Bell Pepper Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_bell_pepper_risotto_20250624_121748_6cdef7fc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:49.129255000Z",
+    "selected_ingredients": [
+      "rice",
+      "bell pepper",
+      "onion",
+      "chicken stock",
+      "chicken",
+      "garlic",
+      "carrot",
+      "parmesan cheese",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian cuisine",
+    "visual_description": "Creamy, vibrant Chicken and Bell Pepper Risotto served in a wide, shallow white porcelain bowl. The risotto, a pale golden hue, is fluid and spreads naturally, not mounded. Visible are tender, diced red and yellow bell peppers and small, succulent chunks of pan-seared chicken breast, cooked to a light golden brown. A generous sprinkle of freshly grated Parmesan cheese lightly melts into the warm rice. The dish is garnished with a few fresh, whole basil leaves, adding a pop of vibrant green. The composition is clean and balanced, with moderate negative space around the risotto. The bowl rests on a simple light wooden table. A folded white cotton napkin and a polished silver fork are placed beside the bowl. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, unfocused background of a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while hot, as risotto loses its ideal texture quickly.",
+      "Pair with a crisp, dry Italian white wine like Pinot Grigio or Vermentino.",
+      "Offer additional grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Arborio Rice",
+    "ingredients": [
+      {
+        "name": "Chicken Breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Arborio Rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow Bell Pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Parmesan Cheese, freshly grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken stock: Heat stock in a saucepan. Keep it simmering gently.",
+      "Prepare vegetables: Dice onion, carrot, red bell pepper, and yellow bell pepper into small, uniform cubes. Mince garlic.",
+      "Cook chicken: Cut chicken breast into 2 cm chunks. Season with salt and pepper. Heat 15 ml olive oil in a large, heavy-bottomed pan over medium-high heat. Sear chicken chunks until golden brown and cooked through (internal temperature 75°C). Remove chicken from pan. Set aside.",
+      "Start soffritto: Add remaining 15 ml olive oil to the same pan. Add diced onion and carrot. Sauté for 5-7 minutes until softened, without browning.",
+      "Add bell peppers and garlic: Stir in diced bell peppers and minced garlic. Cook for another 3-4 minutes until bell peppers slightly soften.",
+      "Toast rice: Add Arborio rice to the pan. Stir constantly for 2 minutes until the edges of the grains become translucent.",
+      "Deglaze with wine: Pour in white wine. Stir until completely absorbed by the rice.",
+      "Add stock gradually: Begin adding hot chicken stock, one ladleful at a time. Stir continuously. Wait until each ladleful is almost completely absorbed before adding the next. This process takes about 18-20 minutes.",
+      "Achieve creamy consistency: Continue adding stock until the rice is al dente (cooked but still firm to the bite) and the risotto is creamy and fluid, not dry.",
+      "Mantecatura (finish risotto): Remove pan from heat. Stir in butter and half of the grated Parmesan cheese. Add cooked chicken chunks. Stir vigorously for 1-2 minutes until butter and cheese are fully incorporated and the risotto is smooth and velvety.",
+      "Season: Taste and adjust seasoning with salt and pepper as needed.",
+      "Garnish: Roughly chop fresh basil leaves. Stir most into the risotto. Reserve some for garnish.",
+      "Serve: Ladle risotto into warm shallow bowls. Garnish with remaining fresh basil and a sprinkle of Parmesan cheese."
+    ],
+    "notes": [
+      "Constant stirring is crucial for creamy risotto texture.",
+      "Ensure stock is hot when added to avoid cooling the rice."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Tostatura (toasting rice)",
+      "Mantecatura (creaming with butter and cheese)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 769,
+      "cholesterol_mg": 151.2,
+      "dietary_fiber_g": 4,
+      "protein_g": 48.1,
+      "saturated_fat_g": 11,
+      "sodium_mg": 996.1,
+      "total_carbs_g": 78.1,
+      "total_fat_g": 29.1,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 23.6,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.5,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 155.5,
+      "total_carbs_g": 12.2,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50.4,
+      "dietary_fiber": 14.3,
+      "protein": 96.2,
+      "saturated_fat": 55,
+      "sodium": 43.3,
+      "total_carbs": 28.4,
+      "total_fat": 37.3
+    },
+    "serving_size_g": 640.75,
+    "total_recipe_weight_g": 2563
+  },
+  {
+    "recipe_name": "Roasted Chicken Thighs with Rosemary and Lemon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_thighs_with_rosemary_and_lemon_20250624_121734_a2295b53.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:34.827945000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of roasted chicken and vegetables rests on a round, simple ceramic plate with subtle imperfections. A whole, golden-brown, crispy-skinned chicken thigh is the main feature, positioned slightly off-center. Thick chunks of roasted carrots and tender potato wedges, their skins slightly blistered, are naturally arranged around the chicken, with some pieces touching or overlapping. Large, softened red onion wedges and a few smashed garlic cloves are scattered among the vegetables. Fresh green rosemary sprigs are tucked in, adding a vibrant touch. A couple of roasted lemon slices lie near the chicken. The entire plate is visible, adequately filled but not overcrowded, allowing for some negative space. The dish is presented on a well-used wooden dining table, with a casually placed plain cloth napkin and standard flatware. Warm, cozy lighting from kitchen fixtures illuminates the scene, suggesting a relaxed family meal in a lived-in atmosphere with natural clutter.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800-1000g total)"
+      },
+      {
+        "name": "Potatoes, e.g., Yukon Gold or red",
+        "quantity": "500g, cut into 2-3 cm wedges"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300g, peeled and cut into 3-4 cm thick chunks"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large, cut into 8 wedges"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, smashed"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "4-5 sprigs"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, half sliced into rounds, half for juice"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "In a large roasting pan, combine potato wedges, carrot chunks, onion wedges, and smashed garlic cloves.",
+      "Drizzle vegetables with 30ml olive oil. Season with salt and pepper. Toss to coat evenly.",
+      "Nestle seasoned chicken thighs among the prepared vegetables in the roasting pan.",
+      "Tuck fresh rosemary sprigs and lemon slices around the chicken and vegetables.",
+      "Drizzle the remaining 30ml olive oil over the chicken. Squeeze juice from the remaining half lemon over everything.",
+      "Roast for 40-50 minutes, or until chicken skin is golden and crispy. Ensure chicken internal temperature reaches 75°C. Vegetables should be tender and lightly caramelized.",
+      "Remove from oven. Let chicken rest in the pan for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 736,
+      "cholesterol_mg": 207,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 42.5,
+      "saturated_fat_g": 11.1,
+      "sodium_mg": 1176,
+      "total_carbs_g": 38.4,
+      "total_fat_g": 48.6,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 136,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.9,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 218,
+      "total_carbs_g": 7.1,
+      "total_fat_g": 9,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 24,
+      "protein": 85,
+      "saturated_fat": 56,
+      "sodium": 51,
+      "total_carbs": 14,
+      "total_fat": 62
+    },
+    "serving_size_g": 540,
+    "total_recipe_weight_g": 2160
+  },
+  {
+    "recipe_name": "Spanish Chicken and Saffron Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_saffron_rice_20250624_121726_87b50a7e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:26.462843000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "rice",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Chicken and Saffron Rice is presented on a clean, white porcelain dinner plate. The golden-yellow bomba rice, infused with saffron, is mounded slightly in the center, appearing moist and flavorful, not dry. Scattered throughout the rice are vibrant orange diced carrots and bright green peas. Nestled naturally within and on top of the rice are golden-brown, tender chunks of boneless chicken thigh, showcasing their seared exterior. A generous sprinkle of fresh, chopped flat-leaf parsley garnishes the dish, adding a pop of green and freshness. A lemon wedge rests on the side of the plate, ready for squeezing. The overall composition is balanced and inviting, with moderate negative space. The plate sits on a simple wooden table surface, accompanied by standard flatware and a folded cotton napkin beside the plate. Natural, even lighting highlights the dish, with a soft, casual restaurant-style background that remains unobtrusive.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Bomba rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Carrots, diced (1 cm cubes)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Hot chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "Pinch (approx. 0.1 g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lemon, cut into wedges",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2-3 cm chunks. Season chicken with salt and pepper.",
+      "Heat olive oil in a large, wide pan or shallow pot over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken from pan and set aside. Cook chicken to an internal temperature of 75°C (167°F).",
+      "Add diced onion and carrots to the pan. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes. Cook for 5 minutes, stirring occasionally, until slightly reduced.",
+      "Add bomba rice to the pan. Stir for 2 minutes to toast the rice.",
+      "Pour in hot chicken broth. Add saffron threads. Stir well. Bring to a simmer.",
+      "Return seared chicken to the pan, nestling it into the rice. Ensure chicken is mostly submerged.",
+      "Reduce heat to low. Cover the pan tightly. Cook for 18-20 minutes, or until rice has absorbed most of the liquid and is tender. Do not stir frequently.",
+      "Stir in frozen peas during the last 5 minutes of cooking.",
+      "Remove pan from heat. Let rest, covered, for 5 minutes.",
+      "Fluff rice gently with a fork. Taste and adjust seasoning if needed.",
+      "Garnish with fresh chopped parsley and serve with lemon wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 686,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 39.1,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 330,
+      "total_carbs_g": 79.4,
+      "total_fat_g": 23,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.1,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 51,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 23,
+      "protein": 78,
+      "saturated_fat": 26,
+      "sodium": 14,
+      "total_carbs": 29,
+      "total_fat": 30
+    },
+    "serving_size_g": 645,
+    "total_recipe_weight_g": 2579
+  }
+]

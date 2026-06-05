@@ -1,0 +1,746 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Potato-Mushroom Gratin and Tomato-Basil Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_potato-mushroom_gratin_and_tomato-basil_relish_20250624_122619_1802b672.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:26:20.296150000Z",
+    "selected_ingredients": [
+      "potato",
+      "mushroom",
+      "tomato",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, centrally composed. A rectangular portion of golden-brown potato-mushroom gratin, showcasing distinct layers and a crispy top, anchors one side. Adjacent is a whole, pan-seared chicken breast, its skin deeply golden and caramelized, subtly glistening. A vibrant mound of freshly prepared tomato-basil relish, with diced red tomatoes and bright green basil leaves, is spooned artfully over the chicken, adding a pop of contrasting color. A single fresh basil leaf garnishes the relish. Colors are natural: golden-brown chicken and gratin, deep red tomatoes, vivid green basil. Moderate negative space ensures a professional yet approachable presentation. The background features a simple wooden table, a folded white cotton napkin, and subtly blurred restaurant elements, conveying a casual bistro atmosphere with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4"
+      },
+      {
+        "name": "Russet or Yukon Gold potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Ripe cherry tomatoes or small Roma tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Small yellow onion or shallots",
+        "quantity": "1"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red wine vinegar or balsamic glaze",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Thinly slice potatoes (1-2mm thick) using a mandoline or sharp knife. Slice mushrooms. Mince 2 cloves garlic and chop onion/shallots.",
+      "In a large pan, melt 15g butter over medium heat. Sauté onion/shallots until softened, about 3 minutes. Add mushrooms and remaining minced garlic. Cook until mushrooms release their liquid and brown, about 5-7 minutes. Season with salt and pepper.",
+      "Layer half the sliced potatoes in a greased 20x20 cm baking dish. Top with half the mushroom mixture. Repeat layers.",
+      "Whisk heavy cream with chicken broth, salt, and pepper. Pour over potato layers. Sprinkle with half the Parmesan cheese.",
+      "Bake for 30 minutes, covered. Uncover, sprinkle with remaining Parmesan, and bake for another 20-30 minutes, or until potatoes are tender and top is golden brown. Let rest 5 minutes before cutting into portions.",
+      "Dice cherry or Roma tomatoes into small cubes. Finely chop fresh basil leaves. Mince 2 cloves garlic.",
+      "In a small bowl, combine diced tomatoes, chopped basil, minced garlic, 30ml olive oil, and red wine vinegar/balsamic glaze. Season with salt and pepper. Stir well.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat remaining 30ml olive oil and 15g butter in a large oven-safe skillet over medium-high heat.",
+      "Add chicken breasts to hot skillet. Sear for 4-5 minutes per side until golden brown.",
+      "Transfer skillet to preheated oven. Bake for 10-15 minutes, or until internal temperature reaches 75°C.",
+      "Remove chicken from oven. Let rest for 5 minutes before serving.",
+      "Place a portion of potato-mushroom gratin on each plate. Arrange a pan-seared chicken breast beside it. Spoon tomato-basil relish over the chicken. Garnish with a fresh basil leaf."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 864.8,
+      "cholesterol_mg": 257.25,
+      "dietary_fiber_g": 5.56,
+      "protein_g": 64.47,
+      "saturated_fat_g": 24.15,
+      "sodium_mg": 926.01,
+      "total_carbs_g": 33.28,
+      "total_fat_g": 52.71,
+      "total_sugars_g": 6.82,
+      "trans_fat_g": 0.65
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150.1,
+      "cholesterol_mg": 44.64,
+      "dietary_fiber_g": 0.97,
+      "protein_g": 11.19,
+      "saturated_fat_g": 4.19,
+      "sodium_mg": 160.7,
+      "total_carbs_g": 5.77,
+      "total_fat_g": 9.15,
+      "total_sugars_g": 1.18,
+      "trans_fat_g": 0.11
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85.8,
+      "dietary_fiber": 19.9,
+      "protein": 128.9,
+      "saturated_fat": 120.8,
+      "sodium": 40.3,
+      "total_carbs": 12.1,
+      "total_fat": 67.6
+    },
+    "serving_size_g": 576.25,
+    "total_recipe_weight_g": 2305
+  },
+  {
+    "recipe_name": "Fermented Chicken & Root Vegetable Roast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chicken_%26_root_vegetable_roast_20250624_122613_4d4040ee.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:26:13.922600000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single roasted chicken leg quarter, its skin crisped to a deep golden-brown, rests centrally on a handcrafted, unglazed ceramic plate in a warm beige hue. Around it, rustic chunks of roasted carrots, parsnips, and potatoes, boasting caramelized edges and earthy tones, are arranged organically, not stacked, allowing for natural negative space. A vibrant, smooth dollop of bright green fermented greens puree is placed cleanly to the side, offering a striking color contrast. The plating is minimalistic and unforced, highlighting the natural beauty of each ingredient. A few delicate fresh herb leaves are scattered naturally on or beside the chicken. The scene is set on a light, textured reclaimed wood surface, illuminated by soft natural light. An undyed linen napkin in natural beige lies simply beside the plate, with a clean, unobtrusive background featuring subtle out-of-focus green foliage, reinforcing the eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken leg quarters",
+        "quantity": "4 (approx. 1.2 kg total)"
+      },
+      {
+        "name": "Fermented vegetable brine",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary or thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Carrots, large chunks",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Parsnips, large chunks",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Potatoes, quartered",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sturdy greens (kale, collards, chard)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fermented cabbage or other fermented vegetable, squeezed",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Vegetable stock or water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fresh herb leaves for garnish",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Place chicken in a large container. Add fermented brine, peppercorns, and rosemary/thyme. Ensure chicken is submerged. Refrigerate for 24-48 hours.",
+      "Preheat oven to 200°C (390°F). Drain chicken from brine; pat very dry. Reserve brine for other uses or discard.",
+      "In a large roasting tray, toss carrots, parsnips, and potatoes with olive oil, salt, and pepper.",
+      "Place chicken on top of root vegetables in the tray. Roast for 45-60 minutes, or until chicken internal temperature reaches 75°C (167°F). Skin should be golden and crisp. Turn vegetables once during roasting.",
+      "While chicken roasts, blanch greens in boiling salted water for 2-3 minutes until tender. Drain well and squeeze out excess water. Reserve stems for stock.",
+      "In a food processor, combine blanched greens, fermented cabbage, minced garlic, olive oil, and vegetable stock. Process until a smooth puree forms. Season with salt.",
+      "Remove chicken and vegetables from oven. Let chicken rest for 10 minutes.",
+      "Serve chicken with roasted root vegetables and a generous dollop of fermented greens puree. Garnish with fresh herb leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 705.2,
+      "cholesterol_mg": 197.4,
+      "dietary_fiber_g": 14.2,
+      "protein_g": 44.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1088.3,
+      "total_carbs_g": 49.2,
+      "total_fat_g": 37.5,
+      "total_sugars_g": 17.6,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85.8,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 5.4,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 132.5,
+      "total_carbs_g": 6,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65.8,
+      "dietary_fiber": 50.6,
+      "protein": 88.4,
+      "saturated_fat": 46.5,
+      "sodium": 47.3,
+      "total_carbs": 17.9,
+      "total_fat": 48.1
+    },
+    "serving_size_g": 821.5,
+    "total_recipe_weight_g": 3286
+  },
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_tagliatelle_20250624_122556_cd0fa06a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:25:56.944343000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "pasta",
+      "bread",
+      "potato",
+      "onion",
+      "apple",
+      "rice",
+      "sausage",
+      "chicken stock",
+      "salad green",
+      "chocolate",
+      "corn",
+      "flour",
+      "pineapple",
+      "garlic",
+      "sugar",
+      "coffee",
+      "lemon",
+      "mushroom",
+      "breadcrumbs",
+      "cream",
+      "orange",
+      "shrimp",
+      "coriander",
+      "green pea",
+      "milk",
+      "oats",
+      "mozzarella",
+      "yogurt",
+      "ginger",
+      "yeast",
+      "basil",
+      "ham",
+      "oil",
+      "butter",
+      "salmon",
+      "parsley",
+      "lime",
+      "noodle",
+      "parmesan cheese",
+      "vanilla",
+      "cheese",
+      "oregano",
+      "mayonnaise",
+      "cream cheese",
+      "vegetable stock",
+      "thyme",
+      "broccoli",
+      "cottage cheese",
+      "cucumber",
+      "dill",
+      "lentil",
+      "macaroni",
+      "beet",
+      "black pepper",
+      "celery",
+      "mint",
+      "carrot",
+      "egg",
+      "honey",
+      "sage",
+      "pork stock",
+      "ricotta",
+      "cabbage",
+      "horseradish",
+      "marshmallow",
+      "olive oil",
+      "orange juice",
+      "paprika",
+      "pistachio",
+      "pimento pepper",
+      "rosemary",
+      "bay leaf",
+      "cauliflower",
+      "cinnamon",
+      "cumin",
+      "curry",
+      "eggplant",
+      "pretzel",
+      "rye bread",
+      "sesame seed",
+      "tofu",
+      "anise",
+      "banana",
+      "caramel",
+      "cardamom",
+      "courgette",
+      "couscous",
+      "dried pea",
+      "egg noodle",
+      "fish",
+      "ketchup",
+      "kielbasa",
+      "lemon zest",
+      "pomegranate",
+      "porcini mushroom",
+      "rice noodle",
+      "sour cream",
+      "sweet potato",
+      "tea",
+      "black tea",
+      "chickpea",
+      "chive",
+      "clove",
+      "egg white",
+      "green tea",
+      "mandarin",
+      "miso paste",
+      "vinegar",
+      "allspice",
+      "avocado",
+      "green onion",
+      "polenta",
+      "watermelon",
+      "bulgur",
+      "egg yolk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Tagliatelle is coiled neatly on a clean white porcelain dinner plate. The pasta is evenly coated in a creamy, rich sauce. Seared chicken breast, cut into thick chunks, is nestled among the pasta. Sliced cremini mushrooms are integrated throughout the dish. Fresh chopped parsley and a light grating of Parmesan cheese provide vibrant green and pale yellow accents. The dish displays warm golden, earthy brown, and creamy white tones. The plate is placed on a simple wooden table surface, accompanied by a cotton napkin and traditional flatware. Natural, even lighting highlights the textures and colors. A single refined restaurant portion is presented.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Pair with a simple green salad dressed with olive oil and lemon."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Slice 300g cremini mushrooms. Mince 3 garlic cloves. Dice 1 medium onion. Cut 500g chicken breast into 3cm thick chunks.",
+      "Heat 15ml olive oil and 15g butter in a large pan over medium-high heat. Sear chicken chunks until golden brown on all sides. Cook to an internal temperature of 75°C. Remove chicken from pan. Set aside.",
+      "Add remaining 15ml olive oil and 15g butter to the pan. Sauté diced onion for 3 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms to the pan. Cook for 5-7 minutes until softened and browned.",
+      "Pour in 250ml chicken stock. Bring to a simmer. Reduce liquid by half.",
+      "Stir in 200ml heavy cream. Simmer gently for 2 minutes until sauce thickens slightly.",
+      "Meanwhile, cook 400g tagliatelle in salted boiling water according to package directions until al dente. Drain pasta, reserving 120ml pasta water.",
+      "Return cooked chicken to the pan with the sauce. Add drained tagliatelle. Add 50g grated Parmesan cheese and 15g chopped fresh parsley. Toss to combine. If sauce is too thick, add reserved pasta water as needed.",
+      "Season with salt and black pepper to taste. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for aromatic base)",
+      "Al dente (for pasta cooking)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 953,
+      "cholesterol_mg": 194,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 61.4,
+      "saturated_fat_g": 20.2,
+      "sodium_mg": 407,
+      "total_carbs_g": 84.6,
+      "total_fat_g": 41,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 197,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 12.7,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 84,
+      "total_carbs_g": 17.5,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 21,
+      "protein": 123,
+      "saturated_fat": 101,
+      "sodium": 18,
+      "total_carbs": 31,
+      "total_fat": 53
+    },
+    "serving_size_g": 484,
+    "total_recipe_weight_g": 1937
+  },
+  {
+    "recipe_name": "One-Pot Lemon Herb Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_one-pot_lemon_herb_chicken_and_rice_20250624_122548_848b5370.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:25:49.368185000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous individual portion of One-Pot Lemon Herb Chicken and Rice is presented on a simple, round, off-white ceramic plate. A golden-brown, seared chicken thigh, skin side up, is positioned centrally, slightly overlapping a mound of fluffy, pale yellow rice. The rice, cooked to absorb the flavorful broth, shows flecks of green chopped parsley and minced garlic. Thin, translucent slices of cooked lemon are nestled among the rice and beside the chicken. The chicken thigh exhibits a crisp, inviting skin texture and is cooked through, revealing tender meat. The overall arrangement is natural and comforting, with ingredients settling organically. The plate sits on a well-used wooden dining table, illuminated by warm, soft kitchen light. A simple metal fork rests beside the plate on a casually placed cloth napkin. The background is a relaxed family dining area with a lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (half sliced, half juiced)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Water",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 5-7 minutes until skin is golden brown and crispy. Flip and sear for another 2-3 minutes. Remove chicken from pot and set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Sauté for 3-4 minutes until softened.",
+      "Add minced garlic, dried oregano, and dried thyme. Cook for 1 minute until fragrant.",
+      "Stir in the long-grain white rice. Toast for 2 minutes, stirring constantly.",
+      "Pour in chicken broth. Bring to a simmer. Add lemon slices.",
+      "Return seared chicken thighs to the pot, nestling them into the rice mixture.",
+      "Cover the pot tightly. Reduce heat to low. Cook for 20-25 minutes, or until rice is tender and chicken reaches an internal temperature of 75°C (167°F).",
+      "Remove pot from heat. Let stand, covered, for 5 minutes.",
+      "Stir in fresh lemon juice and chopped parsley. Fluff rice with a fork.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 838,
+      "cholesterol_mg": 220,
+      "dietary_fiber_g": 3.51,
+      "protein_g": 53.51,
+      "saturated_fat_g": 9.94,
+      "sodium_mg": 1186,
+      "total_carbs_g": 69.3,
+      "total_fat_g": 39.02,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.7,
+      "saturated_fat_g": 1.99,
+      "sodium_mg": 237,
+      "total_carbs_g": 13.86,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 0.46,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 13,
+      "protein": 107,
+      "saturated_fat": 50,
+      "sodium": 52,
+      "total_carbs": 25,
+      "total_fat": 50
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Savory Apple and Honey Velouté",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_apple_and_honey_velout%C3%A9_20250624_122547_9b5a6f1a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:25:48.353077000Z",
+    "selected_ingredients": [
+      "apple",
+      "honey"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Savory Apple and Honey Velouté is presented in a clean, matte white ceramic bowl. The soup is a smooth, velvety liquid, exhibiting a warm, pale golden-beige color. Its surface is perfectly unblemished, indicating a finely puréed and strained consistency. Garnishing the center are irregular, rustic chunks of deeply golden-brown crispy prosciutto, providing a textural contrast. Alongside the prosciutto, a few vibrant, dark green, whole crispy sage leaves are artfully placed, offering a pop of color and an aromatic element. The bowl is positioned on a natural light wood table surface, subtly textured. A neatly folded, light gray cotton napkin rests to the left of the bowl. Simple, modern silver flatware is placed to the right. The background is a softly blurred, warm-toned restaurant interior, maintaining a casual bistro ambiance with natural, even lighting that highlights the soup's inviting warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Granny Smith apples",
+        "quantity": "600 g, peeled, cored, diced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Chicken or Vegetable stock",
+        "quantity": "1 L"
+      },
+      {
+        "name": "Honey",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "12-15 small"
+      },
+      {
+        "name": "Prosciutto",
+        "quantity": "4 slices (approx. 40g)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Lay prosciutto slices flat on a baking sheet. Bake 10-12 minutes until very crisp. Cool. Crumble into small, irregular chunks. Set aside.",
+      "In a large pot, melt 15 g butter with olive oil over medium heat. Add diced onion. Sauté 5-7 minutes until translucent.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Add diced apples. Cook 5 minutes, stirring occasionally, until slightly softened.",
+      "Pour in stock and honey. Bring to a simmer. Reduce heat to low. Cover and cook 15-20 minutes until apples are very tender.",
+      "Remove from heat. Carefully blend soup with an immersion blender until completely smooth. Alternatively, transfer to a stand blender and blend in batches. For a truly smooth velouté, pass soup through a fine-mesh sieve into a clean pot.",
+      "Return soup to low heat. Stir in heavy cream. Season with salt and black pepper to taste. Heat through gently; do not boil.",
+      "In a small pan, melt remaining 15 g butter over medium-low heat. Add sage leaves. Fry 1-2 minutes per side until crisp. Remove and drain on paper towel.",
+      "Ladle hot soup into individual bowls. Garnish each serving with crumbled crispy prosciutto and a few fried sage leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.9,
+      "calories": 387,
+      "cholesterol_mg": 64.2,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 7.4,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 921.1,
+      "total_carbs_g": 42.8,
+      "total_fat_g": 23.2,
+      "total_sugars_g": 32.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.5,
+      "calories": 73.3,
+      "cholesterol_mg": 12.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 1.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 174.7,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21,
+      "dietary_fiber": 18,
+      "protein": 15,
+      "saturated_fat": 60,
+      "sodium": 40,
+      "total_carbs": 16,
+      "total_fat": 30
+    },
+    "serving_size_g": 527.2,
+    "total_recipe_weight_g": 2108.8
+  }
+]

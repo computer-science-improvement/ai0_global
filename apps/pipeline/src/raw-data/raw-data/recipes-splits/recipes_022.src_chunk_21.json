@@ -1,0 +1,617 @@
+[
+  {
+    "recipe_name": "Hand-Rolled Tagliatelle with Roasted Cherry Tomatoes and Basil Pesto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hand-rolled_tagliatelle_with_roasted_cherry_tomatoes_and_basil_pesto_20250624_121502_aae43c78.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:15:02.658484000Z",
+    "selected_ingredients": [
+      "flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Hand-rolled tagliatelle is coiled naturally in the center of a round, clean white porcelain dinner plate. Roasted cherry tomatoes, some whole, some gently burst, are scattered around and atop the pasta, revealing their deep red and slightly charred skins. A generous swirl of vibrant green basil pesto is drizzled over the pasta. Freshly grated Pecorino Romano cheese is lightly scattered across the dish. A few whole fresh basil leaves are strategically placed for color and freshness. The plate rests on a warm-toned wooden table. A neatly folded white cotton napkin is positioned beside the plate. A silver fork is gently coiled into a portion of the pasta. The background features a subtle, blurred modern bistro atmosphere, illuminated by soft, natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Accompany with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Hand-Rolled Tagliatelle",
+    "ingredients": [
+      {
+        "name": "Tipo '00' flour",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Pine nuts",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Pecorino Romano cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Lemon, zest only",
+        "quantity": "1"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Form a mound with flour on a clean surface. Create a well in the center.",
+      "Crack eggs into the well. Whisk eggs with a fork, slowly incorporating flour from the sides.",
+      "Knead dough for 10-15 minutes until smooth and elastic. Cover with cling film. Rest 30 minutes at room temperature.",
+      "Divide dough into four portions. Roll each portion very thinly with a pasta machine or rolling pin. Dust with flour to prevent sticking.",
+      "Cut rolled dough into 6-8 mm wide tagliatelle strips. Dust with flour. Set aside on a lightly floured tray.",
+      "Preheat oven to 200°C. Halve cherry tomatoes. Slice garlic cloves thinly.",
+      "Toss halved cherry tomatoes and sliced garlic with 2 tablespoons olive oil, salt, and pepper on a baking sheet. Roast for 15-20 minutes until tomatoes are tender and slightly caramelized.",
+      "Combine fresh basil, pine nuts, remaining olive oil, lemon zest, red pepper flakes, and half of the Pecorino Romano in a food processor. Blend until a coarse pesto forms. Season with salt and pepper.",
+      "Bring a large pot of salted water to a rolling boil. Cook tagliatelle for 2-3 minutes until al dente. Reserve 120 ml pasta water. Drain pasta.",
+      "Add cooked tagliatelle to a large pan. Toss with roasted tomatoes and pesto. Add reserved pasta water as needed to create a light sauce. Mix well.",
+      "Serve immediately. Garnish with remaining Pecorino Romano and fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Hand-rolling pasta dough",
+      "Making pesto from scratch"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 780.3,
+      "cholesterol_mg": 197.4,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 23.2,
+      "saturated_fat_g": 7.9,
+      "sodium_mg": 284.5,
+      "total_carbs_g": 85.1,
+      "total_fat_g": 38.7,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 230.8,
+      "cholesterol_mg": 58.4,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.9,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 84.2,
+      "total_carbs_g": 25.2,
+      "total_fat_g": 11.4,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65.8,
+      "dietary_fiber": 18.3,
+      "protein": 46.4,
+      "saturated_fat": 39.6,
+      "sodium": 12.4,
+      "total_carbs": 31,
+      "total_fat": 49.6
+    },
+    "serving_size_g": 338,
+    "total_recipe_weight_g": 1352
+  },
+  {
+    "recipe_name": "Fermented Garlic Honey Chicken with Roasted Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_garlic_honey_chicken_with_roasted_root_vegetables_20250624_121459_edee3581.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:15:00.262528000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Fermented Garlic Honey Chicken is presented on a handcrafted, matte ceramic plate in an earthy cream or light beige tone, centered on a light-colored, reclaimed wood table surface. The plate features several substantial, irregularly shaped roasted chicken chunks, their surfaces boasting a deep golden-brown char and subtle caramelization. Beside the chicken, an organic arrangement of rustic-cut roasted root vegetables displays vibrant natural colors: bright orange carrot chunks, creamy white parsnip pieces, and deep maroon beetroot cubes, each retaining distinct textures from the roasting process. A few thinly sliced, vibrant pink pickled red onion rings are artfully placed among the ingredients, providing a sharp color contrast and visual lift. A single sprig of fresh thyme or rosemary is nestled subtly near the chicken, adding a natural, verdant accent. The composition emphasizes clean lines and natural forms, with deliberate negative space on the plate. An undyed linen napkin in natural beige is folded simply beside the plate. Soft, natural light illuminates the scene, highlighting the ingredients' pure, unadorned beauty against a minimalist background with subtle natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Fermented garlic honey",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Beetroot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh thyme or rosemary",
+        "quantity": "4 sprigs"
+      }
+    ],
+    "instructions": [
+      "Prepare pickled red onion: Thinly slice red onion. Place in a heatproof jar. In a small saucepan, combine apple cider vinegar, water, and a pinch of salt. Bring to a simmer. Pour hot liquid over red onion. Seal jar. Refrigerate for at least 30 minutes.",
+      "Marinate chicken: Cut chicken thighs into large, rustic chunks (approx. 5-6 cm). In a bowl, toss chicken with fermented garlic honey, salt, and pepper. Marinate for at least 30 minutes at room temperature, or up to 4 hours in the refrigerator.",
+      "Prepare vegetables: Preheat oven to 200°C (390°F). Peel carrots, parsnips, and beetroot. Cut into rustic chunks (approx. 3-4 cm). Toss vegetables with olive oil, salt, and pepper.",
+      "Roast: Arrange seasoned vegetables in a single layer on one large baking sheet. Place marinated chicken chunks in a single layer on a separate baking sheet. Roast vegetables for 25-30 minutes, or until tender and lightly caramelized. Roast chicken for 20-25 minutes, or until internal temperature reaches 75°C (167°F) and juices run clear.",
+      "Serve: Arrange roasted chicken chunks and root vegetables on individual plates. Garnish with a few slices of pickled red onion and a sprig of fresh thyme or rosemary. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 17.2,
+      "calories": 551,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 27.3,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 193,
+      "total_carbs_g": 42.7,
+      "total_fat_g": 30.8,
+      "total_sugars_g": 31,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 5.1,
+      "calories": 163,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 2,
+      "protein_g": 8.1,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 57,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 9.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 24,
+      "protein": 55,
+      "saturated_fat": 37,
+      "sodium": 8,
+      "total_carbs": 16,
+      "total_fat": 39
+    },
+    "serving_size_g": 337.5,
+    "total_recipe_weight_g": 1350
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Herb Potatoes and Wild Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_herb_potatoes_and_wild_rice_20250624_121451_def9669b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:14:51.823040000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown, pan-seared chicken breast rests centrally on a clean white porcelain dinner plate. Beside it, a generous scoop of fluffy wild rice pilaf, featuring dark wild rice grains interspersed with lighter rice and small diced onion pieces, creates an earthy base. Herb-roasted potato wedges, golden and slightly crisped on the edges, are artfully arranged next to the chicken, their interiors tender. A scattering of vibrant fresh chopped parsley brightens the dish, contrasting with the warm tones of the chicken and potatoes. The overall presentation is clean and inviting, with moderate negative space. The plate is set on a simple wooden table, accompanied by standard silver flatware and a folded white cotton napkin, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "New potatoes or small Yukon Gold potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Wild rice blend",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs, leaves chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 sprig, leaves chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "A few sprigs, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash potatoes. Cut into 2cm wedges or halves if small.",
+      "Toss potatoes with 30ml olive oil, chopped rosemary, thyme, salt, and pepper.",
+      "Spread potatoes on a baking sheet. Roast for 25-30 minutes, until tender and golden brown.",
+      "Rinse wild rice blend under cold water.",
+      "In a medium saucepan, heat 15ml olive oil over medium heat.",
+      "Add diced onion and cook until softened, about 3-4 minutes.",
+      "Add minced garlic and cook for 1 minute more.",
+      "Stir in rinsed wild rice. Pour in chicken broth.",
+      "Bring to a boil, then reduce heat to low, cover, and simmer for 40-45 minutes, or until rice is tender and liquid is absorbed.",
+      "Fluff rice with a fork.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat remaining 15ml olive oil and butter in a large oven-safe skillet over medium-high heat.",
+      "Add chicken breasts to hot skillet. Sear for 4-5 minutes per side until golden brown.",
+      "Transfer skillet to preheated oven. Bake for 8-12 minutes, or until internal temperature reaches 75°C.",
+      "Remove chicken from oven and let rest for 5 minutes.",
+      "Place a portion of wild rice pilaf on each plate.",
+      "Arrange roasted potato wedges beside the rice.",
+      "Place a whole pan-seared chicken breast next to potatoes.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808.5,
+      "cholesterol_mg": 177.6,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 71.6,
+      "saturated_fat_g": 7.9,
+      "sodium_mg": 326.9,
+      "total_carbs_g": 67.4,
+      "total_fat_g": 28,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 143,
+      "cholesterol_mg": 31.4,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 12.7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 57.8,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 5,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.2,
+      "dietary_fiber": 24.6,
+      "protein": 143.2,
+      "saturated_fat": 39.3,
+      "sodium": 14.2,
+      "total_carbs": 24.5,
+      "total_fat": 35.9
+    },
+    "serving_size_g": 565.3,
+    "total_recipe_weight_g": 2261
+  },
+  {
+    "recipe_name": "Rustic Spicy Beef and Potato Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_spicy_beef_and_potato_skillet_20250624_121445_3c298c50.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:14:45.979642000Z",
+    "selected_ingredients": [
+      "beef",
+      "worcestershire sauce",
+      "onion",
+      "chili",
+      "potato",
+      "cayenne pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Rustic Spicy Beef and Potato Skillet is presented on a clean, round white porcelain dinner plate. Tender, browned beef chunks are interspersed with golden-hued, soft potato cubes. Sautéed diced onions and thinly sliced red chilies are visibly mixed throughout, adding pops of translucent white and vibrant red. A rich, savory sauce lightly coats all ingredients. The dish is garnished simply with a sprinkle of fresh, vibrant green chopped parsley, offering a fresh contrast. The textures are hearty and inviting, with some potatoes showing slightly crispy edges from cooking. The overall composition is balanced and approachable, showcasing natural colors and ingredients. The plate rests on a simple wooden table surface, accompanied by standard silver flatware and a folded cotton napkin beside the plate, all under natural, even lighting that highlights the food without harsh shadows, creating a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Potatoes (Russet or Yukon Gold)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh red chili (e.g., Fresno or Jalapeño)",
+        "quantity": "2"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 3-4 cm cubes. Pat dry. Season beef generously with salt and black pepper.",
+      "Peel and cut potatoes into 2 cm cubes.",
+      "Dice the onion. Mince garlic. Thinly slice fresh chilies, removing seeds for less heat if desired.",
+      "Heat vegetable oil in a large, heavy-bottomed skillet or Dutch oven over medium-high heat.",
+      "Sear beef cubes in batches until deeply browned on all sides. Do not overcrowd the pan. Remove beef and set aside.",
+      "Add diced onion to the skillet. Sauté until softened, about 5-7 minutes. Add minced garlic and sliced chilies. Cook for 1 minute until fragrant.",
+      "Stir in cayenne pepper. Deglaze the pan with Worcestershire sauce, scraping up any browned bits.",
+      "Return beef to the skillet. Add beef stock. Bring to a simmer.",
+      "Add potato cubes to the skillet. Ensure potatoes are mostly submerged. If not, add a little more stock or water.",
+      "Reduce heat to low, cover, and simmer for 30-40 minutes, or until beef is tender and potatoes are cooked through. Stir occasionally to prevent sticking.",
+      "Remove lid for the last 10 minutes if liquid is too much, allowing sauce to thicken slightly.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Chop fresh parsley for garnish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.8,
+      "calories": 697,
+      "cholesterol_mg": 123,
+      "dietary_fiber_g": 6,
+      "protein_g": 51.5,
+      "saturated_fat_g": 11.4,
+      "sodium_mg": 1046,
+      "total_carbs_g": 43.2,
+      "total_fat_g": 33.7,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 146.8,
+      "cholesterol_mg": 25.8,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 10.8,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 220.1,
+      "total_carbs_g": 9.1,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 21,
+      "protein": 103,
+      "saturated_fat": 57,
+      "sodium": 45,
+      "total_carbs": 16,
+      "total_fat": 43
+    },
+    "serving_size_g": 475,
+    "total_recipe_weight_g": 1900
+  },
+  {
+    "recipe_name": "Roasted Turkey and Potato Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_turkey_and_potato_skillet_20250624_121437_ca3ed838.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:14:37.695057000Z",
+    "selected_ingredients": [
+      "turkey",
+      "onion",
+      "potato",
+      "garlic",
+      "parmesan cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty, rustic individual portion of roasted turkey and potato medley rests on a simple, round, off-white ceramic plate with a slightly uneven rim. The turkey is cut into substantial, browned cubes, exhibiting a caramelized exterior from roasting. Potato wedges, golden-brown and tender, are scattered among the turkey pieces, some with crispy edges. Thick, softened onion wedges, lightly charred, add depth. Minced garlic bits cling to the ingredients. A generous sprinkle of freshly grated Parmesan cheese lightly coats the surface, with small melted pockets. The dish has a natural, slightly piled arrangement, showing off the textures. A scattering of bright green, freshly chopped parsley adds a touch of color and freshness. The plate is placed on a well-worn, light-brown wooden dining table, showing natural grain and minor imperfections. Beside the plate, a simple, heavy-duty fork and knife with dark handles are casually placed. A loosely folded, off-white cloth napkin lies nearby. Warm, inviting light illuminates the scene, suggesting a cozy family kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Turkey thigh or breast",
+        "quantity": "600g boneless, skinless"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g grated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dried rosemary",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut turkey into 3 cm cubes.",
+      "Cut potatoes into 2 cm wedges.",
+      "Slice onion into thick wedges.",
+      "Mince garlic.",
+      "In a large bowl, combine turkey, potatoes, onion, garlic, olive oil, rosemary, paprika, salt, and pepper. Toss well to coat.",
+      "Spread mixture in a single layer on a large baking sheet or oven-safe skillet.",
+      "Roast for 25 minutes.",
+      "Stir the mixture.",
+      "Continue roasting for another 15-20 minutes, or until turkey is cooked through (internal temperature 75°C) and potatoes are tender and golden.",
+      "Remove from oven. Stir in grated Parmesan cheese.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "This dish is easily adaptable. Add other root vegetables like carrots or sweet potatoes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 539.56,
+      "cholesterol_mg": 116.13,
+      "dietary_fiber_g": 5.68,
+      "protein_g": 38.08,
+      "saturated_fat_g": 6.43,
+      "sodium_mg": 825.78,
+      "total_carbs_g": 40.88,
+      "total_fat_g": 25.16,
+      "total_sugars_g": 3.29,
+      "trans_fat_g": 0.14
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.56,
+      "cholesterol_mg": 27.45,
+      "dietary_fiber_g": 1.34,
+      "protein_g": 9,
+      "saturated_fat_g": 1.52,
+      "sodium_mg": 195.22,
+      "total_carbs_g": 9.66,
+      "total_fat_g": 5.95,
+      "total_sugars_g": 0.78,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.71,
+      "dietary_fiber": 20.29,
+      "protein": 76.16,
+      "saturated_fat": 32.15,
+      "sodium": 35.9,
+      "total_carbs": 14.86,
+      "total_fat": 32.26
+    },
+    "serving_size_g": 423,
+    "total_recipe_weight_g": 1692
+  }
+]

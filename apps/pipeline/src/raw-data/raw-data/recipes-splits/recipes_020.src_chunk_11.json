@@ -1,0 +1,680 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Apple-Mustard Jus and Roasted Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_apple-mustard_jus_and_roasted_tomatoes_20250624_172634_d7b206c6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:26:35.275129000Z",
+    "selected_ingredients": [
+      "tomato",
+      "apple",
+      "mustard",
+      "chicken stock",
+      "chocolate",
+      "salad green"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken thigh, its skin a deep, crispy golden-brown, rests slightly off-center on a clean, white porcelain dinner plate. A rich, glossy, amber-brown apple-mustard jus pools elegantly beneath and around the chicken. Scattered around the chicken are vibrant, ruby-red roasted cherry tomato halves, their skins slightly blistered and caramelized. A small, vibrant mound of fresh, crisp green salad leaves, such as peppery arugula, is placed to the side, adding a contrasting pop of color and texture. The chicken itself is a whole piece, showcasing its succulent, tender interior beneath the crisp exterior. The plating is organized and balanced, leaving moderate negative space on the plate. The scene is set on a simple wooden table surface, with a folded cotton napkin and standard restaurant flatware placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, unobtrusive background that suggests a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "cultural_origin": "European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Granny Smith apple",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa or higher)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Mixed salad greens (e.g., arugula or frisée)",
+        "quantity": "80g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Apple cider vinegar or dry white wine",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh thyme sprigs or chopped parsley",
+        "quantity": "2 sprigs or 1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve cherry tomatoes. Toss with 1 tablespoon olive oil, salt, and pepper on a baking sheet. Roast for 15-20 minutes, until softened and slightly caramelized. Set aside.",
+      "Pat chicken thighs very dry with paper towels. Season generously with salt and pepper on both sides.",
+      "Heat 1 tablespoon olive oil in a large oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear for 8-10 minutes until skin is deeply golden and crisp. Do not move chicken during this time.",
+      "Flip chicken. Transfer skillet to preheated oven. Roast for 10-15 minutes, or until internal temperature reaches 75°C. Remove chicken from skillet. Rest on a cutting board, covered loosely with foil.",
+      "Drain most fat from skillet, leaving about 1 tablespoon. Add chopped shallot to skillet. Sauté over medium heat for 2-3 minutes until softened. Add minced garlic. Cook for 30 seconds until fragrant.",
+      "Deglaze skillet with apple cider vinegar or white wine. Scrape up browned bits from bottom. Cook until liquid is almost evaporated.",
+      "Add chicken stock, diced apple, and Dijon mustard to skillet. Bring to a simmer. Cook for 8-10 minutes, stirring occasionally, until sauce reduces by half and thickens slightly.",
+      "Remove skillet from heat. Stir in dark chocolate and butter until melted and smooth. Season sauce with salt and pepper to taste. Strain sauce through a fine-mesh sieve for a smoother consistency, if desired.",
+      "Arrange a chicken thigh on each plate. Spoon apple-mustard jus generously over and around chicken. Place roasted cherry tomatoes beside chicken. Garnish with a small mound of fresh salad greens and fresh thyme sprigs or chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken skin is very dry for maximum crispness.",
+      "The dark chocolate adds depth and richness to the sauce without making it taste sweet."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 528.9,
+      "cholesterol_mg": 187.5,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 35.6,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 446.8,
+      "total_carbs_g": 14.9,
+      "total_fat_g": 38.6,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121,
+      "cholesterol_mg": 42.9,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.2,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 102.2,
+      "total_carbs_g": 3.4,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 12,
+      "protein": 71,
+      "saturated_fat": 53,
+      "sodium": 19,
+      "total_carbs": 5,
+      "total_fat": 49
+    },
+    "serving_size_g": 437.3,
+    "total_recipe_weight_g": 1749
+  },
+  {
+    "recipe_name": "Homestyle Beef, Chicken, and Sausage Stew with Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_beef%2C_chicken%2C_and_sausage_stew_with_potatoes_20250624_172634_44eee629.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:26:34.580370000Z",
+    "selected_ingredients": [
+      "chicken",
+      "beef",
+      "potato",
+      "rice",
+      "sausage",
+      "salad green"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of Homestyle Beef, Chicken, and Sausage Stew with Potatoes is presented in a deep, rustic ceramic bowl on a well-used wooden dining table. The stew features chunky seared beef, browned chicken pieces, and thick sausage rounds, mixed with tender potato chunks and diced vegetables, all coated in rich, brown gravy. A small mound of fluffy white rice is placed alongside, ready to absorb the sauce. A simple mixed green salad in a plain ceramic bowl sits nearby. The scene is lit with warm, cozy kitchen lighting. Everyday ceramic plates and simple flatware are casually placed, with a folded cloth napkin. The unpretentious presentation highlights the comforting appeal of this home-cooked meal, with modest, satisfying portions.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Boneless chicken thighs",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Italian sausage",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 4 cm chunks. Cut chicken thighs into 3 cm pieces. Slice sausage into 2 cm rounds.",
+      "Peel and dice onion, carrots, and celery into 1 cm pieces. Mince garlic. Peel potatoes and cut into 3 cm chunks.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef chunks in batches until browned on all sides. Remove beef from pot. Set aside.",
+      "Add sausage rounds to pot. Cook until browned. Remove sausage. Set aside.",
+      "Add chicken pieces to pot. Cook until lightly browned. Remove chicken. Set aside.",
+      "Add diced onion, carrots, and celery to pot. Sauté until softened, about 8-10 minutes.",
+      "Stir in minced garlic and tomato paste. Cook for 2 minutes until fragrant.",
+      "Pour in beef broth. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return seared beef, sausage, and chicken to the pot. Add dried thyme and bay leaves. Season with salt and pepper.",
+      "Bring stew to a gentle simmer. Reduce heat to low. Cover and cook for 1.5 hours, stirring occasionally.",
+      "Add potato chunks to the stew. Continue to simmer, covered, for another 30-45 minutes, or until beef and potatoes are fork-tender. Ensure chicken reaches 75°C internal temperature.",
+      "While stew cooks, prepare rice. Rinse rice thoroughly. Combine rice with 600 ml water and a pinch of salt in a saucepan. Bring to a boil. Reduce heat to low, cover, and simmer for 15-18 minutes until water is absorbed and rice is tender. Let stand covered for 5 minutes.",
+      "Taste stew and adjust seasoning as needed. Remove bay leaves before serving.",
+      "Serve hot stew over a bed of fluffy rice. Serve mixed salad greens on the side."
+    ],
+    "notes": [
+      "Always ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1178,
+      "cholesterol_mg": 279,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 71.7,
+      "saturated_fat_g": 15.7,
+      "sodium_mg": 1366,
+      "total_carbs_g": 99.9,
+      "total_fat_g": 51.2,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 137.3,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.4,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 159,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 6,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 93,
+      "dietary_fiber": 24,
+      "protein": 143,
+      "saturated_fat": 79,
+      "sodium": 59,
+      "total_carbs": 36,
+      "total_fat": 66
+    },
+    "serving_size_g": 858,
+    "total_recipe_weight_g": 3432
+  },
+  {
+    "recipe_name": "Roasted Tomato and Broccoli Orecchiette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_tomato_and_broccoli_orecchiette_20250624_172605_a67da0cf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:26:06.392187000Z",
+    "selected_ingredients": [
+      "pasta",
+      "cheese",
+      "tomato",
+      "onion",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Roasted Tomato and Broccoli Orecchiette is centrally plated on a round, pristine white porcelain dish. Al dente orecchiette, small and cup-shaped, are lightly coated in a glossy, vibrant red sauce from roasted cherry tomatoes. Tender, bright green broccoli florets and translucent, caramelized thin slices of red onion are interspersed. Some cherry tomatoes are whole, others gently burst. The dish is generously topped with delicate, white shavings of ricotta salata. Freshly chopped basil leaves are sprinkled over, adding verdant green and aromatic freshness. The composition is balanced, with moderate negative space, showcasing natural colors and textures. The setting features a warm wooden table, a folded white cotton napkin, and standard silver flatware under natural, even lighting. A clean, inviting, and professional presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "A simple green salad on the side."
+    ],
+    "hero_ingredient": "Roasted Cherry Tomatoes",
+    "ingredients": [
+      {
+        "name": "Orecchiette Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Ricotta Salata",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut broccoli into small florets. Thinly slice red onion. Mince garlic.",
+      "Toss cherry tomatoes, broccoli florets, and sliced red onion with 40ml olive oil, salt, and black pepper on a baking sheet.",
+      "Roast for 20-25 minutes, until vegetables are tender and slightly caramelized.",
+      "While vegetables roast, bring a large pot of salted water to a boil.",
+      "Cook orecchiette according to package directions until al dente.",
+      "Before draining, reserve 250ml pasta water. Drain pasta.",
+      "In a large pan, heat remaining 20ml olive oil over medium heat. Add minced garlic and red pepper flakes. Sauté for 1 minute until fragrant.",
+      "Add roasted vegetables to the pan. Stir gently.",
+      "Add drained pasta and 125ml reserved pasta water. Toss to combine.",
+      "If needed, add more pasta water, 30ml at a time, until a light sauce coats the pasta.",
+      "Remove from heat. Stir in fresh basil.",
+      "Serve immediately, topped with shaved ricotta salata."
+    ],
+    "traditional_techniques": [
+      "Roasting vegetables",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 653,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 23.4,
+      "saturated_fat_g": 5,
+      "sodium_mg": 744,
+      "total_carbs_g": 95.5,
+      "total_fat_g": 20.5,
+      "total_sugars_g": 11.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145,
+      "cholesterol_mg": 3,
+      "dietary_fiber_g": 2,
+      "protein_g": 5.2,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 165,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 5,
+      "dietary_fiber": 33,
+      "protein": 47,
+      "saturated_fat": 25,
+      "sodium": 32,
+      "total_carbs": 35,
+      "total_fat": 26
+    },
+    "serving_size_g": 451.5,
+    "total_recipe_weight_g": 1806
+  },
+  {
+    "recipe_name": "Keema Matar",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_keema_matar_20250624_172602_93e4d235.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:26:02.902313000Z",
+    "selected_ingredients": [
+      "mincemeat"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Keema Matar is served in a shallow, white porcelain bowl, slightly mounded in the center. The rich reddish-brown mince, studded with vibrant green peas, is moist and saucy. A small, neat mound of fluffy white basmati rice is placed beside the keema. A generous sprinkle of fresh, bright green chopped coriander leaves adorns the keema, providing a fresh contrast. The dish rests on a simple wooden table surface. A white cotton napkin is folded neatly beside the bowl. Natural, even lighting highlights the textures and colors of the food. The background is clean and uncluttered, suggesting a casual bistro atmosphere. This is a single, generous individual portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Served with warm naan bread, roti, or basmati rice.",
+      "Accompanied by a side of raita (yogurt dip) or pickled onions."
+    ],
+    "hero_ingredient": "Lamb Mincemeat",
+    "ingredients": [
+      {
+        "name": "Lamb mincemeat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, finely diced"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Green peas",
+        "quantity": "200g, frozen"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium, pureed"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2, slit or finely chopped"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil or Ghee",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "1/4 cup, chopped, for garnish"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml-150ml, as needed"
+      }
+    ],
+    "instructions": [
+      "Heat oil or ghee in a large pan over medium heat.",
+      "Add cumin seeds. Let them splutter.",
+      "Add finely diced onions. Sauté until golden brown.",
+      "Add ginger-garlic paste and chopped green chilies. Sauté for 1 minute until fragrant.",
+      "Add lamb mincemeat. Break up lumps with a spoon. Cook until browned and liquid evaporates.",
+      "Stir in coriander powder, turmeric powder, and red chili powder. Cook for 2 minutes, stirring constantly.",
+      "Add pureed tomatoes and salt. Cook until tomatoes soften and oil separates from the mixture.",
+      "Add green peas and 100ml water. Stir well.",
+      "Cover the pan and simmer on low heat for 15-20 minutes, or until mincemeat is tender and flavors meld. Add more water if needed.",
+      "Stir in garam masala. Cook for 2 more minutes.",
+      "Garnish with fresh chopped coriander."
+    ],
+    "notes": [
+      "Adjust green chili and red chili powder to desired spice level.",
+      "For a richer flavor, use lamb mince with a higher fat content.",
+      "This dish can be prepared in advance and reheated."
+    ],
+    "traditional_techniques": [
+      "Tempering of whole spices (tadka)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 468,
+      "cholesterol_mg": 100,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 35.7,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 600,
+      "total_carbs_g": 17.7,
+      "total_fat_g": 28.7,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 136,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 10.4,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 175,
+      "total_carbs_g": 5.1,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 18,
+      "protein": 71,
+      "saturated_fat": 48,
+      "sodium": 26,
+      "total_carbs": 6,
+      "total_fat": 37
+    },
+    "serving_size_g": 343.5,
+    "total_recipe_weight_g": 1374
+  },
+  {
+    "recipe_name": "Fermented Carrot & Chickpea Salad with Roasted Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_carrot_%26_chickpea_salad_with_roasted_chicken_20250624_172556_7abb8a24.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:25:56.647454000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The Fermented Carrot & Chickpea Salad is presented on a handcrafted, matte ceramic plate in an earthy beige tone. A generous bed of vibrant mixed greens forms the base. Thinly sliced, bright orange fermented carrots are artfully scattered over the greens, alongside creamy, whole chickpeas. Succulent, golden-brown rough chunks of roasted chicken are nestled among the vegetables, ensuring a vegetable-forward focus with the chicken as an accent. A light, herbaceous vinaigrette glistens over the components. The salad is garnished simply with fresh parsley leaves. The setting features a light, reclaimed wood table surface with an undyed linen napkin. Soft, natural light illuminates the scene, and a subtle green plant provides a clean, minimalist background, emphasizing sustainability and natural beauty.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chickpeas, canned",
+        "quantity": "400g, drained and rinsed"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml, plus extra for chicken"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1, minced"
+      },
+      {
+        "name": "Fresh parsley or dill",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water (for brine)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Salt (for brine)",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented carrots: Thinly slice carrots. Dissolve 15g salt in 250ml water to create brine. Pack sliced carrots into a clean jar. Pour brine over carrots, ensuring they are fully submerged. Seal jar loosely. Ferment at room temperature for 3-5 days, or until desired tanginess is achieved. Store in refrigerator.",
+      "Preheat oven to 200°C (390°F).",
+      "Season chicken thighs with salt, pepper, and a drizzle of olive oil. Roast chicken for 20-25 minutes, or until cooked through. Cook chicken until internal temperature reaches 75°C (167°F).",
+      "Let chicken rest for 5 minutes. Cut into rough chunks.",
+      "Prepare vinaigrette: In a small bowl, whisk together 60ml olive oil, apple cider vinegar, Dijon mustard, minced garlic, salt, and pepper. Stir in chopped fresh parsley or dill.",
+      "In a large bowl, combine mixed greens, drained chickpeas, and fermented carrot slices.",
+      "Add chicken chunks to the salad. Pour vinaigrette over the salad. Toss gently to combine.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 617,
+      "cholesterol_mg": 164,
+      "dietary_fiber_g": 11,
+      "protein_g": 41,
+      "saturated_fat_g": 6,
+      "sodium_mg": 534,
+      "total_carbs_g": 38.7,
+      "total_fat_g": 32.4,
+      "total_sugars_g": 10.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 9.8,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 127,
+      "total_carbs_g": 9.2,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 39,
+      "protein": 82,
+      "saturated_fat": 30,
+      "sodium": 23,
+      "total_carbs": 14,
+      "total_fat": 42
+    },
+    "serving_size_g": 419,
+    "total_recipe_weight_g": 1675
+  }
+]

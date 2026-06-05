@@ -1,0 +1,668 @@
+[
+  {
+    "recipe_name": "Belgian Carbonnade Flamande with Dark Chocolate",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_024121_5c0eb8d0.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-05T02:41:22.217689000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken stock",
+      "chocolate",
+      "onion",
+      "dark beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of rich Belgian stew served in a wide, shallow white porcelain bowl. The dish features large, 4cm cubes of tender, braised beef coated in a glossy, mahogany-colored sauce. Visible within the sauce are soft, translucent strands of caramelized onions. The meat is piled naturally in the center of the bowl, not sliced or fanned. On the side of the bowl, a small stack of golden, thick-cut Belgian fries is arranged neatly. A garnish of finely chopped fresh parsley is sprinkled over the beef. The setting includes a rustic wooden table, a linen napkin, and a traditional stemmed beer glass filled with dark ale in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Belgian",
+    "cultural_origin": "Belgian",
+    "cultural_serving_suggestions": [
+      "Serve with thick-cut Belgian fries (frites) and mayonnaise.",
+      "Pair with the same dark Belgian abbey ale used in the cooking.",
+      "Accompany with a simple side salad of bitter greens like endive."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "beef chuck, cut into 4cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "yellow onions, thinly sliced",
+        "quantity": "500g"
+      },
+      {
+        "name": "dark Belgian abbey-style beer",
+        "quantity": "500ml"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "dark chocolate (70% cocoa)",
+        "quantity": "20g"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "brown sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30ml"
+      },
+      {
+        "name": "sourdough bread slices",
+        "quantity": "2 pieces"
+      },
+      {
+        "name": "fresh thyme sprigs",
+        "quantity": "3 units"
+      },
+      {
+        "name": "bay leaves",
+        "quantity": "2 units"
+      },
+      {
+        "name": "salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry with paper towels.",
+      "Season beef generously with salt and pepper.",
+      "Heat oil in a heavy-bottomed pot over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove and set aside.",
+      "Reduce heat to medium. Add onions to the same pot.",
+      "Cook onions for 20 minutes until dark brown and caramelized.",
+      "Stir in brown sugar and cook for 2 minutes.",
+      "Return beef and any juices to the pot.",
+      "Pour in the dark beer and scrape the bottom of the pot to release browned bits.",
+      "Add chicken stock, thyme, and bay leaves.",
+      "Spread mustard onto sourdough slices. Place bread mustard-side down on top of the stew.",
+      "Cover and simmer on low heat for 2 hours until beef is tender.",
+      "Remove bay leaves and thyme sprigs.",
+      "Stir in the dark chocolate until fully melted and integrated.",
+      "Adjust seasoning with salt and pepper."
+    ],
+    "notes": [
+      "Using chicken stock instead of beef stock provides a lighter, more balanced base for the heavy beer and chocolate.",
+      "The mustard-covered bread acts as a natural thickener for the sauce as it dissolves during the braise."
+    ],
+    "traditional_techniques": [
+      "slow braising",
+      "onion caramelization",
+      "deglazing with ale"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5.3,
+      "calories": 771.8,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 42.6,
+      "saturated_fat_g": 17.5,
+      "sodium_mg": 865,
+      "total_carbs_g": 31,
+      "total_fat_g": 48.3,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 181.6,
+      "cholesterol_mg": 37.6,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 203.5,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 11.4,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.3,
+      "dietary_fiber": 11.8,
+      "protein": 85.2,
+      "saturated_fat": 87.5,
+      "sodium": 37.6,
+      "total_carbs": 11.3,
+      "total_fat": 61.9
+    },
+    "serving_size_g": 425,
+    "total_recipe_weight_g": 1700
+  },
+  {
+    "recipe_name": "Three-Cup Chicken (San Bei Ji)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_024027_cb0e6761.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-05T02:40:27.660534000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "Taiwan cuisine",
+    "visual_description": "The dish is presented in a dark ceramic vessel. It features 4cm chunks of chicken coated in a thick, dark-amber glaze. Whole, toasted garlic cloves and 3cm squares of red bell pepper provide textural contrast. The chicken skin is deeply caramelized. Bright green Thai basil leaves are scattered across the top. The arrangement is natural and centered with moderate negative space around the rim. The setting includes a bowl of white rice and bamboo chopsticks on a clean wooden surface. Natural side lighting emphasizes the glossy texture of the reduction. No meat is sliced; all pieces remain as hearty, rustic chunks. The color palette is rich mahogany, vibrant red, and deep green.",
+    "number_of_servings": 4,
+    "cuisine_type": "Taiwanese",
+    "cultural_origin": "Taiwanese",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice",
+      "Pair with pickled daikon radish",
+      "Accompany with a clear vegetable broth"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "bone-in chicken thighs",
+        "quantity": "800g"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "20 whole"
+      },
+      {
+        "name": "red bell peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "ginger",
+        "quantity": "50g"
+      },
+      {
+        "name": "toasted sesame oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Shaoxing rice wine",
+        "quantity": "60ml"
+      },
+      {
+        "name": "rock sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "fresh Thai basil",
+        "quantity": "1 cup"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 4cm chunks.",
+      "Cut bell peppers into 3cm squares.",
+      "Slice ginger into thin rounds.",
+      "Heat sesame oil in a wok over medium heat.",
+      "Fry ginger slices until edges turn brown and crispy.",
+      "Add whole garlic cloves. Cook until golden on all sides.",
+      "Add chicken chunks. Sear until skin is browned.",
+      "Pour in soy sauce and Shaoxing wine. Add rock sugar.",
+      "Cover and simmer for 15 minutes.",
+      "Check chicken internal temperature reaches 75°C.",
+      "Add bell pepper squares.",
+      "Remove lid. Increase heat to high.",
+      "Stir-fry until sauce reduces to a thick, dark glaze.",
+      "Turn off heat. Fold in Thai basil leaves until wilted.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Use bone-in chicken for more authentic flavor and juiciness.",
+      "Do not substitute Thai basil with sweet basil as the anise flavor is critical.",
+      "The 'three cups' refers to the equal ratio of oil, soy, and wine."
+    ],
+    "traditional_techniques": [
+      "three-cup braising",
+      "aromatizing oil",
+      "glaze reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 515,
+      "cholesterol_mg": 131.6,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 27.4,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 925,
+      "total_carbs_g": 17.6,
+      "total_fat_g": 35.2,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.5,
+      "calories": 206,
+      "cholesterol_mg": 52.6,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 11,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 370,
+      "total_carbs_g": 7,
+      "total_fat_g": 14.1,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43.9,
+      "dietary_fiber": 8.2,
+      "protein": 54.8,
+      "saturated_fat": 38.5,
+      "sodium": 40.2,
+      "total_carbs": 6.4,
+      "total_fat": 45.1
+    },
+    "serving_size_g": 250,
+    "total_recipe_weight_g": 1000
+  },
+  {
+    "recipe_name": "Authentic Palak Paneer",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_231357_9de4b0a7.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-04T23:13:58.711809000Z",
+    "selected_ingredients": [
+      "spinach"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant deep-green spinach gravy is served in a wide, shallow white porcelain bowl. The sauce is smooth and fluid. Large, un-seared 2cm cubes of white paneer are arranged naturally throughout the dish. A delicate swirl of heavy cream decorates the surface. Fine julienne strips of fresh ginger and a single dried whole red chili provide a focused garnish. The bowl rests on a rustic dark wood table next to a folded cotton napkin. To the side, a small plate holds warm, charred garlic naan. A secondary bowl contains fluffy long-grain basmati rice. The lighting is soft and natural, emphasizing the rich textures and organic colors of the authentic North Indian meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "North Indian",
+    "cultural_serving_suggestions": [
+      "Serve with hot Garlic Naan or Tandoori Roti",
+      "Accompany with Jeera Rice",
+      "Serve with a side of pickled red onions and lime wedges"
+    ],
+    "hero_ingredient": "Spinach",
+    "ingredients": [
+      {
+        "name": "Fresh spinach",
+        "quantity": "500g"
+      },
+      {
+        "name": "Paneer, cut into 2cm cubes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Tomato, finely chopped",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green chilies, slit",
+        "quantity": "2"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Ginger, julienned for garnish",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Wash spinach thoroughly in cold water.",
+      "Blanch spinach in boiling water for 60 seconds.",
+      "Transfer spinach immediately to an ice bath.",
+      "Drain and blend spinach into a smooth puree.",
+      "Heat ghee in a heavy-bottomed pan.",
+      "Add cumin seeds and let them sizzle.",
+      "Sauté onions until golden brown.",
+      "Stir in ginger-garlic paste and cook for 1 minute.",
+      "Add tomatoes and cook until soft.",
+      "Mix in turmeric, garam masala, and salt.",
+      "Pour in the spinach puree and green chilies.",
+      "Simmer on low heat for 5 minutes.",
+      "Gently fold in the paneer cubes.",
+      "Stir in heavy cream and remove from heat.",
+      "Garnish with ginger julienne."
+    ],
+    "notes": [
+      "Do not overcook the spinach after pureeing to maintain the bright green color",
+      "Paneer can be soaked in warm water for 10 minutes before adding to keep it soft",
+      "Adjust green chilies based on preferred spice level"
+    ],
+    "traditional_techniques": [
+      "Blanching",
+      "Tempering spices",
+      "Pureeing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 365.5,
+      "cholesterol_mg": 48.3,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 16,
+      "saturated_fat_g": 15.1,
+      "sodium_mg": 816.3,
+      "total_carbs_g": 12.1,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 182.8,
+      "cholesterol_mg": 24.1,
+      "dietary_fiber_g": 2,
+      "protein_g": 8,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 408.1,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 14.1,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.1,
+      "dietary_fiber": 16.4,
+      "protein": 32,
+      "saturated_fat": 75.5,
+      "sodium": 34,
+      "total_carbs": 4,
+      "total_fat": 43.2
+    },
+    "serving_size_g": 200,
+    "total_recipe_weight_g": 800
+  },
+  {
+    "recipe_name": "Baked Stuffed Courgettes with Mushroom and Parmesan",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_230349_bb027b2f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-04T23:03:49.528244000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "parmesan cheese",
+      "garlic",
+      "passata",
+      "courgette"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish features four large courgettes, halved lengthwise and hollowed into boats. Each boat is filled with a dense mixture of finely diced, sautéed chestnut mushrooms and courgette flesh. The filling is topped with a generous layer of grated Parmesan cheese, baked until bubbling and golden-brown. The stuffed courgettes sit nestled in a thick, smooth, vibrant red passata sauce that covers the bottom of a rustic terracotta baking dish. The sauce shows small bubbles from the oven heat. The arrangement is casual, with the courgette boats lying side-by-side. The setting is a well-worn wooden kitchen table with a simple linen napkin and a side of crusty sourdough bread. Natural light emphasizes the textures of the melted cheese and the glossy sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to scoop up the passata sauce.",
+      "Pair with a simple green salad dressed in olive oil and lemon."
+    ],
+    "hero_ingredient": "Courgette",
+    "ingredients": [
+      {
+        "name": "Courgettes",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Chestnut mushrooms",
+        "quantity": "400g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Passata",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Halve courgettes lengthwise.",
+      "Scoop out the flesh using a spoon, leaving a 1cm border.",
+      "Finely dice the courgette flesh and mushrooms.",
+      "Mince the garlic cloves.",
+      "Heat olive oil in a large pan over medium heat.",
+      "Sauté garlic for 1 minute.",
+      "Add mushrooms and courgette flesh to the pan.",
+      "Cook for 8 minutes until moisture evaporates.",
+      "Stir in half of the grated Parmesan cheese.",
+      "Season with salt and pepper.",
+      "Pour passata into the bottom of a large baking dish.",
+      "Stir oregano into the passata.",
+      "Place courgette shells in the dish.",
+      "Fill shells with the mushroom mixture.",
+      "Sprinkle remaining Parmesan over the top.",
+      "Bake for 25 minutes until courgettes are tender and cheese is golden.",
+      "Serve hot with the sauce."
+    ],
+    "notes": [
+      "Ensure the courgettes are of similar size for even cooking.",
+      "Use chestnut mushrooms for a deeper, more savory flavor."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 265.2,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 5.03,
+      "protein_g": 16.2,
+      "saturated_fat_g": 5.83,
+      "sodium_mg": 537,
+      "total_carbs_g": 16.9,
+      "total_fat_g": 14.75,
+      "total_sugars_g": 10.63,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 67.9,
+      "cholesterol_mg": 5.63,
+      "dietary_fiber_g": 1.29,
+      "protein_g": 4.15,
+      "saturated_fat_g": 1.49,
+      "sodium_mg": 137.5,
+      "total_carbs_g": 4.33,
+      "total_fat_g": 3.78,
+      "total_sugars_g": 2.72,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7.3,
+      "dietary_fiber": 18,
+      "protein": 32.4,
+      "saturated_fat": 29.2,
+      "sodium": 23.3,
+      "total_carbs": 6.1,
+      "total_fat": 18.9
+    },
+    "serving_size_g": 390.58,
+    "total_recipe_weight_g": 1562.3
+  },
+  {
+    "recipe_name": "Baked Stuffed Courgettes with Mushroom and Parmesan",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_230206_91b6ef57.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-04T23:02:07.225001000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "parmesan cheese",
+      "garlic",
+      "passata",
+      "courgette"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish features four large courgettes, halved lengthwise and hollowed into boats. Each boat is filled with a dense mixture of finely diced, sautéed chestnut mushrooms and courgette flesh. The filling is topped with a generous layer of grated Parmesan cheese, baked until bubbling and golden-brown. The stuffed courgettes sit nestled in a thick, smooth, vibrant red passata sauce that covers the bottom of a rustic terracotta baking dish. The sauce shows small bubbles from the oven heat. The arrangement is casual, with the courgette boats lying side-by-side. The setting is a well-worn wooden kitchen table with a simple linen napkin and a side of crusty sourdough bread. Natural light emphasizes the textures of the melted cheese and the glossy sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to scoop up the passata sauce.",
+      "Pair with a simple green salad dressed in olive oil and lemon."
+    ],
+    "hero_ingredient": "Courgette",
+    "ingredients": [
+      {
+        "name": "Courgettes",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Chestnut mushrooms",
+        "quantity": "400g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Passata",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Halve courgettes lengthwise.",
+      "Scoop out the flesh using a spoon, leaving a 1cm border.",
+      "Finely dice the courgette flesh and mushrooms.",
+      "Mince the garlic cloves.",
+      "Heat olive oil in a large pan over medium heat.",
+      "Sauté garlic for 1 minute.",
+      "Add mushrooms and courgette flesh to the pan.",
+      "Cook for 8 minutes until moisture evaporates.",
+      "Stir in half of the grated Parmesan cheese.",
+      "Season with salt and pepper.",
+      "Pour passata into the bottom of a large baking dish.",
+      "Stir oregano into the passata.",
+      "Place courgette shells in the dish.",
+      "Fill shells with the mushroom mixture.",
+      "Sprinkle remaining Parmesan over the top.",
+      "Bake for 25 minutes until courgettes are tender and cheese is golden.",
+      "Serve hot with the sauce."
+    ],
+    "notes": [
+      "Ensure the courgettes are of similar size for even cooking.",
+      "Use chestnut mushrooms for a deeper, more savory flavor."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 265.2,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 5.03,
+      "protein_g": 16.2,
+      "saturated_fat_g": 5.83,
+      "sodium_mg": 537,
+      "total_carbs_g": 16.9,
+      "total_fat_g": 14.75,
+      "total_sugars_g": 10.63,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 67.9,
+      "cholesterol_mg": 5.63,
+      "dietary_fiber_g": 1.29,
+      "protein_g": 4.15,
+      "saturated_fat_g": 1.49,
+      "sodium_mg": 137.5,
+      "total_carbs_g": 4.33,
+      "total_fat_g": 3.78,
+      "total_sugars_g": 2.72,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7.3,
+      "dietary_fiber": 18,
+      "protein": 32.4,
+      "saturated_fat": 29.2,
+      "sodium": 23.3,
+      "total_carbs": 6.1,
+      "total_fat": 18.9
+    },
+    "serving_size_g": 390.58,
+    "total_recipe_weight_g": 1562.3
+  }
+]

@@ -1,0 +1,678 @@
+[
+  {
+    "recipe_name": "Hearty Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_rice_20250624_121713_944ca0d4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:13.866386000Z",
+    "selected_ingredients": [
+      "onion",
+      "chicken",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, home-style portion of Hearty Chicken and Rice is presented on a rustic, off-white ceramic plate with a slightly uneven rim. A bone-in, skin-on chicken thigh, its skin golden-brown and slightly crisp, is nestled into a generous mound of moist, savory long-grain rice. The rice is a warm orange-yellow hue, flecked with diced red bell pepper and diced onion. A light sprinkle of fresh, roughly chopped cilantro adorns the top. The components naturally overlap, creating a casual, inviting appearance. The plate sits on a well-worn, light-colored wooden kitchen table. Beside the plate, a simple metal fork and spoon are casually placed, along with a slightly crumpled, plain cloth napkin. Warm, soft overhead kitchen lighting illuminates the scene, evoking a cozy, lived-in family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Latin American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple side salad of crisp lettuce and sliced tomatoes.",
+      "Offer slices of ripe avocado on the side."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 700g total)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 medium (approx. 150g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15 g (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 5-7 minutes until golden brown and crispy. Flip and sear for another 3-4 minutes. Remove chicken from pot and set aside.",
+      "Add diced onion and diced red bell pepper to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in the long-grain rice. Toast for 2 minutes, stirring constantly.",
+      "Pour in crushed tomatoes and chicken broth. Stir in ground cumin, smoked paprika, and dried oregano. Season with salt and pepper.",
+      "Return seared chicken thighs to the pot, nestling them into the rice mixture.",
+      "Bring the liquid to a boil. Reduce heat to low, cover the pot tightly.",
+      "Simmer for 20-25 minutes, or until rice is tender and liquid is absorbed. Ensure chicken internal temperature reaches 75°C (167°F).",
+      "Remove pot from heat. Let rest, covered, for 5 minutes.",
+      "Fluff rice gently with a fork. Garnish with fresh chopped cilantro before serving."
+    ],
+    "notes": [
+      "Browning the chicken thoroughly at the beginning adds significant depth of flavor to the dish.",
+      "Ensure the pot is tightly covered during simmering to allow the rice to cook evenly and absorb all the liquid."
+    ],
+    "traditional_techniques": [
+      "Sofrito preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 778.66,
+      "cholesterol_mg": 157.5,
+      "dietary_fiber_g": 4.18,
+      "protein_g": 43.21,
+      "saturated_fat_g": 8.45,
+      "sodium_mg": 676.81,
+      "total_carbs_g": 72.82,
+      "total_fat_g": 35.04,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150.1,
+      "cholesterol_mg": 30.36,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.33,
+      "saturated_fat_g": 1.63,
+      "sodium_mg": 130.47,
+      "total_carbs_g": 14.04,
+      "total_fat_g": 6.75,
+      "total_sugars_g": 1.02,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.5,
+      "dietary_fiber": 14.93,
+      "protein": 86.42,
+      "saturated_fat": 42.25,
+      "sodium": 29.43,
+      "total_carbs": 26.48,
+      "total_fat": 44.93
+    },
+    "serving_size_g": 518.75,
+    "total_recipe_weight_g": 2075
+  },
+  {
+    "recipe_name": "Korean Kimchi Chicken Fried Rice with Crispy Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_korean_kimchi_chicken_fried_rice_with_crispy_broccoli_20250624_121713_dcf3faf2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:13.712576000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "broccoli",
+      "carrot"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single generous portion of vibrant Korean Kimchi Chicken Fried Rice is presented on a handcrafted, cream-toned ceramic plate. The rice forms a natural mound, a warm reddish-orange from gochujang and kimchi, interspersed with verdant broccoli florets and tender chicken chunks (1.5 cm cubes). Finely diced broccoli stems are mixed throughout. A scattering of emerald-green crispy fried broccoli leaves provides textural crunch. Bright, translucent orange pickled carrot ribbons are artfully arranged alongside. The dish is garnished with finely chopped green onions and toasted sesame seeds. The plate rests on a light, textured reclaimed wood surface. Dark wooden chopsticks are placed beside it. The minimalist background with soft natural lighting and a hint of a leafy green plant emphasizes an eco-conscious, authentic Korean dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of clear broth or a simple soup.",
+      "Accompany with additional banchan (small side dishes) like quick cucumber pickles or seasoned spinach.",
+      "Eat using chopsticks and a spoon for the rice."
+    ],
+    "hero_ingredient": "Kimchi",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thigh",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cooked cold rice (day-old preferred)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ripe kimchi, chopped",
+        "quantity": "200g"
+      },
+      {
+        "name": "Kimchi juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Large head broccoli (florets, leaves, and stem)",
+        "quantity": "1 (approx. 300g florets)"
+      },
+      {
+        "name": "Large carrot",
+        "quantity": "1 (approx. 150g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Ginger, grated",
+        "quantity": "20g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Green onions, chopped (for garnish)",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Toasted sesame seeds (for garnish)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Vegetables: Separate broccoli florets, leaves, and stem. Dice broccoli stem finely. Thinly slice broccoli leaves. Cut carrot into thin ribbons using a peeler.",
+      "Pickle Carrots: Combine carrot ribbons with 120ml water, 60ml white vinegar, 15ml sugar, and 2.5g salt. Let sit for at least 30 minutes.",
+      "Cook Chicken: Dice chicken into 1.5 cm cubes. Heat 15ml vegetable oil in a large wok or pan over medium-high heat. Add chicken. Sear until cooked through, about 5-7 minutes. Internal temperature must reach 75°C. Remove chicken.",
+      "Sauté Aromatics: Add remaining 15ml vegetable oil to the pan. Add minced garlic, grated ginger, and diced broccoli stem. Sauté 2 minutes until fragrant.",
+      "Add Kimchi & Rice: Add chopped kimchi to the pan. Sauté 3 minutes. Add cold cooked rice. Break up clumps. Stir-fry 5 minutes, pressing rice against the pan to toast.",
+      "Season Rice: Add soy sauce, gochujang, and kimchi juice. Stir well to combine. Add cooked chicken and broccoli florets. Stir-fry 3-5 minutes until broccoli is tender-crisp.",
+      "Crispy Broccoli Leaves: While rice cooks, heat a small amount of oil in a separate pan. Fry broccoli leaves until crispy. Drain on paper towel. Season with a pinch of salt.",
+      "Finish Dish: Stir in sesame oil. Taste and adjust seasoning with salt and pepper.",
+      "Serve: Divide fried rice among bowls. Top with crispy broccoli leaves, drained pickled carrot ribbons, chopped green onions, and toasted sesame seeds."
+    ],
+    "notes": [
+      "Using day-old, cold rice prevents stickiness and ensures a better fried rice texture.",
+      "Adjust gochujang to your preferred spice level.",
+      "Broccoli stems can also be finely grated and added to the rice for extra nutrition and zero-waste.",
+      "The pickled carrots can be made ahead of time and stored in the refrigerator."
+    ],
+    "traditional_techniques": [
+      "Wok stir-frying",
+      "Using cold day-old rice for optimal fried rice texture",
+      "Incorporating fermented ingredients like kimchi",
+      "Banchan preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4,
+      "calories": 484.3,
+      "cholesterol_mg": 94,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 28.9,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 1549.4,
+      "total_carbs_g": 46.2,
+      "total_fat_g": 20.1,
+      "total_sugars_g": 8.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 104.9,
+      "cholesterol_mg": 20.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.3,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 335.7,
+      "total_carbs_g": 10,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31.3,
+      "dietary_fiber": 18.6,
+      "protein": 57.8,
+      "saturated_fat": 17.5,
+      "sodium": 67.4,
+      "total_carbs": 16.8,
+      "total_fat": 25.8
+    },
+    "serving_size_g": 461.5,
+    "total_recipe_weight_g": 1846
+  },
+  {
+    "recipe_name": "Spanish Chicken and Garlic Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_garlic_rice_20250624_121710_dfefe8d9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:11.213024000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Spanish Chicken and Garlic Rice is presented on a clean, round white porcelain dinner plate. A golden-skinned, crispy chicken thigh is positioned prominently on a bed of vibrant, reddish-orange Bomba rice. The rice is infused with smoked paprika, showing flecks of diced red bell pepper and yellow onion. The texture of the rice is moist and slightly al dente, with individual grains visible. A scattering of finely chopped fresh green parsley provides a contrasting color and freshness. A bright yellow lemon wedge rests beside the chicken, ready for squeezing. The plate has moderate negative space, showcasing the dish without being overcrowded. The setting features a simple light wooden table surface. A neatly folded white cotton napkin and classic silver flatware are arranged beside the plate. Natural, even lighting illuminates the dish from above, highlighting its rich colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with a side of aioli for dipping.",
+      "Offer crusty bread to soak up any remaining juices.",
+      "Pair with a glass of Spanish red wine or sangria."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Bomba rice (or short-grain)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8-10, finely minced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "a pinch (optional, steeped in 50ml hot water)"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "800ml, hot"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "200g (drained)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "a small bunch, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, cut into wedges"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, oven-safe skillet or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy, about 6-8 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from skillet; set aside.",
+      "Reduce heat to medium. Add diced onion and bell pepper to the skillet. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant, stirring constantly.",
+      "Stir in bomba rice and diced tomatoes. Cook for 2 minutes, stirring to coat the rice.",
+      "Pour in hot chicken broth and steeped saffron (if using). Bring to a simmer.",
+      "Nestle seared chicken thighs into the rice mixture, skin-side up. Ensure chicken is partially submerged.",
+      "Cover the skillet tightly with a lid or foil. Transfer to a preheated oven at 180°C (350°F).",
+      "Bake for 20-25 minutes, or until rice is tender and liquid is absorbed. Chicken should reach an internal temperature of 75°C (167°F).",
+      "Remove from oven. Let rest, covered, for 5 minutes.",
+      "Garnish with fresh chopped parsley. Serve with lemon wedges."
+    ],
+    "notes": [
+      "Adjust smoked paprika quantity to desired smokiness and heat.",
+      "Ensure rice is evenly spread in the skillet for consistent cooking."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 805,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4,
+      "protein_g": 45.1,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 907,
+      "total_carbs_g": 70.2,
+      "total_fat_g": 38.6,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.1,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 142,
+      "total_carbs_g": 11,
+      "total_fat_g": 6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 14,
+      "protein": 90,
+      "saturated_fat": 47,
+      "sodium": 39,
+      "total_carbs": 26,
+      "total_fat": 49
+    },
+    "serving_size_g": 639,
+    "total_recipe_weight_g": 2557
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Garlic Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_garlic_rice_20250624_121709_f8079753.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:10.335310000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, pan-seared chicken thigh, its skin a deep, crispy golden-brown, rests unsliced on a round, handcrafted ceramic plate in a warm cream tone. Beside it, a soft mound of fluffy, garlic-infused rice, its grains distinct and tender. A vibrant cluster of sautéed dark green seasonal vegetables (e.g., kale) adds a fresh, organic contrast. A subtle, glossy sheen from the fermented garlic honey glaze coats the chicken. The composition is minimalistic, featuring ample negative space. The plate sits on a light, textured bamboo surface, accompanied by an undyed linen napkin. Soft, natural light illuminates the scene, highlighting the ingredients' inherent beauty. A clean, blurred background hints at natural elements, reinforcing an eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8 (4 for rice, 4 for fermentation)"
+      },
+      {
+        "name": "Honey",
+        "quantity": "100g"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Seasonal greens (e.g., kale, spinach, chard)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken or vegetable stock (preferably homemade from scraps)",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented garlic honey: Peel 4 garlic cloves. Place in a small, clean jar. Pour honey over garlic. Seal jar. Store in a cool, dark place for at least 2 weeks, turning daily for the first week. (Pre-made fermented garlic honey can be used).",
+      "Season chicken thighs generously with sea salt and black pepper.",
+      "Heat 15ml olive oil in a large oven-safe pan over medium-high heat. Place chicken thighs skin-side down. Sear for 8-10 minutes until skin is golden brown and crispy. Render fat. Pour off excess rendered fat, reserving for other uses if desired.",
+      "Flip chicken. Transfer pan to a preheated oven at 180°C (350°F). Cook for 15-20 minutes, or until internal temperature reaches 75°C (167°F). Remove chicken from pan. Rest for 5 minutes.",
+      "While chicken cooks, prepare rice: Finely mince remaining 4 garlic cloves. Heat remaining 15ml olive oil in a medium saucepan over medium heat. Add minced garlic. Sauté for 1 minute until fragrant. Do not brown.",
+      "Add Arborio rice to saucepan. Stir for 2 minutes to toast slightly. Pour in chicken stock. Bring to a simmer. Reduce heat to low. Cover. Cook for 18-20 minutes, or until liquid is absorbed and rice is tender. Fluff with a fork.",
+      "In the last 5 minutes of chicken cooking, sauté greens: Heat a clean pan over medium heat. Add seasonal greens. Sauté for 3-5 minutes until wilted and tender-crisp. Season with a pinch of salt.",
+      "Warm 30ml of fermented garlic honey in a small saucepan over low heat. Brush or drizzle over cooked chicken thighs.",
+      "To plate: Place a portion of garlic-infused rice slightly off-center on each handcrafted ceramic plate. Position one whole pan-seared chicken thigh next to the rice. Arrange a small cluster of sautéed greens nearby. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 20.5,
+      "calories": 911,
+      "cholesterol_mg": 208,
+      "dietary_fiber_g": 2,
+      "protein_g": 48.4,
+      "saturated_fat_g": 10.7,
+      "sodium_mg": 392,
+      "total_carbs_g": 85.8,
+      "total_fat_g": 42.2,
+      "total_sugars_g": 21,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3.8,
+      "calories": 168,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 8.9,
+      "saturated_fat_g": 2,
+      "sodium_mg": 72,
+      "total_carbs_g": 15.8,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69.3,
+      "dietary_fiber": 7.2,
+      "protein": 96.8,
+      "saturated_fat": 53.4,
+      "sodium": 17.1,
+      "total_carbs": 31.2,
+      "total_fat": 54.1
+    },
+    "serving_size_g": 543.5,
+    "total_recipe_weight_g": 2174
+  },
+  {
+    "recipe_name": "Lemon Herb Roasted Chicken with Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_roasted_chicken_with_potatoes_20250624_121700_d3006d1a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:01.122282000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Lemon Herb Roasted Chicken with Potatoes is presented on a clean, round white porcelain dinner plate. A golden-brown, crispy-skinned roasted chicken thigh is the centerpiece. Thick-cut potato wedges, roasted to a tender interior and crisp, golden exterior, are arranged organically around it. The potatoes exhibit varied shades of golden yellow. Bright green flecks of roasted oregano and thyme are visible on both chicken and potatoes. Vibrant yellow roasted lemon wedges are nestled among the components, adding color. A sprig of fresh oregano garnishes the dish. The overall impression is rustic yet refined, with natural colors and appealing textures. The plate sits on a simple wooden table, accompanied by a folded cotton napkin and traditional flatware. Natural, even lighting highlights the dish against a soft, restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with a side of tzatziki sauce.",
+      "Offer a simple Greek salad.",
+      "Accompany with crusty bread for dipping in pan juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (bone-in, skin-on)",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Potatoes (e.g., Maris Piper or Yukon Gold)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15g fresh (or 5g dried)"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "10g fresh (or 3g dried)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "Wash potatoes. Cut into thick wedges, approximately 2 cm thick.",
+      "Finely chop garlic. Zest one lemon, then cut both lemons into thick wedges.",
+      "Roughly chop fresh oregano and thyme.",
+      "In a large roasting pan, combine chicken, potato wedges, chopped garlic, lemon zest, chopped herbs, and olive oil. Toss well to coat everything evenly.",
+      "Arrange chicken and potatoes in a single layer in the roasting pan. Place lemon wedges among the ingredients.",
+      "Pour chicken stock into the bottom of the pan.",
+      "Roast for 40-50 minutes, or until chicken skin is golden brown and crispy.",
+      "Check internal temperature of chicken. It must reach 75°C.",
+      "If needed, return to oven for further cooking.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety.",
+      "For extra crispiness, broil for the last 5 minutes, watching carefully."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 720,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 38.8,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 731,
+      "total_carbs_g": 41.9,
+      "total_fat_g": 44.5,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.6,
+      "saturated_fat_g": 2,
+      "sodium_mg": 144,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 23,
+      "protein": 78,
+      "saturated_fat": 51,
+      "sodium": 32,
+      "total_carbs": 15,
+      "total_fat": 57
+    },
+    "serving_size_g": 507,
+    "total_recipe_weight_g": 2028
+  }
+]

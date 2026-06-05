@@ -1,0 +1,650 @@
+[
+  {
+    "recipe_name": "Sustainable Pan-Seared Cod with Black Garlic and Fermented Seasonal Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_pan-seared_cod_with_black_garlic_and_fermented_seasonal_vegetables_20250624_032356_ca599721.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:23:57.176400000Z",
+    "selected_ingredients": [
+      "cod",
+      "garlic",
+      "coriander",
+      "cumin",
+      "bay leaf",
+      "black pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, refined portion is presented on a handcrafted, matte ceramic plate in a creamy beige hue, set upon a light, textured reclaimed wood surface. The pan-seared cod fillet, skin-on and perfectly golden-crisp on top, rests as the focal point, its white, flaky flesh visible. A deep, glossy pool of black garlic puree is artfully swiped or spooned onto the plate, providing a striking dark contrast. Around the cod are elegantly arranged, thick chunks of roasted carrots and parsnips, their natural orange and pale yellow hues deepened by caramelization, alongside halved, tender-crisp Brussels sprouts and roughly torn, vibrant green roasted kale. A small, distinct cluster of thinly sliced or ribboned fermented seasonal vegetables, such as translucent daikon or kohlrabi, adds a bright, tangy counterpoint with a subtle sheen. The composition embraces negative space, allowing each ingredient to stand out. The scene is illuminated by soft, natural light, creating gentle shadows. An undyed linen napkin in a natural beige is subtly placed to the side. A hint of green foliage from a potted plant is visible in the clean, minimalist background, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Cod",
+    "ingredients": [
+      {
+        "name": "Cod fillets, skin on",
+        "quantity": "4 x 150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45 mL"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black garlic cloves",
+        "quantity": "8"
+      },
+      {
+        "name": "Carrots, scrubbed, thick chunks",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parsnips, scrubbed, thick chunks",
+        "quantity": "200g"
+      },
+      {
+        "name": "Brussels sprouts, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Kale, tough stems removed, roughly torn",
+        "quantity": "100g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1 (plus small piece for ferment)"
+      },
+      {
+        "name": "Coriander seeds, lightly crushed",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cumin seeds, lightly crushed",
+        "quantity": "5g"
+      },
+      {
+        "name": "Seasonal firm vegetables (e.g., daikon radish, kohlrabi, cabbage), peeled/trimmed",
+        "quantity": "200g"
+      },
+      {
+        "name": "Non-iodized salt (for lacto-fermentation)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Vegetable trimmings and scraps",
+        "quantity": "all"
+      },
+      {
+        "name": "Water (for broth)",
+        "quantity": "1 L"
+      }
+    ],
+    "instructions": [
+      "Prepare Zero-Waste Vegetable Broth: Combine all vegetable trimmings and scraps with 1 L water in a saucepan. Bring to a simmer. Cook for 30 minutes. Strain, discard solids. Reserve broth (approx. 30 mL for puree, rest for other uses).",
+      "Prepare Fermented Seasonal Vegetables: Cut firm seasonal vegetables into thin ribbons or small, uniform chunks. Place in a clean jar. Add 5g non-iodized salt. Massage vegetables to release liquid, or add enough filtered water to fully submerge if necessary. Add optional small piece of bay leaf and few black peppercorns. Seal jar loosely to allow gas escape. Ferment at room temperature for 3-5 days, or until desired tanginess is achieved. Refrigerate to slow fermentation.",
+      "Prepare Black Garlic Puree: Combine 8 black garlic cloves, 30 mL reserved vegetable broth, and a pinch of salt in a small blender or food processor. Blend until smooth. Add a tiny bit more broth if needed for desired consistency.",
+      "Roast Seasonal Vegetables: Preheat oven to 200°C. Toss carrots, parsnips, Brussels sprouts, and kale with 30 mL olive oil, salt, pepper, 1 bay leaf, 5g crushed coriander seeds, and 5g crushed cumin seeds on a baking tray. Roast for 20-25 minutes, or until tender and lightly caramelized. Stir halfway.",
+      "Sear Cod: Pat cod fillets dry. Season generously with salt and pepper. Heat 15 mL olive oil in a large oven-safe skillet over medium-high heat. Place cod fillets skin-side down in the hot skillet. Sear for 4-5 minutes until skin is crispy and golden. Flip fillets. Transfer skillet to the preheated oven. Cook for another 5-7 minutes, or until cod is cooked through and flakes easily.",
+      "Plate: Spoon a generous dollop of black garlic puree onto the center of each plate. Arrange a cod fillet on top or slightly beside the puree. Neatly arrange roasted seasonal vegetables around the cod. Place a small, distinct mound of fermented seasonal vegetables on the plate, ensuring visual separation from other elements."
+    ],
+    "notes": [
+      "The fermentation time for vegetables can vary based on temperature and desired tanginess. Taste daily.",
+      "Use fresh, high-quality cod for best results.",
+      "Adapt roasted vegetables to what is seasonally available and local in your region.",
+      "This recipe aims for zero-waste by utilizing vegetable scraps for broth."
+    ],
+    "traditional_techniques": [
+      "Fermentation (Lacto-fermentation)",
+      "Preservation (Fermentation)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 341.6,
+      "cholesterol_mg": 64.5,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 31.9,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 635.4,
+      "total_carbs_g": 26.6,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85.6,
+      "cholesterol_mg": 16.2,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 8,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 159.2,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21.5,
+      "dietary_fiber": 30.5,
+      "protein": 63.7,
+      "saturated_fat": 8.2,
+      "sodium": 27.6,
+      "total_carbs": 9.7,
+      "total_fat": 16
+    },
+    "serving_size_g": 399,
+    "total_recipe_weight_g": 1596
+  },
+  {
+    "recipe_name": "Fermented Tomato & Chili Rice with Crispy Potato Skins",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_%26_chili_rice_with_crispy_potato_skins_20250624_032342_05bdd911.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:23:43.043186000Z",
+    "selected_ingredients": [
+      "onion",
+      "tomato",
+      "chili",
+      "garlic",
+      "potato",
+      "green pea",
+      "rice",
+      "oil"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish is presented as a single, refined portion on a handcrafted, matte cream-colored ceramic plate. A natural mound of fluffy, earthy red-orange rice, infused with fermented tomato and chili, forms the centerpiece. Bright green peas are visibly mixed throughout, offering vibrant contrast. Irregularly shaped, golden-brown crispy potato skins are artfully scattered atop the rice, providing textural intrigue. Fresh coriander leaves or finely chopped green onion tops add a final touch of verdant freshness. The plate sits on a light, textured reclaimed wood surface, with an undyed linen napkin. Soft, diffused natural light illuminates the scene, highlighting the dish's natural colors and textures against a clean, minimalist background, emphasizing sustainable simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Tomato",
+    "ingredients": [
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Red Chilies",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "5-6"
+      },
+      {
+        "name": "Salt (for fermentation)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Filtered Water",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Medium Potatoes",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Large Onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Basmati Rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "50g"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Salt (for seasoning)",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Coriander or Green Onion Tops",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Tomato-Chili Paste (minimum 3-5 days in advance): Wash tomatoes. Roughly chop tomatoes and chilies. Peel 3-4 garlic cloves. Combine chopped tomatoes, chilies, garlic, and 15g salt in a clean jar. Mash slightly to release juices. Ensure solids are submerged; use a fermentation weight if needed. Cover with an airlock lid or burp daily. Ferment at room temperature for 3-7 days, or until desired tanginess. Once fermented, blend into a smooth paste. Store in the refrigerator.",
+      "Prepare Crispy Potato Skins: Wash potatoes thoroughly. Peel potatoes, reserving skins. Toss potato skins with olive oil and a pinch of salt. Spread skins in a single layer on a baking tray. Bake at 200°C (390°F) for 15-20 minutes, or until golden brown and crispy. Flip halfway.",
+      "Cook the Rice: Rinse rice until water runs clear. Set aside. Heat 1-2 tablespoons oil in a large pot or Dutch oven over medium heat. Add finely diced onion. Sauté until softened and translucent, about 5-7 minutes. Add remaining 2 minced garlic cloves. Cook for 1 minute until fragrant.",
+      "Stir in 2-3 tablespoons of the prepared fermented tomato-chili paste. Cook for 2 minutes, stirring. Add rinsed rice. Stir to coat rice grains with the paste. Cook for 1 minute. Pour in vegetable stock. Bring to a boil.",
+      "Reduce heat to low. Cover tightly. Simmer for 15 minutes, or until liquid is absorbed and rice is tender. Stir in green peas during the last 5 minutes of cooking or after the rice is cooked and resting. Remove from heat. Let stand, covered, for 5 minutes. Fluff with a fork.",
+      "Assemble and Serve: Spoon the rice onto individual plates. Top each serving with a generous portion of crispy potato skins. Garnish with fresh coriander or chopped green onion tops. Serve immediately."
+    ],
+    "notes": [
+      "The fermented tomato-chili paste requires advanced preparation, minimum 3-5 days.",
+      "This recipe emphasizes zero-waste by utilizing potato skins."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 457.55,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.77,
+      "protein_g": 10.96,
+      "saturated_fat_g": 0.62,
+      "sodium_mg": 2086.39,
+      "total_carbs_g": 94.33,
+      "total_fat_g": 4.56,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 87.15,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.48,
+      "protein_g": 2.09,
+      "saturated_fat_g": 0.12,
+      "sodium_mg": 397.41,
+      "total_carbs_g": 17.97,
+      "total_fat_g": 0.87,
+      "total_sugars_g": 1.52,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 27.75,
+      "protein": 21.92,
+      "saturated_fat": 3.1,
+      "sodium": 90.71,
+      "total_carbs": 34.3,
+      "total_fat": 5.85
+    },
+    "serving_size_g": 525,
+    "total_recipe_weight_g": 2100
+  },
+  {
+    "recipe_name": "Tuscan Braised Chicken with Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_braised_chicken_with_tomato_20250624_032340_1b65b8fe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:23:40.814200000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tuscan Braised Chicken with Tomato rests on a clean, white porcelain dinner plate. A large, golden-brown seared chicken thigh, cooked to tender perfection, is nestled in a rich, rustic red tomato sauce. The sauce, thick and savory, shows hints of diced onion and minced garlic. Fresh green basil leaves are scattered over the chicken and sauce as a vibrant garnish. The chicken skin, visible in parts, retains a slight crispness from searing. The dish is presented with moderate negative space, highlighting the robust colors of the deep red sauce against the golden chicken. A simple wooden table surface provides the backdrop, with natural, even lighting illuminating the textures. A linen napkin and simple flatware are placed beside the plate, completing the casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to dip in the sauce",
+      "Serve alongside polenta or pasta"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4-6 pieces (approx. 1.2 kg total)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "1g (optional)"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down for 6-8 minutes until golden brown and crisp. Flip and sear for 2-3 minutes. Remove chicken from pot.",
+      "Reduce heat to medium. Add diced onion to the pot. Sauté for 5-7 minutes until softened and translucent.",
+      "Add minced garlic and red pepper flakes (if using). Sauté for 1 minute until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the pot. Simmer for 2 minutes until liquid reduces slightly.",
+      "Stir in crushed tomatoes, chicken stock, rosemary sprigs, and thyme sprigs. Bring the sauce to a gentle simmer.",
+      "Return seared chicken thighs to the pot, nestling them into the sauce. Ensure chicken is mostly submerged.",
+      "Cover the pot. Reduce heat to low. Simmer for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is very tender.",
+      "Remove chicken from pot. Discard rosemary and thyme sprigs.",
+      "If sauce is too thin, increase heat and simmer uncovered for 5-10 minutes, stirring occasionally, until desired consistency.",
+      "Return chicken to sauce to warm through. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 784,
+      "cholesterol_mg": 255,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 60.1,
+      "saturated_fat_g": 14.5,
+      "sodium_mg": 295,
+      "total_carbs_g": 15.4,
+      "total_fat_g": 55.4,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.2,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 45,
+      "total_carbs_g": 2.4,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85,
+      "dietary_fiber": 12,
+      "protein": 120,
+      "saturated_fat": 73,
+      "sodium": 13,
+      "total_carbs": 6,
+      "total_fat": 71
+    },
+    "serving_size_g": 653.8,
+    "total_recipe_weight_g": 2615
+  },
+  {
+    "recipe_name": "Chili-Rubbed Chicken Breast with Corn Salsa and Toasted Sourdough",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chili-rubbed_chicken_breast_with_corn_salsa_and_toasted_sourdough_20250624_032339_218d9191.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:23:40.438297000Z",
+    "selected_ingredients": [
+      "chili",
+      "bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a golden-brown, seared chili-rubbed chicken breast as the centerpiece, resting on a clean white porcelain dinner plate. The chicken, cooked to a tender interior, displays a rich, slightly crusted exterior from the chili rub. Beside the chicken, a vibrant mound of fresh corn salsa offers a contrasting burst of color, with bright yellow corn kernels, finely diced red onion, and verdant chopped cilantro. A thick slice of toasted sourdough bread, golden-brown and slightly charred at the edges, leans against the chicken, providing a textural counterpoint. The plate is clean, with moderate negative space, showcasing the professional plating. The setting is a modern bistro, featuring a simple wooden table surface, a white cotton napkin folded beside the plate, and even natural lighting that highlights the fresh ingredients and inviting textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx 180-200g each)"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "20g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sourdough bread",
+        "quantity": "4 thick slices"
+      },
+      {
+        "name": "Fresh corn kernels",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "80g (1 small, finely diced)"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30g (1/2 cup chopped)"
+      },
+      {
+        "name": "Lime",
+        "quantity": "2 (juiced)"
+      },
+      {
+        "name": "Jalapeño",
+        "quantity": "1 (optional, finely minced)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Combine chili powder, smoked paprika, cumin, garlic powder, salt, and pepper in a small bowl. This is the chili rub.",
+      "Pat chicken breasts dry. Rub generously with olive oil, then coat evenly with the chili rub.",
+      "Heat a large oven-safe skillet over medium-high heat. Sear chicken breasts for 4-5 minutes per side until a golden brown crust forms.",
+      "Transfer skillet to preheated oven. Bake for 10-15 minutes, or until internal temperature reaches 75°C.",
+      "While chicken bakes, prepare corn salsa. In a medium bowl, combine fresh corn kernels, finely diced red onion, chopped cilantro, and minced jalapeño (if using).",
+      "Add lime juice and a pinch of salt to the corn salsa. Toss gently to combine.",
+      "Toast sourdough bread slices until golden and crisp.",
+      "Rest cooked chicken for 5 minutes. Slice each chicken breast into 2-3 thick medallions if desired, or serve whole.",
+      "Plate each chicken breast (or medallions) alongside a generous portion of corn salsa and one slice of toasted sourdough. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 616,
+      "cholesterol_mg": 161.5,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 68.5,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 980.8,
+      "total_carbs_g": 51,
+      "total_fat_g": 16.7,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 162.2,
+      "cholesterol_mg": 42.5,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 18,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 258.3,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.8,
+      "dietary_fiber": 25.6,
+      "protein": 137,
+      "saturated_fat": 16.8,
+      "sodium": 42.6,
+      "total_carbs": 18.5,
+      "total_fat": 21.4
+    },
+    "serving_size_g": 379.8,
+    "total_recipe_weight_g": 1519
+  },
+  {
+    "recipe_name": "Fermented Tomato & Potato Rice Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_%26_potato_rice_bowl_20250624_032305_0c27659a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:23:05.570432000Z",
+    "selected_ingredients": [
+      "onion",
+      "tomato",
+      "chili",
+      "garlic",
+      "potato",
+      "green pea",
+      "rice",
+      "oil"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A clean, handcrafted ceramic bowl in a natural earth tone, such as cream or beige, is presented on a light bamboo table surface. The dish is arranged as a deconstructed bowl. A pristine mound of fluffy, light brown rice forms the central base. Roasted potato cubes, golden and slightly caramelized, are artfully placed around the rice. Vibrant green peas are scattered thoughtfully across the dish. A distinct spoonful of deep red, slightly coarse fermented tomato and onion paste is placed alongside the rice, providing a contrasting color and texture. Freshly diced bright red tomato and thinly sliced red onion are delicately arranged as a fresh, natural garnish. The overall composition is clean, minimalistic, and emphasizes the inherent beauty of each ingredient's natural colors and textures, with ample negative space on the plate. An undyed linen napkin in a natural beige tone is folded simply beside the bowl. Soft, diffused natural light illuminates the scene, creating gentle shadows and highlighting textures. The background is clean and unobtrusive, with a subtle hint of natural greenery, like a plant leaf, reinforcing the eco-conscious theme. The plating avoids any ornate garnishes or elaborate arrangements, focusing on pure, ingredient-centric beauty.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Tomato",
+    "ingredients": [
+      {
+        "name": "Tomatoes",
+        "quantity": "450g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Chili",
+        "quantity": "1-2 (to taste)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g (for fermentation)"
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Paste: Dice 200g tomatoes, 100g red onion, 2 cloves garlic, and 1 chili. Combine with 10g salt in a clean jar. Cover with water, leaving headspace. Seal and ferment at room temperature for 3-5 days until tangy. Burp daily. Once fermented, blend into a coarse paste.",
+      "Prepare Potato Broth: Wash potatoes thoroughly. Peel potatoes. Reserve peels. Dice peeled potatoes into 2cm cubes. Place potato peels in a small saucepan. Cover with 500ml water. Simmer for 20 minutes to create a light broth. Strain and discard peels.",
+      "Cook Rice: Rinse brown rice. Combine rice with 500ml potato broth in a pot. Bring to a boil, then reduce heat to low. Cover and simmer for 40-45 minutes until liquid is absorbed and rice is tender.",
+      "Cook Potatoes & Peas: Heat 15ml oil in a pan. Add diced potatoes. Roast or pan-fry until golden and tender, about 15-20 minutes. Season with salt and pepper. Blanch green peas in boiling water for 2 minutes. Drain.",
+      "Assemble Bowls: Divide cooked rice among 4 bowls. Top with roasted potato cubes and blanched green peas.",
+      "Garnish: Dice remaining 150g fresh tomatoes and finely slice remaining 50g fresh red onion. Spoon a generous amount of fermented tomato and onion paste onto each bowl. Garnish with fresh diced tomato and sliced red onion. Drizzle with remaining oil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 286,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 7.5,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 988,
+      "total_carbs_g": 48.3,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 78,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 2,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 269,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 2.2,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 26,
+      "protein": 15,
+      "saturated_fat": 4,
+      "sodium": 43,
+      "total_carbs": 18,
+      "total_fat": 10
+    },
+    "serving_size_g": 367,
+    "total_recipe_weight_g": 1467
+  }
+]

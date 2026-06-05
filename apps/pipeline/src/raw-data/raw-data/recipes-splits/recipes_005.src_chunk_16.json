@@ -1,0 +1,687 @@
+[
+  {
+    "recipe_name": "Mustard and Oregano Roasted Chicken with Chili Breadcrumbs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_131039_f2bac76c.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-05T13:10:39.911759000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "mustard",
+      "bread",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of roasted chicken thighs served on a matte white porcelain plate. The chicken skin is deeply caramelized and coated in a glossy mustard and oregano glaze. Coarse, hand-torn sourdough breadcrumbs are scattered over the top, toasted to a rich golden brown and flecked with bright red chili rings. Two whole roasted chicken thighs are centered on the plate, surrounded by a light drizzle of herb-infused pan juices. Fresh green oregano leaves provide a vibrant color contrast. The setting is a rustic wooden bistro table with a folded linen napkin and a simple fork. Lighting is soft and natural, emphasizing the crispy texture of the breadcrumbs and the succulent meat.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with extra crusty sourdough bread",
+      "Accompany with a side of lemon-dressed arugula",
+      "Present in a shallow ceramic dish"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh red chilies, finely diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Sourdough bread, torn into 1cm chunks",
+        "quantity": "150g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh oregano leaves",
+        "quantity": "10g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "3g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Combine mustard, dried oregano, salt, and pepper in a bowl.",
+      "Rub mustard mixture thoroughly over chicken thighs.",
+      "Heat 15ml olive oil in a large oven-proof pan over medium-high heat.",
+      "Sear chicken skin-side down for 5 minutes until golden.",
+      "Flip chicken and transfer pan to the oven.",
+      "Roast for 15-18 minutes until internal temperature reaches 75°C.",
+      "Heat remaining olive oil in a separate skillet.",
+      "Toast bread chunks, garlic, and chilies until bread is golden and crisp.",
+      "Remove chicken from oven and rest for 5 minutes.",
+      "Top chicken with the chili breadcrumbs and fresh oregano."
+    ],
+    "notes": [
+      "Ensure the bread is slightly stale for better crunch",
+      "Adjust chili quantity based on heat preference",
+      "Keep chicken skin intact during searing for maximum flavor"
+    ],
+    "traditional_techniques": [
+      "pan-searing",
+      "herb-infusing",
+      "oven-roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 638,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 38.3,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 1191,
+      "total_carbs_g": 21.8,
+      "total_fat_g": 41.9,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 283.6,
+      "cholesterol_mg": 83.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 17,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 529.3,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 18.6,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.7,
+      "dietary_fiber": 5.4,
+      "protein": 76.6,
+      "saturated_fat": 50.5,
+      "sodium": 51.8,
+      "total_carbs": 7.9,
+      "total_fat": 53.7
+    },
+    "serving_size_g": 225,
+    "total_recipe_weight_g": 900
+  },
+  {
+    "recipe_name": "Rigatoni with Slow-Cooked Lamb Ragu",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_122434_61502b4b.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-05T12:24:35.395888000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Rigatoni with Slow-Cooked Lamb Ragu is presented in a wide, shallow white porcelain bowl. The large rigatoni tubes are thoroughly coated in a rich, glossy, mahogany-colored sauce. Significant 3cm chunks of tender, braised lamb shoulder are distributed naturally throughout the pasta, retaining their structural shape rather than being shredded. The dish is topped with a bright green gremolata of finely chopped parsley and lemon zest, providing a sharp color contrast against the deep red sauce. A light, airy dusting of white Pecorino Romano cheese finishes the plate. The bowl sits on a rustic dark wood bistro table with a neutral linen napkin and a single stainless steel fork. Soft, natural light emphasizes the moist texture of the lamb chunks.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of full-bodied red wine like Montepulciano d'Abruzzo.",
+      "Accompany with crusty sourdough bread to mop up the remaining ragu.",
+      "Present in wide, shallow pasta bowls (piatti piani)."
+    ],
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "lamb shoulder, cut into 3cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "rigatoni pasta",
+        "quantity": "500g"
+      },
+      {
+        "name": "onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "carrot, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "celery stalk, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "dry red wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "lamb or beef stock",
+        "quantity": "400ml"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "fresh rosemary sprig",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Pecorino Romano, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "fresh flat-leaf parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "lemon zest",
+        "quantity": "1 tsp"
+      }
+    ],
+    "instructions": [
+      "Pat lamb chunks dry with paper towels.",
+      "Season lamb generously with salt and pepper.",
+      "Heat oil in a heavy-based pot over medium-high heat.",
+      "Sear lamb in batches until deeply browned on all sides.",
+      "Remove lamb and set aside.",
+      "Add onion, carrot, and celery to the same pot.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in half the minced garlic for 1 minute.",
+      "Pour in red wine to deglaze the pot, scraping the bottom.",
+      "Add tomatoes, stock, and rosemary.",
+      "Return lamb to the pot and bring to a simmer.",
+      "Reduce heat to low, cover, and cook for 2 hours.",
+      "Remove lid and simmer for 20 minutes to thicken sauce.",
+      "Boil rigatoni in salted water until al dente.",
+      "Combine remaining garlic, parsley, and lemon zest for gremolata.",
+      "Toss pasta with the ragu and a splash of pasta water.",
+      "Serve topped with gremolata and Pecorino Romano."
+    ],
+    "notes": [
+      "Ensure the lamb is seared thoroughly to develop deep umami flavors.",
+      "The sauce should be thick enough to cling to the rigatoni ridges.",
+      "Save at least 100ml of starchy pasta water to adjust the final sauce consistency."
+    ],
+    "traditional_techniques": [
+      "soffritto",
+      "braising",
+      "emulsifying pasta water"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 940,
+      "cholesterol_mg": 125,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 49.5,
+      "saturated_fat_g": 13.7,
+      "sodium_mg": 675,
+      "total_carbs_g": 107,
+      "total_fat_g": 34.3,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170.9,
+      "cholesterol_mg": 22.7,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 122.7,
+      "total_carbs_g": 19.5,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41.7,
+      "dietary_fiber": 33.2,
+      "protein": 99,
+      "saturated_fat": 68.5,
+      "sodium": 28.1,
+      "total_carbs": 35.7,
+      "total_fat": 52.8
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Chicken Tagine with Preserved Lemon and Olives",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_104800_b308a2fd.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-05T10:48:01.683673000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Moroccan chicken tagine presented on a wide, white porcelain plate. Two whole, golden-brown braised chicken thighs sit at the center, coated in a glossy, vibrant yellow-orange sauce. The sauce contains translucent diced onions, thin yellow strips of preserved lemon rind, and whole green olives. A scattering of bright green chopped cilantro and flat-leaf parsley provides contrast. Beside the chicken, a neat mound of fluffy, steamed couscous absorbs the sauce. The background features a modern bistro table with a small bowl of harissa and a piece of crusty bread. Natural side lighting highlights the succulent texture of the skin and the steam rising from the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Moroccan",
+    "cultural_origin": "Moroccan",
+    "cultural_serving_suggestions": [
+      "Serve with steamed couscous",
+      "Accompany with spicy harissa paste",
+      "Provide fresh crusty bread for dipping",
+      "Serve in a traditional clay tagine vessel"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in skin-on chicken thighs",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Yellow onions, finely diced",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Preserved lemon, rind only, cut into thin strips",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Green cracked olives",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh cilantro and parsley, chopped",
+        "quantity": "30 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken with salt and pepper.",
+      "Heat olive oil in a wide pan or tagine over medium-high heat.",
+      "Brown chicken skin-side down for 6 minutes.",
+      "Flip chicken and brown for 3 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Sauté diced onions in the same pan until soft.",
+      "Add garlic, ginger, turmeric, cumin, and cinnamon.",
+      "Stir spices for 1 minute until fragrant.",
+      "Return chicken to the pan.",
+      "Add saffron with its soaking liquid and chicken stock.",
+      "Cover and simmer on low heat for 30 minutes.",
+      "Add preserved lemon strips and green olives.",
+      "Simmer uncovered for 10 minutes to thicken sauce.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Stir in chopped cilantro and parsley before serving."
+    ],
+    "notes": [
+      "Rinse preserved lemon thoroughly to remove excess salt",
+      "Use a heavy-bottomed Dutch oven if a clay tagine is unavailable",
+      "Soak saffron in warm water for 10 minutes before use"
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Tempering spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 551,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 30.3,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 1256,
+      "total_carbs_g": 13,
+      "total_fat_g": 41.2,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 29.5,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 6.4,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 264,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 9,
+      "protein": 61,
+      "saturated_fat": 49,
+      "sodium": 55,
+      "total_carbs": 4,
+      "total_fat": 63
+    },
+    "serving_size_g": 475,
+    "total_recipe_weight_g": 1900
+  },
+  {
+    "recipe_name": "West African Jollof Brown Rice with Grilled Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_094026_b4a6d445.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-05T09:40:27.399725000Z",
+    "selected_ingredients": [
+      "brown rice",
+      "onion",
+      "chicken",
+      "tomato",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features a vibrant, deep orange-red mound of Jollof brown rice at the center of a white porcelain plate. The rice grains are distinct and fluffy. Two whole, bone-in chicken thighs with crispy, dark golden-brown seared skin sit prominently atop the rice. The chicken remains whole and is not sliced or fanned. Finely diced red onions and thin rounds of fresh red chili are scattered across the rice for texture. A single green bay leaf rests against the side of the rice. Three thick-cut, caramelized fried plantain medallions are positioned at the plate's edge. The setting includes a dark wooden table, a neutral cotton napkin, and natural restaurant lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "West African",
+    "cultural_origin": "West African",
+    "cultural_serving_suggestions": [
+      "Serve with fried ripe plantains (dodo)",
+      "Accompany with a side of crisp coleslaw",
+      "Serve on a large communal platter for family-style dining"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red onions, finely diced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Plum tomatoes, blended",
+        "quantity": "400g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "50g"
+      },
+      {
+        "name": "Scotch bonnet chili, minced",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Curry powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2 pieces"
+      }
+    ],
+    "instructions": [
+      "Season chicken with salt, pepper, and 5g curry powder.",
+      "Heat 30ml oil in a heavy-bottomed pot over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until crisp. Flip and cook for 4 minutes. Remove chicken.",
+      "Add remaining oil and onions to the pot. Sauté for 5 minutes until soft.",
+      "Stir in tomato paste. Fry for 3 minutes while stirring constantly.",
+      "Add blended tomatoes, minced chili, thyme, and remaining curry powder. Simmer for 10 minutes.",
+      "Rinse brown rice until water runs clear. Stir rice into the tomato base.",
+      "Add chicken stock and bay leaves. Stir once to combine.",
+      "Place chicken thighs on top of the rice. Cover with a tight-fitting lid.",
+      "Reduce heat to low. Cook for 50 minutes until rice is tender and liquid is absorbed.",
+      "Confirm chicken internal temperature reaches 75°C.",
+      "Remove from heat. Let the pot stand covered for 10 minutes before serving."
+    ],
+    "notes": [
+      "Do not stir the rice during the steaming process to prevent mushiness.",
+      "The scorched rice at the bottom of the pot (party rice) is highly prized for its smoky flavor.",
+      "Brown rice requires a longer steaming time than white rice to achieve a tender texture."
+    ],
+    "traditional_techniques": [
+      "frying tomato paste",
+      "stewing the base",
+      "steaming rice in sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 854,
+      "cholesterol_mg": 126,
+      "dietary_fiber_g": 7,
+      "protein_g": 39,
+      "saturated_fat_g": 8.4,
+      "sodium_mg": 724.5,
+      "total_carbs_g": 90.6,
+      "total_fat_g": 37.3,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 207,
+      "cholesterol_mg": 30.5,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2,
+      "sodium_mg": 175.6,
+      "total_carbs_g": 22,
+      "total_fat_g": 9,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 25,
+      "protein": 78,
+      "saturated_fat": 42,
+      "sodium": 31.5,
+      "total_carbs": 32.9,
+      "total_fat": 47.8
+    },
+    "serving_size_g": 412.5,
+    "total_recipe_weight_g": 1650
+  },
+  {
+    "recipe_name": "West African Jollof Brown Rice with Grilled Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_093609_e55d09bb.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-05T09:36:10.390393000Z",
+    "selected_ingredients": [
+      "brown rice",
+      "onion",
+      "chicken",
+      "tomato",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features a vibrant, deep orange-red mound of Jollof brown rice at the center of a white porcelain plate. The rice grains are distinct and fluffy. Two whole, bone-in chicken thighs with crispy, dark golden-brown seared skin sit prominently atop the rice. The chicken remains whole and is not sliced or fanned. Finely diced red onions and thin rounds of fresh red chili are scattered across the rice for texture. A single green bay leaf rests against the side of the rice. Three thick-cut, caramelized fried plantain medallions are positioned at the plate's edge. The setting includes a dark wooden table, a neutral cotton napkin, and natural restaurant lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "West African",
+    "cultural_origin": "West African",
+    "cultural_serving_suggestions": [
+      "Serve with fried ripe plantains (dodo)",
+      "Accompany with a side of crisp coleslaw",
+      "Serve on a large communal platter for family-style dining"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red onions, finely diced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Plum tomatoes, blended",
+        "quantity": "400g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "50g"
+      },
+      {
+        "name": "Scotch bonnet chili, minced",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Curry powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2 pieces"
+      }
+    ],
+    "instructions": [
+      "Season chicken with salt, pepper, and 5g curry powder.",
+      "Heat 30ml oil in a heavy-bottomed pot over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until crisp. Flip and cook for 4 minutes. Remove chicken.",
+      "Add remaining oil and onions to the pot. Sauté for 5 minutes until soft.",
+      "Stir in tomato paste. Fry for 3 minutes while stirring constantly.",
+      "Add blended tomatoes, minced chili, thyme, and remaining curry powder. Simmer for 10 minutes.",
+      "Rinse brown rice until water runs clear. Stir rice into the tomato base.",
+      "Add chicken stock and bay leaves. Stir once to combine.",
+      "Place chicken thighs on top of the rice. Cover with a tight-fitting lid.",
+      "Reduce heat to low. Cook for 50 minutes until rice is tender and liquid is absorbed.",
+      "Confirm chicken internal temperature reaches 75°C.",
+      "Remove from heat. Let the pot stand covered for 10 minutes before serving."
+    ],
+    "notes": [
+      "Do not stir the rice during the steaming process to prevent mushiness.",
+      "The scorched rice at the bottom of the pot (party rice) is highly prized for its smoky flavor.",
+      "Brown rice requires a longer steaming time than white rice to achieve a tender texture."
+    ],
+    "traditional_techniques": [
+      "frying tomato paste",
+      "stewing the base",
+      "steaming rice in sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 854,
+      "cholesterol_mg": 126,
+      "dietary_fiber_g": 7,
+      "protein_g": 39,
+      "saturated_fat_g": 8.4,
+      "sodium_mg": 724.5,
+      "total_carbs_g": 90.6,
+      "total_fat_g": 37.3,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 207,
+      "cholesterol_mg": 30.5,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2,
+      "sodium_mg": 175.6,
+      "total_carbs_g": 22,
+      "total_fat_g": 9,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 25,
+      "protein": 78,
+      "saturated_fat": 42,
+      "sodium": 31.5,
+      "total_carbs": 32.9,
+      "total_fat": 47.8
+    },
+    "serving_size_g": 412.5,
+    "total_recipe_weight_g": 1650
+  }
+]

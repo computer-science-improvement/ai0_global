@@ -1,0 +1,700 @@
+[
+  {
+    "recipe_name": "Thai Basil Chicken with Jasmine Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_basil_chicken_with_jasmine_rice_20250624_142703_b53a52dc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:27:03.750242000Z",
+    "selected_ingredients": [
+      "basil",
+      "rice",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A steaming mound of fluffy jasmine rice occupies half of a clean white porcelain plate. Beside it, glossy 2cm chunks of golden-brown seared chicken thighs are coated in a dark, savory sauce. Vibrant green Thai basil leaves are wilted throughout the stir-fry. A single fried egg with a lacy, golden-crisp edge and a bright runny yolk rests atop the chicken. The dish is presented on a dark teak wood table with a small side dish of fish sauce containing sliced red chilies. Soft natural lighting highlights the textures of the crispy egg and tender chicken. A traditional Thai stainless steel spoon and fork lie on a white cotton napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with Prik Nam Pla (fish sauce with chilies)",
+      "Eat with a spoon in the right hand and fork in the left",
+      "Provide cucumber slices to cool the palate"
+    ],
+    "hero_ingredient": "Thai Basil",
+    "ingredients": [
+      {
+        "name": "Jasmine rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken thighs, cut into 2cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Thai basil leaves",
+        "quantity": "2 cups"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "6"
+      },
+      {
+        "name": "Thai bird's eye chilies, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Rinse rice until water runs clear.",
+      "Cook rice in 600ml water until fluffy.",
+      "Heat 1 tbsp oil in a pan over high heat.",
+      "Fry eggs until edges are crispy and brown.",
+      "Remove eggs and set aside.",
+      "Heat remaining oil in a wok.",
+      "Sauté garlic and chilies until fragrant.",
+      "Add chicken chunks to the wok.",
+      "Stir-fry chicken until browned and internal temperature reaches 75°C.",
+      "Stir in oyster sauce, soy sauces, and sugar.",
+      "Add basil leaves and toss until wilted.",
+      "Divide rice into four plates.",
+      "Top rice with chicken and a fried egg."
+    ],
+    "notes": [
+      "Use Holy Basil for the most authentic flavor if available.",
+      "Adjust chili count based on heat preference."
+    ],
+    "traditional_techniques": [
+      "Wok hei",
+      "Pounding aromatics in a mortar"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 711,
+      "cholesterol_mg": 320,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 43.5,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 707,
+      "total_carbs_g": 84.3,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 145.8,
+      "cholesterol_mg": 65.6,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1,
+      "sodium_mg": 145,
+      "total_carbs_g": 17.3,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 106.7,
+      "dietary_fiber": 4.6,
+      "protein": 87,
+      "saturated_fat": 24,
+      "sodium": 30.7,
+      "total_carbs": 30.7,
+      "total_fat": 28.5
+    },
+    "serving_size_g": 487.5,
+    "total_recipe_weight_g": 1950
+  },
+  {
+    "recipe_name": "Braised Beef with Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_root_vegetables_20250624_142640_ec182a9c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:26:40.785778000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty Braised Beef with Root Vegetables is presented in a deep, pristine white porcelain bowl, centered on a rustic wooden table. Large, fork-tender chunks of braised beef, boasting a rich, dark brown hue, are nestled amongst substantial pieces of roasted carrots and parsnips. The vegetables are cut into thick, irregular chunks, retaining their vibrant orange and creamy white colors. A generous pool of glossy, dark brown braising liquid, thickened to a luxurious consistency, envelops the ingredients. The dish is elegantly garnished with a light sprinkling of freshly chopped bright green flat-leaf parsley, adding a touch of freshness. The overall presentation is clean, professional, and inviting, with moderate negative space. Beside the bowl, a neatly folded white cotton napkin and classic silver flatware suggest a refined, casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the rich sauce",
+      "Pair with mashed potatoes or creamy polenta"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Parsnips (optional)",
+        "quantity": "200 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Pat beef chunks dry. Season beef generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until deeply browned on all sides. Do not overcrowd the pot. Remove seared beef from pot. Set aside.",
+      "Add chopped onion, carrots, and celery to the pot. Sauté 5-7 minutes until softened.",
+      "Add smashed garlic and tomato paste. Cook 2 minutes, stirring constantly.",
+      "Stir in flour. Cook 1 minute, stirring.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot with a wooden spoon. Bring to a simmer.",
+      "Add beef stock, thyme sprigs, and bay leaves. Return seared beef to the pot. Ensure beef is mostly submerged in liquid.",
+      "Bring the liquid to a gentle simmer. Cover pot tightly with a lid.",
+      "Transfer pot to preheated oven. Braise 2 hours.",
+      "If using, add parsnips (cut into thick chunks) to the pot. Stir gently.",
+      "Continue braising 1-1.5 hours, or until beef is fork-tender and vegetables are cooked through.",
+      "Remove thyme sprigs and bay leaves before serving.",
+      "Taste and adjust seasoning if needed."
+    ],
+    "notes": [
+      "For best results, use a good quality dry red wine like Cabernet Sauvignon or Merlot. Avoid cooking wines.",
+      "Beef chuck, short ribs, or brisket are excellent cuts for braising due to their marbling and connective tissue that breaks down into tender, flavorful meat."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1079,
+      "cholesterol_mg": 243.75,
+      "dietary_fiber_g": 7.34,
+      "protein_g": 79.3,
+      "saturated_fat_g": 20.47,
+      "sodium_mg": 1095.05,
+      "total_carbs_g": 37.39,
+      "total_fat_g": 57.12,
+      "total_sugars_g": 13.3,
+      "trans_fat_g": 1.54
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160,
+      "cholesterol_mg": 36.11,
+      "dietary_fiber_g": 1.09,
+      "protein_g": 11.75,
+      "saturated_fat_g": 3.03,
+      "sodium_mg": 162.23,
+      "total_carbs_g": 5.54,
+      "total_fat_g": 8.46,
+      "total_sugars_g": 1.97,
+      "trans_fat_g": 0.23
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81,
+      "dietary_fiber": 26,
+      "protein": 159,
+      "saturated_fat": 102,
+      "sodium": 48,
+      "total_carbs": 14,
+      "total_fat": 73
+    },
+    "serving_size_g": 675,
+    "total_recipe_weight_g": 2700
+  },
+  {
+    "recipe_name": "Hearty Mediterranean Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_mediterranean_vegetable_stew_20250624_142633_0ed05b98.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:26:34.275086000Z",
+    "selected_ingredients": [
+      "eggplant",
+      "potato",
+      "carrot",
+      "tomato",
+      "onion",
+      "garlic",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "stew",
+    "visual_description": "A vibrant, hearty Mediterranean vegetable stew is presented in a clean, shallow white porcelain bowl, centered on a simple light wooden table. The stew features clearly diced eggplant, potatoes, and carrots, simmered in a rich, red crushed tomato base. The colors are natural and appealing: deep red, creamy white, bright orange, and subtle purple from eggplant skin. Textures are soft and yielding, with a slight sheen from olive oil. A generous sprinkle of fresh, vibrant green chopped basil leaves garnishes the top, adding a pop of color and freshness. The composition is balanced and uncrowded, allowing the stew's rustic charm to shine. A folded white cotton napkin rests beside the bowl. Natural, even lighting illuminates the dish, highlighting its warmth and inviting texture against a softly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty artisan bread for dipping.",
+      "Offer a side of grated Parmesan or Pecorino Romano cheese."
+    ],
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Eggplant",
+        "quantity": "2 medium (approx. 600g)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium (approx. 600g)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large (approx. 200g)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/2 bunch (approx. 30g)"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Prepare vegetables. Dice eggplant, potatoes, carrots, and onion. Mince garlic.",
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion and carrots. Sauté 8-10 minutes until softened.",
+      "Add minced garlic. Sauté 1 minute until fragrant.",
+      "Stir in diced eggplant and potatoes. Cook 5 minutes, stirring occasionally.",
+      "Pour in crushed tomatoes and vegetable broth. Add salt, pepper, and dried oregano.",
+      "Bring stew to a simmer. Reduce heat to low. Cover and cook 30-40 minutes, or until vegetables are tender. Stir occasionally.",
+      "Stir in fresh basil. Cook 2 minutes.",
+      "Taste and adjust seasoning as needed.",
+      "Serve hot."
+    ],
+    "notes": [
+      "This stew deepens in flavor overnight, making it excellent for meal prepping."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 368.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 13.17,
+      "protein_g": 8.15,
+      "saturated_fat_g": 2.13,
+      "sodium_mg": 375,
+      "total_carbs_g": 55.74,
+      "total_fat_g": 15.01,
+      "total_sugars_g": 16.84,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 48.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.74,
+      "protein_g": 1.08,
+      "saturated_fat_g": 0.28,
+      "sodium_mg": 49.5,
+      "total_carbs_g": 7.36,
+      "total_fat_g": 1.98,
+      "total_sugars_g": 2.23,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 47,
+      "protein": 16.3,
+      "saturated_fat": 10.7,
+      "sodium": 16.3,
+      "total_carbs": 20.3,
+      "total_fat": 19.2
+    },
+    "serving_size_g": 757,
+    "total_recipe_weight_g": 3027
+  },
+  {
+    "recipe_name": "Coq au Vin Blanc with Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coq_au_vin_blanc_with_root_vegetables_20250624_142615_25e611a1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:26:15.920176000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Coq au Vin Blanc is presented in a deep, clean white porcelain bowl. A bone-in, skin-on chicken thigh, deeply browned and glistening with sauce, rests as the centerpiece. Around it, tender, rustic chunks of potato (approximately 3-4 cm), thick 4-5 cm carrot batons, and whole pearl onions are artfully arranged, showcasing their soft textures and earthy tones. Halved button mushrooms and crispy bacon lardons are scattered throughout. A rich, glossy, light golden-brown white wine sauce generously coats all ingredients, creating a cohesive and inviting look. Freshly chopped vibrant green parsley is sprinkled over the dish, adding a burst of color and freshness. The setting is a modern bistro, featuring a simple wooden table surface. A white cotton napkin and classic silver flatware are placed beside the bowl. Natural, even lighting illuminates the dish, highlighting its warmth and professional, approachable presentation. A small, crusty piece of baguette is casually placed nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette to sop up the rich sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Bacon lardons",
+        "quantity": "150g"
+      },
+      {
+        "name": "Pearl onions, peeled",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrots, peeled",
+        "quantity": "2 large (approx. 250g)"
+      },
+      {
+        "name": "Potatoes, small, peeled",
+        "quantity": "400g"
+      },
+      {
+        "name": "Button mushrooms, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry white wine (e.g., Chardonnay, Sauvignon Blanc)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "20g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "In a large Dutch oven or heavy-bottomed pot, cook bacon lardons over medium heat until crispy. Remove lardons with a slotted spoon; set aside. Leave rendered fat in the pot.",
+      "Add olive oil to the pot if needed. Brown chicken thighs, skin-side down first, for 5-7 minutes per side until deeply golden. Remove chicken; set aside.",
+      "Add pearl onions and carrots (cut into 4-5 cm batons) to the pot. Sauté for 5-7 minutes until lightly browned. Add minced garlic; cook for 1 minute until fragrant.",
+      "Deglaze the pot with white wine. Scrape up any browned bits from the bottom. Bring to a simmer; reduce by half.",
+      "Pour in chicken stock. Add thyme sprigs and bay leaf. Return browned chicken thighs to the pot. Ensure liquid mostly covers the chicken. If not, add more stock or water.",
+      "Bring to a gentle simmer. Cover the pot. Braise for 30 minutes.",
+      "Add peeled small potatoes (whole or halved if larger than 4 cm) to the pot. Continue to braise, covered, for another 25-30 minutes, or until chicken reaches an internal temperature of 75°C and vegetables are tender.",
+      "While chicken braises, prepare a beurre manié: in a small bowl, combine butter and flour. Mix with a fork until a smooth paste forms.",
+      "Remove chicken, potatoes, carrots, onions, thyme, and bay leaf from the pot with a slotted spoon. Keep warm.",
+      "Bring the braising liquid to a simmer. Whisk in the beurre manié, a little at a time, until the sauce thickens to your desired consistency. Simmer for 2-3 minutes to cook out the flour taste.",
+      "Add halved mushrooms to the sauce. Simmer for 5 minutes until tender. Stir in cooked bacon lardons.",
+      "Return chicken and vegetables to the pot. Gently coat with the sauce. Adjust seasoning with salt and pepper.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "The beurre manié should be added gradually to achieve the desired sauce thickness without lumps."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing",
+      "Beurre manié (for thickening sauce)",
+      "Mirepoix (using onions and carrots as aromatics)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 947,
+      "cholesterol_mg": 271,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 55.9,
+      "saturated_fat_g": 18.5,
+      "sodium_mg": 1848,
+      "total_carbs_g": 39.9,
+      "total_fat_g": 57.3,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.8,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 259,
+      "total_carbs_g": 5.6,
+      "total_fat_g": 8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 90.2,
+      "dietary_fiber": 19.8,
+      "protein": 111.7,
+      "saturated_fat": 92.6,
+      "sodium": 80.4,
+      "total_carbs": 14.5,
+      "total_fat": 73.4
+    },
+    "serving_size_g": 714.8,
+    "total_recipe_weight_g": 2859
+  },
+  {
+    "recipe_name": "Mediterranean Spinach and Feta Tart",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_spinach_and_feta_tart_20250624_142610_de41e90a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:26:10.912879000Z",
+    "selected_ingredients": [
+      "cream cheese",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single wedge of the Mediterranean Spinach and Feta Tart rests on a clean, round white porcelain dinner plate. The crust is a rich golden-brown, flaky, and evenly baked. The filling is a creamy, soft pale green, speckled with vibrant green spinach pieces and distinct white chunks of crumbled feta cheese. The tart wedge is cut cleanly, revealing its layered texture. A small sprig of fresh dill or flat-leaf parsley is placed beside the tart. The plate sits on a simple light wooden table surface. A silver fork and knife are neatly placed to the right and left of the plate. A folded white cotton napkin rests beside the plate. Natural, soft light illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve alongside a simple green salad dressed with olive oil and lemon.",
+      "Offer crusty bread for dipping."
+    ],
+    "hero_ingredient": "Spinach",
+    "ingredients": [
+      {
+        "name": "plain flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "cold unsalted butter, cubed",
+        "quantity": "125 g"
+      },
+      {
+        "name": "ice water",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "fresh spinach",
+        "quantity": "200 g"
+      },
+      {
+        "name": "cream cheese, softened",
+        "quantity": "200 g"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "feta cheese, crumbled",
+        "quantity": "100 g"
+      },
+      {
+        "name": "small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "nutmeg",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Combine flour and salt in a bowl. Cut in cold butter until mixture resembles coarse crumbs. Gradually add ice water, mixing until dough forms. Do not overmix. Wrap dough in plastic wrap. Chill for 30 minutes.",
+      "Preheat oven to 190°C. On a lightly floured surface, roll out dough to fit a 24 cm tart tin. Press dough into tin. Trim edges. Prick bottom with a fork. Line with parchment paper, fill with pie weights or dried beans. Bake for 15 minutes. Remove weights and parchment. Bake for 5-7 more minutes until lightly golden. Remove from oven. Reduce oven temperature to 175°C.",
+      "Heat olive oil in a large pan over medium heat. Add diced onion. Sauté until softened, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant. Add spinach. Cook until wilted. Squeeze out excess liquid from spinach. Chop coarsely.",
+      "In a large bowl, whisk together cream cheese and eggs until smooth. Stir in crumbled feta, cooked spinach mixture, nutmeg, salt, and pepper.",
+      "Pour filling into the pre-baked tart crust. Spread evenly.",
+      "Bake for 30-35 minutes, or until the center is set and the top is lightly golden.",
+      "Let tart cool in the tin for 10-15 minutes before slicing into wedges."
+    ],
+    "notes": [
+      "Ensure spinach is thoroughly drained to prevent a watery tart filling.",
+      "Adjust salt based on the saltiness of your feta cheese."
+    ],
+    "traditional_techniques": [
+      "Blind baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 838,
+      "cholesterol_mg": 280,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 19.9,
+      "saturated_fat_g": 27.6,
+      "sodium_mg": 599,
+      "total_carbs_g": 55.6,
+      "total_fat_g": 56.5,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 303,
+      "cholesterol_mg": 101,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.2,
+      "saturated_fat_g": 10,
+      "sodium_mg": 216,
+      "total_carbs_g": 20.1,
+      "total_fat_g": 20.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 93,
+      "dietary_fiber": 12,
+      "protein": 40,
+      "saturated_fat": 138,
+      "sodium": 26,
+      "total_carbs": 20,
+      "total_fat": 72
+    },
+    "serving_size_g": 277,
+    "total_recipe_weight_g": 1107
+  }
+]

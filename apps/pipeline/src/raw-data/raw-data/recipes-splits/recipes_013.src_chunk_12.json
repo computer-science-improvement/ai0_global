@@ -1,0 +1,600 @@
+[
+  {
+    "recipe_name": "Spicy Beef & Orzo Croquettes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_beef_%26_orzo_croquettes_20250701_145142_b473d463.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:51:42.410520000Z",
+    "selected_ingredients": [
+      "beef",
+      "bell pepper",
+      "onion",
+      "pasta",
+      "hot sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Eight to twelve golden-brown Spicy Beef & Orzo Croquettes are artfully arranged on an elegant white rectangular porcelain serving platter. Each croquette is a perfect oval, approximately 5 cm long, with a visibly crisp, textured breadcrumb coating. The deep-fried exterior boasts a rich golden-amber hue. A few finely chopped fresh parsley leaves are scattered over the croquettes for a pop of vibrant green. The croquettes are spaced evenly, allowing each piece to stand out. In the background, a simple wooden table surface provides a warm, natural base. Natural, even lighting illuminates the scene, highlighting the croquettes' appetizing crust. A small white ramekin filled with a vibrant red spicy tomato dipping sauce is positioned to the side, inviting interaction.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve hot with a side of simple marinara sauce or a spicy arrabbiata sauce for dipping.",
+      "Arrange on a large platter for communal sharing, typical of Italian antipasti."
+    ],
+    "hero_ingredient": "Orzo pasta",
+    "ingredients": [
+      {
+        "name": "Minced beef",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Orzo pasta",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium (about 150g), finely diced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small (about 100g), finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "50 g, grated"
+      },
+      {
+        "name": "Mozzarella",
+        "quantity": "100 g, diced into small cubes"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Plain breadcrumbs",
+        "quantity": "200 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml, plus more for frying"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat 15 ml olive oil in a large skillet over medium heat. Add diced onion and bell pepper. Sauté until softened, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add minced beef. Brown beef, breaking it up with a spoon. Drain any excess fat. Stir in crushed tomatoes, beef broth, and hot sauce. Bring to a simmer. Reduce heat to low. Simmer for 15 minutes, stirring occasionally, until sauce thickens slightly. Stir in chopped parsley. Season with salt and pepper. Remove from heat. Let cool completely.",
+      "Cook orzo pasta according to package directions until al dente. Drain well.",
+      "In a large bowl, combine cooled beef filling, cooked orzo, and grated Parmigiano Reggiano. Mix thoroughly.",
+      "Take about 30g of the mixture. Flatten slightly in your palm. Place a small cube of mozzarella in the center. Carefully shape the mixture around the mozzarella into an oval or cylindrical croquette, about 5 cm long. Repeat for all mixture.",
+      "Set up a breading station: one shallow dish with flour, one with beaten eggs, and one with breadcrumbs. Dredge each croquette in flour, shaking off excess. Dip in beaten egg, ensuring full coverage. Roll in breadcrumbs, pressing gently to adhere.",
+      "Heat enough olive oil for deep-frying in a deep pot or Dutch oven to 170°C. Fry croquettes in batches for 3-4 minutes, turning occasionally, until golden brown and crisp. Ensure internal temperature reaches 75°C.",
+      "Remove croquettes with a slotted spoon. Place on a wire rack lined with paper towels to drain excess oil. Serve immediately."
+    ],
+    "notes": [
+      "Ensure beef filling is completely cooled before mixing with orzo and forming croquettes. This helps them hold shape.",
+      "Do not overcrowd the frying pot to maintain oil temperature and ensure even cooking.",
+      "For an extra kick, a pinch of red pepper flakes can be added to the beef filling."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Panatura",
+      "Frittura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 860,
+      "cholesterol_mg": 172,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 46.6,
+      "saturated_fat_g": 12.8,
+      "sodium_mg": 1330,
+      "total_carbs_g": 83.2,
+      "total_fat_g": 38,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 220,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 11.9,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 340,
+      "total_carbs_g": 21.3,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 18,
+      "protein": 93,
+      "saturated_fat": 64,
+      "sodium": 58,
+      "total_carbs": 30,
+      "total_fat": 49
+    },
+    "serving_size_g": 391.5,
+    "total_recipe_weight_g": 1566
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Roasted Tomato & Parmesan",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_roasted_tomato_%26_parmesan_20250701_145037_58d55d5d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:50:38.127674000Z",
+    "selected_ingredients": [
+      "chicken",
+      "oil",
+      "parmesan cheese",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared chicken is presented on a clean white porcelain dinner plate. The chicken thigh, golden-brown and whole, sits prominently. Beside it, or partially underneath, is a rustic mound of vibrant roasted cherry tomatoes, some burst open, mixed with tender, caramelized red onion wedges. The rich red and deep brown hues of the sauce create a striking contrast with the chicken. Fresh, bright green basil leaves are scattered artfully over the dish, adding a pop of color. Delicate, thin shavings of pale yellow Parmesan cheese are generously draped over the chicken and tomato mixture. The composition is organic and inviting, with moderate negative space. The plate rests on a simple wooden table surface, accompanied by a folded cotton napkin and standard, elegant flatware. Natural, even lighting illuminates the dish, highlighting its textures and inviting colors in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to soak up the delicious pan sauce.",
+      "Pair with a simple green salad dressed with olive oil and balsamic vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large, cut into wedges"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15g, torn"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, shaved"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss cherry tomatoes and red onion wedges with 15ml olive oil, salt, and pepper on a baking sheet. Roast for 20-25 minutes until tomatoes burst and onions caramelize.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat remaining 30ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken thighs for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet. Set aside.",
+      "Add minced garlic to the skillet. Sauté for 30 seconds until fragrant. Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the pan.",
+      "Add roasted tomatoes and onions to the skillet. Stir to combine with the broth and garlic. Simmer for 2-3 minutes to warm through and meld flavors.",
+      "Return chicken thighs to the skillet with the tomato and onion mixture. Spoon sauce over chicken.",
+      "Transfer chicken and sauce to a white porcelain dinner plate. Garnish generously with fresh torn basil leaves and shaved Parmesan cheese. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 534,
+      "cholesterol_mg": 173,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 52.2,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 644,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 31.3,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 12.6,
+      "saturated_fat_g": 2,
+      "sodium_mg": 155,
+      "total_carbs_g": 2.6,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 9,
+      "protein": 104,
+      "saturated_fat": 41,
+      "sodium": 28,
+      "total_carbs": 4,
+      "total_fat": 40
+    },
+    "serving_size_g": 415.5,
+    "total_recipe_weight_g": 1662
+  },
+  {
+    "recipe_name": "Roasted Squash and Peanut Dip with Brown Rice Crisps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_squash_and_peanut_dip_with_brown_rice_crisps_20250701_144941_b849c546.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:49:41.942062000Z",
+    "selected_ingredients": [
+      "coconut butter",
+      "parsley",
+      "peanut",
+      "cayenne pepper",
+      "squash",
+      "brown rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A single, inviting starter portion of creamy, golden-orange roasted squash and peanut dip is presented on a rustic, off-white ceramic plate. The dip forms a casual mound, topped with visible specks of finely chopped fresh green parsley for vibrant contrast. Alongside, a cluster of irregular, golden-brown brown rice crisps are artfully placed, showcasing varied textures. The presentation is homely and comforting. The plate rests on a well-worn, warm-toned wooden kitchen table, showing subtle signs of use. A simple, folded linen napkin is casually placed nearby. Soft, warm lighting, reminiscent of a cozy family kitchen, highlights the food's natural colors. The background is minimally blurred, suggesting a lived-in kitchen environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Comfort",
+    "hero_ingredient": "Squash",
+    "ingredients": [
+      {
+        "name": "Butternut squash",
+        "quantity": "500g"
+      },
+      {
+        "name": "Roasted peanuts",
+        "quantity": "100g"
+      },
+      {
+        "name": "Coconut butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "60-100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Peel squash. Cut into 2 cm cubes. Toss with 15ml olive oil, salt, and pepper.",
+      "Spread squash on a baking tray. Roast for 20-25 minutes. Squash should be tender and slightly caramelized. Let cool slightly.",
+      "Rinse brown rice. Combine with 250ml water in a saucepan. Bring to a boil. Reduce heat to low. Cover. Simmer for 35-40 minutes until water is absorbed and rice is tender. Let cool.",
+      "Spread cooked brown rice thinly on a baking sheet lined with parchment paper. Drizzle with 15ml olive oil and a pinch of salt. Bake at 180°C for 20-30 minutes, or until crispy. Break into irregular pieces.",
+      "In a food processor, combine roasted squash, peanuts, coconut butter, minced garlic, lemon juice, cayenne pepper, salt, and pepper.",
+      "Process until smooth. Add water gradually, 15ml at a time, until desired creamy consistency is reached.",
+      "Transfer dip to a serving bowl. Chop parsley finely. Garnish dip with chopped parsley. Serve with brown rice crisps."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 443,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 11,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 318,
+      "total_carbs_g": 42.8,
+      "total_fat_g": 28.3,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 194,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 4.8,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 140,
+      "total_carbs_g": 18.8,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 29.5,
+      "protein": 22,
+      "saturated_fat": 50.6,
+      "sodium": 13.8,
+      "total_carbs": 15.6,
+      "total_fat": 36.3
+    },
+    "serving_size_g": 227.9,
+    "total_recipe_weight_g": 911.6
+  },
+  {
+    "recipe_name": "Almond Chia Seed Energy Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_almond_chia_seed_energy_bites_20250701_144936_65d12e31.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:49:36.913251000Z",
+    "selected_ingredients": [
+      "almond flour",
+      "chia seed"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Almond Chia Seed Energy Bites are arranged casually on a small, rustic ceramic plate. Each bite is a roughly spherical shape, about 3-4 cm in diameter, with a natural, slightly irregular surface. Their color is a warm, light golden-brown, flecked with tiny dark specks from the chia seeds. The texture appears soft and slightly dense. The bites are placed organically on the plate, some touching, creating a relaxed, unpretentious cluster. The plate sits on a well-worn wooden kitchen table. A simple, folded linen napkin is placed nearby. Warm, natural light illuminates the scene, highlighting the comforting, homemade quality of the snack. Portions are generous, inviting casual sharing.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Almond Flour",
+    "ingredients": [
+      {
+        "name": "Almond flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Chia seeds",
+        "quantity": "30g"
+      },
+      {
+        "name": "Peanut butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1g"
+      }
+    ],
+    "instructions": [
+      "In a medium bowl, combine almond flour, chia seeds, and salt. Mix thoroughly.",
+      "Add peanut butter, maple syrup, and vanilla extract to the bowl.",
+      "Mix all ingredients until a firm, cohesive dough forms. Use hands if necessary.",
+      "Roll dough into small, uniform balls, approximately 20-25g each. This yields about 10-12 bites.",
+      "Place the formed bites on a plate or tray lined with parchment paper.",
+      "Chill in the refrigerator for a minimum of 30 minutes to firm up before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 14.15,
+      "calories": 451,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.83,
+      "protein_g": 15.36,
+      "saturated_fat_g": 4.17,
+      "sodium_mg": 207,
+      "total_carbs_g": 29.06,
+      "total_fat_g": 33.59,
+      "total_sugars_g": 17.45,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 15.46,
+      "calories": 493,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.56,
+      "protein_g": 16.79,
+      "saturated_fat_g": 4.56,
+      "sodium_mg": 227,
+      "total_carbs_g": 31.76,
+      "total_fat_g": 36.71,
+      "total_sugars_g": 19.07,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 27.96,
+      "protein": 30.73,
+      "saturated_fat": 20.86,
+      "sodium": 9.02,
+      "total_carbs": 10.57,
+      "total_fat": 43.07
+    },
+    "serving_size_g": 91.5,
+    "total_recipe_weight_g": 366
+  },
+  {
+    "recipe_name": "Japanese Simmered Chicken and Daikon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_japanese_simmered_chicken_and_daikon_20250701_144935_c7a40ca3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:49:36.319312000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "Japanese cuisine, Low calories, high protein",
+    "visual_description": "A single, modest portion of Japanese Simmered Chicken and Daikon is presented in a traditional ceramic donburi bowl. The bowl sits on a well-used, warm wooden dining table. The chicken is cut into rustic 4 cm chunks, showing its tender, simmered texture with a light golden-brown hue from the broth. The daikon pieces, cut into 2 cm thick quartered rounds, are translucent and soft, nestled amongst the chicken. Both ingredients are immersed in a glossy, amber-colored dashi-based broth. A scattering of bright green, thinly sliced green onions provides a fresh contrast on top. The arrangement is natural and comforting, with components slightly overlapping. Beside the bowl, a pair of simple wooden chopsticks rests on a small ceramic chopstick holder. A small, humble tea cup and a tiny dish of light green tsukemono (pickles) complete the homely setting. The lighting is warm and soft, mimicking natural kitchen light, creating a cozy and inviting atmosphere typical of a family meal. The plate is adequately filled without being overcrowded, showcasing a wholesome, home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with a bowl of freshly steamed white rice.",
+      "Accompany with a small side of miso soup.",
+      "Offer a variety of tsukemono (Japanese pickles) on the side.",
+      "Eat using chopsticks."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Daikon radish",
+        "quantity": "400g"
+      },
+      {
+        "name": "Dashi stock",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sake",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "10g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks"
+      }
+    ],
+    "instructions": [
+      "Trim excess fat from chicken thighs. Cut chicken into 4 cm chunks.",
+      "Peel daikon radish. Cut into 2 cm thick rounds. Quarter each round.",
+      "Optional: Place daikon in a pot. Cover with water. Boil for 5 minutes. Drain water.",
+      "In a large pot, combine dashi stock, soy sauce, mirin, sake, and sugar. Stir to dissolve sugar. Add thinly sliced ginger.",
+      "Bring liquid to a gentle simmer over medium heat.",
+      "Add blanched daikon and chicken chunks to the simmering liquid.",
+      "Reduce heat to medium-low. Cover the pot. Simmer for 20-25 minutes. Ensure chicken reaches an internal temperature of 75°C. Daikon should be tender.",
+      "Remove from heat. Let the dish rest, covered, for 5 minutes for flavors to deepen.",
+      "Thinly slice green onions for garnish.",
+      "Ladle simmered chicken and daikon into individual serving bowls. Garnish with fresh green onions."
+    ],
+    "notes": [
+      "For a richer flavor, use boneless, skin-on chicken thighs and remove skin after cooking to keep it low calorie.",
+      "Adjust the amount of sugar to your preference for sweetness.",
+      "Pre-boiling the daikon helps remove any slight bitterness and allows it to absorb flavors better."
+    ],
+    "traditional_techniques": [
+      "Nimono (simmering technique)",
+      "Dashi preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 275,
+      "cholesterol_mg": 138,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 27.1,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 830,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 10.8,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 66,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 6.6,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 201,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 7,
+      "protein": 54,
+      "saturated_fat": 14,
+      "sodium": 36,
+      "total_carbs": 4,
+      "total_fat": 14
+    },
+    "serving_size_g": 414,
+    "total_recipe_weight_g": 1656
+  }
+]

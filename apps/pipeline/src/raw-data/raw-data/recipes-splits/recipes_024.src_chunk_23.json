@@ -1,0 +1,684 @@
+[
+  {
+    "recipe_name": "Pork Chile Colorado",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_chile_colorado_20250624_022213_7b76cf46.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:22:14.171113000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "mexican",
+    "visual_description": "The dish features 3cm chunks of tender pork shoulder, thoroughly coated in a deep, glossy, brick-red chili sauce. The pork is piled centrally in a traditional shallow terracotta cazuela, showcasing a moist and slightly textured surface. Vivid green fresh cilantro leaves and finely diced crisp white onion are scattered over the top for contrast. A single lime wedge sits on the rim. The background consists of a dark wooden bistro table. Beside the bowl, a small stack of three warm, hand-pressed corn tortillas is wrapped in a colorful woven cotton napkin. A small side of white Mexican crema is visible in a tiny ceramic dish. Lighting is soft and natural, emphasizing the rich sauce texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas kept in a cloth-lined basket",
+      "Accompany with Mexican red rice or refried beans",
+      "Provide fresh lime wedges to cut through the richness of the pork",
+      "Serve in traditional terracotta or clay pottery"
+    ],
+    "hero_ingredient": "Pork shoulder chunks",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, cut into 3cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Dried Guajillo chilies, stemmed and seeded",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Dried Ancho chilies, stemmed and seeded",
+        "quantity": "2 pieces"
+      },
+      {
+        "name": "White onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Chicken or pork stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Dried Mexican oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Cumin seeds, toasted and ground",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro and lime wedges for garnish",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Toast dried chilies in a dry skillet over medium heat for 2 minutes until fragrant.",
+      "Submerge toasted chilies in boiling water for 15 minutes until soft.",
+      "Blend softened chilies with 100ml of soaking liquid until completely smooth.",
+      "Strain the chili puree through a fine-mesh sieve to remove skins.",
+      "Season pork chunks generously with salt and pepper.",
+      "Heat oil in a heavy-bottomed pot over medium-high heat.",
+      "Sear pork chunks in batches until browned on all sides. Remove and set aside.",
+      "Add diced onion to the same pot. Sauté for 5 minutes until translucent.",
+      "Stir in minced garlic and cook for 1 minute.",
+      "Pour in the chili puree, oregano, and cumin. Cook for 3 minutes while stirring.",
+      "Return pork to the pot. Add stock until meat is mostly submerged.",
+      "Simmer covered on low heat for 90 minutes or until pork is fork-tender.",
+      "Remove lid and simmer for 10 more minutes to thicken the sauce into a glossy glaze."
+    ],
+    "notes": [
+      "Ensure the chili sauce is strained for a professional, smooth restaurant-quality finish",
+      "Do not boil the sauce rapidly; a gentle simmer preserves the pork's texture",
+      "The sauce should be thick enough to coat the back of a spoon"
+    ],
+    "traditional_techniques": [
+      "rehydrating dried chilies",
+      "searing meat",
+      "slow simmering",
+      "pureeing chili base"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 593,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 39.8,
+      "saturated_fat_g": 13,
+      "sodium_mg": 1175,
+      "total_carbs_g": 11,
+      "total_fat_g": 43,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 197.7,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 13.3,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 391.7,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 14.3,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 13,
+      "protein": 80,
+      "saturated_fat": 65,
+      "sodium": 51,
+      "total_carbs": 4,
+      "total_fat": 55
+    },
+    "serving_size_g": 300,
+    "total_recipe_weight_g": 1200
+  },
+  {
+    "recipe_name": "Cuttlefish and Acorn Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cuttlefish_and_acorn_risotto_20250624_022032_b247e6c1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:20:32.646618000Z",
+    "selected_ingredients": [
+      "acorn",
+      "cuttlefish",
+      "cardoon",
+      "rapini",
+      "parsley"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Cuttlefish and Acorn Risotto is presented on a clean, round white porcelain dinner plate, centered with moderate negative space. The risotto is fluid, not stiff, showcasing its rich, velvety texture. Tender, off-white cuttlefish chunks and curled tentacles are visibly integrated throughout. Earthy brown, finely diced acorns are interspersed, adding a textural contrast. Vibrant green pieces of blanched rapini and pale green-grey cardoon are folded into the risotto, with a few pieces artfully arranged on top. The dish is garnished with a generous sprinkle of bright green chopped fresh parsley and a delicate drizzle of golden olive oil. A lemon wedge rests on the plate rim. The setting features a simple wooden table, a folded cotton napkin beside the plate, and natural, even lighting, conveying a refined yet approachable bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately upon preparation to ensure optimal texture.",
+      "Offer a glass of crisp, dry Italian white wine like Vermentino or Pinot Grigio.",
+      "Provide crusty Italian bread on the side for soaking up any remaining sauce."
+    ],
+    "hero_ingredient": "Cuttlefish",
+    "ingredients": [
+      {
+        "name": "Cuttlefish, cleaned",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Acorns, shelled",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Cardoon stalks",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Rapini",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 grams"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Vegetable or fish broth, hot",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Unsalted butter, cold",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lemon, for juice and wedges",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare acorns: Boil shelled acorns in water with a pinch of baking soda for 15 minutes. Drain, peel off inner skins. Boil again in fresh water for 30 minutes. Drain. Roughly chop.",
+      "Prepare cardoon: Trim cardoon stalks, remove tough outer strings. Cut into 2 cm pieces. Blanch in salted water with a squeeze of lemon juice for 7 minutes. Drain well.",
+      "Prepare rapini: Trim tough ends. Blanch in salted water for 3 minutes. Immediately transfer to ice water. Squeeze dry. Chop coarsely.",
+      "Prepare cuttlefish: Clean cuttlefish. Cut bodies into 1.5 cm chunks. Keep tentacles whole.",
+      "Heat 30 ml olive oil in a large pan over medium heat. Sauté cardoon and rapini for 5 minutes until tender-crisp. Season with salt and pepper. Set aside.",
+      "In a separate large, heavy-bottomed pot, heat 30 ml olive oil over medium heat. Add shallots and cook until translucent, about 5 minutes. Add garlic and cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Toast rice for 2 minutes, stirring constantly, until edges are translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add one ladle of hot broth to the rice. Stir continuously until broth is absorbed. Continue adding broth one ladle at a time, allowing each addition to be absorbed before adding the next. Maintain a gentle simmer.",
+      "After 10 minutes of cooking the rice, add cuttlefish chunks and tentacles. Stir them into the risotto.",
+      "Continue adding broth and stirring. After another 8-10 minutes, stir in the chopped acorns and half of the sautéed cardoon and rapini. The rice should be al dente, tender but with a slight bite.",
+      "Remove pot from heat. Stir in cold butter and grated Parmesan cheese. Stir vigorously until butter is melted and risotto is creamy and fluid. Stir in most of the fresh parsley.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately, garnishing each portion with remaining sautéed cardoon and rapini, a sprinkle of fresh parsley, a drizzle of olive oil, and a lemon wedge."
+    ],
+    "notes": [
+      "The bitterness of cardoon and acorns is reduced through specific boiling steps; do not skip these.",
+      "Stirring the risotto constantly ensures a creamy texture by releasing starch from the rice.",
+      "The cuttlefish is added later to prevent it from becoming tough."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Tostatura del Riso (toasting the rice)",
+      "Mantecatura (creaming with butter and cheese)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 963,
+      "cholesterol_mg": 186,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 38.4,
+      "saturated_fat_g": 14.2,
+      "sodium_mg": 1112,
+      "total_carbs_g": 99.1,
+      "total_fat_g": 43.9,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 4.4,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 126,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 5,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.9,
+      "dietary_fiber": 22.7,
+      "protein": 76.9,
+      "saturated_fat": 71.1,
+      "sodium": 48.4,
+      "total_carbs": 36,
+      "total_fat": 56.3
+    },
+    "serving_size_g": 882.75,
+    "total_recipe_weight_g": 3531
+  },
+  {
+    "recipe_name": "Hearty Beef and Chili Rice Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_chili_rice_skillet_20250624_022015_43de3ba6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:20:16.295463000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "rice",
+      "chili"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Hearty Beef and Chili Rice Skillet is presented in a deep, dark grey ceramic bowl, reflecting a homely family meal. The browned ground beef is evenly mixed with vibrant red diced tomatoes and fluffy, savory white rice. The dish has a slightly moist, cohesive texture, allowing individual rice grains to be visible. A scattering of fresh, roughly chopped green cilantro leaves adds a pop of color and freshness on top. The bowl rests on a well-used, light brown wooden dining table. A simple, slightly rumpled beige cloth napkin lies casually beside the bowl. Warm, cozy overhead lighting illuminates the scene, suggesting a relaxed evening meal in a lived-in kitchen. The focus is on the inviting, comforting nature of the dish as a substantial, satisfying main course.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "500g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "For garnish, optional"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Add ground beef. Cook until browned, breaking it apart with a spoon. Drain excess fat.",
+      "Add chopped onion to the skillet. Cook for 5 minutes until softened.",
+      "Stir in minced garlic, chili powder, and cumin. Cook for 1 minute until fragrant.",
+      "Stir in rice, undrained diced tomatoes, and beef broth.",
+      "Bring the mixture to a boil. Reduce heat to low.",
+      "Cover the skillet. Simmer for 20 minutes, or until rice is tender and liquid is absorbed.",
+      "Season with salt and pepper to taste.",
+      "Remove from heat. Let stand, covered, for 5 minutes.",
+      "Fluff with a fork. Serve hot."
+    ],
+    "notes": [
+      "Adjust the amount of chili powder to your preferred spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 581,
+      "cholesterol_mg": 91,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 27.7,
+      "saturated_fat_g": 10,
+      "sodium_mg": 732,
+      "total_carbs_g": 50.3,
+      "total_fat_g": 29.1,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.2,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 163,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30,
+      "dietary_fiber": 12,
+      "protein": 55,
+      "saturated_fat": 50,
+      "sodium": 32,
+      "total_carbs": 18,
+      "total_fat": 37
+    },
+    "serving_size_g": 449,
+    "total_recipe_weight_g": 1795
+  },
+  {
+    "recipe_name": "Pollo alla Cacciatora",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_20250624_021758_ac049fc0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:17:59.251055000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented on a wide, matte white porcelain plate. Two whole, bone-in chicken thighs are stacked slightly in the center, featuring deeply browned, caramelized skin. A thick, rustic sauce covers the base of the plate, filled with visible small cubes of orange carrots, green celery, and translucent onions. Whole, dark purple kalamata olives are nestled within the vibrant red tomato sauce. A light dusting of bright green chopped parsley and a single fresh rosemary sprig garnish the top. Two thick batons of grilled sourdough bread lean against the side of the chicken. The lighting is natural and soft, emphasizing the glossy texture of the braised sauce and the crispness of the chicken skin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with toasted sourdough bread to soak up the sauce",
+      "Accompany with a glass of medium-bodied Italian red wine",
+      "Place on a bed of soft, buttery polenta"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine (Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide braising pan over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is deep golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add onion, carrot, and celery to the remaining fat.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in garlic, rosemary, and sage. Cook for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pan to deglaze.",
+      "Simmer wine for 3 minutes until reduced by half.",
+      "Add crushed tomatoes and stir to combine.",
+      "Place chicken thighs back into the sauce.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in olives and simmer uncovered for 5 minutes.",
+      "Remove rosemary sprigs before serving.",
+      "Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Always use a meat thermometer to ensure chicken reaches the safe internal temperature of 75°C",
+      "Browning the skin thoroughly at the start is essential for the final texture",
+      "The sauce should be thick and chunky, not watery"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1604,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 428,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 83,
+      "saturated_fat": 43,
+      "sodium": 70,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Braised Beef with Tomato and Basil Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_tomato_and_basil_rice_20250624_021746_0f28ee43.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:17:46.659834000Z",
+    "selected_ingredients": [
+      "beef",
+      "basil",
+      "onion",
+      "tomato",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Braised Beef with Tomato and Basil Rice is presented on a clean, white porcelain dinner plate. A generous mound of fluffy, light brown rice occupies one side of the plate. Beside it, several thick, succulent chunks of braised beef, each tender and falling apart, are nestled within a rich, deep red tomato-basil sauce. The beef exhibits a subtle golden-brown sear from initial cooking. The sauce is thick with softened pieces of diced tomato and translucent, tender onion. A few vibrant green, fresh basil leaves are scattered over the beef and sauce, providing a pop of color and aromatic garnish. The composition is balanced with moderate negative space, showcasing the professional yet approachable plating. The scene is set on a simple wooden table, with a neatly folded cotton napkin and standard flatware beside the plate, illuminated by natural, even lighting in a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or stewing beef",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 5 cm thick chunks. Pat dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef chunks on all sides until deep golden brown. Work in batches to avoid overcrowding. Remove beef and set aside.",
+      "Reduce heat to medium. Add chopped onion to the pot. Cook until softened and translucent, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "If using, pour in red wine. Scrape up any browned bits from the bottom of the pot. Simmer until liquid is mostly reduced, about 2-3 minutes.",
+      "Stir in crushed tomatoes, beef broth, and bay leaf. Bring to a simmer.",
+      "Return seared beef chunks to the pot. Ensure beef is mostly submerged in the liquid. Cover the pot tightly.",
+      "Reduce heat to low. Braise for 2.5 to 3 hours, or until beef is fork-tender. Stir occasionally.",
+      "While beef braises, cook brown rice according to package directions. Typically, combine 250 grams rice with 500 ml water in a pot. Bring to a boil, then reduce heat to low, cover, and simmer for 40-45 minutes until water is absorbed and rice is tender.",
+      "Once beef is tender, remove bay leaf. Stir in roughly chopped fresh basil leaves into the beef sauce. Simmer for 2 minutes.",
+      "Taste and adjust seasoning if needed. Serve hot beef and sauce over a bed of fluffy brown rice."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 661.3,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 51.7,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 450,
+      "total_carbs_g": 66.6,
+      "total_fat_g": 18.1,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.9,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 77,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 19.5,
+      "protein": 103.5,
+      "saturated_fat": 23.3,
+      "sodium": 19.6,
+      "total_carbs": 24.2,
+      "total_fat": 23.2
+    },
+    "serving_size_g": 585,
+    "total_recipe_weight_g": 2340
+  }
+]

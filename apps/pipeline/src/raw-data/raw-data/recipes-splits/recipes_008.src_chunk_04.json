@@ -1,0 +1,632 @@
+[
+  {
+    "recipe_name": "Seared Veal Medallion with Chili-Coconut Forbidden Rice and Crispy Vermicelli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_veal_medallion_with_chili-coconut_forbidden_rice_and_crispy_vermicelli_20250812_080152_e021d944.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T08:01:52.514633000Z",
+    "selected_ingredients": [
+      {
+        "name": "veal"
+      },
+      {
+        "name": "chili"
+      },
+      {
+        "name": "rice"
+      },
+      {
+        "name": "noodle"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Vietnamese",
+    "visual_description": "A single seared veal medallion, cooked to a perfect medium-rare with a deep golden-brown crust, rests elegantly on a modern white designer plate. Adjacent, a neatly mounded portion of rich, deep purple-black chili-coconut forbidden rice glistens. A delicate, airy nest of golden-white crispy rice vermicelli is artfully draped over the veal, adding textural contrast. A translucent, amber-hued lime-fish sauce reduction is meticulously drizzled around the veal. The dish is precisely garnished with a few vibrant green cilantro leaves and small mint sprigs, providing fresh color and aroma. The composition is organic and flowing, with abundant negative space. It sits on a premium grey-veined marble surface, accompanied by pristine white linen napkin and elegant Vietnamese chopsticks, under dramatic professional lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve with a small side of fresh herbs like basil and perilla leaves for diners to add as desired.",
+      "Offer a small dish of additional sliced bird's eye chilies for those desiring more heat."
+    ],
+    "hero_ingredient": "Veal",
+    "ingredients": [
+      {
+        "name": "Veal tenderloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Forbidden Black Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Bird's eye chilies",
+        "quantity": "2-3 (sliced)"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 (finely minced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves (minced)"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2cm piece (grated)"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 (juiced)"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "for cooking"
+      },
+      {
+        "name": "Dried rice vermicelli",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "small bunch (for garnish)"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "small bunch (for garnish)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "200ml"
+      }
+    ],
+    "instructions": [
+      "Rinse forbidden black rice thoroughly. Set aside.",
+      "In a medium saucepan, heat a tablespoon of vegetable oil over medium heat. Sauté minced shallots, garlic, and grated ginger until fragrant, about 2 minutes.",
+      "Add the rinsed black rice to the saucepan. Stir for 1 minute to coat.",
+      "Pour in the coconut milk and beef stock. Add sliced bird's eye chilies and a pinch of salt. Bring to a boil.",
+      "Reduce heat to low, cover, and simmer for 25-30 minutes, or until liquid is absorbed and rice is tender. Fluff with a fork and keep warm.",
+      "Heat vegetable oil in a small, deep pot to 180°C for frying.",
+      "Carefully drop small, dry nests of rice vermicelli into the hot oil. They will puff up immediately. Fry for a few seconds until golden and crispy. Remove with a slotted spoon and drain on paper towels.",
+      "Pat veal medallions dry with paper towels. Season generously with salt and black pepper on both sides.",
+      "Heat 15ml of vegetable oil in a heavy-bottomed pan over medium-high heat until shimmering.",
+      "Sear veal medallions for 3-4 minutes per side for medium-rare, or until desired doneness. Remove veal from pan and let rest on a cutting board for 5 minutes.",
+      "In a small saucepan, combine fish sauce, lime juice, sugar, and 30ml of water. Bring to a gentle simmer over medium heat.",
+      "Reduce the sauce slightly to a thin glaze consistency, about 2-3 minutes. Do not let it become too thick.",
+      "To plate, spoon a portion of the chili-coconut forbidden rice onto one side of each plate. Place a seared veal medallion next to the rice.",
+      "Delicately drape a small cluster of crispy rice vermicelli over the veal medallion.",
+      "Drizzle the lime-fish sauce reduction artfully around the veal.",
+      "Garnish with a few fresh cilantro leaves and small mint sprigs."
+    ],
+    "notes": [
+      "Forbidden rice offers a unique nutty flavor and striking color.",
+      "Adjust chili quantity based on desired spice level."
+    ],
+    "traditional_techniques": [
+      "Nuoc Cham (for sauce inspiration)",
+      "Balance of sweet, sour, salty, spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 693.6,
+      "cholesterol_mg": 127.5,
+      "dietary_fiber_g": 3.34,
+      "protein_g": 49.44,
+      "saturated_fat_g": 15.74,
+      "sodium_mg": 1076.89,
+      "total_carbs_g": 57.87,
+      "total_fat_g": 30.53,
+      "total_sugars_g": 5.91,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.48,
+      "calories": 132.74,
+      "cholesterol_mg": 24.4,
+      "dietary_fiber_g": 0.64,
+      "protein_g": 9.46,
+      "saturated_fat_g": 3.01,
+      "sodium_mg": 205.91,
+      "total_carbs_g": 11.08,
+      "total_fat_g": 5.84,
+      "total_sugars_g": 1.13,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.5,
+      "dietary_fiber": 11.9,
+      "protein": 98.9,
+      "saturated_fat": 78.7,
+      "sodium": 46.8,
+      "total_carbs": 21,
+      "total_fat": 39.1
+    },
+    "serving_size_g": 522.5,
+    "total_recipe_weight_g": 2090
+  },
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_risotto_20250812_045728_8fb86a2c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T04:57:29.215134000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "oil",
+      "cheese",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy, free-flowing risotto is presented on a clean white porcelain dinner plate. The risotto is a warm, pale yellow hue, studded with tender, golden-brown seared chicken cubes (2cm) and sautéed earthy brown mushroom slices. Finely diced onion pieces are visible throughout the creamy rice. A vibrant sprinkle of fresh green chopped parsley garnishes the top, alongside delicate shavings of Parmesan cheese. The dish has a natural, organic arrangement, showcasing its rich texture. The plate is set on a simple wooden table, with classic silver Italian flatware (fork and spoon) placed beside it, and a folded cotton napkin. Natural, even lighting highlights the dish, with a softly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread.",
+      "Pair with a light Italian white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 2cm cubes. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large pot or deep pan over medium-high heat.",
+      "Sear chicken cubes until golden brown and cooked through (internal temperature 75°C). Remove chicken and set aside.",
+      "Add remaining 15ml olive oil and 15g butter to the same pot.",
+      "Sauté finely diced onion until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook until mushrooms are tender and browned, about 5-7 minutes.",
+      "Stir in Arborio rice. Toast rice for 2 minutes, ensuring all grains are coated.",
+      "Pour in white wine. Stir constantly until wine is fully absorbed.",
+      "Add one ladleful (about 250ml) of hot chicken broth. Stir continuously until liquid is absorbed.",
+      "Continue adding broth, one ladleful at a time. Stir constantly and wait for each addition to be absorbed before adding the next. This process takes about 20-25 minutes.",
+      "When rice is creamy and al dente, stir in cooked chicken.",
+      "Remove from heat. Stir in remaining 15g butter and grated Parmesan cheese.",
+      "Season with salt and pepper to taste.",
+      "Serve immediately. Garnish with fresh chopped parsley and extra shaved Parmesan."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 842,
+      "cholesterol_mg": 165.63,
+      "dietary_fiber_g": 2.07,
+      "protein_g": 67.21,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 1448.25,
+      "total_carbs_g": 74.15,
+      "total_fat_g": 28.07,
+      "total_sugars_g": 2.72,
+      "trans_fat_g": 0.43
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 27.95,
+      "dietary_fiber_g": 0.35,
+      "protein_g": 11.34,
+      "saturated_fat_g": 1.94,
+      "sodium_mg": 244.43,
+      "total_carbs_g": 12.51,
+      "total_fat_g": 4.74,
+      "total_sugars_g": 0.46,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.21,
+      "dietary_fiber": 7.39,
+      "protein": 134.42,
+      "saturated_fat": 57.5,
+      "sodium": 62.97,
+      "total_carbs": 26.96,
+      "total_fat": 35.99
+    },
+    "serving_size_g": 592.5,
+    "total_recipe_weight_g": 2370
+  },
+  {
+    "recipe_name": "Gà Áp Chảo, Bánh Phở Giòn, Sốt Tiêu Đen",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_g%C3%A0_%C3%A1p_ch%E1%BA%A3o%2C_b%C3%A1nh_ph%E1%BB%9F_gi%C3%B2n%2C_s%E1%BB%91t_ti%C3%AAu_%C4%91en_20250812_040057_8415a1bc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T04:00:57.471578000Z",
+    "selected_ingredients": [
+      {
+        "name": "beef fat"
+      },
+      {
+        "name": "black pepper"
+      },
+      {
+        "name": "chicken"
+      },
+      {
+        "name": "noodle"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Vietnamese",
+    "visual_description": "A single, perfectly seared chicken breast medallion, cut into two thick, succulent chunks, takes center stage on a pristine white bone china plate. The chicken boasts a deep golden-brown crust, contrasting with its tender, pale interior. Leaning gracefully against the chicken is an irregularly shaped, translucent golden-brown crispy rice noodle tuile, providing architectural height and a delicate, airy texture. A small, glossy pool of deep amber black pepper and star anise jus is artfully placed beside the chicken, catching the light. Scattered precisely around the main elements are a few golden, soft confit shallot pieces. The plate features abundant negative space, emphasizing the minimalist and intentional composition. The setting is a superpremium dark wood table, with a crisp white linen napkin folded into a precise triangle. Professional, dramatic lighting casts soft shadows, enhancing the textures and colors. A single pair of high-quality chopsticks rests to the side, completing the elegant, culturally authentic Vietnamese fine-dining presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast, skinless, boneless",
+        "quantity": "4 x 150g portions"
+      },
+      {
+        "name": "Beef fat, rendered",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fine rice vermicelli noodles (bún)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Black peppercorns, freshly ground",
+        "quantity": "5g"
+      },
+      {
+        "name": "Shallots, peeled",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "2"
+      },
+      {
+        "name": "Ginger, fresh, sliced",
+        "quantity": "10g"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "2 pods"
+      },
+      {
+        "name": "Chicken stock, unsalted",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Fish sauce (nuoc mam)",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Neutral oil (for tuile)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Micro cilantro or Vietnamese mint",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Render beef fat: Gently heat beef fat in a small saucepan over low heat. Once melted, strain through a fine-mesh sieve. Reserve 150ml rendered fat. Store remaining fat for other uses.",
+      "Prepare confit shallots: Slice 100g shallots into thin rings. Place shallot rings in a small saucepan. Pour 150ml rendered beef fat over shallots. Simmer gently over very low heat for 30-40 minutes, until tender and golden. Do not brown. Remove shallots with a slotted spoon. Reserve beef fat for other uses. Set confit shallots aside.",
+      "Prepare black pepper and star anise jus: Slice remaining 50g shallots, garlic, and ginger. In a small saucepan, sauté sliced shallots, garlic, and ginger in a touch of reserved beef fat until fragrant. Add star anise, black peppercorns, and chicken stock. Bring to a simmer. Reduce heat and gently simmer for 20 minutes, reducing liquid by half. Strain jus through a fine-mesh sieve, pressing solids for maximum flavor. Return strained jus to clean saucepan. Stir in fish sauce and rice vinegar. Simmer until slightly thickened to a light coating consistency. Season with salt. Keep warm.",
+      "Prepare crispy rice noodle tuile: Boil rice vermicelli noodles according to package directions until just tender. Drain well. Pat dry thoroughly with paper towels. Heat neutral oil in a small non-stick pan over medium heat. Arrange a small, thin, irregular cluster of dried noodles in the hot oil. Fry until golden brown and crisp, about 1-2 minutes per side. Carefully remove and drain on paper towels. Repeat for 4 tuiles. Season lightly with salt.",
+      "Cook chicken: Pat chicken breasts dry. Season generously with salt and freshly ground black pepper. Heat a tablespoon of rendered beef fat in a heavy-bottomed pan over medium-high heat until shimmering. Place chicken breasts in the hot pan. Sear for 4-5 minutes per side until golden brown. Reduce heat to medium-low. Continue cooking, turning occasionally, until internal temperature reaches 75°C (167°F). Remove chicken from pan. Rest for 5 minutes.",
+      "Assemble and plate: Slice each chicken breast into 2-3 thick chunks or medallions. Arrange one chicken chunk slightly off-center on each plate. Artfully lean one crispy rice noodle tuile against the chicken. Spoon a small pool or delicate swipe of black pepper jus beside the chicken. Scatter a few pieces of confit shallots around the chicken. Garnish with a few micro cilantro leaves or Vietnamese mint leaves."
+    ]
+  },
+  {
+    "recipe_name": "Bizcocho de Caramelo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bizcocho_de_caramelo_20250812_000048_8a0db4a0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T00:00:49.092403000Z",
+    "selected_ingredients": [
+      {
+        "name": "caramel"
+      },
+      {
+        "name": "icing sugar"
+      },
+      {
+        "name": "butter"
+      },
+      {
+        "name": "cream"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Spanish",
+    "visual_description": "A generous slice of golden-brown sponge cake stands on a simple, off-white ceramic plate with a slight rim. The cake features two layers of light, airy sponge, generously filled and frosted with a smooth, pale caramel buttercream. A rich, glossy caramel sauce is casually drizzled over the top of the slice and the surrounding plate. The cake's texture is soft and moist, with the creamy buttercream providing a contrasting richness. The whole cake, slightly imperfectly frosted, sits on a rustic wooden cake stand in the background. The setting is a well-used wooden dining table, illuminated by warm, natural kitchen light. A simple, folded linen napkin and a small, traditional Spanish coffee cup sit beside the plate. The scene evokes a cozy, family kitchen atmosphere, highlighting the homemade comfort of the dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with a strong coffee, such as 'café con leche'.",
+      "Enjoy as an afternoon snack ('merienda') or for family celebrations."
+    ],
+    "hero_ingredient": "Caramel",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Double cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 18cm round cake tin.",
+      "Cream 100g softened butter and 150g granulated sugar in a bowl until light and fluffy.",
+      "Beat in eggs one by one, mixing well after each addition.",
+      "Stir in 50ml milk and 5ml vanilla extract.",
+      "Sift in 150g plain flour and 5g baking powder. Fold gently until just combined.",
+      "Pour batter into prepared cake tin. Bake for 25-30 minutes, or until a skewer inserted into the center comes out clean.",
+      "Cool cake in the tin for 10 minutes, then transfer to a wire rack to cool completely.",
+      "For the caramel sauce: In a saucepan, heat 100g granulated sugar and 30ml water over medium heat. Do not stir. Cook until sugar dissolves and turns a deep golden amber. Remove from heat.",
+      "Carefully pour in 50ml warm double cream and 20g butter. Stir until smooth. Add a pinch of salt. Set aside to cool completely.",
+      "For the buttercream: Beat 150g softened butter until light and fluffy.",
+      "Gradually add 300g icing sugar, beating until well combined.",
+      "Beat in 50ml double cream and 50g of the cooled caramel sauce until smooth and creamy.",
+      "Slice the cooled cake horizontally into two equal layers.",
+      "Spread a generous layer of caramel buttercream on the bottom cake layer. Place the top layer on it.",
+      "Frost the entire cake with the remaining caramel buttercream, spreading it casually.",
+      "Drizzle the top of the cake with the remaining cooled caramel sauce."
+    ],
+    "notes": [
+      "Ensure the cake is completely cool before frosting to prevent the buttercream from melting.",
+      "Be careful when making caramel; it is very hot. Use warm cream to prevent seizing."
+    ],
+    "traditional_techniques": []
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs with Celery and Red Wine Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_with_celery_and_red_wine_jus_20250811_235707_b41d2fe4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T23:57:07.546083000Z",
+    "selected_ingredients": [
+      "beef",
+      "celery"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of rich, deeply browned braised beef short ribs rests on a clean white porcelain plate. The beef, presented in large, tender chunks, gleams with a moist, succulent texture. Alongside the beef are vibrant, fork-tender braised carrot rounds and substantial celery chunks, their colors softened but distinct. A glossy, dark red wine jus generously coats the beef and pools around the vegetables, reflecting the light. A light sprinkle of fresh green chopped parsley adds a pop of color and freshness on top. The plate is positioned on a simple, light-colored wooden table, with a neatly folded white cotton napkin beside it. Natural, even lighting highlights the dish's warmth and inviting textures. The overall composition is balanced and professional, with appropriate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "cultural_origin": "Modern European",
+    "cultural_serving_suggestions": [
+      "Serve with creamy mashed potatoes or polenta.",
+      "Accompany with crusty bread for soaking up the jus."
+    ],
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Beef Short Ribs",
+        "quantity": "1.5 kg, bone-in, cut into 4 large pieces"
+      },
+      {
+        "name": "Celery",
+        "quantity": "4 stalks, cut into 5 cm chunks"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large, peeled, cut into 2 cm thick rounds"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large, roughly chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, smashed"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Pat beef short ribs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat.",
+      "Sear beef ribs on all sides until deeply browned. Remove ribs from pot.",
+      "Add chopped onion, celery chunks, and carrot rounds to the pot. Sauté for 8-10 minutes until softened and lightly caramelized.",
+      "Add smashed garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Deglaze the pot with red wine, scraping up any browned bits from the bottom. Bring to a simmer and reduce by half.",
+      "Return seared beef ribs to the pot. Add beef stock, fresh thyme sprigs, and bay leaves. Liquid should mostly cover the ribs.",
+      "Bring to a gentle simmer. Cover the pot tightly with a lid.",
+      "Transfer pot to preheated oven. Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Carefully remove beef ribs from the pot. Strain the braising liquid into a saucepan, discarding solids. Skim any excess fat from the liquid.",
+      "Return the braising liquid to the stove. Bring to a simmer over medium-high heat. Reduce until the sauce slightly thickens to a jus consistency. Season with salt and pepper as needed.",
+      "Serve beef short ribs with the braised vegetables and a generous drizzle of the red wine jus. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1109.3,
+      "cholesterol_mg": 199.5,
+      "dietary_fiber_g": 3,
+      "protein_g": 48.4,
+      "saturated_fat_g": 34,
+      "sodium_mg": 1275,
+      "total_carbs_g": 15.8,
+      "total_fat_g": 83.9,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 3.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148.1,
+      "cholesterol_mg": 26.6,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 6.5,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 170.2,
+      "total_carbs_g": 2.1,
+      "total_fat_g": 11.2,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 11,
+      "protein": 97,
+      "saturated_fat": 170,
+      "sodium": 55,
+      "total_carbs": 6,
+      "total_fat": 108
+    },
+    "serving_size_g": 749,
+    "total_recipe_weight_g": 2996
+  }
+]

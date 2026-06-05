@@ -1,0 +1,721 @@
+[
+  {
+    "recipe_name": "Cajun Chicken and Sausage Jambalaya",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cajun_chicken_and_sausage_jambalaya_20250714_061307_d182de65.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T06:13:07.846860000Z",
+    "selected_ingredients": [
+      "cajun seasoning"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is served in a single, generous portion in a shallow, rustic ceramic bowl. The jambalaya is a rich, deep reddish-orange color from the tomatoes and spices. Large 3cm chunks of seared chicken and 1cm thick rounds of browned smoked sausage are distributed naturally throughout the fluffy, separate grains of long-grain rice. Diced green bell peppers, onions, and celery are visible but softened. The arrangement is casual and asymmetrical. A light scattering of freshly sliced green onions provides a bright green contrast. The bowl sits on a dark wooden table with a simple linen napkin and a heavy spoon. The lighting is warm and natural, highlighting the moist texture of the rice and the charred edges of the sausage.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Cajun",
+    "cultural_origin": "Cajun",
+    "cultural_serving_suggestions": [
+      "Serve with Louisiana-style hot sauce on the side",
+      "Accompany with warm cornbread",
+      "Serve in wide, shallow bowls"
+    ],
+    "hero_ingredient": "Cajun seasoning",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless and skinless",
+        "quantity": "500g"
+      },
+      {
+        "name": "Andouille or smoked sausage",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cajun seasoning",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Celery, diced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "900ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Green onions, sliced",
+        "quantity": "3 stalks"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 3cm chunks.",
+      "Slice sausage into 1cm thick rounds.",
+      "Heat oil in a heavy-bottomed pot over medium-high heat.",
+      "Brown sausage rounds for 4 minutes. Remove and set aside.",
+      "Toss chicken chunks with 1 tbsp Cajun seasoning.",
+      "Sear chicken in the same pot until browned, about 5 minutes. Remove and set aside.",
+      "Add onion, bell pepper, and celery to the pot.",
+      "Sauté vegetables for 6 minutes until softened.",
+      "Stir in garlic and remaining Cajun seasoning. Cook for 1 minute.",
+      "Add rice and stir to coat grains in oil and spices.",
+      "Pour in chicken stock and crushed tomatoes.",
+      "Return chicken and sausage to the pot. Stir once.",
+      "Bring to a boil. Reduce heat to low and cover with a tight lid.",
+      "Simmer for 20-25 minutes until rice is tender and liquid is absorbed.",
+      "Confirm chicken internal temperature reaches 75°C.",
+      "Remove from heat. Let stand for 5 minutes. Fluff with a fork."
+    ],
+    "notes": [
+      "Use a heavy cast iron pot for even heat distribution.",
+      "Do not stir the rice while it simmers to avoid starch release.",
+      "Adjust Cajun seasoning quantity based on desired spice level."
+    ],
+    "traditional_techniques": [
+      "Sautéing the Holy Trinity",
+      "Browning meat",
+      "One-pot simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 934,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 58.5,
+      "saturated_fat_g": 9.9,
+      "sodium_mg": 2059,
+      "total_carbs_g": 94.5,
+      "total_fat_g": 35.2,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 169.8,
+      "cholesterol_mg": 28.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 10.6,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 374.4,
+      "total_carbs_g": 17.2,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.1,
+      "dietary_fiber": 21.7,
+      "protein": 117.1,
+      "saturated_fat": 49.4,
+      "sodium": 89.5,
+      "total_carbs": 34.4,
+      "total_fat": 45.1
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs with Creamy Polenta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_with_creamy_polenta_20250714_054353_28e49e38.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T05:43:53.808040000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "Больше белка",
+    "visual_description": "A single portion of braised beef short ribs is elegantly plated on a clean, round white porcelain dinner plate. Rustic, fork-tender chunks of dark brown beef are piled generously atop a creamy, vibrant golden-yellow polenta base. The rich, deep red-brown braising sauce coats the beef, pooling slightly around the polenta. A sprinkle of bright green, finely chopped fresh Italian parsley provides a pop of color and freshness. The arrangement is organic and inviting, with appropriate negative space. The setting is a modern bistro, featuring a simple wooden table surface. Traditional silver flatware and a folded white cotton napkin are neatly placed beside the plate, all under soft, natural, even lighting that highlights the dish's warmth and texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread for dipping.",
+      "A glass of robust red wine.",
+      "Finish with freshly grated Parmigiano-Reggiano."
+    ],
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Beef Short Ribs",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Celery",
+        "quantity": "2 stalks, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Polenta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water or broth (for polenta)",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80 g, grated"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Italian parsley",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat beef short ribs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat. Sear ribs until deeply browned on all sides. Remove ribs.",
+      "Add diced onion, carrots, and celery to the pot. Cook 8-10 minutes until softened.",
+      "Stir in minced garlic and tomato paste. Cook 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up browned bits from bottom of pot. Simmer 5 minutes until reduced by half.",
+      "Add crushed tomatoes, beef broth, rosemary, thyme, and bay leaf. Bring to a simmer.",
+      "Return seared short ribs to the pot. Ensure ribs are mostly submerged. Cover.",
+      "Transfer to preheated oven at 160°C. Braise 2.5-3 hours, or until beef is fork-tender.",
+      "Remove ribs from pot. Discard herbs. Skim fat from sauce.",
+      "Shred beef from bones using two forks. Discard bones. Return shredded beef to sauce. Simmer sauce 10 minutes to thicken slightly.",
+      "Meanwhile, prepare polenta: Bring water or broth to a boil in a separate pot. Slowly whisk in polenta. Reduce heat to low. Cook, stirring frequently, 20-30 minutes, until creamy and tender.",
+      "Stir butter and grated Parmesan into polenta. Season with salt and pepper.",
+      "Ladle creamy polenta onto plates. Top with generous portions of braised beef and sauce.",
+      "Garnish with fresh chopped Italian parsley. Serve immediately."
+    ],
+    "notes": [
+      "Braising time can vary based on rib size and oven.",
+      "This dish can be made ahead; flavors deepen overnight."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1809,
+      "cholesterol_mg": 423.2,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 92.1,
+      "saturated_fat_g": 56.2,
+      "sodium_mg": 995.7,
+      "total_carbs_g": 63.8,
+      "total_fat_g": 125.6,
+      "total_sugars_g": 11.4,
+      "trans_fat_g": 6.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163,
+      "cholesterol_mg": 38.1,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.3,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 89.6,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 11.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 141.1,
+      "dietary_fiber": 31.9,
+      "protein": 184.2,
+      "saturated_fat": 281.1,
+      "sodium": 43.3,
+      "total_carbs": 23.2,
+      "total_fat": 161
+    },
+    "serving_size_g": 1112,
+    "total_recipe_weight_g": 4447
+  },
+  {
+    "recipe_name": "Italian Beef and Chicken Ragu with Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_beef_and_chicken_ragu_with_rigatoni_20250714_054330_d7637313.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T05:43:30.885850000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "pasta",
+      "tomato",
+      "onion",
+      "parmesan",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Italian Beef and Chicken Ragu with Rigatoni is presented in a clean, white porcelain bowl. The rigatoni pasta is generously coated in a rich, deep red-brown ragu, showcasing tender chunks of browned chicken and beef mince. The sauce has a glossy, well-reduced texture. Scattered over the ragu are vibrant green fresh basil leaves, providing a color contrast. A mound of freshly grated pale yellow Parmigiano Reggiano sits atop the dish, ready to melt into the warm sauce. The bowl is placed on a simple wooden table surface, with a white cotton napkin folded neatly beside it. The scene is illuminated by natural, even lighting, creating a warm and inviting atmosphere. The overall presentation is professional yet approachable, typical of a modern bistro.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Slow-Cooked Ragu",
+    "ingredients": [
+      {
+        "name": "Beef mince",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Boneless chicken thighs",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Brown onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1"
+      },
+      {
+        "name": "Red wine",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Finely dice the onion, carrot, and celery for the soffritto.",
+      "Mince the garlic.",
+      "Cut chicken thighs into 2-3 cm chunks.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Add beef mince. Brown well, breaking up any large clumps. Remove beef from pot and set aside.",
+      "Add chicken chunks to the pot. Brown on all sides until lightly golden. Ensure internal temperature reaches 75°C. Remove chicken from pot and set aside.",
+      "Add diced onion, carrot, and celery to the pot. Cook over medium heat for 8-10 minutes until softened and translucent. This is the soffritto.",
+      "Add minced garlic to the soffritto. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and cook until reduced by half.",
+      "Return browned beef and chicken to the pot. Add crushed tomatoes, chicken broth, and bay leaf. Season with salt and pepper.",
+      "Bring the ragu to a gentle simmer. Reduce heat to low, cover, and cook for at least 2 hours, or up to 3 hours, stirring occasionally. The ragu should be thick and rich.",
+      "While ragu simmers, grate the Parmigiano Reggiano.",
+      "Cook rigatoni according to package directions in salted boiling water until al dente.",
+      "Drain pasta. Add pasta directly to the ragu. Toss to coat evenly.",
+      "Serve immediately. Garnish each portion with fresh basil leaves and a generous grating of Parmigiano Reggiano."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1091,
+      "cholesterol_mg": 245,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 76.6,
+      "saturated_fat_g": 14.3,
+      "sodium_mg": 1161,
+      "total_carbs_g": 91.5,
+      "total_fat_g": 39.4,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1,
+      "protein_g": 10.9,
+      "saturated_fat_g": 2,
+      "sodium_mg": 166,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 82,
+      "dietary_fiber": 24,
+      "protein": 153,
+      "saturated_fat": 72,
+      "sodium": 50,
+      "total_carbs": 33,
+      "total_fat": 51
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2800
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Lemon-Herb Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_lemon-herb_roasted_vegetables_20250714_054157_7e1ae497.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T05:41:58.261255000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of golden-brown, pan-seared chicken breast, presented as a thick medallion, sits centered on a clean white porcelain dinner plate. Around the chicken, vibrant roasted vegetables are artfully arranged. These include thick strips of red and yellow bell peppers, half-moon slices of tender green zucchini, and whole, bursting cherry tomatoes. A light, glossy lemon-herb pan sauce is drizzled over the chicken and vegetables. The dish is garnished with fresh green oregano leaves. The overall composition is balanced with moderate negative space, showcasing the natural colors and textures. The plate rests on a simple light wooden table. A folded white cotton napkin and standard silver flatware are placed beside the plate. Natural, even lighting illuminates the scene, with a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty artisanal bread for dipping in the sauce.",
+      "Accompany with a simple green salad dressed with olive oil and lemon."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking sheet with parchment paper.",
+      "Cut bell peppers into thick strips. Slice zucchini into 1.5cm half-moons. Place bell peppers, zucchini, and cherry tomatoes on the baking sheet.",
+      "Drizzle vegetables with 30ml olive oil. Season with salt and pepper. Toss to coat. Roast for 20-25 minutes, or until tender-crisp and slightly caramelized.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat remaining 30ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 5-7 minutes per side, until golden brown. Internal temperature must reach 75°C.",
+      "Remove chicken from skillet. Set aside. Keep warm.",
+      "Add minced garlic to the same skillet. Sauté for 1 minute until fragrant.",
+      "Pour in chicken broth and the juice of half a lemon. Bring to a simmer. Scrape up any browned bits from the bottom of the pan.",
+      "Stir in chopped oregano and parsley. Cook for 2-3 minutes, until sauce slightly reduces.",
+      "Slice remaining lemon half into thin wedges for garnish.",
+      "Serve chicken with roasted vegetables. Spoon lemon-herb sauce over chicken and vegetables. Garnish with fresh oregano leaves and lemon wedges."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 479.9,
+      "cholesterol_mg": 153,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 58.7,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 650.7,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 21.1,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 94.8,
+      "cholesterol_mg": 30.2,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 11.6,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 128.5,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 16,
+      "protein": 117,
+      "saturated_fat": 20,
+      "sodium": 28,
+      "total_carbs": 5,
+      "total_fat": 27
+    },
+    "serving_size_g": 506.3,
+    "total_recipe_weight_g": 2025
+  },
+  {
+    "recipe_name": "Hearty Beef and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_potato_stew_20250714_053517_633652b2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T05:35:18.432216000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "tomato",
+      "onion",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty, rustic beef and potato stew is presented in a deep, earthenware bowl on a well-used wooden dining table. The stew features generous chunks of tender, dark brown beef, nestled among soft, golden-yellow potato cubes, vibrant orange carrot rounds, and earthy brown quartered mushrooms. A rich, thick reddish-brown gravy coats all ingredients, with visible flecks of dried herbs. A light scattering of fresh green chopped parsley brightens the top. The stew has a comforting, slightly irregular texture, reflecting home cooking. The bowl sits on a simple ceramic plate. A linen napkin and a sturdy spoon are casually placed beside it. Warm, natural light illuminates the scene, creating a cozy, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread."
+    ],
+    "hero_ingredient": "Beef chunks",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove beef from pot.",
+      "Add chopped onion and carrots to the pot. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic and dried thyme. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste and flour. Cook for 2 minutes, stirring constantly.",
+      "Gradually stir in beef broth, scraping up any browned bits from the bottom.",
+      "Add diced tomatoes and bay leaf. Bring to a simmer.",
+      "Return seared beef to the pot. Cover and reduce heat to low.",
+      "Simmer for 1.5 hours, stirring occasionally.",
+      "Add potato cubes and quartered mushrooms. Continue to simmer, covered, for another 30-40 minutes, or until beef and potatoes are tender.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper.",
+      "Ladle stew into bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 495,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 42.6,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 307,
+      "total_carbs_g": 43.2,
+      "total_fat_g": 17,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.3,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 53,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 24,
+      "protein": 85,
+      "saturated_fat": 24,
+      "sodium": 13,
+      "total_carbs": 16,
+      "total_fat": 22
+    },
+    "serving_size_g": 582,
+    "total_recipe_weight_g": 2328
+  }
+]

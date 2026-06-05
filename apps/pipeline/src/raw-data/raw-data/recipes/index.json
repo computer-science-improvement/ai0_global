@@ -1,0 +1,138 @@
+{
+  "source": "https://epicure.kaikaku.ai/api/gallery",
+  "generated_at": "2026-05-28T16:15:20.869Z",
+  "total_recipes": 25001,
+  "file_count": 26,
+  "files": [
+    {
+      "name": "recipes_001.json",
+      "recipe_count": 1000,
+      "size": "4.62 MB"
+    },
+    {
+      "name": "recipes_002.json",
+      "recipe_count": 1000,
+      "size": "4.68 MB"
+    },
+    {
+      "name": "recipes_003.json",
+      "recipe_count": 1000,
+      "size": "4.67 MB"
+    },
+    {
+      "name": "recipes_004.json",
+      "recipe_count": 1000,
+      "size": "4.60 MB"
+    },
+    {
+      "name": "recipes_005.json",
+      "recipe_count": 1000,
+      "size": "5.00 MB"
+    },
+    {
+      "name": "recipes_006.json",
+      "recipe_count": 1000,
+      "size": "5.54 MB"
+    },
+    {
+      "name": "recipes_007.json",
+      "recipe_count": 1000,
+      "size": "5.27 MB"
+    },
+    {
+      "name": "recipes_008.json",
+      "recipe_count": 1000,
+      "size": "5.36 MB"
+    },
+    {
+      "name": "recipes_009.json",
+      "recipe_count": 1000,
+      "size": "5.20 MB"
+    },
+    {
+      "name": "recipes_010.json",
+      "recipe_count": 1000,
+      "size": "5.24 MB"
+    },
+    {
+      "name": "recipes_011.json",
+      "recipe_count": 1000,
+      "size": "5.25 MB"
+    },
+    {
+      "name": "recipes_012.json",
+      "recipe_count": 1000,
+      "size": "5.29 MB"
+    },
+    {
+      "name": "recipes_013.json",
+      "recipe_count": 1000,
+      "size": "5.19 MB"
+    },
+    {
+      "name": "recipes_014.json",
+      "recipe_count": 1000,
+      "size": "5.21 MB"
+    },
+    {
+      "name": "recipes_015.json",
+      "recipe_count": 1000,
+      "size": "5.27 MB"
+    },
+    {
+      "name": "recipes_016.json",
+      "recipe_count": 1000,
+      "size": "5.28 MB"
+    },
+    {
+      "name": "recipes_017.json",
+      "recipe_count": 1000,
+      "size": "5.32 MB"
+    },
+    {
+      "name": "recipes_018.json",
+      "recipe_count": 1000,
+      "size": "5.25 MB"
+    },
+    {
+      "name": "recipes_019.json",
+      "recipe_count": 1000,
+      "size": "5.23 MB"
+    },
+    {
+      "name": "recipes_020.json",
+      "recipe_count": 1000,
+      "size": "5.23 MB"
+    },
+    {
+      "name": "recipes_021.json",
+      "recipe_count": 1000,
+      "size": "5.25 MB"
+    },
+    {
+      "name": "recipes_022.json",
+      "recipe_count": 1000,
+      "size": "5.26 MB"
+    },
+    {
+      "name": "recipes_023.json",
+      "recipe_count": 1000,
+      "size": "5.32 MB"
+    },
+    {
+      "name": "recipes_024.json",
+      "recipe_count": 1000,
+      "size": "5.31 MB"
+    },
+    {
+      "name": "recipes_025.json",
+      "recipe_count": 1000,
+      "size": "5.43 MB"
+    },
+    {
+      "name": "recipes_026.json",
+      "recipe_count": 1,
+      "size": "0.00 MB"
+    }
+  ]
+}

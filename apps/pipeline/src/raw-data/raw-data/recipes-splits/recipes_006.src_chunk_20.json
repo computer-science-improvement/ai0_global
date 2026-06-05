@@ -1,0 +1,749 @@
+[
+  {
+    "recipe_name": "Pan-Fried Camembert with Potato Rosti and Tomato Confit",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_152205_d65ea374.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2025-10-22T15:22:05.626808000Z",
+    "selected_ingredients": [
+      "camembert",
+      "potato",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate within a modern bistro setting. A golden-brown, crispy potato rosti disc forms the base. Centered atop the rosti is a whole pan-fried Camembert wheel, its breaded crust a deep golden hue, hinting at a warm, creamy interior. Around the base of the rosti, vibrant red cherry tomatoes from the confit are scattered, glossy with olive oil and interspersed with softened garlic slices and fresh thyme leaves. The tomatoes are plump and slightly shriveled, offering a textural contrast. A sprinkle of bright green chopped parsley garnishes the plate. The composition is balanced and elegant, with moderate negative space. The table surface is simple wood, with a folded cotton napkin beside the plate and natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty baguette slices on the side."
+    ],
+    "hero_ingredient": "Camembert",
+    "ingredients": [
+      {
+        "name": "Camembert cheese",
+        "quantity": "4 x 125 g wheels"
+      },
+      {
+        "name": "Potatoes (starchy, e.g., Russet)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, thinly sliced"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1, beaten"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tbsp, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 150°C (300°F).",
+      "Place cherry tomatoes in a small baking dish. Add sliced garlic and thyme sprigs. Drizzle with 50 ml olive oil. Season with salt and pepper.",
+      "Roast tomatoes for 45-60 minutes, until softened and slightly shriveled. Set aside to cool slightly.",
+      "Peel potatoes. Grate them using a coarse grater. Place grated potatoes in a clean kitchen towel. Squeeze out as much moisture as possible.",
+      "Season grated potatoes with salt and pepper.",
+      "Heat 25 g butter and 25 ml olive oil in a large non-stick pan over medium heat.",
+      "Divide grated potatoes into four equal portions. Press each portion into a flat, round rosti disc in the hot pan.",
+      "Cook rostis for 8-10 minutes per side, until golden brown and crispy. Keep warm.",
+      "Prepare a dredging station: one shallow dish with flour, one with beaten egg, one with breadcrumbs.",
+      "Lightly dredge each Camembert wheel in flour, then egg, then breadcrumbs, ensuring full coating.",
+      "Heat remaining 25 g butter and 25 ml olive oil in a separate non-stick pan over medium-high heat.",
+      "Pan-fry breaded Camembert wheels for 2-3 minutes per side, until golden brown and cheese is slightly softened.",
+      "To serve, place one potato rosti on each plate. Top with a pan-fried Camembert wheel. Spoon tomato confit around the cheese.",
+      "Garnish with chopped fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Confit",
+      "Pan-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 972,
+      "cholesterol_mg": 167,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 36.6,
+      "saturated_fat_g": 29.6,
+      "sodium_mg": 1093,
+      "total_carbs_g": 62.1,
+      "total_fat_g": 65.9,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 213,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 239,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 14.4,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 19,
+      "protein": 73,
+      "saturated_fat": 148,
+      "sodium": 48,
+      "total_carbs": 23,
+      "total_fat": 85
+    },
+    "serving_size_g": 457,
+    "total_recipe_weight_g": 1828
+  },
+  {
+    "recipe_name": "Spicy Chicken and Pork Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_135012_7aa1d3c2.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-10-22T13:50:12.982183000Z",
+    "selected_ingredients": [
+      "pork",
+      "chicken",
+      "chili",
+      "noodle",
+      "bean sprout",
+      "cashew"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The vibrant Spicy Chicken and Pork Noodles are plated on a clean white porcelain dinner plate. A generous mound of wide rice noodles, stir-fried to a glossy finish, forms the base. Succulent, thinly sliced chicken and pork pieces are interspersed throughout, showcasing their rich, caramelized edges from the high-heat cooking. Bright green bean sprouts and emerald Thai basil leaves provide fresh contrast against the deep brown noodles and red chili flecks. Finely chopped red bird's eye chilies are visible, hinting at the dish's heat. The dish is garnished with a scattering of golden-brown roasted cashews, adding texture. A lime wedge sits on the side. The scene is set on a simple wooden table with natural, even lighting, featuring a cotton napkin and a pair of polished chopsticks beside the plate, embodying a modern bistro aesthetic with authentic Asian dining elements. The entire plate is visible, showcasing a single, well-proportioned serving.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with extra fish sauce, chili flakes, or sliced chilies on the side for individual adjustment of spice and saltiness.",
+      "A small bowl of clear soup is a common accompaniment."
+    ],
+    "hero_ingredient": "Chicken and Pork",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400g"
+      },
+      {
+        "name": "Pork loin",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh wide rice noodles",
+        "quantity": "500g"
+      },
+      {
+        "name": "Bean sprouts",
+        "quantity": "200g"
+      },
+      {
+        "name": "Roasted cashews",
+        "quantity": "80g"
+      },
+      {
+        "name": "Red bird's eye chilies",
+        "quantity": "6-8"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Thai basil leaves",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "150g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "10ml"
+      }
+    ],
+    "instructions": [
+      "Slice chicken and pork into thin strips, about 0.5 cm thick.",
+      "Mince garlic and shallots. Slice chilies thinly.",
+      "In a small bowl, combine fish sauce, dark soy sauce, light soy sauce, oyster sauce, sugar, and vinegar. Stir until sugar dissolves.",
+      "Cook fresh wide rice noodles according to package directions. Rinse with cold water. Drain well.",
+      "Heat vegetable oil in a large wok or skillet over high heat until shimmering.",
+      "Add minced garlic, shallots, and sliced chilies. Stir-fry for 30 seconds until fragrant.",
+      "Add pork strips. Stir-fry for 3-4 minutes until cooked through. Remove pork from wok.",
+      "Add chicken strips to the wok. Stir-fry for 3-4 minutes until cooked through. Ensure internal temperature reaches 75°C (167°F). Remove chicken from wok.",
+      "Add cooked noodles to the wok. Pour in the prepared sauce. Toss well to coat noodles evenly.",
+      "Add green beans. Stir-fry for 2 minutes.",
+      "Return cooked pork and chicken to the wok. Add bean sprouts and Thai basil leaves.",
+      "Stir-fry for 1-2 minutes until bean sprouts are slightly wilted and basil is fragrant.",
+      "Remove from heat.",
+      "Divide among four plates. Garnish with roasted cashews."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5.4,
+      "calories": 636,
+      "cholesterol_mg": 133,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 53.4,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 4215,
+      "total_carbs_g": 55,
+      "total_fat_g": 23.3,
+      "total_sugars_g": 11.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 122,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.3,
+      "saturated_fat_g": 1,
+      "sodium_mg": 809,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44,
+      "dietary_fiber": 15,
+      "protein": 107,
+      "saturated_fat": 26,
+      "sodium": 183,
+      "total_carbs": 20,
+      "total_fat": 30
+    },
+    "serving_size_g": 520.9,
+    "total_recipe_weight_g": 2083.5
+  },
+  {
+    "recipe_name": "Creamy Chicken Feta Tortillas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_122521_b955896f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2025-10-22T12:25:22.115107000Z",
+    "selected_ingredients": [
+      "salad green",
+      "tomato",
+      "cheese",
+      "cream",
+      "feta cheese",
+      "tortilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Creamy Chicken Feta Tortillas is presented on a clean white porcelain dinner plate. Two golden-baked flour tortillas, filled with shredded chicken and a rich creamy tomato sauce, are nestled slightly overlapping in the center. The tortillas are topped with a golden, bubbly layer of melted cheddar cheese, revealing hints of the vibrant orange-red sauce beneath. Generously scattered over and around the tortillas are bright red, small-diced fresh tomatoes, and substantial crumbles of stark white feta cheese, adding a tangy contrast. Alongside the tortillas, a fresh, vibrant pile of mixed green salad leaves provides a cool, crisp texture and a pop of green. The dish is arranged with moderate negative space, showcasing the appealing textures and colors of the ingredients. The setting features a simple wooden table and a neatly folded cotton napkin, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Tex-Mex",
+    "hero_ingredient": "Feta Cheese",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Flour tortillas",
+        "quantity": "8 medium (approx. 20cm diameter)"
+      },
+      {
+        "name": "Shredded cheddar cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "150g, crumbled"
+      },
+      {
+        "name": "Fresh salad greens",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh tomatoes",
+        "quantity": "2 medium, diced"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook chicken breast until internal temperature reaches 75°C. Shred chicken into small pieces.",
+      "Heat olive oil in a large pan over medium heat. Sauté diced onion for 5 minutes until soft.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in canned diced tomatoes, chili powder, cumin, and oregano. Simmer for 5 minutes.",
+      "Pour in heavy cream. Bring to a gentle simmer. Season with salt and pepper.",
+      "Combine shredded chicken with 100g shredded cheddar cheese and 1/3 of the sauce in a bowl.",
+      "Lay out tortillas. Divide chicken mixture evenly among tortillas.",
+      "Roll each tortilla tightly. Place seam-side down in a 23x33 cm baking dish.",
+      "Pour remaining sauce over rolled tortillas. Sprinkle with remaining 100g shredded cheddar cheese.",
+      "Bake for 20-25 minutes. Cheese should be melted and bubbly, tortillas lightly golden.",
+      "Remove from oven. Let stand for 5 minutes.",
+      "Serve hot. Garnish with fresh salad greens, diced fresh tomatoes, and crumbled feta cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1089.06,
+      "cholesterol_mg": 276.46,
+      "dietary_fiber_g": 6.64,
+      "protein_g": 55.07,
+      "saturated_fat_g": 34.08,
+      "sodium_mg": 1507.19,
+      "total_carbs_g": 69,
+      "total_fat_g": 65.23,
+      "total_sugars_g": 11.37,
+      "trans_fat_g": 1.67
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 180.46,
+      "cholesterol_mg": 45.81,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.13,
+      "saturated_fat_g": 5.65,
+      "sodium_mg": 249.74,
+      "total_carbs_g": 11.43,
+      "total_fat_g": 10.81,
+      "total_sugars_g": 1.88,
+      "trans_fat_g": 0.28
+    },
+    "daily_value_percentages": {
+      "cholesterol": 92.2,
+      "dietary_fiber": 23.7,
+      "protein": 110.1,
+      "saturated_fat": 170.4,
+      "sodium": 65.5,
+      "total_carbs": 25.1,
+      "total_fat": 83.6
+    },
+    "serving_size_g": 603.5,
+    "total_recipe_weight_g": 2414
+  },
+  {
+    "recipe_name": "Hearty Chicken and Beef Pasta Bake with Potato Topping",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_095007_a3e6da7f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-10-22T09:50:08.280482000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "onion",
+      "tomato",
+      "bell pepper",
+      "sugar",
+      "olive",
+      "mayonnaise",
+      "pasta",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty, rustic baked pasta dish sits centered on a well-used wooden dining table. The ceramic baking dish is filled with a rich, tomato-based sauce, studded with chunks of browned ground beef, diced chicken, bell peppers, and black olives, all intertwined with short pasta. A thick, golden-brown crust of mashed potato and melted cheddar cheese covers the top, showing some bubbly, slightly charred edges. A few sprigs of fresh parsley are casually placed on the topping. The plate is a simple, off-white ceramic with minor imperfections. A linen napkin is casually draped beside the dish. Warm, cozy light emanates from an overhead kitchen fixture, casting soft shadows. A single generous portion is served, showcasing the layers of pasta, meat sauce, and potato topping. The background is a natural, lived-in family dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Ground Beef",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ground beef",
+        "quantity": "400g"
+      },
+      {
+        "name": "Pasta (e.g., penne, ziti)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Bell peppers",
+        "quantity": "2"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Black olives",
+        "quantity": "100g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "80g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Cook pasta according to package directions until al dente. Drain.",
+      "Boil cubed potatoes in salted water until very tender. Drain. Mash with milk, 30g mayonnaise, salt, and pepper until smooth. Set aside.",
+      "Heat olive oil in a large pan over medium-high heat. Add ground beef. Break apart and cook until browned. Drain excess fat.",
+      "Add diced chicken to the pan with the beef. Cook until chicken is no longer pink.",
+      "Add diced onions and minced garlic to the pan. Sauté until softened, about 5 minutes.",
+      "Stir in diced bell peppers. Cook for 3-4 minutes until slightly tender.",
+      "Pour in crushed tomatoes, sugar, oregano, salt, and pepper. Bring to a simmer. Cook for 10 minutes, allowing flavors to meld.",
+      "Stir in sliced olives and cooked pasta into the meat sauce. Mix well.",
+      "Transfer pasta and meat mixture to a 20x30 cm baking dish.",
+      "Spread the mashed potato topping evenly over the pasta mixture.",
+      "Mix remaining 50g mayonnaise with grated cheddar cheese. Spread this mixture over the potato topping.",
+      "Bake for 25-30 minutes, or until bubbling and the topping is golden brown.",
+      "Let rest 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F)."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 1050,
+      "cholesterol_mg": 166,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 55.9,
+      "saturated_fat_g": 15.1,
+      "sodium_mg": 548,
+      "total_carbs_g": 84.8,
+      "total_fat_g": 53.5,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 166,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.8,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 87,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 30,
+      "protein": 112,
+      "saturated_fat": 76,
+      "sodium": 24,
+      "total_carbs": 31,
+      "total_fat": 69
+    },
+    "serving_size_g": 632.25,
+    "total_recipe_weight_g": 2529
+  },
+  {
+    "recipe_name": "Peruvian Beef Stir-Fry with Potatoes and Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_094553_767e58fa.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 20,
+    "timestamp": "2025-10-22T09:45:54.335410000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "onion",
+      "tomato",
+      "bell pepper",
+      "sugar",
+      "olive",
+      "mayonnaise",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Presented on a clean white porcelain dinner plate, a vibrant, rustic composition. Golden spaghetti forms the base. Centrally mounded is stir-fried beef, cut into 2cm chunks, boasting a rich, dark sear. Interspersed are thick strips of caramelized red onion, bright red bell pepper strips, and softened tomato wedges, all glistening with a savory, deep brown sauce. Earthy browns, reds, and greens dominate. Alongside, a cluster of golden-crisp, thick-cut potato wedges adds textural contrast. The dish is garnished with roughly chopped dark Kalamata olives and vibrant fresh cilantro. A small drizzle of creamy, pale yellow lime mayonnaise artfully adorns a portion of the beef. Plating is organized yet natural, with moderate negative space, showcasing textures and colors. The scene is a modern bistro setting with a simple wooden table and natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian Fusion",
+    "cultural_origin": "Peruvian Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with extra Aji Verde (Peruvian green chili sauce) on the side.",
+      "A glass of Chicha Morada (Peruvian purple corn drink) complements the meal."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium (approx 600g)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": "1 large (green or red)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "2g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "1g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Kalamata or Peruvian botija olives, pitted",
+        "quantity": "50g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "80g"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1/2, juiced"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "30g"
+      },
+      {
+        "name": "Spaghetti or fettuccine pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare potatoes: Peel and cut potatoes into 2cm thick wedges or large chunks. Rinse and pat dry.",
+      "Fry potatoes: Heat 40ml olive oil in a large pan or deep pot over medium-high heat. Fry potatoes until golden brown and tender. Season with salt. Remove and drain on paper towels. Keep warm.",
+      "Cook pasta: Bring a large pot of salted water to a boil. Add pasta and cook according to package directions until al dente. Drain and set aside.",
+      "Prepare beef: Season beef cubes/strips with salt and pepper.",
+      "Stir-fry beef: Heat remaining 20ml olive oil in a large wok or skillet over high heat until smoking. Add beef in batches if necessary to avoid overcrowding. Sear quickly until browned on all sides, about 2-3 minutes. Remove beef and set aside.",
+      "Sauté vegetables: Add onion and bell pepper to the same wok. Stir-fry for 2-3 minutes until slightly softened but still crisp.",
+      "Add aromatics and tomato: Add minced garlic and tomato wedges. Stir-fry for 1 minute.",
+      "Deglaze and sauce: Add aji amarillo paste, soy sauce, red wine vinegar, sugar, cumin, and oregano. Stir well. Bring to a simmer.",
+      "Combine: Return seared beef to the wok. Toss everything together to coat.",
+      "Finish sauce: In a small bowl, whisk together mayonnaise with lime juice and a pinch of salt.",
+      "Plate: Divide pasta among four plates. Top with the beef and vegetable stir-fry. Arrange fried potato wedges alongside.",
+      "Garnish: Sprinkle chopped olives and fresh cilantro over the dish. Drizzle or dollop the lime mayonnaise over the beef or on the side."
+    ],
+    "traditional_techniques": [
+      "High-heat stir-frying (similar to 'wok hei' for quick searing and smoky flavor)",
+      "Incorporating Aji Amarillo, a staple Peruvian chili"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 1091,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 10.5,
+      "protein_g": 54.6,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1359,
+      "total_carbs_g": 117.6,
+      "total_fat_g": 41.8,
+      "total_sugars_g": 12.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 123,
+      "cholesterol_mg": 13,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.1,
+      "saturated_fat_g": 1,
+      "sodium_mg": 153,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 37,
+      "protein": 109,
+      "saturated_fat": 43,
+      "sodium": 59,
+      "total_carbs": 43,
+      "total_fat": 54
+    },
+    "serving_size_g": 890,
+    "total_recipe_weight_g": 3558
+  }
+]

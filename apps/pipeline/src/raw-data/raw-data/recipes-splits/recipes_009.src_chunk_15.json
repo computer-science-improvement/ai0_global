@@ -1,0 +1,725 @@
+[
+  {
+    "recipe_name": "Smoked Salmon Tartare Crisps with Osetra Caviar",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_salmon_tartare_crisps_with_osetra_caviar_20250723_150708_eb25f402.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T15:07:08.966856000Z",
+    "selected_ingredients": [
+      "rice paper"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A pristine white Carrara marble slab serves as the elegant backdrop. Artfully arranged are 8-12 delicate, translucent rice paper crisps, each precisely cut into a 5 cm x 8 cm rectangle. Each crisp holds a small, vibrant mound of finely diced smoked salmon tartare, a harmonious blend of orange-pink salmon, green chives, and subtle yellow lemon zest. Perched atop the tartare is a glistening, dark quenelle of Osetra caviar, its pearls catching the light. A single, fresh sprig of micro dill or chervil is precisely placed next to the caviar, providing a verdant contrast. Abundant negative space surrounds each canapé, emphasizing their minimalist perfection. The composition is natural and flowing, avoiding rigid lines. Dramatic, professional lighting casts soft shadows, enhancing texture and depth. A pristine white linen napkin, folded into a precise triangle, sits elegantly in the background, adding to the sophisticated Michelin-starred ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Smoked Salmon",
+    "ingredients": [
+      {
+        "name": "Rice paper sheets",
+        "quantity": "8-10 (22 cm diameter)"
+      },
+      {
+        "name": "Smoked salmon",
+        "quantity": "200g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Chives",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "0.5 (zest and juice)"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fleur de sel",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Osetra caviar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Micro dill or chervil",
+        "quantity": "Small sprigs for garnish"
+      },
+      {
+        "name": "Grapeseed oil",
+        "quantity": "500ml (for frying)"
+      }
+    ],
+    "instructions": [
+      "Heat grapeseed oil in a deep pan to 180°C. Maintain temperature.",
+      "Cut rice paper sheets into precise 5 cm x 8 cm rectangles. You should yield 2-3 rectangles per sheet.",
+      "Carefully submerge one rice paper rectangle into the hot oil. Fry for 5-10 seconds until it puffs and becomes crisp. It will transform rapidly.",
+      "Remove crisp with tongs. Place on paper towels to drain excess oil. Repeat with remaining rice paper rectangles. Set aside.",
+      "Finely dice smoked salmon into 3 mm cubes. Place in a medium bowl.",
+      "Finely mince shallot. Add to salmon.",
+      "Finely chop chives. Add to salmon mixture.",
+      "Grate lemon zest over salmon. Squeeze in lemon juice. Drizzle with olive oil.",
+      "Season with fleur de sel and freshly ground black pepper. Gently fold ingredients until just combined. Do not overmix.",
+      "To assemble, place a small, neat mound of smoked salmon tartare onto the center of each rice paper crisp. Use a small spoon or piping bag for precision.",
+      "Top each tartare mound with a small quenelle of Osetra caviar.",
+      "Garnish each canapé with a single, delicate sprig of micro dill or chervil. Arrange 8-12 finished canapés artfully on a serving platter."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 325.61,
+      "cholesterol_mg": 68.1,
+      "dietary_fiber_g": 0.39,
+      "protein_g": 11.64,
+      "saturated_fat_g": 2.76,
+      "sodium_mg": 471.02,
+      "total_carbs_g": 20.77,
+      "total_fat_g": 21.98,
+      "total_sugars_g": 0.76,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 291.69,
+      "cholesterol_mg": 60.99,
+      "dietary_fiber_g": 0.35,
+      "protein_g": 10.43,
+      "saturated_fat_g": 2.47,
+      "sodium_mg": 421.96,
+      "total_carbs_g": 18.61,
+      "total_fat_g": 19.7,
+      "total_sugars_g": 0.68,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 22.7,
+      "dietary_fiber": 1.38,
+      "protein": 23.27,
+      "saturated_fat": 13.78,
+      "sodium": 20.48,
+      "total_carbs": 7.55,
+      "total_fat": 28.18
+    },
+    "serving_size_g": 111.6,
+    "total_recipe_weight_g": 446.5
+  },
+  {
+    "recipe_name": "Spicy Garlic Chicken Linguine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_garlic_chicken_linguine_20250723_150525_10e9b8e0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T15:05:26.494759000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "garlic",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spicy Garlic Chicken Linguine is presented on a round, clean white porcelain plate. Substantial, golden-brown seared chicken medallions are nestled among the al dente linguine. The pasta is lightly coated in a glossy, translucent sauce, infused with thinly sliced garlic and vibrant red chili flakes. A generous scattering of bright green, freshly chopped parsley adds a pop of color and freshness. The arrangement is organic and inviting, with appropriate negative space on the plate. The table setting includes a simple wooden surface, a neatly folded white cotton napkin, and traditional silver flatware. Natural, even lighting illuminates the dish, highlighting its textures and warm hues.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with freshly grated Parmigiano-Reggiano cheese on the side.",
+      "Accompany with crusty Italian bread to soak up any remaining sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 600g total)"
+      },
+      {
+        "name": "Linguine pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "8 cloves, thinly sliced"
+      },
+      {
+        "name": "Fresh red chili",
+        "quantity": "1, deseeded and thinly sliced"
+      },
+      {
+        "name": "Dried chili flakes (peperoncino)",
+        "quantity": "1 teaspoon, or to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "60g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil. Add linguine and cook according to package directions until al dente. Reserve 250ml of pasta cooking water. Drain pasta.",
+      "Pat chicken breasts dry with paper towels. Season generously with salt and black pepper.",
+      "Heat 30ml olive oil in a large skillet over medium-high heat. Add chicken breasts. Sear for 5-7 minutes per side, until golden brown and cooked through to an internal temperature of 75°C (167°F). Remove chicken from skillet. Let rest for 5 minutes, then slice into thick medallions.",
+      "Add remaining 30ml olive oil to the same skillet over medium heat. Add sliced garlic and fresh red chili. Sauté for 2-3 minutes until fragrant and lightly golden. Do not brown garlic.",
+      "Add cooked linguine, chicken broth, and dried chili flakes to the skillet. Toss to combine.",
+      "Return sliced chicken medallions to the skillet. Toss gently with the pasta. Add reserved pasta water gradually, 60ml at a time, if the pasta needs more moisture or sauce to coat.",
+      "Stir in chopped fresh parsley. Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure the chicken is fully cooked to 75°C (167°F) for food safety.",
+      "Do not overcrowd the skillet when searing chicken to ensure proper browning."
+    ],
+    "traditional_techniques": [
+      "Al dente cooking",
+      "Soffritto (garlic and chili base)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 762,
+      "cholesterol_mg": 128,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 61,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 653,
+      "total_carbs_g": 78.8,
+      "total_fat_g": 21,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 236,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 18.9,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 203,
+      "total_carbs_g": 24.5,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 14,
+      "protein": 122,
+      "saturated_fat": 19,
+      "sodium": 28,
+      "total_carbs": 29,
+      "total_fat": 27
+    },
+    "serving_size_g": 322,
+    "total_recipe_weight_g": 1289
+  },
+  {
+    "recipe_name": "Fermented Date & Cardamom Cake with Red Currant Umami Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_date_%26_cardamom_cake_with_red_currant_umami_glaze_20250723_145220_ac4fd36d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T14:52:21.432875000Z",
+    "selected_ingredients": [
+      "beef",
+      "pork",
+      "cardamom",
+      "beef fat",
+      "shortening",
+      "pike-perch",
+      "endive",
+      "dashi",
+      "date",
+      "currant",
+      "cornstarch",
+      "creme de cacao",
+      "baguette",
+      "apple liqueur",
+      "apple schnapps",
+      "red snapper",
+      "red currant"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, elegantly cut slice of a dense, moist cake rests on a handcrafted ceramic plate in a warm cream tone. The cake, a rich brown from the dates and spices, has a rustic, slightly crumbly texture. Alongside the slice, a vibrant dollop of glossy red currant compote provides a burst of natural color and sheen. A few translucent, finely chopped pieces of candied endive are scattered artfully on the plate, offering a subtle contrast. Toasted baguette crumbs, golden and crisp, are sprinkled around the cake, adding texture and a zero-waste element. A delicate drizzle of pale crème de cacao glaze lightly coats parts of the cake. The plating is minimalist, with ample negative space. In the soft-focused background, the remaining whole cake, unadorned, sits on a light bamboo or reclaimed wood surface. The setting includes an undyed linen napkin and natural light, creating an eco-conscious, clean aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Dates",
+    "ingredients": [
+      {
+        "name": "Dates, dried",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Currants, dried",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Apple liqueur",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Apple schnapps",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Active dry yeast",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Endive, outer leaves/trimmings",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Granulated sugar (for candied endive)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cardamom",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Rendered beef fat",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Shortening",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Brown sugar, light",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Eggs, large",
+        "quantity": "2"
+      },
+      {
+        "name": "Buttermilk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Red currants, fresh",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Dashi powder",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Crème de cacao",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Stale baguette",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Fruit Puree: Finely chop dates and currants. Combine with apple liqueur, apple schnapps, water, and active dry yeast in a clean jar. Stir well. Cover loosely and let ferment at room temperature for 24-48 hours. Puree mixture until smooth.",
+      "Prepare Candied Endive: Finely chop endive trimmings. In a small saucepan, combine granulated sugar with 50 ml water. Bring to a simmer, stirring until sugar dissolves. Add chopped endive. Simmer gently for 15-20 minutes until translucent and tender. Drain and set aside.",
+      "Prepare Cake Batter: Preheat oven to 175°C (350°F). Grease and flour a 20 cm round cake pan. In a large bowl, cream rendered beef fat, shortening, and brown sugar until light and fluffy. Beat in eggs one at a time until well combined.",
+      "Combine dry ingredients: In a separate bowl, whisk together flour, baking powder, baking soda, ground cardamom, and salt. Add half of the dry ingredients to the wet mixture, mixing until just combined.",
+      "Add wet ingredients: Stir in the fermented fruit puree and buttermilk. Fold in the remaining dry ingredients until just incorporated. Do not overmix.",
+      "Bake Cake: Pour batter into prepared cake pan. Bake for 30-35 minutes, or until a wooden skewer inserted into the center comes out clean. Let cool in the pan for 10 minutes, then invert onto a wire rack to cool completely.",
+      "Prepare Red Currant Compote: In a small saucepan, combine fresh red currants with 50 g of the fermented date puree (from initial batch), cornstarch, and 50 ml water. Cook over medium heat, stirring constantly, until thickened. Stir in dashi powder. Remove from heat and cool.",
+      "Prepare Crème de Cacao Glaze: In a small bowl, whisk powdered sugar and crème de cacao until smooth. Add more crème de cacao if needed for desired consistency.",
+      "Prepare Toasted Baguette Crumbs: Process stale baguette into fine crumbs. Spread on a baking sheet. Toast in the oven at 150°C (300°F) for 8-10 minutes, or until golden and crisp. Cool completely.",
+      "Assemble and Serve: Slice the cooled cake into 4 individual portions. Place each slice on a plate. Spoon red currant compote alongside or on top of the cake. Garnish with candied endive and toasted baguette crumbs. Drizzle with crème de cacao glaze. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 83.1,
+      "calories": 1242,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 13,
+      "saturated_fat_g": 16.7,
+      "sodium_mg": 789,
+      "total_carbs_g": 203.8,
+      "total_fat_g": 41.6,
+      "total_sugars_g": 148.1,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 18.5,
+      "calories": 277,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 2.9,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 176,
+      "total_carbs_g": 45.4,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 33,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 35,
+      "protein": 26,
+      "saturated_fat": 84,
+      "sodium": 34,
+      "total_carbs": 74,
+      "total_fat": 53
+    },
+    "serving_size_g": 448.75,
+    "total_recipe_weight_g": 1795
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Coffee-Tomato Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_coffee-tomato_glaze_20250723_142451_f95e75c6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T14:24:51.971385000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "apple",
+      "potato",
+      "bread",
+      "chocolate",
+      "salad green",
+      "orange",
+      "dark chocolate",
+      "sugar",
+      "lemon",
+      "coffee",
+      "oil",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate. A pan-seared chicken breast, cooked to a golden-brown exterior, rests prominently, coated with a glossy, dark coffee-tomato glaze. Beside the chicken, a portion of al dente penne pasta is lightly tossed with roasted cherry tomatoes, showcasing their vibrant red color. Neatly arranged roasted potato wedges, golden and slightly crisp, complete the main components. A fresh green salad, featuring crisp mixed greens, thin apple slices, and bright orange segments, is dressed lightly and placed alongside. The overall composition is balanced and inviting, with a natural arrangement of components. A cotton napkin and simple flatware are placed on a light wooden table, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Potatoes, medium",
+        "quantity": "4"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Apple, medium",
+        "quantity": "1"
+      },
+      {
+        "name": "Orange, medium",
+        "quantity": "1"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa or higher)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Brewed strong coffee",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Garlic bread",
+        "quantity": "4 slices"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Cut potatoes into wedges. Toss potato wedges and cherry tomatoes with 15 ml olive oil, salt, and pepper on a baking sheet. Roast for 25-30 minutes, until tender and lightly browned. Set aside.",
+      "Cook penne pasta according to package directions until al dente. Drain and set aside.",
+      "While pasta cooks, prepare the glaze. In a small saucepan, combine chicken stock, brewed coffee, sugar, and finely chopped dark chocolate. Bring to a simmer over medium heat. Reduce heat and cook until the glaze thickens slightly, about 5-7 minutes. Stir occasionally. Season with salt and pepper. Keep warm.",
+      "Season chicken breasts with salt and pepper. Heat 15 ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken breasts for 4-5 minutes per side until golden brown. Transfer skillet to the preheated oven. Bake for 10-15 minutes, or until internal temperature reaches 75°C. Remove chicken from skillet and rest for 5 minutes.",
+      "While chicken rests, toss cooked pasta with roasted cherry tomatoes and 15 ml olive oil. Stir in half of the chopped fresh parsley. Top with grated Parmesan cheese.",
+      "Prepare the salad: In a large bowl, combine mixed salad greens. Thinly slice the apple and segment the orange. Add to the greens. In a small bowl, whisk together remaining 15 ml olive oil, juice from half a lemon, salt, and pepper. Pour dressing over salad and toss gently.",
+      "To serve, place a chicken breast on each plate. Spoon a generous amount of coffee-tomato glaze over the chicken. Arrange a portion of lemon-herb pasta and roasted potato wedges beside the chicken. Serve a side of apple-orange green salad and a slice of garlic bread with each plate. Garnish chicken with remaining fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.4,
+      "calories": 1097.7,
+      "cholesterol_mg": 167.5,
+      "dietary_fiber_g": 10.9,
+      "protein_g": 79.3,
+      "saturated_fat_g": 8.3,
+      "sodium_mg": 1074.3,
+      "total_carbs_g": 120.2,
+      "total_fat_g": 31.4,
+      "total_sugars_g": 19.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 146.3,
+      "cholesterol_mg": 22.3,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 10.6,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 143.1,
+      "total_carbs_g": 16,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.8,
+      "dietary_fiber": 38.9,
+      "protein": 158.6,
+      "saturated_fat": 41.5,
+      "sodium": 46.7,
+      "total_carbs": 43.7,
+      "total_fat": 40.3
+    },
+    "serving_size_g": 750.5,
+    "total_recipe_weight_g": 3002
+  },
+  {
+    "recipe_name": "Chipotle Adobo Chicken with Cilantro Lime Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chipotle_adobo_chicken_with_cilantro_lime_rice_20250723_142416_39219dea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T14:24:16.988044000Z",
+    "selected_ingredients": [
+      "chicken",
+      "dried chili",
+      "garlic",
+      "rice",
+      "chipotle chile",
+      "corn tortilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chipotle Adobo Chicken is presented in a clean, white ceramic shallow bowl or plate. Rich, dark red adobo sauce coats tender, chunky pieces of chicken. The chicken exhibits a slight sear before braising, adding depth. Alongside, a well-formed mound of fluffy white Cilantro Lime Rice, speckled with vibrant green cilantro, provides a contrasting color. A few golden-brown, thin tortilla crisps are artfully scattered over the chicken and rice. Fresh lime wedges are placed near the chicken. The entire composition is balanced with appropriate negative space. The setting features a simple wooden table surface, a cotton napkin, and natural, even lighting, evoking a modern bistro with authentic Mexican culinary elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with additional warm corn tortillas for scooping the chicken and sauce.",
+      "Offer a side of pickled red onions or a simple salsa verde for added acidity and freshness.",
+      "Serve with a refreshing agua fresca or horchata."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Dried Ancho chiles",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dried Guajillo chiles",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Chipotle chiles in adobo sauce",
+        "quantity": "2 (plus 15 ml sauce)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Limes",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried Mexican oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "8 small"
+      }
+    ],
+    "instructions": [
+      "Remove stems and seeds from dried Ancho and Guajillo chiles. Toast chiles in a dry pan over medium heat for 1 minute until fragrant. Do not burn. Place toasted chiles in a bowl. Cover with hot water. Let soak for 20 minutes until softened.",
+      "While chiles soak, cut chicken thighs into 4 cm chunks. Season chicken with salt and pepper.",
+      "Heat 15 ml olive oil in a large pot or Dutch oven over medium-high heat. Sear chicken chunks in batches until browned on all sides. Do not overcrowd the pot. Remove seared chicken and set aside.",
+      "Reduce heat to medium. Add remaining 15 ml olive oil to the pot. Add diced half onion and 4 minced garlic cloves. Sauté for 3 minutes until softened and fragrant.",
+      "Drain rehydrated chiles. Add chiles, remaining half onion (roughly chopped), remaining 2 garlic cloves, roughly chopped Roma tomatoes, chipotle chiles, chipotle adobo sauce, ground cumin, and dried oregano to a blender. Add 125 ml chicken broth. Blend until very smooth. Strain the adobo sauce through a fine-mesh sieve into the pot with sautéed aromatics, pressing solids to extract liquid. Discard solids.",
+      "Bring adobo sauce to a simmer. Add seared chicken chunks back into the pot. Add remaining chicken broth. Stir to combine. Reduce heat to low. Cover and simmer for 30-35 minutes, or until chicken is tender and cooked through to 75°C (167°F). Stir occasionally. Adjust seasoning with salt and pepper.",
+      "While chicken simmers, prepare rice. Rinse rice under cold water until water runs clear. In a medium saucepan, combine rinsed rice with 600 ml water and a pinch of salt. Bring to a boil. Reduce heat to low, cover, and simmer for 15 minutes, or until water is absorbed and rice is tender. Do not lift lid during cooking.",
+      "Finely chop fresh cilantro. Zest one lime. Juice both limes. Once rice is cooked, fluff with a fork. Stir in chopped cilantro, lime zest, and lime juice. Adjust lime and salt to taste.",
+      "To make tortilla crisps, cut corn tortillas into thin strips. Heat 1 cm of oil in a small pan over medium-high heat. Fry tortilla strips in batches until golden and crisp. Drain on paper towels. Season lightly with salt.",
+      "Serve Chipotle Adobo Chicken in a shallow bowl or plate. Spoon a generous portion of Cilantro Lime Rice alongside. Garnish with fresh cilantro sprigs, lime wedges, and a scattering of crispy tortilla strips. Serve with warm corn tortillas on the side."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Straining the adobo sauce creates a smoother, more refined texture."
+    ],
+    "traditional_techniques": [
+      "Rehydrating dried chiles for adobo sauce preparation",
+      "Searing meat before braising to develop flavor",
+      "Making fresh cilantro-lime rice"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 878,
+      "cholesterol_mg": 250,
+      "dietary_fiber_g": 11.31,
+      "protein_g": 49.33,
+      "saturated_fat_g": 7.12,
+      "sodium_mg": 1207,
+      "total_carbs_g": 104.05,
+      "total_fat_g": 31.57,
+      "total_sugars_g": 5.21,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.82,
+      "protein_g": 7.95,
+      "saturated_fat_g": 1.15,
+      "sodium_mg": 194,
+      "total_carbs_g": 16.76,
+      "total_fat_g": 5.09,
+      "total_sugars_g": 0.84,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 83.3,
+      "dietary_fiber": 40.4,
+      "protein": 98.7,
+      "saturated_fat": 35.6,
+      "sodium": 52.5,
+      "total_carbs": 37.8,
+      "total_fat": 40.5
+    },
+    "serving_size_g": 620.75,
+    "total_recipe_weight_g": 2483
+  }
+]

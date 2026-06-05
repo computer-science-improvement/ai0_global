@@ -1,0 +1,682 @@
+[
+  {
+    "recipe_name": "Roasted Chicken Thighs with Garlic-Chili Crumb Crust",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_thighs_with_garlic-chili_crumb_crust_20250723_110345_c92a18a3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T11:03:45.623835000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "chili",
+      "thyme",
+      "celery",
+      "breadcrumbs"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single roasted chicken thigh, golden-brown and glistening, rests centered on a pristine white porcelain dinner plate. Its crispy crumb crust, infused with minced red chili, garlic, and thyme, adheres beautifully to the seared skin, showcasing vibrant flecks of green and red. Beside the chicken, a neat pile of tender, braised celery batons (approximately 3-4 cm long) presents a contrasting soft green hue. The celery is gently coated in a light, glossy sauce from its braising liquid. A scattering of fresh, chopped parsley and a hint of bright lemon zest garnish the dish, adding freshness. The plate is presented on a simple wooden table surface, accompanied by a folded white cotton napkin and standard flatware. Natural, even lighting highlights the textures and colors, with a subtle, blurred restaurant-style background maintaining a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs (bone-in, skin-on)",
+        "quantity": "4"
+      },
+      {
+        "name": "Panko Breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red Chili, deseeded and finely minced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh Thyme, leaves picked",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Celery, cut into 3-4 cm batons",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lemon, for zest and squeeze",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Fresh Parsley, chopped",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "In a bowl, combine Panko breadcrumbs, minced garlic, minced chili, thyme leaves, 15g melted butter, and a pinch of salt. Mix well.",
+      "Heat 15ml olive oil in an oven-safe skillet over medium-high heat.",
+      "Sear chicken thighs skin-side down for 6-8 minutes until golden and crispy.",
+      "Flip chicken. Press breadcrumb mixture firmly onto the seared skin side.",
+      "Transfer skillet to the preheated oven. Roast for 20-25 minutes, or until internal temperature reaches 75°C.",
+      "While chicken roasts, prepare celery. Heat remaining 15ml olive oil and 15g butter in a separate pan over medium heat.",
+      "Add celery batons. Sauté for 3 minutes.",
+      "Pour in chicken stock. Bring to a simmer. Cover and braise for 10-12 minutes until tender. Season with salt and pepper.",
+      "Remove chicken from oven. Let rest 5 minutes before serving.",
+      "Plate each chicken thigh with a portion of braised celery. Garnish with fresh parsley and lemon zest."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 610,
+      "cholesterol_mg": 178,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 37,
+      "saturated_fat_g": 12.3,
+      "sodium_mg": 435,
+      "total_carbs_g": 22.5,
+      "total_fat_g": 41.2,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 184,
+      "cholesterol_mg": 53.7,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 11.1,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 131.1,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 6,
+      "protein": 74,
+      "saturated_fat": 62,
+      "sodium": 19,
+      "total_carbs": 8,
+      "total_fat": 53
+    },
+    "serving_size_g": 332,
+    "total_recipe_weight_g": 1328
+  },
+  {
+    "recipe_name": "Pollo con Salsa Rustica de Tomate y Jalapeño",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_con_salsa_rustica_de_tomate_y_jalape%C3%B1o_20250723_093833_460df326.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T09:38:33.611298000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "pickled jalapeno chilies"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown seared chicken breast rests on a clean white porcelain plate. It is generously draped with a vibrant, rustic salsa. The salsa showcases rich red roasted tomato chunks, softened translucent onion, and bright green pickled jalapeno slices. Its texture is chunky and naturally flowing around the whole chicken breast. Fresh, bright green cilantro leaves are scattered over the top, and a bright lime wedge sits beside the chicken. The chicken is centered, with the sauce spooned artfully over and around it, creating a natural, inviting pool. Ample negative space frames the dish. The plate is set on a simple wooden table in a modern bistro style, with a folded cotton napkin and standard flatware. Natural, even lighting illuminates the scene, hinting at a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas",
+      "Serve with a side of Mexican rice"
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Pickled jalapeno chilies (sliced)",
+        "quantity": "60g"
+      },
+      {
+        "name": "Pickled jalapeno brine",
+        "quantity": "30ml"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 medium (approx. 150g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut Roma tomatoes in half lengthwise. Place cut-side up on a baking sheet.",
+      "Roast tomatoes for 25-30 minutes until softened and slightly charred.",
+      "Dice half of the onion finely. Mince garlic.",
+      "Roughly chop remaining half onion.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat.",
+      "Pat chicken breasts dry. Season with salt and pepper.",
+      "Sear chicken breasts for 5-7 minutes per side until golden brown.",
+      "Reduce heat to medium. Add diced onion and minced garlic to the skillet. Sauté 3 minutes until fragrant.",
+      "Deglaze with 30ml pickled jalapeno brine. Scrape up any browned bits.",
+      "Remove chicken from skillet. Set aside.",
+      "Add roasted tomatoes, chopped onion, pickled jalapeno slices, chicken broth, cumin, oregano, and smoked paprika to the skillet.",
+      "Bring to a simmer. Cook for 10-12 minutes, stirring occasionally, until sauce slightly thickens.",
+      "Taste and adjust salt and pepper.",
+      "Return chicken breasts to the skillet. Spoon sauce over chicken.",
+      "Simmer for 5-7 minutes, or until internal temperature of chicken reaches 75°C.",
+      "Remove from heat. Squeeze fresh lime juice over chicken and sauce.",
+      "Garnish with fresh cilantro. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 466,
+      "cholesterol_mg": 161.8,
+      "dietary_fiber_g": 3.69,
+      "protein_g": 61.86,
+      "saturated_fat_g": 3.47,
+      "sodium_mg": 545.82,
+      "total_carbs_g": 12.67,
+      "total_fat_g": 18.05,
+      "total_sugars_g": 5.55,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108.36,
+      "cholesterol_mg": 37.63,
+      "dietary_fiber_g": 0.86,
+      "protein_g": 14.39,
+      "saturated_fat_g": 0.81,
+      "sodium_mg": 126.94,
+      "total_carbs_g": 2.95,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 1.29,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.9,
+      "dietary_fiber": 13.2,
+      "protein": 123.7,
+      "saturated_fat": 17.4,
+      "sodium": 23.7,
+      "total_carbs": 4.6,
+      "total_fat": 23.1
+    },
+    "serving_size_g": 430,
+    "total_recipe_weight_g": 1720
+  },
+  {
+    "recipe_name": "Pan-Seared Duck Breast, Fig Gastrique, Green Peppercorn Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_duck_breast%2C_fig_gastrique%2C_green_peppercorn_jus_20250723_091556_c7a42234.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T09:15:57.125317000Z",
+    "selected_ingredients": [
+      "fig",
+      "duck",
+      "green peppercorn"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single individual small starter portion is presented on an expensive bone china plate with a subtle, modern design, resting on a premium white Carrara marble surface. The plating is sophisticated and minimalist, showcasing abundant negative space. Three precisely cut, medium-rare duck breast chunks with golden, crispy skin are arranged organically near the plate's center. Adjacent to the duck, a single perfectly roasted fig quarter, its interior a vibrant ruby, adds a natural element. A small, artful dollop of glossy, dark amber fig gastrique is placed with precision. A small, glistening pool of deep brown green peppercorn jus is spooned on the opposite side, balancing the composition. A few delicate sprigs of fresh chervil provide a subtle pop of bright green. The overall color palette features warm browns, deep reds, and rich dark tones with vibrant green accents. Textures are crisp, tender, and silky. The scene is lit with dramatic professional lighting, casting soft, elegant shadows. A pristine white linen napkin, folded into a precise triangle, and minimalist silver flatware are placed to the side, enhancing the ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Duck",
+    "ingredients": [
+      {
+        "name": "Duck Breasts (Magret de Canard)",
+        "quantity": "2 (approx. 350g each)"
+      },
+      {
+        "name": "Fresh Figs",
+        "quantity": "6 medium"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "3 small"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Red Wine (dry)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Chicken or Duck Stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Green Peppercorns (in brine)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Unsalted Butter (cold)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Chervil or Micro-basil",
+        "quantity": "small sprigs for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Score the skin of each duck breast in a crosshatch pattern. Do not cut into the meat. Season generously with sea salt and black pepper.",
+      "Place duck breasts skin-side down in a cold, oven-safe skillet. Render fat over medium-low heat for 10-12 minutes until skin is golden and crisp. Pour off excess fat periodically.",
+      "Flip duck breasts. Sear meat-side for 2-3 minutes. Transfer skillet to preheated oven. Cook for 6-8 minutes for medium-rare (internal temperature 54-57°C / 130-135°F).",
+      "Remove duck from oven. Rest on a cutting board, tented with foil, for 10 minutes.",
+      "For the Fig Gastrique: Finely mince 1 shallot. Halve 2 figs. In a small saucepan, combine sugar and 1 tablespoon water. Cook over medium heat until sugar caramelizes to an amber color. Immediately add minced shallot and halved figs. Deglaze with red wine vinegar. Add 50 ml red wine. Simmer until reduced to a syrupy consistency. Strain, pressing solids to extract liquid. Keep warm.",
+      "For the Green Peppercorn Jus: Mince remaining 2 shallots and garlic. Drain green peppercorns. In the same skillet (after removing duck fat), add 5 ml olive oil. Sauté minced shallots until softened, about 3 minutes. Add minced garlic and sauté for 1 minute more. Deglaze with remaining 100 ml red wine, scraping up any fond. Reduce by half.",
+      "Add chicken stock and crushed green peppercorns to the skillet. Simmer gently for 5-7 minutes until slightly thickened. Strain the jus through a fine-mesh sieve, discarding solids. Return jus to clean saucepan. Whisk in cold butter, one piece at a time, until melted and incorporated. Season to taste.",
+      "For the Roasted Figs: Quarter remaining 4 figs. Lightly toss with 5 ml olive oil. Roast on a baking sheet for 5-7 minutes until slightly softened and warmed through.",
+      "To Plate: Slice rested duck breasts into thick, elegant pieces. Arrange 2-3 pieces of duck per plate. Place one roasted fig quarter alongside. Artfully drizzle a small, concentrated dollop of fig gastrique beside the duck. Spoon a small pool of green peppercorn jus near the duck. Garnish with a few delicate sprigs of fresh chervil or micro-basil. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 824,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 35.7,
+      "saturated_fat_g": 22,
+      "sodium_mg": 199,
+      "total_carbs_g": 29.2,
+      "total_fat_g": 61,
+      "total_sugars_g": 21.3,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.9,
+      "calories": 214,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.3,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 52,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 15.8,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 14,
+      "protein": 71,
+      "saturated_fat": 110,
+      "sodium": 9,
+      "total_carbs": 11,
+      "total_fat": 78
+    },
+    "serving_size_g": 385,
+    "total_recipe_weight_g": 1540
+  },
+  {
+    "recipe_name": "Spicy Beef and Chicken Potato Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_beef_and_chicken_potato_gratin_20250723_091132_d7fc58ba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T09:11:33.019892000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "mushroom",
+      "chicken",
+      "hot sauce",
+      "cheddar",
+      "potato",
+      "chicken stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous rectangular portion of Spicy Beef and Chicken Potato Gratin sits centered on a clean white porcelain dinner plate. The gratin's top layer features a golden-brown, bubbling crust of melted cheddar cheese, revealing hints of tender, thinly sliced potatoes beneath. The side of the slice showcases distinct layers: creamy, cooked potato slices alternate with a rich, savory filling of diced beef and chicken, finely diced onions, and thinly sliced mushrooms. The meat mixture displays deep brown tones from searing, contrasted by the lighter, cooked chicken pieces. A sprinkle of fresh, vibrant green chopped parsley garnishes the top, adding a fresh counterpoint. The plate is set on a simple wooden table surface, accompanied by standard silver cutlery and a folded white cotton napkin. Natural, even lighting illuminates the dish, highlighting its textures and inviting warmth, creating an approachable yet refined restaurant presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Beef and Chicken",
+    "ingredients": [
+      {
+        "name": "Beef mince",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease a 20x25 cm baking dish.",
+      "Peel potatoes. Slice thinly, about 3 mm thick. Place in a large pot. Cover with cold water. Bring to a boil. Simmer for 5 minutes. Drain well. Set aside.",
+      "Dice chicken breast into 1.5 cm cubes. Dice onion finely. Slice mushrooms thinly. Mince garlic.",
+      "Heat olive oil in a large pan over medium-high heat. Add beef mince. Cook, breaking up with a spoon, until browned. Drain excess fat. Remove beef from pan. Set aside.",
+      "Add diced chicken to the same pan. Cook until lightly browned and cooked through. Ensure internal temperature reaches 75°C. Remove chicken. Set aside.",
+      "Add diced onion to the pan. Sauté until softened, about 5 minutes. Add sliced mushrooms. Cook until moisture evaporates and mushrooms are browned. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Return cooked beef and chicken to the pan. Stir in chicken stock, hot sauce, smoked paprika, salt, and black pepper. Bring to a simmer. Cook for 5 minutes until sauce slightly thickens.",
+      "Grate cheddar cheese.",
+      "Arrange one-third of the sliced potatoes in a single layer at the bottom of the prepared baking dish. Spread half of the meat mixture over the potatoes. Sprinkle with one-third of the grated cheddar.",
+      "Repeat layering: another third of potatoes, remaining meat mixture, another third of cheddar. Finish with the remaining potatoes on top.",
+      "Cover the dish with foil. Bake for 30 minutes.",
+      "Remove foil. Sprinkle remaining cheddar cheese over the top. Bake uncovered for another 20-25 minutes, or until potatoes are tender and cheese is golden and bubbly.",
+      "Let gratin rest for 10 minutes before serving. This allows it to set for cleaner slices.",
+      "Chop fresh parsley for garnish."
+    ],
+    "notes": [
+      "Ensure potatoes are well-drained after par-boiling to prevent a watery gratin.",
+      "For best results, let the gratin cool slightly before slicing to maintain its layered structure."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 834,
+      "cholesterol_mg": 186.3,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 69.3,
+      "saturated_fat_g": 18.3,
+      "sodium_mg": 570.8,
+      "total_carbs_g": 42.8,
+      "total_fat_g": 41.8,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155,
+      "cholesterol_mg": 34.6,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 12.9,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 106,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.1,
+      "dietary_fiber": 22.9,
+      "protein": 138.5,
+      "saturated_fat": 91.6,
+      "sodium": 24.8,
+      "total_carbs": 15.6,
+      "total_fat": 53.5
+    },
+    "serving_size_g": 538.3,
+    "total_recipe_weight_g": 2153
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_risotto_20250723_090548_9d5ed31f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T09:05:48.737033000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Serve the risotto on a flat white porcelain dinner plate. The consistency is fluid and spreads naturally across the plate, appearing free-flowing rather than molded. The rice grains are distinct, coated in a glossy, creamy sauce. Large 3cm chunks of golden-brown seared chicken thighs are distributed throughout the rice. Sliced cremini and shiitake mushrooms show deep caramelization and earthy brown tones. The dish features a pale golden hue. Finely minced flat-leaf parsley provides a vibrant green contrast. A light dusting of finely grated Parmesan cheese covers the surface. The arrangement is organic. Beside the plate sits a heavy silver spoon and a folded white cotton napkin on a light oak table. Natural side lighting highlights the creamy texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while the consistency remains fluid",
+      "Accompany with a crisp dry white wine such as Pinot Grigio",
+      "Provide extra grated Parmesan at the table"
+    ],
+    "hero_ingredient": "Mixed Mushrooms",
+    "ingredients": [
+      {
+        "name": "boneless skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "mixed mushrooms (cremini and shiitake)",
+        "quantity": "300g"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "fresh flat-leaf parsley",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks.",
+      "Dice onion into 5mm pieces.",
+      "Mince garlic cloves.",
+      "Slice mushrooms into 5mm thick pieces.",
+      "Heat 20ml olive oil in a wide pan over medium-high heat.",
+      "Sear chicken chunks until browned and internal temperature reaches 75°C.",
+      "Remove chicken from pan and set aside.",
+      "Add mushrooms to the same pan. Sauté until moisture evaporates and edges brown.",
+      "Remove mushrooms and set aside.",
+      "Melt 20g butter in the pan. Add onion and garlic.",
+      "Cook until softened but not browned.",
+      "Add rice. Stir 2 minutes to toast the grains until edges are translucent.",
+      "Pour in white wine. Stir until liquid is fully absorbed.",
+      "Add 200ml warm stock. Stir continuously until liquid is absorbed.",
+      "Repeat stock additions one ladle at a time, stirring constantly, until rice is tender but firm.",
+      "Return chicken and mushrooms to the pan.",
+      "Remove from heat.",
+      "Vigorously stir in remaining 30g butter and Parmesan cheese to create a creamy emulsion.",
+      "Season with salt and pepper. Fold in chopped parsley."
+    ],
+    "notes": [
+      "Keep the chicken stock at a low simmer in a separate pot to maintain cooking temperature.",
+      "Stirring constantly is essential to release rice starches for a creamy texture.",
+      "Ensure chicken reaches the safety temperature of 75°C during the initial searing phase."
+    ],
+    "traditional_techniques": [
+      "tostatura",
+      "mantecatura",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 875,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 52,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 1450,
+      "total_carbs_g": 91,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 203,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 12.06,
+      "saturated_fat_g": 3.06,
+      "sodium_mg": 336.2,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 7.77,
+      "total_sugars_g": 0.65,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 9,
+      "protein": 104,
+      "saturated_fat": 66,
+      "sodium": 63,
+      "total_carbs": 33,
+      "total_fat": 43
+    },
+    "serving_size_g": 431,
+    "total_recipe_weight_g": 1725
+  }
+]

@@ -1,0 +1,695 @@
+[
+  {
+    "recipe_name": "Chicken and Poblano Chili Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_poblano_chili_bake_20250701_145354_08f29715.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:53:55.143295000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "garlic",
+      "cheese",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken and Poblano Chili Bake rests in a rustic, oval ceramic gratin dish. Two large, golden-brown chicken thighs are nestled deeply in a rich, bubbling red-orange tomato and poblano sauce. Strips of softened green poblano peppers are visible throughout the sauce. A generous layer of melted, bubbly Cotija cheese, with golden-brown edges, covers the chicken and sauce. The dish is topped with a sprinkle of vibrant green, freshly chopped cilantro. The texture is hearty and comforting. The gratin dish sits on a simple wooden table. Beside it, a small stack of warm corn tortillas and a dollop of white crema in a small bowl complete the authentic Mexican presentation. Natural, soft light illuminates the scene, highlighting the dish's warmth and inviting colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas.",
+      "Offer a side of Mexican rice.",
+      "Provide crema or sour cream and lime wedges."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "600g"
+      },
+      {
+        "name": "Poblano peppers",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Cotija cheese, shredded",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in an oven-safe skillet or Dutch oven over medium-high heat. Sear chicken thighs until golden brown, about 3-4 minutes per side. Remove chicken from skillet.",
+      "Add diced onion and poblano strips to the skillet. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic, cumin, and oregano. Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes and chicken broth. Bring to a simmer.",
+      "Return seared chicken thighs to the skillet, nestling them into the sauce.",
+      "Sprinkle shredded cheese evenly over the chicken and sauce.",
+      "Bake for 20-25 minutes, or until chicken is cooked through and cheese is bubbly and golden.",
+      "Garnish with fresh cilantro before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Simmering a robust sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 479,
+      "cholesterol_mg": 168,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 36,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 822,
+      "total_carbs_g": 19,
+      "total_fat_g": 29.2,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 97,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.2,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 166,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 16,
+      "protein": 72,
+      "saturated_fat": 52,
+      "sodium": 36,
+      "total_carbs": 7,
+      "total_fat": 37
+    },
+    "serving_size_g": 496,
+    "total_recipe_weight_g": 1985
+  },
+  {
+    "recipe_name": "Dark Beer Braised Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dark_beer_braised_chicken_and_potatoes_20250701_145314_c4dedb8e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:53:14.787110000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "dark beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a shallow, wide white ceramic bowl, showcasing a single generous portion. Golden-brown, whole chicken thighs are nestled amongst tender, slightly browned potato halves and chunks of soft carrots. A rich, dark, glossy sauce coats the ingredients, reflecting the natural light. The sauce has a moderate viscosity, clinging to the chicken and potatoes. The chicken skin retains some crispness, contrasting with the tender meat. Vibrant green chopped fresh parsley is scattered over the top, providing a pop of color. The background features a simple wooden table surface with a white linen napkin and minimalist cutlery, illuminated by natural, even lighting for an inviting, refined bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "8 (bone-in, skin-on)"
+      },
+      {
+        "name": "Small waxy potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Dark beer",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, sliced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, cut into 2cm chunks"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Smoked bacon lardons",
+        "quantity": "100g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper. Lightly dredge chicken in flour, shaking off excess.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear chicken thighs, skin-side down, until golden brown and crispy. About 5-7 minutes. Flip and sear other side for 2 minutes. Remove chicken from pot. Set aside.",
+      "Add bacon lardons to the pot. Cook until crispy. Remove bacon with a slotted spoon. Set aside.",
+      "Drain most of the fat, leaving about 2 tbsp in the pot. Add sliced onions and carrot chunks. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and tomato paste. Cook for 1 minute, stirring constantly.",
+      "Pour in dark beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return seared chicken and cooked bacon to the pot. Add chicken broth, thyme sprigs, and bay leaves. Nestle halved or quartered potatoes around the chicken.",
+      "Bring to a gentle simmer. Reduce heat to low, cover, and cook for 45-60 minutes, or until chicken is very tender and reaches an internal temperature of 75°C (167°F). Potatoes should be fork-tender.",
+      "Remove thyme sprigs and bay leaves before serving. Adjust seasoning if needed.",
+      "Serve hot in shallow bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 998,
+      "cholesterol_mg": 256.9,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 61.4,
+      "saturated_fat_g": 15.7,
+      "sodium_mg": 909.4,
+      "total_carbs_g": 53.4,
+      "total_fat_g": 55.4,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131,
+      "cholesterol_mg": 33.6,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 119.1,
+      "total_carbs_g": 7,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85.6,
+      "dietary_fiber": 24,
+      "protein": 122.7,
+      "saturated_fat": 78.5,
+      "sodium": 39.5,
+      "total_carbs": 19.4,
+      "total_fat": 71
+    },
+    "serving_size_g": 763.75,
+    "total_recipe_weight_g": 3055
+  },
+  {
+    "recipe_name": "Seared Salmon Bites with Dill Cream Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_salmon_bites_with_dill_cream_cheese_20250701_145312_bee9e876.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:53:12.445126000Z",
+    "selected_ingredients": [
+      "salmon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Eight to twelve elegant Seared Salmon Bites are arranged on a simple white ceramic serving platter. Each bite features a thick, golden-brown seared salmon cube, approximately 2.5 cm. This rests on a generous dollop of creamy dill cream cheese, which sits atop a crisp, bright green cucumber round, about 4 cm in diameter. The salmon cubes are uniformly cut and perfectly seared, showing a flaky, pink interior. A small, fresh dill sprig garnishes each bite, adding a vibrant green accent. The presentation is clean and inviting, with natural colors. The platter rests on a well-used wooden dining table, illuminated by warm, natural kitchen lighting. A casually placed cloth napkin creates a homely, relaxed atmosphere. Portions are modest for easy finger-food enjoyment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cream cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat salmon fillets dry. Remove skin if desired. Cut salmon into 2.5 cm cubes.",
+      "Season salmon cubes with salt and pepper.",
+      "Heat olive oil in a non-stick pan over medium-high heat.",
+      "Sear salmon cubes for 2-3 minutes per side, until golden-brown and cooked through (internal temperature 75°C). Set aside.",
+      "Finely chop fresh dill.",
+      "In a small bowl, combine cream cheese, chopped dill, juice from half a lemon, salt, and pepper. Mix until smooth.",
+      "Wash cucumber. Slice into 1 cm thick rounds.",
+      "Place a small dollop of dill cream cheese mixture onto each cucumber round.",
+      "Top each with a seared salmon cube.",
+      "Garnish each canapé with a small fresh dill sprig. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 331.8,
+      "cholesterol_mg": 78.75,
+      "dietary_fiber_g": 1.58,
+      "protein_g": 18.13,
+      "saturated_fat_g": 10.69,
+      "sodium_mg": 167.93,
+      "total_carbs_g": 5.71,
+      "total_fat_g": 26.12,
+      "total_sugars_g": 3.13,
+      "trans_fat_g": 0.41
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 159.2,
+      "cholesterol_mg": 37.78,
+      "dietary_fiber_g": 0.76,
+      "protein_g": 8.69,
+      "saturated_fat_g": 5.13,
+      "sodium_mg": 80.56,
+      "total_carbs_g": 2.74,
+      "total_fat_g": 12.53,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26.3,
+      "dietary_fiber": 5.6,
+      "protein": 36.3,
+      "saturated_fat": 53.4,
+      "sodium": 7.3,
+      "total_carbs": 2.1,
+      "total_fat": 33.5
+    },
+    "serving_size_g": 208.45,
+    "total_recipe_weight_g": 833.8
+  },
+  {
+    "recipe_name": "Tuscan-Style Chicken with Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan-style_chicken_with_roasted_vegetables_20250701_145258_1bbdf124.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:52:59.277209000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "tomato",
+      "potato",
+      "bell pepper",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Tuscan-style chicken is presented on a clean, round white porcelain plate. A golden-brown, seared chicken thigh is the focal point, nestled within a rustic, rich red tomato sauce. Surrounding the chicken are vibrantly colored vegetables: large, rustic chunks of roasted potato (3 cm), tender 2 cm squares of red and yellow bell peppers, and softened diced onions. Freshly chopped Roma tomatoes are scattered throughout, adding bright pops of red. The dish is generously topped with freshly grated Parmesan cheese and garnished with a few torn fresh basil leaves. The textures are varied, from the crisp-edged chicken to the tender vegetables and the smooth, glistening sauce. The plate sits on a light wooden table with a white cotton napkin and simple cutlery. Natural, soft lighting illuminates the dish from the side, with a subtly blurred, warm restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce",
+      "Accompany with a simple green salad dressed with vinaigrette"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium potatoes",
+        "quantity": "4 (e.g., Yukon Gold)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh Roma tomatoes",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Dice onion. Cut bell peppers into 2 cm squares. Quarter potatoes or cut into 3 cm chunks. Mince garlic.",
+      "Heat olive oil in a large, oven-safe skillet or Dutch oven over medium-high heat. Sear chicken thighs until golden brown on all sides, about 3-4 minutes per side. Remove chicken and set aside.",
+      "Add diced onion and bell peppers to the same skillet. Sauté for 5-7 minutes until softened. Add minced garlic and cook for 1 minute until fragrant.",
+      "Pour in red wine. Deglaze the pan, scraping up any browned bits. Cook until wine is mostly evaporated.",
+      "Stir in crushed tomatoes, chicken stock, and dried oregano. Bring to a simmer.",
+      "Return seared chicken thighs to the skillet. Add potato chunks, ensuring they are partially submerged in the sauce.",
+      "Cover the skillet. Reduce heat to medium-low. Simmer for 25-30 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender. Stir occasionally.",
+      "Roughly chop fresh Roma tomatoes. Stir them into the sauce during the last 5 minutes of cooking.",
+      "Taste and adjust seasoning with salt and pepper as needed. Garnish with freshly grated Parmesan cheese and torn fresh basil leaves before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For a deeper flavor, use bone-in, skin-on chicken thighs and remove skin after searing if preferred."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 646.4,
+      "cholesterol_mg": 173.6,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 48.2,
+      "saturated_fat_g": 7.4,
+      "sodium_mg": 404.4,
+      "total_carbs_g": 48.7,
+      "total_fat_g": 27.3,
+      "total_sugars_g": 11.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 103,
+      "cholesterol_mg": 27.7,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.7,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 64.5,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57.9,
+      "dietary_fiber": 30.6,
+      "protein": 96.5,
+      "saturated_fat": 37.2,
+      "sodium": 17.6,
+      "total_carbs": 17.7,
+      "total_fat": 35
+    },
+    "serving_size_g": 627.5,
+    "total_recipe_weight_g": 2510
+  },
+  {
+    "recipe_name": "Artisanal Sausage Roulade, Egg Noodle Agnolotti with Tofu-Cream Cheese, Broccoli Puree, and Aged Cheddar Foam",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_artisanal_sausage_roulade%2C_egg_noodle_agnolotti_with_tofu-cream_cheese%2C_broccoli_puree%2C_and_aged_cheddar_foam_20250701_145257_02f69e85.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:52:58.035684000Z",
+    "selected_ingredients": [
+      "cheddar",
+      "sausage",
+      "green bean",
+      "broccoli",
+      "pasta",
+      "cream cheese",
+      "tofu",
+      "egg noodle"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on an expansive, pristine white bone china plate with a subtle, elegant rim. A vibrant, deep emerald green broccoli puree forms a flowing, organic smear across the lower left quadrant of the plate, creating a dramatic sweep of color. Nestled artfully on the puree are two perfectly seared medallions of golden-brown artisanal sausage roulade, their interiors showing a tightly coiled, finely textured meat. Adjacent to the roulade, three delicate, pale ivory agnolotti are meticulously placed, their soft, inviting curves suggesting a creamy filling. Scattered thoughtfully are a few precisely cut, emerald green beans, lightly charred at their edges, offering a subtle textural contrast and a hint of smoky aroma. A delicate cloud of airy, pale yellow aged cheddar foam rests gracefully on the negative space, adding a sophisticated, ethereal element. The composition is asymmetrical, emphasizing natural forms and abundant white space, drawing the eye to each perfectly executed component. The entire plate is visible, showcasing the thoughtful arrangement and the luxurious simplicity of the dish. The surface beneath is a polished grey-veined Carrara marble, subtly reflecting the dramatic, focused overhead lighting, creating soft shadows that enhance depth. A pristine white linen napkin, folded into a crisp triangle, sits to the side, completing the ultra-minimalist, high-end dining scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Artisanal Sausage",
+    "ingredients": [
+      {
+        "name": "Artisanal Pork Sausage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Egg Noodle Dough",
+        "quantity": "300g"
+      },
+      {
+        "name": "Silken Tofu",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cream Cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "300g"
+      },
+      {
+        "name": "Green Beans",
+        "quantity": "150g"
+      },
+      {
+        "name": "Aged Cheddar",
+        "quantity": "100g"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Xanthan Gum (optional, for foam)",
+        "quantity": "tiny pinch"
+      }
+    ],
+    "instructions": [
+      "Remove casing from sausage. Finely chop shallot and garlic. Sauté shallot and garlic in 10g butter until soft. Cool.",
+      "Mix sausage meat with cooled shallot-garlic mixture, chopped thyme, salt, and pepper.",
+      "Lay cling film on work surface. Spread sausage mixture evenly into a rectangle, about 1.5 cm thick.",
+      "Tightly roll sausage into a cylinder using cling film. Secure ends. Poach in simmering water for 15-20 minutes, or until internal temperature reaches 75°C.",
+      "Remove from water. Immediately plunge into ice bath to stop cooking. Chill completely.",
+      "Once chilled, unwrap. Sear roulade in hot olive oil until golden brown and crisp on all sides. Rest briefly. Slice into 2 cm thick medallions.",
+      "Drain silken tofu well. Combine tofu, cream cheese, a pinch of nutmeg, salt, and pepper in a food processor. Blend until very smooth. Transfer to a piping bag.",
+      "Roll egg noodle dough thinly. Pipe small mounds of filling onto one half of the pasta sheet, spaced evenly.",
+      "Fold other half of pasta over filling. Press around filling to seal, removing air. Cut into small agnolotti shapes using a pasta wheel or knife. Ensure edges are well-sealed.",
+      "Cook agnolotti in salted boiling water for 2-3 minutes, or until al dente. Drain gently.",
+      "Trim broccoli into florets. Blanch in salted boiling water until tender-crisp. Immediately transfer to ice bath to preserve color.",
+      "Drain well. Blend blanched broccoli with 20g butter, a splash of hot water (if needed for consistency), salt, and pepper until perfectly smooth. Pass through a fine sieve for extra silkiness. Keep warm.",
+      "Trim green beans. Blanch in salted boiling water for 1-2 minutes. Transfer to ice bath. Drain.",
+      "Heat a dry cast-iron pan or griddle until very hot. Char green beans briefly until slightly blistered and tender-crisp. Season with salt.",
+      "Grate aged cheddar. Heat chicken stock and milk in a saucepan. Add grated cheddar. Stir until cheese melts.",
+      "Season with salt and pepper. If desired, add a tiny pinch of xanthan gum for stability. Transfer mixture to a siphon bottle. Charge with N2O cartridge. Shake well. Keep warm in a bain-marie.",
+      "On each plate, create a sweeping smear of vibrant broccoli puree.",
+      "Arrange 2-3 slices of seared sausage roulade artfully on the puree.",
+      "Place 3-4 agnolotti delicately around the roulade.",
+      "Add a few charred green beans for contrast and texture.",
+      "Dispense a cloud of aged cheddar foam beside the main elements.",
+      "Garnish with a microgreen or a single small herb sprig for a pop of color and freshness."
+    ],
+    "notes": [
+      "Ensure sausage is cooked to 75°C internal temperature.",
+      "For the foam, use a good quality aged cheddar for distinct flavor.",
+      "The key to this dish is precision in cutting, cooking, and plating."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 841,
+      "cholesterol_mg": 195.63,
+      "dietary_fiber_g": 4.55,
+      "protein_g": 37.32,
+      "saturated_fat_g": 27.83,
+      "sodium_mg": 1517.12,
+      "total_carbs_g": 37.44,
+      "total_fat_g": 62.69,
+      "total_sugars_g": 6.01,
+      "trans_fat_g": 1.39
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 151,
+      "cholesterol_mg": 35.1,
+      "dietary_fiber_g": 0.82,
+      "protein_g": 6.7,
+      "saturated_fat_g": 4.99,
+      "sodium_mg": 272.25,
+      "total_carbs_g": 6.72,
+      "total_fat_g": 11.25,
+      "total_sugars_g": 1.08,
+      "trans_fat_g": 0.25
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65.21,
+      "dietary_fiber": 16.26,
+      "protein": 74.64,
+      "saturated_fat": 139.16,
+      "sodium": 65.96,
+      "total_carbs": 12.48,
+      "total_fat": 96.44
+    },
+    "serving_size_g": 557.25,
+    "total_recipe_weight_g": 2229
+  }
+]

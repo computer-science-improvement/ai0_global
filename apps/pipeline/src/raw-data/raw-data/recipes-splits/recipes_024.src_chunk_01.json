@@ -1,0 +1,658 @@
+[
+  {
+    "recipe_name": "Hearty Mincemeat and Rice Stuffed Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_mincemeat_and_rice_stuffed_bell_peppers_20250624_032259_515fbfad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:22:59.937170000Z",
+    "selected_ingredients": [
+      "mincemeat",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generously filled half of a red bell pepper rests on a simple, round, off-white ceramic plate. The tender bell pepper is brimming with a savory mixture of finely crumbled, browned mincemeat and fluffy white rice. Visible diced onion and green parsley are mixed within the filling. A rich, reddish-brown tomato sauce pools around the pepper's base. The filling is topped with golden-brown, melted cheddar cheese. The color palette is warm and inviting, with vibrant red contrasting earthy tones. The dish is presented on a well-worn, warm-toned wooden dining table. A casually folded, plain cream-colored cloth napkin lies beside the plate. Soft, warm kitchen lighting illuminates the scene. The presentation is unpretentious, highlighting the comforting, home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Bell Peppers",
+    "ingredients": [
+      {
+        "name": "Large Bell Peppers",
+        "quantity": "4 (any color)"
+      },
+      {
+        "name": "Lean Beef Mincemeat",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cooked White Rice",
+        "quantity": "200 g (approx. 80g uncooked)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Grated Cheddar Cheese (optional)",
+        "quantity": "100 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Halve bell peppers lengthwise. Remove seeds and membranes. Place cut-side up in a large baking dish.",
+      "Heat olive oil in a large skillet over medium heat. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add mincemeat to the skillet. Break it apart with a spoon. Cook until browned, about 8-10 minutes. Drain any excess fat.",
+      "Stir in tomato paste and dried oregano. Cook for 1 minute.",
+      "Remove skillet from heat. Add cooked rice and half of the chopped fresh parsley. Mix well. Season with salt and pepper.",
+      "In a separate bowl, combine crushed tomatoes and beef stock. Season with salt and pepper.",
+      "Spoon the mincemeat and rice mixture evenly into each bell pepper half. Fill generously.",
+      "Pour the tomato and stock mixture around the stuffed peppers in the baking dish.",
+      "Cover the baking dish loosely with foil. Bake for 30 minutes.",
+      "Remove foil. If using, sprinkle grated cheese over each stuffed pepper. Bake uncovered for another 15-20 minutes, or until peppers are tender and cheese is melted and golden.",
+      "Garnish with remaining fresh parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 613,
+      "cholesterol_mg": 114,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 44.3,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 338,
+      "total_carbs_g": 38,
+      "total_fat_g": 31.5,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 19.7,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.7,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 58.4,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 23.2,
+      "protein": 88.6,
+      "saturated_fat": 67.5,
+      "sodium": 14.7,
+      "total_carbs": 13.8,
+      "total_fat": 40.4
+    },
+    "serving_size_g": 578.75,
+    "total_recipe_weight_g": 2315
+  },
+  {
+    "recipe_name": "Seared Duck Breast with Balsamic Strawberry Reduction and Poached Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_duck_breast_with_balsamic_strawberry_reduction_and_poached_egg_20250624_032227_8209daa8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:22:28.377351000Z",
+    "selected_ingredients": [
+      "strawberry",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of seared duck breast is presented on a clean white porcelain dinner plate, centrally positioned. The duck breast is sliced into thick, succulent medallions, revealing its tender, pink interior, with the crispy, golden-brown skin facing upwards. A vibrant, glossy balsamic strawberry reduction is generously spooned over and around the duck, its rich red hue contrasting with the meat. Perched atop the duck is a perfectly poached egg, its delicate white set while the bright yellow yolk remains soft and inviting. A sprig of fresh thyme or a sprinkle of finely chopped chives provides a subtle green garnish. The plate rests on a simple wooden table surface in a modern bistro setting. A crisp white cotton napkin is folded neatly beside the plate, accompanied by classic silver flatware. Natural, even lighting highlights the dish’s textures and colors, with a soft, unobtrusive background suggesting a casual yet refined dining atmosphere. The entire plate is visible, with balanced negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Duck Breast",
+    "ingredients": [
+      {
+        "name": "Duck breasts",
+        "quantity": "2 (approx. 300g each)"
+      },
+      {
+        "name": "Fresh strawberries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken or duck stock",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1, minced"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat duck breasts dry. Score duck skin in a crosshatch pattern, avoiding the meat. Season generously with salt and pepper.",
+      "Place duck breasts skin-side down in a cold, oven-safe skillet. Cook over medium heat for 8-12 minutes, rendering fat until skin is crispy and golden. Pour off excess fat periodically.",
+      "Flip duck breasts. Cook meat-side down for 3-5 minutes for medium-rare, or until internal temperature reaches 75°C (167°F).",
+      "Remove duck from skillet. Rest on a cutting board, skin-side up, for 10 minutes. Reserve 15ml rendered duck fat in skillet.",
+      "For the reduction: Add shallot to skillet with reserved duck fat. Sauté 2 minutes until softened. Add garlic, cook 30 seconds.",
+      "Add halved strawberries and balsamic vinegar. Cook 3-4 minutes, stirring, until strawberries soften slightly. Add stock and thyme sprigs. Bring to a simmer.",
+      "Reduce heat. Simmer gently for 8-10 minutes, stirring occasionally, until sauce thickens to a syrupy consistency. Remove thyme. Stir in butter until melted. Season with salt and pepper.",
+      "For poached eggs: Bring a pot of water to a gentle simmer. Add a splash of vinegar. Crack each egg into a small bowl. Gently slide eggs into simmering water. Poach 3-4 minutes until whites are set and yolks are runny.",
+      "Slice rested duck breasts into thick medallions. Arrange duck on plates. Spoon strawberry reduction over duck. Top each portion with a poached egg. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 684,
+      "cholesterol_mg": 328,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 36.1,
+      "saturated_fat_g": 19.1,
+      "sodium_mg": 196,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 54.7,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 213,
+      "cholesterol_mg": 102,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 11.2,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 61,
+      "total_carbs_g": 3,
+      "total_fat_g": 17,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 109,
+      "dietary_fiber": 5,
+      "protein": 72,
+      "saturated_fat": 95,
+      "sodium": 9,
+      "total_carbs": 4,
+      "total_fat": 70
+    },
+    "serving_size_g": 321,
+    "total_recipe_weight_g": 1284
+  },
+  {
+    "recipe_name": "Classic Chicken Parmesan with Spaghetti",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_chicken_parmesan_with_spaghetti_20250624_032220_80016b73.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:22:20.879277000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "tomato",
+      "onion",
+      "oregano",
+      "mozzarella",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Classic Chicken Parmesan is presented on a cream-colored, slightly imperfect ceramic plate. A golden-brown, pan-fried chicken breast, pounded thin and left whole, is generously topped with bubbling, melted mozzarella cheese and a rich, vibrant red tomato sauce. The crispy breading on the chicken is clearly visible. Beside the chicken, a neat, natural swirl of al dente spaghetti, lightly coated in the same savory tomato sauce, rests. A few torn fresh basil leaves are scattered over the dish for a pop of green. The plate sits on a well-used wooden dining table. A simple metal fork and knife are placed beside the plate. In the background, a rustic bread basket with slices of crusty Italian bread, a small bowl of grated Parmesan, and a bottle of olive oil create a homely, lived-in atmosphere. Warm, cozy lighting illuminates the scene, highlighting the comforting textures and colors of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian American",
+    "cultural_origin": "Italian American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce.",
+      "Offer extra grated Parmesan cheese at the table.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Spaghetti",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Medium onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh mozzarella cheese, sliced or shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "10g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large eggs, beaten",
+        "quantity": "2"
+      },
+      {
+        "name": "Breadcrumbs (Panko or regular)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh basil leaves, torn (optional)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Pound chicken breasts to even thickness (about 1.5 cm). Season with salt and pepper.",
+      "Set up breading station: one plate with flour, one shallow bowl with beaten eggs, one plate with breadcrumbs mixed with 25g Parmesan cheese.",
+      "Dredge each chicken breast in flour, shaking off excess. Dip in egg, then coat thoroughly in breadcrumbs.",
+      "Heat 30ml olive oil in a large oven-safe skillet over medium-high heat. Pan-fry chicken for 3-4 minutes per side until golden brown. Do not cook through.",
+      "Transfer chicken to a baking sheet if skillet is not oven-safe.",
+      "For the sauce: In the same skillet (or a saucepan), add remaining 30ml olive oil. Sauté diced onion over medium heat until softened, about 5 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes, dried oregano, salt, and pepper. Bring to a simmer. Cook for 15-20 minutes, stirring occasionally, until sauce thickens slightly.",
+      "While sauce simmers, cook spaghetti according to package directions until al dente. Drain well.",
+      "Spoon a generous amount of tomato sauce over each chicken breast. Top with sliced or shredded mozzarella cheese.",
+      "Bake in preheated oven for 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and cheese is melted and bubbly.",
+      "Serve chicken immediately alongside the cooked spaghetti. Spoon extra sauce over the pasta. Garnish with fresh basil or remaining Parmesan cheese, if desired."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Pounding the chicken ensures even cooking and tenderness.",
+      "Adjust sauce thickness by simmering longer for a thicker consistency or adding a splash of water for a thinner one."
+    ],
+    "traditional_techniques": [
+      "Pan-frying",
+      "Sautéing",
+      "Baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1310,
+      "cholesterol_mg": 306,
+      "dietary_fiber_g": 8.8,
+      "protein_g": 97.6,
+      "saturated_fat_g": 14.4,
+      "sodium_mg": 1671,
+      "total_carbs_g": 131,
+      "total_fat_g": 40.9,
+      "total_sugars_g": 13.4,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 175,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 13,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 223,
+      "total_carbs_g": 17.5,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 102,
+      "dietary_fiber": 31,
+      "protein": 195,
+      "saturated_fat": 72,
+      "sodium": 73,
+      "total_carbs": 48,
+      "total_fat": 52
+    },
+    "serving_size_g": 750,
+    "total_recipe_weight_g": 3000
+  },
+  {
+    "recipe_name": "Roasted Bell Pepper & Corn Pasta with Pan-Seared Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_bell_pepper_%26_corn_pasta_with_pan-seared_chicken_20250624_032219_499d7815.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:22:19.830562000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "apple",
+      "chicken stock",
+      "corn",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of penne pasta is artfully arranged on a clean, round white porcelain dinner plate. The pasta is coated in a rustic, vibrant tomato-apple sauce, showcasing rich red hues. Interspersed throughout are golden kernels of roasted corn and tender, brightly colored strips of red and yellow bell peppers. Two thick, pan-seared chicken breast pieces, golden-brown and juicy, are prominently placed atop the pasta. Fresh green basil leaves are scattered over the dish, adding a pop of color and freshness. The plate sits on a simple wooden table, accompanied by standard silver flatware and a folded cotton napkin, under natural, even lighting. The background is softly blurred, hinting at a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 600 g total)"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Corn kernels (fresh or frozen)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Apple (e.g., Honeycrisp or Fuji)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small, diced"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large handful, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Parmesan cheese (optional, for serving)",
+        "quantity": "50 g, grated"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Cut bell peppers into 2 cm thick strips. Toss bell pepper strips and corn kernels with 15 ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 20-25 minutes, until tender and slightly charred.",
+      "While vegetables roast, cook pasta according to package directions until al dente. Drain, reserving 125 ml pasta water.",
+      "Pat chicken breasts dry. Season generously with salt and pepper. Heat remaining 15 ml olive oil in a large skillet over medium-high heat. Sear chicken breasts for 5-7 minutes per side, until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet. Let rest 5 minutes, then cut into 2 cm thick medallions or chunks.",
+      "In the same skillet, add diced onion and cook until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Peel, core, and dice the apple into small (0.5 cm) cubes. Add crushed tomatoes, chicken stock, and diced apple to the skillet. Bring to a simmer. Cook for 10-12 minutes, stirring occasionally, until sauce slightly thickens and apple softens.",
+      "Add roasted bell peppers and corn to the sauce. Stir in chopped fresh basil. Season sauce with salt and pepper to taste.",
+      "Add drained pasta to the skillet with the sauce and vegetables. Toss to coat. If sauce is too thick, add reserved pasta water, 30 ml at a time, until desired consistency is reached.",
+      "Serve immediately. Arrange chicken medallions/chunks on top of the pasta. Garnish with additional fresh basil and optional grated Parmesan cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 843.6,
+      "cholesterol_mg": 138.6,
+      "dietary_fiber_g": 8.8,
+      "protein_g": 69.7,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 710,
+      "total_carbs_g": 99.8,
+      "total_fat_g": 18.6,
+      "total_sugars_g": 16.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128.4,
+      "cholesterol_mg": 21.1,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 10.6,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 108.1,
+      "total_carbs_g": 15.2,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46,
+      "dietary_fiber": 31,
+      "protein": 139,
+      "saturated_fat": 27,
+      "sodium": 31,
+      "total_carbs": 36,
+      "total_fat": 24
+    },
+    "serving_size_g": 657,
+    "total_recipe_weight_g": 2628
+  },
+  {
+    "recipe_name": "Pan-Seared Duck Breast with Strawberry-Rhubarb Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_duck_breast_with_strawberry-rhubarb_reduction_20250624_032157_ed57b742.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:21:57.930319000Z",
+    "selected_ingredients": [
+      "strawberry",
+      "pimms",
+      "yogurt",
+      "rhubarb",
+      "coconut vinegar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Pan-seared duck breast, cooked to a perfect medium-rare, is the centerpiece. The duck skin is deeply golden and crisp, the meat tender. It is presented as thick, unsliced chunks. A glossy, vibrant ruby-red reduction sauce, made from cooked strawberries and rhubarb, infused with Pimms and balanced with coconut vinegar, pools elegantly beside and slightly under the duck. The sauce features softened, distinct pieces of rhubarb and strawberry. A delicate swirl of creamy white plain yogurt is drizzled artfully over the sauce and plate, providing a contrasting color and texture. Fresh green thyme sprigs are scattered for garnish. The dish is served on a clean white porcelain plate on a simple wooden table, with natural, even lighting. A cotton napkin and standard modern flatware complete the casual dining setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Duck Breast",
+    "ingredients": [
+      {
+        "name": "Duck breasts",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Fresh strawberries",
+        "quantity": "200g, hulled and quartered"
+      },
+      {
+        "name": "Rhubarb",
+        "quantity": "150g, chopped into 2cm pieces"
+      },
+      {
+        "name": "Pimms No. 1 Cup",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Coconut vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Plain full-fat yogurt",
+        "quantity": "100g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken or duck stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g, cold and cubed"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Score duck breast skin in a crosshatch pattern. Do not cut into the meat. Season generously with salt and pepper.",
+      "Place duck breasts skin-side down in a cold, oven-safe pan. Cook over medium heat for 10-12 minutes until skin is golden brown and crispy. Pour off excess fat periodically.",
+      "Flip duck breasts. Sear meat side for 1-2 minutes.",
+      "Transfer pan to preheated oven. Roast for 6-8 minutes for medium-rare, or until desired doneness. Remove duck from pan. Rest on a cutting board, loosely tented with foil, for 5-7 minutes.",
+      "While duck rests, drain most fat from the pan, leaving 15ml. Add diced shallots to the pan. Sauté over medium heat for 2 minutes until softened. Add minced garlic and cook for 30 seconds until fragrant.",
+      "Stir in chopped rhubarb and quartered strawberries. Cook for 3 minutes, stirring occasionally.",
+      "Pour in Pimms No. 1 Cup, chicken stock, and coconut vinegar. Bring to a simmer. Reduce heat to low. Cook for 8-10 minutes, stirring occasionally, until sauce thickens slightly and fruit softens.",
+      "Remove sauce from heat. Whisk in cold butter, one cube at a time, until fully incorporated and sauce is glossy. Season sauce with salt and pepper to taste.",
+      "Spoon plain yogurt onto plates. Slice rested duck breasts into thick, unsliced chunks. Arrange duck on plates.",
+      "Spoon the strawberry-rhubarb reduction generously over and around the duck. Garnish with fresh thyme sprigs. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 850.7,
+      "cholesterol_mg": 197.4,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 40.9,
+      "saturated_fat_g": 24.7,
+      "sodium_mg": 1433.8,
+      "total_carbs_g": 14.1,
+      "total_fat_g": 67.5,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 201.9,
+      "cholesterol_mg": 46.9,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 9.7,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 340.4,
+      "total_carbs_g": 3.4,
+      "total_fat_g": 16,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 10,
+      "protein": 82,
+      "saturated_fat": 124,
+      "sodium": 62,
+      "total_carbs": 5,
+      "total_fat": 87
+    },
+    "serving_size_g": 421.25,
+    "total_recipe_weight_g": 1685
+  }
+]

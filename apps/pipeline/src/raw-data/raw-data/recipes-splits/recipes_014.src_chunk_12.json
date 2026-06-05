@@ -1,0 +1,640 @@
+[
+  {
+    "recipe_name": "Hungarian Beef Goulash with Carrots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hungarian_beef_goulash_with_carrots_20250630_043108_fbbff96b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:31:09.046061000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "onion",
+      "chili",
+      "carrot"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of rich, deep red-brown Hungarian beef goulash fills a rustic, deep ceramic bowl. Large, tender chunks of seared beef are nestled among thick-cut carrot rounds and softened diced onion and tomato. The stew's surface is glossy, with visible flecks of sweet paprika. A dollop of creamy white sour cream melts gently on top. A sprinkle of vibrant green chopped fresh parsley adds a final touch. The bowl sits on a well-used wooden dining table, beside a simple, off-white linen napkin. A sturdy silver spoon rests on the napkin, completing the homely, inviting scene under soft, natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Served with crusty bread or boiled potatoes",
+      "Accompanied by a dollop of sour cream or crème fraîche"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Stewing beef",
+        "quantity": "800g"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "3"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "30g"
+      },
+      {
+        "name": "Crushed caraway seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Sour cream or crème fraîche",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 3-4 cm cubes. Pat beef dry. Season with salt and pepper. Lightly dredge beef in flour.",
+      "Heat oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove beef from pot.",
+      "Add diced onions to the pot. Sauté until softened and translucent, about 8-10 minutes.",
+      "Add minced garlic, deseeded and finely chopped chili, sweet paprika, and crushed caraway seeds. Cook for 1 minute, stirring constantly.",
+      "Return beef to the pot. Add crushed tomatoes, thick-sliced carrot rounds, and beef broth.",
+      "Add bay leaves. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer for 2-3 hours, or until beef is very tender. Stir occasionally.",
+      "Remove bay leaves. Taste and adjust seasoning.",
+      "Serve hot with a dollop of sour cream and a sprinkle of chopped fresh parsley."
+    ],
+    "notes": [
+      "This hearty goulash is perfect for a comforting family meal. The slow cooking process ensures the beef becomes incredibly tender and flavorful.",
+      "Adjust chili quantity to your preferred spice level, or omit for a milder dish."
+    ],
+    "traditional_techniques": [
+      "Slow simmering",
+      "Paprika layering"
+    ]
+  },
+  {
+    "recipe_name": "Homestyle Beef and Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_beef_and_vegetable_stew_20250630_043028_cd97bba7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:30:29.164385000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "onion",
+      "chili",
+      "carrot"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of hearty beef and vegetable stew rests in an everyday, slightly off-white ceramic bowl with a subtle rim. The stew is rich, thick, and rustic, filling the bowl generously but not overflowing. Large, tender chunks of dark brown beef are visible, nestled among bright orange, thick-cut carrot rounds and softened pieces of light brown onion. Specks of red chili and green parsley are interspersed throughout, adding pops of natural color. The tomato-based broth is a deep, warm red-brown, clinging to the ingredients. The stew has a natural, homely texture, with components touching and slightly overlapping. The bowl sits on a well-used, warm-toned wooden dining table, showing subtle grain and minor imperfections. A simple, silver-colored spoon rests beside the bowl on the table. A casually folded, light-colored cloth napkin is placed nearby. The scene is lit with warm, inviting light, suggesting a cozy kitchen ambiance. The overall presentation is unpretentious and comforting, as if served directly from the pot for a family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 2.5 cm cubes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onions, roughly chopped",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Carrots, peeled and cut into thick 1.5 cm rounds",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Red chili, deseeded and minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped, for garnish",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Brown beef in batches until well-sealed on all sides. Remove beef and set aside.",
+      "Reduce heat to medium. Add chopped onions to the pot. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic and minced chili. Cook for 1 minute until fragrant.",
+      "Stir in carrots, diced tomatoes with their juice, beef broth, dried thyme, and bay leaf.",
+      "Return browned beef to the pot. Bring to a simmer.",
+      "Reduce heat to low. Cover the pot.",
+      "Simmer for 2 to 2.5 hours, or until beef is very tender. Stir occasionally.",
+      "Remove bay leaf. Adjust seasoning with salt and pepper as needed.",
+      "Ladle stew into bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 495,
+      "cholesterol_mg": 114,
+      "dietary_fiber_g": 6.24,
+      "protein_g": 35.75,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 1399,
+      "total_carbs_g": 26.13,
+      "total_fat_g": 28.07,
+      "total_sugars_g": 12.22,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 76,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 0.96,
+      "protein_g": 5.48,
+      "saturated_fat_g": 1.41,
+      "sodium_mg": 214,
+      "total_carbs_g": 4.01,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 1.87,
+      "trans_fat_g": 0.14
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 22,
+      "protein": 72,
+      "saturated_fat": 46,
+      "sodium": 61,
+      "total_carbs": 10,
+      "total_fat": 36
+    },
+    "serving_size_g": 652.4,
+    "total_recipe_weight_g": 2609.6
+  },
+  {
+    "recipe_name": "Chicken Fajitas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_fajitas_20250630_043002_ce8ce8f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:30:03.455826000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "bell pepper",
+      "salad green"
+    ],
+    "complexity": "simple",
+    "special_requests": "mexican cuisine, fajitas",
+    "visual_description": "A single, individual portion of chicken fajitas is presented on an everyday, round ceramic plate with a natural, unpretentious arrangement. Seared chicken strips, caramelized onion slices, and vibrant red and green bell pepper strips are generously mixed and piled in the center. The chicken has a golden-brown sear, and the vegetables retain a tender-crisp texture. A scattering of fresh, chopped cilantro provides a bright green contrast. Two lime wedges rest casually on the plate's edge. The plate is set on a well-used wooden dining table. Adjacent are a small stack of warm, soft corn tortillas, a small bowl of chunky red salsa, and a dollop of creamy white sour cream. The scene is illuminated by warm, cozy kitchen lighting, creating a relaxed, homely family dining atmosphere.",
+    "number_of_servings": 2,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn or flour tortillas for wrapping.",
+      "Offer traditional accompaniments like salsa, guacamole, and Mexican crema.",
+      "Provide lime wedges for fresh citrus flavor."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Corn or flour tortillas",
+        "quantity": "4-6 small"
+      },
+      {
+        "name": "Salsa",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Sour cream or Mexican crema",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Guacamole",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Slice chicken breast into 1 cm thick strips.",
+      "In a medium bowl, combine chicken strips, 15 ml olive oil, juice of half a lime, garlic powder, chili powder, cumin, oregano, salt, and black pepper. Mix well to coat. Marinate for 15 minutes.",
+      "Slice bell peppers and onion into thin strips.",
+      "Heat remaining 15 ml olive oil in a large skillet or cast-iron pan over medium-high heat.",
+      "Add marinated chicken to the hot skillet. Cook for 5-7 minutes, stirring occasionally, until chicken is cooked through and reaches an internal temperature of 75°C. Remove chicken from skillet and set aside.",
+      "Add sliced onions and bell peppers to the same skillet. Cook for 5-8 minutes, stirring, until vegetables are tender-crisp.",
+      "Return cooked chicken to the skillet with the vegetables. Toss everything to combine and heat through for 1-2 minutes.",
+      "Warm tortillas according to package directions (microwave, dry skillet, or oven).",
+      "Serve the sizzling chicken and vegetable mixture immediately with warm tortillas, fresh cilantro, remaining lime half cut into wedges, salsa, sour cream, and guacamole."
+    ],
+    "notes": [
+      "Marinating the chicken briefly enhances flavor and tenderness.",
+      "Ensure your skillet is hot enough to get a good sear on the chicken and vegetables."
+    ],
+    "traditional_techniques": [
+      "Marinating",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 649,
+      "cholesterol_mg": 127.5,
+      "dietary_fiber_g": 8.21,
+      "protein_g": 50.53,
+      "saturated_fat_g": 4.63,
+      "sodium_mg": 1470.3,
+      "total_carbs_g": 49.72,
+      "total_fat_g": 25.17,
+      "total_sugars_g": 7.81,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149,
+      "cholesterol_mg": 29.3,
+      "dietary_fiber_g": 1.88,
+      "protein_g": 11.6,
+      "saturated_fat_g": 1.06,
+      "sodium_mg": 337.4,
+      "total_carbs_g": 11.41,
+      "total_fat_g": 5.78,
+      "total_sugars_g": 1.79,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.5,
+      "dietary_fiber": 29.3,
+      "protein": 101.1,
+      "saturated_fat": 23.2,
+      "sodium": 63.9,
+      "total_carbs": 18.1,
+      "total_fat": 32.3
+    },
+    "serving_size_g": 435.8,
+    "total_recipe_weight_g": 871.6
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy White Bean Ragout",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_white_bean_ragout_20250630_042938_6eda00c9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:29:38.783961000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "oil",
+      "bean",
+      "thyme",
+      "garlic",
+      "celery"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared chicken breast is centered on a clean white porcelain dinner plate, resting atop a generous, flowing bed of creamy white bean ragout. The chicken breast is golden-brown with a visible seared crust, showcasing its tender interior. The ragout is a creamy, off-white color, interspersed with clearly defined diced pieces of pale green celery and translucent diced onion. Small flecks of dark green thyme leaves are visible throughout the ragout, adding color and texture. A sprinkle of bright green chopped fresh parsley garnishes the top of the chicken and the ragout. The plate is moderately filled, leaving ample negative space around the edges. The setting includes a simple wooden table surface, a folded white cotton napkin positioned to the side, and standard polished flatware, all under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml, divided"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Celery stalks, diced",
+        "quantity": "2 (approx. 100g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh thyme, leaves picked",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Canned cannellini beans, rinsed and drained",
+        "quantity": "2 x 400g cans"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "20g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large skillet over medium-high heat.",
+      "Sear chicken breasts 5-7 minutes per side until golden brown and internal temperature reaches 75°C (167°F). Remove chicken. Set aside.",
+      "Add remaining 15 ml olive oil to the same skillet. Reduce heat to medium.",
+      "Add diced onion and diced celery. Sauté 5-7 minutes until softened.",
+      "Add minced garlic and thyme leaves. Sauté 1 minute until fragrant.",
+      "Stir in rinsed cannellini beans and chicken stock. Bring to a simmer.",
+      "Simmer 10-15 minutes, stirring occasionally, until liquid slightly reduces and ragout thickens.",
+      "Stir in heavy cream, if using. Season ragout with salt and pepper to taste.",
+      "To serve, spoon a generous portion of white bean ragout onto each plate. Place one seared chicken breast on top of the ragout. Garnish with chopped fresh parsley."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 656,
+      "cholesterol_mg": 192,
+      "dietary_fiber_g": 9.9,
+      "protein_g": 72.9,
+      "saturated_fat_g": 8.8,
+      "sodium_mg": 1076,
+      "total_carbs_g": 36.2,
+      "total_fat_g": 23.6,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 13.2,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 195,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 35,
+      "protein": 146,
+      "saturated_fat": 44,
+      "sodium": 47,
+      "total_carbs": 13,
+      "total_fat": 30
+    },
+    "serving_size_g": 552,
+    "total_recipe_weight_g": 2208
+  },
+  {
+    "recipe_name": "Seared Chicken and Herbed Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_and_herbed_rice_salad_20250630_042618_14649e3f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:26:18.511295000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mustard",
+      "mayonnaise",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single starter portion of Seared Chicken and Herbed Rice Salad is elegantly plated on a clean, round white porcelain dinner plate. The plate sits on a simple light wooden table. The seared chicken breast, cut into substantial 2cm chunks, is golden-brown with a visible crust, arranged neatly beside a mound of fluffy Basmati rice salad. The rice salad is speckled with vibrant green chopped parsley and chives, and small white and red flecks of finely diced celery and red onion, creating a fresh, textural contrast. A light drizzle of the creamy, pale yellow honey mustard dressing is visible over the chicken and rice. Natural, even lighting highlights the ingredients' fresh colors and textures. A folded cotton napkin is placed beside the plate. The background is a subtly blurred, casual restaurant setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "2 medium (approx. 400g)"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "80g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Honey",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "10g, chopped"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "50g, finely diced"
+      },
+      {
+        "name": "Celery",
+        "quantity": "50g, finely diced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "300ml"
+      }
+    ],
+    "instructions": [
+      "Rinse rice. Cook rice with 300ml water and a pinch of salt. Bring to boil. Reduce heat. Cover. Simmer 12 minutes. Remove from heat. Let stand 10 minutes. Fluff with fork. Cool completely.",
+      "Whisk mayonnaise, Dijon mustard, honey, and lemon juice in a small bowl. Season with salt and pepper. Set aside.",
+      "Pat chicken breasts dry. Season with salt and pepper. Heat 15ml olive oil in a pan over medium-high heat. Sear chicken breasts 6-8 minutes per side until internal temperature reaches 75°C. Remove. Rest 5 minutes. Cut into 2cm chunks.",
+      "In a large bowl, combine cooled rice, chopped parsley, chopped chives, diced red onion, and diced celery. Mix well.",
+      "Add dressing to rice mixture. Stir gently to coat. Taste and adjust seasoning.",
+      "Divide herbed rice salad among 4 starter plates. Arrange seared chicken chunks beside or on top of the salad. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.2,
+      "calories": 531,
+      "cholesterol_mg": 93.4,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 34.9,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 297.4,
+      "total_carbs_g": 36.7,
+      "total_fat_g": 26.7,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 186,
+      "cholesterol_mg": 32.7,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 12.2,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 104.1,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 5,
+      "protein": 70,
+      "saturated_fat": 22,
+      "sodium": 13,
+      "total_carbs": 13,
+      "total_fat": 34
+    },
+    "serving_size_g": 285.7,
+    "total_recipe_weight_g": 1142.6
+  }
+]

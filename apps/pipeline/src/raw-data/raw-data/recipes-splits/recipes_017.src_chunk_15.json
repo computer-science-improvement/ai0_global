@@ -1,0 +1,737 @@
+[
+  {
+    "recipe_name": "Cultured Egg & Radish Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cultured_egg_%26_radish_bites_20250626_093650_ee3eb080.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:36:50.829992000Z",
+    "selected_ingredients": [
+      "egg"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "Eight to twelve elegant, bite-sized canapés are artfully arranged with consistent spacing on a light-colored, natural stone platter. White egg white halves are meticulously filled with a smooth, pale yellow yolk mixture. Each bite is topped with a single, paper-thin, round slice of vibrant red radish and a delicate sprig of fresh dill. These elegant components rest on small, irregular-shaped sourdough crisps. The composition showcases a clean palette of whites, pale yellows, and striking reds and greens, emphasizing natural ingredient beauty. Textures range from creamy yolk to firm egg white, crisp radish, and crunchy sourdough. The platter sits on a light, reclaimed wood table surface. Soft, diffused natural light illuminates the scene, creating gentle shadows. A folded, undyed linen napkin in a natural beige tone subtly complements the setting. The background is clean and minimalist, with a hint of lush green foliage suggesting a connection to nature.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "6"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Lacto-fermented chili paste (or brine)",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "4 small"
+      },
+      {
+        "name": "Fresh dill or chives",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Stale sourdough bread",
+        "quantity": "2 slices"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Hard-boil eggs. Cool completely in ice water. Peel eggs carefully.",
+      "Slice each egg in half lengthwise. Gently scoop out yolks into a small bowl. Place egg whites on a clean surface.",
+      "Mash yolks thoroughly with a fork. Add mayonnaise, Dijon mustard, fermented chili paste, salt, and pepper. Mix until smooth and creamy.",
+      "Toast sourdough slices until crisp. Break into irregular, bite-sized crisps. Drizzle lightly with olive oil.",
+      "Using a small spoon or piping bag, fill each egg white half with the yolk mixture.",
+      "Wash radishes. Slice radishes into paper-thin rounds using a mandoline or sharp knife. If radish greens are young and tender, reserve a few small leaves for garnish.",
+      "Arrange filled egg halves on the sourdough crisps.",
+      "Garnish each canapé with a single radish slice and a small sprig of fresh dill or finely chopped chives. Add reserved radish greens if using.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.4,
+      "calories": 272,
+      "cholesterol_mg": 286.1,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.3,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 359.8,
+      "total_carbs_g": 9.9,
+      "total_fat_g": 20.7,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 227,
+      "cholesterol_mg": 238.3,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.4,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 299.8,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 17.2,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 95.4,
+      "dietary_fiber": 2.3,
+      "protein": 22.6,
+      "saturated_fat": 22.1,
+      "sodium": 15.6,
+      "total_carbs": 3.6,
+      "total_fat": 26.5
+    },
+    "serving_size_g": 120,
+    "total_recipe_weight_g": 480.1
+  },
+  {
+    "recipe_name": "Fermented Tomato & Chicken Rice Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_%26_chicken_rice_bowl_20250626_093608_c1a26d0e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:36:08.757496000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of the Fermented Tomato & Chicken Rice Bowl is presented in a deep, matte cream-colored ceramic bowl. A mound of fluffy Basmati rice forms the base. Tender, golden-brown chicken chunks are nestled on one side, glistening with a savory pan sauce. Adjacent, a vibrant cluster of halved, quick-brined cherry tomatoes adds a pop of deep red and tangy texture. Thinly sliced quick-pickled red onions are scattered over, their translucent purple-pink hues contrasting beautifully. A sprinkle of fresh green parsley adds a final touch. The presentation is clean, minimalistic, and natural, with ample negative space. The bowl rests on a light, reclaimed wooden surface, accompanied by simple wooden chopsticks and an undyed linen napkin, evoking an eco-conscious, rustic elegance. Soft, natural light highlights the ingredients' colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Quick-Brined Tomatoes",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Brown onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Apple cider vinegar (for pickling)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Water (for pickling)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sugar (for pickling)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Fresh parsley or coriander",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Quick-Brined Tomatoes: Wash 500g cherry tomatoes. Halve them. In a bowl, combine tomatoes with 5g salt, 5g sugar, and 30ml apple cider vinegar. Stir. Let sit at room temperature while preparing other ingredients.",
+      "Prepare Quick Pickled Red Onions: Thinly slice 1 medium red onion. In a small saucepan, combine 120ml apple cider vinegar, 60ml water, 15g sugar, and 5g salt. Bring to a simmer until sugar and salt dissolve. Pour hot liquid over sliced red onion in a heatproof bowl. Let cool.",
+      "Cook Rice: Rinse 300g Basmati rice until water runs clear. In a saucepan, combine rice with 600ml water. Bring to a boil. Reduce heat to low, cover, and simmer for 12-15 minutes until water is absorbed. Remove from heat. Let stand covered for 5 minutes. Fluff with a fork.",
+      "Cook Chicken: Dice 1 large brown onion. Mince 3 garlic cloves. Grate 2cm ginger. Cut 600g chicken thighs into 3-4 cm chunks. Season chicken with salt and pepper. Heat 15ml olive oil in a large pan over medium-high heat. Sear chicken chunks until golden brown on all sides. Remove chicken from pan.",
+      "Add remaining 15ml olive oil to the pan. Add diced brown onion. Sauté until softened, about 5 minutes. Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Return chicken to the pan. Pour in 500ml chicken stock. Bring to a simmer. Reduce heat to low. Cover and cook for 15-20 minutes, or until chicken is cooked through (internal temperature 75°C).",
+      "Assemble Bowls: Divide cooked rice among 4 deep bowls. Spoon chicken and its sauce over the rice. Drain quick-brined tomatoes and spoon a generous amount next to the chicken. Drain quick-pickled red onions and scatter over the dish. Garnish with chopped fresh parsley or coriander."
+    ],
+    "notes": [
+      "For enhanced flavor and zero-waste, use chicken bones and vegetable scraps to make homemade chicken stock.",
+      "Adjust the amount of sugar and vinegar in the quick-pickled red onions to your preferred balance of sweetness and sourness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 675.3,
+      "cholesterol_mg": 177.3,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 40.5,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 251.5,
+      "total_carbs_g": 80.6,
+      "total_fat_g": 20.4,
+      "total_sugars_g": 12.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 108.9,
+      "cholesterol_mg": 28.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.5,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 40.6,
+      "total_carbs_g": 13,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 15,
+      "protein": 81,
+      "saturated_fat": 24,
+      "sodium": 11,
+      "total_carbs": 29,
+      "total_fat": 26
+    },
+    "serving_size_g": 620,
+    "total_recipe_weight_g": 2480
+  },
+  {
+    "recipe_name": "French Braised Beef with Roasted Potatoes and Pearl Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_french_braised_beef_with_roasted_potatoes_and_pearl_onions_20250626_093530_eb62b2a6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:35:30.659771000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of French Braised Beef is presented on a clean, wide white porcelain dinner plate. Generous, irregular chunks of dark, fork-tender braised beef are the centerpiece, glistening with a rich, deep brown red wine reduction sauce spooned over them and pooling at the base. Surrounding the beef are golden-brown roasted potato wedges, their skins slightly crisp, and glistening amber caramelized pearl onions. A scattering of bright green chopped fresh parsley provides a vibrant contrast. The composition is balanced and elegant, with moderate negative space. The plate rests on a simple wooden table surface in a modern bistro setting. A crisp white cotton napkin is folded beside the plate, and a crusty slice of baguette is placed near the edge, ready for dipping. Natural, even lighting highlights the textures and colors of the dish, with a softly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Large yellow onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red wine (dry)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Pearl onions",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat beef chuck roast dry. Cut into 5-6 cm chunks. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat. Sear beef chunks in batches until deeply browned on all sides. Remove beef and set aside.",
+      "Dice large yellow onion. Add to the pot. Sauté until softened, about 5 minutes. Mince garlic cloves. Add to pot. Cook for 1 minute until fragrant.",
+      "Sprinkle flour over onions and garlic. Stir for 1 minute. Deglaze with red wine, scraping up any browned bits from the bottom of the pot. Cook until wine is mostly evaporated.",
+      "Return beef to the pot. Add beef broth, thyme sprigs, and bay leaf. Bring to a simmer. Cover and transfer to a preheated oven at 160°C.",
+      "Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "While beef braises, preheat oven to 200°C. Halve or quarter small new potatoes. Toss with a drizzle of olive oil, salt, and pepper. Spread on a baking sheet. Roast for 30-40 minutes until golden brown and tender.",
+      "Peel pearl onions. Heat butter in a small skillet over medium heat. Add pearl onions. Cook, stirring occasionally, until caramelized and tender, about 15-20 minutes.",
+      "Once beef is tender, remove from oven. Remove beef chunks and set aside. Strain the braising liquid through a fine-mesh sieve into a saucepan. Discard solids and herbs.",
+      "Bring braising liquid to a simmer over medium-high heat. Reduce until slightly thickened and glossy, about 10-15 minutes. Adjust seasoning if needed.",
+      "Chop fresh parsley. Arrange beef chunks, roasted potatoes, and caramelized pearl onions on individual plates. Spoon reduced sauce generously over the beef. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 856,
+      "cholesterol_mg": 199,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 70.9,
+      "saturated_fat_g": 14.3,
+      "sodium_mg": 361,
+      "total_carbs_g": 53.8,
+      "total_fat_g": 38.3,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 103,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 44,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 23,
+      "protein": 142,
+      "saturated_fat": 72,
+      "sodium": 16,
+      "total_carbs": 20,
+      "total_fat": 49
+    },
+    "serving_size_g": 828.5,
+    "total_recipe_weight_g": 3314
+  },
+  {
+    "recipe_name": "Baked Rigatoni with Smoked Provolone, Ricotta, and Artichoke",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_rigatoni_with_smoked_provolone%2C_ricotta%2C_and_artichoke_20250626_093514_22832658.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:35:15.397083000Z",
+    "selected_ingredients": [
+      "pasta",
+      "artichoke",
+      "smoked provolone cheese",
+      "ricotta",
+      "coffee",
+      "mayonnaise"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of baked rigatoni is presented in a clean, off-white porcelain pasta bowl, set on a simple light wooden table. The rigatoni is coated in a rich, creamy sauce, with visible pieces of chopped artichoke hearts (1 cm pieces) and melted cheeses. The top surface features a beautiful golden-brown, bubbly crust from the baked smoked provolone and crispy panko breadcrumbs. The interior of the dish shows tender rigatoni tubes, some holding pockets of the creamy ricotta-based sauce. Specks of vibrant green fresh parsley are sprinkled over the top, adding a pop of color. The overall color palette is warm, with creamy whites and light browns contrasting with the green of the artichoke and parsley. The dish has a comforting, hearty texture. A silver fork and knife are placed neatly to the right of the bowl on a folded cotton napkin. Natural, even lighting illuminates the dish, highlighting its textures and colors without harsh shadows. The background is minimal, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread.",
+      "Pair with a simple green salad."
+    ],
+    "hero_ingredient": "Smoked Provolone",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Artichoke hearts, canned or jarred",
+        "quantity": "200 g, drained and chopped"
+      },
+      {
+        "name": "Smoked provolone cheese",
+        "quantity": "150 g, shredded"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Strong brewed coffee or espresso",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Cook rigatoni according to package directions until al dente. Drain and set aside.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium heat.",
+      "Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in chopped artichoke hearts. Cook for 2 minutes.",
+      "Deglaze with strong brewed coffee. Simmer until liquid is almost absorbed.",
+      "In a separate saucepan, melt butter over medium heat.",
+      "Whisk in flour to form a roux. Cook for 1 minute.",
+      "Gradually whisk in heavy cream and vegetable broth. Cook, stirring, until sauce thickens.",
+      "Remove sauce from heat. Stir in ricotta cheese and 100 g of shredded smoked provolone until melted and smooth.",
+      "Stir in mayonnaise, salt, pepper, and nutmeg. Taste and adjust seasoning.",
+      "Combine cooked rigatoni with the cheese sauce in the skillet or a large baking dish. Mix well to coat all pasta.",
+      "Top with remaining 50 g shredded smoked provolone and panko breadcrumbs.",
+      "Bake for 20-25 minutes, or until bubbling and golden brown on top.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 1104,
+      "cholesterol_mg": 172,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 35.2,
+      "saturated_fat_g": 32.1,
+      "sodium_mg": 1150,
+      "total_carbs_g": 100.8,
+      "total_fat_g": 61.8,
+      "total_sugars_g": 9.6,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 259,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 8.3,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 270,
+      "total_carbs_g": 23.6,
+      "total_fat_g": 14.5,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 26,
+      "protein": 70,
+      "saturated_fat": 161,
+      "sodium": 50,
+      "total_carbs": 37,
+      "total_fat": 79
+    },
+    "serving_size_g": 426.5,
+    "total_recipe_weight_g": 1706
+  },
+  {
+    "recipe_name": "Yogurt-Marinated Chicken with Fermented Tomato Relish and Creamy Macaroni Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_yogurt-marinated_chicken_with_fermented_tomato_relish_and_creamy_macaroni_salad_20250626_093456_12a665b8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:34:57.553048000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "orange",
+      "garlic",
+      "lemon",
+      "sugar",
+      "breadcrumbs",
+      "mushroom",
+      "milk",
+      "yogurt",
+      "oil",
+      "cheese",
+      "mayonnaise",
+      "cucumber",
+      "dill",
+      "macaroni",
+      "black pepper",
+      "carrot",
+      "egg"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a natural cream-colored handcrafted ceramic plate, showcasing a single, generously portioned serving. A golden-brown seared chicken breast, whole, rests on one side of the plate. Its surface reveals a subtle char from the pan-searing. Adjacent to the chicken is a vibrant, chunky mound of fermented tomato relish, displaying a rich medley of red tomato pieces, pale diced onion, and specks of green dill. The relish has a rustic, slightly irregular texture. On the other side of the plate, a creamy macaroni salad is neatly scooped, revealing tender macaroni, bright orange shredded carrot, crisp green cucumber pieces, and earthy mushroom bits. A sprinkle of golden toasted breadcrumbs adds texture to the macaroni, and a fresh dill sprig garnishes the salad, providing a touch of green. The overall composition is clean and minimalist, with ample white space on the plate. The setting features a light, textured reclaimed wood table surface, with an undyed linen napkin draped casually. Soft, natural light illuminates the scene, highlighting the fresh, natural colors and textures of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "4 x 180g pieces"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2, zest and juice"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1/2, zest"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "400g, diced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 small, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "5g, chopped"
+      },
+      {
+        "name": "Macaroni",
+        "quantity": "200g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "80g"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "150g, small diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, shredded"
+      },
+      {
+        "name": "Button mushrooms",
+        "quantity": "100g, finely diced"
+      },
+      {
+        "name": "Hard-boiled egg",
+        "quantity": "1, chopped (optional)"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "10g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1g"
+      },
+      {
+        "name": "Toasted breadcrumbs",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Combine yogurt, minced garlic, lemon zest and juice, orange zest, olive oil, salt, and black pepper in a bowl. Add chicken breasts. Coat well. Marinate in refrigerator for at least 2 hours, or overnight.",
+      "In a clean jar or bowl, combine diced tomatoes, finely diced red onion, minced garlic, sugar, salt, black pepper, and lemon juice. Stir well. Cover loosely. Let sit at room temperature for 12-24 hours to lightly ferment. Refrigerate after fermentation. Stir in chopped dill before serving.",
+      "Bring a pot of salted water to a boil. Add macaroni. Cook according to package directions until al dente. Drain well. Rinse with cold water to stop cooking. Drain again thoroughly.",
+      "In a large bowl, combine cooked macaroni, mayonnaise, yogurt, milk, diced cucumber, shredded carrot, finely diced mushrooms, chopped hard-boiled egg (if using), and grated cheese. Add chopped dill, salt, and black pepper. Mix gently until all ingredients are coated. Refrigerate until ready to serve.",
+      "Heat a large pan over medium-high heat. Remove chicken from marinade, shaking off excess. Sear chicken breasts for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Rest chicken for 5 minutes before serving.",
+      "Plate a single chicken breast. Spoon a generous portion of creamy macaroni salad next to it. Add a spoonful of fermented tomato relish. Garnish the macaroni salad with toasted breadcrumbs and a fresh dill sprig."
+    ],
+    "notes": [
+      "To make this recipe even more zero-waste, save chicken bones for homemade stock.",
+      "Leftover citrus peels can be dried and used for infused water or tea.",
+      "Vegetable scraps from carrots and onions can be saved for making vegetable broth.",
+      "Stale bread can be used to make the toasted breadcrumbs."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.5,
+      "calories": 843.5,
+      "cholesterol_mg": 203.5,
+      "dietary_fiber_g": 5,
+      "protein_g": 72.6,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 1707.8,
+      "total_carbs_g": 56.6,
+      "total_fat_g": 34,
+      "total_sugars_g": 10.6,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 151.1,
+      "cholesterol_mg": 36.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 13,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 305.9,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 18,
+      "protein": 145,
+      "saturated_fat": 47,
+      "sodium": 74,
+      "total_carbs": 21,
+      "total_fat": 44
+    },
+    "serving_size_g": 558.4,
+    "total_recipe_weight_g": 2233.5
+  }
+]

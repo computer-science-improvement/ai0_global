@@ -1,0 +1,645 @@
+[
+  {
+    "recipe_name": "Zuppa di Pollo con Verdure",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zuppa_di_pollo_con_verdure_20250812_092055_1c5de957.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T09:20:55.975692000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "итальянская cuisine",
+    "visual_description": "A single, generous portion of Zuppa di Pollo con Verdure is presented in a deep, rustic ceramic bowl with natural imperfections, placed on a well-used wooden dining table. The hearty soup features tender, shredded chicken pieces, alongside clearly defined diced carrots, celery, and potato cubes, and small al dente pasta. The broth is a rich, warm amber color, reflecting the simmered vegetables and tomatoes. A scattering of vibrant green chopped fresh parsley sits on top, with a light dusting of finely grated Parmesan cheese. The bowl is surrounded by a few stray crumbs from a thick slice of crusty, artisanal bread, casually placed beside it. A simple, silver-colored soup spoon rests on the table next to the bowl. The scene is bathed in warm, soft kitchen lighting, evoking a cozy, homely family meal atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "Offer grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrots, peeled and diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Potatoes, peeled and diced into 1.5 cm cubes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Small pasta (ditalini or orzo)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "a small bunch"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion, carrots, and celery. Cook 8-10 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Add chicken thighs to the pot. Brown lightly on all sides for 3-4 minutes.",
+      "Pour in diced tomatoes and chicken broth. Add dried oregano, salt, and pepper.",
+      "Bring to a boil, then reduce heat to low. Simmer for 20 minutes, or until chicken is cooked through (75°C internal temperature).",
+      "Carefully remove chicken from pot. Shred chicken into bite-sized pieces using two forks. Set aside.",
+      "Add diced potatoes to the simmering soup. Cook 10 minutes.",
+      "Add small pasta to the soup. Cook according to package directions, usually 8-10 minutes, until al dente.",
+      "Return shredded chicken to the pot. Stir to combine.",
+      "Taste and adjust seasoning as needed.",
+      "Ladle hot soup into bowls. Garnish with fresh chopped parsley and grated Parmesan cheese."
+    ],
+    "traditional_techniques": [
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 459,
+      "cholesterol_mg": 139,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 37.8,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 1444,
+      "total_carbs_g": 45.9,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 55.9,
+      "cholesterol_mg": 16.9,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 4.6,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 175.8,
+      "total_carbs_g": 5.6,
+      "total_fat_g": 2.1,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46,
+      "dietary_fiber": 20,
+      "protein": 76,
+      "saturated_fat": 20,
+      "sodium": 63,
+      "total_carbs": 17,
+      "total_fat": 23
+    },
+    "serving_size_g": 821.25,
+    "total_recipe_weight_g": 3285
+  },
+  {
+    "recipe_name": "Hearty Italian Chicken and Pasta Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_italian_chicken_and_pasta_soup_20250812_091901_a16213d8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T09:19:01.793378000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "итальянская cuisine",
+    "visual_description": "A single generous portion of hearty Italian Chicken and Pasta Soup is presented in a rustic, deep ceramic bowl with a slightly irregular rim. The golden-orange broth is rich and inviting, flecked with vibrant green parsley. Visible are tender chunks of shredded chicken, small ditalini pasta, and brightly colored diced vegetables—orange carrots, pale green celery, and translucent onion. The components are naturally arranged, slightly overlapping. A light sprinkle of freshly grated Parmesan cheese rests on top, melting slightly into the warm soup. The bowl sits on a well-worn, warm-toned wooden dining table. Beside the bowl, a casual, rumpled cloth napkin and a piece of crusty Italian bread complete the homely, comforting scene. Warm, soft kitchen lighting illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "500 g (boneless, skinless)"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "2 litres"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium (diced)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (diced)"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2 medium (diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves (minced)"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Small pasta (ditalini or stelline)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g (chopped)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "For serving (grated)"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat. Add diced onion, carrots, and celery. Cook until softened, about 8-10 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add chicken breasts to the pot. Brown lightly on all sides.",
+      "Pour in chicken broth and diced tomatoes. Bring to a boil. Reduce heat to low, cover, and simmer for 20-25 minutes, or until chicken is cooked through to an internal temperature of 75°C.",
+      "Remove chicken from the pot. Shred or cut into small chunks.",
+      "Add pasta to the simmering soup. Cook according to package directions until al dente, about 8-10 minutes.",
+      "Return shredded chicken to the pot. Stir in fresh chopped parsley.",
+      "Season with salt and black pepper to taste.",
+      "Serve hot with grated Parmesan cheese."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Soffritto: Building a flavor base with sautéed onion, carrot, and celery."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 506,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 50.6,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 640,
+      "total_carbs_g": 41.5,
+      "total_fat_g": 14.9,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 59,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 5.9,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 75,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 1.7,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 15,
+      "protein": 101,
+      "saturated_fat": 14,
+      "sodium": 28,
+      "total_carbs": 15,
+      "total_fat": 19
+    },
+    "serving_size_g": 856.4,
+    "total_recipe_weight_g": 3426
+  },
+  {
+    "recipe_name": "Kale and Roasted Sweet Potato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_kale_and_roasted_sweet_potato_salad_20250812_091741_2b446210.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T09:17:42.386726000Z",
+    "selected_ingredients": [
+      "flax seed"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Kale and Roasted Sweet Potato Salad is presented on a clean, round white porcelain plate, centered to showcase its vibrant colors and varied textures. A bed of dark green, massaged kale forms the base. Scattered generously across the kale are golden-orange roasted sweet potato cubes, each approximately 2 cm, with lightly caramelized edges. Interspersed among the vegetables are creamy, light-beige chickpeas. Thinly sliced red onion provides subtle purple accents. The salad is lightly coated in a creamy, pale tan maple-tahini dressing, which glistens subtly. A sprinkle of toasted, golden-brown flax seeds adds a crunchy texture and visual interest, along with finely chopped fresh green parsley. The arrangement is natural and organic, with moderate negative space. The plate rests on a simple light wooden table surface, accompanied by standard silver flatware and a folded cotton napkin. Natural, even lighting illuminates the dish, highlighting its freshness and inviting appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Kale",
+    "ingredients": [
+      {
+        "name": "Kale",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": "2 medium (about 500 g)"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1/2 small"
+      },
+      {
+        "name": "Chickpeas",
+        "quantity": "1 can (400 g)"
+      },
+      {
+        "name": "Flax Seeds",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Tahini",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "60-90 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley or Mint",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Peel and cut sweet potato into 2 cm cubes. Toss with 30 ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 20-25 minutes, or until tender and lightly caramelized.",
+      "While sweet potato roasts, toast 30 g flax seeds in a dry pan over medium heat for 3-5 minutes until fragrant. Set aside.",
+      "Remove tough stems from kale and chop leaves. In a large bowl, combine chopped kale with 15 ml olive oil. Massage kale for 2-3 minutes until softened.",
+      "Prepare dressing: In a small bowl, whisk together tahini, maple syrup, lemon juice, 30 g flax seeds, and 60 ml water. Add more water if needed for desired consistency. Season with salt and pepper.",
+      "Rinse and drain chickpeas. Thinly slice red onion. Add roasted sweet potato, chickpeas, and sliced red onion to the massaged kale.",
+      "Pour dressing over salad. Toss gently to combine all ingredients.",
+      "Serve immediately. Garnish with toasted flax seeds and chopped fresh parsley or mint."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.7,
+      "calories": 581.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 18.3,
+      "protein_g": 16.4,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 607.6,
+      "total_carbs_g": 66.8,
+      "total_fat_g": 30.9,
+      "total_sugars_g": 17.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.8,
+      "calories": 151.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 4.3,
+      "saturated_fat_g": 1,
+      "sodium_mg": 158.6,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 65.2,
+      "protein": 32.8,
+      "saturated_fat": 19.5,
+      "sodium": 26.4,
+      "total_carbs": 24.3,
+      "total_fat": 39.6
+    },
+    "serving_size_g": 383,
+    "total_recipe_weight_g": 1532
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Tomato and Olive Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_tomato_and_olive_sauce_20250812_091045_4995e38d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T09:10:45.729374000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "olive",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown pan-seared chicken thigh, whole and unsliced, rests on a bed of rich, rustic tomato and olive sauce on a clean white porcelain dinner plate. The sauce, vibrant red with visible chunks of cooked tomato and dark, glossy Kalamata olives, pools invitingly around the chicken. A scattering of bright green, roughly chopped fresh basil leaves provides a fresh contrast. Generous flakes of freshly grated Parmigiano-Reggiano are sprinkled over the chicken and sauce, adding a creamy white highlight. The plate, with moderate negative space, sits on a simple wooden table surface, accompanied by a silver fork and knife and a folded cotton napkin. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, casually blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta bread for dipping.",
+      "A simple green salad with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "150g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100g"
+      },
+      {
+        "name": "Parmigiano-Reggiano, freshly grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry white wine (or chicken broth)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh basil, roughly chopped",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear chicken thighs 4-5 minutes per side until golden brown. Internal temperature must reach 75°C. Remove chicken from skillet. Set aside.",
+      "Add diced onion to skillet. Cook 5-7 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from bottom of skillet. Reduce liquid by half.",
+      "Stir in crushed tomatoes and halved cherry tomatoes. Bring sauce to a simmer.",
+      "Return chicken thighs to skillet. Submerge chicken in sauce.",
+      "Reduce heat to medium-low. Simmer 15-20 minutes, or until chicken is cooked through and tender. Internal temperature must reach 75°C.",
+      "Stir in pitted Kalamata olives. Cook 2 minutes more.",
+      "Taste sauce. Adjust seasoning with salt and pepper.",
+      "Serve chicken with sauce. Garnish with fresh basil and grated Parmigiano-Reggiano."
+    ],
+    "notes": [
+      "For best flavor, use high-quality canned tomatoes and fresh Parmigiano-Reggiano."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 549,
+      "cholesterol_mg": 236,
+      "dietary_fiber_g": 3.42,
+      "protein_g": 59.44,
+      "saturated_fat_g": 6.54,
+      "sodium_mg": 765,
+      "total_carbs_g": 16.08,
+      "total_fat_g": 25.52,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.09
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124,
+      "cholesterol_mg": 53,
+      "dietary_fiber_g": 0.77,
+      "protein_g": 13.42,
+      "saturated_fat_g": 1.48,
+      "sodium_mg": 173,
+      "total_carbs_g": 3.63,
+      "total_fat_g": 5.76,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78.67,
+      "dietary_fiber": 12.21,
+      "protein": 118.88,
+      "saturated_fat": 32.7,
+      "sodium": 33.27,
+      "total_carbs": 5.85,
+      "total_fat": 32.72
+    },
+    "serving_size_g": 443,
+    "total_recipe_weight_g": 1772
+  },
+  {
+    "recipe_name": "Hearty Chicken & Mushroom Skillet with Creamy Polenta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_%26_mushroom_skillet_with_creamy_polenta_20250812_081606_72d416ec.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T08:16:06.921540000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "mushroom",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single modest, comforting portion of Hearty Chicken & Mushroom Skillet with Creamy Polenta is presented on a rustic, off-white ceramic plate. A generous, slightly irregular mound of creamy, golden-yellow polenta forms the base. Two thick, seared chicken breast pieces, golden-brown and tender, rest naturally on the polenta. A rich, creamy mushroom sauce, featuring visible thick-sliced browned mushrooms and softened diced onions, is generously spooned over the chicken and polenta, creating an inviting, hearty appearance. The dish is garnished simply with a sprinkle of fresh, vibrant green chopped parsley. The plate sits on a well-used, warm-toned wooden dining table, suggesting a cozy family kitchen setting. A simple, silver fork and knife are placed beside the plate, and a casually crumpled cloth napkin adds to the homely atmosphere. Warm, natural lighting illuminates the dish, highlighting its comforting textures and colors. The background is softly blurred, showing hints of a lived-in kitchen, reinforcing the home-cooked feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Quick-cooking polenta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat 15 ml olive oil in a large skillet over medium-high heat. Sear chicken breasts for 4-5 minutes per side until golden brown. Internal temperature should reach 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "While chicken rests, slice mushrooms thickly. Dice onion. Mince garlic.",
+      "Add remaining 15 ml olive oil and butter to the same skillet. Reduce heat to medium.",
+      "Add diced onion and sauté for 3-4 minutes until softened.",
+      "Add sliced mushrooms to the skillet. Cook for 5-7 minutes until mushrooms are browned and tender. Stir occasionally.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in heavy cream. Bring to a gentle simmer. Cook for 2-3 minutes until sauce slightly thickens.",
+      "Return seared chicken breasts to the skillet with the mushroom cream sauce. Spoon sauce over chicken. Keep warm.",
+      "In a separate saucepan, bring chicken broth to a boil. Gradually whisk in quick-cooking polenta. Reduce heat to low.",
+      "Cook polenta, stirring constantly, for 3-5 minutes until thickened and creamy. Remove from heat.",
+      "Stir grated Parmesan cheese into the polenta until melted and smooth. Season with salt and pepper to taste.",
+      "To serve, spoon a generous portion of creamy polenta onto each plate. Place one seared chicken breast on top of the polenta. Spoon the creamy mushroom sauce over the chicken and polenta. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 840,
+      "cholesterol_mg": 219.98,
+      "dietary_fiber_g": 3.59,
+      "protein_g": 71.91,
+      "saturated_fat_g": 18.2,
+      "sodium_mg": 649.91,
+      "total_carbs_g": 49.15,
+      "total_fat_g": 39.04,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.75
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130,
+      "cholesterol_mg": 34.01,
+      "dietary_fiber_g": 0.55,
+      "protein_g": 11.12,
+      "saturated_fat_g": 2.81,
+      "sodium_mg": 100.49,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 6.04,
+      "total_sugars_g": 0.76,
+      "trans_fat_g": 0.12
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73.33,
+      "dietary_fiber": 12.82,
+      "protein": 143.82,
+      "saturated_fat": 91,
+      "sodium": 28.26,
+      "total_carbs": 17.87,
+      "total_fat": 50.05
+    },
+    "serving_size_g": 646.75,
+    "total_recipe_weight_g": 2587
+  }
+]

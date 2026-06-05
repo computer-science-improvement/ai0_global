@@ -1,0 +1,657 @@
+[
+  {
+    "recipe_name": "Vanilla Bean Confetti Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vanilla_bean_confetti_cake_20250723_165455_5d614990.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T16:54:55.577820000Z",
+    "selected_ingredients": [
+      "100s and 1000s"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A pristine slice of Vanilla Bean Confetti Cake stands elegantly on a clean white porcelain dinner plate. The cake reveals two perfectly baked, tender vanilla bean sponge layers, generously studded with vibrant rainbow 100s and 1000s that create a festive, speckled interior. Each cake layer is evenly coated with a smooth, cloud-like vanilla bean buttercream frosting, which also encases the entire cake with a professional, even finish. A light scattering of rainbow sprinkles adorns the top of the slice and the plate, adding a playful touch. In the soft-focused background, the remaining 15cm whole cake sits on a simple white cake stand, showcasing its uniform frosting and sprinkle-covered exterior. The setting is a modern bistro, with a simple wooden table surface and a folded cotton napkin beside the plate. Natural, even lighting highlights the cake's inviting textures and bright colors, presenting a professional yet approachable dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Vanilla Bean",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "115 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Vanilla bean paste",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Rainbow 100s and 1000s",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Unsalted butter, softened (for buttercream)",
+        "quantity": "225 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Whole milk (for buttercream)",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour two 15cm round cake pans.",
+      "In a medium bowl, whisk together flour, granulated sugar, baking powder, and salt.",
+      "In a large bowl, cream softened butter until light and fluffy.",
+      "Beat in eggs one at a time, mixing well after each addition. Stir in vanilla bean paste.",
+      "Gradually add dry ingredients to wet ingredients, alternating with whole milk. Begin and end with dry ingredients.",
+      "Mix until just combined. Do not overmix.",
+      "Gently fold in rainbow 100s and 1000s.",
+      "Divide batter evenly between prepared pans. Smooth tops.",
+      "Bake for 25-30 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Cool cakes in pans for 10 minutes. Invert onto a wire rack to cool completely.",
+      "For buttercream: In a large bowl, beat softened butter until creamy.",
+      "Gradually add powdered sugar, mixing until smooth.",
+      "Beat in whole milk and vanilla extract until light and fluffy.",
+      "Once cakes are completely cool, level tops if necessary.",
+      "Place one cake layer on a serving plate. Spread a generous layer of buttercream on top.",
+      "Place the second cake layer on top. Frost the top and sides of the cake evenly with remaining buttercream.",
+      "Decorate with extra rainbow 100s and 1000s if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 148.3,
+      "calories": 1432,
+      "cholesterol_mg": 280,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.9,
+      "saturated_fat_g": 45.7,
+      "sodium_mg": 92,
+      "total_carbs_g": 187.1,
+      "total_fat_g": 74.2,
+      "total_sugars_g": 150.7,
+      "trans_fat_g": 2.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 41.8,
+      "calories": 404,
+      "cholesterol_mg": 79,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 2.8,
+      "saturated_fat_g": 12.9,
+      "sodium_mg": 26,
+      "total_carbs_g": 52.8,
+      "total_fat_g": 20.9,
+      "total_sugars_g": 42.5,
+      "trans_fat_g": 0.8
+    },
+    "daily_value_percentages": {
+      "cholesterol": 93.4,
+      "dietary_fiber": 4.4,
+      "protein": 19.8,
+      "saturated_fat": 228.6,
+      "sodium": 4,
+      "total_carbs": 68,
+      "total_fat": 95.1
+    },
+    "serving_size_g": 354.5,
+    "total_recipe_weight_g": 1418
+  },
+  {
+    "recipe_name": "Matcha Coconut Layer Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_matcha_coconut_layer_cake_20250723_165420_6a1d90e7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T16:54:21.249494000Z",
+    "selected_ingredients": [
+      "100s and 1000s",
+      "heavy cream",
+      "matcha green tea powder",
+      "coconut liqueur"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegant slice of Matcha Coconut Layer Cake stands upright on a clean, round white porcelain plate. The slice reveals distinct layers: two vibrant, light green matcha sponge layers separated by a thick, pristine white layer of coconut cream. The top and sides of the cake slice are smoothly frosted with more white coconut cream, generously adorned with a dense scattering of bright, multi-colored 100s and 1000s, creating a festive appearance. The sponge appears light and airy, contrasting with the smooth, rich cream. The plate has moderate negative space. In the soft-focus background, a portion of the whole, similarly decorated cake is visible on a simple cake stand. The setting is a modern bistro table with a simple wooden surface and a folded white cotton napkin beside the plate, illuminated by natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Dessert",
+    "hero_ingredient": "Matcha Green Tea Powder",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Matcha green tea powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Coconut liqueur",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "100s and 1000s (sprinkles)",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour two 15 cm round cake pans.",
+      "Whisk flour, matcha powder, baking powder, and salt together in a bowl.",
+      "Melt butter with milk in a small saucepan over low heat. Set aside.",
+      "In a large bowl, whisk eggs and granulated sugar until pale and fluffy. This takes about 5-7 minutes with an electric mixer.",
+      "Gently fold dry ingredients into the egg mixture in two additions.",
+      "Gradually fold in the warm milk and butter mixture until just combined. Do not overmix.",
+      "Divide batter evenly between prepared cake pans. Bake for 20-25 minutes, or until a toothpick inserted into the center comes out clean.",
+      "Cool cakes in pans for 10 minutes. Invert onto a wire rack to cool completely.",
+      "For the coconut cream, chill a large mixing bowl and whisk attachment. Pour cold heavy cream into the bowl.",
+      "Add powdered sugar and coconut liqueur to the cream. Whip until stiff peaks form.",
+      "Level cake layers if necessary. Place one cake layer on a serving plate or cake stand.",
+      "Spread one-third of the whipped coconut cream evenly over the first layer.",
+      "Place the second cake layer on top. Cover the entire cake with the remaining whipped coconut cream, smoothing the top and sides.",
+      "Generously cover the frosted cake with 100s and 1000s. Gently press them into the frosting.",
+      "Chill cake for at least 30 minutes before slicing and serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 49,
+      "calories": 807.4,
+      "cholesterol_mg": 282.9,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 11.3,
+      "saturated_fat_g": 30.1,
+      "sodium_mg": 409.7,
+      "total_carbs_g": 78.7,
+      "total_fat_g": 49.8,
+      "total_sugars_g": 53.7,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19.3,
+      "calories": 317.6,
+      "cholesterol_mg": 111.3,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 4.5,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 161.2,
+      "total_carbs_g": 31,
+      "total_fat_g": 19.6,
+      "total_sugars_g": 21.1,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 94.3,
+      "dietary_fiber": 6.3,
+      "protein": 22.6,
+      "saturated_fat": 150.4,
+      "sodium": 17.8,
+      "total_carbs": 28.6,
+      "total_fat": 63.8
+    },
+    "serving_size_g": 254.25,
+    "total_recipe_weight_g": 1017
+  },
+  {
+    "recipe_name": "Gochujang Glazed Chicken Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_gochujang_glazed_chicken_bites_20250723_164606_5a9a7dde.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T16:46:06.767987000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Gochujang Glazed Chicken Bites are presented on a clean, round white porcelain dinner plate, set on a simple wooden table surface. Irregular 2-3 cm cubes of chicken, coated in a glossy, dark reddish-brown glaze, are arranged loosely in the center of the plate, allowing for some negative space. The chicken pieces exhibit a crisp, seared exterior with tender interiors. Bright green, thinly sliced green onions and pale beige toasted sesame seeds are generously sprinkled over the chicken, providing a vibrant color contrast and textural interest. The dish is casually yet professionally plated, highlighting the inviting texture and rich color of the glaze. A folded cotton napkin rests beside the plate. Lighting is natural and even, casting soft shadows. A small, white ramekin containing bright yellow pickled daikon radish (danmuji) sits subtly in the background, hinting at the dish's Korean origin without distracting from the main subject.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with small cocktail skewers for easy picking.",
+      "Accompany with a side of danmuji (pickled daikon radish) or kimchi to balance the rich flavors."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "20g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "60g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10g"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Toasted sesame seeds, for garnish",
+        "quantity": "5g"
+      },
+      {
+        "name": "Green onions, thinly sliced, for garnish",
+        "quantity": "1 stalk"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2-3 cm cubes.",
+      "Place chicken cubes in a bowl. Toss with 15g cornstarch until evenly coated.",
+      "In a separate bowl, whisk together gochujang, soy sauce, rice vinegar, honey, minced garlic, grated ginger, and sesame oil to create the glaze.",
+      "Heat vegetable oil in a large non-stick pan over medium-high heat.",
+      "Add chicken cubes to the hot pan in a single layer. Do not overcrowd. Cook in batches if necessary.",
+      "Sear chicken for 4-5 minutes per side until golden brown and cooked through. Internal temperature must reach 75°C (167°F). Remove chicken from the pan and set aside.",
+      "Reduce heat to medium. Pour the prepared glaze into the pan. Bring to a gentle simmer.",
+      "In a small bowl, whisk remaining 5g cornstarch with 15ml water to form a slurry. Stir the slurry into the simmering glaze.",
+      "Cook, stirring constantly, for 1-2 minutes until the glaze thickens to a syrupy consistency.",
+      "Return cooked chicken cubes to the pan. Toss quickly to coat all chicken pieces thoroughly with the glaze.",
+      "Transfer the glazed chicken bites to a serving platter or individual plates.",
+      "Garnish generously with toasted sesame seeds and thinly sliced green onions."
+    ]
+  },
+  {
+    "recipe_name": "Chicken Satay Skewers with Peanut Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_satay_skewers_with_peanut_sauce_20250723_164548_483c557e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T16:45:48.486676000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Golden-brown seared chicken satay skewers, featuring chicken cut into small cubes, are artfully arranged on a clean white porcelain plate. The grilling imparts a tender interior and a perfectly caramelized exterior. A rich, creamy peanut sauce is elegantly drizzled over some skewers, with a small pool beside for dipping. Garnished with fresh cilantro leaves, a scattering of finely chopped roasted peanuts, and vibrant lime wedges, adding fresh color and texture. The composition highlights natural textures and appealing colors. Moderate negative space surrounds the main elements, creating a professional yet approachable presentation. The dish is presented on a simple wooden table, bathed in natural, even lighting, emphasizing the vibrant hues and inviting textures of the satay, ready for a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Southeast Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Acar Timun (cucumber and red onion relish) for a refreshing contrast.",
+      "Offer additional lime wedges for guests to squeeze over the skewers.",
+      "Serve as a shared appetizer, allowing guests to take skewers from a central platter."
+    ],
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Coconut milk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Curry powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Lemongrass stalk, outer layers removed, bruised, finely chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Peanuts, roasted, unsalted",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Shallot, finely chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "Tamarind paste",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Red chili, deseeded, finely chopped (optional)",
+        "quantity": "1"
+      },
+      {
+        "name": "Cilantro, fresh, chopped, for garnish",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lime wedges, for serving",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2 cm cubes.",
+      "Combine 60 ml coconut milk, curry powder, turmeric, ginger, garlic, lemongrass, fish sauce, soy sauce, lime juice, and brown sugar in a bowl. Mix well.",
+      "Add chicken cubes to the marinade. Toss to coat evenly. Marinate for at least 30 minutes, or up to 4 hours in the refrigerator.",
+      "Soak bamboo skewers in water for 20 minutes to prevent burning.",
+      "Thread marinated chicken cubes onto skewers, about 4-5 pieces per skewer.",
+      "Heat 15 ml vegetable oil in a large pan or grill pan over medium-high heat. Alternatively, preheat a grill.",
+      "Cook chicken skewers for 3-4 minutes per side, until golden brown and cooked through to an internal temperature of 75°C.",
+      "For the peanut sauce: Heat remaining 15 ml vegetable oil in a small saucepan over medium heat.",
+      "Add chopped shallot and cook until softened, about 2 minutes.",
+      "Stir in roasted peanuts, remaining 60 ml coconut milk, tamarind paste, and red chili (if using). Bring to a gentle simmer.",
+      "Cook for 5-7 minutes, stirring occasionally, until the sauce thickens slightly. Season with salt and a pinch more brown sugar or lime juice if needed.",
+      "Serve chicken satay skewers immediately with peanut sauce, garnished with fresh cilantro and lime wedges."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety.",
+      "For a spicier peanut sauce, add more fresh chili or a pinch of cayenne pepper.",
+      "Marinating chicken longer enhances flavor and tenderness."
+    ],
+    "traditional_techniques": [
+      "Marinating",
+      "Grilling/Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 674,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 43.7,
+      "saturated_fat_g": 13,
+      "sodium_mg": 248,
+      "total_carbs_g": 19.4,
+      "total_fat_g": 52.3,
+      "total_sugars_g": 8.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 243,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 15.8,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 90,
+      "total_carbs_g": 7,
+      "total_fat_g": 18.9,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 22.9,
+      "protein": 87.5,
+      "saturated_fat": 65,
+      "sodium": 10.8,
+      "total_carbs": 7,
+      "total_fat": 67
+    },
+    "serving_size_g": 277,
+    "total_recipe_weight_g": 1108
+  },
+  {
+    "recipe_name": "Rustic Chicken and Italian Sausage Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_italian_sausage_rigatoni_20250723_161800_3a067f80.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T16:18:01.104085000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "bread",
+      "rice",
+      "sausage",
+      "salad green",
+      "potato",
+      "mushroom",
+      "honey"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous portion of Rigatoni pasta, richly coated in a vibrant, rustic tomato sauce, forms the centerpiece on a clean, white, round porcelain plate. Substantial, golden-brown seared chicken thigh chunks and savory crumbled Italian sausage are nestled throughout the pasta. Softened, earthy cremini mushroom slices are integrated into the deep red sauce, which subtly reveals flecks of red pepper flakes and herbs. The dish is garnished with a fresh sprinkle of finely chopped green parsley and basil, and a light grating of white Parmesan cheese, adding pops of color. The textures are inviting: ridged pasta, seared chicken, crumbly sausage, and clinging sauce. The plate rests on a simple, dark wooden table, accompanied by a folded light grey cotton napkin, under natural, even lighting, creating a warm, casual bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping.",
+      "Accompany with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken and Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Mild Italian sausage",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Honey",
+        "quantity": "5 ml (optional)"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks. Season with salt and pepper.",
+      "Remove casings from Italian sausage. Crumble sausage.",
+      "Slice mushrooms. Dice onion. Mince garlic.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add crumbled sausage. Cook until browned. Remove sausage, set aside. Drain excess fat.",
+      "Add chicken chunks to the pot. Sear until golden brown on all sides. Cook to internal temperature of 75°C (167°F). Remove chicken, set aside.",
+      "Add onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add garlic and red pepper flakes. Cook 1 minute until fragrant.",
+      "Add sliced mushrooms. Cook until softened and lightly browned, about 5-7 minutes.",
+      "Pour in crushed tomatoes and chicken broth. Stir well. Add honey if using. Bring sauce to a simmer.",
+      "Return cooked chicken and sausage to the pot. Stir to combine. Reduce heat to low. Simmer for 15-20 minutes, allowing flavors to meld.",
+      "While sauce simmers, cook rigatoni according to package directions until al dente. Drain pasta.",
+      "Chop fresh basil and parsley.",
+      "Add drained pasta to the sauce. Toss to coat thoroughly.",
+      "Stir in half of the chopped basil and parsley. Taste and adjust seasoning with salt and pepper.",
+      "Serve hot. Garnish each portion with remaining fresh basil, parsley, and grated Parmesan cheese."
+    ],
+    "notes": [
+      "The 5 ml of honey is optional and helps balance the acidity of the tomatoes without making the sauce sweet. Adjust to your preference.",
+      "While not included in this main dish for authenticity, a simple side of roasted potatoes or a small rice pilaf could be considered if all ingredients from the initial prompt must be used."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 960,
+      "cholesterol_mg": 207,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 60.2,
+      "saturated_fat_g": 12,
+      "sodium_mg": 1186,
+      "total_carbs_g": 96.5,
+      "total_fat_g": 38.6,
+      "total_sugars_g": 12.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 127,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 1,
+      "protein_g": 8,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 157,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 26,
+      "protein": 120,
+      "saturated_fat": 60,
+      "sodium": 52,
+      "total_carbs": 35,
+      "total_fat": 50
+    },
+    "serving_size_g": 754.75,
+    "total_recipe_weight_g": 3019
+  }
+]

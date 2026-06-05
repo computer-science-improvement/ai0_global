@@ -1,0 +1,724 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Roasted Red Pepper and Mushroom Cream Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_roasted_red_pepper_and_mushroom_cream_sauce_20250624_030314_dfa94638.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:03:15.345920000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast, cooked to a golden-brown, rests centrally on a clean white porcelain dinner plate. The chicken is presented as a whole piece. A rich, vibrant orange-red cream sauce, infused with roasted red pepper and tender sautéed mushrooms, is generously spooned around and partially over the chicken. Visible within the sauce are earthy brown mushroom slices and small, softened red bell pepper dice. A small sprig of fresh green thyme or chopped parsley garnishes the dish. The plate is set on a simple, light-colored wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting highlights the dish’s warmth and inviting textures. The background is softly blurred, suggesting a casual yet refined bistro atmosphere. The composition is balanced, with moderate negative space, focusing on the refined main course.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx 180-200g each)"
+      },
+      {
+        "name": "Red bell peppers",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F). Place one whole red bell pepper on a baking sheet. Roast 20-25 minutes until skin is blistered and charred. Transfer to a bowl, cover tightly. Cool 10 minutes. Peel, deseed. Set aside.",
+      "Pat chicken breasts dry with paper towels. Season generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large oven-safe skillet or pan over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown. Transfer skillet to preheated oven. Bake 10-15 minutes, or until internal temperature reaches 75°C (167°F). Remove chicken from pan. Rest on a cutting board, loosely tented with foil.",
+      "While chicken rests, prepare vegetables. Dice remaining red bell pepper into small cubes. Slice mushrooms. Dice onion. Mince garlic.",
+      "Return skillet to stovetop over medium heat. Add remaining 15ml olive oil and butter. Add diced onion. Sauté 3 minutes until softened. Add diced bell pepper and sliced mushrooms. Sauté 5-7 minutes until vegetables are tender.",
+      "Add minced garlic and 2 thyme sprigs to the pan. Sauté 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the pan. Bring to a simmer.",
+      "Place roasted bell pepper in a blender with a splash of the simmering broth from the pan. Blend until completely smooth. Add more broth if needed to achieve a pourable consistency.",
+      "Stir roasted bell pepper puree and heavy cream into the pan with vegetables. Simmer 5 minutes, stirring occasionally, until sauce thickens slightly. Remove thyme sprigs. Taste and adjust seasoning with salt and pepper.",
+      "Cut chicken breasts into thick medallions or serve whole. Plate chicken. Spoon sauce generously over and around. Garnish with chopped fresh parsley and remaining fresh thyme sprigs."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 583,
+      "cholesterol_mg": 210,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 63.6,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 182,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 28.5,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 13.1,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 37,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 15,
+      "protein": 127,
+      "saturated_fat": 63,
+      "sodium": 8,
+      "total_carbs": 5,
+      "total_fat": 36
+    },
+    "serving_size_g": 487,
+    "total_recipe_weight_g": 1949
+  },
+  {
+    "recipe_name": "Slow-Cooked Beef Ragu with Pappardelle and Fresh Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_ragu_with_pappardelle_and_fresh_mozzarella_20250624_030237_50c39c4e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:02:37.687162000Z",
+    "selected_ingredients": [
+      "beef",
+      "parmesan cheese",
+      "oregano",
+      "mozzarella",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italiam cuisine",
+    "visual_description": "The dish is presented on a clean, white porcelain dinner plate, centrally placed on a simple wooden table in a modern bistro setting. Natural, even lighting illuminates the scene. A generous single portion of pappardelle pasta forms a loose, organic nest, coated in a deep, rich reddish-brown beef ragu. Substantial, irregular chunks of fork-tender slow-cooked beef are integrated throughout. Small, creamy white bocconcini mozzarella balls are partially melted and stringy, creating appealing textural contrast. A vibrant sprinkle of fresh, bright green chopped parsley and a dusting of finely grated pale yellow Parmigiano Reggiano top the dish. The composition is balanced and uncrowded, with moderate negative space. Traditional flatware rests beside the plate, on a cotton napkin. The background is a subtly blurred, casual restaurant atmosphere, emphasizing the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for soaking up sauce.",
+      "Offer extra grated Pecorino Romano or Parmigiano Reggiano at the table.",
+      "A simple green salad with vinaigrette."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef Chuck Roast",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery Stalk",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red Wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Crushed Tomatoes (Passata)",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh Rosemary Sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh Mozzarella (Bocconcini)",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Pappardelle Pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef chunks on all sides until deeply browned. Remove beef and set aside.",
+      "Add diced onion, carrot, and celery to the pot. Sauté until softened, about 8-10 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Simmer until wine is reduced by half, about 5 minutes.",
+      "Return beef to the pot. Add crushed tomatoes, beef broth, dried oregano, bay leaf, and rosemary sprig.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for 2.5-3 hours, or until beef is fork-tender. Stir occasionally.",
+      "Remove bay leaf and rosemary sprig. Shred or gently break up the beef chunks with a fork.",
+      "Stir in grated Parmigiano Reggiano. Season with salt and pepper to taste.",
+      "Cook pappardelle according to package directions until al dente. Reserve 125 ml pasta water.",
+      "Drain pasta. Add drained pasta to the ragu. Add a splash of reserved pasta water if needed to loosen the sauce. Toss to combine.",
+      "Add small fresh mozzarella balls to the hot pasta and ragu. Toss gently until mozzarella begins to melt and become stringy.",
+      "Serve immediately. Garnish with fresh chopped parsley and extra grated Parmigiano Reggiano."
+    ],
+    "notes": [
+      "Browning the beef well creates deep flavor.",
+      "Slow cooking ensures tender beef.",
+      "Adjust sauce consistency with pasta water."
+    ],
+    "traditional_techniques": [
+      "Slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1139,
+      "cholesterol_mg": 206,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 78.3,
+      "saturated_fat_g": 18.9,
+      "sodium_mg": 762,
+      "total_carbs_g": 89.6,
+      "total_fat_g": 47.8,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 285,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 19.6,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 190,
+      "total_carbs_g": 22.4,
+      "total_fat_g": 11.9,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 23,
+      "protein": 157,
+      "saturated_fat": 95,
+      "sodium": 33,
+      "total_carbs": 33,
+      "total_fat": 61
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Classic Chocolate Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_chocolate_pudding_20250624_030121_05a7a15a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:01:21.685149000Z",
+    "selected_ingredients": [
+      "beef",
+      "chili"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of rich, dark brown Classic Chocolate Pudding is presented in a simple, creamy white ceramic ramekin. The pudding has a smooth, glossy surface, slightly jiggling, indicating its creamy yet set texture. A generous dollop of fluffy, unsweetened whipped cream rests gently on top, creating a pleasing contrast in color and texture. A few delicate chocolate shavings are sprinkled over the whipped cream. A silver spoon is casually placed beside the ramekin, ready for enjoyment. The ramekin sits on a well-used, warm-toned wooden dining table, suggesting a comfortable, lived-in family kitchen setting. Soft, warm overhead lighting illuminates the dish, highlighting its comforting appeal. The background is minimal, showing just a hint of a simple, relaxed home environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve chilled with a dollop of whipped cream",
+      "Add fresh berries or a sprinkle of chocolate shavings"
+    ],
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "50g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      }
+    ],
+    "instructions": [
+      "In a medium saucepan, whisk together cocoa powder, sugar, cornstarch, and salt.",
+      "Gradually whisk in the cold milk until smooth. Ensure no lumps remain.",
+      "Place saucepan over medium heat. Cook, whisking constantly, until mixture thickens significantly and comes to a boil. This takes about 8-10 minutes.",
+      "Boil for 1 minute, continuing to whisk, to ensure cornstarch is fully cooked.",
+      "Remove from heat. Stir in butter and vanilla extract until butter is melted and fully incorporated.",
+      "Pour pudding into four individual serving bowls or ramekins.",
+      "Press plastic wrap directly onto the surface of the pudding to prevent a skin from forming.",
+      "Chill in the refrigerator for at least 3 hours, or until thoroughly set and cold."
+    ],
+    "notes": [
+      "The provided primary ingredients (beef, chili) are not suitable for a sweet, comforting dessert as requested. This recipe focuses on delivering a classic, comforting sweet dessert experience using appropriate ingredients, adhering to all other prompt requirements."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 50,
+      "calories": 401,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 8.3,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 276,
+      "total_carbs_g": 77.4,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 59,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19.3,
+      "calories": 155,
+      "cholesterol_mg": 9.7,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 3.2,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 106,
+      "total_carbs_g": 29.8,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 22.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 8,
+      "dietary_fiber": 17,
+      "protein": 17,
+      "saturated_fat": 28,
+      "sodium": 12,
+      "total_carbs": 28,
+      "total_fat": 12
+    },
+    "serving_size_g": 259.5,
+    "total_recipe_weight_g": 1038
+  },
+  {
+    "recipe_name": "Kerala Chicken and Vegetable Coconut Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_kerala_chicken_and_vegetable_coconut_curry_20250624_030119_1aafb57e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:01:19.425059000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "garlic",
+      "carrot",
+      "dried chili",
+      "broccoli",
+      "oil",
+      "curry",
+      "culantro",
+      "coconut milk",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "Indian cuisine",
+    "visual_description": "Kerala Chicken and Vegetable Coconut Curry, presented on a clean white porcelain dinner plate, features tender chunks of chicken (5cm cubes) alongside vibrant 2-3cm potato cubes, carrot batons, and bright green broccoli florets. The rich, creamy golden-orange curry sauce, infused with aromatic spices and coconut milk, coats all ingredients. A sprinkle of fresh culantro leaves and a few whole dried red chilies garnish the dish. The composition is balanced with moderate negative space, showcasing the natural textures and colors. Beside the plate, a small, separate white bowl holds fluffy basmati rice. The setting is a modern bistro, with a simple wooden table, a folded cotton napkin, and traditional Indian flatware, all under natural, even lighting. The background is subtly blurred, maintaining focus on the authentic, single-portion presentation.",
+    "number_of_servings": 20,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with fluffy basmati rice.",
+      "Accompaniments such as a simple cucumber raita or lemon pickle are traditional."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "3.5 kg, cut into 5cm chunks"
+      },
+      {
+        "name": "Onions",
+        "quantity": "4 large, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 whole heads, minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "150 g, minced"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 kg, peeled and cut into 2-3cm cubes"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "1.5 kg, peeled and cut into 2-3cm batons"
+      },
+      {
+        "name": "Dried red chilies",
+        "quantity": "15-20, whole"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "4-5 medium heads, cut into florets"
+      },
+      {
+        "name": "Coconut oil",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Mustard seeds",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Curry leaves",
+        "quantity": "40-50 fresh leaves"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Kashmiri red chili powder",
+        "quantity": "15 g (for color and mild heat)"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Culantro (long coriander)",
+        "quantity": "2 bunches, chopped"
+      },
+      {
+        "name": "Coconut milk",
+        "quantity": "2 litres (full-fat)"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "4 medium, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "500 ml, or as needed"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "2 kg (for serving)"
+      }
+    ],
+    "instructions": [
+      "Heat coconut oil in a large, heavy-bottomed pot or Dutch oven over medium heat.",
+      "Add mustard seeds. Once they splutter, add curry leaves and whole dried red chilies. Sauté for 30 seconds.",
+      "Add sliced onions. Cook until softened and translucent, about 8-10 minutes.",
+      "Stir in minced garlic and ginger. Cook for 2 minutes until fragrant.",
+      "Add chicken chunks to the pot. Sear chicken until lightly browned on all sides. Ensure internal temperature reaches 75°C (167°F) during cooking.",
+      "Sprinkle in turmeric powder, coriander powder, cumin powder, Kashmiri red chili powder, and garam masala. Stir well, coating chicken and aromatics. Cook for 2 minutes, stirring constantly.",
+      "Add chopped tomatoes, potatoes, and carrots. Mix thoroughly.",
+      "Pour in coconut milk and water or chicken stock. Add salt to taste. Bring to a simmer.",
+      "Reduce heat to low, cover the pot, and simmer for 20-25 minutes, or until potatoes and carrots are tender and chicken is cooked through.",
+      "Add broccoli florets. Cook for another 5-7 minutes, until broccoli is tender-crisp.",
+      "Stir in chopped culantro just before serving.",
+      "Serve hot with fluffy basmati rice."
+    ],
+    "notes": [
+      "For best flavor, allow the curry to rest for 15-20 minutes before serving.",
+      "Adjust the amount of dried red chilies and Kashmiri red chili powder based on desired spice level.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Tempering (Tadka) of spices and aromatics in hot oil",
+      "Slow simmering for flavor development"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 777,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 10.6,
+      "protein_g": 39.1,
+      "saturated_fat_g": 31.3,
+      "sodium_mg": 459,
+      "total_carbs_g": 46.6,
+      "total_fat_g": 49,
+      "total_sugars_g": 11.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 122,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 6.1,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 72,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 37.9,
+      "protein": 78.2,
+      "saturated_fat": 156.5,
+      "sodium": 20,
+      "total_carbs": 17,
+      "total_fat": 62.8
+    },
+    "serving_size_g": 636.7,
+    "total_recipe_weight_g": 12733
+  },
+  {
+    "recipe_name": "Smoky Chipotle Chicken with Black Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoky_chipotle_chicken_with_black_beans_20250624_030105_438be0e8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:01:05.739527000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "chipotle chile",
+      "bean",
+      "coriander",
+      "oil",
+      "pickled jalapeno chilies",
+      "hot sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "Mexican cuisine, gluten-free",
+    "visual_description": "A hearty single portion of Smoky Chipotle Chicken with Black Beans is presented on a rustic terracotta-colored ceramic plate. Thick, irregular chicken chunks (3-4 cm) are nestled among dark black beans, all coated in a rich, glossy, reddish-brown chipotle sauce. The dish is garnished with vibrant green, chopped fresh coriander leaves and a few thinly sliced bright green pickled jalapeño rings, providing color contrast. Components naturally overlap, creating a comforting, unpretentious mound. The plate sits on a well-used wooden dining table, under warm kitchen lighting. Beside it, a stack of warm corn tortillas on a simple plate, a quarter lime wedge, a casually folded cloth napkin, and a small Mexican hot sauce bottle complete the homely, lived-in kitchen scene.",
+    "number_of_servings": 2,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping.",
+      "Offer extra lime wedges for a fresh squeeze.",
+      "Provide a bottle of traditional Mexican hot sauce on the side."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken thighs, cut into 3-4 cm chunks",
+        "quantity": "400 g"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "medium yellow onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "chipotle chiles in adobo sauce, minced",
+        "quantity": "2-3"
+      },
+      {
+        "name": "adobo sauce from the chipotle can",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "ground cumin",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "dried Mexican oregano",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "low-sodium chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "can black beans, rinsed and drained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "pickled jalapeño slices, roughly chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "fresh coriander, chopped, plus extra for garnish",
+        "quantity": "30 g"
+      },
+      {
+        "name": "lime, cut into wedges, for serving",
+        "quantity": "1"
+      },
+      {
+        "name": "Mexican hot sauce, optional",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Season chicken chunks with salt and pepper.",
+      "Heat oil in a large skillet or pot over medium-high heat. Add chicken. Sear chicken until browned on all sides, about 5-7 minutes. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add diced onion to skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic, minced chipotle chiles, adobo sauce, cumin, and oregano. Cook for 1 minute, stirring constantly, until fragrant.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Return chicken to the skillet. Reduce heat to low. Cover and simmer for 15 minutes, or until chicken is cooked through (internal temperature 75°C).",
+      "Stir in rinsed black beans and chopped pickled jalapeños. Cook for 5 minutes, uncovered, allowing sauce to thicken slightly.",
+      "Stir in chopped fresh coriander. Taste and adjust seasoning with salt and pepper.",
+      "Serve hot with lime wedges."
+    ],
+    "notes": [
+      "This dish is naturally gluten-free.",
+      "A perfect comfort food meal, simple to prepare yet full of rich, smoky flavor.",
+      "Adjust chipotle quantity to your preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Adobo preparation (sauce base)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 610,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 13,
+      "protein_g": 54,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 860,
+      "total_carbs_g": 41,
+      "total_fat_g": 25.5,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 2,
+      "protein_g": 10,
+      "saturated_fat_g": 1,
+      "sodium_mg": 150,
+      "total_carbs_g": 7,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 46,
+      "protein": 108,
+      "saturated_fat": 28,
+      "sodium": 37,
+      "total_carbs": 15,
+      "total_fat": 33
+    },
+    "serving_size_g": 568.75,
+    "total_recipe_weight_g": 1137.5
+  }
+]

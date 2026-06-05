@@ -14,7 +14,10 @@ import { StrategyRunsRepository } from './strategy-runs.repository';
 import { StrategyPreviewService } from './strategy-preview.service';
 import { ForwardRoutesRepository } from './forward-routes.repository';
 import { TelegramGetMeClient } from './telegram-getme.client';
+import { TelegraphAccountsRepository } from './telegraph-accounts.repository';
+import { TelegraphGetInfoClient } from './telegraph-getinfo.client';
 import { MyBotsController } from './api/my-bots.controller';
+import { TelegraphAccountsController } from './api/telegraph-accounts.controller';
 import { StrategiesController } from './api/strategies.controller';
 import { ForwardRoutesController } from './api/forward-routes.controller';
 import { AuthModule } from '../auth/auth.module';
@@ -22,7 +25,7 @@ import { AuthModule } from '../auth/auth.module';
 @Global()
 @Module({
   imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule],
-  controllers: [MyBotsController, StrategiesController, ForwardRoutesController],
+  controllers: [MyBotsController, TelegraphAccountsController, StrategiesController, ForwardRoutesController],
   providers: [
     ChannelConfigService,
     ConfigCacheService,
@@ -35,6 +38,8 @@ import { AuthModule } from '../auth/auth.module';
     StrategyPreviewService,
     ForwardRoutesRepository,
     TelegramGetMeClient,
+    TelegraphAccountsRepository,
+    TelegraphGetInfoClient,
   ],
   exports: [
     ChannelConfigService,
@@ -45,6 +50,7 @@ import { AuthModule } from '../auth/auth.module';
     StrategyBindingsRepository,
     StrategyRunsRepository,
     ForwardRoutesRepository,
+    TelegraphAccountsRepository,
   ],
 })
 export class ChannelConfigModule {}

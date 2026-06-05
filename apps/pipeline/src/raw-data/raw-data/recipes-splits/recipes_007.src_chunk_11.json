@@ -1,0 +1,755 @@
+[
+  {
+    "recipe_name": "Spicy Thai Chicken & Cheddar Patties with Fried Egg and Holy Basil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_thai_chicken_%26_cheddar_patties_with_fried_egg_and_holy_basil_20250903_031952_b03e0284.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T03:19:52.833864000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheddar",
+      "egg",
+      "hot sauce",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "thai cuisine",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate, set on a simple light wooden table surface in a modern bistro setting. Two golden-brown, round chicken patties, approximately 7 cm in diameter and 2 cm thick, are neatly arranged beside a small, compact mound of fragrant jasmine rice. One perfectly fried egg, with a crisp, slightly crinkled white edge and a vibrant, runny golden yolk, rests gently atop one of the patties. A few dark green holy basil leaves are scattered artfully over the egg and patties, along with a few thin, bright red chili slices. The patties show a slight hint of melted, creamy yellow cheddar peeking from within, indicating their cheesy core. A small, clear glass ramekin of bright orange-red chili-lime dipping sauce is placed beside the plate. The composition is clean, balanced, and inviting. The table setting includes a pair of polished chopsticks and a Thai-style spoon, with a folded white cotton napkin positioned beside the plate. Natural, even lighting highlights the textures and colors of the food. The background is softly blurred, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with extra fish sauce with chilies (Prik Nam Pla) on the side.",
+      "Traditionally eaten with jasmine rice.",
+      "Can be accompanied by a simple clear soup."
+    ],
+    "hero_ingredient": "Chicken Patties",
+    "ingredients": [
+      {
+        "name": "Ground chicken",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red chilies (bird's eye), minced",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Lemongrass, thinly sliced and finely minced",
+        "quantity": "1 stalk"
+      },
+      {
+        "name": "Kaffir lime leaves, finely julienned",
+        "quantity": "2"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Palm sugar (or brown sugar)",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Egg (for binding)",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cheddar cheese, cut into 1 cm cubes",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "for frying"
+      },
+      {
+        "name": "Jasmine rice, uncooked",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Eggs (for frying)",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Holy basil leaves (Grapow)",
+        "quantity": "a handful"
+      },
+      {
+        "name": "Red chilies, thinly sliced (for garnish)",
+        "quantity": "1"
+      },
+      {
+        "name": "Fish sauce (for dipping sauce)",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Lime juice (for dipping sauce)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Palm sugar, dissolved in warm water (for dipping sauce)",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Garlic, minced (for dipping sauce)",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Red chilies (bird's eye), thinly sliced (for dipping sauce)",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Hot sauce (Sriracha or similar, optional, for dipping sauce)",
+        "quantity": "1 teaspoon"
+      }
+    ],
+    "instructions": [
+      "In a large bowl, combine ground chicken, minced garlic, minced red chilies, minced lemongrass, julienned kaffir lime leaves, fish sauce, palm sugar, and 1 egg. Mix thoroughly.",
+      "Divide mixture into 8 equal portions. Flatten each portion. Place a cheddar cheese cube in the center. Shape into a patty, fully enclosing the cheese. Repeat for all portions.",
+      "Heat 2-3 tablespoons vegetable oil in a large non-stick pan over medium-high heat. Fry chicken patties 4-5 minutes per side until golden brown and cooked through (internal temperature 75°C). Cook in batches.",
+      "Cook jasmine rice according to package instructions.",
+      "In a separate pan, heat a small amount of oil over medium-high heat. Fry 4 eggs, one by one. Cook until whites are set and crispy at edges, yolks are runny.",
+      "Make dipping sauce: Whisk together fish sauce, lime juice, dissolved palm sugar, minced garlic, sliced red chilies, and hot sauce (if using) in a small bowl.",
+      "For each serving, place cooked jasmine rice on a white plate. Arrange 2 cooked chicken patties next to the rice. Top the patties or rice with one fried egg.",
+      "Garnish with fresh holy basil leaves and thinly sliced red chilies. Serve immediately with dipping sauce on the side."
+    ],
+    "notes": [
+      "For a milder spice level, reduce fresh red chilies in patty mixture and dipping sauce.",
+      "Ensure cheddar cubes are fully enclosed in patties to prevent excessive leakage during frying.",
+      "Holy basil (Grapow) has a distinct peppery, anise-like flavor. If unavailable, regular basil can be substituted, but the flavor profile will differ."
+    ],
+    "traditional_techniques": [
+      "Mise en place",
+      "Balancing the four fundamental tastes (salty, sweet, sour, spicy)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.1,
+      "calories": 807,
+      "cholesterol_mg": 371,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 44.3,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 2163,
+      "total_carbs_g": 71,
+      "total_fat_g": 36.4,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 162,
+      "cholesterol_mg": 74,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 8.9,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 434,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 124,
+      "dietary_fiber": 4,
+      "protein": 89,
+      "saturated_fat": 59,
+      "sodium": 94,
+      "total_carbs": 26,
+      "total_fat": 47
+    },
+    "serving_size_g": 498.5,
+    "total_recipe_weight_g": 1994
+  },
+  {
+    "recipe_name": "Seared Chicken Breast, Potato Terrine, Chicken Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_breast%2C_potato_terrine%2C_chicken_jus_20250903_030838_2becf051.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T03:08:39.088270000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single portion of meticulously plated seared chicken breast, potato terrine, and chicken jus rests on a premium, expansive white bone china plate. The chicken, a perfectly cooked half breast with a deeply golden, crispy skin and tender, succulent interior, is cut on a gentle bias and positioned elegantly. Adjacent to it, a precisely cut rectangle of potato terrine showcases delicate, layered potato slices with a rich, creamy texture and a subtle golden-brown exterior from reheating. A glossy, amber-hued chicken jus is artfully spooned around the chicken and terrine, creating a reflective pool that adds depth and richness. A small, vibrant cluster of microgreens provides a fresh, verdant contrast and delicate height. The composition features abundant negative space, highlighting the pristine quality and precise execution of each element. The dish is presented on a dark polished wooden table, accompanied by a crisply folded white linen napkin, under dramatic professional lighting with soft shadows, emphasizing its sophisticated minimalism.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, skin-on, boneless",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Waxy potatoes (e.g., Desiree)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "High-quality chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Dry red wine (e.g., Pinot Noir)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Microgreens",
+        "quantity": "1 punnet (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Line a small terrine mold (approx. 15cm x 10cm) with parchment paper. Butter the paper.",
+      "Peel and thinly slice potatoes (1-2mm) using a mandoline.",
+      "Layer potatoes in the mold, seasoning each layer with salt and pepper.",
+      "Heat cream with 50g butter, 1 sprig thyme, and minced garlic until simmering. Strain the mixture.",
+      "Pour the hot cream over the layered potatoes in the mold.",
+      "Cover the mold with parchment, then foil. Place a heavy weight on top.",
+      "Bake for 1 hour, or until potatoes are tender when pierced.",
+      "Remove weight, cool to room temperature. Chill overnight in the refrigerator.",
+      "Unmold the terrine. Cut into 4 neat rectangular portions (approx. 5cm x 7cm).",
+      "Mince shallots for the jus.",
+      "Sauté minced shallots in 15g butter in a small saucepan until softened.",
+      "Deglaze the pan with red wine. Reduce the wine by half.",
+      "Add chicken stock and 2 sprigs thyme. Reduce until the liquid is syrupy (approx. 100ml).",
+      "Strain the jus through a fine-mesh sieve. Keep warm. Whisk in 15g cold butter just before serving.",
+      "Season chicken breasts generously with salt and pepper.",
+      "Place each chicken breast in a vacuum-sealable bag with 5g butter and 1 sprig thyme.",
+      "Sous-vide at 63°C for 1.5 hours.",
+      "Remove chicken from bags. Pat the skin very dry with paper towels.",
+      "Heat olive oil in a heavy-bottomed pan over medium-high heat.",
+      "Place chicken skin-side down in the hot pan. Sear for 5-7 minutes until deeply golden and crispy.",
+      "Flip the chicken. Sear for 1-2 minutes until the internal temperature reaches 75°C.",
+      "Remove chicken from the pan. Rest for 5 minutes.",
+      "Gently reheat potato terrine portions in a pan with a little butter or in a warm oven.",
+      "Place one potato terrine rectangle slightly off-center on each plate.",
+      "Slice each chicken breast in half on an angle. Place the two pieces artfully next to the terrine.",
+      "Spoon warm chicken jus around the chicken and terrine.",
+      "Garnish with a small cluster of microgreens."
+    ],
+    "notes": [
+      "Using a mandoline for slicing potatoes ensures uniform thickness for the terrine.",
+      "Chilling the potato terrine overnight is essential for clean, precise cuts."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1023,
+      "cholesterol_mg": 301.5,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 47.7,
+      "saturated_fat_g": 32,
+      "sodium_mg": 284,
+      "total_carbs_g": 40,
+      "total_fat_g": 69.7,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 205,
+      "cholesterol_mg": 60.3,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.5,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 56.8,
+      "total_carbs_g": 8,
+      "total_fat_g": 13.9,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 100.5,
+      "dietary_fiber": 17.3,
+      "protein": 95.3,
+      "saturated_fat": 160,
+      "sodium": 12.3,
+      "total_carbs": 14.5,
+      "total_fat": 89.3
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Supreme, Potato Pave, Roasted Chicken Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_supreme%2C_potato_pave%2C_roasted_chicken_jus_20250903_014755_359d8907.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T01:47:56.012082000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken supreme, skin deeply golden and crispy, rests elegantly on a pristine white bone china plate. The chicken, with its bone-in winglet, is positioned towards one side of the plate. Adjacent to it, a perfectly golden-brown, rectangular block of potato pave stands proudly, showcasing its delicate, compressed layers. A glossy, rich roasted chicken jus is artfully spooned in a natural, flowing curve beside the chicken, creating a deep amber pool. Several precise drops of vibrant green chive oil are strategically placed on the plate, adding a contrasting pop of color and a fresh aroma. The presentation emphasizes abundant negative space, highlighting the dish's architectural precision and the quality of each component. The plate sits on a polished white Carrara marble surface, accompanied by a folded white linen napkin and elegant silver flatware. Dramatic, focused lighting casts soft shadows, enhancing the textures and creating a luxurious atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken Supreme",
+    "ingredients": [
+      {
+        "name": "Chicken Supremes (skin-on, bone-in winglet attached)",
+        "quantity": "4 (approx. 250g each)"
+      },
+      {
+        "name": "Russet Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken Stock (low sodium)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Chicken Bones (roasted, from 2-3 chickens, for jus)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrot (large, roughly chopped, for jus)",
+        "quantity": "1"
+      },
+      {
+        "name": "Celery Stalk (roughly chopped, for jus)",
+        "quantity": "1"
+      },
+      {
+        "name": "Yellow Onion (large, roughly chopped, for jus)",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic Cloves (smashed, for jus)",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay Leaf (for jus)",
+        "quantity": "1"
+      },
+      {
+        "name": "Dry White Wine (for jus)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Cold Water (for jus)",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Fresh Chives (for chive oil)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Neutral Oil (e.g., grapeseed, for chive oil)",
+        "quantity": "100 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Roast chicken bones, carrot, celery, onion in a roasting pan for 30 minutes until deeply caramelized. Transfer to a large pot.",
+      "Deglaze roasting pan with white wine, scraping up all browned bits. Add liquid to pot. Add garlic, bay leaf, thyme, and cold water to the pot. Bring to a simmer, skim any foam.",
+      "Reduce heat, simmer gently for 3-4 hours, skimming occasionally. Strain through a fine-mesh sieve. Reduce liquid over medium heat until it coats the back of a spoon, yielding about 200 ml of rich jus. Season lightly with salt. Keep warm.",
+      "Peel potatoes. Slice thinly, 1-2 mm thick, using a mandoline. Melt 150g butter. Lightly grease a 20x10 cm baking dish.",
+      "Layer potato slices, overlapping slightly, into the dish. Brush each layer with melted butter and season with salt and pepper. Pour 250 ml chicken stock over potatoes. Cover tightly with foil.",
+      "Bake at 160°C for 90 minutes, or until tender. Place a weighted object on top of the foil-covered potatoes to press them. Refrigerate overnight.",
+      "Once chilled and pressed, carefully unmold the potato pave. Cut into 4 equal rectangular blocks (approximately 5x10 cm each).",
+      "Just before serving, melt 50g butter and 20 ml olive oil in a non-stick pan over medium-high heat. Sear each potato pave block on all sides until golden brown and crispy. Keep warm.",
+      "Blanch chives in boiling water for 10 seconds. Immediately transfer to an ice bath. Squeeze dry. Blend blanched chives with neutral oil until smooth and vibrant green. Strain through a fine-mesh sieve or cheesecloth for a clear oil.",
+      "Pat chicken supremes dry. Season generously with salt and pepper. Heat 30 ml olive oil in an oven-safe, heavy-bottomed pan over medium-high heat. Place chicken supremes skin-side down.",
+      "Sear for 6-8 minutes until skin is deeply golden and crispy. Flip chicken. Add 2 sprigs of thyme, 2 smashed garlic cloves, and 50g butter to the pan. Baste chicken continuously for 3-4 minutes.",
+      "Transfer pan to a preheated 180°C oven. Roast for 10-15 minutes, or until internal temperature reaches 75°C. Rest chicken for 5 minutes before plating.",
+      "To plate, place a potato pave block on one side of the plate. Position a rested chicken supreme next to it. Spoon a generous amount of roasted chicken jus in a flowing curve around the chicken. Finish with a few precise drops of chive oil on the plate."
+    ],
+    "notes": [
+      "Precision in cooking temperatures and timing is crucial for this dish.",
+      "Ensure the chicken jus is well-reduced for maximum flavor and glossy texture.",
+      "The potato pave requires sufficient pressing and chilling to hold its shape perfectly."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1378,
+      "cholesterol_mg": 331,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 75.5,
+      "saturated_fat_g": 36.1,
+      "sodium_mg": 297,
+      "total_carbs_g": 47.8,
+      "total_fat_g": 99.3,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 195,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.7,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 42,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 14.1,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 110,
+      "dietary_fiber": 21,
+      "protein": 151,
+      "saturated_fat": 181,
+      "sodium": 13,
+      "total_carbs": 17,
+      "total_fat": 127
+    },
+    "serving_size_g": 705,
+    "total_recipe_weight_g": 2820
+  },
+  {
+    "recipe_name": "Brined Chicken Thighs with Fermented Potato Puree and Crispy Greens",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_brined_chicken_thighs_with_fermented_potato_puree_and_crispy_greens_20250903_014632_b37e5255.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T01:46:33.015597000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of this modern sustainable dish is presented on a handcrafted, matte cream-colored ceramic plate. The plate sits on a light, naturally textured reclaimed wood surface. A smooth quenelle of pale fermented potato puree forms the base. A single, perfectly roasted chicken thigh, bone-in and skin-on, is placed slightly off-center on the puree. The chicken skin is a rich, deeply golden-brown and visibly crispy. Adjacent, a vibrant mound of sautéed dark green kale, leaves slightly wilted, adds an earthy element. Golden-brown, irregularly shaped potato peel crisps are scattered sparingly for texture. The composition is clean and minimalist, with ample white space. Soft, natural light highlights the ingredients' natural colors and textures. An undyed linen napkin and simple, unadorned cutlery rest beside the plate. A blurred background suggests natural elements, maintaining an eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes, starchy (e.g., Russet, Maris Piper)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Seasonal greens (e.g., kale, spinach, chard)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water (for brine and cooking)",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Non-chlorinated water (for potato fermentation)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Sea salt (for potato fermentation)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Bay leaf (for brine)",
+        "quantity": "1"
+      },
+      {
+        "name": "Black peppercorns (for brine)",
+        "quantity": "5"
+      },
+      {
+        "name": "Garlic cloves (for brine)",
+        "quantity": "2, smashed"
+      }
+    ],
+    "instructions": [
+      "**For the Brined Chicken Thighs (Prepare 4-24 hours ahead):**",
+      "In a large bowl, combine 1 litre water, 60g sea salt, bay leaf, and peppercorns. Add smashed garlic. Stir until salt dissolves.",
+      "Submerge chicken thighs in the brine. Ensure chicken is fully covered. Cover bowl.",
+      "Refrigerate for 4 to 24 hours. Discard brine after use.",
+      "Remove chicken from brine. Pat dry thoroughly with paper towels.",
+      "**For the Fermented Potato Puree (Prepare 3-5 days ahead):**",
+      "Peel potatoes. Reserve peels for crisps. Cut peeled potatoes into 2cm cubes.",
+      "In a clean jar, combine 500ml non-chlorinated water and 10g sea salt. Stir to dissolve. This is a 2% brine.",
+      "Add potato cubes to the jar. Ensure potatoes are fully submerged. Use a fermentation weight if needed.",
+      "Cover jar with an airlock lid or burp daily. Ferment at room temperature (18-24°C) for 3-5 days.",
+      "Taste after 3 days. It should be pleasantly tangy. Refrigerate when desired tang is reached.",
+      "**On Serving Day:**",
+      "Preheat oven to 200°C (400°F).",
+      "Place brined, patted-dry chicken thighs skin-side down in a cold, oven-safe skillet. No oil needed.",
+      "Cook over medium heat for 8-10 minutes. Render chicken fat. Skin should be deeply golden and crispy.",
+      "Flip chicken thighs. Transfer skillet to preheated oven. Roast for 20-25 minutes.",
+      "Chicken internal temperature must reach 75°C (167°F). Remove from oven. Rest chicken 5 minutes.",
+      "While chicken roasts, prepare potato puree. Drain fermented potato cubes. Discard brine.",
+      "Place fermented potato cubes in a saucepan. Cover with fresh water. Bring to a boil.",
+      "Cook until very tender, about 15-20 minutes. Drain well.",
+      "Mash potatoes until smooth. Stir in 15ml olive oil, salt, and pepper to taste. Keep warm.",
+      "**For the Crispy Greens:**",
+      "Heat remaining 15ml olive oil in a large skillet over medium-high heat.",
+      "Add cleaned greens. Sauté quickly until just wilted, 2-3 minutes. Season with salt and pepper.",
+      "Stir in apple cider vinegar just before serving. Remove from heat.",
+      "**For Potato Peel Crisps (Zero-Waste):**",
+      "Preheat oven to 180°C (350°F).",
+      "Toss reserved potato peels with a drizzle of olive oil, pinch of salt, and pepper.",
+      "Spread peels in a single layer on a baking sheet. Bake for 15-20 minutes until crispy and golden.",
+      "**To Plate:**",
+      "Spoon a generous portion of fermented potato puree onto each plate. Create a smooth base.",
+      "Place one brined chicken thigh atop the puree. Position it slightly off-center.",
+      "Arrange a small mound of crispy greens next to the chicken.",
+      "Scatter a few potato peel crisps over the dish for texture."
+    ],
+    "notes": [
+      "For zero-waste, use chicken bones and any vegetable trimmings to make a rich stock.",
+      "The rendered chicken fat can be strained and saved for future cooking.",
+      "Adjust fermentation time for potatoes based on desired tanginess and ambient temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 543,
+      "cholesterol_mg": 163.5,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 37.5,
+      "saturated_fat_g": 7.3,
+      "sodium_mg": 1352,
+      "total_carbs_g": 30.8,
+      "total_fat_g": 30.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153.6,
+      "cholesterol_mg": 46.3,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 10.6,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 382.5,
+      "total_carbs_g": 8.7,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 21,
+      "protein": 75,
+      "saturated_fat": 37,
+      "sodium": 59,
+      "total_carbs": 11,
+      "total_fat": 39
+    },
+    "serving_size_g": 354,
+    "total_recipe_weight_g": 1414
+  },
+  {
+    "recipe_name": "Lemon Herb Chicken Pasta with Roasted Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_chicken_pasta_with_roasted_tomatoes_20250903_003838_253556dd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T00:38:39.326955000Z",
+    "selected_ingredients": [
+      "pasta",
+      "parsley",
+      "lemon",
+      "tomato",
+      "oregano",
+      "onion",
+      "garlic",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Lemon Herb Chicken Pasta is presented on a clean white porcelain dinner plate. Al dente linguine forms a neat nest in the center. Three to four golden-brown seared chicken medallions are artfully arranged on top of the pasta. Halved roasted cherry tomatoes are scattered throughout the dish, offering vibrant red pops of color. The pasta is lightly coated in a glistening lemon-herb sauce, showing some moisture. A generous sprinkle of finely chopped fresh parsley provides a bright green contrast. A delicate dusting of lemon zest adds freshness. The overall composition is balanced, with moderate negative space. The dish sits on a simple wooden table surface in a modern bistro setting, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread to soak up the sauce.",
+      "Offer freshly grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Pasta (e.g., linguine, penne)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Parmesan cheese (optional)",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2.5 cm thick medallions. Season with salt and pepper.",
+      "Heat 30 ml olive oil in a large pan over medium-high heat. Sear chicken medallions for 3-4 minutes per side until golden brown and cooked through to 75°C (167°F). Remove chicken from pan. Set aside.",
+      "Halve cherry tomatoes. Thinly slice garlic. Dice onion.",
+      "Add remaining 30 ml olive oil to the same pan. Sauté diced onion for 3 minutes until softened. Add sliced garlic and dried oregano. Sauté for 1 minute until fragrant.",
+      "Add halved cherry tomatoes to the pan. Cook for 5-7 minutes, until tomatoes soften and burst slightly. Stir in chicken broth.",
+      "Bring liquid to a simmer. Return cooked chicken to the pan. Reduce heat to low. Simmer gently for 2 minutes.",
+      "Meanwhile, cook pasta according to package directions in salted water until al dente. Drain pasta, reserving 60 ml pasta water.",
+      "Add drained pasta to the pan with chicken and tomato sauce. Add reserved pasta water if needed to create a light sauce. Toss to combine.",
+      "Finely chop fresh parsley. Grate lemon zest. Juice half the lemon.",
+      "Remove pan from heat. Stir in chopped parsley, lemon zest, and lemon juice. Taste and adjust seasoning.",
+      "Serve immediately. Garnish with optional grated Parmesan cheese."
+    ],
+    "notes": [
+      "Adjust lemon juice to your preference for tartness.",
+      "Pasta water helps emulsify the sauce and adds starch."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 696,
+      "cholesterol_mg": 117,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 55,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 821,
+      "total_carbs_g": 64.1,
+      "total_fat_g": 23.3,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 188,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 14.8,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 222,
+      "total_carbs_g": 17.3,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 16,
+      "protein": 110,
+      "saturated_fat": 28,
+      "sodium": 36,
+      "total_carbs": 23,
+      "total_fat": 30
+    },
+    "serving_size_g": 370.5,
+    "total_recipe_weight_g": 1482
+  }
+]

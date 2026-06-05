@@ -1,0 +1,611 @@
+[
+  {
+    "recipe_name": "Creamy Mushroom and Garlic Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_mushroom_and_garlic_tagliatelle_20250701_144259_cb637597.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:43:00.003440000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mushroom",
+      "garlic",
+      "onion",
+      "parmesan"
+    ],
+    "complexity": "simple",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A modest, home-style portion of creamy mushroom and garlic tagliatelle is naturally coiled within a rustic, off-white ceramic bowl. The tagliatelle strands are generously coated in a rich, glossy, light brown sauce, showcasing tender, sautéed dark brown mushroom slices and translucent, thin garlic slivers. Finely grated Parmesan cheese is lightly scattered over the top, with some melting into the warm pasta, creating a subtly textured surface. A sprinkle of roughly chopped fresh parsley adds a vibrant green contrast. The dish appears warm and inviting, emphasizing its natural textures and comforting colors. The bowl sits on a well-used, light wooden dining table. A simple, dark grey linen napkin and a classic silver fork are casually placed beside the bowl. The background is softly blurred, suggesting a cozy, lived-in kitchen atmosphere with warm, ambient lighting from overhead, casting gentle shadows that enhance the homely feel of the meal.",
+    "number_of_servings": 2,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread to sop up the sauce",
+      "Accompany with a simple green salad dressed with olive oil and vinegar"
+    ],
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Cook tagliatelle according to package instructions until al dente. Reserve 120ml pasta water before draining.",
+      "While pasta cooks, dice the onion finely. Slice the garlic thinly. Slice the cremini mushrooms.",
+      "Heat olive oil and butter in a large skillet over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add sliced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms to the skillet. Cook, stirring occasionally, until mushrooms are browned and softened, about 8-10 minutes. Season with salt and black pepper.",
+      "Pour in vegetable broth. Bring to a simmer. Cook for 2 minutes.",
+      "Add drained tagliatelle to the skillet. Add half of the reserved pasta water. Toss well to combine.",
+      "Grate Parmesan cheese directly into the pasta. Stir until cheese melts and sauce emulsifies, adding more pasta water as needed to achieve a creamy consistency. The sauce should coat the pasta.",
+      "Stir in chopped fresh parsley. Taste and adjust seasoning.",
+      "Serve immediately in warm bowls."
+    ],
+    "notes": [
+      "Reserving pasta water is crucial for achieving a creamy, emulsified sauce. The starch in the water helps bind the sauce to the pasta.",
+      "For extra depth, a splash of dry white wine can be added after sautéing the mushrooms, letting it reduce before adding broth."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 705.3,
+      "cholesterol_mg": 32.3,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 26.1,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 506.7,
+      "total_carbs_g": 85.2,
+      "total_fat_g": 28.4,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 186.8,
+      "cholesterol_mg": 8.5,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 6.9,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 134.2,
+      "total_carbs_g": 22.6,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10.8,
+      "dietary_fiber": 21.6,
+      "protein": 52.1,
+      "saturated_fat": 52,
+      "sodium": 22,
+      "total_carbs": 31,
+      "total_fat": 36.3
+    },
+    "serving_size_g": 377.6,
+    "total_recipe_weight_g": 755.2
+  },
+  {
+    "recipe_name": "Lemon Mint Roasted Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_mint_roasted_chicken_and_potatoes_20250701_144259_b1fe733d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:42:59.703628000Z",
+    "selected_ingredients": [
+      "mint",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Lemon Mint Roasted Chicken and Potatoes rests on an off-white, rustic ceramic dinner plate. The plate sits on a well-used, warm-toned wooden dining table. One golden-brown roasted chicken thigh, with crispy skin, is positioned slightly off-center. Next to it, a generous pile of tender, golden potato wedges, some with slightly charred edges, are casually arranged, overlapping naturally. A few vibrant green specks of fresh mint are scattered over the chicken and potatoes, adding a pop of color and freshness. The chicken displays visible cooked juices and a rich, appealing texture. The overall composition is informal and inviting, typical of a home-cooked meal. A simple, silver fork and knife are placed loosely to the right of the plate. A casually folded, light-colored cloth napkin is to the left. Warm, soft light from an overhead kitchen fixture illuminates the scene, creating a cozy and comforting atmosphere, with a hint of natural clutter in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and lemon.",
+      "Offer crusty bread for dipping in pan juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Fresh mint, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Lemons",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic, cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and pat dry chicken thighs. Season chicken with half of the salt and pepper.",
+      "Cut potatoes into 2 cm wedges.",
+      "In a large roasting pan, combine potato wedges, olive oil, minced garlic, remaining salt and pepper, and juice from one lemon. Toss to coat.",
+      "Arrange potato wedges in a single layer in the pan. Place chicken thighs skin-side up among the potatoes.",
+      "Roast for 30 minutes.",
+      "Flip chicken thighs. Stir potatoes. Continue roasting for another 20-25 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are tender and golden.",
+      "Remove from oven. Squeeze juice from the second lemon over chicken and potatoes.",
+      "Sprinkle generously with chopped fresh mint. Serve hot."
+    ],
+    "notes": [
+      "Ensure chicken is cooked through by checking internal temperature.",
+      "For extra crispiness, broil for the last 2-3 minutes if desired, watching carefully."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 594,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 36.6,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 623,
+      "total_carbs_g": 36.3,
+      "total_fat_g": 34.3,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 185,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 11.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 194,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 10.7,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 15,
+      "protein": 73,
+      "saturated_fat": 38,
+      "sodium": 27,
+      "total_carbs": 13,
+      "total_fat": 44
+    },
+    "serving_size_g": 320.5,
+    "total_recipe_weight_g": 1282
+  },
+  {
+    "recipe_name": "Cuban-Style Pork and Rice with Swiss Chard",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cuban-style_pork_and_rice_with_swiss_chard_20250701_144255_f8448bd5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:42:55.879336000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "brown rice",
+      "corn",
+      "oregano",
+      "swiss chard",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Cuban-Style Pork and Rice is presented on a clean, round white porcelain dinner plate, centrally mounded. The dish features tender, golden-brown pork chunks, about 3-4 cm cubes, nestled within a bed of light brown brown rice. Vibrant yellow corn kernels and deep green, roughly chopped swiss chard leaves are generously mixed throughout, providing contrasting colors and textures. Flecks of diced red tomato from the sofrito base add subtle color. The overall composition is organized yet natural, with moderate negative space on the plate. A small lime wedge rests beside the main mound, ready for squeezing. A sprinkle of fresh chopped cilantro garnishes the top. The scene is set on a simple light wooden table surface, with a folded cotton napkin beside the plate. Natural, even lighting illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Cuban",
+    "cultural_origin": "Cuba",
+    "cultural_serving_suggestions": [
+      "Served with a side of ripe plantain slices (maduros)",
+      "Black beans",
+      "A wedge of lime for squeezing"
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "600 grams, cut into 3-4 cm cubes"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Brown onion",
+        "quantity": "1 large (about 200g), finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "200 grams (canned)"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml (1 teaspoon)"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 ml (1 teaspoon)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300 grams, rinsed"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Corn kernels",
+        "quantity": "150 grams (fresh or frozen)"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "200 grams, stems removed, leaves roughly chopped"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, half juiced, half cut into wedges for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "Small bunch, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Season pork cubes generously with salt and black pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Add pork cubes. Sear in batches until well browned on all sides. Do not overcrowd the pot. Remove seared pork and set aside.",
+      "Reduce heat to medium. Add diced onion and bell pepper to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic, oregano, and cumin. Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes. Cook for 3-4 minutes, stirring occasionally, until the sauce slightly thickens. This is the sofrito.",
+      "Add rinsed brown rice to the pot. Stir well to coat rice in the sofrito. Cook for 1 minute.",
+      "Return seared pork to the pot. Pour in chicken broth. Bring to a boil.",
+      "Reduce heat to low. Cover the pot tightly. Simmer for 35-40 minutes, or until most of the liquid is absorbed and rice is tender. Do not stir frequently.",
+      "Stir in corn kernels and chopped swiss chard. Cover and cook for another 5-7 minutes, until chard is wilted and corn is heated through.",
+      "Remove from heat. Stir in lime juice. Let rest, covered, for 5 minutes.",
+      "Fluff with a fork before serving."
+    ],
+    "notes": [
+      "This recipe blends traditional Cuban flavors with readily available ingredients, adapting the classic \"Arroz con Cerdo\" to include swiss chard and corn for added vegetables and color. The key is the sofrito base and proper rice cooking."
+    ],
+    "traditional_techniques": [
+      "Sofrito preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 807,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 46.4,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 885.9,
+      "total_carbs_g": 78.8,
+      "total_fat_g": 35.5,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115,
+      "cholesterol_mg": 17.1,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.6,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 126.6,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 20.8,
+      "protein": 92.8,
+      "saturated_fat": 52.1,
+      "sodium": 38.5,
+      "total_carbs": 28.7,
+      "total_fat": 45.5
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2800
+  },
+  {
+    "recipe_name": "Whipped Feta Dip with Roasted Cherry Tomatoes and Olives",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_whipped_feta_dip_with_roasted_cherry_tomatoes_and_olives_20250701_144219_db63fcb1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:42:20.353077000Z",
+    "selected_ingredients": [
+      "feta cheese",
+      "yogurt",
+      "olive",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A rustic, off-white ceramic bowl, slightly shallow, holds a generous dollop of creamy, off-white whipped feta dip. The dip is spread naturally within the bowl, showing a slight texture. Over the top, warm, bursting roasted cherry tomatoes, halved, in vibrant reds and deep purple-black pitted Kalamata olives are casually scattered, some nestled into the dip, others resting on the surface. A light drizzle of golden olive oil glistens. A few small, fresh green oregano leaves are sprinkled on top. The bowl sits on a well-used, light-colored wooden dining table with visible grain. Thick slices of crusty, artisan bread with a golden-brown crust are arranged casually beside the bowl. A simple, off-white linen napkin is loosely folded. The scene is bathed in warm, soft, natural light, creating a cozy, inviting atmosphere. The background is slightly blurred, showing hints of a homely kitchen environment without distracting elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty artisan bread, pita bread, or vegetable sticks for dipping.",
+      "Enjoy as part of a meze spread."
+    ],
+    "hero_ingredient": "Feta cheese",
+    "ingredients": [
+      {
+        "name": "Feta cheese",
+        "quantity": "200 g block"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "80 g (pitted)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves (minced)"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Crusty bread or pita bread",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Halve cherry tomatoes.",
+      "Place halved tomatoes and pitted olives on a baking tray.",
+      "Drizzle with 30 ml olive oil. Sprinkle with oregano.",
+      "Roast for 15-20 minutes until tomatoes soften and burst slightly.",
+      "While vegetables roast, combine feta cheese, Greek yogurt, minced garlic, and remaining 30 ml olive oil in a food processor.",
+      "Process until smooth and creamy. Scrape down sides as needed.",
+      "Spoon whipped feta mixture into a shallow serving bowl.",
+      "Top generously with warm roasted tomatoes and olives.",
+      "Garnish with a fresh oregano sprig if desired.",
+      "Serve immediately with slices of crusty bread or warm pita bread."
+    ],
+    "notes": [
+      "The roasting of tomatoes and olives enhances their sweetness and savory notes, providing a warm contrast to the cool, creamy dip.",
+      "Adjust garlic to taste."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 341,
+      "cholesterol_mg": 49,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 10.5,
+      "saturated_fat_g": 10.8,
+      "sodium_mg": 882,
+      "total_carbs_g": 9,
+      "total_fat_g": 30.4,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 197,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 6,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 509,
+      "total_carbs_g": 5.2,
+      "total_fat_g": 17.5,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16,
+      "dietary_fiber": 6,
+      "protein": 21,
+      "saturated_fat": 54,
+      "sodium": 38,
+      "total_carbs": 3,
+      "total_fat": 39
+    },
+    "serving_size_g": 173.3,
+    "total_recipe_weight_g": 693.2
+  },
+  {
+    "recipe_name": "Hearty Potato and Bacon Hash with Fried Eggs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_potato_and_bacon_hash_with_fried_eggs_20250701_144214_863ff273.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:42:15.523253000Z",
+    "selected_ingredients": [
+      "potato",
+      "onion",
+      "bacon",
+      "egg"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of hearty potato and bacon hash is served on a simple, round ceramic plate. The hash forms a rustic mound of golden-brown, diced potatoes, intermingled with soft, caramelized onion pieces and crispy, irregularly cut bacon. Textures vary from tender to perfectly seared. A sunny-side-up fried egg, with a bright orange-yellow yolk and slightly crispy white, rests atop the hash. A light scattering of chopped fresh parsley adds a touch of green. The plate is set on a well-worn wooden kitchen table, displaying its natural grain. A casually placed cloth napkin and standard flatware complete the homely setting. Soft, warm kitchen lighting illuminates the comfort food, creating an inviting, lived-in atmosphere. The background is subtly blurred, focusing on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potato",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Streaky bacon",
+        "quantity": "200g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Prepare potatoes. Peel potatoes. Dice into 1.5 cm cubes.",
+      "Cook potatoes. Boil diced potatoes in salted water for 5-7 minutes until slightly tender but still firm. Drain well.",
+      "Prepare bacon. Cut bacon into 1 cm pieces.",
+      "Cook bacon. Heat a large frying pan over medium-high heat. Add bacon. Cook until crispy. Remove bacon from pan. Keep 2 tablespoons of bacon fat in the pan.",
+      "Cook onions. Peel and dice onions. Add onions to the pan with bacon fat. Sauté 8-10 minutes until softened and lightly caramelized.",
+      "Cook potatoes. Add par-boiled potatoes to the pan with onions. Increase heat to medium-high. Cook, stirring occasionally, for 10-15 minutes until potatoes are golden and crispy.",
+      "Combine hash. Return cooked bacon to the pan with potatoes and onions. Stir to combine. Season with salt and pepper.",
+      "Cook eggs. In a separate pan, heat 1 tablespoon olive oil over medium heat. Fry 4 eggs to desired doneness.",
+      "Serve. Divide hash among four plates. Top each serving with a fried egg. Garnish with chopped fresh parsley if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 570,
+      "cholesterol_mg": 250,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 23.9,
+      "saturated_fat_g": 9.9,
+      "sodium_mg": 784,
+      "total_carbs_g": 43.7,
+      "total_fat_g": 33.1,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 143,
+      "cholesterol_mg": 62,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 196,
+      "total_carbs_g": 11,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 83.2,
+      "dietary_fiber": 21,
+      "protein": 47.8,
+      "saturated_fat": 49.5,
+      "sodium": 34.1,
+      "total_carbs": 15.9,
+      "total_fat": 42.5
+    },
+    "serving_size_g": 399.5,
+    "total_recipe_weight_g": 1598
+  }
+]

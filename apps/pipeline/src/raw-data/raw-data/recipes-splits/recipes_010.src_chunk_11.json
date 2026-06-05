@@ -1,0 +1,721 @@
+[
+  {
+    "recipe_name": "Apricot and Pistachio Mousse Entremet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_apricot_and_pistachio_mousse_entremet_20250713_152640_860494e7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T15:26:41.354031000Z",
+    "selected_ingredients": [
+      "apricot",
+      "pistachio"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, rectangular entremet sits elegantly off-center on a pristine white Carrara marble surface, presented on a round, modern designer bone china plate with a subtle, unadorned rim. The entremet, approximately 5x10 cm, is coated in a vibrant, glossy apricot glaze, reflecting soft light. Its sides are impeccably smooth, hinting at the clean layers within. A subtle pale green edge of the pistachio dacquoise base is visible at the bottom. A small, carefully placed cluster of three to five candied pistachios rests on one corner of the entremet, providing a textural contrast and a hint of a darker green hue. The plating features abundant negative space, emphasizing the dessert’s architectural simplicity and flawless execution. A crisp, white linen napkin, precisely folded into a triangle, is positioned to the side. Dramatic professional lighting casts soft, deliberate shadows, highlighting the dessert's form and shine. The background is ultra-minimalist, completely unobtrusive.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Dessert",
+    "hero_ingredient": "Apricot",
+    "ingredients": [
+      {
+        "name": "Fresh Apricots",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "100 g (for gel + dacquoise + glaze)"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Pectin NH",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Egg Whites",
+        "quantity": "120 g (approx. 4 large eggs)"
+      },
+      {
+        "name": "Icing Sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Ground Pistachios",
+        "quantity": "80 g"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "White Chocolate (high quality)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy Cream (35% fat)",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Gelatin Leaves (gold bloom)",
+        "quantity": "5 g (approx. 2.5 sheets)"
+      },
+      {
+        "name": "Glucose Syrup",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Whole Pistachios",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml (for candied pistachios)"
+      }
+    ],
+    "instructions": [
+      "Prepare Apricot Gel Insert: Halve and pit 150g apricots. Blend with 30g sugar and 5ml lemon juice. Heat puree gently. Whisk pectin with 10g sugar. Slowly whisk into warm apricot puree. Bring to a boil. Cook 1 minute. Pour into small silicone sphere molds or a shallow tray (5mm thick). Freeze until solid.",
+      "Prepare Pistachio Dacquoise: Preheat oven to 170°C. Sift icing sugar, ground pistachios, and flour. Whisk egg whites to soft peaks. Gradually add 30g granulated sugar, whisk to stiff, glossy peaks. Gently fold in dry ingredients. Spread batter 5mm thick onto a parchment-lined baking sheet. Bake 12-15 minutes until lightly golden and firm. Cool completely. Cut into four 4x8 cm rectangles.",
+      "Prepare White Chocolate Mousse: Bloom gelatin in cold water. Chop white chocolate. Heat 100ml cream until simmering. Pour hot cream over chocolate. Let sit 1 minute. Stir until smooth. Squeeze excess water from gelatin. Stir into chocolate mixture until dissolved. Cool to 30°C. Whip remaining 200ml cream to soft peaks. Gently fold whipped cream into cooled chocolate mixture.",
+      "Assemble Entremets: Line four individual rectangular silicone molds (approx. 5x10 cm) with a thin layer of white chocolate mousse. Place a frozen apricot gel insert in the center of each. Cover with more mousse. Press one pistachio dacquoise rectangle onto the mousse. Top with a final thin layer of mousse. Smooth surface. Freeze molds for at least 4 hours, preferably overnight, until solid.",
+      "Prepare Apricot Glaze: Halve and pit 100g apricots. Blend into a smooth puree. In a saucepan, combine apricot puree, 30g sugar, glucose syrup, and 10ml lemon juice. Heat until sugar dissolves. Bloom remaining gelatin. Squeeze excess water. Stir into warm glaze until dissolved. Strain glaze for smoothness. Cool to 35-38°C.",
+      "Prepare Candied Pistachios: In a small pan, combine 10g sugar and 30ml water. Bring to a boil. Add whole pistachios. Cook until water evaporates and sugar crystallizes around pistachios. Continue cooking briefly until sugar turns light caramel. Spread on parchment paper to cool. Break apart any clumps.",
+      "Glaze and Finish: Carefully unmold frozen entremets. Place on a wire rack over a baking tray. Pour warm apricot glaze evenly over each entremet, ensuring full coverage. Let excess glaze drip. Transfer to serving plates using a palette knife. Garnish each entremet with a few candied pistachios. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 61.9,
+      "calories": 848.1,
+      "cholesterol_mg": 86.3,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 15,
+      "saturated_fat_g": 25.7,
+      "sodium_mg": 106.1,
+      "total_carbs_g": 86.9,
+      "total_fat_g": 51.5,
+      "total_sugars_g": 76.8,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 20.9,
+      "calories": 287,
+      "cholesterol_mg": 29.1,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 5.1,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 35.9,
+      "total_carbs_g": 29.3,
+      "total_fat_g": 17.4,
+      "total_sugars_g": 25.9,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28.8,
+      "dietary_fiber": 15.1,
+      "protein": 30,
+      "saturated_fat": 128.6,
+      "sodium": 4.6,
+      "total_carbs": 31.6,
+      "total_fat": 66
+    },
+    "serving_size_g": 296.25,
+    "total_recipe_weight_g": 1185
+  },
+  {
+    "recipe_name": "Spicy Maple Glazed Chicken with Cheesy Garlic Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_maple_glazed_chicken_with_cheesy_garlic_rice_20250713_144847_f26ae379.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T14:48:47.794406000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mayonnaise",
+      "rice",
+      "hot sauce",
+      "carrot",
+      "cheese",
+      "potato",
+      "tomato",
+      "bread",
+      "onion",
+      "garlic",
+      "noodle",
+      "macaroni",
+      "apple",
+      "maple syrup",
+      "lemon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, individual portion of Spicy Maple Glazed Chicken is presented on a clean white porcelain plate, set on a simple wooden table in a modern bistro. A golden-brown, glistening chicken thigh, whole and unsliced, serves as the focal point, coated in a rich, sticky maple hot sauce glaze. Beside it, a neat mound of creamy, off-white cheesy garlic rice is placed, featuring a soft texture with visible garlic flecks. Around the chicken and rice, vibrant orange carrot thick slices and golden-brown potato wedges are arranged organically, displaying light charring. A delicate drizzle of pale orange spicy maple mayonnaise lightly adorns the chicken. The dish is garnished with bright green, chopped parsley. A folded white cotton napkin rests beside the plate. Natural, even lighting highlights the food's inviting textures and colors against a minimal background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon, juiced",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1/2 medium"
+      },
+      {
+        "name": "Shredded cheese (e.g., cheddar)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "4 g"
+      },
+      {
+        "name": "Carrots, peeled, 2 cm thick slices",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes, peeled, 2 cm cubes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss carrots and potatoes with olive oil, 5g salt, 2g pepper, and garlic powder on a baking sheet. Roast 30-35 minutes, or until tender and lightly browned.",
+      "Pat chicken thighs dry. Season with remaining 5g salt and 2g pepper. Heat a large oven-safe skillet over medium-high heat. Sear chicken thighs presentation side down 5-7 minutes until golden brown. Flip and sear other side 3-5 minutes.",
+      "Whisk together maple syrup, 30ml hot sauce, 15ml lemon juice, 2 cloves minced garlic, and soy sauce for the glaze.",
+      "Pour glaze over chicken in skillet. Transfer skillet to oven. Bake 10-15 minutes, or until chicken reaches an internal temperature of 75°C and glaze thickens. Rest chicken 5 minutes.",
+      "Melt butter in a medium saucepan over medium heat. Add diced onion and 2 cloves minced garlic. Sauté 3-4 minutes until softened. Add rice and stir 1 minute. Pour in chicken broth. Bring to a boil, reduce heat to low, cover, and simmer 15-18 minutes until liquid is absorbed and rice is tender.",
+      "Remove rice from heat. Stir in shredded cheese until melted and combined. Fluff with a fork. Season to taste.",
+      "Whisk together mayonnaise, 10ml hot sauce, and 5ml lemon juice for spicy maple mayonnaise.",
+      "Spoon cheesy garlic rice onto each plate. Place a glazed chicken thigh beside rice. Arrange roasted carrots and potatoes around chicken and rice. Drizzle spicy maple mayonnaise over chicken. Garnish with chopped fresh parsley."
+    ],
+    "notes": [
+      "Adjust hot sauce to desired spice level. Ensure chicken reaches 75°C internal temperature for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 13.5,
+      "calories": 898,
+      "cholesterol_mg": 212,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 45.4,
+      "saturated_fat_g": 15.1,
+      "sodium_mg": 2140,
+      "total_carbs_g": 87.4,
+      "total_fat_g": 44.6,
+      "total_sugars_g": 16.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.4,
+      "calories": 157,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 375,
+      "total_carbs_g": 15.3,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 16,
+      "protein": 91,
+      "saturated_fat": 76,
+      "sodium": 93,
+      "total_carbs": 32,
+      "total_fat": 57
+    },
+    "serving_size_g": 571,
+    "total_recipe_weight_g": 2284
+  },
+  {
+    "recipe_name": "Maple Lemon Roasted Chicken with Root Vegetables and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_maple_lemon_roasted_chicken_with_root_vegetables_and_rice_20250713_144759_352857f4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T14:48:00.010386000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mayonnaise",
+      "rice",
+      "hot sauce",
+      "carrot",
+      "cheese",
+      "potato",
+      "tomato",
+      "bread",
+      "onion",
+      "garlic",
+      "noodle",
+      "macaroni",
+      "apple",
+      "maple syrup",
+      "lemon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Maple Lemon Roasted Chicken with Root Vegetables and Rice is presented on a clean white porcelain dinner plate. A golden-brown, roasted chicken breast, cooked through to perfection, sits prominently on the plate. Beside it, a neat mound of fluffy white basmati rice. Surrounding the chicken and rice are vibrant roasted root vegetables: golden-edged potato chunks, bright orange carrot chunks, softened red onion wedges, and tender whole roasted garlic cloves. The vegetables exhibit slight caramelization and varied textures. A delicate drizzle of creamy, pale orange spicy lemon mayonnaise cascades over the chicken and vegetables. The dish is garnished with finely chopped fresh green parsley, adding a pop of color. The plating is organized yet natural, with balanced composition and appropriate negative space. The setting is a modern bistro, featuring a simple wooden table surface and a casual background. A cotton napkin is placed beside the plate, and standard flatware is arranged for dining. Natural, even lighting illuminates the dish, highlighting its textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (juiced and zested)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves (minced for marinade), 8 whole cloves (for roasting)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g (small, cut into 2.5 cm chunks)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g (peeled, cut into 2 cm chunks)"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large (cut into 2.5 cm wedges)"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g (chopped, for garnish)"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (392°F).",
+      "Prepare chicken marinade: In a bowl, combine maple syrup, lemon juice, lemon zest, 4 cloves minced garlic, 30 ml olive oil, 5 g salt, and 2.5 g black pepper. Mix well.",
+      "Place chicken breasts in the marinade. Ensure chicken is fully coated. Marinate for at least 15 minutes, or up to 2 hours in the refrigerator.",
+      "Prepare vegetables: On a large baking sheet, toss potato chunks, carrot chunks, red onion wedges, and 8 whole garlic cloves with 15 ml olive oil, 5 g salt, and 2.5 g black pepper. Spread in a single layer.",
+      "Arrange marinated chicken among the vegetables on the baking sheet. Pour any remaining marinade over chicken and vegetables.",
+      "Roast for 25-30 minutes, or until chicken internal temperature reaches 75°C (167°F) and vegetables are tender and lightly caramelized. Flip vegetables halfway through roasting.",
+      "While chicken and vegetables roast, cook rice: Rinse basmati rice under cold water until water runs clear. Combine rice and 500 ml water in a medium saucepan. Bring to a boil. Reduce heat to low, cover, and simmer for 15 minutes, or until water is absorbed and rice is tender. Remove from heat and let stand covered for 5 minutes. Fluff with a fork.",
+      "Prepare spicy lemon drizzle: In a small bowl, whisk together mayonnaise, hot sauce, and a squeeze of fresh lemon juice.",
+      "To serve: Place a mound of fluffy rice on each plate. Arrange one roasted chicken breast alongside the rice. Add a generous portion of roasted root vegetables. Drizzle with the spicy lemon mayonnaise. Garnish with chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 13.5,
+      "calories": 940,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 9,
+      "protein_g": 65.5,
+      "saturated_fat_g": 5,
+      "sodium_mg": 1297,
+      "total_carbs_g": 105.1,
+      "total_fat_g": 27.7,
+      "total_sugars_g": 20.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.8,
+      "calories": 126.6,
+      "cholesterol_mg": 21.4,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.8,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 174.6,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 32,
+      "protein": 131,
+      "saturated_fat": 25,
+      "sodium": 56,
+      "total_carbs": 38,
+      "total_fat": 36
+    },
+    "serving_size_g": 742.75,
+    "total_recipe_weight_g": 2971
+  },
+  {
+    "recipe_name": "Spicy Chicken & Cheesy Rice with Roasted Root Vegetables and Crispy Macaroni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_%26_cheesy_rice_with_roasted_root_vegetables_and_crispy_macaroni_20250713_144630_be0a987e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T14:46:30.827420000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mayonnaise",
+      "rice",
+      "hot sauce",
+      "carrot",
+      "cheese",
+      "potato",
+      "tomato",
+      "bread",
+      "onion",
+      "garlic",
+      "noodle",
+      "macaroni"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant \"Modern American\" main course presented on a round white porcelain plate. A mound of fluffy, cheesy white rice sits on one side. Adjacent, golden-brown roasted potato wedges, caramelized onion petals, and tender carrot rounds are artfully arranged. A perfectly seared chicken thigh, golden-brown and crisp, rests prominently, unsliced. A generous drizzle of creamy, pale orange spicy mayonnaise cascades over the chicken and vegetables. Bright green chopped fresh parsley garnishes the dish. Small, golden, crispy elbow macaroni pieces are scattered lightly, adding textural contrast. The entire plate is visible with moderate negative space. Thin crimson tomato slices and a rustic toasted bread slice accompany the dish. The setting is a clean wooden table with natural, even lighting and a cotton napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 boneless, skinless (approx. 180g each)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (approx. 200g)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium (approx. 400g)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "2 medium (approx. 250g)"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "50g"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "100g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "80g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "4 slices"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Peel and cut potatoes into 2 cm wedges. Peel carrots and cut into 2 cm thick rounds. Peel onion and cut into 2 cm wedges. Peel garlic cloves and smash lightly. Toss potatoes, carrots, onion, and smashed garlic with 30ml olive oil, salt, and pepper on a baking tray. Roast for 30-35 minutes, or until tender and lightly caramelized.",
+      "Rinse rice under cold water until water runs clear. Combine rice with 400ml water and a pinch of salt in a saucepan. Bring to a boil, then reduce heat to low, cover, and simmer for 15 minutes, or until water is absorbed. Remove from heat and let stand, covered, for 5 minutes. Fluff with a fork. Stir in shredded cheese until melted and combined. Keep warm.",
+      "Heat 20ml olive oil in a small frying pan over medium-high heat. Add dry macaroni and fry, stirring constantly, until golden brown and crispy, about 3-5 minutes. Remove with a slotted spoon and drain on paper towels. Season lightly with salt.",
+      "Pat chicken thighs dry. Season generously with salt and pepper. Heat 10ml olive oil in a large frying pan over medium-high heat. Add chicken thighs and sear for 6-8 minutes per side, until internal temperature reaches 75°C (167°F) and chicken is golden brown. Remove from pan and let rest for 5 minutes.",
+      "In a small bowl, whisk together mayonnaise and hot sauce until well combined.",
+      "Slice tomatoes into 1 cm thick rounds. Lightly toast or grill bread slices.",
+      "Place a portion of cheesy rice on one side of each plate. Arrange roasted vegetables next to the rice. Place a seared chicken thigh on the plate. Drizzle chicken and vegetables with spicy mayonnaise. Garnish with chopped fresh parsley. Serve with toasted bread and fresh tomato slices on the side."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C (167°F) internal temperature for food safety.",
+      "Adjust hot sauce quantity in mayonnaise to suit spice preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.14,
+      "calories": 1099,
+      "cholesterol_mg": 203.9,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 57.12,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 684.5,
+      "total_carbs_g": 97.52,
+      "total_fat_g": 53.02,
+      "total_sugars_g": 8.32,
+      "trans_fat_g": 0.38
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.03,
+      "calories": 196,
+      "cholesterol_mg": 36.4,
+      "dietary_fiber_g": 1.32,
+      "protein_g": 10.2,
+      "saturated_fat_g": 2.46,
+      "sodium_mg": 122.2,
+      "total_carbs_g": 17.41,
+      "total_fat_g": 9.47,
+      "total_sugars_g": 1.48,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.97,
+      "dietary_fiber": 26.43,
+      "protein": 114.24,
+      "saturated_fat": 69,
+      "sodium": 29.76,
+      "total_carbs": 35.46,
+      "total_fat": 67.97
+    },
+    "serving_size_g": 560,
+    "total_recipe_weight_g": 2240
+  },
+  {
+    "recipe_name": "Spicy Chicken and Cheesy Macaroni Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_cheesy_macaroni_bake_20250713_144459_bc61baf9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T14:45:00.137013000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mayonnaise",
+      "rice",
+      "hot sauce",
+      "carrot",
+      "cheese",
+      "potato",
+      "tomato",
+      "bread",
+      "onion",
+      "garlic",
+      "noodle",
+      "macaroni"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a clean, white porcelain bowl, showcasing a generous portion of Spicy Chicken and Cheesy Macaroni Bake. Golden-brown seared chicken chunks, approximately 3 cm, are nestled within the vibrant, tomato-infused macaroni, which is studded with finely diced carrot, softened onion, and garlic. A melted, bubbling golden-brown cheese crust, interspersed with crisp breadcrumbs, covers the top, offering textural contrast. A creamy, vibrant orange spicy mayonnaise is drizzled artfully over the bake. The entire composition is finished with a sprinkle of freshly chopped green parsley, adding a pop of color. The setting features a simple wooden table, a folded cotton napkin, and standard silverware, with a subtly blurred bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Elbow macaroni pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Carrot, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Hot sauce (e.g., Frank's RedHot)",
+        "quantity": "60 ml, divided"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Shredded cheddar cheese",
+        "quantity": "200 g, divided"
+      },
+      {
+        "name": "Fresh breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut chicken thighs into 3 cm chunks. Season with 2.5 ml salt and 1.25 ml black pepper.",
+      "Heat 15 ml olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear chicken chunks until golden brown on all sides, about 3-4 minutes. Remove chicken and set aside.",
+      "Add remaining 15 ml olive oil to the pot. Add diced onion and finely diced carrot. Sauté until softened, about 5 minutes. Add minced garlic and sauté for 1 minute until fragrant.",
+      "Stir in diced tomatoes (undrained), chicken broth, 45 ml hot sauce, dried oregano, remaining salt, and black pepper. Bring mixture to a simmer.",
+      "Add uncooked macaroni to the pot. Stir well to combine with the liquid.",
+      "Return chicken chunks to the pot, nestling them into the macaroni mixture.",
+      "Cover the pot and bake for 15 minutes.",
+      "Remove pot from oven. Stir in 150 g shredded cheese until melted and combined with the macaroni.",
+      "Sprinkle remaining 50 g shredded cheese and fresh breadcrumbs evenly over the top of the bake.",
+      "Return to oven, uncovered, and bake for another 15-20 minutes, or until macaroni is tender, cheese is melted and golden brown, and chicken reaches an internal temperature of 75°C.",
+      "While the bake finishes, whisk 60 ml mayonnaise with remaining 15 ml hot sauce for a spicy drizzle.",
+      "Remove bake from oven. Let stand for 5 minutes before serving. Garnish with fresh chopped parsley and a drizzle of spicy mayonnaise."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 969,
+      "cholesterol_mg": 199,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 56,
+      "saturated_fat_g": 16.7,
+      "sodium_mg": 1126,
+      "total_carbs_g": 73.8,
+      "total_fat_g": 48.3,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 166,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 9.6,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 192,
+      "total_carbs_g": 12.6,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.4,
+      "dietary_fiber": 17.4,
+      "protein": 112,
+      "saturated_fat": 83.7,
+      "sodium": 49,
+      "total_carbs": 26.8,
+      "total_fat": 61.9
+    },
+    "serving_size_g": 585.25,
+    "total_recipe_weight_g": 2341
+  }
+]

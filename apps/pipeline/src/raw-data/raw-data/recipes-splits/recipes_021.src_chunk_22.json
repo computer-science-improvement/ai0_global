@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Turkey Meatballs with Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_turkey_meatballs_with_tomato_sauce_20250624_140918_932495d8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:09:18.975070000Z",
+    "selected_ingredients": [
+      "tomato",
+      "turkey",
+      "flour"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of spaghetti twirled and piled high on a simple, round, off-white ceramic plate. Several rich, spherical turkey meatballs, about 4 cm in diameter, are nestled within the pasta, some partially submerged in the vibrant, rustic tomato sauce. The sauce is a deep, inviting red, clinging to the pasta strands and coating the meatballs, with visible flecks of cooked onion and herbs. A light sprinkle of finely chopped fresh green parsley is scattered over the top, providing a pop of contrasting color. The plate sits on a well-used, light wooden dining table, showing natural grain and minor imperfections. A simple silver fork is casually placed beside the plate. Warm, soft light from an overhead kitchen fixture illuminates the scene, creating a comforting, homely atmosphere. A crumpled, light-colored cloth napkin is loosely placed near the plate, enhancing the relaxed, everyday dining feel. The background is minimal, suggesting a cozy family kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of grated Parmesan cheese for sprinkling.",
+      "Offer crusty bread for dipping in the sauce.",
+      "A simple green salad often accompanies this meal."
+    ],
+    "hero_ingredient": "Turkey Meatballs",
+    "ingredients": [
+      {
+        "name": "Ground turkey",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 millilitres"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Spaghetti or pasta of choice",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Water or chicken broth",
+        "quantity": "120 millilitres"
+      }
+    ],
+    "instructions": [
+      "Combine ground turkey, egg, breadcrumbs, 15 grams flour, half of the parsley, oregano, salt, and pepper in a large bowl. Mix gently until just combined. Do not overmix.",
+      "Form the mixture into 16-20 meatballs, each about 3-4 centimetres in diameter.",
+      "Heat olive oil in a large pot or deep skillet over medium-high heat. Brown meatballs in batches on all sides until golden. Remove meatballs and set aside.",
+      "Add diced onion to the pot. Cook until softened, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in the remaining 15 grams of flour. Cook for 1 minute.",
+      "Pour in crushed tomatoes and water or broth. Stir well. Bring sauce to a simmer.",
+      "Carefully return browned meatballs to the sauce. Reduce heat to low. Cover and simmer for 20-25 minutes, or until meatballs are cooked through. Internal temperature of turkey should reach 75°C.",
+      "While meatballs simmer, cook pasta according to package directions until al dente. Drain well.",
+      "Serve meatballs and sauce over cooked pasta. Garnish with remaining fresh parsley."
+    ],
+    "notes": [
+      "Ensure turkey meatballs reach an internal temperature of 75°C (167°F) for food safety.",
+      "For a richer flavor, brown meatballs well before adding to sauce."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 780,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 7.15,
+      "protein_g": 47.46,
+      "saturated_fat_g": 4.01,
+      "sodium_mg": 210,
+      "total_carbs_g": 104.09,
+      "total_fat_g": 18.67,
+      "total_sugars_g": 10.55,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 1.34,
+      "protein_g": 8.87,
+      "saturated_fat_g": 0.75,
+      "sodium_mg": 39,
+      "total_carbs_g": 19.45,
+      "total_fat_g": 3.49,
+      "total_sugars_g": 1.97,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 26,
+      "protein": 95,
+      "saturated_fat": 20,
+      "sodium": 9,
+      "total_carbs": 38,
+      "total_fat": 24
+    },
+    "serving_size_g": 535.25,
+    "total_recipe_weight_g": 2141
+  },
+  {
+    "recipe_name": "Savory Chicken with Chocolate-Chai Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_chicken_with_chocolate-chai_sauce_20250624_140918_66caf701.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:09:18.595085000Z",
+    "selected_ingredients": [
+      "chocolate",
+      "milk",
+      "chai tea"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is a single portion of tender chicken in a rich, dark brown, slightly glossy sauce, served on a round, off-white ceramic plate. The chicken is cut into generous, rustic chunks, nestled amidst the savory, aromatic sauce. The sauce clings to the chicken, showcasing its smooth, comforting texture. Fresh, vibrant green chopped coriander (cilantro) is scattered over the top for color. The plate is on a well-used wooden dining table, suggesting a cozy, home kitchen. A small stack of warm corn tortillas rests beside the plate. A casual, folded linen napkin and simple fork are present. The overall impression is hearty, comforting home cooking.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Dark chocolate (70-85% cocoa), chopped",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Chili powder (mild)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Ground cardamom",
+        "quantity": "1/4 tsp"
+      },
+      {
+        "name": "Ground cloves",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh coriander/cilantro, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Brown chicken thighs on all sides. Remove chicken and set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic, cumin, coriander, chili powder, cinnamon, cardamom, and cloves. Cook for 1 minute until fragrant.",
+      "Stir in diced tomatoes and chicken broth. Bring to a simmer.",
+      "Return chicken to the pot. Reduce heat to low, cover, and simmer for 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Remove chicken from pot. Shred or cut into large chunks.",
+      "Stir in whole milk and chopped dark chocolate into the sauce. Cook, stirring, until chocolate is melted and sauce is slightly thickened.",
+      "Return shredded/chunked chicken to the sauce. Stir to coat.",
+      "Taste and adjust seasoning.",
+      "Serve hot, garnished with fresh coriander."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 386,
+      "cholesterol_mg": 147,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 30.2,
+      "saturated_fat_g": 7.3,
+      "sodium_mg": 581,
+      "total_carbs_g": 18.4,
+      "total_fat_g": 22.4,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 94,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.3,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 141,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 13.8,
+      "protein": 60.5,
+      "saturated_fat": 36.6,
+      "sodium": 25.3,
+      "total_carbs": 6.7,
+      "total_fat": 28.8
+    },
+    "serving_size_g": 412,
+    "total_recipe_weight_g": 1648
+  },
+  {
+    "recipe_name": "Creamy Parmesan Chicken Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_parmesan_chicken_risotto_20250624_140914_a35808e7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:09:14.578006000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy Parmesan chicken risotto is presented in a clean, white porcelain dinner plate. The risotto is fluid and glossy, spreading naturally across the plate, not mounded or in a ring. Its color is a rich, creamy off-white, speckled with golden-brown chicken cubes and vibrant green flecks of fresh parsley. The chicken pieces are approximately 2cm cubes, seared to a golden crust, showing tender interiors. The risotto's texture is visibly smooth and velvety, with individual al dente rice grains discernible. A light sprinkle of freshly chopped parsley and a small amount of finely grated Parmesan garnish the top. The plate is positioned on a simple light wooden table surface. A neatly folded cotton napkin rests beside the plate. Natural, even light illuminates the dish, highlighting its warmth and inviting texture. The background is minimally blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty artisan bread for dipping.",
+      "Pair with a glass of dry white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2cm cubes. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large pan over medium-high heat.",
+      "Add chicken cubes. Cook until golden brown and cooked through (internal temperature 75°C). Remove chicken from pan. Set aside.",
+      "In the same pan, add remaining 15ml olive oil and 20g butter over medium heat.",
+      "Add diced onion. Cook until softened and translucent, about 5 minutes. Do not brown.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Stir well to coat rice grains with oil and butter. Toast rice for 2 minutes.",
+      "Pour in white wine. Stir until wine is fully absorbed.",
+      "Begin adding warm chicken stock, one ladleful (about 120ml) at a time. Stir constantly.",
+      "Wait for each ladleful of stock to be almost fully absorbed before adding the next.",
+      "Continue adding stock and stirring for 18-20 minutes, until rice is al dente and creamy.",
+      "Remove from heat. Stir in remaining 40g butter and grated Parmesan cheese.",
+      "Fold in cooked chicken cubes and half of the chopped parsley.",
+      "Adjust seasoning with salt and pepper.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken stock is warm to maintain cooking temperature of the risotto.",
+      "Stirring constantly is key for creamy risotto.",
+      "Risotto should be served immediately as it loses creaminess quickly."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Tostatura",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 802.6,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 2,
+      "protein_g": 52.6,
+      "saturated_fat_g": 14.6,
+      "sodium_mg": 1402.2,
+      "total_carbs_g": 71.9,
+      "total_fat_g": 31.4,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 118.1,
+      "cholesterol_mg": 20.5,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 7.7,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 206.3,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 7,
+      "protein": 105,
+      "saturated_fat": 73,
+      "sodium": 61,
+      "total_carbs": 26,
+      "total_fat": 40
+    },
+    "serving_size_g": 679.65,
+    "total_recipe_weight_g": 2718.6
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Medallions with Haricots Verts and Caramelized Onion-Garlic Confit",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_medallions_with_haricots_verts_and_caramelized_onion-garlic_confit_20250624_140911_a4c82ad5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:09:12.049807000Z",
+    "selected_ingredients": [
+      "beef",
+      "worcestershire sauce",
+      "bean",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, centrally composed with moderate negative space. Two thick, pan-seared beef medallions, with a rich, dark brown crust, are placed side-by-side. Their natural, irregular shape is maintained. Beside the beef, a vibrant mound of blanched and butter-tossed haricots verts, cut into uniform 5cm lengths, is neatly arranged. A generous dollop of glossy, golden-brown caramelized onion and garlic confit is artfully placed near the beans. A light drizzle of rich, glistening Worcestershire-infused pan sauce partially surrounds the beef. The palette features deep browns, vibrant greens, and golden amber. The setting includes a simple light wooden table, a folded white cotton napkin, and standard silver flatware under natural, even lighting, creating a modern bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Bistro",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Beef Medallions",
+    "ingredients": [
+      {
+        "name": "Beef Tenderloin or Sirloin",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Haricots Verts (Fine Green Beans)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow Onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 whole head"
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sliced Almonds",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Peel and thinly slice yellow onions. Peel garlic cloves. Place onions and garlic in a small saucepan. Cover with 40 ml olive oil. Cook over very low heat for 45-60 minutes. Stir occasionally. Onions and garlic should become very soft and deeply golden brown. This is the confit. Set aside.",
+      "Pat beef tenderloin dry. Cut into four equal medallions, approximately 4 cm thick. Season generously with salt and black pepper on all sides.",
+      "Heat a large cast-iron or heavy-bottomed skillet over medium-high heat. Add 20 ml olive oil. Once shimmering, add beef medallions. Sear for 3-4 minutes per side for medium-rare, or to desired doneness. Do not overcrowd pan. Cook in batches if necessary. Add 30 g butter and 2 thyme sprigs to pan during last minute of cooking. Baste beef with melted butter. Remove beef from pan. Rest on a cutting board, tented with foil, for 5-10 minutes.",
+      "While beef rests, return skillet to medium heat. Deglaze pan with beef broth. Scrape up any browned bits from bottom of pan. Stir in Worcestershire sauce. Bring to a simmer. Reduce heat to low. Cook until sauce slightly thickens, about 3-5 minutes. Strain sauce through a fine-mesh sieve for a smoother consistency. Keep warm.",
+      "Bring a pot of salted water to a boil. Trim ends of haricots verts. Blanch beans in boiling water for 2-3 minutes. Beans should be crisp-tender and vibrant green. Drain immediately. Plunge into ice water to stop cooking. Drain well.",
+      "In a separate small skillet, melt remaining 30 g butter over medium heat. Add drained haricots verts and sliced almonds. Sauté for 2-3 minutes. Toss until heated through and almonds are lightly toasted. Season with salt and pepper.",
+      "To plate, place two beef medallions on each plate. Arrange a mound of sautéed haricots verts beside the beef. Spoon a generous dollop of caramelized onion-garlic confit next to the beans. Drizzle warm pan sauce around the beef. Serve immediately."
+    ],
+    "notes": [
+      "Ensure beef is at room temperature before searing for even cooking.",
+      "Do not overcrowd the pan when searing beef; this can lower the pan temperature and prevent a good crust.",
+      "Resting the beef is crucial for juicy results."
+    ],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.78,
+      "calories": 606.7,
+      "cholesterol_mg": 137.25,
+      "dietary_fiber_g": 5.84,
+      "protein_g": 39.6,
+      "saturated_fat_g": 13.82,
+      "sodium_mg": 229.8,
+      "total_carbs_g": 25.72,
+      "total_fat_g": 39.18,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 0.93
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.16,
+      "calories": 125.4,
+      "cholesterol_mg": 28.37,
+      "dietary_fiber_g": 1.21,
+      "protein_g": 8.18,
+      "saturated_fat_g": 2.86,
+      "sodium_mg": 47.5,
+      "total_carbs_g": 5.32,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 1.92,
+      "trans_fat_g": 0.19
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46,
+      "dietary_fiber": 21,
+      "protein": 79,
+      "saturated_fat": 69,
+      "sodium": 10,
+      "total_carbs": 9,
+      "total_fat": 50
+    },
+    "serving_size_g": 483.75,
+    "total_recipe_weight_g": 1935
+  },
+  {
+    "recipe_name": "Pan-Seared Cod with Romesco Sauce and Roasted Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_cod_with_romesco_sauce_and_roasted_broccoli_20250624_140906_7ae41145.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:09:06.502638000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "fish"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared cod fillet, golden-brown and slightly crisp on its surface, rests atop a vibrant, rich red-orange Romesco sauce. The cod, presented as a whole, thick piece, reveals its flaky white interior. Beside the fish, a generous portion of bright green broccoli florets, roasted to tender-crisp perfection with subtly charred edges, is neatly arranged. Small specks of finely minced garlic and a light dusting of lemon zest are visible on the broccoli. The dish is centered on a clean white round porcelain plate, leaving ample negative space. A simple, light-colored cotton napkin is folded beside the plate, on a natural wooden table surface. Standard silver cutlery is placed alongside. The scene is illuminated by soft, natural, even lighting, creating a refined yet approachable bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the Romesco sauce.",
+      "A light white wine, such as Albariño or Vermentino, pairs well."
+    ],
+    "hero_ingredient": "Cod",
+    "ingredients": [
+      {
+        "name": "Cod fillets",
+        "quantity": "4 x 180g (720g total)"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 large head (approx. 600g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100 ml, plus more for cooking"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "5 large"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Roasted red peppers (from a jar, drained)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Roma tomatoes (roasted or blanched)",
+        "quantity": "2 medium (approx. 150g)"
+      },
+      {
+        "name": "Toasted blanched almonds",
+        "quantity": "50g"
+      },
+      {
+        "name": "Toasted blanched hazelnuts",
+        "quantity": "30g"
+      },
+      {
+        "name": "Stale bread (crust removed, soaked in water)",
+        "quantity": "1 slice (approx. 30g)"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g (1 teaspoon)"
+      },
+      {
+        "name": "Sherry vinegar",
+        "quantity": "15 ml (1 tablespoon)"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "80 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. If using fresh tomatoes, halve and roast until softened, about 15-20 minutes. Peel if desired.",
+      "In a blender, combine roasted red peppers, roasted tomatoes, 2 peeled garlic cloves, toasted almonds, toasted hazelnuts, soaked and squeezed bread, smoked paprika, and sherry vinegar. Blend until smooth. Slowly drizzle in extra virgin olive oil while blending until emulsified. Season with salt and pepper. Set aside.",
+      "Cut broccoli into medium florets. Peel and thinly slice 2 garlic cloves. In a large bowl, toss broccoli florets with 30 ml olive oil, sliced garlic, salt, and pepper. Spread in a single layer on a baking tray. Roast for 15-20 minutes, or until tender-crisp and slightly charred.",
+      "Pat cod fillets dry with paper towels. Season generously with salt and pepper on both sides.",
+      "Heat 20 ml olive oil in a large non-stick pan over medium-high heat. Once hot, carefully place cod fillets skin-side down (if skin-on). Sear for 4-5 minutes until skin is crispy and golden. Flip fillets and cook for another 3-4 minutes, or until internal temperature reaches 63°C (145°F) and fish flakes easily.",
+      "Remove roasted broccoli from oven. Squeeze fresh lemon juice over the broccoli. Grate remaining 1 garlic clove over the broccoli if desired for extra punch.",
+      "Ladle a generous pool of Romesco sauce onto the center of each white porcelain plate. Carefully place one pan-seared cod fillet on top of the sauce. Arrange a portion of roasted broccoli florets neatly beside the cod. Garnish with a fresh parsley sprig or a small lemon wedge. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.4,
+      "calories": 734,
+      "cholesterol_mg": 77.5,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 42.1,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 288.6,
+      "total_carbs_g": 24.8,
+      "total_fat_g": 54.4,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 140.4,
+      "cholesterol_mg": 14.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 55.2,
+      "total_carbs_g": 4.7,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26,
+      "dietary_fiber": 29,
+      "protein": 84,
+      "saturated_fat": 34,
+      "sodium": 13,
+      "total_carbs": 9,
+      "total_fat": 70
+    },
+    "serving_size_g": 522.5,
+    "total_recipe_weight_g": 2090
+  }
+]

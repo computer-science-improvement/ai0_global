@@ -1,0 +1,608 @@
+[
+  {
+    "recipe_name": "Fermented Strawberry Granita with Citrus Tuile",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_strawberry_granita_with_citrus_tuile_20250626_092349_c61aace0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:23:50.333371000Z",
+    "selected_ingredients": [
+      "strawberry vodka"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of light pink Fermented Strawberry Granita is presented in a handcrafted, unglazed ceramic bowl, in a natural cream or beige tone. The granita is scraped into delicate, icy flakes, creating a soft, ethereal mound. Alongside, a single, irregular, thin citrus tuile, golden-brown and slightly curved, leans elegantly against the granita or rests on the bowl's rim. The plating emphasizes clean lines and ample white space around the food, highlighting the pure beauty of the ingredients. A tiny, vibrant green mint leaf or a delicate edible flower petal is placed minimally on the granita for a subtle color contrast. The setting is an eco-conscious light bamboo or reclaimed wood table surface, providing a natural texture. An undyed linen napkin in a natural beige tone is subtly draped. Soft, natural lighting illuminates the dish, creating gentle shadows. The background is clean and uncluttered, with a hint of natural elements like a blurred plant, maintaining a minimalist aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Minimalist",
+    "hero_ingredient": "Fermented Strawberries",
+    "ingredients": [
+      {
+        "name": "Fresh Strawberries, hulled and quartered",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Strawberry Vodka",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Lemon or Orange, zest of",
+        "quantity": "1"
+      },
+      {
+        "name": "All-purpose Flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Powdered Sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Unsalted Butter, melted",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Egg White",
+        "quantity": "1 large"
+      }
+    ],
+    "instructions": [
+      "Combine quartered strawberries with 50g granulated sugar in a clean glass jar. Stir gently. Cover loosely with a cloth or lid, allowing air circulation. Let sit at room temperature (20-24°C) for 24-48 hours. Stir once or twice. This allows natural yeasts to begin a light fermentation, developing complex flavors.",
+      "After fermentation, transfer strawberries and their syrup to a blender. Add 200ml water, 30g granulated sugar, and strawberry vodka. Blend until smooth. Taste and adjust sweetness if desired.",
+      "Pour the mixture into a shallow metal pan or freezer-safe dish. Freeze for 1 hour. Scrape the icy edges towards the center with a fork. Repeat this scraping process every 30-45 minutes until the mixture forms light, icy flakes. This takes approximately 3-4 hours.",
+      "For the citrus tuiles, whisk together flour, powdered sugar, melted butter, and egg white in a small bowl until smooth. Stir in the finely grated citrus zest.",
+      "Preheat oven to 160°C. Line a baking sheet with parchment paper.",
+      "Drop small spoonfuls of batter onto the parchment paper. Use the back of the spoon to spread thinly into irregular, organic shapes. Leave space between each.",
+      "Bake for 5-7 minutes, or until edges are golden brown and crisp. Watch carefully to prevent burning. Remove from oven. Immediately lift tuiles with a spatula and place over a rolling pin or curved surface to create a subtle curve as they cool. Let cool completely.",
+      "To serve, spoon the fluffy granita into chilled minimalist bowls. Place one or two delicate citrus tuiles alongside. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_20250626_092347_222d5174.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:23:47.459183000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo presented on a clean white porcelain plate. Two whole, bone-in chicken thighs with deeply browned, crispy skin sit atop a bed of golden, saffron-stained rice. The rice grains are plump and distinct, interspersed with fine bits of softened onion and concentrated red tomato. The dish shows vibrant yellow and orange hues from the saffron and paprika. A generous sprinkle of bright green, finely chopped parsley is scattered over the top. A single lemon wedge is placed neatly on the side. The plate sits on a light oak wooden table with a folded white cotton napkin. Lighting is bright, natural, and even, highlighting the textures of the crispy skin and the moist rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Alioli (garlic mayonnaise)",
+      "Accompany with crusty bread and a glass of chilled white wine",
+      "Present in a traditional terracotta cazuela for family-style dining"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip and brown the other side. Remove chicken from pan.",
+      "Add onion to the same pan. Sauté until translucent.",
+      "Stir in garlic and grated tomato. Cook until liquid evaporates and mixture darkens.",
+      "Add smoked paprika and rice. Stir to coat rice in oil for 2 minutes.",
+      "Pour in white wine. Deglaze the pan. Simmer until wine reduces by half.",
+      "Add hot stock and saffron. Stir once to distribute.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer undisturbed over medium-low heat for 18-20 minutes.",
+      "Ensure chicken reaches internal temperature of 75°C.",
+      "Remove from heat. Cover with a clean cloth. Rest for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form on the bottom.",
+      "Use a wide pan to ensure even rice cooking."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice absorption method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1414,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 8.6,
+      "protein": 66.4,
+      "saturated_fat": 46.5,
+      "sodium": 61.5,
+      "total_carbs": 24.5,
+      "total_fat": 52.1
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Seared Cod with Mole-Inspired Chocolate-Chipotle Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_cod_with_mole-inspired_chocolate-chipotle_sauce_20250626_092341_68d051fb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:23:41.756219000Z",
+    "selected_ingredients": [
+      "fish",
+      "chocolate",
+      "butter"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared cod fillet, golden-brown and whole, rests centrally on a clean white porcelain dinner plate. The fish displays a crisp, flaky texture. A rich, glossy, deep brown mole-inspired chocolate-chipotle sauce is artfully spooned beside the cod, forming a smooth, inviting pool. Fresh, vibrant green cilantro leaves are scattered sparingly over the sauce, providing a bright color contrast. A small, bright lime wedge is placed beside the fish. The presentation is professional and approachable, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface, a white cotton napkin, and natural, even lighting. The background is minimal, highlighting the dish as the sole focus. The cod is presented as a whole piece, unsliced.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping the sauce.",
+      "Accompany with a side of Mexican red rice or simple black beans."
+    ],
+    "hero_ingredient": "Cod",
+    "ingredients": [
+      {
+        "name": "Cod fillets, skin on or off",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Dark chocolate (70-85% cocoa), finely chopped",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Chipotle peppers in adobo sauce, minced (adjust to taste)",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1g"
+      },
+      {
+        "name": "Lime, for juice and wedges",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat cod fillets dry with paper towels. Season generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large non-stick pan over medium heat. Sear cod fillets, skin-side down if applicable, for 4-5 minutes until golden brown and crisp. Flip and cook for another 3-4 minutes until cooked through. Remove fish from pan and set aside.",
+      "In the same pan, add remaining 15ml olive oil. Add diced yellow onion and sauté for 5 minutes until softened. Add minced garlic, minced chipotle peppers, tomato paste, ground cumin, dried oregano, and ground cinnamon. Cook for 2 minutes, stirring constantly.",
+      "Pour in chicken broth, scraping up any browned bits from the bottom of the pan. Bring to a simmer. Reduce heat to low.",
+      "Stir in chopped dark chocolate and unsalted butter until fully melted and the sauce is smooth and glossy. If the sauce is too thick, add a splash more broth. Taste and adjust seasoning with salt and lime juice.",
+      "To serve, spoon a generous amount of the mole-inspired sauce onto the center of each plate. Carefully place a seared cod fillet on top or beside the sauce. Garnish with fresh chopped cilantro and a lime wedge."
+    ],
+    "notes": [
+      "The richness of the dark chocolate provides depth and balances the smokiness of the chipotle, not making the sauce sweet.",
+      "This sauce is versatile and can also be used with chicken or pork."
+    ],
+    "traditional_techniques": [
+      "Layering of flavors",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 430,
+      "cholesterol_mg": 110,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 35.3,
+      "saturated_fat_g": 12,
+      "sodium_mg": 244,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 25.1,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 123,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.1,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 70,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 10,
+      "protein": 71,
+      "saturated_fat": 60,
+      "sodium": 11,
+      "total_carbs": 4,
+      "total_fat": 32
+    },
+    "serving_size_g": 348.75,
+    "total_recipe_weight_g": 1395
+  },
+  {
+    "recipe_name": "Creamy Sun-dried Tomato and Broccoli Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_sun-dried_tomato_and_broccoli_pasta_20250626_092339_b6992b79.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:23:40.396526000Z",
+    "selected_ingredients": [
+      "pasta",
+      "sun dried tomato",
+      "garlic",
+      "cheese",
+      "onion",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant single serving of creamy pasta, expertly plated in a clean white porcelain bowl. Al dente rigatoni is coated in a rich, velvety sun-dried tomato cream sauce, its deep orange-red hue contrasting beautifully with bright green, tender-crisp roasted broccoli florets. Finely diced onion and minced garlic are subtly integrated into the sauce. The dish is garnished with fresh, vibrant green basil leaves and a generous dusting of finely grated Parmesan cheese. The pasta is naturally tangled, allowing some negative space. The bowl rests on a simple light wooden table, accompanied by a silver fork and a folded white cotton napkin. Lighting is natural and even, highlighting the dish's fresh textures and inviting colors against a subtly blurred bistro-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Accompany with a simple green salad dressed with vinaigrette.",
+      "Pair with a light-bodied Italian white wine, such as Pinot Grigio."
+    ],
+    "hero_ingredient": "Sun-dried Tomatoes",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500g"
+      },
+      {
+        "name": "Sun-dried tomatoes (in oil, drained)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g, plus more for serving"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Boil pasta in salted water until al dente. Reserve 250ml pasta water. Drain pasta.",
+      "Cut broccoli into small florets. Toss with 15ml olive oil, salt, and pepper. Roast on a baking sheet at 200°C for 12-15 minutes until tender-crisp.",
+      "Dice onion. Mince garlic. Roughly chop sun-dried tomatoes.",
+      "Heat remaining 15ml olive oil in a large pan over medium heat. Sauté diced onion until translucent, about 5 minutes. Add minced garlic and chopped sun-dried tomatoes. Cook for 2 minutes, stirring constantly.",
+      "Pour in chicken broth and heavy cream. Bring to a gentle simmer. Reduce heat to low.",
+      "Stir in 80g grated Parmesan cheese until melted and the sauce is smooth. Season with salt and pepper to taste.",
+      "Add cooked pasta and roasted broccoli to the sauce in the pan. Toss gently to combine all ingredients.",
+      "If the sauce is too thick, add reserved pasta water, 50ml at a time, until the desired creamy consistency is achieved.",
+      "Serve immediately in individual bowls. Garnish with fresh basil leaves and additional grated Parmesan cheese."
+    ],
+    "notes": [
+      "Ensure pasta is cooked al dente for best texture.",
+      "Adjust sauce consistency using reserved pasta water as needed.",
+      "Taste and adjust seasoning before serving."
+    ],
+    "traditional_techniques": [
+      "Soffritto preparation",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 806,
+      "cholesterol_mg": 68,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 29.9,
+      "saturated_fat_g": 17.2,
+      "sodium_mg": 801,
+      "total_carbs_g": 95.4,
+      "total_fat_g": 36.4,
+      "total_sugars_g": 11.6,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 199.1,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 7.4,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 198,
+      "total_carbs_g": 23.6,
+      "total_fat_g": 9,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 31,
+      "protein": 60,
+      "saturated_fat": 86,
+      "sodium": 35,
+      "total_carbs": 35,
+      "total_fat": 47
+    },
+    "serving_size_g": 404.75,
+    "total_recipe_weight_g": 1619
+  },
+  {
+    "recipe_name": "Vanilla Bean Panna Cotta, Strawberry Vodka Gel, Basil Tuile",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vanilla_bean_panna_cotta%2C_strawberry_vodka_gel%2C_basil_tuile_20250626_092317_c264098d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:23:18.128241000Z",
+    "selected_ingredients": [
+      "strawberry vodka"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, pristine vanilla bean panna cotta, perfectly unmolded, stands as a creamy white dome at the center of a large, round bone china plate. Its surface is smooth and subtly glossy. Around the base of the panna cotta, two to three translucent, ruby-red shards of strawberry vodka gel are artfully placed, catching the light with their vibrant hue. A delicate, irregular basil tuile, its color a deep, verdant green, is perched elegantly beside the panna cotta, offering a visual and textural counterpoint. The composition is minimalist and architectural, with abundant white space on the plate emphasizing each element's precision. The plate rests on a smooth, cool grey marble surface, reflecting subtle light. A pristine white linen napkin, precisely folded into a triangle, is positioned to the side. Dramatic, focused lighting creates soft shadows, highlighting the dish's contours and luxurious simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Strawberry Vodka",
+    "ingredients": [
+      {
+        "name": "Heavy Cream",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vanilla Bean",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Gelatin Leaves",
+        "quantity": "3 sheets (6g)"
+      },
+      {
+        "name": "Fresh Strawberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Strawberry Vodka",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Granulated Sugar (for gel)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Agar-Agar Powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "20 large leaves"
+      },
+      {
+        "name": "Icing Sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Egg White",
+        "quantity": "1 (small)"
+      },
+      {
+        "name": "Butter (melted)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "For the Vanilla Bean Panna Cotta: Bloom gelatin sheets in cold water for 5 minutes.",
+      "Split vanilla bean lengthwise. Scrape seeds into a saucepan with heavy cream and 100g sugar. Add vanilla pod.",
+      "Heat cream mixture over medium heat until simmering. Do not boil.",
+      "Remove from heat. Discard vanilla pod. Squeeze excess water from gelatin. Stir gelatin into hot cream until dissolved.",
+      "Pour panna cotta mixture into 4 desired serving molds (e.g., small dome molds or ramekins). Chill for at least 4 hours, or until set.",
+      "For the Strawberry Vodka Gel: Wash and hull strawberries. Puree strawberries until smooth. Pass through a fine-mesh sieve to remove seeds.",
+      "Combine strawberry puree, strawberry vodka, 30g sugar, and agar-agar powder in a small saucepan.",
+      "Bring to a boil, stirring constantly. Simmer for 2 minutes. Pour mixture onto a shallow tray or plate to a thickness of 3-4 mm.",
+      "Chill until firmly set, about 30 minutes. Once set, cut the gel into desired shapes (e.g., small squares or irregular shards).",
+      "For the Basil Tuile: Preheat oven to 160°C (325°F). Line a baking sheet with parchment paper.",
+      "Blanch basil leaves in boiling water for 10 seconds. Immediately transfer to an ice bath. Drain well and pat very dry.",
+      "Blend blanched basil leaves, icing sugar, egg white, and melted butter until completely smooth. Strain through a fine-mesh sieve.",
+      "Spread a very thin layer of basil batter onto the prepared baking sheet using an offset spatula. Create delicate, irregular shapes.",
+      "Bake for 5-7 minutes, or until edges are crisp and golden. Watch carefully as they burn quickly. Remove from oven. Let cool completely on the sheet. They will crisp as they cool.",
+      "To Serve: Carefully unmold each panna cotta onto the center of a chilled plate.",
+      "Artistically arrange 3-4 pieces of strawberry vodka gel around the panna cotta, leaving ample negative space.",
+      "Delicately place one or two basil tuiles on or next to the panna cotta for height and texture contrast."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.5,
+      "calories": 667,
+      "cholesterol_mg": 170.6,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 5.7,
+      "saturated_fat_g": 30.7,
+      "sodium_mg": 58.8,
+      "total_carbs_g": 45.9,
+      "total_fat_g": 48.2,
+      "total_sugars_g": 44.4,
+      "trans_fat_g": 2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.7,
+      "calories": 243,
+      "cholesterol_mg": 62.1,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 2.1,
+      "saturated_fat_g": 11.2,
+      "sodium_mg": 21.4,
+      "total_carbs_g": 16.7,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 16.2,
+      "trans_fat_g": 0.7
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.9,
+      "dietary_fiber": 3.8,
+      "protein": 11.4,
+      "saturated_fat": 153.4,
+      "sodium": 2.6,
+      "total_carbs": 16.7,
+      "total_fat": 61.8
+    },
+    "serving_size_g": 274.5,
+    "total_recipe_weight_g": 1098
+  }
+]

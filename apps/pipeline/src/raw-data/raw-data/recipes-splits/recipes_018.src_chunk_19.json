@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Seared Beef with Fermented Barley and Pickled Radishes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_beef_with_fermented_barley_and_pickled_radishes_20250625_154721_cfb58495.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:47:22.198518000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A pristine white, handcrafted ceramic plate presents a modern, minimalistic composition. An irregular mound of warm, earthy beige fermented barley anchors the dish. Beside it, a thick, perfectly seared beef chunk, its exterior a rich, dark brown, reveals a tender, reddish-pink interior. The beef is a solid, substantial piece, not sliced. Bright, translucent slices of quick-pickled red radishes, their edges vibrant magenta, are artfully scattered, adding pops of color and crisp texture. Delicate sprigs of fresh green dill provide subtle garnish. Ample white space emphasizes each ingredient's natural beauty. The setting features a light, natural wood table, with soft, diffused natural light. An undyed linen napkin rests beside the plate. The background is clean and uncluttered, with a hint of natural greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Pearl barley",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red radishes",
+        "quantity": "150g"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt (for pickling brine)",
+        "quantity": "3g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Thinly slice radishes. Combine white wine vinegar, 100ml water, sugar, and 3g salt in a small saucepan. Bring to a boil. Pour hot brine over sliced radishes. Set aside to cool and pickle.",
+      "Pat beef dry. Season generously with sea salt and black pepper.",
+      "Heat olive oil in a heavy-bottomed pan over medium-high heat. Sear beef on all sides until deeply browned, about 3-4 minutes per side for medium-rare, adjusting for thickness.",
+      "Transfer seared beef to a cutting board. Rest for 10 minutes.",
+      "While beef rests, gently warm pre-fermented barley. Drain pickled radishes.",
+      "Slice beef into 4 equal thick chunks. Place a portion of warm fermented barley on each plate. Arrange beef chunk beside barley. Scatter pickled radishes around. Garnish with fresh dill sprigs."
+    ],
+    "notes": [
+      "To ferment barley: Rinse 200g pearl barley. Cook until al dente. Drain and cool. Place in a clean jar with 2g salt. Cover with filtered water. Ferment loosely covered at room temperature for 2-3 days until slightly tangy.",
+      "For a zero-waste jus: Sauté beef trimmings and a diced shallot in the pan after searing beef. Deglaze with 50ml red wine. Add 200ml water and simmer for 10 minutes. Strain and reduce until slightly thickened. Serve a drizzle alongside the beef."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 582,
+      "cholesterol_mg": 112.5,
+      "dietary_fiber_g": 8.4,
+      "protein_g": 48.5,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 410.1,
+      "total_carbs_g": 39.4,
+      "total_fat_g": 25.4,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 196,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 16.4,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 138.4,
+      "total_carbs_g": 13.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.5,
+      "dietary_fiber": 30,
+      "protein": 97,
+      "saturated_fat": 42.7,
+      "sodium": 17.8,
+      "total_carbs": 14.3,
+      "total_fat": 32.5
+    },
+    "serving_size_g": 296.3,
+    "total_recipe_weight_g": 1185
+  },
+  {
+    "recipe_name": "Buckwheat and Mushroom Kasha-otto with Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_buckwheat_and_mushroom_kasha-otto_with_chicken_20250625_154653_27de6f69.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:46:54.127800000Z",
+    "selected_ingredients": [
+      "buckwheat groat"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Buckwheat and Mushroom Kasha-otto with Chicken, presented on a clean white porcelain dinner plate. The kasha is a warm, earthy beige, fluid and not dry, forming a rustic mound. Nestled within are golden-brown pan-seared chicken chunks, approximately 2-3cm, and sautéed cremini mushroom slices, their rich brown hues contrasting with the lighter buckwheat. The dish is generously garnished with fresh, vibrant green dill and parsley sprigs, scattered naturally over the kasha. A small side bowl holds a dollop of thick, white sour cream. The scene is set on a simple wooden table, with a folded cotton napkin beside the plate. Natural, even lighting illuminates the textures and colors. The background is a blurred, casual bistro setting, enhancing the approachable yet refined presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Often served with pickles such as pickled cucumbers or sauerkraut.",
+      "A dollop of sour cream is a common accompaniment.",
+      "Garnish with plenty of fresh dill or parsley."
+    ],
+    "hero_ingredient": "Buckwheat Groats",
+    "ingredients": [
+      {
+        "name": "Buckwheat Groats",
+        "quantity": "250g"
+      },
+      {
+        "name": "Boneless, Skinless Chicken Thighs",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Parmesan Cheese (grated)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Sour Cream",
+        "quantity": "For serving (optional)"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 2-3 cm chunks. Season with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a large pot or Dutch oven over medium-high heat. Sear chicken chunks until golden brown on all sides and cooked through (internal temperature 75°C). Remove chicken and set aside.",
+      "Add remaining olive oil and 25g butter to the pot. Add diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in buckwheat groats. Toast for 2-3 minutes, stirring constantly, until lightly fragrant.",
+      "Pour in chicken broth. Bring to a simmer, then reduce heat to low. Cover and cook for 15-20 minutes, or until buckwheat has absorbed most liquid and is tender. Stir occasionally.",
+      "While buckwheat cooks, slice mushrooms. Heat a separate pan over medium-high heat. Add remaining 25g butter. Sauté mushrooms until deeply browned and tender. Season with salt and pepper.",
+      "Once buckwheat is cooked, stir in the seared chicken and sautéed mushrooms.",
+      "Remove from heat. Stir in grated Parmesan cheese and half of the chopped fresh dill and parsley.",
+      "Season with salt and pepper to taste. Let stand for 5 minutes before serving.",
+      "Serve hot, garnished with remaining fresh herbs. Offer sour cream on the side if desired."
+    ],
+    "notes": [
+      "Kasha-otto is a hearty and comforting dish, similar in concept to risotto but made with toasted buckwheat groats."
+    ],
+    "traditional_techniques": [
+      "Toasting groats (prokalivaniye)",
+      "Absorption method cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 619.5,
+      "cholesterol_mg": 147,
+      "dietary_fiber_g": 9.04,
+      "protein_g": 40.23,
+      "saturated_fat_g": 11.76,
+      "sodium_mg": 1205.04,
+      "total_carbs_g": 54.9,
+      "total_fat_g": 29.52,
+      "total_sugars_g": 4.86,
+      "trans_fat_g": 0.54
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108.1,
+      "cholesterol_mg": 25.64,
+      "dietary_fiber_g": 1.58,
+      "protein_g": 7.02,
+      "saturated_fat_g": 2.05,
+      "sodium_mg": 210.12,
+      "total_carbs_g": 9.58,
+      "total_fat_g": 5.15,
+      "total_sugars_g": 0.85,
+      "trans_fat_g": 0.09
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 32.3,
+      "protein": 80.5,
+      "saturated_fat": 58.8,
+      "sodium": 52.4,
+      "total_carbs": 20,
+      "total_fat": 37.8
+    },
+    "serving_size_g": 573.25,
+    "total_recipe_weight_g": 2293
+  },
+  {
+    "recipe_name": "Creamy Tuscan Chicken Pasta with Roasted Potatoes & Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tuscan_chicken_pasta_with_roasted_potatoes_%26_mushrooms_20250625_154455_4dbad063.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:44:55.640577000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "potato",
+      "mushroom",
+      "cream",
+      "cheese",
+      "soy sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Creamy Tuscan Chicken Pasta is presented on a clean white porcelain dinner plate. A generous mound of golden tagliatelle pasta, coated in a rich, creamy sauce, forms the centerpiece. Interspersed within the pasta are seared, thick chunks of chicken, showcasing a golden-brown crust, and sautéed, sliced cremini mushrooms. Vibrant green wilted spinach adds contrasting color. Around the pasta, roasted potato wedges, with their rustic golden-brown skins and fluffy interiors, are neatly arranged. The entire dish is garnished with a sprinkle of fresh, bright green chopped parsley. The setting is a modern bistro, featuring a simple wooden table surface and a white cotton napkin placed beside the plate. Standard polished Italian flatware rests on the napkin. Natural, even lighting illuminates the scene, with a softly blurred restaurant background suggesting a casual yet refined dining atmosphere. The composition is balanced, professional, and inviting, showcasing the textures and colors of each ingredient.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash potatoes. Cut into 2 cm wedges. In a large bowl, toss potato wedges with 30 ml olive oil, 5 g dried oregano, salt, and black pepper. Spread in a single layer on a baking tray. Roast for 25-30 minutes, or until tender and golden brown. Set aside.",
+      "Slice cremini mushrooms. Heat butter in a large pan over medium-high heat. Add sliced mushrooms. Sauté until golden brown and liquid has evaporated. Remove mushrooms from pan. Set aside.",
+      "Cut chicken thighs into 4 cm thick chunks. Season chicken with salt, black pepper, and 5 ml soy sauce. Heat remaining 30 ml olive oil in the same pan over medium-high heat. Add chicken chunks. Sear for 4-5 minutes per side, until golden brown and cooked through. Ensure internal temperature reaches 75°C. Remove chicken from pan. Set aside.",
+      "Bring a large pot of salted water to a rolling boil. Add tagliatelle pasta. Cook according to package directions until al dente. Reserve 250 ml pasta water. Drain pasta.",
+      "Reduce heat to medium. Add diced onion to the pan. Sauté for 3 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant. Do not brown garlic.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the pan. Stir in heavy cream and remaining 10 ml soy sauce. Bring to a gentle simmer. Cook for 2 minutes, allowing sauce to thicken slightly.",
+      "Remove pan from heat. Stir in grated Parmesan cheese until melted and smooth. Add fresh spinach. Stir until spinach wilts.",
+      "Return cooked chicken chunks and sautéed mushrooms to the sauce. Add drained tagliatelle pasta to the pan. Toss all ingredients to combine thoroughly. If sauce is too thick, add reserved pasta water, 50 ml at a time, until desired consistency is reached.",
+      "Serve immediately. Portion creamy chicken pasta onto individual plates. Arrange roasted potato wedges around or on top of the pasta. Garnish generously with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1349,
+      "cholesterol_mg": 319,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 63.7,
+      "saturated_fat_g": 32.5,
+      "sodium_mg": 1436,
+      "total_carbs_g": 109.5,
+      "total_fat_g": 72.5,
+      "total_sugars_g": 10,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 179,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.5,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 191,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 106,
+      "dietary_fiber": 31,
+      "protein": 127,
+      "saturated_fat": 163,
+      "sodium": 62,
+      "total_carbs": 40,
+      "total_fat": 93
+    },
+    "serving_size_g": 753,
+    "total_recipe_weight_g": 3012
+  },
+  {
+    "recipe_name": "Rigatoni with Italian Sausage, Mushroom, and Artichoke Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rigatoni_with_italian_sausage%2C_mushroom%2C_and_artichoke_tomato_sauce_20250625_154359_99e945a2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:43:59.859060000Z",
+    "selected_ingredients": [
+      "pasta",
+      "oregano",
+      "artichoke",
+      "broccoli rabe",
+      "basil",
+      "italian sausage",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Rigatoni with Italian Sausage, Mushroom, and Artichoke Tomato Sauce is presented in a clean, white porcelain bowl, positioned slightly off-center on a simple wooden table. The rigatoni pasta is generously coated in a rich, reddish-brown tomato sauce. Chunks of browned Italian sausage, quartered artichoke hearts, and sliced cremini mushrooms are interspersed throughout. Vibrant green pieces of tender broccoli rabe provide a fresh color contrast. The dish is garnished with a scattering of freshly torn basil leaves and a dusting of grated Parmesan cheese. A clean white cotton napkin is folded beside the bowl. The background is softly blurred, hinting at a modern bistro setting with warm, even natural light illuminating the dish. Traditional silver flatware is placed to the right.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for soaking up sauce.",
+      "Offer additional grated Parmesan cheese at the table.",
+      "Pair with a glass of red wine."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Italian sausage, casing removed",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Fresh mushrooms (cremini or button), sliced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Artichoke hearts (canned or jarred), quartered",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Broccoli rabe, tough ends trimmed, cut into 2 cm pieces",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Medium onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh basil, torn or chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare vegetables: Dice onion. Slice mushrooms. Mince garlic. Cut broccoli rabe into 2 cm pieces. Quarter artichoke hearts.",
+      "Cook sausage: Heat olive oil in large pan over medium-high heat. Add Italian sausage, breaking it apart. Cook until browned and cooked through, about 8-10 minutes. Remove sausage from pan, set aside. Drain excess fat, leave 1-2 tablespoons.",
+      "Sauté aromatics: Add diced onion to pan. Cook until softened, about 5 minutes. Add minced garlic and red pepper flakes. Cook 1 minute until fragrant.",
+      "Add vegetables and sauce: Add sliced mushrooms to pan. Cook until softened, about 5-7 minutes. Stir in crushed tomatoes, dried oregano, and cooked sausage. Bring to a simmer.",
+      "Cook broccoli rabe: Blanch broccoli rabe in boiling salted water for 2-3 minutes. Drain well. Add to the sauce.",
+      "Cook pasta: While sauce simmers, cook rigatoni according to package directions in salted boiling water until al dente. Reserve 250 ml pasta water.",
+      "Combine: Add cooked rigatoni and quartered artichoke hearts to the sauce. Stir well. Add reserved pasta water as needed to create desired consistency.",
+      "Finish: Stir in fresh basil. Season with salt and black pepper to taste.",
+      "Serve: Serve hot, topped with grated Parmesan cheese."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1013,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 12,
+      "protein_g": 48.3,
+      "saturated_fat_g": 16.1,
+      "sodium_mg": 1594,
+      "total_carbs_g": 98.5,
+      "total_fat_g": 47.9,
+      "total_sugars_g": 11.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154,
+      "cholesterol_mg": 16,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 243,
+      "total_carbs_g": 15,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 42.7,
+      "protein": 96.5,
+      "saturated_fat": 80.3,
+      "sodium": 69.3,
+      "total_carbs": 35.8,
+      "total_fat": 61.4
+    },
+    "serving_size_g": 656.5,
+    "total_recipe_weight_g": 2626
+  },
+  {
+    "recipe_name": "Rosemary Snail and White Bean Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rosemary_snail_and_white_bean_stew_20250625_154318_e3803803.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:43:18.624112000Z",
+    "selected_ingredients": [
+      "snail",
+      "vinegar",
+      "rosemary",
+      "olive oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Rosemary Snail and White Bean Stew sits in a deep, rustic ceramic bowl on a well-worn wooden dining table. The stew is a rich, warm reddish-brown, thick with tender white beans and small, plump snails. Diced pieces of soft carrot, celery, and onion are visible throughout the hearty mixture. A few vibrant green flecks of chopped rosemary are interspersed, with a fresh rosemary sprig resting casually on the stew's surface as a functional garnish. The stew has a comforting, slightly rustic texture, appearing moist and substantial. Next to the bowl, a thick slice of crusty, golden-brown bread rests directly on the table. The scene is illuminated by soft, warm kitchen lighting, creating a cozy, lived-in atmosphere. The entire bowl and bread are clearly visible, with ample negative space around them.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Snails",
+    "ingredients": [
+      {
+        "name": "Prepared snails",
+        "quantity": "400 grams (drained)"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "2 x 400g cans (rinsed and drained)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (diced)"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium (diced)"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1 (diced)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3 (minced)"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs (leaves chopped, plus extra for garnish)"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion, carrot, and celery. Cook 8-10 minutes until softened.",
+      "Add minced garlic and chopped rosemary. Cook 1 minute until fragrant.",
+      "Stir in crushed tomatoes and vegetable broth. Bring to a simmer.",
+      "Add drained snails and rinsed cannellini beans.",
+      "Reduce heat to low. Simmer for 15-20 minutes, allowing flavors to meld.",
+      "Stir in red wine vinegar. Season with salt and black pepper.",
+      "Serve hot."
+    ],
+    "notes": [
+      "Ensure snails are thoroughly drained before adding to the stew."
+    ],
+    "traditional_techniques": [
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 459.3,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 16.4,
+      "protein_g": 35.9,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 1173.8,
+      "total_carbs_g": 60.3,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 84.7,
+      "cholesterol_mg": 9.2,
+      "dietary_fiber_g": 3,
+      "protein_g": 6.6,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 216.5,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 1.8,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17,
+      "dietary_fiber": 58,
+      "protein": 72,
+      "saturated_fat": 8,
+      "sodium": 51,
+      "total_carbs": 22,
+      "total_fat": 12
+    },
+    "serving_size_g": 542,
+    "total_recipe_weight_g": 2169
+  }
+]

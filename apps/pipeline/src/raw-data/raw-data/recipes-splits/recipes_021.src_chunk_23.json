@@ -1,0 +1,707 @@
+[
+  {
+    "recipe_name": "Baked Turkey Sausage Macaroni and Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_turkey_sausage_macaroni_and_cheese_20250624_140859_e3e55364.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:09:00.089219000Z",
+    "selected_ingredients": [
+      "turkey",
+      "garlic",
+      "macaroni",
+      "cheese",
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Baked Turkey Sausage Macaroni and Cheese is presented in a clean, white porcelain dinner bowl centered on a simple wooden table surface. The dish features a golden-brown, crispy Panko breadcrumb crust on top, lightly scattered with flecks of melted Parmesan. Below the crust, the creamy, rich cheese sauce is visible, coating tender elbow macaroni. Darker brown, crumbled turkey sausage pieces are interspersed throughout the cheesy pasta, adding a savory contrast. The dish is garnished with a sprinkle of vibrant green, freshly chopped parsley. A silver fork rests neatly beside the bowl on the right. A neutral-colored cotton napkin is folded beside the bowl. The scene is illuminated by natural, even lighting, creating soft shadows. The background is minimally blurred, hinting at a casual bistro atmosphere. The plating is organized and professional, with appropriate negative space, showcasing the dish's comforting appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Cheese Sauce",
+    "ingredients": [
+      {
+        "name": "Ground turkey",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Turkey sausage (casings removed if links)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Whole milk, warmed",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Sharp cheddar cheese, grated",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Nutmeg, freshly grated",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease a 2.5-liter baking dish.",
+      "Cook macaroni according to package directions until al dente. Drain well.",
+      "Heat olive oil in a large skillet over medium-high heat. Add ground turkey and turkey sausage. Break up meat with a spoon. Cook until browned and cooked through (internal temperature 75°C). Drain excess fat.",
+      "Add minced garlic to the meat. Cook for 1 minute until fragrant. Remove meat mixture from skillet and set aside.",
+      "In the same skillet, melt butter over medium heat. Whisk in flour to form a roux. Cook for 2 minutes, stirring constantly.",
+      "Gradually whisk in warm milk, a little at a time, until smooth and thickened. Bring to a gentle simmer. Cook for 5 minutes, stirring occasionally, until sauce coats the back of a spoon.",
+      "Remove skillet from heat. Stir in cheddar, Gruyère, and half of the Parmesan cheese until melted and smooth. Season with salt, pepper, and a pinch of nutmeg.",
+      "Add cooked macaroni and the cooked meat mixture to the cheese sauce. Stir to combine thoroughly.",
+      "Pour mixture into the prepared baking dish.",
+      "In a small bowl, combine Panko breadcrumbs with remaining Parmesan cheese. Sprinkle evenly over the macaroni mixture.",
+      "Bake for 20-25 minutes, or until bubbling and golden brown on top.",
+      "Let rest for 5 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1236,
+      "cholesterol_mg": 240,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 67.3,
+      "saturated_fat_g": 32.5,
+      "sodium_mg": 1137,
+      "total_carbs_g": 89,
+      "total_fat_g": 64.6,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 210,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 11.4,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 193,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80,
+      "dietary_fiber": 11,
+      "protein": 135,
+      "saturated_fat": 163,
+      "sodium": 49,
+      "total_carbs": 32,
+      "total_fat": 83
+    },
+    "serving_size_g": 589.1,
+    "total_recipe_weight_g": 2356.3
+  },
+  {
+    "recipe_name": "Cheesy Chicken and Shrimp Rice Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_chicken_and_shrimp_rice_bake_20250624_140857_58ddc146.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:08:57.864284000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "potato",
+      "cheese",
+      "basil",
+      "broccoli",
+      "mozzarella",
+      "bread",
+      "pasta",
+      "chili",
+      "shrimp",
+      "salmon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Cheesy Chicken and Shrimp Rice Bake is presented in a clean, white ceramic oval gratin dish. The dish is filled to the brim with a comforting, golden-brown crusted bake. The surface shows melted, bubbling mozzarella cheese and crispy, toasted Panko breadcrumbs. Peeking through the topping are tender, cooked 2 cm chicken cubes and plump, pink whole shrimp. Vibrant green broccoli florets are visible against the creamy white rice base. Fresh green basil leaves are scattered generously over the top, adding a pop of color and freshness. The gratin dish rests on a simple wooden table surface. A folded white cotton napkin and a silver fork are placed beside the dish. Natural, even lighting illuminates the food, highlighting its inviting textures and colors against a soft, blurred background of a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken and Shrimp",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Large shrimp, peeled and deveined",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Shredded mozzarella cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Red chili, finely chopped (optional)",
+        "quantity": "1"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Cook rice according to package directions. Set aside.",
+      "Cut chicken into 2 cm cubes. Season chicken and shrimp with salt and pepper.",
+      "Heat 15 ml olive oil in a large oven-safe skillet over medium-high heat. Add chicken. Sear chicken until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C. Remove chicken. Set aside.",
+      "Add remaining 15 ml olive oil to skillet. Add shrimp. Cook shrimp 2-3 minutes per side until pink and opaque. Remove shrimp. Set aside.",
+      "Add butter to skillet. Sauté diced onion 3-4 minutes until softened. Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer. Stir in cooked rice, cooked chicken, cooked shrimp, and broccoli florets. Add half of the shredded mozzarella. Stir gently to combine.",
+      "Transfer mixture to a 3-liter baking dish or individual gratin dishes. Sprinkle remaining mozzarella and Panko breadcrumbs evenly over top. If using, sprinkle chopped red chili.",
+      "Bake 20-25 minutes, or until cheese is bubbly and breadcrumbs are golden brown.",
+      "Remove from oven. Let rest 5 minutes. Garnish with fresh basil leaves. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 928.2,
+      "cholesterol_mg": 287.1,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 62.7,
+      "saturated_fat_g": 15,
+      "sodium_mg": 1822.6,
+      "total_carbs_g": 83.8,
+      "total_fat_g": 38.3,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 144.4,
+      "cholesterol_mg": 44.7,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 9.8,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 283.5,
+      "total_carbs_g": 13,
+      "total_fat_g": 6,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 96,
+      "dietary_fiber": 18,
+      "protein": 125,
+      "saturated_fat": 75,
+      "sodium": 79,
+      "total_carbs": 30,
+      "total_fat": 49
+    },
+    "serving_size_g": 643,
+    "total_recipe_weight_g": 2572
+  },
+  {
+    "recipe_name": "Sustainable Rosti with Cultured Cheese, Fermented Tomato Relish, and Poached Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_rosti_with_cultured_cheese%2C_fermented_tomato_relish%2C_and_poached_egg_20250624_140819_cd0af217.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:08:20.242469000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "potato",
+      "sausage",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, substantial portion of a Sustainable Rosti rests centered on a handcrafted, matte ceramic plate in an earthy cream tone. The rosti, a golden-brown disk of grated potato and onion, exhibits a crispy, irregular texture. It is topped with a scattering of savory, browned plant-based sausage crumbles. Over this, a generous dollop of vibrant red Fermented Tomato Relish, chunky and glistening, provides a pop of color. Crumbled white, tangy cheese (like goat cheese or feta) is artfully dispersed, adding creamy contrast. A perfectly poached egg, with a firm white and a gently yielding, bright yellow yolk, crowns the dish. Chopped green chives are sprinkled for a fresh accent. The overall composition is clean and minimalist, allowing the natural colors and textures of each ingredient to shine. The plate sits on a light, natural wood surface. A soft, undyed linen napkin and a simple, natural element like a small leafy branch are subtly placed in the background, reinforcing the eco-conscious aesthetic. Lighting is soft and natural, emphasizing the dish's freshness and simple beauty. No meat slices are fanned; sausage is presented as crumbles.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern European inspired",
+    "cultural_serving_suggestions": [
+      "Serve immediately to enjoy the crispy rosti and warm poached egg.",
+      "Pair with a simple green salad dressed with a light vinaigrette."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Large Russet Potatoes",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Plant-Based Sausage",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh Tangy Cheese (e.g., Goat Cheese or Feta)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Ripe Tomatoes (for relish)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic Clove (for relish)",
+        "quantity": "1"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "White Vinegar (for poaching eggs)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Fermentation Starter (e.g., 5ml sauerkraut brine or contents of 1 probiotic capsule) - for relish",
+        "quantity": "optional, see notes"
+      }
+    ],
+    "instructions": [
+      "Prepare the Fermented Tomato Relish at least 24 hours in advance (see notes for method).",
+      "Peel potatoes and onion. Reserve all potato peels and onion skins for stock. Grate potatoes and onion coarsely. Place grated vegetables in a clean kitchen towel. Squeeze out as much liquid as possible. Transfer to a bowl. Season with salt and pepper. Mix well.",
+      "While preparing rosti, simmer potato peels and onion skins in 1 litre of water for 20 minutes to create a zero-waste vegetable stock. Strain and reserve for other uses or discard solids.",
+      "Heat 15ml olive oil in a large non-stick pan over medium heat. Divide potato mixture into four equal portions. Press each portion into a flat, round rosti shape in the pan. Cook 8-10 minutes per side until golden brown and crispy. Keep warm.",
+      "Crumble plant-based sausage into a separate pan. Cook over medium heat for 5-7 minutes until browned and cooked through. Break into small pieces.",
+      "Fill a medium pot with water for poaching eggs. Add white vinegar. Bring to a gentle simmer. Carefully crack each egg into a small bowl. Gently slide eggs into simmering water. Poach for 3-4 minutes until whites are set and yolks are still runny. Remove with a slotted spoon.",
+      "To plate, place one crispy potato rosti on each plate. Top each rosti with a portion of crumbled plant-based sausage. Crumble fresh tangy cheese over the sausage. Add a generous spoonful of the prepared Fermented Tomato Relish. Carefully place one poached egg on top of each rosti. Garnish with chopped fresh chives."
+    ],
+    "notes": [
+      "To make Quick Fermented Tomato Relish: Roughly chop 300g ripe tomatoes, 1/4 yellow onion, and 1 garlic clove. Blend briefly until chunky (do not over-blend). Stir in 5g sea salt. Add 5ml fermentation starter (e.g., sauerkraut brine or contents of 1 probiotic capsule). Transfer to a clean jar, ensuring solids are submerged under liquid (use a fermentation weight if needed). Cover loosely or with an airlock. Let ferment at room temperature for 1-2 days, tasting daily until desired tanginess is achieved. Store in the refrigerator for up to 2 weeks.",
+      "For Cultured Cheese: If not using pre-made cultured cheese, a simple fresh goat cheese or crumbled feta provides a similar tangy profile consistent with a 'cultured' element. For homemade cultured cheese curds, milk would be cultured with rennet and starter culture, then drained, a process requiring more time."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Pan-frying (Rosti)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 548.59,
+      "cholesterol_mg": 213.5,
+      "dietary_fiber_g": 7.64,
+      "protein_g": 25.14,
+      "saturated_fat_g": 10.71,
+      "sodium_mg": 909.87,
+      "total_carbs_g": 46.68,
+      "total_fat_g": 29.14,
+      "total_sugars_g": 6.71,
+      "trans_fat_g": 0.32
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117.66,
+      "cholesterol_mg": 45.79,
+      "dietary_fiber_g": 1.64,
+      "protein_g": 5.39,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 195.14,
+      "total_carbs_g": 10.01,
+      "total_fat_g": 6.25,
+      "total_sugars_g": 1.44,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71.17,
+      "dietary_fiber": 27.3,
+      "protein": 50.27,
+      "saturated_fat": 53.53,
+      "sodium": 39.56,
+      "total_carbs": 16.97,
+      "total_fat": 37.35
+    },
+    "serving_size_g": 466.25,
+    "total_recipe_weight_g": 1865
+  },
+  {
+    "recipe_name": "Creamy Baked Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_baked_chicken_and_rice_20250624_140740_d53f9021.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:07:40.873937000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Baked Chicken and Rice is presented in a deep, rustic ceramic bowl on a well-worn wooden dining table. Golden-brown chicken thighs, cooked whole, are nestled atop a bed of creamy, tender white rice. The rice is studded with small diced carrots, celery, and onions, offering subtle flecks of orange and green. The top surface of the casserole, where cheese was added, shows a light golden crust. The dish has a natural, slightly irregular texture, characteristic of a comforting home-cooked meal. A simple, everyday ceramic plate holds the portion, with a metal fork resting casually beside it. A casually folded cloth napkin is nearby. The scene is bathed in warm, inviting kitchen lighting, evoking a relaxed, lived-in family atmosphere with minimal background clutter.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad.",
+      "Serve with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Long-grain white rice, uncooked",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Cream of mushroom soup (canned)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Onion, small diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalks, small diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Carrots, small diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried parsley",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Cheddar cheese, shredded (optional)",
+        "quantity": "100 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Season chicken thighs with salt, pepper, garlic powder, onion powder, and paprika.",
+      "Sear chicken thighs 3-4 minutes per side until golden brown. Do not cook through.",
+      "Remove chicken from skillet. Set aside.",
+      "In the same skillet, add diced onion, celery, and carrots. Sauté 5-7 minutes until softened.",
+      "In a large 3-liter baking dish, combine uncooked rice, chicken broth, cream of mushroom soup, and sautéed vegetables. Stir well.",
+      "Nestle the seared chicken thighs into the rice mixture.",
+      "Cover the baking dish tightly with foil.",
+      "Bake for 35 minutes.",
+      "Remove foil. If using, sprinkle shredded cheddar cheese over the chicken and rice.",
+      "Bake uncovered for another 15-20 minutes, or until chicken reaches an internal temperature of 75°C and rice is tender and liquid is absorbed.",
+      "Remove from oven. Let rest 5 minutes before serving.",
+      "Garnish with dried parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust seasoning to your preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 792.25,
+      "cholesterol_mg": 189.5,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 48.76,
+      "saturated_fat_g": 11.88,
+      "sodium_mg": 1389.08,
+      "total_carbs_g": 66.58,
+      "total_fat_g": 36.47,
+      "total_sugars_g": 4.35,
+      "trans_fat_g": 0.25
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.08,
+      "calories": 124,
+      "cholesterol_mg": 29.68,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 7.64,
+      "saturated_fat_g": 1.86,
+      "sodium_mg": 217.55,
+      "total_carbs_g": 10.43,
+      "total_fat_g": 5.71,
+      "total_sugars_g": 0.68,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 13,
+      "protein": 98,
+      "saturated_fat": 59,
+      "sodium": 60,
+      "total_carbs": 24,
+      "total_fat": 47
+    },
+    "serving_size_g": 638.5,
+    "total_recipe_weight_g": 2554
+  },
+  {
+    "recipe_name": "Ricotta and Herb Stuffed Chicken with Marinara and Linguine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ricotta_and_herb_stuffed_chicken_with_marinara_and_linguine_20250624_140734_30cecfdb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:07:35.181697000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread",
+      "pasta",
+      "ricotta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Ricotta and Herb Stuffed Chicken is presented on a clean white porcelain dinner plate. A golden-brown, seared chicken breast, sliced diagonally into two thick pieces revealing a creamy white ricotta and herb filling, is placed prominently on one side of the plate. Beside it, a neat swirl of al dente linguine is generously coated in a vibrant, rich red marinara sauce, showcasing diced tomatoes and flecks of herbs. The dish is garnished with a few fresh, bright green basil leaves and a light dusting of grated Parmesan cheese, adding color and texture. The overall composition is balanced, with moderate negative space, highlighting the dish's appealing textures and warm colors. The plate rests on a simple wooden table, accompanied by a folded cotton napkin and standard silverware, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the marinara sauce.",
+      "Offer a simple green salad dressed with vinaigrette.",
+      "Pair with a medium-bodied red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "fresh ricotta cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "fresh breadcrumbs",
+        "quantity": "60g"
+      },
+      {
+        "name": "fresh basil, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "grated Parmesan cheese",
+        "quantity": "50g, plus extra for serving"
+      },
+      {
+        "name": "large egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "salt",
+        "quantity": "1 tsp, plus more for seasoning"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "0.5 tsp, plus more for seasoning"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "linguine pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "olive oil for marinara",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "medium onion, finely diced",
+        "quantity": "0.5"
+      },
+      {
+        "name": "crushed San Marzano tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "red pepper flakes",
+        "quantity": "Pinch (optional)"
+      }
+    ],
+    "instructions": [
+      "Prepare stuffing: In a bowl, combine ricotta, breadcrumbs, chopped basil, chopped parsley, Parmesan cheese, egg yolk, 1 tsp salt, and 0.5 tsp black pepper. Mix well.",
+      "Prepare chicken: Butterfly each chicken breast. Place a chicken breast between two pieces of plastic wrap. Gently pound to an even 1.5 cm thickness.",
+      "Stuff chicken: Spoon about 60g of ricotta mixture onto one half of each pounded chicken breast. Fold the other half over the filling. Secure edges with toothpicks if needed.",
+      "Sear chicken: Heat 30ml olive oil in a large oven-safe skillet over medium-high heat. Season chicken breasts with salt and pepper. Sear chicken for 3-4 minutes per side until golden brown.",
+      "Finish chicken: Transfer skillet to a preheated oven at 190°C (375°F). Bake for 15-20 minutes, or until internal temperature reaches 75°C (167°F). Remove toothpicks before serving.",
+      "Make marinara: While chicken bakes, heat 1 tbsp olive oil in a saucepan over medium heat. Add diced onion and cook until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Add tomatoes: Pour in crushed tomatoes, oregano, and red pepper flakes (if using). Bring to a simmer. Reduce heat to low and cook for 15-20 minutes, stirring occasionally, until sauce thickens slightly. Season with salt and pepper.",
+      "Cook pasta: Cook linguine according to package directions in salted water until al dente. Drain well.",
+      "Plate: Place a portion of linguine on each plate. Spoon marinara sauce over the pasta. Slice each stuffed chicken breast in half diagonally to reveal the filling. Place chicken beside the pasta. Garnish with fresh basil leaves and a sprinkle of grated Parmesan cheese."
+    ],
+    "notes": [
+      "Ensure chicken is cooked through to a safe internal temperature of 75°C (167°F).",
+      "For best flavor, use high-quality San Marzano tomatoes for the marinara sauce."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1014.3,
+      "cholesterol_mg": 234.8,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 88.1,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 1104.8,
+      "total_carbs_g": 92.4,
+      "total_fat_g": 29.3,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161.9,
+      "cholesterol_mg": 37.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 14.1,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 176.3,
+      "total_carbs_g": 14.8,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78.3,
+      "dietary_fiber": 22.9,
+      "protein": 176.2,
+      "saturated_fat": 48,
+      "sodium": 48,
+      "total_carbs": 33.6,
+      "total_fat": 37.6
+    },
+    "serving_size_g": 626.5,
+    "total_recipe_weight_g": 2506
+  }
+]

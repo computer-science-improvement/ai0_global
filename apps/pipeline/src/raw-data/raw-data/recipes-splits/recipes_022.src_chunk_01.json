@@ -1,0 +1,675 @@
+[
+  {
+    "recipe_name": "Sustainable Cherry Clafoutis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_cherry_clafoutis_20250624_122538_329d17e6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:25:38.516553000Z",
+    "selected_ingredients": [
+      "sugar",
+      "flour",
+      "egg",
+      "cherry"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Sustainable Cherry Clafoutis is presented in a handcrafted, unglazed ceramic ramekin, resting on a flat, natural cream-colored ceramic plate. The clafoutis itself is golden-brown on top with slightly puffed edges, revealing a creamy, off-white custard interior. Whole, dark red fresh cherries are visibly scattered within the custard. A few vibrant, ruby-red fermented cherries are artfully placed on top of the clafoutis, adding a contrasting texture and tangy visual pop. The composition is clean and minimalistic, with ample negative space on the plate. The setting features a light, textured bamboo table surface. An undyed linen napkin in a natural beige tone is subtly placed beside the plate. Soft, diffused natural light illuminates the dish from the side, highlighting its organic textures. The background is clean and uncluttered, with a hint of soft green foliage from a houseplant, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve warm, as is, or with a very light dusting of powdered sugar for a traditional touch.",
+      "Enjoy as a light dessert after a meal."
+    ],
+    "hero_ingredient": "Cherry",
+    "ingredients": [
+      {
+        "name": "Fresh Cherries",
+        "quantity": "300 g"
+      },
+      {
+        "name": "All-purpose Flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Oat Milk",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Pinch of Salt",
+        "quantity": "1"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Water (for fermentation)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Sea Salt (for fermentation)",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Pit 100g of cherries. Reserve all cherry pits.",
+      "Place pitted cherries in a clean jar. Combine 100ml water and 2g sea salt to create a brine. Pour brine over cherries. Seal jar loosely. Ferment at room temperature for 2-3 days until slightly bubbly and tangy. Refrigerate.",
+      "Rinse remaining cherry pits. Combine pits with oat milk in a small saucepan. Heat gently for 10 minutes. Do not boil. Strain milk, discard pits. This is your cherry pit infused milk.",
+      "Preheat oven to 180°C. Lightly butter four 150ml ramekins.",
+      "In a bowl, whisk together flour, sugar, and a pinch of salt.",
+      "Add eggs one at a time, whisking until smooth.",
+      "Gradually whisk in the cherry pit infused milk and vanilla extract until batter is smooth.",
+      "Distribute remaining 200g fresh pitted cherries evenly among the buttered ramekins.",
+      "Pour batter over cherries in each ramekin.",
+      "Bake for 25-30 minutes, or until clafoutis is set and lightly golden brown around the edges. A knife inserted near the center should come out clean.",
+      "Serve warm, topped with a few fermented cherries."
+    ],
+    "notes": [
+      "This recipe utilizes a zero-waste approach by infusing the cherry pits into the milk, adding a subtle almond-like flavor. Ensure pits are thoroughly rinsed.",
+      "The fermented cherries add a delightful tangy counterpoint to the sweet clafoutis. Adjust fermentation time to your preferred tartness.",
+      "For a richer flavor, consider using grass-fed butter for greasing ramekins. For a plant-based alternative, use coconut oil.",
+      "Coconut sugar or maple syrup can be used as natural sweetener alternatives to granulated sugar."
+    ],
+    "traditional_techniques": [
+      "Infusion",
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 15,
+      "calories": 245,
+      "cholesterol_mg": 98.8,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 6.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 347.5,
+      "total_carbs_g": 43,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 27.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 7.7,
+      "calories": 125,
+      "cholesterol_mg": 50.4,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 3.1,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 177.5,
+      "total_carbs_g": 21.9,
+      "total_fat_g": 3,
+      "total_sugars_g": 14,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 9,
+      "protein": 12,
+      "saturated_fat": 12,
+      "sodium": 15,
+      "total_carbs": 16,
+      "total_fat": 7
+    },
+    "serving_size_g": 195.8,
+    "total_recipe_weight_g": 783
+  },
+  {
+    "recipe_name": "Cheesy Chicken and Salmon Rice Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_chicken_and_salmon_rice_bake_20250624_122523_630e7915.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:25:23.524314000Z",
+    "selected_ingredients": [
+      "chicken",
+      "olive oil",
+      "egg",
+      "jalapeno chile",
+      "cheese",
+      "rice",
+      "salmon",
+      "apple"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Cheesy Chicken and Salmon Rice Bake is presented on a simple, round, off-white ceramic plate with a slightly rustic edge, placed on a well-used wooden dining table. The baked rice forms the foundation, its tender grains infused with savory spices, creating a comforting, slightly irregular mound. Nestled within the rice are substantial, irregular chunks of seared chicken, displaying a golden-brown crust, and generous flakes of cooked salmon, their natural pink-orange hues providing a visual contrast. A melted layer of golden-orange shredded cheddar cheese cascades over the rice, creating a bubbly, inviting top, with some areas of deeper browning for texture. Perched casually on top of the rice bake is a single sunny-side-up fried egg, its vibrant yellow yolk glistening and edges slightly crispy, ready to be broken. Beside the egg, a small, natural heap of fresh apple-jalapeno relish adds a vibrant pop of bright green and crisp white, offering a fresh, slightly spicy and sweet counterpoint to the warm, rich tones of the bake. The components are naturally portioned, touching and slightly overlapping, reflecting a homely, unpretentious plating style. The scene is illuminated by warm, soft kitchen lighting, enhancing the cozy, lived-in atmosphere. A simple, plain cloth napkin is casually draped beside the plate, with a basic, everyday fork resting on it. The background is minimal, hinting at a comfortable family kitchen setting without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Served family-style directly from the baking dish"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Salmon fillet",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Shredded cheddar cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "4"
+      },
+      {
+        "name": "Jalapeno chile",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Apple (e.g., Honeycrisp or Fuji)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Dice chicken into 2 cm cubes. Season with salt and pepper.",
+      "Heat 15 ml olive oil in a large oven-safe skillet or Dutch oven over medium-high heat.",
+      "Add chicken. Sear until browned on all sides. Cook to 75°C internal temperature. Remove chicken from skillet. Set aside.",
+      "Place salmon fillet on a baking sheet. Drizzle with a small amount of olive oil. Bake in preheated oven for 12-15 minutes, or until cooked through and flakes easily. Let cool slightly. Flake salmon into large pieces.",
+      "Dice onion into small cubes. Mince garlic. Finely dice one jalapeno, remove seeds for less heat if desired.",
+      "Add remaining 15 ml olive oil to the skillet. Reduce heat to medium. Add diced onion and diced jalapeno. Sauté until softened, about 5 minutes.",
+      "Add minced garlic, cumin, and chili powder. Cook for 1 minute until fragrant.",
+      "Stir in rice. Cook for 2 minutes, stirring constantly, until rice is lightly toasted.",
+      "Pour in chicken broth. Bring to a simmer.",
+      "Stir in seared chicken and flaked salmon.",
+      "Cover skillet. Transfer to preheated oven. Bake for 20-25 minutes, or until liquid is absorbed and rice is tender.",
+      "Remove skillet from oven. Stir gently. Sprinkle shredded cheese evenly over the top.",
+      "Return to oven, uncovered. Bake for 5-7 minutes, or until cheese is melted and bubbly.",
+      "While rice bakes, prepare apple-jalapeno relish. Finely dice remaining jalapeno. Dice apple into small cubes.",
+      "In a small bowl, combine diced apple, diced jalapeno, and fresh lime juice. Stir well.",
+      "In a separate pan, fry 4 eggs sunny-side up or to desired doneness.",
+      "Serve warm rice bake directly from the skillet or spoon into individual bowls. Top each serving with a fried egg and a spoonful of apple-jalapeno relish."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature.",
+      "Adjust jalapeno quantity for desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 935,
+      "cholesterol_mg": 393.6,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 57.5,
+      "saturated_fat_g": 15.6,
+      "sodium_mg": 1079.8,
+      "total_carbs_g": 72.7,
+      "total_fat_g": 44.3,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160,
+      "cholesterol_mg": 67.2,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 9.8,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 184.5,
+      "total_carbs_g": 12.4,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 131.2,
+      "dietary_fiber": 12.5,
+      "protein": 114.9,
+      "saturated_fat": 77.8,
+      "sodium": 47,
+      "total_carbs": 26.4,
+      "total_fat": 56.9
+    },
+    "serving_size_g": 585.4,
+    "total_recipe_weight_g": 2341.6
+  },
+  {
+    "recipe_name": "Caramelized Red Onion Tarte Tatin with Honey-Thyme Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_red_onion_tarte_tatin_with_honey-thyme_glaze_20250624_122513_6abfd55a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:25:13.798135000Z",
+    "selected_ingredients": [
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegantly presented wedge of Caramelized Red Onion Tarte Tatin rests on a pristine round white porcelain dessert plate. The top layer showcases deeply caramelized red onion slices, their natural rings visible, radiating a rich, glossy amber-brown hue from the honey-thyme glaze. The onions are tender, glistening, and slightly collapsed from the cooking process. Beneath, the golden-brown puff pastry crust is visibly flaky and crisp, providing a textural contrast. A light scattering of fresh green thyme leaves adorns the surface, adding a subtle pop of color and aromatic freshness. The plate has ample negative space. The setting is a modern bistro, featuring a simple light wooden table surface. A neatly folded white cotton napkin and polished dessert fork are placed beside the plate. Natural, even lighting illuminates the dish, emphasizing its refined sweetness and professional presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve warm with a dollop of crème fraîche or a scoop of vanilla bean ice cream."
+    ],
+    "hero_ingredient": "Caramelized Red Onion",
+    "ingredients": [
+      {
+        "name": "Red onions",
+        "quantity": "750g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "75g"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Puff pastry sheet",
+        "quantity": "300g"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Slice red onions thinly into rings.",
+      "Melt butter in a 24cm oven-safe, non-stick pan over medium heat.",
+      "Add sliced onions. Cook for 15-20 minutes until very soft and translucent.",
+      "Stir in brown sugar and balsamic vinegar. Continue cooking for 10-15 minutes until onions are deeply caramelized and sticky. Set aside to cool slightly.",
+      "Lightly grease the same pan if needed.",
+      "Arrange the caramelized onions evenly in the bottom of the pan.",
+      "Roll out puff pastry. Cut a circle slightly larger than the pan. Place pastry over the onions, tucking edges down around the sides.",
+      "Whisk egg yolk with a teaspoon of water. Brush pastry with egg wash.",
+      "Bake for 30-35 minutes, or until pastry is golden brown and puffed.",
+      "Remove from oven. Let cool in the pan for 5 minutes.",
+      "Place a serving plate over the pan. Carefully invert the tarte tatin onto the plate.",
+      "While tart bakes, combine honey and leaves from 2 thyme sprigs in a small saucepan. Gently heat until honey is fluid. Do not boil.",
+      "Brush the warm tarte tatin with the honey-thyme glaze.",
+      "Garnish with remaining fresh thyme leaves. Serve warm."
+    ],
+    "notes": [
+      "This dessert is best served warm to enjoy the full flavor and texture."
+    ],
+    "traditional_techniques": [
+      "Caramelization"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 31.2,
+      "calories": 718,
+      "cholesterol_mg": 95,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 7.5,
+      "saturated_fat_g": 23.4,
+      "sodium_mg": 244,
+      "total_carbs_g": 84.1,
+      "total_fat_g": 39.4,
+      "total_sugars_g": 41,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 15.7,
+      "calories": 362,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 3.8,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 123,
+      "total_carbs_g": 42.4,
+      "total_fat_g": 19.8,
+      "total_sugars_g": 20.7,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32,
+      "dietary_fiber": 17,
+      "protein": 15,
+      "saturated_fat": 117,
+      "sodium": 11,
+      "total_carbs": 31,
+      "total_fat": 51
+    },
+    "serving_size_g": 198.3,
+    "total_recipe_weight_g": 793
+  },
+  {
+    "recipe_name": "Corn and Rice Salad with Cheddar",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_corn_and_rice_salad_with_cheddar_20250624_122508_d284c340.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:25:08.955466000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "mustard",
+      "rice",
+      "cheddar",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, homely portion of Corn and Rice Salad with Cheddar is presented on a simple, off-white ceramic plate. The salad forms a vibrant mound, showcasing a colorful medley of textures. Fluffy white Basmati rice serves as the base, interspersed with bright yellow corn kernels, small cubes of vibrant red and green bell peppers, finely diced red onion, and creamy yellow cubes of sharp cheddar cheese. Each component is clearly visible, with some pieces slightly overlapping, creating a natural, unpretentious look. A light, glossy dressing coats the ingredients, and flecks of fresh green chopped parsley are scattered throughout and on top, adding a fresh accent. The plate sits on a well-used, warm-toned wooden dining table, suggesting a comfortable family kitchen setting. A basic fork is placed beside the plate. Warm, inviting light from kitchen fixtures illuminates the scene, highlighting the natural colors and inviting textures of the homemade salad. The background is minimal, focusing entirely on the comforting dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Corn",
+    "ingredients": [
+      {
+        "name": "Cooked Basmati Rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned Corn, drained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red Onion, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Red Bell Pepper, diced into small cubes",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green Bell Pepper, diced into small cubes",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Sharp Cheddar Cheese, diced into small cubes",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh Parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "White Wine Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2.5 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare the rice. Cook Basmati rice according to package directions. Let it cool completely.",
+      "Prepare vegetables. Finely dice the red onion. Dice red and green bell peppers into small cubes. Mince the garlic.",
+      "Drain canned corn well. Dice cheddar cheese into small cubes. Chop fresh parsley.",
+      "Make the dressing. In a small bowl, whisk together olive oil, Dijon mustard, white wine vinegar, salt, and black pepper.",
+      "Combine salad ingredients. In a large bowl, combine cooled rice, drained corn, diced red onion, diced bell peppers, minced garlic, and diced cheddar cheese.",
+      "Pour dressing over the salad. Toss gently to coat all ingredients evenly.",
+      "Stir in chopped fresh parsley.",
+      "Serve immediately or chill before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 491.55,
+      "cholesterol_mg": 39.38,
+      "dietary_fiber_g": 5.04,
+      "protein_g": 15.6,
+      "saturated_fat_g": 10.09,
+      "sodium_mg": 1133.23,
+      "total_carbs_g": 48.39,
+      "total_fat_g": 28.05,
+      "total_sugars_g": 6.66,
+      "trans_fat_g": 0.45
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147.45,
+      "cholesterol_mg": 11.81,
+      "dietary_fiber_g": 1.51,
+      "protein_g": 4.68,
+      "saturated_fat_g": 3.03,
+      "sodium_mg": 339.92,
+      "total_carbs_g": 14.52,
+      "total_fat_g": 8.41,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.14
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13.1,
+      "dietary_fiber": 18,
+      "protein": 31.2,
+      "saturated_fat": 50.4,
+      "sodium": 49.3,
+      "total_carbs": 17.6,
+      "total_fat": 36
+    },
+    "serving_size_g": 333.38,
+    "total_recipe_weight_g": 1333.5
+  },
+  {
+    "recipe_name": "Cabbage & Lentil Fermented Root Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cabbage_%26_lentil_fermented_root_salad_20250624_122443_a18e2f7b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:24:43.910135000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The salad is presented on a handcrafted ceramic plate in an earthy tone, like cream or beige. The composition is minimalistic, honoring each ingredient's natural beauty. A mound of vibrant, mixed greens forms the base, showcasing finely shredded fermented green cabbage and julienned pickled orange carrots. Scattered among these are deep crimson diced beetroot cubes and small, firm brown lentils, adding pops of color and grounding texture. A light sheen of vinaigrette coats the ingredients, reflecting soft natural light. Freshly chopped parsley and dill are sparingly sprinkled over the top, offering a final fresh green touch. The plate is clean, with ample white space. The setting features a light bamboo table surface, an undyed linen napkin in natural beige, and a subtle background of blurred green foliage, emphasizing sustainability and nature.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Cabbage",
+    "ingredients": [
+      {
+        "name": "Green Cabbage",
+        "quantity": "300g, thinly shredded"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, thinly sliced or julienned"
+      },
+      {
+        "name": "Filtered Water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, sliced"
+      },
+      {
+        "name": "Dill Sprigs",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Brown or Green Lentils",
+        "quantity": "150g, dry"
+      },
+      {
+        "name": "Water",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Beetroot",
+        "quantity": "1 medium, peeled and diced into 1 cm cubes"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "10g"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "15g, chopped"
+      }
+    ],
+    "instructions": [
+      "Wash and sterilize a 1-liter glass jar.",
+      "Shred cabbage thinly. Slice carrots thinly.",
+      "Combine shredded cabbage and sliced carrots in the jar. Add garlic and dill sprigs.",
+      "Dissolve salt in filtered water to make a brine. Pour brine over vegetables, ensuring they are fully submerged. Use a fermenting weight.",
+      "Seal jar loosely or use an airlock. Let ferment at room temperature (18-24°C) for 3-7 days, or until desired tanginess. Refrigerate once fermented.",
+      "Rinse lentils. Combine lentils and water in a saucepan.",
+      "Bring to a boil, then reduce heat. Simmer for 20-25 minutes, or until tender but not mushy.",
+      "Drain excess water. Set aside to cool.",
+      "Dice beetroot into 1 cm cubes.",
+      "Steam or lightly boil beetroot cubes for 5-7 minutes until tender-crisp.",
+      "Drain and cool.",
+      "In a small bowl, whisk together apple cider vinegar, Dijon mustard, maple syrup, salt, and pepper.",
+      "Gradually whisk in olive oil until emulsified.",
+      "In a large bowl, combine cooled lentils, cooled beetroot cubes, and about 200g of the drained pickled cabbage and carrots.",
+      "Add chopped fresh parsley and dill.",
+      "Pour vinaigrette over salad. Toss gently to combine all ingredients.",
+      "Taste and adjust seasoning if needed."
+    ],
+    "notes": [
+      "Fermented vegetables can be prepared well in advance, improving flavor over time.",
+      "This recipe is highly adaptable; use seasonal vegetables available locally.",
+      "Any leftover pickling brine can be used in dressings or as a gut-healthy tonic.",
+      "Save vegetable scraps for homemade vegetable broth to reduce waste."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.2,
+      "calories": 432.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 11.7,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 170.9,
+      "total_carbs_g": 37,
+      "total_fat_g": 28.5,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 145.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 3.9,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 57.5,
+      "total_carbs_g": 12.4,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 29.3,
+      "protein": 23.4,
+      "saturated_fat": 19.4,
+      "sodium": 7.4,
+      "total_carbs": 13.4,
+      "total_fat": 36.5
+    },
+    "serving_size_g": 297,
+    "total_recipe_weight_g": 1188
+  }
+]

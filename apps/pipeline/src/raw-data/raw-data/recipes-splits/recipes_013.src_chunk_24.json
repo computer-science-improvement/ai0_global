@@ -1,0 +1,653 @@
+[
+  {
+    "recipe_name": "Clarified Chicken Consommé with Tomato Essence and Rice Pearls",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_clarified_chicken_consomm%C3%A9_with_tomato_essence_and_rice_pearls_20250701_143256_c700177b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:32:57.392361000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, individual portion of clarified chicken consommé is presented in an elegant, wide-rimmed, deep bone china bowl. The consommé is a pristine, translucent golden amber, reflecting the meticulous clarification process. At the bottom of the bowl, precisely diced, tender white chicken cubes (5mm) are artfully arranged alongside delicate, pearlescent rice grains, appearing as tiny, perfectly formed pearls. The arrangement is natural and organic, avoiding any rigid patterns, with abundant negative space in the bowl's rim. A few precise drops of vibrant, clear crimson tomato essence float on the consommé's surface, creating a striking visual contrast. A single sprig of micro basil or a few finely snipped chives provides a subtle green accent. A single, tiny drop of high-quality olive oil shimmers on the surface. The bowl rests on a luxurious, cool grey-veined Carrara marble surface, complemented by a pristine white linen napkin folded into a sharp triangle. Dramatic, professional lighting casts soft shadows, enhancing the dish's sophisticated simplicity. The background is ultra-minimalist, emphasizing the exquisite culinary craftsmanship.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "cultural_origin": "French",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken bones (or whole chicken carcass)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Carrots, roughly chopped",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Celery, roughly chopped",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Onion, roughly chopped (for stock)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "4 litres"
+      },
+      {
+        "name": "Lean ground chicken breast (or finely minced)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "3"
+      },
+      {
+        "name": "Onion, finely diced (for raft)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Carrot, finely diced (for raft)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Celery, finely diced (for raft)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Ripe tomatoes, quartered",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Onion, roughly chopped (for tomato essence)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic clove, smashed",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Boneless, skinless chicken breast (for garnish)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Micro basil or chives",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "High-quality extra virgin olive oil",
+        "quantity": "For finishing"
+      }
+    ],
+    "instructions": [
+      "Combine chicken bones, roughly chopped carrots, celery, onion, bay leaves, peppercorns, and cold water in a large pot. Bring to a simmer. Skim impurities from surface. Reduce heat to low. Simmer gently for 3 hours. Strain stock through a fine-mesh sieve. Chill completely. Skim all fat from chilled stock.",
+      "For Consommé Clarification: In a bowl, combine ground chicken, egg whites, finely diced onion, carrot, and celery. Mix well. Add this mixture to the cold strained chicken stock. Stir to combine. Place pot over medium-low heat. Do not stir once a 'raft' of solids begins to form on the surface. Simmer gently for 45-60 minutes, allowing the raft to clarify the stock. Carefully ladle clear consommé through a cheesecloth-lined sieve without disturbing the raft. Season consommé with salt and pepper. Keep warm.",
+      "For Tomato Essence: Toss quartered tomatoes, roughly chopped onion, and smashed garlic with 15 ml olive oil, salt, and pepper. Roast at 180°C for 25 minutes until softened and slightly caramelized. Transfer roasted vegetables to a blender. Blend until smooth. Pass blended mixture through a fine-mesh sieve. Then, pass the liquid again through a cheesecloth-lined sieve, pressing gently to extract all clear liquid. Season the clear tomato essence. Keep warm.",
+      "For Rice Pearls: Rinse Arborio rice. In a small pot, combine rice, 300 ml chicken stock (from above, or water), and a pinch of salt. Bring to a boil. Reduce heat to low. Cover. Cook for 12-15 minutes until liquid is absorbed and rice is tender but still has a slight bite. Fluff with a fork.",
+      "For Chicken Garnish: Poach chicken breast in a small amount of seasoned water or consommé until cooked through (75°C internal temperature). Cool completely. Dice chicken into small, precise 5mm cubes.",
+      "To Assemble: Place an equal portion of diced chicken cubes and rice pearls into the bottom of four warm, deep soup bowls. Carefully ladle hot consommé over the chicken and rice, ensuring they are submerged. Drizzle a few drops of the vibrant red tomato essence onto the surface of the consommé. Garnish with micro basil or finely snipped chives. Finish with a single, tiny drop of high-quality extra virgin olive oil."
+    ],
+    "traditional_techniques": [
+      "Consommé Clarification (Raft Technique)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 330.8,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 5.79,
+      "protein_g": 20.31,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 525,
+      "total_carbs_g": 41.09,
+      "total_fat_g": 10.08,
+      "total_sugars_g": 10.45,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 31.8,
+      "cholesterol_mg": 3,
+      "dietary_fiber_g": 0.56,
+      "protein_g": 1.95,
+      "saturated_fat_g": 0.15,
+      "sodium_mg": 50,
+      "total_carbs_g": 3.95,
+      "total_fat_g": 0.97,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 20.7,
+      "protein": 40.6,
+      "saturated_fat": 8,
+      "sodium": 22.8,
+      "total_carbs": 14.9,
+      "total_fat": 12.9
+    },
+    "serving_size_g": 1040,
+    "total_recipe_weight_g": 4160
+  },
+  {
+    "recipe_name": "Dark Beer-Braised Chicken Thighs with Creamy Corn Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dark_beer-braised_chicken_thighs_with_creamy_corn_risotto_20250701_143142_bd179ee3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:31:43.183053000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "corn",
+      "cheese",
+      "dark beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single white porcelain dinner plate holds a generous, artfully composed portion of the dish. A base of creamy, pale yellow risotto, studded with bright yellow corn kernels, flows gently across the plate. Two golden-brown, tender braised chicken thighs, rich with their dark beer glaze, rest atop the risotto. The chicken maintains its whole, un-sliced form, showcasing its succulence. A scattering of vibrant green, finely chopped fresh parsley provides a final touch of color and freshness. The composition is balanced, with moderate negative space. The scene is set on a simple light wooden table surface, accompanied by a folded white cotton napkin beside the plate. Natural, even lighting illuminates the food, highlighting its inviting textures and colors. The background is softly blurred, hinting at a modern bistro atmosphere, keeping the focus squarely on the meticulously plated dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American Bistro",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed green beans or roasted asparagus.",
+      "Pair with a glass of the dark beer used in the braise."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh or frozen corn kernels",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Dark beer (stout or porter)",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "1 litre (plus extra if needed)"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium (approx. 150g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, oven-safe Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs skin-side down until deep golden brown and crisp, about 8-10 minutes. Flip and sear for another 2-3 minutes. Remove chicken from pot and set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Deglaze the pot with dark beer, scraping up any browned bits from the bottom. Bring to a simmer.",
+      "Return chicken thighs to the pot, skin-side up. Add thyme sprigs and bay leaf. Pour in enough chicken stock to partially submerge the chicken (about half the thigh).",
+      "Bring liquid to a gentle simmer. Cover the pot and transfer to a preheated oven at 160°C. Braise for 45-60 minutes, or until chicken is very tender and reaches an internal temperature of 75°C.",
+      "While chicken braises, prepare the risotto. In a separate large saucepan, melt 30g butter over medium heat. Add remaining diced onion (if using a second onion, or reserve some from step 4) and cook until translucent, about 5 minutes.",
+      "Add Arborio rice to the saucepan. Toast rice for 2 minutes, stirring constantly, until edges are translucent.",
+      "Pour in a ladleful of hot chicken stock (from the 1 litre reserved stock). Stir constantly until liquid is absorbed.",
+      "Continue adding hot stock one ladleful at a time, stirring continuously, allowing each addition to be absorbed before adding the next. This takes about 18-20 minutes.",
+      "Halfway through cooking the risotto (around 10 minutes), stir in the corn kernels.",
+      "When risotto is creamy and rice is al dente, remove from heat. Stir in remaining 30g butter and grated Parmesan cheese. Season with salt and pepper to taste. The risotto should be fluid, not stiff.",
+      "Carefully remove braised chicken from the oven. Let rest for 5 minutes.",
+      "To serve, spoon a generous portion of creamy corn risotto onto each plate. Place two braised chicken thighs on top of the risotto.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best flavor, use a good quality stout or porter. Avoid overly bitter or hoppy beers.",
+      "Ensure the chicken stock for the risotto is hot to maintain the cooking temperature of the rice.",
+      "Risotto should be stirred constantly to release starch and achieve a creamy texture."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Risotto method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1111,
+      "cholesterol_mg": 242,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 64.2,
+      "saturated_fat_g": 21.6,
+      "sodium_mg": 1223,
+      "total_carbs_g": 79.2,
+      "total_fat_g": 61,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149.3,
+      "cholesterol_mg": 32.6,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 164.3,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81,
+      "dietary_fiber": 10,
+      "protein": 128,
+      "saturated_fat": 108,
+      "sodium": 53,
+      "total_carbs": 29,
+      "total_fat": 78
+    },
+    "serving_size_g": 744,
+    "total_recipe_weight_g": 2976
+  },
+  {
+    "recipe_name": "Caramelized Onion & Beer Soup with Roasted Carrots and Garlic Aioli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_onion_%26_beer_soup_with_roasted_carrots_and_garlic_aioli_20250701_143101_4a974e61.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:31:02.105771000Z",
+    "selected_ingredients": [
+      "onion",
+      "beer",
+      "mayonnaise",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of golden-amber soup is presented in a classic white porcelain bowl, centered on a light wooden table surface. The soup, a rich hue derived from deeply caramelized onions and amber beer, has a smooth, velvety texture. A delicate swirl of creamy white garlic aioli is artfully drizzled over the top, creating a subtle contrast. A sprinkle of finely chopped fresh chives adds a pop of vibrant green and delicate texture. The bowl is positioned slightly off-center, allowing for moderate negative space. A folded natural cotton napkin rests beside the bowl. The lighting is natural and even, highlighting the soup's warm tones. The background is softly blurred, suggesting a modern bistro atmosphere, keeping the focus entirely on the inviting soup.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Caramelized onion",
+    "ingredients": [
+      {
+        "name": "Large yellow onions",
+        "quantity": "4"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "3"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Dark ale or lager beer",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh chives, finely chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Peel and cut carrots into 2 cm chunks. Toss with a drizzle of olive oil, salt, and pepper. Roast for 20-25 minutes until tender and lightly caramelized. Set aside.",
+      "Peel and thinly slice onions. Melt butter in a large pot or Dutch oven over medium-low heat. Add sliced onions. Cook slowly, stirring occasionally, for 45-60 minutes until deeply caramelized and golden-brown. Do not rush this process.",
+      "Mince 3 garlic cloves. Add minced garlic to caramelized onions. Cook for 1 minute until fragrant.",
+      "Pour in beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and cook for 5 minutes to reduce slightly.",
+      "Add chicken or vegetable broth, thyme sprigs, and bay leaf. Bring to a boil, then reduce heat to low. Simmer for 20 minutes.",
+      "Remove thyme sprigs and bay leaf. Carefully transfer soup to a blender. Blend until smooth and creamy. Season with salt and pepper to taste.",
+      "For the garlic aioli: Mince the remaining 1 garlic clove very finely. In a small bowl, combine mayonnaise, minced garlic, and lemon juice. Stir until well combined.",
+      "Ladle hot soup into individual serving bowls. Drizzle a swirl of garlic aioli over the top of each bowl. Garnish with a sprinkle of finely chopped fresh chives.",
+      "Serve immediately, optionally with crusty bread on the side."
+    ],
+    "traditional_techniques": [
+      "Caramelizing onions",
+      "Roasting vegetables"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 448,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 5.8,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 582,
+      "total_carbs_g": 36.2,
+      "total_fat_g": 29.5,
+      "total_sugars_g": 13.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 53,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 0.7,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 69,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19,
+      "dietary_fiber": 20,
+      "protein": 12,
+      "saturated_fat": 47,
+      "sodium": 25,
+      "total_carbs": 13,
+      "total_fat": 38
+    },
+    "serving_size_g": 839.25,
+    "total_recipe_weight_g": 3357
+  },
+  {
+    "recipe_name": "Creamy Pan-Seared Chicken with Sautéed Kale",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_pan-seared_chicken_with_saut%C3%A9ed_kale_20250701_143025_1795ed51.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:30:25.935533000Z",
+    "selected_ingredients": [
+      "kale",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Pan-Seared Chicken with Sautéed Kale is presented on a clean, round white porcelain dinner plate. Two golden-brown, pan-seared chicken breast pieces, cooked whole, rest atop a vibrant bed of tender, dark green sautéed kale. The chicken exhibits a perfectly seared crust, contrasting with its moist interior. A rich, creamy, light ivory sauce is generously spooned over the chicken and kale, pooling slightly around the base. A light sprinkle of freshly cracked black pepper garnishes the dish. The overall presentation is balanced, with moderate negative space. The plate sits on a simple light wooden table surface. A neatly folded cotton napkin and standard restaurant flatware are placed beside the plate. Natural, even lighting illuminates the scene, highlighting the textures and colors of the food. The background suggests a clean, casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Bistro",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Fresh kale",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "60ml (optional)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry with paper towels. Season generously with salt and black pepper on both sides.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 5-7 minutes per side until golden brown and an internal temperature of 75°C (167°F) is reached. Remove chicken from skillet. Set aside. Keep warm.",
+      "Reduce heat to medium. Add butter to the same skillet. Add diced onion. Sauté for 3-4 minutes until softened.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in white wine (if using). Scrape up any browned bits from the bottom of the skillet. Reduce by half.",
+      "Stir in chicken broth and heavy cream. Bring to a gentle simmer. Cook for 5-7 minutes, stirring occasionally, until sauce slightly thickens.",
+      "While sauce simmers, wash kale. Remove tough stems. Roughly chop kale leaves.",
+      "Add chopped kale to the simmering sauce. Cook for 3-5 minutes, stirring, until kale is tender and wilted.",
+      "Return cooked chicken breasts to the skillet with the sauce and kale. Spoon sauce over chicken. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 598,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 60.7,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 712,
+      "total_carbs_g": 13.5,
+      "total_fat_g": 30.8,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 1,
+      "protein_g": 14.2,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 167,
+      "total_carbs_g": 3.2,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 15,
+      "protein": 121,
+      "saturated_fat": 68,
+      "sodium": 31,
+      "total_carbs": 5,
+      "total_fat": 39
+    },
+    "serving_size_g": 427,
+    "total_recipe_weight_g": 1709
+  },
+  {
+    "recipe_name": "Creamy Mushroom and Artichoke Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_mushroom_and_artichoke_rigatoni_20250701_142943_b7c8b1e4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:29:43.551289000Z",
+    "selected_ingredients": [
+      "pasta",
+      "artichoke",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of Creamy Mushroom and Artichoke Rigatoni is presented on a clean, round white porcelain plate. The rigatoni pasta is perfectly al dente, coated in a rich, velvety cream sauce that glistens subtly. Interspersed throughout the pasta are numerous golden-brown, sautéed cremini mushroom slices and tender, pale green quartered artichoke hearts. The mushrooms show slight crisp edges from searing, contrasting with the soft pasta and creamy sauce. A vibrant sprinkle of fresh, chopped green parsley and a light dusting of finely grated Parmesan cheese adorn the top, adding pops of color and texture. The dish is arranged naturally in the center of the plate, allowing for some negative space around the edges. The scene is set on a simple light wooden table surface, with a folded cotton napkin and standard European flatware placed beside the plate. Natural, even lighting illuminates the dish, highlighting its inviting textures and warm colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the sauce.",
+      "Pair with a simple green salad dressed with a light vinaigrette.",
+      "Offer extra grated Parmesan cheese at the table for individual preference."
+    ],
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300 g, sliced"
+      },
+      {
+        "name": "Artichoke hearts (jarred in brine or oil, drained, quartered)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80 g, grated"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Add rigatoni. Cook according to package directions until al dente. Reserve 250 ml pasta water before draining.",
+      "While pasta cooks, heat olive oil and butter in a large skillet over medium-high heat. Add diced shallots. Sauté 3 minutes until softened.",
+      "Add sliced cremini mushrooms to skillet. Cook 6-8 minutes, stirring occasionally, until mushrooms are deeply browned and softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from bottom of skillet. Simmer 2 minutes until wine mostly evaporates.",
+      "Stir in quartered artichoke hearts and vegetable broth. Bring to a simmer. Reduce heat to medium-low.",
+      "Pour in heavy cream. Simmer 3-5 minutes, stirring occasionally, until sauce slightly thickens.",
+      "Add cooked rigatoni to the skillet with the sauce. Add 100 ml reserved pasta water. Toss well to coat pasta.",
+      "Stir in grated Parmesan cheese and chopped fresh parsley. If sauce is too thick, add more reserved pasta water, 30 ml at a time, until desired consistency.",
+      "Season with salt and black pepper to taste. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecare"
+    ]
+  }
+]

@@ -1,0 +1,624 @@
+[
+  {
+    "recipe_name": "Parmesan Custard with Chive Oil and Crisp Parmesan",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_parmesan_custard_with_chive_oil_and_crisp_parmesan_20250902_132644_11928e88.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T13:26:45.229662000Z",
+    "selected_ingredients": [
+      "egg",
+      "milk",
+      "cheese"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, perfectly round, pale yellow Parmesan custard sits precisely in the center of a large, minimalist white bone china plate. Its surface is impeccably smooth, hinting at a silken texture. A vibrant, emerald green chive oil forms an elegant, organic swirl around the custard, creating a striking color contrast and a sense of movement. A single, golden-brown Crisp Parmesan, exquisitely thin and delicate, leans gracefully against the custard. The overall presentation emphasizes abundant negative space, highlighting the pristine nature of each component. The setting features a polished white Carrara marble surface, a crisp white linen napkin folded into a precise triangle, and dramatic, focused lighting casting subtle shadows to enhance the dish's architectural precision and luxurious simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Whole eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "2"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 150°C. Prepare a water bath.",
+      "Whisk whole eggs, egg yolks, milk, and cream in a bowl. Stir in 30 g grated Parmesan, salt, and white pepper.",
+      "Strain the custard mixture through a fine-mesh sieve into a pouring jug. This ensures a silky texture.",
+      "Pour custard into four small ramekins or elegant heatproof dishes. Place dishes in the water bath.",
+      "Bake for 30-35 minutes until custards are just set but still slightly wobbly in the center. Cool completely.",
+      "For Crisp Parmesan: On a parchment-lined baking sheet, spread remaining 20 g grated Parmesan into four thin circles.",
+      "Bake at 180°C for 5-7 minutes until golden and crisp. Cool, then carefully peel off parchment.",
+      "For Chive Oil: Blanch chives in boiling water for 10 seconds. Immediately plunge into ice water. Drain and squeeze dry.",
+      "Blend blanched chives with olive oil until very smooth. Strain through a fine-mesh sieve or cheesecloth for clear oil.",
+      "To plate: Gently unmold each custard onto the center of a pristine white plate. Create a delicate swirl of chive oil around the custard. Lean one Crisp Parmesan against each custard. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 474,
+      "cholesterol_mg": 329,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 14.8,
+      "saturated_fat_g": 14.7,
+      "sodium_mg": 306,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 44.4,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 261,
+      "cholesterol_mg": 181,
+      "dietary_fiber_g": 0.1,
+      "protein_g": 8.1,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 168,
+      "total_carbs_g": 2.5,
+      "total_fat_g": 24.4,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 110,
+      "dietary_fiber": 1,
+      "protein": 30,
+      "saturated_fat": 74,
+      "sodium": 13,
+      "total_carbs": 2,
+      "total_fat": 57
+    },
+    "serving_size_g": 182,
+    "total_recipe_weight_g": 728
+  },
+  {
+    "recipe_name": "Country Chicken and Herb Potato Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_country_chicken_and_herb_potato_skillet_20250902_132642_e8ac06c9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T13:26:42.947794000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "no oven cuisine",
+    "visual_description": "A single generous serving of Country Chicken and Herb Potato Skillet rests on a simple, round ceramic plate. Golden-brown, irregularly shaped chicken chunks (3cm) are nestled among crispy-edged, tender diced potatoes (2cm). The chicken pieces show a savory sear, while the potatoes exhibit a rustic, slightly uneven browning, flecked with dark green specks of fresh rosemary and thyme. A scattering of bright green chopped parsley provides a fresh contrast. The dish is presented on a well-used wooden dining table, with a plain white cloth napkin and a standard fork beside it. Warm, cozy kitchen lighting illuminates the natural, inviting colors of the dish. The full plate is visible, showcasing a comforting, hearty portion without being overcrowded.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "600g, cut into 3cm chunks"
+      },
+      {
+        "name": "Potatoes, Russet or Yukon Gold",
+        "quantity": "800g, peeled, diced into 2cm cubes"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs, leaves chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tablespoon, leaves picked"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry. Season chicken chunks with salt and pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat.",
+      "Add diced potatoes. Cook for 15-20 minutes, stirring occasionally, until golden brown and tender. Remove potatoes from skillet.",
+      "Add remaining 15ml olive oil to the skillet. Add chicken chunks. Cook for 6-8 minutes, turning occasionally, until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet.",
+      "Add diced onion to the skillet. Cook for 5 minutes until softened.",
+      "Add minced garlic, chopped rosemary, and thyme. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the skillet. Cook for 2 minutes until slightly reduced.",
+      "Return potatoes and chicken to the skillet. Toss to combine and coat with the sauce.",
+      "Season with additional salt and pepper if needed.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 452,
+      "cholesterol_mg": 189,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 34.9,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 163,
+      "total_carbs_g": 40,
+      "total_fat_g": 17.2,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.1,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 38,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 4,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 18,
+      "protein": 70,
+      "saturated_fat": 19,
+      "sodium": 7,
+      "total_carbs": 15,
+      "total_fat": 22
+    },
+    "serving_size_g": 428,
+    "total_recipe_weight_g": 1712
+  },
+  {
+    "recipe_name": "Pollo al Ajillo con Patatas Fritas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_al_ajillo_con_patatas_fritas_20250902_132539_c361d2f2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T13:25:39.565406000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "no oven cuisine",
+    "visual_description": "A single portion of Pollo al Ajillo con Patatas Fritas is presented on a clean, round white porcelain dinner plate. Two golden-brown, pan-seared boneless chicken thighs, each a whole piece, are positioned slightly off-center. The chicken has a rich, caramelized crust from searing, contrasting with its tender interior. Beside the chicken, a generous portion of irregularly cut 3 cm pan-fried potato cubes are piled, their surfaces a crispy golden-brown. A vibrant, rustic red bravas sauce, made from diced tomatoes, smoked paprika, and onion, is generously drizzled over the potatoes, creating appealing streaks of color. Freshly chopped bright green parsley is sprinkled over both the chicken and potatoes, adding a burst of color and freshness. A bright yellow lemon wedge rests near the chicken, ready for squeezing. The overall presentation is inviting and rustic, with a focus on natural textures and colors. The plate sits on a simple wooden table, with a folded white cotton napkin to the side. Natural, even lighting highlights the dish's textures. The background is minimally blurred, suggesting a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the garlic chicken sauce and bravas sauce.",
+      "A small bowl of authentic garlic aioli can be offered on the side for the potatoes.",
+      "Accompany with a glass of dry Spanish red wine, such as Rioja."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Potatoes (Russet or similar)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "12 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "240ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Chili flakes (optional)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onion, medium",
+        "quantity": "1"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Peel potatoes. Cut into 3 cm cubes. Rinse and pat dry thoroughly.",
+      "Finely mince 8 cloves of garlic. Slice the remaining 4 cloves thinly.",
+      "Heat 30ml olive oil in a large skillet over medium-high heat. Sear chicken thighs for 5-7 minutes per side until golden brown. Ensure internal temperature reaches 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "Add 20ml olive oil to the same skillet. Add minced garlic. Sauté for 1 minute until fragrant. Do not brown.",
+      "Pour in white wine. Deglaze the pan, scraping up any browned bits. Simmer for 2 minutes.",
+      "Add chicken broth and 5g smoked paprika. Return chicken to the skillet. Reduce heat to medium-low. Simmer for 10-15 minutes, turning chicken occasionally, until sauce slightly thickens and chicken is cooked through.",
+      "While chicken simmers, prepare the bravas sauce. Finely dice the onion. Heat 20ml olive oil in a separate saucepan over medium heat. Sauté onion until softened, about 5 minutes.",
+      "Add 5g smoked paprika and chili flakes (if using) to the onion. Cook for 1 minute.",
+      "Add diced tomatoes. Bring to a simmer. Cook for 10-15 minutes, stirring occasionally, until sauce thickens. Season with salt.",
+      "Heat remaining 30ml olive oil in a large frying pan over medium-high heat. Add potato cubes. Fry, turning occasionally, for 15-20 minutes until golden brown and tender inside. Season with salt.",
+      "Finely chop fresh parsley. Slice lemon into wedges.",
+      "To serve, place pan-fried potatoes on a plate. Top with bravas sauce. Arrange chicken thighs beside the potatoes. Garnish with chopped parsley and a lemon wedge."
+    ],
+    "notes": [
+      "Ensure potatoes are thoroughly dry before frying for maximum crispiness.",
+      "Adjust chili flakes in the bravas sauce to personal preference for spice level."
+    ],
+    "traditional_techniques": [
+      "Sofrito (for the bravas sauce base)",
+      "Pan-frying (for chicken and potatoes)",
+      "Deglazing (for the chicken sauce)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 750,
+      "cholesterol_mg": 169.2,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 41.1,
+      "saturated_fat_g": 8,
+      "sodium_mg": 931.4,
+      "total_carbs_g": 48.1,
+      "total_fat_g": 40.9,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 8,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 181.7,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 8,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 28,
+      "protein": 82,
+      "saturated_fat": 40,
+      "sodium": 41,
+      "total_carbs": 17,
+      "total_fat": 52
+    },
+    "serving_size_g": 513,
+    "total_recipe_weight_g": 2050
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Lemon-Herb Orzo and Blistered Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_lemon-herb_orzo_and_blistered_tomatoes_20250902_132433_3e3573af.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T13:24:33.533957000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "no oven cuisine",
+    "visual_description": "A single pan-seared chicken breast, golden-brown with a delicate crust, is presented whole, resting atop a generous bed of creamy, al dente orzo pasta. The orzo is infused with a light lemon-herb green hue from fresh parsley and oregano, interspersed with vibrant red, slightly blistered cherry tomato halves. The chicken is plump, showcasing its tender texture. The dish is served on a clean, round white porcelain plate, leaving moderate negative space. A sprinkle of fresh, finely chopped parsley garnishes the chicken and orzo. The setting is a modern bistro: a simple wooden table, a folded cotton napkin beside the plate, and standard flatware. Natural, even lighting highlights the dish's fresh colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp glass of Vermentino or Pinot Grigio.",
+      "Offer warm, crusty bread for dipping in the orzo sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Orzo pasta",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g, halved"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "20 g, chopped, plus extra for garnish"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, zest and juice"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 30 ml olive oil in a large skillet over medium-high heat.",
+      "Sear chicken breasts 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken. Set aside. Keep warm.",
+      "Add remaining 30 ml olive oil to the same skillet. Add minced garlic. Sauté 30 seconds until fragrant.",
+      "Add cherry tomato halves. Cook 3-4 minutes until blistered and softened. Remove tomatoes. Set aside.",
+      "Add orzo to the skillet. Toast 1 minute.",
+      "Pour in chicken stock. Bring to a simmer. Cook, stirring occasionally, 8-10 minutes until liquid is absorbed and orzo is al dente.",
+      "Stir in butter, lemon zest, lemon juice, chopped oregano, and chopped parsley. Season with salt and pepper.",
+      "Return blistered tomatoes to the orzo. Gently combine.",
+      "Plate orzo. Top with a pan-seared chicken breast. Garnish with fresh parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust seasoning to taste."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 680,
+      "cholesterol_mg": 155,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 58.2,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 858,
+      "total_carbs_g": 53.7,
+      "total_fat_g": 26.9,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 151,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 12.9,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 190,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 6,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 14,
+      "protein": 116,
+      "saturated_fat": 38,
+      "sodium": 37,
+      "total_carbs": 20,
+      "total_fat": 34
+    },
+    "serving_size_g": 451,
+    "total_recipe_weight_g": 1805
+  },
+  {
+    "recipe_name": "Mediterranean Lemon Herb Chicken with Orzo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_lemon_herb_chicken_with_orzo_20250902_132249_ecde7c0c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T13:22:49.898564000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, professionally plated portion of Mediterranean Lemon Herb Chicken with Orzo is presented on a clean, white porcelain dinner plate. The creamy, al dente orzo, studded with vibrant red halved cherry tomatoes and dark Kalamata olive halves, forms a natural base. A golden-brown, pan-seared chicken breast, cooked whole, rests elegantly atop the orzo. Fresh green chopped parsley and oregano are sprinkled generously over the chicken and orzo, providing a burst of color and aroma. A thin lemon wedge is placed subtly beside the chicken. The dish exhibits a natural, flowing arrangement with moderate negative space. Colors are warm and inviting: golden chicken, pale yellow orzo, red tomatoes, deep purple olives, and bright green herbs. The setting is a modern bistro, with a simple light wooden table surface and a folded cotton napkin beside the plate. Natural, even lighting illuminates the dish, highlighting its fresh textures and appealing presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and lemon.",
+      "Offer crusty bread for dipping in the remaining sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each), skin-on or boneless"
+      },
+      {
+        "name": "Orzo pasta",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, zest and juice"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g, halved"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "80 g, pitted and halved"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts skin-side down (if applicable) for 5-7 minutes until golden brown and crispy. Flip and sear for another 3-4 minutes. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add minced garlic to the skillet. Sauté for 1 minute until fragrant.",
+      "Add orzo to the skillet. Toast for 2 minutes, stirring constantly.",
+      "Pour in chicken stock. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Stir in halved cherry tomatoes and Kalamata olives.",
+      "Return chicken breasts to the skillet, nestling them into the orzo mixture. Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Cover the skillet. Reduce heat to low. Simmer for 10-12 minutes, or until orzo is al dente and chicken is cooked through.",
+      "Remove from heat. Stir in lemon zest, lemon juice, chopped fresh parsley, and chopped fresh oregano. Adjust seasoning if needed.",
+      "Let rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Orzo should be cooked al dente, not mushy.",
+      "Adjust the amount of lemon juice to your preference."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 662,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 47.9,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 897,
+      "total_carbs_g": 53.7,
+      "total_fat_g": 27.4,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131,
+      "cholesterol_mg": 26.7,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.5,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 177.5,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 18.1,
+      "protein": 95.8,
+      "saturated_fat": 31,
+      "sodium": 39,
+      "total_carbs": 19.5,
+      "total_fat": 35.2
+    },
+    "serving_size_g": 505.5,
+    "total_recipe_weight_g": 2022
+  }
+]

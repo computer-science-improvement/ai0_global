@@ -15,6 +15,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const RAW_DIR   = join(__dirname, '..', 'raw-data', 'raw-data', 'recipes');
 const OUT_FILE  = join(__dirname, '..', 'data', 'normalized', 'recipes', 'recipes.json');
 
+/** Coerce a value to a finite number, or null. */
+export function num(v) {
+  if (v === null || v === undefined || v === '') return null;
+  const n = Number(v);
+  return Number.isFinite(n) ? n : null;
+}
+
 export function slugify(text) {
   return String(text)
     .toLowerCase()
@@ -43,6 +50,9 @@ export function mapRecipe(raw) {
   const tags = [raw.dish_type, raw.flavor_profile, raw.cuisine_type, raw.hero_ingredient]
     .filter(Boolean)
     .map((t) => String(t).toLowerCase());
+  // Per-serving macros (БЖВ + kcal). Pure re-map from the source — full
+  // nutrition detail is preserved in `raw`.
+  const nps = raw.nutrition_per_serving ?? {};
   return {
     title:        raw.recipe_name,
     slug:         slugify(raw.recipe_name),
@@ -54,6 +64,11 @@ export function mapRecipe(raw) {
     category:     raw.cuisine_type ?? null,
     tags:         [...new Set(tags)],
     post_text:    null,
+    kcal:           num(nps.calories),
+    protein_g:      num(nps.protein_g),
+    fat_g:          num(nps.total_fat_g),
+    carbs_g:        num(nps.total_carbs_g),
+    serving_size_g: num(raw.serving_size_g),
     raw,
   };
 }

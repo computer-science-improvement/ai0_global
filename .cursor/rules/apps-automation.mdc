@@ -1,0 +1,13 @@
+---
+description: apps/automation — NestJS 10, strategies, scheduler, publishers, raw pg.
+globs: apps/automation/**/*
+alwaysApply: false
+---
+
+# apps/automation
+
+- Follow **`.cursor/skills/monorepo-apps-automation/SKILL.md`** for module/strategy patterns, **DB shapes** (`database/init.sql`, `posted` vs `posted_news`), and the **standard vs `execute` pipeline**.
+- **NestJS 10**, TypeScript; **raw `pg`** only — do not introduce another ORM without an explicit decision.
+- New **strategies**: add `*StrategyModule` under `src/strategies/<name>/` and register imports in `src/app.module.ts`; align with `scheduler` / cron patterns already in the repo.
+- **Config**: global `ConfigModule` uses repo-root `../../.env` — keep that pattern for new modules needing env.
+- Respect existing **dedup / logging** patterns (`posted_news`, `bot_logs`, `ai_logs`) when publishing or generating content.

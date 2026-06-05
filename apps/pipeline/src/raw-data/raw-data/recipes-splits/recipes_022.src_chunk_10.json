@@ -1,0 +1,644 @@
+[
+  {
+    "recipe_name": "Pork Tenderloin Medallions with Mushroom Cream Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_tenderloin_medallions_with_mushroom_cream_sauce_20250624_122045_b7bd89db.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:45.589962000Z",
+    "selected_ingredients": [
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Pork Tenderloin Medallions with Mushroom Cream Sauce. The dish is presented on a clean, round white porcelain dinner plate. Three to four golden-brown seared pork medallions, each approximately 2.5 cm thick, are neatly arranged slightly overlapping in the center. A rich, creamy, light brown mushroom sauce, studded with tender, earthy sliced cremini mushrooms, is generously spooned over the pork and pools around its base. The sauce has a velvety texture. A few fresh thyme sprigs are artfully placed on top of the medallions as a vibrant green garnish. The overall color palette is warm and inviting, with the deep brown of the seared pork, the lighter brown and cream of the sauce, and the fresh green of the herbs. The scene is set on a simple light wooden table, with a neatly folded white cotton napkin and polished silver cutlery (fork and knife) beside the plate. Natural, even light illuminates the dish, highlighting its textures and colors against a soft, blurred background typical of a modern bistro.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Pork Tenderloin",
+    "ingredients": [
+      {
+        "name": "Pork tenderloin",
+        "quantity": "650g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g, sliced"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "240ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "180ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g, divided"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5g leaves, plus sprigs for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Trim pork tenderloin. Remove silver skin. Slice into 2.5 cm thick medallions.",
+      "Season pork medallions generously with salt and black pepper.",
+      "Heat 15g butter and olive oil in a large skillet over medium-high heat.",
+      "Sear pork medallions 2-3 minutes per side. Brown well. Cook in batches if needed. Do not overcrowd pan.",
+      "Remove pork from skillet. Set aside. Keep warm.",
+      "Add remaining 15g butter to skillet. Add diced shallots. Sauté 2 minutes until softened.",
+      "Add sliced mushrooms to skillet. Cook 5-7 minutes. Stir occasionally. Mushrooms should be golden brown.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in white wine. Scrape up browned bits from bottom of pan. Simmer 2 minutes. Reduce slightly.",
+      "Pour in chicken broth and heavy cream. Bring to a gentle simmer. Cook 5-7 minutes. Sauce should thicken slightly.",
+      "Return pork medallions to skillet. Include any accumulated juices. Simmer 2-3 minutes. Pork should be cooked through.",
+      "Stir in fresh thyme leaves. Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 541.3,
+      "cholesterol_mg": 196.4,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 46.6,
+      "saturated_fat_g": 16.7,
+      "sodium_mg": 177.1,
+      "total_carbs_g": 10.5,
+      "total_fat_g": 32.4,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.7,
+      "cholesterol_mg": 46.3,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 11,
+      "saturated_fat_g": 4,
+      "sodium_mg": 41.8,
+      "total_carbs_g": 2.5,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65.5,
+      "dietary_fiber": 9.2,
+      "protein": 93.3,
+      "saturated_fat": 83.7,
+      "sodium": 7.7,
+      "total_carbs": 3.8,
+      "total_fat": 41.5
+    },
+    "serving_size_g": 423.8,
+    "total_recipe_weight_g": 1695
+  },
+  {
+    "recipe_name": "Pan-Fried Chicken Cutlets with Apple-Mustard Sauce and Rosemary Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-fried_chicken_cutlets_with_apple-mustard_sauce_and_rosemary_potatoes_20250624_122039_483cf474.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:39.711091000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread",
+      "onion",
+      "potato",
+      "mustard",
+      "apple"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown pan-fried chicken cutlet, perfectly crisp on the exterior and tender within, rests centrally on a clean white porcelain dinner plate. A generous drizzle of creamy, pale yellow apple-mustard sauce cascades over a portion of the chicken and pools delicately beside it. Beside the chicken, a neat mound of golden-roasted potato wedges, their skins slightly crisped and interiors fluffy, are scattered with vibrant green chopped fresh rosemary. The composition is balanced with moderate negative space. The dish is presented on a simple light wooden table, accompanied by a folded white cotton napkin and standard silver flatware. Natural, even lighting highlights the textures and warm tones of the food. The background is softly blurred, hinting at a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Chicken Cutlets",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "60g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Granny Smith apple",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Double cream",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Cut potatoes into 2cm wedges. Roughly chop red onion. Remove rosemary leaves from sprigs. Toss potatoes and red onion with half the olive oil, half the rosemary, salt, and pepper on a baking tray. Roast for 30-35 minutes until tender and golden.",
+      "Place each chicken breast between two sheets of cling film. Pound with a mallet until 1.5cm thick. Season with salt and pepper.",
+      "Set up a breading station: one shallow dish with flour, one with beaten eggs, one with panko breadcrumbs. Dredge each chicken cutlet in flour, then egg, then panko, pressing to coat well.",
+      "Heat remaining olive oil and butter in a large frying pan over medium-high heat. Pan-fry chicken cutlets for 4-5 minutes per side, until golden brown and cooked through (internal temperature 75°C). Cook in batches if necessary. Remove chicken, keep warm.",
+      "For the sauce, finely dice shallots and apple. In the same pan, add a little more butter if needed. Sauté shallots for 2 minutes until softened. Add diced apple and cook for 3-4 minutes until slightly tender.",
+      "Deglaze with white wine if using, scraping up any browned bits. Cook until almost evaporated. Stir in chicken stock, Dijon mustard, and remaining rosemary. Bring to a simmer.",
+      "Reduce heat to low. Stir in double cream. Simmer for 3-5 minutes until sauce thickens slightly. Season with salt and pepper.",
+      "Serve each chicken cutlet with a generous portion of roasted potatoes. Spoon apple-mustard sauce over and around the chicken. Garnish with fresh herbs if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1048.5,
+      "cholesterol_mg": 292.5,
+      "dietary_fiber_g": 8.4,
+      "protein_g": 70.7,
+      "saturated_fat_g": 15.68,
+      "sodium_mg": 988.75,
+      "total_carbs_g": 88.28,
+      "total_fat_g": 41.58,
+      "total_sugars_g": 11.58,
+      "trans_fat_g": 0.63
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168.03,
+      "cholesterol_mg": 46.87,
+      "dietary_fiber_g": 1.35,
+      "protein_g": 11.33,
+      "saturated_fat_g": 2.51,
+      "sodium_mg": 158.45,
+      "total_carbs_g": 14.15,
+      "total_fat_g": 6.66,
+      "total_sugars_g": 1.86,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97.5,
+      "dietary_fiber": 30,
+      "protein": 141.4,
+      "saturated_fat": 78.4,
+      "sodium": 43,
+      "total_carbs": 32.1,
+      "total_fat": 53.3
+    },
+    "serving_size_g": 624,
+    "total_recipe_weight_g": 2496
+  },
+  {
+    "recipe_name": "Rustic Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_cacciatore_20250624_122038_95c8003c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:38.909285000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "mushroom",
+      "tomato",
+      "garlic",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken Cacciatore presented in a shallow white porcelain pasta bowl. Two whole bone-in chicken thighs are centered, featuring deeply seared, golden-brown skin glazed with a vibrant red tomato ragu. The sauce is thick and rustic, containing visible chunks of softened yellow onion, earthy-brown halved cremini mushrooms, and blistered red cherry tomatoes. Fresh, bright green basil leaves are scattered loosely over the top. The bowl sits on a dark oak wood table next to a folded white cotton napkin and a small plate of crusty ciabatta bread. Lighting is natural and bright, emphasizing the glossy texture of the sauce and the organic arrangement of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta or focaccia to mop up the sauce.",
+      "Accompany with a glass of medium-bodied Italian red wine like Chianti.",
+      "Present in a wide shallow bowl to highlight the rustic braise."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cremini mushrooms, halved",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh basil leaves, torn",
+        "quantity": "15g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry and season with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden and crisp.",
+      "Flip chicken and sear for 4 minutes. Remove and set aside.",
+      "Add diced onion and halved mushrooms to the skillet.",
+      "Sauté for 5 minutes until onions are translucent and mushrooms are browned.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Pour in white wine. Scrape the bottom of the pan to release browned bits.",
+      "Add crushed tomatoes, cherry tomatoes, and chicken stock. Stir to combine.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Reduce heat to low. Cover and simmer for 20 minutes.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Stir in fresh torn basil and serve immediately."
+    ],
+    "notes": [
+      "Use high-quality canned San Marzano tomatoes for the most authentic flavor profile.",
+      "Do not remove the chicken skin, as it provides essential fat and flavor to the braising liquid.",
+      "If the sauce is too thick, add a splash more chicken stock at the end."
+    ],
+    "traditional_techniques": [
+      "soffritto",
+      "braising",
+      "deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 609.2,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 43.4,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 276.5,
+      "total_carbs_g": 17.8,
+      "total_fat_g": 38.3,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147.1,
+      "cholesterol_mg": 45.4,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.5,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 66.8,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.7,
+      "dietary_fiber": 12.5,
+      "protein": 86.8,
+      "saturated_fat": 47.5,
+      "sodium": 12,
+      "total_carbs": 6.5,
+      "total_fat": 49.1
+    },
+    "serving_size_g": 414.2,
+    "total_recipe_weight_g": 1656.8
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Savory Oat Risotto and Caramelized Apple",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_savory_oat_risotto_and_caramelized_apple_20250624_122033_6c602536.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:33.622522000Z",
+    "selected_ingredients": [
+      "apple",
+      "oat",
+      "oatmeal",
+      "milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Chicken with Savory Oat Risotto is presented on a clean, round white porcelain dinner plate, centered on a light wooden table surface in a modern bistro setting. The risotto forms a natural, slightly free-flowing mound, showcasing its creamy texture. Three thick, diagonal slices of golden-brown pan-seared chicken breast are arranged naturally on top of the risotto, with no fanning. Beside the chicken, two to three caramelized apple wedges, golden with slightly browned edges, add a warm contrasting color. A sprinkle of fresh green thyme leaves garnishes the dish, providing a pop of color. The overall presentation is clean and professional, with moderate negative space. Natural, even lighting illuminates the dish from above, highlighting the textures and warm tones. A simple cotton napkin and standard flatware rest beside the plate, completing the approachable restaurant-style setup.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European Fusion",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Steel-cut oats",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Firm apples (e.g., Honeycrisp, Gala), cored and cut into 8 wedges each",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme leaves, chopped",
+        "quantity": "5g"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Balsamic glaze (optional, for apple)",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown and cooked to an internal temperature of 75°C. Remove chicken, set aside, and let rest 5 minutes. Cover loosely.",
+      "In the same skillet, melt 30g butter over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and chopped thyme. Cook 1 minute until fragrant.",
+      "Add steel-cut oats to the skillet. Stir for 2 minutes to toast lightly.",
+      "Pour in 100ml chicken broth. Stir until absorbed. Continue adding remaining broth, 100ml at a time, stirring frequently, allowing each addition to be mostly absorbed before adding more. This will take 20-25 minutes. Oats should be creamy and tender but still have a slight bite.",
+      "Stir in whole milk and remaining 30g butter. Cook 2-3 minutes until milk is incorporated and risotto is creamy. Stir in grated Parmesan cheese. Season with salt and pepper to taste. Keep risotto warm.",
+      "While risotto cooks, heat 15ml olive oil in a separate pan over medium heat. Add apple wedges. Cook 3-4 minutes per side until tender and lightly caramelized. Drizzle with balsamic glaze if using.",
+      "Slice rested chicken breasts into thick medallions. Do not fan.",
+      "To plate, spoon a generous portion of savory oat risotto onto the center of each plate. Arrange sliced chicken medallions on top of the risotto. Place caramelized apple wedges beside the chicken. Garnish with a few fresh thyme leaves."
+    ],
+    "notes": [
+      "For a richer flavor, a splash of dry white wine can be added after toasting the oats and before adding broth."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 834.65,
+      "cholesterol_mg": 198.9,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 73.98,
+      "saturated_fat_g": 14.21,
+      "sodium_mg": 890.65,
+      "total_carbs_g": 56.47,
+      "total_fat_g": 34.37,
+      "total_sugars_g": 16.46,
+      "trans_fat_g": 0.54
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 133.33,
+      "cholesterol_mg": 31.77,
+      "dietary_fiber_g": 1.33,
+      "protein_g": 11.82,
+      "saturated_fat_g": 2.27,
+      "sodium_mg": 142.28,
+      "total_carbs_g": 9.02,
+      "total_fat_g": 5.49,
+      "total_sugars_g": 2.63,
+      "trans_fat_g": 0.09
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.3,
+      "dietary_fiber": 29.64,
+      "protein": 147.96,
+      "saturated_fat": 71.05,
+      "sodium": 38.72,
+      "total_carbs": 20.53,
+      "total_fat": 44.06
+    },
+    "serving_size_g": 626,
+    "total_recipe_weight_g": 2504
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Herb Crust, Roasted Potatoes, and Blanched Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_herb_crust%2C_roasted_potatoes%2C_and_blanched_broccoli_20250624_122030_7b21f60a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:31.372127000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread",
+      "potato",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared chicken breast, featuring a golden-brown herb crust, rests centrally on a clean white porcelain plate. The chicken is presented as a whole piece, showcasing its crispy texture. To one side, a neat arrangement of roasted potato cubes, approximately 2cm, displays a golden exterior and tender interior. On the opposite side, vibrant green blanched broccoli florets are carefully placed, retaining their crisp-tender texture. A subtle drizzle of glistening pan jus lightly coats parts of the chicken and potatoes. The overall composition is balanced and inviting, with appropriate negative space. The dish is set on a simple wooden table, accompanied by a folded cotton napkin and standard flatware, bathed in soft, natural, even lighting, evoking a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Maris Piper)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "400g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Peel potatoes. Cut into 2cm cubes or wedges. Toss with 30ml olive oil, salt, and pepper. Spread on a baking tray.",
+      "Roast potatoes for 25-30 minutes. Turn halfway, until golden and tender.",
+      "Cut broccoli into small florets. Bring a pot of salted water to a boil. Add broccoli florets. Cook for 2-3 minutes until tender-crisp. Drain immediately and transfer to an ice bath to stop cooking. Drain well.",
+      "In a shallow dish, combine panko breadcrumbs, chopped parsley, thyme leaves, minced garlic, 15ml olive oil, a pinch of salt, and pepper. Mix well.",
+      "Pat chicken breasts dry with paper towels. Season chicken with salt and pepper on both sides. Press one side of each chicken breast firmly into the breadcrumb mixture to create a crust.",
+      "Heat remaining 15ml olive oil and 15g butter in a large oven-safe skillet over medium-high heat. Place chicken breasts, breadcrumb-side down, in the hot skillet.",
+      "Sear for 3-4 minutes until the crust is golden brown and crispy. Flip chicken. Transfer skillet to the preheated oven.",
+      "Bake for 10-15 minutes, or until internal temperature reaches 75°C. Remove chicken from skillet and let rest on a cutting board for 5 minutes.",
+      "Return skillet to stovetop over medium heat. Add remaining 15g butter and chicken stock to the pan. Bring to a simmer, scraping up any browned bits. Reduce liquid slightly to create a light pan jus. Season with salt and pepper to taste.",
+      "To plate, arrange roasted potato cubes on one side of each plate. Place blanched broccoli florets on the opposite side. Place one whole pan-seared chicken breast centrally on the plate. Drizzle chicken and potatoes with the pan jus. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 743,
+      "cholesterol_mg": 178,
+      "dietary_fiber_g": 7,
+      "protein_g": 69.1,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 386,
+      "total_carbs_g": 53.3,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 13,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 73,
+      "total_carbs_g": 10,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 25,
+      "protein": 138,
+      "saturated_fat": 39,
+      "sodium": 17,
+      "total_carbs": 19,
+      "total_fat": 36
+    },
+    "serving_size_g": 532.8,
+    "total_recipe_weight_g": 2131
+  }
+]

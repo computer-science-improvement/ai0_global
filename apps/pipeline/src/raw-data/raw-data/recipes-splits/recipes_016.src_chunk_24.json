@@ -1,0 +1,703 @@
+[
+  {
+    "recipe_name": "Sweet & Tangy Chicken Bites with Fermented Corn & Mushroom Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_%26_tangy_chicken_bites_with_fermented_corn_%26_mushroom_relish_20250626_232314_005c4a4d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:23:14.831107000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "mushroom",
+      "corn",
+      "basil"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A clean, minimalist presentation features roasted chicken cubes, golden and slightly caramelized, arranged organically on a handcrafted, matte cream ceramic plate. Adjacent, a vibrant mound of lacto-fermented corn and thinly sliced pickled mushrooms provides a textural and color contrast, showcasing natural yellows, earthy browns, and the deep green of fresh basil. Scattered crispy rice pieces, irregular in shape and light golden, add a rustic texture. The composition respects negative space, allowing each element to stand out. The plate sits on a light bamboo surface, complemented by an undyed linen napkin in a natural beige tone. Soft, diffused natural light illuminates the scene, emphasizing the ingredients' inherent beauty and sustainable origins.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thigh",
+        "quantity": "500g, cut into 3cm cubes"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Fresh corn kernels",
+        "quantity": "200g (from 2 medium cobs)"
+      },
+      {
+        "name": "Mixed mushrooms, thinly sliced",
+        "quantity": "100g"
+      },
+      {
+        "name": "Filtered water (chlorine-free)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Sea salt (non-iodized)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Apple cider vinegar (unpasteurized)",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh basil leaves, finely chopped (for relish)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Cooked day-old jasmine rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh basil leaves (for garnish)",
+        "quantity": "Small whole leaves or torn"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Corn & Mushroom Relish: Combine corn kernels, sliced mushrooms, sea salt, and apple cider vinegar in a clean jar. Pour filtered water over to cover. Seal with an airlock lid or burp daily. Ferment at room temperature (20-24°C) for 3-5 days, or until desired tanginess. Stir in chopped basil once fermented. Store in refrigerator.",
+      "Marinate Chicken: In a bowl, combine chicken cubes with soy sauce, rice vinegar, brown sugar, grated ginger, minced garlic, white pepper, and sesame oil. Mix well. Marinate for at least 30 minutes. Refrigerate if marinating longer than 30 minutes.",
+      "Make Crispy Rice: Preheat oven to 180°C. Spread cooked day-old rice thinly on a baking sheet lined with parchment paper. Drizzle with neutral oil and sprinkle with salt. Bake for 20-30 minutes, stirring occasionally, until golden and crispy. Let cool completely. Break into small, irregular pieces.",
+      "Cook Chicken: Preheat oven to 200°C. Arrange marinated chicken cubes in a single layer on a baking sheet. Bake for 15-20 minutes, flipping halfway, until chicken is cooked through (internal temperature 75°C) and lightly caramelized.",
+      "Assemble Snack: Arrange chicken bites organically on a minimalist ceramic plate. Spoon generous amounts of the fermented corn and mushroom relish alongside. Scatter crispy rice pieces around. Garnish with fresh basil leaves. Serve immediately."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing corn cobs and mushroom stems for future vegetable stock, and day-old rice for crispy texture."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 329,
+      "cholesterol_mg": 100,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 25.1,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 800,
+      "total_carbs_g": 25.7,
+      "total_fat_g": 14.4,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 103,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 250,
+      "total_carbs_g": 8,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 6,
+      "protein": 50,
+      "saturated_fat": 17,
+      "sodium": 35,
+      "total_carbs": 9,
+      "total_fat": 18
+    },
+    "serving_size_g": 320,
+    "total_recipe_weight_g": 1280
+  },
+  {
+    "recipe_name": "Hearty Chicken and Rice Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_rice_soup_20250626_232206_64fa45ff.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:22:06.483335000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hearty Chicken and Rice Soup is presented in a deep, rustic ceramic bowl with a slightly irregular rim. The golden-yellow broth is clear, with visible steam rising. Within the broth are hearty, irregular chunks of cooked chicken, approximately 2cm cubes. Soft, fluffy white rice grains are suspended throughout. Bright orange diced carrots, pale green diced celery, and translucent diced onions are interspersed, adding color and texture. A sprinkle of vibrant green chopped fresh parsley garnishes the top. The bowl sits on a well-used, warm-toned wooden dining table. A simple, off-white cloth napkin is casually placed beside it. Lighting is warm and inviting, typical of a cozy kitchen at home.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "cultural_origin": "American Home",
+    "cultural_serving_suggestions": [
+      "Serve with warm, crusty bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast or thigh",
+        "quantity": "500g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken into 2cm cubes. Season with salt and pepper.",
+      "Heat olive oil in a large pot over medium heat. Add diced chicken. Cook until browned on all sides and cooked through, about 8-10 minutes. Ensure internal temperature reaches 75°C. Remove chicken from pot. Set aside.",
+      "Dice carrots, celery, and onion. Add to the same pot. Sauté until softened, about 5-7 minutes.",
+      "Pour in chicken broth. Bring to a boil.",
+      "Add rice. Reduce heat to low. Simmer, covered, for 15-20 minutes, or until rice is tender. Stir occasionally.",
+      "Return cooked chicken to the pot. Heat through for 2-3 minutes.",
+      "Taste and adjust seasoning if needed.",
+      "Ladle soup into bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 439.1,
+      "cholesterol_mg": 106.3,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 47.9,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 993,
+      "total_carbs_g": 38.3,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 70.3,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 7.7,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 158.9,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 1.5,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.4,
+      "dietary_fiber": 8.5,
+      "protein": 95.9,
+      "saturated_fat": 11.1,
+      "sodium": 43.2,
+      "total_carbs": 13.9,
+      "total_fat": 12.2
+    },
+    "serving_size_g": 624.5,
+    "total_recipe_weight_g": 2497.8
+  },
+  {
+    "recipe_name": "Agnolotti del Plin with Braised Short Rib and Parmesan Consommé",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_agnolotti_del_plin_with_braised_short_rib_and_parmesan_consomm%C3%A9_20250626_231745_3c69f192.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:17:46.306609000Z",
+    "selected_ingredients": [
+      "pasta",
+      "cheese",
+      "beef"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "Eight to ten perfectly formed, golden agnolotti del plin are artfully arranged in a flowing, organic line on a pristine white bone china rectangular platter. Each delicate pasta parcel, subtly translucent, reveals glimpses of the rich, dark braised short rib filling within. A small, clear amber pool of concentrated Parmesan consommé cradles a few agnolotti, adding a refined sheen. The composition features abundant negative space, highlighting the precision of the pasta and the deep, inviting colors. A few vibrant green micro basil leaves are precisely placed, providing a fresh contrast. The setting is a luxurious grey-veined marble surface with dramatic, focused lighting casting subtle shadows. A crisp white linen napkin, folded precisely, sits nearby. The presentation is ultra-minimalist and elegant, focusing solely on the dish's sophisticated simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve as a delicate antipasto.",
+      "Present on elegant serving platters for communal sharing."
+    ],
+    "hero_ingredient": "Braised Short Rib",
+    "ingredients": [
+      {
+        "name": "Beef Short Ribs, bone-in",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery Stalk, diced",
+        "quantity": "1 stalk"
+      },
+      {
+        "name": "Garlic Cloves, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "1 L"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Parmesan Rind",
+        "quantity": "50 g"
+      },
+      {
+        "name": "\"00\" Flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Egg Yolks",
+        "quantity": "6 large"
+      },
+      {
+        "name": "Water",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Micro Basil",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Pat short ribs dry. Season with salt and pepper. Sear short ribs in olive oil until deeply browned on all sides. Remove ribs.",
+      "Add onion, carrot, and celery to pot. Sauté until softened. Add garlic and tomato paste. Cook 2 minutes.",
+      "Deglaze with red wine. Reduce by half. Return ribs to pot. Add beef stock, thyme, and bay leaf. Bring to a simmer.",
+      "Cover and braise in oven at 160°C (325°F) for 3 hours, or until beef is fork-tender. Remove ribs. Strain braising liquid. Discard solids.",
+      "Shred beef, discarding bones and excess fat. Reduce strained braising liquid over medium heat until thickened. Mix shredded beef with reduced liquid. Cool completely.",
+      "For pasta dough, combine \"00\" flour, egg yolks, water, and pinch of salt. Knead until smooth and elastic, about 10 minutes. Wrap in plastic. Rest 30 minutes at room temperature.",
+      "For Parmesan consommé, combine Parmesan rind and 500 ml beef stock in a saucepan. Simmer gently for 30 minutes. Strain through a fine-mesh sieve. Keep warm.",
+      "Roll pasta dough very thin (setting 7 on pasta machine). Place small mounds of short rib filling (about 5g each) on one half of pasta sheet, spaced 2 cm apart. Fold pasta over filling. Press around filling to seal. Cut and pinch to form small agnolotti del plin. Repeat with remaining dough and filling.",
+      "Bring a pot of salted water to a gentle simmer. Cook agnolotti for 2-3 minutes, until al dente and floating. Do not boil vigorously.",
+      "Plate 8-10 agnolotti per serving on a warm platter. Ladle a small pool of warm Parmesan consommé beside or beneath them. Garnish with a few micro basil leaves. Serve immediately."
+    ],
+    "notes": [
+      "Ensure short rib filling is completely cooled before making agnolotti to prevent tearing the pasta.",
+      "Roll pasta dough as thin as possible for the authentic agnolotti del plin texture.",
+      "The Parmesan consommé should be very clear and intensely flavored."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Fresh Pasta Making",
+      "Agnolotti del Plin Shaping",
+      "Consommé Clarification"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 784,
+      "cholesterol_mg": 390,
+      "dietary_fiber_g": 3,
+      "protein_g": 41.4,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 1075,
+      "total_carbs_g": 46.9,
+      "total_fat_g": 39.9,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 68,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.3,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 189,
+      "total_carbs_g": 8.2,
+      "total_fat_g": 7,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 130,
+      "dietary_fiber": 11,
+      "protein": 83,
+      "saturated_fat": 74,
+      "sodium": 47,
+      "total_carbs": 17,
+      "total_fat": 51
+    },
+    "serving_size_g": 569.5,
+    "total_recipe_weight_g": 2278
+  },
+  {
+    "recipe_name": "Seared Chicken Medallion, Smoked Paprika Potato Puree, Tomato Confit",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_medallion%2C_smoked_paprika_potato_puree%2C_tomato_confit_20250626_231726_c8988133.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:17:27.354830000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "potato",
+      "mustard",
+      "rice",
+      "corn",
+      "garlic",
+      "breadcrumbs",
+      "gherkin",
+      "green pea",
+      "milk",
+      "yogurt",
+      "soy sauce",
+      "vanilla",
+      "broccoli",
+      "cottage cheese",
+      "cucumber",
+      "peanut",
+      "carrot",
+      "egg",
+      "honey",
+      "ricotta",
+      "whole wheat flour",
+      "marshmallow",
+      "paprika",
+      "cinnamon",
+      "eggplant",
+      "coca cola",
+      "oatmeal",
+      "tea",
+      "egg white",
+      "feta cheese",
+      "green tea",
+      "turmeric",
+      "cornstarch",
+      "bran",
+      "greek yogurt"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single starter portion is presented on a round, matte white ceramic plate, occupying the lower third. Abundant negative space defines the composition. A creamy, pale orange smoked paprika potato puree is artfully swept across the plate, creating a delicate, organic curve. A perfectly seared, golden-brown chicken medallion, presented as a single, thick, whole piece, rests elegantly beside the puree. Its exterior boasts a subtle crispness. Three to four slow-roasted cherry tomatoes, their skins slightly burst and caramelized, are strategically placed to add vibrant red accents. A few delicate green microgreens are precisely arranged atop the chicken, offering a fresh, contrasting color and texture. The plate sits on a grey veined marble surface. A pristine white linen napkin, folded into a precise triangle, is placed to the side. Dramatic professional lighting creates soft shadows, highlighting the dish's textures. The background is ultra-minimalist, ensuring the food is the sole focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "200 g (boneless, skinless)"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Microgreens",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 120°C (250°F).",
+      "Wash cherry tomatoes. Place in a small baking dish. Add peeled garlic cloves and 20 ml olive oil. Season with salt and pepper. Roast for 45 minutes until tender and slightly collapsed. Set aside.",
+      "Peel potatoes. Cut into uniform 2 cm cubes. Place in a saucepan. Cover with cold salted water. Bring to a boil. Cook for 15-20 minutes until very tender.",
+      "Drain potatoes thoroughly. Return to the hot pan over low heat for 1 minute to dry. Pass potatoes through a ricer or fine-mesh sieve into a bowl.",
+      "Heat milk and butter in a small saucepan until butter melts and milk is hot. Gradually whisk hot milk mixture into riced potatoes until smooth. Stir in smoked paprika. Season with salt and pepper. Pass puree through a fine-mesh sieve for ultimate silkiness. Keep warm.",
+      "Pat chicken breast dry. Season generously with salt and pepper. Cut each breast into two equal thick medallions.",
+      "Heat remaining 10 ml olive oil in a heavy-bottomed skillet over medium-high heat. Sear chicken medallions for 4-5 minutes per side until golden brown and internal temperature reaches 75°C (167°F). Remove from heat. Let rest for 5 minutes.",
+      "To plate, place a dollop of smoked paprika potato puree on one side of each plate. Create a natural, flowing sweep with the back of a spoon. Place one seared chicken medallion next to the puree. Arrange 3-4 slow-roasted cherry tomatoes around the chicken. Garnish with a few microgreens. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 321,
+      "cholesterol_mg": 72.5,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 18.7,
+      "saturated_fat_g": 8.4,
+      "sodium_mg": 57.5,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 20,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150.1,
+      "cholesterol_mg": 33.9,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.7,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 26.9,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 24.2,
+      "dietary_fiber": 9.3,
+      "protein": 37.4,
+      "saturated_fat": 42,
+      "sodium": 2.5,
+      "total_carbs": 6.3,
+      "total_fat": 25.6
+    },
+    "serving_size_g": 213.9,
+    "total_recipe_weight_g": 855.6
+  },
+  {
+    "recipe_name": "Hokkaido-Style Miso Salmon with Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hokkaido-style_miso_salmon_with_vegetables_20250626_231527_00a975e8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:15:28.274581000Z",
+    "selected_ingredients": [
+      "salmon",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "Japanese cuisine",
+    "visual_description": "A single portion of Hokkaido-Style Miso Salmon is elegantly presented on a clean, round white porcelain dinner plate, placed on a simple wooden table. A perfectly pan-seared salmon fillet, golden-brown and flaky, is the focal point, glistening with a rich, savory miso-butter glaze. Around the salmon, a colorful medley of tender, roughly chopped green cabbage, translucent sliced onions, earthy sliced shiitake mushrooms, and vibrant red tomato wedges are artfully arranged, all coated in the glossy, umami-rich sauce. The dish is generously garnished with bright green, thinly sliced green onions and a delicate sprinkle of white sesame seeds, adding fresh contrast and texture. The composition is balanced with appropriate negative space, highlighting the fresh ingredients and their cooked textures. A small, pristine white ceramic bowl of fluffy steamed white rice and a pair of traditional wooden chopsticks rest neatly beside the plate, completing the authentic Japanese bistro setting. Natural, even lighting illuminates the scene, emphasizing the dish's inviting colors and professional presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with freshly steamed white rice.",
+      "Accompany with a small side of pickled ginger (gari) or a sprinkle of shichimi togarashi for extra flavor.",
+      "Traditionally eaten with chopsticks."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin-on",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Onions, sliced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Green cabbage, roughly chopped",
+        "quantity": "0.5 head"
+      },
+      {
+        "name": "Shiitake mushrooms, sliced",
+        "quantity": "100g"
+      },
+      {
+        "name": "Tomatoes, cut into wedges",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Awase miso paste",
+        "quantity": "5 tbsp"
+      },
+      {
+        "name": "Sake",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Unsalted butter, cut into chunks",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Green onions, thinly sliced (for garnish)",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "White sesame seeds (for garnish)",
+        "quantity": "1 tsp"
+      }
+    ],
+    "instructions": [
+      "Combine miso paste, sake, mirin, soy sauce, sugar, minced garlic, and grated ginger in a bowl. Whisk until smooth. Set aside.",
+      "Pat salmon fillets dry with paper towels. Season lightly with salt on both sides.",
+      "Heat vegetable oil in a large, heavy-bottomed skillet or cast iron pan over medium-high heat.",
+      "Place salmon fillets skin-side down in the hot pan. Sear for 3-4 minutes until skin is crispy and golden brown. Flip the salmon.",
+      "Arrange sliced onions, roughly chopped cabbage, and sliced shiitake mushrooms around the salmon in the pan. Cook for 5-7 minutes, stirring vegetables occasionally, until they begin to soften.",
+      "Pour the prepared miso sauce evenly over the salmon and vegetables. Cover the pan with a lid.",
+      "Reduce heat to medium-low. Cook for 5-7 minutes, or until salmon is cooked through and vegetables are tender-crisp.",
+      "Add tomato wedges to the pan in the last 2-3 minutes of cooking to warm them through.",
+      "Dot the salmon and vegetables with butter chunks. Let the butter melt and coat the dish.",
+      "Garnish generously with thinly sliced green onions and a sprinkle of white sesame seeds.",
+      "Serve immediately with steamed white rice."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 711,
+      "cholesterol_mg": 116,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 42.8,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 942,
+      "total_carbs_g": 31.8,
+      "total_fat_g": 44.4,
+      "total_sugars_g": 18.4,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 130,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.8,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 173,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.8,
+      "dietary_fiber": 26.6,
+      "protein": 85.5,
+      "saturated_fat": 67.9,
+      "sodium": 41,
+      "total_carbs": 11.6,
+      "total_fat": 56.9
+    },
+    "serving_size_g": 545.3,
+    "total_recipe_weight_g": 2181
+  }
+]

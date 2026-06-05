@@ -1,0 +1,666 @@
+[
+  {
+    "recipe_name": "Pan-Seared Duck Breast with Huckleberry-Jasmine Tea Reduction and Annatto-Cream Cheese Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_duck_breast_with_huckleberry-jasmine_tea_reduction_and_annatto-cream_cheese_risotto_20250624_022828_e05e5558.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:28:28.910794000Z",
+    "selected_ingredients": [
+      "milk",
+      "butter",
+      "flour",
+      "egg",
+      "cream cheese",
+      "huckleberry",
+      "jasmine tea",
+      "annatto seed"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Duck Breast is presented on a clean, round white porcelain plate. The succulent duck breast, cooked medium-rare with crispy, golden skin, is sliced into thick 1.5 cm pieces and arranged slightly overlapping. It rests atop a creamy mound of vibrant orange annatto-infused risotto, maintaining a fluid consistency. A glossy, deep purplish-red huckleberry-jasmine tea reduction is artfully drizzled over the duck and around the risotto. A delicate, golden-brown savory cream cheese crisp stands upright, adding textural contrast. A small sprig of fresh thyme garnishes the dish. The presentation is balanced, professional, and inviting, with moderate negative space. The plate is set on a simple light wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Duck Breast",
+    "ingredients": [
+      {
+        "name": "Duck breasts",
+        "quantity": "2 (approx. 350-400g each)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Vegetable or chicken broth",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cream cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh or frozen huckleberries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Jasmine tea bags",
+        "quantity": "2"
+      },
+      {
+        "name": "Annatto seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Prepare the annatto milk: Gently warm 200ml milk with annatto seeds in a small saucepan. Steep for 10 minutes. Strain seeds; discard.",
+      "Prepare duck breasts: Score duck skin in a crosshatch pattern. Season generously with salt and pepper.",
+      "Sear duck: Heat an oven-safe, cold pan over medium-high heat. Place duck breasts skin-side down in the cold pan. Render fat for 8-10 minutes until skin is golden and crispy. Pour off excess fat. Flip duck. Sear flesh side for 2 minutes.",
+      "Finish duck: Transfer pan to preheated oven. Roast for 8-10 minutes for medium-rare, or until desired doneness. Remove duck from oven. Rest on a cutting board for 10 minutes.",
+      "Start risotto: In a separate large saucepan, heat 15ml olive oil and 15g butter over medium heat. Sauté diced shallot until softened, about 3 minutes. Add minced garlic; cook for 1 minute until fragrant.",
+      "Toast rice: Add Arborio rice to the saucepan. Toast, stirring constantly, for 2 minutes until edges are translucent.",
+      "Deglaze: Pour in white wine. Stir until absorbed.",
+      "Cook risotto: Begin adding warm broth, one ladle at a time, stirring frequently. Allow each addition to be mostly absorbed before adding the next. After half the broth is added, start alternating with the warm annatto milk. Continue adding liquid and stirring for 18-20 minutes until rice is creamy and al dente.",
+      "Finish risotto: Remove from heat. Stir in 50g butter and 80g cream cheese until melted and creamy. Season with salt and pepper. Cover to keep warm.",
+      "Make huckleberry-jasmine tea reduction: Steep jasmine tea bags in 100ml hot water for 5 minutes. Remove bags. In a small saucepan, combine huckleberries, granulated sugar, and strained jasmine tea. Bring to a simmer over medium heat. Cook for 8-10 minutes, mashing berries lightly, until sauce thickens. Strain sauce through a fine-mesh sieve, pressing solids to extract liquid. Return liquid to saucepan. Stir in 15g butter until melted and glossy. Keep warm.",
+      "Prepare savory cream cheese crisps: In a bowl, combine 100g flour, 50g softened butter, 20g cream cheese, 1 large egg, and a pinch of salt. Mix until a dough forms. Wrap and chill for 30 minutes. Roll dough very thinly (2mm) on a floured surface. Cut into irregular shapes. Place on a baking sheet lined with parchment paper. Bake at 180°C for 10-12 minutes, or until golden and crisp. Let cool.",
+      "Plate the dish: Spoon a generous mound of annatto-cream cheese risotto onto each plate. Slice rested duck breasts into 1.5 cm thick pieces. Arrange duck pieces slightly overlapping on top of the risotto. Drizzle huckleberry-jasmine tea reduction over the duck and around the risotto. Place one savory cream cheese crisp leaning against the duck. Garnish with a small sprig of fresh thyme. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 1186.8,
+      "cholesterol_mg": 288.8,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 58.1,
+      "saturated_fat_g": 28.1,
+      "sodium_mg": 1031,
+      "total_carbs_g": 99.9,
+      "total_fat_g": 59.4,
+      "total_sugars_g": 14.9,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 189.9,
+      "cholesterol_mg": 46.2,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.3,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 165,
+      "total_carbs_g": 16,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 96.3,
+      "dietary_fiber": 11.7,
+      "protein": 116.1,
+      "saturated_fat": 140.7,
+      "sodium": 44.8,
+      "total_carbs": 36.3,
+      "total_fat": 76.1
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  },
+  {
+    "recipe_name": "Baked Chicken and Mushroom Gnocchi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_chicken_and_mushroom_gnocchi_20250624_022636_cb42e5cc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:26:37.440376000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "potato",
+      "pasta",
+      "oregano",
+      "mozzarella"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Baked Chicken and Mushroom Gnocchi is presented in a deep, pristine white porcelain bowl. The dish features tender, rustic chunks of seared chicken thigh, approximately 2-3 cm cubes, nestled amongst soft, pillowy potato gnocchi. Sliced cremini mushrooms, sautéed to a rich brown, are distributed throughout the dish, all coated in a light, herbaceous tomato-based sauce. A golden-brown, bubbling layer of melted fresh mozzarella cheese blankets the top, with some crispy, caramelized edges. A scattering of vibrant green fresh basil leaves provides a fresh counterpoint to the warm, earthy tones of the dish. The overall presentation is inviting and comforting, with a natural, organic flow of ingredients. The bowl rests on a simple, light wooden table surface, accompanied by a folded white cotton napkin and standard silver flatware. Natural, even lighting highlights the textures and colors, creating a warm, approachable restaurant setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Freshly grated Parmesan cheese",
+      "Crusty bread for dipping"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g, sliced"
+      },
+      {
+        "name": "Potato gnocchi",
+        "quantity": "500g package"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "200g, torn into pieces"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "Small bunch, for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Dice chicken thighs into 2-3 cm chunks. Season with salt and pepper.",
+      "Heat olive oil in a large oven-safe pan or Dutch oven over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Do not overcrowd the pan. Remove chicken and set aside.",
+      "Add diced onion to the pan. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook until mushrooms are tender and browned, about 7-10 minutes.",
+      "Stir in crushed tomatoes, chicken broth, and dried oregano. Bring to a simmer.",
+      "Add the seared chicken back to the pan. Cook for 5 minutes to allow flavors to meld.",
+      "While sauce simmers, cook gnocchi according to package directions. Drain well.",
+      "Add drained gnocchi to the pan with chicken and sauce. Stir gently to combine.",
+      "Scatter torn mozzarella pieces evenly over the top of the gnocchi mixture.",
+      "Transfer pan to preheated oven. Bake for 15-20 minutes, or until cheese is melted, bubbly, and golden brown.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Garnish with fresh basil leaves before serving."
+    ],
+    "notes": [
+      "Serve immediately for best texture. Let stand 5 minutes after baking."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 701.1,
+      "cholesterol_mg": 213.5,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 51.3,
+      "saturated_fat_g": 11.7,
+      "sodium_mg": 975.5,
+      "total_carbs_g": 53.3,
+      "total_fat_g": 31.3,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116.5,
+      "cholesterol_mg": 35.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.5,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 162.1,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71.2,
+      "dietary_fiber": 18.9,
+      "protein": 102.5,
+      "saturated_fat": 58.3,
+      "sodium": 42.4,
+      "total_carbs": 19.4,
+      "total_fat": 40.1
+    },
+    "serving_size_g": 601.75,
+    "total_recipe_weight_g": 2407
+  },
+  {
+    "recipe_name": "Veal Saltimbocca",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_veal_saltimbocca_20250624_022406_e473d09d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:24:07.400883000Z",
+    "selected_ingredients": [
+      "veal"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single golden-brown veal cutlet, prepared as a whole piece (not sliced), is centrally placed on a clean white porcelain dinner plate. The veal, with its lightly floured, seared surface, showcases subtle hints of the vibrant green sage leaves and the rosy hue of prosciutto peeking from beneath. A rich, amber-colored pan sauce, glistening with butter and white wine, is elegantly drizzled over and around the veal, pooling slightly at the base. A small sprinkle of finely chopped fresh parsley adds a pop of bright green to the top of the cutlet. A bright yellow lemon wedge rests neatly beside the veal. The scene is set on a simple wooden table, complemented by a white cotton napkin and traditional European flatware, all bathed in natural, even lighting for a professional yet approachable restaurant presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of roasted potatoes",
+      "Serve with simple pasta like spaghetti aglio e olio",
+      "Serve with sautéed spinach"
+    ],
+    "hero_ingredient": "Veal",
+    "ingredients": [
+      {
+        "name": "Veal cutlets",
+        "quantity": "4 (approx. 150g each, 600g total)"
+      },
+      {
+        "name": "Prosciutto slices",
+        "quantity": "8"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "16"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley (chopped)",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Pat veal cutlets dry. Place two prosciutto slices on each cutlet. Place four sage leaves on top of prosciutto. Secure with toothpicks.",
+      "Lightly dredge veal in flour. Shake off excess.",
+      "Heat olive oil and half of the butter in a large skillet over medium-high heat.",
+      "Sear veal cutlets for 2-3 minutes per side until golden brown. Cook in batches if necessary to avoid overcrowding.",
+      "Remove veal from skillet. Keep warm.",
+      "Add remaining butter to skillet. Deglaze with white wine, scraping up browned bits.",
+      "Add chicken broth and lemon juice. Bring to a simmer. Cook until sauce slightly reduces, about 3-5 minutes.",
+      "Season sauce with salt and pepper.",
+      "Return veal to skillet briefly to coat with sauce.",
+      "Serve immediately. Garnish with fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Pan-frying",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 579,
+      "cholesterol_mg": 202,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 53.6,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 519,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 34.8,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 221,
+      "cholesterol_mg": 77,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 20.4,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 198,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 13.3,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 2,
+      "protein": 107,
+      "saturated_fat": 68,
+      "sodium": 23,
+      "total_carbs": 4,
+      "total_fat": 45
+    },
+    "serving_size_g": 262.25,
+    "total_recipe_weight_g": 1049
+  },
+  {
+    "recipe_name": "Dhaniya Murgh (Coriander Chicken)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dhaniya_murgh_%28coriander_chicken%29_20250624_022402_8595a3f7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:24:02.706448000Z",
+    "selected_ingredients": [
+      "chicken",
+      "coriander",
+      "onion",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Dhaniya Murgh is presented in a clean, shallow white porcelain bowl, centrally placed on a simple wooden table. The dish features tender, browned chicken chunks, approximately 5-6 cm in size, coated in a rich, vibrant green-brown gravy. The sauce has a smooth, slightly textured consistency, with visible flecks of cooked onion and green herbs. The overall color palette is earthy and appealing, with deep greens from the fresh coriander, warm browns from the caramelized onions and seared chicken, and subtle yellow undertones from turmeric. A generous sprinkle of roughly chopped fresh coriander leaves garnishes the top, adding a bright green contrast and fresh texture. The chicken pieces are arranged naturally within the gravy, not fanned or overly structured. A clean white cotton napkin is neatly folded beside the bowl. In the background, a small portion of fluffy white basmati rice or a piece of warm naan bread is visible, completing the authentic Indian casual dining experience. Natural, even lighting highlights the textures and colors of the dish, creating an inviting and professional presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "2 large bunches (about 100g)"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Green chillies",
+        "quantity": "2-3 (adjust to taste)"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml (or as needed)"
+      },
+      {
+        "name": "Fresh coriander leaves (for garnish)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 5-6 cm chunks. Pat dry.",
+      "In a bowl, combine chicken, yogurt, 3g turmeric, and salt. Mix well. Set aside for 15 minutes.",
+      "Roughly chop fresh coriander stems and leaves. Blend with ginger-garlic paste, green chillies, and 50ml water to form a smooth green paste.",
+      "Finely dice onions.",
+      "Heat oil in a heavy-bottomed pan or karahi over medium-high heat.",
+      "Add cumin seeds. Sauté for 10 seconds until fragrant.",
+      "Add diced onions. Sauté, stirring occasionally, until deeply golden brown, about 8-10 minutes.",
+      "Add marinated chicken to the pan. Sear for 5-7 minutes, turning pieces, until chicken is lightly browned on all sides. Cook to an internal temperature of 75°C (167°F).",
+      "Stir in the blended green coriander paste. Cook for 5-7 minutes, stirring, until the raw aroma disappears and oil begins to separate from the paste.",
+      "Add ground coriander, remaining 2g turmeric, and garam masala. Cook for 1 minute, stirring constantly.",
+      "Add 50ml water. Stir well. Cover the pan and simmer on low heat for 10-12 minutes, or until chicken is tender and cooked through.",
+      "Check seasoning. Adjust salt if needed.",
+      "Garnish with fresh coriander leaves before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 414.81,
+      "cholesterol_mg": 204.95,
+      "dietary_fiber_g": 3.69,
+      "protein_g": 38.84,
+      "saturated_fat_g": 4.76,
+      "sodium_mg": 362.88,
+      "total_carbs_g": 11.95,
+      "total_fat_g": 22.73,
+      "total_sugars_g": 3.76,
+      "trans_fat_g": 0.02
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150.84,
+      "cholesterol_mg": 74.53,
+      "dietary_fiber_g": 1.34,
+      "protein_g": 14.12,
+      "saturated_fat_g": 1.73,
+      "sodium_mg": 131.95,
+      "total_carbs_g": 4.34,
+      "total_fat_g": 8.26,
+      "total_sugars_g": 1.37,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.32,
+      "dietary_fiber": 13.18,
+      "protein": 77.68,
+      "saturated_fat": 23.8,
+      "sodium": 15.78,
+      "total_carbs": 4.35,
+      "total_fat": 29.14
+    },
+    "serving_size_g": 275,
+    "total_recipe_weight_g": 1100
+  },
+  {
+    "recipe_name": "Beer-Brined Chicken with Fermented Root Hash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-brined_chicken_with_fermented_root_hash_20250624_022325_7148961c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:23:25.853650000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cayenne pepper",
+      "dark beer",
+      "thyme",
+      "american cheese"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of Beer-Brined Chicken with Fermented Root Hash is presented on a handcrafted ceramic plate in an off-white, earthy tone. A central, slightly mounded bed of sautéed fermented root vegetables, diced into 1.5 cm cubes, showcases a vibrant mix of oranges, yellows, and pale whites with slight caramelization. Two to three thick, natural pieces of golden-brown seared chicken are arranged atop or beside the hash. A glossy, dark amber beer-thyme jus is artfully drizzled around the chicken and hash, creating a rich contrast. A delicate, irregular golden-brown American cheese crisp leans against the chicken, providing a textural counterpoint. Fresh thyme sprigs are scattered for a touch of green. The plate rests on a light, textured reclaimed wood surface. An undyed linen napkin in natural beige is folded neatly beside it. Soft, diffused natural light illuminates the dish. The background is clean and minimalist, featuring a subtle hint of green from a potted herb plant, emphasizing the dish's sustainable and natural aesthetic. The composition is uncluttered, allowing each ingredient’s natural beauty to shine.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Dark beer (e.g., stout or porter)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml (for brine) + 200 ml (for jus)"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "60g (for brine) + to taste"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "10 (5 for brine, 5 for cooking/garnish)"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Mixed root vegetables (carrots, parsnips, celeriac, potatoes)",
+        "quantity": "800g"
+      },
+      {
+        "name": "American cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Vegetable stock (made from scraps)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented root vegetables: Dice root vegetables into 1.5 cm cubes. Dissolve 20g sea salt in 500 ml water for brine. Submerge diced roots in brine in a clean jar. Seal loosely. Ferment at room temperature for 3-5 days, or until desired tanginess. Drain vegetables, reserve any leftover brine for other uses.",
+      "Prepare chicken brine: In a large bowl, combine 500 ml dark beer, 500 ml water, 40g sea salt, 15g sugar, 5 sprigs fresh thyme, and 5g cayenne pepper. Stir until salt and sugar dissolve.",
+      "Brine chicken: Submerge chicken thighs in the prepared brine. Ensure chicken is fully covered. Refrigerate for 4-6 hours.",
+      "Cook chicken: Remove chicken from brine. Pat dry thoroughly with paper towels. Heat 15 ml olive oil in an oven-safe pan over medium-high heat. Sear chicken thighs, skin-side down (if skin-on, otherwise flat side), for 5-7 minutes until deep golden brown. Flip chicken. Transfer pan to a preheated oven at 190°C. Cook for 10-15 minutes, or until internal temperature reaches 75°C. Remove chicken, let rest 5 minutes. Slice into thick diagonal pieces.",
+      "Make beer-thyme jus: Deglaze the pan with 200 ml dark beer over medium heat, scraping up browned bits. Add 250 ml vegetable stock and 3 sprigs fresh thyme. Bring to a simmer. Reduce liquid by half, until slightly thickened. Strain jus. Season with salt and black pepper.",
+      "Prepare root hash: Heat remaining 15 ml olive oil in a separate pan over medium-high heat. Add drained fermented root vegetables. Sauté for 8-10 minutes, stirring occasionally, until tender-crisp and lightly caramelized. Season with salt, black pepper, and 2 sprigs chopped fresh thyme.",
+      "Make American cheese crisps: Preheat oven to 160°C. Grate American cheese. Spread thinly in small rounds on a baking sheet lined with parchment paper. Bake for 5-7 minutes, until golden and crisp. Cool completely on the baking sheet; they will crisp up further."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 520,
+      "cholesterol_mg": 179,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 44.6,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 1044,
+      "total_carbs_g": 28.3,
+      "total_fat_g": 25.4,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 100,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 201,
+      "total_carbs_g": 5.4,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 21,
+      "protein": 89,
+      "saturated_fat": 36,
+      "sodium": 45,
+      "total_carbs": 10,
+      "total_fat": 33
+    },
+    "serving_size_g": 520,
+    "total_recipe_weight_g": 2079
+  }
+]

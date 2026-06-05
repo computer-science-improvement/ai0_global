@@ -1,0 +1,667 @@
+[
+  {
+    "recipe_name": "Ravioli di Salsiccia con Consommé all'Origano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ravioli_di_salsiccia_con_consomm%C3%A9_all%27origano_20250627_032122_7b058c82.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:21:22.683662000Z",
+    "selected_ingredients": [
+      "pasta",
+      "italian sausage",
+      "oregano"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "Two perfectly formed, golden handmade ravioli are precisely placed in the center of a wide, shallow, unadorned bone china bowl. The ravioli are plump, showcasing their delicate crimped edges. Around them, a pool of crystal-clear, amber-hued oregano consommé is meticulously poured, filling the bowl just enough to allow the ravioli to partially emerge, creating abundant negative space. Each ravioli is crowned with a single, vibrant green micro-basil leaf, providing a subtle pop of color and freshness. A delicate drizzle of high-quality extra virgin olive oil glistens on the consommé's surface. The dish rests on a polished white Carrara marble surface. A pristine white linen napkin, folded into a precise triangle, is positioned to the side. Dramatic professional lighting casts soft, intentional shadows, emphasizing the dish's refined elegance against an ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Pasta Flour (Tipo '00')",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Premium Italian Pork Sausage",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic Clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Parmigiano Reggiano (finely grated)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fine Breadcrumbs",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Fresh Oregano Sprigs",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Egg Whites",
+        "quantity": "3"
+      },
+      {
+        "name": "Ground Chicken or Lean Beef (for consommé)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Carrot (diced for consommé)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Celery Stalk (diced for consommé)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Onion (diced for consommé)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Micro-Basil",
+        "quantity": "Small bunch for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare pasta dough: Combine flour, eggs, 15ml olive oil, and salt. Knead 10 minutes until smooth. Wrap, rest 30 minutes.",
+      "Make sausage filling: Remove sausage from casings. Finely mince shallot and garlic. Sauté shallot and garlic in 15ml olive oil until fragrant. Add sausage, brown thoroughly. Deglaze with white wine. Cook until liquid evaporates. Cool completely. Mix with Parmigiano Reggiano and breadcrumbs. Season.",
+      "Prepare oregano consommé: Combine chicken stock, oregano sprigs, diced carrot, celery, onion, ground chicken, and egg whites in a large pot. Slowly bring to a simmer over medium-low heat, stirring occasionally until a 'raft' forms on top. Stop stirring.",
+      "Gently simmer consommé for 45 minutes without disturbing the raft. Skim any impurities. Carefully ladle clear consommé through a fine-mesh sieve lined with cheesecloth. Discard raft and solids. Keep consommé warm.",
+      "Roll pasta dough: Divide dough into portions. Roll each portion through a pasta machine, progressively thinning, to setting 6 or 7 (very thin).",
+      "Assemble ravioli: Place small mounds of sausage filling (approx. 5g) evenly spaced on one pasta sheet. Lightly brush water around filling. Place another pasta sheet over. Press out air around filling. Cut into desired ravioli shapes (e.g., 4x4 cm squares) using a cutter or knife. Seal edges tightly.",
+      "Cook ravioli: Bring a large pot of salted water to a gentle boil. Carefully add ravioli. Cook 2-3 minutes until al dente and floating. Do not overcrowd.",
+      "Plate: Place 2-3 cooked ravioli precisely in the center of each shallow bowl. Gently ladle warm, clear oregano consommé around the ravioli, leaving ample negative space. Drizzle with remaining 20ml high-quality extra virgin olive oil. Garnish each ravioli with a single micro-basil leaf."
+    ],
+    "traditional_techniques": [
+      "Pasta making (Sfoglia)",
+      "Consommé clarification"
+    ]
+  },
+  {
+    "recipe_name": "Beef Ragu with Pappardelle and Cannellini Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_ragu_with_pappardelle_and_cannellini_beans_20250627_032115_22fa5aac.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:21:15.530970000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta",
+      "bean",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate. A generous portion of wide pappardelle pasta, gently coated in the rich, deep reddish-brown ragu, forms the base. Tender, dark brown chunks of braised beef, irregularly cut into 3-4 cm pieces, are nestled among the pasta strands. Scattered throughout are creamy white cannellini beans, adding a soft texture and contrasting color. A light sprinkle of vibrant green chopped fresh parsley or basil adds a final touch of color and freshness. Finely grated Parmesan cheese lightly dusts the top, providing a subtle white contrast. The plate rests on a simple, matte dark wood table, indicative of a modern bistro setting. A folded off-white linen napkin is placed to the left of the plate. Standard silver flatware (fork and spoon) is positioned to the right. Natural, soft overhead lighting illuminates the dish, highlighting its textures and rich colors. The background is slightly blurred, hinting at a casual restaurant environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with a bowl of freshly grated Pecorino Romano or Parmesan cheese for individual preference.",
+      "Offer crusty Italian bread or ciabatta on the side for dipping into the rich sauce."
+    ],
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "1 kg, cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "400 g, drained and rinsed"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley or basil",
+        "quantity": "15 g, chopped for garnish"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper. Heat olive oil in a large Dutch oven over medium-high heat.",
+      "Sear beef chunks in batches until browned on all sides. Do not overcrowd the pot. Remove beef and set aside.",
+      "Reduce heat to medium. Add diced onion, carrots, and celery to the Dutch oven. Cook, stirring occasionally, until softened, about 8-10 minutes. This is your soffritto.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Simmer until wine is mostly evaporated, about 3-5 minutes.",
+      "Return seared beef to the pot. Add crushed tomatoes, beef broth, rosemary, and thyme sprigs.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for 2.5-3 hours, or until beef is fork-tender. Stir occasionally.",
+      "Remove rosemary and thyme sprigs from the ragu. Taste and adjust seasoning with salt and pepper.",
+      "While ragu finishes, cook pappardelle according to package directions in salted boiling water until al dente.",
+      "Drain pappardelle. Add drained cannellini beans to the ragu. Stir gently to combine.",
+      "Add cooked pappardelle directly to the ragu. Toss to coat evenly.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "The slow braising process is essential for tender, fall-apart beef.",
+      "The soffritto (diced onion, carrot, celery) forms the aromatic base of the ragu, crucial for Italian flavor."
+    ],
+    "traditional_techniques": [
+      "Braising (Stracotto style)",
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1294,
+      "cholesterol_mg": 225,
+      "dietary_fiber_g": 14.2,
+      "protein_g": 89.3,
+      "saturated_fat_g": 16.3,
+      "sodium_mg": 1205,
+      "total_carbs_g": 110.6,
+      "total_fat_g": 46.7,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147.9,
+      "cholesterol_mg": 25.7,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 10.2,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 137.7,
+      "total_carbs_g": 12.6,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 51,
+      "protein": 179,
+      "saturated_fat": 82,
+      "sodium": 52,
+      "total_carbs": 40,
+      "total_fat": 60
+    },
+    "serving_size_g": 875,
+    "total_recipe_weight_g": 3500
+  },
+  {
+    "recipe_name": "Roasted Sweet Potato and Kale Salad with Tahini Dressing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_sweet_potato_and_kale_salad_with_tahini_dressing_20250627_032050_9b95b8d6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:20:51.361028000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented on a clean white porcelain dinner plate, showcasing a vibrant mix of textures and colors. A generous mound of thinly sliced, massaged dark green kale forms the base. Scattered artistically over the kale are golden-orange roasted sweet potato cubes, their edges slightly caramelized, providing warmth and sweetness. Bright, creamy chickpeas add a contrasting texture and neutral tone. Thin slivers of red onion provide a pop of purple. The salad is lightly coated in a creamy, pale yellow tahini dressing, which glistens subtly. A scattering of crumbled white feta cheese and toasted, earthy green pepitas adds visual interest and crunch. The plate is moderately filled, allowing for some negative space. A simple cotton napkin is placed beside the plate on a light wooden table, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Sweet Potato",
+    "ingredients": [
+      {
+        "name": "Sweet potato",
+        "quantity": "2 medium (about 600g), peeled, diced into 1.5 cm cubes"
+      },
+      {
+        "name": "Kale",
+        "quantity": "1 large bunch (about 200g), tough stems removed, thinly sliced"
+      },
+      {
+        "name": "Chickpeas",
+        "quantity": "1 can (400g), rinsed, drained"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 small, thinly sliced"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "80g, crumbled"
+      },
+      {
+        "name": "Pepitas (pumpkin seeds)",
+        "quantity": "30g, toasted"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3-4 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Tahini",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Water",
+        "quantity": "60-90ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Toss diced sweet potato with 2 tbsp olive oil, salt, and pepper.",
+      "Spread sweet potato in a single layer on a baking sheet. Roast for 20-25 minutes, flipping halfway, until tender and slightly caramelized. Let cool slightly.",
+      "Prepare kale. Place sliced kale in a large bowl. Drizzle with 1 tbsp olive oil. Massage kale with hands for 2-3 minutes until softened.",
+      "Prepare dressing: Whisk tahini, lemon juice, maple syrup, minced garlic, salt, and pepper in a small bowl. Gradually add water, whisking until smooth and desired consistency is reached.",
+      "Add roasted sweet potato, rinsed chickpeas, and sliced red onion to the bowl with kale.",
+      "Pour dressing over salad. Toss gently to coat all ingredients.",
+      "Transfer salad to serving bowls. Garnish with crumbled feta and toasted pepitas. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.2,
+      "calories": 560,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 14.2,
+      "protein_g": 17.3,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 599,
+      "total_carbs_g": 62,
+      "total_fat_g": 29.6,
+      "total_sugars_g": 15.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 153.4,
+      "cholesterol_mg": 4.9,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 4.7,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 164.1,
+      "total_carbs_g": 17,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 6,
+      "dietary_fiber": 51,
+      "protein": 35,
+      "saturated_fat": 33,
+      "sodium": 26,
+      "total_carbs": 23,
+      "total_fat": 38
+    },
+    "serving_size_g": 365,
+    "total_recipe_weight_g": 1460
+  },
+  {
+    "recipe_name": "Lemon Ginger Panna Cotta with Spiced Apple Compote",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_ginger_panna_cotta_with_spiced_apple_compote_20250627_031515_9043f9f3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:15:15.517029000Z",
+    "selected_ingredients": [
+      "flour",
+      "milk chocolate",
+      "cream",
+      "lemon",
+      "apple",
+      "yogurt",
+      "ginger"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, perfectly unmolded, creamy white Lemon Ginger Panna Cotta stands elegantly on a clean white porcelain dinner plate. Its smooth, glossy surface reflects light subtly. Beside it, a generous dollop of warm, amber-toned Spiced Apple Compote, featuring soft, diced apple pieces, is neatly spooned. Dark, delicate milk chocolate shavings are lightly scattered over the panna cotta and compote, adding a contrasting color and texture. A thin, crisp, golden-brown ginger shortbread cookie is positioned artfully alongside, providing a textural counterpoint. A small, vibrant green mint sprig garnishes the panna cotta. The dish is presented on a simple wooden table, with a crisp white napkin to the side, under soft, even natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Cream",
+    "ingredients": [
+      {
+        "name": "Heavy cream",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Gelatin leaves",
+        "quantity": "3 sheets (or 5g powdered)"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 medium lemon"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Apples, peeled, cored, diced",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Milk chocolate",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Unsalted butter, cold, cubed",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Ground ginger",
+        "quantity": "2 ml"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh mint sprigs (for garnish)",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "For the Ginger Shortbread: Preheat oven to 160°C. Line a baking sheet with parchment paper.",
+      "Combine flour, powdered sugar, ground ginger, and salt in a bowl.",
+      "Cut in cold butter until mixture resembles coarse crumbs.",
+      "Press dough into a compact ball. Roll out thinly between two sheets of parchment paper.",
+      "Cut into 4 rectangles or desired shapes. Transfer to prepared baking sheet.",
+      "Bake 15-18 minutes until lightly golden. Cool completely on a wire rack.",
+      "For the Lemon Ginger Panna Cotta: Soak gelatin leaves in cold water for 5 minutes.",
+      "In a saucepan, combine heavy cream, granulated sugar, grated ginger, and lemon zest. Heat over medium heat until simmering. Do not boil.",
+      "Remove from heat. Squeeze excess water from gelatin leaves. Stir gelatin into hot cream until fully dissolved.",
+      "Strain mixture through a fine-mesh sieve to remove ginger and zest.",
+      "Stir in lemon juice. Pour mixture into 4 lightly oiled ramekins or molds.",
+      "Chill in refrigerator for at least 4 hours, or until set.",
+      "For the Spiced Apple Compote: In a saucepan, combine diced apples, brown sugar, water, and cinnamon.",
+      "Cook over medium heat, stirring occasionally, until apples are tender and liquid has thickened, about 10-15 minutes.",
+      "Remove from heat. Let cool slightly.",
+      "To Assemble: Gently unmold each panna cotta onto a clean white porcelain plate.",
+      "Spoon a portion of Spiced Apple Compote next to the panna cotta.",
+      "Grate milk chocolate directly over the panna cotta and compote.",
+      "Place one ginger shortbread cookie elegantly beside the panna cotta.",
+      "Garnish with a fresh mint sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 50.3,
+      "calories": 907,
+      "cholesterol_mg": 192,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 8.2,
+      "saturated_fat_g": 37.6,
+      "sodium_mg": 159,
+      "total_carbs_g": 88.1,
+      "total_fat_g": 59.4,
+      "total_sugars_g": 64,
+      "trans_fat_g": 2.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 16.1,
+      "calories": 290,
+      "cholesterol_mg": 61.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 2.6,
+      "saturated_fat_g": 12,
+      "sodium_mg": 50.8,
+      "total_carbs_g": 28.2,
+      "total_fat_g": 19,
+      "total_sugars_g": 20.5,
+      "trans_fat_g": 0.7
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 13,
+      "protein": 16,
+      "saturated_fat": 188,
+      "sodium": 7,
+      "total_carbs": 32,
+      "total_fat": 76
+    },
+    "serving_size_g": 312.6,
+    "total_recipe_weight_g": 1250.5
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Tomato-Onion Confit and Toasted Bread Crumbs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_tomato-onion_confit_and_toasted_bread_crumbs_20250627_031108_0a4e6076.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:11:09.277269000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "bread",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, inviting individual portion centers on a clean white porcelain dinner plate. A bed of rich, glistening tomato-onion confit, showing hues of deep red and caramelized brown, is spooned onto the plate. On top rests a single, golden-brown pan-seared chicken breast. The chicken skin is crisp, with visible grill marks, and the meat appears juicy. It is presented as a whole piece. A light drizzle of glossy pan sauce garnishes the chicken. Scattered across the chicken and confit are golden, irregularly shaped toasted bread crumbs, providing a textural contrast. Freshly chopped green parsley leaves add a pop of vibrant color. The elements are arranged organically, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface, a white cotton napkin folded beside the plate, and traditional flatware. Natural, even lighting illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "cultural_origin": "European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Red onions",
+        "quantity": "2 medium, thinly sliced"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500g, halved"
+      },
+      {
+        "name": "Rustic bread (e.g., sourdough or ciabatta)",
+        "quantity": "2 slices, crust removed, torn into small pieces"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, thinly sliced"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare bread crumbs: Tear bread into small pieces. Toast in a dry pan over medium heat until golden and crisp. Set aside.",
+      "Start confit: In a large pan, heat 30ml olive oil over medium-low heat. Add sliced red onions. Cook slowly for 15-20 minutes until very soft and caramelized.",
+      "Add tomatoes and garlic: Add halved cherry tomatoes, sliced garlic, and thyme sprigs to the pan with onions. Cook for another 10-15 minutes, stirring occasionally, until tomatoes burst and soften into a jam-like consistency.",
+      "Deglaze confit: Stir in chicken stock and red wine vinegar. Simmer for 5 minutes until slightly reduced. Season with salt and pepper. Keep warm.",
+      "Prepare chicken: Pat chicken breasts dry. Season generously with salt and pepper on both sides.",
+      "Sear chicken: In a separate large oven-safe pan, heat remaining 30ml olive oil over medium-high heat. Add chicken breasts. Sear for 4-5 minutes per side until golden brown.",
+      "Finish chicken: Transfer pan to a preheated oven at 180°C (350°F). Cook for 10-15 minutes, or until internal temperature reaches 75°C (167°F). Remove from oven. Let rest 5 minutes.",
+      "Make pan sauce: Return chicken pan to stovetop over medium heat. Add butter. Scrape up any browned bits. Cook until butter is melted and slightly browned.",
+      "Plate dish: Spoon a generous portion of tomato-onion confit onto each plate. Place one seared chicken breast on top of the confit. Drizzle with pan sauce.",
+      "Garnish: Sprinkle toasted bread crumbs and chopped fresh parsley over the chicken and confit. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Confit",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 498,
+      "cholesterol_mg": 138,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 47.7,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 736,
+      "total_carbs_g": 19.8,
+      "total_fat_g": 25.3,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 111,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.7,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 164,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46,
+      "dietary_fiber": 11,
+      "protein": 95,
+      "saturated_fat": 36,
+      "sodium": 32,
+      "total_carbs": 7,
+      "total_fat": 32
+    },
+    "serving_size_g": 448,
+    "total_recipe_weight_g": 1792
+  }
+]

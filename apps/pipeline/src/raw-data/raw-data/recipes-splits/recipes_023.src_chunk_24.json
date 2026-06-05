@@ -1,0 +1,654 @@
+[
+  {
+    "recipe_name": "Soy-Ginger Glazed Chicken with Sesame Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_soy-ginger_glazed_chicken_with_sesame_brown_rice_20250624_104252_f9bff765.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:42:52.362410000Z",
+    "selected_ingredients": [
+      "chicken",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, centrally placed on a simple light wooden table surface. A moderate portion of fluffy, light brown sesame brown rice forms a neat mound on one side of the plate. Adjacent to the rice are several irregularly shaped, glistening pieces of dark golden-brown chicken thigh, coated generously in a rich, glossy soy-ginger glaze. The chicken pieces are tender and plump, showing no fanning or slicing. Bright green, tender-crisp steamed broccoli florets are thoughtfully arranged around the chicken and rice, providing a vibrant color contrast. A sprinkle of white toasted sesame seeds adorns the chicken and rice, adding texture and a subtle sheen. Thinly sliced vibrant green spring onion pieces are scattered over the dish, providing freshness. The overall composition is balanced and inviting, with appropriate negative space. Beside the plate, a pair of dark wooden chopsticks rests on a small ceramic chopstick rest. A folded grey cotton napkin is placed to the side. Natural, even light illuminates the scene, highlighting the textures and colors of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "East Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a small dish of pickled ginger or a light clear broth on the side."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Long-grain brown rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Water",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Soy sauce (low sodium)",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cold water (for slurry)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Broccoli, cut into florets",
+        "quantity": "400g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Spring onions, thinly sliced",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Rinse brown rice thoroughly. Combine rice and 600ml water in a saucepan. Bring to a boil. Reduce heat to low. Cover and simmer for 40-45 minutes, or until water is absorbed and rice is tender. Let stand covered for 5 minutes. Fluff with a fork. Stir in 5ml sesame oil.",
+      "While rice cooks, prepare the glaze. In a small bowl, whisk together soy sauce, honey, rice vinegar, grated ginger, minced garlic, and remaining 5ml sesame oil.",
+      "In another small bowl, dissolve cornstarch in 30ml cold water to create a slurry.",
+      "Heat vegetable oil in a large non-stick pan or wok over medium-high heat. Add chicken thigh pieces, cut into 4cm pieces. Sear chicken for 5-7 minutes, turning occasionally, until browned on all sides. Cook until internal temperature reaches 75°C. Remove chicken from pan.",
+      "Add the prepared glaze to the pan. Bring to a simmer. Stir in cornstarch slurry. Cook, stirring constantly, until sauce thickens to a glossy consistency.",
+      "Return cooked chicken to the pan. Toss to coat evenly with the glaze.",
+      "Steam broccoli florets until tender-crisp, about 3-5 minutes.",
+      "To plate, spoon a portion of sesame brown rice onto a white porcelain dinner plate. Arrange glazed chicken chunks beside the rice. Place steamed broccoli florets around the chicken. Garnish with toasted sesame seeds and sliced spring onions."
+    ],
+    "traditional_techniques": [
+      "Glazing",
+      "Steaming"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.6,
+      "calories": 669,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 37.7,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 750,
+      "total_carbs_g": 78.7,
+      "total_fat_g": 22.9,
+      "total_sugars_g": 11.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.6,
+      "calories": 123.7,
+      "cholesterol_mg": 26.1,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 138.7,
+      "total_carbs_g": 14.6,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 23,
+      "protein": 75,
+      "saturated_fat": 25,
+      "sodium": 33,
+      "total_carbs": 29,
+      "total_fat": 29
+    },
+    "serving_size_g": 540.5,
+    "total_recipe_weight_g": 2162
+  },
+  {
+    "recipe_name": "Panang Chicken Curry with Dark Chocolate and Cherries",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_panang_chicken_curry_with_dark_chocolate_and_cherries_20250624_104251_ae97af54.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:42:52.017599000Z",
+    "selected_ingredients": [
+      "chocolate",
+      "milk",
+      "cherry",
+      "walnut",
+      "panang curry paste"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Panang Chicken Curry is presented in a clean, white porcelain bowl, centered on a simple wooden table surface. The rich, reddish-brown curry is glossy, with tender thick chunks of chicken visibly nestled within. Vibrant red and green bell pepper strips add contrasting color and texture. Dark, plump dried cherries and light brown, roughly chopped walnuts are scattered throughout the creamy sauce, creating visual interest. A generous scattering of fresh, bright green basil leaves provides a final aromatic garnish. Beside the bowl, a portion of fluffy white jasmine rice is neatly mounded. A traditional Thai-style serving spoon rests on the table next to the bowl. A clean cotton napkin is folded beside the plate. The scene is illuminated by natural, even lighting, highlighting the dish as the focal point within a casual bistro atmosphere. The background is minimal and unobtrusive, ensuring full attention remains on the well-balanced and professionally plated curry.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice",
+      "Offer additional fish sauce or chili flakes on the side for personal seasoning"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Panang curry paste",
+        "quantity": "80g"
+      },
+      {
+        "name": "Coconut milk",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa or higher)",
+        "quantity": "30g, finely chopped"
+      },
+      {
+        "name": "Dried cherries",
+        "quantity": "60g"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "50g, roughly chopped"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium, cut into thick strips"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 medium, cut into thick strips"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Palm sugar (or brown sugar)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Kaffir lime leaves",
+        "quantity": "4, torn"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Handful, for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare jasmine rice according to package directions.",
+      "Heat vegetable oil in a large pot or wok over medium heat. Add Panang curry paste. Stir-fry for 2 minutes until fragrant and oil separates.",
+      "Pour in 200ml coconut milk. Stir constantly until a red sheen appears.",
+      "Add chicken pieces. Cook for 5 minutes, stirring, until chicken is seared.",
+      "Pour in remaining 600ml coconut milk. Add kaffir lime leaves. Bring to a gentle simmer.",
+      "Stir in fish sauce and palm sugar. Simmer for 10 minutes, or until chicken reaches internal temperature of 75°C (167°F).",
+      "Add red and green bell pepper thick strips. Cook for 3-4 minutes until vegetables are tender-crisp.",
+      "Stir in chopped dark chocolate and dried cherries. Cook 1 minute until chocolate melts.",
+      "Remove from heat. Stir in roughly chopped walnuts.",
+      "Serve hot with jasmine rice. Garnish with fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Balancing flavors (sweet, sour, salty, spicy)",
+      "Stir-frying curry paste until oil separates (Phad Prik Gaeng)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 9.7,
+      "calories": 1337,
+      "cholesterol_mg": 129,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 62.2,
+      "saturated_fat_g": 47.7,
+      "sodium_mg": 2234,
+      "total_carbs_g": 102.1,
+      "total_fat_g": 71.5,
+      "total_sugars_g": 25.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.3,
+      "calories": 176,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.2,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 294,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 30,
+      "protein": 125,
+      "saturated_fat": 238,
+      "sodium": 97,
+      "total_carbs": 37,
+      "total_fat": 92
+    },
+    "serving_size_g": 760.5,
+    "total_recipe_weight_g": 3042
+  },
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_risotto_20250624_104244_e5311a78.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:42:44.672652000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "oil",
+      "cheese",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy, free-flowing risotto is presented on a clean white porcelain dinner plate. The risotto is a warm, pale yellow hue, studded with tender, golden-brown seared chicken cubes (2cm) and sautéed earthy brown mushroom slices. Finely diced onion pieces are visible throughout the creamy rice. A vibrant sprinkle of fresh green chopped parsley garnishes the top, alongside delicate shavings of Parmesan cheese. The dish has a natural, organic arrangement, showcasing its rich texture. The plate is set on a simple wooden table, with classic silver Italian flatware (fork and spoon) placed beside it, and a folded cotton napkin. Natural, even lighting highlights the dish, with a softly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread.",
+      "Pair with a light Italian white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 2cm cubes. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large pot or deep pan over medium-high heat.",
+      "Sear chicken cubes until golden brown and cooked through (internal temperature 75°C). Remove chicken and set aside.",
+      "Add remaining 15ml olive oil and 15g butter to the same pot.",
+      "Sauté finely diced onion until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook until mushrooms are tender and browned, about 5-7 minutes.",
+      "Stir in Arborio rice. Toast rice for 2 minutes, ensuring all grains are coated.",
+      "Pour in white wine. Stir constantly until wine is fully absorbed.",
+      "Add one ladleful (about 250ml) of hot chicken broth. Stir continuously until liquid is absorbed.",
+      "Continue adding broth, one ladleful at a time. Stir constantly and wait for each addition to be absorbed before adding the next. This process takes about 20-25 minutes.",
+      "When rice is creamy and al dente, stir in cooked chicken.",
+      "Remove from heat. Stir in remaining 15g butter and grated Parmesan cheese.",
+      "Season with salt and pepper to taste.",
+      "Serve immediately. Garnish with fresh chopped parsley and extra shaved Parmesan."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 842,
+      "cholesterol_mg": 165.63,
+      "dietary_fiber_g": 2.07,
+      "protein_g": 67.21,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 1448.25,
+      "total_carbs_g": 74.15,
+      "total_fat_g": 28.07,
+      "total_sugars_g": 2.72,
+      "trans_fat_g": 0.43
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 27.95,
+      "dietary_fiber_g": 0.35,
+      "protein_g": 11.34,
+      "saturated_fat_g": 1.94,
+      "sodium_mg": 244.43,
+      "total_carbs_g": 12.51,
+      "total_fat_g": 4.74,
+      "total_sugars_g": 0.46,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.21,
+      "dietary_fiber": 7.39,
+      "protein": 134.42,
+      "saturated_fat": 57.5,
+      "sodium": 62.97,
+      "total_carbs": 26.96,
+      "total_fat": 35.99
+    },
+    "serving_size_g": 592.5,
+    "total_recipe_weight_g": 2370
+  },
+  {
+    "recipe_name": "Chicken Biryani",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_biryani_20250624_104237_8fff391e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:42:37.671306000Z",
+    "selected_ingredients": [
+      "chicken",
+      "spice mix",
+      "rice",
+      "salt"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken Biryani served on a clean white porcelain plate. The dish features a mound of long-grain Basmati rice. The rice displays a natural color variation from pale white to deep orange-yellow from the spice infusion. Two large, bone-in chicken thigh chunks are nestled within the rice. The chicken is tender and coated in a thick, savory masala. Topping the rice are thin, golden-brown fried onion strips and vibrant green sprigs of fresh coriander. The arrangement is organic and centered with moderate negative space. A small ceramic bowl of white yogurt raita sits to the side. The background is a dark wood bistro table with a folded linen napkin and a polished brass spoon.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of cucumber raita",
+      "Accompany with lime wedges and sliced raw red onions",
+      "Traditional brass or copper serving spoon"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, cut into large chunks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Biryani spice mix",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Onions, thinly sliced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh coriander and mint leaves",
+        "quantity": "1/2 cup"
+      },
+      {
+        "name": "Water",
+        "quantity": "1.5 L"
+      }
+    ],
+    "instructions": [
+      "Wash rice until water runs clear. Soak in water for 30 minutes.",
+      "Mix chicken chunks with yogurt, spice mix, ginger-garlic paste, and 5g salt. Marinate for 1 hour.",
+      "Heat ghee in a heavy-bottomed pot. Fry sliced onions until dark golden brown. Remove half for garnish.",
+      "Boil 1.5 L water with 10g salt. Add soaked rice. Cook until 70% tender. Drain immediately.",
+      "Add marinated chicken to the pot with remaining onions and ghee. Cook for 5 minutes over medium heat.",
+      "Layer the parboiled rice over the chicken chunks. Top with reserved fried onions, coriander, and mint.",
+      "Cover pot with a tight-fitting lid. Use a heavy weight or dough to seal steam inside.",
+      "Cook on very low heat for 25 minutes. Ensure chicken internal temperature reaches 75°C.",
+      "Turn off heat. Let the pot rest for 10 minutes before opening.",
+      "Gently fluff the rice from the sides to mix colors without breaking grains."
+    ],
+    "notes": [
+      "Do not overcook the rice during the initial boil or it will turn mushy during the steaming phase.",
+      "Use a heavy-bottomed pot (like a Dutch oven) to prevent the bottom layer of chicken from burning."
+    ],
+    "traditional_techniques": [
+      "dum cooking",
+      "tempering spices",
+      "rice parboiling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 814,
+      "cholesterol_mg": 166.5,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 45,
+      "saturated_fat_g": 14.2,
+      "sodium_mg": 1550,
+      "total_carbs_g": 89.8,
+      "total_fat_g": 30.5,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 180.9,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.73,
+      "protein_g": 10,
+      "saturated_fat_g": 3.16,
+      "sodium_mg": 344.4,
+      "total_carbs_g": 19.96,
+      "total_fat_g": 6.78,
+      "total_sugars_g": 1.22,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.5,
+      "dietary_fiber": 11.8,
+      "protein": 90,
+      "saturated_fat": 71,
+      "sodium": 67.4,
+      "total_carbs": 32.7,
+      "total_fat": 39.1
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Creamy Coconut Tomato Pasta with Roasted Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_coconut_tomato_pasta_with_roasted_broccoli_20250624_104218_999b9a6a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:42:18.893352000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "garlic",
+      "coconut",
+      "salmon",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A vibrant, contemporary pasta dish presented on a clean white porcelain dinner plate. Long strands of fettuccine are generously coated in a creamy, reddish-orange sauce, a harmonious blend of rich tomato and subtle coconut. Scattered throughout the pasta are tender, vibrant green roasted broccoli florets, some with lightly charred edges, and burst cherry tomatoes, their skins slightly wrinkled from roasting. The composition is organic and flowing, with elements intertwined rather than rigidly arranged, allowing for natural negative space. A garnish of fresh, torn green basil leaves is delicately placed on top, adding a pop of fresh color and aroma. The plate rests on a simple wooden table surface, accompanied by modern silver flatware and a folded cotton napkin. Natural, even lighting highlights the dish's textures and inviting colors, creating an approachable yet refined restaurant-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., Fettuccine or Linguine)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil leaves, torn",
+        "quantity": "Large handful"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "1 tsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss broccoli florets and cherry tomatoes with 15 ml olive oil, salt, and pepper on a baking tray. Roast for 15-20 minutes, until tender and slightly charred. Set aside.",
+      "Bring a large pot of salted water to a boil. Cook pasta according to package directions until al dente. Reserve 120 ml pasta water before draining. Drain pasta.",
+      "While pasta cooks, heat remaining 15 ml olive oil in a large deep pan or pot over medium heat. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Stir in crushed tomatoes, coconut milk, and vegetable broth. Add red pepper flakes if using. Bring to a simmer. Cook for 5-7 minutes, stirring occasionally, until sauce slightly thickens.",
+      "Add cooked pasta to the sauce. Toss to coat evenly. If sauce is too thick, add reserved pasta water, 30 ml at a time, until desired consistency is reached.",
+      "Gently fold in roasted broccoli and cherry tomatoes. Stir in fresh basil.",
+      "Taste and adjust seasoning with salt and pepper as needed. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 626,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 9.6,
+      "protein_g": 19.4,
+      "saturated_fat_g": 11.9,
+      "sodium_mg": 94,
+      "total_carbs_g": 93.9,
+      "total_fat_g": 21,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 4.1,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 20,
+      "total_carbs_g": 19.8,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 34,
+      "protein": 39,
+      "saturated_fat": 60,
+      "sodium": 4,
+      "total_carbs": 34,
+      "total_fat": 27
+    },
+    "serving_size_g": 473,
+    "total_recipe_weight_g": 1893
+  }
+]

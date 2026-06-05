@@ -1,0 +1,673 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Roasted Cherry Tomatoes and Basil Gnocchi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_roasted_cherry_tomatoes_and_basil_gnocchi_20250630_061951_2aea6f59.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:19:52.365307000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "chicken",
+      "potato",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, showcasing a refined yet approachable elegance. A golden-brown, pan-seared chicken thigh, with its crispy skin facing upwards, anchors the plate. Beside it, plump, ridged basil gnocchi are artfully arranged, glistening with a vibrant reddish-orange sauce infused with roasted cherry tomatoes. Scattered amongst the gnocchi are whole, slightly burst roasted cherry tomatoes, adding pops of concentrated color. Fresh, torn basil leaves are sprinkled over the dish, providing a contrasting verdant hue and aromatic freshness. A light dusting of grated Parmigiano Reggiano adds a subtle creamy white accent. The composition is balanced, with moderate negative space, highlighting the rich textures of the chicken skin, soft gnocchi, and tender tomatoes. The scene is set on a simple wooden table, with natural, even lighting, a folded cotton napkin, and traditional flatware beside the plate, evoking a casual Italian bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of dry Italian white wine, such as Pinot Grigio or Vermentino.",
+      "Offer a side of crusty focaccia or ciabatta bread for dipping in the sauce.",
+      "Accompany with a simple green salad dressed with olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Starchy potatoes (e.g., Russet)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 large bunch (approx. 30g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "\"00\" Flour",
+        "quantity": "150g, plus more for dusting"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve cherry tomatoes. Slice 2 garlic cloves. Toss tomatoes with 20ml olive oil, sliced garlic, salt, and pepper. Spread on a baking sheet. Roast for 20-25 minutes until tender and slightly caramelized. Set aside.",
+      "Boil or steam potatoes in their skins until very tender, about 25-30 minutes. Peel while warm. Pass potatoes through a potato ricer or mash thoroughly. Spread mashed potato on a clean surface to cool slightly.",
+      "On a clean, floured surface, form a well in the center of the riced potatoes. Add 150g flour, egg, and a pinch of salt to the well. Gently mix ingredients with a fork, then lightly knead until a cohesive dough forms. Do not overmix. Divide dough into 4 portions.",
+      "Roll each dough portion into a long rope, about 1.5 cm thick. Cut ropes into 2 cm pieces. Roll each piece lightly over the tines of a fork to create ridges. Place gnocchi on a floured tray.",
+      "Bring a large pot of salted water to a rolling boil. Carefully add gnocchi in batches. Cook until gnocchi float to the surface, about 2-3 minutes. Remove with a slotted spoon and transfer to a bowl. Toss lightly with a drizzle of olive oil to prevent sticking.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper. Heat 20ml olive oil in a large oven-safe skillet over medium-high heat. Place chicken skin-side down.",
+      "Sear chicken for 8-10 minutes until skin is deeply golden and crispy. Flip chicken. Transfer skillet to the preheated oven. Bake for 10-15 minutes, or until internal temperature reaches 75°C (167°F). Remove chicken from skillet and rest on a cutting board.",
+      "Mince remaining 2 garlic cloves and the shallot. Pour off excess fat from the skillet, leaving 1-2 tablespoons of drippings. Add minced garlic and shallot to the skillet. Sauté over medium heat for 2-3 minutes until fragrant and softened.",
+      "Deglaze skillet with white wine. Scrape up any browned bits from the bottom. Reduce wine by half. Add chicken broth. Bring to a simmer. Add most of the roasted cherry tomatoes, reserving a few for garnish. Mash some tomatoes gently with a spoon to thicken the sauce.",
+      "Stir in unsalted butter until melted and sauce is glossy. Tear or roughly chop most of the fresh basil; stir into the sauce. Season sauce with salt and pepper to taste.",
+      "In a separate large pan, heat remaining 20ml olive oil over medium heat. Add cooked gnocchi and sauté for 3-5 minutes until lightly golden and slightly crispy. Add the sautéed gnocchi to the tomato-basil sauce. Toss gently to coat.",
+      "Divide gnocchi and sauce among 4 plates. Place a pan-seared chicken thigh next to the gnocchi. Garnish with reserved whole roasted cherry tomatoes, fresh basil leaves, and grated Parmigiano Reggiano. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Making fresh gnocchi (potato pasta)",
+      "Pan-searing for crispy skin",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 928,
+      "cholesterol_mg": 244.3,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 44.6,
+      "saturated_fat_g": 15.9,
+      "sodium_mg": 428,
+      "total_carbs_g": 62.8,
+      "total_fat_g": 52.8,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.3,
+      "cholesterol_mg": 40.6,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 71.2,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81.4,
+      "dietary_fiber": 19.6,
+      "protein": 89.1,
+      "saturated_fat": 79.6,
+      "sodium": 18.6,
+      "total_carbs": 22.8,
+      "total_fat": 67.7
+    },
+    "serving_size_g": 601.25,
+    "total_recipe_weight_g": 2405
+  },
+  {
+    "recipe_name": "Creamy Tuscan Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tuscan_chicken_pasta_20250630_061034_c91d3539.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:10:34.625154000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Tuscan Chicken Pasta is artfully plated on a round, clean white porcelain dinner plate. The creamy fettuccine, intertwined with golden-brown chicken chunks and vibrant green spinach, forms a neat mound in the center. Interspersed are deep red sun-dried tomato slices and earthy brown mushroom slices. The chicken chunks are irregularly shaped, about 2 cm, displaying a seared crust. A light drizzle of the creamy sauce coats the pasta, showing its rich texture. A sprinkle of freshly grated Parmesan cheese and finely chopped fresh basil leaves garnish the top, adding contrasting color and freshness. The arrangement is organic, allowing ingredients to show naturally. The plate is positioned on a simple light wooden table. A folded white cotton napkin and classic silver fork and spoon are placed beside the plate, with a small Italian-style bread roll. Natural, soft lighting highlights the textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty Italian bread for dipping in the sauce.",
+      "Pair with a glass of dry white wine, like a Chianti Classico."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs, boneless, skinless",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Fettuccine pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Brown mushrooms, sliced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Sun-dried tomatoes, oil-packed, drained and sliced",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2 g (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Sear chicken thighs 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken. Let rest. Cut into 2 cm chunks.",
+      "Add diced onion to the skillet. Sauté 3 minutes until softened.",
+      "Add minced garlic and sliced mushrooms. Sauté 5-7 minutes until mushrooms are tender and browned.",
+      "Stir in sun-dried tomatoes and red pepper flakes (if using). Cook 1 minute.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Add heavy cream and grated Parmesan cheese. Stir until cheese is melted and sauce slightly thickens.",
+      "While sauce simmers, cook fettuccine according to package directions in salted water until al dente. Drain, reserving 120 ml pasta water.",
+      "Add fresh spinach to the sauce. Cook until wilted, about 1-2 minutes.",
+      "Add cooked pasta and chicken chunks to the sauce. Toss to combine. If sauce is too thick, add reserved pasta water as needed.",
+      "Taste and adjust seasoning with salt and pepper."
+    ],
+    "notes": [
+      "For extra richness, add a knob of butter at the end.",
+      "Adjust red pepper flakes to desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 968,
+      "cholesterol_mg": 253,
+      "dietary_fiber_g": 6.62,
+      "protein_g": 50.39,
+      "saturated_fat_g": 22.83,
+      "sodium_mg": 1124,
+      "total_carbs_g": 76.69,
+      "total_fat_g": 52.03,
+      "total_sugars_g": 10.44,
+      "trans_fat_g": 1.07
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 199.16,
+      "cholesterol_mg": 52.06,
+      "dietary_fiber_g": 1.36,
+      "protein_g": 10.37,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 231.18,
+      "total_carbs_g": 15.78,
+      "total_fat_g": 10.7,
+      "total_sugars_g": 2.15,
+      "trans_fat_g": 0.22
+    },
+    "daily_value_percentages": {
+      "cholesterol": 84.4,
+      "dietary_fiber": 23.6,
+      "protein": 100.8,
+      "saturated_fat": 114.2,
+      "sodium": 48.9,
+      "total_carbs": 27.9,
+      "total_fat": 66.7
+    },
+    "serving_size_g": 486.15,
+    "total_recipe_weight_g": 1944.6
+  },
+  {
+    "recipe_name": "Parmesan-Crusted Chicken with Roasted Potatoes and Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_parmesan-crusted_chicken_with_roasted_potatoes_and_caramelized_onions_20250630_060807_67a980f8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:08:07.985381000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion",
+      "basil",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined portion is presented on a clean, white porcelain dinner plate. A golden-brown, pan-seared chicken breast, coated in a savory parmesan-basil crust, sits as the centerpiece. Its surface shows a crispy, textured exterior with visible green flecks of basil. Beside the chicken, several thick, roasted potato wedges are neatly arranged, displaying a crisp, golden skin and fluffy interior. A generous dollop of deep amber caramelized onions is artfully placed, offering a soft, glossy texture. The dish is subtly garnished with a few small, vibrant green fresh basil leaves. The plate has appropriate negative space, ensuring a professional, balanced composition. The setting is a modern bistro: a simple wooden table, standard polished flatware, and a folded cotton napkin positioned beside the plate, all under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of dry white wine or a light red wine.",
+      "Offer crusty Italian bread for dipping into any pan juices."
+    ],
+    "hero_ingredient": "chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Wash and cut potatoes into 2cm thick wedges. Toss with 30ml olive oil, 2 minced garlic cloves, salt, and pepper on a baking sheet. Roast for 25-30 minutes, or until tender and golden brown.",
+      "Thinly slice yellow onions. Heat 15ml olive oil and 15g butter in a large pan over medium-low heat. Add onions. Cook slowly, stirring occasionally, for 25-35 minutes until deeply caramelized and jammy. Season with salt.",
+      "Pound chicken breasts to an even 1.5cm thickness. Season with salt and pepper.",
+      "Prepare dredging stations. Place flour on a plate. Whisk egg in a shallow bowl. On a third plate, combine grated Parmesan cheese, finely chopped basil leaves, and 1 minced garlic clove.",
+      "Dredge each chicken breast in flour, shaking off excess. Dip in beaten egg, letting excess drip off. Press firmly into the Parmesan-basil mixture, ensuring full coverage.",
+      "Heat remaining 15ml olive oil and 15g butter in a large skillet over medium heat.",
+      "Add crusted chicken breasts to the hot skillet. Cook for 5-7 minutes per side, until golden brown and internal temperature reaches 75°C (167°F). Remove chicken from skillet; keep warm.",
+      "Deglaze the skillet with chicken broth, scraping up any browned bits. Simmer briefly until slightly reduced. This will be a light pan sauce.",
+      "Plate one chicken breast. Arrange roasted potato wedges beside it. Spoon caramelized onions next to the potatoes. Drizzle the pan sauce over the chicken. Garnish with fresh basil leaves."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Caramelizing onions requires patience for best flavor and texture."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Caramelizing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 809.8,
+      "cholesterol_mg": 238,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 73.3,
+      "saturated_fat_g": 12.7,
+      "sodium_mg": 648.3,
+      "total_carbs_g": 46.6,
+      "total_fat_g": 35.3,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147.9,
+      "cholesterol_mg": 43.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 13.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 118.4,
+      "total_carbs_g": 8.5,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 119,
+      "dietary_fiber": 19,
+      "protein": 147,
+      "saturated_fat": 64,
+      "sodium": 28,
+      "total_carbs": 17,
+      "total_fat": 45
+    },
+    "serving_size_g": 547.5,
+    "total_recipe_weight_g": 2190
+  },
+  {
+    "recipe_name": "Bell Pepper and Chicken Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bell_pepper_and_chicken_rice_salad_20250630_060538_c3476c19.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:05:39.215008000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty individual serving of Bell Pepper and Chicken Rice Salad is presented on a simple, off-white ceramic plate, resting on a well-used wooden dining table. The salad is piled naturally in the center, showcasing a vibrant mix of colors and textures. Diced chicken chunks, approximately 1.5 cm cubes, are interspersed among bright red, yellow, and green bell pepper cubes of similar size. White, fluffy rice grains, 1 cm cucumber cubes, finely diced red onion, and halved cherry tomatoes are visible throughout. Yellow cheddar cheese cubes, also 1 cm, add pops of color. The salad is lightly coated in a glistening vinaigrette, with some dressing pooling subtly at the base of the mound. A simple silver fork rests beside the plate on a casually placed, light-colored cloth napkin. Warm, inviting light from kitchen fixtures illuminates the scene, highlighting the homely, comfort-food appeal. The background is a natural, lived-in family kitchen environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "400g"
+      },
+      {
+        "name": "Uncooked white rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Sharp cheddar cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Large cucumber",
+        "quantity": "1"
+      },
+      {
+        "name": "Small red onion",
+        "quantity": "0.5"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Boil chicken breasts in salted water until cooked through. Internal temperature must reach 75°C. Cool completely. Dice chicken into 1.5 cm cubes.",
+      "Cook white rice according to package directions. Use 400ml water and 200g rice. Fluff with a fork. Spread on a tray to cool completely.",
+      "Dice red, yellow, and green bell peppers into 1.5 cm cubes. Dice cucumber into 1 cm cubes. Finely dice red onion. Halve cherry tomatoes.",
+      "Cut cheddar cheese into 1 cm cubes.",
+      "In a small bowl, whisk together olive oil, white wine vinegar, Dijon mustard, salt, and black pepper until emulsified.",
+      "In a large mixing bowl, combine diced chicken, cooled rice, diced bell peppers, diced cucumber, finely diced red onion, halved cherry tomatoes, and cheddar cheese cubes.",
+      "Pour the prepared dressing over the salad ingredients. Gently toss until all components are evenly coated.",
+      "Serve immediately or refrigerate until ready to serve."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 676,
+      "cholesterol_mg": 125,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 46.1,
+      "saturated_fat_g": 10.9,
+      "sodium_mg": 828,
+      "total_carbs_g": 52.9,
+      "total_fat_g": 30.7,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 24.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.1,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 162.9,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 17,
+      "protein": 92,
+      "saturated_fat": 55,
+      "sodium": 36,
+      "total_carbs": 19,
+      "total_fat": 39
+    },
+    "serving_size_g": 508,
+    "total_recipe_weight_g": 2032
+  },
+  {
+    "recipe_name": "Homestyle Fruit Crumble with Ricotta Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_fruit_crumble_with_ricotta_cream_20250630_060523_8eb005e2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:05:24.045407000Z",
+    "selected_ingredients": [
+      "blueberry",
+      "banana",
+      "apple",
+      "cherry",
+      "ricotta"
+    ],
+    "complexity": "simple",
+    "special_requests": "без добавления сахара",
+    "visual_description": "A rustic, deep ceramic bowl holds a generous portion of warm fruit crumble. The top is a golden-brown, textured oat crumble, slightly uneven, with hints of cinnamon. Beneath, a vibrant medley of baked fruits – soft, purple-blue blueberries, tender red cherries, and translucent diced apples – bubble gently. A single, whole, very ripe banana is baked into the fruit mixture, some parts caramelized. A generous dollop of creamy white ricotta sits on top, its smooth surface a contrast to the crumble. The dish is presented on a well-used wooden kitchen table, alongside a simple ceramic spoon and a casually folded cloth napkin. Warm, natural light illuminates the scene, emphasizing the comforting steam rising from the dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve warm directly from the baking dish or in individual bowls.",
+      "Enjoy as a comforting dessert after a family meal."
+    ],
+    "hero_ingredient": "Baked Fruits",
+    "ingredients": [
+      {
+        "name": "Apples",
+        "quantity": "2 medium (approx. 300g)"
+      },
+      {
+        "name": "Bananas",
+        "quantity": "2 ripe medium (approx. 200g)"
+      },
+      {
+        "name": "Blueberries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cherries",
+        "quantity": "200g, pitted"
+      },
+      {
+        "name": "Rolled Oats",
+        "quantity": "100g"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "80g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "60g, cold, diced"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ricotta Cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Lemon Zest",
+        "quantity": "2g (from 1/2 lemon, optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Peel and dice apples into 2cm cubes. Mash one banana. Pit cherries.",
+      "Combine diced apples, mashed banana, blueberries, and pitted cherries in an oven-safe baking dish.",
+      "In a separate bowl, combine rolled oats, plain flour, and cinnamon.",
+      "Add cold, diced butter to the oat mixture. Use your fingertips to rub the butter into the dry ingredients until coarse crumbs form.",
+      "Evenly sprinkle the crumble topping over the fruit mixture in the baking dish.",
+      "Bake for 30-35 minutes, or until the topping is golden brown and the fruit filling is bubbly.",
+      "While crumble bakes, prepare the ricotta cream. In a small bowl, whisk ricotta cheese with vanilla extract and lemon zest (if using) until smooth.",
+      "Remove crumble from oven. Let it cool slightly.",
+      "Spoon warm crumble into individual serving bowls. Top each portion with a generous dollop of ricotta cream. Serve immediately."
+    ],
+    "notes": [
+      "This recipe contains no added sugar, relying on the natural sweetness of the ripe fruits.",
+      "Adjust fruit quantities based on ripeness and desired sweetness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 489.1,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 9.2,
+      "protein_g": 15.1,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 58.1,
+      "total_carbs_g": 71.9,
+      "total_fat_g": 19.6,
+      "total_sugars_g": 26.1,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139.5,
+      "cholesterol_mg": 14.6,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 4.3,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 16.6,
+      "total_carbs_g": 20.5,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17,
+      "dietary_fiber": 32.9,
+      "protein": 30.3,
+      "saturated_fat": 56.6,
+      "sodium": 2.5,
+      "total_carbs": 26.2,
+      "total_fat": 25.2
+    },
+    "serving_size_g": 350.5,
+    "total_recipe_weight_g": 1402
+  }
+]

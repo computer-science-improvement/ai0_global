@@ -1,0 +1,651 @@
+[
+  {
+    "recipe_name": "Five-Spice Braised Pork Belly with Gai Lan",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_five-spice_braised_pork_belly_with_gai_lan_20250623_141439_e5f2bac6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:14:39.542078000Z",
+    "selected_ingredients": [
+      {
+        "name": "chinese five spice"
+      },
+      {
+        "name": "soy sauce"
+      },
+      {
+        "name": "wood ear mushroom"
+      },
+      {
+        "name": "gai lan"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "A single portion of glistening, dark brown braised pork belly chunks is centered on a clean white porcelain plate. The pork, cut into substantial cubes, has a rich, glossy glaze from the reduced sauce. Beside the pork, vibrant green gai lan stems and leaves are neatly arranged, showcasing their tender-crisp texture. Thin strips of dark, rehydrated wood ear mushrooms are nestled among the pork and greens, adding visual depth. The plate is moderately spaced, allowing elements to breathe. The setting features a simple wooden table, a grey cotton napkin, and a pair of chopsticks resting on a small holder. Natural, even lighting illuminates the dish, emphasizing its inviting colors and textures. A small, traditional white rice bowl is subtly visible in the background, hinting at a complete Chinese meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve hot with steamed white rice.",
+      "Offer a side of pickled vegetables like daikon or cucumber for contrast."
+    ],
+    "hero_ingredient": "Pork Belly",
+    "ingredients": [
+      {
+        "name": "Pork belly, skin on",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Dried wood ear mushrooms",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Gai lan (Chinese broccoli)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Chinese five-spice powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh ginger, sliced",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "4"
+      },
+      {
+        "name": "Rock sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "2 pods"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (5 cm piece)"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Soak wood ear mushrooms in warm water for 30 minutes. Drain and rinse. Remove any hard centers. Slice into thin strips.",
+      "Cut pork belly into 4-5 cm cubes. Place pork belly in a large pot. Cover with cold water. Bring to a boil. Simmer for 5 minutes. Skim off foam. Drain pork belly. Rinse under cold water. Pat dry.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat. Add pork belly cubes. Sear on all sides until golden brown. Remove pork belly from pot. Set aside.",
+      "Add ginger, garlic, star anise, and cinnamon stick to the same pot. Sauté until fragrant, about 1 minute. Add five-spice powder. Stir for 30 seconds.",
+      "Pour in Shaoxing wine. Scrape up any browned bits from the bottom of the pot. Add light soy sauce, dark soy sauce, rock sugar, and water or stock. Bring to a simmer.",
+      "Return seared pork belly to the pot. Add sliced wood ear mushrooms. Ensure pork is mostly submerged. If not, add a little more water. Bring to a gentle simmer.",
+      "Reduce heat to low. Cover the pot. Braise for 1.5 to 2 hours, or until pork belly is very tender. Stir occasionally.",
+      "Trim gai lan. Separate stems and leaves. Blanch gai lan stems in boiling salted water for 2 minutes. Add leaves and blanch for another 1 minute. Drain immediately. Or steam for 5-7 minutes until tender-crisp.",
+      "Remove pork belly and mushrooms from the braising liquid. Skim off excess fat from the sauce. Increase heat to medium-high. Reduce sauce until slightly thickened and glossy.",
+      "Arrange braised pork belly and wood ear mushrooms on a serving plate. Arrange blanched gai lan beside the pork. Spoon the reduced sauce generously over the pork and gai lan. Serve immediately."
+    ],
+    "notes": [
+      "For best results, braise the pork belly until it is incredibly tender and almost melts in your mouth.",
+      "The gai lan should retain a slight crispness for textural contrast."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Blanching"
+    ]
+  },
+  {
+    "recipe_name": "Braised Chicken with Fermented Bell Pepper Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_fermented_bell_pepper_relish_20250623_141408_53445c2a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:14:09.106897000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "garlic",
+      "bell pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of braised chicken is centrally placed on a handcrafted matte cream ceramic plate. The chicken, a whole, plump thigh, exhibits a rich, deep brown exterior from searing, contrasting with its tender, succulent interior. It rests partially submerged in a pool of glossy, deep reddish-brown braising sauce, flecked with soft, irregularly diced yellow onion and bell pepper. To the side, a vibrant mound of Fermented Bell Pepper Relish adds a burst of color and texture. The relish, composed of small, distinct cubes of bright red, yellow, and orange bell peppers intertwined with translucent slivers of red onion and tiny flecks of garlic, shimmers with its tangy brine. The overall presentation is clean and uncrowded, allowing negative space to highlight the dish. The plate sits on a light, textured reclaimed wood surface, accompanied by a natural undyed linen napkin and simple, classic flatware. Soft, natural light illuminates the scene, emphasizing the natural colors and textures of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 150-180g each)"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (approx. 200g), diced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium (approx. 150g), small diced for relish"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced for braise; 2 cloves, minced for relish"
+      },
+      {
+        "name": "Bell peppers",
+        "quantity": "2 large (any color, approx. 300g total), diced for braise; 2 large (different colors, approx. 300g total), small diced for relish"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Filtered water (for relish brine)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Non-iodized salt (for relish brine)",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Clean and sterilize a 1-liter glass jar.",
+      "In a bowl, combine small diced red onion, small diced bell peppers, and minced garlic. Mix well.",
+      "Pack the vegetable mixture tightly into the sterilized jar. Leave 2-3 cm headspace.",
+      "Dissolve 15g non-iodized salt in 500ml filtered water to create brine. Stir until salt is fully dissolved.",
+      "Pour brine over vegetables in the jar, ensuring they are fully submerged. Use a fermentation weight or small glass to keep vegetables below the brine level.",
+      "Seal the jar with an airlock lid or a regular lid (burping daily).",
+      "Store at room temperature (20-24°C) for 3-5 days, or until desired tanginess is reached.",
+      "Once fermented, transfer relish to refrigerator. It will keep for several weeks.",
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs 4-5 minutes per side until golden brown. Remove chicken from pot and set aside.",
+      "Add remaining 15ml olive oil to the pot. Add diced yellow onion and cook 5-7 minutes until softened and translucent.",
+      "Add minced garlic and diced bell peppers to the pot. Cook 3-4 minutes until slightly softened.",
+      "Stir in tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Add fresh thyme sprigs and bay leaf.",
+      "Return seared chicken thighs to the pot. Ensure chicken is mostly submerged in liquid.",
+      "Reduce heat to low, cover the pot, and simmer for 25-30 minutes, or until chicken is tender and cooked through (internal temperature 75°C).",
+      "Remove chicken from pot. Discard thyme sprigs and bay leaf.",
+      "If sauce is too thin, increase heat to medium-high and simmer uncovered for a few minutes until sauce thickens slightly. Adjust seasoning as needed.",
+      "Return chicken to the pot or serve immediately."
+    ],
+    "notes": [
+      "For zero-waste, consider making chicken broth from chicken bones and vegetable scraps.",
+      "The fermented relish enhances flavor and aids digestion; it can be made days or weeks in advance.",
+      "Adjust braising time based on chicken thickness to ensure tenderness and food safety.",
+      "This dish pairs well with a side of steamed quinoa or a simple green salad."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 439,
+      "cholesterol_mg": 155,
+      "dietary_fiber_g": 5,
+      "protein_g": 38.7,
+      "saturated_fat_g": 5,
+      "sodium_mg": 1287,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 22,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 80,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.1,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 235,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 4,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 18,
+      "protein": 77,
+      "saturated_fat": 25,
+      "sodium": 56,
+      "total_carbs": 8,
+      "total_fat": 28
+    },
+    "serving_size_g": 547.5,
+    "total_recipe_weight_g": 2190
+  },
+  {
+    "recipe_name": "Spicy Red Lentil Daal with Cashews",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_red_lentil_daal_with_cashews_20250623_141314_0bad04e0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:13:15.057914000Z",
+    "selected_ingredients": [
+      "chili",
+      "coriander",
+      "red lentil",
+      "hot sauce",
+      "cashew"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, creamy orange-red Spicy Red Lentil Daal is presented in a deep, clean white porcelain bowl, centrally placed. The daal has a smooth, fluid consistency, not dry, with visible texture from the lentils. Scattered on top are golden-brown pan-fried cashew halves and thin, bright red slices of fresh chili, adding a contrasting crunch and color. A generous sprinkle of fresh, bright green chopped coriander leaves provides a fresh aromatic garnish. The bowl sits on a simple light wooden table surface. Beside the bowl, a small portion of fluffy white basmati rice is artfully mounded, ready to be scooped with the daal. A simple silver spoon rests on the table. The background is a softly blurred modern bistro setting, suggesting a casual yet refined dining experience. Natural, even lighting illuminates the dish, highlighting its rich color and inviting texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm basmati rice.",
+      "Offer naan or roti bread for dipping.",
+      "Accompany with a side of plain yogurt or raita."
+    ],
+    "hero_ingredient": "Red Lentils",
+    "ingredients": [
+      {
+        "name": "Red Lentils",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh Red Chili",
+        "quantity": "1-2, sliced"
+      },
+      {
+        "name": "Ground Coriander",
+        "quantity": "10g"
+      },
+      {
+        "name": "Fresh Coriander",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Hot Sauce",
+        "quantity": "15ml (optional)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vegetable Oil or Ghee",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water or Vegetable Broth",
+        "quantity": "1 liter"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse red lentils thoroughly under cold water. Drain well.",
+      "Heat 15ml oil or ghee in a large pot over medium heat.",
+      "Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Stir in turmeric powder, cumin powder, and ground coriander. Cook for 30 seconds.",
+      "Add diced tomatoes and rinsed lentils. Stir well to combine.",
+      "Pour in 1 liter of water or vegetable broth. Bring mixture to a boil.",
+      "Reduce heat to low. Simmer, uncovered, for 20-25 minutes. Stir occasionally. Lentils should be tender and the consistency should be creamy. Add more hot water if too thick.",
+      "Season daal with salt to taste. Stir in garam masala.",
+      "Prepare tadka: Heat remaining 15ml oil or ghee in a small pan over medium heat.",
+      "Add cashews and sliced fresh red chili to the small pan. Sauté until cashews are golden brown, about 2-3 minutes. Do not burn.",
+      "Pour the hot tadka (cashews, chili, and oil) over the cooked daal. Stir gently to incorporate.",
+      "Optional Chili Oil: In a small bowl, combine hot sauce with 5ml of the hot oil from the tadka pan. Stir well.",
+      "Ladle daal into serving bowls. Garnish generously with fresh chopped coriander. Drizzle with optional chili oil."
+    ],
+    "traditional_techniques": [
+      "Tadka (tempering)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 408,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 13.8,
+      "protein_g": 19.5,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 146,
+      "total_carbs_g": 53.3,
+      "total_fat_g": 14.2,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 91.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 4.4,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 32.7,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 49,
+      "protein": 39,
+      "saturated_fat": 9,
+      "sodium": 6,
+      "total_carbs": 19,
+      "total_fat": 18
+    },
+    "serving_size_g": 448,
+    "total_recipe_weight_g": 1792
+  },
+  {
+    "recipe_name": "Spiced Coconut Pudding with Palm Sugar Caramel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_coconut_pudding_with_palm_sugar_caramel_20250623_141310_69b9d46f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:13:10.710253000Z",
+    "selected_ingredients": [
+      {
+        "name": "allspice"
+      },
+      {
+        "name": "star anise"
+      },
+      {
+        "name": "clove"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Indonesian",
+    "visual_description": "A single portion of chilled, creamy white Spiced Coconut Pudding is presented in a clean, shallow white porcelain bowl. The pudding surface is smooth and pristine. A glossy, dark amber palm sugar caramel is elegantly drizzled across one side of the pudding, creating a rich contrast. Adjacent to the caramel, a small, artfully arranged mound of vibrant tropical fruit compote sits, featuring bright yellow diced mango cubes and the subtle orange flecks of passion fruit seeds. The arrangement is clean and balanced, with appropriate negative space around the pudding. The bowl rests on a simple wooden table surface, accompanied by a folded white cotton napkin beside it. Natural, even lighting illuminates the dish, highlighting its textures and colors, set against a subtly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indonesian",
+    "cultural_origin": "Indonesian",
+    "cultural_serving_suggestions": [
+      "Serve chilled as a refreshing dessert.",
+      "Enjoy with a small dessert spoon."
+    ],
+    "hero_ingredient": "Coconut",
+    "ingredients": [
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "3 (approx. 6g)"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "2 pods"
+      },
+      {
+        "name": "Whole cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Ground allspice",
+        "quantity": "1/4 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Palm sugar (gula aren/gula merah)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fresh mango, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Passion fruit pulp",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "10 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Pudding Base: In a saucepan, combine coconut milk, granulated sugar, star anise, whole cloves, and ground allspice. Add a pinch of salt.",
+      "Infuse Spices: Heat mixture over medium heat. Bring to a gentle simmer, stirring until sugar dissolves. Remove from heat. Let steep for 15-20 minutes to infuse spice flavors.",
+      "Prepare Gelatin: Soak gelatin sheets in cold water for 5 minutes until softened. Squeeze out excess water.",
+      "Strain and Combine: Strain the coconut milk mixture through a fine-mesh sieve to remove whole spices. Reheat the strained coconut milk gently.",
+      "Add Thickener: Add squeezed gelatin to warm coconut milk. Stir until completely dissolved.",
+      "Portion and Chill: Pour the mixture into 4 individual ramekins or small dessert bowls (approx. 125 ml each). Chill in the refrigerator for at least 4 hours, or until fully set.",
+      "Make Palm Sugar Caramel: In a small saucepan, combine palm sugar and water. Heat over medium-low heat, stirring until sugar dissolves. Increase heat to medium. Simmer without stirring until mixture thickens slightly and becomes syrupy. Remove from heat. Let cool slightly.",
+      "Prepare Fruit Compote: In a small bowl, combine diced mango, passion fruit pulp, and lime juice. Mix gently.",
+      "Serve: Drizzle chilled puddings generously with palm sugar caramel. Top each with a spoonful of tropical fruit compote."
+    ],
+    "notes": [
+      "For a firmer pudding, increase gelatin slightly.",
+      "Adjust sweetness of caramel to taste.",
+      "The spices chosen are aromatic and commonly used in Indonesian savory dishes, lending a sophisticated twist to a sweet dessert."
+    ],
+    "traditional_techniques": [
+      "Infusion",
+      "Caramelization"
+    ]
+  },
+  {
+    "recipe_name": "Braised Beef with Red Wine and Glazed Carrots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_red_wine_and_glazed_carrots_20250623_141202_3e95019d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:12:02.611060000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of tender, dark brown braised beef chunks is centrally presented on a clean white porcelain dinner plate. The beef, cut into irregular 5cm pieces, glistens with a rich, glossy dark red wine sauce generously spooned over it, highlighting its succulent texture. Beside the beef, vibrant orange carrot batons, approximately 5cm long and 1.5cm thick, are neatly arranged, showcasing their subtle, sweet glaze. A delicate sprig of fresh flat-leaf parsley provides a final pop of green garnish. The plate rests on a simple wooden table surface, accompanied by a neatly folded cotton napkin and polished standard silverware. Natural, even lighting illuminates the dish, with a softly blurred, unobtrusive modern bistro background. The overall presentation is professional, inviting, and balanced.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette",
+      "Serve with mashed potatoes"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g, cut into 5cm chunks"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "500g (200g diced, 300g cut into 5cm batons)"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat. Sear beef in batches until browned on all sides. Remove beef.",
+      "Add diced onion and 200g diced carrots to the Dutch oven. Sauté until softened, about 5-7 minutes. Add minced garlic; cook 1 minute more.",
+      "Stir in tomato paste; cook 2 minutes. Deglaze with red wine, scraping up browned bits. Bring to a simmer.",
+      "Return beef to the pot. Add beef broth, thyme sprigs, and bay leaves. Ensure beef is mostly submerged.",
+      "Bring to a simmer. Cover, transfer to a preheated oven at 160°C. Braise for 2.5-3 hours, or until beef is very tender.",
+      "While beef braises, prepare glazed carrots. Melt 25g butter in a large pan over medium heat. Add 300g carrot batons and sugar. Sauté 2 minutes.",
+      "Add 100ml water to the pan with carrots. Bring to a simmer. Cover and cook until carrots are tender-crisp, about 8-10 minutes. Uncover, increase heat, cook until water evaporates and carrots are glazed. Season with salt.",
+      "Remove braised beef from oven. Transfer beef to a separate plate. Strain sauce through a fine-mesh sieve into a saucepan. Discard solids.",
+      "Simmer sauce over medium-high heat until it thickens to a desired consistency, about 10-15 minutes. Season with salt and pepper.",
+      "To serve, place several braised beef chunks on a white porcelain plate. Arrange glazed carrot batons beside the beef. Spoon generous amount of thickened sauce over the beef. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Use a good quality dry red wine for the best flavor.",
+      "Beef chuck is ideal for braising as it becomes very tender and flavorful."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing",
+      "Mirepoix"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 859,
+      "cholesterol_mg": 195,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 55.5,
+      "saturated_fat_g": 20,
+      "sodium_mg": 851,
+      "total_carbs_g": 27.2,
+      "total_fat_g": 48,
+      "total_sugars_g": 13.4,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 187,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 12.1,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 186,
+      "total_carbs_g": 5.9,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 19,
+      "protein": 111,
+      "saturated_fat": 100,
+      "sodium": 37,
+      "total_carbs": 10,
+      "total_fat": 62
+    },
+    "serving_size_g": 458,
+    "total_recipe_weight_g": 1833
+  }
+]

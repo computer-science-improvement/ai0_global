@@ -1,0 +1,697 @@
+[
+  {
+    "recipe_name": "Beer-Braised Beef with Mustard and Roasted Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_beef_with_mustard_and_roasted_broccoli_20250624_142536_49463463.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:25:36.937473000Z",
+    "selected_ingredients": [
+      "beef",
+      "beer",
+      "garlic",
+      "basil",
+      "mustard",
+      "broccoli",
+      "worcestershire sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, set on a simple wooden table surface. Natural, even lighting illuminates the scene. Three tender, dark brown beef chunks, each about 5 cm, are centrally arranged. They glisten with a rich, dark brown braising sauce that pools around them. The beef has a subtle sheen from its slow cook. Alongside the beef, a cluster of vibrant green roasted broccoli florets, some with slightly charred edges, adds a contrasting color and texture. A sprinkle of fresh, roughly chopped green basil leaves provides a pop of fresh color and herbaceous aroma. The plate is moderately spaced, allowing the beef and broccoli to stand out. A simple cotton napkin is placed beside the plate. The background suggests a modern bistro, subtle and uncluttered.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "1 kg, cut into 5 cm chunks"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "2 medium, peeled and diced"
+      },
+      {
+        "name": "Celery",
+        "quantity": "2 stalks, diced"
+      },
+      {
+        "name": "Dark beer (e.g., stout or ale)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "30 g, roughly chopped"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500 g, cut into florets"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat. Sear beef chunks in batches until browned on all sides. Remove beef and set aside.",
+      "Add diced onion, carrot, and celery to the Dutch oven. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Deglaze with beer, scraping up any browned bits from the bottom. Bring to a simmer.",
+      "Stir in beef broth, Dijon mustard, and Worcestershire sauce. Return seared beef to the pot.",
+      "Bring liquid to a gentle simmer. Cover and transfer to a preheated oven at 160°C. Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "While beef braises, preheat oven to 200°C. Toss broccoli florets with a drizzle of olive oil, salt, and pepper. Roast on a baking sheet for 15-20 minutes, until tender-crisp and slightly charred.",
+      "Remove beef from oven. Taste and adjust seasoning of the braising liquid.",
+      "To serve, place several beef chunks on a plate. Spoon generous amount of braising sauce over beef. Arrange roasted broccoli florets beside the beef. Garnish with fresh basil."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 857.4,
+      "cholesterol_mg": 175,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 72.6,
+      "saturated_fat_g": 16,
+      "sodium_mg": 549.4,
+      "total_carbs_g": 27.7,
+      "total_fat_g": 45.6,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 117,
+      "cholesterol_mg": 23.9,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.9,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 75,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.3,
+      "dietary_fiber": 23.6,
+      "protein": 145.2,
+      "saturated_fat": 80,
+      "sodium": 23.9,
+      "total_carbs": 10.1,
+      "total_fat": 58.5
+    },
+    "serving_size_g": 732.5,
+    "total_recipe_weight_g": 2930
+  },
+  {
+    "recipe_name": "Hearty Chicken and Root Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_root_vegetable_stew_20250624_142529_88190c65.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:25:30.163408000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "carrot"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of hearty chicken and root vegetable stew is presented in a deep, rustic ceramic bowl. Golden-brown seared chicken chunks are nestled amongst tender, thick-cut potato wedges and vibrant orange braised carrot rounds, all bathed in a rich, savory brown gravy. The ingredients are naturally arranged, slightly overlapping, showcasing their comforting textures and inviting colors. A sprinkle of fresh, chopped parsley adds a touch of green. The bowl rests on a well-used, warm-toned wooden dining table. A casually placed, simple cloth napkin and a plain water glass are visible in the soft, warm light of a homely kitchen setting, emphasizing a relaxed, comforting family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the rich gravy"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into large 4 cm chunks. Season with salt and pepper.",
+      "Peel potatoes. Cut into large 4 cm wedges.",
+      "Peel carrots. Cut into thick 2 cm rounds.",
+      "Dice onion. Mince garlic.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Add chicken chunks. Sear until golden brown on all sides. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Sprinkle flour over vegetables. Stir for 1 minute to coat.",
+      "Slowly pour in chicken broth, stirring constantly to prevent lumps. Bring to a simmer.",
+      "Add seared chicken, potato wedges, carrot rounds, thyme sprigs, and bay leaf to the pot.",
+      "Bring stew to a gentle simmer. Reduce heat to low. Cover and cook for 25-30 minutes.",
+      "Cook until chicken reaches an internal temperature of 75°C (167°F) and vegetables are tender.",
+      "Remove thyme sprigs and bay leaf. Taste and adjust seasoning with salt and pepper.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "For best flavor, use chicken thighs with bone and skin removed after searing.",
+      "Adjust thickness of gravy by simmering longer or adding a cornstarch slurry if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 605,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 49.7,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 392,
+      "total_carbs_g": 45.2,
+      "total_fat_g": 24.2,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.7,
+      "saturated_fat_g": 1,
+      "sodium_mg": 69,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 25,
+      "protein": 99,
+      "saturated_fat": 28,
+      "sodium": 17,
+      "total_carbs": 16,
+      "total_fat": 31
+    },
+    "serving_size_g": 569.25,
+    "total_recipe_weight_g": 2277
+  },
+  {
+    "recipe_name": "Braised Beef with Crispy Potatoes and Roasted Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_crispy_potatoes_and_roasted_broccoli_20250624_142523_90a692d9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:25:23.851981000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "potato",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of braised beef is centered on a clean white porcelain dinner plate. The beef consists of several rich, dark brown, tender chuck cubes, slightly piled. A glossy, dark brown braising sauce generously coats the beef and pools around it. Golden-brown, crispy roasted potato cubes are scattered neatly beside the beef. Vibrant green, slightly charred roasted broccoli florets are arranged next to the potatoes. The dish presents a balanced composition of colors and textures: deep browns, golden yellows, and bright greens. Freshly chopped green parsley is sprinkled over the beef and potatoes for a pop of color. The plate is set on a simple wooden table, with a plain white cotton napkin and standard silver flatware positioned beside it. Natural, even lighting highlights the textures and colors of the food. The background is minimal, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef Chuck",
+        "quantity": "800g, cut into 4cm cubes"
+      },
+      {
+        "name": "Potatoes (e.g., Russet)",
+        "quantity": "600g, peeled and cut into 2cm cubes"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500g, cut into florets"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Red Wine",
+        "quantity": "200ml (optional)"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5g, chopped"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season generously with salt and pepper.",
+      "Heat 30ml olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef in batches until deeply browned on all sides. Remove beef and set aside.",
+      "Reduce heat to medium. Add remaining 30ml olive oil and butter to the pot. Add diced onions and cook until softened, about 5-7 minutes.",
+      "Add minced garlic and tomato paste. Cook for 1 minute, stirring constantly.",
+      "Pour in red wine (if using) and scrape up any browned bits from the bottom of the pot. Cook until wine is reduced by half.",
+      "Return beef to the pot. Add beef broth, fresh thyme, and bay leaves. Bring to a simmer.",
+      "Cover the pot and transfer to a preheated oven at 160°C. Braise for 2.5-3 hours, or until beef is fork-tender.",
+      "While beef braises, preheat oven to 200°C. Toss cubed potatoes with 2 tablespoons of olive oil, salt, and pepper. Spread in a single layer on a baking sheet. Roast for 30-35 minutes, flipping halfway, until golden and crispy.",
+      "Toss broccoli florets with 1 tablespoon of olive oil, salt, and pepper. Spread on a separate baking sheet. Roast for 15-20 minutes, or until tender-crisp and slightly charred.",
+      "Once beef is tender, remove bay leaves. Taste braising liquid and adjust seasoning if needed. The sauce should be rich and slightly thickened.",
+      "Plate individual portions by spooning braised beef and its rich sauce onto a clean white porcelain plate. Arrange crispy roasted potato cubes and vibrant roasted broccoli florets around the beef. Garnish generously with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 949,
+      "cholesterol_mg": 176,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 61.84,
+      "saturated_fat_g": 17.9,
+      "sodium_mg": 359,
+      "total_carbs_g": 45.47,
+      "total_fat_g": 50.86,
+      "total_sugars_g": 7.05,
+      "trans_fat_g": 1.26
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.22,
+      "saturated_fat_g": 2.38,
+      "sodium_mg": 48,
+      "total_carbs_g": 6.04,
+      "total_fat_g": 6.76,
+      "total_sugars_g": 0.94,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.7,
+      "dietary_fiber": 29.6,
+      "protein": 123.7,
+      "saturated_fat": 89.5,
+      "sodium": 15.6,
+      "total_carbs": 16.5,
+      "total_fat": 65.2
+    },
+    "serving_size_g": 752.5,
+    "total_recipe_weight_g": 3010
+  },
+  {
+    "recipe_name": "Spicy Latin Chicken and Rice with Garlic Toast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_latin_chicken_and_rice_with_garlic_toast_20250624_142521_e5ca5223.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:25:21.945891000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "bread",
+      "hot sauce",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate. A single, generously portioned chicken thigh, seared to a deep golden-brown with crispy skin, is the focal point. Surrounding the chicken is a vibrant mound of fluffy Arroz con Pollo, its grains infused with rich red and orange hues from diced bell peppers, tomatoes, and spices. Tender, diced chicken pieces are visible within the rice. Bright green, freshly chopped cilantro is scattered over the dish, with a bright yellow lime wedge positioned beside the chicken. A golden-brown slice of garlic toast, crisp on the edges, rests against the side of the rice. Textures include crispy chicken skin, tender meat, fluffy rice, and crunchy toast. Plating is clean and professional, with moderate negative space. The setting is a modern bistro with a simple wooden table, a cotton napkin, and natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Latin American",
+    "cultural_serving_suggestions": [
+      "Serve with fresh lime wedges for acidity",
+      "Garnish with chopped fresh cilantro",
+      "Accompany with a simple green salad"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Large yellow onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "6"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Hot sauce (e.g., habanero or aji amarillo style)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2.5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Baguette or rustic bread",
+        "quantity": "1 (for 4 slices)"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 5-7 minutes until golden brown and crispy. Flip and sear other side for 3 minutes. Remove chicken from pot and set aside.",
+      "Reduce heat to medium. Add diced onion, red bell pepper, and green bell pepper to the pot. Sauté for 5-7 minutes until softened, stirring occasionally. This forms the sofrito base.",
+      "Add minced garlic to the pot. Cook for 1 minute until fragrant.",
+      "Stir in rice, ground cumin, smoked paprika, and dried oregano. Cook for 2 minutes, stirring to coat the rice.",
+      "Pour in diced tomatoes, chicken broth, and hot sauce. Bring mixture to a boil, scraping up any browned bits from the bottom of the pot.",
+      "Carefully nestle the seared chicken thighs into the rice mixture, skin-side up. Ensure chicken is partially submerged.",
+      "Reduce heat to low. Cover pot tightly. Simmer for 20-25 minutes, or until rice is tender and most liquid is absorbed. Chicken internal temperature should reach 75°C (167°F).",
+      "Remove pot from heat. Let it rest, covered, for 5 minutes.",
+      "While rice rests, prepare garlic toast: Preheat oven or toaster oven to 180°C (350°F). Mix softened butter with 2 minced garlic cloves. Spread butter mixture evenly on baguette slices. Toast for 5-7 minutes until golden and crisp.",
+      "Fluff rice gently with a fork. Garnish Arroz con Pollo with fresh chopped cilantro. Serve immediately with lime wedges and garlic toast."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust hot sauce quantity to personal spice preference."
+    ],
+    "traditional_techniques": [
+      "Sofrito preparation",
+      "One-pot rice cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 992,
+      "cholesterol_mg": 234,
+      "dietary_fiber_g": 7,
+      "protein_g": 47.7,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 1792,
+      "total_carbs_g": 96.9,
+      "total_fat_g": 45.5,
+      "total_sugars_g": 9.2,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 6.2,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 232,
+      "total_carbs_g": 12.5,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78,
+      "dietary_fiber": 25,
+      "protein": 95,
+      "saturated_fat": 68,
+      "sodium": 78,
+      "total_carbs": 35,
+      "total_fat": 58
+    },
+    "serving_size_g": 774,
+    "total_recipe_weight_g": 3095
+  },
+  {
+    "recipe_name": "Spicy Beef and Bell Pepper Rice Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_beef_and_bell_pepper_rice_skillet_20250624_142458_70ad7130.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:58.499669000Z",
+    "selected_ingredients": [
+      "mincemeat",
+      "rice",
+      "garlic",
+      "chili",
+      "chicken stock",
+      "hot sauce",
+      "sugar",
+      "oil",
+      "mayonnaise",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Spicy Beef and Bell Pepper Rice Skillet is presented on a simple, round, off-white ceramic plate. The dish features a generous mound of fluffy rice, deeply infused with savory browned mincemeat chunks and vibrant red bell pepper small cubes. Thinly sliced red chilies add contrasting color. The rice has a slight sheen from the sauce, with a subtle swirl of creamy, spicy mayonnaise on top, creating a comforting texture. The plate sits on a well-used wooden dining table, showing natural grain. A casually placed, light-colored cloth napkin is nearby. Warm, inviting light fills the cozy family kitchen scene. The dish is the focal point, presented naturally, embodying homemade comfort food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Mincemeat",
+    "ingredients": [
+      {
+        "name": "Mincemeat (Ground Beef)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Long-Grain Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red Chili",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Hot Sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60g"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse rice under cold water until water runs clear.",
+      "Combine rice and chicken stock in a medium saucepan. Bring to a boil, then reduce heat to low. Cover and simmer for 15-18 minutes, or until liquid is absorbed and rice is tender. Remove from heat and let stand, covered, for 5 minutes. Fluff with a fork.",
+      "While rice cooks, heat vegetable oil in a large skillet over medium-high heat.",
+      "Add mincemeat to the skillet. Break it apart with a spoon. Cook until browned, about 8-10 minutes. Drain excess fat from the skillet.",
+      "Dice the red bell pepper into small cubes. Mince the garlic. Thinly slice the red chilies.",
+      "Add diced bell pepper, minced garlic, and sliced chilies to the skillet with the browned mincemeat. Cook for 5-7 minutes, stirring occasionally, until bell pepper softens.",
+      "In a small bowl, whisk together hot sauce, granulated sugar, and mayonnaise to create the spicy mayo sauce.",
+      "Add the cooked, fluffed rice to the skillet with the mincemeat and vegetables. Stir to combine.",
+      "Pour the spicy mayo sauce over the rice and mincemeat mixture. Stir gently until everything is evenly coated. Season with salt and black pepper to taste.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 623,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 37.8,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 391,
+      "total_carbs_g": 30.3,
+      "total_fat_g": 37.9,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 142.1,
+      "cholesterol_mg": 24.2,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 89.1,
+      "total_carbs_g": 6.9,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 5,
+      "protein": 76,
+      "saturated_fat": 51,
+      "sodium": 17,
+      "total_carbs": 11,
+      "total_fat": 49
+    },
+    "serving_size_g": 438.5,
+    "total_recipe_weight_g": 1754
+  }
+]

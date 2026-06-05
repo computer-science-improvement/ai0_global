@@ -1,0 +1,641 @@
+[
+  {
+    "recipe_name": "Spicy Sausage and Bacon Macaroni and Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_sausage_and_bacon_macaroni_and_cheese_20250714_000047_bfe2a864.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T00:00:47.416829000Z",
+    "selected_ingredients": [
+      {
+        "name": "sausage"
+      },
+      {
+        "name": "cheese"
+      },
+      {
+        "name": "bacon"
+      },
+      {
+        "name": "cayenne pepper"
+      },
+      {
+        "name": "pasta"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "A single serving of rich, golden-orange macaroni and cheese is elegantly presented in a shallow, wide-rimmed white porcelain bowl. The creamy pasta, featuring elbow macaroni, is mounded slightly in the center, showcasing its luscious texture. Throughout the dish, visible elements include crumbled, savory sausage chunks and crispy, irregularly shaped bacon bits, adding textural contrast and deep color. A light sprinkle of finely chopped fresh green parsley provides a vibrant counterpoint, along with a delicate dusting of reddish cayenne pepper for visual spice. The dish is set on a simple, light-toned wooden table surface. Beside the bowl, a neatly folded neutral-colored cotton napkin and a polished silver fork are placed. Natural, even lighting illuminates the dish, highlighting its comforting warmth and inviting appeal, with a softly blurred background suggesting a casual, modern bistro environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Elbow macaroni",
+        "quantity": "350 g"
+      },
+      {
+        "name": "Italian sausage",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Sharp cheddar cheese, grated",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Gruyere cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      }
+    ],
+    "instructions": [
+      "Cook macaroni according to package directions. Drain well. Set aside.",
+      "Cut bacon into 1 cm pieces. Cook bacon in a large skillet over medium heat until crispy. Remove bacon with a slotted spoon. Drain excess fat, reserving 15 ml in the skillet.",
+      "Remove sausage from casings. Crumble sausage into the same skillet. Cook over medium-high heat until browned and cooked through. Drain excess fat. Set sausage aside with bacon.",
+      "Melt butter in a large saucepan over medium heat. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Whisk in flour to form a roux. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in milk until smooth. Bring to a simmer, stirring, until sauce thickens.",
+      "Remove from heat. Stir in grated cheddar and Gruyere cheese until melted and smooth. Add cayenne pepper, salt, and black pepper. Taste and adjust seasoning.",
+      "Add cooked macaroni, crumbled sausage, and crispy bacon bits to the cheese sauce. Stir to combine thoroughly.",
+      "Serve immediately. Garnish with chopped fresh parsley."
+    ]
+  },
+  {
+    "recipe_name": "Fermented Black Bean & Pea Mosaic with Beer Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_black_bean_%26_pea_mosaic_with_beer_reduction_20250713_223506_90e5d7b2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T22:35:07.140575000Z",
+    "selected_ingredients": [
+      "bean",
+      "beer",
+      "green pea",
+      "cheese"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Asian cuisine, Fine dining",
+    "visual_description": "A single rectangular slice of mosaic, approximately 6cm x 4cm, rests off-center on a round, matte cream-colored ceramic plate. The mosaic displays distinct, horizontally layered stripes: a dark, rich black bean base, topped by a vibrant, smooth green pea layer. The edges are clean and precise. Adjacent to the mosaic, a delicate swirl or a few small, artfully placed dots of pale, creamy tofu \"cheese\" create a soft contrast. A glossy, amber-brown beer reduction pools elegantly around the mosaic, defining its space without overwhelming it. Garnishes are minimal: a few fresh, bright green pea shoots gently placed atop the mosaic, and a single, razor-thin slice of red chili for a subtle pop of color. The plate is set on a light, textured bamboo surface. An undyed linen napkin in natural beige is folded neatly nearby. Soft, natural light illuminates the dish, highlighting the textures and clean lines. The background is clean and minimalist, with a hint of a natural plant element.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Asian",
+    "cultural_origin": "East Asian",
+    "hero_ingredient": "Fermented Black Beans, Green Peas",
+    "ingredients": [
+      {
+        "name": "Fermented black beans (douchi), rinsed and finely chopped",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "20ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Fresh green peas (shelled)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Shallot, finely minced",
+        "quantity": "20g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Firm tofu, pressed",
+        "quantity": "200g"
+      },
+      {
+        "name": "Nutritional yeast",
+        "quantity": "5g"
+      },
+      {
+        "name": "Light beer (lager or pilsner)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "5g"
+      },
+      {
+        "name": "Pea shoots or microgreens (for garnish)",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Red chili, thinly sliced (for garnish)",
+        "quantity": "optional"
+      }
+    ],
+    "instructions": [
+      "Prepare Black Bean Layer: Heat 5ml sesame oil in a small pan. Sauté minced garlic and grated ginger until fragrant. Add chopped fermented black beans. Cook 2 minutes. Stir in 15ml soy sauce and 5ml rice vinegar. Bring to a simmer. In a separate small bowl, whisk 5g agar-agar powder into 50ml vegetable broth until dissolved. Add to black bean mixture. Cook, stirring constantly, 1 minute until slightly thickened. Pour into a small rectangular mold (approx. 15cm x 8cm), spreading evenly. Chill 15 minutes to set.",
+      "Prepare Green Pea Layer: Blanch green peas in boiling salted water for 2 minutes. Drain and immediately plunge into ice water. Drain well. Sauté minced shallot in 5ml sesame oil until translucent. Add blanched peas and 50ml vegetable broth. Simmer 2 minutes. Blend mixture until very smooth. Strain through a fine-mesh sieve. Return puree to pan. Whisk 5g agar-agar powder into 50ml vegetable broth. Add to pea puree. Cook, stirring, 1 minute until slightly thickened. Season with salt and white pepper. Carefully pour pea mixture over the set black bean layer in the mold. Chill 15 minutes.",
+      "Prepare Tofu \"Cheese\" Cream: Crumble pressed firm tofu into a food processor. Add 30ml vegetable broth, 15ml rice vinegar, and nutritional yeast. Blend until very smooth and creamy. Season with salt. Transfer to a piping bag or small bowl. Chill until ready to serve.",
+      "Prepare Beer Reduction: Combine 250ml light beer, 20ml soy sauce, and 5ml rice vinegar in a small saucepan. Bring to a boil. Reduce heat and simmer until liquid is reduced by half. Mix 5g cornstarch with 15ml cold water to create a slurry. Stir slurry into the beer mixture. Cook, stirring, until sauce thickens to a glaze consistency. Remove from heat. Keep warm.",
+      "Assemble and Serve: Carefully unmold the mosaic. Slice into 4 equal portions. Place one mosaic slice on each round, matte cream-colored ceramic plate. Drizzle beer reduction around the mosaic. Pipe small dots or a swirl of tofu \"cheese\" cream next to the mosaic. Garnish with pea shoots and a thin slice of red chili. Serve immediately."
+    ],
+    "notes": [
+      "Pea pods can be simmered with water to create a light broth for use in the recipe, reducing food waste."
+    ],
+    "traditional_techniques": [
+      "Fermentation (inherent in douchi)",
+      "Precise Layering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 201.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.1,
+      "protein_g": 12.2,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 951.4,
+      "total_carbs_g": 25.3,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 70.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 4.3,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 334.1,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 1.8,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 29,
+      "protein": 24,
+      "saturated_fat": 4,
+      "sodium": 41,
+      "total_carbs": 9,
+      "total_fat": 7
+    },
+    "serving_size_g": 284.75,
+    "total_recipe_weight_g": 1139
+  },
+  {
+    "recipe_name": "Korean-Style Beer Braised Pork with Beans and Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_korean-style_beer_braised_pork_with_beans_and_cheese_20250713_223347_4d7f8ff0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T22:33:48.272816000Z",
+    "selected_ingredients": [
+      "bean",
+      "beer",
+      "green pea",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "Asian cuisine",
+    "visual_description": "A single portion of Korean-Style Beer Braised Pork with Beans and Cheese is presented in a deep, rustic ceramic bowl with a slight irregular rim, placed on a well-used, warm-toned wooden dining table. The braised pork, cut into thick, irregular chunks, is nestled among soft kidney beans and vibrant green peas, all coated in a rich, glossy, reddish-brown sauce. A generous layer of melted, bubbly mozzarella cheese forms a golden-brown crust over the top, with some cheese stretching slightly. The pork appears incredibly tender, almost falling apart. The sauce glistens. The dish is garnished simply with bright green chopped spring onions and a sprinkle of toasted white sesame seeds, providing a textural contrast. To the side, a pair of dark wooden chopsticks rests on a small ceramic chopstick rest, and a small white rice bowl with a modest serving of white rice. A crumpled, natural linen napkin is casually placed nearby. The lighting is warm and inviting, typical of a cozy family kitchen, casting soft shadows that highlight the food's texture. The background shows a hint of a lived-in kitchen, perhaps a blurred ceramic mug or a spice jar, maintaining focus on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork Shoulder",
+        "quantity": "800 g, cut into 4 cm chunks"
+      },
+      {
+        "name": "Kidney Beans",
+        "quantity": "400 g can, drained and rinsed"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "200 g, frozen"
+      },
+      {
+        "name": "Beer (Lager or Ale)",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Mozzarella Cheese",
+        "quantity": "150 g, shredded"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Gochujang (Korean Chili Paste)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Water or Chicken Broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Spring Onions",
+        "quantity": "2, chopped for garnish"
+      },
+      {
+        "name": "Toasted Sesame Seeds",
+        "quantity": "5 g, for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear pork chunks until browned on all sides. Remove pork from pot.",
+      "Add minced garlic and grated ginger to the pot. Sauté for 1 minute until fragrant.",
+      "Pour in beer. Scrape up any browned bits from the bottom of the pot.",
+      "Stir in soy sauce, gochujang, water or broth, and brown sugar.",
+      "Return seared pork to the pot. Bring to a simmer.",
+      "Reduce heat to low. Cover and braise for 1.5 to 2 hours, or until pork is very tender.",
+      "Stir in drained kidney beans and frozen green peas. Cook for 5 minutes until peas are tender.",
+      "Stir in sesame oil.",
+      "Transfer the braised pork and bean mixture to an oven-safe serving dish or individual bowls.",
+      "Sprinkle shredded mozzarella cheese over the top.",
+      "Place under a hot grill (broiler) for 3-5 minutes, or until cheese is melted and bubbly.",
+      "Garnish with chopped spring onions and toasted sesame seeds. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.9,
+      "calories": 901.4,
+      "cholesterol_mg": 178.3,
+      "dietary_fiber_g": 10.8,
+      "protein_g": 72.6,
+      "saturated_fat_g": 15.8,
+      "sodium_mg": 1450.5,
+      "total_carbs_g": 44.8,
+      "total_fat_g": 44.6,
+      "total_sugars_g": 9.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 154.9,
+      "cholesterol_mg": 30.6,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 12.5,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 249.2,
+      "total_carbs_g": 7.7,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 39,
+      "protein": 145,
+      "saturated_fat": 79,
+      "sodium": 63,
+      "total_carbs": 16,
+      "total_fat": 57
+    },
+    "serving_size_g": 582,
+    "total_recipe_weight_g": 2328
+  },
+  {
+    "recipe_name": "Chicken and Butternut Squash Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_butternut_squash_risotto_20250713_223228_c25d358b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T22:32:29.384904000Z",
+    "selected_ingredients": [
+      "squash",
+      "rice",
+      "chicken",
+      "garlic",
+      "onion",
+      "tomato",
+      "basil",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Chicken and Butternut Squash Risotto is elegantly presented in a shallow, wide white porcelain bowl. The risotto, a pale orange hue from the squash, flows naturally, showcasing its fluid consistency. Golden-brown, seared chicken chunks (2-3 cm) are nestled amongst the rice. Vibrant orange butternut squash cubes (1.5 cm) are visible, alongside bright red halved cherry tomatoes. Specks of fresh basil add green. The texture is rich and velvety, with tender chicken and al dente rice. A light drizzle of extra virgin olive oil glistens, with scattered small fresh basil leaves and fine grated Parmesan. The bowl rests on a simple wooden table, accompanied by a polished fork, spoon, and folded cotton napkin, under soft, natural lighting, reflecting a modern Italian bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmesan cheese.",
+      "A side of crusty bread for 'scarpetta' (mopping up sauce).",
+      "A simple green salad."
+    ],
+    "hero_ingredient": "Arborio Rice",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (150 g)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large bunch"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.8 litres"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 2-3 cm chunks. Season with salt and pepper.",
+      "Heat 15 ml olive oil in a large, heavy-bottomed pot over medium-high heat. Add chicken chunks. Sear until golden brown on all sides. Remove chicken from pot and set aside. Ensure internal temperature reaches 75°C.",
+      "Add another 15 ml olive oil to the pot. Add finely diced onion. Sauté until translucent, about 5 minutes. Add minced garlic and butternut squash (1.5 cm cubes). Cook for 5-7 minutes, stirring, until squash begins to soften slightly.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes until edges of rice grains are translucent.",
+      "Pour in white wine (if using). Stir until fully absorbed.",
+      "Add a ladle of warm chicken broth to the rice. Stir continuously until broth is absorbed. Continue adding broth, one ladle at a time, allowing each addition to be absorbed before adding the next. Stir frequently.",
+      "After about 10 minutes of adding broth, return seared chicken to the pot. Add dried oregano. Continue adding broth and stirring.",
+      "Cook for approximately 18-20 minutes total, or until rice is al dente and creamy. Risotto should be fluid. Stir in halved cherry tomatoes for the last 3-4 minutes.",
+      "Remove pot from heat. Stir in butter and grated Parmesan cheese until melted and incorporated. Add chopped fresh basil. Season with salt and black pepper to taste.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Use good quality chicken broth for best flavor.",
+      "Risotto requires constant attention and stirring."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 811.05,
+      "cholesterol_mg": 124.68,
+      "dietary_fiber_g": 5.38,
+      "protein_g": 40.04,
+      "saturated_fat_g": 12.97,
+      "sodium_mg": 893.84,
+      "total_carbs_g": 90.86,
+      "total_fat_g": 29.37,
+      "total_sugars_g": 6.87,
+      "trans_fat_g": 0.63
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 86.12,
+      "cholesterol_mg": 13.24,
+      "dietary_fiber_g": 0.57,
+      "protein_g": 4.25,
+      "saturated_fat_g": 1.38,
+      "sodium_mg": 94.91,
+      "total_carbs_g": 9.65,
+      "total_fat_g": 3.12,
+      "total_sugars_g": 0.73,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41.56,
+      "dietary_fiber": 19.21,
+      "protein": 80.08,
+      "saturated_fat": 64.85,
+      "sodium": 38.86,
+      "total_carbs": 33.04,
+      "total_fat": 37.65
+    },
+    "serving_size_g": 941.75,
+    "total_recipe_weight_g": 3767
+  },
+  {
+    "recipe_name": "Hearty Beer-Braised Beans with Smoked Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beer-braised_beans_with_smoked_cheese_20250713_223220_2f3830c5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T22:32:20.609690000Z",
+    "selected_ingredients": [
+      "bean",
+      "beer",
+      "green pea",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A warm, inviting single portion of hearty beer-braised beans is presented in a rustic, deep ceramic bowl, placed on a well-used wooden dining table. Creamy, tender white beans are simmered in a rich, savory beer broth, creating an earthy brown base. Generous chunks of smoked cheese are melted throughout, forming gooey, golden pockets and streaks. Bright green peas are gently stirred in, providing fresh pops of vibrant color. The dish is naturally plated, components touching. A simple metal spoon rests beside the bowl on a casually placed cloth napkin. Warm, cozy lighting highlights steam rising gently. The background is a relaxed family dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic American",
+    "hero_ingredient": "Smoked Cheese",
+    "ingredients": [
+      {
+        "name": "Canned white beans",
+        "quantity": "2 x 400g cans, rinsed and drained"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Lager or ale beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Smoked cheddar cheese",
+        "quantity": "150g, grated or cubed"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2 (optional)"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in beer. Bring to a simmer. Cook for 3 minutes to reduce slightly.",
+      "Add vegetable broth, rinsed white beans, and thyme sprigs (if using). Bring to a gentle boil.",
+      "Reduce heat to low. Simmer, uncovered, for 15-20 minutes. Stir occasionally until beans are tender and liquid has slightly thickened.",
+      "Remove thyme sprigs. Stir in frozen green peas. Cook for 2 minutes until peas are heated through.",
+      "Remove pot from heat. Stir in smoked cheddar cheese until melted and creamy.",
+      "Season with salt and black pepper to taste.",
+      "Ladle generous portions into bowls. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 514,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 16.4,
+      "protein_g": 26.5,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 557,
+      "total_carbs_g": 52.5,
+      "total_fat_g": 20.5,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 103,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 5.3,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 111,
+      "total_carbs_g": 10.5,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13,
+      "dietary_fiber": 59,
+      "protein": 53,
+      "saturated_fat": 46,
+      "sodium": 24,
+      "total_carbs": 19,
+      "total_fat": 26
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  }
+]

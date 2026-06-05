@@ -1,0 +1,684 @@
+[
+  {
+    "recipe_name": "Fermented Red Bean & Mint Chocolate Rice Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_red_bean_%26_mint_chocolate_rice_cake_20250627_035319_6ea47052.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:53:19.964824000Z",
+    "selected_ingredients": [
+      "coconut liqueur",
+      "creme de menthe",
+      "hot chocolate powder",
+      "red bean paste",
+      "icing sugar"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, elegant slice of the Fermented Red Bean & Mint Chocolate Rice Cake is presented on a handcrafted ceramic plate in a natural cream or beige tone. The cake slice reveals distinct layers: a light, airy, beige rice cake base, a rich, dark red layer of sweet red bean paste, and a smooth, glossy, dark brown mint chocolate glaze cascading over the top. The rice cake texture appears soft and slightly porous, while the red bean layer is dense and even. The glaze has a subtle sheen. A few small, vibrant green fresh mint leaves are placed minimally beside the cake on the plate. The composition is clean and uncluttered, with ample negative space. The setting features a light bamboo or stone table surface, an undyed linen napkin in natural beige, and soft, diffused natural lighting. The background is simple and clean, with subtle natural elements or plant hints visible, maintaining focus on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "East Asian",
+    "cultural_serving_suggestions": [
+      "Serve with hot, unsweetened tea, such as green tea or oolong.",
+      "Present on simple, earthy-toned ceramic plates, reflecting traditional pottery."
+    ],
+    "hero_ingredient": "Red Bean Paste",
+    "ingredients": [
+      {
+        "name": "Rice Flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Active Dry Yeast",
+        "quantity": "5g"
+      },
+      {
+        "name": "Warm Water (for yeast)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water (for batter)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Icing Sugar (for cake)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Neutral Oil",
+        "quantity": "10g"
+      },
+      {
+        "name": "Sweet Red Bean Paste",
+        "quantity": "150g"
+      },
+      {
+        "name": "Hot Chocolate Powder",
+        "quantity": "50g"
+      },
+      {
+        "name": "Icing Sugar (for glaze)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Coconut Liqueur",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Crème de Menthe",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Hot Water (for glaze)",
+        "quantity": "20ml"
+      },
+      {
+        "name": "Fresh Mint Leaves",
+        "quantity": "A few"
+      }
+    ],
+    "instructions": [
+      "Activate yeast: Dissolve yeast in 50ml warm water. Let stand 5 minutes until foamy.",
+      "Prepare batter: In a large bowl, combine rice flour, 150ml water, 50g icing sugar, salt, and oil. Mix until smooth.",
+      "Add yeast: Stir in the activated yeast mixture. Cover the bowl loosely with a clean cloth.",
+      "Ferment batter: Let batter ferment in a warm place for 1-2 hours. It should become slightly bubbly and expand.",
+      "Prepare steamer: Fill a steamer with water. Bring to a boil.",
+      "Prepare molds: Lightly oil four small heatproof molds or ramekins (approx. 10cm diameter).",
+      "Layer cake: Pour half of the batter evenly into the prepared molds.",
+      "Add red bean: Spoon a layer of red bean paste over the batter in each mold.",
+      "Add remaining batter: Pour the remaining batter over the red bean paste, covering it completely.",
+      "Steam cakes: Place molds in the hot steamer. Steam over high heat for 20-25 minutes. Cakes are done when a skewer inserted comes out clean.",
+      "Cool cakes: Remove cakes from steamer. Let cool in molds for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Make glaze: In a small bowl, whisk together hot chocolate powder, 50g icing sugar, coconut liqueur, crème de menthe, and 20ml hot water. Mix until smooth and glossy. Adjust water for desired consistency.",
+      "Glaze cakes: Once cakes are cool, drizzle the mint chocolate glaze generously over each cake.",
+      "Serve: Plate individual cake slices. Garnish with fresh mint leaves and a light dusting of hot chocolate powder."
+    ],
+    "traditional_techniques": [
+      "Rice flour fermentation",
+      "Steaming"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 50.64,
+      "calories": 475.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.98,
+      "protein_g": 6.01,
+      "saturated_fat_g": 0.76,
+      "sodium_mg": 18.64,
+      "total_carbs_g": 100.44,
+      "total_fat_g": 4.21,
+      "total_sugars_g": 50.69,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 25.97,
+      "calories": 243.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.04,
+      "protein_g": 3.08,
+      "saturated_fat_g": 0.39,
+      "sodium_mg": 9.56,
+      "total_carbs_g": 51.51,
+      "total_fat_g": 2.16,
+      "total_sugars_g": 26,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 14.2,
+      "protein": 12,
+      "saturated_fat": 3.8,
+      "sodium": 0.8,
+      "total_carbs": 36.5,
+      "total_fat": 5.4
+    },
+    "serving_size_g": 195,
+    "total_recipe_weight_g": 780
+  },
+  {
+    "recipe_name": "Coconut Cornmeal & Kamut Sweet Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coconut_cornmeal_%26_kamut_sweet_cake_20250627_035118_b38dbd19.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:51:19.131752000Z",
+    "selected_ingredients": [
+      "coconut liqueur",
+      "kamut flour",
+      "cornmeal",
+      "hake",
+      "tatsoi",
+      "cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous slice of golden-brown cake sits on a simple ceramic plate. The cake has a rustic, slightly coarse texture from the cornmeal, with a light, airy crumb. A glossy, pale green coconut cream glaze is casually drizzled over the top, pooling slightly at the base. A very fine, almost imperceptible dusting of a savory powder lightly coats the glazed surface, adding a subtle, unexpected shimmer. The plate is placed on a well-worn wooden kitchen table, alongside a simple silver fork and a casually folded cloth napkin. Warm, natural light illuminates the scene, highlighting the homemade quality of the dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Coconut",
+    "ingredients": [
+      {
+        "name": "Kamut flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fine cornmeal",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Coconut liqueur",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Hake fillet, skinless",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Tatsoi leaves",
+        "quantity": "30 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 20 cm round cake pan.",
+      "Prepare hake powder: Thinly slice hake. Arrange on a baking sheet. Bake at 100°C for 2-3 hours until completely dry and brittle. Cool completely. Grind into a very fine powder using a spice grinder or mortar and pestle. Set aside.",
+      "Prepare tatsoi puree: Blanch tatsoi leaves in boiling water for 30 seconds. Immediately transfer to ice water. Drain well. Puree with 15 ml water until smooth. Set aside.",
+      "Combine kamut flour, cornmeal, granulated sugar, baking powder, and salt in a large bowl. Whisk to combine.",
+      "In a separate bowl, whisk eggs, milk, melted butter, and 30 ml coconut liqueur until well combined.",
+      "Pour wet ingredients into dry ingredients. Stir until just combined. Do not overmix.",
+      "Pour batter into the prepared cake pan. Smooth the top.",
+      "Bake for 30-35 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Let cake cool in the pan for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Prepare glaze: In a medium bowl, whisk heavy cream, remaining 30 ml coconut liqueur, and pureed tatsoi until smooth. Gradually whisk in powdered sugar until a smooth, pourable glaze forms.",
+      "Pour glaze over the cooled cake, allowing it to drip down the sides.",
+      "Lightly dust a small amount of the prepared hake powder over the glazed cake just before serving. Use sparingly for a subtle umami note."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 71.5,
+      "calories": 826.6,
+      "cholesterol_mg": 187.7,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 15,
+      "saturated_fat_g": 19.4,
+      "sodium_mg": 533.4,
+      "total_carbs_g": 121.7,
+      "total_fat_g": 32.9,
+      "total_sugars_g": 75.6,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 24.4,
+      "calories": 282.1,
+      "cholesterol_mg": 64,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 5.1,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 182,
+      "total_carbs_g": 41.5,
+      "total_fat_g": 11.2,
+      "total_sugars_g": 25.8,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.6,
+      "dietary_fiber": 13.3,
+      "protein": 30,
+      "saturated_fat": 96.9,
+      "sodium": 23.2,
+      "total_carbs": 44.3,
+      "total_fat": 42.1
+    },
+    "serving_size_g": 293.05,
+    "total_recipe_weight_g": 1172.2
+  },
+  {
+    "recipe_name": "Fermented Apple & Spent Grain Tartlets",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_apple_%26_spent_grain_tartlets_20250627_035032_bc366ceb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:50:32.488246000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single \"Fermented Apple & Spent Grain Tartlet\" rests on a handcrafted, matte ceramic plate in an earthy cream tone. The plate has ample negative space, highlighting the tartlet as the focal point. The tartlet features a rustic, golden-brown crust, subtly flecked with darker spent grain particles, suggesting its unique texture. The crust is neatly crimped, holding a generous mound of glistening, amber-hued fermented apple filling. The small dice apples retain their shape, offering visual texture. A small, elegant dollop of pure white whipped cream sits atop the filling, slightly off-center. A few delicate, vibrant purple edible flowers or crisp, translucent apple crisps are artfully placed beside the cream, adding a pop of natural color and reinforcing the zero-waste ethos. The scene is bathed in soft, natural light, creating gentle shadows. The background is minimalist, with a light reclaimed wood surface and a hint of a natural linen napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Fermented Apples",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Dried spent grain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Cold unsalted butter, cubed",
+        "quantity": "100g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Ice water",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Local seasonal apples, peeled, cored, small dice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Local honey or maple syrup",
+        "quantity": "15g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (optional)"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "1 (optional)"
+      },
+      {
+        "name": "Cornstarch or arrowroot powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Light cream (e.g., coconut cream or local dairy cream), whipped",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Edible flowers (foraged/local) or apple crisps (made from peels)",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Apples (2-3 days ahead): Combine diced apples, 5g sea salt, 150ml filtered water, cinnamon stick, and star anise in a clean jar. Ensure apples are submerged. Seal jar loosely. Ferment at room temperature for 2-3 days until slightly bubbly and tangy. Strain apples, reserving liquid. Remove spices.",
+      "Make Spent Grain Pastry: Combine all-purpose flour, spent grain flour, icing sugar, and pinch of salt in a bowl. Cut in cold butter until mixture resembles coarse crumbs. Add egg yolk and ice water. Mix until dough forms. Do not overmix. Flatten into a disc, wrap, and chill 30 minutes.",
+      "Blind Bake Tartlet Shells: Roll out chilled dough thinly. Cut into four circles. Fit into four 10cm tartlet molds. Prick bottoms with a fork. Line with parchment paper and fill with pie weights. Bake at 180°C for 15 minutes. Remove weights and parchment. Bake 5-7 minutes more until lightly golden. Cool completely.",
+      "Cook Apple Filling: In a saucepan, combine fermented apples, reserved fermentation liquid, and honey/maple syrup. Bring to a simmer. Dissolve cornstarch in a tablespoon of cold water. Stir into apple mixture. Cook, stirring, until thickened. Cool completely.",
+      "Assemble Tartlets: Spoon cooled apple filling into each tartlet shell.",
+      "Garnish: Top each tartlet with a dollop of whipped cream. Garnish with edible flowers or thin apple crisps."
+    ],
+    "notes": [
+      "Adjust fermentation time based on desired tanginess and ambient temperature.",
+      "Spent grain flour adds a subtle nutty, malty flavor and contributes to circular economy.",
+      "Utilize apple peels for crisps to minimize food waste.",
+      "Use local, seasonal ingredients for best flavor and sustainability."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 10.6,
+      "calories": 456.9,
+      "cholesterol_mg": 102.6,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 7.6,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 589.4,
+      "total_carbs_g": 57.1,
+      "total_fat_g": 22.7,
+      "total_sugars_g": 18.7,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 5.9,
+      "calories": 253.8,
+      "cholesterol_mg": 57,
+      "dietary_fiber_g": 4,
+      "protein_g": 4.2,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 327.4,
+      "total_carbs_g": 31.7,
+      "total_fat_g": 12.6,
+      "total_sugars_g": 10.4,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 34,
+      "dietary_fiber": 26,
+      "protein": 15,
+      "saturated_fat": 68,
+      "sodium": 26,
+      "total_carbs": 21,
+      "total_fat": 29
+    },
+    "serving_size_g": 180,
+    "total_recipe_weight_g": 720
+  },
+  {
+    "recipe_name": "Seared Hake Blini with Coconut Tatsoi Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_hake_blini_with_coconut_tatsoi_relish_20250627_035027_e0b57c57.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:50:27.960475000Z",
+    "selected_ingredients": [
+      "coconut liqueur",
+      "kamut flour",
+      "cornmeal",
+      "hake",
+      "tatsoi"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The canapés are presented on an elegant rectangular slate board, showcasing 8-12 individual bite-sized pieces. Each features a golden-brown, 5cm kamut-cornmeal blini as its base. Centered atop is a robust 3x3 cm chunk of seared hake, displaying a golden crust and flaky white interior. A vibrant mound of coconut tatsoi relish adorns the hake. The relish, a mix of deep green, slightly wilted tatsoi leaves and finely diced translucent shallots, glistens from the coconut reduction. The color palette is inviting, with warm golden tones from blini and hake, and fresh greens from tatsoi. The arrangement is clean, professional, with consistent spacing. A crisp white linen napkin rests beside the board. The setting is a simple wooden bistro table under soft, natural lighting, implying a refined yet approachable dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Hake",
+    "ingredients": [
+      {
+        "name": "Hake fillets",
+        "quantity": "400g"
+      },
+      {
+        "name": "Kamut flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fine cornmeal",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Coconut liqueur",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Fresh tatsoi",
+        "quantity": "100g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Prepare the blini batter: In a large bowl, whisk kamut flour, cornmeal, baking powder, 2g salt, and 1g pepper.",
+      "In a separate bowl, whisk eggs and milk.",
+      "Gradually add wet ingredients to dry ingredients. Whisk until just combined. Do not overmix. Let batter rest 15 minutes.",
+      "Prepare the coconut tatsoi relish: Finely chop tatsoi leaves. In a small saucepan, melt 10g butter over medium heat. Add diced shallot and minced garlic. Sauté until fragrant, about 2 minutes.",
+      "Add coconut liqueur to the saucepan. Bring to a simmer. Reduce heat and cook until liquid reduces by half, about 3 minutes.",
+      "Stir in chopped tatsoi and lime juice. Cook for 1 minute until tatsoi wilts slightly. Season with a pinch of salt and pepper. Set aside.",
+      "Cook the blini: Heat a non-stick pan over medium heat. Add a small amount of butter. Pour 20ml portions of batter to form small blini (about 5cm diameter). Cook 2-3 minutes per side until golden brown and cooked through. Repeat with remaining batter. Yield 8-12 blini.",
+      "Prepare the hake: Pat hake fillets dry. Cut into 8-12 uniform bite-sized chunks (approximately 3x3 cm). Season hake chunks with remaining salt and pepper.",
+      "Heat olive oil and remaining butter in a clean pan over medium-high heat. Sear hake chunks for 2-3 minutes per side until golden brown and cooked through. The internal temperature should reach 63°C (145°F).",
+      "Assemble canapés: Place one seared hake chunk on each blini. Top with a spoonful of coconut tatsoi relish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4,
+      "calories": 467,
+      "cholesterol_mg": 175,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 28.6,
+      "saturated_fat_g": 9,
+      "sodium_mg": 742,
+      "total_carbs_g": 38.4,
+      "total_fat_g": 20.2,
+      "total_sugars_g": 8.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.3,
+      "calories": 157,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.6,
+      "saturated_fat_g": 3,
+      "sodium_mg": 249,
+      "total_carbs_g": 12.9,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.4,
+      "dietary_fiber": 12.9,
+      "protein": 57.2,
+      "saturated_fat": 45.1,
+      "sodium": 32.3,
+      "total_carbs": 14,
+      "total_fat": 25.8
+    },
+    "serving_size_g": 297.5,
+    "total_recipe_weight_g": 1189.8
+  },
+  {
+    "recipe_name": "Panang Hake and Coconut Soup with Savory Chocolate Hints and Fresh Mint",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_panang_hake_and_coconut_soup_with_savory_chocolate_hints_and_fresh_mint_20250627_034839_31fba0c9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:48:39.643856000Z",
+    "selected_ingredients": [
+      "mint",
+      "chocolate",
+      "hake",
+      "butter",
+      "panang curry paste"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The soup is served in a deep, rustic ceramic bowl with natural imperfections, resting on a well-used wooden kitchen table. The creamy, orange-red broth, typical of Panang curry, cradles large, irregular chunks of flaky white hake. Vibrant diced red bell pepper and bright green halved green beans are visible throughout. A generous scattering of fresh, roughly chopped bright green mint leaves garnishes the top, adding a striking color contrast and fresh aroma. A simple metal spoon and a casually placed cloth napkin sit beside the bowl. The scene is homely and comforting, illuminated by warm, natural light from a kitchen window. The focus is entirely on the single, expertly plated portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice on the side to soak up the flavorful broth."
+    ],
+    "hero_ingredient": "Hake",
+    "ingredients": [
+      {
+        "name": "Hake fillets",
+        "quantity": "600g"
+      },
+      {
+        "name": "Panang curry paste",
+        "quantity": "80g"
+      },
+      {
+        "name": "Coconut milk",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Fish stock",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa or higher, unsweetened)",
+        "quantity": "10g, finely grated"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "30g, roughly chopped"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "100g, trimmed and halved"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil and butter in a large pot over medium heat. Add diced shallots. Cook until softened, about 3 minutes.",
+      "Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Stir in Panang curry paste. Cook, stirring constantly, for 2-3 minutes until fragrant and oil separates slightly.",
+      "Pour in coconut milk and fish stock. Bring to a gentle simmer, stirring to dissolve curry paste.",
+      "Add red bell pepper and green beans. Simmer for 5 minutes until vegetables are slightly tender-crisp.",
+      "Gently add hake chunks to the simmering soup. Cook for 5-7 minutes, or until hake is opaque and cooked through. Do not overcook.",
+      "Remove soup from heat. Stir in brown sugar, fish sauce, and lime juice.",
+      "Add finely grated dark chocolate. Stir until chocolate is melted and fully incorporated. Taste and adjust seasoning if needed.",
+      "Ladle soup into individual bowls. Garnish generously with fresh chopped mint leaves."
+    ],
+    "notes": [
+      "The addition of dark chocolate is unconventional but adds a subtle depth and richness to the soup, balancing the spice without imparting a strong chocolate flavor."
+    ],
+    "traditional_techniques": [
+      "Tempering curry paste"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.9,
+      "calories": 776,
+      "cholesterol_mg": 91.1,
+      "dietary_fiber_g": 9.3,
+      "protein_g": 34.7,
+      "saturated_fat_g": 48.2,
+      "sodium_mg": 1384,
+      "total_carbs_g": 26.9,
+      "total_fat_g": 62.2,
+      "total_sugars_g": 14.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 130,
+      "cholesterol_mg": 15.2,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 5.8,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 231.4,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30,
+      "dietary_fiber": 33,
+      "protein": 69,
+      "saturated_fat": 241,
+      "sodium": 60,
+      "total_carbs": 10,
+      "total_fat": 80
+    },
+    "serving_size_g": 598,
+    "total_recipe_weight_g": 2392
+  }
+]

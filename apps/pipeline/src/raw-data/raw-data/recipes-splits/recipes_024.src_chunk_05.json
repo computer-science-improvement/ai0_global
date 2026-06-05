@@ -1,0 +1,628 @@
+[
+  {
+    "recipe_name": "Sweet Pasta & Tomato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_pasta_%26_tomato_bake_20250624_031316_cfec8323.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:13:17.293918000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, rustic portion of Sweet Pasta & Tomato Bake is served on a round, off-white ceramic plate with a slightly uneven rim, suggesting a handmade feel. The baked pasta, a creamy, pale gold, is visible with warm, reddish-brown swirls of sweet tomato compote marbled throughout its surface and edges. The pasta pieces, like small ditalini, are plump and soft, peeking out from the custard-like matrix. The tomato compote features softened, slightly collapsed cherry tomato halves, adding textural variation and a deeper red hue. The top of the bake is lightly golden and slightly puffed, indicating a comforting warmth. The dish is placed on a well-worn, light wooden kitchen table, showing subtle grain and minor imperfections. A simple, folded cotton napkin, perhaps in a muted check pattern, rests casually beside the plate. The lighting is soft and warm, reminiscent of natural light filtering into a home kitchen, creating a cozy and inviting atmosphere for a family dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Dessert",
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Pasta (ditalini, orzo, or small shells)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Granulated sugar (for pasta bake)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Unsalted butter (for greasing)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Granulated sugar (for tomato compote)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease a 20x20 cm baking dish with butter.",
+      "Cook pasta according to package directions until al dente. Drain well.",
+      "While pasta cooks, prepare tomato compote. Halve cherry tomatoes. Combine halved tomatoes, 50g sugar, and lemon juice in a small saucepan.",
+      "Bring to a simmer over medium heat. Cook for 10-12 minutes, stirring occasionally, until tomatoes soften and sauce thickens slightly. Mash some tomatoes with a spoon. Set aside.",
+      "In a large bowl, whisk together milk, 100g sugar, eggs, vanilla extract, and cinnamon.",
+      "Add cooked pasta to the milk mixture. Stir to combine.",
+      "Pour half of the pasta mixture into the greased baking dish.",
+      "Spoon half of the tomato compote over the pasta. Swirl gently with a knife.",
+      "Pour remaining pasta mixture over the compote.",
+      "Spoon remaining tomato compote on top. Swirl again.",
+      "Bake for 30-35 minutes, or until the top is golden and the bake is set.",
+      "Let cool slightly before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.5,
+      "calories": 490,
+      "cholesterol_mg": 114,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 14.5,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 94,
+      "total_carbs_g": 84.9,
+      "total_fat_g": 10.9,
+      "total_sugars_g": 47.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.5,
+      "calories": 151,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 4.5,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 29,
+      "total_carbs_g": 26.1,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 14.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 10,
+      "protein": 29,
+      "saturated_fat": 27,
+      "sodium": 4,
+      "total_carbs": 31,
+      "total_fat": 14
+    },
+    "serving_size_g": 325.5,
+    "total_recipe_weight_g": 1302
+  },
+  {
+    "recipe_name": "Roasted Chicken and Broccoli with Sun-Dried Tomato Aioli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_and_broccoli_with_sun-dried_tomato_aioli_20250624_031254_1cab9c90.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:12:55.268116000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "broccoli",
+      "mayonnaise"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of roasted chicken and broccoli is presented on a clean white porcelain dinner plate. Large, irregular chunks of golden-brown roasted chicken are centrally placed, showing crispy edges. Surrounding the chicken are vibrant green, tender-crisp broccoli florets and bright red, slightly blistered cherry tomatoes. A creamy, pale orange sun-dried tomato aioli is artfully drizzled over the chicken and vegetables, with a small pool of aioli beside the main components. The arrangement is balanced and natural, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface. A standard fork and knife are placed to the right of the plate, and a neatly folded white cotton napkin is positioned to the left. Lighting is natural and even, highlighting the textures and colors of the dish against a softly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil, drained",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley or basil, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut chicken thighs into large, uniform 4-5 cm chunks. Pat dry.",
+      "In a large bowl, toss chicken chunks with 15 ml olive oil, 1 crushed garlic clove, oregano, salt, and pepper. Set aside.",
+      "In a separate bowl, toss broccoli florets and cherry tomatoes with 15 ml olive oil, salt, and pepper.",
+      "For the sun-dried tomato aioli, combine mayonnaise, drained sun-dried tomatoes, 2 crushed garlic cloves, juice of half a lemon, and 15 ml olive oil in a food processor. Blend until smooth. Season with salt and pepper.",
+      "Spread seasoned chicken chunks in a single layer on one side of a large baking tray. Spread seasoned broccoli and cherry tomatoes on the other side.",
+      "Roast for 20-25 minutes. Chicken internal temperature must reach 75°C. Vegetables should be tender-crisp and lightly charred.",
+      "Remove from oven. Squeeze remaining lemon half over chicken and vegetables.",
+      "Serve chicken and vegetables immediately. Drizzle generously with sun-dried tomato aioli. Garnish with fresh parsley or basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 670,
+      "cholesterol_mg": 178,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 36.3,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 471,
+      "total_carbs_g": 18.4,
+      "total_fat_g": 50.8,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 157.1,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.5,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 111,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 11.9,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 21,
+      "protein": 73,
+      "saturated_fat": 46,
+      "sodium": 20,
+      "total_carbs": 7,
+      "total_fat": 65
+    },
+    "serving_size_g": 426.5,
+    "total_recipe_weight_g": 1706
+  },
+  {
+    "recipe_name": "Fermented Tomato & Bell Pepper Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_%26_bell_pepper_pasta_20250624_031226_02d359b7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:12:26.873145000Z",
+    "selected_ingredients": [
+      "pasta",
+      "bean",
+      "tomato",
+      "bell pepper",
+      "oregano",
+      "basil"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Fermented Tomato & Bell Pepper Pasta is presented in a wide, shallow, handcrafted cream-colored ceramic bowl, showcasing a minimalistic and natural aesthetic. The short pasta is loosely piled in the center, allowing for ample negative space around the edges of the bowl. The pasta is coated in a rustic, light red sauce, revealing softened, irregularly shaped pieces of fermented tomato and small, diced chunks of fermented red bell pepper. Plump, whole cannellini beans are interspersed throughout the dish, adding visual texture and substance. Fresh, vibrant green basil leaves are gently placed on top, along with small sprigs of fresh oregano, providing a subtle contrast and natural garnish. The overall color palette is earthy and organic, with muted reds, creamy whites, and natural greens. The dish sits on a light, reclaimed wood table surface. An undyed linen napkin in a natural beige tone is casually folded to the side. The background is clean and minimalist, with soft, diffused natural light highlighting the pure beauty of each ingredient. A subtle, out-of-focus green plant is visible in the background, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Tomatoes",
+    "ingredients": [
+      {
+        "name": "Short pasta (e.g., penne or fusilli)",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Canned cannellini beans, rinsed",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fermented cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fermented red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/4 cup leaves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Nutritional yeast (optional, for umami)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Add pasta. Cook until al dente, about 8-10 minutes. Reserve 250 ml pasta water. Drain pasta.",
+      "While pasta cooks, prepare sauce. Roughly chop fermented cherry tomatoes. Dice fermented red bell pepper into small pieces. Mince garlic.",
+      "Heat olive oil in a large skillet over medium heat. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Add chopped fermented tomatoes and diced fermented bell pepper to the skillet. Cook for 5-7 minutes, breaking down tomatoes with a spoon. If bell pepper core/seeds are edible, blend them into the sauce now.",
+      "Stir in rinsed cannellini beans. Add half of the reserved pasta water. Simmer for 3 minutes, allowing flavors to meld. Add nutritional yeast if using.",
+      "Add cooked pasta to the skillet with the sauce. Toss to coat. Add more pasta water as needed to reach desired consistency. The sauce should lightly cling to the pasta.",
+      "Remove from heat. Tear fresh basil leaves and chop fresh oregano. Stir into the pasta. Season with salt and black pepper to taste.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 504,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 12,
+      "protein_g": 21.8,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 729,
+      "total_carbs_g": 86.8,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 177,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 7.7,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 257,
+      "total_carbs_g": 30.6,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 43,
+      "protein": 44,
+      "saturated_fat": 7,
+      "sodium": 32,
+      "total_carbs": 32,
+      "total_fat": 11
+    },
+    "serving_size_g": 283.9,
+    "total_recipe_weight_g": 1135.5
+  },
+  {
+    "recipe_name": "Savory Peanut & Black Bean Braised Chicken with Rhubarb",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_peanut_%26_black_bean_braised_chicken_with_rhubarb_20250624_031208_ae80f12c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:12:09.022642000Z",
+    "selected_ingredients": [
+      "licorice",
+      "rhubarb",
+      "goat cheese",
+      "vegemite",
+      "peanut butter",
+      "vinegar",
+      "fermented black bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of home-style braised chicken is presented on a simple, round ceramic plate. Two bone-in, skin-on chicken thighs, deeply seared to a golden brown, rest in a rich, dark, glossy sauce. The savory sauce, thickened to coat, pools around the chicken, revealing soft, 2cm chunks of cooked rhubarb. The chicken is fork-tender. A generous crumble of creamy, off-white goat cheese melts slightly over the warm chicken and sauce, adding a tangy counterpoint. A scattering of fresh, vibrant green chopped cilantro provides a fresh visual pop. The dish is placed on a well-used, natural wooden dining table. A simple metal fork and knife are casually placed beside the plate. Warm, cozy lighting illuminates the scene, evoking a lived-in family kitchen atmosphere. The plate is adequately filled without being overcrowded.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Global Fusion",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4"
+      },
+      {
+        "name": "Rhubarb",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Fermented black beans",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Creamy peanut butter",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Vegemite",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Licorice powder",
+        "quantity": "0.25 tsp"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "2.5 cm piece"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Goat cheese, crumbled",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh cilantro or spring onions, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Cooked rice or noodles",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat oil in a large pot or Dutch oven over medium-high heat. Sear chicken thighs skin-side down until golden brown and crispy. Remove chicken.",
+      "Add diced onion to the pot. Sauté 3 minutes until softened.",
+      "Add minced garlic and grated ginger. Cook 1 minute until fragrant.",
+      "Stir in chopped fermented black beans, peanut butter, vegemite, licorice powder, soy sauce, brown sugar, and vinegar. Cook 2 minutes, stirring constantly.",
+      "Pour in chicken stock. Bring to a simmer, scraping up any browned bits from the pot bottom.",
+      "Return chicken thighs to the pot, skin-side up. Cut rhubarb into 2 cm pieces. Add rhubarb around the chicken.",
+      "Cover the pot and reduce heat to low. Simmer 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is tender.",
+      "Remove chicken from pot. Keep warm.",
+      "In a small bowl, mix cornstarch with 2 tbsp water to make a slurry. Stir slurry into the sauce in the pot. Simmer 2-3 minutes until sauce thickens.",
+      "Taste and adjust seasoning as needed.",
+      "Serve chicken thighs with sauce over cooked rice or noodles. Garnish with crumbled goat cheese and fresh cilantro or spring onions."
+    ],
+    "notes": [
+      "Adjust licorice powder to taste; it is potent. Start with a small amount and add more if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.9,
+      "calories": 622.5,
+      "cholesterol_mg": 176,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 42.1,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 2146,
+      "total_carbs_g": 15.8,
+      "total_fat_g": 45.2,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 170.9,
+      "cholesterol_mg": 48.3,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 11.6,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 589.2,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.7,
+      "dietary_fiber": 19.4,
+      "protein": 84.2,
+      "saturated_fat": 50.3,
+      "sodium": 93.3,
+      "total_carbs": 5.7,
+      "total_fat": 58
+    },
+    "serving_size_g": 364.25,
+    "total_recipe_weight_g": 1457
+  },
+  {
+    "recipe_name": "Orange Blossom Bulgur Pudding with Candied Pistachios",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orange_blossom_bulgur_pudding_with_candied_pistachios_20250624_031202_98b896ce.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:12:03.439727000Z",
+    "selected_ingredients": [
+      "bulgur",
+      "harissa",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "Turkish cuisine",
+    "visual_description": "A single serving of golden-hued bulgur pudding is elegantly presented in a small, shallow white porcelain bowl. The pudding has a soft, creamy texture, reflecting the slow absorption of the syrup, and a gentle sheen from the olive oil. It is not molded but served with a slight, natural flow. The top is garnished with a scattering of vibrant green, roughly chopped candied pistachios, providing a textural contrast. A few delicate strands of fresh orange zest are lightly sprinkled over the pistachios, adding a bright color pop. The bowl rests on a light wooden table surface, beside a folded off-white linen napkin. A small silver dessert spoon is placed to the right of the bowl. The lighting is soft and natural, highlighting the pudding's warmth and the pistachios' color, set against a clean, uncluttered background that suggests a modern bistro.",
+    "number_of_servings": 4,
+    "cuisine_type": "Turkish",
+    "cultural_origin": "Turkish",
+    "cultural_serving_suggestions": [
+      "Serve warm.",
+      "Often accompanied by a glass of traditional Turkish black tea or a small cup of Turkish coffee."
+    ],
+    "hero_ingredient": "Bulgur",
+    "ingredients": [
+      {
+        "name": "Fine bulgur",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Orange blossom water",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Harissa paste",
+        "quantity": "2g (approx 1/2 teaspoon)"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted shelled pistachios",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20g"
+      },
+      {
+        "name": "Fresh orange zest",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Roughly chop 40g of the pistachios. Reserve 10g whole for optional garnish.",
+      "To candy pistachios: In a small saucepan, combine 1 tablespoon of sugar with 1 tablespoon of water. Bring to a boil. Add the chopped pistachios. Cook, stirring, until the sugar caramelizes lightly and coats the nuts. Spread candied pistachios on parchment paper to cool and harden.",
+      "Melt butter in a medium saucepan over medium heat.",
+      "Add fine bulgur to the saucepan. Toast for 3-4 minutes, stirring constantly, until lightly fragrant and slightly golden.",
+      "In a separate pot, combine water, remaining granulated sugar, and harissa paste. Bring to a gentle simmer, stirring to dissolve the sugar.",
+      "Pour the hot liquid mixture over the toasted bulgur. Stir well to combine.",
+      "Reduce heat to low. Cover the saucepan tightly. Simmer for 15-20 minutes, or until all liquid is absorbed and bulgur is tender. Stir occasionally to prevent sticking.",
+      "Remove saucepan from heat. Stir in orange blossom water and extra virgin olive oil.",
+      "Cover the saucepan again and let the pudding rest for 10 minutes. This allows flavors to meld and bulgur to fully hydrate.",
+      "Fluff the pudding gently with a fork before serving."
+    ],
+    "notes": [
+      "The harissa is used in a very small quantity to provide a subtle, aromatic warmth and a hint of fruity pepper, not pronounced spiciness. Adjust to personal preference."
+    ],
+    "traditional_techniques": [
+      "Slow simmering",
+      "Toasting grains"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.5,
+      "calories": 484,
+      "cholesterol_mg": 10.8,
+      "dietary_fiber_g": 10.5,
+      "protein_g": 8.7,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 15.2,
+      "total_carbs_g": 78.9,
+      "total_fat_g": 17.3,
+      "total_sugars_g": 38.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 14.1,
+      "calories": 182,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 4,
+      "protein_g": 3.3,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 5.7,
+      "total_carbs_g": 29.6,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 14.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 38,
+      "protein": 17,
+      "saturated_fat": 22,
+      "sodium": 1,
+      "total_carbs": 29,
+      "total_fat": 22
+    },
+    "serving_size_g": 266,
+    "total_recipe_weight_g": 1065
+  }
+]

@@ -1,0 +1,564 @@
+[
+  {
+    "recipe_name": "Whipped Feta with Preserved Tomatoes and Olives",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_whipped_feta_with_preserved_tomatoes_and_olives_20250701_144148_75e53fbb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:41:49.002228000Z",
+    "selected_ingredients": [
+      "feta cheese",
+      "yogurt",
+      "olive",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A creamy, off-white mound of whipped feta and Greek yogurt anchors the center of a round, cream-colored ceramic plate. Around and atop the feta, artfully arranged slow-roasted cherry tomatoes, some whole, some halved, display their deep maroon and reddish hues, their skins slightly wrinkled. Scattered among them are whole and halved dark Kalamata olives, their glossy surfaces providing a contrasting texture. A delicate drizzle of vibrant green extra virgin olive oil glistens over the entire dish. A few small, fresh oregano leaves are placed sparingly for a touch of natural green. The presentation is minimalistic, allowing ample negative space. The plate rests on a light, natural wood surface, accompanied by an undyed linen napkin. Soft, natural light illuminates the scene, with a clean, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm, crusty rustic bread or toasted pita triangles for dipping."
+    ],
+    "hero_ingredient": "Feta cheese",
+    "ingredients": [
+      {
+        "name": "Feta cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh oregano or basil",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 120°C. Halve cherry tomatoes. Toss with 15 ml olive oil, 1 minced garlic clove, pinch salt, and pepper. Spread on a baking tray. Slow-roast for 60-90 minutes until shriveled and tender. Let cool.",
+      "Drain Kalamata olives. Gently crush 1 garlic clove. Combine olives, remaining 15 ml olive oil, and crushed garlic in a small bowl. Marinate for at least 15 minutes.",
+      "Combine feta cheese and Greek yogurt in a food processor. Add 10 ml olive oil. Process until smooth and creamy. Season lightly with salt and pepper.",
+      "Spoon the whipped feta mixture onto individual starter plates, forming a central mound.",
+      "Arrange the slow-roasted cherry tomatoes and marinated olives artfully around and on top of the feta. Discard the garlic clove from the olives.",
+      "Drizzle each portion with the remaining 10 ml extra virgin olive oil.",
+      "Garnish with a few fresh oregano or basil leaves. Serve immediately."
+    ],
+    "notes": [
+      "This recipe emphasizes preservation and zero-waste by slow-roasting tomatoes to extend their usability and enhance flavor.",
+      "Use seasonal, ripe cherry tomatoes for best results."
+    ],
+    "traditional_techniques": [
+      "Slow-roasting for preservation",
+      "Marinating for flavor infusion"
+    ]
+  },
+  {
+    "recipe_name": "Chicken and Tomato Basil Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_tomato_basil_pasta_20250701_144137_80d4f24b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:41:37.773207000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "onion",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken and Tomato Basil Pasta is presented on a clean, round white porcelain dinner plate. A golden-brown seared chicken thigh, unsliced, is placed prominently beside a generous nest of spaghetti. The spaghetti is coated in a rich, vibrant red tomato sauce, flecked with finely diced onion and bright green basil. Halved cherry tomatoes are scattered over the pasta, adding bursts of fresh color and acidity. Fresh basil leaves are generously scattered over the dish, with a light dusting of grated Parmesan cheese covering the chicken and pasta. The dish exhibits a contrast of textures: tender chicken, al dente pasta, and soft cooked vegetables, all unified by the glossy sauce. Colors are warm reds, greens, and golden browns. The plate sits on a simple wooden table surface with a linen napkin and classic silver flatware. Natural, even lighting highlights the dish's freshness and warmth. The background is a soft, blurred modern bistro setting, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a crusty loaf of ciabatta bread for dipping in the sauce.",
+      "Pair with a glass of dry red wine, such as Chianti.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Spaghetti",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "100g"
+      },
+      {
+        "name": "Large yellow onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh basil, leaves picked",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Sear chicken thighs 4-5 minutes per side until golden brown. Remove chicken from skillet. Set aside. Cook chicken to 75°C (167°F) internal temperature.",
+      "Reduce heat to medium. Add diced onion to skillet. Cook 5-7 minutes until softened, starting a soffritto. Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in red wine. Deglaze skillet, scraping up any browned bits. Cook 2 minutes until wine slightly reduces.",
+      "Stir in crushed tomatoes, chicken broth, and a pinch of sugar. Season with salt and pepper. Bring sauce to a simmer.",
+      "Return seared chicken thighs to the skillet. Cover. Simmer 15-20 minutes, or until chicken is cooked through.",
+      "While chicken simmers, cook spaghetti according to package directions until al dente. Drain well.",
+      "Remove chicken from sauce. Stir in most of the fresh basil leaves into the sauce. Shred chicken into large chunks or keep whole.",
+      "Add cooked spaghetti to the sauce. Toss to coat. Return chicken chunks or whole pieces to the pan, or plate separately.",
+      "Serve pasta immediately. Top each portion with chicken. Garnish with halved cherry tomatoes, remaining fresh basil leaves, and grated Parmesan cheese."
+    ],
+    "notes": [
+      "For a spicier kick, add a pinch of red pepper flakes with the garlic.",
+      "Freshly grated Parmesan cheese enhances the flavor significantly."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for the onion and garlic base)",
+      "Al dente (for pasta)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 845,
+      "cholesterol_mg": 146,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 51,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 700,
+      "total_carbs_g": 92.3,
+      "total_fat_g": 25.7,
+      "total_sugars_g": 11.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 130,
+      "cholesterol_mg": 22.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.9,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 107.8,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 4,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 23,
+      "protein": 102,
+      "saturated_fat": 35,
+      "sodium": 30,
+      "total_carbs": 34,
+      "total_fat": 33
+    },
+    "serving_size_g": 649,
+    "total_recipe_weight_g": 2596
+  },
+  {
+    "recipe_name": "Crispy Potato and Bacon Skillet with Fried Eggs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_potato_and_bacon_skillet_with_fried_eggs_20250701_144133_394ab558.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:41:34.261054000Z",
+    "selected_ingredients": [
+      "potato",
+      "onion",
+      "bacon",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of the Crispy Potato and Bacon Skillet is presented on a clean, round white porcelain dinner plate. The base is a generous, slightly mounded portion of golden-brown, pan-fried potato cubes, mixed with translucent, caramelized thin slices of onion and crispy, dark brown bacon lardons. The potatoes show a distinct crispy exterior with a tender interior. Centrally placed on top of the hash is a perfectly fried egg, sunny-side up, with a vibrant, glossy yellow yolk and a firm, opaque white. The dish is garnished with a generous scattering of freshly chopped bright green parsley over the egg and hash, providing a fresh contrast. The overall color palette is warm and inviting, featuring golden browns, amber, and the bright yellow and white of the egg, accented by fresh green. The plate is set on a simple wooden table surface. Standard silver flatware, a fork and knife, are placed neatly beside the plate on a neutral cotton napkin. Natural, even lighting highlights the textures and colors of the food. The background is softly blurred, suggesting a casual yet refined bistro setting, maintaining focus on the dish itself.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Dice potatoes into 1.5 cm cubes.",
+      "Place diced potatoes in a large pot. Cover with cold water. Add a pinch of salt. Bring to a boil.",
+      "Boil potatoes for 5 minutes. Drain thoroughly. Spread potatoes on a clean kitchen towel to dry completely.",
+      "Cut bacon into 1 cm lardons. Heat a large heavy-bottomed skillet over medium heat.",
+      "Add bacon lardons to the skillet. Cook, stirring occasionally, until crispy and golden. Remove bacon with a slotted spoon. Reserve rendered bacon fat in the skillet.",
+      "Thinly slice onions. Add olive oil to the skillet with the bacon fat. Add sliced onions. Sauté onions over medium heat for 8-10 minutes until softened and lightly caramelized.",
+      "Increase heat to medium-high. Add dried potato cubes to the skillet. Cook, stirring occasionally, for 15-20 minutes until potatoes are golden brown and crispy on all sides. Season with salt and black pepper.",
+      "Return cooked bacon to the skillet with the potatoes and onions. Stir to combine. Keep warm.",
+      "In a separate non-stick pan, fry four eggs sunny-side up, one at a time, to your desired doneness, ensuring yolks remain runny. Cook until egg whites are set and yolks are warm and fluid. Ensure internal temperature reaches 75°C (167°F) for safe consumption.",
+      "Finely chop fresh parsley.",
+      "To serve, spoon a generous portion of the crispy potato and bacon mixture onto each plate. Carefully place one fried egg on top of each portion. Garnish generously with chopped fresh parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 506,
+      "cholesterol_mg": 220,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 24.9,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 815,
+      "total_carbs_g": 51.8,
+      "total_fat_g": 22.5,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 5.7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 187,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 25,
+      "protein": 50,
+      "saturated_fat": 31,
+      "sodium": 35,
+      "total_carbs": 19,
+      "total_fat": 29
+    },
+    "serving_size_g": 435.5,
+    "total_recipe_weight_g": 1742
+  },
+  {
+    "recipe_name": "Mushroom Parmesan Fettuccine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom_parmesan_fettuccine_20250701_144128_8901c00e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:41:29.329990000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mushroom",
+      "garlic",
+      "onion",
+      "parmesan"
+    ],
+    "complexity": "simple",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A generous, comforting portion of golden-brown fettuccine is loosely piled into a rustic, shallow ceramic bowl. The pasta strands are perfectly coated in a light, emulsified sauce. Thickly sliced, sautéed mushrooms, displaying rich brown hues and varied textures, are visibly integrated throughout the dish. Subtle bits of finely diced onion and minced garlic are present within the sauce. The pasta is topped with a light dusting of freshly grated Parmesan cheese and a vibrant sprinkle of chopped fresh parsley. The bowl rests on a well-worn, warm-toned wooden dining table. A simple, off-white ceramic plate and a casually folded linen napkin lie nearby. Lighting is soft, warm, and natural, evoking a cozy kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Offer extra grated Parmesan cheese at the table for individual preference.",
+      "Pair with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Fettuccine",
+        "quantity": "400g"
+      },
+      {
+        "name": "Mixed mushrooms (cremini, shiitake, oyster)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g, plus extra for serving"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cook fettuccine according to package directions. Reserve 250ml pasta water. Drain pasta.",
+      "While pasta cooks, slice mushrooms thickly. Finely dice onion. Mince garlic.",
+      "Heat olive oil and butter in a large skillet over medium heat.",
+      "Add diced onion. Sauté for 5 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms. Increase heat to medium-high. Cook for 8-10 minutes, stirring occasionally, until golden and moisture evaporates.",
+      "Pour in 100ml reserved pasta water. Scrape up any browned bits from the pan.",
+      "Add cooked fettuccine to the skillet. Add grated Parmesan cheese.",
+      "Toss continuously. Add more reserved pasta water gradually (up to 150ml total) as needed. Sauce should emulsify and coat pasta.",
+      "Season with salt and black pepper to taste.",
+      "Stir in chopped fresh parsley. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the amount of reserved pasta water to achieve your desired sauce consistency.",
+      "Use fresh, high-quality Parmesan cheese for the best flavor and melting properties."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecare"
+    ]
+  },
+  {
+    "recipe_name": "Braised Pork Belly with Carrot Puree",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_pork_belly_with_carrot_puree_20250701_144125_d9b71e00.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:41:26.045976000Z",
+    "selected_ingredients": [
+      "pork",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate, set on a simple wooden table. A single portion features two to three generous, tender braised pork belly chunks, about 4-5cm cubes, with a deep mahogany, glossy exterior from the reduced braising sauce. The pork is arranged naturally beside a vibrant, smooth mound of bright orange carrot puree, providing striking color contrast. A shimmering pool of dark, viscous braising sauce surrounds the pork and lightly touches the puree. Finely chopped fresh green chives garnish the dish, adding a delicate touch of color and freshness. The presentation is refined yet approachable, with ample negative space. Natural, even lighting illuminates textures and colors. A simple cotton napkin rests beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "cultural_origin": "Modern Fusion",
+    "hero_ingredient": "Pork Belly",
+    "ingredients": [
+      {
+        "name": "Pork Belly",
+        "quantity": "600g, skin on, cut into 4-5cm cubes"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "500g, peeled, roughly chopped"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, roughly chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, smashed"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "3cm piece, sliced"
+      },
+      {
+        "name": "Star Anise",
+        "quantity": "2 pods"
+      },
+      {
+        "name": "Cinnamon Stick",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Rice Wine (Shaoxing or dry sherry)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Honey or Maple Syrup",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "15g, finely chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat pork belly cubes dry. Season generously with salt and pepper.",
+      "Heat olive oil in a heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear pork belly on all sides until golden brown and crisp. Remove pork from pot.",
+      "Drain excess fat, leaving about 15ml in the pot.",
+      "Add chopped onion, garlic, and ginger to the pot. Sauté until fragrant, about 3 minutes.",
+      "Deglaze with rice wine, scraping up any browned bits. Cook until wine mostly evaporates.",
+      "Add soy sauce, star anise, cinnamon stick, chicken stock, and honey/maple syrup. Bring to a simmer.",
+      "Return seared pork belly to the pot. Ensure pork is mostly submerged. Add more stock if needed.",
+      "Reduce heat to low. Cover and braise for 2.5 to 3 hours, or until pork is very tender.",
+      "While pork braises, steam or boil chopped carrots until very tender.",
+      "Drain carrots. Transfer to a blender or food processor. Add butter and a pinch of salt.",
+      "Blend until smooth and creamy. Add a splash of water or stock if needed for desired consistency. Keep warm.",
+      "Once pork is tender, carefully remove pork belly cubes from the pot. Set aside.",
+      "Strain the braising liquid into a saucepan. Discard solids.",
+      "Skim excess fat from the braising liquid. Bring to a boil and reduce until thickened to a glossy sauce consistency.",
+      "To serve, spoon a generous dollop of carrot puree onto each plate.",
+      "Place 2-3 pieces of braised pork belly next to the puree.",
+      "Drizzle reduced braising sauce over the pork belly.",
+      "Garnish with chopped fresh chives."
+    ],
+    "notes": [
+      "Ensure pork belly is very tender and easily pierced with a fork.",
+      "The braising liquid can be made ahead and refrigerated. Skim solidified fat easily when cold."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.71,
+      "calories": 994.75,
+      "cholesterol_mg": 151.13,
+      "dietary_fiber_g": 4.66,
+      "protein_g": 17.82,
+      "saturated_fat_g": 33.99,
+      "sodium_mg": 1071.39,
+      "total_carbs_g": 23.88,
+      "total_fat_g": 89.92,
+      "total_sugars_g": 14.22,
+      "trans_fat_g": 0.24
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.32,
+      "calories": 195.91,
+      "cholesterol_mg": 29.76,
+      "dietary_fiber_g": 0.92,
+      "protein_g": 3.51,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 211.01,
+      "total_carbs_g": 4.7,
+      "total_fat_g": 17.71,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50.38,
+      "dietary_fiber": 16.64,
+      "protein": 35.64,
+      "saturated_fat": 169.95,
+      "sodium": 46.58,
+      "total_carbs": 8.68,
+      "total_fat": 115.28
+    },
+    "serving_size_g": 507.75,
+    "total_recipe_weight_g": 2031
+  }
+]

@@ -1,0 +1,681 @@
+[
+  {
+    "recipe_name": "Slow-Cooked Beef and Mushroom Ragu",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_and_mushroom_ragu_20250701_151746_1102bb8e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:17:46.846697000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "mushroom",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Slow-Cooked Beef and Mushroom Ragu is presented in a deep, clean white porcelain bowl or plate, showcasing the rich, reddish-brown sauce. Tender, shredded beef chunks are generously coated in the thick ragu, interspersed with earthy sliced cremini mushrooms and soft diced onion. A vibrant sprinkle of freshly chopped green parsley garnishes the top, adding a pop of color and freshness. The ragu is served over a bed of golden, al dente pappardelle pasta, allowing the sauce to cling beautifully. The overall composition is natural and inviting, with moderate negative space. The dish sits on a simple wooden table surface in a modern bistro setting, accompanied by a white cotton napkin and standard flatware. Natural, even lighting illuminates the scene, highlighting the textures and deep colors of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with fresh pappardelle or tagliatelle pasta, or creamy polenta.",
+      "Offer grated Parmigiano Reggiano cheese for topping.",
+      "Serve with crusty Italian bread to sop up the sauce."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef Chuck",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Diced Tomatoes (canned)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red Wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Trim beef chuck. Cut into 4-5 cm thick chunks. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef from pot. Set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook until mushrooms release their liquid and brown, about 7-8 minutes.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return seared beef to the pot. Add diced tomatoes and beef broth. Bring to a gentle simmer.",
+      "Cover the pot. Transfer to a preheated oven at 160°C (325°F). Braise for 2.5 to 3 hours, or until beef is very tender.",
+      "Remove pot from oven. Take beef out. Shred beef chunks using two forks. Return shredded beef to the ragu sauce.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Serve hot over fresh pasta or creamy polenta. Garnish with chopped fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 726,
+      "cholesterol_mg": 178,
+      "dietary_fiber_g": 4,
+      "protein_g": 52,
+      "saturated_fat_g": 16.5,
+      "sodium_mg": 505,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 46.5,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117,
+      "cholesterol_mg": 28.6,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.4,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 81.1,
+      "total_carbs_g": 2.4,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 14,
+      "protein": 104,
+      "saturated_fat": 83,
+      "sodium": 22,
+      "total_carbs": 5,
+      "total_fat": 60
+    },
+    "serving_size_g": 622.5,
+    "total_recipe_weight_g": 2490
+  },
+  {
+    "recipe_name": "Classic Slow-Cooked Beef Ragu with Pappardelle and Roasted Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_slow-cooked_beef_ragu_with_pappardelle_and_roasted_broccoli_20250701_151732_5de3dff2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:17:32.878013000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "garlic",
+      "pasta",
+      "broccoli",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of Classic Slow-Cooked Beef Ragu is presented in a wide, shallow white porcelain bowl. The golden pappardelle pasta is coated in a rich, deep red-brown ragu, with visible, tender chunks of slow-cooked beef. A few vibrant green basil leaves are scattered over the top. Freshly grated Parmesan cheese creates a light, snowy layer. Roasted broccoli florets, displaying a vibrant green hue with hints of char, are arranged neatly beside the pasta within the bowl, adding a contrasting texture and color. The dish is set on a simple wooden table, accompanied by a fork, a knife, and a folded cotton napkin, all under soft, natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for soaking up the sauce",
+      "Offer extra grated Parmesan cheese at the table"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Boneless beef chuck",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80 grams"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 5 cm chunks. Season generously with salt and pepper.",
+      "Heat 30 ml olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef chunks in batches until browned on all sides. Remove beef and set aside.",
+      "Dice onion, carrot, and celery (soffritto). Add remaining 30 ml olive oil to the pot. Add diced vegetables and cook over medium heat for 8-10 minutes until softened and translucent. Mince garlic, add to pot, and cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and reduce by half.",
+      "Return beef to the pot. Add crushed tomatoes and beef stock. Bring to a gentle simmer. Cover and reduce heat to low. Cook for 2.5-3 hours, or until beef is fork-tender. Stir occasionally.",
+      "While ragu cooks, preheat oven to 200°C. Toss broccoli florets with a drizzle of olive oil, salt, and pepper. Spread on a baking sheet. Roast for 15-20 minutes until tender-crisp and slightly charred.",
+      "Once beef is tender, use two forks to shred the beef into smaller pieces within the sauce. Stir well. Adjust seasoning as needed.",
+      "Cook pappardelle according to package directions in salted boiling water until al dente. Drain, reserving 125 ml pasta water.",
+      "Add drained pasta to the ragu. Toss to coat thoroughly. Add a splash of reserved pasta water if needed to loosen the sauce.",
+      "Serve immediately. Garnish each portion with freshly grated Parmesan cheese and fresh basil leaves. Serve roasted broccoli alongside."
+    ],
+    "notes": [
+      "For a richer flavor, allow the ragu to rest overnight in the refrigerator before reheating and serving.",
+      "The longer the ragu simmers, the more tender the beef and flavorful the sauce will be."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1262,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 9.83,
+      "protein_g": 80.87,
+      "saturated_fat_g": 18.03,
+      "sodium_mg": 1306,
+      "total_carbs_g": 102.56,
+      "total_fat_g": 52.22,
+      "total_sugars_g": 12.49,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 157,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.22,
+      "protein_g": 10.06,
+      "saturated_fat_g": 2.24,
+      "sodium_mg": 163,
+      "total_carbs_g": 12.76,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1.55,
+      "trans_fat_g": 0.15
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.53,
+      "dietary_fiber": 35.09,
+      "protein": 161.74,
+      "saturated_fat": 90.15,
+      "sodium": 56.79,
+      "total_carbs": 37.29,
+      "total_fat": 66.94
+    },
+    "serving_size_g": 803.75,
+    "total_recipe_weight_g": 3215
+  },
+  {
+    "recipe_name": "Grilled Pork Tenderloin with Fresh Peach and Red Onion Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_grilled_pork_tenderloin_with_fresh_peach_and_red_onion_salsa_20250701_151725_12d3b979.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:17:26.125158000Z",
+    "selected_ingredients": [
+      "onion",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "California cuisine, Fast",
+    "visual_description": "A single portion of grilled pork tenderloin is presented on a clean, round white porcelain plate. The pork is cut into thick, juicy medallions with visible char marks from grilling, arranged slightly overlapping but not fanned. Beside the pork, a generous spoonful of vibrant salsa is placed, showcasing diced ripe yellow and orange peaches, finely minced red onion, and bright green chopped cilantro. The salsa provides a fresh, colorful contrast. Alongside, bright green roasted asparagus spears are neatly arranged. The overall presentation is clean and inviting, with moderate negative space. The dish sits on a simple light wooden table, accompanied by a folded white cotton napkin and standard modern flatware. Natural, even lighting highlights the fresh ingredients and appealing textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "California",
+    "cultural_origin": "California",
+    "cultural_serving_suggestions": [
+      "Serve with a light green salad",
+      "Pair with a side of quinoa or couscous"
+    ],
+    "hero_ingredient": "Pork Tenderloin",
+    "ingredients": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Ripe Peaches",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Asparagus Spears",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat pork tenderloin dry. Season generously with salt and pepper.",
+      "Heat grill or grill pan to medium-high.",
+      "Grill pork tenderloin for 15-20 minutes, turning occasionally, until internal temperature reaches 75°C. Remove from heat. Rest 5 minutes.",
+      "While pork rests, prepare salsa. Dice peaches into 1 cm cubes. Finely mince half of the red onion. Roughly chop cilantro.",
+      "Combine diced peaches, minced red onion, and chopped cilantro in a bowl. Squeeze lime juice over mixture. Stir gently. Season with a pinch of salt.",
+      "Preheat oven to 200°C. Toss asparagus with 15 ml olive oil, minced garlic, salt, and pepper.",
+      "Roast asparagus for 8-10 minutes, until tender-crisp.",
+      "Slice rested pork tenderloin into thick medallions. Do not fan out.",
+      "Arrange pork medallions on serving plates. Spoon fresh peach and red onion salsa beside the pork. Place roasted asparagus alongside. Serve immediately."
+    ],
+    "notes": [
+      "Use firm but ripe peaches for best texture in the salsa."
+    ],
+    "traditional_techniques": [
+      "Grilling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 343.2,
+      "cholesterol_mg": 109.5,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 39.7,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 88,
+      "total_carbs_g": 15.7,
+      "total_fat_g": 14.6,
+      "total_sugars_g": 9.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 90.1,
+      "cholesterol_mg": 28.8,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 10.4,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 23.1,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36.5,
+      "dietary_fiber": 15.4,
+      "protein": 79.3,
+      "saturated_fat": 17.9,
+      "sodium": 3.8,
+      "total_carbs": 5.7,
+      "total_fat": 18.7
+    },
+    "serving_size_g": 380.9,
+    "total_recipe_weight_g": 1523.6
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs and Pan-Seared Chicken with Butternut Squash Puree and Tomato Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_and_pan-seared_chicken_with_butternut_squash_puree_and_tomato_jus_20250701_151638_f6da7db4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:16:39.166129000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "garlic",
+      "squash",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of the dish is centered on a clean, round white porcelain dinner plate, set upon a simple light wooden table. A perfectly seared, golden-brown chicken breast, skin crisp, rests beside a rich, dark brown braised beef short rib, tender and whole. Beside the meats, a vibrant, smooth orange butternut squash puree is artfully swiped across the plate. A glossy, deep reddish-brown tomato jus is generously spooned around the protein components, catching the light. Freshly chopped bright green parsley sprinkles over the meats and jus, adding a pop of color. The arrangement is professional and balanced, with moderate negative space. The setting includes a folded white cotton napkin to the left of the plate and a fork and knife to the right, all under natural, even lighting from the side, creating a modern bistro atmosphere with a soft, inviting glow.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Boneless Beef Short Ribs",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Chicken Breasts, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Butternut Squash",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Roma Tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "8"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery Stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Red Wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh Rosemary Sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Season beef short ribs generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large Dutch oven over medium-high heat. Sear ribs on all sides until deeply browned. Remove ribs. Set aside.",
+      "Dice onion, carrots, and celery into 1 cm pieces. Add to Dutch oven. Sauté until softened, about 5 minutes.",
+      "Mince 4 garlic cloves. Add to vegetables. Cook 1 minute until fragrant.",
+      "Stir in tomato paste. Cook 2 minutes.",
+      "Deglaze with red wine, scraping up browned bits. Reduce by half.",
+      "Return short ribs to Dutch oven. Add beef stock, thyme, rosemary, and bay leaves. Bring to a simmer.",
+      "Cover Dutch oven. Transfer to preheated oven. Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Remove short ribs from Dutch oven. Strain braising liquid through a fine-mesh sieve into a saucepan. Discard solids. Skim fat from liquid.",
+      "Return liquid to heat. Reduce by half to create the tomato jus. Season to taste.",
+      "Peel and dice butternut squash into 2 cm cubes. Toss with 15 ml olive oil, salt, and pepper.",
+      "Roast squash on a baking sheet at 200°C for 20-25 minutes, until tender and lightly caramelized.",
+      "Mince remaining 4 garlic cloves. Melt 20 g butter in a small saucepan. Add garlic. Cook 1 minute.",
+      "Transfer roasted squash to a food processor. Add garlic butter. Process until smooth puree forms. Season with salt and pepper.",
+      "Pat chicken breasts dry. Season with salt and pepper.",
+      "Heat a large skillet over medium-high heat. Add 15 g butter and 15 ml olive oil.",
+      "Place chicken skin-side down in skillet. Sear for 8-10 minutes until golden brown and crispy. Flip chicken.",
+      "Cook for another 5-7 minutes, or until internal temperature reaches 75°C. Let rest 5 minutes.",
+      "To plate, spoon butternut squash puree onto each plate. Place a braised short rib alongside. Add a pan-seared chicken breast.",
+      "Spoon tomato jus generously over and around the meats. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "The short ribs can be braised ahead of time and reheated gently in the jus."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1440,
+      "cholesterol_mg": 371.88,
+      "dietary_fiber_g": 8.86,
+      "protein_g": 111.47,
+      "saturated_fat_g": 31.91,
+      "sodium_mg": 1310.02,
+      "total_carbs_g": 44.53,
+      "total_fat_g": 86.01,
+      "total_sugars_g": 19.22,
+      "trans_fat_g": 2.18
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148,
+      "cholesterol_mg": 38.14,
+      "dietary_fiber_g": 0.91,
+      "protein_g": 11.43,
+      "saturated_fat_g": 3.27,
+      "sodium_mg": 134.36,
+      "total_carbs_g": 4.57,
+      "total_fat_g": 8.82,
+      "total_sugars_g": 1.97,
+      "trans_fat_g": 0.22
+    },
+    "daily_value_percentages": {
+      "cholesterol": 123.96,
+      "dietary_fiber": 31.66,
+      "protein": 222.93,
+      "saturated_fat": 159.56,
+      "sodium": 56.96,
+      "total_carbs": 16.19,
+      "total_fat": 110.26
+    },
+    "serving_size_g": 975,
+    "total_recipe_weight_g": 3900
+  },
+  {
+    "recipe_name": "Linguine with Artichokes and Sun-Dried Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_linguine_with_artichokes_and_sun-dried_tomatoes_20250701_151552_f21f36c3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:15:52.790848000Z",
+    "selected_ingredients": [
+      "pasta",
+      "artichoke",
+      "sun dried tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Linguine is loosely twirled onto a clean, round white porcelain plate, forming a generous, elegant mound. Tender, pale green artichoke heart halves and vibrant, julienned sun-dried tomatoes are artfully nestled within and around the pasta, creating pops of color and texture. Freshly grated Parmesan cheese lightly dusts the dish, adding a subtle white contrast. Bright green, roughly chopped fresh parsley is scattered generously over the top for a final flourish. The dish sits on a simple light wooden table surface, accompanied by a neatly folded white cotton napkin and standard silver flatware. Natural, soft, even lighting illuminates the dish from above, highlighting its rich textures and inviting colors. The background is subtly blurred, hinting at a modern, casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Artichoke",
+    "ingredients": [
+      {
+        "name": "Linguine",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Jarred artichoke hearts in brine, drained and halved",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil, drained and julienned",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic, thinly sliced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh parsley, roughly chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon, zested and juiced",
+        "quantity": "1"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook linguine according to package directions until al dente. Reserve 250 ml of pasta cooking water before draining.",
+      "While pasta cooks, heat olive oil in a large skillet over medium heat.",
+      "Add thinly sliced garlic to the skillet. Sauté for 1 minute until fragrant. Do not brown.",
+      "Add halved artichoke hearts and julienned sun-dried tomatoes to the skillet. Sauté for 3-4 minutes, stirring occasionally.",
+      "Pour in vegetable broth and lemon juice. Bring to a gentle simmer. Cook for 2 minutes.",
+      "Add cooked and drained linguine to the skillet. Toss to combine with the sauce.",
+      "Gradually add reserved pasta water, 60 ml at a time, while tossing until a light sauce forms and coats the pasta. The sauce should be glossy, not watery.",
+      "Stir in lemon zest and half of the chopped fresh parsley.",
+      "Remove from heat. Add half of the grated Parmesan cheese. Toss until melted and well combined.",
+      "Season with salt and freshly ground black pepper to taste.",
+      "Serve immediately, garnished with remaining fresh parsley and Parmesan cheese."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Emulsifying sauce with pasta water"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 680.5,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 9.6,
+      "protein_g": 27.2,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 964,
+      "total_carbs_g": 92.1,
+      "total_fat_g": 24.3,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 233.4,
+      "cholesterol_mg": 6.1,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 9.3,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 330.6,
+      "total_carbs_g": 31.6,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 6,
+      "dietary_fiber": 34,
+      "protein": 54,
+      "saturated_fat": 31,
+      "sodium": 42,
+      "total_carbs": 33,
+      "total_fat": 31
+    },
+    "serving_size_g": 291.5,
+    "total_recipe_weight_g": 1166
+  }
+]

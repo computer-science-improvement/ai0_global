@@ -1,0 +1,655 @@
+[
+  {
+    "recipe_name": "Seared Scallops, Tomato Consommé, Tagliolini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_scallops%2C_tomato_consomm%C3%A9%2C_tagliolini_20250626_234721_ba030194.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:47:22.345553000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "egg noodle"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, pristine white bone china plate holds an artfully composed modern European dish. Four perfectly seared scallops, boasting a golden-brown crust and pearlescent interior, are positioned as the focal point, slightly off-center. Beneath them, a delicate nest of freshly cooked, light yellow tagliolini is meticulously coiled. A small, vibrant pool of crystalline tomato consommé, reflecting a deep ruby hue, is poured around the base of the scallops. Beside this, a subtle, glossy smear of rich, deep amber caramelized onion puree adds a touch of earthy color and refined texture. A few finely snipped chives or a single, precisely placed microgreen provides a contrasting verdant accent. The composition is minimalist, with abundant negative space emphasizing the precision of each element. The plate rests on a cool grey veined marble surface. Dramatic, directional lighting casts soft shadows, highlighting the dish's textures and sophisticated simplicity. A pristine white linen napkin, folded into a precise triangle, and elegant, minimalist flatware are positioned beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Scallops",
+    "ingredients": [
+      {
+        "name": "Large sea scallops",
+        "quantity": "16"
+      },
+      {
+        "name": "Ripe San Marzano tomatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh tagliolini",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "5-6"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Microgreens or chives",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Tomato Consommé: Roughly chop tomatoes, basil, and garlic. Combine with thyme, salt, and pepper. Blend briefly. Place mixture in a fine-mesh sieve lined with cheesecloth over a bowl. Refrigerate for at least 4 hours, or overnight, to allow clear liquid to drip. Do not press. Gently warm consommé before serving.",
+      "Prepare Caramelized Onion Puree: Thinly slice onions. In a saucepan, melt 20g butter and 10ml olive oil over medium-low heat. Add onions and a pinch of sugar. Cook slowly for 45-60 minutes, stirring occasionally, until deeply caramelized and very tender. Add 50ml white wine; deglaze. Transfer onions to a blender. Add remaining 30g butter. Blend until perfectly smooth. Season with salt and pepper. Keep warm.",
+      "Cook Tagliolini: Bring a large pot of salted water to a rolling boil. Add fresh tagliolini. Cook for 2-3 minutes, or until al dente. Drain immediately. Toss with a drizzle of olive oil to prevent sticking.",
+      "Sear Scallops: Pat scallops very dry with paper towels. Season generously with salt and pepper. Heat remaining 40ml olive oil in a heavy-bottomed pan over high heat until shimmering. Place scallops in the hot pan, ensuring they do not touch. Sear for 2-3 minutes per side, until a deep golden-brown crust forms and scallops are cooked through (internal temperature 63°C/145°F). Do not overcrowd the pan; sear in batches if necessary.",
+      "Plate the Dish: Place a delicate coil of tagliolini slightly off-center on each plate. Arrange four seared scallops artfully around or on top of the tagliolini. Create a small, elegant smear of caramelized onion puree beside the scallops. Gently pour a small pool of warm tomato consommé around the base of the elements. Garnish with a few finely snipped chives or a single microgreen. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 463.4,
+      "cholesterol_mg": 55.7,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 20.9,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 221.8,
+      "total_carbs_g": 40,
+      "total_fat_g": 23.5,
+      "total_sugars_g": 12.4,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 81.3,
+      "cholesterol_mg": 9.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 3.7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 38.9,
+      "total_carbs_g": 7,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19,
+      "dietary_fiber": 20,
+      "protein": 42,
+      "saturated_fat": 41,
+      "sodium": 10,
+      "total_carbs": 15,
+      "total_fat": 30
+    },
+    "serving_size_g": 570.25,
+    "total_recipe_weight_g": 2281
+  },
+  {
+    "recipe_name": "Orange-Infused Shredded Pork with Roasted Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orange-infused_shredded_pork_with_roasted_root_vegetables_20250626_234425_276a5835.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:44:26.202859000Z",
+    "selected_ingredients": [
+      {
+        "name": "pork",
+        "comment": "It is already cooked. Pork Shoulder, Orange Peel,"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Pre cooked Pork Shoulder, Orange Peel, Salt, and Bay Leaf. Don’t make me cook the pork",
+    "visual_description": "A hearty portion of warm, shredded pork rests on a rustic, off-white ceramic plate. The pork, re-warmed and subtly infused with orange and bay, shows tender, moist strands. Its natural light brown color is inviting. Alongside the pork are generous, chunky pieces of roasted root vegetables. The potatoes are golden brown with some crispy edges. Carrots display their vibrant orange, slightly caramelized. Onion wedges are soft and translucent with browned edges. The arrangement is casual, piled naturally on the plate, suggesting comfort and home. A few flecks of fresh green parsley are scattered over the pork for a touch of color. The plate sits on a well-used wooden dining table. Warm, soft kitchen lighting illuminates the scene.",
+    "number_of_servings": 3,
+    "cuisine_type": "Rustic American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve directly from the cooking pan or a large serving platter.",
+      "Offer with a side of simple green salad.",
+      "Provide crusty bread for soaking up juices."
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pre-cooked Pork Shoulder",
+        "quantity": "500 g, shredded"
+      },
+      {
+        "name": "Orange Peel",
+        "quantity": "from 1 medium orange, removed in wide strips (avoid white pith)"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g, or to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2 g, freshly ground, or to taste"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g, peeled and cut into 2 cm chunks"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Yukon Gold)",
+        "quantity": "450 g, scrubbed and cut into 3 cm chunks"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "150 g, cut into 2 cm wedges"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, smashed"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped (for garnish, optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "On a large baking tray, combine carrots, potatoes, and onion wedges. Drizzle with olive oil. Season with 3g salt and 1g black pepper. Toss to coat.",
+      "Roast vegetables for 30-35 minutes. Stir halfway through. Vegetables should be tender and lightly browned.",
+      "While vegetables roast, prepare the pork. Place shredded pork in a large skillet over medium heat.",
+      "Add chicken broth, orange peel strips, and bay leaves to the skillet.",
+      "Bring to a gentle simmer. Cook for 10-15 minutes, stirring occasionally. Pork will absorb liquid and become very tender.",
+      "Remove orange peel and bay leaves from the pork mixture.",
+      "Season pork with remaining salt and black pepper. Taste and adjust seasoning.",
+      "Serve hot pork alongside roasted root vegetables. Garnish with fresh parsley if desired."
+    ],
+    "notes": [
+      "This recipe is designed for pre-cooked pork shoulder. If using raw pork, adjust cooking time significantly.",
+      "The orange peel provides subtle citrus notes, not an overpowering orange flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 690.82,
+      "cholesterol_mg": 133.33,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 51.11,
+      "saturated_fat_g": 9.68,
+      "sodium_mg": 1100.15,
+      "total_carbs_g": 43.39,
+      "total_fat_g": 34.46,
+      "total_sugars_g": 8.25,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120.39,
+      "cholesterol_mg": 23.23,
+      "dietary_fiber_g": 1.34,
+      "protein_g": 8.91,
+      "saturated_fat_g": 1.69,
+      "sodium_mg": 191.72,
+      "total_carbs_g": 7.56,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.44,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44.4,
+      "dietary_fiber": 27.5,
+      "protein": 102.2,
+      "saturated_fat": 48.4,
+      "sodium": 47.8,
+      "total_carbs": 15.8,
+      "total_fat": 44.2
+    },
+    "serving_size_g": 573.83,
+    "total_recipe_weight_g": 1721.5
+  },
+  {
+    "recipe_name": "Fermented Chili Chicken Bites with Crispy Rice Cakes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chili_chicken_bites_with_crispy_rice_cakes_20250626_233914_b78a34cf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:39:15.360779000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "chili"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a handcrafted ceramic plate in an earthy cream tone, reflecting a natural, minimalist aesthetic. Two golden-brown, pan-fried crispy rice cakes, about 1 cm thick, form the base on one side of the plate. Their surfaces are visibly textured and crisp. Alongside, irregularly cut, succulent chunks of caramelized chicken, approximately 2 cm cubes, are artfully arranged, showcasing their rich, reddish-brown color from the fermented chili marinade. A vibrant, glossy red chili sauce is lightly drizzled over the chicken and rice cakes, creating subtle trails. A scattering of bright green chopped cilantro leaves and thinly sliced scallion rings adds fresh color and natural garnish. The composition is clean and ingredient-focused, with ample white space on the plate. The background features a light, textured reclaimed wood surface and an undyed linen napkin in natural beige, with soft, diffused natural lighting illuminating the dish, highlighting its textures and colors without harsh shadows. The entire plate is visible, emphasizing a clean, unfussy presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Asian",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Fermented Chili Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cooked short-grain rice, cooled",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Homemade fermented red chili paste",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Scallions, thinly sliced",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2 cm cubes. Place in a bowl.",
+      "Add 30g fermented red chili paste, soy sauce, rice vinegar, sesame oil, salt, and pepper to chicken. Mix well. Marinate for 30 minutes at room temperature.",
+      "Form cooled cooked rice into 8 small, flat cakes, about 1 cm thick. Press firmly.",
+      "Heat a non-stick pan with a thin layer of cooking oil over medium-high heat.",
+      "Place rice cakes in the hot pan. Cook 4-5 minutes per side until golden brown and crispy. Remove and set aside.",
+      "Toss marinated chicken with cornstarch until lightly coated.",
+      "Add more cooking oil to the same pan if needed. Increase heat to high.",
+      "Add chicken cubes to the hot pan. Cook, stirring occasionally, until chicken is cooked through and lightly caramelized, about 6-8 minutes. Ensure internal temperature reaches 75°C (167°F).",
+      "In a small bowl, mix remaining 30g fermented red chili paste with 15ml hot water to create a thin sauce.",
+      "Arrange 2 crispy rice cakes on each plate. Top with cooked chicken chunks.",
+      "Drizzle chili sauce over chicken and rice cakes. Garnish with chopped cilantro and sliced scallions. Serve immediately."
+    ],
+    "notes": [
+      "Utilize chicken trimmings to render fat for cooking or to make a small, flavorful broth.",
+      "Use rice cooking water to nourish houseplants or for composting."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.8,
+      "calories": 260,
+      "cholesterol_mg": 94,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 17.6,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 506,
+      "total_carbs_g": 20,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 145,
+      "cholesterol_mg": 53,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 9.8,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 283,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31.3,
+      "dietary_fiber": 2.6,
+      "protein": 35.1,
+      "saturated_fat": 13.3,
+      "sodium": 22,
+      "total_carbs": 7.3,
+      "total_fat": 15.7
+    },
+    "serving_size_g": 178.8,
+    "total_recipe_weight_g": 715
+  },
+  {
+    "recipe_name": "Braised Pork Shoulder with Tomato and Orange",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_pork_shoulder_with_tomato_and_orange_20250626_233832_ad6d9656.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:38:33.043531000Z",
+    "selected_ingredients": [
+      "pork",
+      "tomato",
+      "garlic",
+      "chili",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "Pre purchased Pork Shoulder, Orange Peel, Salt, and Bay Leaf. cuisine",
+    "visual_description": "The braised pork shoulder is presented as large, tender chunks, not sliced, centered on a clean white porcelain dinner plate. The rich, glossy tomato-based sauce, flecked with bright red chili and tender carrot rounds, coats the pork generously. A few vibrant green chopped parsley leaves are scattered over the dish for a fresh contrast. The composition is balanced and inviting, with moderate negative space. Pork is in 4-5 cm irregular chunks. Carrots are cut into 2-3 cm thick rounds. Chili is finely sliced. The plate rests on a simple wooden table surface. A neatly folded cotton napkin is placed beside the plate. The setting includes standard modern flatware. Natural, even lighting illuminates the dish, highlighting its textures and colors. The background is minimally blurred, suggesting a casual bistro atmosphere with soft, warm tones, keeping the focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "cultural_serving_suggestions": [
+      "Crusty bread for dipping",
+      "Creamy mashed potatoes or polenta"
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "800g (cut into 4-5 cm chunks)"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g (canned)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves (minced)"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1 small (finely sliced)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large (peeled, cut into 2-3 cm thick rounds)"
+      },
+      {
+        "name": "Orange peel",
+        "quantity": "1 strip (from 1/4 of an orange)"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g (freshly ground)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g (chopped, for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat pork chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear pork chunks on all sides until deeply browned. Do in batches if needed. Remove pork and set aside.",
+      "Add carrots to the pot. Sauté for 5-7 minutes until slightly softened and lightly browned.",
+      "Add minced garlic and sliced chili. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken stock. Bring to a simmer, scraping up any browned bits.",
+      "Return pork to the pot. Add orange peel and bay leaves. Ensure pork is mostly submerged.",
+      "Bring to a gentle simmer. Cover the pot.",
+      "Transfer to a preheated oven at 160°C (320°F) or continue simmering gently on stovetop. Cook for 2-2.5 hours, or until pork is fork-tender.",
+      "Remove orange peel and bay leaves. Adjust seasoning if needed.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 590,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 48,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 669,
+      "total_carbs_g": 13.3,
+      "total_fat_g": 37.8,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 132,
+      "total_carbs_g": 2.6,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.7,
+      "dietary_fiber": 11.7,
+      "protein": 96.1,
+      "saturated_fat": 60.5,
+      "sodium": 29.1,
+      "total_carbs": 4.8,
+      "total_fat": 48.4
+    },
+    "serving_size_g": 506.3,
+    "total_recipe_weight_g": 2025
+  },
+  {
+    "recipe_name": "Cucumber and Herb Rice Salad with Chili-Lime Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cucumber_and_herb_rice_salad_with_chili-lime_chicken_20250626_233812_036e1bd0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:38:13.387338000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Thai-inspired rice salad is presented on a clean white porcelain plate. A mounded, colorful rice salad fills the main portion, featuring fluffy white jasmine rice with crisp diced cucumber, red bell pepper cubes, julienned carrots, and sliced red onion. Fresh green mint, cilantro, and green onions are tossed throughout, adding vibrant color. Small, golden-brown seared chicken breast chunks are neatly arranged beside the salad mound. Roasted peanuts are sprinkled over the salad for textural contrast. The dressing lightly coats all ingredients. The entire plate is visible with moderate negative space. The setting is a modern bistro: a simple wooden table surface, with chopsticks and a small clear bowl for extra dressing beside the plate. A neatly folded cotton napkin completes the authentic scene. Natural, even lighting highlights freshness.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with an extra bowl of chili-lime dressing on the side for individual adjustment.",
+      "Offer a small dish of dried chili flakes for those desiring extra heat.",
+      "Traditionally eaten with a spoon and fork, or chopsticks for the chicken."
+    ],
+    "hero_ingredient": "Cucumber",
+    "ingredients": [
+      {
+        "name": "Jasmine rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large (about 200 g)"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 (about 150 g)"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium (about 100 g)"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 small (about 50 g)"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh cilantro leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "3 stalks"
+      },
+      {
+        "name": "Roasted peanuts",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh red chilies",
+        "quantity": "2-3 (Thai bird's eye)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse jasmine rice. Cook rice with water in a rice cooker or pot according to package directions. Let cool completely.",
+      "For the dressing, finely mince fresh red chilies and garlic. In a small bowl, combine fish sauce, lime juice, brown sugar, minced chilies, and minced garlic. Stir until sugar dissolves. Taste and adjust seasoning.",
+      "Pat chicken breast dry. Season with salt. Heat vegetable oil in a large skillet over medium-high heat. Sear chicken for 5-7 minutes per side until cooked through. Internal temperature must reach 75°C (167°F). Remove from skillet. Rest for 5 minutes. Slice into 1 cm thick pieces or small chunks.",
+      "Dice cucumber into 1 cm cubes. Dice red bell pepper into 1 cm cubes. Julienne carrot into thin strips. Thinly slice red onion.",
+      "Roughly chop mint leaves, cilantro leaves, and green onions. Roughly chop roasted peanuts.",
+      "In a large mixing bowl, combine cooled rice, diced cucumber, diced red bell pepper, julienned carrot, sliced red onion, chopped mint, chopped cilantro, and chopped green onions.",
+      "Pour dressing over the rice and vegetable mixture. Toss gently to combine all ingredients evenly.",
+      "Divide the rice salad among four serving plates. Arrange sliced chicken pieces beside or on top of each salad portion. Garnish with extra fresh herbs and a few chopped peanuts."
+    ],
+    "notes": [
+      "Ensure rice is completely cooled before mixing to prevent sogginess and maintain texture.",
+      "Adjust chili quantity in dressing based on desired spice level.",
+      "For added flavor, marinate chicken in a small amount of fish sauce and lime juice before searing."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.9,
+      "calories": 456,
+      "cholesterol_mg": 53,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 28.4,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 2130,
+      "total_carbs_g": 57.5,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 10.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 115,
+      "cholesterol_mg": 13,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.2,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 536,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 19,
+      "protein": 57,
+      "saturated_fat": 10,
+      "sodium": 93,
+      "total_carbs": 21,
+      "total_fat": 16
+    },
+    "serving_size_g": 398,
+    "total_recipe_weight_g": 1590
+  }
+]

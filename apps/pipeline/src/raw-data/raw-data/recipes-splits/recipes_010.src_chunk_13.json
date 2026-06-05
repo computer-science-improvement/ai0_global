@@ -1,0 +1,596 @@
+[
+  {
+    "recipe_name": "Pollo alla Cacciatora",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_20250713_125629_b064f94c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T12:56:29.732534000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented on a wide, matte white porcelain plate. Two whole, bone-in chicken thighs are stacked slightly in the center, featuring deeply browned, caramelized skin. A thick, rustic sauce covers the base of the plate, filled with visible small cubes of orange carrots, green celery, and translucent onions. Whole, dark purple kalamata olives are nestled within the vibrant red tomato sauce. A light dusting of bright green chopped parsley and a single fresh rosemary sprig garnish the top. Two thick batons of grilled sourdough bread lean against the side of the chicken. The lighting is natural and soft, emphasizing the glossy texture of the braised sauce and the crispness of the chicken skin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with toasted sourdough bread to soak up the sauce",
+      "Accompany with a glass of medium-bodied Italian red wine",
+      "Place on a bed of soft, buttery polenta"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine (Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide braising pan over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is deep golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add onion, carrot, and celery to the remaining fat.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in garlic, rosemary, and sage. Cook for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pan to deglaze.",
+      "Simmer wine for 3 minutes until reduced by half.",
+      "Add crushed tomatoes and stir to combine.",
+      "Place chicken thighs back into the sauce.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in olives and simmer uncovered for 5 minutes.",
+      "Remove rosemary sprigs before serving.",
+      "Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Always use a meat thermometer to ensure chicken reaches the safe internal temperature of 75°C",
+      "Browning the skin thoroughly at the start is essential for the final texture",
+      "The sauce should be thick and chunky, not watery"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1604,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 428,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 83,
+      "saturated_fat": 43,
+      "sodium": 70,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Tuscan Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken_pasta_20250713_124431_07cc2ee7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T12:44:32.050058000Z",
+    "selected_ingredients": [
+      "garlic",
+      "tomato",
+      "chicken",
+      "oregano",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Tuscan Chicken Pasta is presented on a clean, white porcelain dinner plate, centered on a simple wooden table surface in a modern bistro setting. The rigatoni pasta is generously coated in a rich, rustic red-orange tomato sauce, infused with oregano and garlic. Tender, seared chicken breast, cut into thick chunks, is nestled amidst the pasta and sauce. Diced red bell peppers and onions are visible within the sauce, adding vibrant color and texture. A sprinkle of fresh, finely chopped oregano leaves garnishes the dish, providing a contrasting green. Freshly grated Parmesan cheese lightly dusts the top. The overall presentation is inviting and abundant, with moderate negative space. A folded cotton napkin and traditional silver flatware are placed beside the plate. Lighting is natural and even, highlighting the dish as the focal point with a soft, blurred background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the delicious sauce.",
+      "Offer additional grated Parmesan cheese at the table for individual preference.",
+      "Pair with a light-bodied Italian red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Dry white wine (e.g., Pinot Grigio)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh oregano or basil, chopped",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm thick chunks. Season chicken with salt and black pepper.",
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat. Add chicken chunks. Sear 3-4 minutes per side until golden brown. Remove chicken from skillet. Set aside.",
+      "Add diced onion and red bell pepper to the skillet. Cook 5-7 minutes until softened, stirring occasionally.",
+      "Add minced garlic to the skillet. Cook 1 minute until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the skillet.",
+      "Stir in crushed tomatoes, chicken broth, and dried oregano. Bring the sauce to a gentle simmer.",
+      "Return seared chicken to the skillet. Reduce heat to low. Cover. Simmer 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "While chicken simmers, cook rigatoni pasta according to package directions until al dente. Drain pasta.",
+      "Add drained pasta to the skillet with the sauce and chicken. Toss to coat all ingredients evenly.",
+      "Serve immediately. Garnish each portion with fresh chopped oregano or basil and grated Parmesan cheese."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust salt and pepper to taste before serving."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for sautéing aromatics)",
+      "Braising (for simmering chicken in sauce)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 778,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 7.15,
+      "protein_g": 44.81,
+      "saturated_fat_g": 5.24,
+      "sodium_mg": 584,
+      "total_carbs_g": 90.66,
+      "total_fat_g": 22.91,
+      "total_sugars_g": 11.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125.27,
+      "cholesterol_mg": 27.99,
+      "dietary_fiber_g": 1.15,
+      "protein_g": 7.21,
+      "saturated_fat_g": 0.84,
+      "sodium_mg": 94,
+      "total_carbs_g": 14.59,
+      "total_fat_g": 3.69,
+      "total_sugars_g": 1.84,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 26,
+      "protein": 90,
+      "saturated_fat": 26,
+      "sodium": 25,
+      "total_carbs": 33,
+      "total_fat": 29
+    },
+    "serving_size_g": 621,
+    "total_recipe_weight_g": 2485
+  },
+  {
+    "recipe_name": "Tomato and Mozzarella Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato_and_mozzarella_salad_20250713_120955_67e3c2a5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T12:09:55.491876000Z",
+    "selected_ingredients": [
+      "tomato",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A vibrant Tomato and Mozzarella Salad is casually arranged on a simple, white ceramic plate with a slight imperfection, set on a well-used wooden dining table. Thick slices of ripe red tomatoes are interspersed with irregularly torn pieces of creamy white fresh mozzarella. Bright green basil leaves are scattered generously over the top, their vibrant color contrasting with the red and white. A glistening drizzle of dark balsamic vinegar and golden extra virgin olive oil coats the ingredients. The components are naturally overlapping, filling the plate without overcrowding, showcasing their fresh textures. A standard fork rests beside the plate on a casually placed cloth napkin. The background is a relaxed family dining area with a lived-in atmosphere, suggesting a comforting home meal.",
+    "number_of_servings": 2,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve as an antipasto or a light lunch.",
+      "Best enjoyed with fresh, crusty bread to soak up the olive oil and tomato juices."
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh Mozzarella",
+        "quantity": "125g"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Balsamic Vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Wash tomatoes. Slice medium tomatoes into thick rounds. If using cherry tomatoes, halve them.",
+      "Drain mozzarella. Tear or slice mozzarella into irregular pieces.",
+      "Arrange tomato slices and mozzarella pieces casually on a serving plate. Allow them to overlap.",
+      "Scatter fresh basil leaves generously over the tomatoes and mozzarella.",
+      "Drizzle extra virgin olive oil evenly over the salad.",
+      "Drizzle balsamic vinegar over the salad.",
+      "Season generously with sea salt and freshly ground black pepper."
+    ],
+    "notes": [
+      "Use the ripest, freshest tomatoes available for the best flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 351.2,
+      "cholesterol_mg": 49.4,
+      "dietary_fiber_g": 2.52,
+      "protein_g": 15.83,
+      "saturated_fat_g": 10.65,
+      "sodium_mg": 399.5,
+      "total_carbs_g": 10.65,
+      "total_fat_g": 27.7,
+      "total_sugars_g": 7.04,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120.7,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 0.87,
+      "protein_g": 5.44,
+      "saturated_fat_g": 3.66,
+      "sodium_mg": 137.3,
+      "total_carbs_g": 3.66,
+      "total_fat_g": 9.52,
+      "total_sugars_g": 2.42,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.5,
+      "dietary_fiber": 9,
+      "protein": 31.7,
+      "saturated_fat": 53.2,
+      "sodium": 17.4,
+      "total_carbs": 3.9,
+      "total_fat": 35.5
+    },
+    "serving_size_g": 291,
+    "total_recipe_weight_g": 582
+  },
+  {
+    "recipe_name": "Caprese Stuffed Chicken Breast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caprese_stuffed_chicken_breast_20250713_120320_3eb2d677.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T12:03:20.760108000Z",
+    "selected_ingredients": [
+      "tomato",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single seared and baked chicken breast is centered on a clean white porcelain dinner plate. The chicken is plump and golden-brown, with a crispy exterior. A slight opening reveals the vibrant filling of melted white mozzarella, bright red halved cherry tomatoes, and scattered fresh green basil leaves. The chicken is presented whole, showcasing its cooked form. A thin drizzle of dark balsamic glaze elegantly garnishes the chicken. The plate sits on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. The lighting is natural and even, highlighting the dish with a soft glow. The background is minimal, suggesting a modern bistro atmosphere, keeping the focus entirely on the inviting, perfectly cooked chicken.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple side of pasta tossed in olive oil and garlic",
+      "Accompany with a fresh green salad with a light vinaigrette",
+      "Offer crusty Italian bread for dipping"
+    ],
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large handful (approx. 30g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Balsamic glaze",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Pat chicken breasts dry. Butterfly each chicken breast by slicing horizontally almost all the way through, creating a pocket.",
+      "Season chicken inside and out with salt and pepper.",
+      "Dice fresh mozzarella into 1cm cubes. Halve cherry tomatoes. Roughly chop fresh basil. Mince garlic.",
+      "In a small bowl, combine mozzarella, tomatoes, basil, and minced garlic. Stir gently.",
+      "Carefully stuff each chicken pocket with the mozzarella and tomato mixture. Use toothpicks to secure openings if needed.",
+      "Heat olive oil in a large oven-safe frying pan over medium-high heat.",
+      "Sear stuffed chicken breasts for 3 minutes per side until golden brown.",
+      "Transfer the pan to the preheated oven. Bake for 15-20 minutes, or until internal temperature reaches 75°C.",
+      "Remove chicken from oven. Let rest for 5 minutes.",
+      "Drizzle with balsamic glaze before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Do not overstuff the chicken breasts to prevent filling from leaking out during cooking."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.3,
+      "calories": 536,
+      "cholesterol_mg": 193,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 67.7,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 433,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 24.4,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 171,
+      "cholesterol_mg": 61,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 21.6,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 138,
+      "total_carbs_g": 2.3,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 3,
+      "protein": 135,
+      "saturated_fat": 46,
+      "sodium": 19,
+      "total_carbs": 3,
+      "total_fat": 31
+    },
+    "serving_size_g": 313,
+    "total_recipe_weight_g": 1253
+  },
+  {
+    "recipe_name": "Brazilian Lemon and Pea Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_brazilian_lemon_and_pea_cream_20250713_120050_83575318.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T12:00:50.886327000Z",
+    "selected_ingredients": [
+      {
+        "name": "white wine"
+      },
+      {
+        "name": "lemon"
+      },
+      {
+        "name": "green pea"
+      },
+      {
+        "name": "cream"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Brazilian",
+    "visual_description": "A single portion of Brazilian Lemon and Pea Cream is presented in a clear, footed glass dessert bowl, showcasing its distinct layers. The bottom layer is a light brown, crumbly biscuit crust. Above it rests a creamy, pale yellow lemon layer, followed by a vibrant, smooth, light green pea puree layer, and topped with more pale yellow lemon cream. A subtle drizzle of reduced white wine creates delicate swirls on the surface. The texture appears smooth and inviting, with the biscuit base providing contrast. The bowl sits on a well-used, warm-toned wooden dining table. A simple, off-white ceramic plate with natural imperfections is placed next to it. A casually folded, floral-patterned chita fabric napkin is nearby. Warm, soft light from a kitchen fixture illuminates the scene, creating a cozy, lived-in family kitchen atmosphere. The background is minimal, focusing on the dessert as the main subject.",
+    "number_of_servings": 4,
+    "cuisine_type": "Brazilian",
+    "cultural_origin": "Brazilian",
+    "cultural_serving_suggestions": [
+      "Serve well-chilled after a substantial family meal.",
+      "Often accompanied by a small cup of strong, freshly brewed Brazilian coffee."
+    ],
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "Sweetened condensed milk",
+        "quantity": "395 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Fresh lemons",
+        "quantity": "3 (juice and zest)"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Maria biscuits (or similar plain sweet biscuits)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Combine crushed Maria biscuits and melted butter. Press firmly into the bottom of four individual clear glass dessert bowls. Chill.",
+      "Pour white wine into a small saucepan. Bring to a simmer over medium heat. Reduce until only about 2 tablespoons remain. Let cool.",
+      "In a large bowl, whisk sweetened condensed milk, heavy cream, and fresh lemon juice until thick. Stir in lemon zest. Set aside.",
+      "Boil green peas in lightly salted water for 3-4 minutes until tender. Drain well. Immediately blend peas with sugar and 2 tablespoons of water until very smooth. Strain through a fine-mesh sieve if desired for extra smoothness. Let cool completely.",
+      "Divide half of the lemon cream among the chilled biscuit bases.",
+      "Carefully spoon the pea puree over the lemon cream layer.",
+      "Top with the remaining lemon cream. Drizzle the cooled white wine reduction over the top of each dessert.",
+      "Chill desserts for at least 4 hours, or preferably overnight, until firm."
+    ],
+    "notes": [
+      "Ensure all components are thoroughly chilled before assembly for best results.",
+      "The pea layer provides a subtle earthy sweetness and vibrant color, not a dominant savory flavor."
+    ],
+    "traditional_techniques": []
+  }
+]

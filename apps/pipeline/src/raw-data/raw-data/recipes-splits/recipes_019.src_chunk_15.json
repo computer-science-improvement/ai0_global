@@ -1,0 +1,706 @@
+[
+  {
+    "recipe_name": "Pan-Seared Tuscan Chicken with Roasted Potatoes and Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_tuscan_chicken_with_roasted_potatoes_and_mushrooms_20250625_082121_d7bc386a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:21:22.214506000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "tomato",
+      "parmesan cheese",
+      "potato",
+      "dried chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A pan-seared chicken breast, its skin golden-brown and crisp, is the centerpiece on a clean white porcelain dinner plate. Roasted potato cubes, golden-edged and tender, are scattered around the chicken. Sautéed cremini mushrooms, earthy brown, and vibrant red, slightly burst roasted cherry tomatoes are nestled alongside, forming an organic arrangement. The dish is generously topped with freshly grated white Parmesan cheese and a few verdant fresh rosemary sprigs, adding color and aroma. The composition features a moderate negative space, highlighting the rich textures and natural colors—golden chicken, varied browns, bright reds, and pale yellows. The setting is a simple wooden table with a folded cotton napkin and traditional Italian flatware, illuminated by soft, natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in pan juices",
+      "Pair with a simple green salad dressed with vinaigrette",
+      "Enjoy with a glass of dry red wine, such as Chianti"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (about 200g each)"
+      },
+      {
+        "name": "Potatoes (small, waxy)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g block, for grating"
+      },
+      {
+        "name": "Dried chili flakes",
+        "quantity": "5g (or to taste)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Cut potatoes into 2cm cubes. Toss with 30ml olive oil, salt, pepper. Spread on baking sheet. Roast 25 minutes until tender-crisp.",
+      "While potatoes roast, pat chicken breasts dry. Season with salt and pepper.",
+      "Heat 15ml olive oil in large oven-safe skillet over medium-high heat. Sear chicken skin-side down 6-8 minutes until golden and crisp. Flip. Sear 2-3 minutes until internal temperature reaches 75°C (167°F). Remove chicken. Set aside.",
+      "Slice mushrooms in half. Mince garlic.",
+      "Add remaining 15ml olive oil to skillet. Add mushrooms, cherry tomatoes, minced garlic, dried chili flakes, rosemary sprigs. Sauté 5-7 minutes until mushrooms are browned and tomatoes soften.",
+      "Pour in chicken broth. Bring to simmer. Scrape up browned bits.",
+      "Return chicken to skillet with vegetables. Cook 2-3 minutes to warm through.",
+      "Serve chicken with roasted potatoes and vegetable mixture. Grate fresh Parmesan cheese over each serving."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 660,
+      "cholesterol_mg": 181,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 72.6,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 899,
+      "total_carbs_g": 33,
+      "total_fat_g": 25.2,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.9,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 1,
+      "protein_g": 13.6,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 169.1,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 20,
+      "protein": 145,
+      "saturated_fat": 31,
+      "sodium": 39,
+      "total_carbs": 12,
+      "total_fat": 32
+    },
+    "serving_size_g": 532.5,
+    "total_recipe_weight_g": 2130
+  },
+  {
+    "recipe_name": "Mediterranean Baked Chicken and Rosemary Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_baked_chicken_and_rosemary_potatoes_20250625_082107_811e6ad8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:21:07.994376000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "tomato",
+      "onion",
+      "lemon",
+      "olive",
+      "mushroom",
+      "oil",
+      "butter"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single modest portion of Mediterranean Baked Chicken and Rosemary Potatoes is presented on an everyday, round ceramic plate. A golden-brown, crispy-skinned chicken thigh sits slightly off-center. Around it, roasted potato wedges, tender red onion wedges, browned mushroom halves, and softened cherry tomatoes are casually arranged. Dark Kalamata olives and thin lemon slices are scattered throughout. The dish displays rich golden browns, deep reds, vibrant purples, and fresh greens from parsley. Textures include crispy chicken skin, tender chicken meat, and soft, roasted vegetables. Components overlap naturally, creating a comforting, abundant feel. The plate rests on a well-used wooden dining table, showing natural grain. A simple, folded linen napkin is casually placed nearby. Warm, soft kitchen light illuminates the homely scene, highlighting the food without distractions.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the pan juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "New potatoes or small Yukon Golds, quartered",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "250g"
+      },
+      {
+        "name": "Red onion, cut into 8 wedges",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Lemon, half sliced into thin rounds, half juiced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cremini mushrooms, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Butter, melted",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh Rosemary, leaves picked and chopped",
+        "quantity": "2 sprigs (approx. 15g)"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped (for garnish)",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "In a large roasting pan, combine quartered potatoes, red onion wedges, halved mushrooms, and halved cherry tomatoes.",
+      "Drizzle vegetables with 30ml olive oil. Add chopped rosemary, oregano, minced garlic, salt, and pepper. Toss to coat. Spread in an even layer.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Arrange chicken thighs skin-side up among the vegetables in the pan.",
+      "Place lemon slices over and around the chicken and vegetables. Scatter pitted Kalamata olives.",
+      "Drizzle remaining 30ml olive oil over chicken and vegetables.",
+      "Bake for 30 minutes.",
+      "Remove pan from oven. Drizzle melted butter over chicken skin and potatoes for extra crisping.",
+      "Return to oven. Bake for another 20-25 minutes, or until chicken reaches an internal temperature of 75°C and skin is golden brown and crisp. Potatoes should be tender.",
+      "Squeeze fresh lemon juice over the entire dish before serving.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "This dish can be prepared in one pan for easy cleanup."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 835,
+      "cholesterol_mg": 196,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 45.7,
+      "saturated_fat_g": 14.3,
+      "sodium_mg": 888,
+      "total_carbs_g": 52.9,
+      "total_fat_g": 53.5,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126.4,
+      "cholesterol_mg": 29.7,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 6.9,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 134.5,
+      "total_carbs_g": 8,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 30,
+      "protein": 91,
+      "saturated_fat": 71,
+      "sodium": 39,
+      "total_carbs": 19,
+      "total_fat": 69
+    },
+    "serving_size_g": 660,
+    "total_recipe_weight_g": 2640
+  },
+  {
+    "recipe_name": "Peruvian Chicken and Rice Soup (Aguadito de Pollo)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_peruvian_chicken_and_rice_soup_%28aguadito_de_pollo%29_20250625_082059_0dcb7512.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:20:59.687394000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant green Peruvian chicken and rice soup is presented in a clean, rustic white ceramic bowl. The rich, herbaceous broth holds generous chunks of shredded chicken, distinct tender rice grains, and colorful diced carrots, bright green peas, and yellow corn kernels. A generous sprinkle of creamy white crumbled queso fresco tops the soup, contrasting beautifully with the deep green. A few fresh cilantro leaves are artfully placed for garnish. A bright green lime wedge rests invitingly on the bowl's rim or beside it. The bowl sits on a simple wooden table, accompanied by a folded light grey linen napkin and a plain, sturdy spoon, all illuminated by natural, even lighting in a modern bistro setting. The composition is clean and inviting, showcasing the dish as the focal point with ample negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "cultural_origin": "Peruvian",
+    "cultural_serving_suggestions": [
+      "Serve with a fresh lime wedge to squeeze over the soup for added brightness.",
+      "Traditionally enjoyed as a comforting and restorative meal."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Red onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh cilantro, roughly chopped",
+        "quantity": "1 large bunch (approx. 60 g)"
+      },
+      {
+        "name": "Fresh spinach, roughly chopped",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Frozen corn kernels",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Queso Fresco, crumbled (for garnish)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Lime, cut into wedges (for serving)",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a large pot over medium-high heat.",
+      "Sear chicken thighs until golden brown on all sides. Remove chicken from pot and set aside.",
+      "Add diced red onion, minced garlic, and diced red bell pepper to the pot. Sauté until softened, about 5 minutes.",
+      "Stir in Aji Amarillo paste, cumin powder, and dried oregano. Cook for 1 minute, stirring constantly.",
+      "Pour in chicken broth. Add long-grain white rice and diced carrot. Bring to a boil, then reduce heat to low.",
+      "Return seared chicken thighs to the pot. Simmer, covered, for 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and rice is tender.",
+      "Remove chicken from the pot. Shred the chicken into bite-sized chunks using two forks. Set aside.",
+      "In a blender, combine roughly chopped cilantro and spinach with 125 ml of the hot broth from the pot. Blend until completely smooth and vibrant green.",
+      "Add frozen peas and corn kernels to the soup. Simmer for 3-5 minutes until vegetables are heated through.",
+      "Stir the blended cilantro-spinach mixture into the soup. Return the shredded chicken to the pot. Mix well.",
+      "Season the soup with salt and black pepper to taste.",
+      "Ladle hot soup into individual serving bowls. Garnish each bowl with crumbled Queso Fresco and a fresh lime wedge. Serve immediately."
+    ],
+    "notes": [
+      "Aji Amarillo paste is a key Peruvian ingredient; it provides a unique fruity heat. It can be found in Latin American specialty stores or online."
+    ],
+    "traditional_techniques": [
+      "Sofrito base (aderezo)",
+      "Use of Aji Amarillo"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 616,
+      "cholesterol_mg": 172,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 43.9,
+      "saturated_fat_g": 8,
+      "sodium_mg": 2110,
+      "total_carbs_g": 52,
+      "total_fat_g": 25.9,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 81.5,
+      "cholesterol_mg": 22.8,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 5.8,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 279.3,
+      "total_carbs_g": 6.9,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 18,
+      "protein": 88,
+      "saturated_fat": 40,
+      "sodium": 92,
+      "total_carbs": 19,
+      "total_fat": 33
+    },
+    "serving_size_g": 755.45,
+    "total_recipe_weight_g": 3021.8
+  },
+  {
+    "recipe_name": "Hearty Beef and Root Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_root_vegetable_stew_20250625_082050_3d2a54c5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:20:50.703523000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hearty Beef and Root Vegetable Stew is presented in a deep, rustic ceramic bowl with natural imperfections. Tender, dark brown beef chunks are nestled among vibrant orange carrot chunks, pale yellow potato chunks, and flecks of green celery. The rich, glossy, dark brown gravy coats all ingredients, creating a cohesive, appetizing appearance. A scattering of bright green chopped fresh parsley provides a fresh contrast on top. The bowl sits on a well-used wooden dining table. A simple metal spoon rests beside the bowl on a casually placed beige cloth napkin. The setting evokes a warm, cozy home kitchen with natural, soft lighting and a slightly blurred, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with warm, crusty bread for dipping."
+    ],
+    "hero_ingredient": "Beef chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g, cut into 3-4 cm cubes"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g, or to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g, or to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "3 medium, peeled and cut into 2 cm chunks"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, cut into 1 cm slices"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium, peeled and cut into 2-3 cm chunks"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry with paper towels. In a large bowl, toss beef with flour, salt, and pepper until evenly coated.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef in batches until browned on all sides. Do not overcrowd the pot. Remove seared beef and set aside.",
+      "Add diced onion, carrot chunks, and celery slices to the pot. Cook, stirring occasionally, until vegetables soften, about 8-10 minutes.",
+      "Add minced garlic and tomato paste to the pot. Cook for 1 minute, stirring constantly, until fragrant.",
+      "Pour in beef broth and Worcestershire sauce. Scrape the bottom of the pot to loosen any browned bits.",
+      "Return seared beef to the pot. Add potato chunks, dried thyme, and bay leaves. Stir to combine.",
+      "Bring the stew to a gentle simmer. Reduce heat to low, cover the pot, and cook for 2 to 2.5 hours, or until beef is fork-tender.",
+      "Remove bay leaves before serving. Skim any excess fat from the surface if desired. Taste and adjust seasoning as needed.",
+      "Ladle hot stew into individual serving bowls. Garnish generously with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure beef is cooked until very tender, easily pulled apart with a fork."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.48,
+      "calories": 672,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 6.42,
+      "protein_g": 47.11,
+      "saturated_fat_g": 10.17,
+      "sodium_mg": 1375,
+      "total_carbs_g": 45.4,
+      "total_fat_g": 30.01,
+      "total_sugars_g": 6.53,
+      "trans_fat_g": 0.75
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.08,
+      "calories": 107,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 1.02,
+      "protein_g": 7.48,
+      "saturated_fat_g": 1.61,
+      "sodium_mg": 218,
+      "total_carbs_g": 7.21,
+      "total_fat_g": 4.76,
+      "total_sugars_g": 1.04,
+      "trans_fat_g": 0.12
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 23,
+      "protein": 94,
+      "saturated_fat": 51,
+      "sodium": 60,
+      "total_carbs": 17,
+      "total_fat": 38
+    },
+    "serving_size_g": 630,
+    "total_recipe_weight_g": 2520
+  },
+  {
+    "recipe_name": "Homestyle Turkey Meatloaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_turkey_meatloaf_20250625_082049_da093633.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:20:49.925073000Z",
+    "selected_ingredients": [
+      "turkey"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Homestyle Turkey Meatloaf is presented on a simple, round, off-white ceramic dinner plate with natural imperfections. The meatloaf is cut into two thick, rustic chunks, displaying a moist, finely textured interior and a rich, browned exterior. A glossy, deep reddish-brown ketchup glaze coats the top. Alongside the meatloaf, a small serving of golden-brown roasted potato wedges and bright green steamed green beans are arranged casually. A thin, natural pool of pan juices or light gravy sits at the base of the meatloaf. The scene is set on a well-worn, light wooden kitchen table, bathed in warm, soft overhead lighting. A casually folded plain linen napkin rests beside the plate, and a standard metal fork and knife are placed naturally. The background is clean, focusing on the hearty, comforting dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with mashed potatoes",
+      "Serve with steamed green beans or roasted vegetables",
+      "Serve with extra gravy or ketchup on the side"
+    ],
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Ground turkey",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dried parsley",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease a loaf pan.",
+      "Heat olive oil in a skillet over medium heat. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute more until fragrant.",
+      "In a large bowl, combine ground turkey, breadcrumbs, egg, cooked onion and garlic, milk, dried parsley, salt, and pepper.",
+      "Mix gently until just combined. Do not overmix.",
+      "Press the mixture evenly into the prepared loaf pan.",
+      "In a small bowl, whisk together ketchup, Dijon mustard, and Worcestershire sauce for the glaze.",
+      "Spread the glaze evenly over the top of the meatloaf.",
+      "Bake for 60-70 minutes, or until the internal temperature reaches 75°C.",
+      "Remove from oven. Let stand for 10 minutes before slicing.",
+      "Slice into thick chunks. Serve warm."
+    ],
+    "notes": [
+      "Do not overmix the meatloaf mixture; it can make the meatloaf tough.",
+      "Use a meat thermometer to ensure the internal temperature reaches 75°C for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.27,
+      "calories": 478,
+      "cholesterol_mg": 170,
+      "dietary_fiber_g": 1.76,
+      "protein_g": 41.72,
+      "saturated_fat_g": 4.78,
+      "sodium_mg": 1220,
+      "total_carbs_g": 32.89,
+      "total_fat_g": 18.84,
+      "total_sugars_g": 8.46,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.55,
+      "calories": 174,
+      "cholesterol_mg": 62,
+      "dietary_fiber_g": 0.64,
+      "protein_g": 15.17,
+      "saturated_fat_g": 1.74,
+      "sodium_mg": 444,
+      "total_carbs_g": 11.96,
+      "total_fat_g": 6.85,
+      "total_sugars_g": 3.08,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 6,
+      "protein": 83,
+      "saturated_fat": 24,
+      "sodium": 53,
+      "total_carbs": 12,
+      "total_fat": 24
+    },
+    "serving_size_g": 275,
+    "total_recipe_weight_g": 1100
+  }
+]

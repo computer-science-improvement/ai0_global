@@ -1,0 +1,687 @@
+[
+  {
+    "recipe_name": "Sustainable Chicken & Fermented Chili Broth with Forbidden Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_chicken_%26_fermented_chili_broth_with_forbidden_rice_20250626_233620_f2ac728b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:36:21.584799000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "chili"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Sustainable Chicken & Fermented Chili Broth is presented in a handcrafted, unglazed beige ceramic bowl, centered on a light, reclaimed wood surface. The deep, amber chicken broth, made from simmered bones and vegetable scraps, fills the bowl. A mound of dark, glossy forbidden rice rests beneath. Irregular chunks of tender, poached chicken and vibrant green, lightly wilted spinach leaves are scattered throughout. A subtle swirl of deep red fermented chili paste is visible on the surface. The soup is garnished minimally with finely sliced green onion tops and fresh cilantro leaves, their natural shapes adding organic freshness. The composition is clean and unfussy, with ample negative space. A simple ceramic spoon rests beside. Soft, natural daylight illuminates the scene, with a minimalist background hinting at natural greenery, enhancing the eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Broth",
+    "ingredients": [
+      {
+        "name": "Chicken carcass/bones",
+        "quantity": "from 1 previously cooked chicken or 500g raw bones"
+      },
+      {
+        "name": "Chicken breast or thighs",
+        "quantity": "300g"
+      },
+      {
+        "name": "Forbidden rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fermented chili paste",
+        "quantity": "2-3 tablespoons"
+      },
+      {
+        "name": "Vegetable scraps (onion peels, carrot ends, celery leaves, mushroom stems)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, smashed"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "5cm piece, sliced"
+      },
+      {
+        "name": "Water",
+        "quantity": "2.5 Litres"
+      },
+      {
+        "name": "Soy sauce (or tamari)",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Seasonal greens (spinach or bok choy)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2, for garnish"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "small bunch, for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Combine chicken bones/carcass, vegetable scraps, smashed garlic, sliced ginger, and 2.5 L water in a large pot. Bring to a simmer. Skim any foam. Reduce heat. Simmer gently for 2-3 hours. Strain broth. Discard solids. Season broth with salt and pepper.",
+      "Poach chicken breast/thighs in a separate pot of water until cooked through (75°C internal temperature). Remove chicken. Shred or dice chicken. Set aside.",
+      "Rinse forbidden rice. Cook 200g forbidden rice with 400ml water in a pot. Bring to a boil. Reduce heat. Cover. Simmer 25-30 minutes until water is absorbed. Let stand 10 minutes. Fluff rice.",
+      "Heat strained chicken broth. Stir in 2-3 tablespoons fermented chili paste. Add 1 tablespoon soy sauce and 1 teaspoon rice vinegar. Bring to a gentle simmer. Add shredded chicken. Add 200g seasonal greens; cook until just wilted.",
+      "Divide cooked forbidden rice into four individual bowls. Ladle hot soup over rice. Drizzle with 0.5 teaspoon sesame oil over each bowl. Garnish with finely sliced green onion tops and fresh cilantro leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.88,
+      "calories": 356.09,
+      "cholesterol_mg": 63.75,
+      "dietary_fiber_g": 3.06,
+      "protein_g": 30.28,
+      "saturated_fat_g": 1.42,
+      "sodium_mg": 1030.63,
+      "total_carbs_g": 43.73,
+      "total_fat_g": 6.96,
+      "total_sugars_g": 2.87,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.27,
+      "calories": 50.64,
+      "cholesterol_mg": 9.07,
+      "dietary_fiber_g": 0.44,
+      "protein_g": 4.31,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 146.58,
+      "total_carbs_g": 6.22,
+      "total_fat_g": 0.99,
+      "total_sugars_g": 0.41,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21.25,
+      "dietary_fiber": 10.93,
+      "protein": 60.56,
+      "saturated_fat": 7.1,
+      "sodium": 44.81,
+      "total_carbs": 15.9,
+      "total_fat": 8.92
+    },
+    "serving_size_g": 703.13,
+    "total_recipe_weight_g": 2812.5
+  },
+  {
+    "recipe_name": "Slow-Cooked Chicken Ragu with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_chicken_ragu_with_pappardelle_20250626_233533_8a804a9e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:35:33.557899000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Slow-Cooked Chicken Ragu with Pappardelle is presented in a clean, white porcelain bowl, centered on a light wooden table surface. Golden pappardelle ribbons are generously coated in a rich, deep red ragu. Rustic, tender chunks of shredded chicken are visibly interspersed throughout the pasta, along with flecks of finely diced carrot and celery from the slow-cooked soffritto. A light dusting of freshly grated white Pecorino Romano cheese covers the top, with a few vibrant green basil leaves providing a fresh accent. The dish appears comforting and robust, with a slightly glossy sauce coating the pasta. A simple white cotton napkin is folded neatly beside the bowl, and a traditional silver fork rests on the napkin, complementing the casual bistro setting under even, natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra Pecorino Romano cheese on the side for individual preference.",
+      "Offer crusty artisan bread for 'scarpetta' (soaking up the remaining sauce)."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Pancetta, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 large (approx. 200 g)"
+      },
+      {
+        "name": "Carrot, finely diced",
+        "quantity": "1 medium (approx. 100 g)"
+      },
+      {
+        "name": "Celery stalk, finely diced",
+        "quantity": "1 medium (approx. 80 g)"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dry red wine (e.g., Chianti or Merlot)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Pecorino Romano cheese, grated",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Fresh basil leaves, small",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Add diced pancetta. Cook until crispy and fat is rendered, about 5-7 minutes. Remove pancetta with a slotted spoon and set aside. Leave rendered fat in the pot.",
+      "Season chicken thighs generously with salt and pepper. Sear chicken thighs in the hot fat until deeply browned on both sides, about 4-5 minutes per side. Work in batches if necessary to avoid overcrowding. Remove chicken and set aside.",
+      "Reduce heat to medium. Add finely diced onion, carrot, and celery (soffritto) to the pot. Cook, stirring occasionally, until vegetables soften and become translucent, about 8-10 minutes.",
+      "Add minced garlic and tomato paste to the pot. Cook, stirring, for 2 minutes until fragrant and tomato paste darkens slightly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Simmer until wine is mostly evaporated, about 3 minutes.",
+      "Return seared chicken thighs and cooked pancetta to the pot. Add crushed tomatoes, chicken stock, rosemary, thyme, and bay leaf. Bring to a simmer.",
+      "Reduce heat to low. Cover the pot and cook for 1.5 to 2 hours, or until chicken is fork-tender and easily shredded. Stir occasionally to prevent sticking.",
+      "Remove chicken from the pot. Discard rosemary sprigs, thyme sprigs, and bay leaf. Using two forks, shred the chicken into rustic chunks. Return shredded chicken to the ragu. Stir well. Taste and adjust seasoning with salt and pepper.",
+      "Cook pappardelle according to package directions in a large pot of salted boiling water until al dente.",
+      "Drain pasta, reserving about 125 ml of pasta water. Add the drained pasta directly to the ragu. Toss to coat thoroughly, adding a splash of reserved pasta water if needed to reach desired consistency.",
+      "Serve immediately in warm bowls, topped with a generous sprinkle of grated Pecorino Romano cheese and a few small basil leaves."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) during cooking.",
+      "The ragu can be made a day in advance; flavors deepen overnight. Reheat gently before combining with pasta."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 934,
+      "cholesterol_mg": 241,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 58.5,
+      "saturated_fat_g": 8.4,
+      "sodium_mg": 1047,
+      "total_carbs_g": 97.7,
+      "total_fat_g": 32.1,
+      "total_sugars_g": 12.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.6,
+      "cholesterol_mg": 32.9,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 143.1,
+      "total_carbs_g": 13.3,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80,
+      "dietary_fiber": 28,
+      "protein": 117,
+      "saturated_fat": 42,
+      "sodium": 46,
+      "total_carbs": 36,
+      "total_fat": 41
+    },
+    "serving_size_g": 731.9,
+    "total_recipe_weight_g": 2927.6
+  },
+  {
+    "recipe_name": "Fermented Tomato & Chicken Ragu with Fresh Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_%26_chicken_ragu_with_fresh_noodles_20250626_233504_22cef4b4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:35:04.751419000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "noodle",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a handcrafted, natural ceramic plate in an earthy tone, set against a light bamboo or reclaimed wood surface. A generous portion of fresh, golden-yellow tagliatelle forms a natural, slightly mounded bed on the plate. The noodles are generously coated with a rich, deep red-orange ragu. The ragu is thick and textured, showcasing shredded pieces of tender, light brown chicken interspersed with soft, finely diced orange carrots, pale green celery, and translucent white onion. Specks of dark green from fresh basil leaves are scattered throughout, providing a vibrant contrast. A dollop of creamy white fresh cheese or a dusting of finely grated hard cheese rests atop the ragu, melting slightly into the warmth. The overall composition is organic and unforced, with ample negative space on the plate. Natural lighting highlights the varying textures and the rich, warm color palette of the dish. A simple undyed linen napkin and a single set of minimalist flatware complete the eco-conscious, clean setting. The focus is on the inherent beauty and natural colors of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Tomatoes",
+    "ingredients": [
+      {
+        "name": "Ripe tomatoes for fermenting",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Sea salt (for fermentation)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Chicken thighs (boneless, skinless)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Fresh pasta/noodles (e.g., tagliatelle)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Hard cheese (e.g., Pecorino, Parmesan) or fresh soft cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water (for stock)",
+        "quantity": "2 litres"
+      }
+    ],
+    "instructions": [
+      "Part 1: Lacto-Fermented Tomato Paste (Prepare at least 1 week in advance)",
+      "Wash 1 kg ripe tomatoes. Remove stems. Roughly chop.",
+      "Blend chopped tomatoes into a coarse puree.",
+      "Add 20g sea salt to the puree. Mix well.",
+      "Transfer to a clean glass jar, leaving 2-3 cm headspace.",
+      "Cover with an airlock lid or a regular lid loosely to allow gas escape.",
+      "Ferment at room temperature (18-24°C) for 5-7 days, or until desired tanginess and effervescence.",
+      "Once fermented, transfer to a fine-mesh sieve lined with cheesecloth over a bowl. Let drain overnight in the refrigerator to create a thick paste. Reserve liquid (tomato brine) for other uses.",
+      "Store the fermented tomato paste in an airtight container in the refrigerator for up to several weeks.",
+      "Part 2: Chicken & Vegetable Stock (Zero-Waste)",
+      "If using bone-in chicken, debone the chicken thighs. Reserve bones.",
+      "Collect chicken bones, vegetable scraps (onion peels, carrot ends, celery leaves), and any cheese rinds.",
+      "Place in a large pot. Cover with 2 litres cold water.",
+      "Bring to a simmer. Skim any foam.",
+      "Simmer gently for 1.5-2 hours.",
+      "Strain the stock. Discard solids. Set aside.",
+      "Part 3: Chicken Ragu",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat 30 ml olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden brown on all sides. Remove chicken from pot.",
+      "Reduce heat to medium. Add 1 diced onion, 2 diced carrots, 2 diced celery stalks to the pot. Sauté until softened, about 8-10 minutes.",
+      "Add 4 cloves minced garlic. Cook for 1 minute until fragrant.",
+      "Deglaze with 100 ml dry red wine (optional, or use a splash of reserved tomato brine or stock), scraping up any browned bits.",
+      "Stir in 150g of the prepared fermented tomato paste. Cook for 2-3 minutes, stirring constantly.",
+      "Return seared chicken thighs to the pot. Pour in 500 ml chicken and vegetable stock.",
+      "Bring to a simmer. Reduce heat to low. Cover and cook for 45-60 minutes, or until chicken is very tender and easily shredded. Ensure internal temperature reaches 75°C.",
+      "Remove chicken from the pot. Shred the chicken meat using two forks.",
+      "Return shredded chicken to the ragu. Stir to combine.",
+      "Simmer uncovered for another 10-15 minutes, allowing the sauce to thicken slightly. Adjust seasoning with salt and pepper if needed.",
+      "Part 4: Fresh Noodles & Assembly",
+      "Bring a large pot of salted water to a rolling boil.",
+      "Add fresh noodles. Cook according to package instructions until al dente (usually 2-4 minutes).",
+      "Drain noodles, reserving a small amount of pasta water.",
+      "Add drained noodles directly to the ragu. Toss to coat, adding a splash of reserved pasta water if needed to reach desired consistency.",
+      "Divide noodles and ragu among four serving bowls.",
+      "Garnish with freshly grated hard cheese or a dollop of fresh soft cheese.",
+      "Sprinkle with fresh basil leaves, roughly torn."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 805,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 5.19,
+      "protein_g": 48.68,
+      "saturated_fat_g": 10.24,
+      "sodium_mg": 2535.66,
+      "total_carbs_g": 73.21,
+      "total_fat_g": 27.5,
+      "total_sugars_g": 12.36,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108.09,
+      "cholesterol_mg": 29.27,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.54,
+      "saturated_fat_g": 1.38,
+      "sodium_mg": 340.47,
+      "total_carbs_g": 9.83,
+      "total_fat_g": 3.69,
+      "total_sugars_g": 1.66,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.67,
+      "dietary_fiber": 18.55,
+      "protein": 97.36,
+      "saturated_fat": 51.21,
+      "sodium": 110.25,
+      "total_carbs": 26.62,
+      "total_fat": 35.26
+    },
+    "serving_size_g": 744.75,
+    "total_recipe_weight_g": 2979
+  },
+  {
+    "recipe_name": "Slow-Cooked Pulled Pork with Creamy Polenta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_pulled_pork_with_creamy_polenta_20250626_233219_f293f9b8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:32:20.309666000Z",
+    "selected_ingredients": [
+      "pork"
+    ],
+    "complexity": "simple",
+    "special_requests": "Start with pulled pork. Where to go from here? No potatoes",
+    "visual_description": "A hearty individual portion of slow-cooked pulled pork sits atop a generous bed of creamy, golden polenta on a simple, rustic ceramic plate. The pulled pork, rich brown and slightly caramelized from its long simmer, is piled in natural, tender chunks, showcasing its shredded texture. It is glistening with its own savory juices. The polenta, a soft, pale yellow, forms a comforting, fluid base, gently spreading on the plate. A sprinkle of fresh, chopped green parsley adds a pop of color and freshness over the pork. The dish is presented on a well-used wooden dining table, illuminated by warm, inviting kitchen lighting. An everyday ceramic plate with a slightly irregular rim holds the food. A simple fork rests beside the plate on a casually placed, folded cloth napkin. The overall scene is one of a relaxed, homely family meal, emphasizing warmth and comfort.",
+    "number_of_servings": 3,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve family-style directly from the pot or individually plated.",
+      "Offer extra cooking liquid for drizzling."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Boneless pork shoulder",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Polenta (medium grind)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water or milk",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Parmesan cheese (optional)",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat pork shoulder dry. Season with salt and pepper.",
+      "Heat olive oil in Dutch oven over medium-high heat. Sear pork until browned on all sides. Remove pork.",
+      "Add chopped onion to pot. Sauté 5 minutes until softened.",
+      "Add minced garlic, smoked paprika, cumin. Cook 1 minute until fragrant.",
+      "Stir in chicken broth, apple cider vinegar, brown sugar. Bring to simmer. Scrape up browned bits.",
+      "Return pork to pot. Liquid should cover halfway.",
+      "Cover. Reduce heat to low. Simmer 3-4 hours until pork is very tender. Pork should shred easily.",
+      "Remove pork. Shred with two forks.",
+      "Skim excess fat from cooking liquid. Return shredded pork to pot with some liquid. Season.",
+      "For polenta: Bring water or milk to simmer in saucepan. Season with salt.",
+      "Slowly whisk in polenta to prevent lumps.",
+      "Reduce heat to low. Cook, stirring frequently, 20-30 minutes until creamy and tender. Add more liquid if needed.",
+      "Stir in butter and Parmesan cheese. Taste. Adjust seasoning."
+    ],
+    "notes": [
+      "This dish pairs well with a simple side salad or braised greens.",
+      "Leftover pulled pork can be stored in the refrigerator for up to 3 days."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 9.8,
+      "calories": 1313,
+      "cholesterol_mg": 270,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 85.9,
+      "saturated_fat_g": 28.4,
+      "sodium_mg": 1767,
+      "total_carbs_g": 87.6,
+      "total_fat_g": 67.9,
+      "total_sugars_g": 26.1,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 145,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 9.5,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 195,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 90,
+      "dietary_fiber": 27,
+      "protein": 172,
+      "saturated_fat": 142,
+      "sodium": 77,
+      "total_carbs": 32,
+      "total_fat": 87
+    },
+    "serving_size_g": 906,
+    "total_recipe_weight_g": 2718
+  },
+  {
+    "recipe_name": "Pan-Seared Pork Chops with Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_pork_chops_with_caramelized_onions_20250626_233010_217a9df0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:30:11.389884000Z",
+    "selected_ingredients": [
+      "pork"
+    ],
+    "complexity": "simple",
+    "special_requests": "Savory, buttery, oniony, touch of sweetness",
+    "visual_description": "A single, modest portion of pan-seared pork chops with caramelized onions rests on a simple, round ceramic plate with natural imperfections, placed on a well-used wooden dining table. The pork chop is a thick, whole piece, golden-brown from searing, with a slight sheen. Piled generously next to it, or slightly overlapping, are thinly sliced, deep amber caramelized onions, soft and glistening. A rich, glossy pan sauce, light brown in color, is naturally pooled around the pork and onions. A few fresh green thyme leaves are casually scattered on top for a hint of freshness. The setting is a homely family kitchen, illuminated by warm, cozy lighting from overhead fixtures, casting soft shadows. A standard, slightly worn metal fork is placed beside the plate. The background is minimal, showing just a hint of a lived-in kitchen atmosphere, emphasizing comfort and approachability. The entire plate is visible, with adequate negative space around the dish.",
+    "number_of_servings": 3,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Pork Chops",
+    "ingredients": [
+      {
+        "name": "Boneless pork chops",
+        "quantity": "3 (approx. 180-200g each)"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "45g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat pork chops dry. Season generously with salt and pepper on both sides.",
+      "Thinly slice both yellow onions.",
+      "Heat 15g butter and olive oil in a large skillet over medium-high heat until shimmering.",
+      "Sear pork chops for 3-4 minutes per side until golden brown and cooked through. Internal temperature should reach 63°C. Remove pork chops from skillet and set aside on a plate, tented with foil.",
+      "Reduce heat to medium. Add remaining 30g butter to the skillet. Add sliced onions. Cook, stirring occasionally, for 15-20 minutes until onions are deeply caramelized and tender. Adjust heat as needed to prevent burning.",
+      "Pour chicken broth into the skillet, scraping up any browned bits from the bottom of the pan. Bring to a simmer. Cook for 2-3 minutes until sauce slightly thickens.",
+      "Return pork chops to the skillet with the sauce and onions. Add fresh thyme sprigs. Spoon sauce and onions over the chops. Simmer for 1-2 minutes to reheat the chops.",
+      "Serve immediately with the caramelized onions and pan sauce."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 594,
+      "cholesterol_mg": 174.8,
+      "dietary_fiber_g": 2.55,
+      "protein_g": 57.44,
+      "saturated_fat_g": 14.88,
+      "sodium_mg": 271.7,
+      "total_carbs_g": 14.51,
+      "total_fat_g": 35.47,
+      "total_sugars_g": 6.36,
+      "trans_fat_g": 0.57
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145,
+      "cholesterol_mg": 42.7,
+      "dietary_fiber_g": 0.62,
+      "protein_g": 14.02,
+      "saturated_fat_g": 3.63,
+      "sodium_mg": 66.3,
+      "total_carbs_g": 3.54,
+      "total_fat_g": 8.66,
+      "total_sugars_g": 1.55,
+      "trans_fat_g": 0.14
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.25,
+      "dietary_fiber": 9.11,
+      "protein": 114.88,
+      "saturated_fat": 74.4,
+      "sodium": 11.81,
+      "total_carbs": 5.28,
+      "total_fat": 45.47
+    },
+    "serving_size_g": 410,
+    "total_recipe_weight_g": 1229
+  }
+]

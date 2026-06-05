@@ -1,0 +1,646 @@
+[
+  {
+    "recipe_name": "Fermented Chocolate Sourdough Brownies with Berry Preserve",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chocolate_sourdough_brownies_with_berry_preserve_20250625_084200_1cf69b17.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:42:00.576234000Z",
+    "selected_ingredients": [
+      "flour",
+      "chocolate"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, rich dark brown square brownie with a slightly crinkled top is centered on a handcrafted, matte cream-colored ceramic plate. The brownie is a thick square, showing its dense, moist interior. Adjacent to the brownie, a vibrant dollop of ruby-red berry preserve glistens, its texture showing the natural seeds of the berries. The presentation is minimalistic, emphasizing the natural beauty and contrasting colors of the dark chocolate and bright berries. There is ample white space around the food. The plate rests on a light, textured reclaimed wood surface. An undyed linen napkin in a natural beige tone is gently folded beside the plate. Soft, diffused natural light illuminates the scene, creating gentle shadows. The background is clean and uncluttered, with a subtle hint of green foliage from a potted plant, reinforcing the eco-conscious theme. A simple, unadorned fork or spoon lies beside the plate, ready for dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Dark chocolate (70% or higher)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Sourdough discard (active or unfed)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Coconut sugar",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Unsweetened cacao powder",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Neutral oil (e.g., sunflower or melted coconut oil)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Plant-based milk (e.g., oat or almond)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Mixed seasonal berries (fresh or frozen)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Maple syrup (for preserve)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chia seeds (for preserve)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lemon zest (from 1 organic lemon)",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Line a 20x20 cm baking pan with parchment paper.",
+      "Melt dark chocolate using a double boiler or microwave. Set aside to cool slightly.",
+      "In a large bowl, whisk together sourdough discard, coconut sugar, oil, plant-based milk, and vanilla extract until well combined.",
+      "Stir in the melted chocolate until smooth.",
+      "In a separate bowl, combine cacao powder, flour, baking powder, and sea salt.",
+      "Gradually add the dry ingredients to the wet ingredients. Mix until just combined. Do not overmix.",
+      "Pour batter into the prepared baking pan. Spread evenly.",
+      "Bake for 25-30 minutes. A toothpick inserted should come out with moist crumbs, not wet batter.",
+      "While brownies bake, prepare the berry preserve. In a small saucepan, combine mixed berries, maple syrup, and lemon zest.",
+      "Cook over medium heat for 8-10 minutes, mashing berries occasionally, until softened and slightly thickened.",
+      "Stir in chia seeds. Remove from heat. Let cool. The preserve will thicken as it cools.",
+      "Remove brownies from oven. Let cool completely in the pan before lifting out and cutting into 9 squares.",
+      "Serve each brownie square with a generous dollop of berry preserve."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 58.8,
+      "calories": 990,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 14.2,
+      "protein_g": 13,
+      "saturated_fat_g": 16.5,
+      "sodium_mg": 357,
+      "total_carbs_g": 122.8,
+      "total_fat_g": 51.5,
+      "total_sugars_g": 66.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19.7,
+      "calories": 332.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 4.4,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 120,
+      "total_carbs_g": 41.2,
+      "total_fat_g": 17.3,
+      "total_sugars_g": 22.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 51,
+      "protein": 26,
+      "saturated_fat": 83,
+      "sodium": 16,
+      "total_carbs": 45,
+      "total_fat": 66
+    },
+    "serving_size_g": 298,
+    "total_recipe_weight_g": 1192
+  },
+  {
+    "recipe_name": "Braised Chicken with Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_caramelized_onions_20250625_084151_dff4e22c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:41:52.195524000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single braised chicken thigh with crisp, golden-brown skin rests atop a generous bed of deeply caramelized, amber-hued onion slices. The chicken is tender, showing its natural form, not sliced. A rich, savory pan sauce, slightly thickened, coats the chicken and onions, reflecting light. Freshly chopped green parsley is sprinkled over the dish, adding a vibrant contrast. The plate is a rustic, off-white ceramic, placed on a warm, well-used wooden kitchen table. A simple fork and knife are set beside it. The background is a soft-focus, lived-in kitchen atmosphere with warm lighting. The overall impression is comforting and hearty.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with creamy mashed potatoes to soak up the sauce",
+      "Accompany with crusty bread for dipping",
+      "Pair with a simple green salad dressed with vinaigrette"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 pieces (approx 800g)"
+      },
+      {
+        "name": "Yellow onions, thinly sliced",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry with paper towels. Season generously with salt and black pepper.",
+      "Heat 15 ml olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken, skin-side down, for 5-7 minutes until deeply golden and crisp. Flip. Sear other side for 3-4 minutes. Remove chicken from pot.",
+      "Reduce heat to medium-low. Add remaining 15 ml olive oil and butter to the pot. Add thinly sliced onions. Cook, stirring occasionally, for 20-25 minutes until onions are deeply caramelized and very soft.",
+      "Add minced garlic, bay leaf, and fresh thyme leaves. Cook for 1 minute until fragrant.",
+      "Pour in dry white wine (if using). Scrape up any browned bits from the bottom of the pot. Reduce liquid by half.",
+      "Add chicken stock. Bring to a simmer.",
+      "Return seared chicken thighs to the pot, skin-side up. Ensure liquid comes halfway up the chicken.",
+      "Cover the pot. Reduce heat to low. Simmer for 30-40 minutes, or until chicken internal temperature reaches 75°C and is very tender.",
+      "Remove lid. Discard bay leaf. If sauce is too thin, increase heat to medium. Simmer uncovered for 5-10 minutes to thicken slightly.",
+      "Taste and adjust seasoning as needed.",
+      "Serve immediately, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "This dish can be prepared a day in advance and reheated gently for enhanced flavors."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Caramelizing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 620,
+      "cholesterol_mg": 206,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 40.7,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 660,
+      "total_carbs_g": 20.1,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 8.2,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 1,
+      "protein_g": 10.9,
+      "saturated_fat_g": 3,
+      "sodium_mg": 176,
+      "total_carbs_g": 5.4,
+      "total_fat_g": 10.8,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.7,
+      "dietary_fiber": 13,
+      "protein": 81.4,
+      "saturated_fat": 56.7,
+      "sodium": 28.7,
+      "total_carbs": 7.3,
+      "total_fat": 52
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Mushroom and Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom_and_rice_salad_20250625_084123_5e9029ae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:41:24.240402000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "rice",
+      "chili",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "Пп",
+    "visual_description": "The Mushroom and Rice Salad is presented in a deep, rustic ceramic bowl, showcasing a medley of textures and natural colors. Warm, slightly cooled white rice forms a base, loosely mixed with tender, golden-brown sautéed mushroom slices. Vibrant halved cherry tomatoes and crisp, diced cucumber add pops of red and green. Thinly sliced red onion provides a subtle purple contrast. Finely diced red chilies are scattered throughout, hinting at a gentle warmth. A light vinaigrette glistens on the ingredients, enhancing their natural sheen. The arrangement is casual and abundant, with ingredients touching and overlapping, reflecting a homely, comforting meal. The bowl sits on a well-used wooden dining table, illuminated by soft, warm kitchen light. A simple cloth napkin is casually placed nearby, completing the unpretentious, family-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Long-grain rice",
+        "quantity": "200g uncooked"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "400g, sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "1-2, deseeded and finely diced"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g, halved"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2, thinly sliced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "1/2 teaspoon (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or cilantro",
+        "quantity": "chopped, for garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Rinse rice. Cook rice according to package directions. Set aside to cool slightly.",
+      "Heat 15ml olive oil in a large pan over medium-high heat. Add sliced mushrooms. Sauté until golden brown and tender, about 5-7 minutes. Remove mushrooms from pan.",
+      "Add another 15ml olive oil to the same pan. Add minced garlic and diced red chilies. Sauté for 1 minute until fragrant. Do not brown garlic.",
+      "Return cooked mushrooms to the pan with garlic and chili. Stir to combine. Remove from heat.",
+      "In a small bowl, whisk together remaining 30ml olive oil, red wine vinegar, Dijon mustard, and honey (if using). Season with salt and black pepper.",
+      "In a large serving bowl, combine cooked rice, sautéed mushroom mixture, mixed salad greens, diced cucumber, halved cherry tomatoes, and thinly sliced red onion.",
+      "Pour dressing over the salad ingredients. Gently toss until all components are evenly coated.",
+      "Serve immediately. Garnish with fresh parsley or cilantro if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.7,
+      "calories": 350,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 8,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 537,
+      "total_carbs_g": 54.1,
+      "total_fat_g": 14.8,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 96,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 2.2,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 147,
+      "total_carbs_g": 14.8,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 17,
+      "protein": 16,
+      "saturated_fat": 11,
+      "sodium": 23,
+      "total_carbs": 20,
+      "total_fat": 19
+    },
+    "serving_size_g": 365.1,
+    "total_recipe_weight_g": 1460.5
+  },
+  {
+    "recipe_name": "Lemon Herb Baked Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_baked_chicken_and_potatoes_20250625_084111_fbab2a7d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:41:11.942816000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of Lemon Herb Baked Chicken and Potatoes rests casually on an everyday ceramic plate, placed on a well-used wooden dining table. The plate holds two golden-brown, baked chicken thighs, showing their natural shape and slightly crisp skin. Alongside are tender, roasted potato wedges, some with caramelized edges, and soft, sweet onion wedges. The colors are warm and inviting: golden chicken and potatoes, pale yellow lemon slices, and flecks of green from the herbs. The ingredients are naturally arranged, slightly overlapping, creating a comforting, unpretentious appearance. A few fresh parsley leaves are scattered over the dish for a touch of vibrant green. The setting includes simple, silver flatware and a casually folded cloth napkin, bathed in warm, cozy kitchen lighting, emphasizing a relaxed, lived-in family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve hot directly from the baking sheet or plated individually.",
+      "Pair with a simple green salad for a balanced meal."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g total)"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold or Red Bliss)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut potatoes into 2.5 cm wedges. Cut onion into thick wedges. Mince garlic.",
+      "In a large bowl, combine potato wedges, onion wedges, and minced garlic.",
+      "Add 30ml olive oil, chopped rosemary leaves, chopped thyme, salt, and pepper. Toss to coat evenly.",
+      "Spread vegetables in a single layer on a large baking sheet.",
+      "Pat chicken thighs dry. In the same bowl, toss chicken with remaining 30ml olive oil, half the lemon juiced, salt, and pepper.",
+      "Arrange chicken thighs among the vegetables on the baking sheet. Thinly slice the other half of the lemon and place slices over chicken and vegetables.",
+      "Bake for 25 minutes.",
+      "Flip chicken and vegetables. Pour chicken broth over ingredients if desired.",
+      "Continue baking for another 20-25 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are tender and golden.",
+      "Remove from oven. Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 551,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 35.8,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 744,
+      "total_carbs_g": 38.9,
+      "total_fat_g": 27.5,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.2,
+      "cholesterol_mg": 41.8,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 178.5,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 17,
+      "protein": 72,
+      "saturated_fat": 27,
+      "sodium": 32,
+      "total_carbs": 14,
+      "total_fat": 35
+    },
+    "serving_size_g": 416.5,
+    "total_recipe_weight_g": 1666
+  },
+  {
+    "recipe_name": "Savory Beef and Mushroom Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_beef_and_mushroom_stir-fry_20250625_084059_6bb2d452.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:40:59.637641000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of Savory Beef and Mushroom Stir-fry is presented in a simple, deep white ceramic bowl, nestled on a well-used wooden dining table. The bowl is filled with fluffy white steamed long-grain rice, generously topped with glossy, dark brown beef chunks and earthy, sautéed mushroom slices. The beef is tender and glistening with sauce, while the mushrooms show slight caramelization. Bright green sliced green onions are scattered casually over the top, adding a pop of color and freshness. A pair of wooden chopsticks rests beside the bowl on a simple cloth napkin. The setting is a cozy, lived-in family kitchen with warm, natural lighting. The overall presentation is comforting and approachable, highlighting the hearty, home-cooked nature of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve with chopsticks.",
+      "Offer chili oil or sriracha on the side for added heat."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or flank steak",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh ginger, minced",
+        "quantity": "20g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Green onions, sliced",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse rice. Cook rice according to package directions. Set aside.",
+      "Slice beef against the grain into thin strips or bite-sized chunks.",
+      "In a bowl, combine 30ml soy sauce, 5ml sesame oil, and 5g cornstarch. Add beef. Toss to coat. Marinate 15 minutes.",
+      "Slice mushrooms. Mince ginger and garlic.",
+      "In a small bowl, whisk together remaining 30ml soy sauce, 10ml sesame oil, 10g cornstarch, and beef broth. Set aside.",
+      "Heat 15ml vegetable oil in a large pan or wok over high heat.",
+      "Add marinated beef. Stir-fry 2-3 minutes until browned. Do not overcrowd. Cook in batches if necessary. Remove beef from pan. Set aside.",
+      "Add remaining 15ml vegetable oil to the pan.",
+      "Add mushrooms. Stir-fry 3-4 minutes until softened and lightly browned.",
+      "Add minced ginger and garlic to the pan. Stir-fry 1 minute until fragrant.",
+      "Return cooked beef to the pan. Stir the sauce mixture again. Pour sauce over beef and vegetables.",
+      "Cook, stirring constantly, until sauce thickens and coats ingredients, about 1-2 minutes.",
+      "Serve immediately over hot steamed rice. Garnish with sliced green onions."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 731,
+      "cholesterol_mg": 100,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 41.5,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 1516,
+      "total_carbs_g": 70.3,
+      "total_fat_g": 30.1,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 301,
+      "total_carbs_g": 14,
+      "total_fat_g": 6,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 9,
+      "protein": 83,
+      "saturated_fat": 46,
+      "sodium": 66,
+      "total_carbs": 26,
+      "total_fat": 39
+    },
+    "serving_size_g": 504,
+    "total_recipe_weight_g": 2015
+  }
+]

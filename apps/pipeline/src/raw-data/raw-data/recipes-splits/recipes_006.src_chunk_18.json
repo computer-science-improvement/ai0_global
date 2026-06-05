@@ -1,0 +1,743 @@
+[
+  {
+    "recipe_name": "Seared Beef Liver with Chocolate-Chili Sauce, Panela Cheese, and Savory Rice Cakes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251023_132420_d3b0aa4a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 18,
+    "timestamp": "2025-10-23T13:24:21.529674000Z",
+    "selected_ingredients": [
+      "beef liver",
+      "chocolate",
+      "lemon",
+      "margarine",
+      "panela cheese",
+      "glutinous rice flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate within a modern bistro setting, resting on a simple wooden table. A rich, deep brown chocolate-chili sauce forms the base, its surface gleaming. Two seared beef liver medallions, each 1.5 cm thick, boast a beautiful reddish-brown crust and tender interior, positioned slightly overlapping on the sauce. Beside them, two golden-brown grilled panela cheese planks, 1 cm thick, display a crisp exterior and soft, white interior, leaning elegantly. Two pale cream, pan-fried glutinous rice cakes, golden at the edges, provide a textural contrast. The dish is garnished with vibrant green fresh cilantro leaves scattered lightly and a bright yellow lemon wedge. The composition is balanced with moderate negative space, showcasing the whole pieces of liver and cheese. Natural, even lighting highlights the varied textures and colors. Traditional flatware accompanies the plate, and a crisp cotton napkin is placed beside it.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican Fusion",
+    "cultural_origin": "Mexican Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with a small side of pickled red onions to cut through the richness.",
+      "A simple fresh salsa verde can add another layer of brightness and acidity."
+    ],
+    "hero_ingredient": "Beef Liver",
+    "ingredients": [
+      {
+        "name": "Beef liver",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Margarine",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Panela cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Glutinous rice flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion, small",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Mexican chili powder blend",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Water (for rice cakes)",
+        "quantity": "150 ml (approx.)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare rice cakes: Combine glutinous rice flour and 1/2 teaspoon salt. Gradually add water, mixing until a firm, pliable dough forms. Knead briefly. Divide into 8 equal portions. Flatten each into a 6 cm disc, 1 cm thick.",
+      "Cook rice cakes: Heat 20 g margarine in a large non-stick pan over medium heat. Pan-fry rice cakes for 3-4 minutes per side, until golden brown and cooked through. Set aside.",
+      "Make chocolate-chili sauce: Heat olive oil in a saucepan over medium heat. Sauté diced onion until translucent, about 5 minutes. Add minced garlic, chili powder, cumin, and coriander. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste. Pour in beef stock. Bring to a simmer. Reduce heat to low. Add dark chocolate, stirring until melted and smooth. Simmer for 10-15 minutes, until sauce thickens slightly. Season with salt and pepper. Add 5 ml lemon juice.",
+      "Prepare panela cheese: Slice panela cheese into 8 planks, 1 cm thick. Heat a separate non-stick pan or grill pan over medium-high heat. Grill cheese planks for 2-3 minutes per side, until golden and slightly softened. Set aside.",
+      "Cook beef liver: Pat liver medallions dry. Season generously with salt and black pepper. Heat remaining 30 g margarine in the pan used for rice cakes over high heat until shimmering.",
+      "Sear liver medallions for 2-3 minutes per side for medium-rare, or until desired doneness. Do not overcrowd the pan; cook in batches if necessary.",
+      "To serve: Ladle a generous pool of chocolate-chili sauce onto each plate. Arrange two seared liver medallions on the sauce. Place two grilled panela cheese planks and two pan-fried rice cakes beside the liver. Garnish with fresh cilantro leaves and a lemon wedge."
+    ],
+    "notes": [
+      "Do not overcook the liver; it becomes tough quickly. Aim for a quick sear to keep it tender.",
+      "The glutinous rice cakes can be made in advance and reheated gently in a pan.",
+      "Adjust chili powder to your preferred spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.99,
+      "calories": 770.8,
+      "cholesterol_mg": 623.5,
+      "dietary_fiber_g": 5.58,
+      "protein_g": 47.57,
+      "saturated_fat_g": 14.61,
+      "sodium_mg": 941,
+      "total_carbs_g": 61.97,
+      "total_fat_g": 36.9,
+      "total_sugars_g": 6.96,
+      "trans_fat_g": 0.04
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.68,
+      "calories": 175.5,
+      "cholesterol_mg": 141.95,
+      "dietary_fiber_g": 1.27,
+      "protein_g": 10.83,
+      "saturated_fat_g": 3.33,
+      "sodium_mg": 214.23,
+      "total_carbs_g": 14.11,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 1.58,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 207.8,
+      "dietary_fiber": 19.9,
+      "protein": 95.1,
+      "saturated_fat": 73.1,
+      "sodium": 40.9,
+      "total_carbs": 22.5,
+      "total_fat": 47.3
+    },
+    "serving_size_g": 439.25,
+    "total_recipe_weight_g": 1757
+  },
+  {
+    "recipe_name": "Restaurant-Style Indian Chicken Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251023_123126_d3695496.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 19,
+    "timestamp": "2025-10-23T12:31:27.134118000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "Indian cuisine",
+    "visual_description": "A vibrant, rich Indian chicken curry is presented in a deep, rustic off-white ceramic bowl, showcasing a generous individual portion. The curry features tender, succulent chicken chunks, cooked to perfection, submerged in a thick, glossy, reddish-brown gravy. The sauce shimmers with a subtle sheen from the ghee, flecked with finely minced aromatics and bright green coriander leaves. The chicken pieces are irregularly shaped, about 3 cm cubes, and retain their natural texture. A swirl of fresh, bright green chopped coriander leaves garnishes the top, providing a striking color contrast. The bowl sits on a simple wooden table, accompanied by a small, round white ceramic plate holding a piece of fluffy, slightly charred naan bread. A metal Indian karahi spoon rests beside the bowl. The setting is a modern bistro with natural, even lighting, highlighting the dish's warmth and depth of color.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm naan bread, roti, or basmati rice.",
+      "Offer a side of raita (yogurt dip) or pickled onions.",
+      "Traditionally eaten with hands, scooping up curry with bread or rice."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium (approx. 250 g)"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "3 medium (approx. 300 g)"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Green chillies",
+        "quantity": "2"
+      },
+      {
+        "name": "Plain full-fat yogurt",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cashews (for paste)",
+        "quantity": "2 tablespoons (approx. 15-20 cashews)"
+      },
+      {
+        "name": "Ghee or oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (2.5 cm piece)"
+      },
+      {
+        "name": "Green cardamom pods",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Red chilli powder",
+        "quantity": "1-2 teaspoons"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh coriander leaves, chopped",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Water",
+        "quantity": "200-300 ml"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm cubes.",
+      "Soak cashews in hot water for 15 minutes, then blend to a smooth paste.",
+      "Heat ghee or oil in a large pot over medium heat.",
+      "Add cumin seeds, bay leaf, cinnamon stick, and crushed cardamom pods. Sauté for 30 seconds until fragrant.",
+      "Add finely chopped onions. Cook until golden brown, stirring frequently (8-10 minutes).",
+      "Stir in ginger-garlic paste and slit green chillies. Cook for 2 minutes.",
+      "Add turmeric powder, coriander powder, and red chilli powder. Cook for 1 minute, stirring constantly. Add a splash of water if needed.",
+      "Pour in tomato puree. Cook, stirring occasionally, until mixture thickens and oil separates (8-10 minutes).",
+      "Reduce heat to low. Gradually whisk in the yogurt, stirring continuously. Cook for 2-3 minutes.",
+      "Add chicken cubes and salt. Mix well to coat.",
+      "Add cashew paste and 200 ml water. Bring to a simmer.",
+      "Cover and cook on low heat for 20-25 minutes, or until chicken is tender and reaches 75°C internal temperature. Stir occasionally. Add more water for desired gravy consistency.",
+      "Stir in garam masala.",
+      "Garnish with fresh chopped coriander leaves. Serve hot."
+    ],
+    "traditional_techniques": [
+      "Bhoona (sautéing spices until oil separates)",
+      "Tempering (sautéing whole spices in hot oil at the beginning)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 458,
+      "cholesterol_mg": 182,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 35,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 619,
+      "total_carbs_g": 16.6,
+      "total_fat_g": 27.6,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.6,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 171,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 14,
+      "protein": 70,
+      "saturated_fat": 57,
+      "sodium": 27,
+      "total_carbs": 6,
+      "total_fat": 35
+    },
+    "serving_size_g": 362.5,
+    "total_recipe_weight_g": 1450
+  },
+  {
+    "recipe_name": "Seco de Pollo y Carne con Arroz y Papas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251023_105745_a27fee31.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-10-23T10:57:46.325639000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cayenne pepper",
+      "potato",
+      "beef",
+      "oregano",
+      "rice",
+      "corn",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Seco de Pollo y Carne is served in a deep, rustic white porcelain bowl. Large, tender chunks of braised chicken and beef, rich brown with hints of red from the tomato and spices, are nestled among rustic potato wedges and bright yellow corn kernels. The stew has a thick, savory sauce, garnished generously with fresh, vibrant green cilantro leaves. A separate mound of fluffy white rice is neatly plated alongside the stew. The dish has a comforting, hearty appearance with natural, inviting colors. The arrangement is organic and well-balanced, allowing the textures of the meat, potatoes, and sauce to be clearly visible. It is presented on a simple wooden table with natural, even lighting, accompanied by a small bowl of green aji sauce and a lime wedge.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "cultural_origin": "Peruvian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Aji Verde (Peruvian green chili sauce) for an authentic spicy kick.",
+      "Offer lime wedges for a fresh, zesty finish."
+    ],
+    "hero_ingredient": "Chicken and Beef",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Beef stewing meat",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Corn kernels (fresh or frozen)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into large, 4 cm chunks. Cut beef stewing meat into large, 4 cm chunks. Season both with salt and black pepper.",
+      "Heat 2 tablespoons of vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Brown the beef chunks on all sides. Remove beef and set aside.",
+      "Add remaining 1 tablespoon of oil. Brown the chicken chunks on all sides. Remove chicken and set aside.",
+      "Dice the onion. Mince the garlic cloves. Dice the red bell pepper.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes. Add minced garlic and diced bell pepper. Cook for another 3 minutes until fragrant.",
+      "Stir in dried oregano, ground cumin, and cayenne pepper. Cook for 1 minute.",
+      "Pour in crushed tomatoes and beef broth. Bring to a simmer. Scrape up any browned bits from the bottom of the pot.",
+      "Return browned beef to the pot. Reduce heat to low. Cover and simmer for 1 hour.",
+      "Peel potatoes and cut into large, rustic wedges. Add potatoes and browned chicken to the pot. Ensure chicken is submerged.",
+      "Continue to simmer, covered, for another 30-40 minutes, or until beef and potatoes are tender. Chicken should reach an internal temperature of 75°C (167°F).",
+      "While the stew simmers, cook the rice. Rinse 250g of rice. Combine with 500ml of water and a pinch of salt in a saucepan. Bring to a boil, then reduce heat to low, cover, and cook for 15 minutes. Remove from heat and let stand, covered, for 5 minutes.",
+      "Stir corn kernels into the stew during the last 5 minutes of cooking. Taste and adjust seasoning with salt and pepper.",
+      "Roughly chop fresh cilantro. Stir half into the stew just before serving. Garnish individual portions with remaining cilantro."
+    ],
+    "notes": [
+      "Adjust cayenne pepper to your preferred spice level. For a milder stew, reduce or omit.",
+      "For best flavor, consider marinating the beef and chicken in a little cumin and garlic for an hour before browning."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Browning meats for depth of flavor"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 983,
+      "cholesterol_mg": 233,
+      "dietary_fiber_g": 9,
+      "protein_g": 62.8,
+      "saturated_fat_g": 8.8,
+      "sodium_mg": 841,
+      "total_carbs_g": 100.4,
+      "total_fat_g": 35.2,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.3,
+      "saturated_fat_g": 1,
+      "sodium_mg": 98,
+      "total_carbs_g": 11.7,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78,
+      "dietary_fiber": 32,
+      "protein": 126,
+      "saturated_fat": 44,
+      "sodium": 37,
+      "total_carbs": 37,
+      "total_fat": 45
+    },
+    "serving_size_g": 857,
+    "total_recipe_weight_g": 3427
+  },
+  {
+    "recipe_name": "Mexican Black Bean & Fried Egg Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251023_022337_565bb5f2.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-10-23T02:23:38.433642000Z",
+    "selected_ingredients": [
+      "egg",
+      "black bean",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Mexican Black Bean & Fried Egg Skillet is presented on a clean white porcelain plate. A mound of savory, dark black beans, simmered with diced red bell pepper and onion, forms the base. Nestled atop the beans is a perfectly cooked fried egg, its white fully set and slightly ruffled, surrounding a bright, golden-orange runny yolk. A sprinkle of vibrant green chopped fresh coriander adds a fresh accent. The plate sits on a simple wooden table, with a plain cotton napkin folded beside it. Two warm, lightly charred corn tortillas are folded neatly to the side. A small cluster of crumbled cotija cheese and a few slices of ripe avocado are arranged near the tortillas. A fresh lime wedge completes the plating. Natural, even lighting illuminates the dish, emphasizing the rich textures and appealing colors in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping the beans and egg.",
+      "Offer crumbled cotija cheese or queso fresco as a topping.",
+      "Include sliced avocado or a simple guacamole on the side.",
+      "Provide lime wedges for a fresh squeeze over the dish."
+    ],
+    "hero_ingredient": "Black Beans",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned black beans, rinsed and drained",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chipotle in adobo sauce, minced",
+        "quantity": "1-2 tbsp"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh coriander, chopped",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lime, cut into wedges",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "8 small"
+      },
+      {
+        "name": "Avocado, sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "Cotija cheese, crumbled",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a large oven-safe skillet or cazuela over medium heat.",
+      "Add diced onion and red bell pepper. Sauté for 5-7 minutes until softened.",
+      "Stir in minced garlic, ground cumin, and smoked paprika. Cook for 1 minute until fragrant.",
+      "Add rinsed black beans, diced tomatoes, and minced chipotle in adobo sauce. Stir well.",
+      "Bring the mixture to a simmer. Cook for 10-15 minutes, allowing the sauce to thicken slightly. Season with salt and black pepper.",
+      "Create four small wells in the black bean mixture using the back of a spoon.",
+      "Carefully crack one egg into each well.",
+      "Cover the skillet. Cook for 5-7 minutes, or until egg whites are set and yolks are still runny (or to desired doneness).",
+      "Garnish the skillet with fresh chopped coriander.",
+      "Serve directly from the skillet or portion onto individual plates. Serve with warm corn tortillas, sliced avocado, crumbled cotija cheese, and lime wedges."
+    ],
+    "traditional_techniques": [
+      "Sofrito base (sautéing aromatics)",
+      "Simmering beans to develop deep flavor"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 673,
+      "cholesterol_mg": 197,
+      "dietary_fiber_g": 25.7,
+      "protein_g": 33.2,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 994,
+      "total_carbs_g": 86.3,
+      "total_fat_g": 24,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 5.9,
+      "saturated_fat_g": 1,
+      "sodium_mg": 177,
+      "total_carbs_g": 15.3,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 92,
+      "protein": 66,
+      "saturated_fat": 27,
+      "sodium": 43,
+      "total_carbs": 31,
+      "total_fat": 31
+    },
+    "serving_size_g": 562.5,
+    "total_recipe_weight_g": 2250
+  },
+  {
+    "recipe_name": "Seared Beef Medallions with Roasted Fennel, Tomatoes, and Feta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_214414_2315e89c.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-22T21:44:15.348547000Z",
+    "selected_ingredients": [
+      "fennel",
+      "tomato",
+      "feta cheese",
+      "onion",
+      "olive oil",
+      "garlic",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A seared beef medallion, approximately 5cm thick, sits centrally on a round white porcelain plate. The beef has a deep, caramelized crust and a warm pink interior visible from the side. Alongside, a vibrant medley of roasted fennel wedges, tender with slight char, and burst cherry tomatoes in hues of crimson and orange are artfully arranged. Thin, translucent slices of red onion are interspersed, adding a subtle purple accent. The dish is generously crowned with irregular crumbles of creamy white feta cheese and a sprinkle of fresh green oregano leaves. A light drizzle of golden olive oil glistens over the components. The presentation is clean and organized, with moderate negative space. The plate rests on a simple wooden table, with a folded cotton napkin beside it.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Greek/Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the pan juices or a simple green salad."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Fennel bulbs",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "10g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss fennel wedges and cherry tomatoes with 30ml olive oil, half the minced garlic, salt, and pepper on a baking sheet.",
+      "Roast for 20-25 minutes, until fennel is tender and tomatoes burst.",
+      "Pat beef medallions dry. Season generously with salt and pepper.",
+      "Heat remaining 30ml olive oil in a heavy skillet over medium-high heat.",
+      "Sear beef medallions for 3-4 minutes per side for medium-rare, or until desired doneness.",
+      "Remove beef from skillet. Let rest for 5 minutes.",
+      "Combine roasted fennel and tomatoes with thinly sliced red onion, remaining minced garlic, chopped oregano, and lemon juice.",
+      "Plate each beef medallion. Spoon roasted vegetable mixture alongside.",
+      "Garnish with crumbled feta cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 582,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 44.2,
+      "saturated_fat_g": 12.8,
+      "sodium_mg": 594,
+      "total_carbs_g": 16,
+      "total_fat_g": 38,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 10.8,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 145,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 18,
+      "protein": 88,
+      "saturated_fat": 64,
+      "sodium": 26,
+      "total_carbs": 6,
+      "total_fat": 49
+    },
+    "serving_size_g": 409,
+    "total_recipe_weight_g": 1637
+  }
+]

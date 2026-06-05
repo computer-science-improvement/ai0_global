@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Beef with Scallion-Ginger Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_with_scallion-ginger_sauce_20250812_111622_6bf5a709.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T11:16:23.228581000Z",
+    "selected_ingredients": [
+      "green onion",
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Beef with Scallion-Ginger Sauce is presented in a simple, well-used ceramic bowl. Tender, irregularly cut chunks of seared beef are coated in a glossy, rich brown sauce. Interspersed among the beef are vibrant green and white lengths of green onion, softened from cooking, and delicate strands of julienned ginger. Fresh, bright green scallion tops are scattered over the top as a functional garnish. The dish is placed on a warm, well-worn wooden dining table. Beside the bowl, a pair of wooden chopsticks rests casually. A small, unassuming white bowl of steamed white rice accompanies the main dish. The scene is lit with a soft, warm glow, typical of a cozy family kitchen, reflecting a homely, comforting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed white rice."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or flank steak",
+        "quantity": "600g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Water",
+        "quantity": "90ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Slice beef thinly against the grain into 5mm thick pieces.",
+      "Cut white and light green parts of green onions into 5cm lengths. Reserve green tops, cut into 2cm lengths.",
+      "Peel and finely julienne ginger. Mince garlic.",
+      "In a bowl, combine 30ml soy sauce, 15ml Shaoxing wine, 5g cornstarch, and white pepper. Add beef slices. Mix well. Marinate for 15 minutes.",
+      "Prepare sauce: Whisk together remaining 30ml soy sauce, 30ml oyster sauce, 15ml Shaoxing wine, 60ml water, and 5g sugar in a separate bowl.",
+      "In a small bowl, mix remaining 10g cornstarch with 30ml water to create a slurry.",
+      "Heat 15ml vegetable oil in a large wok or skillet over high heat.",
+      "Add marinated beef in a single layer. Sear quickly until browned, about 1-2 minutes per side. Remove beef from wok. Cook beef in batches if necessary to avoid overcrowding.",
+      "Add remaining 15ml vegetable oil to the wok. Add julienned ginger and minced garlic. Stir-fry for 30 seconds until fragrant.",
+      "Add white and light green parts of green onions. Stir-fry for 1 minute.",
+      "Return beef to the wok.",
+      "Stir the prepared sauce mixture, then pour into the wok. Bring to a simmer.",
+      "Slowly pour in cornstarch slurry while stirring continuously until sauce thickens and coats the beef, about 1-2 minutes.",
+      "Stir in sesame oil.",
+      "Remove from heat. Garnish with reserved green onion tops. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.9,
+      "calories": 377.9,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 40.8,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 1291.8,
+      "total_carbs_g": 16.2,
+      "total_fat_g": 16.7,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 131.7,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 14.2,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 450.2,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 7.6,
+      "protein": 81.6,
+      "saturated_fat": 20.9,
+      "sodium": 56.2,
+      "total_carbs": 5.9,
+      "total_fat": 21.4
+    },
+    "serving_size_g": 287,
+    "total_recipe_weight_g": 1147.8
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken and Roasted Tomato Penne",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_and_roasted_tomato_penne_20250812_100325_b9ba9626.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T10:03:26.142793000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a white porcelain pasta bowl, showcasing a generous portion of penne coated in a vibrant, rustic red-orange tomato sauce. Interspersed throughout are halved, slightly caramelized roasted cherry tomatoes, adding bursts of color and texture. Thick, golden-brown pan-seared chicken medallions, cut into substantial chunks, are nestled attractively on top and within the pasta. A scattering of fresh, bright green basil leaves provides aromatic contrast, complemented by finely chopped parsley. Grated Parmesan cheese lightly dusts the top. The plating is clean and professional, with moderate negative space. The bowl rests on a simple light wooden table, beside a folded white cotton napkin and standard silver flatware. Natural, even lighting highlights textures and colors, creating an inviting, approachable restaurant-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2 g (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve cherry tomatoes. Toss with 15 ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 20-25 minutes until softened and slightly caramelized. Set aside.",
+      "Cook penne pasta according to package directions until al dente. Reserve 120 ml pasta water. Drain pasta. Set aside.",
+      "Pat chicken breasts dry. Season generously with salt and pepper. Cut each breast into 2-3 thick medallions or large chunks.",
+      "Heat 30 ml olive oil in a large skillet over medium-high heat. Add chicken. Sear for 4-5 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add remaining 15 ml olive oil to the skillet. Add diced onion. Sauté for 3-4 minutes until softened.",
+      "Add minced garlic, dried oregano, and red pepper flakes (if using). Sauté for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a simmer. Cook for 10-12 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Add roasted cherry tomatoes and chopped fresh parsley to the sauce. Stir to combine. Taste and adjust seasoning.",
+      "Add cooked penne pasta to the sauce. Toss to coat. If sauce is too thick, add reserved pasta water a little at a time until desired consistency. Add most of the fresh basil, torn, to the pasta.",
+      "Slice seared chicken medallions into thick pieces if desired, or keep as chunks. Return chicken to the skillet with the pasta. Toss gently to combine. Serve immediately. Garnish with remaining fresh basil and grated Parmesan cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 800,
+      "cholesterol_mg": 127.5,
+      "dietary_fiber_g": 7.48,
+      "protein_g": 63.04,
+      "saturated_fat_g": 3.75,
+      "sodium_mg": 332,
+      "total_carbs_g": 89.33,
+      "total_fat_g": 21.43,
+      "total_sugars_g": 10.15,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145.2,
+      "cholesterol_mg": 23.1,
+      "dietary_fiber_g": 1.36,
+      "protein_g": 11.44,
+      "saturated_fat_g": 0.68,
+      "sodium_mg": 60.3,
+      "total_carbs_g": 16.21,
+      "total_fat_g": 3.89,
+      "total_sugars_g": 1.84,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.5,
+      "dietary_fiber": 26.71,
+      "protein": 126.08,
+      "saturated_fat": 18.75,
+      "sodium": 14.43,
+      "total_carbs": 32.48,
+      "total_fat": 27.47
+    },
+    "serving_size_g": 551,
+    "total_recipe_weight_g": 2204
+  },
+  {
+    "recipe_name": "Hearty Beef and Rice Stuffed Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_rice_stuffed_bell_peppers_20250812_100040_5c539c2d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T10:00:40.950064000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "chili",
+      "rice",
+      "squash",
+      "garlic",
+      "breadcrumbs",
+      "mayonnaise",
+      "dill",
+      "beet",
+      "carrot",
+      "egg",
+      "paprika"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generously stuffed bell pepper, cut lengthwise, sits on a simple, round, off-white ceramic plate. The pepper, a vibrant red or yellow, is filled with a rich, savory mixture of minced beef and rice, flecked with diced onion and a hint of paprika. A warm, reddish-brown tomato-paprika sauce pools naturally around the pepper's base, reflecting the cozy kitchen light. Alongside the pepper, a small, organic cluster of roasted root vegetables – thick, irregular chunks of earthy red beet, bright orange carrot, and pale yellow squash – display slightly caramelized edges and soft textures. A small, creamy dollop of pale green dill-mayonnaise sauce rests on the side of the plate or lightly drizzled over the pepper, adding a fresh contrast. The plate is set on a well-worn, light-colored wooden dining table. A casually folded, plain linen napkin and standard silver flatware are present. The scene is illuminated by warm, inviting kitchen lighting, creating a comforting, lived-in atmosphere. The overall presentation is homely and unpretentious, emphasizing hearty, satisfying portions.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled vegetables, such as gherkins or cabbage.",
+      "Offer extra dill-mayonnaise or sour cream on the side for individual preference.",
+      "Enjoy with a slice of crusty bread to sop up the sauce."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Bell peppers",
+        "quantity": "4 large (mixed colors)"
+      },
+      {
+        "name": "Minced beef",
+        "quantity": "500g"
+      },
+      {
+        "name": "Uncooked rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Chopped tomatoes",
+        "quantity": "1 x 400g can"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Chili flakes",
+        "quantity": "1/2 teaspoon (optional)"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Beet",
+        "quantity": "1 medium, peeled, cut into thick chunks"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, peeled, cut into thick chunks"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "1 small, peeled, deseeded, cut into thick chunks"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "2 tablespoons, finely chopped"
+      },
+      {
+        "name": "Water or milk",
+        "quantity": "1 tablespoon (to thin sauce)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Halve bell peppers lengthwise. Remove seeds and membranes.",
+      "Cook rice according to package directions until almost done. Drain.",
+      "Heat 1 tablespoon olive oil in a large pan over medium heat. Sauté diced onion 5 minutes until soft. Add minced garlic. Cook 1 minute.",
+      "Add minced beef to the pan. Cook until browned. Break up meat. Drain excess fat.",
+      "Transfer beef mixture to a large bowl. Add cooked rice, half of the chopped tomatoes (200g), paprika, chili flakes (if using), egg, breadcrumbs, salt, and pepper. Mix well.",
+      "Stuff bell pepper halves generously with the beef and rice mixture.",
+      "Arrange stuffed peppers in a large oven-safe dish.",
+      "In a separate bowl, mix remaining chopped tomatoes (200g) with beef broth. Pour this sauce around the peppers in the dish.",
+      "Cover dish tightly with foil. Bake 45 minutes.",
+      "While peppers bake, prepare roasted vegetables. Toss beet, carrot, squash chunks with 1 tablespoon olive oil, salt, and pepper on a baking tray. Roast in the same oven for 30-40 minutes, or until tender and slightly caramelized.",
+      "Prepare dill-mayonnaise sauce. Combine mayonnaise, chopped dill, and water/milk in a small bowl. Stir well. Add a pinch of salt.",
+      "After 45 minutes, remove foil from peppers. Continue baking 15-20 minutes, or until peppers are tender and filling is cooked through.",
+      "Serve one stuffed bell pepper per plate. Spoon some tomato sauce from the dish over the pepper. Arrange roasted root vegetables alongside. Drizzle with dill-mayonnaise sauce."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 948,
+      "cholesterol_mg": 139.1,
+      "dietary_fiber_g": 12.3,
+      "protein_g": 38.8,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 1365.7,
+      "total_carbs_g": 71.7,
+      "total_fat_g": 51.4,
+      "total_sugars_g": 16.4,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 100,
+      "cholesterol_mg": 14.6,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 4.1,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 143.8,
+      "total_carbs_g": 7.5,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.4,
+      "dietary_fiber": 44,
+      "protein": 77.5,
+      "saturated_fat": 67.4,
+      "sodium": 59.4,
+      "total_carbs": 26.1,
+      "total_fat": 65.9
+    },
+    "serving_size_g": 950,
+    "total_recipe_weight_g": 3800
+  },
+  {
+    "recipe_name": "Rosół (Polish Chicken Noodle Soup)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ros%C3%B3%C5%82_%28polish_chicken_noodle_soup%29_20250812_093547_e97ca834.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T09:35:48.223647000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "польская cuisine",
+    "visual_description": "A single, generous portion of Rosół is presented in a deep, rustic ceramic bowl with subtle imperfections. The clear, golden broth glistens, revealing tender, shredded chicken chunks, not fanned, settled among soft, fine egg noodles. Bright orange carrot rounds and half-moons are scattered throughout, adding natural color and texture. A generous sprinkle of freshly chopped green parsley floats on top, providing a vibrant contrast and fresh aroma. The bowl sits on a well-used wooden dining table, showing subtle signs of age and warmth. A simple, off-white linen napkin is casually placed beside the bowl. Traditional, unadorned silver flatware (a spoon and fork) rests on the napkin. The lighting is warm and inviting, typical of a cozy family kitchen, casting soft shadows that enhance the homely, comforting feel. The background is minimal, hinting at a lived-in kitchen environment without distracting from the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Polish",
+    "cultural_origin": "Polish",
+    "cultural_serving_suggestions": [
+      "Serve very hot as a first course, especially for Sunday dinner.",
+      "Often accompanied by a small side of fresh, crusty bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken leg quarters",
+        "quantity": "2 (approx. 800g)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (approx. 200g)"
+      },
+      {
+        "name": "Parsley root",
+        "quantity": "1 medium (approx. 100g)"
+      },
+      {
+        "name": "Celery root",
+        "quantity": "1/2 small (approx. 100g)"
+      },
+      {
+        "name": "Leek",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "2"
+      },
+      {
+        "name": "Allspice berries",
+        "quantity": "4"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "8"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fine egg noodles (loksza)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "3 litres"
+      }
+    ],
+    "instructions": [
+      "Rinse chicken leg quarters. Place in a large pot.",
+      "Peel carrots, parsley root, and celery root. Cut carrots into thick rounds or half-moons. Cut parsley and celery root into large chunks.",
+      "Wash leek, trim ends. Cut into 2-3 pieces. Peel onion, leave whole.",
+      "Add cut vegetables, whole onion, bay leaves, allspice berries, and black peppercorns to the pot with the chicken.",
+      "Pour 3 litres of cold water over all ingredients. Water should cover everything.",
+      "Place pot over medium heat. Bring to a very gentle simmer. Do not boil vigorously.",
+      "As foam rises, carefully skim it off the surface. Continue skimming until broth is clear.",
+      "Reduce heat to low. Simmer gently for 1.5 to 2 hours. Broth should barely bubble.",
+      "Chicken should reach an internal temperature of 75°C (167°F).",
+      "Remove chicken and vegetables from the pot. Discard onion, bay leaves, allspice, and peppercorns.",
+      "Strain the broth through a fine-mesh sieve. This ensures a clear Rosół.",
+      "Shred chicken meat into bite-sized chunks. Discard bones and skin.",
+      "Cook egg noodles according to package directions in a separate pot of salted water. Drain well.",
+      "Season the strained broth with salt to taste. It should be savory and well-balanced.",
+      "Place cooked noodles and shredded chicken into individual serving bowls. Add carrot pieces.",
+      "Ladle hot Rosół over the noodles, chicken, and carrots.",
+      "Garnish generously with freshly chopped parsley."
+    ],
+    "notes": [
+      "Skimming the foam is crucial for achieving a clear broth.",
+      "Simmering gently on low heat prevents the broth from becoming cloudy.",
+      "Adjust salt carefully at the end to ensure perfect seasoning."
+    ],
+    "traditional_techniques": [
+      "Gentle simmering for clear broth",
+      "Skimming impurities"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 632,
+      "cholesterol_mg": 207,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 45.2,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 810,
+      "total_carbs_g": 50.2,
+      "total_fat_g": 23.2,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 54.6,
+      "cholesterol_mg": 17.9,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 3.9,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 69.9,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 2,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 21,
+      "protein": 90,
+      "saturated_fat": 31,
+      "sodium": 35,
+      "total_carbs": 18,
+      "total_fat": 30
+    },
+    "serving_size_g": 1159,
+    "total_recipe_weight_g": 4635
+  },
+  {
+    "recipe_name": "Rosół z Kurczaka",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ros%C3%B3%C5%82_z_kurczaka_20250812_092132_88ad5227.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T09:21:33.216582000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "польская cuisine",
+    "visual_description": "A single, generous serving of Rosół z Kurczaka is presented in a simple, deep ceramic bowl. The broth is clear, golden amber, reflecting the long simmering. Rustic chunks of tender, shredded chicken are visible, along with soft, round slices of cooked carrot. Fine egg noodles are nestled at the bottom, partially submerged. A generous sprinkle of vibrant green, freshly chopped flat-leaf parsley floats on top. The bowl sits on a well-used, light wooden dining table, revealing its natural grain. A simple, folded linen napkin is casually placed beside. Warm, natural kitchen lighting creates a cozy, inviting atmosphere typical of a family meal. Focus is on comforting simplicity, highlighting natural colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Polish",
+    "cultural_origin": "Polish",
+    "cultural_serving_suggestions": [
+      "Serve hot as a starter.",
+      "Accompany with fresh, crusty bread.",
+      "Often served with a small side dish of horseradish or grated carrot salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in chicken pieces (e.g., leg quarters, wings)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "3 litres"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery root",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Leek",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Parsley root (optional, or use more fresh parsley)",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Allspice berries",
+        "quantity": "4"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "6"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Egg noodles (nitki)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "1/4 bunch"
+      }
+    ],
+    "instructions": [
+      "Place chicken in a large pot. Cover with 3 litres cold water. Add 1 teaspoon salt.",
+      "Bring to a gentle boil. Skim off foam that rises to the surface. Reduce heat to low.",
+      "Add bay leaves, allspice, and peppercorns. Simmer gently for 1 hour.",
+      "Peel and roughly chop carrots, celery root, leek, parsley root, and onion. Add to the pot.",
+      "Continue to simmer for another 1.5 to 2 hours, or until chicken is very tender and broth is flavorful. Ensure chicken reaches 75°C internal temperature.",
+      "Carefully remove chicken from pot. Let cool slightly. Remove meat from bones. Cut chicken meat into rustic chunks. Discard bones and skin.",
+      "Strain the broth through a fine-mesh sieve. Discard cooked vegetables and spices, or reserve some carrots for serving.",
+      "Cook egg noodles according to package directions. Drain.",
+      "Reheat strained broth. Add chicken chunks. Season with more salt if needed.",
+      "Serve hot in bowls. Add cooked noodles to each bowl. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Slow simmering for clear broth",
+      "Skimming impurities"
+    ]
+  }
+]

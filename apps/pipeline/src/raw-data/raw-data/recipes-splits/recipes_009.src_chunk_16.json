@@ -1,0 +1,646 @@
+[
+  {
+    "recipe_name": "Baked Chicken Macaroni and Cheese with Herbed Crumb Topping",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_chicken_macaroni_and_cheese_with_herbed_crumb_topping_20250723_140741_7088149a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T14:07:41.893557000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "cheddar",
+      "noodle",
+      "bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of baked macaroni and cheese is presented in a deep, clean white porcelain bowl. The top features a golden-brown, bubbly crust with visible crispy, coarse breadcrumbs. Diced, tender chicken pieces, approximately 2 cm cubes, are interspersed within the creamy, rich yellow macaroni and cheese below the crust. The macaroni noodles are plump and coated in a smooth, thick sauce. Fresh, finely chopped green parsley is sprinkled over the top, adding a pop of color and freshness. The dish sits on a simple, light-colored wooden table, reflecting a modern bistro setting. A neatly folded white cotton napkin is placed beside the bowl. Natural, even light illuminates the dish, highlighting its comforting textures and warm colors. The background is minimal and subtly blurred, maintaining focus on the food while suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Sharp cheddar cheese, grated",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Whole milk, warm",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Day-old bread, crusts removed",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Lightly grease a 2.5-liter baking dish.",
+      "Cook macaroni according to package directions until al dente. Drain and set aside.",
+      "Season chicken breasts with salt, pepper, and a pinch of smoked paprika. Heat olive oil in an oven-safe skillet over medium-high heat. Sear chicken 3-4 minutes per side until golden.",
+      "Transfer skillet to preheated oven. Bake chicken for 15-20 minutes, or until internal temperature reaches 75°C. Remove, rest 5 minutes, then dice into 2 cm cubes.",
+      "Melt butter in a large saucepan over medium heat. Whisk in flour to form a roux. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in warm milk until smooth. Bring to a simmer, stirring, until sauce thickens, about 5-7 minutes.",
+      "Remove from heat. Stir in grated cheddar cheese until melted and smooth. Add Dijon mustard, garlic powder, onion powder, smoked paprika, nutmeg, salt, and pepper. Mix well.",
+      "Add cooked macaroni and diced chicken to the cheese sauce. Stir to combine thoroughly.",
+      "Pulse day-old bread in a food processor to create coarse breadcrumbs. In a bowl, toss breadcrumbs with 1 tablespoon olive oil and half of the fresh parsley.",
+      "Pour macaroni and chicken mixture into the prepared baking dish. Spread evenly. Top with seasoned breadcrumbs.",
+      "Bake for 25-30 minutes, or until golden brown and bubbly. If crumbs brown too quickly, cover loosely with foil.",
+      "Remove from oven. Let stand 5 minutes before serving. Garnish with remaining fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 1272.7,
+      "cholesterol_mg": 235,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 80.4,
+      "saturated_fat_g": 28.8,
+      "sodium_mg": 498,
+      "total_carbs_g": 107.6,
+      "total_fat_g": 52.5,
+      "total_sugars_g": 11.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 234.4,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 14.8,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 91,
+      "total_carbs_g": 19.8,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78.3,
+      "dietary_fiber": 16.8,
+      "protein": 160.8,
+      "saturated_fat": 144,
+      "sodium": 21.7,
+      "total_carbs": 39.1,
+      "total_fat": 67.3
+    },
+    "serving_size_g": 542.8,
+    "total_recipe_weight_g": 2171.3
+  },
+  {
+    "recipe_name": "Hearty Bacon and Egg Hash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_bacon_and_egg_hash_20250723_124953_db1f2a97.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T12:49:54.257783000Z",
+    "selected_ingredients": [
+      "egg",
+      "bacon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty bacon and egg hash is presented on a simple, round ceramic plate with a slightly off-white, speckled finish. The hash forms a rustic mound in the center, a warm mix of golden-brown diced potatoes, crispy rendered bacon pieces, and finely diced caramelized onions and bell pepper. Two perfectly fried eggs with bright yellow, runny yolks sit atop the hash, one slightly overlapping the other. The egg whites are firm and slightly crisp at the edges. A light sprinkle of fresh, chopped green parsley adds a touch of color. The plate rests on a well-worn, natural wooden kitchen table, showing subtle grain and slight imperfections. A casual, folded linen napkin in a neutral tone and a simple fork are placed beside the plate. Warm, soft light from an overhead kitchen fixture illuminates the scene, creating a cozy, inviting atmosphere typical of a family breakfast.",
+    "number_of_servings": 2,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of hot sauce or ketchup.",
+      "Accompany with toasted bread or buttered English muffins."
+    ],
+    "hero_ingredient": "Bacon",
+    "ingredients": [
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Potatoes (e.g., Maris Piper or Russet)",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "4"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Vegetable oil or butter",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Dice potatoes into 1.5 cm cubes. Chop bacon into 1 cm pieces. Finely dice onion and bell pepper.",
+      "Heat a large skillet over medium-high heat. Add bacon. Cook until crispy. Remove bacon with a slotted spoon. Reserve rendered fat in the skillet.",
+      "Add diced potatoes to the skillet with bacon fat. Cook, stirring occasionally, for 15-20 minutes until tender and golden brown. Add a little oil or butter if needed.",
+      "Add diced onion and bell pepper to the skillet with potatoes. Cook for 5-7 minutes until softened.",
+      "Return cooked bacon to the skillet. Stir to combine with potatoes and vegetables. Season generously with salt and black pepper.",
+      "In a separate non-stick pan, heat a small amount of oil or butter over medium heat. Fry the eggs to your desired doneness, ensuring yolks remain runny. Cook 2 eggs per person.",
+      "Divide hash evenly between two plates. Top each portion with two fried eggs. Garnish with chopped fresh parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 724,
+      "cholesterol_mg": 424,
+      "dietary_fiber_g": 7,
+      "protein_g": 38,
+      "saturated_fat_g": 11.7,
+      "sodium_mg": 1862,
+      "total_carbs_g": 52.5,
+      "total_fat_g": 40.1,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147,
+      "cholesterol_mg": 86,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.7,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 378,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 141,
+      "dietary_fiber": 25,
+      "protein": 76,
+      "saturated_fat": 59,
+      "sodium": 81,
+      "total_carbs": 19,
+      "total_fat": 51
+    },
+    "serving_size_g": 493,
+    "total_recipe_weight_g": 986
+  },
+  {
+    "recipe_name": "Hearty Chicken and Vegetable Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_vegetable_soup_20250723_124653_916691d8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T12:46:53.600462000Z",
+    "selected_ingredients": [
+      "onion",
+      "potato",
+      {
+        "name": "chicken",
+        "comment": "Chicken breast"
+      },
+      {
+        "name": "tomato",
+        "comment": "Also tomato paste"
+      },
+      "carrot",
+      "garlic",
+      {
+        "name": "butter",
+        "comment": "61,5%"
+      },
+      "black pepper",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "Healthy and delicious",
+    "visual_description": "A single serving of hearty chicken and vegetable soup is presented in a clean, off-white ceramic bowl. The soup features clearly visible, evenly diced pieces of tender white chicken breast, bright orange carrot cubes, soft, pale yellow potato chunks, and vibrant red tomato pieces. These ingredients are suspended in a rich, reddish-orange broth, indicating a savory, tomato-infused base. A light sprinkle of fresh, chopped green parsley or oregano garnishes the surface, adding a pop of color and freshness. The textures appear inviting and comforting. The bowl is placed on a simple, light-colored wooden table surface. A folded cotton napkin and a plain metal spoon rest beside the bowl. Natural, even lighting illuminates the scene, highlighting the steam rising gently from the hot soup. The background is softly blurred, suggesting a casual, contemporary bistro setting without distraction, keeping the focus entirely on the appealing dish.",
+    "number_of_servings": 5,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Butter (61.5%)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley or oregano",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 2 cm cubes. Set aside.",
+      "Peel and dice potatoes into 1.5 cm cubes. Set aside.",
+      "Peel and dice carrots into 1 cm cubes. Set aside.",
+      "Peel and dice the onion. Mince the garlic.",
+      "Dice fresh tomatoes into 1.5 cm pieces.",
+      "Melt butter in a large pot or Dutch oven over medium heat.",
+      "Add diced onion and carrots to the pot. Sauté for 5 minutes until softened.",
+      "Add minced garlic to the pot. Sauté for 1 minute until fragrant.",
+      "Add diced chicken to the pot. Cook for 3-4 minutes until lightly browned on all sides. Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Stir in tomato paste, diced fresh tomatoes, diced potatoes, dried oregano, and black pepper. Cook for 2 minutes, stirring constantly.",
+      "Pour in chicken broth. Bring the soup to a boil, then reduce heat to low.",
+      "Simmer for 20-25 minutes, or until potatoes and carrots are tender.",
+      "Season the soup with salt to taste.",
+      "Ladle the hot soup into individual bowls. Garnish with fresh chopped parsley or oregano if desired. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 362.91,
+      "cholesterol_mg": 117.5,
+      "dietary_fiber_g": 4.19,
+      "protein_g": 31.26,
+      "saturated_fat_g": 3.73,
+      "sodium_mg": 1766.02,
+      "total_carbs_g": 24.76,
+      "total_fat_g": 15.23,
+      "total_sugars_g": 4.91,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 52.56,
+      "cholesterol_mg": 17.02,
+      "dietary_fiber_g": 0.61,
+      "protein_g": 4.53,
+      "saturated_fat_g": 0.54,
+      "sodium_mg": 255.76,
+      "total_carbs_g": 3.59,
+      "total_fat_g": 2.2,
+      "total_sugars_g": 0.71,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.17,
+      "dietary_fiber": 14.96,
+      "protein": 62.52,
+      "saturated_fat": 18.65,
+      "sodium": 76.78,
+      "total_carbs": 9,
+      "total_fat": 19.53
+    },
+    "serving_size_g": 690.5,
+    "total_recipe_weight_g": 2762
+  },
+  {
+    "recipe_name": "Creamy Turkey & Ricotta Pasta with Peas and Basil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_turkey_%26_ricotta_pasta_with_peas_and_basil_20250723_122546_b5fb7a69.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T12:25:47.292131000Z",
+    "selected_ingredients": [
+      "pasta",
+      "ricotta",
+      "basil",
+      "turkey",
+      "green pea"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy pasta is artfully mounded on a clean white porcelain dinner plate, centrally placed. The pasta, a medium-sized shape like rigatoni, is coated generously in a rich, off-white ricotta sauce. Interspersed throughout are browned, crumbled ground turkey pieces, vibrant whole green peas, and whole, fresh basil leaves. The dish exhibits a harmonious blend of creamy textures from the sauce, tender pasta, and slight chew from the turkey. Colors are natural and inviting: the creamy white sauce, deep green peas, bright green basil, and golden-brown turkey. A light drizzle of golden olive oil glistens on top. The plate rests on a simple light wooden table surface. A fork is placed to the right, and a neatly folded cotton napkin to the left. Natural, even lighting highlights the dish, with a softly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmesan cheese on the side",
+      "Offer a basket of crusty Italian bread for dipping"
+    ],
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., Rigatoni or Penne)",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Ground Turkey",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Ricotta Cheese",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Frozen Green Peas",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken or Vegetable Broth",
+        "quantity": "250 milliliters"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Parmesan Cheese, grated",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions in salted boiling water. Drain, reserving 125 ml of pasta water.",
+      "While pasta cooks, heat olive oil in a large pan over medium heat.",
+      "Add diced onion to the pan. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add ground turkey to the pan. Break it apart with a spoon. Cook until browned and cooked through. Ensure turkey reaches 75°C (167°F).",
+      "Stir in chicken broth and frozen green peas. Simmer for 3-4 minutes until peas are tender.",
+      "Reduce heat to low. Stir in ricotta cheese until just combined and warm.",
+      "Add cooked pasta to the pan with the turkey and ricotta sauce. Toss to coat.",
+      "If sauce is too thick, add reserved pasta water, 30 ml at a time, until desired consistency.",
+      "Tear fresh basil leaves and stir into the pasta. Season with salt and black pepper to taste.",
+      "Serve immediately, topped with grated Parmesan cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 786,
+      "cholesterol_mg": 111.9,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 51.4,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 338.3,
+      "total_carbs_g": 87.5,
+      "total_fat_g": 22.3,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.4,
+      "cholesterol_mg": 24.4,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 11.2,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 73.8,
+      "total_carbs_g": 19.1,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.3,
+      "dietary_fiber": 22.8,
+      "protein": 102.8,
+      "saturated_fat": 33.6,
+      "sodium": 14.7,
+      "total_carbs": 31.8,
+      "total_fat": 28.5
+    },
+    "serving_size_g": 458.5,
+    "total_recipe_weight_g": 1834
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Tomato Basil Linguine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_tomato_basil_linguine_20250723_122415_24b75e24.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T12:24:15.520573000Z",
+    "selected_ingredients": [
+      "pasta",
+      "basil",
+      "tomato",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Chicken with Tomato Basil Linguine is presented on a clean, round white porcelain dinner plate, centrally composed. The linguine is twirled into an elegant, organized nest, showing its pale yellow hue. Resting atop and around the pasta are several golden-brown, pan-seared chicken medallions, each cooked to perfection with a slightly crisp exterior and moist interior. Vibrant red cherry tomato halves are interspersed throughout the pasta, some gently burst, releasing their rich color. Bright green, fresh basil leaves are scattered generously, providing a pop of contrasting color and freshness. A light sheen of olive oil coats the dish, indicating a subtle richness. The composition is balanced with moderate negative space, showcasing the professional plating. The dish sits on a simple wooden table surface, accompanied by standard Italian flatware and a folded white cotton napkin. Lighting is natural and even, creating a restaurant-style background with a casual, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with freshly grated Parmesan cheese on the side.",
+      "Offer a basket of crusty Italian bread for dipping in the sauce.",
+      "Pair with a light Italian white wine."
+    ],
+    "hero_ingredient": "Pan-Seared Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Linguine",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large bunch (approx. 60g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Dry white wine (e.g., Pinot Grigio)",
+        "quantity": "120 ml (optional)"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Parmesan cheese, for serving",
+        "quantity": "As desired"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml, plus more for drizzling"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat 30 ml olive oil in a large non-stick pan over medium-high heat.",
+      "Add chicken breasts. Sear for 5-7 minutes per side until golden brown and internal temperature reaches 75°C. Remove chicken. Let rest on a cutting board for 5 minutes. Slice into thick medallions or chunks.",
+      "While chicken rests, bring a large pot of salted water to a rolling boil. Add linguine. Cook according to package directions until al dente.",
+      "In the same pan used for chicken, add remaining 30 ml olive oil. Reduce heat to medium. Add diced shallot. Sauté for 2 minutes until softened.",
+      "Add minced garlic. Sauté for 1 minute until fragrant. Do not brown.",
+      "Add halved cherry tomatoes. Cook for 5-7 minutes, gently pressing some tomatoes to release juices, until softened and bursting.",
+      "If using, pour in white wine. Scrape up any browned bits from the pan bottom. Simmer for 2 minutes until reduced slightly.",
+      "Pour in chicken stock. Bring to a simmer. Cook for 3-5 minutes until sauce reduces and thickens slightly.",
+      "Drain cooked linguine. Add directly to the pan with the sauce. Toss well to coat.",
+      "Tear fresh basil leaves. Stir into the pasta sauce. Season with salt and pepper to taste.",
+      "Portion linguine onto plates. Arrange sliced chicken medallions or chunks on top of the pasta. Drizzle with a little extra virgin olive oil. Serve immediately with grated Parmesan cheese on the side."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 902,
+      "cholesterol_mg": 159.8,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 75.6,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 494.8,
+      "total_carbs_g": 84.5,
+      "total_fat_g": 24.9,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161,
+      "cholesterol_mg": 28.6,
+      "dietary_fiber_g": 1,
+      "protein_g": 13.5,
+      "saturated_fat_g": 1,
+      "sodium_mg": 88.5,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.3,
+      "dietary_fiber": 19.6,
+      "protein": 151.2,
+      "saturated_fat": 28.5,
+      "sodium": 21.5,
+      "total_carbs": 30.7,
+      "total_fat": 31.9
+    },
+    "serving_size_g": 558.8,
+    "total_recipe_weight_g": 2235
+  }
+]

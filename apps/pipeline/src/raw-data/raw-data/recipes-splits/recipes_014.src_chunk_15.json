@@ -1,0 +1,691 @@
+[
+  {
+    "recipe_name": "Pan-Seared Beef Medallions with Garlic Confit and Potato Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_medallions_with_garlic_confit_and_potato_gratin_20250630_033305_16b84c3f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:33:05.710411000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, centered on a simple wooden table surface. A single pan-seared beef medallion, golden-brown with a subtle crust, rests prominently on one side of the plate. The beef is presented as a thick, whole piece. Beside it, a neat rectangular block of golden-brown potato gratin, with visible thin, tender potato slices, sits perfectly formed. A few soft, golden-brown whole garlic confit cloves are artfully placed around the beef, glistening with a light drizzle of their infused oil. A sprinkle of bright green, finely chopped fresh chives adds a pop of color and freshness over the beef and gratin. The overall color palette is warm browns, creams, and a touch of vibrant green. The textures are varied: the seared exterior of the beef, the creamy layers of potato, and the tender, almost jammy garlic confit. The arrangement is professional and balanced, with moderate negative space, showcasing each component clearly. A standard silver fork and knife are positioned beside the plate on a folded white cotton napkin, completing the modern bistro aesthetic. Natural, even lighting illuminates the scene, highlighting the food's textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef tenderloin (center cut)",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic cloves (smashed)",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Garlic cloves (peeled, whole)",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Olive oil (for confit)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs (for confit)",
+        "quantity": "2"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Maris Piper)",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Garlic cloves (minced)",
+        "quantity": "2"
+      },
+      {
+        "name": "Nutmeg (freshly grated)",
+        "quantity": "0.5 grams"
+      },
+      {
+        "name": "Gruyère cheese (grated, optional)",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Fresh chives (finely chopped)",
+        "quantity": "5 grams"
+      }
+    ],
+    "instructions": [
+      "Prepare Garlic Confit: Place whole peeled garlic cloves, 250 ml olive oil, bay leaf, and 2 thyme sprigs in a small saucepan. Heat over very low heat. Simmer gently for 45-60 minutes, until garlic is very tender and golden. Do not brown. Cool slightly.",
+      "Prepare Potato Gratin: Preheat oven to 180°C. Thinly slice potatoes (1-2 mm thick) using a mandoline or sharp knife. In a large bowl, combine cream, milk, minced garlic, nutmeg, salt, and pepper. Add sliced potatoes; toss to coat evenly.",
+      "Arrange potato slices overlapping in a single layer in a shallow 20x20 cm baking dish. Repeat layers until all potatoes are used. Pour remaining cream mixture over potatoes.",
+      "Bake for 45-60 minutes, or until potatoes are tender and golden brown. If desired, sprinkle with Gruyère cheese for the last 10 minutes.",
+      "Prepare Beef Medallions: Season beef medallions generously with salt and pepper on all sides.",
+      "Heat 30 ml olive oil in a heavy-bottomed skillet over medium-high heat until shimmering. Add beef medallions. Sear for 3-4 minutes per side for medium-rare, or to desired doneness.",
+      "Add butter, 2 smashed garlic cloves, and 4 thyme sprigs to the skillet. Baste beef with melted butter for the last minute of cooking.",
+      "Remove beef from skillet. Rest on a cutting board, tented with foil, for 5-7 minutes.",
+      "Assemble Dish: Place a portion of potato gratin on each plate. Arrange one beef medallion next to the gratin. Spoon a few garlic confit cloves and a drizzle of the confit oil over the beef. Garnish with fresh chives. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Confit"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1384.6,
+      "cholesterol_mg": 228,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 46.7,
+      "saturated_fat_g": 35.6,
+      "sodium_mg": 662.3,
+      "total_carbs_g": 56.8,
+      "total_fat_g": 110.5,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 233.5,
+      "cholesterol_mg": 38.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.9,
+      "saturated_fat_g": 6,
+      "sodium_mg": 111.7,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 18.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 19.9,
+      "protein": 93.4,
+      "saturated_fat": 178,
+      "sodium": 28.8,
+      "total_carbs": 20.7,
+      "total_fat": 141.7
+    },
+    "serving_size_g": 593,
+    "total_recipe_weight_g": 2372.1
+  },
+  {
+    "recipe_name": "Slow-Cooked Beef with Fermented Tomato Jus, Caramelized Onion Marmalade, and Potato Skin Crisps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_with_fermented_tomato_jus%2C_caramelized_onion_marmalade%2C_and_potato_skin_crisps_20250630_032530_5ec69229.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:25:31.369866000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "potato",
+      "sugar",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of slow-cooked beef, fork-tender and glistening with rich fermented tomato jus, is centrally plated on a large, round handcrafted cream ceramic dish. Beside the beef chunks, a clean dollop of deep amber caramelized onion marmalade adds color and texture. Golden-brown roasted potato chunks are naturally arranged around the beef. A few crispy, irregularly shaped potato skin crisps are delicately placed on top, emphasizing zero-waste. The minimalistic plating highlights each ingredient's natural beauty and texture. The scene is set on a light bamboo table with an undyed linen napkin. Soft natural lighting creates a clean, uncluttered background, focusing solely on the dish's sustainable elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or short ribs",
+        "quantity": "800g"
+      },
+      {
+        "name": "Yellow onions (for Marmalade)",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Yellow onion (for Jus)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "4 medium (about 800g)"
+      },
+      {
+        "name": "Fermented Tomato Puree",
+        "quantity": "200g"
+      },
+      {
+        "name": "Granulated sugar (for Marmalade)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Onion Marmalade: In a large pot or Dutch oven, heat 15ml olive oil over medium-low heat. Add thinly sliced yellow onions. Cook slowly, stirring occasionally, for 25-30 minutes until very soft and translucent. Add sugar and apple cider vinegar. Continue cooking, stirring frequently, for another 15-20 minutes until deeply caramelized and jam-like. Season with a pinch of salt. Set aside.",
+      "Sear Beef: Pat beef chunks dry. Season generously with salt and pepper. In the same pot or Dutch oven, heat remaining 15ml olive oil over medium-high heat. Sear beef chunks in batches until deeply browned on all sides. Remove beef and set aside.",
+      "Build Jus: Add chopped yellow onion to the pot. Sauté for 5 minutes until softened. Stir in tomato paste and cook for 2 minutes, stirring constantly. Add fermented tomato puree, beef stock, thyme sprigs, and bay leaves. Bring to a simmer, scraping up any browned bits from the bottom of the pot.",
+      "Slow Cook Beef: Return seared beef to the pot. Ensure beef is mostly submerged in liquid. Bring to a gentle simmer. Cover tightly and transfer to a preheated oven at 150°C (300°F) for 2.5-3 hours, or until beef is fork-tender.",
+      "Roast Potatoes: While beef cooks, preheat oven to 200°C (400°F). Toss potato chunks with a drizzle of olive oil, salt, and pepper on a baking tray. Roast for 30-40 minutes, flipping halfway, until tender and golden brown.",
+      "Make Potato Skin Crisps: Pat reserved potato peels very dry. Toss lightly with a tiny amount of olive oil and a pinch of salt. Spread in a single layer on a separate baking sheet. Bake at 200°C (400°F) for 10-15 minutes, or until crispy and golden. Watch carefully to prevent burning.",
+      "Finish Jus: Once beef is tender, remove from oven. Carefully remove beef chunks and set aside. Strain the cooking liquid through a fine-mesh sieve, pressing on solids to extract all liquid. Discard solids. Return strained jus to the pot. Reduce over medium-high heat until it reaches a slightly thickened, sauce-like consistency. Season to taste. Return beef to the jus to keep warm.",
+      "Plate: On each plate, place a portion of slow-cooked beef with a generous spoonful of the rich jus. Arrange roasted potato chunks naturally around the beef. Add a clean dollop of caramelized onion marmalade beside the beef. Finish by artfully placing a few crispy potato skin crisps on top or alongside. Serve immediately."
+    ],
+    "notes": [
+      "Fermented Tomato Puree: To make your own zero-waste fermented tomato puree, collect tomato cores, ends, and any slightly bruised bits. Roughly chop them. For every 100g of tomato scraps, add 2g of non-iodized salt. Place in a clean jar, pressing down to submerge under any liquid. If not enough liquid, add a splash of filtered water. Loosely cover with a lid or fermentation airlock. Let ferment at room temperature (18-24°C / 65-75°F) for 3-7 days, tasting daily. Once desired tanginess is achieved, blend the fermented tomatoes until smooth. Store in the refrigerator for up to 2-3 weeks."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.5,
+      "calories": 967,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 10.5,
+      "protein_g": 53.8,
+      "saturated_fat_g": 19.1,
+      "sodium_mg": 285,
+      "total_carbs_g": 78.1,
+      "total_fat_g": 51.4,
+      "total_sugars_g": 29,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.4,
+      "calories": 111,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.2,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 33,
+      "total_carbs_g": 9,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 38,
+      "protein": 108,
+      "saturated_fat": 96,
+      "sodium": 12,
+      "total_carbs": 28,
+      "total_fat": 66
+    },
+    "serving_size_g": 872,
+    "total_recipe_weight_g": 3487
+  },
+  {
+    "recipe_name": "Spicy Cheddar Mac & Cheese with Crispy Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_cheddar_mac_%26_cheese_with_crispy_chicken_20250630_032003_13997016.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:20:03.834222000Z",
+    "selected_ingredients": [
+      "chicken",
+      "hot sauce",
+      "mustard",
+      "cheese",
+      "rice",
+      "pasta",
+      "cheddar",
+      "pickled jalapeno chilies",
+      "garlic",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, white porcelain dinner plate. A generous portion of creamy, golden-orange mac and cheese forms the base, its rich sauce clinging to al dente elbow macaroni. Scattered throughout are golden-brown, crispy chicken chunks, approximately 2-3 cm in size. The vibrant red-orange hue of the cheese sauce is punctuated by the bright green rings of sliced pickled jalapeños, some resting on top, others peeking from within the pasta. A few drops of red hot sauce might be artfully drizzled. The textures are a pleasing contrast of creamy pasta, tender chicken, and crisp jalapeños. The plating is clean and balanced, allowing moderate negative space on the plate. The setting features a simple wooden table, a cotton napkin beside the plate, and traditional flatware, all under natural, even lighting with a casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "A simple green salad on the side",
+      "A glass of iced tea or craft beer"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs or breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Elbow macaroni or shell pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Sharp cheddar cheese, grated",
+        "quantity": "300g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Hot sauce (e.g., Frank's RedHot)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Pickled jalapeño chilies, sliced (plus 30ml brine)",
+        "quantity": "60g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "250ml (for frying)"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100g (optional)"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large (optional)"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 2-3 cm chunks. Season with salt, pepper, and 2g chili powder.",
+      "For crispy fried chicken: Whisk egg in a bowl. Place breadcrumbs in another. Dip chicken chunks in egg, then coat thoroughly in breadcrumbs. Heat 250ml oil in a large skillet over medium-high heat. Add chicken. Cook 6-8 minutes, turning, until golden brown and internal temperature reaches 75°C. Remove chicken. Set aside.",
+      "Cook pasta: Bring a large pot of salted water to a boil. Add pasta. Cook according to package directions until al dente. Drain pasta. Do not rinse.",
+      "Make cheese sauce: In a large saucepan or Dutch oven, melt butter over medium heat. Add minced garlic. Cook 1 minute until fragrant. Whisk in flour. Cook 1 minute, stirring constantly, to make a roux. Gradually whisk in milk until smooth. Bring to a simmer, stirring, until sauce thickens.",
+      "Finish sauce: Reduce heat to low. Add grated cheddar cheese, hot sauce, Dijon mustard, remaining chili powder, and pickled jalapeño brine. Stir until cheese is melted and sauce is smooth. Season with salt and pepper to taste.",
+      "Combine: Add drained pasta to the cheese sauce. Stir to coat evenly. Gently fold in cooked chicken chunks.",
+      "Serve: Spoon mac and cheese onto plates. Garnish with sliced pickled jalapeños."
+    ],
+    "notes": [
+      "For extra spice, add a pinch of cayenne pepper to the cheese sauce.",
+      "Ensure chicken reaches 75°C internal temperature for safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1396.22,
+      "cholesterol_mg": 297.78,
+      "dietary_fiber_g": 5.74,
+      "protein_g": 90.7,
+      "saturated_fat_g": 29.44,
+      "sodium_mg": 1966.15,
+      "total_carbs_g": 117.56,
+      "total_fat_g": 61.72,
+      "total_sugars_g": 13.93,
+      "trans_fat_g": 1.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170.95,
+      "cholesterol_mg": 36.46,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.11,
+      "saturated_fat_g": 3.61,
+      "sodium_mg": 240.73,
+      "total_carbs_g": 14.39,
+      "total_fat_g": 7.56,
+      "total_sugars_g": 1.71,
+      "trans_fat_g": 0.12
+    },
+    "daily_value_percentages": {
+      "cholesterol": 99.26,
+      "dietary_fiber": 20.5,
+      "protein": 181.4,
+      "saturated_fat": 147.2,
+      "sodium": 85.48,
+      "total_carbs": 42.75,
+      "total_fat": 79.13
+    },
+    "serving_size_g": 816.75,
+    "total_recipe_weight_g": 3267
+  },
+  {
+    "recipe_name": "Slow-Cooked Beef Brisket with Fermented Chili Jam & Pickled Red Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_brisket_with_fermented_chili_jam_%26_pickled_red_onions_20250630_031925_3d25496d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:19:26.252879000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "chili"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a handcrafted, matte ceramic plate in an earthy beige tone, set on a light reclaimed wood table. A substantial, thick chunk of slow-cooked beef brisket, deeply browned and fork-tender, anchors the plate. Its natural shape is preserved. Rustic chunks of golden-brown roasted potatoes and caramelized orange carrots are arranged naturally beside the beef. A vibrant cluster of thinly sliced, pale pink pickled red onions provides a bright counterpoint. A rich, deep red dollop of rustic fermented chili jam sits adjacent, its texture slightly chunky. Ample white space emphasizes each ingredient's pure beauty. The composition is clean, unfussy, and highlights natural textures. An undyed linen napkin is loosely draped. Soft, natural lighting illuminates the food. A subtle plant hint is visible in the clean, minimalist background, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Beef Brisket",
+    "ingredients": [
+      {
+        "name": "Beef Brisket (flat cut)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Red Onions",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Brown Onions",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Mixed Fresh Chilies",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Peppercorns",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Pat beef brisket dry. Season generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large oven-safe pot over medium-high heat. Sear brisket on all sides until deeply browned. Remove brisket.",
+      "Add 1 chopped brown onion and 4 crushed garlic cloves to the pot. Sauté until softened, about 5 minutes.",
+      "Return brisket to the pot. Add stock, bay leaves, and thyme. Bring to a simmer. Cover tightly.",
+      "Transfer to a preheated oven at 150°C. Cook for 3-4 hours, or until fork-tender.",
+      "Remove brisket. Let rest 15 minutes. Strain cooking liquid for a jus.",
+      "Thinly slice 1 large red onion.",
+      "In a small saucepan, combine apple cider vinegar, 200 ml water, 30g sugar, 1 tsp salt, and black peppercorns. Bring to a simmer. Stir until dissolved.",
+      "Place sliced red onion in a clean jar. Pour hot pickling liquid over onions. Let cool. Cover and refrigerate for at least 1 hour.",
+      "Roughly chop mixed fresh chilies. Remove stems. Chop remaining brown onion and 2 cloves garlic. Grate 30g ginger.",
+      "Heat 15 ml olive oil in a saucepan. Add chopped chilies, onion, garlic, and ginger. Sauté for 5-7 minutes.",
+      "Add 20g sugar and a pinch of salt. Add 50ml water. Simmer gently for 20-30 minutes until chilies soften and liquid reduces to a jam-like consistency. Stir often.",
+      "Preheat oven to 200°C.",
+      "Peel carrots and potatoes. Cut into rustic chunks.",
+      "Toss vegetables with a drizzle of olive oil, salt, and pepper on a baking tray. Roast for 25-35 minutes, or until tender and slightly caramelized.",
+      "Slice rested brisket against the grain into thick pieces. Place brisket on a plate.",
+      "Spoon roasted vegetables beside the brisket. Add a generous portion of pickled red onions. Dollop fermented chili jam alongside. Drizzle with the strained beef jus."
+    ],
+    "notes": [
+      "Use any beef bones or vegetable scraps (onion peels, carrot tops) to make a richer stock for braising, minimizing waste.",
+      "The fermented chili jam and pickled onions can be prepared days in advance, enhancing flavor and reducing cooking time on the day of serving.",
+      "Adjust chili heat in the jam to personal preference."
+    ]
+  },
+  {
+    "recipe_name": "Tagliatelle with Chicken and Beef Bolognese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tagliatelle_with_chicken_and_beef_bolognese_20250630_031831_6365f7e2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:18:31.512004000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "oil",
+      "pasta",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italien cuisine",
+    "visual_description": "A single portion of Tagliatelle with Chicken and Beef Bolognese is presented on a round, clean white porcelain dinner plate set on a simple light wooden table. The tagliatelle is gently swirled into a nest, generously coated in the rich, deep reddish-brown ragu. The sauce features finely diced vegetables and a harmonious blend of browned ground beef and chicken, creating a hearty texture. A delicate sprinkle of freshly grated Parmigiano-Reggiano covers the pasta, and a few vibrant green fresh basil leaves are placed atop for garnish. The dish exhibits natural, appealing colors from the slow-cooked tomatoes and meats, with a moderate amount of negative space on the plate. Beside the plate rests a folded cotton napkin and traditional silver flatware. Natural, even lighting illuminates the scene, highlighting the textures of the pasta and the richness of the sauce, with a subtle, blurred restaurant-style background creating a casual yet refined atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with freshly grated Parmigiano-Reggiano cheese.",
+      "Accompany with crusty Italian bread for dipping.",
+      "Pair with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ground chicken",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1"
+      },
+      {
+        "name": "Crushed tomatoes (Passata)",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Red wine (dry)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parmigiano-Reggiano",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Fresh basil or parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Finely dice onion, carrot, and celery. Mince garlic.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium heat.",
+      "Add diced onion, carrot, and celery. Cook until softened, about 8-10 minutes. Do not brown.",
+      "Add ground beef and ground chicken to the pot. Break up meat with a spoon. Cook until browned, stirring frequently. Drain excess fat if needed.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine has almost evaporated.",
+      "Stir in crushed tomatoes and milk. Bring to a gentle simmer.",
+      "Reduce heat to low. Cover and simmer for at least 2 hours, stirring occasionally. For best flavor, simmer for 3-4 hours. The sauce should be rich and thick.",
+      "Season ragu with salt and black pepper to taste.",
+      "Cook tagliatelle according to package directions in salted boiling water until al dente.",
+      "Drain pasta, reserving a small amount of pasta water.",
+      "Add drained pasta directly to the ragu. Toss to coat. Add a splash of reserved pasta water if needed to loosen sauce.",
+      "Serve immediately with grated Parmigiano-Reggiano and fresh basil or parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "The longer the ragu simmers, the more developed and rich the flavors will become.",
+      "For an even richer sauce, add a small amount of unsalted butter at the end of cooking."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow simmering (Ragu)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 887,
+      "cholesterol_mg": 122.6,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 52.7,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 167.1,
+      "total_carbs_g": 91.4,
+      "total_fat_g": 32.2,
+      "total_sugars_g": 12.1,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.3,
+      "cholesterol_mg": 21.3,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.2,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 29.1,
+      "total_carbs_g": 15.9,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.9,
+      "dietary_fiber": 22.9,
+      "protein": 105.3,
+      "saturated_fat": 50.5,
+      "sodium": 7.3,
+      "total_carbs": 33.3,
+      "total_fat": 41.3
+    },
+    "serving_size_g": 574.9,
+    "total_recipe_weight_g": 2299.6
+  }
+]

@@ -1,0 +1,517 @@
+[
+  {
+    "recipe_name": "Spicy Glazed Chicken Thighs with Roasted Red Onion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_glazed_chicken_thighs_with_roasted_red_onion_20250701_144911_7595a9dd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:49:12.322601000Z",
+    "selected_ingredients": [
+      "onion",
+      "chicken",
+      "hot sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spicy Glazed Chicken Thighs is presented on a round, clean white porcelain plate. A plump, golden-brown chicken thigh, glistening with a vibrant reddish-orange glaze, is placed centrally. The glaze is thick and clings to the chicken, showing hints of the savory sear beneath. Beside the chicken, several tender, deeply roasted red onion wedges with slightly caramelized edges are artfully arranged. Their purple and brown hues contrast with the chicken. A scattering of bright green chopped fresh parsley provides a pop of color and freshness. The plate is set on a simple light wooden table. A folded white cotton napkin and standard silver cutlery are placed beside the plate. Natural, even lighting illuminates the dish, creating subtle shadows and highlighting textures. The background is softly blurred, hinting at a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Bistro",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, Skinless Chicken Thighs",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Red Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Hot Sauce (e.g., Frank's RedHot)",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh Parsley, chopped",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut red onions into 1.5 cm thick wedges. Toss with 15 ml olive oil, 2 g salt, and 1 g black pepper. Spread on a baking tray. Roast for 20-25 minutes, until tender and slightly caramelized.",
+      "Pat chicken thighs dry with paper towels. Season chicken with remaining 3 g salt and 1 g black pepper.",
+      "Heat remaining 15 ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken thighs for 4-5 minutes per side until golden brown.",
+      "While chicken sears, combine hot sauce, honey, minced garlic, soy sauce, and apple cider vinegar in a small saucepan. Bring to a simmer over medium heat. Cook for 3-5 minutes, stirring occasionally, until slightly thickened. Remove from heat and stir in butter until melted and smooth.",
+      "Pour half of the prepared glaze over the seared chicken thighs in the skillet. Turn to coat the chicken.",
+      "Transfer skillet to the preheated oven. Bake for 10-15 minutes, or until chicken internal temperature reaches 75°C (167°F).",
+      "Remove chicken from oven. Brush chicken with remaining glaze. Let chicken rest for 5 minutes.",
+      "Slice chicken thighs into thick medallions or serve whole. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Serve immediately with a side of rice or a fresh green salad."
+    ]
+  },
+  {
+    "recipe_name": "Worcestershire Beef Bites with Crispy Shallots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_worcestershire_beef_bites_with_crispy_shallots_20250701_144827_ff5c421e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:48:27.643538000Z",
+    "selected_ingredients": [
+      "beef",
+      "worcestershire sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a rustic wooden sharing board. Small, irregular cubes of seared beef, approximately 2-3 cm per side, are artfully mounded in the center. Each beef piece is deeply caramelized with a rich, dark brown crust and a hint of glossy Worcestershire glaze. Scattered generously over and around the beef are delicate, golden-brown crispy shallot rings, providing a contrasting texture. A sprinkle of finely chopped fresh chives adds a vibrant green accent and aromatic freshness. The overall presentation is clean and inviting, with moderate negative space on the board, allowing the textures and colors of the ingredients to stand out. The lighting is natural and even, highlighting the savory appeal of the snack.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Peel and thinly slice shallots into rings.",
+      "Heat 20 ml vegetable oil in a pan over medium heat. Add shallot rings. Fry until golden brown and crispy. Remove shallots with a slotted spoon. Drain on paper towels. Season lightly with salt.",
+      "Cut beef into 2-3 cm irregular cubes. Pat dry with paper towels. Season beef cubes generously with salt and black pepper.",
+      "Heat remaining 10 ml vegetable oil in the same pan over high heat. Add beef cubes in a single layer. Do not overcrowd the pan. Sear beef for 2-3 minutes per side until deeply caramelized and browned on all surfaces. Cook in batches if necessary.",
+      "Reduce heat to medium. Pour Worcestershire sauce over seared beef. Toss quickly to coat. Cook for 1 minute until sauce slightly thickens and glazes the beef. Remove from heat.",
+      "Finely chop fresh chives.",
+      "Arrange glazed beef cubes on a rustic wooden sharing board. Scatter crispy shallots over the beef. Garnish with chopped fresh chives. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Lightened Chicken Stroganoff with Buckwheat Kasha",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lightened_chicken_stroganoff_with_buckwheat_kasha_20250701_144826_a6de02f5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:48:27.457156000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "Russian cuisine, Low calories, high protein",
+    "visual_description": "A single, generous portion of Lightened Chicken Stroganoff is presented on a clean, round white porcelain dinner plate. Creamy chicken strips and sliced mushrooms are spooned over a bed of fluffy buckwheat kasha. The chicken, seared to golden brown, and earthy mushrooms are enveloped in a rich, light sauce. A vibrant sprinkle of fresh green dill is scattered over the top. The kasha, with its distinct grains, forms a rustic base. The plate rests on a simple, light-colored wooden table. A neatly folded light grey cotton napkin is beside it. Natural, soft, even lighting illuminates the dish. The background is a gently blurred, contemporary bistro setting. A sturdy fork and spoon are placed alongside the plate, complementing the rustic Russian aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled cucumbers (solenye ogurtsy).",
+      "Offer rye bread (chernyy khleb) on the side.",
+      "Accompany with a simple fresh dill and cucumber salad."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "150g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Buckwheat groats (kasha)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water",
+        "quantity": "400ml"
+      }
+    ],
+    "instructions": [
+      "Prepare buckwheat kasha: Rinse groats. Combine groats and water in a saucepan. Bring to boil, reduce heat, cover, simmer 15 minutes until water absorbed. Fluff with fork. Keep warm.",
+      "Pat chicken strips dry. Season with salt and pepper.",
+      "Heat olive oil in large skillet over medium-high heat. Add chicken strips. Cook 3-4 minutes until browned and cooked through (internal temperature 75°C). Remove chicken from skillet. Set aside.",
+      "Add sliced onions to skillet. Cook 5-7 minutes until softened and translucent.",
+      "Add sliced mushrooms to skillet. Cook 5-7 minutes until browned and liquid released.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to simmer. Scrape up any browned bits from bottom of skillet.",
+      "Reduce heat to low. Stir in Greek yogurt and Dijon mustard. Mix well. Do not boil after adding yogurt.",
+      "Return cooked chicken to skillet. Stir to coat in sauce.",
+      "Stir in chopped fresh dill.",
+      "Serve immediately over warm buckwheat kasha."
+    ],
+    "notes": [
+      "Ensure Greek yogurt is tempered before adding to hot sauce to prevent curdling. Stir a spoonful of hot sauce into yogurt, then add tempered yogurt to skillet.",
+      "For a richer flavor without extra fat, use mushroom broth instead of chicken broth."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 454,
+      "cholesterol_mg": 98,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 48.5,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 225,
+      "total_carbs_g": 45.8,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 84.3,
+      "cholesterol_mg": 18.2,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 41.7,
+      "total_carbs_g": 8.5,
+      "total_fat_g": 1.8,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 24,
+      "protein": 97,
+      "saturated_fat": 11,
+      "sodium": 10,
+      "total_carbs": 17,
+      "total_fat": 13
+    },
+    "serving_size_g": 538.5,
+    "total_recipe_weight_g": 2154
+  },
+  {
+    "recipe_name": "Chicken Kotlety with Mushroom Sauce and Buckwheat Kasha",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_kotlety_with_mushroom_sauce_and_buckwheat_kasha_20250701_144729_50c36d4f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:47:29.441753000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "Russian cuisine, Low calories, high protein",
+    "visual_description": "A single golden-brown chicken kotleta, an oval-shaped patty, rests on a clean white porcelain dinner plate. Its surface shows a light, crisp crust from searing, hinting at the tender interior. Adjacent to the kotleta is a generous, fluffy mound of light brown buckwheat kasha, its individual grains distinct. A rich, creamy mushroom sauce, studded with slices of sautéed cremini mushrooms, is artfully draped over a portion of the kotleta and pools gently beside the kasha. Vibrant green chopped fresh dill is sprinkled over the sauce and kotleta, with additional fresh parsley garnishing the kasha. The plating is clean and organized, with moderate negative space. The dish is presented on a simple wooden table, accompanied by a white linen napkin and traditional, elegant flatware. In the background, slightly out of focus, sits a small, authentic Russian bowl containing traditional pickled cucumbers. Natural, even lighting illuminates the scene, emphasizing the dish's inviting textures and earthy color palette.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled cucumbers (ogurtsy).",
+      "Accompany with a glass of traditional Russian kvass."
+    ],
+    "hero_ingredient": "chicken",
+    "ingredients": [
+      {
+        "name": "Ground chicken breast",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Whole wheat breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Chicken broth (low sodium)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Light sour cream or Greek yogurt",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Buckwheat groats (kasha)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Finely dice half of the onion. Mince garlic. Chop dill and parsley.",
+      "In a large bowl, combine ground chicken, diced onion, minced garlic, egg, breadcrumbs, half of the chopped dill, salt, and pepper.",
+      "Mix thoroughly until well combined. Form into 8 oval-shaped patties (kotlety).",
+      "Heat 5 ml olive oil in a large non-stick skillet over medium heat. Sear kotlety for 3-4 minutes per side until golden brown.",
+      "Transfer seared kotlety to a baking sheet. Bake in a preheated oven at 190°C (375°F) for 15-20 minutes, or until internal temperature reaches 75°C (167°F).",
+      "While kotlety bake, prepare mushroom sauce and buckwheat. Slice remaining half onion and mushrooms.",
+      "In the same skillet, add remaining 10 ml olive oil. Sauté sliced onion for 3 minutes until softened. Add sliced mushrooms and cook for 5-7 minutes until browned and tender.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits. Reduce heat and simmer for 5 minutes.",
+      "Stir in light sour cream or Greek yogurt. Cook for 2 minutes, do not boil. Season with salt and pepper. Stir in remaining chopped dill.",
+      "For buckwheat kasha, combine buckwheat groats and water in a medium saucepan. Bring to a boil, then reduce heat to low.",
+      "Cover and simmer for 15 minutes, or until water is absorbed and buckwheat is tender and fluffy. Fluff with a fork. Season with a pinch of salt.",
+      "Serve two chicken kotlety per person, alongside a portion of buckwheat kasha. Spoon mushroom sauce generously over the kotlety and kasha. Garnish with fresh parsley."
+    ],
+    "notes": [
+      "For a lower calorie option, bake the kotlety entirely instead of searing, ensuring they are cooked through to 75°C (167°F)."
+    ],
+    "traditional_techniques": [
+      "Making kotlety (Russian meat patties)",
+      "Cooking kasha (buckwheat porridge)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 567,
+      "cholesterol_mg": 164,
+      "dietary_fiber_g": 8,
+      "protein_g": 45.1,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 755,
+      "total_carbs_g": 52.5,
+      "total_fat_g": 19.4,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 145,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 29,
+      "protein": 90,
+      "saturated_fat": 28,
+      "sodium": 33,
+      "total_carbs": 19,
+      "total_fat": 25
+    },
+    "serving_size_g": 522,
+    "total_recipe_weight_g": 2087
+  },
+  {
+    "recipe_name": "Mediterranean Baked Chicken with Roasted Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_baked_chicken_with_roasted_potatoes_20250701_144727_5484d311.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:47:27.898957000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic, Mediterranean-inspired dish is presented on a clean, round white porcelain dinner plate. Two golden-brown, seared chicken thighs are the centerpiece, nestled among roasted 2 cm potato chunks and vibrant, burst halved cherry tomatoes. Melted, bubbly fresh mozzarella cheese blankets parts of the chicken and vegetables, showcasing its gooey texture. Thinly sliced garlic is visible among the vegetables. A generous scattering of fresh green basil leaves provides a pop of color and freshness. The overall composition is organic and abundant, with moderate negative space. The plate rests on a simple, light-colored wooden table surface. A folded white cotton napkin is placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and rich colors. The background is a subtle, blurred modern bistro setting, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in pan juices.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "8 (approx. 1.2 kg total)"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold)",
+        "quantity": "800 g, cut into 2 cm chunks"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400 g, halved"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, thinly sliced"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "200 g, torn into pieces"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "4 g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 small bunch, leaves torn"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season chicken with salt, pepper, oregano, and thyme.",
+      "Heat 30 ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken thighs 3-4 minutes per side until golden. Remove chicken.",
+      "Add remaining 30 ml olive oil to skillet. Add potato chunks. Cook 5-7 minutes, stirring occasionally, until slightly softened and lightly browned.",
+      "Add halved cherry tomatoes and sliced garlic to skillet with potatoes. Stir. Cook 2 minutes.",
+      "Pour in chicken broth. Bring to a simmer.",
+      "Arrange seared chicken thighs over potatoes and tomatoes in the skillet.",
+      "Transfer skillet to preheated oven. Bake 20-25 minutes, or until chicken reaches internal temperature of 75°C (167°F).",
+      "Remove skillet from oven. Distribute torn mozzarella over chicken and vegetables.",
+      "Return to oven. Bake 5-7 minutes more, until cheese is melted and bubbly.",
+      "Rest 5 minutes before serving. Garnish with fresh basil."
+    ],
+    "notes": [
+      "This dish can be prepared in one pan for easier cleanup.",
+      "Ensure chicken reaches safe internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Roasting"
+    ]
+  }
+]

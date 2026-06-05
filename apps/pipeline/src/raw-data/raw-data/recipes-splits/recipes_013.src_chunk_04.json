@@ -1,0 +1,650 @@
+[
+  {
+    "recipe_name": "Red Braised Pork Belly with Pan-Seared Prawns",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_red_braised_pork_belly_with_pan-seared_prawns_20250701_151158_fbfb6c7c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:11:58.855234000Z",
+    "selected_ingredients": [
+      "pork",
+      "shrimp"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "chinese cuisine",
+    "visual_description": "A single, individual portion of an ultra-sophisticated Chinese main course is presented on an off-white, modern designer bone china plate. The plate rests on a subtly veined grey marble surface. Two thick, glistening cubes of red-braised pork belly are artfully arranged slightly off-center, their dark mahogany glaze catching the dramatic overhead light. Alongside, two perfectly pan-seared jumbo prawns, tails intact, display vibrant orange and pink hues. A single, small, vibrant green bok choy head is meticulously placed for subtle color contrast. A delicate drizzle of the reduced, glossy braising sauce cascades elegantly around the pork. The dish is garnished precisely with a small, neat pile of finely julienned fresh ginger and thinly sliced green spring onion rounds. Abundant negative space emphasizes minimalist elegance. A pristine white linen napkin, folded precisely, and elegant wooden chopsticks complete the authentic cultural setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice.",
+      "Offer a side of blanched gai lan."
+    ],
+    "hero_ingredient": "Pork Belly",
+    "ingredients": [
+      {
+        "name": "Pork Belly",
+        "quantity": "800 g, skin on, cut into 4 cm thick chunks"
+      },
+      {
+        "name": "Jumbo Prawns",
+        "quantity": "8 pieces, peeled, deveined, tail on"
+      },
+      {
+        "name": "Shaoxing Wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Light Soy Sauce",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Dark Soy Sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Rock Sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "60 g, 30g sliced, 30g julienned for garnish"
+      },
+      {
+        "name": "Spring Onions",
+        "quantity": "3 stalks, 2 stalks cut into 5 cm lengths, 1 stalk thinly sliced for garnish"
+      },
+      {
+        "name": "Star Anise",
+        "quantity": "2 pods"
+      },
+      {
+        "name": "Cinnamon Stick",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Bok Choy",
+        "quantity": "4 small heads"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Blanch pork belly chunks in boiling water for 5 minutes. Drain and rinse thoroughly.",
+      "Heat 15 ml vegetable oil in a wok or heavy-bottomed pot over medium heat. Add sliced ginger and 5 cm spring onion lengths. Sauté until fragrant.",
+      "Add blanched pork belly. Sear until lightly browned on all sides.",
+      "Add Shaoxing wine, light soy sauce, dark soy sauce, rock sugar, star anise, and cinnamon stick. Stir well.",
+      "Pour in 500 ml water, or enough to just cover the pork. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 1.5 to 2 hours, or until pork is very tender. Turn pork occasionally.",
+      "Remove pork from braising liquid. Strain braising liquid into a clean saucepan. Discard aromatics.",
+      "Return pork to the strained braising liquid. Simmer uncovered over medium heat for 15-20 minutes, reducing sauce until it coats the pork.",
+      "Season prawns with salt and white pepper. Heat a non-stick pan over medium-high heat. Sear prawns for 1-2 minutes per side until pink and cooked through.",
+      "Blanch bok choy in boiling salted water for 1 minute. Drain."
+    ],
+    "notes": [
+      "Blanching pork belly removes impurities, ensuring cleaner flavor.",
+      "Adjust rock sugar to desired sweetness.",
+      "The braising liquid should reduce to a thick, glossy sauce."
+    ],
+    "traditional_techniques": [
+      "Red Braising (Hong Shao)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.5,
+      "calories": 1246,
+      "cholesterol_mg": 278,
+      "dietary_fiber_g": 2.65,
+      "protein_g": 33.61,
+      "saturated_fat_g": 38.6,
+      "sodium_mg": 2148,
+      "total_carbs_g": 24.59,
+      "total_fat_g": 110.33,
+      "total_sugars_g": 16.31,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.98,
+      "calories": 197,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 0.42,
+      "protein_g": 5.32,
+      "saturated_fat_g": 6.11,
+      "sodium_mg": 340,
+      "total_carbs_g": 3.89,
+      "total_fat_g": 17.47,
+      "total_sugars_g": 2.58,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 93,
+      "dietary_fiber": 9,
+      "protein": 67,
+      "saturated_fat": 193,
+      "sodium": 93,
+      "total_carbs": 9,
+      "total_fat": 141
+    },
+    "serving_size_g": 631.5,
+    "total_recipe_weight_g": 2526
+  },
+  {
+    "recipe_name": "Fermented Potato Skin Crisps with Spicy Veggie Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_potato_skin_crisps_with_spicy_veggie_relish_20250701_151146_9fc2caef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:11:47.384686000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "potato",
+      "hot sauce",
+      "green bean",
+      "bell pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The snack is presented on a minimalist, unglazed natural ceramic plate in a soft cream hue, resting on a light, textured reclaimed wood surface. Four halved, crisp potato skins are arranged with clean spacing, highlighting their golden-brown, slightly blistered texture. Each skin is generously filled with a creamy, pale yellow fermented potato mash, showing subtle air pockets from fermentation. This base is topped with a vibrant, finely diced relish. The relish features small, distinct cubes of bright red bell pepper, vibrant green beans, and red tomato, interspersed with translucent pieces of fermented onion. The natural colors and textures of the vegetables are prominent. The overall composition is clean, organic, and unfussy, emphasizing the natural beauty and textures of the ingredients. The background is simple and uncluttered, with soft, natural light illuminating the dish. The entire plate is visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Medium Potatoes",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small (approx. 100g)"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 (approx. 150g)"
+      },
+      {
+        "name": "Green Beans",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "100g"
+      },
+      {
+        "name": "Hot Sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea Salt (non-iodized)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Filtered Water",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash potatoes thoroughly. Pierce each potato several times with a fork. Bake for 45-60 minutes, or until tender.",
+      "Once cool enough to handle, halve each potato lengthwise. Carefully scoop out the cooked potato flesh, leaving a 5mm border of flesh attached to the skin. Reserve the skins.",
+      "Mash the scooped potato flesh in a bowl. Finely dice half of the small red onion. Add diced onion, 15ml hot sauce, and 3g sea salt to the mashed potato. Mix well.",
+      "Pack the potato mixture tightly into a clean 500ml jar, leaving 2cm headspace. Press down to remove air pockets. Cover loosely with a lid or fermentation airlock. Let ferment at room temperature (20-24°C) for 24-48 hours, or until a pleasant tangy aroma develops.",
+      "While potato filling ferments, finely dice the red bell pepper, green beans, cherry tomatoes, and the remaining half of the red onion. Combine all diced vegetables in a clean 500ml jar.",
+      "Dissolve 7g sea salt in 200ml filtered water to create a brine. Pour brine over the diced vegetables in the jar, ensuring they are fully submerged. Use a fermentation weight if necessary to keep vegetables below the brine. Cover loosely. Let ferment at room temperature (20-24°C) for 2-3 days, or until desired tanginess is reached.",
+      "While fermentation occurs, brush the reserved potato skins (inside and out) with olive oil. Place them cut-side up on a baking tray. Bake at 200°C for 15-20 minutes, or until golden brown and crispy.",
+      "Once fermented, refrigerate both potato filling and relish. To assemble, spoon a generous amount of fermented potato filling into each crisp potato skin. Top with a spoonful of the fermented veggie relish.",
+      "Serve immediately as a sustainable, flavorful snack."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 78,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 1.7,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 1116,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 54,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 1.2,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 773,
+      "total_carbs_g": 7.5,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 9,
+      "protein": 3,
+      "saturated_fat": 3,
+      "sodium": 49,
+      "total_carbs": 4,
+      "total_fat": 5
+    },
+    "serving_size_g": 144.45,
+    "total_recipe_weight_g": 577.8
+  },
+  {
+    "recipe_name": "Pan-Seared Cod with Roasted Tomato and Bell Pepper Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_cod_with_roasted_tomato_and_bell_pepper_relish_20250701_151124_53ae8d48.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:11:24.823749000Z",
+    "selected_ingredients": [
+      "tomato",
+      "fish"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared cod sits centrally on a round, clean white porcelain plate. The cod, a thick, flaky piece, exhibits a beautifully golden-brown, crispy crust on top, contrasting with its moist, pearly white interior. It is nestled atop a vibrant, colorful relish of roasted cherry tomatoes and diced red and yellow bell peppers. The tomatoes are plump and slightly burst, revealing their juicy interiors, while the bell peppers are tender with subtly charred edges, adding depth. Finely diced red onion and minced garlic are interspersed within the relish, which has a glossy sheen from olive oil and pan juices. Freshly chopped bright green basil and parsley are generously scattered over the relish, providing a fresh, aromatic contrast. A quarter lemon wedge, cut lengthwise, is placed beside the fish, ready to be squeezed. The plate has ample negative space, showcasing the dish's refined simplicity. The setting is a modern bistro, featuring a light-colored, clean wooden table surface. A neatly folded light grey cotton napkin rests beside the plate, accompanied by standard polished silver flatware. Natural, soft, even light illuminates the scene, highlighting the textures and vibrant colors of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Cod Fillet",
+    "ingredients": [
+      {
+        "name": "Cod fillets",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500g, halved"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced small (1cm cubes)"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1, diced small (1cm cubes)"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "60ml, chopped"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "60ml, chopped"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml (optional, can substitute with vegetable broth)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, for juice and wedges"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss halved cherry tomatoes, diced red and yellow bell peppers, finely diced red onion, minced garlic, 30ml olive oil, salt, and pepper on a baking sheet.",
+      "Roast vegetables for 20-25 minutes, until tender and slightly caramelized.",
+      "While vegetables roast, pat cod fillets dry. Season both sides with salt and pepper.",
+      "Heat remaining 30ml olive oil in a large non-stick pan over medium-high heat.",
+      "Place cod fillets presentation-side down. Sear for 4-5 minutes until golden brown and crispy.",
+      "Flip cod. Reduce heat to medium. Cook for another 3-4 minutes, until internal temperature reaches 63°C and fish flakes easily.",
+      "Remove cod from pan. Keep warm.",
+      "Deglaze pan with white wine (or broth), scraping up browned bits. Reduce slightly.",
+      "Add roasted vegetables to the pan. Stir to combine with pan sauce.",
+      "Stir in chopped basil and parsley. Squeeze half a lemon over the relish. Adjust seasoning.",
+      "Plate each cod fillet on a bed of the roasted tomato and bell pepper relish. Serve immediately with lemon wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 346,
+      "cholesterol_mg": 78,
+      "dietary_fiber_g": 3.15,
+      "protein_g": 34.28,
+      "saturated_fat_g": 2.16,
+      "sodium_mg": 595,
+      "total_carbs_g": 11.94,
+      "total_fat_g": 15.43,
+      "total_sugars_g": 7.16,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 81,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 0.74,
+      "protein_g": 8,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 139,
+      "total_carbs_g": 2.79,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1.67,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26,
+      "dietary_fiber": 11,
+      "protein": 69,
+      "saturated_fat": 11,
+      "sodium": 26,
+      "total_carbs": 4,
+      "total_fat": 20
+    },
+    "serving_size_g": 428,
+    "total_recipe_weight_g": 1713
+  },
+  {
+    "recipe_name": "Spicy Basil Chicken and Vegetable Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_basil_chicken_and_vegetable_noodles_20250701_150937_55943f41.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:09:37.909328000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "basil",
+      "broccoli",
+      "chili",
+      "bell pepper",
+      "onion",
+      "mushroom",
+      "tomato",
+      "bean",
+      "eggplant",
+      "noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "No beef or pork",
+    "visual_description": "A vibrant and aromatic individual portion of Spicy Basil Chicken and Vegetable Noodles is presented in a clean, wide, shallow white porcelain bowl. The dark, glossy wide rice noodles are intertwined with an abundance of colorful, crisp-tender vegetables and succulent chicken chunks. Prominent are chunks of golden-brown stir-fried chicken, vibrant green broccoli florets, ruby-red bell pepper strips, deep purple eggplant cubes, and bright green green bean pieces. Sliced mushrooms and halved cherry tomatoes add further color and texture. The dish is generously speckled with fragrant, wilted fresh Thai basil leaves and thinly sliced red bird's eye chilies, providing a pop of green and red. The sauce glistens, coating all ingredients evenly without being soupy. There is appropriate negative space on the plate's rim. The bowl sits on a simple light wooden table surface. A pair of dark wooden chopsticks rests neatly beside the bowl, and a small, white ceramic ramekin of additional sliced chilies is placed nearby. The scene is illuminated by natural, even lighting, creating a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian Noodle",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve immediately while hot.",
+      "Offer extra fish sauce, chili flakes, or sliced fresh chilies on the side for individual spice and seasoning adjustment.",
+      "Serve with a simple clear broth on the side.",
+      "Traditionally eaten with chopsticks and a large spoon."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "dried wide rice noodles",
+        "quantity": "300g"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "small red bird's eye chilies, thinly sliced",
+        "quantity": "2-3"
+      },
+      {
+        "name": "medium onion, sliced into thin wedges",
+        "quantity": "1"
+      },
+      {
+        "name": "red bell pepper, deseeded and sliced into 1 cm strips",
+        "quantity": "1"
+      },
+      {
+        "name": "broccoli florets, small",
+        "quantity": "200g"
+      },
+      {
+        "name": "small Japanese eggplant, cut into 1.5 cm cubes",
+        "quantity": "1"
+      },
+      {
+        "name": "green beans, trimmed and cut into 3 cm pieces",
+        "quantity": "100g"
+      },
+      {
+        "name": "fresh shiitake or cremini mushrooms, sliced",
+        "quantity": "150g"
+      },
+      {
+        "name": "cherry tomatoes, halved",
+        "quantity": "100g"
+      },
+      {
+        "name": "fresh Thai basil leaves, roughly torn",
+        "quantity": "1 large handful (about 30g)"
+      },
+      {
+        "name": "light soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "oyster sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "fish sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "palm sugar or brown sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "water or chicken broth",
+        "quantity": "60ml"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": "5g"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Soak dried rice noodles in hot water for 10-15 minutes until pliable but still firm. Drain well.",
+      "In a small bowl, whisk together soy sauce, oyster sauce, fish sauce, sugar, and water or broth. Set aside.",
+      "Heat 15ml vegetable oil in a large wok or large skillet over high heat until shimmering.",
+      "Add chicken chunks to the hot wok. Stir-fry for 4-5 minutes until browned and cooked through (internal temperature 75°C). Remove chicken from wok and set aside.",
+      "Add remaining 15ml oil to the wok. Add minced garlic and sliced chilies. Stir-fry for 30 seconds until fragrant.",
+      "Add onion, bell pepper, broccoli, eggplant, green beans, and mushrooms. Stir-fry for 3-4 minutes until vegetables are crisp-tender.",
+      "Return cooked chicken to the wok. Add soaked noodles and cherry tomatoes. Pour the prepared sauce over everything. Toss well to combine, ensuring noodles are coated.",
+      "Mix 5g cornstarch with 15ml water to create a slurry. Stir the slurry into the wok. Continue to toss for 1-2 minutes until sauce thickens slightly and coats the noodles and ingredients.",
+      "Remove wok from heat. Stir in fresh basil leaves until just wilted.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Adjust chili quantity to desired spice level.",
+      "For best results, use a very hot wok or large skillet. Cook in batches if your pan is not large enough to avoid overcrowding, which steams rather than stir-fries."
+    ],
+    "traditional_techniques": [
+      "Stir-frying",
+      "Balancing sweet, sour, salty, and spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.5,
+      "calories": 655,
+      "cholesterol_mg": 168.9,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 32.5,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 1504.2,
+      "total_carbs_g": 84,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 11.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 128.2,
+      "cholesterol_mg": 33.1,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6.4,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 294.4,
+      "total_carbs_g": 16.4,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 25,
+      "protein": 65,
+      "saturated_fat": 23,
+      "sodium": 65,
+      "total_carbs": 31,
+      "total_fat": 23
+    },
+    "serving_size_g": 511,
+    "total_recipe_weight_g": 2044
+  },
+  {
+    "recipe_name": "Spicy Cashew Chicken with Green Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_cashew_chicken_with_green_beans_20250701_150741_e8df7075.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:07:41.968559000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cashew",
+      "bean",
+      "chili",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Spicy Cashew Chicken with Green Beans rests casually on a round, light-colored ceramic plate. The dish features tender, golden-brown chicken chunks, cooked to a safe 75°C, nestled amongst vibrant green beans. The chicken, seared to develop a slight crust, is coated in a glossy, dark, savory-sweet sauce. Crunchy, pale cashews are scattered throughout, adding textural contrast. Thinly sliced red chilies and minced garlic are visible, providing pops of color and aromatic notes. The green beans are crisp-tender, their natural verdant hue contrasting with the sauce. The components are arranged naturally, overlapping slightly, as if served directly from the pan onto a family kitchen table. The plate sits on a well-used wooden dining table. A simple white rice bowl filled with steamed jasmine rice is placed beside the main dish. A pair of dark wooden chopsticks rests across the rice bowl. The scene is illuminated by warm, cozy natural light, suggesting a relaxed, lived-in family dining atmosphere. The background is minimal, focusing entirely on the homely, comforting meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve immediately with hot steamed jasmine rice.",
+      "Offer extra sliced chilies or chili flakes on the side for those who prefer more heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Raw cashews",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh green beans",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "2-3, sliced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-6, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Water or chicken broth",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2.5 cm bite-sized chunks. Place in a bowl.",
+      "Add 15 ml soy sauce and 5 g cornstarch to chicken. Mix well. Set aside for 15 minutes.",
+      "Trim ends off green beans. Halve longer beans.",
+      "Mince garlic. Slice red chilies thinly. Grate ginger.",
+      "In a small bowl, whisk together remaining 45 ml soy sauce, oyster sauce, rice vinegar, sugar, remaining 10 g cornstarch, and 60 ml water or chicken broth. Set aside.",
+      "Heat 15 ml vegetable oil in a large wok or skillet over high heat.",
+      "Add chicken in a single layer. Cook for 3-4 minutes until golden brown and cooked through. Ensure internal temperature reaches 75°C (167°F). Remove chicken from wok. Set aside.",
+      "Add remaining 15 ml vegetable oil to wok. Add minced garlic, sliced chilies, and grated ginger. Stir-fry for 30 seconds until fragrant.",
+      "Add green beans to wok. Stir-fry for 3-4 minutes until tender-crisp.",
+      "Return cooked chicken to wok. Add cashews.",
+      "Stir sauce mixture again. Pour into wok. Cook, stirring constantly, until sauce thickens and coats ingredients, about 1-2 minutes.",
+      "Remove from heat. Stir in toasted sesame oil. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the amount of red chilies to suit your preferred spice level.",
+      "Ensure chicken is cooked to an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ]
+  }
+]

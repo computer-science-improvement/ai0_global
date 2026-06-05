@@ -1,0 +1,669 @@
+[
+  {
+    "recipe_name": "Picadinho de Carne com Feijão e Pimentão",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_picadinho_de_carne_com_feij%C3%A3o_e_piment%C3%A3o_20250624_030512_f7cfc0be.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:05:12.650948000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "bean",
+      "bell pepper",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "Brazilian cuisine",
+    "visual_description": "A single portion of Picadinho de Carne is presented in a deep white porcelain bowl. The rich, dark stew features tender 2.5 cm beef cubes, visible whole black beans, and diced red bell pepper and tomato. A vibrant sprinkle of fresh chopped cilantro garnishes the top, adding a pop of green. The beef is deep brown, the beans dark black, contrasting with the bright red and green vegetables. Accompanying the stew on the plate is a neat mound of fluffy white rice. A small side dish of golden farofa sits nearby. The overall composition is clean and professional, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table and a white cotton napkin. Natural, even lighting highlights the dish's warmth and texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Brazilian",
+    "cultural_origin": "Brazilian",
+    "cultural_serving_suggestions": [
+      "Serve with fluffy white rice",
+      "Serve with farofa (toasted cassava flour)",
+      "Serve with sautéed collard greens (couve refogada)",
+      "Serve with orange slices on the side to cut richness"
+    ],
+    "hero_ingredient": "Beef Cubes",
+    "ingredients": [
+      {
+        "name": "Beef (top sirloin or stewing beef)",
+        "quantity": "600 g, cut into 2.5 cm cubes"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Canned black beans",
+        "quantity": "400 g, drained and rinsed"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove beef from pot and set aside.",
+      "Add diced onion, garlic, and red bell pepper to the pot. Sauté for 5-7 minutes until softened.",
+      "Stir in diced tomatoes and cook for 3 minutes.",
+      "Return seared beef to the pot. Add drained black beans, beef broth, and bay leaf.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for 45-60 minutes, or until beef is tender.",
+      "Remove bay leaf. Adjust seasoning with salt and pepper as needed.",
+      "Stir in fresh chopped cilantro just before serving."
+    ],
+    "traditional_techniques": [
+      "Refogado (sautéing aromatics as a flavor base)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 590.7,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 11.9,
+      "protein_g": 50,
+      "saturated_fat_g": 8,
+      "sodium_mg": 712.9,
+      "total_carbs_g": 37.3,
+      "total_fat_g": 25.9,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102.9,
+      "cholesterol_mg": 18.3,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 8.7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 124.1,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 42.5,
+      "protein": 100.1,
+      "saturated_fat": 39.8,
+      "sodium": 31,
+      "total_carbs": 13.6,
+      "total_fat": 33.2
+    },
+    "serving_size_g": 574.3,
+    "total_recipe_weight_g": 2297
+  },
+  {
+    "recipe_name": "Poulet à la Moutarde with Roasted Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poulet_%C3%A0_la_moutarde_with_roasted_potatoes_20250624_030459_d0eb6c55.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:04:59.803340000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion",
+      "garlic",
+      "mustard",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate, centered against a rustic wooden table surface. A single pan-seared chicken thigh, its skin golden and crisp, rests prominently. Beside it, several roasted potato wedges exhibit a golden-brown exterior and tender texture. A rich, creamy Dijon mustard and tomato sauce, infused with softened onion and garlic, generously coats the chicken and pools around the potatoes. Visible within the sauce are vibrant red chunks of slow-cooked tomato. The dish is garnished simply with fresh, finely chopped green parsley, adding a pop of color and freshness. The arrangement is clean and professional, allowing for moderate negative space. A white cotton napkin and silver flatware are placed beside the plate under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Crusty baguette for dipping the sauce",
+      "Simple green salad with vinaigrette"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "New potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "60g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Heavy cream or crème fraîche",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Wash potatoes. Cut into 2-3 cm wedges. Toss with 15ml olive oil, salt, and pepper.",
+      "Spread potatoes on a baking tray. Roast for 25-30 minutes, until tender and golden.",
+      "While potatoes roast, pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat remaining 15ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Place chicken thighs skin-side down in the hot skillet. Sear for 6-8 minutes until skin is deeply golden and crisp. Flip chicken. Sear for 2 minutes.",
+      "Remove chicken from skillet. Set aside.",
+      "Dice onion. Mince garlic. Cut tomatoes into 2 cm chunks.",
+      "Add onion to the skillet. Sauté for 3-4 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in chicken stock. Scrape up any browned bits from the bottom of the skillet. Bring to a simmer.",
+      "Whisk in Dijon mustard. Add tomato chunks and thyme sprigs. Return chicken to the skillet, skin-side up.",
+      "Transfer skillet to the preheated oven. Bake for 15-20 minutes, or until chicken internal temperature reaches 75°C (167°F).",
+      "Remove skillet from oven. Stir in heavy cream or crème fraîche. Remove thyme sprigs.",
+      "Chop fresh parsley. Garnish chicken and sauce with parsley.",
+      "Serve chicken with roasted potato wedges and a generous spoon of the mustard-tomato sauce."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust seasoning to taste before serving."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Deglazing",
+      "Sauce Reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 685.78,
+      "cholesterol_mg": 206.25,
+      "dietary_fiber_g": 5.57,
+      "protein_g": 42.33,
+      "saturated_fat_g": 11.53,
+      "sodium_mg": 511.2,
+      "total_carbs_g": 36.66,
+      "total_fat_g": 41.15,
+      "total_sugars_g": 6.04,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124.69,
+      "cholesterol_mg": 37.5,
+      "dietary_fiber_g": 1.01,
+      "protein_g": 7.7,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 92.95,
+      "total_carbs_g": 6.67,
+      "total_fat_g": 7.48,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.75,
+      "dietary_fiber": 19.89,
+      "protein": 84.66,
+      "saturated_fat": 57.65,
+      "sodium": 22.23,
+      "total_carbs": 13.33,
+      "total_fat": 52.76
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Tomato & Mushroom Stuffing and Tomato Skin Crisps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_tomato_%26_mushroom_stuffing_and_tomato_skin_crisps_20250624_030356_b6a716c6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:03:56.462464000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, pan-seared chicken breast is the focal point, golden-brown and whole, resting on a handcrafted ceramic plate in an earthy cream or beige tone. A subtle, natural opening reveals the vibrant, savory stuffing of finely diced mushrooms and rich red fermented tomatoes. Around the chicken, a few delicate, brittle tomato skin crisps are scattered organically, providing a pop of deep red and textural contrast. Fresh thyme sprigs are placed simply beside the chicken. The plating is minimalistic, allowing ample white space on the plate. The ceramic plate sits on a light, textured bamboo or reclaimed wood surface. An undyed linen napkin in natural beige is folded simply beside the plate. Soft, diffused natural light illuminates the scene, creating gentle shadows. The background is clean and uncluttered, with a hint of green from a potted plant, reinforcing the sustainable theme. The presentation is refined and restaurant-style, showcasing the pure beauty of each ingredient.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "5 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Nutritional yeast (optional)",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented tomatoes: Wash 3 tomatoes. Quarter them. Place in a clean jar. Combine 50ml white wine vinegar, 50ml water, 5g sugar, and a pinch of salt in a small saucepan. Bring to a boil, then cool completely. Pour brine over tomatoes. Seal jar. Let ferment at room temperature for 2-3 days until slightly tangy. Refrigerate.",
+      "Make tomato skin crisps: Peel remaining 2 tomatoes. Lay skins flat on a baking sheet lined with parchment paper. Lightly salt the skins. Bake at 120°C for 30-45 minutes until crisp. Cool completely.",
+      "Prepare chicken: Pat chicken breasts dry. Cut a deep pocket into each chicken breast. Season chicken inside and out with salt and pepper.",
+      "Prepare stuffing: Finely dice mushrooms. Mince garlic. Chop fermented tomatoes. Heat 10ml olive oil in a pan over medium heat. Sauté mushrooms and garlic for 5 minutes until softened. Add chopped fermented tomatoes and thyme leaves. Cook for 2 minutes. Remove from heat. Let cool slightly. Stir in nutritional yeast if using.",
+      "Stuff chicken: Carefully fill each chicken pocket with the mushroom-tomato mixture. Secure opening with toothpicks if needed.",
+      "Cook chicken: Heat remaining 20ml olive oil in an oven-safe pan over medium-high heat. Sear stuffed chicken breasts for 3-4 minutes per side until golden brown. Transfer pan to a preheated oven at 180°C. Bake for 15-20 minutes, or until internal temperature reaches 75°C. Remove from oven and let chicken rest for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 415.6,
+      "cholesterol_mg": 153,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 60.1,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 145.7,
+      "total_carbs_g": 10.5,
+      "total_fat_g": 13.9,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 153,
+      "cholesterol_mg": 56.3,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 22.1,
+      "saturated_fat_g": 1,
+      "sodium_mg": 53.6,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 10.4,
+      "protein": 120.2,
+      "saturated_fat": 14,
+      "sodium": 6.3,
+      "total_carbs": 3.8,
+      "total_fat": 17.8
+    },
+    "serving_size_g": 271.6,
+    "total_recipe_weight_g": 1086.5
+  },
+  {
+    "recipe_name": "Thai Red Curry Chicken with Potatoes and Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_red_curry_chicken_with_potatoes_and_broccoli_20250624_030350_be6edba6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:03:50.459923000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "garlic",
+      "carrot",
+      "dried chili",
+      "broccoli",
+      "oil",
+      "curry",
+      "culantro",
+      "coconut milk",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Thai Red Curry Chicken is presented in a clean, white ceramic bowl, showcasing its rich reddish-orange hue from the red curry paste and coconut milk. Tender chicken thigh chunks (approx. 4-5 cm) are nestled amongst bright green broccoli florets (2-3 cm), soft orange carrot rounds (1 cm thick), and creamy potato chunks (3 cm). A delicate sheen of coconut cream floats on the surface. The curry maintains a fluid, flowing consistency. The dish is garnished with a generous scattering of fresh, vibrant green culantro leaves, providing a textural and aromatic contrast. The main bowl is placed slightly off-center on a simple, light wooden table. A perfectly steamed mound of fluffy white jasmine rice is presented in a smaller, traditional Thai-style rice bowl beside the main curry. A folded natural cotton napkin rests next to the rice bowl. The setting is a modern bistro with warm, natural light illuminating the scene, and a softly blurred background.",
+    "number_of_servings": 20,
+    "cuisine_type": "Thai",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "3.5 kg, cut into 4-5 cm chunks"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "4, roughly chopped"
+      },
+      {
+        "name": "Medium potatoes",
+        "quantity": "10, peeled and cut into 3 cm chunks"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "40, minced"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "10, peeled and cut into 1 cm thick rounds"
+      },
+      {
+        "name": "Dried red chilies",
+        "quantity": "20, rehydrated and finely chopped (adjust to heat preference)"
+      },
+      {
+        "name": "Large broccoli heads",
+        "quantity": "5, cut into florets"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Thai Red Curry Paste",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Culantro (Sawtooth Coriander)",
+        "quantity": "3 large bunches, roughly chopped (reserve some for garnish)"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "2500 ml (5 cans)"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "2.5 kg"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "100 ml (or to taste)"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "50 g (or to taste)"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "60 ml (from 4-5 limes)"
+      },
+      {
+        "name": "Chicken stock (optional)",
+        "quantity": "500 ml, if thinning is needed"
+      }
+    ],
+    "instructions": [
+      "Prepare all ingredients: Cut chicken into 4-5 cm chunks. Chop onions, potatoes, carrots, and broccoli. Mince garlic. Rehydrate and chop dried chilies.",
+      "Cook jasmine rice: Rinse rice thoroughly. Cook according to package directions. Keep warm.",
+      "Heat oil: In a very large pot or wok, heat 200 ml vegetable oil over medium heat.",
+      "Sauté curry paste: Add 450 g Thai Red Curry Paste to the hot oil. Sauté for 3-4 minutes, stirring constantly, until fragrant and oil separates.",
+      "Brown chicken: Add chicken chunks to the pot. Cook, stirring, until chicken is lightly browned on all sides. Internal temperature of chicken must reach 75°C (167°F).",
+      "Add aromatics: Stir in chopped onions, minced garlic, and rehydrated chilies. Cook for 5 minutes until onions soften.",
+      "Add liquids and vegetables: Pour in 2500 ml coconut milk. Add potato chunks and carrot rounds. Bring to a simmer. Reduce heat to medium-low. Cover and cook for 15-20 minutes, or until potatoes and carrots are tender.",
+      "Add broccoli: Stir in broccoli florets. Cook for 5-7 minutes, uncovered, until broccoli is tender-crisp.",
+      "Season the curry: Stir in 100 ml fish sauce, 50 g palm sugar, and 60 ml lime juice. Taste and adjust seasoning as needed for balance of sweet, sour, salty, and spicy.",
+      "Finish with culantro: Stir in most of the chopped culantro. Reserve some for garnish.",
+      "Serve: Ladle hot curry into individual serving bowls. Serve immediately with steamed jasmine rice on the side. Garnish with fresh culantro."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.35,
+      "calories": 1269.43,
+      "cholesterol_mg": 164.5,
+      "dietary_fiber_g": 11.45,
+      "protein_g": 51.92,
+      "saturated_fat_g": 30.57,
+      "sodium_mg": 1930.34,
+      "total_carbs_g": 142.02,
+      "total_fat_g": 56.49,
+      "total_sugars_g": 12.94,
+      "trans_fat_g": 0.0368
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.32,
+      "calories": 173.58,
+      "cholesterol_mg": 22.49,
+      "dietary_fiber_g": 1.56,
+      "protein_g": 7.1,
+      "saturated_fat_g": 4.18,
+      "sodium_mg": 263.95,
+      "total_carbs_g": 19.42,
+      "total_fat_g": 7.72,
+      "total_sugars_g": 1.77,
+      "trans_fat_g": 0.005
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54.8,
+      "dietary_fiber": 40.9,
+      "protein": 103.8,
+      "saturated_fat": 152.9,
+      "sodium": 83.9,
+      "total_carbs": 51.6,
+      "total_fat": 72.4
+    },
+    "serving_size_g": 731.32,
+    "total_recipe_weight_g": 14626.4
+  },
+  {
+    "recipe_name": "Green Pea, Orzo, and Beef Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_green_pea%2C_orzo%2C_and_beef_salad_20250624_030337_3f6e7618.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:03:37.771717000Z",
+    "selected_ingredients": [
+      "beef",
+      "parmesan cheese",
+      "oregano",
+      "mozzarella",
+      "pasta",
+      "green pea"
+    ],
+    "complexity": "standard",
+    "special_requests": "Belgian cuisine",
+    "visual_description": "The Green Pea, Orzo, and Beef Salad is presented on a clean, round white porcelain dinner plate, set on a simple wooden table surface. The salad is loosely mounded in the center, showcasing a vibrant medley of textures and colors. Bright green peas are prominent, interspersed with small, tender orzo pasta. Lean, finely crumbled beef is scattered throughout, providing a savory counterpoint without dominating the visual. White cubes of fresh mozzarella add creamy texture. The salad is lightly coated in a glossy, golden vinaigrette, making the ingredients glisten. A generous scattering of freshly shaved Parmesan cheese tops the salad, alongside finely chopped fresh green parsley for a final burst of color and freshness. The overall presentation is clean and professional, with moderate negative space, evoking a casual bistro atmosphere. European flatware is placed beside the plate, and a crisp cotton napkin completes the simple, approachable restaurant-style setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Belgian",
+    "cultural_origin": "Belgian",
+    "cultural_serving_suggestions": [
+      "Serve with a crusty baguette or traditional Belgian bread.",
+      "Accompanied by a light Belgian beer or sparkling water."
+    ],
+    "hero_ingredient": "Green Pea",
+    "ingredients": [
+      {
+        "name": "Orzo pasta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Lean beef mince",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh or frozen green peas",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook orzo pasta according to package directions until al dente. Drain and rinse with cold water. Set aside to cool.",
+      "Heat a large skillet over medium-high heat. Add beef mince. Cook, breaking up with a spoon, until browned. Drain excess fat. Season with 1/2 tsp dried oregano, salt, and pepper. Set aside to cool.",
+      "Bring a small pot of salted water to a boil. Add green peas. Cook for 2-3 minutes until bright green and tender-crisp. Drain and immediately transfer to an ice bath to cool. Drain well.",
+      "Dice fresh mozzarella into 1 cm cubes.",
+      "For the dressing: In a small bowl, whisk together olive oil, red wine vinegar, Dijon mustard, minced garlic, minced shallot, remaining 1/2 tsp dried oregano, salt, and pepper.",
+      "In a large mixing bowl, combine cooled orzo, cooled green peas, cooled beef mince, and diced mozzarella.",
+      "Pour dressing over the salad. Toss gently to coat all ingredients.",
+      "Chop fresh parsley. Stir half of the parsley into the salad.",
+      "Serve immediately or chill for later. Grate or shave Parmesan cheese over individual servings before plating. Garnish with remaining fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 510,
+      "cholesterol_mg": 63,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 35.1,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 943,
+      "total_carbs_g": 52.1,
+      "total_fat_g": 29,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 197,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 13.6,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 365,
+      "total_carbs_g": 20.2,
+      "total_fat_g": 11.2,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21,
+      "dietary_fiber": 21.1,
+      "protein": 70.2,
+      "saturated_fat": 48.2,
+      "sodium": 41,
+      "total_carbs": 19,
+      "total_fat": 37.2
+    },
+    "serving_size_g": 258.5,
+    "total_recipe_weight_g": 1034
+  }
+]

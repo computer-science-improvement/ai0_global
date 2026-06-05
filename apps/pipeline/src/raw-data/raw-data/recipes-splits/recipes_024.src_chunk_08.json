@@ -1,0 +1,679 @@
+[
+  {
+    "recipe_name": "Turkish Tomato & Squash Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_turkish_tomato_%26_squash_soup_20250624_030703_ad776d85.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:07:04.022738000Z",
+    "selected_ingredients": [
+      "tomato",
+      "potato",
+      "squash"
+    ],
+    "complexity": "simple",
+    "special_requests": "plant-based, Turkish cuisine",
+    "visual_description": "A single portion of warm, rustic Turkish Tomato & Squash Soup is presented in a deep, handmade ceramic bowl with earthy tones. The soup has a rich, inviting orange-red hue, indicating its tomato and squash base. Its texture is smooth and velvety, with a gentle sheen. A light drizzle of olive oil creates small, glistening pools on the surface. A sprinkle of vibrant green, finely chopped fresh dill and a pinch of deep red pul biber flakes are casually scattered over the center. The bowl rests on a well-worn, light wooden dining table. A simple, natural-colored linen napkin is casually placed beside the bowl, along with a thick slice of rustic Turkish village bread (ekmek) and a small, white ceramic dish containing a few bright green pickled gherkins, completing a homely Turkish meal setting. Natural, warm kitchen lighting illuminates the scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Turkish",
+    "hero_ingredient": "Butternut squash",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "500 g, peeled and diced"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "300 g, peeled and diced"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Water",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Pul biber (Turkish chili flakes)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried mint",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Fresh parsley or dill",
+        "quantity": "15 g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Stir in diced tomatoes, butternut squash, and potatoes. Cook for 5 minutes.",
+      "Pour in vegetable broth and water. Bring to a boil.",
+      "Reduce heat to low, cover, and simmer for 20-25 minutes. Vegetables should be very tender.",
+      "Remove from heat. Use an immersion blender to purée the soup until smooth. Alternatively, transfer in batches to a regular blender.",
+      "Stir in salt, black pepper, pul biber, and dried mint. Taste and adjust seasoning.",
+      "Ladle hot soup into serving bowls. Garnish with fresh chopped parsley or dill."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 230.77,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.48,
+      "protein_g": 5.5,
+      "saturated_fat_g": 1.02,
+      "sodium_mg": 761.38,
+      "total_carbs_g": 39.54,
+      "total_fat_g": 7.92,
+      "total_sugars_g": 8.42,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 34.79,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.13,
+      "protein_g": 0.83,
+      "saturated_fat_g": 0.15,
+      "sodium_mg": 114.77,
+      "total_carbs_g": 5.96,
+      "total_fat_g": 1.19,
+      "total_sugars_g": 1.27,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 26.71,
+      "protein": 11,
+      "saturated_fat": 5.1,
+      "sodium": 33.1,
+      "total_carbs": 14.38,
+      "total_fat": 10.15
+    },
+    "serving_size_g": 663.4,
+    "total_recipe_weight_g": 2653.6
+  },
+  {
+    "recipe_name": "Thai Coconut Curry Soup with Brown Rice, Broccoli, and Butternut Squash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_coconut_curry_soup_with_brown_rice%2C_broccoli%2C_and_butternut_squash_20250624_030627_d39d349b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:06:27.867258000Z",
+    "selected_ingredients": [
+      "brown rice",
+      "broccoli",
+      "squash"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Thai Coconut Curry Soup is presented in a clean, white ceramic bowl, showcasing a single, generous individual portion. The rich, creamy orange-hued broth, infused with coconut milk and red curry, forms the base. Scattered within are tender, roasted butternut squash cubes, approximately 2 cm, and vibrant green broccoli florets, about 3 cm in size, cooked al dente. Cooked brown rice, distinct and slightly chewy, is evenly distributed throughout the soup. A swirl of bright red chili oil adds a pop of contrasting color and subtle heat. The dish is garnished simply with fresh cilantro leaves. A lime wedge rests on the bowl's rim, ready to be squeezed. The bowl sits on a simple wooden table, with a crisp white cotton napkin and a pair of dark chopsticks placed neatly beside it, suggesting a modern bistro setting with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with a side of jasmine rice (though brown rice is used in the recipe, jasmine is a traditional accompaniment in Thai cuisine).",
+      "Offer extra lime wedges for individual preference.",
+      "Present with small bowls of chili flakes or chili oil for added heat."
+    ],
+    "hero_ingredient": "Butternut Squash",
+    "ingredients": [
+      {
+        "name": "Butternut squash",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Coconut milk",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Red curry paste",
+        "quantity": "45 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Red chili threads",
+        "quantity": "Pinch (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Peel and dice butternut squash into 2 cm cubes. Toss with 15 ml cooking oil and a pinch of salt. Spread on a baking tray. Roast 20-25 minutes until tender and lightly caramelized. Set aside.",
+      "Cook brown rice according to package instructions. Set aside.",
+      "Mince garlic and grate ginger. Heat a large pot or Dutch oven over medium heat. Add red curry paste. Cook 1 minute, stirring constantly, until fragrant.",
+      "Add minced garlic and grated ginger to the pot. Cook 1 minute more.",
+      "Pour in vegetable broth and coconut milk. Stir to combine. Bring to a simmer.",
+      "Add roasted butternut squash to the simmering broth. Simmer 5 minutes.",
+      "Cut broccoli into small florets, about 3 cm in size. Add broccoli florets to the soup. Cook 3-4 minutes, until tender-crisp.",
+      "Stir in fish sauce, lime juice, and granulated sugar. Taste and adjust seasoning with salt as needed.",
+      "To serve, ladle soup into individual bowls. Add a portion of cooked brown rice to each bowl. Garnish with fresh cilantro leaves, red chili threads if using, and a lime wedge."
+    ],
+    "traditional_techniques": [
+      "Building layers of flavor with curry paste and aromatics",
+      "Balancing sweet, sour, salty, and spicy elements"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 824,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 13.2,
+      "protein_g": 13.7,
+      "saturated_fat_g": 42.7,
+      "sodium_mg": 1801,
+      "total_carbs_g": 82.6,
+      "total_fat_g": 54.2,
+      "total_sugars_g": 20.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 95,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 1.6,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 207,
+      "total_carbs_g": 9.5,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 47,
+      "protein": 27,
+      "saturated_fat": 213,
+      "sodium": 78,
+      "total_carbs": 30,
+      "total_fat": 70
+    },
+    "serving_size_g": 871.25,
+    "total_recipe_weight_g": 3485
+  },
+  {
+    "recipe_name": "Braised Chicken Thighs with Caramelized Onions and Thyme",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_thighs_with_caramelized_onions_and_thyme_20250624_030624_934c903c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:06:25.102406000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "thyme"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of braised chicken thigh rests on an everyday ceramic plate. The chicken, with its browned, tender skin, is nestled among a generous mound of deeply caramelized, soft onion slices. The rich, savory braising liquid, slightly thickened, pools around the chicken and onions. Fresh green thyme sprigs are scattered naturally over the dish, adding a touch of color and indicating flavor. A few chopped fresh parsley leaves are sprinkled over the top. The overall color palette is warm, with golden-brown chicken, amber onions, and deep brown sauce. The textures are varied: crispy skin, tender meat, and meltingly soft onions. The plate is set on a well-used wooden dining table. A simple metal fork and knife are placed beside the plate. A casually folded cloth napkin and a small, rustic ceramic bowl with a side of simple mashed potatoes or crusty bread are nearby, completing a homely, comforting meal scene under warm, inviting kitchen light. The scene feels lived-in and relaxed, typical of a family dinner.",
+    "number_of_servings": 4,
+    "cuisine_type": "Homestyle Comfort",
+    "cultural_origin": "European Homestyle",
+    "cultural_serving_suggestions": [
+      "Served with mashed potatoes",
+      "Served with crusty bread to soak up the sauce",
+      "Served with plain rice"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 (approx. 200-250g each, bone-in, skin-on)"
+      },
+      {
+        "name": "Large yellow onions",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "6-8"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml (optional)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "1 tablespoon (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish, chopped (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper. Lightly dust chicken with flour if desired.",
+      "Heat olive oil and butter in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden brown and crispy, about 5-7 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pot.",
+      "Add thinly sliced onions to the pot. Reduce heat to medium-low. Cook, stirring occasionally, until onions are deeply caramelized and soft, about 15-20 minutes.",
+      "Add minced garlic and fresh thyme sprigs to the pot. Cook for 1 minute until fragrant.",
+      "Pour in white wine (if using) and deglaze the pot, scraping up any browned bits. Simmer for 2 minutes.",
+      "Pour in chicken stock. Bring to a simmer.",
+      "Return seared chicken thighs to the pot, skin-side up. Ensure chicken is partially submerged.",
+      "Cover the pot. Transfer to a preheated oven at 180°C (350°F). Braise for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is very tender.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Serve chicken with caramelized onions and sauce. Garnish with fresh chopped parsley if desired."
+    ],
+    "notes": [
+      "This dish is even better made a day ahead, allowing flavors to deepen."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Caramelizing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 642,
+      "cholesterol_mg": 219.1,
+      "dietary_fiber_g": 1.41,
+      "protein_g": 39.27,
+      "saturated_fat_g": 13.16,
+      "sodium_mg": 575.3,
+      "total_carbs_g": 10.92,
+      "total_fat_g": 47.12,
+      "total_sugars_g": 3.37,
+      "trans_fat_g": 0.12
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 183,
+      "cholesterol_mg": 62.6,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 11.22,
+      "saturated_fat_g": 3.76,
+      "sodium_mg": 164.4,
+      "total_carbs_g": 3.12,
+      "total_fat_g": 13.46,
+      "total_sugars_g": 0.96,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73.04,
+      "dietary_fiber": 5.04,
+      "protein": 78.54,
+      "saturated_fat": 65.8,
+      "sodium": 25.01,
+      "total_carbs": 3.97,
+      "total_fat": 60.41
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Panang-Glazed Hake with Cherry-Root Beer Reduction and Creamed Tatsoi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_panang-glazed_hake_with_cherry-root_beer_reduction_and_creamed_tatsoi_20250624_030550_69590490.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:05:51.414386000Z",
+    "selected_ingredients": [
+      "cherry",
+      "cream",
+      "root beer",
+      "coconut vinegar",
+      "panang curry paste",
+      "tatsoi",
+      "milk",
+      "hake"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Panang-Glazed Hake is centrally placed on a clean, round white porcelain plate. A generous pool of creamy, reddish-orange Panang curry sauce forms the base, its surface shimmering gently. A thick, pan-seared hake fillet, with a golden-brown crust, rests partially on the sauce. The hake is generously drizzled with a glossy, dark red cherry-root beer reduction, creating a contrasting visual stripe. Beside the hake, a neat mound of vibrant green, wilted tatsoi is arranged, showing its tender texture. The overall composition is balanced, with moderate negative space around the elements. A sprig of fresh cilantro and a lime wedge are placed beside the hake, adding a touch of freshness and color. The dish is presented on a simple wooden table surface, with natural, even lighting. A cotton napkin is folded neatly beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Serve alongside a small bowl of steamed jasmine rice to complement the curry sauce."
+    ],
+    "hero_ingredient": "Hake",
+    "ingredients": [
+      {
+        "name": "Hake fillets",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Panang curry paste",
+        "quantity": "60g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh cherries, pitted",
+        "quantity": "150g"
+      },
+      {
+        "name": "Root beer",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Coconut vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Tatsoi",
+        "quantity": "200g"
+      },
+      {
+        "name": "Shallot, finely sliced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Palm sugar (or brown sugar)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lime, juiced",
+        "quantity": "1"
+      },
+      {
+        "name": "Cilantro, chopped",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Combine cherries, root beer, and 15ml coconut vinegar in a small saucepan. Bring to a simmer. Reduce by half until slightly syrupy. Keep warm.",
+      "Heat 15ml vegetable oil in a pan over medium heat. Sauté shallot, garlic, and ginger until fragrant, about 2 minutes. Add Panang curry paste. Cook for 2 minutes, stirring constantly.",
+      "Stir in coconut milk, heavy cream, fish sauce, palm sugar, and remaining 15ml coconut vinegar. Bring to a gentle simmer. Cook for 5-7 minutes, until sauce slightly thickens. Season with salt. Keep warm.",
+      "Wash tatsoi thoroughly. Heat 15ml vegetable oil in a separate pan over medium heat. Add tatsoi. Sauté briefly until wilted. Pour in whole milk. Cook until milk is absorbed and tatsoi is tender. Season with salt and pepper.",
+      "Pat hake fillets dry with paper towels. Season both sides with salt and pepper. Heat 15ml vegetable oil in a large non-stick pan over medium-high heat.",
+      "Place hake fillets skin-side down if applicable, or presentation-side down. Sear for 4-5 minutes until golden brown and crispy. Flip the fillets. Cook for an additional 3-4 minutes, or until hake is cooked through and flakes easily.",
+      "Spoon Panang sauce onto the center of each plate. Place creamed tatsoi neatly beside the sauce. Carefully place one seared hake fillet on top of the sauce or alongside it. Drizzle the hake generously with the cherry-root beer reduction. Garnish with fresh cilantro and a lime wedge. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the sweetness of the Panang sauce and cherry-root beer reduction to your preference."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 10,
+      "calories": 661,
+      "cholesterol_mg": 121,
+      "dietary_fiber_g": 4,
+      "protein_g": 39.4,
+      "saturated_fat_g": 28.8,
+      "sodium_mg": 1257,
+      "total_carbs_g": 27.1,
+      "total_fat_g": 44.3,
+      "total_sugars_g": 22.1,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.8,
+      "calories": 119,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 7.1,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 226,
+      "total_carbs_g": 4.9,
+      "total_fat_g": 8,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.5,
+      "dietary_fiber": 14.2,
+      "protein": 78.8,
+      "saturated_fat": 143.8,
+      "sodium": 54.7,
+      "total_carbs": 9.9,
+      "total_fat": 56.8
+    },
+    "serving_size_g": 557,
+    "total_recipe_weight_g": 2227
+  },
+  {
+    "recipe_name": "Roasted Vegetable & Brown Rice Harvest Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_vegetable_%26_brown_rice_harvest_bowl_20250624_030522_3937cfc7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:05:22.623951000Z",
+    "selected_ingredients": [
+      "brown rice",
+      "mushroom",
+      "broccoli",
+      "squash"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of a vibrant Roasted Vegetable & Brown Rice Harvest Bowl is presented in a deep, rustic ceramic bowl on a well-used wooden dining table. The base is a generous bed of fluffy, light brown rice. Artfully arranged on top are roasted components: tender, deep orange butternut squash cubes, earthy brown cremini mushroom halves, and bright green broccoli florets. The vegetables are lightly caramelized from roasting, showcasing varied textures. A sprinkle of fresh, chopped green parsley adds a final touch of color. The setting features a simple, slightly imperfect white ceramic bowl and a basic fork beside it, with a casually draped cloth napkin. Warm, soft kitchen lighting illuminates the scene, highlighting the natural colors of the comforting home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Butternut Squash",
+    "ingredients": [
+      {
+        "name": "Brown rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "500g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "Small bunch, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a large baking sheet with parchment paper.",
+      "Cut butternut squash into 2 cm cubes. Cut broccoli into small florets. Halve cremini mushrooms.",
+      "In a large bowl, toss squash, broccoli, and mushrooms with olive oil, garlic powder, onion powder, smoked paprika, salt, and black pepper. Mix well to coat.",
+      "Spread vegetables in a single layer on the prepared baking sheet. Do not overcrowd.",
+      "Roast for 20-25 minutes. Vegetables should be tender and lightly caramelized. Toss halfway through cooking.",
+      "While vegetables roast, cook brown rice. Combine brown rice and vegetable broth in a medium saucepan. Bring to a boil.",
+      "Reduce heat to low, cover, and simmer for 40-45 minutes, or until liquid is absorbed and rice is tender. Fluff with a fork.",
+      "To serve, divide cooked brown rice among four deep bowls. Top each with an equal portion of roasted vegetables.",
+      "Garnish generously with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 444,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 11.9,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 203,
+      "total_carbs_g": 75.4,
+      "total_fat_g": 12.8,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 64,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 1.7,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 29,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 1.8,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 35,
+      "protein": 24,
+      "saturated_fat": 9,
+      "sodium": 9,
+      "total_carbs": 27,
+      "total_fat": 16
+    },
+    "serving_size_g": 698,
+    "total_recipe_weight_g": 2790
+  }
+]

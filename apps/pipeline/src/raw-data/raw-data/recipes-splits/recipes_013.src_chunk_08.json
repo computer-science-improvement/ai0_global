@@ -1,0 +1,716 @@
+[
+  {
+    "recipe_name": "French Mustard Chicken with Potatoes and Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_french_mustard_chicken_with_potatoes_and_mushrooms_20250701_145837_0b480ba8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:58:38.433986000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "garlic",
+      "mushroom",
+      "potato",
+      "green pea",
+      "thyme",
+      "white wine",
+      "mustard"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single seared chicken thigh, golden brown and tender, is presented as the centerpiece on a clean, white porcelain dinner plate. It is nestled among tender, 2cm potato chunks and earthy quartered mushrooms, all generously coated in a rich, creamy, light golden mustard sauce. Bright green peas are scattered throughout the dish, providing a vibrant pop of color. A light sprinkle of fresh, finely chopped parsley adds a final touch of green garnish. The plate rests on a simple, dark wood table surface. A folded light grey cotton napkin is placed to the left of the plate. The scene is illuminated by soft, natural, even lighting, highlighting the textures and warm tones of the dish. The background is softly blurred, suggesting a refined yet casual bistro ambiance, free from distracting elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g, quartered"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g, peeled and cut into 2cm chunks"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry with paper towels. Season generously with salt and black pepper.",
+      "Heat olive oil in a large, heavy-bottomed pan or Dutch oven over medium-high heat.",
+      "Sear chicken thighs 4-5 minutes per side until golden brown. Remove chicken from pan. Set aside.",
+      "Reduce heat to medium. Add butter to the pan. Add diced onion and cook 3 minutes until softened.",
+      "Add quartered mushrooms. Cook 5-7 minutes until browned and tender, stirring occasionally.",
+      "Stir in minced garlic. Cook 1 minute until fragrant.",
+      "Pour in white wine. Deglaze the pan, scraping up any browned bits from the bottom. Reduce wine by half.",
+      "Stir in chicken stock and Dijon mustard until well combined. Add thyme sprigs.",
+      "Return seared chicken thighs to the pan. Add potato chunks around the chicken.",
+      "Bring the liquid to a gentle simmer. Cover the pan. Cook 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender.",
+      "Remove thyme sprigs from the pan. Stir in heavy cream and frozen green peas.",
+      "Simmer uncovered for 2-3 minutes, allowing peas to heat through and sauce to slightly thicken.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve immediately. Garnish each portion with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 583,
+      "cholesterol_mg": 230,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 46.1,
+      "saturated_fat_g": 12,
+      "sodium_mg": 289,
+      "total_carbs_g": 33.1,
+      "total_fat_g": 32.6,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 54,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 77,
+      "dietary_fiber": 21,
+      "protein": 92,
+      "saturated_fat": 60,
+      "sodium": 13,
+      "total_carbs": 12,
+      "total_fat": 42
+    },
+    "serving_size_g": 539.25,
+    "total_recipe_weight_g": 2157
+  },
+  {
+    "recipe_name": "Baked Spinach and Three Cheese Stuffed Portobello Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_spinach_and_three_cheese_stuffed_portobello_mushrooms_20250701_145832_a8c9953f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:58:33.479211000Z",
+    "selected_ingredients": [
+      "spinach",
+      "ricotta",
+      "cottage cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, perfectly baked Portobello mushroom is centered on a clean white porcelain dinner plate. The mushroom cap is a deep, earthy brown, its edges slightly caramelized from roasting. Nestled within is a generous mound of creamy, golden-brown cheese filling, bubbling gently. Specks of vibrant green spinach are visible throughout the rich, savory mixture. A light dusting of finely grated Parmesan cheese creates a delicate crust on top. The dish is garnished simply with a sprinkle of fresh, bright green chopped parsley. The plate sits on a simple wooden table, accompanied by a folded white cotton napkin. Natural, even light illuminates the dish, highlighting its inviting textures and warm colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty rustic bread for dipping",
+      "Offer a simple green salad dressed with lemon and olive oil"
+    ],
+    "hero_ingredient": "Portobello Mushroom",
+    "ingredients": [
+      {
+        "name": "Portobello Mushrooms",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Fresh Spinach",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ricotta Cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Cottage Cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50g grated"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves minced"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small finely diced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "30g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 medium beaten"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Clean mushrooms. Gently scrape out gills with a spoon. Place cap side down on a baking tray.",
+      "Heat 10ml olive oil in a pan over medium heat. Sauté shallot for 3 minutes until softened. Add garlic. Cook 1 minute more.",
+      "Add spinach to pan. Cook until wilted. Remove from heat.",
+      "Transfer spinach to a colander. Press firmly to remove all excess water. Chop spinach coarsely.",
+      "In a bowl, combine ricotta, cottage cheese, 40g grated Parmesan, breadcrumbs, egg, chopped spinach, shallot, garlic, salt, pepper, and a pinch of nutmeg. Mix well.",
+      "Spoon filling evenly into each mushroom cap.",
+      "Drizzle remaining 10ml olive oil over mushrooms. Sprinkle remaining 10g Parmesan over filling.",
+      "Bake for 20-25 minutes. Filling should be golden and bubbly. Mushrooms should be tender.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Can be assembled ahead of time and baked just before serving.",
+      "Ensure spinach is thoroughly squeezed to prevent a watery filling."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 268,
+      "cholesterol_mg": 67,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 20.7,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 444,
+      "total_carbs_g": 16.9,
+      "total_fat_g": 14,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 87,
+      "cholesterol_mg": 21.9,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.7,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 144.2,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 22,
+      "dietary_fiber": 13,
+      "protein": 41,
+      "saturated_fat": 28,
+      "sodium": 19,
+      "total_carbs": 6,
+      "total_fat": 18
+    },
+    "serving_size_g": 307.75,
+    "total_recipe_weight_g": 1231
+  },
+  {
+    "recipe_name": "Spanish Chicken and Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_tomato_rice_20250701_145734_2b960a1f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:57:34.844896000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Chicken and Tomato Rice is presented in a shallow, wide ceramic bowl. A golden-brown, seared bone-in chicken thigh, with crispy skin, is nestled prominently on top of a vibrant orange-red bed of short-grain rice. The rice is tender, studded with soft, diced tomato pieces and flecks of minced garlic and onion. The grains are separate yet moist. Fresh, bright green chopped parsley is generously scattered over the chicken and rice, providing a contrasting color and fresh aroma. A bright yellow lemon wedge rests on the rim of the bowl, ready to be squeezed. The overall composition is rustic yet refined, showcasing the rich colors and textures of the dish. The bowl sits on a simple wooden table surface, accompanied by a folded white cotton napkin and standard flatware. Natural, even lighting highlights the dish, creating a warm, inviting atmosphere typical of a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly from the pan if serving family style, or in individual wide, shallow bowls.",
+      "Offer crusty bread to sop up the flavorful juices.",
+      "Serve with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 large (approx. 800g)"
+      },
+      {
+        "name": "Short-grain rice (e.g., Bomba or Arborio)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "pinch (approx. 0.1 g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, cut into wedges"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large, wide, shallow pan or paella pan over medium-high heat.",
+      "Sear chicken thighs skin-side down for 6-8 minutes until golden and crisp. Flip and sear for another 3-4 minutes. Remove chicken from pan. Set aside.",
+      "Reduce heat to medium. Add diced onion to the pan. Cook for 5-7 minutes until softened, stirring occasionally.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant, stirring constantly.",
+      "Stir in diced tomatoes and saffron threads. Cook for 5 minutes, mashing tomatoes slightly, to form a sofrito.",
+      "Add rice to the pan. Stir for 1-2 minutes to coat rice grains evenly.",
+      "Pour in chicken broth. Bring to a gentle simmer.",
+      "Return chicken thighs to the pan, nestling them into the rice mixture.",
+      "Reduce heat to low. Cover the pan loosely or leave uncovered if using a traditional paella pan. Cook for 20-25 minutes, or until rice is tender and most liquid is absorbed. Do not stir excessively.",
+      "Remove from heat. Cover tightly with foil or a lid. Let rest for 5-10 minutes.",
+      "Garnish with fresh chopped parsley and lemon wedges before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Avoid stirring the rice too much once the broth is added to allow the rice to cook evenly and prevent it from becoming sticky."
+    ],
+    "traditional_techniques": [
+      "Sofrito preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 819,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 42.8,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 1543,
+      "total_carbs_g": 72.2,
+      "total_fat_g": 38.8,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156,
+      "cholesterol_mg": 35.8,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 294,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 16,
+      "protein": 86,
+      "saturated_fat": 48,
+      "sodium": 67,
+      "total_carbs": 26,
+      "total_fat": 50
+    },
+    "serving_size_g": 525,
+    "total_recipe_weight_g": 2100
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Risotto with Roasted Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_risotto_with_roasted_tomatoes_20250701_145638_6cab726d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:56:38.936199000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "onion",
+      "mushroom",
+      "basil",
+      "tomato",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Chicken and Mushroom Risotto is presented in a shallow, wide white porcelain bowl, allowing the fluid risotto to spread naturally. Diced chicken pieces, approximately 2-3 cm, are visibly integrated, alongside finely diced red bell pepper (1 cm) and sliced brown mushrooms. A vibrant scattering of whole roasted cherry tomatoes, their skins slightly burst, adorns the surface. Fresh basil leaves, torn, are generously sprinkled over the dish, adding a pop of bright green. The colors are rich: golden-brown chicken, deep earthy mushrooms, bright red bell pepper and tomatoes, all against the creamy, pale yellow risotto. The texture is invitingly smooth and tender. The bowl rests on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even light illuminates the dish, creating a clean, inviting bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately, as risotto is best enjoyed fresh.",
+      "Offer extra grated Parmesan cheese at the table.",
+      "Pair with a crisp, dry white wine like Pinot Grigio."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.2 L"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Brown mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "large bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss cherry tomatoes with 5 ml olive oil, salt, and pepper on a baking sheet. Roast for 15-20 minutes until softened and slightly burst. Set aside.",
+      "Heat chicken broth in a saucepan; keep it hot over low heat.",
+      "Dice chicken thighs into 2-3 cm cubes. Season with salt and pepper. Heat 15 ml olive oil in a large, deep skillet or Dutch oven over medium-high heat. Add chicken. Sear until golden brown and cooked through, about 5-7 minutes. Internal temperature must reach 75°C. Remove chicken from skillet; set aside.",
+      "Finely chop onion and mince garlic. Dice red bell pepper into 1 cm pieces. Slice mushrooms. Add remaining 10 ml olive oil and 15 g butter to the same skillet. Add onion, bell pepper, and mushrooms. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Add Arborio rice to the skillet. Toast for 2 minutes, stirring constantly, until edges are translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add one ladleful (about 250 ml) of hot chicken broth to the rice. Stir continuously until almost completely absorbed. Continue adding broth, one ladleful at a time, stirring constantly and waiting for each addition to be absorbed before adding the next. This process takes about 20-25 minutes.",
+      "When rice is al dente (creamy but still firm to the bite), stir in cooked chicken and roasted tomatoes.",
+      "Remove skillet from heat. Stir in remaining 15 g butter and grated Parmesan cheese. Stir vigorously until creamy. Check seasoning; adjust with salt and pepper.",
+      "Tear fresh basil leaves. Stir most into the risotto. Reserve some for garnish.",
+      "Serve immediately in shallow bowls. Garnish with reserved fresh basil."
+    ],
+    "notes": [
+      "The key to creamy risotto is to add hot broth gradually and stir constantly.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Risottare (toasting rice and gradually adding liquid)",
+      "Mantecare (finishing risotto with butter and cheese for creaminess)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 716,
+      "cholesterol_mg": 128,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 39.9,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 2024,
+      "total_carbs_g": 74,
+      "total_fat_g": 26.9,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 5.7,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 288,
+      "total_carbs_g": 10.5,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 16,
+      "protein": 80,
+      "saturated_fat": 53,
+      "sodium": 88,
+      "total_carbs": 27,
+      "total_fat": 35
+    },
+    "serving_size_g": 702,
+    "total_recipe_weight_g": 2809
+  },
+  {
+    "recipe_name": "Spanish-Style Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish-style_chicken_and_rice_20250701_145634_8a20eb10.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:56:34.748826000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish-Style Chicken and Rice is presented on a clean white porcelain dinner plate. The saffron-infused golden bomba rice forms a slightly mounded base, interspersed with vibrant red and green diced bell peppers and bright green peas. Substantial, golden-brown seared chicken chunks are nestled atop and within the rice. A generous sprinkle of fresh, chopped parsley provides a fresh green contrast. The plating is clean and inviting, with moderate negative space. The plate rests on a simple wooden table, accompanied by a silver fork and knife on a white cotton napkin. Natural, even lighting illuminates the dish in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Bomba rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (approx. 150 g)"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium (approx. 180 g)"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 medium (approx. 180 g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "200 g (drained weight)"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón dulce)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.1 g"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Season with salt and pepper. Cut chicken thighs into 4 cm chunks.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion and bell peppers to the pot. Sauté for 8-10 minutes until softened.",
+      "Add minced garlic, smoked paprika, and diced tomatoes. Cook for 2 minutes, stirring constantly.",
+      "Pour in white wine. Scrape the bottom of the pot to deglaze. Cook until wine is almost evaporated.",
+      "Stir in the bomba rice. Cook for 2 minutes, stirring to coat the grains.",
+      "Add chicken broth and saffron (steeped in 30 ml warm broth). Bring to a simmer.",
+      "Return seared chicken chunks to the pot. Stir gently.",
+      "Reduce heat to low, cover the pot, and cook for 18-20 minutes, or until rice is tender and liquid is absorbed. Do not stir during cooking.",
+      "Remove from heat. Stir in frozen peas. Cover and let rest for 5 minutes.",
+      "Fluff the rice gently with a fork. Check seasoning and adjust.",
+      "Serve immediately, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best results, use good quality smoked paprika and authentic saffron threads."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 674.26,
+      "cholesterol_mg": 202.5,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 41.84,
+      "saturated_fat_g": 4.56,
+      "sodium_mg": 1449.63,
+      "total_carbs_g": 74.04,
+      "total_fat_g": 20.86,
+      "total_sugars_g": 6.98,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106.73,
+      "cholesterol_mg": 32.05,
+      "dietary_fiber_g": 0.68,
+      "protein_g": 6.62,
+      "saturated_fat_g": 0.72,
+      "sodium_mg": 229.46,
+      "total_carbs_g": 11.72,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.5,
+      "dietary_fiber": 15.36,
+      "protein": 83.68,
+      "saturated_fat": 22.8,
+      "sodium": 63.03,
+      "total_carbs": 26.92,
+      "total_fat": 26.74
+    },
+    "serving_size_g": 631.75,
+    "total_recipe_weight_g": 2527
+  }
+]

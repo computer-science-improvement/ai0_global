@@ -1,0 +1,646 @@
+[
+  {
+    "recipe_name": "Fermented Bell Pepper & Basil Pasta with Ricotta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_bell_pepper_%26_basil_pasta_with_ricotta_20250624_104349_5bce973d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:50.128807000Z",
+    "selected_ingredients": [
+      "pasta",
+      "basil",
+      "ricotta",
+      "bell pepper",
+      "parmesan",
+      "rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of pasta is elegantly presented in a handcrafted ceramic bowl with an organic, slightly irregular shape, in an earthy cream or beige tone. The short pasta is coated in a vibrant, creamy orange-red sauce from the fermented bell peppers, showcasing subtle specks of color. A generous, soft dollop of pure white ricotta sits prominently on top, creating a striking contrast. Fresh, bright green basil leaves, some whole, some gently torn, are scattered naturally over the pasta and ricotta. Small, golden-brown crispy rice pieces provide textural counterpoint. The dish is clean and uncluttered, with ample negative space. The table surface is light, natural wood or stone. Lighting is soft, natural, and diffused, highlighting textures and colors. A simple, undyed linen napkin is casually placed beside the bowl. The entire plate is visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Sustainable Fusion",
+    "hero_ingredient": "Fermented Bell Peppers",
+    "ingredients": [
+      {
+        "name": "Short pasta (e.g., rigatoni, fusilli)",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Mixed bell peppers (red, yellow, orange)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Fresh ricotta cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Non-iodized salt (for brine)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Filtered water (for brine)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Sugar (for fermentation starter)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Cooked leftover rice",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Chili flakes",
+        "quantity": "Pinch (optional)"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Bell Peppers: Wash and dice bell peppers into 2 cm pieces. Place in a clean 1-liter jar. Dissolve 15g salt and a pinch of sugar in 500ml filtered water to make brine. Pour brine over peppers, ensuring they are fully submerged (use a fermentation weight if available). Seal loosely or use an airlock lid. Ferment at room temperature (20-24°C) for 3-5 days, or until desired tanginess is achieved. Burp daily. Refrigerate once fermented.",
+      "Crisp Leftover Rice: Heat 10ml olive oil in a non-stick pan over medium-high heat. Add cooked leftover rice and press into a thin layer. Cook until golden brown and crispy, about 5-7 minutes. Break into small pieces. Set aside.",
+      "Prepare Bell Pepper Sauce: Drain 400g of the fermented bell peppers. Reserve 60ml of the fermentation brine. In a blender, combine drained bell peppers, 2 cloves minced garlic, 50ml olive oil, and 30ml reserved brine. Blend until smooth. Taste and adjust seasoning with black pepper or more brine if needed.",
+      "Cook Pasta: Bring a large pot of salted water to a rolling boil. Add pasta and cook according to package instructions until al dente. Reserve 120ml of pasta cooking water before draining.",
+      "Combine & Finish: Return drained pasta to the pot. Add the bell pepper sauce and 60ml of the reserved pasta water. Stir well to coat, adding more pasta water if needed for desired consistency. Stir in half of the fresh basil leaves, roughly torn.",
+      "Plate & Serve: Divide pasta among four shallow bowls. Dollop each serving with 50g fresh ricotta. Grate Parmesan over the top. Garnish with remaining fresh basil leaves and crispy rice pieces. Drizzle with remaining 20ml olive oil and a pinch of chili flakes if desired."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste cooking. Bell pepper cores and basil stems can be used to make a light vegetable broth for other uses. Leftover cooked rice is repurposed into a crispy garnish."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 689.3,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 23.6,
+      "saturated_fat_g": 9,
+      "sodium_mg": 1705.6,
+      "total_carbs_g": 80.5,
+      "total_fat_g": 27.7,
+      "total_sugars_g": 11.3,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 193.1,
+      "cholesterol_mg": 10.3,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 6.6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 477.8,
+      "total_carbs_g": 22.6,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 12.2,
+      "dietary_fiber": 21.7,
+      "protein": 47.2,
+      "saturated_fat": 45.3,
+      "sodium": 74.2,
+      "total_carbs": 29.3,
+      "total_fat": 35.6
+    },
+    "serving_size_g": 357,
+    "total_recipe_weight_g": 1428
+  },
+  {
+    "recipe_name": "Sustainable Chicken & Fermented Tomato Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_chicken_%26_fermented_tomato_pasta_20250624_104342_c41cb89f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:42.870060000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Sustainable Chicken & Fermented Tomato Pasta is presented on a round, handcrafted ceramic plate in a warm cream tone, centered on a light, textured reclaimed wood surface. The pasta, a generous nest of al dente rigatoni, is coated in a vibrant, rustic red fermented tomato sauce. Nestled alongside the pasta are two substantial, golden-brown pan-seared chicken chunks, showing a crisp exterior. Scattered around are bright green, roughly chopped wilted seasonal greens and a few glistening, thinly sliced pickled carrot batons, adding a contrasting texture and color. A scattering of fresh, torn basil leaves provides a final aromatic garnish. The composition is clean and natural, with ample negative space. The setting is minimalist with an undyed linen napkin, illuminated by soft, natural overhead light, enhancing the dish's organic beauty.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Tomatoes",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "2 (approx. 400g total)"
+      },
+      {
+        "name": "Dried pasta (e.g., rigatoni, penne)",
+        "quantity": "320g"
+      },
+      {
+        "name": "Ripe tomatoes (for fermentation)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Seasonal greens (e.g., spinach, chard, kale)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable scraps (e.g., carrot ends, zucchini trimmings) for pickling",
+        "quantity": "100g"
+      },
+      {
+        "name": "Non-iodized salt",
+        "quantity": "20g (for fermentation), plus more for cooking"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "500ml (for fermentation), plus more for pasta"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Tomatoes: Roughly chop 500g ripe tomatoes. Place in a clean glass jar. Add 20g non-iodized salt. Cover with 500ml filtered water. Seal jar loosely. Let ferment at room temperature for 3-5 days, or until desired tanginess is achieved. Burp daily. Refrigerate once fermented.",
+      "Prepare Pickled Vegetable Scraps: Thinly slice 100g vegetable scraps (e.g., carrot ends into batons, zucchini trimmings into rounds). In a small saucepan, combine 100ml red wine vinegar, 5g sugar, and 100ml water. Bring to a simmer until sugar dissolves. Pour hot brine over vegetable scraps in a heatproof jar. Cool completely. Refrigerate for at least 1 hour.",
+      "Cook Chicken: Pat chicken breasts dry. Season with salt and black pepper. Heat 15ml olive oil in a large pan over medium-high heat. Sear chicken breasts for 6-8 minutes per side, until golden brown and internal temperature reaches 75°C. Remove from pan, rest for 5 minutes. Cut each breast into 2-3 substantial chunks.",
+      "Prepare Sauce: While chicken rests, finely dice the onion. Mince garlic cloves. In the same pan with residual chicken drippings, add remaining 15ml olive oil. Sauté onion until softened, about 5 minutes. Add minced garlic; cook for 1 minute until fragrant. Add the fermented tomatoes and their liquid. Bring to a simmer. Cook for 10-15 minutes, crushing tomatoes with a spoon, until sauce thickens slightly.",
+      "Cook Pasta: Bring a large pot of salted water to a rolling boil. Add pasta and cook according to package instructions until al dente.",
+      "Combine: Roughly chop seasonal greens. Add greens to the tomato sauce; cook until just wilted, about 2-3 minutes. Drain pasta, reserving 60ml pasta water. Add drained pasta to the sauce. Add reserved pasta water if needed to achieve a desired consistency. Toss well to coat.",
+      "Serve: Divide pasta among 4 plates. Arrange chicken chunks alongside the pasta. Scatter pickled vegetable scraps and fresh torn basil over the dish. Serve immediately."
+    ],
+    "notes": [
+      "Adjust fermentation time for tomatoes based on desired level of tanginess and ambient temperature. Longer fermentation yields more sourness.",
+      "Any sturdy vegetable scraps can be used for pickling, such as broccoli stems, radish tops, or bell pepper cores.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 580,
+      "cholesterol_mg": 85,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 44.5,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 613.2,
+      "total_carbs_g": 71.5,
+      "total_fat_g": 12.1,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 138,
+      "cholesterol_mg": 20.3,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 10.6,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 146.1,
+      "total_carbs_g": 17,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28.3,
+      "dietary_fiber": 20.4,
+      "protein": 89,
+      "saturated_fat": 10.9,
+      "sodium": 26.7,
+      "total_carbs": 26,
+      "total_fat": 15.5
+    },
+    "serving_size_g": 419.8,
+    "total_recipe_weight_g": 1679
+  },
+  {
+    "recipe_name": "Tuscan Creamy Chicken with Mushrooms and Garlic Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_creamy_chicken_with_mushrooms_and_garlic_rice_20250624_104340_65e85ca8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:40.851825000Z",
+    "selected_ingredients": [
+      "rice",
+      "chicken",
+      "tomato",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "Small amount of oil",
+    "visual_description": "A golden-brown pan-seared chicken breast, cut into two thick medallions, rests prominently on a clean white porcelain plate. Alongside, a neatly mounded portion of fluffy garlic rice. The chicken and rice are generously draped with a rich, creamy mushroom and sun-dried tomato sauce. Sautéed cremini mushrooms and halved cherry tomatoes are visible within the sauce, adding pops of earthy brown and vibrant red. The dish is garnished with finely chopped fresh basil, providing a contrasting green. The overall presentation is clean and inviting, with moderate negative space. Served on a simple wooden table with a folded cotton napkin and classic silver flatware, under natural, even lighting, creating a warm bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Pair with a dry white wine like Pinot Grigio or Chardonnay"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "2 (about 600g total), cut into 4 thick medallions"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g, halved"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, minced"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g, sliced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken medallions dry. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Sear chicken 4-5 minutes per side until golden brown. Internal temperature must reach 75°C. Remove chicken. Set aside.",
+      "For garlic rice: Rinse rice. Combine 500ml water, 2 minced garlic cloves, and a pinch of salt in a saucepan. Bring to boil. Add rice. Reduce heat to low, cover. Simmer 15 minutes until water is absorbed. Fluff with fork.",
+      "In the same skillet, add remaining 15ml olive oil and butter. Add diced onion. Sauté 3 minutes until softened.",
+      "Add remaining 4 minced garlic cloves. Sauté 1 minute until fragrant.",
+      "Add sliced mushrooms. Cook 5-7 minutes until softened and browned. Add halved cherry tomatoes. Cook 2 minutes until slightly softened.",
+      "Pour in chicken broth. Bring to a simmer. Cook 3 minutes, scraping up browned bits.",
+      "Stir in heavy cream and grated Parmesan cheese. Simmer 2-3 minutes until sauce slightly thickens.",
+      "Return chicken medallions to skillet. Spoon sauce over chicken. Simmer 2 minutes to heat through.",
+      "Serve chicken with creamy mushroom sauce alongside garlic rice. Garnish with fresh chopped basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 793,
+      "cholesterol_mg": 192,
+      "dietary_fiber_g": 3,
+      "protein_g": 60.1,
+      "saturated_fat_g": 15.5,
+      "sodium_mg": 574,
+      "total_carbs_g": 61.3,
+      "total_fat_g": 33.3,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 12.1,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 116,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.9,
+      "dietary_fiber": 10.6,
+      "protein": 120.2,
+      "saturated_fat": 77.4,
+      "sodium": 25,
+      "total_carbs": 22.3,
+      "total_fat": 42.8
+    },
+    "serving_size_g": 497,
+    "total_recipe_weight_g": 1987
+  },
+  {
+    "recipe_name": "Hearty Chicken and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_potato_stew_20250624_104338_50cb959e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:38.880221000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "potato",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty chicken and potato stew is presented in a rustic, deep ceramic bowl on a well-used wooden dining table. The stew features two golden-brown chicken thighs, cooked until tender, nestled among substantial chunks of soft, pale yellow potatoes. Diced red tomatoes and translucent onion pieces are visible within the rich, savory, reddish-brown broth. The surface of the stew is lightly speckled with vibrant green chopped fresh parsley. The chicken skin is slightly crinkled, showing its slow-cooked texture. The broth has a natural, slightly viscous consistency, clinging to the ingredients. The bowl is placed slightly off-center on a simple, slightly worn, off-white ceramic plate. A simple fork and spoon rest beside the bowl. Warm, soft kitchen light illuminates the scene, highlighting the comforting textures and colors of the home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Cooking",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 (about 800g), bone-in, skin-on"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g, cut into large chunks"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, chopped"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry. Season chicken with salt and pepper.",
+      "Heat olive oil in a large pot over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden brown, about 5-7 minutes. Flip. Sear other side 3 minutes. Remove chicken from pot.",
+      "Add chopped onions to pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in diced tomatoes, chicken broth, dried thyme, and bay leaf. Bring mixture to a simmer.",
+      "Add potato chunks to pot. Return chicken to pot. Ensure chicken is mostly submerged in liquid.",
+      "Reduce heat to low. Cover pot. Simmer 30-40 minutes.",
+      "Cook until chicken internal temperature reaches 75°C and potatoes are tender.",
+      "Remove bay leaf. Taste and adjust seasoning as needed.",
+      "Garnish with fresh chopped parsley. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 668,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 6,
+      "protein_g": 44.2,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 428,
+      "total_carbs_g": 38.1,
+      "total_fat_g": 37.8,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 105.8,
+      "cholesterol_mg": 28.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 67.8,
+      "total_carbs_g": 6,
+      "total_fat_g": 6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 21.4,
+      "protein": 88.4,
+      "saturated_fat": 45.5,
+      "sodium": 18.6,
+      "total_carbs": 13.9,
+      "total_fat": 48.5
+    },
+    "serving_size_g": 631,
+    "total_recipe_weight_g": 2524
+  },
+  {
+    "recipe_name": "Creamy Chicken and Root Vegetable Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_root_vegetable_rice_20250624_104329_d0231c02.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:29.853287000Z",
+    "selected_ingredients": [
+      "chicken",
+      "carrot",
+      "potato",
+      "garlic",
+      "onion",
+      "brown rice",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Chicken and Root Vegetable Rice is artfully mounded on a round, clean white porcelain dinner plate. The dish presents a harmonious blend of earthy tones and vibrant accents. Tender, diced chicken pieces are integrated throughout the creamy brown rice. Bright orange diced carrots and soft, pale yellow diced potatoes add color and texture. The rice has a rich, creamy consistency, reflecting the gradual absorption of broth. A generous sprinkle of freshly grated Parmesan cheese lightly dusts the top, melting subtly into the warmth. A vibrant scattering of fresh, finely chopped green parsley serves as a fresh garnish. The plate is positioned on a simple, light-toned wooden table, with a neatly folded white cotton napkin beside it. Natural, soft, even lighting illuminates the dish, highlighting its comforting appeal. The background is clean and slightly blurred, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.2 liters"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, peeled and diced"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium, peeled and diced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g, grated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 2cm pieces. Season chicken with salt and pepper.",
+      "Heat olive oil in a large, deep pot or Dutch oven over medium-high heat.",
+      "Add chicken pieces. Sear chicken until browned on all sides. Cook until internal temperature reaches 75°C. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add butter to the pot. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in diced carrots and diced potatoes. Cook for 5 minutes, stirring occasionally.",
+      "Add brown rice to the pot. Stir well to coat rice with pan drippings and vegetables. Toast rice for 2 minutes.",
+      "Pour in 250ml of chicken broth. Stir constantly until liquid is mostly absorbed.",
+      "Continue adding broth, 250ml at a time. Stir frequently. Wait until each addition is nearly absorbed before adding the next. This process takes approximately 30-40 minutes, or until brown rice is tender.",
+      "Return cooked chicken to the pot. Stir to combine.",
+      "Remove pot from heat. Stir in grated Parmesan cheese and chopped fresh parsley. Mix until cheese is melted and creamy.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Brown rice cooking times vary significantly by type. Adjust broth quantity and cooking duration as needed until the rice is tender but still has a slight bite."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 871,
+      "cholesterol_mg": 179,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 53.4,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 857,
+      "total_carbs_g": 83.1,
+      "total_fat_g": 35.8,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.2,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 132,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.8,
+      "dietary_fiber": 22.9,
+      "protein": 106.8,
+      "saturated_fat": 67.3,
+      "sodium": 37.3,
+      "total_carbs": 30.2,
+      "total_fat": 45.9
+    },
+    "serving_size_g": 650,
+    "total_recipe_weight_g": 2600
+  }
+]

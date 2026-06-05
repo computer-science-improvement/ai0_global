@@ -1,0 +1,613 @@
+[
+  {
+    "recipe_name": "Smoked Paprika Eggplant and Tomato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_paprika_eggplant_and_tomato_stew_20250625_083821_dd1cefe7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:38:21.891394000Z",
+    "selected_ingredients": [
+      "eggplant",
+      "paprika",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty single portion of Smoked Paprika Eggplant and Tomato Stew fills a deep, rustic ceramic bowl. Thick chunks of tender, dark purple eggplant are nestled among vibrant red crushed tomatoes and diced red bell pepper. The stew has a rich, earthy red-brown hue from the smoked paprika. Visible pieces of caramelized onion and minced garlic are present. The texture is thick and comforting, with the eggplant holding its shape but yielding easily. A generous sprinkle of fresh, bright green chopped parsley garnishes the top. The bowl sits on a well-used wooden dining table in a homely kitchen. A piece of crusty, artisanal bread rests casually beside the bowl. The setting is warm and inviting, with natural, soft lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping",
+      "Serve with a simple green salad"
+    ],
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Large Eggplants",
+        "quantity": "2 (approx. 800g-1kg total)"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Large Onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley, chopped",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Cut eggplant into 3 cm cubes. Sprinkle with 1 teaspoon salt. Let sit 30 minutes. Pat dry thoroughly with paper towels.",
+      "Heat 2 tablespoons olive oil in a large pot or Dutch oven over medium-high heat. Add eggplant. Cook until browned on all sides, about 8-10 minutes. Remove eggplant. Set aside.",
+      "Reduce heat to medium. Add remaining 2 tablespoons olive oil to the pot. Add chopped onion and diced red bell pepper. Cook until softened, about 8 minutes.",
+      "Add minced garlic and smoked paprika. Cook 1 minute until fragrant.",
+      "Stir in crushed tomatoes and vegetable broth. Bring to a simmer.",
+      "Return cooked eggplant to the pot. Stir well. Cover and simmer 20-25 minutes, or until eggplant is very tender.",
+      "Season with salt and black pepper to taste.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "This stew deepens in flavor overnight."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 255.71,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.1,
+      "protein_g": 5.55,
+      "saturated_fat_g": 2.04,
+      "sodium_mg": 92.28,
+      "total_carbs_g": 30.37,
+      "total_fat_g": 14.72,
+      "total_sugars_g": 16.46,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 43.78,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 0.95,
+      "saturated_fat_g": 0.35,
+      "sodium_mg": 15.8,
+      "total_carbs_g": 5.2,
+      "total_fat_g": 2.52,
+      "total_sugars_g": 2.82,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 39.6,
+      "protein": 11.1,
+      "saturated_fat": 10.2,
+      "sodium": 4,
+      "total_carbs": 11,
+      "total_fat": 18.9
+    },
+    "serving_size_g": 584,
+    "total_recipe_weight_g": 2336
+  },
+  {
+    "recipe_name": "Potato and Seared Beef Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_and_seared_beef_salad_20250625_083812_8cbc6e91.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:38:12.504362000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Hearty Potato and Seared Beef Salad is presented on a simple, off-white ceramic plate. Cubed tender potatoes, halved vibrant green beans, halved bright red cherry tomatoes, finely diced red onion, and crisp celery are loosely mixed, showcasing natural colors and textures. Small, irregular chunks of seared beef, with a rich brown crust, are nestled among the vegetables as a hearty protein. A creamy, pale yellow dressing lightly coats all components. Coarsely chopped fresh parsley is sprinkled over, adding a pop of green. The plate rests on a well-used, warm-toned wooden dining table, suggesting a family kitchen. A casual cloth napkin and fork are beside it. Warm, soft light illuminates the dish, creating a homely, inviting atmosphere. The presentation is unpretentious, emphasizing wholesome comfort food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Waxy potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Beef sirloin or rump",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Wash and cube potatoes into 2 cm pieces. Boil in salted water until tender, about 15-20 minutes. Drain and let cool slightly.",
+      "Trim green beans. Blanch in boiling water for 3 minutes. Immediately transfer to ice water to stop cooking. Drain and halve.",
+      "Pat beef dry. Cut into 2-3 cm chunks. Season with salt and pepper.",
+      "Heat olive oil in a pan over medium-high heat. Sear beef chunks for 2-3 minutes per side until browned. Internal temperature should reach 75°C (167°F). Remove from pan and let rest.",
+      "Halve cherry tomatoes. Finely dice red onion and celery.",
+      "Chop fresh parsley coarsely.",
+      "In a large bowl, whisk together mayonnaise, Dijon mustard, apple cider vinegar, salt, and pepper to make the dressing.",
+      "Add cooled potatoes, green beans, cherry tomatoes, diced red onion, diced celery, and seared beef chunks to the bowl with the dressing.",
+      "Gently fold all ingredients until well combined and coated with dressing. Stir in chopped parsley.",
+      "Serve immediately or chill for flavors to meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 581,
+      "cholesterol_mg": 48.8,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 19.4,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 858.9,
+      "total_carbs_g": 45.5,
+      "total_fat_g": 36.4,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116.3,
+      "cholesterol_mg": 9.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 3.9,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 171.9,
+      "total_carbs_g": 9.1,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.3,
+      "dietary_fiber": 27.8,
+      "protein": 38.7,
+      "saturated_fat": 34.1,
+      "sodium": 37.3,
+      "total_carbs": 16.5,
+      "total_fat": 46.6
+    },
+    "serving_size_g": 499.5,
+    "total_recipe_weight_g": 1998
+  },
+  {
+    "recipe_name": "Savory Tofu Buckwheat Waffles with Quick-Pickled Radish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_tofu_buckwheat_waffles_with_quick-pickled_radish_20250625_083802_956f9bfe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:38:03.547085000Z",
+    "selected_ingredients": [
+      "tofu",
+      "buckwheat groat",
+      "olive oil",
+      "radish"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "plant-based, waffles",
+    "visual_description": "Two to three golden-brown savory buckwheat waffles, slightly overlapping, are centered on a matte cream ceramic plate. Thinly sliced, vibrant pink-red quick-pickled radish slices are artfully scattered over and around the waffles, their edges subtly curled. A sprinkle of finely chopped fresh radish greens adds a contrasting pop of deep green. The crisp waffle exterior contrasts with the tender interior, complemented by the crunchy, tangy radish. The plate rests on a light, textured reclaimed wood surface. An undyed linen napkin in natural beige is subtly placed to the side. Soft, diffused natural light illuminates the dish from above, creating gentle shadows. The background is clean and minimalist, with a hint of a leafy green plant, ensuring the focus remains on the food.",
+    "number_of_servings": 1,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Firm Tofu",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Buckwheat Flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Water or Plant Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sugar (optional)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Radish Greens",
+        "quantity": "small handful"
+      },
+      {
+        "name": "Garlic Clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Nutritional Yeast (optional)",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Press tofu for 15 minutes to remove excess water. Crumble tofu into a bowl.",
+      "Add buckwheat flour, baking powder, salt, pepper, minced garlic, and nutritional yeast (if using) to crumbled tofu. Gradually whisk in water or plant milk and 5 ml olive oil until a thick, smooth batter forms. Do not overmix.",
+      "Preheat waffle iron. Brush with remaining olive oil. Pour batter into iron. Cook until golden brown and crispy, about 5-7 minutes.",
+      "Thinly slice radishes using a mandoline or sharp knife. In a small bowl, combine apple cider vinegar, 30 ml water, and sugar (if using). Add sliced radishes. Let sit for at least 10 minutes to quick pickle.",
+      "Finely chop radish greens (if using).",
+      "Place cooked waffles on a plate. Drain pickled radishes and arrange them over and around the waffles. Garnish with chopped radish greens."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 509,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 9,
+      "protein_g": 23.4,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 1350,
+      "total_carbs_g": 57.9,
+      "total_fat_g": 22.9,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 117,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 5.4,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 311,
+      "total_carbs_g": 13.3,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 32.2,
+      "protein": 46.7,
+      "saturated_fat": 16.8,
+      "sodium": 58.7,
+      "total_carbs": 21.1,
+      "total_fat": 29.4
+    },
+    "serving_size_g": 434.5,
+    "total_recipe_weight_g": 434.5
+  },
+  {
+    "recipe_name": "Tomato & Cucumber Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato_%26_cucumber_rice_salad_20250625_083721_a38c7c2e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:37:21.674465000Z",
+    "selected_ingredients": [
+      "rice",
+      "onion",
+      "bread"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Tomato & Cucumber Rice Salad is presented in a generous, natural mound on a simple, round ceramic plate, showcasing its vibrant, fresh ingredients. Fluffy white rice forms the base, interspersed with vivid red diced tomatoes, bright green diced cucumber, crisp green bell pepper, and delicate purple flecks of finely diced red onion. Abundant chopped fresh parsley adds a contrasting deep green hue and herbaceous texture throughout. Golden, irregularly shaped rustic bread croutons are scattered generously on top and mixed within, providing a pleasing crunch and visual interest. A light sheen from the olive oil dressing coats the ingredients, highlighting their natural colors. The dish is arranged casually, as if served at a family meal, with some ingredients gently overlapping. The plate sits on a well-used wooden dining table, alongside a simple cloth napkin and a standard fork, emphasizing a homely, comforting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of grilled halloumi cheese.",
+      "Offer with warm pita bread for scooping.",
+      "Pair with a light, chilled white wine."
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Cooked long-grain rice",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "English cucumber",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 small, finely diced"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 small, diced"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Stale rustic bread",
+        "quantity": "100 g, cut into 2 cm cubes"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml, divided"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Prepare croutons. Preheat oven to 180°C. Toss bread cubes with 15 ml olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Bake croutons for 10-12 minutes, until golden and crisp. Let cool.",
+      "In a large bowl, combine cooled cooked rice, diced tomatoes, diced cucumber, finely diced red onion, diced green bell pepper, and chopped parsley.",
+      "Prepare dressing. In a small bowl, whisk together remaining 45 ml olive oil, lemon juice, dried oregano, salt, and black pepper.",
+      "Pour dressing over the rice and vegetable mixture. Toss gently to combine all ingredients thoroughly.",
+      "Add the cooled croutons to the salad just before serving. Toss lightly. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 368,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.34,
+      "protein_g": 6.79,
+      "saturated_fat_g": 2.24,
+      "sodium_mg": 619.5,
+      "total_carbs_g": 49.43,
+      "total_fat_g": 15.2,
+      "total_sugars_g": 5.03,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.35,
+      "protein_g": 2.12,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 193.1,
+      "total_carbs_g": 15.41,
+      "total_fat_g": 4.74,
+      "total_sugars_g": 1.57,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 16,
+      "protein": 14,
+      "saturated_fat": 11,
+      "sodium": 27,
+      "total_carbs": 18,
+      "total_fat": 19
+    },
+    "serving_size_g": 320.9,
+    "total_recipe_weight_g": 1283.5
+  },
+  {
+    "recipe_name": "Slow-Roasted Potato & Onion with Savory Lentil Crumble and Fermented Broth",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-roasted_potato_%26_onion_with_savory_lentil_crumble_and_fermented_broth_20250625_083718_473fa346.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:37:19.071551000Z",
+    "selected_ingredients": [
+      "potato",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A minimalist and earthy presentation showcasing roasted potato chunks and caramelized onion wedges as the centerpiece. The potatoes are golden-brown with slightly crispy edges, cut into irregular, thick chunks. The onions are soft, translucent, and deeply caramelized to a rich brown. A generous scattering of savory lentil crumble, made from finely textured Puy lentils, nutritional yeast, and fresh herbs, rests atop and around the roasted vegetables, adding a subtle green and light brown contrast. A small, clear pool of warm, fermented onion broth, hinting at a delicate amber hue, encircles the base of the ingredients, providing a subtle sheen. The dish is served on a handcrafted, unglazed ceramic plate in a natural cream or beige tone, highlighting the organic colors and textures. The composition is clean and uncluttered, with ample white space, emphasizing the natural beauty of each ingredient. A few fresh chive pieces are scattered over for a vibrant green accent. The setting is a light, natural wood or stone surface, complemented by an undyed linen napkin in a neutral beige. Soft, diffused natural light illuminates the scene, enhancing the dish's inviting warmth and texture, with a clean, uncluttered background featuring subtle natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Sustainable",
+    "hero_ingredient": "Roasted Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg, medium, scrubbed, cut into 3 cm chunks"
+      },
+      {
+        "name": "Yellow Onions",
+        "quantity": "3 medium, peeled, cut into thick wedges"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small, thinly sliced"
+      },
+      {
+        "name": "Puy Lentils",
+        "quantity": "200 g, rinsed"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "500 ml, low sodium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, peeled, smashed"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "6 sprigs"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Nutritional Yeast",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste, freshly ground"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Onion Broth Base: Combine thinly sliced red onion, apple cider vinegar, and water in a clean jar. Seal tightly. Let ferment at room temperature for 3-5 days until slightly fizzy and tangy. Strain liquid, reserving fermented onions for other use.",
+      "Roast Potatoes and Onions: Preheat oven to 200°C. Toss potato chunks and yellow onion wedges with 30 ml olive oil, 2 sprigs thyme, 1 sprig rosemary, salt, and pepper on a baking sheet. Roast for 35-45 minutes, turning halfway, until tender and caramelized.",
+      "Cook Lentils: In a small pot, combine rinsed Puy lentils with 400 ml vegetable broth. Bring to a boil, then reduce heat, cover, and simmer for 20-25 minutes until tender. Drain excess liquid if any.",
+      "Make Savory Lentil Crumble: In a pan, heat 15 ml olive oil. Add smashed garlic and cook until fragrant (1 minute). Add cooked lentils, remaining thyme and rosemary leaves (chopped finely), nutritional yeast, chopped parsley, salt, and pepper. Sauté gently for 5-7 minutes until slightly crisped.",
+      "Prepare Fermented Broth: In a small saucepan, combine 100 ml strained fermented onion broth base with 100 ml vegetable broth. Bring to a gentle simmer. Keep warm.",
+      "Plate and Serve: Arrange roasted potato and onion chunks centrally on each plate. Spoon a generous amount of savory lentil crumble over and around the roasted vegetables. Pour a small pool of the warm fermented broth around the base of the dish. Garnish with fresh chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 598,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 15.6,
+      "protein_g": 23.8,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 529,
+      "total_carbs_g": 95.1,
+      "total_fat_g": 15,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 95.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 3.8,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 84.6,
+      "total_carbs_g": 15.2,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 56,
+      "protein": 48,
+      "saturated_fat": 11,
+      "sodium": 23,
+      "total_carbs": 35,
+      "total_fat": 19
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  }
+]

@@ -1,0 +1,594 @@
+[
+  {
+    "recipe_name": "Homestyle Chicken Vegetable Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_chicken_vegetable_soup_20250628_062111_97fdd58b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:21:11.803446000Z",
+    "selected_ingredients": [
+      "chicken stock"
+    ],
+    "complexity": "simple",
+    "special_requests": "без лапши и картофеля",
+    "visual_description": "A single generous portion of hearty chicken vegetable soup rests in a simple, off-white ceramic bowl with a slightly irregular rim. The golden-amber broth, infused with rich chicken stock, cradles tender, chunky pieces of chicken, roughly 2cm diced carrots, and similarly diced celery and onion. Each ingredient maintains its natural color and texture: the chicken is cooked through but still moist, the vegetables are soft but not mushy. A sprinkle of vibrant green, freshly chopped parsley garnishes the top, adding a fresh contrast. The bowl sits on a well-used, warm-toned wooden kitchen table, slightly worn, suggesting years of family meals. A casually placed, light-colored cloth napkin peeks from under the bowl. The scene is bathed in soft, natural, warm light, creating a cozy and inviting atmosphere typical of a lived-in family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "hero_ingredient": "Chicken Stock",
+    "ingredients": [
+      {
+        "name": "Chicken stock",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium heat.",
+      "Cut chicken thighs into 2cm chunks. Add chicken to pot. Cook until lightly browned on all sides, about 5-7 minutes. Remove chicken from pot and set aside.",
+      "Dice onion, carrots, and celery. Add to the pot. Sauté for 8-10 minutes until softened.",
+      "Mince garlic. Stir in minced garlic, dried thyme, and bay leaf. Cook for 1 minute until fragrant.",
+      "Pour in chicken stock. Bring to a boil, then reduce heat to low.",
+      "Return chicken chunks to the pot. Simmer for 15-20 minutes, or until chicken is cooked through (internal temperature 75°C) and vegetables are tender.",
+      "Remove bay leaf. Season with salt and black pepper to taste.",
+      "Ladle soup into bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 227,
+      "cholesterol_mg": 111,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 25.7,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 1731,
+      "total_carbs_g": 9.4,
+      "total_fat_g": 11.1,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 40,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 4.5,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 305,
+      "total_carbs_g": 1.7,
+      "total_fat_g": 2,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 8,
+      "protein": 51,
+      "saturated_fat": 12,
+      "sodium": 75,
+      "total_carbs": 3,
+      "total_fat": 14
+    },
+    "serving_size_g": 567,
+    "total_recipe_weight_g": 2268
+  },
+  {
+    "recipe_name": "Savory Baked Eggs with Spinach and Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_baked_eggs_with_spinach_and_tomato_20250628_062057_bc534139.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:20:57.656235000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "spinach",
+      "olive oil",
+      "bread",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Savory Baked Eggs with Spinach and Tomato, served in a small, rustic ceramic baking dish. The rich, reddish-orange tomato sauce forms the base, with dark green wilted spinach leaves peeking through. Two perfectly baked eggs sit nestled in the sauce; their whites are set, and yolks are visibly soft and slightly runny. A generous layer of melted, bubbly golden-brown cheese covers the top. The dish is placed on a well-used, light brown wooden dining table. Beside the baking dish, a thick slice of crusty, artisanal bread rests. A simple, off-white ceramic plate is positioned underneath. A metal fork and small ceramic bowl are casually placed nearby on a folded beige cloth napkin. Warm, inviting kitchen lighting creates a cozy, lived-in atmosphere.",
+    "number_of_servings": 1,
+    "cuisine_type": "Mediterranean Comfort",
+    "hero_ingredient": "Baked Eggs",
+    "ingredients": [
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "small onion, finely diced",
+        "quantity": "1/4"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "canned diced tomatoes",
+        "quantity": "150 g"
+      },
+      {
+        "name": "fresh spinach",
+        "quantity": "50 g"
+      },
+      {
+        "name": "grated cheese",
+        "quantity": "30 g"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "crusty bread",
+        "quantity": "1 slice"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Heat olive oil in a small oven-safe skillet or baking dish over medium heat.",
+      "Add diced onion. Cook until softened, about 3 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in diced tomatoes. Season with salt and pepper. Simmer 5 minutes.",
+      "Add spinach. Cook until wilted, about 2 minutes.",
+      "Create two small wells in the tomato mixture. Crack one egg into each well.",
+      "Sprinkle grated cheese over the eggs and sauce.",
+      "Transfer skillet to preheated oven. Bake 10-15 minutes, until egg whites are set and yolks are still slightly runny.",
+      "Serve immediately with crusty bread for dipping."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 533,
+      "cholesterol_mg": 402,
+      "dietary_fiber_g": 4,
+      "protein_g": 26.1,
+      "saturated_fat_g": 11.6,
+      "sodium_mg": 674,
+      "total_carbs_g": 30,
+      "total_fat_g": 35.2,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130.96,
+      "cholesterol_mg": 98.77,
+      "dietary_fiber_g": 0.98,
+      "protein_g": 6.41,
+      "saturated_fat_g": 2.85,
+      "sodium_mg": 165.6,
+      "total_carbs_g": 7.37,
+      "total_fat_g": 8.65,
+      "total_sugars_g": 1.94,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 134,
+      "dietary_fiber": 14.29,
+      "protein": 52.2,
+      "saturated_fat": 58,
+      "sodium": 29.3,
+      "total_carbs": 10.91,
+      "total_fat": 45.13
+    },
+    "serving_size_g": 407,
+    "total_recipe_weight_g": 407
+  },
+  {
+    "recipe_name": "Classic Chicken Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_chicken_noodle_soup_20250628_062044_44266fba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:20:44.602190000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "без риса",
+    "visual_description": "A comforting single serving of Classic Chicken Noodle Soup is presented in a deep, rustic ceramic bowl with natural imperfections, placed on a well-used wooden dining table. The golden-yellow broth is rich and clear, showcasing tender shredded chicken pieces, small cubed carrots, celery, and onion, along with soft, pale egg noodles. A sprinkle of bright green chopped fresh parsley floats on top, adding a pop of color and freshness. The soup is generously portioned, filling the bowl adequately. The scene is lit with warm, cozy kitchen light, creating a homely, inviting atmosphere. A simple, casually folded cloth napkin sits nearby, along with a standard soup spoon. The focus remains entirely on the hearty, comforting soup, emphasizing its natural textures and inviting warmth. No elements distract from the dish itself.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve hot with a side of crusty bread for dipping."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "2 litres"
+      },
+      {
+        "name": "Egg noodles",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Dice carrots, celery, and onion into small cubes. Mince garlic.",
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced carrots, celery, and onion to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic and dried thyme. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Add chicken breast to the pot.",
+      "Bring soup to a boil. Reduce heat to low. Simmer for 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Remove chicken from the pot. Shred chicken using two forks.",
+      "Add egg noodles to the simmering soup. Cook according to package directions, typically 7-10 minutes, until tender.",
+      "Return shredded chicken to the pot. Stir well.",
+      "Season soup with salt and black pepper to taste.",
+      "Chop fresh parsley. Ladle soup into bowls. Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 523,
+      "cholesterol_mg": 129,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 51.9,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 842,
+      "total_carbs_g": 46.4,
+      "total_fat_g": 12.9,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 64,
+      "cholesterol_mg": 15.8,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 6.4,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 103.1,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 1.6,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 18,
+      "protein": 104,
+      "saturated_fat": 14,
+      "sodium": 37,
+      "total_carbs": 17,
+      "total_fat": 17
+    },
+    "serving_size_g": 817.3,
+    "total_recipe_weight_g": 3269
+  },
+  {
+    "recipe_name": "Chicken Tikka Masala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_tikka_masala_20250628_062024_520de7cf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:20:24.888443000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features large, charred chunks of succulent chicken submerged in a glossy, vibrant orange-red tomato gravy. The sauce has a thick, velvety texture with visible flecks of ground spices. The chicken chunks show dark, caramelized edges from the high-heat roasting. Plating is in a clean, white porcelain bowl set on a dark wooden table. A single portion is shown with a light swirl of heavy cream on top and a scattering of bright green chopped cilantro. To the side sits a stack of warm, charred garlic naan bread and a small bowl of steamed long-grain basmati rice. Lighting is natural and even, highlighting the rich colors and creamy consistency of the sauce while maintaining professional negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Northern Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm garlic naan or buttered roti",
+      "Accompany with steamed basmati rice",
+      "Side of mint-yogurt raita and kachumber salad",
+      "Serve in a traditional hammered copper karahi"
+    ],
+    "hero_ingredient": "Marinated chicken chunks",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless/skinless, 4cm chunks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Kashmiri chili powder",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Combine yogurt, 1 tbsp ginger-garlic paste, 1 tsp garam masala, 1/2 tsp turmeric, and 1 tsp chili powder.",
+      "Toss chicken chunks in marinade. Cover and refrigerate for 1 hour.",
+      "Preheat oven to 220°C. Place chicken on a wire rack over a baking sheet.",
+      "Roast chicken 15 minutes. Ensure internal temperature reaches 75°C. Set aside.",
+      "Heat oil in a large pan over medium heat. Sauté onions until golden brown.",
+      "Add remaining ginger-garlic paste. Cook 1 minute until fragrant.",
+      "Stir in remaining garam masala, turmeric, and chili powder. Toast for 30 seconds.",
+      "Pour in crushed tomatoes. Simmer 10 minutes until sauce thickens and oil separates.",
+      "Stir in butter and heavy cream. Season with salt.",
+      "Add roasted chicken chunks to the sauce. Simmer 2 minutes to combine flavors.",
+      "Garnish with fresh cilantro."
+    ],
+    "notes": [
+      "Kashmiri chili powder provides color without excessive heat.",
+      "Ensure the chicken is well-charred for authentic smoky flavor.",
+      "Let the sauce simmer until the oil separates to ensure spices are fully cooked."
+    ],
+    "traditional_techniques": [
+      "Yogurt marination",
+      "High-heat roasting",
+      "Spice tempering",
+      "Slow-simmered gravy"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 802,
+      "cholesterol_mg": 262.8,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 49.1,
+      "saturated_fat_g": 24.5,
+      "sodium_mg": 796.3,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 60,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0.58
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174.4,
+      "cholesterol_mg": 57.1,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.7,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 173.1,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 13,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 87.6,
+      "dietary_fiber": 12.5,
+      "protein": 98.2,
+      "saturated_fat": 122.5,
+      "sodium": 34.6,
+      "total_carbs": 6,
+      "total_fat": 76.9
+    },
+    "serving_size_g": 460,
+    "total_recipe_weight_g": 1839
+  },
+  {
+    "recipe_name": "Spinach and Cheese Toast with Fried Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spinach_and_cheese_toast_with_fried_egg_20250628_062018_bb93fcbf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:20:18.692261000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "spinach",
+      "olive oil",
+      "bread"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty spinach and cheese toast rests centrally on an everyday ceramic plate, placed on a well-used wooden dining table. The two slices of bread are toasted to a golden-brown crisp, sandwiching a generous filling of vibrant green, wilted spinach and rich, melted yellow cheese that slightly oozes from the sides. Perched on top of the toast is a perfectly fried egg, its bright, glossy yellow yolk slightly runny, contrasting with the opaque white. A casual sprinkle of freshly ground black pepper adorns the egg. The scene is bathed in warm, cozy kitchen lighting, with a simple fork and knife beside the plate, emphasizing a comforting, home-style meal.",
+    "number_of_servings": 1,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "50g"
+      },
+      {
+        "name": "Shredded cheese",
+        "quantity": "30g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "pinch"
+      }
+    ],
+    "instructions": [
+      "Heat 5ml olive oil in a pan over medium heat.",
+      "Add spinach. Cook until wilted, 2-3 minutes. Season with a pinch of salt and pepper. Remove spinach from pan.",
+      "Spread 5ml olive oil on one side of each bread slice.",
+      "Place one bread slice oil-side down in the pan. Sprinkle half the cheese over it.",
+      "Layer wilted spinach over the cheese.",
+      "Sprinkle remaining cheese over the spinach.",
+      "Top with the second bread slice, oil-side up.",
+      "Cook toast for 3-4 minutes per side until golden brown. Press gently with a spatula. Cheese should be melted.",
+      "While toast cooks, heat remaining 5ml olive oil in a separate small pan over medium heat.",
+      "Crack egg into the small pan. Fry until white is set and yolk is runny. Season with salt and pepper.",
+      "Carefully place the fried egg on top of the cooked toast. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.7,
+      "calories": 488.5,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 20.8,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 778,
+      "total_carbs_g": 32.7,
+      "total_fat_g": 30.9,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 239.5,
+      "cholesterol_mg": 106.9,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 10.2,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 381.4,
+      "total_carbs_g": 16,
+      "total_fat_g": 15.1,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.7,
+      "dietary_fiber": 9.7,
+      "protein": 41.7,
+      "saturated_fat": 52.3,
+      "sodium": 33.8,
+      "total_carbs": 11.9,
+      "total_fat": 39.6
+    },
+    "serving_size_g": 204,
+    "total_recipe_weight_g": 204
+  }
+]

@@ -1,0 +1,818 @@
+[
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_tagliatelle_20250707_055822_06927a2a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T05:58:22.574506000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "pasta",
+      "bread",
+      "potato",
+      "onion",
+      "apple",
+      "rice",
+      "sausage",
+      "chicken stock",
+      "salad green",
+      "chocolate",
+      "corn",
+      "flour",
+      "pineapple",
+      "garlic",
+      "sugar",
+      "coffee",
+      "lemon",
+      "mushroom",
+      "breadcrumbs",
+      "cream",
+      "orange",
+      "shrimp",
+      "coriander",
+      "green pea",
+      "milk",
+      "oats",
+      "mozzarella",
+      "yogurt",
+      "ginger",
+      "yeast",
+      "basil",
+      "ham",
+      "oil",
+      "butter",
+      "salmon",
+      "parsley",
+      "lime",
+      "noodle",
+      "parmesan cheese",
+      "vanilla",
+      "cheese",
+      "oregano",
+      "mayonnaise",
+      "cream cheese",
+      "vegetable stock",
+      "thyme",
+      "broccoli",
+      "cottage cheese",
+      "cucumber",
+      "dill",
+      "lentil",
+      "macaroni",
+      "beet",
+      "black pepper",
+      "celery",
+      "mint",
+      "carrot",
+      "egg",
+      "honey",
+      "sage",
+      "pork stock",
+      "ricotta",
+      "cabbage",
+      "horseradish",
+      "marshmallow",
+      "olive oil",
+      "orange juice",
+      "paprika",
+      "pistachio",
+      "pimento pepper",
+      "rosemary",
+      "bay leaf",
+      "cauliflower",
+      "cinnamon",
+      "cumin",
+      "curry",
+      "eggplant",
+      "pretzel",
+      "rye bread",
+      "sesame seed",
+      "tofu",
+      "anise",
+      "banana",
+      "caramel",
+      "cardamom",
+      "courgette",
+      "couscous",
+      "dried pea",
+      "egg noodle",
+      "fish",
+      "ketchup",
+      "kielbasa",
+      "lemon zest",
+      "pomegranate",
+      "porcini mushroom",
+      "rice noodle",
+      "sour cream",
+      "sweet potato",
+      "tea",
+      "black tea",
+      "chickpea",
+      "chive",
+      "clove",
+      "egg white",
+      "green tea",
+      "mandarin",
+      "miso paste",
+      "vinegar",
+      "allspice",
+      "avocado",
+      "green onion",
+      "polenta",
+      "watermelon",
+      "bulgur",
+      "egg yolk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Tagliatelle is coiled neatly on a clean white porcelain dinner plate. The pasta is evenly coated in a creamy, rich sauce. Seared chicken breast, cut into thick chunks, is nestled among the pasta. Sliced cremini mushrooms are integrated throughout the dish. Fresh chopped parsley and a light grating of Parmesan cheese provide vibrant green and pale yellow accents. The dish displays warm golden, earthy brown, and creamy white tones. The plate is placed on a simple wooden table surface, accompanied by a cotton napkin and traditional flatware. Natural, even lighting highlights the textures and colors. A single refined restaurant portion is presented.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Pair with a simple green salad dressed with olive oil and lemon."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Slice 300g cremini mushrooms. Mince 3 garlic cloves. Dice 1 medium onion. Cut 500g chicken breast into 3cm thick chunks.",
+      "Heat 15ml olive oil and 15g butter in a large pan over medium-high heat. Sear chicken chunks until golden brown on all sides. Cook to an internal temperature of 75°C. Remove chicken from pan. Set aside.",
+      "Add remaining 15ml olive oil and 15g butter to the pan. Sauté diced onion for 3 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms to the pan. Cook for 5-7 minutes until softened and browned.",
+      "Pour in 250ml chicken stock. Bring to a simmer. Reduce liquid by half.",
+      "Stir in 200ml heavy cream. Simmer gently for 2 minutes until sauce thickens slightly.",
+      "Meanwhile, cook 400g tagliatelle in salted boiling water according to package directions until al dente. Drain pasta, reserving 120ml pasta water.",
+      "Return cooked chicken to the pan with the sauce. Add drained tagliatelle. Add 50g grated Parmesan cheese and 15g chopped fresh parsley. Toss to combine. If sauce is too thick, add reserved pasta water as needed.",
+      "Season with salt and black pepper to taste. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for aromatic base)",
+      "Al dente (for pasta cooking)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 953,
+      "cholesterol_mg": 194,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 61.4,
+      "saturated_fat_g": 20.2,
+      "sodium_mg": 407,
+      "total_carbs_g": 84.6,
+      "total_fat_g": 41,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 197,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 12.7,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 84,
+      "total_carbs_g": 17.5,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 21,
+      "protein": 123,
+      "saturated_fat": 101,
+      "sodium": 18,
+      "total_carbs": 31,
+      "total_fat": 53
+    },
+    "serving_size_g": 484,
+    "total_recipe_weight_g": 1937
+  },
+  {
+    "recipe_name": "Caramelized Honey Chicken Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_honey_chicken_bites_20250707_055402_773ec3dd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T05:54:02.808535000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Natural portions of golden-brown, glistening caramelized chicken bites piled generously on a rustic, matte ceramic serving platter. The chicken pieces are irregularly shaped 2 cm cubes, showcasing their pan-fried texture. A light scattering of white sesame seeds adds visual contrast. Some bites naturally overlap, creating a casual, inviting mound. The platter sits on a well-used, warm-toned wooden dining table. A simple, folded cloth napkin in a neutral tone is casually placed nearby. Lighting is warm and cozy, suggestive of kitchen fixtures. The background is slightly blurred, hinting at a lived-in family kitchen atmosphere. This is a single, generous sharing portion arranged invitingly for casual snacking.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "10g"
+      },
+      {
+        "name": "Sesame seeds",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2 cm cubes.",
+      "Place chicken cubes in a bowl. Add cornstarch. Toss to coat evenly.",
+      "Heat vegetable oil in a large non-stick pan over medium-high heat.",
+      "Add chicken to the hot pan in a single layer. Cook in batches if necessary.",
+      "Cook chicken for 5-7 minutes. Turn frequently until golden brown and cooked through (internal temperature 75°C).",
+      "Remove cooked chicken from pan. Set aside.",
+      "In the same pan, reduce heat to medium. Add honey, soy sauce, rice vinegar, minced garlic, and grated ginger. Stir well.",
+      "Bring sauce to a simmer. Cook for 2-3 minutes until slightly thickened.",
+      "Return cooked chicken to the pan. Toss chicken in the sauce until evenly coated and caramelized.",
+      "Transfer chicken bites to a serving platter. Sprinkle with sesame seeds. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 17.3,
+      "calories": 379,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 40.3,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 837,
+      "total_carbs_g": 26.1,
+      "total_fat_g": 12.1,
+      "total_sugars_g": 17.4,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 9.4,
+      "calories": 207.2,
+      "cholesterol_mg": 58.1,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 22,
+      "saturated_fat_g": 1,
+      "sodium_mg": 457.9,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 9.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 2,
+      "protein": 81,
+      "saturated_fat": 10,
+      "sodium": 36,
+      "total_carbs": 9,
+      "total_fat": 16
+    },
+    "serving_size_g": 182.9,
+    "total_recipe_weight_g": 731.6
+  },
+  {
+    "recipe_name": "Sous Vide Chicken Breast, Black Truffle Potato Purée, Glazed Baby Carrots, Chicken Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sous_vide_chicken_breast%2C_black_truffle_potato_pur%C3%A9e%2C_glazed_baby_carrots%2C_chicken_jus_20250707_055226_19c81043.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T05:52:26.421739000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of Sous Vide Chicken Breast is presented on a pristine, subtly patterned bone china plate, resting on a premium grey-veined marble surface. The chicken breast, cooked whole and unsliced, exhibits a beautiful golden-brown sear, contrasting with its tender, succulent interior. Adjacent to it, an artfully sculpted quenelle of creamy Black Truffle Potato Purée gleams, its smooth surface speckled with delicate dark flecks of truffle. Four vibrant orange baby carrots, uniformly glazed to a tender-crisp perfection, are arranged with architectural precision around the chicken and purée. A rich, dark chicken jus is meticulously spooned, creating an elegant, flowing pool that anchors the composition. A delicate scattering of bright green microgreens or finely chopped chives provides a precise pop of color and freshness. Abundant negative space surrounds the components, emphasizing the minimalist elegance and sophisticated restraint of the dish. Dramatic, professional lighting casts soft shadows, highlighting textures and depth. A precisely folded white linen napkin sits nearby, contributing to the luxurious, uncluttered fine-dining ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Starchy potatoes (e.g., Russet)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "130g (100g for puree, 30g for carrots)"
+      },
+      {
+        "name": "Fresh black truffle, finely grated",
+        "quantity": "10g (or 10ml high-quality truffle oil)"
+      },
+      {
+        "name": "Baby carrots",
+        "quantity": "16 (or 4 medium carrots)"
+      },
+      {
+        "name": "High-quality chicken stock",
+        "quantity": "550ml (500ml for jus, 50ml for carrots)"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Red wine",
+        "quantity": "50ml (optional)"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "2"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Microgreens or chives, finely chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken Jus: In a small saucepan, sauté diced shallot in a knob of butter until softened. Deglaze with red wine, if using, and reduce completely. Add 500ml chicken stock, 1 thyme sprig, and bay leaf. Bring to a simmer. Reduce heat and gently simmer until liquid reduces by two-thirds to a rich, glossy consistency. Strain through a fine-mesh sieve. Keep warm.",
+      "Prepare Sous Vide Chicken: Season chicken breasts generously with salt and pepper. Place each breast in a separate vacuum-sealable bag with a small sprig of thyme and a smashed garlic clove. Vacuum seal the bags. Cook in a sous vide water bath preheated to 63°C for 1.5 hours. Once cooked, immediately transfer bags to an ice bath for 10 minutes to cool rapidly. This stops cooking and allows for later searing without overcooking. Store refrigerated if not serving immediately.",
+      "Prepare Black Truffle Potato Purée: Peel potatoes and cut into 2cm cubes. Place in a saucepan, cover with cold salted water, and bring to a boil. Cook until very tender, about 15-20 minutes. Drain thoroughly. Return potatoes to the hot pan over low heat for 1 minute to evaporate excess moisture. Pass the hot potatoes through a drum sieve or potato ricer into a clean bowl. In a separate small saucepan, gently warm the milk. Gradually whisk the warm milk into the riced potatoes until smooth. Add cold cubed butter, one cube at a time, whisking until fully incorporated and purée is velvety. Stir in finely grated fresh black truffle. Season with salt to taste. Keep warm.",
+      "Prepare Glazed Baby Carrots: If using medium carrots, peel and cut into 5cm long, 1cm thick batons. In a sauté pan, combine baby carrots, 30g butter, 50ml chicken stock, a pinch of sugar, and a pinch of salt. Bring to a simmer. Cook over medium heat, shaking the pan occasionally, until liquid evaporates and carrots are tender-crisp and beautifully glazed, about 8-10 minutes. Keep warm.",
+      "Sear Chicken: Just before serving, remove chicken breasts from bags. Pat very dry with paper towels. Heat olive oil in a heavy-bottomed, oven-safe skillet over medium-high heat until shimmering. Carefully place chicken breasts in the hot pan. Sear for 2-3 minutes per side until golden brown and a crisp crust forms. Internal temperature should reach 75°C. Remove from pan and let rest for 2 minutes.",
+      "Plate Dish: On each plate, create an elegant swirl or quenelle of Black Truffle Potato Purée slightly off-center. Place one whole seared chicken breast next to the purée. Arrange 4 glazed baby carrots artfully alongside. Spoon a generous drizzle of the rich Chicken Jus around the chicken and purée. Garnish precisely with a few microgreens or a sprinkle of finely chopped chives. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 765,
+      "cholesterol_mg": 235,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 65.9,
+      "saturated_fat_g": 20,
+      "sodium_mg": 611,
+      "total_carbs_g": 32.6,
+      "total_fat_g": 40,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 153.7,
+      "cholesterol_mg": 47.3,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 13.2,
+      "saturated_fat_g": 4,
+      "sodium_mg": 122.8,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 8,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78.3,
+      "dietary_fiber": 16.1,
+      "protein": 131.8,
+      "saturated_fat": 100,
+      "sodium": 26.6,
+      "total_carbs": 11.8,
+      "total_fat": 51.3
+    },
+    "serving_size_g": 497.5,
+    "total_recipe_weight_g": 1990
+  },
+  {
+    "recipe_name": "Pork Loin & Confit Octopus with Chocolate-Bacon Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_loin_%26_confit_octopus_with_chocolate-bacon_jus_20250707_053813_71caf9c5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T05:38:14.179047000Z",
+    "selected_ingredients": [
+      "caviar",
+      "pork",
+      "shrimp",
+      "octopus",
+      "chocolate",
+      "bacon",
+      "snail"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, perfectly portioned dish on an expensive bone china plate, set on a pristine white Carrara marble surface. Dramatic lighting casts soft shadows. Two thick, seared pork loin medallions, golden-crusted and pink-centered, are slightly offset. A beautifully seared octopus tentacle, lightly charred, rests beside the pork, its natural curl adding organic flow. A delicate dollop of vibrant green snail and garlic butter sits atop the octopus. A rich, glossy, dark chocolate-bacon jus is artfully spooned around the proteins. A small, glistening quenelle of premium black caviar is precisely placed on a pork medallion. Delicate chervil sprigs add freshness. A crisp white linen napkin and traditional silver flatware are subtly placed, creating an elegant, minimalist presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Pork Loin",
+    "ingredients": [
+      {
+        "name": "Pork loin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Bacon, finely diced",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Octopus tentacles",
+        "quantity": "4"
+      },
+      {
+        "name": "Duck fat or olive oil",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Lemon peel",
+        "quantity": "1 strip"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa), finely chopped",
+        "quantity": "50g"
+      },
+      {
+        "name": "Rendered bacon fat",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter, cold",
+        "quantity": "30g"
+      },
+      {
+        "name": "Snails (canned, escargots)",
+        "quantity": "24"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh parsley, finely chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Premium Caviar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Microgreens or chervil sprigs",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Pat pork loin dry. Season with salt and pepper. Place pork loin, diced bacon, thyme, and smashed garlic in a vacuum-sealable bag. Add olive oil. Vacuum seal. Sous vide at 60°C for 2 hours.",
+      "Remove pork. Render bacon in a pan until crispy; reserve rendered fat for jus. Sear pork loin in a hot pan (using reserved bacon fat) until golden-brown on all sides. Rest pork. Slice into thick medallions.",
+      "If raw, simmer octopus in salted water with bay leaf and peppercorns until tender. Drain. Pat dry. Place octopus tentacles in a small pot. Cover completely with duck fat or olive oil. Add bay leaves, peppercorns, and lemon peel. Gently confit over very low heat (90-100°C) for 1 hour. Remove from fat. Sear tentacles in a hot pan until slightly crispy and warmed through.",
+      "In a saucepan, sauté diced shallots and minced garlic in reserved bacon fat until softened. Deglaze with red wine; reduce by half. Add beef stock; reduce by half until slightly thickened. Stir in chopped dark chocolate until melted and smooth. Whisk in cold butter until emulsified. Season with salt and pepper. Strain through a fine-mesh sieve. Keep warm.",
+      "In a bowl, combine softened butter, minced garlic, finely chopped parsley, salt, and pepper. Mix well. Gently fold in the snails.",
+      "On each plate, artfully arrange 2-3 thick pork loin medallions. Place a seared octopus tentacle next to the pork. Spoon a generous dollop of snail & garlic butter onto the octopus. Drizzle the warm chocolate-bacon jus around the components. Garnish each portion with a small quenelle of caviar on top of the octopus or pork. Finish with a few microgreens."
+    ],
+    "notes": [
+      "The sous vide technique ensures perfectly tender pork.",
+      "The confit method yields incredibly tender octopus.",
+      "This dish balances rich, earthy flavors with briny, delicate accents for a sophisticated culinary experience."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1990,
+      "cholesterol_mg": 399,
+      "dietary_fiber_g": 2.25,
+      "protein_g": 69.24,
+      "saturated_fat_g": 67.58,
+      "sodium_mg": 1185,
+      "total_carbs_g": 15.94,
+      "total_fat_g": 178.58,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 1.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 277,
+      "cholesterol_mg": 56,
+      "dietary_fiber_g": 0.31,
+      "protein_g": 9.65,
+      "saturated_fat_g": 9.42,
+      "sodium_mg": 165,
+      "total_carbs_g": 2.22,
+      "total_fat_g": 24.89,
+      "total_sugars_g": 0.64,
+      "trans_fat_g": 0.16
+    },
+    "daily_value_percentages": {
+      "cholesterol": 132.85,
+      "dietary_fiber": 8.02,
+      "protein": 138.47,
+      "saturated_fat": 337.91,
+      "sodium": 51.52,
+      "total_carbs": 5.8,
+      "total_fat": 228.95
+    },
+    "serving_size_g": 717.3,
+    "total_recipe_weight_g": 2869
+  },
+  {
+    "recipe_name": "Rustic Pork and Seafood Ragu with Savory Chocolate and Herb Snails",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_pork_and_seafood_ragu_with_savory_chocolate_and_herb_snails_20250707_053555_1805e008.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T05:35:55.856488000Z",
+    "selected_ingredients": [
+      "caviar",
+      "pork",
+      "shrimp",
+      "octopus",
+      "chocolate",
+      "bacon",
+      "snail"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty, rustic ragu fills a deep, imperfect ceramic bowl on a worn wooden kitchen table. Tender chunks of slow-braised pork belly, approximately 2-3 cm cubes, are nestled amongst succulent, 2-3 cm pieces of octopus, and plump pink shrimp. The rich, deep red-brown tomato-based sauce, subtly deepened with dark chocolate, coats all ingredients. A sprinkle of fresh, chopped flat-leaf parsley adds a touch of green. Crispy bacon bits are scattered over the top. Alongside, a few pan-fried garlic butter snails are tucked into the edge of the ragu. A small, elegant spoonful of glistening black caviar sits separately on a small, rustic ceramic dish next to the bowl. The setting is a cozy, lived-in family dining area with warm, natural light, reflecting the dish's homely comfort. A simple fork rests beside the bowl on a casually placed cloth napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic European",
+    "hero_ingredient": "Pork Belly",
+    "ingredients": [
+      {
+        "name": "Pork belly, skin on, bone in",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Octopus, cleaned",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Large shrimp, peeled and deveined",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Canned snails, drained",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Caviar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Dark chocolate, 70% cocoa or higher",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Celery stalk, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Chicken or vegetable stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut pork belly into 2-3 cm cubes. Pat dry. Cut bacon into small pieces.",
+      "Heat a large, heavy-bottomed pot or Dutch oven over medium heat. Add bacon. Render until crispy. Remove bacon with a slotted spoon. Set aside. Leave rendered fat in pot.",
+      "Increase heat to medium-high. Add pork belly cubes to the pot. Brown on all sides until golden. Remove pork belly. Set aside.",
+      "Add diced onion, carrot, and celery to the pot. Cook, stirring occasionally, until softened, about 8-10 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer. Reduce by half.",
+      "Stir in crushed tomatoes, stock, thyme sprigs, and bay leaf. Return pork belly to the pot. Add octopus. Bring to a gentle simmer.",
+      "Reduce heat to low. Cover the pot. Simmer for 2 to 2.5 hours, or until pork belly and octopus are very tender. Stir occasionally to prevent sticking.",
+      "Remove thyme sprigs and bay leaf. Stir in dark chocolate until melted and fully incorporated. Season the ragu with salt and pepper to taste.",
+      "Just before serving, add shrimp to the simmering ragu. Cook for 3-5 minutes, until shrimp turn pink and opaque.",
+      "In a separate small pan, melt butter over medium heat. Add drained snails and a pinch of minced garlic (if desired). Sauté for 2-3 minutes until lightly browned. Season lightly.",
+      "Serve the ragu hot in individual bowls. Garnish each portion with crispy bacon bits, chopped fresh parsley, and a few pan-fried snails. Place a small spoonful of caviar on a separate small dish or directly onto a neutral part of the plate next to the ragu."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 1399,
+      "cholesterol_mg": 334.69,
+      "dietary_fiber_g": 4.36,
+      "protein_g": 50.36,
+      "saturated_fat_g": 41.23,
+      "sodium_mg": 1767.66,
+      "total_carbs_g": 22.08,
+      "total_fat_g": 117.73,
+      "total_sugars_g": 8.92,
+      "trans_fat_g": 0.11
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.06,
+      "calories": 180,
+      "cholesterol_mg": 43.17,
+      "dietary_fiber_g": 0.56,
+      "protein_g": 6.49,
+      "saturated_fat_g": 5.32,
+      "sodium_mg": 228.01,
+      "total_carbs_g": 2.85,
+      "total_fat_g": 15.19,
+      "total_sugars_g": 1.15,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 111.56,
+      "dietary_fiber": 15.57,
+      "protein": 100.72,
+      "saturated_fat": 206.15,
+      "sodium": 76.86,
+      "total_carbs": 8.03,
+      "total_fat": 150.94
+    },
+    "serving_size_g": 775.25,
+    "total_recipe_weight_g": 3101
+  }
+]

@@ -1,0 +1,669 @@
+[
+  {
+    "recipe_name": "Arroz con Pollo Clasico",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_clasico_20250625_081327_4e548b79.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:13:27.865102000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo Clasico is presented in a shallow, white porcelain bowl. The rice is a vibrant reddish-orange, moist and tender, with individual grains visible. Large, succulent chunks of golden-brown seared chicken are nestled throughout the rice, not fanned. Diced red and green bell peppers are integrated, adding pops of color and texture. The dish is generously garnished with fresh, bright green chopped cilantro. A lime wedge rests on the rim of the bowl. The setting is a simple wooden table. Beside the bowl, a small stack of warm corn tortillas sits on a rustic plate. A small traditional Mexican ceramic bowl holds a vibrant salsa roja. A folded cotton napkin is placed to the side. Natural, even lighting highlights the dish, creating a professional yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping.",
+      "Offer a side of salsa roja or pico de gallo.",
+      "Provide lime wedges for fresh acidity."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into large 4 cm chunks. Season chicken with salt and pepper.",
+      "Heat olive oil in a large, deep pan or Dutch oven over medium-high heat.",
+      "Add chicken chunks to the hot pan. Sear until browned on all sides. Do not overcrowd the pan; cook in batches if necessary. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion to the pan. Cook until softened, about 5 minutes.",
+      "Add minced garlic and diced bell peppers. Cook for 3-4 minutes until slightly tender.",
+      "Stir in chili powder and ground cumin. Cook for 1 minute until fragrant.",
+      "Add rice to the pan. Stir constantly for 2-3 minutes to toast the rice grains.",
+      "Pour in chicken broth and canned diced tomatoes. Stir well. Bring mixture to a simmer.",
+      "Return seared chicken chunks to the pan. Nestle chicken into the rice mixture.",
+      "Cover the pan tightly. Reduce heat to low. Cook for 20-25 minutes, or until rice is tender and liquid is absorbed. Do not lift lid during cooking.",
+      "Remove pan from heat. Let it rest, covered, for 10 minutes.",
+      "Fluff rice gently with a fork. Stir in half of the fresh cilantro.",
+      "Serve immediately, garnished with remaining fresh cilantro."
+    ],
+    "traditional_techniques": [
+      "Sofrito base",
+      "Toasting rice"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 678,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 41.1,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 1162,
+      "total_carbs_g": 77,
+      "total_fat_g": 21.4,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 105,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 6.4,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 180,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 20,
+      "protein": 82,
+      "saturated_fat": 23,
+      "sodium": 51,
+      "total_carbs": 28,
+      "total_fat": 27
+    },
+    "serving_size_g": 645.7,
+    "total_recipe_weight_g": 2582.6
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Mustard-Cheese Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_mustard-cheese_sauce_20250625_081319_88877890.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:13:19.695764000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "mustard",
+      "mushroom",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "Пп cuisine, Не запеченная",
+    "visual_description": "A single individual portion of Pan-Seared Chicken with Creamy Mustard-Cheese Sauce is presented on a clean, round white porcelain dinner plate. A whole, golden-brown seared chicken breast is the centerpiece. Beside it, a generous, smooth mound of creamy potato puree sits elegantly. Sautéed mixed mushrooms, rich in earthy brown tones, are artfully arranged around the chicken, creating a natural flow. A luscious, pale yellow mustard-cheese sauce is drizzled generously over the chicken and mushrooms, showcasing its creamy texture. The dish is garnished with a sprinkle of vibrant green chopped fresh chives, providing a pop of color and freshness. The setting is a modern bistro, featuring a simple light wooden table surface. Standard silver flatware and a folded white cotton napkin are placed neatly beside the plate. Natural, even lighting highlights the textures and colors of the food. The background is minimal and unobtrusive, suggesting a casual yet refined restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Starchy potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Mixed mushrooms (e.g., cremini, shiitake)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Gruyère or aged cheddar cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Single cream (or milk for lighter sauce)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "40g"
+      },
+      {
+        "name": "Small onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley or chives, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Cut into 2cm cubes. Place in a pot. Cover with cold salted water. Bring to a boil. Cook until fork-tender, about 15-20 minutes. Drain well. Return to pot. Mash until smooth. Add 20g butter and a splash of milk or cream if desired. Season with salt and pepper. Keep warm.",
+      "Pat chicken breasts dry. Season generously with salt and pepper. Heat 15ml olive oil in a large non-stick pan over medium-high heat. Sear chicken breasts for 5-7 minutes per side until golden brown and cooked through to 75°C internal temperature. Remove chicken from pan. Set aside. Keep warm.",
+      "Add remaining 15ml olive oil and 10g butter to the same pan. Add diced onion. Sauté 3 minutes until softened. Add minced garlic. Cook 1 minute until fragrant. Add sliced mushrooms. Sauté 5-7 minutes until mushrooms are tender and browned. Season with salt and pepper. Remove mushrooms from pan. Set aside.",
+      "Return pan to medium heat. Deglaze with chicken stock. Scrape up any browned bits. Reduce stock by half. Stir in Dijon mustard and cream. Bring to a gentle simmer. Add grated cheese. Stir until cheese is melted and sauce is smooth and slightly thickened. Season with salt and pepper to taste.",
+      "To plate, spoon a generous portion of potato puree onto each plate. Place a whole seared chicken breast beside the puree. Arrange sautéed mushrooms around the chicken. Drizzle creamy mustard-cheese sauce generously over the chicken and mushrooms. Garnish with fresh chopped parsley or chives. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 791.9,
+      "cholesterol_mg": 226.5,
+      "dietary_fiber_g": 6,
+      "protein_g": 74.8,
+      "saturated_fat_g": 15.9,
+      "sodium_mg": 388.3,
+      "total_carbs_g": 42.6,
+      "total_fat_g": 35.6,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.4,
+      "cholesterol_mg": 36.4,
+      "dietary_fiber_g": 1,
+      "protein_g": 12,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 62.4,
+      "total_carbs_g": 6.9,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 21,
+      "protein": 150,
+      "saturated_fat": 80,
+      "sodium": 17,
+      "total_carbs": 15,
+      "total_fat": 46
+    },
+    "serving_size_g": 622,
+    "total_recipe_weight_g": 2488
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken and Mushroom Pasta with Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_and_mushroom_pasta_with_mozzarella_20250625_081319_62db6bf3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:13:19.605118000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken",
+      "mozzarella",
+      "tomato",
+      "mushroom",
+      "parmesan",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, showcasing a generous individual portion of pasta. The al dente penne is coated in a rich, vibrant red tomato sauce, interspersed with earthy sliced cremini mushrooms and halved bright red cherry tomatoes. Nestled atop the pasta are thick, golden-brown medallions of pan-seared chicken breast, cooked to tender perfection. Draped over the chicken and pasta are luscious melted pieces of fresh mozzarella, creating creamy white highlights. A sprinkle of bright green, roughly chopped fresh basil leaves adds a pop of color and freshness. The dish is finished with a generous dusting of finely grated Parmigiano-Reggiano. The composition is balanced and inviting, with moderate negative space. The setting features a simple light wooden table surface, a folded white cotton napkin, and a silver fork and knife beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and colors against a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce.",
+      "Pair with a simple green salad dressed with vinaigrette.",
+      "Accompany with a glass of dry Italian red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, Skinless Chicken Breasts",
+        "quantity": "4 (approx 180-200g each)"
+      },
+      {
+        "name": "Penne Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh Mozzarella",
+        "quantity": "200g, torn"
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "100g, halved"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "250g, sliced"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Parmigiano-Reggiano",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "1 small bunch, roughly chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": "2g (optional)"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Cook penne pasta according to package directions until al dente. Drain and set aside.",
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown and cooked through. Internal temperature should reach 75°C (167°F). Remove chicken from skillet and set aside to rest.",
+      "Add remaining 15ml olive oil to the same skillet. Add finely diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and sliced cremini mushrooms. Sauté 5-7 minutes until mushrooms are tender and browned.",
+      "Stir in crushed tomatoes, halved cherry tomatoes, chicken broth, and red pepper flakes (if using). Bring sauce to a simmer. Cook for 10 minutes, allowing flavors to meld.",
+      "Slice rested chicken breasts into thick medallions.",
+      "Add cooked pasta and sliced chicken medallions to the skillet with the sauce. Toss to combine.",
+      "Add torn fresh mozzarella to the pasta and chicken. Stir gently until mozzarella is melted and creamy.",
+      "Stir in roughly chopped fresh basil. Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately, garnished with grated Parmigiano-Reggiano."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 990,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 90.4,
+      "saturated_fat_g": 11,
+      "sodium_mg": 1309,
+      "total_carbs_g": 89,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 10.1,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114.8,
+      "cholesterol_mg": 23.1,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.5,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 151.8,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 23,
+      "protein": 181,
+      "saturated_fat": 55,
+      "sodium": 57,
+      "total_carbs": 32,
+      "total_fat": 36
+    },
+    "serving_size_g": 863,
+    "total_recipe_weight_g": 3450
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Thighs with Saffron Rice and Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_thighs_with_saffron_rice_and_roasted_vegetables_20250625_081314_6399810a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:13:15.271123000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, inviting single portion presented on a clean, round white porcelain dinner plate. At the center, a generous mound of fluffy, golden-yellow saffron-infused basmati rice forms the base. Nestled atop the rice are several irregularly shaped, thick chunks of pan-seared chicken thigh, boasting a rich golden-brown crust and moist interior. Surrounding the chicken and rice, roasted asparagus spears, retaining their bright green color and slight char marks, are artfully scattered alongside plump, slightly burst red cherry tomatoes. A sprinkle of fresh, vibrant green chopped parsley adds a final touch of color and freshness. The arrangement is balanced and organic, with moderate negative space. The plate rests on a simple, light-colored wooden table. A folded off-white linen napkin and standard silver flatware are placed neatly beside the plate. Natural, even light illuminates the dish, highlighting its textures and colors against a soft, blurred background of a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty artisan bread for dipping in any residual pan juices.",
+      "Offer a simple green salad dressed with olive oil and lemon.",
+      "Accompany with a small bowl of Kalamata olives."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": "4 (boneless, skinless)"
+      },
+      {
+        "name": "Basmati Rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Saffron Threads",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": "250 g, trimmed"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200 g, whole"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, cut into wedges"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large skillet over medium-high heat. Sear chicken thighs 5-7 minutes per side until golden brown and cooked through. Internal temperature must reach 75°C.",
+      "Remove chicken from skillet. Let rest 5 minutes.",
+      "In a medium saucepan, heat remaining 15 ml olive oil and butter over medium heat. Add diced onion. Cook 3-4 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in basmati rice. Cook 2 minutes, coating grains.",
+      "Pour in chicken broth. Add saffron threads. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer 15-18 minutes until liquid is absorbed and rice is tender. Do not lift lid.",
+      "While rice cooks, preheat oven to 200°C.",
+      "On a baking tray, toss asparagus and cherry tomatoes with a drizzle of olive oil, salt, and pepper.",
+      "Roast 10-12 minutes until asparagus is tender-crisp and tomatoes are slightly burst.",
+      "Fluff saffron rice with a fork.",
+      "Slice rested chicken thighs into thick chunks.",
+      "Plate saffron rice. Arrange chicken chunks and roasted vegetables on top.",
+      "Garnish with fresh chopped parsley. Serve immediately with lemon wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 527,
+      "cholesterol_mg": 139,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 32.8,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 267,
+      "total_carbs_g": 58.3,
+      "total_fat_g": 17.5,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 118.9,
+      "cholesterol_mg": 31.3,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 7.4,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 60.1,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46,
+      "dietary_fiber": 12,
+      "protein": 66,
+      "saturated_fat": 24,
+      "sodium": 12,
+      "total_carbs": 21,
+      "total_fat": 22
+    },
+    "serving_size_g": 443.4,
+    "total_recipe_weight_g": 1773.5
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Mushroom Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_mushroom_relish_20250625_081230_48d3afa5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:12:30.562033000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "mustard",
+      "mushroom",
+      "potato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Пп cuisine, Не запеченная",
+    "visual_description": "A single pan-seared chicken breast, golden brown and perfectly cooked, rests elegantly on a pristine white ceramic plate. Adjacent, a smooth, light-colored quenelle of creamy potato puree provides a soft contrast. A small, artful pile of earthy sautéed mushrooms and onions sits atop the chicken. Alongside, a vibrant, glistening mound of quick-fermented mushroom and red onion relish adds a tangy, colorful element. The dish is subtly garnished with finely chopped fresh parsley. The plate is positioned on a light, textured reclaimed wood surface. A natural beige linen napkin and simple, modern cutlery complement the scene. Soft, natural light illuminates the dish, highlighting the natural textures and inviting colors in a clean, minimalist composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Hard cheese (e.g., Parmesan), grated",
+        "quantity": "30g (optional)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Prepare quick-fermented mushroom relish: Thinly slice 100g of the mushrooms and half of the red onion. Mince 1 garlic clove. Combine in a clean jar. In a small saucepan, bring white wine vinegar, water, and a pinch of salt to a boil. Pour hot liquid over mushrooms and onion in the jar. Seal tightly. Let cool, then refrigerate for at least 1 hour, or up to 2-3 days for a lighter fermentation.",
+      "Prepare potato puree: Peel potatoes. Cut into 2cm cubes. Place in a saucepan, cover with cold salted water. Bring to a boil, then reduce heat and simmer until very tender (about 15-20 minutes). Drain well. Mash potatoes with 15ml olive oil, vegetable broth, salt, and pepper until smooth and creamy. Keep warm.",
+      "Pan-sear chicken: Pat chicken breasts dry with paper towels. Season generously with salt and black pepper. Heat remaining 15ml olive oil in a large non-stick pan over medium-high heat. Place chicken breasts in the hot pan. Sear for 6-8 minutes per side, until golden brown and internal temperature reaches 75°C. Remove chicken from pan, tent with foil, and let rest for 5 minutes.",
+      "Sauté mushrooms: Slice the remaining 200g mushrooms and the other half of the red onion. Mince the remaining garlic clove. In the same pan used for chicken, add a splash more olive oil if needed. Add sliced mushrooms, onion, and minced garlic. Sauté over medium heat for 5-7 minutes, until mushrooms are tender and lightly browned. Season with salt and pepper.",
+      "Make mustard pan sauce: Deglaze the pan with a splash of vegetable broth, scraping up any browned bits. Stir in the Dijon mustard. Cook for 1 minute, stirring constantly, until slightly thickened.",
+      "Plate the dish: Spoon a generous portion of potato puree onto each plate. Place a pan-seared chicken breast next to the puree. Top the chicken with the sautéed mushrooms and onions. Spoon the quick-fermented mushroom relish alongside the chicken. If desired, grate a small amount of hard cheese over the potato puree or chicken. Garnish with chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 550,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 6,
+      "protein_g": 64.4,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 381,
+      "total_carbs_g": 33.6,
+      "total_fat_g": 16.4,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 12.6,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 75,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.7,
+      "dietary_fiber": 21.5,
+      "protein": 128.9,
+      "saturated_fat": 20.3,
+      "sodium": 16.6,
+      "total_carbs": 12.2,
+      "total_fat": 21
+    },
+    "serving_size_g": 509.5,
+    "total_recipe_weight_g": 2038
+  }
+]

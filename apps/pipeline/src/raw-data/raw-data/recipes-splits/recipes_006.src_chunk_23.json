@@ -1,0 +1,735 @@
+[
+  {
+    "recipe_name": "Fermented Apple & Cashew Spice Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251020_132150_daeee1d8.jpg",
+    "dish_type": "cake",
+    "flavor_profile": "sweet",
+    "ingredients_count": 13,
+    "timestamp": "2025-10-20T13:21:50.621989000Z",
+    "selected_ingredients": [
+      "apple",
+      "cinnamon",
+      "cashew",
+      "dried cranberry",
+      "chili flake",
+      "orange zest"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single generous slice of Fermented Apple & Cashew Spice Cake sits on a handcrafted ceramic plate in an earthy cream tone. The cake slice is tall, revealing a moist, dense crumb flecked with deep red dried cranberries and tiny specks of orange zest and cinnamon. The exterior crust is a warm golden brown. A subtle dusting of powdered sugar or a very thin, clear apple glaze adorns the top. The whole cake, a small 15cm round, is visible in the background on a rustic wooden cake stand. The setting features a light, textured bamboo table surface, an undyed linen napkin, and soft natural lighting. The background is clean and minimalist, with a hint of green from a potted plant. The overall impression is one of natural abundance and rustic elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Fermented Apples",
+    "ingredients": [
+      {
+        "name": "Fermented Apple Puree",
+        "quantity": "200g"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Ground Cashews",
+        "quantity": "50g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Large Egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "2g"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried Cranberries",
+        "quantity": "50g"
+      },
+      {
+        "name": "Orange Zest",
+        "quantity": "5g"
+      },
+      {
+        "name": "Chili Flakes",
+        "quantity": "1g"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 15cm round cake tin.",
+      "Combine flour, ground cashews, baking powder, baking soda, cinnamon, chili flakes, and salt in a large bowl. Whisk thoroughly.",
+      "In a separate bowl, whisk together sugar, oil, and egg until smooth.",
+      "Stir fermented apple puree and orange zest into the wet ingredients. Mix well.",
+      "Gradually add dry ingredients to wet ingredients. Mix until just combined. Avoid overmixing.",
+      "Fold in dried cranberries.",
+      "Pour batter into the prepared cake tin.",
+      "Bake for 30-35 minutes, or until a skewer inserted into the center comes out clean.",
+      "Cool cake in the tin for 10 minutes. Then transfer to a wire rack to cool completely."
+    ],
+    "notes": [
+      "To create fermented apple puree: Core and dice apples. Place them in a clean jar with a pinch of salt. Cover with filtered water. Allow to ferment at room temperature for 3-5 days, releasing pressure daily. Strain, then mash or blend the apples into a puree."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 33.1,
+      "calories": 509,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 4,
+      "protein_g": 7.9,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 749,
+      "total_carbs_g": 74.8,
+      "total_fat_g": 21.1,
+      "total_sugars_g": 39.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19.6,
+      "calories": 302,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 4.6,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 444,
+      "total_carbs_g": 44.3,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 23.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15.5,
+      "dietary_fiber": 14.3,
+      "protein": 15.8,
+      "saturated_fat": 12.5,
+      "sodium": 32.6,
+      "total_carbs": 27.2,
+      "total_fat": 27.1
+    },
+    "serving_size_g": 168.8,
+    "total_recipe_weight_g": 675
+  },
+  {
+    "recipe_name": "Hearty Mince Pasta Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251020_125337_edbe6cf6.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-20T12:53:37.910952000Z",
+    "selected_ingredients": [
+      "mincemeat",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "post-natal, easy and fuss-free meal, limit the ingredients to common items",
+    "visual_description": "A single, generous individual portion of Hearty Mince Pasta Bake is presented on a simple, everyday ceramic plate. The dish features a golden-brown, bubbly crust of melted cheese, beneath which visible pasta shapes (like penne or fusilli) are nestled in a rich, creamy tomato-mince sauce. The texture is comforting and hearty. A light sprinkle of vibrant green chopped parsley garnishes the top, providing a fresh color contrast. The plate rests on a well-used wooden dining table, suggesting a homely family kitchen setting. A casually placed cloth napkin and a simple fork and knife accompany the dish. Warm, inviting light from a kitchen fixture illuminates the scene, highlighting the dish's textures and colors against a soft, lived-in background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Homestyle",
+    "hero_ingredient": "Mincemeat",
+    "ingredients": [
+      {
+        "name": "Mincemeat (beef or mixed)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Pasta (e.g., penne, fusilli)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Canned chopped tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Cooking cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Grated cheese (cheddar or mozzarella)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Cook pasta according to package directions until al dente. Drain well.",
+      "Heat olive oil in a large pan over medium heat.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add mincemeat. Brown, breaking it up with a spoon. Drain any excess fat.",
+      "Stir in tomato paste. Cook for 2 minutes.",
+      "Pour in chopped tomatoes and beef broth. Add dried oregano.",
+      "Bring the sauce to a simmer. Cook for 10 minutes, stirring occasionally.",
+      "Stir in cooking cream. Season with salt and black pepper.",
+      "Combine the cooked pasta with the mince sauce in a large baking dish.",
+      "Sprinkle the grated cheese evenly over the top.",
+      "Bake for 20-25 minutes, until the cheese is melted and bubbly golden.",
+      "Remove from oven. Rest for 5 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "This hearty, comforting bake is perfect for a fuss-free meal, especially suitable for post-natal recovery due to its ease of preparation and nourishing ingredients. It can be made ahead and reheated gently."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 852,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 44,
+      "saturated_fat_g": 20.3,
+      "sodium_mg": 1081,
+      "total_carbs_g": 67.7,
+      "total_fat_g": 45.9,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.7,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 190,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 16,
+      "protein": 88,
+      "saturated_fat": 102,
+      "sodium": 47,
+      "total_carbs": 25,
+      "total_fat": 59
+    },
+    "serving_size_g": 569,
+    "total_recipe_weight_g": 2277
+  },
+  {
+    "recipe_name": "Hearty Mince Pasta Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251020_125002_73fa9cad.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-20T12:50:02.724687000Z",
+    "selected_ingredients": [
+      "mincemeat",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "post-natal, easy and fuss-free meal, limit the ingredients to common items",
+    "visual_description": "A single, generous individual portion of Hearty Mince Pasta Bake is presented on a simple, everyday ceramic plate. The dish features a golden-brown, bubbly crust of melted cheese, beneath which visible pasta shapes (like penne or fusilli) are nestled in a rich, creamy tomato-mince sauce. The texture is comforting and hearty. A light sprinkle of vibrant green chopped parsley garnishes the top, providing a fresh color contrast. The plate rests on a well-used wooden dining table, suggesting a homely family kitchen setting. A casually placed cloth napkin and a simple fork and knife accompany the dish. Warm, inviting light from a kitchen fixture illuminates the scene, highlighting the dish's textures and colors against a soft, lived-in background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Homestyle",
+    "hero_ingredient": "Mincemeat",
+    "ingredients": [
+      {
+        "name": "Mincemeat (beef or mixed)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Pasta (e.g., penne, fusilli)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Canned chopped tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Cooking cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Grated cheese (cheddar or mozzarella)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Cook pasta according to package directions until al dente. Drain well.",
+      "Heat olive oil in a large pan over medium heat.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add mincemeat. Brown, breaking it up with a spoon. Drain any excess fat.",
+      "Stir in tomato paste. Cook for 2 minutes.",
+      "Pour in chopped tomatoes and beef broth. Add dried oregano.",
+      "Bring the sauce to a simmer. Cook for 10 minutes, stirring occasionally.",
+      "Stir in cooking cream. Season with salt and black pepper.",
+      "Combine the cooked pasta with the mince sauce in a large baking dish.",
+      "Sprinkle the grated cheese evenly over the top.",
+      "Bake for 20-25 minutes, until the cheese is melted and bubbly golden.",
+      "Remove from oven. Rest for 5 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "This hearty, comforting bake is perfect for a fuss-free meal, especially suitable for post-natal recovery due to its ease of preparation and nourishing ingredients. It can be made ahead and reheated gently."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 852,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 44,
+      "saturated_fat_g": 20.3,
+      "sodium_mg": 1081,
+      "total_carbs_g": 67.7,
+      "total_fat_g": 45.9,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.7,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 190,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 16,
+      "protein": 88,
+      "saturated_fat": 102,
+      "sodium": 47,
+      "total_carbs": 25,
+      "total_fat": 59
+    },
+    "serving_size_g": 569,
+    "total_recipe_weight_g": 2277
+  },
+  {
+    "recipe_name": "Moroccan Chicken Tagine with Spiced Gluten-Free Orzo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251020_123523_b56bf988.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 24,
+    "timestamp": "2025-10-20T12:35:24.017119000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "chili flake",
+      "parmesan cheese",
+      "basil",
+      "mozzarella",
+      "tomato",
+      "beer"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "moroccan cuisine, gluten free",
+    "visual_description": "A rustic Moroccan tagine pot, rich with braised chicken and vegetables, sits at the center of a light bamboo table. The chicken pieces, skin-on and bone-in, are deeply caramelized, nestled among vibrant orange carrot rounds, tender green zucchini chunks, and plump chickpeas in a thick, reddish-brown tomato sauce. Specks of finely diced preserved lemon rind and green olives dot the surface. The dish is garnished generously with freshly chopped cilantro and parsley, adding a pop of green. A small, handcrafted ceramic bowl, in an earthy cream tone, holds a portion of golden gluten-free orzo, lightly coated in a spiced tagine sauce, placed beside the main tagine. The setting includes a piece of traditional Moroccan gluten-free flatbread for scooping. Soft, natural lighting illuminates the scene, highlighting the textures and steam, with a clean, minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Moroccan",
+    "cultural_origin": "Moroccan",
+    "cultural_serving_suggestions": [
+      "Served communally directly from the tagine pot.",
+      "Accompanied by traditional Moroccan gluten-free flatbread (khobz) for scooping.",
+      "Often followed by mint tea."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx 800g-1kg)"
+      },
+      {
+        "name": "Gluten-free orzo",
+        "quantity": "200g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Preserved lemon",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Green olives, pitted",
+        "quantity": "50g"
+      },
+      {
+        "name": "Canned chickpeas, rinsed and drained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Chili flakes",
+        "quantity": "1/2 tsp (or to taste)"
+      },
+      {
+        "name": "Saffron threads (optional)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "750ml (250ml for tagine, 500ml for orzo)"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1/4 bunch"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "1/4 bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat 1 tablespoon olive oil in a tagine or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 5-7 minutes until golden brown and crisp. Flip and sear for another 3-4 minutes. Remove chicken from pot and set aside.",
+      "Reduce heat to medium. Add remaining 1 tablespoon olive oil to the pot. Add diced onion. Sauté for 5 minutes until softened.",
+      "Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Stir in cumin, coriander, turmeric, sweet paprika, smoked paprika, chili flakes, and saffron (if using). Cook for 1 minute, stirring constantly.",
+      "Pour in crushed tomatoes and 250ml vegetable stock. Bring to a simmer.",
+      "Rinse preserved lemon rind, remove pulp, and finely dice the rind. Add diced preserved lemon, pitted green olives, 2cm carrot rounds, and rinsed chickpeas to the pot. Stir well.",
+      "Return seared chicken thighs to the pot, nestling them into the sauce. Ensure chicken is mostly submerged.",
+      "Cover the tagine/pot. Reduce heat to low. Simmer for 40 minutes.",
+      "Add 2cm zucchini chunks to the tagine. Continue to simmer, covered, for another 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and vegetables are tender.",
+      "While tagine simmers, bring 500ml vegetable stock to a boil in a separate saucepan. Add gluten-free orzo. Cook according to package directions until al dente, about 8-10 minutes. Drain well.",
+      "Stir chopped fresh cilantro and parsley into the tagine. Taste and adjust seasoning.",
+      "Toss cooked orzo with a ladleful of tagine sauce and a pinch of chili flakes for extra flavor. Serve the tagine hot, with the spiced orzo alongside."
+    ],
+    "notes": [
+      "Using bone-in, skin-on chicken thighs enhances flavor and keeps the dish moist, aligning with zero-waste principles by utilizing the whole cut.",
+      "Consider making homemade vegetable stock from kitchen scraps (onion peels, carrot tops, herb stems) for an even more sustainable approach.",
+      "This recipe prioritizes authentic Moroccan flavors and techniques. Italian-specific ingredients (Parmesan, basil, mozzarella) and beer have been omitted to maintain cultural integrity, as per Moroccan culinary traditions."
+    ],
+    "traditional_techniques": [
+      "Tagine cooking (slow braising in a conical pot)",
+      "Spice layering",
+      "Preserved lemon usage"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 760,
+      "cholesterol_mg": 172,
+      "dietary_fiber_g": 10.4,
+      "protein_g": 43.1,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 1815,
+      "total_carbs_g": 64.4,
+      "total_fat_g": 34.5,
+      "total_sugars_g": 11.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 98,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 5.6,
+      "saturated_fat_g": 1,
+      "sodium_mg": 234,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 37,
+      "protein": 86,
+      "saturated_fat": 39,
+      "sodium": 79,
+      "total_carbs": 23,
+      "total_fat": 44
+    },
+    "serving_size_g": 774,
+    "total_recipe_weight_g": 3097
+  },
+  {
+    "recipe_name": "Chicken Mole Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251020_122505_7e17172e.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2025-10-20T12:25:05.726770000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "chocolate"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Chicken Mole Pasta is presented in a rustic, shallow ceramic bowl with an earthy, warm tone. The penne pasta is thoroughly coated in a rich, dark reddish-brown mole sauce, showcasing its glossy texture. Tender, shredded chicken pieces are naturally mixed throughout the pasta, visible with their savory browned edges. A sprinkle of vibrant green, roughly chopped fresh cilantro leaves offers a fresh contrast. The bowl sits on a well-used wooden dining table. Alongside, a small, handmade ceramic dish holds a scattering of toasted sesame seeds. A casually folded cloth napkin and simple, dark metal fork are placed to the side. The scene is bathed in warm, soft kitchen lighting, evoking a cozy, lived-in family meal atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas on the side for scooping up the sauce.",
+      "Offer a small bowl of finely chopped raw onion as an additional garnish option.",
+      "Accompany with a simple green salad dressed with a lime vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "650 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Unsweetened dark chocolate",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Boil 4 litres of salted water in a large pot. Add pasta. Cook according to package directions until al dente. Drain pasta, reserving 120 ml of the pasta water.",
+      "Season chicken thighs generously with salt and black pepper.",
+      "Heat 1 tbsp olive oil in a large pot or Dutch oven over medium-high heat. Sear chicken thighs until golden brown, about 4-5 minutes per side. Remove chicken from pot and set aside.",
+      "Add remaining 1 tbsp olive oil to the pot. Add diced onion. Sauté until softened, about 5 minutes. Add minced garlic. Sauté for 1 minute more until fragrant.",
+      "Stir in chili powder, cumin, oregano, and cinnamon. Cook for 1 minute, stirring constantly, until fragrant.",
+      "Add diced tomatoes and chicken broth to the pot. Bring the mixture to a simmer.",
+      "Break the dark chocolate into pieces. Stir into the simmering sauce until melted and smooth.",
+      "Return the seared chicken thighs to the pot. Ensure chicken is mostly submerged in the sauce. Reduce heat to low. Cover and simmer for 20-25 minutes, or until chicken reaches an internal temperature of 75°C and is tender.",
+      "Remove chicken from the sauce. Shred the chicken using two forks. Return the shredded chicken to the mole sauce.",
+      "Add the cooked pasta and reserved pasta water to the pot with the chicken and mole sauce. Toss to coat thoroughly.",
+      "Serve hot. Garnish with fresh chopped cilantro and toasted sesame seeds, if desired."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Simmering",
+      "Mole preparation (incorporating chocolate and spices for a complex sauce)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 800,
+      "cholesterol_mg": 130,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 44.5,
+      "saturated_fat_g": 9,
+      "sodium_mg": 674,
+      "total_carbs_g": 91.9,
+      "total_fat_g": 29.9,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 118,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 6.5,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 99,
+      "total_carbs_g": 13.5,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 31,
+      "protein": 89,
+      "saturated_fat": 45,
+      "sodium": 29,
+      "total_carbs": 33,
+      "total_fat": 38
+    },
+    "serving_size_g": 681,
+    "total_recipe_weight_g": 2723
+  }
+]

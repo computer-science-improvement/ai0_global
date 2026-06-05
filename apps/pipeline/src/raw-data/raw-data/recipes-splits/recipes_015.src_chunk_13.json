@@ -1,0 +1,649 @@
+[
+  {
+    "recipe_name": "Creamy Tuscan Chicken and Spinach Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tuscan_chicken_and_spinach_pasta_20250628_080721_89791ee7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:07:22.377327000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Creamy Tuscan Chicken and Spinach Pasta is presented in a deep white porcelain bowl. Pan-seared chicken breast chunks, golden-brown and tender, are nestled amongst a generous portion of fettuccine, coated in a rich, creamy, pale yellow sauce. Vibrant green spinach leaves and ruby-red sun-dried tomato strips are interwoven throughout the pasta, adding bursts of color. A sprinkle of freshly grated Parmesan cheese and a few fresh basil leaves garnish the top. The arrangement is organic and flowing, showcasing the ingredients without overcrowding, with moderate negative space. The bowl sits on a simple wooden table, accompanied by standard silver flatware and a folded cotton napkin, under natural, even lighting. The entire plate is visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a vinaigrette.",
+      "Offer crusty Italian bread to sop up the delicious sauce."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast, boneless, skinless",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Fettuccine pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Sun-dried tomatoes, oil-packed, drained and thinly sliced",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh basil leaves, for garnish",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breasts into 3-4 cm chunks. Season chicken with salt and black pepper.",
+      "Heat 15 ml olive oil in a large skillet over medium-high heat. Add chicken chunks. Sear until golden-brown and cooked through. Ensure internal temperature reaches 75°C (167°F). Remove chicken from skillet and set aside.",
+      "Cook fettuccine according to package directions in salted water until al dente. Reserve 120 ml pasta water. Drain pasta.",
+      "Add remaining 15 ml olive oil to the same skillet over medium heat. Add minced garlic and red pepper flakes (if using). Sauté for 1 minute until fragrant.",
+      "Stir in sliced sun-dried tomatoes. Cook for 2 minutes.",
+      "Pour in chicken broth and heavy cream. Bring to a gentle simmer. Cook for 3-4 minutes, allowing sauce to slightly thicken.",
+      "Stir in fresh spinach. Cook until spinach wilts, about 1-2 minutes.",
+      "Add grated Parmesan cheese. Stir until cheese is melted and sauce is smooth. Season with salt and black pepper to taste.",
+      "Return cooked chicken chunks to the skillet with the sauce. Add drained fettuccine. Toss to coat pasta and chicken thoroughly with the sauce. If sauce is too thick, add a splash of reserved pasta water.",
+      "Serve immediately. Garnish with fresh basil leaves and extra grated Parmesan cheese."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Building a cream sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1032.3,
+      "cholesterol_mg": 228,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 68.8,
+      "saturated_fat_g": 21.9,
+      "sodium_mg": 583.8,
+      "total_carbs_g": 85.2,
+      "total_fat_g": 45.2,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 221.2,
+      "cholesterol_mg": 48.8,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 14.7,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 125.1,
+      "total_carbs_g": 18.2,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 20,
+      "protein": 138,
+      "saturated_fat": 109,
+      "sodium": 25,
+      "total_carbs": 31,
+      "total_fat": 58
+    },
+    "serving_size_g": 466.75,
+    "total_recipe_weight_g": 1867
+  },
+  {
+    "recipe_name": "Caribbean Rum-Glazed Chicken with Cheesy Coconut Rice and Sautéed Green Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caribbean_rum-glazed_chicken_with_cheesy_coconut_rice_and_saut%C3%A9ed_green_beans_20250628_080700_ba636fae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:07:00.932374000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rum",
+      "cheese",
+      "green bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Caribbean Rum-Glazed Chicken is presented on a clean white porcelain dinner plate. The pan-seared chicken thigh, whole and glistening with a sticky, dark amber rum glaze, is the focal point. Beside it, a generous scoop of fluffy, cheesy coconut rice, studded with dark black beans and flecks of red onion and bell pepper, creates a comforting base. Vibrant green beans, sautéed to a tender-crisp texture, are neatly arranged alongside the chicken. The dish is garnished with a sprinkle of bright green chopped cilantro and a fresh lime wedge for a pop of color. The setting is a modern bistro, featuring a simple wooden table surface and a cotton napkin placed beside the plate. Natural, even lighting illuminates the dish, highlighting its rich colors and inviting textures. The background is minimal and subtly blurred, maintaining focus on the food while suggesting a casual restaurant atmosphere. The composition is balanced, with appropriate negative space, showcasing the dish's inviting appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Caribbean",
+    "cultural_origin": "Caribbean",
+    "cultural_serving_suggestions": [
+      "Serve with extra lime wedges for squeezing over the chicken and rice.",
+      "Offer a small bowl of hot sauce on the side for those who prefer more heat.",
+      "Garnish generously with fresh cilantro."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Dark rum",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime, juiced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Coconut milk (full-fat)",
+        "quantity": "400 ml can"
+      },
+      {
+        "name": "Water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Canned black beans, rinsed and drained",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Bell pepper (any color), finely diced",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Sharp cheddar cheese, grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Green beans, trimmed",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken marinade: In a bowl, combine 60 ml rum, soy sauce, brown sugar, lime juice, 2 minced garlic cloves, and grated ginger. Mix well.",
+      "Add chicken thighs to marinade. Toss to coat. Marinate for at least 30 minutes at room temperature, or up to 4 hours in the refrigerator.",
+      "Cook coconut rice: Rinse rice under cold water until clear. In a medium saucepan, combine rinsed rice, coconut milk, and 200 ml water. Add 1/2 teaspoon salt. Bring to a boil.",
+      "Reduce heat to low. Cover tightly. Simmer for 18-20 minutes, or until liquid is absorbed and rice is tender. Do not lift lid.",
+      "Remove rice from heat. Let stand, covered, for 10 minutes. Fluff with a fork.",
+      "While rice rests, prepare black beans: In a small pan, heat 15 ml oil over medium heat. Sauté diced red onion and bell pepper for 5 minutes, until softened.",
+      "Add rinsed black beans and remaining 2 minced garlic cloves. Cook for 3-4 minutes. Season with salt and pepper.",
+      "Stir black bean mixture into cooked coconut rice. Fold in grated cheddar cheese until melted and combined.",
+      "Cook chicken: Heat remaining 15 ml oil in a large skillet over medium-high heat. Remove chicken from marinade; reserve marinade.",
+      "Sear chicken thighs for 5-7 minutes per side, until golden brown and cooked through (internal temperature 75°C).",
+      "Remove chicken from skillet. Set aside. Deglaze skillet with reserved marinade and remaining 60 ml rum. Bring to a simmer.",
+      "Cook glaze for 3-5 minutes, stirring, until thickened and reduced. Spoon over chicken.",
+      "Sauté green beans: While chicken rests, add trimmed green beans to the same skillet (or a separate one if needed) with a splash of oil. Sauté for 5-7 minutes, until tender-crisp. Season with salt and pepper.",
+      "Serve chicken with cheesy coconut rice and sautéed green beans. Garnish with fresh chopped cilantro and lime wedges."
+    ],
+    "traditional_techniques": [
+      "Marinating meats for flavor infusion",
+      "Pan-searing to achieve a golden crust",
+      "Deglazing pan to create a rich sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.305,
+      "calories": 1259.05,
+      "cholesterol_mg": 219.875,
+      "dietary_fiber_g": 12.457,
+      "protein_g": 62.147,
+      "saturated_fat_g": 34.576,
+      "sodium_mg": 1864.973,
+      "total_carbs_g": 86.226,
+      "total_fat_g": 61.846,
+      "total_sugars_g": 16.829,
+      "trans_fat_g": 0.19
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.114,
+      "calories": 191.93,
+      "cholesterol_mg": 33.518,
+      "dietary_fiber_g": 1.899,
+      "protein_g": 9.473,
+      "saturated_fat_g": 5.271,
+      "sodium_mg": 284.378,
+      "total_carbs_g": 13.144,
+      "total_fat_g": 9.428,
+      "total_sugars_g": 2.565,
+      "trans_fat_g": 0.029
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73.29,
+      "dietary_fiber": 44.49,
+      "protein": 124.29,
+      "saturated_fat": 172.88,
+      "sodium": 81.08,
+      "total_carbs": 31.35,
+      "total_fat": 79.29
+    },
+    "serving_size_g": 656,
+    "total_recipe_weight_g": 2624
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Breast with Yam Purée and Parmesan Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_breast_with_yam_pur%C3%A9e_and_parmesan_crisp_20250628_080311_9357f50e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:03:11.813849000Z",
+    "selected_ingredients": [
+      "yam",
+      {
+        "name": "oregano",
+        "comment": "fried sticks"
+      },
+      "parmesan cheese",
+      "sesame oil",
+      "onion",
+      "garlic",
+      "chicken"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A minimalist, refined composition on a pristine white bone china plate with generous negative space. An elegant, organic sweep of vibrant orange yam purée forms the base. Centered atop the purée are two or three thick, perfectly seared golden-brown chicken breast pieces, showcasing a tender, juicy interior. A delicate, irregular golden-brown parmesan tuile leans artfully against the chicken, adding architectural height and a crisp texture. A few crisp, dark green fried oregano leaves are precisely scattered for color contrast and aromatic garnish. The plate rests on a premium white Carrara marble surface. A precisely folded white linen napkin is positioned beside the plate. Dramatic professional lighting creates soft shadows, enhancing depth and highlighting the dish's sophisticated simplicity. The entire plate is visible, showcasing a single, perfectly portioned serving.",
+    "number_of_servings": 2,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken Breast, skinless, boneless",
+        "quantity": "2 (approx. 180g each)"
+      },
+      {
+        "name": "Yam (Sweet Potato)",
+        "quantity": "350g"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh Oregano",
+        "quantity": "10g (for frying)"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "40g"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "100ml (for frying)"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare yam purée. Peel yam. Dice into 2cm cubes. Steam or boil yam until very tender, about 15-20 minutes.",
+      "Finely mince shallot and garlic. In a small saucepan, melt 10g butter over medium heat. Sauté minced shallot and garlic until translucent, about 3 minutes. Add cooked yam and 50ml chicken stock. Mash thoroughly or blend with an immersion blender until very smooth. Season with salt and pepper. Keep warm.",
+      "Prepare parmesan tuiles. Grate parmesan cheese finely. On a baking sheet lined with parchment paper, form 5cm diameter circles of grated parmesan, leaving space between each. Bake in a preheated oven at 180°C for 5-7 minutes, or until golden brown and crisp. Cool on the baking sheet; they will crisp further.",
+      "Prepare fried oregano. Heat vegetable oil in a small saucepan to 170°C. Carefully add fresh oregano leaves or small sprigs. Fry briefly, about 10-15 seconds, until crisp and vibrant green. Do not overcrowd. Remove with a slotted spoon and drain on paper towels. Season lightly with salt.",
+      "Prepare chicken. Pat chicken breasts dry with paper towels. Season generously with sea salt and freshly ground black pepper. Heat olive oil and 20g butter in an oven-safe pan over medium-high heat until butter foams.",
+      "Place chicken breasts in the hot pan. Sear 3-4 minutes per side until deeply golden brown. Transfer the pan to a preheated oven at 190°C. Cook for 8-10 minutes, or until the internal temperature reaches 75°C.",
+      "Remove chicken from oven. Transfer chicken to a cutting board. Rest for 5 minutes.",
+      "Plate the dish. Spoon a generous, elegant swirl or organic dollop of warm yam purée onto the center of each white bone china plate. Slice each rested chicken breast into two or three thick, clean pieces (do not fan). Arrange the chicken pieces artfully on top of the yam purée.",
+      "Lean one delicate parmesan tuile against the chicken. Scatter a few crisp, dark green fried oregano leaves precisely around the chicken and purée. Drizzle a few drops of sesame oil sparingly around the plated elements. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Hearty Chicken, Cured Ham, and Mushroom Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken%2C_cured_ham%2C_and_mushroom_soup_20250628_080156_500c7b99.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:01:57.140829000Z",
+    "selected_ingredients": [
+      {
+        "name": "cured ham"
+      },
+      {
+        "name": "mushroom"
+      },
+      {
+        "name": "parmesan"
+      },
+      {
+        "name": "chicken"
+      },
+      {
+        "name": "beef"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "The hearty soup is presented in a deep, pristine white porcelain bowl, showcasing a rich, golden-amber broth. Visible within are generous, evenly diced pieces of tender chicken, small, savory cubes of cured ham, and earthy, thinly sliced cremini mushrooms. A delicate layer of freshly grated Parmesan cheese melts gently on the surface, its white contrasting with the vibrant green of finely chopped fresh parsley scattered over the top. The ingredients are well-distributed, creating a balanced and appealing composition with clear negative space around the bowl. The setting is a modern bistro, featuring a light wooden table, a folded white cotton napkin, and classic silver flatware beside the bowl. Natural, even lighting highlights the soup's warm tones and inviting textures, emphasizing a clean, professional, yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cured ham",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 2 cm cubes. Dice cured ham into 1 cm cubes. Thinly slice mushrooms.",
+      "Peel and finely dice the onion, carrot, and celery. Mince garlic.",
+      "Heat olive oil in a large pot over medium heat. Add diced onion, carrot, and celery. Cook 5-7 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Increase heat to medium-high. Add diced chicken. Cook 5-7 minutes, stirring occasionally, until browned on all sides. Ensure internal temperature reaches 75°C (167°F).",
+      "Add diced cured ham and sliced mushrooms to the pot. Cook 3-5 minutes until mushrooms soften.",
+      "Pour in chicken broth and beef broth. Bring soup to a gentle simmer.",
+      "Reduce heat to low. Simmer for 15-20 minutes, allowing flavors to meld.",
+      "Season with salt and black pepper to taste. Adjust seasoning as needed.",
+      "Finely chop fresh parsley. Grate Parmesan cheese.",
+      "Ladle hot soup into individual serving bowls. Garnish each portion with grated Parmesan and chopped fresh parsley. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Chicken and Sausage Jambalaya",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_sausage_jambalaya_20250628_080105_606c6bfb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:01:05.568687000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "bell pepper",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Chicken and Sausage Jambalaya fills a clean white porcelain bowl. The robust, reddish-brown rice is fluffy, speckled with vibrant diced red and green bell peppers and tender diced onion. Substantial golden-brown chicken chunks are scattered throughout, alongside well-caramelized rounds of smoked sausage. A light sprinkle of finely chopped fresh green onions and parsley adds a bright green contrast to the rich colors. The dish is presented on a simple light wooden table. A folded cotton napkin and standard silver flatware are placed neatly beside the bowl. Natural, soft lighting illuminates the rustic, comforting textures. The background is softly blurred, hinting at a casual bistro atmosphere, with a small bottle of Louisiana-style hot sauce positioned discreetly.",
+    "number_of_servings": 4,
+    "cuisine_type": "Creole",
+    "cultural_origin": "Creole",
+    "cultural_serving_suggestions": [
+      "Serve with a side of hot sauce for added spice.",
+      "Offer with crusty French bread for dipping.",
+      "Pair with a simple green salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Smoked sausage (Andouille or similar)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Celery, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Cajun seasoning",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh green onions, sliced",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Cut chicken thighs into 2-3 cm chunks. Brown chicken in batches until golden. Remove chicken from pot.",
+      "Slice smoked sausage into 1 cm thick rounds. Add sausage to pot. Cook until browned. Remove sausage.",
+      "Reduce heat to medium. Add diced onion, bell peppers, and celery. Cook until softened, about 8-10 minutes.",
+      "Add minced garlic and tomato paste. Cook 1 minute, stirring constantly.",
+      "Stir in Cajun seasoning, dried thyme, and bay leaves.",
+      "Return chicken and sausage to the pot.",
+      "Add diced tomatoes and chicken broth. Bring to a simmer.",
+      "Stir in long-grain rice. Ensure rice is fully submerged.",
+      "Reduce heat to low. Cover pot tightly. Simmer 20-25 minutes, or until rice is tender and liquid is absorbed. Do not lift lid during cooking.",
+      "Remove pot from heat. Let stand covered for 10 minutes.",
+      "Fluff rice with a fork. Discard bay leaves.",
+      "Taste and adjust salt and black pepper as needed.",
+      "Garnish with fresh sliced green onions and chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For a spicier jambalaya, add a pinch of cayenne pepper with the Cajun seasoning."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 728,
+      "cholesterol_mg": 173,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 43.2,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 1282,
+      "total_carbs_g": 66.5,
+      "total_fat_g": 31.5,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110.7,
+      "cholesterol_mg": 26.3,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.6,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 195,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 19,
+      "protein": 86,
+      "saturated_fat": 44,
+      "sodium": 56,
+      "total_carbs": 24,
+      "total_fat": 40
+    },
+    "serving_size_g": 657.25,
+    "total_recipe_weight_g": 2629
+  }
+]

@@ -1,0 +1,750 @@
+[
+  {
+    "recipe_name": "Braised Chicken with Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_root_vegetables_20250624_121346_331aae6d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:46.933594000Z",
+    "selected_ingredients": [
+      "potato",
+      "carrot",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, individual portion of braised chicken with root vegetables is presented on a clean, round white porcelain dinner plate. Two golden-brown, seared chicken thighs are nestled amidst chunky, tender roasted potatoes and vibrant orange carrot pieces, with softened, quartered onion segments. The rich, glossy braising liquid lightly coats the ingredients and pools at the bottom of the plate. Freshly chopped green parsley is sprinkled over the dish, adding a pop of color. The arrangement is organic and inviting, showcasing the textures of the crispy chicken skin against the soft vegetables. The scene is set on a light wooden table surface, with a simple white cotton napkin and classic French flatware placed beside the plate. Natural, even lighting highlights the dish's warmth and appealing textures. A small piece of crusty baguette is casually placed to the side.",
+    "number_of_servings": 2,
+    "cuisine_type": "French Countryside",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "2 (approx. 500-600g total)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium (approx. 300g), cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (approx. 150g), peeled and cut into 2 cm thick rounds"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200g), quartered"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy, about 8-10 minutes. Flip and sear other side for 2 minutes. Remove chicken from pot.",
+      "Add quartered onions and carrot rounds to the pot. Sauté until lightly browned, about 5 minutes.",
+      "Stir in minced garlic and tomato paste. Cook for 1 minute until fragrant.",
+      "Deglaze with white wine, scraping up any browned bits from the bottom of the pot. Cook until liquid reduces by half, about 2 minutes.",
+      "Return chicken to the pot. Add potato chunks, chicken broth, thyme sprigs, and bay leaf. Bring to a simmer.",
+      "Cover pot and transfer to a preheated oven at 180°C. Braise for 45-50 minutes, or until chicken is tender and reaches an internal temperature of 75°C.",
+      "Remove thyme sprigs and bay leaf. Season sauce with salt and pepper to taste.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For a richer flavor, use chicken stock instead of broth."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Searing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 898.4,
+      "cholesterol_mg": 264,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 61,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 833.7,
+      "total_carbs_g": 47.4,
+      "total_fat_g": 45,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109.5,
+      "cholesterol_mg": 32.2,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.4,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 101.6,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 88,
+      "dietary_fiber": 26.9,
+      "protein": 122,
+      "saturated_fat": 56.3,
+      "sodium": 36.2,
+      "total_carbs": 17.2,
+      "total_fat": 57.6
+    },
+    "serving_size_g": 820.8,
+    "total_recipe_weight_g": 1641.5
+  },
+  {
+    "recipe_name": "Homestyle Creamy Chicken and Potato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_creamy_chicken_and_potato_bake_20250624_121341_519004d2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:42.051733000Z",
+    "selected_ingredients": [
+      "onion",
+      "bread",
+      "potato",
+      "rice",
+      "flour",
+      "sugar",
+      "coffee",
+      "milk",
+      "butter",
+      "parsley",
+      "noodle",
+      "mayonnaise",
+      "cucumber",
+      "macaroni",
+      "black pepper",
+      "carrot",
+      "egg",
+      "honey",
+      "bay leaf",
+      "parmesan cheese",
+      "lemon",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Homestyle Creamy Chicken and Potato Bake is centered on a simple, everyday ceramic plate. The dish features tender, chunky chicken pieces nestled among roasted potato wedges and thick-sliced carrots, all generously coated in a creamy, rich sauce. A golden-brown, slightly crispy breadcrumb topping provides a textural contrast, with some crumbs scattered naturally around the edges. The natural colors of the ingredients are prominent: creamy white sauce, golden-brown chicken and potatoes, and vibrant orange carrots. Fresh green chopped parsley is sprinkled over the top, adding a pop of color. To the side, or in a small, simple ceramic bowl, are thin, round slices of cucumber, lightly dressed. The entire scene is set on a well-used wooden dining table, suggesting a cozy family kitchen. A casual cloth napkin and standard, well-worn flatware (fork and knife) are placed beside the plate. Warm, inviting light from an unseen kitchen fixture illuminates the food, creating a comfortable, lived-in atmosphere with minimal, unobtrusive background elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Stale bread",
+        "quantity": "2 slices"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cut chicken thighs into 2-3 cm chunks. Season with salt and black pepper.",
+      "Peel potatoes. Cut into 2 cm wedges or thick chunks.",
+      "Peel carrots. Cut into 1 cm thick slices.",
+      "Dice onion.",
+      "Heat a large oven-safe pan or Dutch oven over medium-high heat. Add a splash of oil.",
+      "Sear chicken chunks in batches until lightly browned on all sides. Do not overcrowd the pan. Remove chicken and set aside.",
+      "Add butter to the same pan. Melt over medium heat.",
+      "Add diced onion and carrots. Cook for 5-7 minutes until softened.",
+      "Sprinkle flour over vegetables. Stir constantly for 1 minute to create a roux.",
+      "Gradually whisk in milk and chicken broth. Stir until smooth.",
+      "Add bay leaf. Bring sauce to a gentle simmer. Cook for 5 minutes, stirring occasionally, until sauce thickens.",
+      "Stir in grated Parmesan cheese until melted. Season sauce with salt and black pepper.",
+      "Return seared chicken to the pan. Add potato wedges/chunks. Stir to combine with the sauce.",
+      "For breadcrumbs, pulse stale bread in a food processor until coarse crumbs form. Toss with 1 tablespoon melted butter and a pinch of salt.",
+      "Sprinkle breadcrumbs evenly over the chicken and potato mixture in the pan.",
+      "Bake for 30-35 minutes, or until potatoes are tender and topping is golden brown. Chicken internal temperature should reach 75°C (167°F).",
+      "While bake cooks, prepare cucumber salad. Thinly slice cucumber into rounds.",
+      "In a small bowl, whisk mayonnaise, juice from half a lemon, and a pinch of salt and black pepper.",
+      "Toss cucumber slices with the dressing. Set aside.",
+      "Remove bay leaf from the bake before serving.",
+      "Garnish the bake with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 840,
+      "cholesterol_mg": 230,
+      "dietary_fiber_g": 8.8,
+      "protein_g": 45.1,
+      "saturated_fat_g": 16.7,
+      "sodium_mg": 665,
+      "total_carbs_g": 60.5,
+      "total_fat_g": 43.2,
+      "total_sugars_g": 16.4,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 108.7,
+      "cholesterol_mg": 29.7,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 5.8,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 86.1,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 77,
+      "dietary_fiber": 31,
+      "protein": 90,
+      "saturated_fat": 84,
+      "sodium": 29,
+      "total_carbs": 22,
+      "total_fat": 55
+    },
+    "serving_size_g": 772.5,
+    "total_recipe_weight_g": 3090
+  },
+  {
+    "recipe_name": "Potato and Summer Vegetable Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_and_summer_vegetable_salad_20250624_121340_f129191f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:40.936084000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken",
+      "tomato",
+      "chili",
+      "onion",
+      "potato",
+      "mustard",
+      "rice",
+      "salad green",
+      "corn",
+      "bell pepper",
+      "orange",
+      "garlic",
+      "hot sauce",
+      "mushroom",
+      "bacon",
+      "ham",
+      "oil",
+      "butter",
+      "parsley"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Potato and Summer Vegetable Salad is presented in a generous, homely scoop on a simple, light ceramic plate, revealing its comforting, creamy texture. Diced yellow potatoes form the base, lightly coated in a rich, pale yellow mayonnaise dressing. Vibrant flecks of finely diced red onion, crisp green bell pepper, and sweet yellow corn kernels are interspersed throughout, adding pops of color and varied texture. A generous sprinkle of fresh, chopped green parsley provides a bright, herbaceous contrast on top. If included, small, crispy bits of crumbled bacon are scattered over the surface. The salad is arranged naturally, with some components gently overlapping, reflecting an unpretentious, home-cooked feel. The setting is a well-used wooden kitchen table, bathed in warm, natural light, with a casual cloth napkin nearby. The overall impression is one of wholesome, satisfying comfort food, ready for a family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve chilled as a side dish at barbecues or picnics.",
+      "Pairs well with grilled meats, sandwiches, or burgers.",
+      "Often served in large communal bowls for family-style dining."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Green Bell Pepper",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Sweet Corn",
+        "quantity": "200 g (canned or frozen, thawed)"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Hot Sauce",
+        "quantity": "5 ml (optional)"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g, or to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2 g, or to taste"
+      },
+      {
+        "name": "Bacon",
+        "quantity": "100 g, cooked and crumbled (optional garnish)"
+      }
+    ],
+    "instructions": [
+      "Wash potatoes thoroughly. Cut potatoes into 2 cm cubes. Place in a large pot. Cover with cold water.",
+      "Add 5g salt to the water. Bring to a boil over high heat. Reduce heat to medium. Simmer until potatoes are fork-tender, about 10-15 minutes.",
+      "Drain potatoes completely. Let them cool slightly in the colander for 5 minutes.",
+      "While potatoes cool, prepare the dressing. In a large mixing bowl, combine mayonnaise, Dijon mustard, minced garlic, hot sauce (if using), apple cider vinegar, olive oil, remaining salt, and black pepper. Whisk until smooth.",
+      "Add the slightly cooled potatoes to the dressing bowl. Add finely diced red onion, diced green bell pepper, and sweet corn. Gently fold all ingredients until well combined and potatoes are coated.",
+      "Cover the bowl. Refrigerate for at least 2 hours to allow flavors to meld. Chilling overnight is best.",
+      "Before serving, stir in chopped fresh parsley. If using, sprinkle crumbled bacon over the top as a garnish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 773.3,
+      "cholesterol_mg": 44.8,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 17.8,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 1083.3,
+      "total_carbs_g": 59.1,
+      "total_fat_g": 53.3,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 180.2,
+      "cholesterol_mg": 10.4,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 4.2,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 252.4,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15,
+      "dietary_fiber": 29,
+      "protein": 36,
+      "saturated_fat": 51,
+      "sodium": 47,
+      "total_carbs": 21,
+      "total_fat": 68
+    },
+    "serving_size_g": 429.2,
+    "total_recipe_weight_g": 1716.8
+  },
+  {
+    "recipe_name": "Spicy Mexican Chicken with Corn and Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_mexican_chicken_with_corn_and_peppers_20250624_121308_c98650cd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:08.646359000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "corn",
+      "garlic",
+      "hot sauce",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spicy Mexican Chicken with Corn and Peppers is presented on a clean, round white porcelain dinner plate, centrally composed with moderate negative space. Golden-brown seared chicken chunks are nestled among vibrant diced red, green, and yellow bell peppers, bright yellow corn kernels, and rich red diced tomatoes. The sauce is a rustic, slightly thickened consistency, clinging to the ingredients. A generous sprinkle of fresh, bright green chopped cilantro garnishes the top, adding a pop of color and freshness. A fresh lime wedge is placed beside the chicken. The scene is set on a simple wooden table surface, reflecting natural, even lighting. A crisp white cotton napkin is folded neatly beside the plate. The overall presentation is professional and approachable, showcasing the dish's fresh ingredients and appealing textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping.",
+      "Offer a side of Mexican rice or black beans."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Diced tomatoes",
+        "quantity": "400 g can, undrained"
+      },
+      {
+        "name": "Corn kernels",
+        "quantity": "200 g (fresh or frozen)"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30 ml (or to taste)"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, cut into wedges"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2-3 cm chunks. Season with salt and pepper.",
+      "Heat vegetable oil in a large skillet over medium-high heat. Add chicken chunks. Sear until golden brown on all sides, about 5-7 minutes. Remove chicken from skillet and set aside.",
+      "Add diced onion and bell peppers to the same skillet. Sauté for 5-7 minutes until softened.",
+      "Stir in minced garlic, chili powder, cumin, and oregano. Cook for 1 minute until fragrant.",
+      "Pour in diced tomatoes, corn kernels, chicken broth, and hot sauce. Bring to a simmer.",
+      "Return seared chicken to the skillet. Reduce heat to medium-low. Simmer for 15-20 minutes, or until chicken is cooked through and reaches an internal temperature of 75°C (167°F). The sauce should thicken slightly.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Stir in most of the fresh cilantro. Reserve some for garnish.",
+      "Serve hot, garnished with remaining fresh cilantro and lime wedges."
+    ],
+    "notes": [
+      "Adjust hot sauce quantity to your preferred spice level.",
+      "For extra richness, a tablespoon of butter can be added at the end."
+    ],
+    "traditional_techniques": [
+      "Sautéing aromatics for a flavor base (sofrito-like)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 408,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 34.2,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 599,
+      "total_carbs_g": 26.2,
+      "total_fat_g": 19.6,
+      "total_sugars_g": 9.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 75.5,
+      "cholesterol_mg": 27.8,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.3,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 110.8,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 27,
+      "protein": 68,
+      "saturated_fat": 23,
+      "sodium": 25,
+      "total_carbs": 9,
+      "total_fat": 30
+    },
+    "serving_size_g": 540,
+    "total_recipe_weight_g": 2161
+  },
+  {
+    "recipe_name": "Rustic Lemon Herb Roasted Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_lemon_herb_roasted_chicken_and_potatoes_20250624_121300_aa35338b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:00.713663000Z",
+    "selected_ingredients": [
+      "onion",
+      "tomato",
+      "bread",
+      "potato",
+      "rice",
+      "flour",
+      "sugar",
+      "coffee",
+      "milk",
+      "butter",
+      "parsley",
+      "noodle",
+      "mayonnaise",
+      "cucumber",
+      "macaroni",
+      "black pepper",
+      "carrot",
+      "egg",
+      "honey",
+      "bay leaf",
+      "parmesan cheese",
+      "lemon",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Rustic Lemon Herb Roasted Chicken and Potatoes is casually plated on an everyday ceramic dinner plate with natural imperfections. The plate sits on a well-used wooden dining table, illuminated by warm kitchen lighting, evoking a family meal. A golden-brown roasted chicken thigh or drumstick, whole and untrimmed, forms the centerpiece. It rests among tender, caramelized potato wedges, chunky roasted carrots, and soft onion wedges. Quartered roasted tomatoes add pops of red. The chicken and vegetables display a rustic, slightly charred appearance, showcasing natural textures and colors. Roughly chopped fresh parsley provides a vibrant green, functional garnish. Simple metal flatware rests beside the plate on a casually draped cloth napkin. The minimal background hints at a lived-in kitchen, ensuring the focus remains on the comforting, hearty dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs and drumsticks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and pat dry chicken pieces.",
+      "Cut potatoes into thick wedges. Cut carrots into thick chunks. Cut onion into thick wedges. Quarter the tomatoes. Smash garlic cloves.",
+      "In a large roasting pan, combine chicken, potatoes, carrots, onion, and smashed garlic.",
+      "Drizzle with olive oil. Add salt, black pepper, and bay leaves. Toss to coat evenly.",
+      "Add lemon slices and butter pieces to the pan.",
+      "Roast for 30 minutes. Stir vegetables and flip chicken.",
+      "Add quartered tomatoes to the pan. Continue roasting for another 25-35 minutes, or until chicken reaches an internal temperature of 75°C and vegetables are tender and lightly browned.",
+      "Remove bay leaves. Squeeze fresh lemon juice over the dish.",
+      "Sprinkle generously with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 900.56,
+      "cholesterol_mg": 224.13,
+      "dietary_fiber_g": 9.02,
+      "protein_g": 53.42,
+      "saturated_fat_g": 14.65,
+      "sodium_mg": 1196.97,
+      "total_carbs_g": 60.68,
+      "total_fat_g": 51.85,
+      "total_sugars_g": 9.72,
+      "trans_fat_g": 0.45
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141.75,
+      "cholesterol_mg": 35.28,
+      "dietary_fiber_g": 1.42,
+      "protein_g": 8.41,
+      "saturated_fat_g": 2.31,
+      "sodium_mg": 188.49,
+      "total_carbs_g": 9.55,
+      "total_fat_g": 8.16,
+      "total_sugars_g": 1.53,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 32,
+      "protein": 107,
+      "saturated_fat": 73,
+      "sodium": 52,
+      "total_carbs": 22,
+      "total_fat": 66
+    },
+    "serving_size_g": 635.3,
+    "total_recipe_weight_g": 2541.2
+  }
+]

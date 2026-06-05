@@ -1,0 +1,589 @@
+[
+  {
+    "recipe_name": "Baked Banana & Cacao Cottage Cheese Custard",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_banana_%26_cacao_cottage_cheese_custard_20250624_172551_3ebe250e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:25:52.243186000Z",
+    "selected_ingredients": [
+      "cottage cheese",
+      "banana",
+      "egg",
+      "cacao",
+      "oat"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Baked Banana & Cacao Cottage Cheese Custard is presented in a pristine white porcelain ramekin. The custard has a creamy, light brown hue with a slightly domed surface, topped by a generous layer of golden-brown oat crumble. The crumble shows irregular, crunchy textures. A single, thin slice of ripe banana is delicately placed on the side of the ramekin. A light dusting of dark cacao powder is artfully scattered on the white plate beside the ramekin, providing a strong color contrast. The dish sits on a simple, clean light wooden table surface. A folded white cotton napkin is positioned to the left of the ramekin. Natural, even lighting illuminates the dish, emphasizing its textures. The background is softly blurred, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Banana",
+    "ingredients": [
+      {
+        "name": "Cottage cheese (full-fat)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Ripe bananas",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsweetened cacao powder",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Unsalted butter (melted)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Lightly grease four 150 ml ramekins.",
+      "In a blender, combine cottage cheese, 2 ripe bananas, eggs, cacao powder, honey, vanilla extract, and salt. Blend until completely smooth.",
+      "Pour the custard mixture evenly into the prepared ramekins.",
+      "In a small bowl, combine rolled oats, melted butter, and brown sugar. Mix until well combined.",
+      "Sprinkle the oat crumble evenly over the top of each custard-filled ramekin.",
+      "Place ramekins on a baking sheet. Bake for 25-30 minutes, or until the custard is set and the oat crumble is golden brown.",
+      "Remove from oven. Let cool slightly before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 17.6,
+      "calories": 337,
+      "cholesterol_mg": 112,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 15,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 360,
+      "total_carbs_g": 52.9,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 31,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 7.9,
+      "calories": 151.8,
+      "cholesterol_mg": 50.5,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 6.7,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 162.3,
+      "total_carbs_g": 23.8,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 23,
+      "protein": 30,
+      "saturated_fat": 27,
+      "sodium": 16,
+      "total_carbs": 19,
+      "total_fat": 13
+    },
+    "serving_size_g": 222,
+    "total_recipe_weight_g": 888
+  },
+  {
+    "recipe_name": "Chicken Shawarma Platter",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_shawarma_platter_20250624_172539_53bbd2d0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:25:40.367121000Z",
+    "selected_ingredients": [
+      "chicken",
+      "lavash bread",
+      "pita"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken Shawarma Platter is presented on a clean, round white ceramic plate, set on a simple wooden table. The central focus is a mound of golden-brown, seared chicken strips with slightly charred edges. Surrounding the chicken are warm, fluffy pita bread triangles and irregularly broken, crispy lavash shards. Vibrant red pickled turnip wedges are neatly arranged beside a small heap of thinly sliced red onions, dusted with sumac. A dollop of creamy white Toum (garlic sauce) rests on the side. Freshly chopped green parsley is scattered over the chicken and around the plate, adding a burst of color. The arrangement is balanced and inviting, with moderate negative space. Natural, even lighting highlights the varied textures and rich colors, embodying a casual bistro style with authentic Middle Eastern elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Middle Eastern",
+    "cultural_origin": "Middle Eastern",
+    "cultural_serving_suggestions": [
+      "Serve with additional fresh vegetables like sliced cucumbers and tomatoes.",
+      "Offer extra Toum (garlic sauce) and chili sauce on the side.",
+      "Enjoy by wrapping chicken and accompaniments in pita or lavash."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6, minced"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Ground cardamom",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Lavash bread",
+        "quantity": "2 large sheets"
+      },
+      {
+        "name": "Pita bread",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Sumac",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Pickled turnips",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Vegetable oil (for toum)",
+        "quantity": "200 ml"
+      }
+    ],
+    "instructions": [
+      "Slice chicken thighs into 1 cm thick strips. Place chicken in a bowl.",
+      "Add yogurt, 15 ml lemon juice, 15 ml olive oil, 3 minced garlic cloves, cumin, coriander, paprika, turmeric, cardamom, salt, and black pepper to chicken. Mix well. Marinate for at least 1 hour, or overnight in the refrigerator.",
+      "Prepare Toum (Garlic Sauce): Blend remaining 3 minced garlic cloves, 15 ml lemon juice, and 2.5 ml salt in a food processor. Slowly drizzle in 200 ml vegetable oil until a thick, creamy emulsion forms. Refrigerate until ready to serve.",
+      "Prepare Sumac Onions: Thinly slice red onion. Toss with sumac. Set aside.",
+      "Heat 30 ml olive oil in a large pan over medium-high heat. Add marinated chicken strips in a single layer. Cook in batches if necessary to avoid overcrowding.",
+      "Sear chicken for 4-6 minutes per side until golden brown and cooked through. Ensure internal temperature reaches 75°C. Set aside.",
+      "Preheat oven to 180°C. Cut lavash bread into large irregular shards. Arrange on a baking sheet. Bake for 5-7 minutes until crispy. Warm pita bread in the oven or on a dry pan.",
+      "To assemble individual platters: Place a portion of cooked chicken strips in the center of a round white plate. Arrange warm pita bread triangles and crispy lavash shards around the chicken.",
+      "Add small piles of sumac onions, pickled turnips, and chopped parsley. Place a generous dollop of Toum on the side or in a small ramekin."
+    ],
+    "traditional_techniques": [
+      "Marinating chicken for flavor infusion",
+      "Preparing Toum (garlic emulsion)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1061,
+      "cholesterol_mg": 122,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 40.5,
+      "saturated_fat_g": 8.3,
+      "sodium_mg": 1583,
+      "total_carbs_g": 72.3,
+      "total_fat_g": 69.7,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 199,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 296,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 13,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 22,
+      "protein": 81,
+      "saturated_fat": 42,
+      "sodium": 69,
+      "total_carbs": 26,
+      "total_fat": 89
+    },
+    "serving_size_g": 534,
+    "total_recipe_weight_g": 2136
+  },
+  {
+    "recipe_name": "Braised Pork with Potatoes and Carrots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_pork_with_potatoes_and_carrots_20250624_172538_71187c79.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:25:38.760010000Z",
+    "selected_ingredients": [
+      "pork"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of braised pork with potatoes and carrots is presented in a rustic, deep ceramic bowl. The pork, cut into thick, irregular chunks, is rich brown from searing and braising, showing tender, pull-apart textures. Large, golden-brown potato wedges and thick-cut, vibrant orange carrot rounds are nestled alongside the pork, softened from slow cooking. A rich, glossy brown braising liquid coats the ingredients. A scattering of bright green, freshly chopped parsley adds a pop of color and freshness over the top. The bowl sits on a well-used wooden dining table. A simple, everyday fork rests beside the bowl on a casually placed cloth napkin. Warm, cozy lighting illuminates the scene, suggesting a relaxed, lived-in family kitchen atmosphere. The background is minimal and unobtrusive, allowing the hearty dish to be the sole focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Homestyle",
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Boneless pork shoulder",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 5 cm thick chunks. Pat dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear pork chunks in batches until deeply browned on all sides. Do not overcrowd the pot. Remove pork and set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in beef broth. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return pork chunks to the pot. Ensure pork is mostly submerged. Add large potato wedges and thick carrot rounds around the pork.",
+      "Cover the pot tightly. Reduce heat to low. Simmer for 2 to 2.5 hours, or until pork is very tender and easily pulls apart with a fork.",
+      "Check seasoning. Adjust salt and pepper as needed.",
+      "Remove from heat. Let rest for 10 minutes before serving.",
+      "Garnish with freshly chopped parsley."
+    ]
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Rustic Tomato-Olive Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_rustic_tomato-olive_sauce_20250624_172536_ccf31ee0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:25:36.758017000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "oregano",
+      "basil",
+      "olive"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown pan-seared chicken breast is the focal point, presented whole on a clean, round white porcelain plate. It rests beside a rich, rustic tomato-olive sauce, thick with visible chunks of crushed tomato and dark, glossy halved Kalamata olives. Vibrant fresh basil leaves are scattered over the sauce and chicken, with a sprig of fresh oregano as garnish. The color palette features golden chicken, deep red sauce, and verdant green herbs. The plate is on a simple, light-colored wooden table surface, with a folded white cotton napkin and standard flatware. Natural, even lighting creates a professional yet approachable presentation. The background is minimally blurred, suggesting a casual restaurant atmosphere, highlighting the dish as the primary focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce.",
+      "Pair with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "150g, pitted and halved"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/2 bunch, leaves torn"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Chicken broth or dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat 2 tablespoons olive oil in a large skillet over medium-high heat.",
+      "Sear chicken breasts for 4-5 minutes per side until golden brown. Cook until internal temperature reaches 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add remaining 1 tablespoon olive oil to skillet. Add diced red onion. Sauté 3-4 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in chicken broth or white wine. Scrape up any browned bits from bottom of skillet.",
+      "Stir in crushed tomatoes, halved Kalamata olives, and dried oregano. Bring sauce to a simmer.",
+      "Return chicken breasts to skillet with sauce. Ensure chicken is partially submerged. Cover. Simmer 10-12 minutes, or until chicken is cooked through.",
+      "Stir in fresh basil leaves just before serving.",
+      "Taste sauce. Adjust seasoning with salt and pepper as needed."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to 75°C (167°F) internal temperature.",
+      "For best flavor, use good quality canned tomatoes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 550.5,
+      "cholesterol_mg": 161.5,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 62.6,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 1116,
+      "total_carbs_g": 16.8,
+      "total_fat_g": 26.1,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110.3,
+      "cholesterol_mg": 32.4,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 12.5,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 223.6,
+      "total_carbs_g": 3.4,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.8,
+      "dietary_fiber": 14.8,
+      "protein": 125.1,
+      "saturated_fat": 22.1,
+      "sodium": 48.5,
+      "total_carbs": 6.1,
+      "total_fat": 33.5
+    },
+    "serving_size_g": 499,
+    "total_recipe_weight_g": 1996
+  },
+  {
+    "recipe_name": "Spanish Potato and Onion Tortilla with Roasted Tomato and Manchego",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_potato_and_onion_tortilla_with_roasted_tomato_and_manchego_20250624_172526_5a4f83d6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:25:27.224327000Z",
+    "selected_ingredients": [
+      "onion",
+      "potato",
+      "tomato",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A thick, golden-brown wedge of Spanish potato and onion tortilla sits centered on a round, clean white porcelain plate. The tortilla's exterior is perfectly cooked to a deep golden hue, revealing soft, tender, thinly sliced potato rounds and translucent, thinly sliced onion rings within its creamy, set egg interior. A generous spoonful of vibrant roasted cherry tomato halves and deeply caramelized, rich amber onion confit crowns the tortilla. Finely grated pale yellow Manchego cheese is lightly scattered over the confit, adding a subtle texture. A delicate sprinkle of fresh, finely chopped green parsley provides a final pop of color. The plating is clean, professional, and balanced, with moderate negative space surrounding the individual portion. The dish is presented on a simple wooden table surface, accompanied by a polished silver fork and knife, and a neatly folded white cotton napkin to the side. Natural, even lighting illuminates the dish, emphasizing its rich textures and warm colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread.",
+      "Offer a simple green salad on the side.",
+      "Traditionally served warm or at room temperature."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes (Yukon Gold or Maris Piper)",
+        "quantity": "750 g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "6 large"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Manchego cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "250 ml (plus extra for roasting)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve cherry tomatoes. Toss with 1 tablespoon olive oil, minced garlic, salt, and pepper. Roast for 15-20 minutes until slightly collapsed and caramelized. Set aside.",
+      "Thinly slice one large onion into rings. Heat 2 tablespoons olive oil in a pan over medium-low heat. Add sliced onion. Cook slowly for 25-30 minutes, stirring occasionally, until deeply golden and caramelized. Set aside.",
+      "Peel potatoes. Using a mandoline or sharp knife, thinly slice potatoes into uniform rounds (about 2-3 mm thick). Thinly slice the second large onion.",
+      "Heat 250 ml olive oil in a large (24-26 cm) non-stick, oven-safe pan over medium heat. Add sliced potatoes and onion. Cook gently for 15-20 minutes until potatoes are tender but not browned. Drain excess oil, reserving a small amount for cooking. Transfer potatoes and onions to a large bowl.",
+      "In a separate bowl, whisk eggs with 1 teaspoon salt and 1/2 teaspoon black pepper. Pour whisked eggs over the potato and onion mixture. Stir gently to combine. Let stand for 10 minutes to allow potatoes to absorb egg.",
+      "Heat 1 tablespoon of the reserved olive oil in the same non-stick pan over medium-low heat. Pour the potato-egg mixture into the pan. Spread evenly. Cook for 8-10 minutes, until the edges are set and the bottom is golden brown.",
+      "Place a large plate over the pan. Carefully invert the tortilla onto the plate. Slide the tortilla back into the pan, uncooked side down. Cook for another 5-7 minutes, until golden brown and cooked through. Ensure the internal temperature reaches 75°C (though not applicable to eggs, it's good practice for consistency).",
+      "Combine roasted tomatoes and caramelized onions. This is your confit.",
+      "Grate Manchego cheese. Finely chop fresh parsley.",
+      "Carefully slide the tortilla onto a serving board or plate. Cut into 4 equal wedges. Serve each wedge on an individual plate. Top with a generous spoonful of the tomato and onion confit. Grate Manchego cheese over the confit. Garnish with chopped parsley. Serve warm or at room temperature."
+    ],
+    "traditional_techniques": [
+      "Slow caramelization of onions",
+      "Pan-frying potatoes and onions until tender",
+      "Mastering the tortilla flip"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 904.7,
+      "cholesterol_mg": 292.9,
+      "dietary_fiber_g": 7,
+      "protein_g": 18.6,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 660.9,
+      "total_carbs_g": 45.2,
+      "total_fat_g": 72.7,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174.9,
+      "cholesterol_mg": 56.6,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 3.6,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 127.8,
+      "total_carbs_g": 8.7,
+      "total_fat_g": 14.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97.6,
+      "dietary_fiber": 24.8,
+      "protein": 37.1,
+      "saturated_fat": 68.9,
+      "sodium": 28.7,
+      "total_carbs": 16.4,
+      "total_fat": 93.2
+    },
+    "serving_size_g": 517.3,
+    "total_recipe_weight_g": 2069
+  }
+]

@@ -1,0 +1,620 @@
+[
+  {
+    "recipe_name": "Tuscan Chicken with Mushrooms and Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken_with_mushrooms_and_bell_peppers_20250630_054916_706bfa47.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:49:17.376885000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "onion",
+      "mushroom",
+      "bell pepper",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Tuscan Chicken with Mushrooms and Bell Peppers is presented on a clean, round white porcelain dinner plate. Two golden-brown seared chicken thighs are placed centrally. They are whole, not sliced. Around and partially over the chicken, vibrant thick-sliced red and yellow bell peppers and quartered cremini mushrooms are nestled, coated in a rich, rustic tomato-based sauce. The sauce is savory and slightly thickened, pooling naturally on the plate. Fresh, whole basil leaves are scattered generously over the chicken and vegetables, providing a bright green contrast. The dish exhibits a harmonious balance of colors: the deep golden chicken, earthy brown mushrooms, bright red and yellow peppers, and verdant basil. Textures are inviting, with tender chicken and slightly al dente vegetables. The plating is organized but not overly structured, reflecting a simple restaurant style. The plate rests on a warm, natural wood table surface. A white cotton napkin is folded beside the plate. Standard polished silver flatware is arranged to the side. The scene is illuminated by soft, even natural light, creating a inviting, authentic bistro atmosphere with minimal, unobtrusive background elements. A small side plate with a piece of crusty Italian bread sits nearby, enhancing the cultural context.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Diced tomatoes (canned)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat.",
+      "Sear chicken thighs for 5-7 minutes per side until golden brown. Cook chicken to an internal temperature of 75°C (167°F). Remove chicken from skillet and set aside.",
+      "Reduce heat to medium. Add chopped onion to the skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Add quartered mushrooms and thick-sliced red and yellow bell peppers. Sauté for 7-10 minutes until vegetables begin to soften.",
+      "Pour in diced tomatoes and chicken broth. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Return chicken thighs to the skillet. Nestle them into the sauce and vegetables. Cover and simmer for 15-20 minutes, or until chicken is cooked through and tender.",
+      "Stir in fresh basil leaves just before serving. Taste and adjust seasoning as needed."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 399,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 42.3,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 960,
+      "total_carbs_g": 18.7,
+      "total_fat_g": 19.8,
+      "total_sugars_g": 9.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 78,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.3,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 188,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 15,
+      "protein": 85,
+      "saturated_fat": 23,
+      "sodium": 42,
+      "total_carbs": 7,
+      "total_fat": 25
+    },
+    "serving_size_g": 509.3,
+    "total_recipe_weight_g": 2037
+  },
+  {
+    "recipe_name": "Chicken Parmesan with Fresh Basil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_parmesan_with_fresh_basil_20250630_054515_1c0cef09.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:45:15.472521000Z",
+    "selected_ingredients": [
+      "basil",
+      "parmesan cheese",
+      "breadcrumbs"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, white porcelain dinner plate, centrally positioned on a simple wooden table surface. A single, golden-brown chicken cutlet, approximately 1.5 cm thick, is the focal point. The chicken is whole, not sliced, showcasing its crispy, textured crust from the panko and Parmesan. It rests in a vibrant, rich red tomato sauce, which gently pools around its base. On top of the chicken, melted fresh mozzarella forms an inviting, slightly browned and bubbly layer, interspersed with golden grated Parmesan. Scattered across the melted cheese and sauce are fresh, vivid green basil leaves, roughly torn, adding a pop of color and aromatic freshness. The overall composition is balanced and inviting, with moderate negative space around the dish. A cotton napkin is folded neatly beside the plate. The setting is a modern bistro, with natural, even lighting from the side, creating soft shadows that enhance texture. Traditional Italian flatware is placed beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of al dente spaghetti or penne pasta tossed in a simple tomato sauce",
+      "Serve with a light green salad with a vinaigrette",
+      "A glass of red wine is a traditional accompaniment"
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "plain flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "large eggs, beaten",
+        "quantity": "2"
+      },
+      {
+        "name": "panko breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "grated Parmesan cheese",
+        "quantity": "80g, plus extra for serving"
+      },
+      {
+        "name": "fresh basil leaves, roughly chopped",
+        "quantity": "30g, plus extra for garnish"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "80ml, plus extra for sauce"
+      },
+      {
+        "name": "tomato passata",
+        "quantity": "400g"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "fresh mozzarella, sliced",
+        "quantity": "200g"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Pound chicken breasts to even thickness (about 1.5 cm).",
+      "Prepare dredging stations: one shallow dish with flour, one with beaten eggs, one with panko breadcrumbs mixed with 50g grated Parmesan and half the chopped basil.",
+      "Season chicken with salt and pepper.",
+      "Dredge each chicken piece in flour, shaking off excess. Dip in egg, then coat thoroughly in breadcrumb mixture. Press gently to adhere.",
+      "Heat 80ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Pan-fry chicken cutlets 3-4 minutes per side until golden brown and cooked through (internal temperature 75°C). Cook in batches if necessary. Remove chicken from skillet.",
+      "In the same skillet (add a little more olive oil if needed), sauté diced onion over medium heat until softened, about 5 minutes.",
+      "Add minced garlic; cook 1 minute until fragrant.",
+      "Pour in tomato passata. Stir in remaining chopped basil. Season with salt and pepper. Simmer gently for 5-7 minutes.",
+      "Return chicken cutlets to the skillet, nestled in the sauce.",
+      "Top each chicken cutlet with slices of fresh mozzarella and remaining 30g grated Parmesan.",
+      "Transfer skillet to preheated oven. Bake 10-12 minutes, or until cheese is melted and bubbly.",
+      "Garnish with fresh basil leaves before serving."
+    ],
+    "notes": [
+      "For best results, use high-quality San Marzano tomatoes for the passata if available.",
+      "Ensure chicken is pounded to an even thickness for uniform cooking."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1023,
+      "cholesterol_mg": 308,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 92.1,
+      "saturated_fat_g": 15.6,
+      "sodium_mg": 742,
+      "total_carbs_g": 59.6,
+      "total_fat_g": 45.9,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 208,
+      "cholesterol_mg": 63,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 18.7,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 151,
+      "total_carbs_g": 12.1,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 103,
+      "dietary_fiber": 13,
+      "protein": 184,
+      "saturated_fat": 78,
+      "sodium": 32,
+      "total_carbs": 22,
+      "total_fat": 59
+    },
+    "serving_size_g": 492.25,
+    "total_recipe_weight_g": 1969
+  },
+  {
+    "recipe_name": "Creamy Ham and Potato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_ham_and_potato_bake_20250630_054417_d185954f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:44:17.488082000Z",
+    "selected_ingredients": [
+      "potato",
+      "mushroom",
+      "cheese",
+      "basil",
+      "onion",
+      "bell pepper",
+      "garlic",
+      "ham",
+      "cream cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, single individual portion of Creamy Ham and Potato Bake served on a rustic, everyday ceramic plate. This comforting dish features tender, thick-sliced potatoes, savory diced ham, and earthy sliced mushrooms, all enveloped in a rich, bubbly cream cheese sauce with a golden-brown melted cheese crust. Natural colors include earthy browns, creamy whites, hints of bell pepper, and vibrant fresh basil. Textures range from soft potatoes and tender ham to chewy mushrooms, smooth sauce, and a crispy cheese topping. The dish is naturally piled, components overlapping. Fresh chopped basil provides garnish. Potatoes are thick-sliced, ham diced, mushrooms sliced, onion and bell pepper diced, garlic minced. The setting is a well-used wooden dining table, with a simple folded cotton napkin, under warm kitchen lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Served family-style",
+      "With a simple green salad or crusty bread"
+    ],
+    "hero_ingredient": "Potatoes Ham",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200 g, sliced"
+      },
+      {
+        "name": "Ham",
+        "quantity": "250 g, diced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Cream Cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Shredded Cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Milk",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken or Vegetable Broth",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Peel potatoes. Cut into thick 1 cm slices or 2 cm cubes. Boil in salted water until tender-crisp. Drain well.",
+      "In a large pan, melt butter and olive oil over medium heat. Add diced onion and bell pepper. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in diced ham and sliced mushrooms. Cook until mushrooms release their liquid and brown slightly, about 5-8 minutes.",
+      "In a separate saucepan, whisk cream cheese with milk and broth over low heat until smooth. Season with salt and pepper. Stir in half of the chopped fresh basil.",
+      "Gently combine the cooked potatoes, ham-mushroom mixture, and cream cheese sauce in a large baking dish. Stir well to coat all ingredients.",
+      "Top evenly with shredded cheese.",
+      "Bake for 25-30 minutes, or until bubbly and the cheese is golden brown.",
+      "Remove from oven. Let stand for a few minutes before serving.",
+      "Garnish with the remaining fresh basil."
+    ],
+    "notes": [
+      "Great for meal prep or feeding a crowd"
+    ],
+    "traditional_techniques": [
+      "Baking",
+      "Sautéing"
+    ]
+  },
+  {
+    "recipe_name": "Rustic Baked Fruit with Sweet Ricotta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_baked_fruit_with_sweet_ricotta_20250630_054403_1a0fcb81.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:44:03.945694000Z",
+    "selected_ingredients": [
+      "blueberry",
+      "banana",
+      "apple",
+      "cherry",
+      "ricotta"
+    ],
+    "complexity": "simple",
+    "special_requests": "без добавления сахара",
+    "visual_description": "A single portion of warm, rustic baked fruit is presented in a simple, deep ceramic bowl. The fruits – diced apples, sliced bananas, whole blueberries, and halved cherries – are tender and slightly collapsed, showcasing their natural, concentrated sugars and vibrant, deep purple, red, and golden hues. A generous, creamy white dollop of vanilla-infused ricotta rests gently on top, contrasting with the dark, bubbling fruit. The bowl sits on a well-used, light wooden dining table. Adjacent is a plain, everyday metal spoon and a casually folded linen napkin. The scene is bathed in warm, natural light, reflecting a cozy, lived-in family kitchen atmosphere. The focus is on the comfort and natural beauty of the dish, with no artificial garnishes or elaborate plating.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Dessert",
+    "hero_ingredient": "Mixed Fruits",
+    "ingredients": [
+      {
+        "name": "Ripe apples (e.g., Gala, Fuji)",
+        "quantity": "2 medium, cored and diced into 1.5 cm cubes"
+      },
+      {
+        "name": "Ripe bananas",
+        "quantity": "2 medium, sliced into 1 cm thick rounds"
+      },
+      {
+        "name": "Fresh blueberries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh cherries",
+        "quantity": "150g, pitted and halved"
+      },
+      {
+        "name": "Whole milk ricotta cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "Pure vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Ground cinnamon (optional)",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Combine diced apples, sliced bananas, blueberries, and halved cherries in a medium baking dish. Add an optional pinch of cinnamon. Toss gently.",
+      "Bake for 20-25 minutes, or until fruits are tender and bubbly. Natural sugars will caramelize.",
+      "While fruit bakes, gently stir vanilla extract into the ricotta cheese until just combined.",
+      "Remove fruit from oven. Let cool slightly.",
+      "Spoon warm baked fruit into individual serving bowls.",
+      "Top each serving with a generous dollop of the vanilla ricotta. Serve immediately."
+    ],
+    "notes": [
+      "Ensure fruits are ripe for maximum natural sweetness, as no sugar is added to this recipe."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 264,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 8.7,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 55,
+      "total_carbs_g": 41.3,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 28.5,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 2.9,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 18,
+      "total_carbs_g": 13.7,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 9.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 11,
+      "dietary_fiber": 20,
+      "protein": 17,
+      "saturated_fat": 26,
+      "sodium": 2,
+      "total_carbs": 15,
+      "total_fat": 11
+    },
+    "serving_size_g": 301.25,
+    "total_recipe_weight_g": 1205
+  },
+  {
+    "recipe_name": "Pan-Seared Ham Medallions, Potato Croquette, Mushroom Cream, Roasted Bell Pepper Essence",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_ham_medallions%2C_potato_croquette%2C_mushroom_cream%2C_roasted_bell_pepper_essence_20250630_054330_a8488b62.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:43:30.454621000Z",
+    "selected_ingredients": [
+      "potato",
+      "mushroom",
+      "cheese",
+      "basil",
+      "onion",
+      "bell pepper",
+      "garlic",
+      "ham",
+      "cream cheese"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, refined serving is presented on a matte white or light grey modern designer plate. The composition is organic and flowing, showcasing abundant negative space. A thick, golden-brown pan-seared ham medallion, cooked to perfection, is positioned elegantly off-center. Beside it, two perfectly golden and crispy cylindrical potato croquettes (approximately 5 cm long) are artfully placed. A delicate, velvety sweep of creamy, off-white mushroom puree adds a soft contrast. A vibrant, deep red roasted bell pepper essence is artfully drizzled around the main components, forming a subtle, organic pattern. The dish is precisely garnished with 2-3 small, fresh, emerald-green micro basil leaves. The textures range from the crispy croquette exterior to its fluffy interior, the tender ham, and the smooth purees. Colors are sophisticated, with golden browns, soft creams, vibrant reds, and deep greens providing intentional contrast and harmony. The entire plate is visible. The setting features a pristine white Carrara marble surface, a precisely folded white linen napkin in a triangle, and dramatic professional lighting casting soft shadows, with an ultra-minimalist background to emphasize the dish as the sole focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Ham",
+    "ingredients": [
+      {
+        "name": "Smoked Ham (thick cut, premium quality)",
+        "quantity": "600 g (4 medallions)"
+      },
+      {
+        "name": "Potatoes (Russet or Maris Piper)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Mushrooms (Cremini or Shiitake)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cream Cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Parmesan Cheese (grated)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Egg Yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Panko Breadcrumbs",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "White Wine Vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Neutral Oil (for frying)",
+        "quantity": "500 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Potato Croquettes: Peel and cut potatoes into 2 cm chunks. Boil in salted water until tender. Drain well. Mash thoroughly until smooth. Mix in 15g butter, 25g Parmesan, egg yolk, salt, and pepper. Form into 8 cylindrical croquettes (approximately 5 cm long). Chill for 30 minutes. Dredge each croquette in flour, then whisked egg, then panko breadcrumbs. Fry in neutral oil at 170°C until golden brown and crispy. Drain on paper towels. Keep warm.",
+      "Prepare Mushroom Cream: Finely dice 1/4 onion and 1 garlic clove. Slice mushrooms. Sauté diced onion and garlic in 15ml olive oil until fragrant. Add sliced mushrooms. Cook until softened and liquid evaporates. Stir in cream cheese and 50 ml vegetable stock. Simmer gently for 5 minutes. Blend until very smooth. Season with salt and pepper. Pass through a fine sieve for ultimate smoothness. Keep warm.",
+      "Prepare Roasted Bell Pepper Essence: Halve bell pepper, remove seeds. Roast bell pepper halves and remaining onion and garlic cloves on a baking sheet at 200°C for 20-25 minutes, until skins are charred and flesh is soft. Peel bell pepper. Combine roasted bell pepper, onion, garlic, remaining vegetable stock, white wine vinegar, and half the fresh basil in a blender. Blend until very smooth. Season with salt and pepper. Pass through a fine sieve. Reduce gently over low heat if needed to concentrate flavor. Keep warm.",
+      "Prepare Ham Medallions: Pat ham medallions dry. Season lightly with black pepper. Heat remaining olive oil in a heavy-bottomed pan over medium-high heat. Sear ham medallions for 3-4 minutes per side, until deeply golden brown and heated through. Do not overcrowd the pan. Cook in batches if necessary.",
+      "Plate the Dish: Place one seared ham medallion off-center on each plate, leaving abundant negative space. Arrange two potato croquettes beside the ham. Spoon a delicate, flowing sweep or a precise dot of mushroom cream onto the plate. Drizzle or dot the vibrant roasted bell pepper essence around the elements. Garnish with a few small, fresh basil leaves or a precise drizzle of basil oil. Serve immediately."
+    ],
+    "notes": [
+      "For the smoothest mushroom cream and bell pepper essence, use a high-speed blender and pass through a fine-mesh sieve."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 1009.7,
+      "cholesterol_mg": 208.3,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 48.6,
+      "saturated_fat_g": 24.3,
+      "sodium_mg": 2510.2,
+      "total_carbs_g": 56.2,
+      "total_fat_g": 71.5,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 201.4,
+      "cholesterol_mg": 41.5,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.7,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 500.8,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 14.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 20,
+      "protein": 97,
+      "saturated_fat": 122,
+      "sodium": 109,
+      "total_carbs": 20,
+      "total_fat": 92
+    },
+    "serving_size_g": 501.25,
+    "total_recipe_weight_g": 2005
+  }
+]

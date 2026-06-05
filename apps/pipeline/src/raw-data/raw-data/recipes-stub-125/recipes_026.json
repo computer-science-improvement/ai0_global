@@ -1,0 +1,120 @@
+{
+  "source": "https://epicure.kaikaku.ai/api/gallery",
+  "generated_at": "2026-05-28T16:15:20.869Z",
+  "chunk": 26,
+  "chunk_range": [
+    25000,
+    25000
+  ],
+  "recipe_count": 125,
+  "recipes": [
+    {
+      "recipe_name": "Pan-Seared Turkey Cutlets with Fresh Tomato-Basil Salsa",
+      "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_turkey_cutlets_with_fresh_tomato-basil_salsa_20250615_173755_cd666878.jpg",
+      "dish_type": null,
+      "flavor_profile": null,
+      "ingredients_count": null,
+      "timestamp": "2025-06-15T17:37:55.861110000Z",
+      "selected_ingredients": [
+        "turkey",
+        "tomato"
+      ],
+      "complexity": "standard",
+      "special_requests": "",
+      "visual_description": "A single, thick pan-seared turkey cutlet, cooked to a golden-brown crust, is centered on a clean, round white porcelain plate. The whole turkey piece is generously topped with a vibrant fresh tomato-basil salsa. The salsa showcases small, bright red tomato cubes, contrasting with vibrant green basil leaves and tiny specks of minced garlic. A cluster of tender-crisp roasted asparagus spears, retaining their bright green color, is neatly arranged alongside the turkey. A fresh lemon wedge rests near the cutlet. The plate is set on a simple, light wooden table surface, with a neatly folded white cotton napkin positioned nearby. Natural, even light illuminates the dish, highlighting its fresh textures and appealing colors. The background suggests a casual bistro atmosphere, subtly blurred to focus on the food. The presentation is clean, professional, and inviting, with appropriate negative space.",
+      "number_of_servings": 4,
+      "cuisine_type": "Modern",
+      "cultural_origin": "Modern American",
+      "hero_ingredient": "Turkey Cutlets",
+      "ingredients": [
+        {
+          "name": "Turkey breast cutlets",
+          "quantity": "600g"
+        },
+        {
+          "name": "Ripe tomatoes",
+          "quantity": "400g"
+        },
+        {
+          "name": "Fresh basil",
+          "quantity": "30g"
+        },
+        {
+          "name": "Garlic",
+          "quantity": "2 cloves"
+        },
+        {
+          "name": "Olive oil",
+          "quantity": "30ml"
+        },
+        {
+          "name": "Balsamic vinegar",
+          "quantity": "15ml"
+        },
+        {
+          "name": "Salt",
+          "quantity": "to taste"
+        },
+        {
+          "name": "Black pepper",
+          "quantity": "to taste"
+        },
+        {
+          "name": "Asparagus",
+          "quantity": "400g"
+        },
+        {
+          "name": "Lemon",
+          "quantity": "1/2"
+        }
+      ],
+      "instructions": [
+        "Pat turkey cutlets dry. Season generously with salt and pepper.",
+        "Dice tomatoes into small cubes. Mince garlic. Coarsely chop basil. In a bowl, combine diced tomatoes, minced garlic, chopped basil, 15ml olive oil, and balsamic vinegar. Season with salt and pepper. Mix well. Set aside.",
+        "Trim woody ends from asparagus. Toss with 15ml olive oil, salt, and pepper. Spread in a single layer on a baking tray. Roast in a preheated oven at 200°C for 10-12 minutes, or until tender-crisp.",
+        "Heat a large non-stick or cast-iron pan over medium-high heat with remaining 15ml olive oil. Place turkey cutlets in hot pan. Sear for 4-5 minutes per side, until golden brown and cooked through.",
+        "Place one turkey cutlet on each plate. Spoon a generous amount of tomato-basil salsa over the turkey. Arrange roasted asparagus alongside. Serve immediately with a lemon wedge."
+      ],
+      "notes": [
+        "Ensure turkey reaches 75°C (167°F) internal temperature for food safety."
+      ],
+      "nutrition_per_serving": {
+        "added_sugars_g": 0,
+        "calories": 268,
+        "cholesterol_mg": 83,
+        "dietary_fiber_g": 4,
+        "protein_g": 37.4,
+        "saturated_fat_g": 1.4,
+        "sodium_mg": 561,
+        "total_carbs_g": 10.8,
+        "total_fat_g": 8.8,
+        "total_sugars_g": 5.4,
+        "trans_fat_g": 0
+      },
+      "nutrition_per_100g": {
+        "added_sugars_g": 0,
+        "calories": 70,
+        "cholesterol_mg": 21.5,
+        "dietary_fiber_g": 1,
+        "protein_g": 9.8,
+        "saturated_fat_g": 0.4,
+        "sodium_mg": 146.3,
+        "total_carbs_g": 2.8,
+        "total_fat_g": 2.3,
+        "total_sugars_g": 1.4,
+        "trans_fat_g": 0
+      },
+      "daily_value_percentages": {
+        "cholesterol": 42,
+        "dietary_fiber": 14,
+        "protein": 75,
+        "saturated_fat": 7,
+        "sodium": 24,
+        "total_carbs": 4,
+        "total_fat": 11
+      },
+      "serving_size_g": 383.5,
+      "total_recipe_weight_g": 1534
+    }
+  ]
+}

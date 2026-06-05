@@ -1,0 +1,623 @@
+[
+  {
+    "recipe_name": "Pan-Seared Parmesan Chicken with Roasted Bell Pepper Coulis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_parmesan_chicken_with_roasted_bell_pepper_coulis_20250630_030801_37cc2b88.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:08:02.204094000Z",
+    "selected_ingredients": [
+      "chicken",
+      "breadcrumbs",
+      "oregano",
+      "garlic",
+      "parmesan cheese",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, white round porcelain plate, set on a simple light wooden table. Natural, even light illuminates the scene from the side, creating soft shadows. A single, perfectly pan-seared Parmesan-crusted chicken breast, golden brown with visible crispy Panko texture, rests slightly off-center. The chicken is a whole piece, not sliced. Adjacent to the chicken, a vibrant, smooth pool of roasted red and yellow bell pepper coulis provides a striking color contrast, its rich, uniform consistency creating a contemporary visual. The coulis has a natural, flowing shape. A small sprinkle of finely chopped fresh green parsley is scattered artfully over the chicken and coulis, adding a touch of freshness and color. Moderate negative space surrounds the components, allowing each element to stand out. A simple, folded white cotton napkin lies beside the plate, with a standard silver fork and knife. The background is softly blurred, hinting at a casual yet refined bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of simple buttered pasta (e.g., spaghetti or linguine) or a light green salad with a vinaigrette.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4, approx. 180-200g each"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Finely grated Parmesan cheese",
+        "quantity": "80g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3 (2 minced for chicken, 1 minced for coulis)"
+      },
+      {
+        "name": "Red bell peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "60g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2, beaten"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml (for searing chicken), 15ml (for roasting peppers)"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "Small bunch, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut bell peppers in half. Remove seeds and membranes. Place cut side down on a baking tray. Drizzle with 15ml olive oil. Roast for 25-30 minutes until skin is blistered and charred.",
+      "Transfer roasted bell peppers to a bowl. Cover tightly with plastic wrap. Let steam for 10-15 minutes. Peel off skin.",
+      "Combine peeled bell peppers, 1 minced garlic clove, 100ml chicken stock, salt, and pepper in a blender. Blend until very smooth. Pass coulis through a fine-mesh sieve for a silky texture. Set aside.",
+      "Prepare chicken breasts: Place each chicken breast between two sheets of plastic wrap. Pound to an even 1.5cm thickness using a meat mallet.",
+      "Set up breading station: Place flour in a shallow dish. Place beaten eggs in a second shallow dish. In a third shallow dish, combine Panko breadcrumbs, grated Parmesan cheese, dried oregano, 2 minced garlic cloves, salt, and pepper.",
+      "Dredge each chicken breast in flour, shaking off excess. Dip in beaten egg, allowing excess to drip off. Coat thoroughly in breadcrumb mixture, pressing gently to adhere.",
+      "Heat 60ml olive oil in a large non-stick skillet over medium-high heat.",
+      "Carefully place breaded chicken breasts in hot oil. Do not overcrowd pan; cook in batches if necessary.",
+      "Sear chicken for 4-5 minutes per side, until golden brown and crispy. Reduce heat to medium if browning too quickly.",
+      "Transfer chicken to a wire rack. Finish cooking in the preheated 200°C oven for 8-10 minutes, or until internal temperature reaches 75°C.",
+      "Rest chicken for 5 minutes before serving.",
+      "Gently reheat bell pepper coulis if needed.",
+      "To plate: Spoon a generous pool of bell pepper coulis onto the center of each white porcelain plate. Place one cooked chicken breast on top or beside the coulis. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 834,
+      "cholesterol_mg": 274.6,
+      "dietary_fiber_g": 4.97,
+      "protein_g": 79.21,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 1245.1,
+      "total_carbs_g": 51.21,
+      "total_fat_g": 33.53,
+      "total_sugars_g": 8.18,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178.5,
+      "cholesterol_mg": 58.8,
+      "dietary_fiber_g": 1.06,
+      "protein_g": 16.95,
+      "saturated_fat_g": 1.95,
+      "sodium_mg": 266.4,
+      "total_carbs_g": 10.96,
+      "total_fat_g": 7.18,
+      "total_sugars_g": 1.75,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 91.5,
+      "dietary_fiber": 17.8,
+      "protein": 158.4,
+      "saturated_fat": 45.5,
+      "sodium": 54.1,
+      "total_carbs": 18.6,
+      "total_fat": 43
+    },
+    "serving_size_g": 467.31,
+    "total_recipe_weight_g": 1869.25
+  },
+  {
+    "recipe_name": "Spicy Potato and Cheddar Enchiladas with Roasted Jalapeno Crema",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_potato_and_cheddar_enchiladas_with_roasted_jalapeno_crema_20250630_030409_ec9981d6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:04:10.053221000Z",
+    "selected_ingredients": [
+      "potato",
+      "cheddar",
+      "pickled jalapeno chilies",
+      "tortilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The Spicy Potato and Cheddar Enchiladas are presented on a clean, white porcelain dinner plate set on a simple wooden table. Three golden-brown corn tortillas, lightly crisped from baking, are neatly rolled and arranged. A rich, vibrant red enchilada sauce lightly coats the tortillas, with melted, bubbly cheddar cheese forming a golden crust on top. A generous drizzle of pale green roasted jalapeno crema flows artfully over the enchiladas, its smooth texture contrasting with the slightly crinkled tortillas. Fresh, bright green cilantro leaves are scattered across the dish, along with a few thin, bright red slices of pickled jalapeno chilies, adding a pop of color and visual heat. The composition is balanced, with moderate negative space. Standard flatware is beside the plate, and a folded cotton napkin completes the casual bistro setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with extra lime wedges.",
+      "Offer a side of simple Mexican rice or black beans."
+    ],
+    "hero_ingredient": "Pickled Jalapeno Chilies",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cheddar Cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Pickled Jalapeno Chilies",
+        "quantity": "80g"
+      },
+      {
+        "name": "Corn Tortillas",
+        "quantity": "12"
+      },
+      {
+        "name": "White Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sour Cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chili Powder",
+        "quantity": "15g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "250ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Peel and dice potatoes into 1 cm cubes. Boil until fork-tender. Drain well and lightly mash.",
+      "Dice white onion. Sauté in 15ml vegetable oil over medium heat until translucent, about 5 minutes. Add minced garlic. Cook 1 minute more.",
+      "Combine mashed potatoes, sautéed onion, garlic, 150g grated cheddar, and 50g sliced pickled jalapenos. Mix well. Season with salt and pepper.",
+      "For the enchilada sauce: Whisk tomato paste, chili powder, cumin, and oregano in a saucepan. Gradually whisk in vegetable broth. Bring to a simmer. Cook 5 minutes until slightly thickened. Season with salt.",
+      "Briefly warm corn tortillas in a dry skillet or microwave to make them pliable.",
+      "Dip each tortilla in the enchilada sauce, coating both sides. Place a portion of the potato mixture down the center. Roll tightly. Place seam-down in a 20x30 cm baking dish.",
+      "Pour remaining enchilada sauce over the rolled enchiladas. Sprinkle with remaining 50g grated cheddar cheese.",
+      "Bake 20-25 minutes, or until cheese is melted and bubbly and tortillas are lightly golden.",
+      "For the Roasted Jalapeno Crema: Spread 30g sliced pickled jalapenos on a small baking sheet. Roast in the preheated oven for 5-7 minutes until slightly charred. Let cool.",
+      "Combine roasted jalapenos, sour cream, and juice of 1/2 lime in a blender. Blend until smooth.",
+      "Serve enchiladas hot. Drizzle generously with roasted jalapeno crema. Garnish with fresh cilantro leaves and a few extra sliced pickled jalapenos."
+    ],
+    "notes": [
+      "Adjust the amount of pickled jalapenos in the filling and crema to control spice level.",
+      "For a richer flavor, toast corn tortillas lightly before dipping in sauce."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 731,
+      "cholesterol_mg": 82,
+      "dietary_fiber_g": 10.4,
+      "protein_g": 23.4,
+      "saturated_fat_g": 17.2,
+      "sodium_mg": 832,
+      "total_carbs_g": 76.7,
+      "total_fat_g": 36.5,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 4.9,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 174,
+      "total_carbs_g": 16.1,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27,
+      "dietary_fiber": 37,
+      "protein": 47,
+      "saturated_fat": 86,
+      "sodium": 36,
+      "total_carbs": 28,
+      "total_fat": 47
+    },
+    "serving_size_g": 478,
+    "total_recipe_weight_g": 1911
+  },
+  {
+    "recipe_name": "Fermented Cherry & Peach Gateau Simple",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_cherry_%26_peach_gateau_simple_20250630_030148_f9188bd2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:01:49.333926000Z",
+    "selected_ingredients": [
+      {
+        "name": "cocoa powder"
+      },
+      {
+        "name": "vanilla"
+      },
+      {
+        "name": "lemon"
+      },
+      {
+        "name": "cherry"
+      },
+      {
+        "name": "peach"
+      },
+      {
+        "name": "butter"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "French",
+    "visual_description": "A single slice of 'Fermented Cherry & Peach Gateau Simple' is elegantly presented on a handcrafted, matte cream-colored ceramic plate. The cake slice reveals a delicate, light vanilla sponge with faint, natural cocoa swirls, showcasing a soft, tender crumb. Within the sponge are vibrant, deep red fermented cherry halves and soft, pale orange diced fermented peaches, creating natural pockets of color. The top of the cake slice is lightly dusted with cocoa powder. Beside the cake, a small cluster of the remaining whole fermented cherries and diced peaches rests, glistening with their natural liquid. The plate offers ample negative space. The setting features a light, reclaimed wood surface, an undyed linen napkin in natural beige, and soft, diffused natural lighting. The background is minimalist with a hint of natural greenery, reflecting an eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve simply, allowing the natural flavors of the fruit and cake to shine.",
+      "A small dollop of crème fraîche or plain yogurt can accompany for added richness."
+    ],
+    "hero_ingredient": "Fermented Cherries & Peaches",
+    "ingredients": [
+      {
+        "name": "Unsalted Butter, softened",
+        "quantity": "150g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "All-purpose Flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Lemon Zest",
+        "quantity": "Zest of 1 lemon"
+      },
+      {
+        "name": "Cocoa Powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Fresh Cherries, pitted",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh Peaches, peeled, pitted, diced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Granulated Sugar (for fruit)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Lemon Juice (for fruit)",
+        "quantity": "Juice of 1/2 lemon"
+      },
+      {
+        "name": "Water (for fruit maceration)",
+        "quantity": "100ml"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented fruit: Combine pitted cherries, diced peaches, 50g granulated sugar, lemon juice, and 100ml water in a clean jar. Stir well. Cover loosely. Let sit at room temperature for 2-3 days. Stir daily. Refrigerate after 3 days. This liquid will become slightly effervescent and flavorful.",
+      "Preheat oven to 175°C. Grease and flour a 20cm round cake tin.",
+      "Cream softened butter and 150g granulated sugar in a large bowl until light and fluffy.",
+      "Beat in eggs one at a time. Mix well after each addition.",
+      "In a separate bowl, whisk together flour, baking powder, and salt.",
+      "Gradually fold dry ingredients into the wet mixture. Mix until just combined. Do not overmix.",
+      "Stir in vanilla extract and lemon zest.",
+      "Pour half of the batter into the prepared cake tin. Smooth the top.",
+      "Sift cocoa powder over the remaining batter. Gently fold to create a light swirl or marbled effect. Do not fully combine.",
+      "Spoon the cocoa swirled batter over the plain batter in the tin.",
+      "Drain the fermented cherries and peaches. Reserve the liquid.",
+      "Gently scatter half of the fermented fruit over the cake batter in the tin.",
+      "Bake for 30-35 minutes. Or until a skewer inserted into the center comes out clean.",
+      "Cool the cake in the tin for 10 minutes. Then invert onto a wire rack to cool completely.",
+      "Serve the cake slices with the remaining fermented cherries and peaches and a drizzle of the reserved fermented fruit liquid."
+    ],
+    "notes": [
+      "The fermentation of cherries and peaches adds a complex, tangy depth and natural preservation.",
+      "Adjust sugar in fruit maceration based on fruit sweetness and desired tanginess.",
+      "This recipe emphasizes seasonal fruit; use local, ripe cherries and peaches for best results."
+    ],
+    "traditional_techniques": [
+      "Mise en place"
+    ]
+  },
+  {
+    "recipe_name": "Ethiopian Lentil and Bean Fritters with Berbere Eggplant Dip",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ethiopian_lentil_and_bean_fritters_with_berbere_eggplant_dip_20250630_030045_3c807a52.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:00:46.022096000Z",
+    "selected_ingredients": [
+      {
+        "name": "eggplant"
+      },
+      {
+        "name": "bean"
+      },
+      {
+        "name": "chili"
+      },
+      {
+        "name": "lentil"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Ethiopian",
+    "visual_description": "A rustic wooden serving board or matte ceramic platter. A small, dark ceramic bowl in the center holds the creamy, smoky Berbere Eggplant Dip, its purplish-brown hue accented by green cilantro and red chili. Golden-brown Lentil and Bean Fritters, 5 cm in diameter, with crisp, irregular edges and a coarse texture, are scattered loosely around the dip. The fritters' warm color contrasts with the dip's deep tones. The dip is smooth with visible minced onion and chili. Fresh green cilantro sprigs and thin green chili slices garnish both the fritters and the dip, adding vibrant color. The arrangement is natural and approachable, with moderate negative space. The board rests on a light linen napkin in a modern bistro setting with warm, natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Ethiopian",
+    "cultural_origin": "Ethiopian",
+    "cultural_serving_suggestions": [
+      "Traditionally eaten with hands",
+      "Can be accompanied by injera pieces for scooping"
+    ],
+    "hero_ingredient": "Lentils",
+    "ingredients": [
+      {
+        "name": "Red lentils",
+        "quantity": "200g"
+      },
+      {
+        "name": "Canned kidney beans, drained and rinsed",
+        "quantity": "100g"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Ginger, grated",
+        "quantity": "10g"
+      },
+      {
+        "name": "Berbere spice mix",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vegetable oil, for frying",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Medium eggplant",
+        "quantity": "1 (approx. 300g)"
+      },
+      {
+        "name": "Red chili, deseeded and minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Red onion, finely minced",
+        "quantity": "20g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3g"
+      },
+      {
+        "name": "Fresh cilantro sprigs, for garnish",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Thinly sliced green chilies, for garnish",
+        "quantity": "optional"
+      }
+    ],
+    "instructions": [
+      "Prepare Eggplant Dip: Pierce eggplant skin. Roast whole over open flame, under broiler, or in oven at 200°C for 25-30 minutes until very soft and skin is charred.",
+      "Cool eggplant: Place roasted eggplant in a bowl. Cover with plastic wrap for 10 minutes. Peel off skin.",
+      "Mash eggplant: Transfer eggplant flesh to a bowl. Mash with a fork.",
+      "Combine dip ingredients: Add minced red chili, garlic, red onion, lemon juice, olive oil, chopped cilantro, and salt to mashed eggplant. Mix well. Taste and adjust seasoning. Set aside.",
+      "Prepare Lentil & Bean Fritters: Rinse red lentils. Boil in 500ml water until very soft, about 15-20 minutes. Drain well.",
+      "Mash beans: In a separate bowl, roughly mash kidney beans with a fork.",
+      "Combine fritter ingredients: Add cooked lentils, diced red onion, minced garlic, grated ginger, berbere, chopped cilantro, flour, baking powder, and salt to the mashed beans. Mix thoroughly to form a thick batter.",
+      "Form fritters: Form mixture into small, flat patties, about 4-5 cm in diameter.",
+      "Fry fritters: Heat 2-3 cm vegetable oil in a large skillet over medium-high heat. Fry fritters in batches for 3-4 minutes per side, until golden brown and cooked through. Drain on paper towels.",
+      "Serve: Arrange fritters on a serving platter. Place a bowl of Berbere Eggplant Dip in the center or alongside. Garnish with fresh cilantro sprigs and sliced green chilies."
+    ],
+    "traditional_techniques": [
+      "Spice layering",
+      "Roasting eggplant"
+    ]
+  },
+  {
+    "recipe_name": "Garlic Herb Shrimp Crostini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_herb_shrimp_crostini_20250630_025100_894c6093.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:51:00.996113000Z",
+    "selected_ingredients": [
+      "shrimp"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Garlic Herb Shrimp Crostini are arranged casually on a rustic wooden serving board. Each piece features a golden-brown, lightly toasted baguette round, about 1.5 cm thick. A generous layer of creamy white cream cheese spread, subtly flecked with green herbs, covers the bread. Nestled atop the spread are plump, pinkish-orange cooked shrimp. The shrimp are either left whole or halved lengthwise, showcasing their tender texture. Bright green finely chopped parsley and chives are sprinkled over the shrimp and spread, adding a fresh contrast. The overall presentation is inviting and natural, with some crostini slightly overlapping. The scene is set on a well-used, warm-toned wooden dining table, illuminated by soft, inviting kitchen lighting. A casually folded plain linen napkin is placed nearby. The focus is entirely on the homely, expertly prepared canapés, appearing ready for immediate enjoyment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Large shrimp",
+        "quantity": "300 g, peeled and deveined"
+      },
+      {
+        "name": "Baguette",
+        "quantity": "1 (about 250 g), sliced into 1.5 cm thick rounds"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cream cheese (full fat)",
+        "quantity": "150 g, softened"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, finely chopped"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "10 g, finely chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2, zested and juiced"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Arrange baguette slices on a baking sheet. Lightly brush with olive oil.",
+      "Toast baguette slices for 8-10 minutes, until lightly golden and crisp. Set aside to cool.",
+      "Pat shrimp dry with paper towels. Season with salt and pepper.",
+      "Melt butter and remaining olive oil in a large skillet over medium heat. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Add shrimp to the skillet. Cook for 2-3 minutes per side, until pink and opaque. Do not overcook.",
+      "Remove shrimp from heat. Squeeze fresh lemon juice over shrimp.",
+      "In a small bowl, combine softened cream cheese, half of the chopped parsley, and half of the chopped chives. Add lemon zest. Mix well.",
+      "Spread a generous layer of cream cheese mixture onto each toasted baguette slice.",
+      "Top each crostini with one or two cooked shrimp.",
+      "Garnish with remaining fresh parsley and chives. Arrange on a serving platter."
+    ]
+  }
+]

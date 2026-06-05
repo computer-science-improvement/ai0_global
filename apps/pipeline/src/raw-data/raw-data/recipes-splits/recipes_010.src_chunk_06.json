@@ -1,0 +1,575 @@
+[
+  {
+    "recipe_name": "Hearty Brunch Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_brunch_skillet_20250713_182228_362b52b7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T18:22:28.572930000Z",
+    "selected_ingredients": [
+      "egg",
+      "onion",
+      "bacon",
+      "sausage",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of the hearty brunch skillet is presented on a clean white porcelain dinner plate. The base features a vibrant mix of golden-brown sausage chunks, crispy crumbled bacon, reddish-brown caramelized diced onions, and bright red halved roasted cherry tomatoes. A perfectly cooked sunny-side-up egg, with a firm white and a rich, runny yellow yolk, is carefully placed atop the savory medley. The textures range from the crispness of the bacon to the tenderness of the sausage and the soft burst of the roasted tomatoes. A generous sprinkle of fresh, bright green chopped parsley adds a final pop of color and freshness. The plate is set on a simple light wooden table surface, accompanied by a neatly folded cotton napkin, under natural, even lighting, creating an inviting bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Crispy Bacon and Sausage",
+    "ingredients": [
+      {
+        "name": "Thick-cut bacon",
+        "quantity": "200g"
+      },
+      {
+        "name": "Breakfast sausage (casings removed)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "250g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cook bacon in a large oven-safe skillet over medium heat until crispy. Remove bacon. Drain on paper towels. Reserve 15ml bacon fat in skillet.",
+      "Add sausage to skillet. Break apart with spoon. Cook until browned and cooked through, about 8-10 minutes. Remove sausage.",
+      "Add diced onion to skillet with reserved bacon fat. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Add halved cherry tomatoes to skillet. Cook 5-7 minutes until softened and slightly roasted. Season with salt and pepper.",
+      "Return cooked crumbled bacon and sausage chunks to skillet with onions and tomatoes. Stir to combine.",
+      "Make four wells in the mixture. Carefully crack one egg into each well.",
+      "Transfer skillet to preheated oven. Bake 8-12 minutes, or until egg whites are set and yolks are to desired doneness. Ensure egg white internal temperature reaches 75°C.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Hearty Beer-Braised Chicken with Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beer-braised_chicken_with_rice_20250713_181433_7e13db23.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T18:14:33.583934000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "dark beer"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of hearty beer-braised chicken is presented on a simple, slightly off-white ceramic plate. A generous bed of fluffy white long-grain rice forms the base. Nestled atop the rice is a whole, tender, golden-brown chicken thigh. Thick, rustic chunks of braised carrots and celery rondelles are scattered around. A rich, dark amber beer sauce, thick and glossy, is generously spooned over the chicken and rice, pooling slightly. The arrangement is natural and asymmetrical, giving a comforting, homemade feel. A sprinkle of bright green chopped fresh parsley adds a pop of color. The plate sits on a well-used wooden dining table, with a casually folded cloth napkin. Warm kitchen lighting illuminates the scene, highlighting natural textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, peeled, cut into 2 cm thick rondelles",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery, cut into 2 cm thick slices",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dark beer (e.g., stout or porter)",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Fresh parsley, chopped, for garnish",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper. Lightly dredge chicken in flour.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear chicken thighs skin-side down until golden brown and crispy, about 5-7 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pot.",
+      "Reduce heat to medium. Add diced onion, carrot rondelles, and celery slices to the pot. Sauté, scraping up any browned bits, until vegetables soften, about 8-10 minutes.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in dark beer. Scrape bottom of pot to deglaze. Bring to a simmer.",
+      "Return chicken to the pot. Add chicken broth, bay leaf, and thyme sprigs. Ensure chicken is mostly submerged.",
+      "Bring to a gentle simmer. Cover pot. Reduce heat to low. Cook for 45-60 minutes, or until chicken is very tender and reaches an internal temperature of 75°C (167°F).",
+      "While chicken braises, cook rice according to package instructions. Typically, combine 250g rice with 500ml water and a pinch of salt. Bring to boil, cover, reduce heat to low, simmer 15-20 minutes until water is absorbed and rice is tender.",
+      "Once chicken is cooked, remove bay leaf and thyme sprigs. Adjust seasoning of the sauce with salt and pepper if needed.",
+      "Serve chicken hot over fluffy rice. Spoon plenty of the rich beer sauce and vegetables over each portion. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "This dish is even better the next day as flavors meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 813,
+      "cholesterol_mg": 184,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 43.4,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 412,
+      "total_carbs_g": 68.6,
+      "total_fat_g": 37.6,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 6.7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 63,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.3,
+      "dietary_fiber": 11.5,
+      "protein": 86.8,
+      "saturated_fat": 46.5,
+      "sodium": 17.9,
+      "total_carbs": 24.9,
+      "total_fat": 48.2
+    },
+    "serving_size_g": 650,
+    "total_recipe_weight_g": 2600
+  },
+  {
+    "recipe_name": "Rustic Chicken and White Bean Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_white_bean_skillet_20250713_181352_ea375426.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T18:13:53.091078000Z",
+    "selected_ingredients": [
+      "bean",
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Rustic Chicken and White Bean Skillet is presented on a sturdy, slightly irregular, cream-colored ceramic plate. A whole, bone-in, skin-on chicken thigh, its skin deeply golden and crispy, is the focal point. It rests amidst a rustic blend of creamy white cannellini beans and vibrant red, halved cherry tomatoes. The components are naturally arranged, with some beans and tomatoes slightly overlapping the chicken, creating a hearty, home-cooked feel. The rich, savory sauce lightly coats the ingredients. A scattering of fresh, bright green chopped parsley provides a functional garnish and a pop of color. The plate is placed on a well-used wooden kitchen table, showing its natural grain and imperfections. A simple, casually folded, off-white cloth napkin and a standard metal fork are visible, suggesting an everyday family meal. Warm, soft lighting illuminates the scene, highlighting the comforting textures and natural colors of the dish. The entire plate is visible, with ample negative space around the edges, emphasizing the modest, comforting portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 700g)"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "2 cans (400g each), drained and rinsed"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400g, halved"
+      },
+      {
+        "name": "Brown onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, oven-safe skillet over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy, about 6 minutes. Flip and sear other side for 4 minutes. Remove chicken from skillet.",
+      "Reduce heat to medium. Add diced onion to skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic, dried oregano, and dried thyme. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the skillet.",
+      "Return chicken to the skillet. Arrange halved cherry tomatoes around the chicken.",
+      "Bring to a simmer. Cover skillet and transfer to the preheated oven.",
+      "Bake for 20-25 minutes, or until chicken internal temperature reaches 75°C.",
+      "Remove skillet from oven. Stir in drained and rinsed cannellini beans. Let stand for 5 minutes, allowing flavors to meld.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Chicken and Pork Meatballs with Orecchiette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_pork_meatballs_with_orecchiette_20250713_181059_95948ef4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T18:10:59.587467000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken",
+      "pork",
+      "breadcrumbs",
+      "parmesan"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Italian-American chicken and pork meatballs with orecchiette pasta, presented in a shallow white porcelain bowl. The orecchiette, cooked al dente, is tossed with a rustic, vibrant red tomato sauce. Three to four golden-brown, spherical meatballs are nestled on top and around the pasta, showing a slight exterior crisp. A light scattering of freshly grated white Parmesan cheese covers some meatballs and pasta. A few fresh green basil leaves are artfully placed for color and freshness. The arrangement is natural, with moderate negative space. The scene is set on a simple wooden table, complemented by a neatly folded cotton napkin and traditional silver flatware. Natural, even lighting illuminates the dish, highlighting its rich colors and inviting textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread for dipping in the sauce.",
+      "Offer extra grated Parmesan cheese at the table.",
+      "Serve with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken and Pork Meatballs",
+    "ingredients": [
+      {
+        "name": "ground chicken",
+        "quantity": "300 g"
+      },
+      {
+        "name": "ground pork",
+        "quantity": "300 g"
+      },
+      {
+        "name": "breadcrumbs",
+        "quantity": "100 g"
+      },
+      {
+        "name": "large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "grated Parmesan cheese",
+        "quantity": "60 g"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "1/4 cup"
+      },
+      {
+        "name": "salt (for meatballs)",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "black pepper (for meatballs)",
+        "quantity": "1/4 teaspoon"
+      },
+      {
+        "name": "olive oil (for cooking meatballs)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "olive oil (for sauce)",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "small onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced (for sauce)",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "red pepper flakes (optional)",
+        "quantity": "1/4 teaspoon"
+      },
+      {
+        "name": "salt and black pepper (for sauce)",
+        "quantity": "to taste"
+      },
+      {
+        "name": "fresh basil, torn",
+        "quantity": "1/4 cup"
+      },
+      {
+        "name": "orecchiette pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "salt (for pasta water)",
+        "quantity": "for boiling"
+      }
+    ],
+    "instructions": [
+      "Prepare meatballs: In a large bowl, combine ground chicken, ground pork, breadcrumbs, egg, grated Parmesan, minced garlic, chopped parsley, salt, and pepper. Mix gently until just combined. Do not overmix.",
+      "Form meatballs: Roll mixture into 3-4 cm diameter balls. You should get about 20-24 meatballs.",
+      "Cook meatballs: Heat 2 tablespoons olive oil in a large deep skillet or Dutch oven over medium-high heat. Brown meatballs on all sides until golden. Do this in batches if necessary. Remove browned meatballs and set aside.",
+      "Start sauce: In the same skillet, add 1 tablespoon olive oil. Add diced onion and cook until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Simmer sauce: Pour in crushed tomatoes, dried oregano, and red pepper flakes (if using). Bring to a simmer. Season with salt and pepper.",
+      "Add meatballs to sauce: Gently return browned meatballs to the sauce. Reduce heat to low, cover, and simmer for at least 20-25 minutes, or until meatballs are cooked through (internal temperature 75°C). Stir in fresh basil during the last 5 minutes.",
+      "Cook pasta: While sauce simmers, bring a large pot of salted water to a rolling boil. Add orecchiette pasta and cook according to package directions until al dente.",
+      "Combine: Drain pasta. Add cooked pasta directly to the sauce with meatballs. Toss gently to coat.",
+      "Serve: Serve immediately, topped with extra grated Parmesan and a few fresh basil leaves."
+    ],
+    "notes": [
+      "Ensure meatballs reach an internal temperature of 75°C (167°F) for food safety.",
+      "Do not overmix the meatball mixture to keep them tender."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 1047,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 57.2,
+      "saturated_fat_g": 13,
+      "sodium_mg": 1382,
+      "total_carbs_g": 106.7,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 199,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 10.9,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 263,
+      "total_carbs_g": 20.3,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 25,
+      "protein": 114,
+      "saturated_fat": 65,
+      "sodium": 60,
+      "total_carbs": 39,
+      "total_fat": 54
+    },
+    "serving_size_g": 525.1,
+    "total_recipe_weight_g": 2100.5
+  },
+  {
+    "recipe_name": "Seared Scallop with Amaranth Polenta and Saffron Emulsion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_scallop_with_amaranth_polenta_and_saffron_emulsion_20250713_174946_5935d278.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T17:49:47.341155000Z",
+    "selected_ingredients": [
+      "amaranth flour"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "An elegant starter portion rests on a pristine round bone china plate, set against a luxurious white Carrara marble surface. The minimalist composition features two perfectly square amaranth polenta cakes, approximately 4 cm by 4 cm and soft beige. Three plump, perfectly seared sea scallops, boasting a deep golden-brown crust, are artfully clustered beside the polenta. A vibrant, sun-yellow pool of smooth saffron emulsion is spooned to the side, creating striking color contrast. A few delicate green microgreens are precisely placed near the scallops for freshness. Abundant white space surrounds the elements, emphasizing their beauty and the dish's sophisticated simplicity. Dramatic lighting casts soft shadows, highlighting texture and form. A crisp white linen napkin, folded into a precise triangle, enhances the fine-dining ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "N/A",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Scallop",
+    "ingredients": [
+      {
+        "name": "Amaranth flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "45 g"
+      },
+      {
+        "name": "Large sea scallops",
+        "quantity": "12"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.1 g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fish stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Microgreens",
+        "quantity": "Small handful"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Amaranth Polenta: Bring vegetable stock to a simmer. Slowly whisk in amaranth flour. Cook over medium-low heat, stirring constantly, for 15-20 minutes until thick. Stir in 30g butter and season with salt. Spread mixture evenly onto a parchment-lined tray to 1.5 cm thickness. Chill until firm, about 1 hour.",
+      "Prepare Saffron Emulsion: Sauté minced shallot in 15g butter until translucent. Deglaze with white wine, reduce by half. Add fish stock and saffron, simmer 5 minutes. Stir in heavy cream, reduce slightly. Whisk in remaining 30g butter until emulsified. Strain through a fine-mesh sieve. Keep warm.",
+      "Prepare Scallops: Remove chilled amaranth polenta from tray. Cut into 4 cm x 4 cm squares. Heat olive oil in a non-stick pan over high heat until shimmering. Pat scallops dry. Season with salt and pepper.",
+      "Sear Scallops: Place scallops in hot pan. Sear 2 minutes per side until deeply golden and caramelized. Do not overcrowd the pan; cook in batches if necessary. Scallops should be tender in the center.",
+      "Assemble Dish: Place two amaranth polenta squares slightly offset on each plate. Arrange three seared scallops artfully beside or on top of the polenta. Spoon a pool of warm saffron emulsion next to the scallops. Garnish with a few microgreens. Serve immediately."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 326.1,
+      "cholesterol_mg": 66.1,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 14.7,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 610.4,
+      "total_carbs_g": 23,
+      "total_fat_g": 19.7,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113.7,
+      "cholesterol_mg": 23.1,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 5.1,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 212.9,
+      "total_carbs_g": 8,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 22,
+      "dietary_fiber": 8,
+      "protein": 29,
+      "saturated_fat": 48,
+      "sodium": 27,
+      "total_carbs": 8,
+      "total_fat": 25
+    },
+    "serving_size_g": 287,
+    "total_recipe_weight_g": 1147
+  }
+]

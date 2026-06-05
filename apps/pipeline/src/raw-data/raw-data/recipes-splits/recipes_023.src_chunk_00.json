@@ -1,0 +1,640 @@
+[
+  {
+    "recipe_name": "Mediterranean Roasted Chicken with Herbs and Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_roasted_chicken_with_herbs_and_vegetables_20250624_105542_97e59025.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:55:42.504965000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "potato",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Roasted Chicken is presented on a clean, white round porcelain plate. A golden-brown roasted chicken thigh is the focal point. Surrounding it are rustic chunks of roasted potato, their edges slightly crisped. Bright red, bursting cherry tomatoes are scattered among the potatoes. Vivid green broccoli florets, tender-crisp, are nestled alongside the main components. The dish is lightly drizzled with pan juices. Fresh chopped parsley adds a vibrant green garnish. The plate is set on a simple wooden table, with a folded white cotton napkin and standard silver flatware. Natural, even lighting highlights the dish's textures and colors, creating an inviting, approachable restaurant aesthetic. The composition is balanced, showcasing quality ingredients and refined execution.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to absorb pan juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Wash potatoes. Cut larger new potatoes into halves or quarters. Keep smaller ones whole.",
+      "In a large bowl, combine potatoes, 30 ml olive oil, half the minced garlic, 3 g oregano, 3 g salt, and 1 g black pepper. Toss to coat.",
+      "Spread seasoned potatoes in a single layer on a large baking tray.",
+      "Roast for 20 minutes.",
+      "While potatoes roast, pat chicken thighs dry. In the same bowl, toss chicken with remaining olive oil, garlic, oregano, salt, and pepper.",
+      "After 20 minutes, remove tray from oven. Add chicken thighs and cherry tomatoes to the tray with the potatoes. Pour chicken broth over vegetables.",
+      "Return to oven. Roast for another 20-25 minutes. Chicken internal temperature must reach 75°C (167°F).",
+      "Steam broccoli florets until tender-crisp, about 5-7 minutes.",
+      "Remove tray from oven. Let chicken rest 5 minutes.",
+      "Serve chicken, potatoes, and tomatoes with steamed broccoli. Garnish with fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 554,
+      "cholesterol_mg": 169,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 43,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 696,
+      "total_carbs_g": 31.5,
+      "total_fat_g": 29.9,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 134,
+      "total_carbs_g": 6,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 22,
+      "protein": 86,
+      "saturated_fat": 31,
+      "sodium": 30,
+      "total_carbs": 11,
+      "total_fat": 38
+    },
+    "serving_size_g": 521.5,
+    "total_recipe_weight_g": 2086
+  },
+  {
+    "recipe_name": "Spicy Cuban-Style Shredded Beef",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_cuban-style_shredded_beef_20250624_105540_4be4779d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:55:41.119252000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "worcestershire sauce",
+      "chili",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of rich, reddish-brown shredded beef is piled centrally on a clean white porcelain dinner plate. The beef, tender from slow braising, glistens with its savory tomato-based sauce. Interspersed throughout the shredded beef are vibrant green bell pepper strips and thin slivers of red onion, cooked soft but still holding their form. A few bright red chili flakes are scattered over the top for a subtle visual pop. The dish is garnished with fresh, bright green cilantro leaves, adding a touch of freshness. A crisp lime wedge sits beside the beef. The plate is set on a simple wooden table surface, accompanied by a small white bowl of fluffy white rice and a white cotton napkin. Natural, even light illuminates the scene, creating a professional yet inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Cuban",
+    "cultural_serving_suggestions": [
+      "Serve with white rice and black beans.",
+      "Offer warm tortillas or plantains on the side."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast or flank steak",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, thinly sliced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper, thinly sliced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red bell pepper, thinly sliced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Serrano chili, finely diced (seeds optional for less heat)",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime, cut into wedges",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Pat beef dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear beef on all sides until deeply browned. Remove beef from pot. Set aside.",
+      "Add sliced onion and bell peppers to the pot. Sauté for 5-7 minutes until softened.",
+      "Stir in minced garlic and diced serrano chili. Cook for 1 minute until fragrant.",
+      "Return beef to the pot. Add crushed tomatoes, beef broth, Worcestershire sauce, cumin, oregano, and bay leaves.",
+      "Bring to a simmer. Reduce heat to low. Cover pot tightly.",
+      "Braise for 2.5-3 hours, or until beef is fork-tender. Check periodically to ensure liquid does not evaporate too much; add a splash of water or broth if needed.",
+      "Remove beef from pot. Shred with two forks.",
+      "Discard bay leaves from sauce. Simmer sauce over medium heat for 10-15 minutes, or until slightly thickened.",
+      "Return shredded beef to the sauce. Stir to combine. Season with additional salt and pepper if needed.",
+      "Garnish with fresh cilantro. Serve hot with lime wedges."
+    ],
+    "traditional_techniques": [
+      "Slow braising (estofado)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 776,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 66.9,
+      "saturated_fat_g": 16.3,
+      "sodium_mg": 405,
+      "total_carbs_g": 20.9,
+      "total_fat_g": 45.6,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 2.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 130,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 11.2,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 68,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 18,
+      "protein": 134,
+      "saturated_fat": 82,
+      "sodium": 18,
+      "total_carbs": 8,
+      "total_fat": 58
+    },
+    "serving_size_g": 598,
+    "total_recipe_weight_g": 2391
+  },
+  {
+    "recipe_name": "Skillet Roasted Chicken and Potatoes with Cheesy Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_skillet_roasted_chicken_and_potatoes_with_cheesy_tomatoes_20250624_105534_34f70263.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:55:34.826455000Z",
+    "selected_ingredients": [
+      "tomato",
+      "chicken",
+      "potato",
+      "bread",
+      "onion",
+      "garlic",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "easy cuisine",
+    "visual_description": "A single portion of Skillet Roasted Chicken and Potatoes with Cheesy Tomatoes is presented directly in a well-seasoned cast iron skillet. A golden-brown, whole roasted chicken thigh sits centrally, its crispy skin glistening. Around the chicken, roasted potato wedges display a light brown crust and tender interior. Scattered among them are vibrant red, halved cherry tomatoes, soft, caramelized thick onion slices, and whole smashed garlic cloves. A generous layer of melted, bubbly mozzarella cheese covers the tomatoes and onions, creating an inviting, gooey texture. The dish is garnished simply with fresh green chopped parsley, adding a pop of color. The skillet rests on a rustic, worn wooden dining table. A simple white ceramic plate is placed to the side, ready for serving. A casually draped linen napkin and a slice of crusty bread complete the homely, comforting scene. Warm, natural kitchen lighting illuminates the dish from above, highlighting its textures and inviting colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Home",
+    "hero_ingredient": "Roasted Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4"
+      },
+      {
+        "name": "Potatoes, Yukon Gold",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onion, large",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Shredded mozzarella cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "1 loaf"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season with half the salt, pepper, and oregano.",
+      "Wash potatoes. Cut potatoes into 2 cm wedges.",
+      "Peel onion. Cut onion into thick 2 cm slices.",
+      "Smash garlic cloves with the side of a knife.",
+      "Halve cherry tomatoes.",
+      "In a large oven-safe skillet or roasting pan, toss potato wedges with 30 ml olive oil, remaining salt, pepper, and oregano.",
+      "Place seasoned chicken thighs, skin-side up, among potatoes in the skillet.",
+      "Roast for 25 minutes. Chicken internal temperature must reach 75°C.",
+      "Remove skillet from oven. Add onion slices, smashed garlic, and halved cherry tomatoes to the skillet. Drizzle with remaining 30 ml olive oil.",
+      "Return to oven. Roast for another 15-20 minutes, or until chicken is cooked through and vegetables are tender.",
+      "Sprinkle shredded mozzarella cheese over the tomatoes and onions. Return to oven for 5 minutes, until cheese is melted and bubbly.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Garnish with fresh chopped parsley.",
+      "Serve directly from the skillet with slices of crusty bread."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 755,
+      "cholesterol_mg": 204,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 49.3,
+      "saturated_fat_g": 13,
+      "sodium_mg": 818,
+      "total_carbs_g": 31.9,
+      "total_fat_g": 48,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 183,
+      "cholesterol_mg": 49.5,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 11.9,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 198.2,
+      "total_carbs_g": 7.7,
+      "total_fat_g": 11.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 19,
+      "protein": 99,
+      "saturated_fat": 65,
+      "sodium": 36,
+      "total_carbs": 12,
+      "total_fat": 62
+    },
+    "serving_size_g": 413,
+    "total_recipe_weight_g": 1650
+  },
+  {
+    "recipe_name": "Arepas Rellenas con Pollo y Aguacate",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arepas_rellenas_con_pollo_y_aguacate_20250624_105518_b7e5103b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:55:18.860404000Z",
+    "selected_ingredients": [
+      "flour",
+      "corn",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown, pan-fried and baked arepa sits centrally on a clean white porcelain dinner plate. The arepa is carefully sliced open, revealing a generous, vibrant filling of creamy, roughly mashed avocado mixed with tender, shredded white chicken. Flecks of bright green cilantro and finely diced red onion are visible within the filling, adding color and texture. A crisp lime wedge rests beside the arepa, ready for squeezing. The overall presentation is inviting and authentic, highlighting the arepa's warm, inviting color and the fresh, rich filling. The plate is set on a simple wooden surface with a folded white cotton napkin to the side, under soft, natural lighting. The scene is uncluttered, focusing entirely on the appetizing, culturally rich main course.",
+    "number_of_servings": 4,
+    "cuisine_type": "Colombian",
+    "cultural_origin": "Colombian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while arepas are warm.",
+      "Often accompanied by aji (Colombian hot sauce) on the side.",
+      "Can be enjoyed for breakfast, lunch, or a light dinner."
+    ],
+    "hero_ingredient": "Arepas",
+    "ingredients": [
+      {
+        "name": "Masarepa (pre-cooked white corn meal)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Warm water",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ripe avocados",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2, small diced"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, juiced"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Place chicken breast in a pot. Cover with water and a pinch of salt. Bring to a boil, then reduce heat and simmer until internal temperature reaches 75°C (167°F). Remove chicken, let cool slightly, then shred into fine pieces.",
+      "In a medium bowl, mash avocados with a fork. Add diced red onion, chopped cilantro, lime juice, mayonnaise, salt, and pepper. Mix well to combine. Fold in the shredded chicken.",
+      "In a large bowl, combine masarepa, warm water, and salt. Mix with your hands until a soft, smooth dough forms. Knead for 2-3 minutes.",
+      "Divide the dough into 8 equal portions. Roll each portion into a ball, then flatten into a disc approximately 10 cm in diameter and 1.5 cm thick.",
+      "Heat vegetable oil in a large non-stick skillet over medium-high heat. Pan-fry arepas for 3-4 minutes per side until golden brown and a crust forms.",
+      "Preheat oven to 180°C (350°F). Transfer pan-fried arepas to a baking sheet. Bake for 15 minutes until fully cooked through and slightly puffed.",
+      "Carefully slice each warm arepa horizontally, creating a pocket. Do not cut completely through.",
+      "Generously fill each arepa pocket with the chicken and avocado mixture. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Kneading masarepa dough to achieve proper texture",
+      "Pan-frying then baking/grilling for a crispy exterior and soft interior"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 945.7,
+      "cholesterol_mg": 58.8,
+      "dietary_fiber_g": 13.5,
+      "protein_g": 35.8,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 1110.3,
+      "total_carbs_g": 108.9,
+      "total_fat_g": 42.5,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168.1,
+      "cholesterol_mg": 10.4,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 6.4,
+      "saturated_fat_g": 1,
+      "sodium_mg": 197.4,
+      "total_carbs_g": 19.4,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 0.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20,
+      "dietary_fiber": 48,
+      "protein": 72,
+      "saturated_fat": 27,
+      "sodium": 48,
+      "total_carbs": 40,
+      "total_fat": 55
+    },
+    "serving_size_g": 562.5,
+    "total_recipe_weight_g": 2250
+  },
+  {
+    "recipe_name": "Bell Pepper and Tomato Salad with Orange-Mustard Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bell_pepper_and_tomato_salad_with_orange-mustard_vinaigrette_20250624_105515_97a7808f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:55:16.500273000Z",
+    "selected_ingredients": [
+      "onion",
+      "mustard",
+      "chicken stock",
+      "bell pepper",
+      "tomato",
+      "orange"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous portion of colorful Bell Pepper and Tomato Salad is presented on a simple, well-used ceramic dinner plate. Roasted bell pepper strips, in shades of red, yellow, and orange, are scattered among diced crimson tomatoes and thinly sliced ruby-red onion half-rings. Bright orange segments glisten, adding a pop of citrus. The vegetables are lightly coated in a golden-yellow orange-mustard vinaigrette, which subtly pools at the bottom of the plate. Textures are varied: soft roasted peppers, juicy tomatoes, crisp onion, and tender orange. The salad is casually arranged, allowing components to overlap naturally, evoking a homely, unpretentious feel. The plate sits on a warm, rustic wooden dining table, under soft, inviting kitchen light, with a casually placed cloth napkin nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Bell peppers",
+        "quantity": "3 large (red, yellow, orange)"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 large ripe"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Oranges",
+        "quantity": "2"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "100g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh orange juice",
+        "quantity": "30ml (from oranges)"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Slice bell peppers into 1 cm strips. Toss with a drizzle of olive oil, salt, and pepper.",
+      "Spread bell peppers on a baking tray. Roast for 20-25 minutes until tender and slightly charred. Let cool.",
+      "Dice tomatoes into 1.5 cm cubes.",
+      "Thinly slice red onion into half-rings.",
+      "Cut oranges into segments (supremes) over a bowl to catch juice. Reserve juice for dressing.",
+      "In a small bowl, whisk together Dijon mustard, reserved orange juice, chicken stock, salt, and pepper.",
+      "Slowly drizzle in 60ml olive oil while whisking constantly until the dressing is emulsified.",
+      "In a large bowl, combine roasted bell pepper strips, diced tomatoes, thinly sliced red onion, and orange segments.",
+      "Pour dressing over the vegetables. Toss gently to coat all ingredients.",
+      "Arrange mixed salad greens on a platter or individual plates. Spoon the dressed bell pepper and tomato mixture over the greens.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 232,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 3.8,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 226,
+      "total_carbs_g": 23,
+      "total_fat_g": 14.9,
+      "total_sugars_g": 15.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 63,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 1,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 61,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 4,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 22.9,
+      "protein": 7.6,
+      "saturated_fat": 9.6,
+      "sodium": 9.8,
+      "total_carbs": 8.4,
+      "total_fat": 19.1
+    },
+    "serving_size_g": 372,
+    "total_recipe_weight_g": 1486
+  }
+]

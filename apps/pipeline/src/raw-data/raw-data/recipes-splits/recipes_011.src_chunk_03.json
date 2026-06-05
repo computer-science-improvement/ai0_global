@@ -1,0 +1,569 @@
+[
+  {
+    "recipe_name": "Creamy Tomato and Basil Risotto with Fresh Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_and_basil_risotto_with_fresh_mozzarella_20250707_053503_188c26db.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T05:35:03.912278000Z",
+    "selected_ingredients": [
+      "garlic",
+      "basil",
+      "tomato",
+      "mozzarella"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of creamy Tomato and Basil Risotto is presented in a wide, shallow white porcelain bowl. The risotto is spread naturally, showcasing its fluid consistency. Vibrant red from cooked tomatoes intermingles with the creamy white of the Arborio rice and melted fresh mozzarella. Irregularly torn pieces of fresh mozzarella are visible, some gently melting into the hot risotto, maintaining their soft, pliable texture. Bright green whole basil leaves are artfully placed on top, providing a fresh contrast. A subtle sheen of olive oil indicates the finishing touch. The setting is a modern bistro: a simple light wooden table surface, a single silver fork rests beside the bowl on a folded natural cotton napkin. The background is softly blurred, hinting at a casual, inviting restaurant atmosphere with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately. Risotto should not wait.",
+      "Offer a side of crusty ciabatta bread.",
+      "Accompany with a simple green salad dressed with extra virgin olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Fresh Mozzarella",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Ripe plum tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh mozzarella (fior di latte or buffalo)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable broth in a saucepan. Keep it simmering over low heat.",
+      "Dice shallot finely. Mince garlic cloves.",
+      "Blanch tomatoes in boiling water for 30 seconds. Transfer to ice bath. Peel, seed, and roughly chop tomatoes. Set aside.",
+      "Heat olive oil in a large, heavy-bottomed pan or Dutch oven over medium heat.",
+      "Add diced shallot. Sauté until translucent, about 3 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Toast the rice for 2 minutes, stirring constantly until edges are translucent (tostatura).",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add chopped tomatoes. Stir to combine.",
+      "Begin adding hot broth, one ladleful at a time. Stir constantly. Wait until each ladleful is almost fully absorbed before adding the next.",
+      "Continue stirring and adding broth for 18-20 minutes. The rice should be creamy yet al dente.",
+      "Remove from heat. Stir in cold butter cubes and grated Parmesan cheese (mantecatura).",
+      "Tear fresh mozzarella into irregular pieces. Gently fold into the risotto with most of the fresh basil leaves, torn or roughly chopped.",
+      "Season with salt and black pepper to taste. Let stand for 1 minute.",
+      "Serve immediately in warm bowls. Garnish with remaining whole basil leaves."
+    ],
+    "traditional_techniques": [
+      "Tostatura (toasting rice)",
+      "Mantecatura (creaming risotto with butter and cheese)"
+    ]
+  },
+  {
+    "recipe_name": "Baked Eggplant Melanzane with Fresh Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_eggplant_melanzane_with_fresh_mozzarella_20250707_053421_45b023fc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T05:34:22.006688000Z",
+    "selected_ingredients": [
+      "garlic",
+      "basil",
+      "tomato",
+      "mozzarella"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish presents as a rustic yet refined individual portion of Baked Eggplant Melanzane, served in a round, white ceramic gratin dish or carefully stacked on a clean white porcelain plate. Thick slices of tender, golden-brown baked eggplant are layered with vibrant, rich red tomato sauce and creamy, melted fresh mozzarella. The top layer of mozzarella is lightly bubbling and golden-edged, with hints of the deep red sauce peeking through. Scattered generously over the top are whole, bright green fresh basil leaves, providing a striking color contrast and aromatic freshness. A delicate drizzle of golden extra virgin olive oil glistens on the surface. The eggplant slices are approximately 1 cm thick, maintaining their shape. The overall presentation is warm, inviting, and showcases the natural colors of the ingredients. The dish is placed on a simple wooden table surface, accompanied by a folded white cotton napkin and a fork, suggesting a casual yet elegant Italian bistro setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian ciabatta bread for dipping into the rich tomato sauce.",
+      "A simple side salad with a light lemon-oregano vinaigrette complements the richness of the melanzane."
+    ],
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Large eggplants",
+        "quantity": "2"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh mozzarella (fior di latte or buffalo), sliced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "70g"
+      },
+      {
+        "name": "Parmesan cheese, grated (optional)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Slice eggplants into 1 cm thick rounds. Place slices in a colander, sprinkle generously with salt. Let drain 30 minutes to remove bitterness. Pat dry thoroughly with paper towels.",
+      "Preheat oven to 190°C.",
+      "Heat 60ml olive oil in a large non-stick pan over medium-high heat. Fry eggplant slices in batches until lightly golden and tender. Do not overcrowd the pan. Set aside on a plate lined with paper towels.",
+      "In a separate medium pot, heat remaining 40ml olive oil over medium heat. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Bring to a gentle simmer. Cook for 20 minutes, stirring occasionally, until sauce slightly thickens. Season with salt and pepper. Stir in half of the fresh basil leaves, torn.",
+      "Assemble the melanzane: Spread a thin layer of tomato sauce on the bottom of a large oven-safe baking dish or four individual ramekins. Arrange a single layer of fried eggplant slices over the sauce.",
+      "Top the eggplant with more tomato sauce, then a layer of fresh mozzarella slices. Sprinkle with some Parmesan cheese, if using, and a few torn basil leaves.",
+      "Repeat the layering process until all ingredients are used, finishing with a layer of sauce, mozzarella, and Parmesan on top.",
+      "Bake for 25-30 minutes, or until the cheese is melted, bubbly, and golden-brown. The sauce should be simmering at the edges.",
+      "Remove from oven. Let rest 5 minutes. Garnish with remaining fresh basil leaves before serving."
+    ],
+    "notes": [
+      "For best results, use high-quality San Marzano tomatoes for the sauce and fresh fior di latte or buffalo mozzarella."
+    ],
+    "traditional_techniques": [
+      "Salting eggplant to remove excess water and bitterness",
+      "Slow-simmering tomato sauce for depth of flavor"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 493,
+      "cholesterol_mg": 50.6,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 19.9,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 818.3,
+      "total_carbs_g": 20.7,
+      "total_fat_g": 38.3,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107.8,
+      "cholesterol_mg": 11.1,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 4.4,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 179.1,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 25,
+      "dietary_fiber": 26,
+      "protein": 40,
+      "saturated_fat": 63,
+      "sodium": 36,
+      "total_carbs": 8,
+      "total_fat": 49
+    },
+    "serving_size_g": 457,
+    "total_recipe_weight_g": 1828
+  },
+  {
+    "recipe_name": "Tomato Consommé Gelée, Parmesan Crème, and Oscietra Caviar",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato_consomm%C3%A9_gel%C3%A9e%2C_parmesan_cr%C3%A8me%2C_and_oscietra_caviar_20250707_052151_2472d441.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T05:21:51.665516000Z",
+    "selected_ingredients": [
+      "caviar",
+      "cheese",
+      "tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single portion is meticulously plated on a pristine white Carrara marble surface, using a modern designer bone china plate with abundant negative space. A translucent, shimmering square of ruby-red tomato consommé gelée is precisely placed. Delicately atop the gelée rests a cloud-like, airy quenelle of pale ivory Parmesan crème. Crowned upon the crème is a generous, glistening mound of dark Oscietra caviar, its eggs distinct. A few precise drops of vibrant green chive oil are artfully dotted around. A tiny sprig of micro basil adds a final delicate touch. The presentation embodies extreme minimalism and sophisticated restraint, with each purposeful element impeccably executed. Dramatic lighting highlights textures. A crisp white linen napkin, folded precisely, complements the scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Oscietra Caviar",
+    "ingredients": [
+      {
+        "name": "Heirloom tomatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "Pinch (optional)"
+      },
+      {
+        "name": "Parmesan Reggiano, finely grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Full-fat cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "50g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Oscietra Caviar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Micro basil or micro chives",
+        "quantity": "(optional)"
+      }
+    ],
+    "instructions": [
+      "Prepare Tomato Consommé: Blend quartered tomatoes with salt until smooth. Do not add water. Place tomato mixture in a fine-mesh sieve lined with cheesecloth over a bowl. Refrigerate for at least 8 hours, or overnight, to slowly drip and extract clear consommé. Do not press. Yield approximately 300ml clear consommé.",
+      "Make Tomato Consommé Gelée: Measure 300ml of clear tomato consommé. In a small saucepan, whisk agar-agar with 50ml water until dissolved. Bring to a simmer, whisking constantly for 1 minute. Pour hot agar-agar mixture into the measured tomato consommé, whisking vigorously to combine. Taste and adjust with a tiny pinch of sugar if needed. Pour the mixture into shallow trays (approx. 0.5 cm thick) and refrigerate until fully set, about 1-2 hours. Once set, cut the gelée into precise 5x5 cm squares or use a round cutter to create disks. Keep refrigerated.",
+      "Prepare Parmesan Crème: Combine grated Parmesan, cream, and milk in a small saucepan. Heat gently over low heat, stirring constantly, until Parmesan is fully melted and incorporated. Do not boil. Strain the mixture through a very fine-mesh sieve. Season with a pinch of white pepper. Pour into a siphon bottle if using, charge with N2O, and keep warm in a bain-marie. Alternatively, cool slightly and whisk vigorously until light and airy just before serving.",
+      "Make Chive Oil: Blanch chives in boiling water for 10 seconds, then immediately transfer to ice water. Drain chives well and pat very dry. Blend chives with olive oil and salt in a high-speed blender until perfectly smooth and vibrant green. Strain through a coffee filter or superbag for crystal-clear oil.",
+      "Assemble and Plate (Per Serving): Place one precise square or disk of tomato consommé gelée slightly off-center on a pristine white plate, leaving ample negative space. Dispense a delicate, airy quenelle or cloud of warm Parmesan crème on top of or immediately adjacent to the gelée. Gently place a generous quenelle (approx. 10-12g) of Oscietra Caviar atop the Parmesan crème. Carefully dot 3-4 drops of vibrant green chive oil around the elements on the plate for visual accent. Add a single tiny sprig of micro basil or micro chive for a final touch, if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 530,
+      "cholesterol_mg": 148.1,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 16.4,
+      "saturated_fat_g": 17.1,
+      "sodium_mg": 1154.1,
+      "total_carbs_g": 14.7,
+      "total_fat_g": 47,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 136.6,
+      "cholesterol_mg": 38.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 4.2,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 297.5,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 12.1,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.4,
+      "dietary_fiber": 13.2,
+      "protein": 32.7,
+      "saturated_fat": 85.5,
+      "sodium": 50.2,
+      "total_carbs": 5.3,
+      "total_fat": 60.3
+    },
+    "serving_size_g": 388,
+    "total_recipe_weight_g": 1552
+  },
+  {
+    "recipe_name": "Labneh with Roasted Cherry Tomatoes and Pine Nuts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_labneh_with_roasted_cherry_tomatoes_and_pine_nuts_20250707_050045_584aa46e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T05:00:46.157807000Z",
+    "selected_ingredients": [
+      {
+        "name": "basil"
+      },
+      {
+        "name": "olive"
+      },
+      {
+        "name": "pine nut"
+      },
+      {
+        "name": "tomato"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Lebanese",
+    "visual_description": "Labneh is spread across a simple, round, off-white ceramic plate, forming a creamy white base. Roasted cherry tomatoes, halved and quartered, appear slightly collapsed and deep red, spooned generously over the labneh, some nestled into its folds. Roughly chopped black Kalamata olives are scattered among the tomatoes, adding dark accents. Golden toasted pine nuts are sprinkled over the entire dish, providing a contrasting crunch and color. Fresh green basil leaves, roughly chopped, are scattered for a vibrant, fresh garnish. A light drizzle of golden olive oil glistens on top. The dish rests on a well-used light wooden dining table. Beside it, warm pita bread, cut into triangles, is casually arranged in a small rustic woven basket. A small, simple ceramic bowl holds extra olives. A casual, folded linen napkin in a neutral tone is nearby. Warm, inviting light from a kitchen window illuminates the scene, creating a homely atmosphere. The background is a blurred, lived-in kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Lebanese",
+    "cultural_origin": "Lebanese",
+    "cultural_serving_suggestions": [
+      "Served with warm pita bread for scooping",
+      "Often accompanied by fresh vegetables like cucumber and mint"
+    ],
+    "hero_ingredient": "Labneh",
+    "ingredients": [
+      {
+        "name": "Labneh",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Kalamata Olives",
+        "quantity": "100g pitted"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "30g"
+      },
+      {
+        "name": "Pine Nuts",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Za'atar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Pita Bread",
+        "quantity": "2-3 pieces"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Wash cherry tomatoes. Halve small tomatoes. Quarter larger ones. Place on baking sheet.",
+      "Mince garlic. Add to tomatoes.",
+      "Drizzle tomatoes with 15ml olive oil. Season with salt, pepper, and za'atar. Toss to coat.",
+      "Roast tomatoes 20-25 minutes. They should be soft and slightly collapsed. Cool.",
+      "Heat small pan over medium-low heat. Add pine nuts. Toast, stirring constantly, until golden brown. Watch carefully to prevent burning. Remove from pan immediately.",
+      "Roughly chop pitted Kalamata olives.",
+      "Wash basil. Pat dry. Roughly chop leaves.",
+      "Spread labneh evenly on a shallow serving plate or in individual bowls. Create a slight well in the center.",
+      "Spoon roasted tomatoes over labneh.",
+      "Scatter chopped olives and toasted pine nuts over tomatoes.",
+      "Sprinkle fresh basil over the dish.",
+      "Drizzle with remaining 15ml olive oil.",
+      "Serve immediately with warm pita bread."
+    ],
+    "traditional_techniques": [
+      "Toasting pine nuts",
+      "Spreading labneh for dipping"
+    ]
+  },
+  {
+    "recipe_name": "Beetroot and Seared Scallop Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beetroot_and_seared_scallop_risotto_20250707_045341_6dc5d03a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T04:53:41.716901000Z",
+    "selected_ingredients": [
+      "beet",
+      "scallop",
+      "rice",
+      "onion",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of vibrant beetroot risotto is centrally plated on a clean, round white porcelain dinner plate. The risotto is a rich, earthy crimson, creamy and fluid, not molded or dry, with visible small cubes of darker roasted beetroot and flecks of minced red chili. It maintains a natural, flowing mound. Four perfectly seared scallops, golden-brown and caramelized on top and bottom, with opaque white centers, are placed purposefully on the risotto, slightly overlapping but not fanned. A light drizzle of bright green chopped fresh parsley scatters across the dish, providing a fresh contrast. The setting is a modern bistro: the plate rests on a simple, warm-toned wooden table surface. A neatly folded white cotton napkin is placed to the left. A standard set of silver flatware (fork and knife) is positioned beside the plate. Natural, even lighting illuminates the dish, highlighting its colors and textures. The background is softly blurred, hinting at a casual restaurant atmosphere, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately.",
+      "Pair with a crisp Pinot Grigio or light-bodied red wine."
+    ],
+    "hero_ingredient": "Scallop",
+    "ingredients": [
+      {
+        "name": "Arborio Rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Fresh Scallops",
+        "quantity": "16 large"
+      },
+      {
+        "name": "Beetroots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red Chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Roast beetroots: Preheat oven to 200°C. Wash and trim beetroots. Wrap individually in foil. Roast for 45-60 minutes until tender. Let cool. Peel and dice into 1 cm cubes.",
+      "Prepare aromatics: Finely dice the red onion. Mince the red chili.",
+      "Start risotto: Heat 15 ml olive oil and 20 g butter in a large, heavy-bottomed pan over medium heat. Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add rice: Add Arborio rice to the pan. Stir for 2 minutes until grains are translucent at edges.",
+      "Deglaze: Pour in white wine. Stir until completely absorbed.",
+      "Add broth: Add one ladle of hot vegetable broth. Stir constantly until liquid is absorbed. Continue adding broth, one ladle at a time, stirring frequently, allowing each addition to be absorbed before adding more. This takes about 18-20 minutes.",
+      "Incorporate beet: After 15 minutes of broth additions, stir in diced roasted beetroot and minced chili. Continue adding broth until risotto is creamy and rice is al dente.",
+      "Finish risotto: Remove from heat. Stir in remaining 40 g butter and grated Parmesan cheese. Season with salt and pepper. Stir vigorously for 1 minute until creamy.",
+      "Sear scallops: While risotto finishes, pat scallops very dry with paper towels. Season with salt and pepper. Heat remaining 15 ml olive oil in a separate pan over high heat until smoking. Add scallops in a single layer. Sear for 2 minutes per side until golden-brown and caramelized. Do not overcrowd the pan; cook in batches if necessary.",
+      "Plate: Ladle creamy risotto onto individual plates. Arrange 4 seared scallops on top of each serving. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 690,
+      "cholesterol_mg": 77,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 27.2,
+      "saturated_fat_g": 12.4,
+      "sodium_mg": 2140,
+      "total_carbs_g": 82,
+      "total_fat_g": 26.2,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93,
+      "cholesterol_mg": 10,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 3.7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 289,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26,
+      "dietary_fiber": 15,
+      "protein": 54,
+      "saturated_fat": 62,
+      "sodium": 93,
+      "total_carbs": 30,
+      "total_fat": 34
+    },
+    "serving_size_g": 739.3,
+    "total_recipe_weight_g": 2957
+  }
+]

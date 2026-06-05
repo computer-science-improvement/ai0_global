@@ -1,0 +1,720 @@
+[
+  {
+    "recipe_name": "Braised Beef with Wild Mushroom Ragu and Saffron Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_wild_mushroom_ragu_and_saffron_rice_20250624_142123_6aabdc40.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:21:23.820452000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "mushroom",
+      "rice",
+      "garlic",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Braised Beef with Wild Mushroom Ragu and Saffron Rice is presented on a clean, round white porcelain dinner plate. Dark brown braised beef chunks are nestled within a vibrant, rustic red tomato and wild mushroom ragu, showcasing tender beef and earthy, quartered cremini mushrooms. The sauce has a slight sheen. Adjacent, a neat mound of fluffy, pale yellow saffron rice provides contrasting color and texture. Bright green, chopped flat-leaf parsley garnishes the ragu. The plate sits on a simple, light-colored wooden table, characteristic of a modern bistro. Standard silver flatware and a folded white cotton napkin complete the setting. Natural, even light illuminates the dish, highlighting its comforting, refined appearance. The entire plate is visible, with moderate negative space, creating a professional, approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crusty baguette for dipping in the ragu."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef Chuck",
+        "quantity": "800 g, cut into 4-5 cm chunks"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Brown Onion",
+        "quantity": "1 large (approx. 200 g), diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "300 g, quartered"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Long Grain Rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Saffron Threads",
+        "quantity": "A pinch (about 10-15 threads)"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear beef in batches until browned on all sides. Remove beef and set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and quartered mushrooms. Cook for 5 minutes until mushrooms soften and release moisture.",
+      "Deglaze the pot with red wine, scraping up any browned bits. Simmer for 2 minutes.",
+      "Return beef to the pot. Add crushed tomatoes, beef broth, thyme sprigs, and bay leaf. Bring to a simmer.",
+      "Cover the pot and transfer to a preheated oven at 160°C. Braise for 2.5 to 3 hours, or until beef is very tender.",
+      "While beef braises, prepare saffron rice. Rinse rice under cold water until clear.",
+      "In a medium saucepan, bring 600 ml water to a boil with a pinch of salt. Add saffron threads.",
+      "Add rinsed rice to the boiling water. Reduce heat to low, cover, and cook for 15-18 minutes, or until water is absorbed and rice is tender.",
+      "Remove from heat. Let stand covered for 5 minutes. Fluff with a fork and stir in butter.",
+      "Once beef is tender, remove thyme sprigs and bay leaf from the ragu. Adjust seasoning if needed.",
+      "To serve, spoon a portion of saffron rice onto each plate. Ladle generous amounts of braised beef ragu next to the rice. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 970.68,
+      "cholesterol_mg": 176.06,
+      "dietary_fiber_g": 5.41,
+      "protein_g": 61.6,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 806.81,
+      "total_carbs_g": 81.5,
+      "total_fat_g": 37.21,
+      "total_sugars_g": 8.58,
+      "trans_fat_g": 1.32
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113.72,
+      "cholesterol_mg": 20.62,
+      "dietary_fiber_g": 0.63,
+      "protein_g": 7.22,
+      "saturated_fat_g": 1.58,
+      "sodium_mg": 94.52,
+      "total_carbs_g": 9.55,
+      "total_fat_g": 4.36,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.15
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.7,
+      "dietary_fiber": 19.3,
+      "protein": 123.2,
+      "saturated_fat": 67.5,
+      "sodium": 35.1,
+      "total_carbs": 29.6,
+      "total_fat": 47.7
+    },
+    "serving_size_g": 853.61,
+    "total_recipe_weight_g": 3414.45
+  },
+  {
+    "recipe_name": "Crab Stuffed Pasta Shells with Cherry Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crab_stuffed_pasta_shells_with_cherry_tomato_sauce_20250624_142115_6811705b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:21:16.309922000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "bell pepper",
+      "cherry",
+      "pineapple",
+      "crab"
+    ],
+    "complexity": "simple",
+    "special_requests": "Russian cuisine",
+    "visual_description": "A single portion of Crab Stuffed Pasta Shells is presented on a simple, everyday ceramic plate with a natural, slightly uneven finish, resting on a well-used wooden dining table. Three to four large, plump pasta shells, generously filled with a creamy, pale orange crab and bell pepper mixture, are nestled in a rich, vibrant red cherry tomato sauce. The sauce, which has a natural, slightly rustic consistency, pools around the shells and is also drizzled lightly over them, showcasing small, soft pieces of tomato and cherry. A prominent, inviting dollop of thick, white sour cream is placed on top of one of the shells or beside them, contrasting with the red sauce. Fresh, bright green dill sprigs are casually scattered over the sour cream and the shells, providing a pop of color and an authentic Russian touch. The overall plating is natural and unpretentious, reflecting a comforting, home-cooked meal. The scene is lit with warm, soft light, evoking a cozy family kitchen atmosphere. A simple metal fork rests beside the plate. The background is minimal, featuring hints of other kitchen elements like a folded cloth napkin, maintaining a homely, lived-in feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Large pasta shells (Conchiglioni)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned crab meat, drained",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium (approx. 200 g)"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh or frozen pitted cherries",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Canned crushed pineapple, drained",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium (approx. 150 g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Cream cheese or ricotta",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Sour cream (Smetana)",
+        "quantity": "200 g (50 g for stuffing, 150 g for serving)"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "1 teaspoon (optional, for sauce)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Cook pasta shells according to package directions until al dente. Drain and rinse with cold water to prevent sticking. Set aside.",
+      "For the stuffing: Dice half of the onion and half of the bell pepper into small cubes. Heat 1 tablespoon of vegetable oil in a pan over medium heat. Sauté diced onion and bell pepper until softened, about 5-7 minutes.",
+      "In a medium bowl, combine drained crab meat, sautéed onion and bell pepper, cream cheese, 50 g sour cream, and half of the chopped fresh dill. Season with salt and black pepper. Mix well.",
+      "For the sauce: Dice the remaining half of the onion and bell pepper into small cubes. Mince garlic. Heat remaining 1 tablespoon of vegetable oil in a large saucepan over medium heat.",
+      "Sauté diced onion and bell pepper until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes, pitted cherries, and drained crushed pineapple. Bring to a simmer. Season with salt, black pepper, and optional sugar to balance acidity. Simmer for 10-15 minutes, allowing flavors to meld and sauce to thicken slightly.",
+      "Carefully stuff each cooked pasta shell with the crab mixture. Do not overfill.",
+      "Pour half of the cherry tomato sauce into the bottom of a 20x30 cm baking dish. Arrange stuffed pasta shells in a single layer over the sauce. Pour remaining sauce over the shells.",
+      "Bake for 15-20 minutes, or until heated through and bubbling gently.",
+      "Serve immediately. Garnish each portion with a generous dollop of remaining sour cream and a sprinkle of fresh chopped dill."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 673,
+      "cholesterol_mg": 84,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 25.4,
+      "saturated_fat_g": 11.7,
+      "sodium_mg": 361,
+      "total_carbs_g": 73,
+      "total_fat_g": 27.3,
+      "total_sugars_g": 17.1,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 148,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 5.6,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 79,
+      "total_carbs_g": 16.1,
+      "total_fat_g": 6,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 22.1,
+      "protein": 50.8,
+      "saturated_fat": 58.5,
+      "sodium": 15.7,
+      "total_carbs": 26.5,
+      "total_fat": 35
+    },
+    "serving_size_g": 454,
+    "total_recipe_weight_g": 1817
+  },
+  {
+    "recipe_name": "Pan-Seared Cod with Cherry Tomato Confit and Beef-Tomato Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_cod_with_cherry_tomato_confit_and_beef-tomato_jus_20250624_142041_cd2a8cbf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:20:41.521042000Z",
+    "selected_ingredients": [
+      "cod",
+      "tomato",
+      "garlic",
+      "olive oil",
+      "beef stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared cod fillet rests centrally on a clean white porcelain plate, its golden-brown, crispy skin providing textural contrast. Beneath and around the cod, a rich, glossy beef-tomato jus forms a vibrant pool, its deep reddish-brown hue complementing the fish. Scattered artfully around the cod are halved, roasted cherry tomatoes, their skins slightly blistered and caramelized, showcasing shades of deep red and orange. Bright green fresh basil leaves are strategically placed, offering a pop of color and freshness, alongside a scattering of briny capers. The arrangement is balanced and organic, with ample negative space. The dish sits on a simple wooden table, illuminated by natural, even lighting, hinting at a modern bistro setting. A neatly folded cotton napkin and standard flatware complete the minimalist, elegant presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty artisanal bread to dip into the rich jus."
+    ],
+    "hero_ingredient": "Cod",
+    "ingredients": [
+      {
+        "name": "Cod fillets",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Capers",
+        "quantity": "20g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Halve cherry tomatoes. Thinly slice 4 garlic cloves.",
+      "Combine halved tomatoes, sliced garlic, 50ml olive oil, salt, and pepper in an oven-safe dish. Roast for 45-60 minutes until soft and slightly caramelized.",
+      "Finely dice shallots and remaining 2 garlic cloves. In a small saucepan, heat 10ml olive oil over medium heat. Sauté diced shallots until translucent.",
+      "Add diced garlic to the saucepan. Cook for 1 minute until fragrant.",
+      "Deglaze the pan with white wine. Reduce liquid by half.",
+      "Add beef stock and 100g of the roasted cherry tomatoes (from confit) to the saucepan. Simmer for 10-15 minutes, reducing slightly.",
+      "Strain the jus through a fine-mesh sieve into a clean pan. Press solids to extract all liquid. Discard solids.",
+      "Pat cod fillets dry with paper towels. Season generously with salt and black pepper on both sides.",
+      "Heat remaining 40ml olive oil in a large non-stick pan over medium-high heat.",
+      "Carefully place cod fillets into the hot pan, skin-side down (if skin-on) or presentation-side down. Sear for 4-5 minutes until golden brown and crispy.",
+      "Flip the cod fillets. Cook for another 3-4 minutes until cooked through and flaky. The internal temperature should reach 63°C.",
+      "Remove the jus from heat. Whisk in the unsalted butter until emulsified and glossy.",
+      "To plate, spoon a generous amount of the beef-tomato jus onto the center of each plate. Place a pan-seared cod fillet on top of the jus.",
+      "Arrange the remaining roasted cherry tomato confit artfully around the cod. Garnish with fresh basil leaves and a sprinkle of capers. Serve immediately."
+    ],
+    "notes": [
+      "Ensure the cod is cooked just until flaky to prevent it from drying out. The internal temperature should be 63°C (145°F).",
+      "Adjust the amount of capers based on desired brininess."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Confit (slow roasting in oil)",
+      "Reduction (for jus)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 463,
+      "cholesterol_mg": 94,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 35.1,
+      "saturated_fat_g": 7.3,
+      "sodium_mg": 803,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 30.8,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 186,
+      "total_carbs_g": 2.2,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 8,
+      "protein": 70,
+      "saturated_fat": 37,
+      "sodium": 35,
+      "total_carbs": 4,
+      "total_fat": 39
+    },
+    "serving_size_g": 431.5,
+    "total_recipe_weight_g": 1726
+  },
+  {
+    "recipe_name": "Skillet Chicken with Creamy Mushroom Sauce and Roasted Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_skillet_chicken_with_creamy_mushroom_sauce_and_roasted_potatoes_20250624_142032_e9194977.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:20:32.603074000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, hearty portion of Skillet Chicken with Creamy Mushroom Sauce and Roasted Potatoes is presented on a simple, off-white ceramic plate with a rustic edge, resting on a warm-toned wooden dining table. Golden-brown, pan-seared chicken thighs, cut into thick, rustic pieces, are nestled beside a generous mound of roasted potato chunks. The potatoes, 2cm cubes, display a golden, slightly crispy exterior. A rich, creamy beige mushroom sauce, studded with tender, sliced mushrooms, is generously spooned over both components. A vibrant sprinkle of fresh green chopped parsley garnishes the dish. The scene is illuminated by soft, natural kitchen light, creating a cozy family meal atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "0.5 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash potatoes. Cut into 2cm cubes. Toss with 1 tablespoon olive oil, 1 teaspoon salt, 0.5 teaspoon black pepper, and 0.5 teaspoon dried thyme. Spread in a single layer on a baking tray. Roast for 25-30 minutes, or until tender and golden brown.",
+      "Pat chicken thighs dry. Season with 1 teaspoon salt and 0.5 teaspoon black pepper.",
+      "Heat 1 tablespoon olive oil in a large skillet over medium-high heat. Sear chicken thighs for 5-7 minutes per side until golden brown and cooked through. Ensure internal temperature reaches 75°C (167°F). Remove chicken from skillet. Rest on a cutting board.",
+      "Melt 15g butter in the same skillet over medium heat. Add the diced onion. Cook for 3-4 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms. Cook for 5-7 minutes until softened and browned.",
+      "Stir in 1 tablespoon flour. Cook for 1 minute.",
+      "Gradually whisk in 200ml chicken broth. Bring to a simmer.",
+      "Stir in 200ml heavy cream. Simmer for 5-7 minutes until sauce thickens. Season with salt and pepper to taste.",
+      "Slice rested chicken thighs into thick, rustic pieces.",
+      "Serve sliced chicken over roasted potatoes. Spoon creamy mushroom sauce generously over chicken and potatoes. Garnish with chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 710.8,
+      "cholesterol_mg": 256.56,
+      "dietary_fiber_g": 6.16,
+      "protein_g": 35.78,
+      "saturated_fat_g": 18.35,
+      "sodium_mg": 222.12,
+      "total_carbs_g": 45.66,
+      "total_fat_g": 42.95,
+      "total_sugars_g": 6.79,
+      "trans_fat_g": 0.78
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120.73,
+      "cholesterol_mg": 43.58,
+      "dietary_fiber_g": 1.05,
+      "protein_g": 6.08,
+      "saturated_fat_g": 3.12,
+      "sodium_mg": 37.73,
+      "total_carbs_g": 7.76,
+      "total_fat_g": 7.29,
+      "total_sugars_g": 1.15,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85.5,
+      "dietary_fiber": 22,
+      "protein": 71.6,
+      "saturated_fat": 91.8,
+      "sodium": 9.7,
+      "total_carbs": 16.6,
+      "total_fat": 55.1
+    },
+    "serving_size_g": 588.75,
+    "total_recipe_weight_g": 2355
+  },
+  {
+    "recipe_name": "Spicy Thai Turkey Larb",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_thai_turkey_larb_20250624_142025_0fc54507.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:20:26.576252000Z",
+    "selected_ingredients": [
+      "milk",
+      "egg",
+      "greek yogurt",
+      "chicken stock",
+      "mincemeat",
+      "chicken",
+      "beef",
+      "turkey",
+      "spinach",
+      "carrot",
+      "banana",
+      "apple",
+      "avocado",
+      "tomato",
+      "rice",
+      "bread",
+      "onion",
+      "cucumber",
+      "coriander",
+      "garlic",
+      "ginger",
+      "chili",
+      "lime",
+      "coconut oil",
+      "olive oil",
+      "butter",
+      "maple syrup",
+      "honey",
+      "peanut butter",
+      "coconut cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "Thai cuisine, make turkey mince the main protein",
+    "visual_description": "A vibrant single portion of Spicy Thai Turkey Larb presented on a clean white porcelain dinner plate, set on a simple wooden table surface. The Larb is piled centrally, a mound of finely crumbled, cooked turkey mince infused with chopped red onion, green spring onion, bright green coriander, and fresh mint leaves. Scattered throughout are thinly sliced red chilies, adding pops of vibrant color and a hint of heat. The texture is a mix of tender mince and crisp fresh herbs. Beside the Larb, a small, perfectly formed dome of fluffy white jasmine rice. Arranged neatly around the main dish are fresh, crisp green lettuce cups and thinly sliced cucumber rounds, providing a cool contrast. A bright lime wedge sits ready for squeezing. The setting features a simple cotton napkin beside the plate, and subtle background elements suggesting a modern bistro, all illuminated by natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with fresh sticky rice or jasmine rice.",
+      "Offer additional fresh herbs like basil or mint on the side.",
+      "Serve with raw vegetables such as cabbage wedges, long beans, or cucumber slices.",
+      "Traditionally eaten family-style, allowing diners to scoop from a central bowl."
+    ],
+    "hero_ingredient": "Turkey mince",
+    "ingredients": [
+      {
+        "name": "Turkey mince",
+        "quantity": "500g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small, thinly sliced"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "1/2 cup, chopped"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "1/2 cup, chopped"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "3, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Fresh red chilies",
+        "quantity": "2-3, thinly sliced (adjust to taste)"
+      },
+      {
+        "name": "Lime",
+        "quantity": "2, juiced"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Palm sugar (or brown sugar)",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Roasted rice powder (Khao Khua)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1/2, sliced"
+      },
+      {
+        "name": "Lettuce leaves",
+        "quantity": "1 head, for serving"
+      },
+      {
+        "name": "Cooked Jasmine rice",
+        "quantity": "for serving (4 portions)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pan over medium heat. Add minced garlic. Sauté until fragrant, about 30 seconds.",
+      "Add turkey mince to the pan. Break it apart with a spoon. Add 2 tablespoons of water. Cook, stirring frequently, until turkey is fully cooked and browned, about 8-10 minutes. Ensure internal temperature reaches 75°C.",
+      "Remove cooked turkey from heat. Transfer to a large mixing bowl.",
+      "Add sliced red onion, sliced spring onions, chopped fresh chilies, chopped coriander, and chopped mint leaves to the bowl with the turkey.",
+      "In a small bowl, whisk together lime juice, fish sauce, and palm sugar until sugar dissolves.",
+      "Pour the dressing over the turkey mixture. Add roasted rice powder.",
+      "Toss gently to combine all ingredients. Taste and adjust seasoning if needed.",
+      "Serve immediately with fresh lettuce leaves, cucumber slices, and a side of jasmine rice."
+    ],
+    "traditional_techniques": [
+      "Yum (Thai salad technique involving balancing flavors)",
+      "Roasting and grinding glutinous rice for Khao Khua (roasted rice powder)",
+      "Balancing the five fundamental Thai flavors: spicy, sour, salty, sweet, and bitter"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.97,
+      "calories": 475.42,
+      "cholesterol_mg": 93.75,
+      "dietary_fiber_g": 3.486,
+      "protein_g": 35.372,
+      "saturated_fat_g": 2.902,
+      "sodium_mg": 1168.975,
+      "total_carbs_g": 59.043,
+      "total_fat_g": 12.43,
+      "total_sugars_g": 4.24,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.192,
+      "calories": 93.96,
+      "cholesterol_mg": 18.52,
+      "dietary_fiber_g": 0.689,
+      "protein_g": 6.991,
+      "saturated_fat_g": 0.574,
+      "sodium_mg": 230.92,
+      "total_carbs_g": 11.668,
+      "total_fat_g": 2.456,
+      "total_sugars_g": 0.838,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31.25,
+      "dietary_fiber": 12.45,
+      "protein": 70.74,
+      "saturated_fat": 14.51,
+      "sodium": 50.82,
+      "total_carbs": 21.47,
+      "total_fat": 15.94
+    },
+    "serving_size_g": 506,
+    "total_recipe_weight_g": 2024
+  }
+]

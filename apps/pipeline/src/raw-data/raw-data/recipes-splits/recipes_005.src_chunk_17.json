@@ -1,0 +1,697 @@
+[
+  {
+    "recipe_name": "Braised Beef Short Ribs with Apple and Cocoa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_092157_8fd35f6a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-05T09:21:58.453430000Z",
+    "selected_ingredients": [
+      "beef",
+      "chocolate",
+      "apple"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features a single, large bone-in beef short rib chunk centrally on a wide white porcelain plate. The beef is dark and glossy, coated in a mahogany cocoa-cider reduction. Beside the beef are two thick roasted apple wedges showing slight caramelization. Three carrot batons are arranged neatly alongside. The sauce is spooned over the meat, pooling at the base. A single sprig of fresh thyme rests on top. The background is a dark wood bistro table with a folded white cotton napkin and simple stainless steel flatware. Natural side lighting highlights the velvety sauce and the grain of the whole beef chunk.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "cultural_origin": "French-American Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of dry hard cider",
+      "Accompany with crusty sourdough bread"
+    ],
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Beef short ribs, bone-in chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Granny Smith apples, thick wedges",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "20g"
+      },
+      {
+        "name": "Dry apple cider",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Carrots, cut into batons",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season beef chunks with salt and pepper.",
+      "Heat oil in a large heavy-bottomed pot.",
+      "Sear beef on all sides until dark brown.",
+      "Remove beef and set aside.",
+      "Add diced onions and carrot batons to the pot.",
+      "Sauté vegetables for 5 minutes.",
+      "Stir in minced garlic and cocoa powder.",
+      "Cook for 1 minute until fragrant.",
+      "Deglaze pot with apple cider.",
+      "Add beef stock and thyme sprigs.",
+      "Place beef back into the pot.",
+      "Cover and simmer on low heat for 2.5 hours.",
+      "Add apple wedges during the final 20 minutes.",
+      "Remove beef, apples, and carrots.",
+      "Boil liquid over high heat to reduce by half.",
+      "Return beef and vegetables to the sauce to coat."
+    ],
+    "notes": [
+      "Ensure cocoa powder is unsweetened to maintain savory balance.",
+      "Use a firm apple variety like Granny Smith so they do not disintegrate during the final simmer."
+    ],
+    "traditional_techniques": [
+      "braising",
+      "deglazing",
+      "reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 620,
+      "cholesterol_mg": 96,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 26.5,
+      "saturated_fat_g": 17,
+      "sodium_mg": 510,
+      "total_carbs_g": 25.6,
+      "total_fat_g": 43.8,
+      "total_sugars_g": 14.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 177.1,
+      "cholesterol_mg": 27.4,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.6,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 145.7,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32,
+      "dietary_fiber": 17.5,
+      "protein": 53,
+      "saturated_fat": 85,
+      "sodium": 22.2,
+      "total_carbs": 9.3,
+      "total_fat": 56.2
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Beef Bourguignon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_084949_7aaa01e0.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-05T08:49:50.430471000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Beef Bourguignon is served in a wide, shallow white porcelain bowl. The centerpiece features four to five large, succulent chunks of braised beef chuck, glistening with a deep, mahogany-colored glossy sauce. Interspersed among the meat are whole, tender pearl onions and golden-brown sautéed button mushroom halves. Bright orange carrot rounds provide a pop of color. The stew is finished with a sprinkle of finely chopped fresh parsley. The sauce has a rich, velvety consistency, pooling slightly around the base. The dish sits on a dark wood bistro table. A side of crusty baguette slices and a simple silver spoon rest on a white cotton napkin nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty French baguette",
+      "Pair with a glass of Pinot Noir or red Burgundy",
+      "Traditionally served with buttery mashed potatoes or boiled potatoes"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 5cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Smoked bacon lardons",
+        "quantity": "150g"
+      },
+      {
+        "name": "Red wine (Burgundy style)",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Pearl onions, peeled",
+        "quantity": "200g"
+      },
+      {
+        "name": "Button mushrooms, halved",
+        "quantity": "250g"
+      },
+      {
+        "name": "Carrots, cut into 2cm rounds",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Bouquet garni (thyme, bay leaf, parsley)",
+        "quantity": "1 bundle"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper.",
+      "Sauté bacon lardons in a heavy pot until crisp. Remove and set aside.",
+      "Sear beef chunks in the bacon fat over high heat until browned on all sides. Remove beef.",
+      "Add sliced carrots and onions to the pot. Sauté for 5 minutes.",
+      "Stir in tomato paste and flour. Cook for 2 minutes.",
+      "Pour in red wine. Scrape the bottom of the pot to release browned bits.",
+      "Return beef and bacon to the pot. Add beef stock and bouquet garni.",
+      "Cover and simmer on low heat for 2.5 hours until meat is tender.",
+      "Sauté mushrooms and pearl onions in butter in a separate pan until golden.",
+      "Add mushrooms and pearl onions to the stew. Simmer for 15 minutes.",
+      "Remove bouquet garni. Season to taste.",
+      "Garnish with chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure the beef is patted dry before searing to achieve a deep crust.",
+      "Use a high-quality dry red wine for the most authentic flavor profile.",
+      "The sauce should be thick enough to coat the back of a spoon."
+    ],
+    "traditional_techniques": [
+      "braising",
+      "deglazing",
+      "sautéing",
+      "lardons preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 815,
+      "cholesterol_mg": 210,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 47.8,
+      "saturated_fat_g": 25,
+      "sodium_mg": 850,
+      "total_carbs_g": 21.5,
+      "total_fat_g": 59,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.56,
+      "saturated_fat_g": 5,
+      "sodium_mg": 170,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 1.26,
+      "trans_fat_g": 0.12
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 8.9,
+      "protein": 95.6,
+      "saturated_fat": 125,
+      "sodium": 37,
+      "total_carbs": 7.8,
+      "total_fat": 75.6
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Sichuan-style Soy and Chili Braised Pork Chunks",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_081916_2b2fd898.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-05T08:19:16.819631000Z",
+    "selected_ingredients": [
+      "pork",
+      "dried red chili",
+      "soy sauce",
+      "coriander"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Sichuan-style braised pork served in a shallow, dark celadon ceramic bowl. The dish features 3cm cubes of tender pork shoulder, deeply lacquered in a dark, glossy soy glaze. The meat surfaces show caramelized edges from the red braising technique. Whole, vibrant red dried chilies and slices of ginger are scattered among the pork chunks. A generous garnish of bright green, roughly chopped coriander leaves provides a fresh contrast against the dark mahogany sauce. The bowl sits on a dark wood table with a pair of bamboo chopsticks resting on a ceramic holder to the side. Natural light highlights the sticky texture of the sauce and the steam rising from the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Sichuan Chinese",
+    "cultural_origin": "Chinese (Sichuan)",
+    "cultural_serving_suggestions": [
+      "Serve with individual bowls of steamed jasmine rice",
+      "Accompany with a side of smashed cucumber salad (Pai Huang Gua)",
+      "Provide high-quality oolong tea to balance the rich sauce"
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, cut into 3cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Dried red chilies, snipped",
+        "quantity": "10g"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh coriander, roughly chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Rock sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Ginger, sliced",
+        "quantity": "20g"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "3"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml"
+      }
+    ],
+    "instructions": [
+      "Blanch pork cubes in boiling water for 3 minutes.",
+      "Drain and rinse pork under cold water.",
+      "Heat oil in a heavy pot over medium heat.",
+      "Add rock sugar and stir until melted and light amber.",
+      "Add pork cubes and stir-coat in the caramel for 2 minutes.",
+      "Add ginger, garlic, star anise, and cinnamon.",
+      "Stir in dried chilies for 30 seconds until fragrant.",
+      "Pour in light soy sauce, dark soy sauce, and Shaoxing wine.",
+      "Add water and bring to a boil.",
+      "Reduce heat to low and cover.",
+      "Simmer for 50 minutes.",
+      "Confirm internal pork temperature reaches 75°C.",
+      "Remove lid and increase heat to high.",
+      "Reduce liquid until it forms a thick, glossy glaze.",
+      "Stir in half the coriander and serve immediately."
+    ],
+    "notes": [
+      "Do not burn the sugar; if it turns black, start over to avoid bitterness.",
+      "Use dark soy sauce specifically for color and light soy sauce for saltiness.",
+      "Ensure the sauce is reduced until it clings to the meat for the best texture."
+    ],
+    "traditional_techniques": [
+      "hong shao (red braising)",
+      "sugar coloring",
+      "aromatic tempering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 612,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 1,
+      "protein_g": 37.6,
+      "saturated_fat_g": 14.2,
+      "sodium_mg": 1531,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 44.4,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2,
+      "calories": 244.8,
+      "cholesterol_mg": 64,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 15,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 612.4,
+      "total_carbs_g": 5.2,
+      "total_fat_g": 17.8,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 4,
+      "protein": 75,
+      "saturated_fat": 71,
+      "sodium": 67,
+      "total_carbs": 5,
+      "total_fat": 57
+    },
+    "serving_size_g": 250,
+    "total_recipe_weight_g": 1000
+  },
+  {
+    "recipe_name": "Japanese-Style Chicken and Sweet Potato Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_081457_07b8d87a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-05T08:15:08.295104000Z",
+    "selected_ingredients": [
+      "carrot",
+      "chicken",
+      "sweet potato",
+      "curry",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Japanese curry served in a wide, shallow white porcelain bowl. On the left side, a neat mound of steamed short-grain white rice provides a clean base. On the right side, the rich, dark brown, glossy curry sauce flows naturally. The dish features large, visible 3cm chunks of moist simmered chicken, vibrant orange rolling-wedge cut carrots, and softened golden sweet potato cubes. The sauce has a velvety texture with fine bits of caramelized onion visible. A small portion of bright red fukujinzuke pickles sits at the edge of the rice for color contrast. The lighting is natural and even, highlighting the sheen of the sauce and the steam rising from the bowl on a light wood table.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with fukujinzuke (red pickled vegetables)",
+      "Provide a large spoon for eating rice and curry together",
+      "Serve with a side of chilled barley tea"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless and skinless",
+        "quantity": "600g"
+      },
+      {
+        "name": "Sweet potato, peeled and cut into 3cm chunks",
+        "quantity": "300g"
+      },
+      {
+        "name": "Carrots, peeled and cut into rolling wedges",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow onions, thinly sliced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Japanese curry roux (medium-hot)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Ginger, grated",
+        "quantity": "15g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Steamed short-grain rice",
+        "quantity": "4 portions"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks.",
+      "Heat oil in a large heavy-bottomed pot over medium heat.",
+      "Sauté onions for 15 minutes until deep golden brown.",
+      "Add chicken chunks and sear until browned on all sides.",
+      "Stir in garlic and ginger. Cook for 1 minute.",
+      "Add carrots and sweet potato chunks. Stir to coat.",
+      "Pour in chicken stock. Bring to a boil.",
+      "Reduce heat to low. Simmer for 20 minutes until vegetables are tender.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Remove pot from heat. Break curry roux into small pieces and whisk into the liquid.",
+      "Return to low heat. Add soy sauce and honey.",
+      "Simmer for 5 minutes until the sauce is thick and glossy.",
+      "Serve hot over steamed rice."
+    ],
+    "notes": [
+      "Use the 'rangiri' rolling cut for carrots to maximize surface area for even cooking.",
+      "Caramelizing the onions is essential for the characteristic deep umami flavor.",
+      "Ensure the roux is fully dissolved before returning to heat to avoid lumps."
+    ],
+    "traditional_techniques": [
+      "rangiri",
+      "caramelization",
+      "simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 735,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 36.3,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 2125,
+      "total_carbs_g": 83.3,
+      "total_fat_g": 28.5,
+      "total_sugars_g": 14.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 106.1,
+      "cholesterol_mg": 20.4,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 5.2,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 306.9,
+      "total_carbs_g": 12,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 22.5,
+      "protein": 72.6,
+      "saturated_fat": 48.5,
+      "sodium": 92.4,
+      "total_carbs": 30.3,
+      "total_fat": 36.5
+    },
+    "serving_size_g": 692.5,
+    "total_recipe_weight_g": 2770
+  },
+  {
+    "recipe_name": "Japanese-Style Chicken and Sweet Potato Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_081406_51520abf.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-05T08:14:07.066429000Z",
+    "selected_ingredients": [
+      "carrot",
+      "chicken",
+      "sweet potato",
+      "curry",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Japanese curry served in a wide, shallow white porcelain bowl. On the left side, a neat mound of steamed short-grain white rice provides a clean base. On the right side, the rich, dark brown, glossy curry sauce flows naturally. The dish features large, visible 3cm chunks of moist simmered chicken, vibrant orange rolling-wedge cut carrots, and softened golden sweet potato cubes. The sauce has a velvety texture with fine bits of caramelized onion visible. A small portion of bright red fukujinzuke pickles sits at the edge of the rice for color contrast. The lighting is natural and even, highlighting the sheen of the sauce and the steam rising from the bowl on a light wood table.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with fukujinzuke (red pickled vegetables)",
+      "Provide a large spoon for eating rice and curry together",
+      "Serve with a side of chilled barley tea"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless and skinless",
+        "quantity": "600g"
+      },
+      {
+        "name": "Sweet potato, peeled and cut into 3cm chunks",
+        "quantity": "300g"
+      },
+      {
+        "name": "Carrots, peeled and cut into rolling wedges",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow onions, thinly sliced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Japanese curry roux (medium-hot)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Ginger, grated",
+        "quantity": "15g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Steamed short-grain rice",
+        "quantity": "4 portions"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks.",
+      "Heat oil in a large heavy-bottomed pot over medium heat.",
+      "Sauté onions for 15 minutes until deep golden brown.",
+      "Add chicken chunks and sear until browned on all sides.",
+      "Stir in garlic and ginger. Cook for 1 minute.",
+      "Add carrots and sweet potato chunks. Stir to coat.",
+      "Pour in chicken stock. Bring to a boil.",
+      "Reduce heat to low. Simmer for 20 minutes until vegetables are tender.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Remove pot from heat. Break curry roux into small pieces and whisk into the liquid.",
+      "Return to low heat. Add soy sauce and honey.",
+      "Simmer for 5 minutes until the sauce is thick and glossy.",
+      "Serve hot over steamed rice."
+    ],
+    "notes": [
+      "Use the 'rangiri' rolling cut for carrots to maximize surface area for even cooking.",
+      "Caramelizing the onions is essential for the characteristic deep umami flavor.",
+      "Ensure the roux is fully dissolved before returning to heat to avoid lumps."
+    ],
+    "traditional_techniques": [
+      "rangiri",
+      "caramelization",
+      "simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 735,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 36.3,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 2125,
+      "total_carbs_g": 83.3,
+      "total_fat_g": 28.5,
+      "total_sugars_g": 14.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 106.1,
+      "cholesterol_mg": 20.4,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 5.2,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 306.9,
+      "total_carbs_g": 12,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 22.5,
+      "protein": 72.6,
+      "saturated_fat": 48.5,
+      "sodium": 92.4,
+      "total_carbs": 30.3,
+      "total_fat": 36.5
+    },
+    "serving_size_g": 692.5,
+    "total_recipe_weight_g": 2770
+  }
+]

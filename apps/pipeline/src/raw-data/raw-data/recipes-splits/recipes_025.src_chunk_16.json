@@ -1,0 +1,691 @@
+[
+  {
+    "recipe_name": "Poulet à la Moutarde (Chicken with Mustard Sauce)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poulet_%C3%A0_la_moutarde_%28chicken_with_mustard_sauce%29_20250623_131553_6a4d93d8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:15:53.889604000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "French cuisine",
+    "visual_description": "A single golden-brown seared chicken thigh, skin crisp, sits on a modest pool of creamy, pale yellow mustard sauce. The sauce, rich and slightly thick, coats the base of the chicken. A sprinkle of fresh, vibrant green tarragon leaves garnishes the dish. The chicken piece is whole, not sliced. It is presented on a simple, round, off-white ceramic plate with natural imperfections. The plate rests on a well-used, warm-toned wooden kitchen table. A casually folded white linen napkin is beside the plate. A small, rustic basket with a few slices of crusty baguette is nearby, creating a cozy, lived-in family kitchen atmosphere with soft, natural lighting.",
+    "number_of_servings": 2,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crusty baguette to sop up the rich sauce.",
+      "Accompany with simple steamed green beans or boiled new potatoes."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "2 (approx. 200g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large, finely minced"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Crème fraîche",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh tarragon",
+        "quantity": "5 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat. Add chicken thighs, skin-side down.",
+      "Sear chicken for 8-10 minutes until skin is golden brown and crisp. Flip chicken. Sear for 2-3 minutes on the other side.",
+      "Transfer skillet to a preheated oven at 190°C. Roast for 15-20 minutes, or until internal temperature reaches 75°C. Remove chicken from skillet. Set aside on a plate, tent loosely with foil.",
+      "Drain most fat from the skillet, leaving about 15 ml. Return skillet to medium heat.",
+      "Add butter to the skillet. Add minced shallot. Sauté for 2-3 minutes until softened. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the skillet. Reduce liquid by half.",
+      "Stir in chicken broth. Bring to a simmer. Whisk in Dijon mustard until well combined.",
+      "Stir in crème fraîche. Simmer for 2-3 minutes until sauce slightly thickens.",
+      "Remove skillet from heat. Stir in chopped fresh tarragon. Taste and adjust seasoning.",
+      "Serve chicken thighs with sauce spooned over."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Deglazing for pan sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 651,
+      "cholesterol_mg": 213,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 36.7,
+      "saturated_fat_g": 16.5,
+      "sodium_mg": 1356,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 50.1,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 172,
+      "cholesterol_mg": 56,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 9.7,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 358,
+      "total_carbs_g": 2.2,
+      "total_fat_g": 13.2,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70.8,
+      "dietary_fiber": 5,
+      "protein": 73.4,
+      "saturated_fat": 82.5,
+      "sodium": 59,
+      "total_carbs": 3,
+      "total_fat": 64.2
+    },
+    "serving_size_g": 378.5,
+    "total_recipe_weight_g": 757
+  },
+  {
+    "recipe_name": "Hearty Beef and Bean Stew with Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_bean_stew_with_rice_20250623_131505_27a084cd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:15:05.871038000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "tomato",
+      "bell pepper",
+      "rice",
+      "bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The hearty beef and bean stew is served in a rustic, deep ceramic bowl. Large, tender beef chunks (3-4 cm) are interspersed with vibrant diced red and green bell peppers, diced onions, and kidney beans, all coated in a rich, savory tomato-based sauce. The stew's surface is lightly garnished with a sprinkle of fresh, roughly chopped cilantro, adding a pop of green. Alongside, a modest mound of fluffy white rice is presented in a smaller, matching ceramic bowl, providing a clean contrast. The dish sits on a well-used, warm-toned wooden dining table. The setting includes simple, everyday ceramic plates and bowls, and basic flatware. A casually folded plain cloth napkin rests beside the bowl. Lighting is warm and inviting, typical of a cozy kitchen, creating a relaxed family atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of sour cream or shredded cheddar cheese.",
+      "Accompany with warm cornbread or simple tortillas.",
+      "Offer a side of sliced avocado."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large (approx 200 g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Bell peppers (red and green), diced",
+        "quantity": "2 (approx 300 g total)"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned kidney beans, drained and rinsed",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "Small bunch (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 3-4 cm chunks. Pat dry.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat. Sear beef chunks in batches until browned on all sides. Remove beef and set aside.",
+      "Reduce heat to medium. Add diced onion and diced bell peppers to the pot. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in chili powder, ground cumin, and dried oregano. Cook for 1 minute more.",
+      "Return beef to the pot. Add canned diced tomatoes, drained kidney beans, and beef broth. Stir well.",
+      "Bring the stew to a simmer. Reduce heat to low, cover, and cook for 1.5 to 2 hours, or until beef is very tender. Stir occasionally.",
+      "While stew simmers, cook rice according to package instructions.",
+      "Season stew with salt and black pepper to taste.",
+      "Serve hot, with a portion of rice alongside. Garnish with fresh chopped cilantro."
+    ],
+    "notes": [
+      "For best flavor, let the stew simmer slowly until the beef is fork-tender.",
+      "Adjust chili powder to your preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Browning meat",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 762,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 13.6,
+      "protein_g": 47.4,
+      "saturated_fat_g": 8.9,
+      "sodium_mg": 1401,
+      "total_carbs_g": 82.2,
+      "total_fat_g": 27.3,
+      "total_sugars_g": 8.2,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93.1,
+      "cholesterol_mg": 12.8,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 5.8,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 171.4,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 48.6,
+      "protein": 94.8,
+      "saturated_fat": 44.5,
+      "sodium": 60.9,
+      "total_carbs": 29.9,
+      "total_fat": 35
+    },
+    "serving_size_g": 818,
+    "total_recipe_weight_g": 3270
+  },
+  {
+    "recipe_name": "Miso Glazed Tofu Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_miso_glazed_tofu_bowl_20250623_131442_45d5a15b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:14:42.557928000Z",
+    "selected_ingredients": [
+      "tofu",
+      "rice",
+      "soy sauce",
+      "sesame oil",
+      "miso paste"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Miso Glazed Tofu Bowl is presented in a clean, white porcelain donburi bowl, resting on a simple light wooden table. The bowl is filled with fluffy, white Japanese short-grain rice, forming a clean base. Two thick, rectangular slabs of golden-brown, caramelized miso-glazed tofu are neatly arranged on top of the rice, slightly overlapping. The tofu exhibits a glossy, slightly sticky texture from the rich glaze. Beside the tofu, vibrant green roasted broccolini florets are artfully placed, showcasing their tender-crisp texture. The dish is garnished with a light sprinkle of toasted sesame seeds over the tofu and delicate, thinly sliced green spring onion scattered across the top, adding a fresh contrast. The overall composition is balanced and inviting, with moderate negative space. A set of traditional wooden chopsticks rests beside the bowl on a simple cotton napkin. The scene is illuminated by natural, even lighting, creating a professional yet approachable aesthetic, honoring Japanese culinary presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Served with chopsticks.",
+      "Often accompanied by a small side of tsukemono (Japanese pickled vegetables) for contrast.",
+      "A small bowl of miso soup can be served alongside."
+    ],
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Extra-firm tofu",
+        "quantity": "400 g block"
+      },
+      {
+        "name": "Japanese short-grain rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "White miso paste",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sake",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Broccolini",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Water",
+        "quantity": "as needed for rice"
+      }
+    ],
+    "instructions": [
+      "Press tofu: Slice tofu block into 8 equal thick slabs. Place between paper towels. Place a heavy object on top. Press for 30 minutes to remove excess water.",
+      "Cook rice: Rinse rice thoroughly until water runs clear. Combine rice and 350 ml water in a medium saucepan. Bring to a boil. Reduce heat to low. Cover and simmer for 15 minutes. Remove from heat. Let stand covered for 10 minutes. Fluff with a fork.",
+      "Prepare miso glaze: In a small bowl, whisk together miso paste, soy sauce, mirin, sake, sesame oil, and sugar until smooth.",
+      "Roast broccolini: Preheat oven to 200°C (390°F). Toss broccolini with 5 ml vegetable oil. Spread on a baking sheet. Roast for 10-12 minutes until tender-crisp.",
+      "Bake tofu: Gently brush pressed tofu slabs with a thin layer of miso glaze. Arrange on a separate baking sheet lined with parchment paper. Bake for 15 minutes. Flip tofu. Brush with more glaze. Bake for another 10-15 minutes, or until golden brown and caramelized. Brush with remaining glaze for the last 5 minutes.",
+      "Assemble bowls: Divide steamed rice among 4 individual serving bowls. Arrange 2 glazed tofu slabs on top of the rice. Place roasted broccolini neatly alongside the tofu.",
+      "Garnish and serve: Sprinkle with toasted sesame seeds. Garnish with thinly sliced spring onions. Serve immediately."
+    ],
+    "notes": [
+      "Pressing the tofu is crucial for achieving a firm texture and allowing it to absorb the glaze effectively.",
+      "Adjust the amount of sugar in the glaze to your preference; some prefer a less sweet glaze.",
+      "Ensure the oven temperature is consistent for even caramelization of the glaze."
+    ],
+    "traditional_techniques": [
+      "Miso glazing",
+      "Pressing tofu"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.75,
+      "calories": 497.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5,
+      "protein_g": 19.3,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 1334.5,
+      "total_carbs_g": 73,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 11.8,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.15,
+      "calories": 152.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 5.9,
+      "saturated_fat_g": 0.49,
+      "sodium_mg": 409.6,
+      "total_carbs_g": 22.4,
+      "total_fat_g": 2.5,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0.004
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 17.9,
+      "protein": 38.7,
+      "saturated_fat": 8,
+      "sodium": 58,
+      "total_carbs": 26.5,
+      "total_fat": 10.5
+    },
+    "serving_size_g": 325.81,
+    "total_recipe_weight_g": 1303.25
+  },
+  {
+    "recipe_name": "Spanish Chicken and Beef Ragout",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_beef_ragout_20250623_131415_789832d6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:14:15.507010000Z",
+    "selected_ingredients": [
+      "chicken",
+      "beef",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Spanish Chicken and Beef Ragout is presented in a shallow, clean white porcelain bowl, positioned slightly off-center. Tender, irregular chunks of slow-braised beef and succulent, smaller pieces of chicken are nestled within a rich, savory tomato-based sauce. The sauce, a deep reddish-brown hue from the tomatoes and smoked paprika, coats the meats and diced red and green bell peppers, which retain a slight bite. The beef chunks are irregularly shaped, showcasing their tenderness, while the chicken pieces are roughly 3 cm cubes. A scattering of vibrant green, freshly chopped flat-leaf parsley is sprinkled over the top, providing a fresh contrast to the deep colors of the ragout. The dish is presented on a simple wooden table surface, accompanied by a clean white cotton napkin and a piece of crusty, golden-brown pan rústico (rustic bread) on the side. Natural, even lighting illuminates the dish, highlighting the glossy texture of the sauce and the varied textures of the ingredients. The background is minimally blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Crusty bread (pan rústico)",
+      "Simple green salad"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400g"
+      },
+      {
+        "name": "Beef chuck, boneless",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken and beef dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear beef cubes, approximately 3 cm, in batches until browned on all sides. Remove beef from pot.",
+      "Sear chicken chunks, approximately 3 cm, until lightly browned. Remove chicken from pot.",
+      "Add diced onion and bell peppers to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return beef to the pot. Add diced tomatoes, chicken stock, and bay leaf. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 1.5 hours, or until beef is very tender.",
+      "Add chicken chunks to the pot. Continue to simmer, uncovered, for 20-30 minutes, or until chicken is cooked through (internal temperature 75°C) and sauce has thickened slightly.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Sofrito base",
+      "Slow simmering (Estofado style)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 646,
+      "cholesterol_mg": 170,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 43.3,
+      "saturated_fat_g": 11.2,
+      "sodium_mg": 887,
+      "total_carbs_g": 20,
+      "total_fat_g": 36.1,
+      "total_sugars_g": 9.4,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 100,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 138,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 19,
+      "protein": 87,
+      "saturated_fat": 56,
+      "sodium": 39,
+      "total_carbs": 7,
+      "total_fat": 46
+    },
+    "serving_size_g": 644,
+    "total_recipe_weight_g": 2577
+  },
+  {
+    "recipe_name": "Pollo al Ajillo con Patatas a lo Pobre",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_al_ajillo_con_patatas_a_lo_pobre_20250623_131347_61920dbf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:13:48.124994000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents as a single, generous portion on a clean white porcelain dinner plate. Tender, golden-brown chicken chunks, approximately 4cm, are centrally arranged and generously coated in a glossy, amber-hued garlic sauce. Beside the chicken, thinly sliced 3mm waxy potatoes, cooked to a yielding texture, are neatly layered, absorbing the aromatic sauce. The vibrant green of freshly chopped parsley is sprinkled over the dish, adding a fresh contrast. The overall color palette is warm and inviting. The plate sits on a rustic wooden table, accompanied by a white cotton napkin and a small, traditional Spanish ceramic tapas bowl. Natural, even lighting highlights the textures and rich colors, creating an inviting, authentic bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the sauce.",
+      "Accompany with a simple green salad.",
+      "Pair with a glass of dry Fino sherry or a light-bodied red wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "800g, cut into 4cm chunks"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 head, cloves peeled and thinly sliced"
+      },
+      {
+        "name": "Waxy potatoes",
+        "quantity": "500g, peeled and thinly sliced into 3mm rounds"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Dry sherry or dry white wine",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón dulce or agridulce)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2g (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Season with salt and pepper.",
+      "Heat 30ml olive oil in a large pan over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken. Set aside.",
+      "Add remaining 70ml olive oil to the same pan. Reduce heat to medium-low.",
+      "Add sliced potatoes. Cook slowly, stirring occasionally, until tender and lightly golden, about 20-25 minutes. Do not brown heavily. Season with salt. Remove potatoes. Set aside.",
+      "Add sliced garlic and red pepper flakes (if using) to the pan. Cook 1-2 minutes until fragrant and lightly golden. Do not burn garlic.",
+      "Return chicken to the pan. Add smoked paprika and bay leaf. Stir well.",
+      "Pour in sherry or white wine. Scrape up any browned bits. Cook 2 minutes until liquid reduces slightly.",
+      "Add chicken broth. Bring to a simmer. Reduce heat to low.",
+      "Cover and simmer 15-20 minutes until chicken is cooked through (75°C internal temperature).",
+      "Remove bay leaf. Stir in chopped parsley.",
+      "Serve chicken and sauce over the cooked potatoes."
+    ],
+    "notes": [
+      "Adjust garlic quantity to personal preference; this dish is very garlic-forward.",
+      "Ensure potatoes are cooked slowly for a tender, non-crispy texture typical of 'Patatas a lo Pobre'."
+    ],
+    "traditional_techniques": [
+      "Infusing olive oil with aromatics",
+      "Pan-searing",
+      "Braising",
+      "Patatas a lo Pobre (specific potato preparation)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 618,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 39.7,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 789,
+      "total_carbs_g": 27.8,
+      "total_fat_g": 38.7,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.5,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 188,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 13,
+      "protein": 79,
+      "saturated_fat": 37,
+      "sodium": 34,
+      "total_carbs": 10,
+      "total_fat": 50
+    },
+    "serving_size_g": 420,
+    "total_recipe_weight_g": 1679
+  }
+]

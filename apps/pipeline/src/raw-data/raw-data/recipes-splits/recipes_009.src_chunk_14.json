@@ -1,0 +1,576 @@
+[
+  {
+    "recipe_name": "Homestyle Chicken and Herb Rice Patties",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_chicken_and_herb_rice_patties_20250723_161618_abc1509b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T16:16:18.651421000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "thyme",
+      "rice",
+      "rosemary"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Several golden-brown, irregularly shaped chicken and herb rice patties are arranged casually on a rustic, off-white ceramic plate. The chicken is shredded into small, irregular fibers. The onion is finely diced and the herbs are finely chopped, visible as specks within the patty texture. The patties are thick chunks, placed slightly overlapping, creating a natural, unpretentious mound. A few fresh thyme sprigs are loosely scattered beside the patties, adding a touch of green. The plate sits on a well-worn, natural wooden kitchen table. A crumpled, simple off-white linen napkin is casually draped beside the plate. The background features a blurred hint of a home kitchen, possibly showing a warm light fixture or a simple spice jar. Lighting is soft, warm, and inviting, mimicking natural kitchen light. The patties have a crispy exterior and a soft, moist interior.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Cooked Chicken Breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cooked Basmati Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 small (approx. 100g)"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "5g"
+      },
+      {
+        "name": "Large Egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Finely dice the onion.",
+      "Heat a small pan over medium heat. Add a splash of oil. Sauté diced onion until soft and translucent, about 5 minutes. Set aside to cool.",
+      "Shred the cooked chicken into small pieces. Or finely dice it.",
+      "Chop fresh thyme leaves and rosemary leaves very finely.",
+      "In a large bowl, combine shredded chicken, cooked rice, sautéed onion, chopped thyme, and chopped rosemary.",
+      "Crack the egg into the bowl. Add plain flour, salt, and black pepper.",
+      "Mix all ingredients thoroughly until well combined.",
+      "Form the mixture into 8-10 small, flat patties, about 2 cm thick.",
+      "Heat the remaining vegetable oil in a large non-stick frying pan over medium heat.",
+      "Carefully place the patties into the hot oil. Do not overcrowd the pan.",
+      "Cook for 4-5 minutes per side, until golden brown and heated through. Ensure chicken reaches 75°C internal temperature.",
+      "Remove patties from pan. Place on a wire rack lined with paper towel to drain excess oil.",
+      "Serve warm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 309,
+      "cholesterol_mg": 110,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 27.4,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 558,
+      "total_carbs_g": 23.2,
+      "total_fat_g": 11.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171,
+      "cholesterol_mg": 61,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 15.1,
+      "saturated_fat_g": 1,
+      "sodium_mg": 308,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 5,
+      "protein": 55,
+      "saturated_fat": 9,
+      "sodium": 24,
+      "total_carbs": 8,
+      "total_fat": 14
+    },
+    "serving_size_g": 181,
+    "total_recipe_weight_g": 724
+  },
+  {
+    "recipe_name": "Vịt Áp Chảo Sốt Cá Cơm Hành Tím, Xôi Nếp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_v%E1%BB%8Bt_%C3%A1p_ch%E1%BA%A3o_s%E1%BB%91t_c%C3%A1_c%C6%A1m_h%C3%A0nh_t%C3%ADm%2C_x%C3%B4i_n%E1%BA%BFp_20250723_160055_d0c2584d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T16:00:56.249535000Z",
+    "selected_ingredients": [
+      {
+        "name": "anchovy"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "rice"
+      },
+      {
+        "name": "coriander"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Vietnamese",
+    "visual_description": "The dish is meticulously plated on a pristine white bone china plate, featuring abundant negative space. A perfectly seared duck breast, skin rendered crisp and golden-brown, is presented as a whole piece, glistening with a rich, dark caramelized anchovy-shallot glaze. Alongside, a small, elegant pillow of compressed sticky rice, its grains distinct yet cohesive, rests delicately. A vibrant green coriander oil is artfully drizzled around the duck. A few thinly sliced, ruby-red pickled red onion rings are strategically placed for visual contrast. The composition is organic and flowing. Textures range from crisp duck skin to tender meat, soft rice, and silky glaze. Colors are deep browns, golden hues, bright greens, and striking reds. The plate sits on a polished dark wood table with a crisp white linen napkin. Dramatic lighting casts soft shadows, highlighting refined elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve with small side bowls of additional fish sauce for dipping, if desired.",
+      "Traditionally enjoyed with a small bowl of clear broth on the side."
+    ],
+    "hero_ingredient": "Duck Breast",
+    "ingredients": [
+      {
+        "name": "Duck Breasts (skin on)",
+        "quantity": "2 (approx. 200g each)"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "100g, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Fresh Anchovies",
+        "quantity": "50g, finely chopped"
+      },
+      {
+        "name": "Fish Sauce (Nước Mắm)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Palm Sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Water (for glaze)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Neutral Oil (for glaze)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Glutinous Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water (for rice)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Fresh Coriander",
+        "quantity": "50g, leaves and tender stems"
+      },
+      {
+        "name": "Neutral Oil (for coriander oil)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt (for coriander oil)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small, very thinly sliced"
+      },
+      {
+        "name": "Rice Vinegar (for pickle)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sugar (for pickle)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Water (for pickle)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Salt (for pickle)",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Prepare Pickled Red Onion: In a small saucepan, combine rice vinegar, sugar, water, and salt. Bring to a simmer, stirring until sugar dissolves. Remove from heat. Add thinly sliced red onion. Let cool completely. Store in the refrigerator.",
+      "Prepare Sticky Rice: Rinse glutinous rice thoroughly until water runs clear. Soak rice in water for at least 4 hours. Drain well. Place rice in a rice cooker or steamer basket. Add 250ml fresh water. Cook until tender and sticky. Once cooked, press rice into a compact block or mold small rectangular portions for plating.",
+      "Prepare Coriander Oil: Blanch coriander in boiling salted water for 15 seconds. Immediately transfer to an ice bath. Squeeze out excess water. Blend blanched coriander with 100ml neutral oil and a pinch of salt until very smooth. Strain through a fine-mesh sieve for a clear oil. Set aside.",
+      "Prepare Caramelized Anchovy-Shallot Glaze: Heat 15ml neutral oil in a small saucepan over medium heat. Add thinly sliced shallots and cook until deeply caramelized, about 8-10 minutes. Add minced garlic and chopped anchovies. Cook for 2 minutes, stirring, until anchovies dissolve. Stir in fish sauce, palm sugar, rice vinegar, and water. Bring to a simmer and cook until the glaze thickens to a syrupy consistency, about 5-7 minutes. Strain the glaze through a fine-mesh sieve, pressing solids to extract all liquid. Discard solids. Keep the smooth glaze warm.",
+      "Cook Duck Breast: Score the duck breast skin in a crosshatch pattern. Season duck breasts generously with salt and black pepper. Place duck breasts skin-side down in a cold, oven-safe pan. Render fat over medium-low heat for 10-12 minutes, until skin is crispy and golden brown. Pour off excess fat. Flip duck breasts and sear meat-side down for 3-4 minutes. Transfer the pan to a preheated oven at 180°C (350°F) and cook for 5-7 minutes for medium-rare (internal temperature 57-60°C). Remove from oven and let rest on a cutting board for 5-7 minutes.",
+      "Assemble Dish: Slice each duck breast into 2-3 thick chunks. Arrange 1-2 duck breast chunks artfully on one side of a pristine white bone china plate. Place a compact portion of sticky rice on the other side. Spoon the warm caramelized anchovy-shallot glaze generously over the duck. Drizzle coriander oil around the duck and rice. Garnish with a few rings of pickled red onion. Serve immediately."
+    ],
+    "notes": [
+      "The quality of fish sauce and fresh anchovies significantly impacts the glaze flavor.",
+      "Strain the coriander oil for a truly refined, clear green oil.",
+      "Ensure duck breast rests properly for tenderness."
+    ],
+    "traditional_techniques": [
+      "Rendering duck fat",
+      "Caramelization",
+      "Pressing sticky rice"
+    ]
+  },
+  {
+    "recipe_name": "Kıymalı Erişte with Yoğurt Sosu",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_k%C4%B1ymal%C4%B1_eri%C5%9Fte_with_yo%C4%9Furt_sosu_20250723_150931_e9790d1a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T15:09:32.316544000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "Turkish cuisine",
+    "visual_description": "A single portion of Kıymalı Erişte is presented in a wide, shallow white porcelain bowl. The golden-brown erişte forms a base. A generous mound of rich, dark brown crumbled ground beef, cooked with diced onions and deep red tomato paste, is spooned over the pasta. A vibrant swirl of creamy white garlic yogurt sauce is artfully drizzled over the meat and pasta, creating a beautiful contrast. A cascade of bright red, glistening spiced butter, infused with dried mint and pul biber, is poured over the top, adding a striking color pop. Fresh green chopped parsley is scattered over the dish for garnish. The plate sits on a simple wooden table, accompanied by a white cotton napkin and traditional Turkish flatware. The scene is illuminated by soft, natural, even lighting from above, with a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Turkish",
+    "cultural_origin": "Turkish",
+    "cultural_serving_suggestions": [
+      "Serve with an additional small bowl of plain or garlic yogurt on the side for those who prefer more.",
+      "Accompany with a glass of chilled Ayran (Turkish savory yogurt drink).",
+      "Offer a side of pickled vegetables (turşu) for a tangy contrast."
+    ],
+    "hero_ingredient": "Ground Beef",
+    "ingredients": [
+      {
+        "name": "Erişte (Turkish Egg Noodles) or Tagliatelle",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ground Beef",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Tomato Paste (Salça)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Red Pepper Paste (Biber Salçası)",
+        "quantity": "1 tablespoon (optional)"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dried Mint (Kuru Nane)",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Pul Biber (Aleppo Pepper Flakes)",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Plain Yogurt (Süzme Yoğurt or Greek Yogurt)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh Parsley or Dill",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook erişte according to package directions. Cook until al dente. Drain well. Keep warm.",
+      "Heat olive oil in a large pan over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add ground beef to the pan. Break it apart with a spoon. Cook until browned and no pink remains. Drain excess fat.",
+      "Stir in 2 minced garlic cloves, tomato paste, and red pepper paste (if using). Cook for 2 minutes, stirring constantly.",
+      "Season meat mixture with salt and black pepper. Remove from heat.",
+      "In a separate bowl, whisk plain yogurt with 1 minced garlic clove and a pinch of salt until smooth.",
+      "Melt butter in a small saucepan over low heat. Add dried mint and pul biber. Cook for 30 seconds until fragrant. Do not burn.",
+      "To serve, divide cooked erişte among four plates. Top each with a generous portion of the ground beef mixture.",
+      "Spoon a dollop of garlic yogurt over the meat. Drizzle generously with the hot mint and pul biber butter.",
+      "Garnish with fresh chopped parsley or dill. Serve immediately."
+    ],
+    "notes": [
+      "Erişte is a traditional Turkish egg noodle. If unavailable, tagliatelle or fettuccine can be used as a substitute.",
+      "The amount of garlic in the yogurt can be adjusted to personal preference."
+    ],
+    "traditional_techniques": [
+      "Using 'salça' (tomato and pepper paste) as a foundational flavor base.",
+      "Preparing 'yoğurt sosu' (garlic yogurt sauce) as a common accompaniment.",
+      "Creating 'nane ve pul biberli tereyağı' (mint and chili infused butter) as a finishing drizzle."
+    ]
+  },
+  {
+    "recipe_name": "Cacio e Pepe",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cacio_e_pepe_20250723_150911_3ab9435f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T15:09:11.552187000Z",
+    "selected_ingredients": [
+      "pasta",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous, spiraled mound of golden spaghetti is centrally placed on a round, shallow, white porcelain pasta bowl. The pasta is coated in a glistening, creamy, off-white sauce, appearing rich and smooth. Visible flecks of freshly cracked black pepper adhere to the strands, providing textural contrast. A light dusting of finely grated Parmigiano Reggiano rests atop the pasta, with a few larger, coarse grinds of black pepper for enhanced visual texture. The plate has ample negative space, showcasing the dish's simple elegance. The bowl sits on a light-colored wooden table surface in a modern bistro setting. A neatly folded, off-white cotton napkin lies to the left. Soft, natural, even lighting illuminates the scene, highlighting the sauce's glossy finish. This is a single, refined restaurant-style portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately to maintain sauce consistency.",
+      "Enjoy as a standalone main course.",
+      "Pair with a simple green salad or crusty bread for soaking up residual sauce."
+    ],
+    "hero_ingredient": "Pasta and Black Pepper",
+    "ingredients": [
+      {
+        "name": "Spaghetti",
+        "quantity": "360g"
+      },
+      {
+        "name": "Parmigiano Reggiano cheese",
+        "quantity": "180g, finely grated"
+      },
+      {
+        "name": "Freshly cracked black peppercorns",
+        "quantity": "15g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "20g, for pasta water"
+      }
+    ],
+    "instructions": [
+      "Bring 3 litres of water to a rolling boil in a large pot. Add 20g sea salt.",
+      "Add 360g spaghetti to boiling water. Cook according to package directions until al dente, about 8-10 minutes.",
+      "While pasta cooks, finely grate 180g Parmigiano Reggiano.",
+      "In a large sauté pan, toast 15g freshly cracked black peppercorns over medium heat for 1-2 minutes until fragrant. Remove half the toasted pepper for garnish.",
+      "Before draining, reserve 500ml of starchy pasta cooking water.",
+      "Drain pasta. Add pasta directly to the sauté pan with toasted pepper.",
+      "Add 120ml reserved pasta water to the pan. Add grated cheese gradually, stirring vigorously with tongs.",
+      "Continuously stir and toss pasta, adding small splashes of reserved pasta water as needed, until a creamy, emulsified sauce forms. The sauce should coat the pasta without clumping. This process is called \"mantecare.\"",
+      "Serve immediately. Garnish with remaining toasted pepper."
+    ],
+    "notes": [
+      "The key to a successful Cacio e Pepe is the quality of ingredients and the emulsification technique. Use freshly cracked black pepper and high-quality Parmigiano Reggiano.",
+      "The starch from the pasta water is essential for creating the creamy sauce."
+    ],
+    "traditional_techniques": [
+      "Mantecare (emulsifying pasta with cheese and water)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 537,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 29.2,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 2664,
+      "total_carbs_g": 71.1,
+      "total_fat_g": 14.5,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 817,
+      "total_carbs_g": 21.8,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20,
+      "dietary_fiber": 14,
+      "protein": 58,
+      "saturated_fat": 44,
+      "sodium": 116,
+      "total_carbs": 26,
+      "total_fat": 19
+    },
+    "serving_size_g": 326.25,
+    "total_recipe_weight_g": 1305
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Supreme with Marsala-Mustard Jus and Lemon-Chive Emulsion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_supreme_with_marsala-mustard_jus_and_lemon-chive_emulsion_20250723_150839_f6df4c7c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T15:08:40.262613000Z",
+    "selected_ingredients": [
+      "egg",
+      "lemon",
+      "cream",
+      "sweet wine",
+      "mustard"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, perfectly pan-seared chicken supreme anchors the plate, its golden, crispy skin contrasting with the rich, deep brown of the bone. It rests on the left side of an expansive white bone china plate. Beside it, a flowing, lustrous pool of dark Marsala-Mustard jus gleams. Three slender, vibrant orange baby carrots, cooked al dente, are arranged organically near the jus, adding a pop of color and natural form. A delicate drizzle of pale yellow lemon-chive emulsion cascades gracefully over the chicken and jus, with a few precise dots accentuating the negative space. The composition is asymmetrical, elegant, and minimalist, emphasizing the chicken's refined presentation. The setting features a premium grey-veined marble surface, a pristine white linen napkin folded precisely, and dramatic, directional lighting creating soft shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken Supreme",
+    "ingredients": [
+      {
+        "name": "Chicken Supreme",
+        "quantity": "4 x 200g"
+      },
+      {
+        "name": "Marsala wine (sweet)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "High-quality Chicken Stock",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "45g"
+      },
+      {
+        "name": "Large egg yolks",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh chives, finely minced",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Baby carrots, peeled and trimmed",
+        "quantity": "12"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken supreme dry. Season generously with salt and pepper.",
+      "Heat olive oil in a heavy-bottomed pan over medium-high heat. Place chicken skin-side down. Sear for 8-10 minutes until skin is deeply golden and crispy. Flip chicken.",
+      "Transfer pan to a preheated oven at 180°C (350°F). Roast for 15-20 minutes, or until internal temperature reaches 75°C (167°F). Rest chicken on a cutting board, tented with foil, for 5 minutes.",
+      "While chicken roasts, deglaze the pan (after removing chicken) with Marsala wine. Scrape up any browned bits. Reduce Marsala by half over medium heat. Add chicken stock. Simmer until reduced by half and slightly thickened. Stir in Dijon mustard and 15g butter. Season with salt and pepper. Keep warm.",
+      "In a small pot, blanch baby carrots in salted boiling water for 3-4 minutes until tender-crisp. Drain and refresh in ice water to stop cooking. Drain again.",
+      "In a small saucepan, whisk egg yolks and lemon juice over very low heat or a double boiler. Whisk constantly until mixture thickens slightly and is warm to touch (do not scramble). Slowly whisk in heavy cream. Gradually add remaining 30g cold butter cubes, one at a time, whisking constantly until butter is incorporated and sauce is emulsified and glossy. Stir in minced chives and a pinch of salt. Keep warm, do not boil.",
+      "Place a single chicken supreme on one side of a large, pristine white plate. Spoon a generous pool of Marsala-Mustard Jus beside the chicken. Arrange 3 blanched baby carrots artfully next to the jus. Drizzle a small amount of Lemon-Chive Emulsion over the chicken and jus, or create small dots around the plate. Serve immediately."
+    ],
+    "notes": [
+      "Ensure sauces are warm but not boiling to maintain emulsion integrity.",
+      "Rest chicken adequately for juiciness."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Reduction",
+      "Emulsification"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 789.1,
+      "cholesterol_mg": 321.3,
+      "dietary_fiber_g": 1,
+      "protein_g": 53.4,
+      "saturated_fat_g": 18.1,
+      "sodium_mg": 518.3,
+      "total_carbs_g": 12,
+      "total_fat_g": 50.5,
+      "total_sugars_g": 9.6,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178.5,
+      "cholesterol_mg": 72.7,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 12.1,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 117.3,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 11.4,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 107.1,
+      "dietary_fiber": 3.7,
+      "protein": 106.8,
+      "saturated_fat": 90.3,
+      "sodium": 22.5,
+      "total_carbs": 4.4,
+      "total_fat": 64.7
+    },
+    "serving_size_g": 442,
+    "total_recipe_weight_g": 1768
+  }
+]

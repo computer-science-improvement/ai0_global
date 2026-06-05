@@ -1,0 +1,710 @@
+[
+  {
+    "recipe_name": "Stout Chocolate Cake with Candied Eggplant, Crispy Okra, and Crab Umami Caramel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_stout_chocolate_cake_with_candied_eggplant%2C_crispy_okra%2C_and_crab_umami_caramel_20250623_131903_89c201e4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:19:03.741545000Z",
+    "selected_ingredients": [
+      "crab",
+      "okra",
+      "beer",
+      "mayonnaise",
+      "eggplant"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegant slice of Stout Chocolate Cake is presented on a clean white porcelain dinner plate. The cake itself is a deep, rich chocolate brown, indicating a moist and dense crumb. Flecks of diced, purplish-brown candied eggplant are visible throughout the cake, adding a subtle visual texture. A glossy, golden-amber crab umami caramel sauce is artfully drizzled over the top, creating a delicate sheen and pooling slightly at the base of the slice. Scattered lightly over the caramel are vibrant green, thinly sliced and crispy okra rounds, providing a contrasting color and a delicate crunch. The composition is balanced, with moderate negative space around the cake slice. The plate rests on a simple wooden table surface, accompanied by a folded cotton napkin and standard restaurant flatware. Natural, even lighting highlights the cake's textures and colors, creating an inviting, sophisticated presentation typical of modern bistro dining.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "hero_ingredient": "Stout Beer",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Stout beer",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Eggplant",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Sugar for candied eggplant",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Water for candied eggplant",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Okra",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable oil for frying okra",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Sugar for crispy okra",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Sea salt for crispy okra",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Granulated sugar for caramel",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water for caramel",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Heavy cream for caramel",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Unsalted butter for caramel",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Crab paste (refined, umami type)",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour a 23 cm round cake pan.",
+      "For candied eggplant: Peel eggplant. Dice into 1 cm cubes. In a small saucepan, combine sugar and water. Bring to a simmer. Add eggplant cubes. Cook over medium-low heat until translucent and tender, about 15-20 minutes. Drain and set aside.",
+      "For cake: In a large bowl, whisk together flour, sugar, cocoa powder, baking soda, and salt.",
+      "In a separate bowl, whisk together eggs, mayonnaise, stout beer, and vanilla extract.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Do not overmix.",
+      "Gently fold in the drained candied eggplant cubes.",
+      "Pour batter into prepared cake pan. Bake for 30-35 minutes, or until a toothpick inserted into the center comes out clean. Cool in pan for 10 minutes, then invert onto a wire rack to cool completely.",
+      "For crispy okra: Wash and thoroughly dry okra. Slice okra very thinly into 2 mm rounds.",
+      "Heat vegetable oil in a deep pan to 160°C. Fry okra slices in batches until golden brown and crispy, about 3-5 minutes per batch. Remove with a slotted spoon and place on paper towels to drain.",
+      "While warm, toss crispy okra with sugar and sea salt. Set aside.",
+      "For crab umami caramel: In a medium saucepan, combine granulated sugar and water. Cook over medium heat, without stirring, until sugar dissolves and mixture turns a deep amber caramel. Do not burn.",
+      "Carefully and slowly pour in warm heavy cream, whisking constantly. Mixture will bubble vigorously. Add butter and crab paste. Whisk until smooth and butter is melted. Remove from heat and let cool slightly.",
+      "To assemble: Place cooled cake on a serving plate. Slice cake into 4 equal portions.",
+      "Drizzle each cake slice generously with the crab umami caramel. Garnish with crispy okra."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 161,
+      "calories": 1734,
+      "cholesterol_mg": 179,
+      "dietary_fiber_g": 9.6,
+      "protein_g": 15.1,
+      "saturated_fat_g": 23.7,
+      "sodium_mg": 1815,
+      "total_carbs_g": 228,
+      "total_fat_g": 73.4,
+      "total_sugars_g": 165.4,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 30.8,
+      "calories": 331,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 2.9,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 347,
+      "total_carbs_g": 43.6,
+      "total_fat_g": 14,
+      "total_sugars_g": 31.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 34,
+      "protein": 30,
+      "saturated_fat": 118,
+      "sodium": 79,
+      "total_carbs": 83,
+      "total_fat": 94
+    },
+    "serving_size_g": 523.5,
+    "total_recipe_weight_g": 2094
+  },
+  {
+    "recipe_name": "Classic Beef Stroganoff",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_beef_stroganoff_20250623_131753_46c1d13d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:17:54.345213000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "mushroom",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "Russian cuisine",
+    "visual_description": "The Beef Stroganoff is presented in a deep, wide-rimmed white porcelain bowl set on a dark oak bistro table. A bed of wide, buttery egg noodles supports the main dish. The beef is featured as thick, irregular seared chunks, not slices, thoroughly coated in a glossy, pale beige cream sauce. Large, quartered cremini mushrooms with golden-brown edges and soft onion strands are visible throughout the sauce. A generous sprinkle of vibrant green, finely chopped fresh dill is concentrated in the center. To the side, a small wooden board holds two thick wedges of dark, crusty rye bread and a small ceramic ramekin filled with additional chilled sour cream. The lighting is soft and natural, highlighting the textures of the meat and the velvety consistency of the sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of fermented pickles (ogurtsy).",
+      "Accompany with dark sourdough rye bread.",
+      "Pair with a glass of chilled vodka or kvass.",
+      "Can be served over buckwheat kasha for a more rustic variation."
+    ],
+    "hero_ingredient": "Beef Sirloin",
+    "ingredients": [
+      {
+        "name": "Beef sirloin, cut into 2cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cremini mushrooms, quartered",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow onions, thinly sliced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Sour cream (Smetana)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh dill, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry with paper towels.",
+      "Season beef with salt and black pepper.",
+      "Heat oil in a large skillet over high heat.",
+      "Sear beef in batches until browned on all sides.",
+      "Remove beef from skillet and set aside.",
+      "Melt butter in the same skillet over medium heat.",
+      "Add onions and sauté until translucent.",
+      "Add mushrooms and garlic.",
+      "Cook until mushrooms are golden brown and liquid evaporates.",
+      "Stir in mustard and beef stock.",
+      "Simmer until the liquid reduces by half.",
+      "Reduce heat to low.",
+      "Stir in sour cream gradually to incorporate.",
+      "Return beef to the skillet.",
+      "Heat for 1 minute until warmed through.",
+      "Do not let the sauce boil.",
+      "Garnish with chopped dill before serving."
+    ],
+    "notes": [
+      "Use room temperature sour cream to prevent the sauce from breaking.",
+      "Ensure the pan is very hot before searing beef to achieve a deep crust without overcooking the center.",
+      "High-fat sour cream (20% or more) provides the most authentic flavor and stable texture."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing",
+      "Tempering sour cream"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 725,
+      "cholesterol_mg": 182.3,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 63.6,
+      "saturated_fat_g": 20,
+      "sodium_mg": 1045,
+      "total_carbs_g": 14.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170.6,
+      "cholesterol_mg": 42.9,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 15,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 245.9,
+      "total_carbs_g": 3.4,
+      "total_fat_g": 10.8,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.8,
+      "dietary_fiber": 8.6,
+      "protein": 127.2,
+      "saturated_fat": 100,
+      "sodium": 45.4,
+      "total_carbs": 5.2,
+      "total_fat": 58.7
+    },
+    "serving_size_g": 425,
+    "total_recipe_weight_g": 1700
+  },
+  {
+    "recipe_name": "Black Pudding and Cheddar Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_black_pudding_and_cheddar_gratin_20250623_131702_f33e40d4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:17:02.633931000Z",
+    "selected_ingredients": [
+      "black pudding",
+      "cheddar",
+      "beef stock",
+      "potato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "british cuisine",
+    "visual_description": "The gratin is presented in a white, oval ceramic gratin dish, showcasing a generous individual portion. Its top crust is rich golden-brown from melted cheddar, with bubbling cream and stock visible. Crisped, thinly sliced potato edges peek through the cheese. Below, tender potato layers are interleaved with soft, caramelized onion slices and dark, earthy black pudding crumbles. The color palette is warm: golden-browns, creamy whites, deep purplish-black. Textures contrast crispy top with creamy, yielding interior. The dish sits on a simple wooden table. A white linen napkin and traditional European flatware are beside it. Natural, even lighting highlights the comforting warmth. The subtly blurred background suggests a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a vinaigrette.",
+      "Serve alongside roasted root vegetables.",
+      "Offer crusty bread for dipping into the creamy sauce."
+    ],
+    "hero_ingredient": "Black Pudding",
+    "ingredients": [
+      {
+        "name": "Black Pudding",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cheddar Cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Double Cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (fan 160°C).",
+      "Peel and thinly slice potatoes, approximately 2-3mm thick.",
+      "Peel and finely slice onions.",
+      "Peel and mince garlic.",
+      "Remove casing from black pudding. Crumble roughly.",
+      "Grate cheddar cheese.",
+      "Heat oil in a large pan over medium heat. Add sliced onions. Cook until softened and lightly golden, about 10-12 minutes. Add minced garlic for the last minute. Remove from pan.",
+      "Add black pudding to the same pan. Cook, breaking it up, until browned and slightly crispy. Drain excess fat.",
+      "In a saucepan, combine beef stock and double cream. Bring to a gentle simmer. Season with salt, pepper, and fresh thyme sprigs. Remove thyme sprigs before layering.",
+      "Lightly butter a gratin dish (approximately 25x20cm).",
+      "Arrange a layer of sliced potatoes in the dish. Overlap slightly.",
+      "Top with a layer of cooked onions and garlic.",
+      "Sprinkle with crumbled black pudding.",
+      "Scatter some grated cheddar cheese.",
+      "Pour a ladleful of the hot stock and cream mixture over the layers.",
+      "Repeat layering: potatoes, onions, black pudding, cheddar, liquid. Finish with a final layer of potatoes.",
+      "Pour remaining stock and cream mixture over the top. Ensure potatoes are mostly submerged.",
+      "Cover the gratin dish with foil. Bake for 40 minutes.",
+      "Remove foil. Sprinkle remaining cheddar cheese over the top.",
+      "Bake uncovered for another 20-25 minutes, or until potatoes are tender and top is golden and bubbling.",
+      "Let rest 10 minutes before serving."
+    ],
+    "notes": [
+      "For best results, use a waxy potato variety that holds its shape well but becomes tender, like Maris Piper or Russet.",
+      "Ensure potatoes are sliced very thinly for even cooking. A mandoline is ideal.",
+      "Do not overcook the black pudding to avoid it becoming too dry; just brown it lightly."
+    ],
+    "traditional_techniques": [
+      "Layering",
+      "Slow caramelization"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 721,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 23,
+      "saturated_fat_g": 27.4,
+      "sodium_mg": 1190,
+      "total_carbs_g": 47.1,
+      "total_fat_g": 52.4,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 136,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 4.3,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 225,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 21,
+      "protein": 46,
+      "saturated_fat": 137,
+      "sodium": 52,
+      "total_carbs": 17,
+      "total_fat": 67
+    },
+    "serving_size_g": 530,
+    "total_recipe_weight_g": 2120
+  },
+  {
+    "recipe_name": "Italian Sausage and Potato Maccheroni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_sausage_and_potato_maccheroni_20250623_131650_5fae9011.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:16:51.420367000Z",
+    "selected_ingredients": [
+      "sausage",
+      "potato",
+      "macaroni"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Italian Sausage and Potato Maccheroni is presented in a clean, white porcelain bowl, showcasing a hearty, rustic main course. The macaroni is tender and coated in a rich, reddish-brown tomato sauce. Scattered throughout are browned, irregular chunks of savory Italian sausage and soft, pale yellow diced potatoes. A generous sprinkle of freshly grated Pecorino Romano cheese covers the top, melting slightly into the warm pasta. Vibrant green basil leaves are torn and scattered as a fresh garnish. The dish sits on a simple wooden table, with a crisp white cotton napkin folded beside the bowl. Natural, even lighting highlights the dish's inviting textures and warm colors, creating an approachable, professional bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Macaroni pasta",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Pecorino Romano cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Remove sausage from casings. Crumble into a large pot or Dutch oven.",
+      "Cook sausage over medium-high heat until browned and cooked through. Break into chunks. Drain excess fat. Remove sausage from pot; set aside.",
+      "Add olive oil to the same pot. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a simmer.",
+      "Peel and dice potatoes into 1.5 cm cubes. Add potatoes to the pot. Cover and simmer for 10-12 minutes, until potatoes are tender-crisp.",
+      "Stir in macaroni. Return cooked sausage chunks to the pot. Cook uncovered, stirring occasionally, until macaroni is al dente and liquid has thickened, about 8-10 minutes.",
+      "Season with salt and black pepper to taste. Stir in grated Pecorino Romano cheese.",
+      "Ladle into serving bowls. Garnish with fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 774,
+      "cholesterol_mg": 90.9,
+      "dietary_fiber_g": 5.58,
+      "protein_g": 33.53,
+      "saturated_fat_g": 11.89,
+      "sodium_mg": 1045.3,
+      "total_carbs_g": 69.19,
+      "total_fat_g": 37.66,
+      "total_sugars_g": 6.56,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141,
+      "cholesterol_mg": 16.5,
+      "dietary_fiber_g": 1.02,
+      "protein_g": 6.1,
+      "saturated_fat_g": 2.16,
+      "sodium_mg": 190.2,
+      "total_carbs_g": 12.59,
+      "total_fat_g": 6.85,
+      "total_sugars_g": 1.19,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30.3,
+      "dietary_fiber": 19.9,
+      "protein": 67.1,
+      "saturated_fat": 59.4,
+      "sodium": 45.5,
+      "total_carbs": 25.2,
+      "total_fat": 48.3
+    },
+    "serving_size_g": 549.5,
+    "total_recipe_weight_g": 2198
+  },
+  {
+    "recipe_name": "Fermented Root Vegetable & Black Pudding Terrine with Cheddar Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_root_vegetable_%26_black_pudding_terrine_with_cheddar_crisp_20250623_131610_097bddc8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:16:11.152668000Z",
+    "selected_ingredients": [
+      "black pudding",
+      "cheddar"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A thick, substantial slice of the terrine occupies the center of a handcrafted, cream-colored ceramic plate. The terrine presents a mosaic of earthy tones: dark, rich black pudding chunks interspersed with the varied hues of lacto-fermented root vegetables – a mix of muted orange carrots, pale parsnips, and deep purple beetroot, all bound together. Its surface is naturally textured, perhaps with a slight rustic crack revealing the layers within. A single, golden-brown cheddar crisp leans elegantly against the terrine, showcasing its irregular, delicate structure. Alongside, a small, vibrant mound of simply blanched seasonal greens, like dark green kale or spinach, provides a fresh contrast. The composition is clean, with generous white space around the elements, emphasizing the natural beauty and texture of each ingredient. The plate rests on a light, reclaimed wood table surface. Soft, natural light illuminates the dish from the side, highlighting its textures. An undyed linen napkin in a natural beige tone is folded neatly beside the plate. A minimalist background features a blurred, soft green plant, hinting at natural surroundings without distracting from the food. The entire plate is visible, showcasing a refined, restaurant-style portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "cultural_serving_suggestions": [
+      "Served with seasonal, locally sourced greens to complement the rich terrine and emphasize plant-forward eating."
+    ],
+    "hero_ingredient": "Fermented Root Vegetables",
+    "ingredients": [
+      {
+        "name": "Black pudding",
+        "quantity": "300g, diced"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "100g, grated (for terrine) + 50g, thinly shredded (for crisps)"
+      },
+      {
+        "name": "Lacto-fermented mixed root vegetables (carrots, parsnips, celeriac, beetroot)",
+        "quantity": "600g, diced into 1 cm cubes, drained"
+      },
+      {
+        "name": "Leek",
+        "quantity": "1 large (approx. 200g), white and light green parts, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tablespoon, chopped"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 medium, beaten"
+      },
+      {
+        "name": "Breadcrumbs (from stale bread)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Seasonal greens (e.g., kale, spinach, chard)",
+        "quantity": "200g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 170°C.",
+      "Prepare a 1.5-litre loaf tin. Line it with baking paper, leaving an overhang.",
+      "In a large bowl, combine diced black pudding, drained lacto-fermented root vegetables, thinly sliced leek, minced garlic, chopped thyme, grated cheddar, beaten eggs, and breadcrumbs. Mix thoroughly.",
+      "Season the mixture with salt and black pepper to taste. Press the mixture firmly into the prepared loaf tin.",
+      "Pour vegetable broth over the mixture in the tin. Cover the top of the tin with the baking paper overhang, then cover tightly with foil.",
+      "Place the loaf tin in a larger roasting dish. Pour hot water into the roasting dish to come halfway up the sides of the loaf tin.",
+      "Bake for 90 minutes. Remove from oven.",
+      "Remove foil and baking paper. Place a weight (e.g., another loaf tin with cans) on top of the terrine. Let cool completely at room temperature, then refrigerate for at least 4 hours, or preferably overnight, to set.",
+      "To make cheddar crisps, preheat oven to 180°C. Line a baking tray with baking paper. Arrange small piles of thinly shredded cheddar cheese, leaving space between them.",
+      "Bake for 5-7 minutes, or until golden and crispy. Let cool on the tray, then gently peel off.",
+      "Wash and roughly chop seasonal greens. Blanch greens in boiling salted water for 2-3 minutes until tender-crisp. Drain well.",
+      "Carefully unmould the terrine and slice into thick portions, approximately 2 cm. Plate a slice of terrine.",
+      "Arrange blanched greens alongside the terrine. Lean a cheddar crisp elegantly against the terrine. Serve immediately."
+    ],
+    "notes": [
+      "To prepare lacto-fermented root vegetables: Dice 600g mixed root vegetables (carrots, parsnips, celeriac, beetroot) into 1 cm cubes. Place in a clean jar. Dissolve 15g sea salt in 500ml non-chlorinated water to make a 3% brine. Pour brine over vegetables, ensuring full submersion. Seal jar loosely. Ferment at room temperature for 3-5 days, or until desired tanginess. Drain well before use.",
+      "Utilize root vegetable peels and trimmings to make homemade vegetable broth, supporting a zero-waste kitchen."
+    ],
+    "traditional_techniques": [
+      "Lacto-fermentation",
+      "Bain-marie cooking",
+      "Food preservation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 630.5,
+      "cholesterol_mg": 222.6,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 29.2,
+      "saturated_fat_g": 15.5,
+      "sodium_mg": 1149.8,
+      "total_carbs_g": 47.3,
+      "total_fat_g": 39.9,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145.2,
+      "cholesterol_mg": 51.3,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 6.7,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 264.8,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74.2,
+      "dietary_fiber": 25.7,
+      "protein": 58.4,
+      "saturated_fat": 77.5,
+      "sodium": 50,
+      "total_carbs": 17.2,
+      "total_fat": 51.2
+    },
+    "serving_size_g": 434,
+    "total_recipe_weight_g": 1737
+  }
+]

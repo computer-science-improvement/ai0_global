@@ -1,0 +1,659 @@
+[
+  {
+    "recipe_name": "Braised Chicken with Confit Tomatoes and Smashed Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_confit_tomatoes_and_smashed_potatoes_20250625_084447_20d28915.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:44:48.094909000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of braised chicken is artfully arranged on a handcrafted, earth-toned ceramic plate, leaving ample white space. Two generous chunks of tender, dark-meat chicken, with crisped, golden-brown skin, rest beside a mound of coarsely smashed, creamy potatoes. Scattered around are vibrant, deeply red confit tomato halves, glistening with olive oil. A rich, dark braising liquid, subtly infused with fermented garlic, pools elegantly at the base. The dish is simply garnished with a sprinkle of fresh, finely chopped chives. The presentation is clean, unfussy, highlighting the natural beauty and textures of each ingredient. The plate sits on a light, textured stone surface, with an undyed linen napkin, under soft natural light, and a blurred backdrop of subtle green foliage.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 700g total)"
+      },
+      {
+        "name": "Firm potatoes (e.g., Desiree, Yukon Gold)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Ripe tomatoes (e.g., Roma, cherry tomatoes)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1, thinly sliced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml (from reserved bones or low-sodium store-bought)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh rosemary or thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fermented garlic paste or fermented chili paste (optional)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or chives, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Butter (optional)",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken: Debone chicken thighs. Reserve bones for stock. Pat chicken skin dry. Season chicken with salt and pepper.",
+      "Make Chicken Stock (Zero Waste): Place reserved chicken bones in a small pot. Cover with water. Simmer 30 minutes. Strain broth. Set aside.",
+      "Sear Chicken: Heat 2 tablespoons olive oil in a heavy-bottomed pot or Dutch oven over medium-high heat. Place chicken thighs skin-side down. Sear until skin is crispy and golden brown, about 8-10 minutes. Flip. Sear other side 2 minutes. Remove chicken. Set aside.",
+      "Sauté Aromatics: Add sliced onion to the pot. Cook until softened, about 5 minutes. Add minced garlic and fermented garlic/chili paste (if using). Cook 1 minute until fragrant.",
+      "Braise Chicken: Return chicken to the pot. Add chicken stock and half of the rosemary/thyme sprigs. Bring to a simmer. Cover. Reduce heat to low. Braise 30 minutes. Ensure chicken reaches 75°C (167°F) internal temperature.",
+      "Prepare Confit Tomatoes: While chicken braises, halve tomatoes. Place in a small oven-safe dish or pot. Cover with remaining olive oil. Add remaining rosemary/thyme. Bake at 150°C (300°F) for 45-60 minutes, until softened and slightly shriveled. Alternatively, simmer gently on stovetop.",
+      "Cook Potatoes: Peel potatoes. Cut into large chunks. Boil in salted water until tender, about 15-20 minutes. Drain well.",
+      "Finish Potatoes: Mash potatoes coarsely with a fork or potato masher. Season with salt and pepper. Add butter if desired.",
+      "Finish Braise: Remove chicken from pot. Shred or cut into large chunks. Reduce braising liquid slightly if too thin. Adjust seasoning. Return chicken to sauce.",
+      "Plate: Place a scoop of smashed potatoes on each plate. Spoon braised chicken and confit tomatoes next to it. Drizzle with braising liquid. Garnish with fresh parsley or chives."
+    ],
+    "notes": [
+      "This recipe emphasizes sustainable cooking by utilizing chicken bones for stock (zero-waste) and incorporating preserved elements like confit tomatoes. Using fermented garlic paste adds depth of flavor and incorporates a fermented ingredient into the dish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 714,
+      "cholesterol_mg": 199,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 39,
+      "saturated_fat_g": 11.9,
+      "sodium_mg": 251,
+      "total_carbs_g": 36.4,
+      "total_fat_g": 46.6,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1,
+      "protein_g": 7,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 45,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 19,
+      "protein": 78,
+      "saturated_fat": 60,
+      "sodium": 11,
+      "total_carbs": 13,
+      "total_fat": 60
+    },
+    "serving_size_g": 561.5,
+    "total_recipe_weight_g": 2246
+  },
+  {
+    "recipe_name": "Pasta with Roasted Squash and Miso-Pumpkin Seed Pesto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_with_roasted_squash_and_miso-pumpkin_seed_pesto_20250625_084445_7805def9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:44:45.537917000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "An individual portion of pasta is centered on a handcrafted ceramic plate in an earthy cream or beige tone. The al dente pasta is coated in a light green, creamy miso-pumpkin seed pesto. Roasted squash cubes, golden-brown with slight caramelization, are scattered throughout the dish, retaining their distinct shape. A small, vibrant pile of thinly sliced pickled red onions rests delicately on top, providing a striking pink-purple contrast. A few fresh green parsley leaves or microgreens are artfully placed as a natural garnish. The composition is clean and uncrowded, with ample white space around the dish. Natural textures of the pasta, soft squash, and crisp pickled onions are evident. The setting features a light reclaimed wood or stone table surface. An undyed linen napkin in natural beige is simply folded beside the plate. Soft, natural light illuminates the scene. The background is minimalist, with a blurred, subtle green plant adding an eco-conscious touch.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Roasted Squash",
+    "ingredients": [
+      {
+        "name": "Pasta",
+        "quantity": "320g"
+      },
+      {
+        "name": "Butternut Squash",
+        "quantity": "800g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Water (for pickling)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt (for pickling)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Pumpkin Seeds",
+        "quantity": "80g"
+      },
+      {
+        "name": "White Miso Paste",
+        "quantity": "40g"
+      },
+      {
+        "name": "Nutritional Yeast",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley or Microgreens (optional)",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare pickled red onions. Combine thinly sliced red onion, 60ml apple cider vinegar, 60ml water, 5g sugar, and 2g salt in a small jar. Shake well. Set aside.",
+      "Preheat oven to 200°C. Peel butternut squash. Deseed. Cut squash into 2cm cubes. Toss cubes with 20ml olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast squash for 25-30 minutes. Squash should be tender and slightly caramelized.",
+      "While squash roasts, prepare pesto. In a food processor, combine pumpkin seeds, white miso paste, nutritional yeast, garlic, and lemon juice. Pulse until finely chopped.",
+      "With processor running, slowly drizzle in 60ml olive oil until a smooth pesto forms. Add 30-60ml water as needed to reach desired consistency.",
+      "Cook pasta according to package directions in salted water until al dente. Reserve 120ml pasta water before draining.",
+      "Add drained pasta to a large bowl. Add pesto and roasted squash. Toss to combine.",
+      "Add reserved pasta water gradually to create a creamy sauce. Season with more salt and pepper if needed.",
+      "Serve immediately. Top each portion with a spoonful of pickled red onions and optional fresh parsley or microgreens."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 719,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 21,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 585,
+      "total_carbs_g": 94.7,
+      "total_fat_g": 30.3,
+      "total_sugars_g": 11.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 181,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 5.3,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 147,
+      "total_carbs_g": 23.8,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 35,
+      "protein": 42,
+      "saturated_fat": 23,
+      "sodium": 25,
+      "total_carbs": 34,
+      "total_fat": 39
+    },
+    "serving_size_g": 397.8,
+    "total_recipe_weight_g": 1591.2
+  },
+  {
+    "recipe_name": "Pappardelle with Creamy Mushroom Ragu",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pappardelle_with_creamy_mushroom_ragu_20250625_084406_d8acd2b2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:44:06.540589000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Pappardelle with Creamy Mushroom Ragu is presented centrally on a clean, round white porcelain dinner plate. The wide, flat ribbons of pappardelle are loosely coiled, forming a natural, organic mound. Rich, creamy mushroom sauce clings to every strand. Abundant pieces of seared wild mushrooms, irregularly sliced or torn, are nestled throughout the pasta, showcasing their golden-brown edges. The sauce is a warm, earthy beige, flecked with darker porcini bits. A generous sprinkle of finely grated Parmigiano-Reggiano lightly dusts the top, providing a pale contrast. Bright green, freshly chopped flat-leaf parsley is scattered over the cheese, adding a vibrant pop of color. The pasta appears tender, the mushrooms offer a mix of meaty and tender textures, and the sauce looks luxuriously creamy. Moderate negative space surrounds the pasta mound, ensuring the dish is the clear focal point. The plate rests on a simple, warm-toned wooden table surface. A neatly folded white cotton napkin and classic silver flatware are arranged beside the plate. The background is softly blurred, showing hints of a casual restaurant atmosphere, with natural, even lighting illuminating the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the delicious sauce.",
+      "Pair with a glass of dry white wine, such as Pinot Grigio or Chardonnay."
+    ],
+    "hero_ingredient": "Wild Mushrooms",
+    "ingredients": [
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Mixed wild mushrooms (e.g., cremini, shiitake, oyster)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Dried porcini mushrooms",
+        "quantity": "20g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Parmigiano-Reggiano",
+        "quantity": "80g, freshly grated"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rehydrate dried porcini mushrooms in 150ml hot water for 20 minutes. Strain liquid through a fine-mesh sieve, reserving it. Coarsely chop rehydrated porcini.",
+      "Heat olive oil and butter in a large, deep pan or Dutch oven over medium-high heat. Add sliced and torn fresh wild mushrooms. Cook, stirring occasionally, until mushrooms are golden brown and their moisture has evaporated, about 8-10 minutes. Remove cooked mushrooms from the pan and set aside.",
+      "Add diced shallots to the same pan. Cook until softened, about 3 minutes. Add minced garlic and chopped rehydrated porcini. Cook for 1 minute until fragrant.",
+      "Deglaze the pan with white wine. Scrape up any browned bits from the bottom. Reduce wine by half.",
+      "Pour in reserved porcini liquid and vegetable broth. Bring to a gentle simmer. Cook for 5 minutes to slightly reduce the sauce.",
+      "Return the cooked fresh mushrooms to the pan. Stir in heavy cream. Simmer gently for 2-3 minutes until the sauce slightly thickens. Season the ragu generously with salt and black pepper.",
+      "Meanwhile, cook pappardelle in a large pot of generously salted boiling water according to package directions until al dente. Before draining, reserve 200ml of the pasta cooking water.",
+      "Drain pasta. Add the cooked pappardelle directly to the mushroom ragu in the pan. Add half of the grated Parmigiano-Reggiano and half of the chopped fresh parsley.",
+      "Toss the pasta vigorously to coat it evenly with the sauce. Add reserved pasta water gradually, a tablespoon at a time, until the sauce emulsifies and beautifully coats every strand of pasta. The sauce should be creamy and cling to the pasta.",
+      "Serve immediately in warm bowls, garnished with the remaining Parmigiano-Reggiano and fresh parsley."
+    ],
+    "notes": [
+      "For best flavor, use a variety of fresh wild mushrooms. Dried porcini add deep umami notes.",
+      "Adjust the amount of pasta water to achieve your desired sauce consistency; it should be fluid and coat the pasta well."
+    ],
+    "traditional_techniques": [
+      "Sautéing mushrooms to achieve deep browning and flavor development (Maillard reaction)",
+      "Deglazing the pan to capture browned bits and build flavor",
+      "Emulsifying pasta with sauce and starchy pasta water for a cohesive, creamy texture"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 778.38,
+      "cholesterol_mg": 75.5,
+      "dietary_fiber_g": 6.97,
+      "protein_g": 27.06,
+      "saturated_fat_g": 16.14,
+      "sodium_mg": 480.15,
+      "total_carbs_g": 90.77,
+      "total_fat_g": 32.41,
+      "total_sugars_g": 9.98,
+      "trans_fat_g": 0.89
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 137.04,
+      "cholesterol_mg": 13.3,
+      "dietary_fiber_g": 1.23,
+      "protein_g": 4.76,
+      "saturated_fat_g": 2.84,
+      "sodium_mg": 84.53,
+      "total_carbs_g": 15.98,
+      "total_fat_g": 5.71,
+      "total_sugars_g": 1.76,
+      "trans_fat_g": 0.16
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.75,
+      "dietary_fiber": 24.89,
+      "protein": 54.12,
+      "saturated_fat": 80.7,
+      "sodium": 20.88,
+      "total_carbs": 32.99,
+      "total_fat": 41.55
+    },
+    "serving_size_g": 568,
+    "total_recipe_weight_g": 2272
+  },
+  {
+    "recipe_name": "Braised Green Lentils with Roasted Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_green_lentils_with_roasted_root_vegetables_20250625_084405_fd0d8b3c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:44:05.608748000Z",
+    "selected_ingredients": [
+      "lentil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of braised green lentils forms a rustic mound at the center of a clean, white porcelain plate. The lentils are plump, tender, and retain their shape, showing a rich, earthy green-brown hue. Scattered artfully around and nestled among the lentils are chunky, roasted root vegetables. Vibrant orange carrot and sweet potato chunks, pale yellow parsnip coins, and deep purple beetroot wedges display slightly caramelized edges, indicating a tender, roasted texture. A bright green sprinkle of fresh lemon-herb gremolata adorns the top, adding a pop of color and freshness. The dish is presented on a simple wooden table surface with a natural, even light. A neatly folded cotton napkin rests beside the plate, completing the casual dining setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Green Lentils",
+    "ingredients": [
+      {
+        "name": "Green Lentils",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Beetroot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery Stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Rinse lentils thoroughly. Set aside.",
+      "Peel and dice onion, carrots, and celery for lentils into small cubes. Mince 2 garlic cloves.",
+      "Heat 15 ml olive oil in a large pot over medium heat. Add diced onion, carrots, and celery. Sauté until softened, about 8 minutes.",
+      "Stir in tomato paste and minced garlic. Cook for 1 minute.",
+      "Add rinsed lentils, vegetable broth, bay leaf, and thyme sprigs to the pot. Bring to a simmer. Reduce heat to low, cover, and cook for 30-35 minutes, or until lentils are tender but still hold their shape. Stir occasionally. Remove bay leaf and thyme sprigs.",
+      "While lentils cook, peel root vegetables. Cut carrots and parsnips into thick coins or rustic chunks. Cut sweet potato into 2 cm cubes. Cut beetroot into wedges.",
+      "Toss cut root vegetables with 45 ml olive oil, salt, and pepper on a large baking sheet. Spread in a single layer.",
+      "Roast vegetables for 25-30 minutes, or until tender and slightly caramelized. Flip halfway through.",
+      "For gremolata: Finely chop fresh parsley. Zest the lemon. Mince remaining 2 garlic cloves. Combine parsley, lemon zest, and minced garlic in a small bowl.",
+      "Taste and adjust seasoning for lentils. Add salt and pepper as needed.",
+      "To serve: Spoon a generous portion of braised lentils onto each plate. Arrange roasted root vegetables artistically around and on top of the lentils. Sprinkle generously with gremolata. Serve immediately."
+    ],
+    "notes": [
+      "For a richer flavor, a splash of red wine can be added to the lentils after sautéing the tomato paste, before adding broth."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 540.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 29.8,
+      "protein_g": 20.3,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 711,
+      "total_carbs_g": 83.9,
+      "total_fat_g": 15.3,
+      "total_sugars_g": 16.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 90.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5,
+      "protein_g": 3.4,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 119,
+      "total_carbs_g": 14.1,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 106.3,
+      "protein": 40.6,
+      "saturated_fat": 10.6,
+      "sodium": 30.9,
+      "total_carbs": 30.5,
+      "total_fat": 19.6
+    },
+    "serving_size_g": 596.25,
+    "total_recipe_weight_g": 2385
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Parmesan Cream Sauce and Roasted Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_parmesan_cream_sauce_and_roasted_broccoli_20250625_084401_e54ae3e9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:44:01.743646000Z",
+    "selected_ingredients": [
+      "chicken",
+      "parmesan cheese",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown pan-seared chicken breast, cooked whole, rests centrally on a clean white porcelain dinner plate. A rich, creamy Parmesan sauce is generously spooned over the chicken, cascading slightly onto the plate. Alongside, vibrant green roasted broccoli florets are neatly arranged, their edges showing a slight char from roasting. The dish presents a balanced composition of colors: the deep golden chicken, the bright green broccoli, and the creamy white sauce, all flecked with fresh green chopped parsley. The textures are apparent: crispy-edged chicken, tender-crisp broccoli, and a smooth, luxurious sauce. The plate is positioned on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin beside the plate, creating a professional yet approachable modern bistro setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the sauce"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "500g"
+      },
+      {
+        "name": "Freshly grated Parmesan cheese",
+        "quantity": "80g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon wedges",
+        "quantity": "for serving (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss broccoli florets with 15ml olive oil, salt, and pepper on a baking sheet. Roast for 15-20 minutes, until tender-crisp and slightly charred.",
+      "Season chicken breasts with salt and pepper.",
+      "Heat remaining 15ml olive oil and 15g butter in a large skillet over medium-high heat.",
+      "Sear chicken breasts for 5-7 minutes per side, until golden brown and internal temperature reaches 75°C. Remove chicken from skillet and set aside. Keep warm.",
+      "Reduce heat to medium. Add minced garlic to the skillet. Sauté for 30 seconds until fragrant.",
+      "Pour in chicken broth, scraping up any browned bits from the bottom of the pan. Bring to a simmer.",
+      "Stir in heavy cream and grated Parmesan cheese. Simmer for 3-5 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Return chicken breasts to the skillet, coating them with the sauce.",
+      "Serve immediately. Plate one chicken breast with a generous portion of Parmesan cream sauce. Arrange roasted broccoli florets alongside. Garnish with fresh chopped parsley and a lemon wedge."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Adjust sauce thickness by simmering longer or adding a small amount of extra broth."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 732,
+      "cholesterol_mg": 264,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 71.9,
+      "saturated_fat_g": 21.9,
+      "sodium_mg": 620,
+      "total_carbs_g": 11.5,
+      "total_fat_g": 44.1,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168,
+      "cholesterol_mg": 61,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 16.5,
+      "saturated_fat_g": 5,
+      "sodium_mg": 143,
+      "total_carbs_g": 2.6,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 88,
+      "dietary_fiber": 12,
+      "protein": 144,
+      "saturated_fat": 110,
+      "sodium": 27,
+      "total_carbs": 4,
+      "total_fat": 57
+    },
+    "serving_size_g": 434.5,
+    "total_recipe_weight_g": 1738
+  }
+]

@@ -1,0 +1,760 @@
+[
+  {
+    "recipe_name": "Chicken Keema Pulao",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_keema_pulao_20250626_093209_636572ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:32:09.560927000Z",
+    "selected_ingredients": [
+      {
+        "name": "mincemeat",
+        "comment": "chicken mincemeat"
+      },
+      {
+        "name": "rice",
+        "comment": "basmati"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Chicken Keema Pulao is presented on a rustic, round ceramic plate with a subtle, earthy glaze. The basmati rice is fluffy, absorbing a rich, golden-brown hue from the spices, visibly mixed with small, tender chunks of savory chicken mincemeat. Finely diced, caramelized onions are interspersed throughout. Vibrant green flecks of chopped fresh coriander and mint leaves are scattered over the top, providing a fresh contrast. The dish is casually mounded, allowing natural negative space. The chicken mincemeat is thoroughly cooked. The overall appearance is hearty and comforting. The plate rests on a well-used wooden dining table, illuminated by warm kitchen lighting. A simple metal spoon is beside the plate. A small, plain ceramic bowl of cooling Raita is to the side.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Raita (yogurt dip).",
+      "Accompanied by pickled onions or a simple green salad."
+    ],
+    "hero_ingredient": "Chicken Mincemeat",
+    "ingredients": [
+      {
+        "name": "Chicken mincemeat",
+        "quantity": "400g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onions, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Tomatoes, chopped",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "20g"
+      },
+      {
+        "name": "Green chilies, slit",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (2cm)"
+      },
+      {
+        "name": "Green cardamom pods",
+        "quantity": "4"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ghee or cooking oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh coriander, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh mint leaves, chopped",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Wash basmati rice thoroughly. Soak in water for 30 minutes. Drain well.",
+      "Heat ghee in a large pot or Dutch oven over medium heat. Add cinnamon stick, cardamom pods, cloves, and bay leaf. Sauté 30 seconds until fragrant.",
+      "Add diced onions. Sauté until golden brown, about 8-10 minutes.",
+      "Add ginger-garlic paste and slit green chilies. Sauté 1 minute until aromatic.",
+      "Add chicken mincemeat. Cook, breaking up clumps with a spoon, until browned and cooked through. Ensure internal temperature reaches 75°C (167°F).",
+      "Add chopped tomatoes, turmeric powder, red chili powder, and coriander powder. Cook, stirring occasionally, until tomatoes soften and oil separates from the mixture, about 5-7 minutes.",
+      "Add drained basmati rice to the pot. Gently mix with the chicken and spices for 1 minute.",
+      "Pour in water and add salt. Bring the mixture to a rolling boil.",
+      "Reduce heat to low. Cover the pot tightly with a lid. Cook for 15-20 minutes, until all water is absorbed and rice is tender.",
+      "Remove pot from heat. Let it stand, covered, for 10 minutes (dum cooking).",
+      "Open lid. Gently fluff the rice with a fork. Mix in garam masala, chopped fresh coriander, and chopped fresh mint leaves.",
+      "Serve hot."
+    ],
+    "notes": [
+      "Ensure chicken mincemeat reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust green chilies to your preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Dum cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 566,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 27.3,
+      "saturated_fat_g": 7,
+      "sodium_mg": 579,
+      "total_carbs_g": 73.6,
+      "total_fat_g": 15.1,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.2,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 132,
+      "total_carbs_g": 16.8,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.4,
+      "dietary_fiber": 16.8,
+      "protein": 54.5,
+      "saturated_fat": 35,
+      "sodium": 25.2,
+      "total_carbs": 26.8,
+      "total_fat": 19.3
+    },
+    "serving_size_g": 437.5,
+    "total_recipe_weight_g": 1750
+  },
+  {
+    "recipe_name": "Cabbage and Chicken Chopped Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cabbage_and_chicken_chopped_salad_20250626_093156_06b82b22.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:31:57.018592000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "cucumber",
+      "preserved black bean",
+      "corn",
+      "bell pepper",
+      "cabbage",
+      "sour cream",
+      "onion",
+      "garlic",
+      "cheese",
+      "green pea",
+      "mushroom",
+      "olive"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A vibrant and hearty Cabbage and Chicken Chopped Salad is presented in an everyday ceramic bowl, typical of a family kitchen. The salad is mounded generously, showcasing a rich array of colors and textures. Finely shredded green cabbage forms the base, interspersed with visible diced chicken chunks, bright red tomato pieces, crisp green cucumber, yellow corn kernels, and vibrant green peas. Diced bell pepper, thinly sliced mushrooms, and black olives add further visual interest. Shredded cheddar cheese and a creamy, light-colored dressing are visibly integrated, coating the ingredients. The presentation is natural and unpretentious. The bowl sits on a well-used wooden dining table. Lighting is warm and cozy, suggestive of a relaxed family meal. A simple paper towel is casually placed nearby. The scene conveys homely comfort.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "hero_ingredient": "Cabbage",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Canned corn",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Green peas",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Button mushrooms",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Black olives",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Preserved black beans",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "0.5 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breasts into 2 cm cubes. Cook chicken in a pan with a little oil until internal temperature reaches 75°C. Set aside to cool.",
+      "Finely shred cabbage. Dice tomatoes, cucumber, bell pepper, and onion into 1 cm pieces. Thinly slice mushrooms.",
+      "Rinse and drain preserved black beans. Drain corn. Thaw green peas. Slice black olives.",
+      "Shred cheddar cheese.",
+      "For the dressing, mince garlic. In a medium bowl, whisk together sour cream, minced garlic, olive oil, white vinegar, salt, pepper, and sugar until smooth.",
+      "In a large mixing bowl, combine shredded cabbage, cooled diced chicken, diced tomatoes, diced cucumber, corn, green peas, diced bell pepper, sliced mushrooms, sliced olives, and rinsed black beans. Add shredded cheese.",
+      "Pour the prepared dressing over the salad ingredients. Gently toss until all components are evenly coated.",
+      "Serve immediately in individual portions."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 533.06,
+      "cholesterol_mg": 107.95,
+      "dietary_fiber_g": 10.57,
+      "protein_g": 38.76,
+      "saturated_fat_g": 11.78,
+      "sodium_mg": 985.25,
+      "total_carbs_g": 44.65,
+      "total_fat_g": 22.68,
+      "total_sugars_g": 13.13,
+      "trans_fat_g": 0.57
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.08,
+      "calories": 86.24,
+      "cholesterol_mg": 17.46,
+      "dietary_fiber_g": 1.71,
+      "protein_g": 6.27,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 159.39,
+      "total_carbs_g": 7.22,
+      "total_fat_g": 3.67,
+      "total_sugars_g": 2.12,
+      "trans_fat_g": 0.09
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36,
+      "dietary_fiber": 37.8,
+      "protein": 77.5,
+      "saturated_fat": 58.9,
+      "sodium": 42.8,
+      "total_carbs": 16.2,
+      "total_fat": 29.1
+    },
+    "serving_size_g": 618.15,
+    "total_recipe_weight_g": 2472.6
+  },
+  {
+    "recipe_name": "Classic Chicken Parmesan",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_chicken_parmesan_20250626_093128_08be0689.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:31:28.933086000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Classic Chicken Parmesan rests on a clean white porcelain dinner plate, centered on a rustic wooden table. The golden-brown, pan-fried chicken cutlet, approximately 1 cm thick, is generously covered with a vibrant red marinara sauce. Melted, bubbly fresh mozzarella and grated Parmesan cheese form a golden, gooey crust over the chicken. Scattered fresh green basil leaves provide a vivid color contrast. The chicken is presented as a whole piece, maintaining its crispy texture. The plate has moderate negative space, allowing the dish to stand out. A simple white linen napkin and a silver fork and knife are placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and rich colors, with a subtly blurred background suggesting a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve alongside a portion of spaghetti or penne pasta tossed with extra marinara sauce.",
+      "Offer a simple green salad with a light vinaigrette.",
+      "Provide crusty Italian bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Marinara sauce",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Fresh mozzarella cheese, sliced or shredded",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1/4 cup"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Lightly grease a baking dish.",
+      "Place each chicken breast between two sheets of plastic wrap. Pound with a meat mallet to a uniform thickness of 1 cm (approx. 180g cutlets). Season both sides with salt and pepper.",
+      "Prepare a breading station: Place flour in a shallow dish. Whisk eggs in a second shallow dish. Place breadcrumbs in a third shallow dish.",
+      "Dredge each chicken cutlet in flour, shaking off excess. Dip in egg wash, allowing excess to drip off. Coat thoroughly with breadcrumbs, pressing gently to adhere.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat. Fry chicken cutlets for 3-4 minutes per side, until golden brown and crispy. Do not overcrowd the pan; cook in batches if necessary.",
+      "Transfer fried chicken cutlets to the prepared baking dish.",
+      "Sauté minced garlic in the same skillet for 30 seconds until fragrant. Pour in marinara sauce. Bring to a gentle simmer. Season with salt and pepper.",
+      "Spoon a generous amount of marinara sauce over each chicken cutlet. Top with fresh mozzarella slices/shreds and grated Parmesan cheese.",
+      "Bake for 15-20 minutes, or until cheese is melted and bubbly, and chicken reaches an internal temperature of 75°C. The breading should be golden brown.",
+      "Remove from oven. Garnish with fresh basil leaves. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Pounding the chicken to an even thickness ensures uniform cooking and tenderness."
+    ],
+    "traditional_techniques": [
+      "Pan-frying (shallow frying)",
+      "Layering flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.6,
+      "calories": 919,
+      "cholesterol_mg": 290,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 90.8,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 1348,
+      "total_carbs_g": 69.8,
+      "total_fat_g": 29.7,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 187,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 18.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 274,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97,
+      "dietary_fiber": 16,
+      "protein": 182,
+      "saturated_fat": 58,
+      "sodium": 59,
+      "total_carbs": 25,
+      "total_fat": 38
+    },
+    "serving_size_g": 492.2,
+    "total_recipe_weight_g": 1968.8
+  },
+  {
+    "recipe_name": "Cabbage, Chicken, and Creamy Vegetable Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cabbage%2C_chicken%2C_and_creamy_vegetable_salad_20250626_093104_301ee17c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:31:05.222661000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "cucumber",
+      "preserved black bean",
+      "corn",
+      "bell pepper",
+      "cabbage",
+      "sour cream",
+      "onion",
+      "garlic",
+      "cheese",
+      "green pea",
+      "mushroom",
+      "olive"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, homely portion of Cabbage, Chicken, and Creamy Vegetable Salad is presented on a simple, round, off-white ceramic plate. Shredded green cabbage forms a natural base, generously mixed with vibrant diced red tomatoes, crisp diced cucumber, bright yellow corn kernels, dark black beans, and diced red bell pepper. Tender diced chicken chunks are interspersed throughout. Thawed green peas and sautéed brown mushroom slices add textural variety. Sliced black olives are visible. A creamy, white dressing lightly coats all ingredients, with a sprinkle of shredded orange Cheddar cheese on top. The arrangement is casual and unpretentious, with components naturally touching and overlapping. The plate sits on a well-used, warm-toned wooden kitchen table. A simple metal fork and a folded cloth napkin are placed beside the plate. Warm, soft lighting from an overhead kitchen fixture illuminates the scene, creating a cozy, lived-in family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Cabbage",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Canned black beans",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned corn kernels",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "0.5 medium"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Black olives",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breast dry. Season with salt and pepper. Heat 15 ml olive oil in a pan over medium-high heat. Sear chicken 5-7 minutes per side until cooked through and internal temperature reaches 75°C. Let rest 5 minutes. Dice into 2 cm chunks.",
+      "Shred cabbage thinly. Dice tomatoes, cucumber, and red bell pepper into 1 cm cubes.",
+      "Rinse black beans under cold water. Drain corn kernels. Thaw green peas.",
+      "Slice mushrooms. Heat remaining 15 ml olive oil in the same pan. Sauté sliced mushrooms 5-7 minutes until browned and tender. Let cool.",
+      "Slice black olives into rounds.",
+      "For the dressing: Finely dice half red onion. Mince garlic clove. In a bowl, whisk together sour cream, diced red onion, minced garlic, white vinegar, salt, and pepper until smooth.",
+      "In a large mixing bowl, combine shredded cabbage, diced tomatoes, diced cucumber, black beans, corn, red bell pepper, green peas, sautéed mushrooms, and sliced olives.",
+      "Add diced chicken chunks to the vegetable mixture. Pour the sour cream dressing over the salad. Toss gently to coat all ingredients evenly.",
+      "Shred Cheddar cheese. Serve salad immediately, topped with shredded cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 714,
+      "cholesterol_mg": 135.8,
+      "dietary_fiber_g": 18.3,
+      "protein_g": 56,
+      "saturated_fat_g": 13.4,
+      "sodium_mg": 702.1,
+      "total_carbs_g": 57.3,
+      "total_fat_g": 31.9,
+      "total_sugars_g": 15.9,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 89,
+      "cholesterol_mg": 16.9,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 87.5,
+      "total_carbs_g": 7.1,
+      "total_fat_g": 4,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 65,
+      "protein": 112,
+      "saturated_fat": 67,
+      "sodium": 31,
+      "total_carbs": 21,
+      "total_fat": 41
+    },
+    "serving_size_g": 802.65,
+    "total_recipe_weight_g": 3210.6
+  },
+  {
+    "recipe_name": "Cajun Beer-Braised Chicken and Spicy Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cajun_beer-braised_chicken_and_spicy_rice_20250626_093023_a385792e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:30:24.258616000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "tomato",
+      "garlic",
+      "cheese",
+      "onion",
+      "hot sauce",
+      "beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous portion of vibrant Cajun Beer-Braised Chicken and Spicy Rice is plated on a clean, round white porcelain dinner plate. Two seasoned, golden-brown chicken thighs are nestled atop the reddish-brown, moist rice. The rice is studded with finely diced red tomato, green bell pepper, and onion. Freshly chopped green parsley sprinkles over the dish, with a light melt of shredded sharp cheddar cheese on the chicken. The plating is natural and mounded, professional yet approachable. The dish rests on a light wooden table surface, implying a modern bistro setting. A neatly folded off-white cotton napkin is placed to the left. Natural, even lighting illuminates the food, highlighting textures and colors. The background is softly blurred, showing a casual restaurant ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Cajun",
+    "cultural_origin": "Cajun",
+    "cultural_serving_suggestions": [
+      "Serve with extra hot sauce on the side.",
+      "Serve with cornbread or French bread.",
+      "Pair with a cold lager beer."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Celery stalks, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Beer (lager or amber ale)",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Louisiana-style hot sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cajun seasoning",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Cheddar cheese, shredded (optional)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh parsley, chopped (for garnish)",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with Cajun seasoning, salt, and pepper.",
+      "Heat 30ml vegetable oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken skin-side down until deep golden brown and crispy. Flip and sear other side. Remove chicken from pot.",
+      "Reduce heat to medium. Add diced onion, bell pepper, and celery to the pot. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in 300g uncooked rice. Cook 2 minutes, stirring to coat.",
+      "Pour in 330ml beer and scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Stir in 400g diced tomatoes with their juice, 500ml chicken broth, and 15ml hot sauce. Bring to a boil.",
+      "Return chicken to the pot, skin-side up, nestling it into the rice mixture. Ensure liquid mostly covers rice.",
+      "Reduce heat to low. Cover pot tightly. Simmer 20-25 minutes, or until rice is tender and chicken reaches 75°C (167°F).",
+      "Remove from heat. Let stand covered 5 minutes.",
+      "Fluff rice gently with a fork. Serve immediately."
+    ],
+    "notes": [
+      "Adjust hot sauce quantity to desired spice level.",
+      "Ensure rice is fully cooked but not mushy."
+    ],
+    "traditional_techniques": [
+      "Holy Trinity sautéing",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 921,
+      "cholesterol_mg": 201.3,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 47.5,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 1845.5,
+      "total_carbs_g": 78.4,
+      "total_fat_g": 43.7,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147.4,
+      "cholesterol_mg": 32.2,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 295.3,
+      "total_carbs_g": 12.5,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.1,
+      "dietary_fiber": 21,
+      "protein": 94.9,
+      "saturated_fat": 60.5,
+      "sodium": 80.2,
+      "total_carbs": 28.5,
+      "total_fat": 56
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  }
+]

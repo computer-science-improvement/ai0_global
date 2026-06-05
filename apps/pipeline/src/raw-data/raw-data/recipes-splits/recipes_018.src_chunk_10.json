@@ -1,0 +1,607 @@
+[
+  {
+    "recipe_name": "Mushroom, Feta, and Olive Rice Fritters",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom%2C_feta%2C_and_olive_rice_fritters_20250625_162656_39edb083.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:26:56.594080000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "olive oil",
+      "olive",
+      "feta cheese",
+      "rice",
+      "lemon",
+      "parsley"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Golden-brown, pan-fried rice fritters are casually arranged on an off-white, slightly chipped ceramic plate. Four to five roughly circular fritters, approximately 5-6 cm in diameter, are grouped together, some slightly overlapping, creating a natural, unpretentious cluster. A few chopped fresh parsley leaves are lightly sprinkled over the fritters for a touch of green. A half lemon wedge sits casually beside the fritters. The fritters' crispy exterior reveals visible bits of diced mushroom, crumbled white feta cheese, and dark chopped olive pieces within. The plate rests on a well-worn, light-colored wooden dining table. A simple, folded blue and white checkered cloth napkin is casually placed to one side. Warm, soft lighting, as if from an overhead kitchen fixture, casts gentle shadows, highlighting the fritters' inviting texture. The background is a soft blur of a homely kitchen, hinting at a lived-in atmosphere without distracting from the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Cooked Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Feta Cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Pitted Black Olives",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Cook rice according to package directions. Let cool completely.",
+      "Clean mushrooms. Dice mushrooms into small cubes.",
+      "Heat 15ml olive oil in a pan over medium heat. Sauté diced mushrooms until tender and lightly browned. Remove from heat and cool.",
+      "Chop pitted olives finely.",
+      "Chop parsley finely.",
+      "In a large bowl, combine cooled cooked rice, sautéed mushrooms, chopped olives, crumbled feta cheese, chopped parsley, egg, and flour. Mix thoroughly until well combined.",
+      "Season the mixture with salt and pepper. Add the zest from half of the lemon.",
+      "Form the mixture into 12-16 small, flat fritters, approximately 5-6 cm in diameter and 1-1.5 cm thick.",
+      "Heat 30ml olive oil in a large non-stick pan over medium heat.",
+      "Cook fritters in batches for 3-4 minutes per side, until golden brown and crispy. Add more olive oil if needed for subsequent batches.",
+      "Squeeze fresh lemon juice from the remaining half lemon over the cooked fritters just before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 327,
+      "cholesterol_mg": 69,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 9.1,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 894,
+      "total_carbs_g": 23.9,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 4.9,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 476,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 6,
+      "protein": 18,
+      "saturated_fat": 32,
+      "sodium": 39,
+      "total_carbs": 9,
+      "total_fat": 28
+    },
+    "serving_size_g": 188,
+    "total_recipe_weight_g": 752
+  },
+  {
+    "recipe_name": "Belgian Beer-Braised Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_belgian_beer-braised_chicken_20250625_162559_73cc4583.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:26:00.027481000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Belgian Beer-Braised Chicken is presented in a deep, clean white porcelain bowl. Two whole, tender chicken pieces (thigh and drumstick) are nestled in a rich, dark brown sauce. The sauce coats the chicken, revealing caramelized sliced onions and crispy diced bacon lardons. A few fresh thyme leaves are scattered over the dish for a vibrant green contrast. The textures are soft, succulent chicken and tender, sweet onions within a glossy, thick sauce. The plating is organized and balanced, leaving moderate negative space around the edges of the bowl. The setting is a modern bistro, with a simple light wooden table surface and a white linen napkin beside the bowl. Natural, even light illuminates the dish. A traditional Belgian beer glass is subtly visible in the soft-focus background, alongside a crust of rustic bread.",
+    "number_of_servings": 4,
+    "cuisine_type": "Belgian",
+    "cultural_origin": "Belgian",
+    "cultural_serving_suggestions": [
+      "Serve with Belgian frites (fries) or mashed potatoes.",
+      "Offer crusty bread to soak up the rich sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs and drumsticks, bone-in, skin-on",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Smoked bacon lardons",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Yellow onions, sliced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Belgian dark ale (e.g., Dubbel)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped, for garnish",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry. Season with salt and pepper. Lightly dredge chicken pieces in flour. Shake off excess.",
+      "Heat vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Add bacon lardons. Cook until crispy. Remove bacon with a slotted spoon. Set aside. Leave rendered fat in pot.",
+      "Add floured chicken pieces to the pot. Sear until golden brown on all sides. Do not overcrowd. Sear in batches if necessary. Remove chicken. Set aside.",
+      "Reduce heat to medium. Add sliced onions to the pot. Cook until softened and caramelized, about 8-10 minutes. Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Deglaze the pot with Belgian dark ale, scraping up any browned bits from the bottom.",
+      "Stir in beef stock, Dijon mustard, and brown sugar. Bring to a simmer.",
+      "Return chicken and cooked bacon lardons to the pot. Add thyme sprigs and bay leaf. Ensure chicken is mostly submerged.",
+      "Cover the pot. Reduce heat to low. Simmer for 45-60 minutes, or until chicken is very tender and cooked to an internal temperature of 75°C (167°F).",
+      "Remove bay leaf and thyme sprigs. Adjust seasoning with salt and pepper.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Use a good quality Belgian dark ale for authentic flavor."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing",
+      "Caramelization"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.47,
+      "calories": 820.41,
+      "cholesterol_mg": 229,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 58.64,
+      "saturated_fat_g": 13.68,
+      "sodium_mg": 925.46,
+      "total_carbs_g": 25.16,
+      "total_fat_g": 47.72,
+      "total_sugars_g": 6.72,
+      "trans_fat_g": 0.27
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.53,
+      "calories": 177.39,
+      "cholesterol_mg": 49.51,
+      "dietary_fiber_g": 0.39,
+      "protein_g": 12.68,
+      "saturated_fat_g": 2.96,
+      "sodium_mg": 200.1,
+      "total_carbs_g": 5.44,
+      "total_fat_g": 10.32,
+      "total_sugars_g": 1.45,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76.33,
+      "dietary_fiber": 6.43,
+      "protein": 117.28,
+      "saturated_fat": 68.4,
+      "sodium": 40.24,
+      "total_carbs": 9.15,
+      "total_fat": 61.18
+    },
+    "serving_size_g": 462.5,
+    "total_recipe_weight_g": 1850
+  },
+  {
+    "recipe_name": "Spicy Pork and Potato Croquettes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_pork_and_potato_croquettes_20250625_162529_5f41f455.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:25:30.466839000Z",
+    "selected_ingredients": [
+      {
+        "name": "pork stock"
+      },
+      {
+        "name": "potato"
+      },
+      {
+        "name": "chili"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "breadcrumbs"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "The dish is presented on a rustic light wooden serving board, showcasing a collection of golden-brown, elongated croquettes. Each croquette is uniformly shaped, approximately 6-7 cm long, with a visibly crispy, textured panko breadcrumb crust. A subtle fleck of red chili is occasionally visible through the golden exterior, hinting at the savory spice within. The croquettes are arranged organically, piled slightly, creating an inviting, abundant look. Beside the main pile, a small, clean white porcelain ramekin holds a vibrant chili-lime aioli, offering a creamy counterpoint. A light scattering of finely chopped fresh green chives is sprinkled over the croquettes, adding a pop of color and freshness. The background is a soft, blurred modern bistro setting, with hints of warm, natural lighting. The entire arrangement is clean and uncluttered, emphasizing the appetizing texture and color of the croquettes. The croquettes appear substantial and perfectly cooked, ready for sharing.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with a side of chili-lime aioli for dipping."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Pork stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "for deep frying"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Boil potatoes until tender. Drain well. Mash thoroughly. Season with salt and pepper. Set aside.",
+      "In a pan, melt butter over medium heat. Add diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and diced chilies. Cook for 2 minutes until fragrant.",
+      "Pour in pork stock. Bring to a simmer. Reduce heat and cook until liquid is reduced by half and slightly thickened.",
+      "Combine the reduced stock mixture with the mashed potatoes. Mix well until fully incorporated. Taste and adjust seasoning.",
+      "Allow potato mixture to cool completely. Chill in the refrigerator for at least 1 hour, or until firm enough to handle.",
+      "Prepare a breading station: Place flour in one shallow dish, beaten eggs in a second, and panko breadcrumbs in a third.",
+      "Form potato mixture into cylindrical croquettes, about 6-7 cm long and 2-3 cm thick.",
+      "Dredge each croquette in flour, shaking off excess. Dip in beaten egg, ensuring full coverage. Roll in panko breadcrumbs, pressing gently to adhere.",
+      "Heat vegetable oil in a deep pot or fryer to 170°C.",
+      "Fry croquettes in batches for 3-4 minutes, or until golden brown and crispy. Ensure internal temperature is hot.",
+      "Remove with a slotted spoon. Drain on paper towels.",
+      "Serve hot, garnished with fresh chives."
+    ],
+    "notes": [
+      "Chilling the potato mixture thoroughly is crucial for easier shaping and to prevent the croquettes from breaking apart during frying."
+    ]
+  },
+  {
+    "recipe_name": "Creamy Tomato Mushroom Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_mushroom_pasta_20250625_162259_53283d52.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:22:59.828995000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "parmesan cheese",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "No rice",
+    "visual_description": "Al dente tagliatelle pasta, coated in a rich, creamy, reddish-orange tomato sauce. Sautéed sliced cremini mushrooms, cooked to a golden-brown, are mixed throughout the pasta. Halved cherry tomatoes add bursts of bright red. A generous dusting of finely grated Parmesan cheese covers the top, melting slightly into the warm pasta. Fresh green basil leaves are scattered over the dish for a vibrant contrast. The pasta is served in a simple, deep, off-white ceramic bowl, placed on a well-used rustic wooden dining table. A standard metal fork rests casually beside the bowl. Natural, warm light highlights the comforting textures of the dish. Portions are modest and home-style.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Tagliatelle or Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "400g, sliced"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g, grated, plus more for serving"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 small bunch, torn"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions until al dente. Reserve 120ml of pasta water before draining.",
+      "While pasta cooks, heat olive oil in a large pan over medium heat.",
+      "Add diced onion to the pan. Cook until softened, about 5 minutes. This is the base of your soffritto.",
+      "Add minced garlic to the pan. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms to the pan. Sauté until mushrooms are golden brown and have released their liquid, about 8-10 minutes.",
+      "Pour in crushed tomatoes. Bring to a gentle simmer. Cook for 10 minutes, stirring occasionally, to deepen flavors.",
+      "Stir in heavy cream and 50g of grated Parmesan cheese. Simmer for 2-3 minutes until sauce slightly thickens.",
+      "Add cooked pasta to the sauce. Toss to coat evenly. If needed, add reserved pasta water, 30ml at a time, to achieve desired consistency.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately, garnished with remaining grated Parmesan and fresh torn basil."
+    ],
+    "notes": [
+      "Adjust sauce consistency with reserved pasta water for a creamier or looser finish.",
+      "For a richer flavor, use a mix of mushroom varieties."
+    ],
+    "traditional_techniques": [
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 689,
+      "cholesterol_mg": 56,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 27.1,
+      "saturated_fat_g": 11.7,
+      "sodium_mg": 568,
+      "total_carbs_g": 88.4,
+      "total_fat_g": 25.2,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 172,
+      "cholesterol_mg": 14,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 6.8,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 142,
+      "total_carbs_g": 22,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19,
+      "dietary_fiber": 23,
+      "protein": 54,
+      "saturated_fat": 59,
+      "sodium": 25,
+      "total_carbs": 32,
+      "total_fat": 32
+    },
+    "serving_size_g": 401,
+    "total_recipe_weight_g": 1603
+  },
+  {
+    "recipe_name": "Sweet Wine Poached Apples and Strawberries with Candied Walnuts and Cinnamon Crème Fraîche",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_wine_poached_apples_and_strawberries_with_candied_walnuts_and_cinnamon_cr%C3%A8me_fra%C3%AEche_20250625_162225_f2ac7f24.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:22:26.215375000Z",
+    "selected_ingredients": [
+      "candied walnut",
+      "apple",
+      "strawberry",
+      "sweet wine",
+      "cinnamon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dessert is elegantly plated on a clean, round white porcelain dish. Pale golden apple wedges, cut into uniform segments, are artfully arranged, slightly overlapping. Vibrant ruby-red strawberry halves are nestled among the apples. A glistening, dark amber sweet wine reduction is generously drizzled over the fruit, catching the light. Beside the fruit, a refined dollop of creamy white cinnamon crème fraîche adds a soft contrast. Scattered around the fruit and crème fraîche are irregular chunks of amber-brown candied walnuts, providing textural interest. The overall presentation is balanced and uncluttered, with moderate negative space. The setting features a simple, light-colored wooden table surface. A silver dessert fork and spoon are placed to the right of the plate. A folded white cotton napkin rests beside the cutlery. Natural, even lighting highlights the dish, with a softly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Contemporary Dessert",
+    "hero_ingredient": "Sweet Wine Poached Apples",
+    "ingredients": [
+      {
+        "name": "Apples",
+        "quantity": "4 medium (e.g., Honeycrisp, Fuji)"
+      },
+      {
+        "name": "Strawberries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Sweet wine",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "130g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Crème fraîche",
+        "quantity": "150g"
+      },
+      {
+        "name": "Candied walnuts",
+        "quantity": "80g"
+      }
+    ],
+    "instructions": [
+      "Prepare poaching liquid: In a medium saucepan, combine sweet wine, water, 100g sugar, lemon juice, and cinnamon stick. Bring to a simmer over medium heat, stirring until sugar dissolves.",
+      "Poach apples: Add apple wedges to simmering liquid. Reduce heat to low. Simmer gently for 8-10 minutes, or until apples are tender-crisp. Do not overcook. Remove apples with a slotted spoon. Set aside.",
+      "Poach strawberries: Add strawberries to the same poaching liquid. Simmer for 1-2 minutes until slightly softened. Remove strawberries with a slotted spoon. Set aside.",
+      "Reduce poaching liquid: Increase heat to medium-high. Simmer remaining liquid rapidly until reduced to a thin syrup, about 8-12 minutes. Remove cinnamon stick. Set syrup aside to cool slightly.",
+      "Prepare cinnamon crème fraîche: In a small bowl, combine crème fraîche, 30g sugar, and vanilla extract. Whisk until smooth.",
+      "Assemble: Arrange poached apple wedges and strawberries on each of four dessert plates. Drizzle generously with the sweet wine syrup. Place a dollop of cinnamon crème fraîche beside the fruit. Scatter candied walnuts over and around the fruit. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 50.7,
+      "calories": 616.5,
+      "cholesterol_mg": 48.8,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 3.7,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 7.1,
+      "total_carbs_g": 81.9,
+      "total_fat_g": 27.2,
+      "total_sugars_g": 73.1,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.3,
+      "calories": 136.8,
+      "cholesterol_mg": 10.8,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 0.8,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 1.6,
+      "total_carbs_g": 18.2,
+      "total_fat_g": 6,
+      "total_sugars_g": 16.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16,
+      "dietary_fiber": 22,
+      "protein": 7,
+      "saturated_fat": 61,
+      "sodium": 0,
+      "total_carbs": 30,
+      "total_fat": 35
+    },
+    "serving_size_g": 450.8,
+    "total_recipe_weight_g": 1803
+  }
+]

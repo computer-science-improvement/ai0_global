@@ -1,0 +1,639 @@
+[
+  {
+    "recipe_name": "Pasta al Forno with Roasted Bell Pepper",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_al_forno_with_roasted_bell_pepper_20250624_172333_141717ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:23:34.037118000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "onion",
+      "oregano",
+      "bell pepper",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pasta al Forno with Roasted Bell Pepper and Mozzarella is presented in a deep, clean white ceramic pasta bowl. The top is a golden-brown, bubbly crust of melted mozzarella and Parmesan cheese. Below, the pasta is coated in a vibrant red tomato sauce, generously studded with tender, roasted 2cm chunks of red, yellow, and orange bell peppers. The penne pasta is clearly visible, holding the rich sauce. Fresh green oregano leaves are scattered over the top, adding a bright color contrast. The dish sits on a light wooden table, accompanied by a crisp white cotton napkin and classic silver flatware. The background is a softly blurred modern bistro scene, with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Roasted Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Bell peppers (red, yellow, orange)",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15g"
+      },
+      {
+        "name": "Low-moisture mozzarella cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Vegetable broth or pasta water",
+        "quantity": "100ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut bell peppers into 2cm chunks. Toss with 30ml olive oil, salt, and pepper. Roast on a baking tray for 20-25 minutes until tender and slightly charred.",
+      "While peppers roast, cook pasta according to package directions until al dente. Drain. Reserve 100ml pasta water.",
+      "Heat remaining 30ml olive oil in a large pot or Dutch oven over medium heat. Add diced onion. Cook 5-7 minutes until softened and translucent.",
+      "Add minced garlic and red pepper flakes (if using). Cook 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Add chopped fresh oregano, salt, and pepper. Bring to a simmer. Cook for 15 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Stir in roasted bell peppers. Add reserved pasta water or vegetable broth to adjust sauce consistency.",
+      "Combine cooked pasta with the tomato-bell pepper sauce in the pot.",
+      "Layer half of the pasta mixture in a 20x30cm baking dish. Sprinkle with half of the shredded mozzarella and half of the grated Parmesan.",
+      "Add remaining pasta mixture. Top with remaining mozzarella and Parmesan.",
+      "Bake for 20-25 minutes, or until cheese is melted, bubbly, and golden brown.",
+      "Let stand 5 minutes before serving."
+    ],
+    "traditional_techniques": [
+      "Al Forno",
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 806,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 9.4,
+      "protein_g": 34.9,
+      "saturated_fat_g": 12.9,
+      "sodium_mg": 1125,
+      "total_carbs_g": 94.3,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 14.6,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 5.7,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 185,
+      "total_carbs_g": 15.5,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17,
+      "dietary_fiber": 34,
+      "protein": 70,
+      "saturated_fat": 65,
+      "sodium": 49,
+      "total_carbs": 34,
+      "total_fat": 43
+    },
+    "serving_size_g": 608,
+    "total_recipe_weight_g": 2432
+  },
+  {
+    "recipe_name": "Seared Chicken with Fermented Cabbage and Root Puree",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_with_fermented_cabbage_and_root_puree_20250624_172332_da75c0ec.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:23:33.003369000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken thigh, skin-on and crisped to a deep golden-brown, rests centrally on a handcrafted, matte cream ceramic plate. The chicken is presented as a whole piece, showcasing its natural form. Beside it, a generous dollop of smooth, pale yellow root vegetable puree, subtly textured. A vibrant mound of lacto-fermented green cabbage, cut into thin shreds, provides a sharp contrast in color and texture. A small sprig of fresh thyme garnishes the chicken. The composition is clean, with ample negative space. The plate sits on a light, textured reclaimed wood surface, accompanied by an undyed linen napkin. Soft, diffused natural light illuminates the dish, highlighting its natural colors and textures against a minimalist background of blurred greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Potatoes, peeled and diced",
+        "quantity": "300g"
+      },
+      {
+        "name": "Parsnips, peeled and diced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Lacto-fermented green cabbage, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water or vegetable stock",
+        "quantity": "200ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat. Place chicken thighs skin-side down.",
+      "Sear chicken skin-side down for 8-10 minutes until deeply golden and crisp. Flip chicken.",
+      "Transfer skillet to a preheated oven at 190°C (375°F). Roast for 10-15 minutes, or until internal temperature reaches 75°C (167°F). Rest chicken for 5 minutes before serving.",
+      "While chicken roasts, combine diced potatoes and parsnips in a saucepan. Cover with water or vegetable stock. Bring to a boil, then reduce heat and simmer until very tender, about 15-20 minutes.",
+      "Drain vegetables, reserving cooking liquid. Mash or blend potatoes and parsnips with a splash of reserved liquid until smooth. Season puree with salt and pepper.",
+      "Gently warm the lacto-fermented cabbage in a separate pan if desired, or serve at room temperature.",
+      "To plate, spread a generous portion of root vegetable puree on each plate. Place one seared chicken thigh on the puree. Arrange a mound of fermented cabbage alongside. Garnish with a fresh thyme sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 569,
+      "cholesterol_mg": 169,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 38.6,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 475,
+      "total_carbs_g": 25,
+      "total_fat_g": 35.3,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 137,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9.3,
+      "saturated_fat_g": 2,
+      "sodium_mg": 115,
+      "total_carbs_g": 6,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 20,
+      "protein": 77,
+      "saturated_fat": 42,
+      "sodium": 21,
+      "total_carbs": 9,
+      "total_fat": 45
+    },
+    "serving_size_g": 414,
+    "total_recipe_weight_g": 1656
+  },
+  {
+    "recipe_name": "Spiced Potato and Tomato Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_potato_and_tomato_curry_20250624_172331_3d066884.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:23:31.857644000Z",
+    "selected_ingredients": [
+      "onion",
+      "potato",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish is presented in a rustic, shallow, dark ceramic bowl, showcasing a generous portion of the vibrant Spiced Potato and Tomato Curry. The curry has a rich, reddish-orange hue, indicating a well-cooked tomato base and balanced spices. Fork-tender potato chunks, cut into 2 cm cubes, are clearly visible within the thick, savory gravy. Finely chopped fresh green coriander leaves are generously scattered over the top, adding a burst of fresh color and aroma. The texture of the gravy appears smooth and slightly unctuous, clinging to the potatoes. Beside the bowl, a warm, fluffy piece of golden-brown naan bread is artfully folded, ready for dipping. The setting features a simple wooden table surface, with natural, even lighting that highlights the dish's warmth and inviting colors. A white cotton napkin is neatly folded beside the plate, and the overall composition is clean and uncluttered, emphasizing the authentic Indian culinary experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with fresh Indian flatbreads like roti or naan.",
+      "Pairs well with fluffy basmati rice.",
+      "Offer a side of cooling plain yogurt or raita to balance the spices."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Green chili",
+        "quantity": "1-2, slit"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "1/4 cup, chopped"
+      },
+      {
+        "name": "Water",
+        "quantity": "250 ml"
+      }
+    ],
+    "instructions": [
+      "Peel and cut potatoes into 2 cm cubes. Dice onions finely. Dice tomatoes.",
+      "Heat oil in a large pot or karahi over medium heat.",
+      "Add cumin seeds. Let them splutter.",
+      "Add diced onions. Sauté until golden brown, about 8-10 minutes.",
+      "Add ginger-garlic paste and green chili. Cook for 1 minute until fragrant.",
+      "Add diced tomatoes, turmeric powder, coriander powder, and red chili powder. Cook, stirring occasionally, until tomatoes soften and oil separates, about 5-7 minutes.",
+      "Add potato cubes and salt. Mix well to coat potatoes with the masala.",
+      "Pour in water. Bring to a boil. Reduce heat to low.",
+      "Cover and simmer for 15-20 minutes, or until potatoes are tender. Stir occasionally.",
+      "Stir in garam masala. Cook for 2 more minutes.",
+      "Garnish generously with fresh chopped coriander leaves. Serve hot."
+    ],
+    "notes": [
+      "Adjust green chili and red chili powder to your preferred spice level.",
+      "For a richer gravy, add a tablespoon of tomato paste with the fresh tomatoes."
+    ],
+    "traditional_techniques": [
+      "Tadka (tempering whole spices)",
+      "Bhoonna (sautéing aromatics and spices until oil separates)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 213.11,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.04,
+      "protein_g": 4.59,
+      "saturated_fat_g": 1.06,
+      "sodium_mg": 517.46,
+      "total_carbs_g": 33.53,
+      "total_fat_g": 7.75,
+      "total_sugars_g": 6.01,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 60.24,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.71,
+      "protein_g": 1.3,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 146.28,
+      "total_carbs_g": 9.48,
+      "total_fat_g": 2.19,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 21.56,
+      "protein": 9.18,
+      "saturated_fat": 5.32,
+      "sodium": 22.5,
+      "total_carbs": 12.19,
+      "total_fat": 9.94
+    },
+    "serving_size_g": 353.75,
+    "total_recipe_weight_g": 1415
+  },
+  {
+    "recipe_name": "Grilled Halloumi and Roasted Pepper Salad with Tahini-Cucumber Dressing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_grilled_halloumi_and_roasted_pepper_salad_with_tahini-cucumber_dressing_20250624_172322_851ddc8a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:23:23.255749000Z",
+    "selected_ingredients": [
+      "halloumi cheese",
+      "cucumber",
+      "tahini",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, set on a simple light wooden table. The composition is balanced and inviting, with moderate negative space. A bed of vibrant mixed greens forms the base. Golden-brown seared halloumi slices, firm and slightly crusted, are neatly arranged atop the greens. Alongside are wide strips of roasted red, yellow, and orange bell peppers, showing tender, slightly charred edges. Scattered throughout are bright red halved cherry tomatoes, thinly sliced crimson red onion, and small cubes of fresh green cucumber, adding pops of color and texture. A creamy, pale beige tahini-cucumber dressing is generously drizzled over the entire dish, creating flowing lines. The salad is garnished with fresh, vibrant green mint and parsley leaves. The overall presentation is clean, professional, and approachable. A neatly folded white cotton napkin is placed beside the plate. Natural, even lighting illuminates the scene, highlighting the fresh ingredients and inviting textures. The background is minimally blurred, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Halloumi",
+    "ingredients": [
+      {
+        "name": "Halloumi cheese",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Bell peppers (mixed colors)",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Tahini",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Mixed greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "0.5 medium"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh parsley leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash bell peppers. Cut bell peppers into 2 cm wide strips. Toss with 15 ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 20-25 minutes until tender and slightly charred.",
+      "Prepare dressing: Finely chop 1 garlic clove. Peel and dice half of the cucumber. In a blender, combine tahini, juice from the lemon, 60 ml cold water, chopped garlic, diced cucumber, 30 ml olive oil, salt, and pepper. Blend until smooth. Adjust consistency with more water if needed.",
+      "Cut halloumi into 1 cm thick slices.",
+      "Heat a large skillet over medium-high heat. Add 15 ml olive oil. Sear halloumi slices for 2-3 minutes per side until golden brown.",
+      "Wash mixed greens. Halve cherry tomatoes. Thinly slice the red onion. Dice the remaining half cucumber.",
+      "Assemble: Arrange mixed greens on each plate. Top with roasted bell pepper strips, seared halloumi slices, halved cherry tomatoes, thinly sliced red onion, and diced cucumber.",
+      "Drizzle generously with the tahini-cucumber dressing. Garnish with fresh mint and parsley leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 647,
+      "cholesterol_mg": 90,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 28.8,
+      "saturated_fat_g": 20.5,
+      "sodium_mg": 1130,
+      "total_carbs_g": 24.3,
+      "total_fat_g": 51.2,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126,
+      "cholesterol_mg": 17.5,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 5.6,
+      "saturated_fat_g": 4,
+      "sodium_mg": 220,
+      "total_carbs_g": 4.7,
+      "total_fat_g": 10,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30,
+      "dietary_fiber": 28,
+      "protein": 57.6,
+      "saturated_fat": 102.5,
+      "sodium": 49.1,
+      "total_carbs": 8.8,
+      "total_fat": 65.6
+    },
+    "serving_size_g": 514,
+    "total_recipe_weight_g": 2056
+  },
+  {
+    "recipe_name": "Manchego-Crusted Eggy Bread with Smoked Paprika Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_manchego-crusted_eggy_bread_with_smoked_paprika_salad_20250624_172317_fc91fb1a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:23:17.843377000Z",
+    "selected_ingredients": [
+      "egg",
+      "salad green",
+      "cheese",
+      "paprika",
+      "bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Two golden-brown, thick-cut slices of Manchego-crusted eggy bread are neatly arranged on a round, clean white porcelain dinner plate, slightly overlapping. The cheese forms a crispy, amber crust with visible melted areas. Beside the eggy bread, a vibrant mound of fresh, mixed salad greens, lightly tossed in a sherry vinaigrette, is placed. The salad shows bright green leaves, interspersed with halved red cherry tomatoes and thinly sliced red onion, creating a contrast of colors. A light dusting of red smoked paprika is visible on the salad leaves. The plate rests on a simple, light-colored wooden table surface. Beside the plate, a neatly folded, light-colored cotton napkin and standard restaurant-style silver flatware are placed. The background is softly blurred, hinting at a casual bistro atmosphere. Natural, even lighting illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "hero_ingredient": "Manchego cheese",
+    "ingredients": [
+      {
+        "name": "Sourdough bread",
+        "quantity": "8 slices, 2-3 cm thick"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "6"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Manchego cheese",
+        "quantity": "200 g, grated"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g, halved"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "0.5 small, thinly sliced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sherry vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      }
+    ],
+    "instructions": [
+      "Prepare egg batter: In a shallow dish, whisk eggs, milk, 5g smoked paprika, pinch of salt, and pepper.",
+      "Dip bread: Dip each bread slice into egg batter. Ensure it is fully saturated but not soggy. Let excess drip off.",
+      "Coat with cheese: Press each side of the eggy bread into grated Manchego cheese. Ensure good coverage.",
+      "Cook eggy bread: Heat 15g butter and 15ml olive oil in a large non-stick pan over medium heat. Cook 2 slices at a time for 3-4 minutes per side until golden brown and cheese is crispy. Transfer to a wire rack. Keep warm in a low oven (70°C). Repeat with remaining bread, adding butter and oil as needed.",
+      "Prepare salad dressing: In a small bowl, whisk remaining 30ml olive oil, sherry vinegar, Dijon mustard, 5g smoked paprika, salt, and pepper.",
+      "Assemble salad: In a large bowl, combine mixed greens, cherry tomatoes, and red onion. Pour dressing over and toss gently to coat.",
+      "Serve: Place 2 slices of eggy bread on each plate. Serve immediately with a generous portion of the dressed salad on the side."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 803.3,
+      "cholesterol_mg": 350,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 34.4,
+      "saturated_fat_g": 20.1,
+      "sodium_mg": 936.7,
+      "total_carbs_g": 61.5,
+      "total_fat_g": 47.9,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 194.7,
+      "cholesterol_mg": 84.8,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.3,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 227,
+      "total_carbs_g": 14.9,
+      "total_fat_g": 11.6,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 117,
+      "dietary_fiber": 16,
+      "protein": 69,
+      "saturated_fat": 101,
+      "sodium": 41,
+      "total_carbs": 22,
+      "total_fat": 61
+    },
+    "serving_size_g": 412.55,
+    "total_recipe_weight_g": 1650.2
+  }
+]

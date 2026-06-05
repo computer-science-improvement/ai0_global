@@ -1,0 +1,655 @@
+[
+  {
+    "recipe_name": "Korean Marinated Beef with Shiitake Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_korean_marinated_beef_with_shiitake_mushrooms_20250627_033538_7b4ee5ae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:35:39.203695000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "mushroom",
+      "ginger"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Korean Marinated Beef with Shiitake Mushrooms is presented on a clean, round white porcelain plate. Thinly sliced, seared beef pieces, showing slight caramelization, are arranged organically alongside tender, sautéed shiitake mushroom slices. The beef is a rich brown, contrasted by the darker mushrooms and vibrant green of thinly sliced green onions scattered over the top. A sprinkle of toasted sesame seeds adds texture and visual interest. The arrangement is natural and inviting, with moderate negative space. The plate rests on a simple light wooden table. Beside the plate, a small white rice bowl filled with steamed white rice and a pair of dark wooden chopsticks are placed. A small white dish holds a serving of bright red kimchi. The scene is lit with natural, even light, creating a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Served with steamed white rice.",
+      "Accompanied by various banchan (small side dishes) such as kimchi, pickled radish, or seasoned spinach.",
+      "Traditionally eaten with chopsticks."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or ribeye",
+        "quantity": "600g"
+      },
+      {
+        "name": "Shiitake mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Asian pear",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Prepare marinade: Combine soy sauce, sesame oil, brown sugar, grated pear, minced garlic, grated ginger, and half of the sliced green onions in a large bowl. Mix well.",
+      "Slice beef sirloin or ribeye thinly against the grain. Add sliced beef to the marinade. Toss to coat thoroughly. Marinate for at least 30 minutes, or up to 2 hours in the refrigerator.",
+      "Heat vegetable oil in a large wok or heavy-bottomed pan over high heat until shimmering.",
+      "Add marinated beef in batches. Do not overcrowd the pan. Stir-fry for 2-3 minutes until browned and cooked through. Remove cooked beef from pan and set aside.",
+      "Add sliced shiitake mushrooms to the same pan. Stir-fry for 3-5 minutes until tender and slightly caramelized.",
+      "Return cooked beef to the pan with mushrooms. Toss to combine and heat through for 1 minute.",
+      "Remove from heat. Garnish with remaining sliced green onions and toasted sesame seeds. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Marinating for tenderization and flavor infusion",
+      "High-heat stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 500,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 41.9,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 1418,
+      "total_carbs_g": 15.3,
+      "total_fat_g": 34,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.3,
+      "calories": 175,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 14.7,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 497,
+      "total_carbs_g": 5.4,
+      "total_fat_g": 11.9,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 11.6,
+      "protein": 83.8,
+      "saturated_fat": 52.1,
+      "sodium": 61.6,
+      "total_carbs": 5.6,
+      "total_fat": 43.6
+    },
+    "serving_size_g": 285,
+    "total_recipe_weight_g": 1140
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Mushroom Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_mushroom_sauce_20250627_033454_0f03bc9e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:34:54.626106000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "A single, perfectly pan-seared chicken breast, golden-brown and whole, rests centrally on a clean white porcelain plate. It is generously coated with a rich, creamy mushroom sauce. The sauce features irregularly sliced, deeply browned cremini mushrooms and finely diced shallots, creating a rustic yet refined texture. Bright green chopped parsley is sprinkled over the chicken and sauce, adding a fresh color contrast. The chicken breast shows a crisp exterior and a tender interior. A small pool of sauce surrounds the base of the chicken. The dish is presented on a simple wooden table, with a folded cotton napkin beside the plate. Natural, even lighting highlights the dish's warmth and texture. A single portion, balanced and appealing.",
+    "number_of_servings": 2,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "2 (about 180g-200g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season both sides with salt and pepper.",
+      "Heat olive oil in a large pan over medium-high heat.",
+      "Sear chicken breasts 5-7 minutes per side until golden brown and cooked through. Ensure internal temperature reaches 75°C (167°F). Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add butter to the pan.",
+      "Add sliced shallot. Sauté 2 minutes until softened.",
+      "Add minced garlic. Sauté 1 minute until fragrant.",
+      "Add irregularly sliced mushrooms. Cook 5-7 minutes until softened and browned.",
+      "Sprinkle flour over mushrooms. Stir for 1 minute to coat.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from the pan.",
+      "Stir in heavy cream. Simmer for 3-5 minutes until the sauce thickens slightly.",
+      "Return chicken breasts to the pan. Turn to coat with sauce.",
+      "Garnish with chopped fresh parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 652,
+      "cholesterol_mg": 259,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 64.4,
+      "saturated_fat_g": 20.7,
+      "sodium_mg": 288,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 39.2,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 158,
+      "cholesterol_mg": 63,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 15.6,
+      "saturated_fat_g": 5,
+      "sodium_mg": 70,
+      "total_carbs_g": 2.4,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 86,
+      "dietary_fiber": 6,
+      "protein": 129,
+      "saturated_fat": 104,
+      "sodium": 13,
+      "total_carbs": 4,
+      "total_fat": 50
+    },
+    "serving_size_g": 414,
+    "total_recipe_weight_g": 1655
+  },
+  {
+    "recipe_name": "Pan-Roasted Chicken Supreme, Saffron Risotto, Confit Tomato, Basil Essence",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-roasted_chicken_supreme%2C_saffron_risotto%2C_confit_tomato%2C_basil_essence_20250627_033409_8769bbbc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:34:10.213424000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, exquisitely plated portion on a large, pristine matte white bone china plate. Abundant negative space surrounds the components, emphasizing their minimalist elegance. A perfectly pan-roasted chicken supreme, skin a deep, crispy golden-brown, rests slightly off-center. Beside it, a delicate, free-form 'cloud' of vibrant saffron-yellow risotto flows organically, its creamy texture evident. Nestled gently near the chicken or on the risotto is a small cluster of three to four glistening, ruby-red confit cherry tomatoes, their skins slightly wrinkled from roasting. A few precise drops or a thin, artful drizzle of intense emerald-green basil essence are strategically placed around the elements, providing a striking color contrast and adding an aromatic sheen. The dish is presented on a luxurious white Carrara marble surface with subtle grey veining. A pristine white linen napkin, folded into a precise triangle, and minimal, elegant silverware complete the setting. Dramatic professional lighting creates soft, deliberate shadows, highlighting the textures and forms, with an ultra-minimalist background to maintain focus on the culinary artistry.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken Supreme (bone-in, skin-on)",
+        "quantity": "4 x 220g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5g"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Hot chicken stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Unsalted butter, cold, cubed",
+        "quantity": "60g"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves, thinly sliced",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "For Confit Tomatoes: Place cherry tomatoes, sliced garlic, and thyme sprigs in a small ovenproof dish. Pour 100ml olive oil over. Season lightly with salt. Roast for 25-30 minutes, until tomatoes are soft but not burst. Set aside.",
+      "For Basil Essence: Bring a small pot of water to a boil. Prepare an ice bath. Blanch basil leaves for 10 seconds. Immediately transfer to ice bath to cool. Squeeze out excess water. Blend blanched basil with 100ml olive oil until smooth. Pass through a fine mesh sieve or cheesecloth for a clear essence. Set aside.",
+      "For Saffron Risotto: In a heavy-bottomed pot, sauté diced shallots in a tablespoon of olive oil over medium heat until translucent, about 3 minutes. Add Arborio rice. Toast rice for 2 minutes, stirring constantly, until edges are translucent. Pour in white wine. Stir until absorbed.",
+      "Dissolve saffron threads in a small amount of hot chicken stock. Add a ladleful of hot chicken stock to the rice. Stir continuously until absorbed. Continue adding stock ladle by ladle, stirring constantly, allowing each addition to be absorbed before adding the next. This takes 18-20 minutes. Risotto should be creamy and al dente.",
+      "Remove risotto from heat. Stir in cold butter cubes and grated Parmesan until melted and creamy. Season with salt and pepper. Cover to keep warm.",
+      "For Chicken Supreme: Pat chicken supreme dry. Season generously with sea salt and black pepper on all sides. Heat 2 tablespoons olive oil in a large oven-safe pan over medium-high heat. Place chicken supreme skin-side down. Sear for 6-8 minutes until skin is deeply golden and crispy. Do not move chicken during searing.",
+      "Flip chicken supreme. Transfer pan to preheated oven. Roast for 15-20 minutes, or until internal temperature reaches 75°C. Use a meat thermometer. Remove from oven. Rest chicken on a wire rack for 5 minutes before plating.",
+      "To Plate: Spoon a free-form, organic swoosh of saffron risotto onto the center of a large, warm plate. Place one pan-roasted chicken supreme beside the risotto. Arrange 3-4 confit cherry tomatoes artfully near the chicken. Drizzle a few drops or a fine line of basil essence around the components. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1313.3,
+      "cholesterol_mg": 215.1,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 58.4,
+      "saturated_fat_g": 23.5,
+      "sodium_mg": 1875.2,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 88.1,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 210.1,
+      "cholesterol_mg": 34.4,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 9.3,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 300,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 14.1,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71.7,
+      "dietary_fiber": 10,
+      "protein": 116.7,
+      "saturated_fat": 117.4,
+      "sodium": 81.5,
+      "total_carbs": 24.5,
+      "total_fat": 113
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  },
+  {
+    "recipe_name": "Baked Lemon Herb Chicken & Vegetable Penne",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_lemon_herb_chicken_%26_vegetable_penne_20250627_033206_0043ab3b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:32:06.774790000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "Non-spicy, easy on a stomach, rich in flavor, many vegetables and protein, low fat, low oil, oven can be replaced with airfryer",
+    "visual_description": "A single serving of Baked Lemon Herb Chicken & Vegetable Penne is presented on a simple, round, off-white ceramic plate. The dish features a generous portion of al dente penne pasta, lightly coated with the natural juices from the roasted ingredients. Scattered throughout the pasta are golden-brown roasted chicken cubes, vibrant red and yellow bell pepper chunks, tender green zucchini half-moons, burst cherry tomatoes, and softened red onion wedges. The chicken pieces are naturally placed, not fanned. A light sprinkle of fresh, bright green chopped parsley adds a fresh contrast. The overall arrangement is casual and homely, as if served directly from a family pot. The plate sits on a well-used wooden dining table, revealing its natural grain. A simple, folded cloth napkin and basic flatware are casually placed beside the plate. Warm, inviting natural light illuminates the scene, enhancing the comforting colors of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and lemon.",
+      "Offer crusty whole-grain bread for dipping into the pan juices."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600 g (cut into 2-3 cm cubes)"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Bell peppers (red and yellow)",
+        "quantity": "2 (cut into 2 cm chunks)"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": "2 medium (cut into 1.5 cm thick half-moons)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g (whole)"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium (cut into thick wedges)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves (minced)"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large (juiced and zested)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g (chopped, for garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F). If using an air fryer, preheat to 190°C (375°F).",
+      "In a large bowl, combine chicken cubes, bell pepper chunks, zucchini half-moons, cherry tomatoes, and red onion wedges.",
+      "Add minced garlic, lemon zest, lemon juice, olive oil, dried oregano, dried thyme, salt, and black pepper. Toss well to coat all ingredients.",
+      "Spread the chicken and vegetable mixture in a single layer on a large baking sheet.",
+      "Roast in the preheated oven for 25-30 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and vegetables are tender-crisp. If using an air fryer, cook in batches for 15-20 minutes per batch, shaking basket halfway, until chicken is cooked through.",
+      "While chicken and vegetables roast, cook penne pasta according to package instructions until al dente. Drain well.",
+      "In a large serving bowl, combine the cooked penne pasta with the roasted chicken and vegetables. Toss gently.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "This dish is excellent for meal prepping. Store leftovers in an airtight container for up to 3 days.",
+      "Reheat gently in a microwave or oven.",
+      "For an even lower-fat option, use chicken breast without skin and reduce olive oil slightly."
+    ],
+    "traditional_techniques": [
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 666.1,
+      "cholesterol_mg": 127.5,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 60,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 617.8,
+      "total_carbs_g": 72.4,
+      "total_fat_g": 14.1,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125.6,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 11.3,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 116.5,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 2.7,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 24,
+      "protein": 120,
+      "saturated_fat": 14,
+      "sodium": 27,
+      "total_carbs": 26,
+      "total_fat": 18
+    },
+    "serving_size_g": 530.5,
+    "total_recipe_weight_g": 2122
+  },
+  {
+    "recipe_name": "Achiote Beer Braised Beef",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_achiote_beer_braised_beef_20250627_033149_ac48e5a9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:31:50.458597000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "garlic",
+      "annatto",
+      "beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of rich, dark reddish-brown braised beef chunks, approximately 3-4 pieces, centrally placed on a clean white round porcelain plate. The beef is visibly tender, some pieces slightly falling apart. A glossy, deep amber-red sauce, naturally thickened, pools around and over the beef. A light scattering of vibrant green chopped fresh cilantro provides a contrasting color and freshness on top of the beef and sauce. The beef is in irregular, thick, rustic chunks. The plate rests on a simple, light-colored wooden table surface. A neatly folded, crisp white cotton napkin is placed to the left of the plate. Standard polished silver flatware (fork and knife) is positioned beside the plate. The background is softly blurred, hinting at a modern bistro atmosphere with warm, natural, even lighting from the side.",
+    "number_of_servings": 4,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Latin American",
+    "cultural_serving_suggestions": [
+      "Serve with white rice",
+      "Serve with fried sweet plantains (maduros)",
+      "Serve with crusty bread for dipping"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "1 kg, cut into 5 cm chunks"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Annatto seeds",
+        "quantity": "10g"
+      },
+      {
+        "name": "Dark beer (e.g., stout or amber ale)",
+        "quantity": "350 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear beef chunks in batches until deeply browned on all sides. Remove beef from pot.",
+      "Reduce heat to medium. Add diced onions and red bell pepper to the pot. Sauté until softened, about 8-10 minutes, scraping up any browned bits.",
+      "Add minced garlic, annatto seeds, tomato paste, cumin, and oregano. Cook for 2 minutes, stirring constantly until fragrant.",
+      "Pour in beer, scraping the bottom of the pot to deglaze. Bring to a simmer.",
+      "Return seared beef to the pot. Add beef broth and bay leaves. Ensure beef is mostly submerged.",
+      "Bring to a gentle simmer. Cover pot tightly.",
+      "Transfer to a preheated oven at 160°C (325°F) or maintain a low simmer on stovetop. Cook for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Remove beef from pot. Discard bay leaves.",
+      "Skim any excess fat from the sauce. If sauce is too thin, reduce over medium-high heat until desired consistency.",
+      "Return beef to the thickened sauce. Simmer briefly to reheat.",
+      "Taste and adjust seasoning with salt and pepper."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 701.2,
+      "cholesterol_mg": 175,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 75.4,
+      "saturated_fat_g": 11.2,
+      "sodium_mg": 664.8,
+      "total_carbs_g": 23.5,
+      "total_fat_g": 32.8,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106.4,
+      "cholesterol_mg": 26.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.5,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 100.9,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.3,
+      "dietary_fiber": 16,
+      "protein": 150.9,
+      "saturated_fat": 56,
+      "sodium": 28.9,
+      "total_carbs": 8.6,
+      "total_fat": 42.1
+    },
+    "serving_size_g": 658.8,
+    "total_recipe_weight_g": 2635
+  }
+]

@@ -1,0 +1,636 @@
+[
+  {
+    "recipe_name": "Spicy Chicken Stir-fried Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_stir-fried_noodles_20250702_232429_0c1acd1e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:24:30.002770000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "garlic",
+      "onion",
+      "bell pepper",
+      "tomato",
+      "noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Spicy Chicken Stir-fried Noodles are presented in a clean, white porcelain bowl, showcasing a vibrant single portion. Golden-brown chicken chunks, cooked until tender, are interspersed among glossy egg noodles. Bright red and green bell pepper strips, thinly sliced onions, and halved cherry tomatoes add bursts of color and texture. Minced garlic and sliced red chilies are visible, contributing to the savory and spicy profile. The dish is coated in a rich, dark sauce. A sprinkle of fresh green cilantro leaves and thinly sliced spring onions offers a final touch. The bowl sits on a simple wooden table with a folded cotton napkin beside it. Dark wooden chopsticks rest on the rim. Natural, even lighting highlights textures and colors against a soft, casual bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Serve with extra sliced red chilies or chili oil on the side for added heat.",
+      "Offer lime wedges for a fresh, zesty squeeze."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Egg noodles",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "2-3 (adjust to taste)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "10 grams"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2 stalks"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2 cm chunks. Season with salt and pepper.",
+      "Slice bell peppers into thin strips. Slice red onion into thin wedges. Mince garlic. Thinly slice red chilies.",
+      "Halve cherry tomatoes.",
+      "Cook egg noodles according to package directions. Drain and rinse with cold water to prevent sticking. Set aside.",
+      "Heat 15 ml vegetable oil in a large wok or frying pan over high heat.",
+      "Add chicken chunks. Stir-fry for 5-7 minutes until cooked through and golden brown. Ensure internal temperature reaches 75°C (167°F). Remove chicken from pan and set aside.",
+      "Add remaining 15 ml oil to the wok. Add minced garlic, sliced chilies, and onion wedges. Stir-fry for 2 minutes until fragrant.",
+      "Add bell pepper strips. Stir-fry for 3 minutes until crisp-tender.",
+      "Return cooked chicken to the wok. Add halved cherry tomatoes.",
+      "In a small bowl, whisk together soy sauce, fish sauce, and brown sugar to make the sauce.",
+      "Add cooked noodles and sauce to the wok. Toss well to combine and coat all ingredients.",
+      "Cook for 2-3 minutes, stirring constantly, until noodles are heated through and sauce thickens slightly.",
+      "Remove from heat. Garnish with fresh cilantro and thinly sliced spring onions. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.45,
+      "calories": 616.8,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 5.28,
+      "protein_g": 36.17,
+      "saturated_fat_g": 4.37,
+      "sodium_mg": 1447.3,
+      "total_carbs_g": 65.22,
+      "total_fat_g": 21.33,
+      "total_sugars_g": 10.15,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.62,
+      "calories": 155.7,
+      "cholesterol_mg": 37.9,
+      "dietary_fiber_g": 1.33,
+      "protein_g": 9.13,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 365.3,
+      "total_carbs_g": 16.46,
+      "total_fat_g": 5.38,
+      "total_sugars_g": 2.56,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 18.9,
+      "protein": 72.3,
+      "saturated_fat": 21.9,
+      "sodium": 62.9,
+      "total_carbs": 23.7,
+      "total_fat": 27.3
+    },
+    "serving_size_g": 396.25,
+    "total_recipe_weight_g": 1585
+  },
+  {
+    "recipe_name": "Creamy Chicken & Herb Toasts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_%26_herb_toasts_20250702_232112_e7228a2f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:21:12.766292000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Eight to ten bite-sized toasted bread squares are arranged casually, slightly overlapping, on a rustic wooden serving board. Each golden-brown toast is topped generously with a creamy, pale yellow chicken salad mixture. The chicken mixture is slightly mounded, showcasing the fine shred of the chicken, small green flecks of parsley and chives, and tiny white bits of finely diced celery. A few errant green herb flecks are scattered around the board. The wooden board rests on a well-worn, light-colored wooden kitchen table. A simple, folded white linen napkin is casually placed beside the board. Warm, inviting lighting, typical of a home kitchen, casts soft shadows. The background is slightly blurred, hinting at a homely kitchen environment without distracting from the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "2 (approx. 400g total)"
+      },
+      {
+        "name": "White sandwich bread",
+        "quantity": "8-10 slices"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "80g"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1"
+      },
+      {
+        "name": "Small shallot",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh chives, chopped",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 teaspoon (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20g"
+      }
+    ],
+    "instructions": [
+      "Place chicken breasts in a saucepan. Cover with water.",
+      "Bring to a boil, then reduce heat. Simmer for 15-20 minutes, or until internal temperature reaches 75°C.",
+      "Remove chicken from water. Let cool slightly. Shred chicken using two forks.",
+      "In a medium bowl, combine shredded chicken, mayonnaise, finely diced celery, finely minced shallot, chopped parsley, chopped chives, and Dijon mustard (if using).",
+      "Mix well. Season with salt and black pepper. Taste and adjust seasoning.",
+      "Trim crusts from bread slices. Cut each slice into 4 small squares or triangles.",
+      "Melt butter in a large skillet over medium heat. Add bread pieces in a single layer.",
+      "Toast bread for 1-2 minutes per side until golden brown and crisp. Remove from skillet.",
+      "Spoon a generous amount of chicken mixture onto each toasted bread piece.",
+      "Arrange on a serving platter. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 390,
+      "cholesterol_mg": 96.6,
+      "dietary_fiber_g": 2,
+      "protein_g": 37.1,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 614.7,
+      "total_carbs_g": 32.7,
+      "total_fat_g": 11.5,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 185.5,
+      "cholesterol_mg": 45.9,
+      "dietary_fiber_g": 1,
+      "protein_g": 17.7,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 292.3,
+      "total_carbs_g": 15.6,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32.2,
+      "dietary_fiber": 7.3,
+      "protein": 74.3,
+      "saturated_fat": 21.6,
+      "sodium": 26.7,
+      "total_carbs": 11.9,
+      "total_fat": 14.7
+    },
+    "serving_size_g": 210.25,
+    "total_recipe_weight_g": 841
+  },
+  {
+    "recipe_name": "Baked Penne with Spinach, Artichoke, and Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_penne_with_spinach%2C_artichoke%2C_and_mozzarella_20250702_231930_97b7d33b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:19:31.383507000Z",
+    "selected_ingredients": [
+      "pasta",
+      "artichoke",
+      "spinach",
+      "mozzarella"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of baked penne pasta fills a rustic, oval white ceramic baking dish. The top layer of mozzarella cheese is melted, bubbly, and beautifully golden-brown, with some crispy edges. Peeking through the rich, reddish-orange tomato sauce are vibrant green wilted spinach leaves and tender, pale green quartered artichoke hearts. The penne pasta is well-coated in the savory sauce. A light sprinkle of fresh, bright green chopped basil is scattered over the top, adding a fresh aromatic touch. The dish is presented on a simple light wooden table, with a folded white cotton napkin beside the dish. Natural, even overhead lighting highlights the inviting textures and colors of the comforting baked pasta.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "hero_ingredient": "Mozzarella",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "300g"
+      },
+      {
+        "name": "Canned artichoke hearts, drained and quartered",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Shredded mozzarella cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "700g can"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium (approx. 150g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2g (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil or parsley, chopped",
+        "quantity": "15g (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cook penne according to package directions until al dente. Drain.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium heat. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes. Cook 1 minute until fragrant.",
+      "Stir in crushed tomatoes, vegetable broth, and oregano. Bring to a simmer. Cook 10 minutes, stirring occasionally.",
+      "Add quartered artichoke hearts and fresh spinach. Cook until spinach wilts, about 2-3 minutes. Season with salt and pepper.",
+      "Stir cooked penne into the sauce. Mix well.",
+      "Add half of the shredded mozzarella to the pasta mixture. Stir until combined.",
+      "Top the pasta with the remaining shredded mozzarella.",
+      "Bake for 20-25 minutes, or until cheese is bubbly and golden brown.",
+      "Garnish with fresh chopped basil or parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 601.4,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 9.35,
+      "protein_g": 28.93,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 936.1,
+      "total_carbs_g": 72.43,
+      "total_fat_g": 22.43,
+      "total_sugars_g": 9.45,
+      "trans_fat_g": 0.44
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 111.16,
+      "cholesterol_mg": 7.39,
+      "dietary_fiber_g": 1.73,
+      "protein_g": 5.35,
+      "saturated_fat_g": 1.72,
+      "sodium_mg": 172.94,
+      "total_carbs_g": 13.39,
+      "total_fat_g": 4.14,
+      "total_sugars_g": 1.75,
+      "trans_fat_g": 0.08
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13.33,
+      "dietary_fiber": 33.39,
+      "protein": 57.85,
+      "saturated_fat": 46.5,
+      "sodium": 40.7,
+      "total_carbs": 26.34,
+      "total_fat": 28.75
+    },
+    "serving_size_g": 541,
+    "total_recipe_weight_g": 2164
+  },
+  {
+    "recipe_name": "Compressed Tropical Fruits, Crispy Pork Crumble, Coconut-Lemon Cloud",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_compressed_tropical_fruits%2C_crispy_pork_crumble%2C_coconut-lemon_cloud_20250702_230055_f4117ee9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:00:56.201464000Z",
+    "selected_ingredients": [
+      {
+        "name": "pork"
+      },
+      {
+        "name": "oil"
+      },
+      {
+        "name": "sugar"
+      },
+      {
+        "name": "coconut"
+      },
+      {
+        "name": "lemon"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": null,
+    "visual_description": "The dish is a minimalist luxury, presented on a pristine white bone china plate. At the center, precisely cut, compressed pineapple and mango cubes form an organic, flowing cluster, their vibrant hues intensified. Small, golden-brown shards of crispy pork crumble are artfully scattered around the fruit, offering textural contrast. Adjacent, a delicate, ethereal cloud of pure white coconut-lemon foam rests. Vivid green lemon verbena oil droplets are strategically dotted, adding fresh aroma and sophisticated color. A single, translucent sugar crisp shard stands vertically, providing architectural height and delicate crunch. Abundant negative space emphasizes precision and artistry. The entire plate sits on a smooth, grey-veined Carrara marble surface, illuminated by dramatic, focused lighting casting soft shadows. A pristine white linen napkin, precisely folded, rests beside modern, minimalist flatware, completing the luxurious setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern Fusion",
+    "hero_ingredient": "Tropical Fruits",
+    "ingredients": [
+      {
+        "name": "Pork belly",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh mango",
+        "quantity": "200g"
+      },
+      {
+        "name": "Passion fruit pulp",
+        "quantity": "50g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Coconut cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 lemon"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "2g"
+      },
+      {
+        "name": "Egg white",
+        "quantity": "1"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh lemon verbena leaves",
+        "quantity": "20g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Dice pork belly (skin removed) into small 5mm cubes.",
+      "Render pork belly slowly in a dry pan over medium-low heat until crispy and golden.",
+      "Drain excess fat.",
+      "Toss crispy pork with 10g granulated sugar and a pinch of sea salt.",
+      "Set aside to cool.",
+      "Dice pineapple and mango into 1cm precise cubes.",
+      "Combine diced fruits with passion fruit pulp and 20ml lemon juice.",
+      "Place fruit mixture into a vacuum seal bag.",
+      "Vacuum seal on high pressure. Repeat 2-3 times to compress fruits.",
+      "Chill until serving.",
+      "Bloom gelatin sheets in cold water.",
+      "Gently heat coconut cream with 20g granulated sugar and lemon zest until sugar dissolves. Do not boil.",
+      "Remove from heat. Stir in bloomed gelatin until dissolved.",
+      "Add 10ml lemon juice. Strain mixture.",
+      "Pour into a siphon bottle. Charge with 2 N2O cartridges. Shake well.",
+      "Refrigerate for at least 2 hours.",
+      "Blanch lemon verbena leaves in boiling water for 10 seconds. Immediately transfer to ice bath.",
+      "Drain and squeeze out excess water.",
+      "Blend blanched lemon verbena with neutral oil until smooth and vibrant green.",
+      "Strain through a fine-mesh sieve lined with cheesecloth.",
+      "Chill until serving.",
+      "Preheat oven to 160°C.",
+      "Whisk egg white until foamy.",
+      "Gradually whisk in powdered sugar and flour until smooth batter forms.",
+      "Spread very thin layers of batter onto a silicone mat or parchment paper.",
+      "Bake for 5-7 minutes until golden and crisp.",
+      "Cool and break into irregular shards.",
+      "Plate compressed fruits, pork crumble, coconut-lemon foam, lemon verbena oil, and sugar crisp artfully."
+    ],
+    "notes": [
+      "Ensure all components are perfectly chilled before plating for optimal temperature contrast.",
+      "The pork crumble should be rendered very dry and crisp.",
+      "Vacuum sealing enhances fruit flavor and texture significantly.",
+      "The foam should be light and airy, not dense."
+    ]
+  },
+  {
+    "recipe_name": "Creamy Ricotta Pasta with Sun-Dried Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_ricotta_pasta_with_sun-dried_tomatoes_20250702_224837_9293af96.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T22:48:38.115432000Z",
+    "selected_ingredients": [
+      "pasta",
+      "ricotta cheese",
+      "sun dried tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A modest, individual portion of penne pasta is served on a warm, slightly off-white ceramic plate with natural imperfections. The pasta is generously coated in a creamy, pale orange ricotta sauce, with visible chunks of rich, ruby-red chopped sun-dried tomatoes dispersed throughout. The sauce has a smooth, comforting texture clinging to each pasta piece. A sprinkle of bright green, roughly chopped fresh basil leaves adds a pop of color and freshness on top. Grated Parmesan cheese lightly dusts the dish. The pasta is arranged in a natural, slightly mounded pile, showing its inviting texture. The setting is a cozy, lived-in family kitchen, with warm, soft lighting from kitchen fixtures. A simple wooden table, a casual cloth napkin, and a standard dinner fork complete the homely scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Pair with a simple green salad dressed with olive oil and vinegar"
+    ],
+    "hero_ingredient": "Pasta and Ricotta",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil",
+        "quantity": "100 g (drained)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3 (minced)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Pasta cooking water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g (grated, for serving)"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "small bunch (for garnish)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil. Add penne pasta. Cook according to package directions until al dente.",
+      "Before draining, reserve 120 ml of the pasta cooking water. Drain the pasta.",
+      "While pasta cooks, heat 30 ml olive oil in a large skillet over medium heat. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Chop the drained sun-dried tomatoes. Add them to the skillet. Sauté for 2 minutes.",
+      "Reduce heat to low. Stir in the ricotta cheese and the reserved pasta water. Mix until a creamy sauce forms. Season with salt and black pepper to taste.",
+      "Add the drained pasta to the skillet with the sauce. Toss well to coat all the pasta evenly.",
+      "Serve immediately. Garnish each portion with fresh, roughly chopped basil leaves and grated Parmesan cheese."
+    ],
+    "notes": [
+      "For a richer sauce, stir in a knob of butter at the end.",
+      "Adjust sauce consistency with more pasta water if desired."
+    ],
+    "traditional_techniques": [
+      "Al dente cooking",
+      "Manteca"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 607.96,
+      "cholesterol_mg": 29.88,
+      "dietary_fiber_g": 4.58,
+      "protein_g": 25.28,
+      "saturated_fat_g": 7.04,
+      "sodium_mg": 403.14,
+      "total_carbs_g": 79.27,
+      "total_fat_g": 19.96,
+      "total_sugars_g": 8.41,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 252.63,
+      "cholesterol_mg": 12.42,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 10.5,
+      "saturated_fat_g": 2.93,
+      "sodium_mg": 167.52,
+      "total_carbs_g": 32.94,
+      "total_fat_g": 8.29,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 9.96,
+      "dietary_fiber": 16.35,
+      "protein": 50.56,
+      "saturated_fat": 35.22,
+      "sodium": 17.53,
+      "total_carbs": 28.82,
+      "total_fat": 25.58
+    },
+    "serving_size_g": 240.65,
+    "total_recipe_weight_g": 962.6
+  }
+]

@@ -1,0 +1,645 @@
+[
+  {
+    "recipe_name": "Pasta with Bresaola, Rocket, and Cherry Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_with_bresaola%2C_rocket%2C_and_cherry_tomatoes_20250624_105421_cd4ed1a0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:54:22.112972000Z",
+    "selected_ingredients": [
+      "bresaola"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Pasta with Bresaola, Rocket, and Cherry Tomatoes is presented on a simple, round, off-white ceramic plate. The cooked pasta, such as tagliatelle, is loosely twirled and piled naturally in the center. Thinly sliced bresaola, with its deep ruby red color, is draped casually over the pasta strands. Halved, vibrant red cherry tomatoes are scattered throughout the dish, alongside fresh, dark green rocket leaves. A light sheen of olive oil coats the ingredients. The textures are varied: soft pasta, delicate bresaola, slightly burst tomatoes, and crisp rocket. The plate sits on a well-used, warm-toned wooden dining table. A simple metal fork rests beside the plate. The background shows a hint of a cloth napkin and possibly a blurred glass of water, evoking a cozy, lived-in family kitchen atmosphere. Lighting is warm and natural, highlighting the food's inviting appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up any remaining sauce.",
+      "Pair with a light red wine like Valpolicella or a crisp white wine.",
+      "Offer a bowl of freshly grated Parmesan cheese at the table for individual preference."
+    ],
+    "hero_ingredient": "Bresaola",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., tagliatelle, penne)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Bresaola",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Rocket (arugula)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Parmesan cheese (for serving)",
+        "quantity": "Optional"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Cook pasta according to package directions until al dente. Reserve 125 ml of pasta water before draining.",
+      "While pasta cooks, halve the cherry tomatoes. Thinly slice garlic cloves.",
+      "Heat olive oil in a large pan over medium heat. Add sliced garlic. Cook for 1 minute until fragrant. Do not brown.",
+      "Add halved cherry tomatoes to the pan. Cook for 3-4 minutes, stirring occasionally, until tomatoes soften slightly and release juices.",
+      "Drain pasta. Add cooked pasta to the pan with tomatoes and garlic. Add rocket. Toss to combine.",
+      "Add bresaola slices to the pasta. Pour in reserved pasta water, a little at a time, to create a light sauce. Toss gently.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately. Grate fresh Parmesan cheese over each portion if desired."
+    ],
+    "notes": [
+      "Bresaola is a cured, air-dried beef. Its delicate flavor is best preserved by adding it at the end of cooking.",
+      "Adjust the amount of pasta water to achieve desired sauce consistency."
+    ],
+    "traditional_techniques": [
+      "Al dente cooking for pasta",
+      "Aglio e olio base for flavor"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 571,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 26,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 617,
+      "total_carbs_g": 79.1,
+      "total_fat_g": 16.9,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 5,
+      "dietary_fiber_g": 1,
+      "protein_g": 5.9,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 140,
+      "total_carbs_g": 17.9,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7,
+      "dietary_fiber": 16,
+      "protein": 52,
+      "saturated_fat": 14,
+      "sodium": 27,
+      "total_carbs": 29,
+      "total_fat": 22
+    },
+    "serving_size_g": 441.75,
+    "total_recipe_weight_g": 1767
+  },
+  {
+    "recipe_name": "Peruvian Lomo Saltado",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_peruvian_lomo_saltado_20250624_105413_c6b995f8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:54:13.577020000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "garlic",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "Gluten-free",
+    "visual_description": "A single portion of Lomo Saltado is presented on a clean white porcelain plate. The dish features 3cm seared beef tenderloin cubes with a dark, glossy crust. Thick-cut red onion wedges and bright red tomato wedges are tossed with yellow bell pepper batons, showing vibrant colors and slight char marks. The ingredients are arranged in a natural, mounded pile, coated in a shimmering dark brown sauce. Golden-brown potato batons are interspersed throughout the beef and vegetables. A neat mound of fluffy white rice sits adjacent to the stir-fry. The scene is set on a rustic wooden bistro table with a linen napkin and a small bowl of green chili sauce. Natural light highlights the textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "cultural_origin": "Peru",
+    "cultural_serving_suggestions": [
+      "Serve with Aji Verde (spicy green chili sauce)",
+      "Accompany with Inca Kola or a Pisco Sour",
+      "Traditionally eaten using a fork and spoon"
+    ],
+    "hero_ingredient": "Beef tenderloin",
+    "ingredients": [
+      {
+        "name": "Beef tenderloin, 3cm cubes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Red onions, thick wedges",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Roma tomatoes, thick wedges",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Yellow bell pepper, batons",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Tamari (Gluten-free soy sauce)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Russet potatoes, 1cm batons",
+        "quantity": "450g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Long grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes and cut into 1cm batons.",
+      "Soak batons in cold water for 20 minutes.",
+      "Drain and dry potatoes completely with a towel.",
+      "Heat oil to 180°C in a heavy pot.",
+      "Fry potatoes until golden and crisp. Drain on paper.",
+      "Season potatoes with salt immediately.",
+      "Boil rice in 450ml salted water until tender. Keep warm.",
+      "Season beef cubes with salt and pepper.",
+      "Heat a wok over high heat with 15ml oil until smoking.",
+      "Sear beef cubes in batches until heavily browned. Remove.",
+      "Add onions and peppers to the wok. Sáuté for 2 minutes.",
+      "Add garlic. Stir for 30 seconds.",
+      "Return beef to the wok. Add tomato wedges.",
+      "Pour in tamari and vinegar. Toss for 1 minute over high heat.",
+      "Fold in cilantro and fried potatoes. Serve immediately with rice."
+    ],
+    "notes": [
+      "Ensure the wok is smoking hot for authentic flavor",
+      "Remove tomato seeds to prevent the sauce from becoming watery",
+      "Use Tamari specifically to maintain the gluten-free requirement"
+    ],
+    "traditional_techniques": [
+      "Wok stir-frying",
+      "Potato deep-frying",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 884.5,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 5.61,
+      "protein_g": 50.24,
+      "saturated_fat_g": 9,
+      "sodium_mg": 1470,
+      "total_carbs_g": 92.05,
+      "total_fat_g": 33.96,
+      "total_sugars_g": 5.73,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124.49,
+      "cholesterol_mg": 14.78,
+      "dietary_fiber_g": 0.79,
+      "protein_g": 7.07,
+      "saturated_fat_g": 1.27,
+      "sodium_mg": 206.9,
+      "total_carbs_g": 12.96,
+      "total_fat_g": 4.78,
+      "total_sugars_g": 0.81,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 20,
+      "protein": 100.5,
+      "saturated_fat": 45,
+      "sodium": 63.9,
+      "total_carbs": 33.5,
+      "total_fat": 43.5
+    },
+    "serving_size_g": 710.5,
+    "total_recipe_weight_g": 2842
+  },
+  {
+    "recipe_name": "Roasted Lemon Herb Chicken with Potatoes and Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_lemon_herb_chicken_with_potatoes_and_mushrooms_20250624_105412_51a2e96b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:54:13.048082000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "mushroom",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of roasted lemon herb chicken, potatoes, and mushrooms rests on a simple, cream-colored ceramic plate with a slightly uneven, handmade texture. Two golden-brown roasted chicken thighs, with crispy skin and visible herbs, are placed centrally. Around them, thick-cut roasted potato wedges, tender roasted cremini mushroom halves, and caramelized red onion wedges are naturally arranged, some overlapping, creating a comforting mound. A few charred lemon slices are tucked among the vegetables. The dish is garnished simply with a scattering of fresh chopped parsley and a small sprig of fresh rosemary. The natural colors are warm and inviting: rich browns, golden yellows, and earthy greens. The plate is positioned on a well-used, dark wooden dining table, showing natural grain and minor imperfections. A casual, folded linen napkin in a neutral tone and a simple metal fork and knife are placed beside the plate. The scene is lit with warm, soft light, mimicking a cozy evening in a family kitchen, with a slight blur in the background to keep focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and scrub potatoes. Cut potatoes into thick-cut wedges.",
+      "Wipe mushrooms clean. Halve larger mushrooms. Leave smaller ones whole.",
+      "Peel red onion. Cut into thick wedges.",
+      "Mince garlic cloves.",
+      "Remove rosemary and thyme leaves from stems. Chop roughly.",
+      "Pat chicken thighs dry with paper towels. This ensures crispy skin.",
+      "In a large bowl, combine chicken, potato wedges, mushroom halves, and onion wedges.",
+      "Add olive oil, minced garlic, chopped rosemary, chopped thyme, salt, and black pepper. Toss well to coat all ingredients evenly.",
+      "Slice half of the lemon into thin rounds. Add to the bowl. Squeeze juice from the other half over the mixture.",
+      "Spread ingredients in a single layer on a large baking sheet or roasting pan. Do not overcrowd.",
+      "Roast for 35-45 minutes. Chicken should reach an internal temperature of 75°C. Vegetables should be tender and lightly browned.",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety.",
+      "For extra crispy potatoes, soak wedges in cold water for 30 minutes then pat very dry before tossing with oil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 733,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 44.2,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 1149,
+      "total_carbs_g": 42.7,
+      "total_fat_g": 44.6,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 135,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 212,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 26,
+      "protein": 88,
+      "saturated_fat": 50,
+      "sodium": 50,
+      "total_carbs": 16,
+      "total_fat": 57
+    },
+    "serving_size_g": 542.25,
+    "total_recipe_weight_g": 2169
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Breast with Lemon-Herb Butter Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_breast_with_lemon-herb_butter_sauce_20250624_105347_17da4f2c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:53:47.576022000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The pan-seared chicken breast, cooked to a rich golden-brown, rests as a substantial, whole piece or two thick, diagonal chunks on a clean white porcelain dinner plate. Its exterior shows a slight crispness, while the interior is visibly tender. Alongside, a vibrant green cluster of roasted asparagus spears, slightly charred at the tips, adds a contrasting color and texture. A luscious, pale yellow lemon-herb butter sauce, flecked with bright green chopped parsley and thyme, is generously spooned over the chicken, glistening under the light. A fresh sprig of parsley or thyme garnishes the dish, with a bright lemon wedge placed beside it. The overall presentation is professional and approachable, with moderate negative space. The plate sits on a simple wooden table, accompanied by standard silverware and a folded cotton napkin, under natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with standard European flatware."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium, finely minced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, juiced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "10 g, chopped"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "500 g, trimmed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry with paper towels. Season generously with salt and black pepper.",
+      "Heat 15 ml olive oil in a large oven-safe pan over medium-high heat.",
+      "Sear chicken breasts 5-7 minutes per side until golden brown. Transfer pan to a preheated oven at 190°C. Cook 8-12 minutes, or until internal temperature reaches 75°C. Remove chicken. Rest on a cutting board for 5 minutes.",
+      "While chicken rests, add 30g butter to the same pan over medium heat. Sauté minced shallot 2 minutes until softened. Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the pan. Reduce liquid by half.",
+      "Add chicken stock. Bring to a simmer. Reduce liquid by half again.",
+      "Remove pan from heat. Whisk in remaining 30g butter until melted and sauce emulsifies. Stir in lemon juice, chopped parsley, and chopped thyme.",
+      "Season sauce with salt and pepper to taste.",
+      "Meanwhile, toss asparagus spears with remaining 15 ml olive oil, salt, and pepper. Roast at 190°C for 8-10 minutes until tender-crisp.",
+      "Slice each chicken breast into two thick diagonal chunks, or serve whole. Arrange chicken on individual plates with roasted asparagus spears beside it. Spoon lemon-herb butter sauce generously over the chicken."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C (167°F) internal temperature for food safety.",
+      "Resting the chicken after cooking is crucial for juiciness."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 550.7,
+      "cholesterol_mg": 193.8,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 63.2,
+      "saturated_fat_g": 10.6,
+      "sodium_mg": 240.4,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 27.4,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.8,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 14.7,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 55.8,
+      "total_carbs_g": 2.3,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 13,
+      "protein": 126,
+      "saturated_fat": 53,
+      "sodium": 10,
+      "total_carbs": 4,
+      "total_fat": 35
+    },
+    "serving_size_g": 431,
+    "total_recipe_weight_g": 1724
+  },
+  {
+    "recipe_name": "Rustic Potato and Mushroom Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_potato_and_mushroom_bake_20250624_105334_12ac263f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:53:35.131746000Z",
+    "selected_ingredients": [
+      "potato",
+      "mushroom",
+      "bell pepper",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of Rustic Potato and Mushroom Bake rests on a clean white porcelain dinner plate. The dish features golden-brown roasted potato cubes, earthy quartered cremini mushrooms, vibrant red, green, and yellow bell pepper squares, and caramelized thin onion slices. Ingredients are naturally mounded, showcasing varied textures: crisp potato edges, tender interiors, and soft, browned vegetables. A few fresh thyme sprigs garnish the top. The plate sits on a simple wooden table within a modern bistro setting. A neatly folded cotton napkin and standard silver flatware are positioned beside the plate. Natural, even light illuminates the dish, highlighting its comforting colors and inviting textures. The background is softly blurred, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve hot with a side of crusty artisan bread and a simple green salad with vinaigrette."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes (e.g., Maris Piper or Yukon Gold)",
+        "quantity": "1 kg, cut into 2 cm cubes"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "500 g, quartered"
+      },
+      {
+        "name": "Bell Peppers (mixed colors)",
+        "quantity": "2 large, cut into 2 cm squares"
+      },
+      {
+        "name": "Yellow Onions",
+        "quantity": "2 medium, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Parmesan Cheese (optional)",
+        "quantity": "50 g, grated"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "In a large bowl, combine cubed potatoes, quartered mushrooms, bell pepper squares, and sliced onions.",
+      "Add minced garlic, olive oil, thyme sprigs, rosemary sprigs, salt, and black pepper. Toss well to coat all vegetables.",
+      "Transfer mixture to a large baking dish (approx. 30x20 cm). Spread in an even layer.",
+      "Pour vegetable broth over the vegetables.",
+      "Bake for 30 minutes.",
+      "Stir vegetables gently. If using, sprinkle grated Parmesan cheese over the top.",
+      "Return to oven. Bake for another 25-35 minutes, or until potatoes are tender and top is golden brown.",
+      "Remove from oven. Let rest 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 459.8,
+      "cholesterol_mg": 11.1,
+      "dietary_fiber_g": 12,
+      "protein_g": 15,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 1257.9,
+      "total_carbs_g": 63,
+      "total_fat_g": 18.4,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 72.6,
+      "cholesterol_mg": 1.8,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 2.4,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 198.7,
+      "total_carbs_g": 10,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 43,
+      "protein": 30,
+      "saturated_fat": 22,
+      "sodium": 55,
+      "total_carbs": 23,
+      "total_fat": 24
+    },
+    "serving_size_g": 633.1,
+    "total_recipe_weight_g": 2532.2
+  }
+]

@@ -1,0 +1,646 @@
+[
+  {
+    "recipe_name": "Crespelle di Robiola e Spinaci",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crespelle_di_robiola_e_spinaci_20250624_105259_5dc29bfc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:52:59.473603000Z",
+    "selected_ingredients": [
+      "milk",
+      "egg",
+      "robiola",
+      "flour",
+      "cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "only milk and egg cuisine",
+    "visual_description": "Two golden-brown crespelle are arranged on a clean, white porcelain dinner plate, gently overlapping. Each crespella is filled with vibrant green spinach and creamy white robiola cheese, with a hint of the filling peeking from the folds. A smooth, pale cream sauce coats the crespelle, glistening under natural, even lighting. The dish is garnished with a scattering of freshly chopped bright green parsley, providing a fresh contrast. The overall presentation is clean and inviting, with moderate negative space on the plate. The plate sits on a simple wooden surface, accompanied by standard silver flatware and a folded cotton napkin, evoking a relaxed yet refined modern bistro setting, highlighting the dish as the centerpiece.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with extra grated Parmesan cheese.",
+      "Accompany with crusty Italian bread to sop up the sauce."
+    ],
+    "hero_ingredient": "Robiola cheese",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Robiola cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Double cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Sift flour into a large bowl. Create a well in the center.",
+      "Crack eggs into the well. Whisk eggs gradually, incorporating flour.",
+      "Slowly add milk, whisking constantly until batter is smooth. Add a pinch of salt. Let batter rest 30 minutes.",
+      "Wash spinach thoroughly. Wilt spinach in a hot pan without oil until softened. Drain excess water, squeeze dry, and finely chop.",
+      "In a bowl, combine chopped spinach, robiola cheese, 25 g grated Parmesan, and a pinch of nutmeg. Mix well. Season with salt and pepper.",
+      "Heat a lightly buttered 20 cm non-stick pan over medium heat. Pour a small ladle of batter, tilting to coat the bottom evenly. Cook 1-2 minutes until edges are golden. Flip and cook 30 seconds more. Transfer crespelle to a plate. Repeat with remaining batter to make 8 crespelle.",
+      "Preheat oven to 180°C. Grease a baking dish.",
+      "Place a spoonful of spinach-robiola filling on one half of each crespella. Fold in half, then fold again to create a quarter-circle or roll into a cylinder. Arrange filled crespelle in the prepared baking dish.",
+      "In a small saucepan, melt 20 g butter. Stir in cream and remaining 25 g Parmesan. Heat gently until sauce is warm and smooth. Do not boil. Season with salt and pepper.",
+      "Pour cream sauce evenly over the crespelle in the baking dish. Bake 15-20 minutes, or until bubbling and lightly golden on top.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Making thin crespelle (Italian crepes)",
+      "Simple pan-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 668.7,
+      "cholesterol_mg": 243.7,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 28.9,
+      "saturated_fat_g": 28.1,
+      "sodium_mg": 792.9,
+      "total_carbs_g": 34.3,
+      "total_fat_g": 47.2,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 180.5,
+      "cholesterol_mg": 65.8,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.8,
+      "saturated_fat_g": 7.6,
+      "sodium_mg": 214,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 12.7,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81.2,
+      "dietary_fiber": 12.4,
+      "protein": 57.8,
+      "saturated_fat": 140.5,
+      "sodium": 34.5,
+      "total_carbs": 11.4,
+      "total_fat": 72.6
+    },
+    "serving_size_g": 370.5,
+    "total_recipe_weight_g": 1482
+  },
+  {
+    "recipe_name": "One-Pan Lemon Herb Roasted Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_one-pan_lemon_herb_roasted_chicken_and_potatoes_20250624_105256_58cc2679.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:52:56.539840000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single individual portion of One-Pan Lemon Herb Roasted Chicken and Potatoes is presented on a simple, round ceramic plate with a subtle, natural glaze. The plate, perhaps in an off-white or light grey, sits on a well-worn wooden dining table. The centerpiece is a golden-brown roasted chicken thigh, its skin crispy and slightly darkened from the oven. Alongside it are several rustic potato wedges, their edges crisped and interiors tender, showing some of the potato skin. Scattered amongst the chicken and potatoes are softened, caramelized lemon slices and a few fragrant sprigs of roasted rosemary and thyme. The arrangement is natural and casual, with components touching and slightly overlapping, reflecting a homely, comforting meal. The lighting is warm and inviting, typical of a cozy kitchen. A simple cloth napkin and a standard fork and knife are casually placed beside the plate. The overall scene is unfussy, highlighting the expertly cooked, hearty comfort food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Small potatoes (e.g., Yukon Gold or new potatoes)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2.5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels.",
+      "Cut potatoes into 2-3 cm wedges. Do not peel.",
+      "Slice lemon into thin rounds.",
+      "Smash garlic cloves with the side of a knife.",
+      "In a large bowl, combine chicken, potato wedges, olive oil, salt, and pepper. Toss well to coat.",
+      "Add lemon slices, smashed garlic, rosemary sprigs, and thyme sprigs to the bowl. Toss gently to distribute.",
+      "Spread the chicken and potato mixture in a single layer on a large baking sheet. Do not overcrowd the pan.",
+      "Roast for 40-50 minutes, or until chicken is golden brown and cooked through.",
+      "Verify chicken internal temperature reaches 75°C (167°F) with a meat thermometer.",
+      "Serve immediately directly from the baking sheet or transfer to a large platter."
+    ],
+    "notes": [
+      "This recipe offers minimal cleanup, making it perfect for weeknight dinners.",
+      "Ensure chicken reaches a safe internal temperature of 75°C (167°F)."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 745.2,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 45.6,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 747.2,
+      "total_carbs_g": 45.3,
+      "total_fat_g": 43.8,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 164.7,
+      "cholesterol_mg": 41.5,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 10.1,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 165.1,
+      "total_carbs_g": 10,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 20,
+      "protein": 91,
+      "saturated_fat": 51,
+      "sodium": 32,
+      "total_carbs": 16,
+      "total_fat": 56
+    },
+    "serving_size_g": 452.6,
+    "total_recipe_weight_g": 1810.5
+  },
+  {
+    "recipe_name": "Zero-Waste Corn & Kudzu Fritters",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zero-waste_corn_%26_kudzu_fritters_20250624_105238_4dd12bb9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:52:39.358821000Z",
+    "selected_ingredients": [
+      "apricot liqueur",
+      "eau de vie",
+      "annatto seed",
+      "kudzu",
+      "sour cream",
+      "lime cordial",
+      "corn"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of three to four golden-brown, irregularly shaped corn and kudzu fritters is artfully arranged on a round, handcrafted ceramic plate in a warm off-white tone. The fritters are cooked to a delicate crisp exterior, revealing the natural textures of the corn kernels within. A generous dollop of creamy, off-white fermented sour cream sits beside the fritters. A vibrant, deep orange-red annatto glaze is artfully drizzled over the fritters and lightly around the plate, creating striking visual lines. The plating is minimalistic, with ample negative space highlighting the natural beauty of each component. A few fresh, bright green cilantro leaves are scattered thoughtfully as a garnish. The entire setup rests on a light, textured reclaimed wood surface, accompanied by a natural undyed linen napkin. Soft, natural light illuminates the dish, emphasizing its earthy colors and textures. The background is clean and minimalist, with a hint of natural greenery visible, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Corn",
+    "ingredients": [
+      {
+        "name": "Fresh corn on the cob",
+        "quantity": "4 cobs"
+      },
+      {
+        "name": "Kudzu root starch",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Plain sour cream",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Annatto seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Lime cordial",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Apricot liqueur",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Eau de vie",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "0.5 small"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented sour cream: Combine sour cream with 5 ml white vinegar. Cover loosely. Let stand at room temperature for 12-24 hours until slightly tangy. Refrigerate.",
+      "Shuck corn. Cut kernels from cobs. Reserve cobs.",
+      "Make corn cob stock: Place reserved corn cobs in a saucepan. Add 500 ml water. Bring to a boil. Reduce heat. Simmer for 20 minutes. Strain stock. Discard cobs.",
+      "Finely dice red onion. Mince garlic. Chop cilantro.",
+      "Combine corn kernels, diced onion, minced garlic, and chopped cilantro in a large bowl.",
+      "Dissolve kudzu starch in 50 ml of the warm corn cob stock. Stir until smooth. Add to corn mixture.",
+      "Season corn mixture with salt and pepper. Mix well to form a thick batter.",
+      "Heat 30 ml vegetable oil in a large non-stick pan over medium heat.",
+      "Spoon 2-3 tablespoons of batter per fritter into the hot pan. Flatten slightly. Do not overcrowd.",
+      "Cook fritters for 3-4 minutes per side until golden brown and cooked through. Repeat with remaining batter. Add more oil as needed. Keep warm.",
+      "Prepare annatto glaze: Heat remaining 20 ml vegetable oil in a small saucepan over low heat. Add annatto seeds. Cook gently for 2-3 minutes until oil turns deep orange-red. Do not burn seeds. Strain oil. Discard seeds.",
+      "Return annatto oil to the saucepan. Add lime cordial, apricot liqueur, and eau de vie. Bring to a gentle simmer. Cook for 2 minutes until slightly reduced and syrupy. Season with a pinch of salt.",
+      "To serve, arrange 3-4 fritters on each plate. Dollop a spoonful of fermented sour cream next to the fritters. Drizzle generously with the annatto glaze.",
+      "Garnish with a few fresh cilantro leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.6,
+      "calories": 382.1,
+      "cholesterol_mg": 29.5,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 5.4,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 231.7,
+      "total_carbs_g": 41.5,
+      "total_fat_g": 22.6,
+      "total_sugars_g": 12.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 127.4,
+      "cholesterol_mg": 9.8,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 1.8,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 77.2,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 10,
+      "protein": 11,
+      "saturated_fat": 33,
+      "sodium": 10,
+      "total_carbs": 15,
+      "total_fat": 29
+    },
+    "serving_size_g": 300,
+    "total_recipe_weight_g": 1200
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Potato Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_potato_skillet_20250624_105233_976a6c9d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:52:34.236278000Z",
+    "selected_ingredients": [
+      "tomato",
+      "chicken",
+      "mushroom",
+      "mixed spice",
+      "cheese",
+      "onion",
+      "bread",
+      "garlic",
+      "pasta",
+      "bell pepper",
+      "rice",
+      "potato",
+      "carrot"
+    ],
+    "complexity": "simple",
+    "special_requests": "russian easy cuisine",
+    "visual_description": "A hearty, rustic individual portion of Chicken and Mushroom Potato Skillet is presented in a deep, slightly chipped ceramic bowl, showcasing the comforting essence of Russian home cooking. Generous chunks of seared chicken, tender 2-3cm potato cubes, quartered mushrooms, diced carrots, and diced red bell pepper are coated in a rich, simmering tomato-based sauce. The sauce, a warm reddish-brown, envelops the ingredients, highlighting their natural colors. A dollop of creamy white smetana (sour cream) rests atop the stew, partially melting into the sauce, and a generous sprinkle of fresh, vibrant green chopped dill and parsley adds a bright counterpoint. The dish is set on a well-used wooden dining table, alongside a thick slice of dark rye bread. A simple, folded linen napkin and a sturdy metal spoon complete the authentic, lived-in family kitchen scene, bathed in warm, natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian Easy",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a generous dollop of smetana (sour cream) on top.",
+      "Accompany with slices of dark rye bread for dipping into the sauce.",
+      "Traditionally served with pickled vegetables (e.g., pickled cucumbers or tomatoes) on the side."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g, cut into 3cm chunks"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g, peeled and cut into 2-3cm cubes"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "300g, quartered"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, diced into 1cm pieces"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 medium, diced into 1.5cm pieces"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "All-purpose Flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Sour Cream (Smetana)",
+        "quantity": "60g, for serving"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "10g, chopped, for garnish"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "5g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Season with salt and pepper.",
+      "Heat vegetable oil in a large deep skillet or Dutch oven over medium-high heat. Sear chicken chunks until golden brown on all sides. Do not overcrowd the pan. Remove chicken and set aside.",
+      "Add diced onion, carrot, and red bell pepper to the same pan. Sauté for 5-7 minutes until softened.",
+      "Stir in minced garlic and cook for 1 minute until fragrant.",
+      "Add quartered mushrooms and cook for 5-7 minutes until they release their liquid and start to brown.",
+      "Sprinkle flour over the vegetables and stir for 1 minute to cook out raw flour taste.",
+      "Pour in crushed tomatoes and chicken broth. Add bay leaf. Bring to a simmer, scraping up any browned bits from the bottom of the pan.",
+      "Return seared chicken to the pan. Add cubed potatoes. Stir to combine.",
+      "Reduce heat to low, cover, and simmer for 20-25 minutes, or until chicken is cooked through (75°C internal temperature) and potatoes are tender. Stir occasionally to prevent sticking.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve hot, topped with a dollop of sour cream (smetana) and a generous sprinkle of fresh chopped dill and parsley."
+    ],
+    "notes": [
+      "The consistency of the stew can be adjusted by adding a little more broth if a thinner sauce is desired.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Zazharka (sautéing vegetables to create a flavorful base)",
+      "Stewing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 535,
+      "cholesterol_mg": 212,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 38.6,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 571,
+      "total_carbs_g": 41.8,
+      "total_fat_g": 23.5,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 82,
+      "cholesterol_mg": 32.6,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 5.9,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 87.8,
+      "total_carbs_g": 6.4,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 21,
+      "protein": 77,
+      "saturated_fat": 28,
+      "sodium": 25,
+      "total_carbs": 15,
+      "total_fat": 30
+    },
+    "serving_size_g": 650.5,
+    "total_recipe_weight_g": 2602
+  },
+  {
+    "recipe_name": "Sustainable Pasta Carbonara with Cured Egg Yolk",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_pasta_carbonara_with_cured_egg_yolk_20250624_105232_7c875763.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:52:32.830331000Z",
+    "selected_ingredients": [
+      "pasta",
+      "egg"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single portion of Sustainable Pasta Carbonara rests on a cream-colored, handcrafted ceramic plate. The spaghetti is twirled into a natural, unforced mound, glistening with a creamy, pale yellow emulsified sauce. Specks of freshly cracked black pepper are visible throughout the pasta. A generous, vibrant orange dusting of finely grated cured egg yolk crowns the dish, providing a striking color contrast and emphasizing the preservation technique. The plate is positioned on a light, textured reclaimed wood surface, accompanied by simple, elegant Italian flatware (a fork and spoon). A natural, undyed linen napkin is subtly placed to the side. The background is minimalist and clean, with soft, diffused natural lighting illuminating the dish, highlighting its organic textures and colors. The entire plate is visible, showcasing mindful negative space and a clean composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Cured Egg Yolk",
+    "ingredients": [
+      {
+        "name": "Spaghetti or Bucatini pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large egg yolks (for sauce)",
+        "quantity": "4"
+      },
+      {
+        "name": "Cured egg yolks (grated)",
+        "quantity": "2"
+      },
+      {
+        "name": "Pecorino Romano cheese (finely grated)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fermented garlic cloves (minced)",
+        "quantity": "4"
+      },
+      {
+        "name": "Freshly cracked black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Zero-waste vegetable broth",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare cured egg yolks at least 4 days in advance: Combine 1 cup salt and 1 cup sugar. Bury egg yolks in mixture. Cure in refrigerator 4-7 days until firm. Rinse yolks and pat dry.",
+      "Prepare fermented garlic at least 1 week in advance: Place peeled garlic cloves in a clean jar. Cover with a 2% salt brine (2g salt per 100ml water). Seal jar. Ferment at room temperature 1-2 weeks until bubbly and tangy. Refrigerate.",
+      "Make zero-waste vegetable broth: Simmer vegetable scraps (onion peels, carrot ends, celery tops, mushroom stems) in water for 30 minutes. Strain.",
+      "Bring a large pot of salted water to a rolling boil. Cook pasta according to package directions until al dente.",
+      "While pasta cooks, prepare sauce base. In a medium bowl, whisk fresh egg yolks, grated Pecorino Romano, and black pepper until smooth. Set aside.",
+      "In a large skillet over medium heat, add olive oil. Sauté minced fermented garlic for 1 minute until fragrant. Do not brown.",
+      "Drain pasta, reserving 250 ml of pasta cooking water.",
+      "Add cooked pasta to the skillet with garlic. Toss to coat.",
+      "Gradually add 120 ml reserved pasta water and 100 ml vegetable broth to the egg yolk mixture, whisking constantly to temper the eggs. This creates a smooth, creamy emulsion.",
+      "Pour egg mixture over pasta in the skillet. Toss quickly and continuously over low heat for 1-2 minutes until sauce thickens and coats pasta. Do not scramble eggs. Add more pasta water if needed for desired consistency.",
+      "Taste and adjust salt if necessary. The cheese and cured yolks add saltiness.",
+      "Serve immediately. Grate cured egg yolks generously over each portion."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 626,
+      "cholesterol_mg": 346,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 25.3,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 952,
+      "total_carbs_g": 75.7,
+      "total_fat_g": 23.2,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 202,
+      "cholesterol_mg": 112,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.2,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 307,
+      "total_carbs_g": 24.4,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 115,
+      "dietary_fiber": 11,
+      "protein": 51,
+      "saturated_fat": 44,
+      "sodium": 41,
+      "total_carbs": 28,
+      "total_fat": 30
+    },
+    "serving_size_g": 310,
+    "total_recipe_weight_g": 1239
+  }
+]

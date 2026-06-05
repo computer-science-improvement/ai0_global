@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Mushroom-Mustard Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_mushroom-mustard_sauce_20250625_081714_179fba5c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:17:15.179808000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "mustard",
+      "mushroom",
+      "potato",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "Пп cuisine, Не запеченная,нарезанная курица",
+    "visual_description": "A single pan-seared chicken medallion is positioned slightly off-center on a round, clean white porcelain dinner plate. The chicken is golden-brown with a crisp exterior. A generous spoon of creamy, light brown mushroom-mustard sauce, featuring visible sliced mushrooms, is draped naturally over the chicken, allowing some to pool around the base. Adjacent to the chicken, a small, artfully arranged cluster of golden-brown roasted potato wedges and vibrant red, slightly blistered cherry tomatoes are placed. A light sprinkle of freshly chopped green parsley or chives is scattered gracefully over the chicken and sauce, adding a pop of color. A whisper of finely grated Parmesan cheese rests delicately on the sauce. The plate rests on a simple, light-colored wooden table surface. A neatly folded, off-white cotton napkin is placed beside the plate. Standard polished silver flatware (fork and knife) are positioned appropriately. The background is softly blurred, hinting at a modern bistro setting with natural, even lighting. The dish is presented as a single individual portion, with the chicken as a whole medallion, not sliced or fanned.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Small potatoes (e.g., baby potatoes, Yukon Golds)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-6"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Light cream or milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Fresh parsley or chives",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F). Wash and halve small potatoes. Toss potatoes with 1 tablespoon olive oil, salt, and pepper. Spread on a baking sheet. Roast for 25-30 minutes, or until tender and golden brown.",
+      "While potatoes roast, prepare chicken. Slice each chicken breast horizontally to create two thinner medallions. Season chicken medallions generously with salt and black pepper.",
+      "Heat 1 tablespoon olive oil in a large skillet over medium-high heat. Sear chicken medallions for 4-5 minutes per side, until golden brown and cooked through (internal temperature 75°C/167°F). Remove chicken from skillet and set aside on a plate, cover loosely to keep warm.",
+      "Add remaining 1 tablespoon olive oil to the same skillet. Add sliced cremini mushrooms. Sauté for 5-7 minutes until mushrooms are browned and tender. Add minced garlic, cook for 1 minute until fragrant.",
+      "Pour in chicken broth to deglaze the skillet, scraping up any browned bits. Stir in Dijon mustard. Bring to a simmer. Reduce heat to medium-low.",
+      "Stir in light cream or milk. Simmer sauce for 3-5 minutes, or until slightly thickened. Add halved cherry tomatoes to the sauce, cook for 2-3 minutes until slightly softened.",
+      "Return chicken medallions to the skillet, spooning sauce over them to coat. Cook for 1-2 minutes to reheat the chicken.",
+      "Plate individual chicken medallions with a generous portion of mushroom-mustard sauce. Serve alongside roasted potato wedges and roasted cherry tomatoes. Garnish with fresh chopped parsley or chives and a light grating of Parmesan cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 615,
+      "cholesterol_mg": 179,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 68.4,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 676,
+      "total_carbs_g": 30.4,
+      "total_fat_g": 23,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 11.9,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 118,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 4,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 18,
+      "protein": 137,
+      "saturated_fat": 33,
+      "sodium": 29,
+      "total_carbs": 11,
+      "total_fat": 29
+    },
+    "serving_size_g": 575,
+    "total_recipe_weight_g": 2300
+  },
+  {
+    "recipe_name": "Sweet Potato and Black Bean Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_potato_and_black_bean_salad_20250625_081704_11466829.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:17:04.780640000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A vibrant Sweet Potato and Black Bean Salad fills a rustic, deep ceramic bowl. Generous portions of golden-orange roasted sweet potato cubes are mingled with dark black beans, bright yellow corn kernels, and finely diced crimson red onion. Fresh, chopped green cilantro is scattered throughout, adding a pop of verdant color. The ingredients are lightly coated with a glistening lime vinaigrette, highlighting their natural textures and inviting colors. The salad is casually arranged, allowing components to touch and overlap, creating a homely, comforting appeal. The bowl sits on a well-used wooden dining table, under warm, natural kitchen lighting. A simple, everyday fork rests beside the bowl, with a casually folded cloth napkin nearby, completing the relaxed family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Sweet Potato",
+    "ingredients": [
+      {
+        "name": "Sweet potatoes",
+        "quantity": "2 medium (approx. 500g), peeled and diced into 1.5 cm cubes"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "1/4 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black beans",
+        "quantity": "1 can (400g), rinsed and drained"
+      },
+      {
+        "name": "Corn kernels",
+        "quantity": "1 cup (150g), canned (drained) or frozen (thawed)"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2, finely diced"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1/4 cup, chopped"
+      },
+      {
+        "name": "Olive oil (for dressing)",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Honey or maple syrup (optional)",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Salt (for dressing)",
+        "quantity": "1/4 teaspoon"
+      },
+      {
+        "name": "Black pepper (for dressing)",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss diced sweet potatoes with 1 tablespoon olive oil, cumin, chili powder, salt, and pepper on a baking sheet.",
+      "Roast for 20-25 minutes, or until tender and lightly caramelized. Let cool slightly.",
+      "In a large bowl, combine cooled roasted sweet potatoes, black beans, corn, finely diced red onion, and chopped cilantro.",
+      "In a small bowl, whisk together 3 tablespoons olive oil, lime juice, honey (if using), salt, and pepper for the vinaigrette.",
+      "Pour dressing over the salad ingredients. Toss gently to combine.",
+      "Serve immediately or chill for flavors to meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.7,
+      "calories": 352,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.2,
+      "protein_g": 8.9,
+      "saturated_fat_g": 2,
+      "sodium_mg": 415,
+      "total_carbs_g": 49.9,
+      "total_fat_g": 14.3,
+      "total_sugars_g": 9.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 133,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 3.3,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 157,
+      "total_carbs_g": 18.8,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 37,
+      "protein": 18,
+      "saturated_fat": 10,
+      "sodium": 18,
+      "total_carbs": 18,
+      "total_fat": 18
+    },
+    "serving_size_g": 265.1,
+    "total_recipe_weight_g": 1060.5
+  },
+  {
+    "recipe_name": "Tuscan Creamy Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_creamy_chicken_pasta_20250625_081653_9c5d6291.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:16:53.620831000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Tuscan Creamy Chicken Pasta is presented on a clean, white porcelain dinner plate. A generous portion of golden pappardelle pasta, gently tossed in a creamy, blush-toned sauce, forms the base. Thick medallions of seared chicken thigh are arranged naturally atop the pasta, showcasing their golden-brown crust. Bright red halved cherry tomatoes and vibrant green wilted spinach leaves are interspersed throughout the pasta, adding color and freshness. Julienne strips of rich red sun-dried tomatoes provide visual depth. The dish is garnished with a sprinkle of freshly chopped green parsley leaves and a light dusting of grated Parmesan cheese. The plate sits on a simple light wooden table surface, suggesting a modern bistro setting. A crisp, folded linen napkin and traditional silver flatware are placed beside the plate. Natural, even lighting illuminates the dish, with a subtly blurred background hinting at a casual restaurant atmosphere. The composition is clean, professional, and inviting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping.",
+      "Pair with a glass of dry white wine, such as Pinot Grigio or Vermentino."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Sun-dried tomatoes, packed in oil, julienned",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Dry white wine or chicken broth",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon, juiced",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken thighs. Sear for 5-7 minutes per side until golden brown and cooked through to an internal temperature of 75°C (167°F).",
+      "Remove chicken from skillet. Set aside on a cutting board to rest. Do not clean the skillet.",
+      "Reduce heat to medium. Add diced onion to the skillet. Cook for 3-4 minutes until softened.",
+      "Add minced garlic and julienned sun-dried tomatoes. Cook for 1 minute until fragrant.",
+      "Add halved cherry tomatoes to the skillet. Cook for 3-5 minutes until they begin to soften and burst.",
+      "Pour in white wine or chicken broth. Scrape up any browned bits from the bottom of the skillet. Bring to a simmer.",
+      "Stir in heavy cream. Return to a gentle simmer. Cook for 2-3 minutes, allowing sauce to thicken slightly.",
+      "Meanwhile, cook pappardelle pasta according to package directions in salted water until al dente. Reserve 250 ml of pasta cooking water before draining.",
+      "Slice rested chicken thighs into thick medallions.",
+      "Add fresh spinach to the sauce in the skillet. Cook until just wilted.",
+      "Stir in grated Parmesan cheese and lemon juice. Season sauce with salt and pepper to taste.",
+      "Add drained pasta to the skillet with the sauce. Toss to coat evenly. If sauce is too thick, add reserved pasta water, 30 ml at a time, until desired consistency is reached.",
+      "Gently fold in sliced chicken medallions.",
+      "Serve immediately. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1080,
+      "cholesterol_mg": 289.1,
+      "dietary_fiber_g": 6.74,
+      "protein_g": 56.32,
+      "saturated_fat_g": 22.95,
+      "sodium_mg": 673.4,
+      "total_carbs_g": 90.22,
+      "total_fat_g": 51.64,
+      "total_sugars_g": 10.55,
+      "trans_fat_g": 1.18
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 200,
+      "cholesterol_mg": 53.5,
+      "dietary_fiber_g": 1.25,
+      "protein_g": 10.43,
+      "saturated_fat_g": 4.25,
+      "sodium_mg": 124.8,
+      "total_carbs_g": 16.71,
+      "total_fat_g": 9.57,
+      "total_sugars_g": 1.95,
+      "trans_fat_g": 0.22
+    },
+    "daily_value_percentages": {
+      "cholesterol": 96.35,
+      "dietary_fiber": 24.07,
+      "protein": 112.64,
+      "saturated_fat": 114.75,
+      "sodium": 29.28,
+      "total_carbs": 32.81,
+      "total_fat": 66.21
+    },
+    "serving_size_g": 539.75,
+    "total_recipe_weight_g": 2159
+  },
+  {
+    "recipe_name": "Braised Beef Cheek, Fermented Carrot Puree, Roasted Roots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_cheek%2C_fermented_carrot_puree%2C_roasted_roots_20250625_081644_c9513afe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:16:44.719906000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, fork-tender braised beef cheek, rich and deep brown, anchors a handcrafted matte cream ceramic plate. Beside it, a vibrant dollop of smooth, pale orange fermented carrot puree provides a bright contrast. Roasted seasonal vegetables—golden potato halves, caramelized parsnip chunks, and slightly charred Brussels sprout halves—are arranged naturally around the beef, adding earthy tones and varied textures. The plating is minimalist and spacious, allowing negative space to highlight each ingredient's inherent beauty. A subtle sheen of reduced braising liquid coats the beef. The scene is clean, set on a light reclaimed wood surface with a simple undyed linen napkin and minimal flatware. Soft, natural light illuminates the dish, emphasizing its organic, sustainable elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Beef Cheek",
+    "ingredients": [
+      {
+        "name": "Beef cheeks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, roughly chopped"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 large, roughly chopped"
+      },
+      {
+        "name": "Celery",
+        "quantity": "2 stalks, roughly chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, smashed"
+      },
+      {
+        "name": "Red wine",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Beef bone broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Carrots (for puree)",
+        "quantity": "300g, peeled, roughly chopped"
+      },
+      {
+        "name": "Filtered water (for puree)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Non-iodized salt (for puree)",
+        "quantity": "7g"
+      },
+      {
+        "name": "Potatoes (small, new)",
+        "quantity": "400g, halved or quartered"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "200g, peeled, cut into 2cm chunks"
+      },
+      {
+        "name": "Brussels sprouts",
+        "quantity": "200g, halved"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat beef cheeks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef cheeks until deeply browned on all sides. Remove and set aside.",
+      "Add chopped onion, carrot, celery, and garlic to the pot. Sauté until softened, about 8 minutes. Stir in tomato paste and cook for 2 minutes.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and reduce by half.",
+      "Return beef cheeks to the pot. Add beef bone broth, thyme, and bay leaves. Bring to a gentle simmer. Cover the pot.",
+      "Transfer to a preheated oven at 150°C (300°F). Cook for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Remove beef cheeks from the pot. Strain the braising liquid through a fine-mesh sieve into a saucepan. Discard solids. Reduce braising liquid over medium-high heat until it thickens slightly into a rich sauce. Season sauce to taste. Keep beef warm.",
+      "Combine chopped carrots, filtered water, and non-iodized salt in a clean jar. Ensure carrots are fully submerged. Seal the jar loosely or use an airlock. Ferment at room temperature for 5-7 days, or until desired tanginess is achieved. Once fermented, drain liquid (reserve some). Blend carrots with a small amount of reserved liquid until smooth. Season to taste.",
+      "Preheat oven to 200°C (400°F). Toss potatoes, parsnips, and Brussels sprouts with olive oil, salt, and pepper on a baking tray. Roast for 25-35 minutes, or until tender and lightly caramelized.",
+      "Spoon a dollop of fermented carrot puree onto each plate. Place a braised beef cheek next to the puree. Arrange roasted vegetables around the beef. Drizzle reduced braising sauce over the beef. Garnish with chopped fresh parsley."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste cooking by utilizing less common beef cuts and preserving vegetables through fermentation."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 676,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 11,
+      "protein_g": 64.1,
+      "saturated_fat_g": 6,
+      "sodium_mg": 1788,
+      "total_carbs_g": 50.8,
+      "total_fat_g": 20.3,
+      "total_sugars_g": 14.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 75,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.1,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 197,
+      "total_carbs_g": 5.6,
+      "total_fat_g": 2.2,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 39.3,
+      "protein": 128.2,
+      "saturated_fat": 30,
+      "sodium": 77.7,
+      "total_carbs": 18.5,
+      "total_fat": 26
+    },
+    "serving_size_g": 906.7,
+    "total_recipe_weight_g": 3626.6
+  },
+  {
+    "recipe_name": "Garlic Butter Chicken Pasta with Basil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_butter_chicken_pasta_with_basil_20250625_081640_d0ba40b8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:16:41.212697000Z",
+    "selected_ingredients": [
+      "chicken",
+      "basil",
+      "garlic",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "light",
+    "visual_description": "A single, modest portion of Garlic Butter Chicken Pasta with Basil is presented on a round, off-white ceramic plate. Seared chicken breast, cut into thick chunks, is intertwined with al dente spaghetti. The pasta and chicken are coated in a creamy, glossy garlic-Parmesan sauce. Bright green fresh basil leaves, roughly chopped, are visible throughout the dish, offering a vibrant contrast. The arrangement is natural and unforced, reflecting a casual home plating. The plate rests on a well-worn wooden kitchen table, bathed in soft, natural light, creating a warm, inviting atmosphere. A simple, silver fork is placed to the side. The dish conveys hearty comfort food, with a focus on natural textures and appetizing colors, without any elaborate garnishes or strict symmetry.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve as a main course with crusty bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g"
+      },
+      {
+        "name": "Spaghetti or linguine",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1/2 cup, chopped"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "1/2 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 2-3 cm chunks. Season chicken with salt and pepper.",
+      "Heat olive oil and 30g butter in a large skillet over medium-high heat.",
+      "Add chicken chunks to skillet. Sear until golden brown on all sides. Cook until internal temperature reaches 75°C. This takes about 6-8 minutes. Remove chicken from skillet and set aside.",
+      "In the same skillet, melt remaining 30g butter. Add minced garlic. Cook 1 minute until fragrant. Do not brown garlic.",
+      "Pour in chicken broth and heavy cream. Bring sauce to a gentle simmer.",
+      "Stir in grated Parmesan cheese until melted and sauce thickens slightly.",
+      "Meanwhile, cook pasta according to package directions in salted boiling water until al dente. Reserve 125ml pasta water before draining.",
+      "Add cooked chicken to the sauce in the skillet. Stir in chopped fresh basil.",
+      "Add drained pasta to the skillet. Toss to coat evenly with the sauce. If sauce is too thick, add reserved pasta water as needed to reach desired consistency.",
+      "Taste and adjust seasoning with salt and pepper. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken is cooked through to an internal temperature of 75°C (167°F) for food safety.",
+      "Do not overcook the pasta; it should be al dente, firm to the bite."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 927,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 59.2,
+      "saturated_fat_g": 20,
+      "sodium_mg": 413,
+      "total_carbs_g": 77.8,
+      "total_fat_g": 40.8,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 256,
+      "cholesterol_mg": 52.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 16.4,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 114,
+      "total_carbs_g": 21.5,
+      "total_fat_g": 11.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 12,
+      "protein": 118,
+      "saturated_fat": 100,
+      "sodium": 18,
+      "total_carbs": 28,
+      "total_fat": 52
+    },
+    "serving_size_g": 362,
+    "total_recipe_weight_g": 1447
+  }
+]

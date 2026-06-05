@@ -1,0 +1,606 @@
+[
+  {
+    "recipe_name": "Brown Butter Fermented Apple Compote",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_brown_butter_fermented_apple_compote_20250703_000053_a4210ae9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T00:00:53.867628000Z",
+    "selected_ingredients": [
+      {
+        "name": "brown sugar"
+      },
+      {
+        "name": "butter"
+      },
+      {
+        "name": "apple"
+      },
+      {
+        "name": "vanilla"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian",
+    "visual_description": "A small, handcrafted ceramic bowl, matte cream or light grey, holds the fermented apple compote. Rustic 1-2 cm diced apples, unpeeled, show natural variations in color, from pale yellow to light reddish hues, suspended in a translucent, slightly syrupy liquid. The texture is soft with a gentle bite. A single, small fresh mint leaf is placed delicately on top, off-center. The bowl sits on a light, textured stone or reclaimed wood surface. An undyed linen napkin in natural beige is casually draped beside. Soft, diffused natural light illuminates the scene, creating gentle shadows. The background is clean and minimalist, with a hint of out-of-focus greenery, emphasizing the dish's natural beauty and sustainable ethos. The composition is uncluttered, allowing ample white space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "cultural_serving_suggestions": [
+      "Serve with simple, unsweetened seed crackers.",
+      "Serve with a dollop of plant-based yogurt."
+    ],
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Apples",
+        "quantity": "500g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vanilla bean",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Non-iodized salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Whey or sauerkraut brine",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Brown butter: Melt butter in a small saucepan over medium heat. Cook until golden brown and nutty. Let cool slightly.",
+      "Prepare apples: Wash apples thoroughly. Do not peel. Core and dice into 1-2 cm cubes. Reserve peels and cores for apple scrap vinegar.",
+      "Combine ingredients: In a clean glass jar, combine diced apples, brown sugar, water, split and scraped vanilla bean, cinnamon stick, and salt.",
+      "Add butter and starter: Pour in the cooled brown butter. Stir in whey or sauerkraut brine. Ensure apples are mostly submerged; add more filtered water if needed.",
+      "Ferment: Cover jar loosely with a lid or cloth. Place at room temperature (18-24°C) for 2-3 days. Burp daily if using a tight lid.",
+      "Check fermentation: Taste after 2 days. Compote should be slightly tangy and bubbly. Ferment longer for increased tang, up to 5 days.",
+      "Store: Once desired tang is reached, remove cinnamon stick and vanilla bean. Store compote in the refrigerator.",
+      "Serve: Serve chilled as a snack."
+    ],
+    "notes": [
+      "Apple peels and cores can be used to make apple scrap vinegar, reducing food waste.",
+      "Adjust fermentation time to desired tanginess."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ]
+  },
+  {
+    "recipe_name": "Chai-Spiced Autumn Vegetable Bread Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chai-spiced_autumn_vegetable_bread_pudding_20250702_235539_581aa11a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:55:40.377708000Z",
+    "selected_ingredients": [
+      "squash",
+      "sweet potato",
+      "chai tea",
+      "chicken stock",
+      "onion",
+      "bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Chai-Spiced Autumn Vegetable Bread Pudding is presented as a generous square slice on a pristine white porcelain dinner plate. Its surface is a rich golden-brown, with visible peaks of toasted bread and roasted vegetable edges. The interior, revealed slightly at the cut, showcases a harmonious blend of soft, creamy orange butternut squash and sweet potato cubes, interspersed with translucent, deeply caramelized onion slices and moist bread pieces. The texture is invitingly soft yet holds its form. A scattering of bright green, finely chopped fresh chives provides a vibrant color contrast against the warm, earthy tones of the pudding. The plate is positioned on a simple, light-colored wooden table surface, with a neatly folded cotton napkin beside it. Natural, even lighting highlights the dish's comforting warmth and inviting textures, creating a professional yet approachable presentation in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Butternut Squash",
+    "ingredients": [
+      {
+        "name": "Butternut squash",
+        "quantity": "400g, peeled, seeded, cut into 1.5 cm cubes"
+      },
+      {
+        "name": "Sweet potato",
+        "quantity": "300g, peeled, cut into 1.5 cm cubes"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (approx. 200g), thinly sliced"
+      },
+      {
+        "name": "Stale rustic bread",
+        "quantity": "300g, crusts removed, cut into 2 cm cubes"
+      },
+      {
+        "name": "Strong black chai tea bags",
+        "quantity": "2"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g, plus extra for greasing"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tablespoon, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 teaspoon, or to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 teaspoon, or to taste"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "1 tablespoon, finely chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly butter a 20x20 cm baking dish or four individual ramekins.",
+      "Toss squash and sweet potato cubes with 1 tablespoon olive oil, salt, and pepper. Spread on a baking sheet. Roast for 20-25 minutes until tender and lightly caramelized.",
+      "Heat remaining 1 tablespoon olive oil and butter in a large pan over medium heat. Add sliced onion. Cook for 15-20 minutes, stirring occasionally, until deeply caramelized and soft.",
+      "Meanwhile, bring vegetable stock to a simmer. Remove from heat. Add chai tea bags and steep for 10 minutes. Remove tea bags.",
+      "In a large bowl, combine roasted squash, sweet potato, caramelized onion, and bread cubes. Add chopped fresh thyme.",
+      "In a separate bowl, whisk eggs, milk, and the chai-infused stock. Season with salt and pepper.",
+      "Pour the egg mixture over the vegetable and bread mixture. Gently toss to coat all ingredients. Let stand for 10 minutes to allow bread to absorb liquid.",
+      "Transfer mixture to the prepared baking dish or ramekins. Press lightly to ensure even distribution.",
+      "Bake for 30-35 minutes for individual ramekins, or 40-45 minutes for a larger dish, until golden brown and a knife inserted into the center comes out clean.",
+      "Let rest for 5 minutes before serving. Garnish with fresh chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.63,
+      "calories": 528,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 7.23,
+      "protein_g": 16.47,
+      "saturated_fat_g": 7.37,
+      "sodium_mg": 1160,
+      "total_carbs_g": 71.4,
+      "total_fat_g": 20.73,
+      "total_sugars_g": 14.41,
+      "trans_fat_g": 0.28
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.54,
+      "calories": 108,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.47,
+      "protein_g": 3.36,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 237,
+      "total_carbs_g": 14.56,
+      "total_fat_g": 4.23,
+      "total_sugars_g": 2.94,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 26,
+      "protein": 33,
+      "saturated_fat": 37,
+      "sodium": 50,
+      "total_carbs": 26,
+      "total_fat": 27
+    },
+    "serving_size_g": 490.5,
+    "total_recipe_weight_g": 1962
+  },
+  {
+    "recipe_name": "Spiced Squash and Sweet Potato Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_squash_and_sweet_potato_soup_20250702_235454_629fdcbc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:54:55.407592000Z",
+    "selected_ingredients": [
+      "squash",
+      "sweet potato",
+      "chai tea",
+      "chicken stock",
+      "onion",
+      "bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, smooth, and creamy Spiced Squash and Sweet Potato Soup is presented in a deep white porcelain bowl, positioned on a simple light wooden table. The soup displays a rich, warm orange hue, indicative of roasted squash and sweet potato. Its surface is perfectly smooth, with a subtle sheen. Scattered across the soup are golden-brown, 1 cm diced croutons, offering a textural contrast. A delicate swirl of white cream or a few fresh cilantro leaves provide a fresh green accent. The bowl is centered, surrounded by moderate negative space. A folded white cotton napkin lies to the left of the bowl. Lighting is natural and even, creating a soft, inviting ambiance typical of a modern bistro setting. The background is minimally blurred, suggesting a casual restaurant environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Roasted Squash and Sweet Potato",
+    "ingredients": [
+      {
+        "name": "Butternut squash",
+        "quantity": "800 g (peeled, deseeded, cubed)"
+      },
+      {
+        "name": "Sweet potatoes",
+        "quantity": "400 g (peeled, cubed)"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (chopped)"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1 L"
+      },
+      {
+        "name": "Chai tea bags",
+        "quantity": "2"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "2 slices (for croutons)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Heavy cream (optional)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fresh cilantro or parsley (optional)",
+        "quantity": "a few sprigs"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss cubed butternut squash and sweet potatoes with 15 ml olive oil, salt, and pepper. Spread on a baking sheet. Roast 25-30 minutes until tender and lightly caramelized.",
+      "While vegetables roast, brew chai tea. Steep 2 chai tea bags in 250 ml hot water for 5 minutes. Remove bags.",
+      "Heat remaining 15 ml olive oil in a large pot over medium heat. Add chopped onion. Sauté 5-7 minutes until softened and translucent.",
+      "Add roasted squash, sweet potatoes, chicken stock, and brewed chai tea to the pot. Bring to a simmer. Cook 10 minutes to allow flavors to meld.",
+      "Use an immersion blender to puree soup until completely smooth. Alternatively, carefully transfer soup in batches to a regular blender. Blend until smooth. Return soup to pot.",
+      "Season soup with additional salt and pepper to taste. If desired, stir in heavy cream for added richness.",
+      "For croutons: Dice bread into 1 cm cubes. Heat a dry pan over medium heat. Add bread cubes. Toast, stirring frequently, until golden and crispy.",
+      "Ladle hot soup into bowls. Garnish each serving with toasted bread croutons. If using, swirl a little cream and add a fresh herb sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 404,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 8.8,
+      "protein_g": 11.18,
+      "saturated_fat_g": 4.07,
+      "sodium_mg": 449,
+      "total_carbs_g": 65.74,
+      "total_fat_g": 12.57,
+      "total_sugars_g": 12.64,
+      "trans_fat_g": 0.19
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 62.2,
+      "cholesterol_mg": 2.31,
+      "dietary_fiber_g": 1.36,
+      "protein_g": 1.72,
+      "saturated_fat_g": 0.63,
+      "sodium_mg": 69.16,
+      "total_carbs_g": 10.12,
+      "total_fat_g": 1.94,
+      "total_sugars_g": 1.95,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 5,
+      "dietary_fiber": 31,
+      "protein": 22,
+      "saturated_fat": 20,
+      "sodium": 20,
+      "total_carbs": 24,
+      "total_fat": 16
+    },
+    "serving_size_g": 649.4,
+    "total_recipe_weight_g": 2597.6
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Spicy Tomato-Bell Pepper Sauce and Garlic-Parmesan Crostini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_spicy_tomato-bell_pepper_sauce_and_garlic-parmesan_crostini_20250702_235412_a2781c1b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:54:13.127015000Z",
+    "selected_ingredients": [
+      "tomato",
+      "chicken",
+      "garlic",
+      "bell pepper",
+      "mushroom",
+      "parmesan",
+      "bread",
+      "chili",
+      "mayonnaise",
+      "mustard"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast, golden brown and perfectly cooked, rests atop a vibrant, rich red spicy tomato-bell pepper sauce. The chicken is a whole, plump piece, showcasing its crispy exterior. Around the chicken, roasted bell pepper strips, earthy cremini mushrooms, and glossy whole cherry tomatoes are artfully arranged, displaying their caramelized edges and natural colors. Two to three golden-brown garlic-parmesan crostini, with melted, bubbly cheese, lean against the chicken. The dish is presented on a clean, round white porcelain plate with moderate negative space. A scattering of fresh, bright green chopped basil and parsley provides a final aromatic garnish. The scene is set on a simple light wooden table, with a cotton napkin and standard flatware placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and inviting colors in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of simple green salad with a light vinaigrette.",
+      "Offer additional grated Parmesan at the table."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large, deseeded and cut into thick strips"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large, deseeded and cut into thick strips"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g, halved or quartered"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "150g, whole"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6, minced (4 for sauce, 2 for crostini)"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "small bunch, chopped for garnish"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch, chopped for garnish"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g, grated (60g for crostini, 20g for sauce/garnish)"
+      },
+      {
+        "name": "Baguette or rustic bread",
+        "quantity": "1 small, sliced into 1.5 cm thick rounds"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5g (or to taste)"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken stock or dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss bell pepper strips, mushroom pieces, and whole cherry tomatoes with 30ml olive oil, salt, and black pepper on a baking sheet. Roast for 20-25 minutes until tender and slightly caramelized. Set aside.",
+      "Season chicken breasts with salt, black pepper, and Dijon mustard. Rub evenly.",
+      "Heat 15ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken breasts for 4-5 minutes per side until golden brown. Transfer skillet to preheated oven. Bake for 10-15 minutes, or until internal temperature reaches 75°C. Remove chicken, let rest.",
+      "For the sauce, add remaining 15ml olive oil to the same skillet over medium heat. Add 4 minced garlic cloves and red chili flakes. Sauté for 1 minute until fragrant.",
+      "Stir in crushed tomatoes, chicken stock or white wine, and 15g mayonnaise. Bring to a simmer. Cook for 10-12 minutes, stirring occasionally, until sauce thickens slightly. Season with salt and black pepper. Stir in 10g grated Parmesan. Keep warm.",
+      "For crostini, arrange bread slices on a baking sheet. Brush lightly with olive oil. Bake for 5-7 minutes until lightly golden. Rub warm crostini with remaining 2 minced garlic cloves. Sprinkle with 60g grated Parmesan. Bake for another 2-3 minutes until cheese is melted and golden.",
+      "To plate, spoon a generous amount of spicy tomato-bell pepper sauce onto the center of each plate. Place one pan-seared chicken breast on top of the sauce. Arrange roasted bell peppers, mushrooms, and cherry tomatoes around the chicken.",
+      "Lean 2-3 garlic-parmesan crostini against the chicken. Garnish with chopped fresh basil and parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust chili flakes to desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 713.75,
+      "cholesterol_mg": 30.48,
+      "dietary_fiber_g": 6.56,
+      "protein_g": 71.78,
+      "saturated_fat_g": 8.03,
+      "sodium_mg": 1390.65,
+      "total_carbs_g": 37.61,
+      "total_fat_g": 31.85,
+      "total_sugars_g": 10.22,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 122.32,
+      "cholesterol_mg": 5.22,
+      "dietary_fiber_g": 1.12,
+      "protein_g": 12.3,
+      "saturated_fat_g": 1.38,
+      "sodium_mg": 238.33,
+      "total_carbs_g": 6.44,
+      "total_fat_g": 5.46,
+      "total_sugars_g": 1.75,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10.16,
+      "dietary_fiber": 23.43,
+      "protein": 143.56,
+      "saturated_fat": 40.15,
+      "sodium": 60.46,
+      "total_carbs": 13.68,
+      "total_fat": 40.83
+    },
+    "serving_size_g": 583.5,
+    "total_recipe_weight_g": 2334
+  },
+  {
+    "recipe_name": "Pan-Seared Sausage with Roasted Potatoes and Seasonal Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_sausage_with_roasted_potatoes_and_seasonal_vegetables_20250702_235146_cc2e8387.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:51:46.724680000Z",
+    "selected_ingredients": [
+      "sausage",
+      "potato",
+      "broccoli",
+      "garlic",
+      "asparagus",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate. A single pan-seared sausage, golden-brown with a crisp casing, is placed centrally. Around it, a vibrant medley of roasted potato wedges, bright green broccoli florets, tender asparagus spears, and earthy sautéed mushroom quarters are artfully arranged. Potato wedges are golden with crispy edges. Broccoli florets retain vivid green. Asparagus spears are bright green and tender-crisp. Mushrooms are caramelized with deep brown hues. Fresh thyme sprigs or chopped parsley scatter over vegetables as garnish. The composition is balanced with moderate negative space, showcasing natural colors and textures. The setting is a modern bistro: a simple wooden table surface, a grey cotton napkin beside the plate, and a minimalist background with soft, natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Sausage",
+        "quantity": "4 large pieces"
+      },
+      {
+        "name": "New potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "300g (1 head)"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": "250g (1 bunch)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Prepare potatoes: Wash potatoes. Cut into 2 cm wedges or halves. Toss with 30ml olive oil, rosemary, salt, and pepper.",
+      "Roast potatoes: Spread potatoes on a baking tray. Roast at 200°C for 25-30 minutes, until tender and golden. Flip halfway.",
+      "Prepare vegetables: Wash broccoli. Cut into medium florets. Wash asparagus. Trim woody ends. Cut mushrooms into quarters or halves. Mince garlic.",
+      "Blanch vegetables: Bring salted water to a boil. Blanch broccoli 2-3 minutes. Transfer to ice bath. Blanch asparagus 1-2 minutes. Transfer to ice bath. Drain well.",
+      "Cook sausage: Heat 15ml olive oil in large pan over medium-high heat. Add sausages. Sear 4-5 minutes per side until golden brown and cooked through. Remove sausages. Keep warm.",
+      "Sauté vegetables: In same pan, add minced garlic, mushrooms, blanched broccoli, and asparagus. Sauté 5-7 minutes until tender and lightly browned. Season with salt, pepper, and thyme.",
+      "Plate: Arrange roasted potato wedges, sautéed vegetables, and a whole pan-seared sausage on each plate. Garnish with fresh parsley if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 598.5,
+      "cholesterol_mg": 71.25,
+      "dietary_fiber_g": 7.9,
+      "protein_g": 25.08,
+      "saturated_fat_g": 12.35,
+      "sodium_mg": 750.68,
+      "total_carbs_g": 38.43,
+      "total_fat_g": 41.15,
+      "total_sugars_g": 5.43,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.93,
+      "cholesterol_mg": 15.82,
+      "dietary_fiber_g": 1.75,
+      "protein_g": 5.57,
+      "saturated_fat_g": 2.74,
+      "sodium_mg": 166.72,
+      "total_carbs_g": 8.53,
+      "total_fat_g": 9.14,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23.75,
+      "dietary_fiber": 28.21,
+      "protein": 50.15,
+      "saturated_fat": 61.75,
+      "sodium": 32.64,
+      "total_carbs": 13.97,
+      "total_fat": 52.76
+    },
+    "serving_size_g": 450.25,
+    "total_recipe_weight_g": 1801
+  }
+]

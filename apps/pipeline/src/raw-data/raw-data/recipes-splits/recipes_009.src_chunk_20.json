@@ -1,0 +1,624 @@
+[
+  {
+    "recipe_name": "Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_risotto_20250723_090420_61285073.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T09:04:21.155691000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Serve the risotto on a flat white porcelain dinner plate. The consistency is fluid and spreads naturally across the plate, appearing free-flowing rather than molded. The rice grains are distinct, coated in a glossy, creamy sauce. Large 3cm chunks of golden-brown seared chicken thighs are distributed throughout the rice. Sliced cremini and shiitake mushrooms show deep caramelization and earthy brown tones. The dish features a pale golden hue. Finely minced flat-leaf parsley provides a vibrant green contrast. A light dusting of finely grated Parmesan cheese covers the surface. The arrangement is organic. Beside the plate sits a heavy silver spoon and a folded white cotton napkin on a light oak table. Natural side lighting highlights the creamy texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while the consistency remains fluid",
+      "Accompany with a crisp dry white wine such as Pinot Grigio",
+      "Provide extra grated Parmesan at the table"
+    ],
+    "hero_ingredient": "Mixed Mushrooms",
+    "ingredients": [
+      {
+        "name": "boneless skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "mixed mushrooms (cremini and shiitake)",
+        "quantity": "300g"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "fresh flat-leaf parsley",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks.",
+      "Dice onion into 5mm pieces.",
+      "Mince garlic cloves.",
+      "Slice mushrooms into 5mm thick pieces.",
+      "Heat 20ml olive oil in a wide pan over medium-high heat.",
+      "Sear chicken chunks until browned and internal temperature reaches 75°C.",
+      "Remove chicken from pan and set aside.",
+      "Add mushrooms to the same pan. Sauté until moisture evaporates and edges brown.",
+      "Remove mushrooms and set aside.",
+      "Melt 20g butter in the pan. Add onion and garlic.",
+      "Cook until softened but not browned.",
+      "Add rice. Stir 2 minutes to toast the grains until edges are translucent.",
+      "Pour in white wine. Stir until liquid is fully absorbed.",
+      "Add 200ml warm stock. Stir continuously until liquid is absorbed.",
+      "Repeat stock additions one ladle at a time, stirring constantly, until rice is tender but firm.",
+      "Return chicken and mushrooms to the pan.",
+      "Remove from heat.",
+      "Vigorously stir in remaining 30g butter and Parmesan cheese to create a creamy emulsion.",
+      "Season with salt and pepper. Fold in chopped parsley."
+    ],
+    "notes": [
+      "Keep the chicken stock at a low simmer in a separate pot to maintain cooking temperature.",
+      "Stirring constantly is essential to release rice starches for a creamy texture.",
+      "Ensure chicken reaches the safety temperature of 75°C during the initial searing phase."
+    ],
+    "traditional_techniques": [
+      "tostatura",
+      "mantecatura",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 875,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 52,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 1450,
+      "total_carbs_g": 91,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 203,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 12.06,
+      "saturated_fat_g": 3.06,
+      "sodium_mg": 336.2,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 7.77,
+      "total_sugars_g": 0.65,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 9,
+      "protein": 104,
+      "saturated_fat": 66,
+      "sodium": 63,
+      "total_carbs": 33,
+      "total_fat": 43
+    },
+    "serving_size_g": 431,
+    "total_recipe_weight_g": 1725
+  },
+  {
+    "recipe_name": "Smoked Pork Belly, Pickled Mustard Green Purée, Crispy Noodle Nest",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_pork_belly%2C_pickled_mustard_green_pur%C3%A9e%2C_crispy_noodle_nest_20250723_080044_971d236a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T08:00:45.118682000Z",
+    "selected_ingredients": [
+      {
+        "name": "mustard"
+      },
+      {
+        "name": "pork"
+      },
+      {
+        "name": "noodle"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Vietnamese",
+    "visual_description": "A single, perfectly seared 4 cm x 4 cm chunk of smoked pork belly rests elegantly on a pristine white bone china plate. Its skin is a deep, glistening golden-brown, contrasting with the tender, layered white and pink meat. Adjacent to the pork, a vibrant, emerald-green swirl of silky pickled mustard green purée creates an organic, flowing line. Nestled delicately atop a part of the purée is a small, airy, translucent crisp glass noodle nest, offering textural contrast. The composition is accented with precisely placed micro cilantro leaves and dill fronds, providing subtle pops of fresh green. Abundant white space surrounds the elements, emphasizing their architectural precision and luxurious simplicity. The scene is lit with dramatic professional lighting, casting soft shadows, set on a premium grey veined marble surface, with a crisp white linen napkin folded precisely.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Smoked Pork Belly",
+    "ingredients": [
+      {
+        "name": "Pork belly, skin on",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Fermented mustard greens (dưa cải chua)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Glass noodles",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh ginger, sliced",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "4"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "2 pods"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (5 cm)"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Neutral oil for frying",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Micro cilantro",
+        "quantity": "Small handful"
+      },
+      {
+        "name": "Dill fronds",
+        "quantity": "Small handful"
+      }
+    ],
+    "instructions": [
+      "Prepare pork belly: Score pork skin. Season pork belly with salt and pepper.",
+      "Place pork belly, ginger, garlic, star anise, cinnamon, and peppercorns in a vacuum-sealable bag. Sous-vide at 72°C for 12 hours.",
+      "Remove pork from bag. Pat dry. Chill thoroughly under weight for 4 hours.",
+      "Smoke the chilled pork belly in a cold smoker with applewood chips for 2 hours.",
+      "Preheat oven to 200°C. Cut smoked pork belly into 4 cm x 4 cm chunks.",
+      "Sear pork belly chunks, skin-side down, in a hot pan until skin is crisp and golden brown. Finish in oven for 5 minutes.",
+      "Prepare mustard green purée: Rinse fermented mustard greens. Squeeze out excess liquid.",
+      "Blend mustard greens with fish sauce, sugar, and rice vinegar until smooth. Pass through a fine sieve for a silky texture.",
+      "Prepare noodle nest: Heat neutral oil to 180°C. Form small bundles of glass noodles.",
+      "Fry noodle bundles for 10-15 seconds until crisp and puffed. Drain on paper towels.",
+      "Plate: Place one seared pork belly chunk slightly off-center on a large white plate. Pipe a delicate swirl of mustard green purée beside the pork.",
+      "Gently place a crisp glass noodle nest on the purée. Garnish with micro cilantro and dill fronds."
+    ],
+    "traditional_techniques": [
+      "Smoking",
+      "Fermentation (of mustard greens)"
+    ]
+  },
+  {
+    "recipe_name": "Hearty Chicken & Vegetable Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_%26_vegetable_soup_20250723_072707_df854157.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T07:27:07.569470000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "Для похудения",
+    "visual_description": "A warm, inviting bowl of hearty chicken and vegetable soup sits on a well-used wooden dining table. The ceramic bowl is simple, reflecting its homely use. The soup itself is a comforting blend of clear, golden broth, generously filled with tender, diced chicken breast chunks (2 cm cubes). Bright orange diced carrots, pale green diced celery, and soft, translucent diced onions are visible, alongside flecks of dried thyme. A sprinkle of vibrant green fresh parsley adorns the surface, providing a pop of color. Steam gently rises from the bowl. The setting is a cozy family kitchen, with natural light. A simple cloth napkin is casually placed beside the bowl. The impression is nourishing, homemade comfort food, perfect for a relaxed family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Low-sodium chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 2 cm cubes.",
+      "Heat olive oil in a large pot over medium heat. Add diced onion, carrots, and celery. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic and sauté for 1 minute until fragrant.",
+      "Add chicken cubes to the pot. Cook for 3-5 minutes until lightly browned on all sides.",
+      "Pour in chicken broth and water. Add bay leaf and dried thyme. Bring to a boil.",
+      "Reduce heat to low, cover, and simmer for 20-25 minutes, or until chicken is cooked through (internal temperature 75°C) and vegetables are tender.",
+      "Remove bay leaf. Season with salt and black pepper to taste.",
+      "Ladle soup into bowls. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "This recipe focuses on lean protein and abundant vegetables, making it a healthy choice for weight management."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 315,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 45.5,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 1027,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 10,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 43,
+      "cholesterol_mg": 14,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 6.1,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 139,
+      "total_carbs_g": 1.5,
+      "total_fat_g": 1.3,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.3,
+      "dietary_fiber": 8.9,
+      "protein": 91,
+      "saturated_fat": 10.5,
+      "sodium": 44.7,
+      "total_carbs": 4.1,
+      "total_fat": 12.8
+    },
+    "serving_size_g": 740,
+    "total_recipe_weight_g": 2960
+  },
+  {
+    "recipe_name": "Greek Avgolemono Chicken Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_greek_avgolemono_chicken_soup_20250723_065350_b4f29736.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T06:53:51.264114000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Greek Avgolemono Chicken Soup is presented in a deep, rustic ceramic bowl with natural, slightly irregular edges, reflecting a homely, handcrafted feel. The creamy, pale yellow soup fills the bowl, showcasing generous chunks of tender, diced chicken and small orzo pasta pieces. Scattered across the surface are vibrant green specks of fresh dill, offering a contrasting color and enhancing the soup's fresh aroma. The soup's texture is fluid and comforting, with a slight sheen from the egg-lemon emulsion. The bowl rests on a well-worn, light-colored wooden dining table, suggesting a relaxed family kitchen setting. A simple, silver spoon is casually placed beside the bowl, with a small piece of crusty bread on a matching side plate. Warm, soft light illuminates the scene, highlighting the natural colors of the ingredients and creating a cozy, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve hot with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Orzo pasta",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 2 cm cubes. Season with salt and pepper.",
+      "Heat olive oil in a large pot over medium heat. Add diced onion and sauté until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Add diced chicken to the pot. Cook until lightly browned on all sides, about 5-7 minutes. Ensure internal temperature reaches 75°C (167°F).",
+      "Pour in chicken broth. Bring to a simmer. Skim any foam from the surface.",
+      "Add orzo pasta to the simmering broth. Cook according to package directions, about 8-10 minutes, until al dente.",
+      "While pasta cooks, prepare avgolemono mixture. In a medium bowl, whisk eggs until frothy. Slowly whisk in fresh lemon juice until combined.",
+      "Carefully temper the egg-lemon mixture. Gradually ladle about 250 ml of hot broth from the pot into the egg mixture, whisking constantly to prevent scrambling.",
+      "Slowly pour the tempered egg-lemon mixture back into the pot, stirring constantly. Do not boil the soup after adding the egg mixture, or it may curdle.",
+      "Stir in chopped fresh dill. Taste and adjust salt and pepper as needed. Serve immediately."
+    ],
+    "notes": [
+      "Ensure eggs are tempered slowly to prevent curdling. Do not boil the soup after adding the egg-lemon mixture."
+    ],
+    "traditional_techniques": [
+      "Tempering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 500,
+      "cholesterol_mg": 246,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 53.1,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 1979,
+      "total_carbs_g": 25.9,
+      "total_fat_g": 16.8,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 80,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 8.5,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 317,
+      "total_carbs_g": 4.2,
+      "total_fat_g": 2.7,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 82,
+      "dietary_fiber": 5,
+      "protein": 106,
+      "saturated_fat": 18,
+      "sodium": 86,
+      "total_carbs": 9,
+      "total_fat": 22
+    },
+    "serving_size_g": 623.5,
+    "total_recipe_weight_g": 2494
+  },
+  {
+    "recipe_name": "Roasted Potatoes with Fermented Cabbage and Zero-Waste Greens Pesto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_potatoes_with_fermented_cabbage_and_zero-waste_greens_pesto_20250723_060117_b5f1372b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T06:01:18.491406000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of roasted potatoes, carrots, radishes, and leeks is artfully arranged on a handcrafted, natural cream-colored ceramic plate. The potato wedges are golden-brown and slightly crispy, paired with vibrant orange carrot batons, halved crimson radishes, and pale green leek rounds. A distinct mound of light green, finely shredded fermented cabbage sits beside the roasted vegetables. A rich, dark green zero-waste pesto is drizzled sparingly over the potatoes, creating organic lines. Scattered whole, lightly crisped chickpeas add texture. The composition is clean, with ample negative space. The plate rests on a light, unpolished reclaimed wood surface. An undyed linen napkin in natural beige is casually folded nearby. Soft, natural daylight illuminates the scene, with a subtle, out-of-focus background of green plant foliage, emphasizing a clean, sustainable aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Fermented Cabbage",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Carrot tops, radish greens, beet greens (mixed)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Pumpkin seeds (toasted)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chickpeas (cooked)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Leeks (white and light green parts)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh dill or chives",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash potatoes thoroughly. Cut into 2-3 cm wedges. Leave skin on.",
+      "Toss potato wedges with 2 tablespoons olive oil, salt, pepper, and smoked paprika. Spread on a baking tray.",
+      "Wash carrots and cut into 5 cm thick batons. Wash radishes and halve. Wash leeks and slice into 2 cm thick rounds.",
+      "Toss carrots, radishes, and leeks with 1 tablespoon olive oil, salt, and pepper. Add to the baking tray with potatoes.",
+      "Roast vegetables for 25-35 minutes, or until potatoes are tender and golden, and other vegetables are slightly caramelized. Turn halfway through.",
+      "While vegetables roast, prepare the Greens Pesto. Wash and thoroughly dry all vegetable tops and parsley.",
+      "In a food processor, combine vegetable tops, parsley, garlic, and toasted pumpkin seeds. Pulse until finely chopped.",
+      "With the processor running, slowly drizzle in 60 ml olive oil and lemon juice until a smooth pesto forms. Season with salt and pepper to taste.",
+      "Drain and rinse cooked chickpeas. Toss with 1 tablespoon olive oil, salt, and pepper. Add to the baking tray for the last 10 minutes of roasting, or pan-fry until lightly crisp.",
+      "To serve, arrange roasted potatoes, carrots, radishes, and leeks on individual plates. Add a generous spoonful of pre-fermented cabbage.",
+      "Spoon the Greens Pesto over the roasted vegetables. Scatter roasted chickpeas around the plate.",
+      "Garnish with fresh dill or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 555.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 13.9,
+      "protein_g": 12.9,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 622.6,
+      "total_carbs_g": 66,
+      "total_fat_g": 28.7,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 2.6,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 128,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 49.6,
+      "protein": 25.8,
+      "saturated_fat": 20.5,
+      "sodium": 27.1,
+      "total_carbs": 24,
+      "total_fat": 36.8
+    },
+    "serving_size_g": 486.5,
+    "total_recipe_weight_g": 1946
+  }
+]

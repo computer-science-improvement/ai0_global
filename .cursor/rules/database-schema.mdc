@@ -1,0 +1,11 @@
+---
+description: PostgreSQL schema — database/init.sql idempotency and consumer alignment.
+globs: database/**/*
+alwaysApply: false
+---
+
+# database
+
+- Primary bootstrap file: **`database/init.sql`**. Prefer **idempotent** DDL (`CREATE TABLE IF NOT EXISTS`, careful `ALTER` patterns) consistent with existing statements.
+- Before adding columns/tables, consider **consumers**: `apps/pipeline/src/loaders/*` and `apps/automation` queries; document the **conflict key** / uniqueness expected by loaders.
+- Avoid destructive instructions in comments; if a reset is required, name the exact pipeline commands (`init-db:reset`, reload) in prose for the user—do not assume automatic execution.

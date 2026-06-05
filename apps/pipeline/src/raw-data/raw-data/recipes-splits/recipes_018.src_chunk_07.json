@@ -1,0 +1,633 @@
+[
+  {
+    "recipe_name": "Potato Salad with Tangy Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_salad_with_tangy_vinaigrette_20250625_163450_d9d39e75.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:34:51.239959000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "Mayonnaise-free",
+    "visual_description": "The potato salad is presented in an everyday ceramic serving bowl, generous and unpretentious. Diced waxy potatoes, coated in a glossy, tangy vinaigrette, form the base. Interspersed throughout are finely diced pieces of vibrant red onion, crisp green celery, and bright red bell pepper, adding contrasting colors and textures. Freshly chopped green parsley is sprinkled over the top, providing a pop of color and freshness. The salad is casually tossed, showcasing the varied components in a natural, organic arrangement. The bowl sits on a well-used wooden dining table. A simple, sturdy fork rests beside the bowl on a casually placed cloth napkin. Warm, inviting light from a kitchen fixture illuminates the scene, creating a cozy, lived-in atmosphere. The entire plate is visible, with adequate negative space around the bowl, highlighting the wholesome, comforting nature of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Waxy potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "60 ml chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "For boiling"
+      }
+    ],
+    "instructions": [
+      "Wash potatoes. Peel if desired. Cut potatoes into 2 cm diced cubes.",
+      "Place diced potatoes in a large pot. Cover with cold water. Add a generous pinch of salt.",
+      "Bring water to a boil. Cook potatoes until fork-tender, about 10-15 minutes. Do not overcook.",
+      "Drain potatoes thoroughly in a colander. Let steam dry for a few minutes.",
+      "While potatoes cook, finely dice the red onion, celery stalks, and red bell pepper.",
+      "Chop fresh parsley.",
+      "In a small bowl, whisk together olive oil, apple cider vinegar, vegetable broth, Dijon mustard, and sugar. Season with salt and black pepper.",
+      "Place warm, drained potatoes into a large mixing bowl.",
+      "Pour the dressing over the warm potatoes. Gently toss to coat evenly. The warm potatoes will absorb the dressing.",
+      "Add the finely diced red onion, celery, and red bell pepper to the bowl. Add chopped parsley.",
+      "Gently fold all ingredients together until well combined.",
+      "Taste and adjust seasoning if needed. Serve warm or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 399,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 6.5,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 600,
+      "total_carbs_g": 52.2,
+      "total_fat_g": 19.1,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 94,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 1.5,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 141,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 28,
+      "protein": 13,
+      "saturated_fat": 14,
+      "sodium": 26,
+      "total_carbs": 19,
+      "total_fat": 24
+    },
+    "serving_size_g": 425,
+    "total_recipe_weight_g": 1698
+  },
+  {
+    "recipe_name": "Potato and Celery Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_and_celery_salad_20250625_163406_9cad1c00.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:34:06.741434000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Potato and Celery Salad is presented in a large, rustic ceramic serving bowl on a well-used wooden dining table. The salad features evenly cut 2 cm potato cubes, coated in a creamy, pale yellow mayonnaise-based dressing. Interspersed throughout are bright green chopped celery, small flecks of purple-red diced red onion, and visible pieces of chopped hard-boiled egg, showing both white and yellow. Fresh green dill is scattered over the top as a garnish, adding a pop of color. The texture appears creamy and slightly chunky. The bowl is positioned slightly off-center. A simple, everyday ceramic plate with a fork rests beside the serving bowl, suggesting a casual, homely meal. Lighting is warm and cozy, as if from kitchen fixtures.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Served chilled as a side dish at barbecues, potlucks, and family gatherings.",
+      "Often accompanied by grilled meats or sandwiches."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Celery",
+        "quantity": "3 stalks, chopped"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Hard-boiled eggs",
+        "quantity": "4, chopped"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2.5 ml"
+      }
+    ],
+    "instructions": [
+      "Wash and peel potatoes. Cut potatoes into 2 cm cubes.",
+      "Place potato cubes in a large pot. Cover with cold water by 2 cm. Add a pinch of salt.",
+      "Bring water to a boil. Reduce heat and simmer until potatoes are tender, about 10-15 minutes. Do not overcook.",
+      "Drain potatoes thoroughly. Let them cool slightly in the colander for 5 minutes to release steam.",
+      "In a large bowl, combine mayonnaise, Dijon mustard, white wine vinegar, salt, and black pepper. Whisk until smooth.",
+      "Add cooled potatoes, chopped celery, diced red onion, chopped hard-boiled eggs, and chopped fresh dill to the bowl with the dressing.",
+      "Gently fold all ingredients together until well combined. Be careful not to mash potatoes.",
+      "Taste and adjust seasoning if needed.",
+      "Cover and chill salad in the refrigerator for at least 1 hour before serving."
+    ],
+    "notes": [
+      "For best flavor, make the salad a few hours ahead to allow flavors to meld.",
+      "Do not overcook potatoes; they should be tender but still hold their shape."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.4,
+      "calories": 683.4,
+      "cholesterol_mg": 210.7,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 13.1,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1153.2,
+      "total_carbs_g": 49.6,
+      "total_fat_g": 49.4,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 161,
+      "cholesterol_mg": 49.6,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 3.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 271.7,
+      "total_carbs_g": 11.7,
+      "total_fat_g": 11.6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 24,
+      "protein": 26,
+      "saturated_fat": 43,
+      "sodium": 50,
+      "total_carbs": 18,
+      "total_fat": 63
+    },
+    "serving_size_g": 424.5,
+    "total_recipe_weight_g": 1698
+  },
+  {
+    "recipe_name": "Poulet à la Moutarde",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poulet_%C3%A0_la_moutarde_20250625_163357_2e819722.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:33:58.246248000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "mustard",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, whole pan-seared chicken thigh with crisp, golden-brown skin sits centrally on a clean white porcelain plate. To the side, four precise 5cm carrot batons are neatly stacked, glistening with a clear butter glaze. A rich, glossy cream sauce, speckled with dark whole grain mustard seeds and bright green tarragon bits, is elegantly draped over the chicken, flowing slightly onto the plate surface. The arrangement is clean with ample negative space. The setting is a modern French bistro with a light oak table. A white cotton napkin and polished silver cutlery rest beside the plate. Natural, soft daylight from the side enhances the textures of the poultry skin and the velvety sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette to soak up the mustard sauce",
+      "Pair with a dry white wine such as Chardonnay or Aligoté",
+      "Follow with a simple green salad with vinaigrette"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in skin-on chicken thighs",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Yellow onions, finely diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Carrots, cut into 5cm batons",
+        "quantity": "400g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Whole grain mustard",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "40g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh tarragon, chopped",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs generously with salt and pepper.",
+      "Heat oil in a large skillet over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is golden and crisp.",
+      "Flip the chicken and cook for 2 minutes.",
+      "Transfer chicken to a plate and set aside.",
+      "Lower heat to medium and add 30g butter to the pan.",
+      "Add diced onions and sauté for 5 minutes until soft.",
+      "Pour in chicken stock and deglaze the pan by scraping the bottom.",
+      "Whisk in Dijon and whole grain mustards until smooth.",
+      "Return chicken to the skillet, skin-side up.",
+      "Simmer for 10-12 minutes until chicken reaches an internal temperature of 75°C.",
+      "Steam or boil carrot batons in salted water for 5 minutes until tender.",
+      "Drain carrots and toss with remaining 10g butter.",
+      "Remove chicken from the skillet and whisk heavy cream into the sauce.",
+      "Simmer sauce for 3 minutes until thickened.",
+      "Stir in fresh tarragon.",
+      "Serve one whole chicken thigh per plate with carrots and sauce."
+    ],
+    "notes": [
+      "Do not cover the pan while simmering to keep the chicken skin crisp",
+      "Ensure the sauce does not boil vigorously after adding cream to prevent splitting",
+      "Always use a meat thermometer to confirm the 75°C internal temperature"
+    ],
+    "traditional_techniques": [
+      "sautéing",
+      "deglazing",
+      "emulsifying",
+      "glazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 580,
+      "cholesterol_mg": 180.8,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 28.4,
+      "saturated_fat_g": 17.4,
+      "sodium_mg": 1302.3,
+      "total_carbs_g": 17.1,
+      "total_fat_g": 44.2,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150.7,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.4,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 338.4,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 11.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.3,
+      "dietary_fiber": 13.2,
+      "protein": 56.8,
+      "saturated_fat": 87,
+      "sodium": 56.6,
+      "total_carbs": 6.2,
+      "total_fat": 56.7
+    },
+    "serving_size_g": 384.8,
+    "total_recipe_weight_g": 1539.2
+  },
+  {
+    "recipe_name": "Confit Chicken Thigh with Fermented Garlic Honey & Pickled Radish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_confit_chicken_thigh_with_fermented_garlic_honey_%26_pickled_radish_20250625_163336_975875d4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:33:37.200074000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a handcrafted, matte cream-beige ceramic plate with a natural, slightly textured finish, placed on a light, reclaimed wooden table. A single, tender confit chicken thigh, still retaining its natural shape, sits off-center on the white space of the plate. Its rich, golden-brown hue from the confit process contrasts gently with the plate. Beside the chicken, a neat, small mound of thinly sliced, vibrant pink and white pickled radish rounds creates a fresh, bright accent. A generous, glossy drizzle of amber-colored fermented garlic honey cascades over the chicken, catching the soft natural light. A few irregular, crisp shards of golden-brown chicken skin are artfully placed near the chicken, providing textural contrast. A delicate sprinkle of finely chopped fresh chives adds a touch of subtle green. The composition is clean, minimalistic, and unforced, emphasizing the pure beauty and natural textures of each ingredient. The negative space on the plate is significant, drawing focus to the perfectly prepared elements. The background features a blurred hint of natural greenery and an undyed linen napkin in a natural beige tone, maintaining an eco-conscious, earthy aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs (bone-in, skin-on)",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Duck or Chicken Fat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "100g"
+      },
+      {
+        "name": "Honey",
+        "quantity": "200g"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "200g"
+      },
+      {
+        "name": "White Wine Vinegar",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "20g (for chicken cure) + 5g (for pickling brine)"
+      },
+      {
+        "name": "Black Peppercorns",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "5g (finely chopped)"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Garlic Honey (at least 1 week in advance): Peel garlic cloves. Crush lightly. Combine garlic and honey in a clean, sterile jar. Seal jar loosely or use an airlock. Store at room temperature (18-24°C). Burp jar daily for the first week to release gas. Ferment for 1-4 weeks, or until garlic softens and honey thins.",
+      "Prepare Chicken Thighs for Confit: Pat chicken thighs very dry with paper towels. In a small bowl, combine 20g sea salt, 5g black peppercorns, and leaves from 2 thyme sprigs. Rub salt mixture generously over chicken thighs. Place chicken in a shallow dish, cover, and refrigerate for 8-12 hours. Rinse chicken thighs thoroughly under cold water to remove excess salt. Pat very dry.",
+      "Cook Chicken Confit: Preheat oven to 150°C (300°F). In a heavy-bottomed oven-safe pot or Dutch oven, melt duck or chicken fat over low heat. Add rinsed and dried chicken thighs, ensuring they are fully submerged in the fat. Add bay leaves and remaining 2 thyme sprigs. Cover pot and transfer to preheated oven. Cook for 2.5-3 hours, or until chicken is very tender and meat easily pulls from bone. Carefully remove chicken from fat. Strain fat and reserve for future use. Let chicken cool slightly. Remove bones and discard. Keep skin intact.",
+      "Prepare Pickled Radishes: Wash radishes. Slice thinly into rounds or half-moons. In a small saucepan, combine white wine vinegar, water, 15g sugar, and 5g sea salt. Bring to a simmer, stirring until sugar and salt dissolve. Place sliced radishes in a clean jar or heatproof bowl. Pour hot pickling brine over radishes. Let cool to room temperature. Refrigerate for at least 30 minutes before serving.",
+      "Crisp Chicken Skin: Preheat oven to 200°C (390°F) or a non-stick pan over medium-high heat. Place chicken skin, fat-side down, on a baking sheet lined with parchment paper or in the hot pan. Bake for 10-15 minutes, or pan-fry until golden brown and very crispy. Remove and drain on paper towels. Break into irregular shards.",
+      "Finish and Plate: Gently reheat confit chicken thigh meat (without skin) in a small amount of confit fat or in a warm oven until heated through (internal temperature 75°C / 167°F). Place one reheated confit chicken thigh on each serving plate. Arrange a small mound of pickled radish slices beside the chicken. Drizzle generously with fermented garlic honey. Garnish with a few shards of crispy chicken skin and a sprinkle of chopped fresh chives. Serve immediately."
+    ],
+    "notes": [
+      "Fermented garlic honey requires at least one week of fermentation time before use."
+    ],
+    "traditional_techniques": [
+      "Confit",
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 44.8,
+      "calories": 1775.78,
+      "cholesterol_mg": 298.75,
+      "dietary_fiber_g": 1.77,
+      "protein_g": 40.88,
+      "saturated_fat_g": 49.56,
+      "sodium_mg": 2589.79,
+      "total_carbs_g": 55.94,
+      "total_fat_g": 155.5,
+      "total_sugars_g": 46.18,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 8.34,
+      "calories": 330.38,
+      "cholesterol_mg": 55.58,
+      "dietary_fiber_g": 0.33,
+      "protein_g": 7.61,
+      "saturated_fat_g": 9.22,
+      "sodium_mg": 481.82,
+      "total_carbs_g": 10.41,
+      "total_fat_g": 28.93,
+      "total_sugars_g": 8.59,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 99.58,
+      "dietary_fiber": 6.33,
+      "protein": 81.76,
+      "saturated_fat": 247.8,
+      "sodium": 112.6,
+      "total_carbs": 20.34,
+      "total_fat": 199.36
+    },
+    "serving_size_g": 537.5,
+    "total_recipe_weight_g": 2150
+  },
+  {
+    "recipe_name": "Spanish Tortilla with Chorizo and Piquillo Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_tortilla_with_chorizo_and_piquillo_peppers_20250625_163312_ef737dd3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:33:13.415318000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A thick, golden-brown Spanish Tortilla wedge sits centrally on a clean white porcelain dinner plate. The tortilla's exterior is subtly crisp, revealing a tender, cohesive interior packed with soft potato slices, translucent onion, vibrant red piquillo pepper strips, and rich orange-red chorizo chunks. A generous dollop of creamy, pale yellow garlic aioli rests beside the tortilla, with a small sprig of fresh parsley for a touch of green. The plate is positioned on a simple wooden table surface, accompanied by a folded cotton napkin and traditional flatware. Natural, even lighting highlights the varied textures and warm color palette. The scene is uncluttered, showcasing a single, hearty portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in aioli.",
+      "Offer a simple green salad dressed with olive oil and vinegar.",
+      "Enjoy with a glass of dry Spanish cider or red wine."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Waxy potatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Cooking chorizo",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Jarred piquillo peppers",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "8"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "300 ml, plus extra"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Egg yolk (for aioli)",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic clove (for aioli)",
+        "quantity": "1"
+      },
+      {
+        "name": "Extra virgin olive oil (for aioli)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Lemon juice (for aioli)",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt (for aioli)",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Heat 300 ml olive oil in a 24 cm non-stick pan over medium-low heat. Add peeled and thinly sliced potatoes (2-3 mm) and thinly sliced onion. Cook gently for 20-25 minutes until very tender but not browned. Drain potatoes and onions in a colander, reserving oil. Season with salt and pepper.",
+      "While potatoes cook, sauté 5 mm rounds of chorizo in a separate pan over medium heat until crispy. Drain excess fat.",
+      "In a large bowl, whisk eggs thoroughly. Stir in cooked potatoes, onions, chorizo, and sliced piquillo pepper strips. Let stand 5 minutes for flavors to meld.",
+      "Heat a clean 24 cm non-stick pan with 15 ml fresh olive oil over medium heat. Pour in egg mixture. Cook for 5-7 minutes until edges are set and bottom is golden.",
+      "Place a large plate over the pan. Invert the tortilla onto the plate. Slide the tortilla back into the pan, uncooked side down. Cook for another 3-5 minutes until fully set and golden.",
+      "For Aioli: In a small bowl, whisk egg yolk and minced garlic. Slowly drizzle in extra virgin olive oil while continuously whisking until emulsified and thick. Stir in lemon juice and salt.",
+      "Slice tortilla into wedges. Serve warm or at room temperature with a dollop of aioli."
+    ],
+    "notes": [
+      "The reserved olive oil from cooking potatoes can be reused for other dishes."
+    ],
+    "traditional_techniques": [
+      "Slow frying potatoes in olive oil for tenderness",
+      "Preparing a traditional emulsion for aioli"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1124.84,
+      "cholesterol_mg": 455.58,
+      "dietary_fiber_g": 4.44,
+      "protein_g": 24.48,
+      "saturated_fat_g": 19.51,
+      "sodium_mg": 2138.09,
+      "total_carbs_g": 33,
+      "total_fat_g": 98.37,
+      "total_sugars_g": 4.65,
+      "trans_fat_g": 0.19
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 264.2,
+      "cholesterol_mg": 107.01,
+      "dietary_fiber_g": 1.04,
+      "protein_g": 5.75,
+      "saturated_fat_g": 4.58,
+      "sodium_mg": 502.19,
+      "total_carbs_g": 7.75,
+      "total_fat_g": 23.11,
+      "total_sugars_g": 1.09,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 151.9,
+      "dietary_fiber": 15.9,
+      "protein": 49,
+      "saturated_fat": 97.6,
+      "sodium": 93,
+      "total_carbs": 12,
+      "total_fat": 126.1
+    },
+    "serving_size_g": 425.75,
+    "total_recipe_weight_g": 1703
+  }
+]

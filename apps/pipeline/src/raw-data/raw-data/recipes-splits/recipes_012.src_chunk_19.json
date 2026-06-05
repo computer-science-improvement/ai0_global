@@ -1,0 +1,667 @@
+[
+  {
+    "recipe_name": "Braised Chicken Thigh, Dark Beer Jus, Glazed Pearl Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_thigh%2C_dark_beer_jus%2C_glazed_pearl_onions_20250702_193602_553291f9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:36:03.015241000Z",
+    "selected_ingredients": [
+      "chicken",
+      "dried chili",
+      "dark beer"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, impeccably seared and braised chicken thigh anchors the pristine white bone china plate. Its skin is a deep, burnished gold, crisp and taut, showcasing exquisite knife work with its natural, organic form. A precise, glossy sweep of rich, dark beer jus, like liquid obsidian, curves elegantly across the plate, providing a deep, contrasting hue. Adjacent to the chicken, a small, artfully composed cluster of translucent, glazed pearl onions, their pearly sheen catching the light, intermingles with golden-brown, irregular shards of crispy pancetta lardons. Abundant negative space surrounds the components, emphasizing the dish's sophisticated simplicity. A single, vibrant green microgreen, or a tiny sprig of thyme, is placed with architectural precision on the chicken. The setting features a premium white Carrara marble surface, a pristine white linen napkin folded into a sharp triangle, and minimalist, elegant flatware, all bathed in dramatic, focused lighting with soft shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Pancetta",
+        "quantity": "80g, diced"
+      },
+      {
+        "name": "Dark beer (e.g., Belgian Dubbel, Stout)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, smashed"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Pearl onions",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "100g, sliced"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Microgreens or fresh thyme sprig",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Render diced pancetta in a large, oven-safe pan over medium heat until crisp. Remove lardons; reserve for garnish. Leave rendered fat in pan.",
+      "Season chicken thighs generously with salt, pepper, and smoked paprika. Place skin-side down in the pan with rendered pancetta fat. Sear over medium-high heat until skin is deep golden and crisp, about 8-10 minutes. Flip and sear briefly, 1 minute.",
+      "Remove chicken. Add chopped shallots and sliced mushrooms to the pan. Sauté until softened, about 5 minutes. Add smashed garlic, thyme, and bay leaf. Cook 1 minute more.",
+      "Deglaze pan with dark beer. Bring to a simmer, scraping up any browned bits. Add chicken stock. Return chicken thighs to the pan, skin-side up. Liquid should partially cover chicken.",
+      "Cover pan and transfer to a preheated oven at 160°C (325°F). Braise for 1 hour 15 minutes, or until chicken is very tender (internal temperature 75°C / 167°F).",
+      "Remove chicken from liquid. Strain braising liquid into a clean saucepan, pressing solids to extract all liquid. Discard solids. Reduce liquid over medium-high heat until thickened and glossy, about 15-20 minutes. Skim any fat. Stir in red wine vinegar and 10g butter. Season jus to taste.",
+      "Blanch pearl onions in boiling water for 1 minute. Drain and peel. In a small saucepan, melt 20g butter. Add peeled pearl onions, 50ml water, and granulated sugar. Cook over medium heat, shaking pan occasionally, until liquid evaporates and onions are tender and glazed, about 10-12 minutes.",
+      "Preheat oven broiler or a cast-iron pan. Place braised chicken thighs skin-side up under broiler for 2-3 minutes, or sear in a hot cast-iron pan, to re-crisp skin. Alternatively, gently press chicken between two heavy plates after braising, then re-sear.",
+      "To plate, place one chicken thigh on each plate. Spoon a precise pool or sweep of dark beer jus next to the chicken. Arrange a small, artful cluster of glazed pearl onions and crispy pancetta lardons beside the chicken. Garnish with a single microgreen or small thyme sprig. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 771.1,
+      "cholesterol_mg": 240.28,
+      "dietary_fiber_g": 2.37,
+      "protein_g": 46.42,
+      "saturated_fat_g": 18.59,
+      "sodium_mg": 553.19,
+      "total_carbs_g": 16.83,
+      "total_fat_g": 53.51,
+      "total_sugars_g": 5.99,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.26,
+      "calories": 162.1,
+      "cholesterol_mg": 50.5,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.76,
+      "saturated_fat_g": 3.91,
+      "sodium_mg": 116.26,
+      "total_carbs_g": 3.54,
+      "total_fat_g": 11.25,
+      "total_sugars_g": 1.26,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80.1,
+      "dietary_fiber": 8.5,
+      "protein": 92.8,
+      "saturated_fat": 93,
+      "sodium": 24.1,
+      "total_carbs": 6.1,
+      "total_fat": 68.6
+    },
+    "serving_size_g": 475.8,
+    "total_recipe_weight_g": 1903.3
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Mushroom-Thyme Sauce and Garlic Herb Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_mushroom-thyme_sauce_and_garlic_herb_rice_20250702_193501_0e960945.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:35:01.881247000Z",
+    "selected_ingredients": [
+      "chicken",
+      "thyme",
+      "garlic",
+      "mushroom",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared chicken is presented on a clean white porcelain dinner plate. Two substantial, golden-brown chicken breast pieces are positioned slightly off-center. A rich, creamy mushroom-thyme sauce generously pools around the chicken, showcasing tender, earthy brown sliced mushrooms. Beside the chicken, a neat mound of fluffy, white garlic herb rice provides a contrasting texture and color. The rice is subtly speckled with vibrant green chopped parsley. The overall composition is balanced and inviting, with moderate negative space. The dish is set on a simple light wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting highlights the textures and warm tones of the food. The background is minimally blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "6"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Long-grain white rice (e.g., Basmati)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Sear chicken breasts for 5-7 minutes per side until golden brown and internal temperature reaches 75°C. Remove chicken from skillet. Set aside. Keep warm.",
+      "Rinse rice under cold water until water runs clear. Combine rice with 500ml water and 1/2 teaspoon salt in a medium saucepan. Bring to a boil. Reduce heat to low. Cover. Simmer for 15 minutes until water is absorbed and rice is tender. Fluff with a fork. Stir in 1 minced garlic clove and half of the chopped fresh parsley.",
+      "While rice cooks, prepare sauce. Add 15g butter and remaining 15ml olive oil to the same skillet used for chicken. Add sliced mushrooms. Sauté over medium-high heat for 5-7 minutes until browned and tender.",
+      "Add minced shallot and remaining 3 minced garlic cloves to the skillet. Sauté for 2 minutes until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from bottom of skillet. Bring to a simmer. Reduce heat to medium. Simmer for 5-7 minutes until broth reduces by half.",
+      "Stir in heavy cream and fresh thyme sprigs. Simmer gently for 3-5 minutes until sauce slightly thickens. Remove thyme sprigs.",
+      "Season sauce with salt and black pepper to taste. Return cooked chicken to the skillet. Spoon sauce over chicken. Simmer for 1-2 minutes to reheat chicken.",
+      "Serve chicken immediately with creamy mushroom-thyme sauce. Accompany with garlic herb rice. Garnish with remaining fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 842.1,
+      "cholesterol_mg": 229,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 68.7,
+      "saturated_fat_g": 15.6,
+      "sodium_mg": 290.6,
+      "total_carbs_g": 60.7,
+      "total_fat_g": 33.1,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 158.7,
+      "cholesterol_mg": 43.2,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 13,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 54.8,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 12,
+      "protein": 137,
+      "saturated_fat": 78,
+      "sodium": 13,
+      "total_carbs": 22,
+      "total_fat": 42
+    },
+    "serving_size_g": 530.5,
+    "total_recipe_weight_g": 2122
+  },
+  {
+    "recipe_name": "Roasted Eggplant with Tomato-Pepper Ragout and Poached Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_eggplant_with_tomato-pepper_ragout_and_poached_egg_20250702_193419_f2a74cb6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:34:19.557780000Z",
+    "selected_ingredients": [
+      "eggplant",
+      "tomato",
+      "pepper",
+      "egg",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate. A mound of vibrant, rustic tomato-pepper ragout forms the base. The ragout is rich red, with visible orange and red bell pepper squares (1.5 cm) and tender, slightly browned eggplant cubes (2 cm). It has a luscious, slightly chunky texture. A perfectly poached egg, with a firm white and a visible, slightly trembling golden yolk, rests gently on top. A generous scattering of fresh, bright green basil leaves, some whole, some gently torn, are artfully placed over and around the egg and ragout, providing a fragrant and colorful contrast. The dominant colors are the deep red of the tomato, the bright reds and yellows of the peppers, the earthy brown-purple of the eggplant, and the crisp white and sunny yellow of the egg. Textures range from the soft, yielding ragout, to the delicate poached egg, and the fresh, crisp basil. The dish fills the center of the plate, leaving a clean white rim for negative space. The plate is set on a simple, light-colored wooden table surface. Beside the plate, a neatly folded white cotton napkin and standard silver flatware (fork and knife) are arranged. The scene is illuminated by soft, natural, even lighting, suggesting a relaxed bistro atmosphere. The background is slightly blurred, hinting at a casual restaurant environment without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread like ciabatta or baguette for dipping into the ragout and egg yolk."
+    ],
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Eggplant",
+        "quantity": "2 medium (approx. 600g)"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bell Peppers",
+        "quantity": "2 (1 red, 1 yellow, approx. 300g)"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "1 large bunch (approx. 30g)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (approx. 150g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Dice eggplant into 2 cm cubes. Dice bell peppers into 1.5 cm squares. Finely dice onion. Mince garlic.",
+      "Toss eggplant cubes with 30 ml olive oil, salt, and pepper. Spread on a baking sheet. Roast at 200°C for 20-25 minutes. Eggplant should be tender and lightly browned. Set aside.",
+      "Heat remaining 30 ml olive oil in a large pot over medium heat. Add diced onion. Sauté 5-7 minutes until softened. Add minced garlic. Sauté 1 minute until fragrant.",
+      "Add diced bell peppers to pot. Cook 8-10 minutes until slightly tender.",
+      "Pour in crushed tomatoes. Add sugar, salt, and pepper. Bring to a simmer. Reduce heat to low. Cook 20-25 minutes, stirring occasionally, until sauce thickens. Stir in red wine vinegar.",
+      "Gently stir roasted eggplant into the ragout. Keep warm on low heat.",
+      "Fill a wide pot with water. Bring to a gentle simmer. Add a splash of vinegar if desired. Carefully crack each egg into a small bowl. Gently slide eggs into simmering water. Poach 3-4 minutes for runny yolks. Remove with a slotted spoon. Drain well.",
+      "Ladle a generous portion of tomato-pepper-eggplant ragout onto each plate. Place one poached egg on top. Garnish generously with fresh basil leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 327.7,
+      "cholesterol_mg": 186.5,
+      "dietary_fiber_g": 9.31,
+      "protein_g": 11.24,
+      "saturated_fat_g": 3.78,
+      "sodium_mg": 91.85,
+      "total_carbs_g": 28.55,
+      "total_fat_g": 20.08,
+      "total_sugars_g": 17.45,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.23,
+      "calories": 60.4,
+      "cholesterol_mg": 34.38,
+      "dietary_fiber_g": 1.72,
+      "protein_g": 2.07,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 16.93,
+      "total_carbs_g": 5.26,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 3.22,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.2,
+      "dietary_fiber": 33.3,
+      "protein": 22.5,
+      "saturated_fat": 18.9,
+      "sodium": 4,
+      "total_carbs": 10.4,
+      "total_fat": 25.7
+    },
+    "serving_size_g": 542.5,
+    "total_recipe_weight_g": 2170
+  },
+  {
+    "recipe_name": "Poblano and Black Bean Enchiladas Rojas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poblano_and_black_bean_enchiladas_rojas_20250702_192957_af9fff15.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:29:58.268606000Z",
+    "selected_ingredients": [
+      "bell pepper",
+      "tomato",
+      "bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "Mexican cuisine",
+    "visual_description": "Poblano and Black Bean Enchiladas Rojas are presented on a clean white porcelain dinner plate, showcasing a single generous portion of two perfectly rolled enchiladas. Each enchilada is richly coated in a vibrant, deep red chili sauce. Melted Oaxaca cheese forms a bubbly, golden-brown crust over the top. Visible within the sauce are hints of dark roasted poblano cubes and black beans. A delicate drizzle of bright white crema Mexicana artfully zigzags across the enchiladas. A sprinkle of finely diced crimson red onion and fresh, bright green cilantro leaves provides a striking color contrast and freshness. The dish sits on a simple wooden table, accompanied by a small, separate bowl of fluffy Mexican rice. Natural, even lighting highlights the textures and colors. The entire plate is visible, with moderate negative space, creating an inviting, authentic Mexican casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a side of traditional Mexican rice.",
+      "Offer a simple green salad with lime vinaigrette.",
+      "Provide warm corn tortillas on the side for those who desire extra.",
+      "Include a small dish of salsa roja or a mild hot sauce for added flavor."
+    ],
+    "hero_ingredient": "Poblano Pepper",
+    "ingredients": [
+      {
+        "name": "Dried Guajillo Chiles",
+        "quantity": "4"
+      },
+      {
+        "name": "Dried Ancho Chiles",
+        "quantity": "2"
+      },
+      {
+        "name": "Roma Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "White Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Mexican Oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Poblano Peppers",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Canned Black Beans",
+        "quantity": "400 g, drained and rinsed"
+      },
+      {
+        "name": "Corn Tortillas",
+        "quantity": "12"
+      },
+      {
+        "name": "Oaxaca or Monterey Jack Cheese",
+        "quantity": "200 g, shredded"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Crema Mexicana",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "0.25 small, finely diced"
+      }
+    ],
+    "instructions": [
+      "Prepare the Chili Sauce: Remove stems and seeds from dried guajillo and ancho chiles. Toast chiles in a dry pan over medium heat for 1 minute. Be careful not to burn. Place toasted chiles in a bowl. Cover with hot water. Let soak for 20 minutes until softened.",
+      "Roast Vegetables for Sauce: Halve Roma tomatoes and 0.5 medium white onion. Peel garlic cloves. Place tomatoes, onion, and garlic on a baking sheet. Roast at 200°C for 15-20 minutes until lightly charred.",
+      "Blend the Sauce: Drain rehydrated chiles. Combine chiles, roasted tomatoes, onion, garlic, cumin, oregano, and 250 ml vegetable broth in a blender. Blend until very smooth. Strain sauce through a fine-mesh sieve into a saucepan. Discard solids. Add remaining 250 ml broth. Simmer sauce over low heat for 15 minutes, stirring occasionally. Season with salt. Keep warm.",
+      "Prepare Poblano Filling: Roast poblano peppers over an open flame or under a broiler until skin is charred and blistered. Place roasted poblanos in a sealed plastic bag for 10 minutes to steam. Peel off charred skin. Remove stems and seeds. Dice poblanos into small cubes.",
+      "Cook Filling Base: Dice remaining 0.5 white onion. Heat 15 ml vegetable oil in a large skillet over medium heat. Add diced onion. Cook until softened, about 5 minutes. Add diced poblano and drained black beans. Cook for 5 minutes. Season with salt.",
+      "Assemble Enchiladas: Preheat oven to 190°C. Lightly grease a 23x33 cm baking dish. Lightly fry each corn tortilla in 15 ml vegetable oil for 15 seconds per side until pliable. Do not make them crispy. Dip each fried tortilla into the warm chili sauce, coating both sides.",
+      "Fill and Roll: Place a portion of the poblano and black bean mixture down the center of each sauced tortilla. Sprinkle with a small amount of shredded cheese. Roll tortilla tightly. Place seam-side down in the prepared baking dish.",
+      "Bake: Pour remaining chili sauce evenly over the rolled enchiladas. Sprinkle generously with remaining shredded cheese. Bake for 20-25 minutes, or until cheese is melted and bubbly and sauce is simmering.",
+      "Serve: Let enchiladas rest for 5 minutes. Garnish each serving with a drizzle of crema Mexicana, finely diced red onion, and fresh cilantro. Serve immediately."
+    ],
+    "notes": [
+      "For a deeper flavor, consider adding a small piece of Mexican chocolate (about 10g) to the chili sauce while blending.",
+      "Adjust chili quantities based on desired spice level. Ancho chiles provide mild heat and fruity notes; guajillos are milder and sweeter."
+    ],
+    "traditional_techniques": [
+      "Tatemado (roasting chiles and vegetables over flame/broiler)",
+      "Salsa Roja Preparation (from dried chiles)",
+      "Lightly frying tortillas for pliability"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 759.78,
+      "cholesterol_mg": 51.75,
+      "dietary_fiber_g": 17.49,
+      "protein_g": 29.45,
+      "saturated_fat_g": 12.91,
+      "sodium_mg": 1554.08,
+      "total_carbs_g": 99.89,
+      "total_fat_g": 29.96,
+      "total_sugars_g": 6.59,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.69,
+      "cholesterol_mg": 8.7,
+      "dietary_fiber_g": 2.94,
+      "protein_g": 4.95,
+      "saturated_fat_g": 2.17,
+      "sodium_mg": 261.19,
+      "total_carbs_g": 16.79,
+      "total_fat_g": 5.03,
+      "total_sugars_g": 1.11,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.25,
+      "dietary_fiber": 62.46,
+      "protein": 58.9,
+      "saturated_fat": 64.55,
+      "sodium": 67.57,
+      "total_carbs": 36.32,
+      "total_fat": 38.41
+    },
+    "serving_size_g": 595,
+    "total_recipe_weight_g": 2380
+  },
+  {
+    "recipe_name": "Creamy Garlic Chicken with Mushrooms and Parmesan",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_garlic_chicken_with_mushrooms_and_parmesan_20250702_192414_3b3d62b2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:24:14.815713000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "mushroom",
+      "parmesan",
+      "parsley",
+      "heavy cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "Over rice not risotto",
+    "visual_description": "A single portion of pan-seared chicken breast, cooked to a golden-brown exterior, rests prominently on a clean white porcelain dinner plate. The chicken is presented as a whole piece or thick medallion. Beside it, a generous portion of fluffy white rice is neatly mounded. A rich, glossy, creamy garlic and parmesan sauce, studded with tender, earthy sliced mushrooms, is generously spooned over the chicken and slightly onto the rice. The sauce provides a warm, inviting hue, contrasting with the vibrant green of freshly chopped parsley scattered as a garnish over the dish. The presentation is organized yet naturally flowing, with moderate negative space. The dish is set on a simple wooden table with a folded cotton napkin and standard European flatware, under natural, even lighting, creating a refined casual dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 150-180g each)"
+      },
+      {
+        "name": "Uncooked white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cremini or button mushrooms, sliced",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4-6 cloves"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse rice. Cook rice according to package instructions. Keep warm.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large pan over medium-high heat. Add chicken breasts. Sear 4-5 minutes per side until golden brown. Internal temperature must reach 75°C (167°F). Remove chicken from pan. Set aside.",
+      "Add butter to the same pan. Add sliced mushrooms. Sauté 5-7 minutes until softened and browned. Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from the pan. Reduce heat to medium.",
+      "Stir in heavy cream and grated Parmesan cheese. Simmer gently 3-5 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Return cooked chicken breasts to the pan with the sauce. Spoon sauce over chicken. Simmer 1-2 minutes to heat through.",
+      "Stir chopped parsley into the sauce. Adjust seasoning with salt and pepper if needed.",
+      "Serve each chicken breast with a generous portion of steamed white rice and a ladle of the creamy mushroom sauce."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For best results, use freshly grated Parmesan cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 961,
+      "cholesterol_mg": 236,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 68.5,
+      "saturated_fat_g": 21.8,
+      "sodium_mg": 930,
+      "total_carbs_g": 71.1,
+      "total_fat_g": 43.6,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150,
+      "cholesterol_mg": 36.8,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 10.7,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 144.9,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 79,
+      "dietary_fiber": 8,
+      "protein": 137,
+      "saturated_fat": 109,
+      "sodium": 40,
+      "total_carbs": 26,
+      "total_fat": 56
+    },
+    "serving_size_g": 642,
+    "total_recipe_weight_g": 2567
+  }
+]

@@ -1,0 +1,661 @@
+[
+  {
+    "recipe_name": "Slow-Cooked Beef & Bean Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_%26_bean_bowl_20250630_023336_0f511fa4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:33:37.072374000Z",
+    "selected_ingredients": [
+      "beef",
+      "bean",
+      "brown rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Slow-Cooked Beef & Bean Bowl is presented in a handcrafted ceramic bowl with an earthy, matte finish. On one side, a neat mound of fluffy brown rice. Beside it, tender, dark brown beef chunks, approximately 3-4cm, are nestled among creamy black beans, glistening with a rich, dark braising liquid. A vibrant, distinct pile of shredded, lightly orange fermented carrot and cabbage relish provides a bright, tangy contrast. Minimal fresh green parsley leaves are scattered over the beef and beans. The composition is clean and uncluttered, highlighting natural textures and colors. The bowl sits on a light reclaimed wood table, accompanied by an undyed linen napkin. Soft, natural light illuminates the scene, with a minimalist background featuring subtle natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Slow-Cooked Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 3-4cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Dried black beans, soaked overnight",
+        "quantity": "250g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Large carrots",
+        "quantity": "2"
+      },
+      {
+        "name": "Cabbage",
+        "quantity": "1/4 head"
+      },
+      {
+        "name": "Non-iodized salt for ferment",
+        "quantity": "15g"
+      },
+      {
+        "name": "Filtered water for ferment",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh parsley or coriander, for garnish",
+        "quantity": "a few sprigs"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Carrot Relish: Wash and peel carrots. Shred or julienne carrots. Shred cabbage. Combine carrots, cabbage, and 15g non-iodized salt in a clean jar. Pour 500ml filtered water over vegetables; ensure vegetables are submerged. Seal jar with an airlock lid or loose lid. Let ferment at room temperature for 3-5 days, or until desired tang is reached. Refrigerate.",
+      "Prepare Beans: Rinse dried black beans. Soak beans overnight in cold water. Drain and rinse soaked beans.",
+      "Cook Beef: Pat beef chunks dry. Season with salt and black pepper. Heat 15ml olive oil in a large pot or Dutch oven over medium-high heat. Sear beef chunks on all sides until browned. Remove beef.",
+      "Sauté Aromatics: Add diced onion to the pot. Cook until softened, about 5 minutes. Add minced garlic and tomato paste. Cook for 1 minute, stirring.",
+      "Simmer Beef and Beans: Return beef to the pot. Add 500ml beef broth, bay leaf, 5g dried oregano, and 5g smoked paprika. Bring to a simmer. Reduce heat to low. Cover and cook for 2-3 hours, or until beef is very tender. Add soaked black beans to the pot during the last 45-60 minutes of cooking. Ensure beef and beans reach an internal temperature of 75°C (167°F).",
+      "Cook Brown Rice: Rinse 300g brown rice. Combine with 600ml water and a pinch of salt in a saucepan. Bring to a boil. Reduce heat to low. Cover and simmer for 40-45 minutes, or until water is absorbed and rice is tender. Remove from heat. Let stand covered for 10 minutes. Fluff with a fork.",
+      "Assemble Bowl: Ladle brown rice into handcrafted ceramic bowls. Spoon beef and bean mixture next to the rice. Top with a generous spoonful of fermented carrot relish. Garnish with fresh parsley or coriander."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing tough cuts of beef and encouraging homemade broth from trimmings. The fermented relish extends the shelf life of vegetables."
+    ],
+    "traditional_techniques": [
+      "Lacto-fermentation",
+      "Slow cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1014,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 17.1,
+      "protein_g": 58,
+      "saturated_fat_g": 12.8,
+      "sodium_mg": 2016,
+      "total_carbs_g": 114.7,
+      "total_fat_g": 37.2,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101.6,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 5.8,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 201.9,
+      "total_carbs_g": 11.5,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 61,
+      "protein": 116.1,
+      "saturated_fat": 63.8,
+      "sodium": 87.6,
+      "total_carbs": 41.7,
+      "total_fat": 47.7
+    },
+    "serving_size_g": 998.25,
+    "total_recipe_weight_g": 3993
+  },
+  {
+    "recipe_name": "Classic Deviled Eggs with Smoked Paprika",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_deviled_eggs_with_smoked_paprika_20250630_023258_2182b652.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:32:58.737856000Z",
+    "selected_ingredients": [
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Twelve perfectly halved egg whites, bright white and smooth, are arranged in two neat rows on a pristine white porcelain platter. Each half is generously mounded with a creamy, pale yellow yolk filling, piped precisely for an elegant, uniform appearance. The filling is smooth, without visible lumps. A delicate dusting of vibrant red smoked paprika crowns each mound, creating a striking color contrast. Finely chopped bright green chives are scattered over the paprika, adding freshness and a pop of color. The overall presentation is clean, balanced, and inviting. Moderate negative space surrounds the eggs, emphasizing their refined simplicity. The dish is set on a simple light wooden table surface, with a folded cotton napkin subtly placed to the side. Natural, even light illuminates the dish, highlighting the soft textures and vibrant colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve chilled as an appetizer or snack.",
+      "Ideal for casual gatherings, picnics, or brunches."
+    ],
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "6"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 g"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh chives, finely chopped",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Place eggs in a saucepan. Cover with cold water by 2 cm.",
+      "Bring water to a rolling boil over high heat.",
+      "Immediately turn off heat. Cover saucepan. Let stand 10 minutes.",
+      "Drain eggs. Transfer to an ice bath for 5 minutes. This stops cooking and helps peeling.",
+      "Carefully peel eggs. Cut each egg lengthwise in half.",
+      "Gently scoop out yolks into a small bowl. Place whites on a serving plate.",
+      "Mash yolks with a fork until smooth.",
+      "Add mayonnaise, Dijon mustard, white wine vinegar, salt, pepper, and 1g smoked paprika to yolks. Mix until creamy and smooth.",
+      "Spoon or pipe yolk mixture back into egg white halves.",
+      "Garnish each deviled egg with a sprinkle of remaining smoked paprika and finely chopped chives."
+    ],
+    "notes": [
+      "For best results, use eggs that are a few days old; they are easier to peel.",
+      "Adjust seasoning to your preference.",
+      "The yolk mixture can be made in advance and refrigerated, then piped just before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 221.4,
+      "cholesterol_mg": 286.1,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 9.8,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 207.8,
+      "total_carbs_g": 1.8,
+      "total_fat_g": 19.4,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 234.9,
+      "cholesterol_mg": 303.5,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 10.4,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 220.5,
+      "total_carbs_g": 1.9,
+      "total_fat_g": 20.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 95.4,
+      "dietary_fiber": 0.9,
+      "protein": 19.6,
+      "saturated_fat": 21.4,
+      "sodium": 9,
+      "total_carbs": 0.7,
+      "total_fat": 24.8
+    },
+    "serving_size_g": 94.25,
+    "total_recipe_weight_g": 377
+  },
+  {
+    "recipe_name": "Hearty Beef and Pork Stew with Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_pork_stew_with_potatoes_20250630_022234_2a52b3ef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:22:34.970235000Z",
+    "selected_ingredients": [
+      "potato",
+      "beef",
+      "chili",
+      "thyme",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of hearty beef and pork stew is presented in a clean, white porcelain bowl, centered on a simple wooden table. The rich, dark brown stew features tender, thick chunks of slow-braised beef and pork, interspersed with large cubes of potato, thick rounds of carrot, and diced onion. A vibrant scattering of finely diced red chili adds a pop of color and subtle warmth. The stew's thick, glossy sauce coats the ingredients, showcasing their varied textures. A few fresh thyme sprigs are artfully placed on top as a fresh green garnish. The composition is clean and professional, with moderate negative space around the bowl. A folded cotton napkin rests beside the bowl. Natural, even lighting illuminates the dish, highlighting its comforting appeal against a softly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Beef and Pork",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "600g"
+      },
+      {
+        "name": "Pork shoulder",
+        "quantity": "400g"
+      },
+      {
+        "name": "Potatoes (waxy)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef and pork into 3-4 cm thick chunks. Pat dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef and pork in batches until well-browned on all sides. Remove meat from pot.",
+      "Dice onion. Cut carrots into 1.5 cm thick rounds. Add onion and carrot to pot. Sauté 5-7 minutes until softened.",
+      "Mince garlic. Finely dice red chili. Stir in minced garlic, finely diced chili, and tomato paste. Cook 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from bottom of pot. Simmer 3 minutes until reduced slightly.",
+      "Return seared meat to pot. Add beef stock and thyme sprigs. Bring to a simmer.",
+      "Reduce heat to low. Cover pot tightly. Simmer 1.5 hours, stirring occasionally.",
+      "Peel potatoes. Cut into 3 cm cubes. Add potato cubes to pot. Continue to simmer, covered, for another 45-60 minutes, or until meat and potatoes are very tender.",
+      "Remove thyme sprigs. Taste and adjust seasoning as needed.",
+      "Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 768.54,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 4.95,
+      "protein_g": 58.27,
+      "saturated_fat_g": 13.35,
+      "sodium_mg": 381.13,
+      "total_carbs_g": 34.89,
+      "total_fat_g": 39.91,
+      "total_sugars_g": 5.93,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129.09,
+      "cholesterol_mg": 31.89,
+      "dietary_fiber_g": 0.83,
+      "protein_g": 9.78,
+      "saturated_fat_g": 2.24,
+      "sodium_mg": 63.97,
+      "total_carbs_g": 5.86,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 0.99,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.33,
+      "dietary_fiber": 17.68,
+      "protein": 116.54,
+      "saturated_fat": 66.75,
+      "sodium": 16.57,
+      "total_carbs": 12.69,
+      "total_fat": 51.17
+    },
+    "serving_size_g": 595.75,
+    "total_recipe_weight_g": 2383
+  },
+  {
+    "recipe_name": "Baked Stuffed Pasta Shells with Mozzarella and Basil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_stuffed_pasta_shells_with_mozzarella_and_basil_20250630_021801_6f79f684.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:18:02.203620000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mozzarella",
+      "basil",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic Italian baked pasta dish presented in a clean white oval gratin dish. Large conchiglie shells, generously stuffed with creamy ricotta and mozzarella, are nestled in a rich, vibrant red tomato sauce. The top layer of fresh mozzarella is melted, bubbly, and golden-brown, with occasional caramelized edges. Fresh green basil leaves are scattered over the top as a garnish, providing a pop of color. The individual portion on a clean white porcelain dinner plate shows several whole, plump shells, glistening with sauce and cheese. The shells are arranged organically, not rigidly. The background features a simple wooden table, a folded cotton napkin, and traditional Italian flatware. Natural, even lighting highlights the textures and warm colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping.",
+      "A simple green salad with a vinaigrette.",
+      "A glass of red wine."
+    ],
+    "hero_ingredient": "Mozzarella",
+    "ingredients": [
+      {
+        "name": "large pasta shells (conchiglie grandi)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "ricotta cheese",
+        "quantity": "500 g"
+      },
+      {
+        "name": "fresh mozzarella, diced for filling",
+        "quantity": "150 g"
+      },
+      {
+        "name": "fresh mozzarella, sliced for topping",
+        "quantity": "100 g"
+      },
+      {
+        "name": "grated Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "fresh basil leaves, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "crushed tomatoes (canned)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "sugar",
+        "quantity": "1 tsp"
+      }
+    ],
+    "instructions": [
+      "Prepare Tomato Sauce: Heat olive oil in a large saucepan over medium heat. Add diced onion. Sauté until softened, about 5 minutes. Add minced garlic. Cook 1 minute until fragrant. Pour in crushed tomatoes and sugar. Bring to a simmer. Reduce heat to low. Simmer gently for 20 minutes, stirring occasionally. Season with salt and pepper.",
+      "Cook Pasta: Bring a large pot of salted water to a boil. Add pasta shells. Cook according to package directions until al dente, about 10-12 minutes. Drain thoroughly. Rinse with cold water to prevent sticking.",
+      "Make Filling: In a large bowl, combine ricotta cheese, 150g diced mozzarella, Parmesan cheese, chopped basil, egg, and nutmeg. Season with salt and pepper. Mix well until combined.",
+      "Assemble Dish: Preheat oven to 190°C. Spread one-third of the tomato sauce on the bottom of a 23x33 cm baking dish.",
+      "Stuff Shells: Carefully fill each cooked pasta shell with a generous amount of the ricotta mixture.",
+      "Arrange Shells: Arrange stuffed shells in a single layer over the sauce in the baking dish.",
+      "Add Topping: Pour remaining tomato sauce over the stuffed shells. Top with remaining 100g sliced fresh mozzarella.",
+      "Bake: Bake for 25-30 minutes, or until cheese is bubbly and golden brown.",
+      "Serve: Let rest 5 minutes before serving. Garnish with fresh basil leaves."
+    ],
+    "notes": [
+      "For best flavor, use high-quality canned San Marzano tomatoes for the sauce."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al Forno"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 843,
+      "cholesterol_mg": 155,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 46.5,
+      "saturated_fat_g": 21,
+      "sodium_mg": 541,
+      "total_carbs_g": 74.5,
+      "total_fat_g": 41.6,
+      "total_sugars_g": 14.4,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 139,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.7,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 89,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 19,
+      "protein": 93,
+      "saturated_fat": 105,
+      "sodium": 24,
+      "total_carbs": 27,
+      "total_fat": 53
+    },
+    "serving_size_g": 607,
+    "total_recipe_weight_g": 2428
+  },
+  {
+    "recipe_name": "Confit Chicken, Fermented Potato & Onion Gratin with Asparagus Essence",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_confit_chicken%2C_fermented_potato_%26_onion_gratin_with_asparagus_essence_20250630_020842_de22c893.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:08:43.023007000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "mushroom",
+      "potato",
+      "asparagus"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of Modern Sustainable cuisine is presented on a handcrafted, matte cream ceramic plate, resting on a light, naturally textured reclaimed wood surface. The centerpiece is a golden-skinned confit chicken thigh, its skin crisped to deep amber, placed beside a neat square of pale golden fermented potato and onion gratin. A vibrant, smooth swoosh of bright green asparagus essence arcs gracefully across the plate. Scattered artfully are tender-crisp blanched asparagus tips. Delicately thin, irregular mushroom crisps, with earthy brown tones, add height and texture. The plating is clean and minimalist, allowing generous white space. The composition is organic and unforced, emphasizing the natural beauty and textures of each ingredient. The setting features an undyed linen napkin, soft natural lighting, and a subtly blurred background with green foliage, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Global Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes, waxy (e.g., Charlotte, Nicola)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "2"
+      },
+      {
+        "name": "Coarse sea salt",
+        "quantity": "30g"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "10"
+      },
+      {
+        "name": "Olive oil or duck fat (for confit)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Water (for brine)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "100ml"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken confit: Pat chicken thighs dry. Mix 20g sea salt, crushed peppercorns, 2 minced garlic cloves, and thyme leaves. Rub mixture over chicken. Refrigerate for 8-12 hours.",
+      "Rinse chicken thoroughly under cold water. Pat very dry. Place chicken in a deep oven-safe pot. Add remaining whole garlic cloves, bay leaves, and remaining thyme sprigs. Cover completely with olive oil or duck fat. Cook in oven at 140°C for 2.5-3 hours, or until very tender. Let cool in fat. Once cool, remove chicken. Discard bones if desired for plating. Crisp skin in a hot pan before serving.",
+      "Prepare fermented potato and onion: Peel potatoes and onion. Slice both into very thin rounds (2-3mm).",
+      "Dissolve 10g sea salt in 500ml water to make a 2% brine. Place potato and onion slices in a clean jar. Pour brine over, ensuring vegetables are fully submerged. Seal jar loosely. Ferment at room temperature (20-24°C) for 2-3 days, or until desired tanginess is achieved. Burp jar daily. Refrigerate to stop fermentation.",
+      "Assemble gratin: Preheat oven to 180°C. Drain fermented potato and onion. Layer slices tightly in a small oven-safe dish (approx. 15x15cm). Bake for 30-40 minutes, until tender and lightly golden.",
+      "Prepare asparagus essence: Snap off woody ends from asparagus. Cut 5cm tips from spears and set aside. Roughly chop remaining asparagus stems.",
+      "Blanch chopped asparagus stems in boiling salted water for 2 minutes. Immediately transfer to ice water to cool. Drain well. Blend blanched stems with 100ml vegetable broth until very smooth. Pass through a fine-mesh sieve for a refined essence. Season with salt.",
+      "Blanch asparagus tips in boiling salted water for 1-2 minutes until tender-crisp. Transfer to ice water, then drain.",
+      "Prepare mushroom crisps: Wipe mushrooms clean. Slice very thinly (1-2mm). Arrange in a single layer on a baking sheet lined with parchment paper. Bake at 120°C for 30-45 minutes, or until completely dry and crisp. Monitor closely to prevent burning.",
+      "To serve: Reheat confit chicken, crisping skin in a hot pan. Place a portion of gratin on a plate. Spoon a swoosh of asparagus essence. Place a piece of confit chicken next to it. Arrange blanched asparagus tips and mushroom crisps artfully around the dish. Serve immediately."
+    ],
+    "notes": [
+      "The confit chicken can be prepared in advance and stored in its fat in the refrigerator for up to two weeks.",
+      "The fermented potato and onion can be made up to a week in advance and stored in the refrigerator.",
+      "Ensure mushroom slices are very thin for optimal crispness. Thicker slices will remain chewy."
+    ],
+    "traditional_techniques": [
+      "Confit (preservation)",
+      "Lacto-fermentation (preservation)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 730,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 50,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 1500,
+      "total_carbs_g": 34.7,
+      "total_fat_g": 43.5,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 284,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 22,
+      "protein": 100,
+      "saturated_fat": 60,
+      "sodium": 65,
+      "total_carbs": 13,
+      "total_fat": 56
+    },
+    "serving_size_g": 530,
+    "total_recipe_weight_g": 2120
+  }
+]

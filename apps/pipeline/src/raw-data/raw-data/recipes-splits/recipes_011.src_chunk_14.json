@@ -1,0 +1,658 @@
+[
+  {
+    "recipe_name": "Jasmine Tea Broth with Chocolate Coconut Bua Loy",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_jasmine_tea_broth_with_chocolate_coconut_bua_loy_20250706_190054_79ec0350.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T19:00:54.833087000Z",
+    "selected_ingredients": [
+      {
+        "name": "milk chocolate"
+      },
+      {
+        "name": "sago"
+      },
+      {
+        "name": "coconut liqueur"
+      },
+      {
+        "name": "glutinous rice flour"
+      },
+      {
+        "name": "jasmine tea"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian Thai",
+    "visual_description": "The dish is presented on a minimalist, premium beige travertine sharing platter, featuring several small, pristine white bone china bowls. Each bowl holds 4-5 perfectly spherical, glistening white glutinous rice dumplings, gently floating in a clear, pale golden jasmine tea broth. The dumplings are plump and smooth, hinting at the rich chocolate-coconut core within. A delicate scattering of tiny, golden-brown crispy sago pearls adorns the surface of the broth, providing a textural counterpoint and subtle shimmer. The composition is clean and architectural, with abundant negative space on the platter, emphasizing the purity of ingredients and precision of execution. A pristine white linen napkin, folded into a precise triangle, rests beside the bowls. Dramatic professional lighting casts soft shadows, enhancing the refined simplicity and elegance of the presentation, evoking a tranquil, sophisticated Thai culinary experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve communally on a sharing platter.",
+      "Offer small porcelain spoons for the broth and dumplings."
+    ],
+    "hero_ingredient": "Glutinous Rice Dumplings",
+    "ingredients": [
+      {
+        "name": "Jasmine tea leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "Water",
+        "quantity": "1000ml"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "80g"
+      },
+      {
+        "name": "Milk chocolate, finely chopped",
+        "quantity": "100g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Coconut liqueur",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Unsalted butter, cold, cubed",
+        "quantity": "15g"
+      },
+      {
+        "name": "Glutinous rice flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water, warm",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Small sago pearls",
+        "quantity": "50g"
+      },
+      {
+        "name": "Vegetable oil, for frying",
+        "quantity": "500ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Ganache Core:",
+      "Heat cream in a small saucepan until simmering. Do not boil.",
+      "Pour hot cream over chopped milk chocolate in a heatproof bowl. Let sit 1 minute.",
+      "Whisk gently from center outwards until smooth.",
+      "Stir in coconut liqueur and cold butter until fully incorporated and ganache is glossy.",
+      "Transfer ganache to a piping bag or small bowl. Chill 1-2 hours until firm enough to handle.",
+      "Roll ganache into small spheres, about 1 cm diameter. Place on parchment-lined tray. Freeze 30 minutes.",
+      "Prepare Dumpling Dough:",
+      "In a large bowl, combine glutinous rice flour.",
+      "Gradually add warm water, kneading until a smooth, pliable, non-sticky dough forms. Adjust water as needed.",
+      "Divide dough into 16-20 equal portions.",
+      "Assemble Dumplings:",
+      "Flatten each dough portion into a small disc.",
+      "Place one frozen ganache sphere in the center of each disc.",
+      "Carefully wrap dough around ganache, sealing completely. Roll into a smooth sphere.",
+      "Place finished dumplings on a lightly floured surface.",
+      "Cook Crispy Sago:",
+      "Heat vegetable oil in a small saucepan to 170°C.",
+      "Add sago pearls in small batches. Fry until puffed and golden brown, about 1-2 minutes.",
+      "Remove with a slotted spoon. Drain on paper towels. Season lightly with a pinch of sugar, if desired.",
+      "Prepare Jasmine Tea Broth:",
+      "Bring water to a boil in a saucepan. Remove from heat.",
+      "Add jasmine tea leaves. Steep 5 minutes.",
+      "Strain tea, discarding leaves. Return liquid to saucepan.",
+      "Stir in caster sugar until dissolved. Keep warm over low heat.",
+      "Cook Dumplings:",
+      "Bring a large pot of water to a rolling boil.",
+      "Carefully drop dumplings into boiling water.",
+      "Cook until dumplings float to the surface and puff slightly, about 3-5 minutes.",
+      "Remove cooked dumplings with a slotted spoon. Briefly immerse in an ice bath to prevent sticking and maintain shape.",
+      "Final Assembly and Serve:",
+      "Place 4-5 cooked dumplings in each serving bowl.",
+      "Ladle warm jasmine tea broth over dumplings.",
+      "Garnish sparingly with crispy sago pearls.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure ganache spheres are well-frozen for easy encasing.",
+      "Do not overcrowd the pot when cooking dumplings.",
+      "Crispy sago should be fried quickly to prevent burning.",
+      "Adjust sugar in broth to desired sweetness."
+    ],
+    "traditional_techniques": [
+      "Kneading glutinous rice dough",
+      "Tea infusion"
+    ]
+  },
+  {
+    "recipe_name": "Braised Beef Cheek, Refined Sauerkraut, Mustard Seed Gastrique",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_cheek%2C_refined_sauerkraut%2C_mustard_seed_gastrique_20250706_185501_5dca05db.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T18:55:01.477692000Z",
+    "selected_ingredients": [
+      "beef",
+      "sauerkraut",
+      "mustard"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, generously portioned, glistening mahogany braised beef cheek rests centrally on a pristine white bone china plate with a subtle, elegant rim. The beef, incredibly tender, shows its natural, irregular shape, not sliced. Adjacent to it, a small, artfully shaped quenelle of pale green, refined sauerkraut provides a delicate contrast, its finely shredded texture visible. A rich, dark, glossy reduction sauce is drizzled thoughtfully over the beef and around its base. Precise dots and a fine drizzle of golden-amber mustard seed gastrique are strategically placed, adding vibrant color and textural intrigue from the visible mustard seeds. The plate is largely negative space, emphasizing the clean, minimalist composition. The setting features a luxurious grey-veined marble surface, a folded white linen napkin, and a single piece of polished silver flatware, all under dramatic professional lighting that creates subtle, soft shadows and highlights the dish's refined elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Beef Cheek",
+    "ingredients": [
+      {
+        "name": "Beef cheeks",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Carrot, large diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Onion, large diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Celery stalk, large diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "3"
+      },
+      {
+        "name": "Red wine, dry",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Beef stock, high quality",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Sauerkraut, high quality",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Apple, peeled and finely diced",
+        "quantity": "1/2"
+      },
+      {
+        "name": "White wine, dry",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "75 ml"
+      },
+      {
+        "name": "Yellow mustard seeds",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Trim beef cheeks of excess fat and sinew. Season generously with salt and pepper.",
+      "Heat olive oil in a heavy-bottomed Dutch oven over medium-high heat. Sear beef cheeks on all sides until deeply browned. Remove beef and set aside.",
+      "Add carrot, onion, and celery to the pot. Sauté until softened, about 8 minutes. Add garlic and tomato paste; cook for 2 minutes, stirring constantly.",
+      "Deglaze with red wine, scraping up any browned bits. Reduce by half, about 5 minutes.",
+      "Return beef cheeks to the pot. Add beef stock, thyme, and bay leaves. Bring to a simmer. Cover and transfer to a preheated oven at 150°C for 3-4 hours, or until beef is fork-tender.",
+      "Remove beef cheeks from the pot. Strain the braising liquid through a fine-mesh sieve, discarding solids. Return liquid to the pot and reduce over medium-high heat until it forms a rich, glossy sauce. Season with salt and pepper. Keep beef warm in a small amount of sauce.",
+      "Rinse sauerkraut under cold water for 1 minute to reduce acidity. Drain very well, squeezing out excess liquid.",
+      "Melt butter in a saucepan over medium heat. Add finely diced apple and sauté for 3 minutes. Add the rinsed sauerkraut and white wine. Cook gently, stirring occasionally, for 15-20 minutes, until sauerkraut is tender and mellow. Season with salt.",
+      "For the mustard seed gastrique: In a small saucepan, melt sugar over medium heat until it caramelizes to an amber color. Do not stir. Carefully deglaze with red wine vinegar; it will bubble vigorously. Add yellow mustard seeds and Dijon mustard. Simmer for 3-5 minutes until slightly thickened. If too thick, add a touch of water or braising liquid. Season with a pinch of salt.",
+      "To plate: Place a single braised beef cheek centrally on each plate. Arrange a small, elegant quenelle or neat mound of the refined sauerkraut beside the beef. Drizzle the reduced braising sauce over and around the beef. Artistically dot or drizzle the mustard seed gastrique around the plate."
+    ]
+  },
+  {
+    "recipe_name": "Pollo en Salsa Verde con Chile de Arbol",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_en_salsa_verde_con_chile_de_arbol_20250706_185009_117b9a35.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T18:50:10.339551000Z",
+    "selected_ingredients": [
+      "tomatillo",
+      "coriander",
+      "arbol chile",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo en Salsa Verde is presented on a clean white porcelain dinner plate. A generous, whole seared chicken thigh, its surface golden-brown from searing, is nestled within a vibrant, glossy green salsa. The sauce, rich and emulsified, pools around the chicken, flecked with tiny dark specks from the roasted arbol chiles. A light scattering of freshly chopped coriander leaves provides a bright green garnish and aromatic contrast. The plate is set on a simple wooden table surface, accompanied by a small, authentic Mexican ceramic bowl holding fluffy white rice and a stack of warm corn tortillas wrapped in a cloth. A simple cotton napkin is placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and vibrant color. The entire plate is visible, with moderate negative space, creating a professional yet inviting presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas.",
+      "Serve with traditional Mexican rice.",
+      "Serve with refried beans on the side.",
+      "Offer a small dish of pickled red onions or jalapeños."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 boneless, skinless (approx. 600g total)"
+      },
+      {
+        "name": "Tomatillos",
+        "quantity": "500g, husked and rinsed"
+      },
+      {
+        "name": "Arbol chiles",
+        "quantity": "8-10 dried, stems removed"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 large (approx. 200g), roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, peeled"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "1 bunch (approx. 30g), roughly chopped"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "A pinch (optional)"
+      }
+    ],
+    "instructions": [
+      "Heat a dry comal or heavy skillet over medium-high heat. Add tomatillos, arbol chiles, half the onion, and garlic cloves.",
+      "Roast ingredients, turning occasionally, until tomatillos soften and char slightly (10-12 minutes). Chiles and garlic toast faster (2-3 minutes). Remove chiles and garlic when fragrant and lightly browned to prevent burning.",
+      "Transfer roasted tomatillos, chiles, garlic, and onion to a blender. Add fresh coriander, chicken broth, and a pinch of salt. Blend until smooth.",
+      "Season chicken thighs with salt. Heat vegetable oil in a large skillet or Dutch oven over medium-high heat.",
+      "Add chicken thighs to the hot oil. Sear for 4-5 minutes per side until golden brown. Cook to an internal temperature of 75°C.",
+      "Pour the blended salsa verde over the seared chicken. Bring to a simmer.",
+      "Reduce heat to low, cover, and cook for 15-20 minutes, allowing chicken to absorb flavors.",
+      "Check seasoning. Add a pinch of sugar if the sauce is too acidic.",
+      "Serve hot."
+    ],
+    "notes": [
+      "Adjust the number of arbol chiles to your preferred spice level.",
+      "For a thicker sauce, simmer uncovered for an additional 5-10 minutes."
+    ],
+    "traditional_techniques": [
+      "Dry roasting (tatemar) tomatillos and chiles.",
+      "Preparing a fresh blended salsa."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 391,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 34.1,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 791,
+      "total_carbs_g": 16.1,
+      "total_fat_g": 20.4,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 97,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 1,
+      "sodium_mg": 197,
+      "total_carbs_g": 4,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 15.1,
+      "protein": 68.2,
+      "saturated_fat": 20.4,
+      "sodium": 34.4,
+      "total_carbs": 5.8,
+      "total_fat": 26.2
+    },
+    "serving_size_g": 401,
+    "total_recipe_weight_g": 1604
+  },
+  {
+    "recipe_name": "South Indian Chicken Fry with Cashews",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_south_indian_chicken_fry_with_cashews_20250706_184431_1340fc92.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T18:44:32.264339000Z",
+    "selected_ingredients": [
+      "chicken",
+      "coriander",
+      "green chili",
+      "cashew",
+      "curry leaf",
+      "garlic",
+      "ginger"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of South Indian Chicken Fry is presented on a clean white porcelain dinner plate. Succulent, golden-brown chicken chunks are coated in a rich, semi-dry, reddish-brown masala. Whole and halved raw cashews are visibly mixed throughout, adding textural contrast. Fresh, vibrant green coriander leaves are scattered over the top as garnish. Chicken pieces are piled neatly in the center, avoiding fanned arrangements, with moderate negative space. A small white ceramic bowl of fluffy basmati rice and a lime wedge sit beside the main dish. The setting is a modern bistro with a simple wooden table and a cotton napkin. Natural, even lighting illuminates the scene. The background is minimal, showcasing a casual restaurant ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with basmati rice",
+      "Serve with warm naan bread or paratha",
+      "Accompanied by a side of raita or simple cucumber salad"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless Chicken Thighs",
+        "quantity": "600 g, cut into 3 cm chunks"
+      },
+      {
+        "name": "Raw Cashews",
+        "quantity": "80 g, whole or halved"
+      },
+      {
+        "name": "Fresh Coriander Leaves",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Green Chilies",
+        "quantity": "2, slit lengthwise"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "3 cm piece, grated"
+      },
+      {
+        "name": "Curry Leaves",
+        "quantity": "2 sprigs (approx. 15-20 leaves)"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 medium, thinly sliced"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1 medium, finely chopped"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Red Chili Powder",
+        "quantity": "10 g (adjust to taste)"
+      },
+      {
+        "name": "Coriander Powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Coconut Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      }
+    ],
+    "instructions": [
+      "Heat coconut oil in a large pan over medium heat.",
+      "Add curry leaves and slit green chilies. Sauté 30 seconds until fragrant.",
+      "Add sliced red onion. Sauté 5-7 minutes until soft and light golden.",
+      "Add minced garlic and grated ginger. Sauté 1 minute until aromatic.",
+      "Add turmeric powder, red chili powder, coriander powder, and garam masala. Stir 30 seconds until fragrant.",
+      "Add chopped tomato. Cook 3-4 minutes, pressing with spoon, until soft and oil separates.",
+      "Add chicken chunks and salt. Stir to coat chicken evenly with masala.",
+      "Pour in 100 ml water. Bring to a simmer. Cover pan. Cook 15 minutes, stirring occasionally, until chicken is tender and cooked through. Ensure internal temperature reaches 75°C (167°F).",
+      "Remove lid. Increase heat to medium-high. Cook 5-7 minutes, stirring frequently, until liquid reduces and masala coats chicken well. The dish should be semi-dry.",
+      "Add cashews. Stir 2 minutes until lightly toasted and integrated.",
+      "Stir in fresh chopped coriander leaves.",
+      "Serve hot."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust green chilies and red chili powder to control spice level."
+    ],
+    "traditional_techniques": [
+      "Tempering spices",
+      "Slow cooking masala"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 497.7,
+      "cholesterol_mg": 202.5,
+      "dietary_fiber_g": 4.94,
+      "protein_g": 32.6,
+      "saturated_fat_g": 11.99,
+      "sodium_mg": 631.3,
+      "total_carbs_g": 18.24,
+      "total_fat_g": 33.92,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 211.1,
+      "cholesterol_mg": 85.9,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 13.83,
+      "saturated_fat_g": 5.08,
+      "sodium_mg": 267.8,
+      "total_carbs_g": 7.74,
+      "total_fat_g": 14.39,
+      "total_sugars_g": 1.83,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.5,
+      "dietary_fiber": 17.6,
+      "protein": 65.2,
+      "saturated_fat": 60,
+      "sodium": 27.4,
+      "total_carbs": 6.6,
+      "total_fat": 43.5
+    },
+    "serving_size_g": 235.75,
+    "total_recipe_weight_g": 943
+  },
+  {
+    "recipe_name": "Sustainable Chicken & Fermented Vegetable Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_chicken_%26_fermented_vegetable_bowl_20250706_184413_c0b887ae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T18:44:13.735169000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A refined, individual portion of Sustainable Chicken & Fermented Vegetable Bowl in a handcrafted, earthy-toned ceramic bowl. Fluffy brown rice forms the base. A beautifully seared chicken thigh, with crispy golden skin, is placed prominently. Roasted broccoli florets, caramelized onion wedges, and halved cremini mushrooms are artfully arranged around the chicken, showcasing natural colors and textures. A vibrant, quick-lacto-fermented carrot pickle, cut into thin rounds, adds a bright pop of orange and a distinct preserved element. The composition is minimalistic, with ample white space, emphasizing purity and natural beauty. Garnish with fresh parsley or dill. The bowl sits on a light, natural wood surface, complemented by an undyed linen napkin. Soft, natural light illuminates the dish, highlighting organic textures. The background is clean and unobtrusive, with a hint of natural greenery, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable Cuisine",
+    "cultural_serving_suggestions": [
+      "Serve as a complete meal, highlighting the balance of protein, grains, and fermented elements.",
+      "Encourage mindful eating, appreciating each ingredient's contribution to a sustainable diet."
+    ],
+    "hero_ingredient": "Chicken Thighs & Fermented Carrots",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, skin-on, bone-in",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large (for pickle)"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 head"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or dill",
+        "quantity": "a small bunch"
+      },
+      {
+        "name": "Water (for pickle brine)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Non-chlorinated salt (for pickle brine)",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Carrot Pickle: Wash and thinly slice carrots into rounds or batons. Dissolve 10g non-chlorinated salt in 500ml water to make brine. Pack carrots tightly into a clean jar. Pour brine over carrots, ensuring they are fully submerged. Cover loosely or use an airlock. Let ferment at room temperature for 3-5 days, or until desired tanginess is achieved. Refrigerate after fermentation.",
+      "Prepare Chicken: Pat chicken thighs dry. Season generously with salt and pepper. Heat olive oil in a large oven-safe skillet over medium-high heat. Sear chicken thighs skin-side down until golden brown and crispy, about 8-10 minutes. Flip and sear for another 2-3 minutes. Remove skillet from heat. Transfer chicken to a plate. Drain excess fat, reserving about 15ml in the pan.",
+      "Cook Rice: Rinse brown rice thoroughly. Combine rice with 500ml water and a pinch of salt in a saucepan. Bring to a boil, then reduce heat to low, cover, and simmer for 40-45 minutes, or until water is absorbed and rice is tender. Let stand, covered, for 10 minutes, then fluff with a fork.",
+      "Roast Vegetables: Preheat oven to 200°C. Roughly chop broccoli into florets. Halve cremini mushrooms. Peel and cut onion into wedges. Peel and smash garlic cloves. Toss all vegetables with remaining olive oil, salt, and pepper on a baking sheet. Roast for 20-25 minutes, until tender and slightly caramelized.",
+      "Finish Chicken: Place chicken thighs skin-side up back into the skillet (or a new baking dish). Bake in the preheated oven with the vegetables for 15-20 minutes, or until internal temperature reaches 75°C. Let chicken rest for 5 minutes before serving.",
+      "Assemble Bowls: Divide cooked brown rice among 4 bowls. Place one chicken thigh on top of or next to the rice in each bowl. Arrange roasted vegetables around the chicken and rice. Add a generous portion of fermented carrot pickle to each bowl. Garnish with fresh parsley or dill."
+    ],
+    "notes": [
+      "For zero-waste, chicken bones and vegetable scraps can be simmered with water to create a light broth for future use.",
+      "The fermented carrot pickle can be prepared days in advance, enhancing its probiotic benefits and flavor."
+    ],
+    "traditional_techniques": [
+      "Lacto-fermentation",
+      "Mindful ingredient utilization"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 625,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 41.9,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 1161,
+      "total_carbs_g": 30.1,
+      "total_fat_g": 38,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.1,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 196,
+      "total_carbs_g": 5.1,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 20,
+      "protein": 84,
+      "saturated_fat": 46,
+      "sodium": 50,
+      "total_carbs": 11,
+      "total_fat": 49
+    },
+    "serving_size_g": 591.5,
+    "total_recipe_weight_g": 2366
+  }
+]

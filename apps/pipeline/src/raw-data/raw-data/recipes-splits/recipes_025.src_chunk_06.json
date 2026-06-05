@@ -1,0 +1,663 @@
+[
+  {
+    "recipe_name": "Braised Beef with Glazed Carrots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_glazed_carrots_20250623_141018_de7871e6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:10:18.500309000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate, showcasing a single, refined individual portion. Two to three substantial, irregularly shaped chunks of rich, dark brown braised beef are centrally placed, their surfaces glistening with the reduced, glossy dark brown sauce that pools elegantly around them. The beef, slow-cooked to tender perfection, appears succulent. Beside the beef, vibrant orange glazed carrot batons are neatly arranged, their surfaces reflecting a subtle sheen from the butter glaze. A light scattering of bright green chopped fresh parsley provides a fresh, aromatic contrast. The composition is balanced with moderate negative space. The plate rests on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting highlights the textures and colors of the food, creating an inviting, professional bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 5-6 cm large chunks. Pat dry with paper towels. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef from pot and set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook until softened, about 5 minutes. Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and cook until wine reduces by half, about 5 minutes.",
+      "Return beef to the pot. Add beef broth, thyme sprigs, and bay leaf. Bring to a gentle simmer.",
+      "Cover the pot and transfer to a preheated oven at 160°C (325°F). Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "While beef braises, peel carrots. Cut carrots into 4-5 cm batons or thick rondelles.",
+      "About 30 minutes before beef is done, melt butter in a separate pan over medium heat. Add carrots. Cook, stirring occasionally, until slightly tender-crisp. Add a splash of water (about 30 ml) and a pinch of salt. Cook until water evaporates and carrots are lightly glazed.",
+      "Remove beef from the pot. Strain braising liquid through a fine-mesh sieve into a clean saucepan. Discard solids. Skim any excess fat from the liquid.",
+      "Bring strained liquid to a simmer over medium-high heat. Reduce until it thickens into a glossy sauce, about 10-15 minutes.",
+      "Taste and adjust seasoning for both beef and sauce. Chop fresh parsley for garnish.",
+      "To serve, place several beef chunks on a plate. Arrange glazed carrots beside the beef. Spoon generous amount of reduced sauce over the beef. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 890.81,
+      "cholesterol_mg": 228.63,
+      "dietary_fiber_g": 4.88,
+      "protein_g": 67.36,
+      "saturated_fat_g": 22.48,
+      "sodium_mg": 447.67,
+      "total_carbs_g": 22.1,
+      "total_fat_g": 56.06,
+      "total_sugars_g": 9.29,
+      "trans_fat_g": 1.99
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126.49,
+      "cholesterol_mg": 32.46,
+      "dietary_fiber_g": 0.69,
+      "protein_g": 9.56,
+      "saturated_fat_g": 3.19,
+      "sodium_mg": 63.57,
+      "total_carbs_g": 3.14,
+      "total_fat_g": 7.96,
+      "total_sugars_g": 1.32,
+      "trans_fat_g": 0.28
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76.21,
+      "dietary_fiber": 17.43,
+      "protein": 134.72,
+      "saturated_fat": 112.4,
+      "sodium": 19.46,
+      "total_carbs": 8.04,
+      "total_fat": 71.87
+    },
+    "serving_size_g": 704.25,
+    "total_recipe_weight_g": 2817
+  },
+  {
+    "recipe_name": "Roasted Peach and Butternut Squash Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_peach_and_butternut_squash_soup_20250623_140944_ab1fdeb9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:09:45.365539000Z",
+    "selected_ingredients": [
+      "peach"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The soup is served in a pristine white porcelain bowl, showcasing its smooth, creamy, golden-orange hue. A small swirl of deep, glossy balsamic glaze is artfully drizzled over the top, creating a rich contrast. A few vibrant green fresh sage leaves are delicately placed on the soup's surface, providing a pop of color and aromatic freshness. The soup's texture appears velvety and inviting, with a subtle sheen. The bowl is centered on a simple, light wooden table, allowing for moderate negative space. A neatly folded white cotton napkin rests beside the bowl. Natural, even lighting illuminates the dish, highlighting its warmth and elegant simplicity against a subtly blurred, casual restaurant-style background. The presentation is clean and uncluttered, emphasizing the soup itself.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Peach",
+    "ingredients": [
+      {
+        "name": "Ripe peaches",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "1 medium (about 700 g)"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "8-10, plus extra for garnish"
+      },
+      {
+        "name": "Heavy cream (optional)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Balsamic glaze",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Halve peaches. Remove pits. Cut butternut squash into 3 cm cubes. Peel squash first.",
+      "Toss peaches and squash with 30 ml olive oil, 5 ml salt, and 2.5 ml black pepper on a baking tray.",
+      "Roast for 25-30 minutes. Vegetables should be tender and lightly caramelized. Let cool slightly.",
+      "Heat 15 ml olive oil in a large pot over medium heat.",
+      "Add diced onion. Sauté 5 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Add roasted peaches and squash to the pot. Add fresh sage leaves.",
+      "Pour in 1 litre vegetable broth. Bring to a simmer.",
+      "Reduce heat. Simmer 10 minutes to meld flavors.",
+      "Carefully transfer soup to a blender. Blend until very smooth. Work in batches if needed.",
+      "Return soup to the pot. Stir in cream if desired. Heat gently.",
+      "Season with additional salt and pepper to taste.",
+      "Ladle soup into bowls. Garnish each serving with a drizzle of balsamic glaze and fresh sage leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 339,
+      "cholesterol_mg": 18.42,
+      "dietary_fiber_g": 7.94,
+      "protein_g": 5.33,
+      "saturated_fat_g": 5.05,
+      "sodium_mg": 748.45,
+      "total_carbs_g": 49.21,
+      "total_fat_g": 16.91,
+      "total_sugars_g": 27.33,
+      "trans_fat_g": 0.21
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 45,
+      "cholesterol_mg": 2.46,
+      "dietary_fiber_g": 1.06,
+      "protein_g": 0.71,
+      "saturated_fat_g": 0.67,
+      "sodium_mg": 99.96,
+      "total_carbs_g": 6.57,
+      "total_fat_g": 2.26,
+      "total_sugars_g": 3.65,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 9,
+      "dietary_fiber": 28,
+      "protein": 11,
+      "saturated_fat": 25,
+      "sodium": 33,
+      "total_carbs": 18,
+      "total_fat": 22
+    },
+    "serving_size_g": 748.74,
+    "total_recipe_weight_g": 2995
+  },
+  {
+    "recipe_name": "Mediterranean Braised Chicken with Tomatoes and Olives",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_braised_chicken_with_tomatoes_and_olives_20250623_140936_80d6513f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:09:37.396171000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate, showcasing a single generous portion. Two golden-brown, braised chicken thighs, whole and un-sliced, are nestled centrally within a rich, vibrant red tomato and olive sauce. The sauce, glistening from braising, contains visible chunks of softened diced tomato, dark, plump Kalamata olives, and flecks of fresh green oregano and basil. A few bright red, halved cherry tomatoes are scattered artfully in the sauce, adding pops of fresh color and texture. The chicken skin is slightly crisp on top, contrasting with the tender, moist meat beneath. The overall composition is organic and inviting, with moderate negative space. A sprinkle of fresh chopped parsley garnishes the dish. The plate rests on a rustic wooden table surface. A simple white cotton napkin is folded beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the sauce",
+      "Serve alongside simple rice or couscous",
+      "Serve with a light green salad with a lemon vinaigrette"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 large pieces"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh oregano, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Red wine (optional)",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Cherry tomatoes, halved (for garnish)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh parsley, chopped (for garnish)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy, about 5-7 minutes.",
+      "Flip chicken. Sear other side for 3-4 minutes. Remove chicken from pot. Set aside.",
+      "Add diced onion to pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in red wine (if using). Scrape up any browned bits from bottom of pot. Reduce by half.",
+      "Stir in diced tomatoes, chicken broth, pitted Kalamata olives, chopped fresh oregano, and half of the chopped fresh basil. Bring to a simmer.",
+      "Return seared chicken thighs to pot, nestling them into the sauce. Ensure chicken is mostly submerged.",
+      "Reduce heat to low. Cover pot. Simmer for 30-40 minutes, or until chicken is tender and cooked through (internal temperature 75°C).",
+      "Remove lid. Simmer uncovered for 10-15 minutes to slightly thicken sauce.",
+      "Stir in remaining fresh basil and halved cherry tomatoes just before serving. Taste and adjust seasoning."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 551,
+      "cholesterol_mg": 270,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 45.3,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 1117.3,
+      "total_carbs_g": 20,
+      "total_fat_g": 30.8,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 94,
+      "cholesterol_mg": 45.9,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.7,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 189.8,
+      "total_carbs_g": 3.4,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 90,
+      "dietary_fiber": 16,
+      "protein": 91,
+      "saturated_fat": 32,
+      "sodium": 49,
+      "total_carbs": 7,
+      "total_fat": 39
+    },
+    "serving_size_g": 588.75,
+    "total_recipe_weight_g": 2355
+  },
+  {
+    "recipe_name": "Panelle di Ceci con Gamberi Scottati e Salsa di Pomodoro Giallo Affumicato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_panelle_di_ceci_con_gamberi_scottati_e_salsa_di_pomodoro_giallo_affumicato_20250623_140910_76c149f6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:09:10.925953000Z",
+    "selected_ingredients": [
+      "flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "italian experimetnal avant garde, but not cliche and not trite try-hard cuisine, no pasta",
+    "visual_description": "The dish presents a modern Italian composition on a clean white porcelain dinner plate, centered on golden-crisp panelle rectangles. These vibrant yellow fritters, made from chickpea flour, are neatly arranged, showcasing their delicate, airy interior and perfectly fried exterior. Alongside, plump, whole seared prawns, their orange-pink hues contrasting against the panelle, are artfully placed. A luscious, smooth smoked yellow tomato sauce forms a vibrant base or a controlled swish on the plate, its warm, earthy color enhancing the dish. Fresh green basil leaves and a drizzle of high-quality olive oil provide a final touch of color and sheen. The presentation is organized yet organic, with moderate negative space. Set on a simple wooden table with a folded white linen napkin and elegant Italian flatware, under soft, natural light, highlighting the dish as the centerpiece of a refined meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Modern",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately to enjoy the panelle while crisp.",
+      "Pair with a crisp, dry white wine such as a Vermentino or Pinot Grigio.",
+      "Offer a simple side salad with a light vinaigrette."
+    ],
+    "hero_ingredient": "Chickpea Flour",
+    "ingredients": [
+      {
+        "name": "Chickpea flour (farina di ceci)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Olive oil, for frying panelle",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Large prawns (approx. 20/30 count), peeled and deveined",
+        "quantity": "16 pieces"
+      },
+      {
+        "name": "Garlic, thinly sliced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Yellow cherry tomatoes, halved",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Smoked paprika (dolce affumicata)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Extra virgin olive oil, for sauce and garnish",
+        "quantity": "50 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Panelle: Combine chickpea flour, salt, and pepper in a bowl. Gradually whisk in cold water until smooth. Ensure no lumps remain.",
+      "Pour mixture into a heavy-bottomed saucepan. Cook over medium heat, whisking constantly, for 10-15 minutes. Mixture will thicken considerably, pulling away from sides of pan.",
+      "Spread hot mixture evenly onto a large, lightly oiled baking sheet (approx. 0.5 cm thick). Smooth top with a spatula. Let cool completely. Refrigerate for at least 1 hour, or until firm.",
+      "Prepare Smoked Yellow Tomato Sauce: Heat 20 ml extra virgin olive oil in a saucepan over medium heat. Sauté diced shallot until softened, about 3 minutes. Add sliced garlic; cook 1 minute until fragrant.",
+      "Stir in halved yellow cherry tomatoes and smoked paprika. Cook 5 minutes, stirring occasionally, until tomatoes begin to soften. Deglaze with white wine; scrape up any browned bits. Cook until wine reduces by half.",
+      "Add vegetable broth. Bring to a simmer. Cook 10 minutes. Stir in fresh basil leaves. Transfer sauce to a blender. Blend until very smooth. Season with salt and pepper to taste. Keep warm.",
+      "Prepare Prawns: Heat 20 ml olive oil in a large non-stick pan over medium-high heat. Add remaining sliced garlic and chili flakes. Sauté 30 seconds.",
+      "Add peeled prawns to the pan. Sear 2 minutes per side, until opaque and cooked through. Internal temperature should reach 75°C (167°F). Stir in chopped parsley. Remove from heat.",
+      "Fry Panelle: Remove chilled chickpea flour mixture from refrigerator. Cut into desired shapes, such as 5cm x 8cm rectangles or 6cm discs. Heat remaining olive oil in a large frying pan over medium-high heat.",
+      "Fry panelle in batches for 2-3 minutes per side, until golden brown and crisp. Drain on paper towels. Season lightly with salt.",
+      "Assemble Dish: Spoon a generous amount of warm smoked yellow tomato sauce onto each plate. Arrange 4 panelle pieces neatly on the sauce. Place 4 seared prawns beside the panelle. Garnish with a few fresh basil leaves and a drizzle of extra virgin olive oil."
+    ],
+    "traditional_techniques": [
+      "Frying (for panelle)",
+      "Soffritto (for sauce base)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 572.7,
+      "cholesterol_mg": 116.7,
+      "dietary_fiber_g": 9.3,
+      "protein_g": 27.59,
+      "saturated_fat_g": 3.81,
+      "sodium_mg": 1199.3,
+      "total_carbs_g": 45.58,
+      "total_fat_g": 28.42,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 177.9,
+      "cholesterol_mg": 36.3,
+      "dietary_fiber_g": 2.89,
+      "protein_g": 8.57,
+      "saturated_fat_g": 1.18,
+      "sodium_mg": 372.5,
+      "total_carbs_g": 14.16,
+      "total_fat_g": 8.83,
+      "total_sugars_g": 3.32,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.9,
+      "dietary_fiber": 33.2,
+      "protein": 55.2,
+      "saturated_fat": 19,
+      "sodium": 52.1,
+      "total_carbs": 16.6,
+      "total_fat": 36.4
+    },
+    "serving_size_g": 322,
+    "total_recipe_weight_g": 1288
+  },
+  {
+    "recipe_name": "Beef and Rice Stuffed Bell Peppers with Chocolate-Cheddar",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_and_rice_stuffed_bell_peppers_with_chocolate-cheddar_20250623_140856_cc9eb7ae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:08:56.736959000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "bell pepper",
+      "cheddar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single vibrant bell pepper half, either red or yellow, serves as the vessel for a hearty, savory filling. The pepper is roasted, tender yet holding its shape, with slightly caramelized edges. Inside, a generous mound of seasoned ground beef and fluffy rice filling is visible, its texture rich and cohesive. A golden-brown crust of melted, bubbly sharp cheddar cheese covers the filling, with some crispy, slightly charred edges. A subtle hint of dark chocolate is integrated into the filling, adding depth. The dish is presented on a clean, round white porcelain plate. A small sprig of fresh, bright green parsley or a sprinkle of finely chopped chives provides a contrasting pop of color and freshness. The plate is well-proportioned, with moderate negative space, showcasing the dish as the centerpiece. The setting is a modern bistro, with a simple wooden table surface and natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Large bell peppers",
+        "quantity": "4"
+      },
+      {
+        "name": "Ground beef",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Cooked rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Dark chocolate (70%+), grated",
+        "quantity": "20g"
+      },
+      {
+        "name": "Sharp cheddar cheese, shredded",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Water",
+        "quantity": "125ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Halve bell peppers lengthwise. Remove seeds and membranes.",
+      "Heat olive oil in a large skillet over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add ground beef to skillet. Break it apart. Cook until browned, about 8-10 minutes. Drain excess fat.",
+      "Stir in cumin and smoked paprika. Cook for 1 minute.",
+      "Pour in crushed tomatoes and beef broth. Bring to a simmer. Cook for 5 minutes.",
+      "Remove from heat. Stir in cooked rice and grated dark chocolate. Season with salt and black pepper.",
+      "Arrange bell pepper halves cut-side up in a baking dish. Fill each half generously with the beef and rice mixture.",
+      "Pour 125ml water into the bottom of the baking dish to create steam.",
+      "Cover the baking dish with foil. Bake for 30 minutes.",
+      "Remove foil. Sprinkle shredded cheddar cheese evenly over each stuffed pepper. Return to oven, uncovered.",
+      "Bake for another 15-20 minutes, or until cheese is melted and golden brown and peppers are tender.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 706,
+      "cholesterol_mg": 131,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 40.8,
+      "saturated_fat_g": 18.9,
+      "sodium_mg": 867,
+      "total_carbs_g": 34.5,
+      "total_fat_g": 45.5,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 116,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.7,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 143,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44,
+      "dietary_fiber": 22,
+      "protein": 82,
+      "saturated_fat": 95,
+      "sodium": 38,
+      "total_carbs": 13,
+      "total_fat": 58
+    },
+    "serving_size_g": 607.5,
+    "total_recipe_weight_g": 2430
+  }
+]

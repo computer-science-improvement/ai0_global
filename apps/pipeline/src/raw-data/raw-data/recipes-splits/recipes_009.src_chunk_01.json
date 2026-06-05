@@ -1,0 +1,633 @@
+[
+  {
+    "recipe_name": "Teriyaki Tofu and Mushroom Donburi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_teriyaki_tofu_and_mushroom_donburi_20250724_142022_9a2fd130.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T14:20:23.496778000Z",
+    "selected_ingredients": [
+      "garlic",
+      "rice",
+      "onion",
+      "soy sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "Japanese cuisine, with teriyaki sauce and add more protein but not meet",
+    "visual_description": "A single, hearty portion of Teriyaki Tofu and Mushroom Donburi is presented in a deep, rustic ceramic donburi bowl. Fluffy white short-grain rice forms the base. Nestled atop the rice are golden-brown, pan-fried tofu cubes, approximately 2 cm, coated in a dark, glossy teriyaki glaze. Interspersed among the tofu are thinly sliced, translucent sautéed onions and earthy brown shiitake mushroom slices. A sprinkle of vibrant green chopped green onion and white toasted sesame seeds adds color and texture. The arrangement is natural and inviting, with components touching. The bowl sits on a well-used light wooden dining table, suggesting a homely family kitchen setting. A pair of dark wooden chopsticks rests casually beside the bowl. Soft, warm lighting illuminates the scene, creating a comforting atmosphere.",
+    "number_of_servings": 2,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve in traditional ceramic donburi bowls.",
+      "Eat with chopsticks.",
+      "Traditionally accompanied by a side of miso soup or tsukemono (Japanese pickled vegetables)."
+    ],
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Firm Tofu",
+        "quantity": "300g block"
+      },
+      {
+        "name": "Japanese Short-Grain Rice",
+        "quantity": "200g (uncooked)"
+      },
+      {
+        "name": "Shiitake Mushrooms",
+        "quantity": "100g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Green Onion",
+        "quantity": "1 stalk"
+      },
+      {
+        "name": "Toasted Sesame Seeds",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Sake (Cooking)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Cook rice according to package directions. Keep warm.",
+      "Press excess water from tofu block for 15-20 minutes. Cut tofu into 2 cm cubes.",
+      "Thinly slice the onion. Slice shiitake mushrooms. Mince garlic. Finely chop green onion for garnish.",
+      "Combine soy sauce, mirin, sake, and sugar in a small bowl. Whisk well to make teriyaki sauce.",
+      "Heat vegetable oil in a large frying pan over medium-high heat.",
+      "Add tofu cubes to the pan. Pan-fry until golden brown and crispy on all sides. Remove tofu from pan and set aside.",
+      "Add sliced onion to the same pan. Sauté for 3-4 minutes until softened and translucent.",
+      "Add minced garlic and sliced mushrooms to the pan. Sauté for another 3 minutes until mushrooms are tender.",
+      "Return pan-fried tofu to the pan. Pour the prepared teriyaki sauce over the tofu and vegetables.",
+      "Bring sauce to a simmer. Cook for 2-3 minutes, stirring gently, until sauce thickens and coats all ingredients.",
+      "Divide cooked rice between two donburi bowls. Top each bowl generously with the teriyaki tofu and mushroom mixture.",
+      "Garnish with chopped green onion and toasted sesame seeds. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Donburi Style Plating",
+      "Teriyaki Glaze Preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 20.6,
+      "calories": 833,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 25.3,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 1675,
+      "total_carbs_g": 122.5,
+      "total_fat_g": 23.4,
+      "total_sugars_g": 26,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3.1,
+      "calories": 126,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 3.8,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 253,
+      "total_carbs_g": 18.5,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 18,
+      "protein": 51,
+      "saturated_fat": 13,
+      "sodium": 73,
+      "total_carbs": 45,
+      "total_fat": 30
+    },
+    "serving_size_g": 662,
+    "total_recipe_weight_g": 1324
+  },
+  {
+    "recipe_name": "Chicken Teriyaki Donburi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_teriyaki_donburi_20250724_141945_b73104bf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T14:19:45.643299000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "teriyaki sauce",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "japanese cuisine",
+    "visual_description": "A single portion of Chicken Teriyaki Donburi is served in a deep, handcrafted indigo ceramic bowl. The base is a mound of steaming, pearlescent white short-grain rice. Piled on top are thick, 3cm chunks of seared chicken thighs, glistening with a dark, mahogany-colored teriyaki glaze. Beside the chicken are softened, translucent onion wedges that have absorbed the savory sauce. The chicken is presented as whole, rustic chunks, not sliced. The dish is garnished with a precise sprinkle of bright green scallion rings and white toasted sesame seeds. The bowl sits on a minimalist light oak table next to dark wood chopsticks on a ceramic rest. A small side of yellow pickled daikon is visible in the background. Natural, soft window lighting emphasizes the reflective sheen of the sauce and the texture of the rice.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of miso soup",
+      "Include a small dish of tsukemono (pickled vegetables)",
+      "Provide bamboo chopsticks and a ceramic hashioki",
+      "Serve with hot green tea or roasted hojicha"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless skin-on chicken thighs, cut into 3cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Short-grain Japanese rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Water",
+        "quantity": "360ml"
+      },
+      {
+        "name": "Yellow onion, sliced into 1cm wedges",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Authentic teriyaki sauce",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Green onions, thinly sliced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Toasted white sesame seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Shichimi togarashi",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Wash rice in a bowl until water runs clear. Drain well.",
+      "Combine rice and 360ml water in a heavy-bottomed pot.",
+      "Bring to a boil, then reduce heat to low. Cover and simmer for 15 minutes.",
+      "Remove from heat. Let stand covered for 10 minutes. Fluff with a paddle.",
+      "Heat oil in a large skillet over medium-high heat.",
+      "Place chicken chunks in the pan skin-side down. Sear for 4 minutes until crispy.",
+      "Turn chicken. Add onion wedges to the pan.",
+      "Sauté for 3 minutes until onions are translucent and chicken is browned.",
+      "Pour teriyaki sauce over the chicken and onions.",
+      "Simmer for 3-5 minutes until the sauce reduces to a thick glaze.",
+      "Confirm chicken reaches an internal temperature of 75°C.",
+      "Divide steamed rice into four deep ceramic bowls.",
+      "Arrange chicken chunks and onions over the rice. Pour remaining glaze over the top.",
+      "Garnish with green onions, sesame seeds, and shichimi togarashi."
+    ],
+    "notes": [
+      "Skin-on chicken thighs provide the most authentic texture and flavor.",
+      "Do not crowd the pan when searing to ensure the skin becomes crispy.",
+      "Ensure the rice is specifically Japanese short-grain for the correct sticky consistency."
+    ],
+    "traditional_techniques": [
+      "Suteraki",
+      "Nitsume",
+      "Arai"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.3,
+      "calories": 694.8,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 1.74,
+      "protein_g": 36.82,
+      "saturated_fat_g": 6.95,
+      "sodium_mg": 1840.5,
+      "total_carbs_g": 70.58,
+      "total_fat_g": 27.6,
+      "total_sugars_g": 7.88,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.71,
+      "calories": 189.06,
+      "cholesterol_mg": 38.37,
+      "dietary_fiber_g": 0.47,
+      "protein_g": 10.02,
+      "saturated_fat_g": 1.89,
+      "sodium_mg": 500.82,
+      "total_carbs_g": 19.21,
+      "total_fat_g": 7.51,
+      "total_sugars_g": 2.14,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 6.21,
+      "protein": 73.64,
+      "saturated_fat": 34.75,
+      "sodium": 80.02,
+      "total_carbs": 25.67,
+      "total_fat": 35.38
+    },
+    "serving_size_g": 367.5,
+    "total_recipe_weight_g": 1470
+  },
+  {
+    "recipe_name": "Bell Pepper Couscous Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bell_pepper_couscous_salad_20250724_141606_24b6c37c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T14:16:06.921839000Z",
+    "selected_ingredients": [
+      "couscous",
+      "oregano",
+      "tomato",
+      "onion",
+      "garlic",
+      "basil",
+      "mint",
+      "bell pepper",
+      "mushroom",
+      "olive",
+      "lemon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented on a clean white porcelain dinner plate, showcasing vibrant colors and diverse textures. A base of light, fluffy couscous supports tender, caramelized roasted red and yellow bell pepper dices and earthy quartered mushrooms. Bright red halved cherry tomatoes, finely diced red onion, and dark Kalamata olive halves are interspersed throughout. Freshly chopped green basil and mint leaves are mixed in, with a few whole leaves as garnish. The salad glistens with a lemon-herb vinaigrette, enhancing natural colors. The arrangement is organic and inviting, with elements distributed evenly. A lemon wedge rests beside the plate. The setting features a simple wooden table, a grey cotton napkin, and standard silver flatware. Natural, even lighting creates a professional yet approachable bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm pita bread or crusty artisan bread."
+    ],
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Couscous",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Bell Peppers",
+        "quantity": "2 large (e.g., 1 red, 1 yellow), diced"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g, quartered"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "250g, halved"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Kalamata Olives",
+        "quantity": "80g, pitted and halved"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Fresh Mint",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large (juice and zest)"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss diced bell peppers and quartered mushrooms with 15ml olive oil, dried oregano, salt, and pepper.",
+      "Spread vegetables on a baking tray. Roast for 20 minutes, or until tender and slightly caramelized. Let cool.",
+      "Place couscous in a heatproof bowl. Bring 250ml water to a boil. Pour hot water over couscous. Cover and let stand for 5 minutes.",
+      "Fluff couscous with a fork. Let cool completely.",
+      "In a large bowl, combine cooled couscous, roasted bell peppers, roasted mushrooms, halved cherry tomatoes, finely diced red onion, minced garlic, halved Kalamata olives, chopped fresh basil, and chopped fresh mint.",
+      "For the dressing, whisk together 65ml extra virgin olive oil, fresh lemon juice, lemon zest, salt, and pepper in a small bowl.",
+      "Pour dressing over the salad ingredients. Toss gently to combine.",
+      "Taste and adjust seasoning if needed."
+    ],
+    "notes": [
+      "For best flavor, chill the salad for at least 30 minutes before serving to allow flavors to meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 425,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 8.7,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 809,
+      "total_carbs_g": 43.9,
+      "total_fat_g": 25.3,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 100,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 2.1,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 191,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 27,
+      "protein": 17,
+      "saturated_fat": 18,
+      "sodium": 35,
+      "total_carbs": 16,
+      "total_fat": 32
+    },
+    "serving_size_g": 423.75,
+    "total_recipe_weight_g": 1695
+  },
+  {
+    "recipe_name": "Classic Lemon Drizzle Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_lemon_drizzle_cake_20250724_135928_df8e74c8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T13:59:29.367330000Z",
+    "selected_ingredients": [
+      "lemon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous slice of Classic Lemon Drizzle Cake is presented on a simple, round ceramic plate with a natural, slightly off-white glaze. The cake slice is golden yellow, revealing a moist, open crumb texture. A glossy, translucent lemon drizzle glistens on top, visibly seeping down the sides of the slice. The plate sits on a well-used, light-colored wooden dining table. A casually placed, folded cloth napkin in a muted tone rests beside the plate. In the soft, warm light of a homely kitchen, a whole, round lemon drizzle cake, with its golden crust and sticky, glistening top from the absorbed drizzle, is visible on a simple cake stand in the blurred background. The scene suggests a relaxed, family dining atmosphere with natural, lived-in clutter in the periphery, such as a stack of cookbooks or a mixing bowl, creating a comforting and inviting feel.",
+    "number_of_servings": 12,
+    "cuisine_type": "European",
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "250g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "250g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Self-raising flour",
+        "quantity": "300g"
+      },
+      {
+        "name": "Lemons, zest",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Milk (optional, to loosen batter)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Lemons, juice (for drizzle)",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Caster sugar (for drizzle)",
+        "quantity": "150g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (160°C fan). Line a 23cm round cake tin or large loaf tin with baking paper.",
+      "Cream softened butter and 250g caster sugar in a large bowl until light and fluffy.",
+      "Beat in eggs one at a time. Mix well after each addition.",
+      "Fold in self-raising flour, lemon zest, and a pinch of salt. Mix until just combined.",
+      "If batter is too stiff, add milk, one tablespoon at a time, until it reaches a dropping consistency.",
+      "Pour batter into the prepared tin. Smooth the top.",
+      "Bake for 45-55 minutes, or until a skewer inserted into the center comes out clean. The cake should be golden brown.",
+      "While the cake bakes, prepare the drizzle. Mix lemon juice and 150g caster sugar in a small bowl until sugar dissolves.",
+      "Remove cake from oven. Immediately pierce the hot cake all over with a skewer or fork.",
+      "Pour the lemon drizzle evenly over the hot cake. Ensure it soaks into the holes.",
+      "Let the cake cool completely in the tin before turning out. The drizzle will form a slightly crisp crust."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 33.3,
+      "calories": 399.6,
+      "cholesterol_mg": 107.4,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 5,
+      "saturated_fat_g": 11.4,
+      "sodium_mg": 350.3,
+      "total_carbs_g": 53.4,
+      "total_fat_g": 19.1,
+      "total_sugars_g": 34,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 30.8,
+      "calories": 368.8,
+      "cholesterol_mg": 99.1,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 4.6,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 323.3,
+      "total_carbs_g": 49.3,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 31.4,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.8,
+      "dietary_fiber": 2.5,
+      "protein": 10.1,
+      "saturated_fat": 57.1,
+      "sodium": 15.2,
+      "total_carbs": 19.4,
+      "total_fat": 24.5
+    },
+    "serving_size_g": 108.33,
+    "total_recipe_weight_g": 1300
+  },
+  {
+    "recipe_name": "Fermented Lemon & Olive Oil Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_lemon_%26_olive_oil_cake_20250724_135847_f882217b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T13:58:48.522823000Z",
+    "selected_ingredients": [
+      "lemon"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The cake is presented on a light, textured bamboo surface. A single elegant slice of Fermented Lemon & Olive Oil Cake sits on a handcrafted ceramic plate in an earthy cream tone. The cake slice reveals a moist, golden-yellow crumb, speckled with tiny flecks of dark, finely chopped fermented lemon peel. A delicate, translucent white lemon glaze softly cascades over the top, highlighting the cake's natural contours. In the background, the whole round cake, also glazed, rests on a simple, low wooden cake stand, suggesting its full form. The setting includes an undyed linen napkin, a few scattered fresh lemon leaves for subtle greenery, and a minimalist background of blurred natural light and a hint of green foliage, emphasizing sustainability and natural beauty. The plating is clean, with ample negative space around the slice, allowing its simple elegance to shine. No artificial garnishes are used; only the inherent beauty of the ingredients is showcased.",
+    "number_of_servings": 12,
+    "cuisine_type": "Sustainable",
+    "hero_ingredient": "Fermented Lemon",
+    "ingredients": [
+      {
+        "name": "Unrefined cane sugar",
+        "quantity": "400g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "350g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "15g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Large lemons",
+        "quantity": "4"
+      },
+      {
+        "name": "Lacto-fermented lemon peel and pulp",
+        "quantity": "100g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Oat milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Powdered sugar (for glaze)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh lemon juice (for glaze)",
+        "quantity": "40ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour a 24cm round cake pan.",
+      "In a large bowl, whisk together flour, unrefined cane sugar, baking powder, baking soda, and salt.",
+      "Finely chop the lacto-fermented lemon peel and pulp.",
+      "In a separate bowl, whisk olive oil, oat milk, fresh lemon juice from 4 lemons, lemon zest from 4 lemons, and vanilla extract. Add chopped fermented lemon.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Do not overmix.",
+      "Pour batter into prepared pan.",
+      "Bake for 45-55 minutes, or until a skewer inserted into the center comes out clean.",
+      "Cool cake in pan for 10 minutes. Invert onto a wire rack to cool completely.",
+      "For the glaze, whisk powdered sugar with 40ml fresh lemon juice until smooth.",
+      "Once cake is completely cool, pour glaze over the top. Let set before serving."
+    ],
+    "notes": [
+      "For the lacto-fermented lemon peel, combine thinly sliced lemon peels and pith with a 2% brine (20g salt per liter of water) in a clean jar. Submerge peels, seal, and ferment at room temperature for 1-2 weeks until desired tanginess is achieved. Refrigerate after opening. This recipe uses the prepared fermented lemon peel as an ingredient.",
+      "This cake serves 12 portions."
+    ],
+    "traditional_techniques": [
+      "Lacto-fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 50,
+      "calories": 459.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 3.8,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 1899.2,
+      "total_carbs_g": 79.1,
+      "total_fat_g": 15.7,
+      "total_sugars_g": 53.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 27.4,
+      "calories": 252.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 2.1,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 1042,
+      "total_carbs_g": 43.4,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 29.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 7.6,
+      "protein": 7.5,
+      "saturated_fat": 11.1,
+      "sodium": 82.6,
+      "total_carbs": 28.8,
+      "total_fat": 20.2
+    },
+    "serving_size_g": 182.3,
+    "total_recipe_weight_g": 2187
+  }
+]

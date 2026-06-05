@@ -1,0 +1,630 @@
+[
+  {
+    "recipe_name": "Cheesy Chickpea & Ramen Noodle Stir-Fry with Soft Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_chickpea_%26_ramen_noodle_stir-fry_with_soft_egg_20250703_022608_0dbab4bd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T02:26:09.412531000Z",
+    "selected_ingredients": [
+      "cheddar",
+      "chickpea",
+      "egg",
+      "ramen noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Cheesy Chickpea & Ramen Noodle Stir-Fry is presented in a clean white porcelain bowl. Golden ramen noodles form the base, tossed with vibrant julienned red and yellow bell peppers, thinly sliced onions, and creamy green chickpeas. The stir-fry is coated in a glossy, savory sauce. Two soft-boiled egg halves, revealing their rich, jammy yolks, are carefully placed on top. A sprinkle of thinly sliced green onions and white sesame seeds adds a fresh, aromatic garnish. The composition is balanced, allowing for moderate negative space around the well-proportioned ingredients. The dish sits on a simple wooden table surface in a modern bistro setting. A cotton napkin and a pair of chopsticks rest beside the bowl. Natural, even lighting illuminates the scene, highlighting the textures and colors of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian Fusion",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Serve immediately while hot.",
+      "Offer additional soy sauce or chili crisp on the side for custom seasoning."
+    ],
+    "hero_ingredient": "Ramen Noodle",
+    "ingredients": [
+      {
+        "name": "Ramen noodles (instant ramen blocks without seasoning packets)",
+        "quantity": "4 x 85 g blocks"
+      },
+      {
+        "name": "Canned chickpeas, drained and rinsed",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Bell peppers (red and yellow), julienned",
+        "quantity": "2"
+      },
+      {
+        "name": "Small onion, thinly sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Green onions, thinly sliced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Sesame seeds",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Boil water in a medium saucepan. Gently lower eggs into boiling water. Cook for 6-7 minutes for soft-boiled eggs. Immediately transfer eggs to an ice bath. Peel once cool. Halve each egg lengthwise.",
+      "Cook ramen noodles according to package directions until tender. Drain well. Set aside.",
+      "Whisk together soy sauce, rice vinegar, sesame oil, and brown sugar in a small bowl. Set aside.",
+      "Heat vegetable oil in a large wok or deep skillet over medium-high heat.",
+      "Add sliced onion and bell peppers. Stir-fry for 3-4 minutes until tender-crisp.",
+      "Add minced garlic and grated ginger. Stir-fry for 1 minute until fragrant.",
+      "Add drained chickpeas to the wok. Stir-fry for 2 minutes.",
+      "Add cooked ramen noodles to the wok. Pour in the prepared sauce. Toss well to coat all ingredients.",
+      "Reduce heat to low. Add shredded cheddar cheese. Stir gently until cheese melts and coats the noodles and vegetables.",
+      "Divide the noodle mixture among four serving bowls. Top each serving with two soft-boiled egg halves. Garnish with sliced green onions and sesame seeds. Serve immediately."
+    ],
+    "notes": [
+      "Adjust brown sugar to taste for desired sweetness.",
+      "For extra spice, add a pinch of chili flakes to the sauce."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 958,
+      "cholesterol_mg": 226,
+      "dietary_fiber_g": 12.5,
+      "protein_g": 36.1,
+      "saturated_fat_g": 19,
+      "sodium_mg": 1359,
+      "total_carbs_g": 92.4,
+      "total_fat_g": 48,
+      "total_sugars_g": 14.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 220,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 8.3,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 312,
+      "total_carbs_g": 21.2,
+      "total_fat_g": 11,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 45,
+      "protein": 72,
+      "saturated_fat": 95,
+      "sodium": 59,
+      "total_carbs": 34,
+      "total_fat": 62
+    },
+    "serving_size_g": 436,
+    "total_recipe_weight_g": 1742
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Polenta and Parmesan Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_polenta_and_parmesan_crisp_20250703_021317_8cb1d6c1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T02:13:18.395688000Z",
+    "selected_ingredients": [
+      "chicken",
+      "parmesan cheese",
+      "garlic",
+      "polenta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegant starter portion is presented on a clean white porcelain dinner plate. A creamy, golden-yellow mound of smooth polenta forms the base, its surface glistening. Beside it, two perfectly seared chicken medallions, with a deep golden-brown crust, are arranged neatly. The chicken pieces are whole, not sliced. Minced garlic bits are visible on the chicken. A delicate, golden-brown Parmesan crisp stands vertically within the polenta, adding textural contrast. Finely chopped fresh parsley lightly scatters over the chicken and polenta. The dish has moderate negative space, showcasing a professional, approachable composition. The setting is a modern bistro, with a simple wooden table and a cotton napkin beside the plate. Natural, even lighting illuminates the dish, highlighting its inviting colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread.",
+      "Offer a simple green salad dressed with olive oil and lemon as a light accompaniment."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400g (2 boneless, skinless breasts), cut into 8 medallions"
+      },
+      {
+        "name": "Polenta, quick-cooking",
+        "quantity": "150g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g, grated (50g for polenta, 50g for crisps)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, finely chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Parmesan crisps: Preheat oven to 180°C. Line a baking tray with parchment paper. Spoon 50g grated Parmesan into four 8cm circles, leaving space between them. Bake for 5-7 minutes, until golden and crisp. Remove and let cool on the parchment paper.",
+      "Cook polenta: Bring chicken broth to a boil in a medium saucepan. Slowly whisk in polenta, stirring constantly to prevent lumps. Reduce heat to low. Cook, stirring frequently, for 5-7 minutes, until polenta is thick and creamy.",
+      "Finish polenta: Remove polenta from heat. Stir in 50g grated Parmesan and 15g butter. Season with salt and pepper. Cover to keep warm.",
+      "Sear chicken: Pat chicken medallions dry. Season with salt and pepper. Heat olive oil and remaining 15g butter in a large skillet over medium-high heat.",
+      "Add minced garlic to the skillet. Cook for 30 seconds until fragrant.",
+      "Add chicken medallions to the skillet. Sear for 3-4 minutes per side, until golden brown and cooked through (internal temperature 75°C).",
+      "Plate: Spoon a generous portion of creamy polenta onto the center of each white porcelain plate. Arrange two seared chicken medallions beside the polenta.",
+      "Garnish: Place one Parmesan crisp upright into the polenta. Sprinkle chopped fresh parsley over the chicken and polenta. Serve immediately."
+    ],
+    "notes": [
+      "Ensure polenta is stirred frequently to prevent sticking and achieve a smooth consistency.",
+      "Adjust cooking time for chicken based on thickness; ensure it is cooked through but not dry."
+    ],
+    "traditional_techniques": [
+      "Mantecare (for polenta, incorporating fat and cheese for creaminess)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 517.6,
+      "cholesterol_mg": 118.1,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 45.6,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 665,
+      "total_carbs_g": 31.7,
+      "total_fat_g": 21.8,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141,
+      "cholesterol_mg": 32.2,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 12.4,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 181.2,
+      "total_carbs_g": 8.7,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 0.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 10,
+      "protein": 91,
+      "saturated_fat": 49,
+      "sodium": 29,
+      "total_carbs": 12,
+      "total_fat": 28
+    },
+    "serving_size_g": 367,
+    "total_recipe_weight_g": 1468
+  },
+  {
+    "recipe_name": "Zero-Waste Thai Sausage & Spinach Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zero-waste_thai_sausage_%26_spinach_soup_20250703_020100_800a4729.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T02:01:00.945492000Z",
+    "selected_ingredients": [
+      {
+        "name": "italian sausage"
+      },
+      {
+        "name": "spinach"
+      },
+      {
+        "name": "garlic"
+      },
+      {
+        "name": "mushroom"
+      },
+      {
+        "name": "rice"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Thai",
+    "visual_description": "A single portion of clear Thai soup is presented in a deep, handcrafted ceramic bowl with a rustic, unglazed exterior in natural beige. The transparent, golden-amber broth forms the base, revealing crumbled, browned Italian sausage chunks and tender, thinly sliced mushrooms at the bottom. Vibrant green spinach leaves, gently wilted, float elegantly on the surface. A small scoop of fluffy white jasmine rice is nestled on one side of the bowl. The soup is artfully garnished with a swirl of reddish Quick Fermented Chili-Garlic Relish, a scattering of golden-crisp fried garlic bits, and fresh green cilantro leaves. The bowl sits on a light, textured reclaimed wood surface, accompanied by a pair of natural wood chopsticks resting on a small ceramic rest. A folded undyed linen napkin in beige is placed beside the bowl. Soft, natural light illuminates the scene, highlighting the dish's fresh colors and textures against a clean, minimalist background with subtle green plant elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with additional lime wedges on the side for personal adjustment of sourness.",
+      "Offer a small dish of fish sauce with sliced bird's eye chilies for extra spice and umami.",
+      "Serve alongside a simple plate of sticky rice or additional jasmine rice."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200 g (leaves and stems)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves (3 for soup, 3 for relish/crispy)"
+      },
+      {
+        "name": "Mushrooms (e.g., shiitake or oyster)",
+        "quantity": "250 g (caps and stems)"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "200 g uncooked"
+      },
+      {
+        "name": "Lemongrass",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Galangal",
+        "quantity": "20 g sliced"
+      },
+      {
+        "name": "Kaffir lime leaves",
+        "quantity": "4 leaves"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "2-3 (for relish, optional for soup)"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": "Small bunch for garnish"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Water or vegetable broth",
+        "quantity": "1.5 litres"
+      }
+    ],
+    "instructions": [
+      "Prepare zero-waste broth: Combine mushroom stems, spinach stems, and clean garlic skins with 1.5 litres of water. Simmer for 30 minutes. Strain broth. Discard solids.",
+      "Cook jasmine rice: Rinse rice thoroughly. Cook according to package directions. Set aside.",
+      "Make Quick Fermented Chili-Garlic Relish: Finely mince 3 garlic cloves and red chilies. Combine with a pinch of salt. Let sit at room temperature for 1-2 hours. Stir in a teaspoon of lime juice.",
+      "Prepare Italian sausage: Remove sausage from casings. Crumble meat. Heat vegetable oil in a large pot over medium-high heat. Add crumbled sausage. Cook until browned and cooked through, about 8-10 minutes. Break up any large pieces. Drain excess fat. Remove sausage from pot. Set aside.",
+      "Sauté aromatics: Add remaining 3 minced garlic cloves to the same pot. Sauté for 1 minute until fragrant. Bruise lemongrass stalks with the back of a knife. Add bruised lemongrass, sliced galangal, and kaffir lime leaves to the pot. Sauté for 2 minutes.",
+      "Build soup base: Pour strained zero-waste broth into the pot. Bring to a simmer. Add fish sauce, lime juice, and palm sugar. Stir until sugar dissolves. Taste and adjust seasoning.",
+      "Add mushrooms and sausage: Slice mushroom caps thinly. Add sliced mushrooms to the simmering broth. Cook for 3-4 minutes until tender. Return cooked Italian sausage to the pot. Heat through.",
+      "Add spinach: Add fresh spinach leaves to the soup. Cook for 1-2 minutes until wilted.",
+      "Serve: Ladle hot soup into individual bowls. Add a scoop of cooked jasmine rice to each bowl. Top with cooked sausage, mushrooms, and spinach. Garnish with fresh cilantro and a spoonful of Quick Fermented Chili-Garlic Relish. Serve immediately."
+    ],
+    "notes": [
+      "The 'Quick Fermented Chili-Garlic Relish' provides a tangy, spicy kick and utilizes a simple preservation technique. For a deeper fermented flavor, prepare it 1-2 days in advance.",
+      "To maximize zero-waste, save vegetable scraps from other meals for the broth base."
+    ],
+    "traditional_techniques": [
+      "Balancing sweet, sour, salty, and spicy flavors",
+      "Infusing broth with fresh aromatics (lemongrass, galangal, kaffir lime leaves)",
+      "Using a clear, light broth base (Gaeng Jued style)"
+    ]
+  },
+  {
+    "recipe_name": "Roasted Chicken Thighs with Umami Potato Puree and Tomato Confit",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_thighs_with_umami_potato_puree_and_tomato_confit_20250703_015940_5f677c36.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T01:59:40.830544000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single individual portion is presented on a handcrafted, off-white ceramic plate with a matte finish, resting on a light, reclaimed wood surface. A generous, organic mound of creamy potato puree forms the base, its natural texture visible. Nestled beside it is a perfectly roasted chicken thigh, skin-on and bone-in, displaying a rich, golden-brown crispness. Scattered around the plate are clusters of deeply seared mixed mushrooms, their earthy browns and varied shapes adding natural contrast. Bright bursts of rich red tomato confit, some slightly shriveled and glistening, are artfully placed, along with soft roasted garlic cloves. The dish is garnished simply with a few vibrant green fresh thyme leaves, enhancing the natural color palette. The composition is clean and unforced, with ample white space, highlighting each ingredient's inherent beauty. Soft natural lighting illuminates the scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Starchy potatoes",
+        "quantity": "600g, peeled, cut into 3cm chunks"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g, halved"
+      },
+      {
+        "name": "Mixed mushrooms",
+        "quantity": "200g, cleaned, caps sliced, stems reserved"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, peeled (or 2 fermented, 2 fresh)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground"
+      },
+      {
+        "name": "Vegetable stock or water",
+        "quantity": "100ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Mushroom Broth: Place reserved mushroom stems in a small saucepan. Add 100ml vegetable stock or water. Simmer gently for 15 minutes. Strain, reserving the concentrated broth. Discard solids or compost.",
+      "Make Tomato Confit: Preheat oven to 160°C. In a small oven-safe dish, combine halved cherry tomatoes, 2 peeled garlic cloves, 2 sprigs thyme, and 30ml olive oil. Season lightly with salt and pepper. Roast for 30-40 minutes, or until tomatoes are soft and slightly shriveled.",
+      "Roast Chicken Thighs: Increase oven temperature to 200°C. Pat chicken thighs dry. Rub with 20ml olive oil, salt, and pepper. Place skin-side up on a baking sheet. Roast for 30-35 minutes, or until internal temperature reaches 75°C and skin is crispy. Rest for 5 minutes.",
+      "Prepare Potato Puree: While chicken roasts, boil potato chunks in salted water until very tender, about 15-20 minutes. Drain well. Mash potatoes with remaining 30ml olive oil, remaining 2 peeled garlic cloves (or fermented garlic if using), and the mushroom broth. Season with salt and pepper. Mash until smooth or slightly rustic, depending on preference.",
+      "Sear Mushrooms: Heat a large pan over medium-high heat. Add a splash of olive oil. Add sliced mushroom caps and remaining sprigs of thyme and rosemary. Sear until golden brown and tender, about 5-7 minutes. Season with salt and pepper.",
+      "Plate: Spoon a generous portion of potato puree onto each plate, creating a natural, organic shape. Place one roasted chicken thigh beside the puree. Arrange a small pile of seared mushrooms next to the chicken. Scatter tomato confit and roasted garlic cloves around the plate. Garnish with a few fresh thyme leaves."
+    ],
+    "notes": [
+      "For enhanced flavor and probiotic benefits, consider using lacto-fermented garlic in the potato puree. If not available, fresh garlic works well.",
+      "Save chicken bones for making nutritious chicken stock, contributing to a zero-waste kitchen.",
+      "Mushroom stems can also be dried and ground into a 'mushroom dust' for an umami seasoning."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 741,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 43.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 173,
+      "total_carbs_g": 32.5,
+      "total_fat_g": 48.9,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145.1,
+      "cholesterol_mg": 35.2,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 33.9,
+      "total_carbs_g": 6.4,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 19,
+      "protein": 86,
+      "saturated_fat": 53,
+      "sodium": 8,
+      "total_carbs": 12,
+      "total_fat": 63
+    },
+    "serving_size_g": 510.9,
+    "total_recipe_weight_g": 2043.6
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Breast, Saffron Risotto, Roasted Red Pepper Coulis, Wild Mushroom Medley",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_breast%2C_saffron_risotto%2C_roasted_red_pepper_coulis%2C_wild_mushroom_medley_20250703_015932_4961a12a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T01:59:32.891165000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "rice",
+      "mushroom",
+      "bell pepper"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast, its skin golden and crisp, rests elegantly on an expensive bone china plate with a subtle, modern pattern. Beside it, a generous, fluid quenelle of vibrant saffron risotto, its golden hue contrasting with the creamy white of the chicken. A streak of vivid, smooth roasted red pepper coulis sweeps across the plate, providing a bold splash of color. Artfully arranged clusters of sautéed wild mushrooms and tender confit garlic cloves are nestled near the chicken. The plate features abundant negative space, highlighting each component's pristine presentation. A few delicate microgreens provide a final touch of fresh color. The scene is set on a polished dark wood table under dramatic professional lighting, casting soft shadows. A pristine white linen napkin, folded into a precise triangle, complements the minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, skin-on",
+        "quantity": "4 x 200g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Unsalted butter, cold",
+        "quantity": "60g"
+      },
+      {
+        "name": "Red bell peppers",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Mixed wild mushrooms (shiitake, oyster, cremini)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6 large"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Microgreens",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve red bell peppers. Remove seeds. Place cut-side down on a baking tray. Roast for 25-30 minutes until skin blackens. Transfer to a bowl. Cover tightly with cling film. Let cool 15 minutes. Peel off skin. Discard skin. Blend roasted pepper flesh with 2 tablespoons olive oil and a pinch of salt until very smooth. Pass through a fine-mesh sieve for a silky coulis. Set aside.",
+      "For garlic confit, peel 4 garlic cloves. Place in a small saucepan. Cover with 30ml olive oil. Simmer over very low heat for 20-25 minutes until tender and golden. Do not brown. Remove garlic from oil. Set aside.",
+      "For saffron risotto, bloom saffron in 50ml hot chicken stock for 10 minutes. In a large saucepan, heat 1 tablespoon olive oil. Add diced shallot. Sauté until translucent, about 3 minutes. Add rice. Toast for 2 minutes, stirring constantly. Deglaze with white wine. Cook until wine evaporates. Add saffron-infused stock. Stir. Begin adding remaining hot chicken stock, one ladle at a time. Stir constantly. Wait until liquid is almost absorbed before adding next ladle. Continue for 18-20 minutes until rice is al dente and creamy. Stir in grated Parmesan and cold butter. Season with salt and pepper. Risotto should be fluid, not stiff.",
+      "Pat chicken breasts dry. Season skin generously with salt and pepper. Heat 1 tablespoon olive oil in an oven-safe skillet over medium-high heat. Place chicken skin-side down. Sear for 6-8 minutes until skin is deeply golden and crispy. Flip chicken. Add remaining 2 whole garlic cloves and 2 thyme sprigs to skillet. Transfer skillet to preheated 200°C oven. Roast for 10-12 minutes, or until internal temperature reaches 75°C. Rest chicken on a cutting board for 5 minutes before serving.",
+      "While chicken rests, clean mushrooms. Slice larger mushrooms. Heat 1 tablespoon olive oil in a separate pan over medium-high heat. Add mushrooms. Sauté until golden and tender, about 5-7 minutes. Season with salt and pepper. Add confit garlic cloves to mushrooms in final minute of cooking.",
+      "To plate, create a generous swoop of saffron risotto on one side of a large, shallow plate. Place one rested chicken breast on the plate, slightly overlapping the risotto. Arrange sautéed wild mushrooms and confit garlic artfully beside the chicken. Drizzle or create a delicate streak of roasted red pepper coulis across the plate. Garnish with a few microgreens."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1046,
+      "cholesterol_mg": 228.1,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 62.7,
+      "saturated_fat_g": 17.7,
+      "sodium_mg": 1204.3,
+      "total_carbs_g": 78.2,
+      "total_fat_g": 50.5,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124.1,
+      "cholesterol_mg": 27.1,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 142.9,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 18.9,
+      "protein": 125.4,
+      "saturated_fat": 88.5,
+      "sodium": 52.4,
+      "total_carbs": 28.4,
+      "total_fat": 64.7
+    },
+    "serving_size_g": 842.9,
+    "total_recipe_weight_g": 3371.5
+  }
+]

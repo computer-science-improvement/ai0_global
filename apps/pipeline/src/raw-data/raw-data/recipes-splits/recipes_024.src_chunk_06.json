@@ -1,0 +1,668 @@
+[
+  {
+    "recipe_name": "Seared Yellowfin Tuna, Miso Mushroom Duxelles, Crispy Chard",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_yellowfin_tuna%2C_miso_mushroom_duxelles%2C_crispy_chard_20250624_031144_5ae302ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:11:44.968602000Z",
+    "selected_ingredients": [
+      "yellowfin tuna",
+      "dark miso",
+      "garlic",
+      "mushroom",
+      "basil",
+      "swiss chard"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "Eight to twelve meticulously crafted canapés are presented on a cool white Carrara marble slab. Each features a precise, seared yellowfin tuna block, displaying a golden-brown crust and vibrant pink interior. The tuna rests atop a small, artfully placed quenelle of dark miso mushroom duxelles. A delicate, irregular shard of crispy Swiss chard, deep green and slightly curled, leans against the tuna, offering textural contrast. Glistening drops of vibrant green basil oil are dotted around each canapé base. Each piece is crowned with two or three tiny micro basil leaves. The arrangement is natural and organic, with ample negative space, conveying sophisticated simplicity. Dramatic lighting casts soft shadows, highlighting textures. A pristine white linen napkin, folded precisely, sits subtly in the background, reinforcing the luxurious, minimalist setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Yellowfin Tuna",
+    "ingredients": [
+      {
+        "name": "Yellowfin Tuna Loin, sushi-grade",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Dark Miso Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Swiss Chard Leaves",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Micro Basil (for garnish)",
+        "quantity": "small handful"
+      }
+    ],
+    "instructions": [
+      "Prepare Basil Oil: Combine 20g fresh basil leaves, 50ml olive oil, and 1 peeled garlic clove in a blender. Blend until smooth. Strain through a fine-mesh sieve, pressing to extract all oil. Discard solids. Set basil oil aside.",
+      "Prepare Mushroom Duxelles: Finely mince cremini mushrooms and remaining garlic clove. Heat 5ml olive oil and butter in a pan over medium heat. Add minced mushrooms and garlic. Cook, stirring frequently, until all moisture evaporates and mushrooms are deeply caramelized, about 10-12 minutes. Stir in dark miso paste and rice vinegar. Cook for 2 minutes more. Season with salt and pepper. Set aside to cool.",
+      "Prepare Crispy Chard: Preheat oven to 160°C. Wash and thoroughly dry swiss chard leaves. Remove thick stems. Tear leaves into small, irregular crisp-sized pieces (approx. 4-5 cm). Toss lightly with 5ml olive oil and a pinch of salt. Arrange in a single layer on a baking sheet. Bake for 8-12 minutes, or until brittle and crisp. Watch carefully to prevent burning. Set aside.",
+      "Sear Tuna: Pat yellowfin tuna loin dry. Season all sides with sea salt and black pepper. Heat a non-stick pan over high heat until smoking. Add 5ml olive oil. Carefully place tuna loin in the hot pan. Sear for 30-45 seconds per side for a very rare interior, or 1 minute per side for medium-rare. Immediately transfer tuna to a cutting board. Let rest for 2 minutes.",
+      "Assemble Canapés: Slice the seared tuna loin into precise 1.5 cm thick rectangular blocks. Each block should be approximately 1.5 cm x 2 cm x 3 cm. You should yield 8-12 pieces. Place a small dollop (approx. 5g) of cooled mushroom duxelles onto the center of an elegant serving platter. Gently place a seared tuna block on top of each duxelles dollop. Lean one crispy chard piece against each tuna block. Drizzle a few drops of basil oil around each canapé. Garnish each piece with 2-3 tiny micro basil leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 221,
+      "cholesterol_mg": 31.6,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 14.8,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 408.8,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 15.8,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 18.4,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 238,
+      "total_carbs_g": 3.4,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10.5,
+      "dietary_fiber": 8.2,
+      "protein": 29.6,
+      "saturated_fat": 19,
+      "sodium": 17.8,
+      "total_carbs": 2.1,
+      "total_fat": 20.3
+    },
+    "serving_size_g": 171.75,
+    "total_recipe_weight_g": 687
+  },
+  {
+    "recipe_name": "Grilled Watermelon & Roasted Grape Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_grilled_watermelon_%26_roasted_grape_pasta_20250624_031031_dfd04106.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:10:32.235575000Z",
+    "selected_ingredients": [
+      "orange",
+      "watermelon",
+      "grape",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of pasta is presented in a clean, white porcelain shallow bowl. Golden orecchiette pasta forms the base, topped with artfully arranged grilled watermelon triangles, their edges showing delicate char marks. Plump, roasted red grapes, slightly shriveled and deepened in color, are scattered throughout. Thinly sliced red onion adds a subtle purple contrast. The dish is generously garnished with fresh, bright green basil and mint leaves. A light drizzle of golden orange-herb vinaigrette coats the ingredients, enhancing their natural sheen. The composition is balanced, with moderate negative space. The bowl rests on a simple wooden table, accompanied by a folded cotton napkin, under natural, even lighting, evoking a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the vinaigrette."
+    ],
+    "hero_ingredient": "Grilled Watermelon",
+    "ingredients": [
+      {
+        "name": "Orecchiette Pasta",
+        "quantity": "320g"
+      },
+      {
+        "name": "Watermelon",
+        "quantity": "500g"
+      },
+      {
+        "name": "Red Grapes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Oranges",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Mint",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Balsamic Glaze",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Feta Cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss whole red grapes with 15ml olive oil. Spread on a baking sheet. Roast for 15-20 minutes until slightly softened and caramelized.",
+      "Cook orecchiette pasta according to package directions. Reserve 120ml pasta water. Drain pasta.",
+      "While pasta cooks, cut watermelon into 2 cm thick triangles or squares. Heat a grill pan over medium-high heat.",
+      "Brush watermelon pieces with 15ml olive oil. Grill for 2-3 minutes per side until grill marks appear and watermelon softens slightly.",
+      "For the vinaigrette: Whisk fresh orange juice from 2 oranges, zest from 1 orange, minced garlic, and remaining 50ml olive oil. Finely chop fresh mint and basil; stir into the vinaigrette. Season with salt and black pepper.",
+      "Thinly slice the red onion.",
+      "In a large bowl, combine drained pasta, roasted grapes, grilled watermelon, and sliced red onion. Pour vinaigrette over ingredients. Toss gently to combine.",
+      "Add reserved pasta water as needed to create a light sauce. Gently fold in crumbled feta cheese.",
+      "Serve immediately, drizzled with balsamic glaze if desired."
+    ],
+    "notes": [
+      "This dish can be served warm or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.88,
+      "calories": 670.68,
+      "cholesterol_mg": 22.25,
+      "dietary_fiber_g": 6.49,
+      "protein_g": 16.62,
+      "saturated_fat_g": 6.56,
+      "sodium_mg": 286.4,
+      "total_carbs_g": 97.62,
+      "total_fat_g": 25.4,
+      "total_sugars_g": 31.97,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.15,
+      "calories": 157.97,
+      "cholesterol_mg": 5.24,
+      "dietary_fiber_g": 1.53,
+      "protein_g": 3.92,
+      "saturated_fat_g": 1.55,
+      "sodium_mg": 67.46,
+      "total_carbs_g": 22.99,
+      "total_fat_g": 5.98,
+      "total_sugars_g": 7.53,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7.42,
+      "dietary_fiber": 23.16,
+      "protein": 33.24,
+      "saturated_fat": 32.82,
+      "sodium": 12.45,
+      "total_carbs": 35.5,
+      "total_fat": 32.56
+    },
+    "serving_size_g": 424.55,
+    "total_recipe_weight_g": 1698.2
+  },
+  {
+    "recipe_name": "Aloo Matar Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_aloo_matar_curry_20250624_031024_735bfd56.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:10:24.771710000Z",
+    "selected_ingredients": [
+      "potato",
+      "green pea",
+      "chili",
+      "tomato",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A vibrant, rich Aloo Matar Curry is presented in a clean, shallow white porcelain bowl. The curry features a thick, reddish-orange gravy, glistening from the oil, with tender, irregularly cut medium-sized potato chunks and bright green peas scattered throughout. Finely diced red tomatoes and slivers of green chili are visible. The dish is generously garnished with finely chopped fresh cilantro leaves, adding bursts of green color. The curry exhibits a rustic yet refined appearance, showcasing the soft texture of the potatoes and the plumpness of the peas. The bowl rests on a simple wooden table surface, accompanied by a neatly folded white cotton napkin and a traditional Indian metal spoon. In the background, slightly out of focus, is a small portion of fluffy white basmati rice. Natural, even lighting highlights the dish's warmth and freshness. The composition is balanced, with appropriate negative space, focusing entirely on the inviting curry.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with freshly made Basmati rice.",
+      "Accompany with warm naan bread or roti for scooping the curry.",
+      "Offer a side of plain yogurt or a simple raita to balance the spices."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Green peas",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "250 ml"
+      }
+    ],
+    "instructions": [
+      "Peel and dice potatoes into 2 cm cubes. Set aside.",
+      "Finely chop the onion. Mince green chilies.",
+      "Blend tomatoes into a smooth puree.",
+      "Heat vegetable oil in a large pot or karahi over medium heat.",
+      "Add cumin seeds. Let them splutter.",
+      "Add chopped onion. Sauté until golden brown.",
+      "Stir in ginger-garlic paste and minced green chilies. Cook for 1 minute until fragrant.",
+      "Add turmeric powder, coriander powder, and red chili powder. Stir for 30 seconds.",
+      "Pour in the tomato puree. Cook, stirring occasionally, until oil separates from the masala (about 5-7 minutes).",
+      "Add diced potatoes and green peas to the pot. Mix well to coat with the masala.",
+      "Pour in water. Add salt to taste. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 15-20 minutes, or until potatoes are tender.",
+      "Stir in garam masala. Cook for 2 more minutes.",
+      "Garnish generously with freshly chopped cilantro before serving."
+    ],
+    "notes": [
+      "Adjust green chili and red chili powder quantities to suit your preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Tempering spices (Tadka)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 263,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 9.9,
+      "protein_g": 8.24,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 28,
+      "total_carbs_g": 42.41,
+      "total_fat_g": 8.59,
+      "total_sugars_g": 8.52,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 62.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.36,
+      "protein_g": 1.96,
+      "saturated_fat_g": 0.17,
+      "sodium_mg": 6.7,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 2.04,
+      "total_sugars_g": 2.03,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 35.35,
+      "protein": 16.48,
+      "saturated_fat": 3.52,
+      "sodium": 1.22,
+      "total_carbs": 15.42,
+      "total_fat": 11.01
+    },
+    "serving_size_g": 420,
+    "total_recipe_weight_g": 1680
+  },
+  {
+    "recipe_name": "Miso-Glazed Yellowfin Tuna with Garlic Mushrooms and Swiss Chard",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_miso-glazed_yellowfin_tuna_with_garlic_mushrooms_and_swiss_chard_20250624_031023_cfa37076.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:10:23.923003000Z",
+    "selected_ingredients": [
+      "yellowfin tuna",
+      "dark miso",
+      "garlic",
+      "mushroom",
+      "basil",
+      "swiss chard"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Miso-Glazed Yellowfin Tuna rests on a simple, round ceramic plate with subtle imperfections. The seared tuna fillet, a rich golden-brown with dark, glossy miso glaze, is positioned slightly off-center. Alongside it, a generous pile of sautéed cremini mushrooms, their earthy brown caps contrasting with vibrant green, roughly chopped swiss chard leaves. The vegetables are tender-crisp, naturally arranged. Fresh green basil leaves are scattered over the tuna and vegetables, adding a pop of color. The entire plate sits on a well-worn wooden dining table, illuminated by warm, natural kitchen light. A casually placed cloth napkin and simple flatware complete the homely scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Savory",
+    "hero_ingredient": "Yellowfin Tuna",
+    "ingredients": [
+      {
+        "name": "Yellowfin Tuna Fillets",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Dark Miso Paste",
+        "quantity": "60g"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "300g, sliced"
+      },
+      {
+        "name": "Swiss Chard",
+        "quantity": "1 large bunch (approx. 400g), stems removed, leaves roughly chopped"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "15g, roughly chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Combine miso paste, soy sauce, mirin, and half of the minced garlic in a small bowl. Whisk until smooth. This is your miso glaze.",
+      "Pat tuna fillets dry with paper towels. Season both sides with salt and pepper.",
+      "Heat 15ml olive oil in a large non-stick skillet over medium-high heat.",
+      "Sear tuna fillets for 2-3 minutes per side for medium-rare, or longer to desired doneness. Remove tuna from skillet. Set aside.",
+      "Add remaining 15ml olive oil and 5ml sesame oil to the same skillet. Add sliced cremini mushrooms. Sauté for 5-7 minutes until browned and tender.",
+      "Add remaining minced garlic to the skillet with mushrooms. Cook for 1 minute until fragrant.",
+      "Add chopped swiss chard to the skillet. Cook for 3-5 minutes, stirring occasionally, until chard is wilted and tender. Season with salt and pepper.",
+      "Return seared tuna to the skillet with the vegetables. Brush tuna generously with the prepared miso glaze.",
+      "Cook for 1-2 minutes, spooning glaze over tuna, until glaze slightly caramelizes.",
+      "Remove from heat. Garnish with fresh chopped basil. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.8,
+      "calories": 365,
+      "cholesterol_mg": 85,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 48.3,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 1334,
+      "total_carbs_g": 15.7,
+      "total_fat_g": 11.3,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 91,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 12,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 332,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 16,
+      "protein": 97,
+      "saturated_fat": 9,
+      "sodium": 58,
+      "total_carbs": 6,
+      "total_fat": 14
+    },
+    "serving_size_g": 401.5,
+    "total_recipe_weight_g": 1606.1
+  },
+  {
+    "recipe_name": "Harissa Lamb and Bulgur Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_harissa_lamb_and_bulgur_pilaf_20250624_030935_8b43aeef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:09:35.770638000Z",
+    "selected_ingredients": [
+      "bulgur",
+      "harissa",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "Turkish cuisine",
+    "visual_description": "A single portion of Harissa Lamb and Bulgur Pilaf is presented on a clean, round white porcelain plate, set on a simple light wooden table. The center features a generous mound of fluffy, golden-brown bulgur pilaf, cooked with hints of tomato and warm spices. Nestled alongside and slightly over the bulgur are several tender, braised lamb chunks, their surfaces exhibiting a rich, dark brown hue from initial searing. A glistening, reddish-brown sauce from the lamb is gently spooned over both the lamb and bulgur. The dish is garnished with a vibrant scattering of freshly chopped green parsley and mint, providing a fresh contrast. A pristine white dollop of creamy plain yogurt sits neatly on the side of the plate. The composition is balanced, with moderate negative space, showcasing the professional yet approachable nature of the dish. A white cotton napkin rests beside the plate, with a small, traditional Turkish ceramic bowl for additional yogurt or a spice blend in the soft background, all bathed in natural, even light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Turkish",
+    "cultural_origin": "Turkish",
+    "cultural_serving_suggestions": [
+      "Serve with a side of plain, full-fat yogurt (süzme yoğurt).",
+      "Accompany with a simple shepherd's salad (çoban salatası) or pickled vegetables (turşu).",
+      "Offer fresh Turkish flatbread (pide) or simit for scooping."
+    ],
+    "hero_ingredient": "Lamb Chunks",
+    "ingredients": [
+      {
+        "name": "Lamb shoulder",
+        "quantity": "600 g, diced into 3 cm chunks"
+      },
+      {
+        "name": "Coarse bulgur",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Harissa paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "4 tablespoons, divided"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Vegetable or chicken broth",
+        "quantity": "850 ml, hot"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Aleppo pepper (pul biber)",
+        "quantity": "0.5 teaspoon, plus more for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "a handful, chopped, for garnish"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "a few sprigs, chopped, for garnish"
+      },
+      {
+        "name": "Plain full-fat yogurt",
+        "quantity": "200 g, for serving"
+      }
+    ],
+    "instructions": [
+      "Pat lamb chunks dry. In a bowl, toss lamb with 1 tablespoon olive oil, 1 tablespoon harissa, salt, and black pepper. Marinate for at least 30 minutes.",
+      "Heat 2 tablespoons olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear lamb chunks in batches until browned on all sides. Do not overcrowd the pot. Remove seared lamb and set aside.",
+      "Reduce heat to medium. Add remaining 1 tablespoon olive oil to the pot. Add diced onion and cook until softened, about 5 minutes. Add minced garlic and diced red bell pepper. Cook for 3-4 minutes until slightly tender.",
+      "Stir in tomato paste, ground cumin, smoked paprika, and 0.5 teaspoon Aleppo pepper. Cook for 1 minute until fragrant.",
+      "Return seared lamb to the pot. Add crushed tomatoes and 400 ml hot broth. Bring to a simmer. Reduce heat to low, cover, and braise for 60-75 minutes, or until lamb is very tender. Stir occasionally.",
+      "While lamb braises, prepare the bulgur pilaf: Rinse bulgur under cold water. In a separate medium saucepan, heat 1 tablespoon olive oil over medium heat. Add 1/4 of the diced onion (from the main onion) and cook until translucent, about 3 minutes.",
+      "Add rinsed bulgur to the saucepan. Stir for 1 minute to lightly toast. Pour in 450 ml hot broth and a pinch of salt. Bring to a boil, then reduce heat to low. Cover and simmer for 15-20 minutes, or until liquid is absorbed and bulgur is fluffy. Do not stir during cooking. Remove from heat and let stand covered for 5 minutes.",
+      "Fluff bulgur with a fork. Taste and adjust seasoning for both lamb and bulgur.",
+      "Serve braised harissa lamb and its sauce over the bulgur pilaf. Garnish generously with fresh chopped parsley and mint. Serve with a dollop of plain yogurt on the side, and a sprinkle of extra Aleppo pepper if desired."
+    ],
+    "traditional_techniques": [
+      "Pilav making (Turkish rice/bulgur technique)",
+      "Slow braising (for tender meat)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 900,
+      "cholesterol_mg": 152,
+      "dietary_fiber_g": 15.9,
+      "protein_g": 43.9,
+      "saturated_fat_g": 18.2,
+      "sodium_mg": 602,
+      "total_carbs_g": 68.1,
+      "total_fat_g": 52.3,
+      "total_sugars_g": 11.5,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126.7,
+      "cholesterol_mg": 21.4,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 6.2,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 84.7,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50.7,
+      "dietary_fiber": 56.7,
+      "protein": 87.8,
+      "saturated_fat": 91.1,
+      "sodium": 26.2,
+      "total_carbs": 24.8,
+      "total_fat": 67.1
+    },
+    "serving_size_g": 710.4,
+    "total_recipe_weight_g": 2841.6
+  }
+]

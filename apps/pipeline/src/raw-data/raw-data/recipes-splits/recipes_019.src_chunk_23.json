@@ -1,0 +1,666 @@
+[
+  {
+    "recipe_name": "Gambas al Ajillo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_gambas_al_ajillo_20250625_081225_c7e949b0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:12:25.719985000Z",
+    "selected_ingredients": [
+      "shrimp"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A shallow rustic terracotta cazuela sits centered on a dark wooden bistro table. Inside, twenty large whole pink shrimp are nestled in a shimmering pool of golden extra virgin olive oil. The shrimp are plump and tightly curled with light searing on the edges. Translucent golden-brown garlic slivers and small rings of red chili pepper are scattered throughout the oil. Bright green finely chopped parsley flecks the surface of the bubbling liquid. Beside the pot sits a white porcelain side plate holding three thick diagonally cut slices of crusty baguette. A simple white linen napkin is tucked neatly under a polished silver fork. Natural light highlights the glossy oil and vibrant seafood.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly in the sizzling terracotta cazuela",
+      "Provide plenty of crusty bread to soak up the garlic-infused oil",
+      "Pair with a chilled glass of dry Manzanilla sherry"
+    ],
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Large shrimp, peeled and deveined",
+        "quantity": "600g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Garlic cloves, thinly sliced",
+        "quantity": "8 cloves"
+      },
+      {
+        "name": "Dried guindilla pepper or red chili flakes",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Dry sherry (Manzanilla or Fino)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Crusty baguette",
+        "quantity": "1 loaf"
+      }
+    ],
+    "instructions": [
+      "Pat shrimp dry with paper towels.",
+      "Season shrimp with salt.",
+      "Heat olive oil in a wide terracotta cazuela or heavy skillet over medium-low heat.",
+      "Add sliced garlic and chili pepper to the cold oil.",
+      "Cook garlic slowly until it turns golden brown and fragrant.",
+      "Increase heat to medium-high.",
+      "Add shrimp to the pan in a single layer.",
+      "Sear shrimp for 1 minute per side until just pink and opaque.",
+      "Pour in sherry and let it bubble for 30 seconds.",
+      "Remove from heat immediately to prevent overcooking.",
+      "Stir in parsley and lemon juice.",
+      "Serve sizzling hot directly in the vessel."
+    ],
+    "notes": [
+      "Do not let the garlic turn dark brown as it will become bitter.",
+      "Ensure shrimp are completely dry before cooking to achieve a proper sear.",
+      "The residual heat of the oil will finish cooking the shrimp."
+    ],
+    "traditional_techniques": [
+      "Sizzling oil infusion"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 555,
+      "cholesterol_mg": 283.5,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 35.6,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 1009,
+      "total_carbs_g": 34.5,
+      "total_fat_g": 28.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 246.7,
+      "cholesterol_mg": 126,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 15.8,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 448.4,
+      "total_carbs_g": 15.3,
+      "total_fat_g": 12.6,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 94.5,
+      "dietary_fiber": 6.4,
+      "protein": 71.2,
+      "saturated_fat": 20.5,
+      "sodium": 43.9,
+      "total_carbs": 12.5,
+      "total_fat": 36.3
+    },
+    "serving_size_g": 225,
+    "total_recipe_weight_g": 900
+  },
+  {
+    "recipe_name": "Arroz con Pollo Clásico",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_cl%C3%A1sico_20250625_081209_3a500bf2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:12:09.880087000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pepper",
+      "carrot",
+      "squash",
+      "onion",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Arroz con Pollo is presented on a clean white porcelain dinner plate, showcasing a generous single portion. Golden-orange, moist medium-grain rice forms the base, studded with vibrant, uniformly diced red and yellow bell peppers, bright orange diced carrots, and soft, creamy diced butternut squash. Large, succulent chunks of seared chicken are nestled throughout the rice, displaying a rich, caramelized exterior. A scattering of bright green peas adds pops of color. The dish is garnished with freshly chopped green cilantro, providing a contrasting verdant hue. The composition is organic and flowing, not overly structured, with moderate negative space. The plate rests on a simple wooden table surface, accompanied by a white cotton napkin, and a traditional, simple fork and spoon. Natural, even lighting illuminates the dish, highlighting its rich textures and inviting colors against a subtly blurred bistro-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Latin American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a light vinaigrette.",
+      "Offer lime wedges for a fresh citrus squeeze.",
+      "Traditionally accompanied by warm, crusty bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "800g, cut into 4-5 cm chunks"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "300g, peeled and diced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Medium-grain rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "3g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "100g (optional)"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large, deep pan or Dutch oven over medium-high heat.",
+      "Season chicken chunks with salt and pepper. Sear chicken until golden brown on all sides. Cook in batches if necessary. Remove chicken from pan.",
+      "Add onion, red and yellow bell peppers, carrot, and butternut squash to the pan. Sauté 8-10 minutes until softened.",
+      "Add minced garlic, smoked paprika, cumin, oregano, and bay leaf. Cook 1 minute until fragrant.",
+      "Stir in tomato paste. Cook 2 minutes, stirring constantly.",
+      "Add rice to the pan. Stir 2 minutes to coat rice in aromatics.",
+      "Pour in chicken broth. Bring to a simmer.",
+      "Return seared chicken to the pan. Ensure chicken is mostly submerged.",
+      "Reduce heat to low. Cover and simmer 20-25 minutes, or until rice is tender and liquid is absorbed. Do not stir frequently.",
+      "Stir in frozen peas during the last 5 minutes of cooking, if using.",
+      "Remove from heat. Let stand, covered, 5 minutes.",
+      "Fluff rice gently with a fork. Discard bay leaf.",
+      "Garnish with fresh chopped cilantro before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "For best results, use a heavy-bottomed pan or Dutch oven to prevent sticking.",
+      "Avoid over-stirring the rice to prevent it from becoming gummy."
+    ],
+    "traditional_techniques": [
+      "Sofrito preparation for the aromatic base",
+      "Absorption method for cooking rice"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 795,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 52.6,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 1321,
+      "total_carbs_g": 90.5,
+      "total_fat_g": 26.2,
+      "total_sugars_g": 11.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102.8,
+      "cholesterol_mg": 24.3,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 6.8,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 170.9,
+      "total_carbs_g": 11.7,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.7,
+      "dietary_fiber": 24.4,
+      "protein": 105.1,
+      "saturated_fat": 30.6,
+      "sodium": 57.4,
+      "total_carbs": 32.9,
+      "total_fat": 33.5
+    },
+    "serving_size_g": 773.5,
+    "total_recipe_weight_g": 3094
+  },
+  {
+    "recipe_name": "Miso-Glazed Lamb with Roasted Eggplant and Bell Pepper",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_miso-glazed_lamb_with_roasted_eggplant_and_bell_pepper_20250625_081158_2c381b92.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:11:59.715183000Z",
+    "selected_ingredients": [
+      "lamb",
+      "feta cheese",
+      "eggplant",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "japanese cuisine",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, showcasing a single, refined individual portion. At the center, succulent, dark brown seared lamb chunks, glistening with a rich, reduced miso glaze, are artfully arranged. The lamb is cooked to a perfect internal temperature, hinting at tenderness. Surrounding the lamb are vibrant, roasted eggplant wedges and bell pepper pieces, displaying a mix of deep purple, bright red, and sunny yellow hues, with subtly charred edges from roasting. The vegetables are tender-crisp, providing textural contrast. A light scattering of crumbled white feta cheese adds a pop of bright contrast and a hint of salinity, carefully placed to complement rather than overwhelm. The dish is garnished with thinly sliced bright green green onions and a sprinkle of golden toasted sesame seeds, adding freshness and a subtle nutty aroma. The composition is balanced, with moderate negative space. The plate rests on a simple wooden table surface in a modern bistro setting, illuminated by natural, even lighting. Beside the plate, a pair of dark wood chopsticks rests on a small, minimalist ceramic chopstick rest, and a crisp white cotton napkin is neatly folded. A small, shallow, traditional Japanese rice bowl is placed subtly to the side, completing the authentic yet contemporary dining scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese Fusion",
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Boneless lamb shoulder or leg",
+        "quantity": "600 g, cut into 3 cm cubes"
+      },
+      {
+        "name": "Eggplant",
+        "quantity": "2 medium, cut into 2 cm wedges"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large, deseeded and cut into 2 cm pieces"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large, deseeded and cut into 2 cm pieces"
+      },
+      {
+        "name": "White miso paste",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Sake",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "50 g, crumbled"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat lamb cubes dry. Set aside.",
+      "In a bowl, combine miso paste, mirin, sake, soy sauce, grated ginger, minced garlic, and sesame oil. Whisk until smooth.",
+      "Place lamb cubes in a shallow dish. Pour half of the miso mixture over the lamb. Toss to coat evenly. Marinate for at least 30 minutes at room temperature, or up to 2 hours in the refrigerator.",
+      "Preheat oven to 200°C. Line a baking tray with parchment paper.",
+      "In a large bowl, toss eggplant wedges and bell pepper pieces with 15 ml vegetable oil, salt, and pepper.",
+      "Spread vegetables in a single layer on the prepared baking tray.",
+      "Roast for 20-25 minutes, or until tender and slightly caramelized. Set aside.",
+      "Heat remaining 15 ml vegetable oil in a large skillet or cast-iron pan over medium-high heat until shimmering.",
+      "Remove lamb from marinade, reserving marinade. Sear lamb cubes in batches, turning to brown all sides, for 6-8 minutes total. Cook until internal temperature reaches 75°C. Do not overcrowd the pan. Remove seared lamb from skillet and set aside.",
+      "Reduce heat to medium. Add reserved miso marinade to the skillet. Bring to a simmer, stirring constantly, until sauce thickens slightly into a glaze, about 2-3 minutes.",
+      "Return seared lamb to the skillet. Toss to coat evenly in the miso glaze.",
+      "Arrange roasted eggplant and bell pepper on individual serving plates. Place glazed lamb cubes on top of the vegetables.",
+      "Crumble feta cheese sparingly over the dish.",
+      "Garnish with thinly sliced green onions and toasted sesame seeds. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.4,
+      "calories": 608.8,
+      "cholesterol_mg": 128.3,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 38.9,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 1777,
+      "total_carbs_g": 33.6,
+      "total_fat_g": 35.9,
+      "total_sugars_g": 21.2,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.3,
+      "calories": 110.6,
+      "cholesterol_mg": 23.3,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 322.9,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 35,
+      "protein": 78,
+      "saturated_fat": 61,
+      "sodium": 77,
+      "total_carbs": 12,
+      "total_fat": 46
+    },
+    "serving_size_g": 550.3,
+    "total_recipe_weight_g": 2201
+  },
+  {
+    "recipe_name": "Lemon-Garlic Pasta with Roasted Potatoes and Peas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon-garlic_pasta_with_roasted_potatoes_and_peas_20250625_081152_65423b04.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:11:53.415722000Z",
+    "selected_ingredients": [
+      "potato",
+      "cheese",
+      "green pea",
+      "garlic",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, showcasing a generous individual portion of golden linguine. The pasta is lightly coated in a glistening lemon-garlic sauce, appearing fluid and well-emulsified. Scattered throughout are vibrant green peas, offering pops of bright color. Cubes of roasted potato, their skins light brown and interiors creamy, are nestled among the pasta, providing textural contrast. Thinly sliced garlic is visible, subtly integrated. The dish is garnished with grated plant-based Parmesan and fresh chopped parsley, adding final color and freshness. The composition is organic and inviting, with moderate negative space. The plate sits on a simple light wooden table surface, with standard silver flatware and a folded cotton napkin. Natural, even lighting illuminates the dish, highlighting its fresh ingredients and appealing textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Plant-Based",
+    "hero_ingredient": "Roasted Potato",
+    "ingredients": [
+      {
+        "name": "Pasta",
+        "quantity": "350g linguine or fettuccine"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g small waxy potatoes, unpeeled, cut into 1.5 cm cubes"
+      },
+      {
+        "name": "Green Peas",
+        "quantity": "200g frozen green peas"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, thinly sliced"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large, zest and juice"
+      },
+      {
+        "name": "Plant-Based Parmesan",
+        "quantity": "50g, grated (plus extra for garnish)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml (4 tbsp), plus extra for roasting"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30g, finely chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss potato cubes with a drizzle of olive oil, salt, and pepper on a baking tray. Roast for 25-30 minutes, or until tender and lightly golden.",
+      "Bring a large pot of salted water to a rolling boil. Add pasta and cook according to package directions until al dente.",
+      "While pasta cooks, heat 60ml olive oil in a large pan over medium heat. Add sliced garlic. Sauté for 1-2 minutes until fragrant and lightly golden. Do not brown.",
+      "Add vegetable broth and lemon juice to the pan. Bring to a simmer.",
+      "Drain pasta, reserving 100ml of pasta cooking water. Add drained pasta to the pan with the garlic sauce.",
+      "Add roasted potatoes, frozen green peas, lemon zest, and grated plant-based Parmesan to the pasta. Toss well to combine.",
+      "If the sauce is too thick, add a splash of reserved pasta water until desired consistency is reached.",
+      "Stir in chopped fresh parsley. Season with salt and black pepper to taste."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 490,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 10.7,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 232,
+      "total_carbs_g": 62.6,
+      "total_fat_g": 21.5,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 3.3,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 72,
+      "total_carbs_g": 19.6,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 25,
+      "protein": 21,
+      "saturated_fat": 27,
+      "sodium": 10,
+      "total_carbs": 23,
+      "total_fat": 28
+    },
+    "serving_size_g": 320,
+    "total_recipe_weight_g": 1278
+  },
+  {
+    "recipe_name": "Shakshuka",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_shakshuka_20250625_081149_71536f50.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:11:50.025155000Z",
+    "selected_ingredients": [
+      "egg",
+      "butter",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Shakshuka is presented in a rustic, well-used ceramic bowl. The vibrant red, chunky tomato sauce forms the base, with two perfectly poached eggs nestled within. The egg whites are opaque and set, while the yolks appear soft and slightly runny, adding a contrasting yellow hue. Finely chopped fresh green parsley is generously sprinkled over the top, providing a pop of color and freshness. The diced onions and red bell pepper are visible within the rich sauce, showcasing their tender texture. The bowl sits on a warm, natural wooden dining table. A simple, everyday fork rests casually beside the bowl. The lighting is soft and warm, characteristic of a cozy family kitchen, emphasizing the comforting nature of the dish. The background is minimal, hinting at a lived-in home environment without distracting from the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Eggs",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "8 large"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2ml"
+      },
+      {
+        "name": "Fresh Parsley or Cilantro",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Dice onions and red bell pepper. Mince garlic.",
+      "Heat olive oil and butter in a large, deep skillet over medium heat.",
+      "Add diced onions and bell pepper. Sauté until softened, about 8 minutes.",
+      "Stir in minced garlic, paprika, and cumin. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Season with salt and black pepper. Stir well.",
+      "Bring sauce to a simmer. Reduce heat to low. Cook for 15 minutes, allowing flavors to meld.",
+      "Create 8 small wells in the tomato sauce. Carefully crack one egg into each well.",
+      "Cover the skillet. Cook for 8-10 minutes, or until egg whites are set and yolks are to your desired firmness.",
+      "Remove from heat. Garnish generously with chopped fresh parsley or cilantro.",
+      "Serve immediately, directly from the skillet or in individual bowls."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 359.6,
+      "cholesterol_mg": 389.1,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 16.5,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 1164,
+      "total_carbs_g": 20.2,
+      "total_fat_g": 24.6,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 84.7,
+      "cholesterol_mg": 91.7,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 3.9,
+      "saturated_fat_g": 2,
+      "sodium_mg": 274.2,
+      "total_carbs_g": 4.7,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 130,
+      "dietary_fiber": 18,
+      "protein": 33,
+      "saturated_fat": 43,
+      "sodium": 51,
+      "total_carbs": 7,
+      "total_fat": 32
+    },
+    "serving_size_g": 424.5,
+    "total_recipe_weight_g": 1698
+  }
+]

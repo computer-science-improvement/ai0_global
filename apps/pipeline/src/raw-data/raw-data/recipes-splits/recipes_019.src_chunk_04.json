@@ -1,0 +1,660 @@
+[
+  {
+    "recipe_name": "Hearty Chicken and Rice Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_rice_soup_20250625_084002_8c2599ce.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:40:02.750896000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hearty Chicken and Rice Soup is presented in a deep, rustic ceramic bowl with a slightly irregular rim. The golden-yellow broth is clear, with visible steam rising. Within the broth are hearty, irregular chunks of cooked chicken, approximately 2cm cubes. Soft, fluffy white rice grains are suspended throughout. Bright orange diced carrots, pale green diced celery, and translucent diced onions are interspersed, adding color and texture. A sprinkle of vibrant green chopped fresh parsley garnishes the top. The bowl sits on a well-used, warm-toned wooden dining table. A simple, off-white cloth napkin is casually placed beside it. Lighting is warm and inviting, typical of a cozy kitchen at home.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "cultural_origin": "American Home",
+    "cultural_serving_suggestions": [
+      "Serve with warm, crusty bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast or thigh",
+        "quantity": "500g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken into 2cm cubes. Season with salt and pepper.",
+      "Heat olive oil in a large pot over medium heat. Add diced chicken. Cook until browned on all sides and cooked through, about 8-10 minutes. Ensure internal temperature reaches 75°C. Remove chicken from pot. Set aside.",
+      "Dice carrots, celery, and onion. Add to the same pot. Sauté until softened, about 5-7 minutes.",
+      "Pour in chicken broth. Bring to a boil.",
+      "Add rice. Reduce heat to low. Simmer, covered, for 15-20 minutes, or until rice is tender. Stir occasionally.",
+      "Return cooked chicken to the pot. Heat through for 2-3 minutes.",
+      "Taste and adjust seasoning if needed.",
+      "Ladle soup into bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 439.1,
+      "cholesterol_mg": 106.3,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 47.9,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 993,
+      "total_carbs_g": 38.3,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 70.3,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 7.7,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 158.9,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 1.5,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.4,
+      "dietary_fiber": 8.5,
+      "protein": 95.9,
+      "saturated_fat": 11.1,
+      "sodium": 43.2,
+      "total_carbs": 13.9,
+      "total_fat": 12.2
+    },
+    "serving_size_g": 624.5,
+    "total_recipe_weight_g": 2497.8
+  },
+  {
+    "recipe_name": "Potato Confit Mille-Feuille with Smoked Salmon and Lemon-Dill Crème Fraîche",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_confit_mille-feuille_with_smoked_salmon_and_lemon-dill_cr%C3%A8me_fra%C3%AEche_20250625_083956_036282fb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:39:57.169802000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "Eight to twelve exquisitely crafted canapés presented on a polished white Carrara marble slab. Each canapé features a base of golden-brown, precisely cut rectangular potato confit, approximately 2cm by 4cm, showcasing its delicate, compressed layers. On top, a small, artfully placed dollop of creamy white lemon-dill crème fraîche, followed by a neatly folded, vibrant pink piece of premium smoked salmon. A single, perfectly placed bright green chive baton or a few glistening orange salmon roe pearls serve as the sole garnish, adding a pop of color and texture. Abundant white space surrounds each canapé, emphasizing their minimalist elegance and precise execution. The scene is bathed in dramatic, soft professional lighting, casting subtle shadows that highlight the textures and refined presentation. A pristine white linen napkin, folded into a crisp triangle, sits discreetly in the background on the marble surface.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Modern",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Premium Smoked Salmon",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Crème Fraîche",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Chives",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Salmon Roe (optional)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Peel potatoes. Slice potatoes very thinly (1-2mm) using a mandoline.",
+      "Line a small, shallow terrine mold (approx. 10x15 cm) with parchment paper, leaving an overhang.",
+      "Layer potato slices tightly in the mold. Dot each layer with small pieces of butter. Season each layer lightly with salt and white pepper.",
+      "Repeat layering until all potatoes are used, pressing down firmly after each layer.",
+      "Cover the top with parchment paper. Place a weighted object (e.g., another pan with cans) on top to compress the potatoes.",
+      "Bake for 1.5 to 2 hours, or until potatoes are very tender when pierced.",
+      "Remove from oven. Increase weight on top. Chill in refrigerator overnight.",
+      "Carefully unmold the chilled potato terrine. Trim edges. Cut into precise rectangular canapé shapes (e.g., 2 cm x 4 cm). You should yield 8-12 pieces.",
+      "Heat a non-stick pan over medium heat. Add a tiny bit of butter. Gently sear each potato piece until golden and crisp on all sides.",
+      "Finely chop fresh dill. Grate lemon zest from half a lemon.",
+      "In a small bowl, combine crème fraîche with chopped dill, lemon zest, a pinch of salt, and a pinch of white pepper. Mix well.",
+      "Cut smoked salmon into small, elegant pieces suitable for canapé topping.",
+      "To assemble: Place a seared potato confit base on your serving platter. Top with a small, artful dollop of lemon-dill crème fraîche. Carefully place a piece of smoked salmon on top of the crème fraîche.",
+      "Garnish each canapé with a single small chive baton or a few glistening salmon roe pearls."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 391,
+      "cholesterol_mg": 110,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 10.7,
+      "saturated_fat_g": 18.2,
+      "sodium_mg": 323,
+      "total_carbs_g": 18.6,
+      "total_fat_g": 31,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 206,
+      "cholesterol_mg": 58,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 5.6,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 170,
+      "total_carbs_g": 9.8,
+      "total_fat_g": 16.3,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36.7,
+      "dietary_fiber": 8.2,
+      "protein": 21.4,
+      "saturated_fat": 90.9,
+      "sodium": 14,
+      "total_carbs": 6.8,
+      "total_fat": 39.7
+    },
+    "serving_size_g": 190,
+    "total_recipe_weight_g": 760
+  },
+  {
+    "recipe_name": "Spicy Crab Fried Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_crab_fried_rice_20250625_083904_f602499e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:39:04.856803000Z",
+    "selected_ingredients": [
+      "crab",
+      "tomato",
+      "onion",
+      "brown rice",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant mound of golden-brown rice sits centrally on a clean, round white porcelain plate. Flakes of succulent, tender crab meat are visibly mixed throughout the rice, along with small, bright red diced tomatoes and translucent, diced white onion. Thin slices of vivid red chili are interspersed, providing bursts of color and a hint of heat. The texture is a harmonious mix of fluffy rice and tender ingredients. The dish is garnished generously with thinly sliced bright green spring onions and fresh cilantro leaves, scattered artfully over the top. A vibrant lime wedge is placed neatly on the side of the plate, ready for squeezing. The overall presentation is clean and inviting, showcasing the dish's fresh ingredients and appealing colors. A pair of dark wooden chopsticks rests beside the plate on a simple linen napkin, evoking a casual Asian dining experience under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Serve with fresh lime wedges for a bright citrus note.",
+      "Offer a side of sambal or chili oil for extra heat.",
+      "Traditionally enjoyed with a simple clear soup or sliced cucumber."
+    ],
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Cooked brown rice, day-old",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Fresh crab meat, picked",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red chili, thinly sliced",
+        "quantity": "1-2, to taste"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Ginger, grated",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Large eggs, lightly beaten",
+        "quantity": "2"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Spring onions, thinly sliced",
+        "quantity": "2, for garnish"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15 g, for garnish"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "4, for serving"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a large wok or skillet over high heat.",
+      "Add diced red onion, minced garlic, and grated ginger. Stir-fry for 1 minute until fragrant.",
+      "Add thinly sliced red chili and halved cherry tomatoes. Stir-fry for 2 minutes until tomatoes soften slightly.",
+      "Push ingredients to one side of the wok. Pour beaten eggs into the empty side. Scramble until just set, then break into small pieces.",
+      "Add cooked brown rice to the wok. Break up any clumps with a spatula. Stir-fry vigorously for 3-4 minutes, ensuring rice is heated through.",
+      "In a small bowl, combine light soy sauce, fish sauce, oyster sauce, sugar, and white pepper. Pour sauce mixture over the rice.",
+      "Continue to stir-fry for 2-3 minutes, ensuring rice is evenly coated and slightly caramelized.",
+      "Add picked crab meat to the wok. Gently toss for 1 minute to heat the crab through. Avoid overmixing.",
+      "Remove from heat. Drizzle with sesame oil. Toss gently.",
+      "Divide the fried rice among 4 serving plates. Garnish generously with thinly sliced spring onions and fresh cilantro.",
+      "Serve immediately with lime wedges on the side."
+    ],
+    "notes": [
+      "For best results, use day-old cooked brown rice. This prevents stickiness and allows for better stir-frying.",
+      "Adjust chili quantity to your preferred spice level. For milder heat, remove chili seeds."
+    ],
+    "traditional_techniques": [
+      "Wok hei (achieving high-heat wok aroma and char)",
+      "Stir-frying on high heat"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.07,
+      "calories": 374,
+      "cholesterol_mg": 127.6,
+      "dietary_fiber_g": 4.81,
+      "protein_g": 20.84,
+      "saturated_fat_g": 1.97,
+      "sodium_mg": 1107.6,
+      "total_carbs_g": 53,
+      "total_fat_g": 13.05,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0.04
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.68,
+      "calories": 123,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 1.58,
+      "protein_g": 6.85,
+      "saturated_fat_g": 0.65,
+      "sodium_mg": 364.2,
+      "total_carbs_g": 17.43,
+      "total_fat_g": 4.29,
+      "total_sugars_g": 1.91,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.5,
+      "dietary_fiber": 17.2,
+      "protein": 41.7,
+      "saturated_fat": 9.8,
+      "sodium": 48.2,
+      "total_carbs": 19.3,
+      "total_fat": 16.7
+    },
+    "serving_size_g": 304.09,
+    "total_recipe_weight_g": 1216.35
+  },
+  {
+    "recipe_name": "Chicken and Potato Gratin with Gruyere",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_potato_gratin_with_gruyere_20250625_083904_acf5189e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:39:04.709104000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "beef stock",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken and Potato Gratin with Gruyere is presented in a classic white porcelain oval gratin dish, set on a simple light wooden table surface. The dish features tender, thinly sliced potatoes, layered and baked until soft, with a golden-brown, bubbly Gruyere cheese crust on top. Visible beneath the cheese are creamy, garlic-infused potato slices. Two generous, irregular chunks of seared chicken thigh, with a golden-brown exterior, are nestled amidst the gratin, not sliced or fanned. The rich, savory sauce is visible, coating the potatoes. Freshly chopped green parsley and a few small thyme leaves are scattered over the top as a vibrant garnish. The plate is well-proportioned with appropriate negative space. A folded white cotton napkin and classic silver bistro flatware are placed beside the dish. The scene is lit by soft, natural, even light, creating a professional yet inviting restaurant-style ambiance with a subtle, blurred background.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Gruyere cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden brown on both sides. Cook for 3-4 minutes per side. Remove chicken from skillet. Set aside.",
+      "Melt butter in the same skillet. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in beef stock. Bring to a simmer. Scrape up any browned bits from the bottom of the pan.",
+      "Stir in heavy cream and fresh thyme sprigs. Season sauce with salt and pepper. Reduce heat to low. Simmer gently for 5 minutes.",
+      "While sauce simmers, peel potatoes. Slice potatoes thinly, about 2-3mm thick.",
+      "Grate Gruyere cheese.",
+      "Arrange a layer of sliced potatoes in the bottom of the skillet. Place seared chicken thighs over the potatoes. Top with another layer of potatoes.",
+      "Pour the sauce evenly over the potatoes and chicken.",
+      "Sprinkle grated Gruyere cheese generously over the top.",
+      "Bake for 45-55 minutes, or until potatoes are tender and the cheese is bubbly and golden brown. Chicken internal temperature must reach 75°C (167°F).",
+      "Remove from oven. Let rest for 10 minutes before serving.",
+      "Garnish with freshly chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 790,
+      "cholesterol_mg": 224.9,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 48,
+      "saturated_fat_g": 22.1,
+      "sodium_mg": 380.2,
+      "total_carbs_g": 40.6,
+      "total_fat_g": 48.5,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 37.8,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.1,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 63.9,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 18.4,
+      "protein": 96.1,
+      "saturated_fat": 110.3,
+      "sodium": 16.5,
+      "total_carbs": 14.7,
+      "total_fat": 62.2
+    },
+    "serving_size_g": 594.5,
+    "total_recipe_weight_g": 2378
+  },
+  {
+    "recipe_name": "Slow-Cooked Beef Ragu with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_ragu_with_pappardelle_20250625_083903_c1def9ce.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:39:03.518779000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of wide, golden pappardelle ribbons nested in a shallow white porcelain bowl. Large, 3cm tender chunks of braised beef are distributed naturally throughout the pasta, coated in a thick, mahogany-colored tomato sauce. The sauce has a glossy sheen and visible small bits of diced carrots and onions. The dish is topped with a light, airy snowfall of finely grated Parmigiano-Reggiano. A small pinch of fresh, chopped flat-leaf parsley is scattered over the center. The bowl sits on a rustic light-wood bistro table next to a folded white cotton napkin and a polished silver fork. Natural daylight illuminates the textures of the shredded beef fibers and the silkiness of the pasta ribbons.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of full-bodied red wine like Chianti",
+      "Accompany with crusty sourdough bread for 'fare la scarpetta'",
+      "Present in wide-rimmed pasta bowls"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 3cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk, finely diced",
+        "quantity": "1 stalk"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Canned San Marzano tomatoes, crushed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmigiano-Reggiano, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh rosemary and thyme sprigs",
+        "quantity": "2 each"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper.",
+      "Heat oil in a heavy-based pot over medium-high heat.",
+      "Sear beef chunks in batches until browned on all sides. Remove beef.",
+      "Add onion, carrot, and celery to the same pot. Sauté 8 minutes until soft.",
+      "Stir in garlic and tomato paste. Cook for 2 minutes.",
+      "Pour in red wine. Scrape the bottom of the pot to release browned bits.",
+      "Return beef to the pot. Add crushed tomatoes, beef stock, and herb sprigs.",
+      "Bring to a simmer. Cover and reduce heat to low.",
+      "Cook for 2.5 to 3 hours until beef is fork-tender.",
+      "Remove herb sprigs. Adjust seasoning with salt and pepper.",
+      "Boil salted water in a large pot. Cook pappardelle until al dente.",
+      "Drain pasta. Reserve 60ml of pasta water.",
+      "Toss pasta with the ragu and reserved water over low heat for 1 minute.",
+      "Serve immediately with grated cheese."
+    ],
+    "notes": [
+      "Ensure the beef is seared deeply for maximum flavor development.",
+      "If the sauce is too thick, add more pasta water during the finishing stage.",
+      "Chuck roast or shin are the best cuts for this long-braising method."
+    ],
+    "traditional_techniques": [
+      "soffritto",
+      "braising",
+      "mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1181.7,
+      "cholesterol_mg": 207.3,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 82.5,
+      "saturated_fat_g": 17.7,
+      "sodium_mg": 2250,
+      "total_carbs_g": 96.9,
+      "total_fat_g": 46.7,
+      "total_sugars_g": 13.1,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146.3,
+      "cholesterol_mg": 25.7,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 10.2,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 278.6,
+      "total_carbs_g": 12,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 26,
+      "protein": 165,
+      "saturated_fat": 89,
+      "sodium": 98,
+      "total_carbs": 35,
+      "total_fat": 60
+    },
+    "serving_size_g": 807.5,
+    "total_recipe_weight_g": 3230
+  }
+]

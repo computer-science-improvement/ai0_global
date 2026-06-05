@@ -1,0 +1,648 @@
+[
+  {
+    "recipe_name": "Rustic Lemon Herb Chicken with Roasted Potatoes and Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_lemon_herb_chicken_with_roasted_potatoes_and_tomatoes_20250626_095149_921b96bd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:51:50.112400000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bread",
+      "potato",
+      "apple",
+      "rice",
+      "flour",
+      "cherry",
+      "orange",
+      "coffee",
+      "lemon",
+      "breadcrumbs",
+      "almond",
+      "strawberry",
+      "ginger",
+      "yeast"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of rustic oven-baked chicken and vegetables on a simple, round ceramic plate. Two large, golden-brown roasted chicken thighs are placed slightly overlapping. Surrounding the chicken are thick potato wedges, roasted until tender with slightly crispy edges, and vibrant red cherry tomatoes, some burst open from roasting. A scattering of fresh, chopped parsley provides a pop of green. The plate sits on a well-used wooden dining table. A simple fork and knife are casually placed beside it, with a casually folded cloth napkin. Warm, natural kitchen lighting illuminates the scene, creating a cozy, lived-in atmosphere with minimal background clutter, focusing on the hearty comfort food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the flavorful juices.",
+      "Pair with a simple green salad dressed with olive oil and lemon."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": "4 pieces (approx. 800g)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "10g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper. Dredge chicken lightly in plain flour.",
+      "Cut potatoes into thick wedges. Halve cherry tomatoes. Mince garlic cloves. Grate fresh ginger.",
+      "In a large bowl, combine potato wedges, halved tomatoes, minced garlic, grated ginger, olive oil, dried oregano, salt, and pepper. Toss to coat evenly.",
+      "Arrange the seasoned vegetables in a single layer in a large baking dish.",
+      "Nestle the floured chicken thighs among the vegetables. Sprinkle breadcrumbs over the chicken.",
+      "Slice the lemon into thin rounds. Place lemon slices on top of the chicken and vegetables.",
+      "Bake for 35-45 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender and golden. Breadcrumbs should be crisp.",
+      "Remove from oven. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 761.09,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 5.79,
+      "protein_g": 42,
+      "saturated_fat_g": 10.25,
+      "sodium_mg": 732.51,
+      "total_carbs_g": 48.31,
+      "total_fat_g": 45.21,
+      "total_sugars_g": 3.78,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161.08,
+      "cholesterol_mg": 39.79,
+      "dietary_fiber_g": 1.22,
+      "protein_g": 8.89,
+      "saturated_fat_g": 2.17,
+      "sodium_mg": 154.98,
+      "total_carbs_g": 10.22,
+      "total_fat_g": 9.57,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.67,
+      "dietary_fiber": 20.68,
+      "protein": 84,
+      "saturated_fat": 51.25,
+      "sodium": 31.85,
+      "total_carbs": 17.57,
+      "total_fat": 57.96
+    },
+    "serving_size_g": 472.5,
+    "total_recipe_weight_g": 1890
+  },
+  {
+    "recipe_name": "Creamy Cheesy Chicken and Vegetable Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_cheesy_chicken_and_vegetable_bake_20250626_095138_9d316fa1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:51:38.729199000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "corn",
+      "bell pepper",
+      "cheddar",
+      "cream",
+      "mozzarella",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous single portion of the Creamy Cheesy Chicken and Vegetable Bake is presented in a clean, white, oval gratin dish. The dish is centered on a simple, light wooden table surface. The top of the bake features a golden-brown, bubbly crust of melted cheddar and mozzarella cheese, with some crispy edges. Beneath the cheese, the creamy sauce is visible, studded with distinct, tender pieces of cubed chicken. Vibrant green broccoli florets, bright yellow corn kernels, and colorful diced red and green bell peppers are interspersed throughout the rich, creamy matrix. The textures are varied: soft vegetables, tender chicken, and gooey, slightly crisp cheese. A light sprinkling of freshly chopped bright green parsley over the top provides a fresh color contrast. A clean, white linen napkin is neatly folded beside the dish. A simple, modern metal fork and spoon are placed alongside. The background is softly blurred, suggesting a casual, warm bistro atmosphere with natural, even lighting that highlights the food's textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Sweet corn kernels",
+        "quantity": "200 grams (frozen or canned, drained)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "40 grams"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "40 grams"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500 millilitres"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 millilitres"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 millilitres"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 grams (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Cut chicken breasts into 2-3 cm cubes. Season with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken cubes. Sear chicken until lightly browned on all sides, about 5-7 minutes. Ensure internal temperature reaches 75°C (167°F). Remove chicken from skillet and set aside.",
+      "Dice onion and bell peppers into 1.5-2 cm pieces. Add butter to the same skillet. Add diced onion and bell peppers. Sauté until softened, about 5 minutes.",
+      "Stir in flour and cook for 1 minute, stirring constantly, to create a roux.",
+      "Gradually whisk in chicken stock until smooth. Bring to a simmer. Cook until sauce thickens, about 3-4 minutes.",
+      "Stir in heavy cream. Add 100 grams of cheddar cheese and 50 grams of mozzarella cheese. Stir until melted and smooth.",
+      "Add broccoli florets and corn kernels to the sauce. Cook for 3 minutes until broccoli is slightly tender-crisp.",
+      "Return cooked chicken to the skillet. Stir to combine all ingredients with the sauce.",
+      "Pour the mixture into a 2.5 litre baking dish. Sprinkle remaining 50 grams of cheddar and 50 grams of mozzarella over the top.",
+      "Bake for 20-25 minutes, or until the cheese is bubbly and golden brown. Let rest for 5 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 886,
+      "cholesterol_mg": 263,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 71.1,
+      "saturated_fat_g": 29.6,
+      "sodium_mg": 681,
+      "total_carbs_g": 32.2,
+      "total_fat_g": 53.7,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142.2,
+      "cholesterol_mg": 42.2,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 11.4,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 109.3,
+      "total_carbs_g": 5.2,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 88,
+      "dietary_fiber": 19,
+      "protein": 142,
+      "saturated_fat": 148,
+      "sodium": 30,
+      "total_carbs": 12,
+      "total_fat": 69
+    },
+    "serving_size_g": 622.95,
+    "total_recipe_weight_g": 2491.8
+  },
+  {
+    "recipe_name": "Chicken Stroganoff",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_stroganoff_20250626_095024_164d9401.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:50:25.450976000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "rus cuisine",
+    "visual_description": "A single portion of Chicken Stroganoff is presented on a clean, round white porcelain dinner plate. Tender, sautéed chicken breast chunks (approx. 2-3 cm) are coated in a rich, creamy, golden-brown sauce. The sauce is generously interspersed with pan-fried mushroom slices and finely diced caramelized onions. A vibrant sprinkle of fresh, chopped dill provides a contrasting green garnish. The dish is centrally placed, allowing for moderate negative space around the edges. The chicken retains its natural chunk shape, not sliced or fanned. The setting features a light wooden table surface, natural, even lighting, and a folded cotton napkin beside the plate, evoking a modern bistro atmosphere. A small, traditional patterned placemat subtly hints at cultural origin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with kasha (buckwheat groats), mashed potatoes, or wide egg noodles.",
+      "Often accompanied by pickled cucumbers (solenye ogurtsy) or other pickled vegetables.",
+      "Dark rye bread (cherny khleb) is a common accompaniment."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Sour cream (smetana)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2-3 cm chunks. Season generously with salt and black pepper.",
+      "Slice mushrooms. Finely dice the onion. Mince the garlic.",
+      "Heat vegetable oil and 15 g butter in a large skillet over medium-high heat.",
+      "Add mushrooms. Sauté until golden brown. Remove mushrooms from skillet. Set aside.",
+      "Add remaining 15 g butter to the skillet. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add chicken chunks to the skillet. Brown chicken on all sides. Cook until an internal temperature of 75°C (167°F) is reached.",
+      "Sprinkle flour over the chicken and onions. Stir for 1 minute.",
+      "Gradually whisk in chicken broth. Bring to a simmer, stirring constantly.",
+      "Stir in Dijon mustard. Reduce heat to low.",
+      "Fold in sour cream. Do not boil. Simmer gently for 2-3 minutes, allowing sauce to thicken slightly.",
+      "Return sautéed mushrooms to the skillet. Stir to combine.",
+      "Chop fresh dill. Stir half of the dill into the Stroganoff.",
+      "Serve immediately, garnished with remaining fresh dill."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Avoid vigorously boiling the sauce after adding sour cream to prevent curdling."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 484.6,
+      "cholesterol_mg": 173.13,
+      "dietary_fiber_g": 1.63,
+      "protein_g": 51.42,
+      "saturated_fat_g": 11.29,
+      "sodium_mg": 230.43,
+      "total_carbs_g": 11.72,
+      "total_fat_g": 25.28,
+      "total_sugars_g": 4.53,
+      "trans_fat_g": 0.54
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131,
+      "cholesterol_mg": 46.79,
+      "dietary_fiber_g": 0.44,
+      "protein_g": 13.9,
+      "saturated_fat_g": 3.05,
+      "sodium_mg": 62.28,
+      "total_carbs_g": 3.17,
+      "total_fat_g": 6.83,
+      "total_sugars_g": 1.22,
+      "trans_fat_g": 0.15
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57.7,
+      "dietary_fiber": 5.8,
+      "protein": 102.8,
+      "saturated_fat": 56.5,
+      "sodium": 10,
+      "total_carbs": 4.3,
+      "total_fat": 32.4
+    },
+    "serving_size_g": 370,
+    "total_recipe_weight_g": 1480
+  },
+  {
+    "recipe_name": "Cacio e Pepe",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cacio_e_pepe_20250626_094959_f0dad44b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:50:00.124729000Z",
+    "selected_ingredients": [
+      "pasta",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous, spiraled mound of golden spaghetti is centrally placed on a round, shallow, white porcelain pasta bowl. The pasta is coated in a glistening, creamy, off-white sauce, appearing rich and smooth. Visible flecks of freshly cracked black pepper adhere to the strands, providing textural contrast. A light dusting of finely grated Parmigiano Reggiano rests atop the pasta, with a few larger, coarse grinds of black pepper for enhanced visual texture. The plate has ample negative space, showcasing the dish's simple elegance. The bowl sits on a light-colored wooden table surface in a modern bistro setting. A neatly folded, off-white cotton napkin lies to the left. Soft, natural, even lighting illuminates the scene, highlighting the sauce's glossy finish. This is a single, refined restaurant-style portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately to maintain sauce consistency.",
+      "Enjoy as a standalone main course.",
+      "Pair with a simple green salad or crusty bread for soaking up residual sauce."
+    ],
+    "hero_ingredient": "Pasta and Black Pepper",
+    "ingredients": [
+      {
+        "name": "Spaghetti",
+        "quantity": "360g"
+      },
+      {
+        "name": "Parmigiano Reggiano cheese",
+        "quantity": "180g, finely grated"
+      },
+      {
+        "name": "Freshly cracked black peppercorns",
+        "quantity": "15g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "20g, for pasta water"
+      }
+    ],
+    "instructions": [
+      "Bring 3 litres of water to a rolling boil in a large pot. Add 20g sea salt.",
+      "Add 360g spaghetti to boiling water. Cook according to package directions until al dente, about 8-10 minutes.",
+      "While pasta cooks, finely grate 180g Parmigiano Reggiano.",
+      "In a large sauté pan, toast 15g freshly cracked black peppercorns over medium heat for 1-2 minutes until fragrant. Remove half the toasted pepper for garnish.",
+      "Before draining, reserve 500ml of starchy pasta cooking water.",
+      "Drain pasta. Add pasta directly to the sauté pan with toasted pepper.",
+      "Add 120ml reserved pasta water to the pan. Add grated cheese gradually, stirring vigorously with tongs.",
+      "Continuously stir and toss pasta, adding small splashes of reserved pasta water as needed, until a creamy, emulsified sauce forms. The sauce should coat the pasta without clumping. This process is called \"mantecare.\"",
+      "Serve immediately. Garnish with remaining toasted pepper."
+    ],
+    "notes": [
+      "The key to a successful Cacio e Pepe is the quality of ingredients and the emulsification technique. Use freshly cracked black pepper and high-quality Parmigiano Reggiano.",
+      "The starch from the pasta water is essential for creating the creamy sauce."
+    ],
+    "traditional_techniques": [
+      "Mantecare (emulsifying pasta with cheese and water)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 537,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 29.2,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 2664,
+      "total_carbs_g": 71.1,
+      "total_fat_g": 14.5,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 817,
+      "total_carbs_g": 21.8,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20,
+      "dietary_fiber": 14,
+      "protein": 58,
+      "saturated_fat": 44,
+      "sodium": 116,
+      "total_carbs": 26,
+      "total_fat": 19
+    },
+    "serving_size_g": 326.25,
+    "total_recipe_weight_g": 1305
+  },
+  {
+    "recipe_name": "Orecchiette with Italian Sausage, Garlic, and Oregano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orecchiette_with_italian_sausage%2C_garlic%2C_and_oregano_20250626_094943_2d9a3e8b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:49:44.267622000Z",
+    "selected_ingredients": [
+      "pasta",
+      "oregano",
+      "garlic",
+      "italian sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of orecchiette pasta is neatly plated on a round, clean white porcelain dinner plate. The pasta is coated in a light, glossy sauce from burst halved cherry tomatoes, with generous chunks of golden-brown crumbled Italian sausage distributed throughout. Bright green flecks of fresh oregano and chopped parsley are visible, adding vibrant contrast. The dish has a rustic yet refined appearance, showcasing the natural textures of the ingredients. The plate rests on a simple, light-colored wooden table surface. A neatly folded off-white cotton napkin is placed beside the plate, accompanied by traditional silver Italian flatware. A small, rustic bowl of grated Parmigiano-Reggiano cheese is subtly placed in the background. Natural, even lighting illuminates the dish, highlighting its freshness and inviting appeal. The background is a soft blur, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Offer extra grated Parmigiano-Reggiano cheese at the table.",
+      "Pair with a light-bodied Italian red wine or sparkling water."
+    ],
+    "hero_ingredient": "Italian sausage",
+    "ingredients": [
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Italian sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of water to a rolling boil. Season generously with salt.",
+      "Remove Italian sausage from casings. Crumble sausage into bite-sized pieces.",
+      "Heat olive oil in a large skillet over medium-high heat. Add crumbled sausage. Cook until well browned and cooked through. Remove sausage from skillet; set aside.",
+      "Add thinly sliced garlic and red pepper flakes to the skillet. Sauté for 1 minute until fragrant.",
+      "Add halved cherry tomatoes to the skillet. Cook for 3-4 minutes, pressing gently to burst some tomatoes, until softened.",
+      "Deglaze skillet with white wine, scraping up any browned bits from the bottom.",
+      "Return cooked sausage to the skillet. Stir to combine.",
+      "Add orecchiette to boiling water. Cook according to package directions until al dente. Reserve 250 ml of pasta cooking water.",
+      "Drain pasta. Add cooked pasta to the skillet with the sausage and tomato mixture. Add chopped fresh oregano.",
+      "Toss pasta and sauce together. Gradually add reserved pasta water, 60 ml at a time, tossing constantly until a light, glossy sauce forms and coats the pasta. Season with salt and pepper to taste.",
+      "Stir in grated Parmigiano-Reggiano cheese.",
+      "Garnish with chopped fresh parsley. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the amount of red pepper flakes to control the spice level.",
+      "Fresh oregano is highly recommended for the best flavor."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Pasta al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 836,
+      "cholesterol_mg": 83,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 36,
+      "saturated_fat_g": 13,
+      "sodium_mg": 947,
+      "total_carbs_g": 82.8,
+      "total_fat_g": 38,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 264,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 11.4,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 299,
+      "total_carbs_g": 26.1,
+      "total_fat_g": 12,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 20,
+      "protein": 72,
+      "saturated_fat": 65,
+      "sodium": 41,
+      "total_carbs": 30,
+      "total_fat": 49
+    },
+    "serving_size_g": 317.1,
+    "total_recipe_weight_g": 1268.5
+  }
+]

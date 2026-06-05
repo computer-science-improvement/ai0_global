@@ -1,0 +1,639 @@
+[
+  {
+    "recipe_name": "Spicy Coconut Cutlets",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_coconut_cutlets_20250626_100142_5c9cc07a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:01:43.033516000Z",
+    "selected_ingredients": [
+      {
+        "name": "maple syrup"
+      },
+      {
+        "name": "clove"
+      },
+      {
+        "name": "black pepper"
+      },
+      {
+        "name": "coconut"
+      },
+      {
+        "name": "chili"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "vegan Indian",
+    "visual_description": "The Spicy Coconut Cutlets are presented on a rustic, round ceramic plate with natural imperfections, placed on a well-used wooden dining table. Each cutlet is round and golden-brown, showcasing a crisp, pan-fried exterior and a rich, textured interior of shredded coconut and mashed potato. A subtle hint of green from finely chopped coriander is visible within the cutlet mixture. The cutlets are arranged casually, slightly overlapping, creating an inviting, homely feel. A small bowl of vibrant green mint-coriander chutney sits alongside, ready for dipping. A few fresh coriander sprigs are casually placed near the cutlets for a touch of fresh color. The scene is bathed in warm, soft kitchen lighting, evoking a comfortable family dining atmosphere. A simple cloth napkin is loosely draped nearby, completing the authentic Indian home setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of fresh mint-coriander chutney or tamarind chutney.",
+      "Accompanied by chai tea."
+    ],
+    "hero_ingredient": "Coconut",
+    "ingredients": [
+      {
+        "name": "Fresh/Desiccated Coconut",
+        "quantity": "200g (shredded)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium (about 300g), boiled and mashed"
+      },
+      {
+        "name": "Green Chilies",
+        "quantity": "2-3, finely chopped"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1 cm piece, grated"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Clove Powder",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "1/2 teaspoon, freshly ground"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Rice Flour or Besan (chickpea flour)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Oil",
+        "quantity": "For pan-frying"
+      }
+    ],
+    "instructions": [
+      "Boil potatoes until tender. Peel and mash them thoroughly.",
+      "In a large bowl, combine mashed potatoes, shredded coconut, chopped green chilies, grated ginger, minced garlic, clove powder, black pepper, maple syrup, chopped coriander, rice flour, and salt.",
+      "Mix all ingredients until a cohesive mixture forms.",
+      "Divide the mixture into 8 equal portions. Shape each portion into a flat, round cutlet.",
+      "Heat oil in a large frying pan over medium heat.",
+      "Place cutlets in the hot oil. Do not overcrowd the pan.",
+      "Pan-fry for 3-4 minutes per side, until golden brown and crisp.",
+      "Remove cutlets from pan. Drain on paper towels.",
+      "Serve hot."
+    ],
+    "notes": [
+      "Adjust chili amount based on spice preference.",
+      "For a deeper flavor, lightly toast the shredded coconut before adding to the mixture.",
+      "Rice flour helps create a crispier exterior. Besan (chickpea flour) can be used as an alternative for binding."
+    ],
+    "traditional_techniques": [
+      "Shaping patties by hand",
+      "Pan-frying until golden brown and crisp"
+    ]
+  },
+  {
+    "recipe_name": "Bacon and Caramelized Onion Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bacon_and_caramelized_onion_risotto_20250626_100142_8f38686e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:01:42.481032000Z",
+    "selected_ingredients": [
+      "bacon",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of creamy, golden-hued risotto rests naturally on a clean, round white porcelain plate, its fluid consistency evident. The al dente Arborio rice is richly infused, showcasing finely diced, golden-brown caramelized onions throughout. A generous sprinkle of crispy, diced bacon pieces crowns the risotto, providing a textural contrast and savory visual highlight. Freshly chopped vibrant green parsley is scattered over the top, adding a pop of color and freshness. The dish is presented on a simple wooden table surface, accompanied by standard European flatware and a folded cotton napkin placed beside the plate. Natural, even lighting illuminates the dish, emphasizing its inviting textures and warm colors in a professional, approachable restaurant setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while hot and fluid.",
+      "Offer crusty bread on the side for soaking up any extra sauce."
+    ],
+    "hero_ingredient": "Bacon",
+    "ingredients": [
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "200g, diced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (approx 200g), finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Hot chicken stock",
+        "quantity": "1.2-1.5 litres"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g, freshly grated"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare all ingredients. Dice bacon, finely dice onion, mince garlic. Heat chicken stock in a separate pot; keep it hot.",
+      "In a large, heavy-bottomed pot or Dutch oven, cook diced bacon over medium heat until crispy. Remove crispy bacon with a slotted spoon and set aside on paper towels. Leave rendered bacon fat in the pot.",
+      "Add olive oil to the pot with bacon fat. Add finely diced onion. Cook over medium-low heat for 8-10 minutes until deeply caramelized and tender, stirring occasionally.",
+      "Add minced garlic to the pot. Cook for 1 minute until fragrant. Do not brown the garlic.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes to toast the rice until the edges become translucent.",
+      "Pour in the white wine. Stir constantly until the wine is completely absorbed by the rice.",
+      "Begin adding hot chicken stock, one ladleful (about 150ml) at a time. Stir continuously. Wait until each ladleful is almost fully absorbed before adding the next. Continue this process for 18-20 minutes until the rice is creamy and al dente (still has a slight bite). You may not need all the stock.",
+      "Remove the pot from heat. Stir in butter and grated Parmesan cheese vigorously. This process is called mantecatura, creating a creamy texture.",
+      "Season the risotto with salt and black pepper to taste. The consistency should be fluid and flowing, not stiff.",
+      "Serve the risotto immediately in warm bowls or plates. Garnish each portion with the reserved crispy bacon and freshly chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Risotto Method (Mantecatura)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 882,
+      "cholesterol_mg": 95,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 31.9,
+      "saturated_fat_g": 20.7,
+      "sodium_mg": 1459,
+      "total_carbs_g": 73.2,
+      "total_fat_g": 49.6,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 144,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 5.2,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 238,
+      "total_carbs_g": 12,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32,
+      "dietary_fiber": 8,
+      "protein": 64,
+      "saturated_fat": 104,
+      "sodium": 63,
+      "total_carbs": 27,
+      "total_fat": 64
+    },
+    "serving_size_g": 612.25,
+    "total_recipe_weight_g": 2449
+  },
+  {
+    "recipe_name": "Vanilla Yogurt Mousse with Cherry Gelee and Apricot Confit",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vanilla_yogurt_mousse_with_cherry_gelee_and_apricot_confit_20250626_100053_8c103103.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:00:53.531085000Z",
+    "selected_ingredients": [
+      {
+        "name": "yogurt"
+      },
+      {
+        "name": "vanilla"
+      },
+      {
+        "name": "cherry"
+      },
+      {
+        "name": "lemon"
+      },
+      {
+        "name": "apricot"
+      },
+      {
+        "name": "flour"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": null,
+    "visual_description": "Eight perfectly uniform, miniature cylindrical or cube-shaped petit fours are artfully arranged on a large, pristine white rectangular bone china platter. The plating features abundant negative space, with each petit four precisely positioned to create a minimalist yet elegant composition. Each petit four reveals distinct layers: a base of vibrant deep red cherry gelee, a delicate layer of pale orange apricot confit, and a dominant top layer of creamy, off-white vanilla yogurt mousse. A small, irregular sprinkle of golden-brown lemon sablé crumble surrounds the base of each petit four, providing a textural contrast. Each petit four is crowned with a single, tiny, bright green micro-mint leaf, providing a precise pop of color and freshness. The scene is set on a luxurious white Carrara marble surface. A crisp, white linen napkin, folded into a precise triangle, rests subtly in the background. Dramatic professional lighting creates soft shadows, enhancing the architectural precision and sophisticated simplicity of the dessert. The overall presentation is ultra-minimalist, showcasing the flawless execution and refined artistry of each component.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Vanilla",
+    "ingredients": [
+      {
+        "name": "Full-fat Greek yogurt",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Vanilla bean",
+        "quantity": "1 (split and scraped)"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 grams (for mousse)"
+      },
+      {
+        "name": "Gelatin leaves",
+        "quantity": "4 grams (2 leaves, for mousse)"
+      },
+      {
+        "name": "Fresh cherries",
+        "quantity": "200 grams (pitted)"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 grams (for gelee)"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "10 ml (for gelee)"
+      },
+      {
+        "name": "Gelatin leaves",
+        "quantity": "2 grams (1 leaf, for gelee)"
+      },
+      {
+        "name": "Fresh apricots",
+        "quantity": "150 grams (halved, pitted)"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "40 grams (for confit)"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "5 ml (for confit)"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Unsalted butter (cold, cubed)",
+        "quantity": "70 grams"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "1 gram"
+      },
+      {
+        "name": "Micro-mint leaves",
+        "quantity": "8 small leaves (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Prepare Lemon Sablé Crumble: Combine flour, cold butter, powdered sugar, lemon zest, and salt in a food processor. Pulse until coarse crumbs form. Press mixture onto a parchment-lined baking sheet. Chill 30 minutes. Bake at 160°C for 15-20 minutes until golden. Cool completely. Break into small, irregular crumbles.",
+      "Prepare Apricot Confit: Combine apricots, granulated sugar, and lemon juice in a small saucepan. Cook over medium-low heat for 10-15 minutes, stirring occasionally, until apricots are very tender and liquid is syrupy. Mash lightly with a fork or pulse briefly in a food processor for a chunky texture. Cool completely.",
+      "Prepare Cherry Gelee: Puree pitted cherries. Strain through a fine-mesh sieve to remove any skin or pulp. You need 150 ml cherry puree. Bloom 2 grams gelatin in ice water for 5 minutes. Heat cherry puree, 30 grams granulated sugar, and 10 ml lemon juice in a small saucepan until sugar dissolves. Squeeze excess water from gelatin. Stir gelatin into warm cherry mixture until fully dissolved. Pour a thin layer (approx. 5 mm) into the bottom of 8 small silicone cube or cylindrical molds (approx. 3x3x3 cm or 3 cm diameter x 3 cm height). Chill until set, about 30 minutes.",
+      "Prepare Vanilla Yogurt Mousse: Bloom 4 grams gelatin in ice water for 5 minutes. Gently warm 50 grams Greek yogurt with vanilla bean seeds and scraped pod over low heat until warm. Squeeze excess water from gelatin. Stir gelatin into warm yogurt until fully dissolved. Remove vanilla pod. Whisk remaining 200 grams cold Greek yogurt into the warm yogurt mixture until smooth. Whip heavy cream to soft peaks. Gently fold whipped cream into the yogurt mixture until just combined.",
+      "Assemble Petit Fours: Once cherry gelee is set in molds, pipe or spoon a thin layer of apricot confit over the gelee. Chill 10 minutes. Fill molds to the top with vanilla yogurt mousse. Tap molds gently to remove air bubbles. Freeze for at least 4 hours, or until completely firm.",
+      "Demold and Plate: Carefully demold the frozen petit fours. Allow to temper in the refrigerator for 15-20 minutes before serving.",
+      "Garnish and Serve: Arrange 8 petit fours artfully on a chilled serving platter. Garnish each petit four with a single micro-mint leaf and a sprinkle of lemon sablé crumble around the base."
+    ]
+  },
+  {
+    "recipe_name": "Roasted Butternut Squash and Apple Soup with Ditalini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_butternut_squash_and_apple_soup_with_ditalini_20250626_095838_2c168bd3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:58:38.646977000Z",
+    "selected_ingredients": [
+      "apple",
+      "pasta",
+      "squash"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Roasted Butternut Squash and Apple Soup is presented in a clean white porcelain bowl. The soup exhibits a warm, inviting orange hue, indicating its smooth, velvety texture. Small ditalini pasta shapes are visible, partially submerged within the rich liquid, providing a subtle textural contrast. A single, vibrant green fresh sage leaf is artfully placed on the soup's surface, offering a pop of color. A light, delicate dusting of finely grated Parmesan cheese lightly covers a section of the soup. The bowl rests on a simple wooden table surface. A neatly folded white cotton napkin is placed beside the bowl. Natural, even lighting illuminates the dish, highlighting its fresh ingredients. The background is softly blurred, suggesting a modern bistro setting, keeping focus on the elegant, approachable presentation of the soup.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Butternut Squash",
+    "ingredients": [
+      {
+        "name": "Butternut squash",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Apples (e.g., Honeycrisp, Fuji)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Ditalini pasta",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Heavy cream (optional)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "12"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Parmesan cheese (for serving, optional)",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Peel and deseed squash. Cut into 2 cm cubes.",
+      "Core apples. Cut into 2 cm cubes.",
+      "Toss squash and apples with 15 ml olive oil and 4-5 sage leaves. Season with salt and pepper.",
+      "Roast 25-30 minutes until tender and lightly caramelized.",
+      "Heat remaining 15 ml olive oil in a large pot over medium heat.",
+      "Add diced onion. Cook 5 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Add roasted squash, apples, and vegetable broth to pot. Bring to a simmer.",
+      "Simmer 10 minutes to combine flavors.",
+      "Carefully blend soup until smooth using an immersion blender or stand blender.",
+      "Return soup to pot. Stir in heavy cream if using. Keep warm.",
+      "In separate pot, cook ditalini according to package directions until al dente. Drain well.",
+      "Ladle hot soup into bowls. Add a spoonful of cooked ditalini to each bowl.",
+      "Garnish with a fresh sage leaf and a sprinkle of Parmesan."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 441.8,
+      "cholesterol_mg": 41.1,
+      "dietary_fiber_g": 9.9,
+      "protein_g": 8,
+      "saturated_fat_g": 8,
+      "sodium_mg": 275.5,
+      "total_carbs_g": 67.4,
+      "total_fat_g": 18.7,
+      "total_sugars_g": 26.4,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 75,
+      "cholesterol_mg": 7,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 1.4,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 46.8,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13.7,
+      "dietary_fiber": 35.5,
+      "protein": 16,
+      "saturated_fat": 40.1,
+      "sodium": 12,
+      "total_carbs": 24.5,
+      "total_fat": 23.9
+    },
+    "serving_size_g": 589,
+    "total_recipe_weight_g": 2356
+  },
+  {
+    "recipe_name": "Gochujang Pork Ragu with Pan-Seared Chicken, Calamari & Kimchi Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_gochujang_pork_ragu_with_pan-seared_chicken%2C_calamari_%26_kimchi_pasta_20250626_095748_68bbeece.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:57:48.549742000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "calamari",
+      "kimchi",
+      "chicken",
+      "carrot",
+      "potato",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Gochujang Pork Ragu with Pan-Seared Chicken, Calamari & Kimchi Pasta is presented on a clean, round white porcelain plate, centrally composed with moderate negative space. A mound of al dente rigatoni, coated in a rich, reddish-brown Gochujang pork ragu, forms the base. Tender, shredded pork is visibly intertwined with the pasta and vibrant orange kimchi pieces. Thick, golden-brown pan-seared chicken chunks are nestled atop the ragu. Beside them, tender, opaque calamari rings and tentacles, with a slight char, add visual contrast. Roasted potato and carrot chunks, caramelized and golden, are artfully scattered around the pasta. The dish is garnished with bright green slivers of spring onion and a sprinkle of toasted white sesame seeds. The overall impression is one of hearty textures and a warm color palette, indicative of savory depth. The plate sits on a simple wooden bistro table, with natural, even lighting. A cotton napkin and standard flatware are placed beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean Fusion",
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "2 (approx. 400 g)"
+      },
+      {
+        "name": "Calamari tubes and tentacles",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Kimchi, chopped",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Carrots, peeled",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Spring onions, thinly sliced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "1 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Pat pork shoulder dry. Cut into 3-4 cm cubes. Season generously with salt and pepper.",
+      "Heat 1 tablespoon vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear pork cubes on all sides until deeply browned. Remove pork and set aside.",
+      "Add remaining 1 tablespoon vegetable oil to the pot. Add diced onion, minced garlic, and grated ginger. Sauté for 5 minutes until softened and fragrant.",
+      "Stir in gochujang, chopped kimchi, crushed tomatoes, soy sauce, sesame oil, rice vinegar, and sugar. Cook for 2 minutes, stirring constantly.",
+      "Return seared pork to the pot. Pour in chicken stock. Bring to a simmer. Reduce heat to low, cover, and braise for 2-2.5 hours, or until pork is fork-tender. Shred pork directly in the pot using two forks.",
+      "Preheat oven to 200°C (400°F). Cut carrots and potatoes into 2 cm chunks. Toss with 1 tablespoon vegetable oil, salt, and pepper on a baking tray. Roast for 25-30 minutes, or until tender and slightly caramelized.",
+      "While pork braises, season chicken breasts with salt and pepper. Heat a separate pan over medium-high heat. Add a splash of vegetable oil. Sear chicken breasts for 6-8 minutes per side, until golden brown and internal temperature reaches 75°C (167°F). Remove from pan, rest for 5 minutes, then slice into thick pieces.",
+      "Clean calamari. Pat dry. Cut tubes into 1 cm rings. Leave tentacles whole. Season with salt and pepper.",
+      "Bring a large pot of salted water to a boil. Cook rigatoni according to package directions until al dente. Reserve 100 ml pasta water. Drain pasta.",
+      "Heat the pan used for chicken over high heat. Add a small amount of oil if needed. Add calamari. Sauté quickly for 1-2 minutes until opaque and slightly curled. Do not overcook.",
+      "Add cooked rigatoni to the pork ragu. Add a splash of reserved pasta water if needed to loosen the sauce. Toss to coat.",
+      "To plate, spoon a generous portion of kimchi pasta onto each plate. Arrange sliced chicken pieces and sautéed calamari rings and tentacles on top of the pasta. Scatter roasted carrot and potato chunks around the dish. Garnish with thinly sliced spring onions and toasted sesame seeds. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.9,
+      "calories": 1165,
+      "cholesterol_mg": 380,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 93.9,
+      "saturated_fat_g": 10.6,
+      "sodium_mg": 1904,
+      "total_carbs_g": 94,
+      "total_fat_g": 43.9,
+      "total_sugars_g": 12.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 133.1,
+      "cholesterol_mg": 43.4,
+      "dietary_fiber_g": 1,
+      "protein_g": 10.7,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 217.6,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 126.7,
+      "dietary_fiber": 30.7,
+      "protein": 187.8,
+      "saturated_fat": 53,
+      "sodium": 82.8,
+      "total_carbs": 34.2,
+      "total_fat": 56.3
+    },
+    "serving_size_g": 875,
+    "total_recipe_weight_g": 3500
+  }
+]

@@ -1,0 +1,611 @@
+[
+  {
+    "recipe_name": "Vietnamese Braised Beef with Jasmine Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_074912_1759f171.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-06T07:49:12.685529000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken stock",
+      "carrot",
+      "onion",
+      "chili",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Vietnamese braised beef served in a deep, wide-rimmed charcoal ceramic bowl. The dish features four large, tender chunks of beef coated in a rich, mahogany-colored sauce. Vibrant orange carrot batons are nestled between the beef chunks. The surface of the aromatic broth shows a slight, appetizing sheen. Beside the bowl sits a small, perfectly round mound of steamed jasmine rice in a separate white porcelain bowl. A garnish of fresh green cilantro leaves and thin red chili rings sits atop the beef. The setting includes a dark wood table, a pair of wooden chopsticks, and a traditional ceramic soup spoon. Natural side lighting highlights the succulent texture of the meat.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of fresh herbs like Thai basil and cilantro",
+      "Provide a small dish of lime wedges and salt mixed with cracked black pepper for dipping",
+      "Use a traditional ceramic soup spoon for the aromatic broth"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1L"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Bird's eye chili",
+        "quantity": "2"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Lemongrass stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "3 pieces"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 4cm chunks.",
+      "Pat beef dry.",
+      "Cut carrots into 3cm batons.",
+      "Dice the onion.",
+      "Bruise lemongrass stalks with a heavy knife.",
+      "Heat oil in a heavy pot over medium-high heat.",
+      "Sear beef chunks in batches until browned.",
+      "Remove beef and set aside.",
+      "Add onion to the pot. Sauté for 3 minutes.",
+      "Stir in minced chili, lemongrass, and tomato paste. Cook for 1 minute.",
+      "Return beef to the pot.",
+      "Add chicken stock and star anise.",
+      "Bring to a boil. Reduce heat to low.",
+      "Cover and simmer for 90 minutes.",
+      "Add carrot batons. Simmer for 20 minutes until tender.",
+      "Rinse rice until water runs clear.",
+      "Combine rice with 600ml water in a separate pot.",
+      "Bring to a boil. Cover and simmer on low for 15 minutes.",
+      "Season beef with fish sauce.",
+      "Remove lemongrass and star anise before serving."
+    ],
+    "notes": [
+      "Beef chuck is preferred for its fat content and tenderness after long braising",
+      "Ensure the lemongrass is well-bruised to release essential oils",
+      "Do not skip searing the beef as it provides the base for the deep sauce color"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "infusing aromatics",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 969,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 4,
+      "protein_g": 48,
+      "saturated_fat_g": 16,
+      "sodium_mg": 1575,
+      "total_carbs_g": 91,
+      "total_fat_g": 46,
+      "total_sugars_g": 6,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163.89,
+      "cholesterol_mg": 26.38,
+      "dietary_fiber_g": 0.68,
+      "protein_g": 8.12,
+      "saturated_fat_g": 2.71,
+      "sodium_mg": 266.38,
+      "total_carbs_g": 15.39,
+      "total_fat_g": 7.78,
+      "total_sugars_g": 1.01,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 14.29,
+      "protein": 96,
+      "saturated_fat": 80,
+      "sodium": 68.48,
+      "total_carbs": 33.09,
+      "total_fat": 58.97
+    },
+    "serving_size_g": 591.25,
+    "total_recipe_weight_g": 2365
+  },
+  {
+    "recipe_name": "Sake-Braised Chicken with Shiitake Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_072821_54cc895b.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-06T07:28:27.752517000Z",
+    "selected_ingredients": [
+      "sake"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of braised chicken served in a shallow, matte-grey stoneware bowl. The chicken consists of four large, 5cm chunks with deeply caramelized, glossy skin coated in a rich, dark amber sake and soy reduction. Arranged around the chicken are thick halved shiitake mushroom caps and 3cm charred leek batons. The reduction is thick and syrupy, clinging to the ingredients. A delicate mound of bright green sliced scallions and needle-thin ginger julienne is centered on top. The image shows the entire bowl centered on a dark walnut table with tapered bamboo chopsticks and a small side of white pickled radish. Natural side lighting creates soft shadows and emphasizes the glistening sauce texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese Modern",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with steamed Japanese short-grain rice",
+      "Provide a small dish of pickled ginger or daikon",
+      "Serve with hot green tea or chilled sake"
+    ],
+    "hero_ingredient": "Sake",
+    "ingredients": [
+      {
+        "name": "boneless skin-on chicken thighs",
+        "quantity": "800g"
+      },
+      {
+        "name": "sake",
+        "quantity": "250ml"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "mirin",
+        "quantity": "45ml"
+      },
+      {
+        "name": "white sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "shiitake mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "leeks",
+        "quantity": "2 large"
+      },
+      {
+        "name": "fresh ginger",
+        "quantity": "30g"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "scallions",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry.",
+      "Cut chicken into 5cm chunks.",
+      "Heat oil in a pan over medium-high heat.",
+      "Place chicken skin-side down.",
+      "Sear for 4 minutes.",
+      "Flip chicken. Sear for 2 minutes.",
+      "Remove chicken. Set aside.",
+      "Discard most fat. Leave 15ml in the pan.",
+      "Cut leeks into 3cm batons.",
+      "Halve shiitake caps.",
+      "Add leeks and mushrooms to the pan.",
+      "Sauté for 3 minutes.",
+      "Peel and julienne ginger.",
+      "Add half the ginger, sake, soy sauce, mirin, and sugar to the pan.",
+      "Stir to dissolve sugar.",
+      "Return chicken to the pan.",
+      "Bring to a simmer.",
+      "Cover. Cook for 12 minutes.",
+      "Remove lid. Increase heat to high.",
+      "Reduce sauce until thick and glossy.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Slice scallions into rounds.",
+      "Garnish with scallions and remaining ginger julienne."
+    ],
+    "notes": [
+      "Use high-quality Junmai sake for the best flavor profile",
+      "Do not trim all the fat from the chicken thighs as it flavors the sauce",
+      "Ensure the leeks are well-washed to remove grit"
+    ],
+    "traditional_techniques": [
+      "Nimono",
+      "Sake-mushi"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 9.8,
+      "calories": 722,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 41.8,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1080.5,
+      "total_carbs_g": 26,
+      "total_fat_g": 41.2,
+      "total_sugars_g": 13.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3,
+      "calories": 222.2,
+      "cholesterol_mg": 55.4,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 12.9,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 332.5,
+      "total_carbs_g": 8,
+      "total_fat_g": 12.7,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 10,
+      "protein": 83.6,
+      "saturated_fat": 52.5,
+      "sodium": 47,
+      "total_carbs": 9.5,
+      "total_fat": 52.8
+    },
+    "serving_size_g": 325,
+    "total_recipe_weight_g": 1300
+  },
+  {
+    "recipe_name": "Spiced Beef and Pineapple Almond Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_060514_b7658230.jpg",
+    "dish_type": "cake",
+    "flavor_profile": "sweet",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-06T06:05:15.118554000Z",
+    "selected_ingredients": [
+      "beef",
+      "pineapple",
+      "breadcrumbs",
+      "almond",
+      "hot sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A dense, golden-brown circular cake sits on a simple white ceramic plate. The cake has a rustic, textured surface with visible small chunks of yellow pineapple and darkened bits of caramelized beef embedded throughout. A single, thick triangular slice is placed in the foreground, showing a moist, tight-crumb interior where the breadcrumbs and ground almonds have created a rich, hearty texture. The top of the cake is naturally uneven and slightly crusted. In the background, the remaining whole cake rests on a wooden cooling rack. The setting is a bright, domestic kitchen with a linen towel nearby. Lighting is soft and natural, highlighting the contrast between the vibrant pineapple and the deep brown cake base.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "cultural_origin": "Caribbean-inspired Fusion",
+    "cultural_serving_suggestions": [
+      "Serve warm with a dollop of thick cream",
+      "Accompany with a strong black tea or spiced coffee"
+    ],
+    "hero_ingredient": "Pineapple",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh pineapple, finely diced",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Dry breadcrumbs",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Ground almonds",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Eggs, large",
+        "quantity": "3"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "7 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Grease a 20 cm round cake tin.",
+      "Brown beef in a pan over medium heat.",
+      "Drain all fat from the beef.",
+      "Stir in 50 g of brown sugar and the hot sauce.",
+      "Cook beef for 5 minutes until caramelized.",
+      "Remove beef from heat and let cool completely.",
+      "Cream butter and remaining sugar in a bowl.",
+      "Beat in eggs one at a time.",
+      "Fold in breadcrumbs, ground almonds, cinnamon, baking powder, and salt.",
+      "Stir in the cooled beef and diced pineapple.",
+      "Pour batter into the prepared tin.",
+      "Bake for 45 to 50 minutes.",
+      "Cool in the tin for 10 minutes before transferring to a wire rack."
+    ],
+    "notes": [
+      "Ensure the beef is drained thoroughly to prevent an oily cake texture",
+      "Use very fine breadcrumbs for a smoother crumb",
+      "The hot sauce provides a subtle background warmth rather than direct heat"
+    ],
+    "traditional_techniques": [
+      "sugar maceration",
+      "folding"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 36.4,
+      "calories": 830.8,
+      "cholesterol_mg": 228.8,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 24.1,
+      "saturated_fat_g": 19.3,
+      "sodium_mg": 665.6,
+      "total_carbs_g": 79.2,
+      "total_fat_g": 48.4,
+      "total_sugars_g": 45.9,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 14.5,
+      "calories": 330,
+      "cholesterol_mg": 90.9,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 9.6,
+      "saturated_fat_g": 7.6,
+      "sodium_mg": 264.4,
+      "total_carbs_g": 31.5,
+      "total_fat_g": 19.2,
+      "total_sugars_g": 18.2,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76.3,
+      "dietary_fiber": 22.9,
+      "protein": 48.2,
+      "saturated_fat": 96.5,
+      "sodium": 28.9,
+      "total_carbs": 28.8,
+      "total_fat": 62.1
+    },
+    "serving_size_g": 251.8,
+    "total_recipe_weight_g": 1007.1
+  },
+  {
+    "recipe_name": "Spicy Pineapple and Beef Mince Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_060423_adbf5f3a.jpg",
+    "dish_type": "cake",
+    "flavor_profile": "sweet",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-06T06:04:24.116741000Z",
+    "selected_ingredients": [
+      "beef",
+      "pineapple",
+      "breadcrumbs",
+      "almond",
+      "hot sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single thick wedge of the golden-brown mince cake rests on a speckled ceramic plate. A whole caramelized pineapple ring crowns the top, showing dark charred edges. Small cubes of yellow pineapple and ivory almond slivers are embedded in the savory-sweet beef base. The texture is dense and moist. The entire round cake sits in the background on a dark wooden table. A simple white linen napkin and a silver fork are placed to the side. Soft, warm kitchen light creates gentle shadows. The arrangement is natural and uncrowded, highlighting the rustic, homemade quality of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "cultural_origin": "Anglo-American Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of thick vanilla cream",
+      "Pair with a slice of sharp aged cheddar cheese",
+      "Traditional accompaniment of warm custard"
+    ],
+    "hero_ingredient": "Pineapple",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh pineapple rings",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Diced pineapple",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fine breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Flaked almonds",
+        "quantity": "50g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "20g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Grease a 15cm round cake tin.",
+      "Brown the ground beef in a pan over medium heat.",
+      "Drain any excess fat from the pan.",
+      "Add the diced pineapple and brown sugar to the beef.",
+      "Stir in the cinnamon, salt, and hot sauce.",
+      "Sauté for 5 minutes until the liquid reduces.",
+      "Remove from heat and cool slightly.",
+      "Mix in the breadcrumbs, flaked almonds, and beaten egg.",
+      "Place the pineapple rings at the bottom of the cake tin.",
+      "Press the beef mixture firmly over the pineapple rings.",
+      "Bake for 30 minutes.",
+      "Rest the cake for 10 minutes before handling.",
+      "Invert the cake onto a flat serving plate."
+    ],
+    "notes": [
+      "Use lean ground beef to prevent the cake from becoming greasy",
+      "Toast the almonds before adding to the mix for enhanced flavor",
+      "Ensure the pineapple rings are dried with a paper towel before placing in the tin"
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Baking"
+    ]
+  },
+  {
+    "recipe_name": "Spicy Pineapple and Beef Mince Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_060413_d2af25ad.jpg",
+    "dish_type": "cake",
+    "flavor_profile": "sweet",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-06T06:04:13.593117000Z",
+    "selected_ingredients": [
+      "beef",
+      "pineapple",
+      "breadcrumbs",
+      "almond",
+      "hot sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single thick wedge of the golden-brown mince cake rests on a speckled ceramic plate. A whole caramelized pineapple ring crowns the top, showing dark charred edges. Small cubes of yellow pineapple and ivory almond slivers are embedded in the savory-sweet beef base. The texture is dense and moist. The entire round cake sits in the background on a dark wooden table. A simple white linen napkin and a silver fork are placed to the side. Soft, warm kitchen light creates gentle shadows. The arrangement is natural and uncrowded, highlighting the rustic, homemade quality of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "cultural_origin": "Anglo-American Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of thick vanilla cream",
+      "Pair with a slice of sharp aged cheddar cheese",
+      "Traditional accompaniment of warm custard"
+    ],
+    "hero_ingredient": "Pineapple",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh pineapple rings",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Diced pineapple",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fine breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Flaked almonds",
+        "quantity": "50g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "20g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Grease a 15cm round cake tin.",
+      "Brown the ground beef in a pan over medium heat.",
+      "Drain any excess fat from the pan.",
+      "Add the diced pineapple and brown sugar to the beef.",
+      "Stir in the cinnamon, salt, and hot sauce.",
+      "Sauté for 5 minutes until the liquid reduces.",
+      "Remove from heat and cool slightly.",
+      "Mix in the breadcrumbs, flaked almonds, and beaten egg.",
+      "Place the pineapple rings at the bottom of the cake tin.",
+      "Press the beef mixture firmly over the pineapple rings.",
+      "Bake for 30 minutes.",
+      "Rest the cake for 10 minutes before handling.",
+      "Invert the cake onto a flat serving plate."
+    ],
+    "notes": [
+      "Use lean ground beef to prevent the cake from becoming greasy",
+      "Toast the almonds before adding to the mix for enhanced flavor",
+      "Ensure the pineapple rings are dried with a paper towel before placing in the tin"
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Baking"
+    ]
+  }
+]

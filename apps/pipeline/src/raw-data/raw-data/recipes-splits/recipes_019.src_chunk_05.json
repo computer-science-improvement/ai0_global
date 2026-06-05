@@ -1,0 +1,699 @@
+[
+  {
+    "recipe_name": "Spicy Beef Ragu with Rigatoni and Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_beef_ragu_with_rigatoni_and_mozzarella_20250625_083901_727e4f5a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:39:01.998730000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mozzarella",
+      "beef",
+      "hot sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous single portion of Rigatoni with Spicy Beef Ragu is presented in a clean, white porcelain bowl, centered on a natural wooden table surface. The al dente rigatoni noodles are thoroughly coated in a rich, deep red ragu, showcasing tender, slow-cooked diced beef chunks. A luscious, thick texture defines the sauce, clinging well to every pasta piece. Patches of golden-brown, bubbly melted mozzarella cheese crown the top, with some delightful cheese strands stretching. Bright green fresh basil leaves are scattered over the dish, adding a vibrant color contrast. A folded white cotton napkin and a traditional silver fork are placed beside the bowl. A small, rustic piece of crusty bread rests subtly nearby, completing the casual bistro setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the ragu.",
+      "Offer grated Parmesan cheese on the side for individual preference."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Diced beef (chuck or short rib)",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Hot sauce (e.g., Louisiana style)",
+        "quantity": "30 ml (adjust to taste)"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat diced beef dry. Season with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or pot over medium-high heat. Brown beef in batches until deeply colored on all sides. Remove beef and set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Return beef to the pot. Stir in crushed tomatoes, beef broth, hot sauce, and oregano.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for 2-3 hours, or until beef is very tender. Stir occasionally. Adjust seasoning as needed.",
+      "Cook rigatoni according to package directions until al dente. Drain well.",
+      "Preheat oven broiler. Stir cooked rigatoni into the beef ragu.",
+      "Transfer pasta and ragu to an oven-safe serving dish or individual gratin dishes. Tear or shred mozzarella over the top.",
+      "Broil for 3-5 minutes, or until mozzarella is melted and bubbly and lightly browned.",
+      "Garnish with fresh basil leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 163,
+      "cholesterol_mg": 16.7,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.5,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 55.2,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 11.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 21,
+      "cholesterol_mg": 2.1,
+      "dietary_fiber_g": 0.1,
+      "protein_g": 0.8,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 7,
+      "total_carbs_g": 1.1,
+      "total_fat_g": 1.4,
+      "total_sugars_g": 0.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 5.6,
+      "dietary_fiber": 2.4,
+      "protein": 13.1,
+      "saturated_fat": 14.5,
+      "sodium": 2.4,
+      "total_carbs": 3.3,
+      "total_fat": 14.5
+    },
+    "serving_size_g": 784,
+    "total_recipe_weight_g": 3135
+  },
+  {
+    "recipe_name": "Chicken and Taleggio Barley Risotto with Swiss Chard",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_taleggio_barley_risotto_with_swiss_chard_20250625_083847_cb7705e7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:38:48.279786000Z",
+    "selected_ingredients": [
+      "caraway",
+      "chicken",
+      "taleggio cheese",
+      "barley",
+      "swiss chard"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a wide, shallow white porcelain bowl, showcasing a generous portion of creamy barley risotto. The barley is cooked to a fluid, al dente consistency. Interspersed are tender, bite-sized chunks of pan-seared chicken, lightly browned. Vibrant green swiss chard leaves and finely chopped stems are folded in, adding color and subtle bitterness. Melted Taleggio cheese creates a luxurious, smooth texture, with occasional pockets of its characteristic orange rind visible. The dish is garnished with a sprinkle of toasted caraway seeds for aromatic crunch. A light dusting of finely grated Parmesan and fresh parsley sprigs add freshness. The plating is clean, inviting, with moderate negative space, set on a simple wooden table with a white linen napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Northern Italian",
+    "cultural_origin": "Northern Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty rustic bread to sop up the creamy risotto.",
+      "Pair with a light, crisp white wine common to Northern Italy."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Pearl barley",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "2 large bunches"
+      },
+      {
+        "name": "Taleggio cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Hot chicken broth",
+        "quantity": "1.8 L"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Parmesan cheese (for garnish)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley (for garnish)",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 2-3 cm cubes. Season with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a large pot or Dutch oven over medium-high heat. Sear chicken cubes in batches until golden brown and cooked through. Internal temperature must reach 75°C (167°F). Remove chicken and set aside.",
+      "Dice onion finely. Mince garlic. Separate swiss chard leaves from stems. Chop stems into 1 cm pieces. Coarsely chop leaves.",
+      "Add remaining 2 tablespoons olive oil and 1 tablespoon butter to the pot. Add diced onion. Sauté until softened, about 5 minutes. Add minced garlic and chard stems. Cook for 2 minutes until fragrant.",
+      "Add pearl barley to the pot. Stir for 2 minutes to toast lightly.",
+      "Pour in white wine. Stir constantly until liquid is almost fully absorbed.",
+      "Begin adding hot chicken broth, one ladleful at a time. Stir frequently, waiting until each addition is almost fully absorbed before adding the next. Continue for 30-40 minutes, until barley is creamy and al dente.",
+      "During the last 5 minutes of cooking, stir in chopped swiss chard leaves. Cook until wilted and tender.",
+      "Remove pot from heat. Stir in cooked chicken, remaining butter, and diced Taleggio cheese. Stir vigorously until cheese is melted and risotto is creamy. Season with salt and pepper to taste.",
+      "In a small dry pan, toast caraway seeds over medium heat for 1-2 minutes until fragrant. Do not burn.",
+      "Ladle the barley risotto into warm serving bowls. Garnish each serving with toasted caraway seeds, a sprinkle of grated Parmesan cheese, and fresh parsley sprigs. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust broth quantity for desired risotto consistency; some barley types absorb more liquid than others."
+    ],
+    "traditional_techniques": [
+      "Risottatura (risotto cooking method applied to barley)",
+      "Soffritto (aromatic base)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 990.3,
+      "cholesterol_mg": 227.7,
+      "dietary_fiber_g": 15.4,
+      "protein_g": 62.7,
+      "saturated_fat_g": 19.4,
+      "sodium_mg": 1318.4,
+      "total_carbs_g": 69.4,
+      "total_fat_g": 48,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 95.5,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 127.1,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 55,
+      "protein": 125,
+      "saturated_fat": 97,
+      "sodium": 57,
+      "total_carbs": 25,
+      "total_fat": 62
+    },
+    "serving_size_g": 1037.4,
+    "total_recipe_weight_g": 4149.5
+  },
+  {
+    "recipe_name": "Classic Coq au Vin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_coq_au_vin_20250625_083835_d47166a6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:38:36.218226000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Coq au Vin on a round, clean white porcelain plate, presented on a simple wooden table. A rich, dark red wine sauce pools around a whole, golden-brown braised chicken leg quarter. Scattered around the chicken and lightly submerged in the sauce are earthy brown quartered cremini mushrooms, glistening white pearl onions, and vibrant orange 2cm carrot chunks. A delicate sprinkle of fresh green chopped parsley garnishes the dish, adding a touch of freshness. The textures are varied: tender chicken, soft vegetables, and a glossy, slightly thickened sauce. The background features a subtly out-of-focus modern bistro setting with natural, even lighting. A folded white cotton napkin and classic silver flatware rest beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Crusty baguette for dipping in the sauce",
+      "Simple green salad with a vinaigrette",
+      "Mashed potatoes or buttered noodles"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken leg quarters",
+        "quantity": "4 (bone-in, skin-on)"
+      },
+      {
+        "name": "Bacon",
+        "quantity": "150 g, diced"
+      },
+      {
+        "name": "Pearl onions",
+        "quantity": "200 g, peeled"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g, quartered"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, peeled, cut into 2 cm chunks"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, cut into 2 cm chunks"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Brandy",
+        "quantity": "60 ml (optional)"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry. Season with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat.",
+      "Sear chicken skin-side down until golden brown, 5-7 minutes. Flip and sear other side, 3-5 minutes. Remove chicken.",
+      "Add diced bacon to Dutch oven. Cook until crispy. Remove bacon, reserve fat.",
+      "Add pearl onions to rendered bacon fat. Sauté until lightly browned, 5 minutes. Remove onions.",
+      "Add mushrooms to Dutch oven. Sauté until browned and tender, 7-10 minutes. Remove mushrooms.",
+      "Add carrots, celery, and minced garlic to Dutch oven. Sauté 5 minutes until softened.",
+      "Stir in tomato paste. Cook 2 minutes.",
+      "Deglaze with brandy (if using). Scrape bottom of pot.",
+      "Sprinkle flour over vegetables. Cook 2 minutes, stirring.",
+      "Gradually pour in red wine and chicken stock, stirring constantly. Bring to a simmer.",
+      "Return chicken, bacon, pearl onions, and mushrooms to Dutch oven. Add thyme sprigs and bay leaf.",
+      "Ensure chicken is mostly submerged. Bring to a gentle simmer.",
+      "Cover and braise in oven at 160°C for 1.5 to 2 hours, or until chicken is tender and cooked through (internal temperature 75°C).",
+      "Remove chicken, bacon, onions, and mushrooms. Discard thyme sprigs and bay leaf.",
+      "Skim excess fat from sauce. Reduce sauce on stovetop if desired, until slightly thickened.",
+      "Stir butter into sauce until melted and incorporated. Adjust seasoning.",
+      "Return chicken, bacon, onions, and mushrooms to sauce. Heat through.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising (braisage)",
+      "Deglazing (déglaçage)",
+      "Mirepoix"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1259.02,
+      "cholesterol_mg": 356.38,
+      "dietary_fiber_g": 4.08,
+      "protein_g": 88.54,
+      "saturated_fat_g": 22.71,
+      "sodium_mg": 1452.91,
+      "total_carbs_g": 23.59,
+      "total_fat_g": 71.06,
+      "total_sugars_g": 6.79,
+      "trans_fat_g": 0.64
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165.66,
+      "cholesterol_mg": 46.89,
+      "dietary_fiber_g": 0.54,
+      "protein_g": 11.65,
+      "saturated_fat_g": 2.99,
+      "sodium_mg": 191.17,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 9.35,
+      "total_sugars_g": 0.89,
+      "trans_fat_g": 0.08
+    },
+    "daily_value_percentages": {
+      "cholesterol": 118.79,
+      "dietary_fiber": 14.57,
+      "protein": 177.08,
+      "saturated_fat": 113.55,
+      "sodium": 63.17,
+      "total_carbs": 8.58,
+      "total_fat": 91.1
+    },
+    "serving_size_g": 760,
+    "total_recipe_weight_g": 3040
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Spicy Mushroom Chocolate Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_spicy_mushroom_chocolate_sauce_20250625_083830_4cfb66f3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:38:30.962156000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "hot sauce",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, perfectly pan-seared chicken breast rests centered on a clean, white porcelain dinner plate. The chicken, with a golden-brown crust, is presented whole. A generous, glossy, dark brown sauce, rich with finely chopped dark chocolate and the subtle red hue of sriracha, cascades artfully over and around the chicken. Interspersed within the sauce are varied shapes of tender, sautéed mushrooms – some quartered, some sliced – adding earthy texture. A vibrant sprinkle of fresh, chopped cilantro provides a contrasting pop of green. The plate is set on a simple, light-colored wooden table. Natural, even lighting illuminates the dish. A neatly folded cotton napkin and minimal, modern flatware are positioned beside the plate, completing a refined yet approachable bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "cultural_serving_suggestions": [
+      "Serve with steamed rice or roasted seasonal vegetables."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Mixed mushrooms (cremini, shiitake)",
+        "quantity": "400g, sliced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "50g, finely chopped"
+      },
+      {
+        "name": "Sriracha hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro or flat-leaf parsley",
+        "quantity": "For garnish, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add chicken. Sear 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken. Set aside.",
+      "Reduce heat to medium. Add remaining 15ml olive oil and butter to the skillet. Add diced onion. Sauté 3-4 minutes until softened.",
+      "Add minced garlic and sliced mushrooms. Cook 5-7 minutes until mushrooms are tender and browned.",
+      "Stir in tomato paste. Cook 1 minute.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from the pan.",
+      "Remove skillet from heat. Stir in chopped dark chocolate and hot sauce until chocolate is melted and sauce is smooth.",
+      "Return chicken to skillet. Spoon sauce over chicken. Simmer gently 2 minutes to warm through.",
+      "Taste and adjust seasoning.",
+      "Garnish with fresh cilantro or parsley. Serve immediately."
+    ],
+    "notes": [
+      "Adjust hot sauce quantity to your preferred spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.6,
+      "calories": 544,
+      "cholesterol_mg": 170,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 61.8,
+      "saturated_fat_g": 10,
+      "sodium_mg": 170,
+      "total_carbs_g": 15.9,
+      "total_fat_g": 25.5,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 123.6,
+      "cholesterol_mg": 38.5,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 14.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 38.6,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 12,
+      "protein": 124,
+      "saturated_fat": 50,
+      "sodium": 7,
+      "total_carbs": 6,
+      "total_fat": 33
+    },
+    "serving_size_g": 440,
+    "total_recipe_weight_g": 1760
+  },
+  {
+    "recipe_name": "Potato and Pickled Red Onion Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_and_pickled_red_onion_salad_20250625_083822_68ff87ef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:38:23.134273000Z",
+    "selected_ingredients": [
+      "potato",
+      "mushroom",
+      "cheese",
+      "tomato",
+      "onion",
+      "broccoli"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian",
+    "visual_description": "A vibrant and naturally composed salad is presented on a handcrafted, unglazed ceramic plate in a warm off-white tone. Diced roasted potatoes form a scattered base, exhibiting golden-brown edges. Blanched broccoli florets, deep green and tender-crisp, are artistically distributed among the potatoes. Sliced sautéed cremini mushrooms, rich brown and meaty, are interspersed throughout. Halved cherry tomatoes, displaying bright red hues, add pops of color and juicy texture. Thinly sliced, vibrant pink pickled red onion pieces are scattered, providing a striking visual contrast and a hint of tang. Crumbled vegan feta cheese, creamy white, is sprinkled over the entire dish. A light, glistening golden dressing is visibly drizzled, binding the elements. The plate is set on a light, textured reclaimed wood surface, accompanied by a simply folded, undyed linen napkin. Soft, diffused natural light illuminates the scene, with a minimalist background suggesting natural elements without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Small waxy potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Vegan feta cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Prepare pickled red onion: Thinly slice the red onion. In a small saucepan, combine 60 ml apple cider vinegar, 120 ml water, 10 g sugar, and 5 g salt. Bring to a simmer until sugar and salt dissolve. Pour hot brine over sliced red onion in a heatproof jar. Let cool completely. Refrigerate for at least 30 minutes, or up to 2 weeks.",
+      "Preheat oven to 200°C. Wash and dice potatoes into 2 cm cubes. Toss with 30 ml olive oil, 2 g salt, and 2 g black pepper. Spread in a single layer on a baking sheet. Roast for 25-30 minutes, turning once, until tender and lightly crisped.",
+      "Bring a pot of salted water to a boil. Add broccoli florets. Blanch for 2-3 minutes until tender-crisp. Immediately transfer to an ice bath to stop cooking. Drain well.",
+      "Slice cremini mushrooms. Heat 15 ml olive oil in a pan over medium-high heat. Add mushrooms and sauté for 5-7 minutes until golden brown and tender. Season with a pinch of salt.",
+      "Halve cherry tomatoes.",
+      "Prepare the dressing: In a small bowl, whisk together remaining 15 ml olive oil, remaining 60 ml apple cider vinegar, Dijon mustard, remaining 3 g salt, and remaining 3 g black pepper. Add 30 ml of the pickled red onion brine for extra flavor.",
+      "In a large bowl, combine roasted potatoes, blanched broccoli, sautéed mushrooms, halved cherry tomatoes, and desired amount of pickled red onion.",
+      "Crumble vegan feta cheese over the salad. Pour dressing over the salad ingredients. Gently toss to combine.",
+      "Finely chop fresh parsley. Garnish the salad with chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 392,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 7.2,
+      "saturated_fat_g": 7,
+      "sodium_mg": 1310,
+      "total_carbs_g": 45.6,
+      "total_fat_g": 20.6,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 82.2,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 1.5,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 274.8,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 24.29,
+      "protein": 14.4,
+      "saturated_fat": 35,
+      "sodium": 56.96,
+      "total_carbs": 16.58,
+      "total_fat": 26.41
+    },
+    "serving_size_g": 476.5,
+    "total_recipe_weight_g": 1906
+  }
+]

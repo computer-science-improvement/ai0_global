@@ -1,0 +1,671 @@
+[
+  {
+    "recipe_name": "Sopa de Carne com Bolinhas de Ricota Picante",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sopa_de_carne_com_bolinhas_de_ricota_picante_20250712_200042_a2655a32.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T20:00:42.538853000Z",
+    "selected_ingredients": [
+      {
+        "name": "ricotta"
+      },
+      {
+        "name": "garlic"
+      },
+      {
+        "name": "beef"
+      },
+      {
+        "name": "chili"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Brazilian",
+    "visual_description": "A deep, rustic ceramic bowl holds a hearty portion of Brazilian beef and ricotta dumpling soup. The rich, reddish-brown broth, thickened slightly by the beef and tomatoes, is the central element. Tender, shredded beef chunks are scattered throughout. Soft, off-white ricotta dumplings, irregularly shaped, nestle among the beef. Thin ribbons of vibrant green collard greens provide a fresh color contrast. A sprinkle of fresh, chopped parsley or cilantro garnishes the top, adding a pop of green. The bowl sits on a well-used wooden dining table, with a slightly textured, everyday ceramic plate visible underneath. A simple cloth napkin is casually placed nearby. The scene is illuminated by warm, inviting kitchen light, creating a cozy, lived-in atmosphere. The entire plate is visible, showcasing a single, generous individual portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Brazilian",
+    "cultural_origin": "Brazilian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of toasted farofa (toasted cassava flour) for texture.",
+      "Offer crusty French bread or pão de queijo (cheese bread) for dipping.",
+      "Provide a small bowl of extra malagueta chili oil for those who prefer more heat."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh red chili (e.g., dedo-de-moça)",
+        "quantity": "1"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "1.5 liters"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh collard greens (couve)",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Fresh parsley or cilantro",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "2 tablespoons, grated"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 3 cm chunks. Season with salt and pepper.",
+      "Heat olive oil in a large pot over medium-high heat. Sear beef chunks on all sides until browned. Remove beef from pot.",
+      "Dice onion. Mince garlic. Finely chop chili. Add onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and chopped chili. Cook 1 minute until fragrant.",
+      "Return beef to the pot. Add diced tomatoes and beef broth. Bring to a boil. Reduce heat to low. Cover and simmer 1.5 to 2 hours, or until beef is very tender.",
+      "While beef simmers, prepare ricotta dumplings. In a bowl, combine ricotta, egg, flour, grated Parmesan, and a pinch of salt. Mix until just combined. Do not overmix.",
+      "Form the ricotta mixture into small, irregular balls, about 2 cm in diameter. Lightly flour hands if sticky.",
+      "Remove beef from the pot. Shred beef using two forks. Return shredded beef to the pot.",
+      "Bring soup to a gentle simmer. Carefully drop ricotta dumplings into the simmering soup. Cook 5-7 minutes, or until dumplings float and are cooked through.",
+      "Wash and thinly slice collard greens into ribbons. Add collard greens to the soup. Cook 2-3 minutes until wilted.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Ladle soup into individual bowls. Garnish with fresh chopped parsley or cilantro."
+    ],
+    "notes": [
+      "For best flavor, use good quality beef broth.",
+      "Do not overwork the ricotta dumpling dough; it should be light and tender."
+    ],
+    "traditional_techniques": [
+      "Slow simmering",
+      "Shredding beef"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 615,
+      "cholesterol_mg": 171.7,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 53.1,
+      "saturated_fat_g": 13,
+      "sodium_mg": 1139,
+      "total_carbs_g": 24.8,
+      "total_fat_g": 33.6,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 76.1,
+      "cholesterol_mg": 21.2,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 6.6,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 140.9,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57.2,
+      "dietary_fiber": 13.6,
+      "protein": 106.3,
+      "saturated_fat": 65.2,
+      "sodium": 49.5,
+      "total_carbs": 9,
+      "total_fat": 43
+    },
+    "serving_size_g": 808.25,
+    "total_recipe_weight_g": 3233
+  },
+  {
+    "recipe_name": "Pan-Seared Cuttlefish with Garlic-Herb Snails, Roasted Bell Pepper Purée, and Toasted Acorns",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_cuttlefish_with_garlic-herb_snails%2C_roasted_bell_pepper_pur%C3%A9e%2C_and_toasted_acorns_20250712_195147_74f58b7c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T19:51:47.959012000Z",
+    "selected_ingredients": [
+      "acorn",
+      "snail",
+      "cuttlefish",
+      "parsley",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Cuttlefish with Garlic-Herb Snails, Roasted Bell Pepper Purée, and Toasted Acorns is presented on a clean, round white porcelain dinner plate. The cuttlefish, cut into irregular 3-4 cm pieces and lightly seared to a tender, opaque finish, forms a central, organic mound. Glistening garlic-herb snails are clustered artfully around the cuttlefish, their dark, earthy tones contrasting with the lighter seafood. A vibrant, smooth red bell pepper purée is artfully swiped across one side of the plate, providing a striking backdrop and a burst of color. Scattered over the cuttlefish and snails are small, roughly chopped pieces of toasted acorns, adding a rustic, golden-brown crunch. The dish is finished with a generous sprinkle of finely chopped fresh green parsley and a hint of fresh lemon juice. The overall composition is balanced, professional, and inviting, with moderate negative space. The plate rests on a simple wooden table surface, accompanied by a silver fork and knife and a folded white cotton napkin beside it. Natural, even lighting highlights the dish, with a softly blurred, casual restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Seafood",
+    "cultural_origin": "European",
+    "hero_ingredient": "Cuttlefish",
+    "ingredients": [
+      {
+        "name": "Cuttlefish",
+        "quantity": "600g, cleaned, body cut into 3-4 cm pieces, tentacles reserved"
+      },
+      {
+        "name": "Snails",
+        "quantity": "200g, canned, drained (about 48 snails)"
+      },
+      {
+        "name": "Red Bell Peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Acorns",
+        "quantity": "150g, shelled"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30g, finely chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml, divided"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken or Vegetable Stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, for juice"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste, freshly ground"
+      }
+    ],
+    "instructions": [
+      "Boil shelled acorns in water for 20 minutes. Drain. Spread on a baking tray. Roast at 180°C for 15-20 minutes until golden and crunchy. Cool and roughly chop.",
+      "Preheat oven to 200°C. Place whole bell peppers on a baking tray. Roast for 25-30 minutes until skin is blistered and charred. Transfer to a bowl, cover with cling film for 10 minutes. Peel, core, and deseed. Blend roasted bell pepper flesh with 50ml stock until smooth. Season with salt. Set aside.",
+      "Pat cuttlefish pieces dry. Season with salt and pepper.",
+      "Heat 20ml olive oil and 15g butter in a large pan over medium heat. Add 2 minced garlic cloves. Sauté for 30 seconds. Add drained snails. Sauté for 2-3 minutes. Deglaze with 50ml white wine. Cook until wine evaporates. Stir in half of the chopped parsley. Transfer snails to a bowl.",
+      "Add remaining 40ml olive oil and 15g butter to the same pan over high heat. Once hot, add cuttlefish pieces in a single layer. Sear for 2-3 minutes per side until opaque and lightly golden. Cook in batches if necessary. Deglaze with remaining 50ml white wine and 100ml stock. Simmer for 1-2 minutes. Stir in remaining 2 minced garlic cloves and half of the remaining parsley.",
+      "Reheat bell pepper purée gently. Spoon a generous dollop or swipe of bell pepper purée onto the center of each of 4 white dinner plates. Arrange seared cuttlefish pieces over the purée. Scatter garlic-herb snails around the cuttlefish. Sprinkle toasted, chopped acorns over the dish. Garnish with remaining fresh parsley and a squeeze of fresh lemon juice. Serve immediately."
+    ],
+    "notes": [
+      "Ensure cuttlefish is not overcooked; it can become rubbery if cooked too long. A quick sear is best.",
+      "Acorns require boiling first to remove tannins and soften before roasting for texture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 550,
+      "cholesterol_mg": 209,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 37,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 608,
+      "total_carbs_g": 26.5,
+      "total_fat_g": 30.9,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 133,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 23,
+      "protein": 74,
+      "saturated_fat": 38,
+      "sodium": 26,
+      "total_carbs": 10,
+      "total_fat": 40
+    },
+    "serving_size_g": 458,
+    "total_recipe_weight_g": 1831
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Chanterelle Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_chanterelle_sauce_20250712_192516_64216e8c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T19:25:16.534699000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chanterelle mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of Pan-Seared Chicken with Creamy Chanterelle Sauce rests on a simple, round, off-white ceramic plate with a slightly rustic edge. Two thick chicken medallions, golden-brown from pan-searing, are placed slightly overlapping in the center. They are generously coated with a rich, velvety cream sauce, studded with golden-brown, sautéed chanterelle mushroom pieces, which are halved or quartered. A sprinkle of fresh, finely chopped green parsley adds a vibrant pop of color. The dish is presented on a warm, well-worn wooden dining table. A simple, folded linen napkin and basic silver flatware are placed beside the plate, hinting at a relaxed family meal. Warm, soft light illuminates the scene, creating a cozy, home kitchen atmosphere, with a subtly blurred background suggesting a lived-in dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette slices to soak up the sauce",
+      "Accompany with simple boiled potatoes or steamed green beans"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Chanterelle mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper. If breasts are very thick, slice them horizontally into two thinner medallions.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken. Sear for 4-5 minutes per side until golden brown. Cook until internal temperature reaches 75°C. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add butter to the same skillet. Add sliced shallots. Sauté for 2-3 minutes until softened.",
+      "Add minced garlic and cleaned, halved or quartered chanterelle mushrooms. Sauté for 5-7 minutes until mushrooms are tender and golden.",
+      "Pour in chicken stock. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Stir in heavy cream. Simmer for 3-5 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Return cooked chicken to the skillet. Spoon sauce over chicken. Simmer for 1-2 minutes to heat through.",
+      "Remove from heat. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 540.05,
+      "cholesterol_mg": 205.13,
+      "dietary_fiber_g": 3.81,
+      "protein_g": 60.26,
+      "saturated_fat_g": 13.18,
+      "sodium_mg": 219.43,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 27.61,
+      "total_sugars_g": 4.66,
+      "trans_fat_g": 0.68
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142.59,
+      "cholesterol_mg": 54.16,
+      "dietary_fiber_g": 1.01,
+      "protein_g": 15.91,
+      "saturated_fat_g": 3.48,
+      "sodium_mg": 57.94,
+      "total_carbs_g": 3.01,
+      "total_fat_g": 7.29,
+      "total_sugars_g": 1.23,
+      "trans_fat_g": 0.18
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.38,
+      "dietary_fiber": 13.59,
+      "protein": 120.53,
+      "saturated_fat": 65.91,
+      "sodium": 9.54,
+      "total_carbs": 4.14,
+      "total_fat": 35.39
+    },
+    "serving_size_g": 378.75,
+    "total_recipe_weight_g": 1515
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Chanterelle Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_chanterelle_sauce_20250712_192309_927ef38e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T19:23:09.471728000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chanterelle mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of Pan-Seared Chicken with Creamy Chanterelle Sauce rests on a simple, round, off-white ceramic plate with a slightly rustic edge. Two thick chicken medallions, golden-brown from pan-searing, are placed slightly overlapping in the center. They are generously coated with a rich, velvety cream sauce, studded with golden-brown, sautéed chanterelle mushroom pieces, which are halved or quartered. A sprinkle of fresh, finely chopped green parsley adds a vibrant pop of color. The dish is presented on a warm, well-worn wooden dining table. A simple, folded linen napkin and basic silver flatware are placed beside the plate, hinting at a relaxed family meal. Warm, soft light illuminates the scene, creating a cozy, home kitchen atmosphere, with a subtly blurred background suggesting a lived-in dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette slices to soak up the sauce",
+      "Accompany with simple boiled potatoes or steamed green beans"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Chanterelle mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper. If breasts are very thick, slice them horizontally into two thinner medallions.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken. Sear for 4-5 minutes per side until golden brown. Cook until internal temperature reaches 75°C. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add butter to the same skillet. Add sliced shallots. Sauté for 2-3 minutes until softened.",
+      "Add minced garlic and cleaned, halved or quartered chanterelle mushrooms. Sauté for 5-7 minutes until mushrooms are tender and golden.",
+      "Pour in chicken stock. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Stir in heavy cream. Simmer for 3-5 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Return cooked chicken to the skillet. Spoon sauce over chicken. Simmer for 1-2 minutes to heat through.",
+      "Remove from heat. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 540.05,
+      "cholesterol_mg": 205.13,
+      "dietary_fiber_g": 3.81,
+      "protein_g": 60.26,
+      "saturated_fat_g": 13.18,
+      "sodium_mg": 219.43,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 27.61,
+      "total_sugars_g": 4.66,
+      "trans_fat_g": 0.68
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142.59,
+      "cholesterol_mg": 54.16,
+      "dietary_fiber_g": 1.01,
+      "protein_g": 15.91,
+      "saturated_fat_g": 3.48,
+      "sodium_mg": 57.94,
+      "total_carbs_g": 3.01,
+      "total_fat_g": 7.29,
+      "total_sugars_g": 1.23,
+      "trans_fat_g": 0.18
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.38,
+      "dietary_fiber": 13.59,
+      "protein": 120.53,
+      "saturated_fat": 65.91,
+      "sodium": 9.54,
+      "total_carbs": 4.14,
+      "total_fat": 35.39
+    },
+    "serving_size_g": 378.75,
+    "total_recipe_weight_g": 1515
+  },
+  {
+    "recipe_name": "Carrot and Herb Beef Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_carrot_and_herb_beef_salad_20250712_180124_47b15c1d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T18:01:24.579298000Z",
+    "selected_ingredients": [
+      {
+        "name": "beef",
+        "comment": "minced"
+      },
+      {
+        "name": "carrot",
+        "comment": "cooked"
+      },
+      "mint",
+      "spinach",
+      "arugula",
+      "fish sauce",
+      "chili",
+      "peanut"
+    ],
+    "complexity": "standard",
+    "special_requests": "Vietnamese",
+    "visual_description": "The Carrot and Herb Beef Salad is presented in a clean, white porcelain bowl, showcasing vibrant colors and fresh textures. A base of deep green spinach and arugula leaves forms a lush bed. Bright orange julienned carrots are artfully mixed throughout, providing a crisp texture and pop of color. Scattered among the greens are finely chopped fresh mint leaves, adding specks of lighter green and aromatic freshness. Crumbled, savory brown minced beef is evenly distributed over the top of the salad, offering a rich counterpoint to the fresh vegetables. A generous sprinkle of golden-brown crushed roasted peanuts provides a final textural crunch and nutty aroma. The clear, light amber Vietnamese dressing glistens on the leaves, subtly visible at the bottom of the bowl. The overall arrangement is natural and inviting, with moderate negative space. The bowl rests on a simple wooden table surface, accompanied by a set of dark wooden chopsticks and a folded cotton napkin beside it. Natural, even lighting highlights the freshness and detail of the ingredients, creating a professional yet approachable bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a light meal or appetizer.",
+      "Offer extra Nuoc Cham on the side for guests to adjust flavor.",
+      "Traditionally eaten with chopsticks."
+    ],
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Minced beef",
+        "quantity": "250g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "100g"
+      },
+      {
+        "name": "Arugula",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Roasted peanuts",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Water",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Bird's eye chilies",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare the dressing: Mince garlic cloves and chilies. In a small bowl, combine fish sauce, lime juice, sugar, water, minced garlic, and minced chilies. Stir until sugar dissolves. Taste and adjust seasoning.",
+      "Cook the beef: Heat vegetable oil in a pan over medium-high heat. Add minced beef. Season with salt and pepper. Cook, breaking up the beef with a spoon, until browned and cooked through. Drain excess fat. Set aside.",
+      "Prepare vegetables: Wash and pat dry spinach and arugula. Julienne carrots into thin strips. Roughly chop fresh mint leaves.",
+      "Assemble the salad: In a large mixing bowl, combine spinach, arugula, julienned carrots, and chopped mint.",
+      "Dress and serve: Pour the prepared dressing over the salad greens. Toss gently to coat all ingredients. Divide salad among four serving bowls. Top each portion with cooked minced beef and crushed roasted peanuts. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the amount of chili to your preferred spice level.",
+      "For extra flavor, lightly toast the peanuts before crushing them."
+    ],
+    "traditional_techniques": [
+      "Nuoc Cham preparation (balancing sweet, sour, salty, spicy)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 331,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 23.8,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 1547,
+      "total_carbs_g": 20.5,
+      "total_fat_g": 18.2,
+      "total_sugars_g": 12.4,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.9,
+      "calories": 130,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 9.3,
+      "saturated_fat_g": 2,
+      "sodium_mg": 606,
+      "total_carbs_g": 8,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.7,
+      "dietary_fiber": 15,
+      "protein": 47.6,
+      "saturated_fat": 26,
+      "sodium": 67.3,
+      "total_carbs": 7.5,
+      "total_fat": 23.3
+    },
+    "serving_size_g": 255.25,
+    "total_recipe_weight_g": 1021
+  }
+]

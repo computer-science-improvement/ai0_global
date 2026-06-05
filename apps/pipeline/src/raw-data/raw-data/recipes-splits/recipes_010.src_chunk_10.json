@@ -1,0 +1,648 @@
+[
+  {
+    "recipe_name": "Roasted Garlic Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_garlic_soup_20250713_155104_f888fbf2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T15:51:04.601641000Z",
+    "selected_ingredients": [
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Roasted Garlic Soup is presented in a clean, pristine white porcelain bowl. The soup itself is a warm, inviting light golden-beige, with a velvety smooth and slightly thick texture. A delicate, artistic swirl of pure white heavy cream graces the center of the soup's surface. A small, vibrant sprinkle of finely chopped fresh green chives is centered on the cream swirl, providing a fresh color contrast. The bowl is positioned centrally on a simple, natural wooden table surface. A neatly folded light grey cotton napkin rests to the left of the bowl. Traditional European-style flatware, specifically a polished soup spoon, is placed to the right. A small, rustic slice of crusty artisan bread, with a golden-brown crust and soft interior, is presented on a simple white side plate beside the main bowl. The lighting is natural and even, highlighting the soup's creamy texture. The background is a softly blurred, casual restaurant setting, minimal and unobtrusive, allowing the dish to be the focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Rustic",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping, a common accompaniment in European soup traditions."
+    ],
+    "hero_ingredient": "Roasted Garlic",
+    "ingredients": [
+      {
+        "name": "Garlic heads",
+        "quantity": "4 whole"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "2 tbsp, chopped for garnish"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Slice off the top quarter of each garlic head to expose cloves. Drizzle with 15 ml olive oil. Wrap each head loosely in aluminium foil.",
+      "Roast garlic for 40-50 minutes, until cloves are very soft and golden.",
+      "In a large pot, heat remaining 15 ml olive oil over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Remove garlic from foil. Squeeze roasted garlic cloves into the pot with the onion. Discard skins.",
+      "Add vegetable broth, thyme sprigs, and bay leaf to the pot. Bring to a simmer. Cook for 15 minutes to allow flavors to meld.",
+      "Remove thyme sprigs and bay leaf. Carefully transfer soup mixture to a blender. Blend until perfectly smooth and creamy.",
+      "Return soup to the pot. Stir in heavy cream. Season with salt and black pepper to taste.",
+      "Heat gently until warmed through. Do not boil.",
+      "Ladle hot soup into individual bowls. Garnish with chopped fresh chives. Serve immediately with crusty bread."
+    ],
+    "notes": [
+      "For extra richness, substitute chicken broth for vegetable broth.",
+      "Adding one peeled, diced potato to the soup base with the onion can add body and creaminess."
+    ],
+    "traditional_techniques": [
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 242,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 2,
+      "protein_g": 4.8,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 94,
+      "total_carbs_g": 21.7,
+      "total_fat_g": 16.6,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 67,
+      "cholesterol_mg": 9.5,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 1.3,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 26,
+      "total_carbs_g": 6,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 11,
+      "dietary_fiber": 7,
+      "protein": 10,
+      "saturated_fat": 34,
+      "sodium": 4,
+      "total_carbs": 8,
+      "total_fat": 21
+    },
+    "serving_size_g": 361,
+    "total_recipe_weight_g": 1443
+  },
+  {
+    "recipe_name": "Black Garlic & Date Caramel Tartlets",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_black_garlic_%26_date_caramel_tartlets_20250713_155027_75bae0a3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T15:50:27.558771000Z",
+    "selected_ingredients": [
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, perfectly portioned tartlet rests centrally on a light bamboo or reclaimed wood surface, set on a handcrafted, unglazed ceramic plate in a warm cream or beige tone. The tartlet features a thin, golden-brown spiced oat crust, showcasing its natural texture. The filling is a rich, dark date caramel, subtly infused with the deep, glossy black garlic, which is visible as small, tender pieces within the caramel or lightly scattered on top. A delicate, minimal dusting of finely ground pistachios provides a subtle green contrast without overwhelming the natural colors. The overall composition emphasizes clean lines, ample white space on the plate, and the pure, unadorned beauty of the ingredients. Soft, natural light illuminates the scene from the side, highlighting the subtle sheen of the caramel and the texture of the crust. A simple, undyed linen napkin in natural beige is folded neatly to the side, maintaining the eco-conscious and minimalistic aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Black Garlic",
+    "ingredients": [
+      {
+        "name": "Rolled oats",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Coconut oil (solid)",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Cinnamon",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Medjool dates (pitted)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Black garlic",
+        "quantity": "30 g (approx. 6-8 cloves)"
+      },
+      {
+        "name": "Water (or plant milk)",
+        "quantity": "60-90 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Pistachios (shelled, unsalted)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C.",
+      "Prepare the Oat Crust: In a food processor, combine rolled oats, almond flour, solid coconut oil, maple syrup, cinnamon, and salt. Process until a sticky dough forms.",
+      "Press the Crust: Press the dough evenly into 4 individual tartlet molds (approx. 10 cm diameter). Prick the bottoms with a fork.",
+      "Blind Bake Crusts: Bake for 10-12 minutes, or until lightly golden. Let cool completely on a wire rack.",
+      "Make the Date Caramel: In a high-speed blender, combine pitted Medjool dates, black garlic cloves, 60 ml water (or plant milk), vanilla extract, and salt. Blend until completely smooth and creamy. Add more water/plant milk, 15 ml at a time, if needed to reach desired consistency.",
+      "Fill Tartlets: Spoon the black garlic and date caramel evenly into the cooled oat crusts. Smooth the top with a spoon.",
+      "Chill Tartlets: Refrigerate the tartlets for at least 2 hours to allow the caramel to set.",
+      "Garnish and Serve: Before serving, finely chop or crush pistachios. Sprinkle a small amount over each tartlet. Serve chilled."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 9.1,
+      "calories": 573.4,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.4,
+      "protein_g": 11.6,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 52.5,
+      "total_carbs_g": 80.7,
+      "total_fat_g": 25.8,
+      "total_sugars_g": 45.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 5.6,
+      "calories": 354.4,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 7.2,
+      "saturated_fat_g": 8.4,
+      "sodium_mg": 32.5,
+      "total_carbs_g": 49.9,
+      "total_fat_g": 15.9,
+      "total_sugars_g": 28.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 37,
+      "protein": 23,
+      "saturated_fat": 68,
+      "sodium": 2,
+      "total_carbs": 29,
+      "total_fat": 33
+    },
+    "serving_size_g": 161.8,
+    "total_recipe_weight_g": 647.2
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Espresso Sauce and Savory Herb Crepes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_espresso_sauce_and_savory_herb_crepes_20250713_154938_ed0219c8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T15:49:39.328618000Z",
+    "selected_ingredients": [
+      "egg white",
+      "flour",
+      "butter",
+      "vanilla",
+      "espresso",
+      "milk",
+      "cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a well-used, light wooden dining table, illuminated by warm kitchen lighting. A single, modest portion of pan-seared chicken breast rests on an everyday off-white ceramic plate. The whole chicken, golden-brown and seared, is generously coated with a creamy, light brown espresso sauce pooling around its base. Beside it, two or three savory crepes, lightly folded, reveal their delicate, thin texture and flecks of green chopped parsley. The crepes are a soft, natural beige. The scene features warm, earthy colors, with varied textures: crisp chicken, smooth sauce, and soft crepes. Fresh, vibrant green parsley garnishes the dish. The plate is not overcrowded, highlighting the food. A simple fork, knife, and a plain cloth napkin are casually placed, enhancing the homely kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Strong brewed espresso",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Large egg whites",
+        "quantity": "3"
+      },
+      {
+        "name": "Pure vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Fresh parsley, finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Crepe Batter: In a bowl, whisk together flour, egg whites, milk, water, a pinch of salt, and half of the chopped parsley until smooth. Let batter rest for 15 minutes.",
+      "Cook Crepes: Heat a non-stick crepe pan or small frying pan over medium heat. Lightly grease with butter. Pour a small ladle of batter, tilting to coat the bottom evenly. Cook for 1-2 minutes until edges are set and bottom is golden. Flip and cook for 30 seconds more. Stack cooked crepes on a plate. Repeat with remaining batter.",
+      "Prepare Chicken: Season chicken breasts generously with salt and pepper.",
+      "Sear Chicken: Heat 15ml olive oil and 20g butter in a large frying pan over medium-high heat. Add chicken breasts. Sear for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from pan and set aside, keeping warm.",
+      "Make Espresso Sauce: Reduce heat to medium. Add remaining 40g butter to the pan drippings. Once melted, whisk in 15g of flour to form a roux. Cook for 1 minute.",
+      "Add Liquids: Gradually whisk in espresso, then milk, and then cream. Stir constantly until sauce thickens to a desired consistency.",
+      "Season Sauce: Stir in vanilla extract, salt, and pepper to taste. Simmer for 2-3 minutes, stirring occasionally.",
+      "Serve: Place a pan-seared chicken breast on each plate. Drizzle generously with creamy espresso sauce. Serve alongside 2-3 savory herb crepes. Garnish with remaining fresh parsley."
+    ],
+    "notes": [
+      "Ensure the espresso is strong for a pronounced flavor in the sauce.",
+      "Adjust sauce thickness by simmering longer for a thicker sauce, or adding a splash more milk/cream for a thinner consistency.",
+      "The vanilla should be a subtle background note, not overpowering."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 708,
+      "cholesterol_mg": 223,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 67.1,
+      "saturated_fat_g": 16.4,
+      "sodium_mg": 699,
+      "total_carbs_g": 31.4,
+      "total_fat_g": 33,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 189,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 17.9,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 186,
+      "total_carbs_g": 8.4,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 4,
+      "protein": 134,
+      "saturated_fat": 82,
+      "sodium": 30,
+      "total_carbs": 11,
+      "total_fat": 42
+    },
+    "serving_size_g": 375.2,
+    "total_recipe_weight_g": 1500.6
+  },
+  {
+    "recipe_name": "Shepherd's Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_shepherd%27s_pie_20250713_153151_7c65dfd4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T15:31:51.458292000Z",
+    "selected_ingredients": [
+      "mincemeat"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A deep, oval ceramic baking dish, filled with golden-brown Shepherd's Pie. The mashed potato topping is textured with fork tines, some peaks are slightly crisped and golden. Visible patches of the rich, dark meat and vegetable filling peek through the sides. Diced carrots and peas are discernible within the savory lamb mincemeat gravy. The overall impression is hearty and comforting. A single, generous portion is scooped directly from the baking dish onto a simple, round ceramic plate with a slight rim. The edges of the potato crust are slightly uneven, indicating a home-cooked feel. The plate rests on a well-used, warm-toned wooden dining table. A simple, folded off-white linen napkin is casually placed to the side. A basic fork is next to the plate. Lighting is warm and inviting, typical of a cozy kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad on the side",
+      "Serve with crusty bread for soaking up any extra gravy"
+    ],
+    "hero_ingredient": "Lamb Mincemeat",
+    "ingredients": [
+      {
+        "name": "Lamb mincemeat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Beef or lamb stock",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Peel potatoes. Cut into large chunks. Place in a large pot. Cover with cold salted water. Bring to a boil. Cook until very tender, about 15-20 minutes.",
+      "While potatoes cook, heat vegetable oil in a large oven-safe casserole dish or deep frying pan over medium-high heat. Add lamb mincemeat. Brown thoroughly, breaking up clumps. Cook until no pink remains. Drain excess fat.",
+      "Add diced onion and diced carrots to the pan with the mincemeat. Cook, stirring occasionally, for 5-7 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in plain flour. Cook for 1 minute, stirring constantly. Add tomato paste, Worcestershire sauce, and stock. Stir well. Bring mixture to a simmer. Reduce heat to low. Cook for 10-15 minutes, stirring occasionally, until sauce thickens.",
+      "Stir in frozen peas. Season the meat mixture with salt and black pepper.",
+      "Drain cooked potatoes. Return to the pot. Add butter and milk. Mash until smooth. Season mashed potatoes with salt and black pepper.",
+      "Spoon the meat mixture evenly into the oven-safe dish. Top with mashed potatoes. Spread evenly with a spoon or spatula. Create peaks and ridges on the potato topping using a fork.",
+      "Bake for 25-30 minutes, or until the potato topping is golden brown and the filling is bubbling. Let stand for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 727,
+      "cholesterol_mg": 130,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 39.7,
+      "saturated_fat_g": 16,
+      "sodium_mg": 314,
+      "total_carbs_g": 67.2,
+      "total_fat_g": 35.1,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 112,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.1,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 48,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 35,
+      "protein": 79,
+      "saturated_fat": 80,
+      "sodium": 14,
+      "total_carbs": 24,
+      "total_fat": 45
+    },
+    "serving_size_g": 650,
+    "total_recipe_weight_g": 2600
+  },
+  {
+    "recipe_name": "Chicken Cacciatore with Cannellini Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_with_cannellini_beans_20250713_152700_47a396a2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T15:27:00.815458000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "onion",
+      "bell pepper",
+      "tomato",
+      "oregano",
+      "chili",
+      "bean",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The rustic Chicken Cacciatore is presented on a clean, round white porcelain plate. Two tender, golden-brown boneless chicken thighs are nestled amidst a rich, chunky tomato-based sauce. The sauce features vibrant red and green bell pepper strips, roughly diced onions, and earthy quartered cremini mushrooms. Plump, creamy cannellini beans are interspersed throughout the savory sauce, adding visual contrast and texture. A generous sprinkle of fresh, bright green chopped parsley garnishes the dish, enhancing its freshness. The overall presentation is natural and abundant, showcasing the hearty, home-style nature of the Italian classic. The plate is set on a simple wooden table, with a plain cotton napkin and classic silver fork and knife beside it, under even, natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Pair with a simple green salad dressed with olive oil and vinegar.",
+      "Offer a glass of dry red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": "4 (approx. 180-200g each), boneless, skinless"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200g), diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large (approx. 200g), cut into 2 cm wide strips"
+      },
+      {
+        "name": "Green Bell Pepper",
+        "quantity": "1 large (approx. 200g), cut into 2 cm wide strips"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g cremini, quartered"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5 ml (1 teaspoon)"
+      },
+      {
+        "name": "Red Chili Flakes",
+        "quantity": "2.5 ml (0.5 teaspoon)"
+      },
+      {
+        "name": "Cannellini Beans",
+        "quantity": "400g can, drained and rinsed"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "125 ml (0.5 cup)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pan or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden brown on both sides. Remove chicken from pan.",
+      "Add diced onion to the pan. Cook until softened, about 5 minutes.",
+      "Add minced garlic and bell pepper strips. Sauté for 3-4 minutes until slightly tender-crisp.",
+      "Stir in quartered mushrooms. Cook for 3 minutes.",
+      "Pour in crushed tomatoes and chicken stock. Add dried oregano and chili flakes. Bring to a simmer.",
+      "Return chicken thighs to the pan. Ensure chicken is mostly submerged in sauce.",
+      "Reduce heat to low. Cover and simmer for 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is tender.",
+      "Stir in drained cannellini beans during the last 5 minutes of cooking.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "For a richer flavor, you can deglaze the pan with 60 ml of dry red wine after cooking the onions and before adding the tomatoes.",
+      "This dish can be made ahead of time; flavors often improve the next day."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 572.5,
+      "cholesterol_mg": 207.1,
+      "dietary_fiber_g": 10.9,
+      "protein_g": 49.5,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 342.2,
+      "total_carbs_g": 36,
+      "total_fat_g": 23.7,
+      "total_sugars_g": 12.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 81.6,
+      "cholesterol_mg": 29.5,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 7.1,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 48.8,
+      "total_carbs_g": 5.1,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 39.1,
+      "protein": 98.9,
+      "saturated_fat": 26.8,
+      "sodium": 14.9,
+      "total_carbs": 13.1,
+      "total_fat": 30.4
+    },
+    "serving_size_g": 701.5,
+    "total_recipe_weight_g": 2806.1
+  }
+]

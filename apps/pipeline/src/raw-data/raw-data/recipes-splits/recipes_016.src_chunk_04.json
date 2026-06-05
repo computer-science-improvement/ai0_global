@@ -1,0 +1,586 @@
+[
+  {
+    "recipe_name": "Compressed Watermelon, Mushroom, and Crispy Pasta Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_compressed_watermelon%2C_mushroom%2C_and_crispy_pasta_bites_20250627_040347_e1d2c4ae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:03:47.528088000Z",
+    "selected_ingredients": [
+      "watermelon",
+      "pasta",
+      "garlic",
+      "mushroom",
+      "sun dried tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a large, round, pristine white bone china plate. At the center, a meticulously composed mound of compressed watermelon cubes, each piece uniform and vibrant red. Adjacent, a small, elegant quenelle of dark, rich mushroom duxelles. Scattered around are delicate, irregular golden shards of crispy pasta, providing architectural contrast and crunch. A few glistening, ruby-red dots of concentrated sun-dried tomato fluid gel are strategically placed. A very light drizzle of aromatic garlic confit oil finishes the composition. The plate features abundant negative space, emphasizing the precision and artistry of each element. The setting is a polished white Carrara marble surface with a precisely folded white linen napkin. Dramatic, focused lighting creates subtle shadows, highlighting textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Watermelon",
+    "ingredients": [
+      {
+        "name": "Seedless Watermelon",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sun-dried Tomatoes (oil-packed)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Capellini Pasta",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "White Balsamic Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Agar-Agar Powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Compressed Watermelon: Cut watermelon into 2 cm thick slices. Remove rind. Cut slices into 2 cm cubes. Place cubes in a vacuum seal bag with white balsamic vinegar and a pinch of salt. Vacuum seal on high. Refrigerate for 2 hours. If no vacuum sealer, place watermelon in a bag, remove air, and weigh down in a bowl.",
+      "Prepare Mushroom Duxelles: Finely mince mushrooms and 1 garlic clove. Heat a dry pan over medium-high heat. Add minced mushrooms. Cook until moisture evaporates. Add a tablespoon of olive oil. Sauté until golden. Add minced garlic and thyme leaves. Cook 2 minutes. Season with salt and pepper. Cool completely.",
+      "Prepare Crispy Pasta: Cook capellini according to package directions until al dente. Drain well. Spread pasta thinly on a baking sheet lined with parchment paper. Drizzle lightly with olive oil. Bake at 160°C for 15-20 minutes until golden and crisp. Break into irregular shards.",
+      "Prepare Sun-dried Tomato Fluid Gel: Drain sun-dried tomatoes. Blend with 50 ml water until very smooth. Strain through a fine-mesh sieve into a small saucepan. Whisk in agar-agar powder. Bring to a boil, whisking constantly for 1 minute. Pour into a shallow dish. Refrigerate until set, about 30 minutes. Once firm, blend the gel until smooth and fluid. Transfer to a squeeze bottle.",
+      "Prepare Garlic Confit Oil: Peel and lightly crush remaining 3 garlic cloves. Place in a small saucepan with 50 ml olive oil. Cook over very low heat for 20-25 minutes until garlic is tender and fragrant, not browned. Strain oil, discard garlic (or reserve for other use). Cool oil.",
+      "Assemble and Plate: On a large, pristine white bone china plate, arrange 6-8 compressed watermelon cubes in a neat, small mound or line. Place a small, elegant quenelle of mushroom duxelles beside the watermelon. Artfully scatter 3-4 crispy pasta shards around the components. Add 3-5 small dots of sun-dried tomato fluid gel using the squeeze bottle. Drizzle a very light amount of garlic confit oil over the elements. Finely snip chives and sprinkle sparingly as a garnish. Serve immediately as a shareable snack."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 325,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 5,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 640,
+      "total_carbs_g": 22.7,
+      "total_fat_g": 25.4,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 2.3,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 300,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 11.9,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 8,
+      "protein": 10,
+      "saturated_fat": 17,
+      "sodium": 28,
+      "total_carbs": 8,
+      "total_fat": 33
+    },
+    "serving_size_g": 213.6,
+    "total_recipe_weight_g": 854.3
+  },
+  {
+    "recipe_name": "Compressed Watermelon 'Tataki' with Black Sesame Capellini and Bell Pepper Essence",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_compressed_watermelon_%27tataki%27_with_black_sesame_capellini_and_bell_pepper_essence_20250627_040232_a9fbafb0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:02:33.202217000Z",
+    "selected_ingredients": [
+      "watermelon",
+      "noodle",
+      "onion",
+      "bell pepper",
+      "pasta"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A refined, minimalist presentation on a large, round bone china sharing platter with abundant white space. Artful mounds of glossy black sesame capellini pasta are strategically placed. Interspersed, precisely cut, compressed watermelon rectangles with lightly seared, caramelized edges are elegantly arranged. Vibrant red dots or delicate, natural swirls of bell pepper essence are thoughtfully placed for color. A scattering of golden-brown, crispy shallot rings provides textural contrast. Delicate green micro cilantro or shiso leaves complete the platter. The organic, flowing composition emphasizes precise technique and premium ingredients. The platter rests on a premium marble surface, illuminated by dramatic professional lighting creating subtle shadows, against an ultra-minimalist background, encouraging a sophisticated, shareable snack.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Watermelon",
+    "ingredients": [
+      {
+        "name": "Watermelon",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Capellini pasta",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Black sesame paste or oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Micro cilantro or shiso",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Compressed Watermelon: Cut watermelon into precise 2cm x 3cm x 1cm rectangles. Place watermelon pieces in a vacuum seal bag. Add a pinch of sea salt. Vacuum seal on high to compress. Refrigerate for at least 2 hours.",
+      "Make Bell Pepper Essence: Halve and deseed red bell peppers. Roast bell peppers at 200°C (390°F) until skins blister and char. Peel charred skin. Blend roasted bell pepper flesh with 50 ml water until smooth. Strain mixture through a fine-mesh sieve, pressing to extract all liquid. Discard solids. You should have about 100 ml of essence. Whisk agar-agar into the essence in a small saucepan. Bring to a simmer, whisking constantly for 1 minute. Pour into a shallow dish. Chill until set.",
+      "Prepare Crispy Shallots: Thinly slice shallots into rings. Heat neutral oil in a small saucepan to 160°C (320°F). Fry shallot rings in batches until golden brown and crispy. Drain on paper towels. Season lightly with salt.",
+      "Cook Capellini: Bring a pot of salted water to a rolling boil. Add capellini. Cook according to package directions until al dente, about 2-3 minutes. Drain immediately. Rinse with cold water to stop cooking. Toss with a small amount of neutral oil to prevent sticking.",
+      "Assemble Black Sesame Noodles: In a bowl, combine black sesame paste (or oil), soy sauce, rice vinegar, mirin, and sugar. Whisk until well combined. Add cooked capellini. Toss gently to coat evenly.",
+      "Sear Watermelon: Remove compressed watermelon from the bag. Pat dry. Heat a non-stick pan over high heat with a tiny amount of neutral oil. Sear watermelon pieces for 30 seconds per side until lightly caramelized. Do not overcook. Season lightly with salt and pepper.",
+      "Plate the Dish: Arrange the black sesame capellini, seared watermelon 'tataki', bell pepper gel/essence, crispy shallots, and microgreens artfully on a large sharing platter or multiple small, individual bone china plates. Ensure elegant negative space and precise placement for a sophisticated, shareable snack experience."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.9,
+      "calories": 331,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 5.3,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 724,
+      "total_carbs_g": 35.3,
+      "total_fat_g": 19.2,
+      "total_sugars_g": 13.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 133,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 2.1,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 291,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 12,
+      "protein": 11,
+      "saturated_fat": 12,
+      "sodium": 31,
+      "total_carbs": 13,
+      "total_fat": 25
+    },
+    "serving_size_g": 249,
+    "total_recipe_weight_g": 996
+  },
+  {
+    "recipe_name": "Watermelon Consommé with Crispy Bacon and Fine Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_watermelon_consomm%C3%A9_with_crispy_bacon_and_fine_noodles_20250627_040116_8509fc91.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:01:16.554568000Z",
+    "selected_ingredients": [
+      "watermelon",
+      "noodle",
+      "onion",
+      "bacon",
+      "chili"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single portion of crystal-clear, amber-hued watermelon consommé is elegantly presented in a wide, shallow bone china bowl with a subtle pattern. The perfectly translucent consommé reveals delicate fine egg noodles, forming a small, artful curl at the bottom. Scattered sparingly over the noodles are precise golden-brown, crispy bacon lardons, offering textural contrast. A few vibrant drops of strained red chili oil are dotted around the noodles' edge for color and warmth. A single, fresh sprig of bright green micro cilantro is delicately placed as the sole garnish. The bowl rests on a pristine white Carrara marble surface. A crisp white linen napkin, folded into a precise triangle, sits beside. Dramatic, focused lighting casts elegant shadows, highlighting the dish's refined simplicity against an ultra-minimalist background with ample negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Watermelon",
+    "ingredients": [
+      {
+        "name": "Watermelon",
+        "quantity": "1 kg, rind removed, cubed"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "200 g, roughly chopped"
+      },
+      {
+        "name": "Cold Water",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Egg Whites",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Streaky Bacon",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fine Egg Noodles",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Red Chilies",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Neutral Oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Micro Cilantro",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Spread cubed watermelon and chopped onion on a baking tray. Roast for 20 minutes until slightly caramelized.",
+      "Transfer roasted watermelon and onion to a large pot. Add 1.5 L cold water and a pinch of salt. Bring to a gentle simmer. Skim any impurities from the surface. Simmer for 30 minutes.",
+      "Strain the broth through a fine-mesh sieve into a clean bowl. Discard solids. Chill the broth completely.",
+      "For clarification, whisk egg whites with a small amount of chilled broth until frothy. Add this mixture to the cold broth in a clean pot.",
+      "Place the pot over medium-low heat. Stir constantly until a 'raft' of egg whites forms on the surface. Stop stirring. Gently simmer for 20 minutes without disturbing the raft.",
+      "Carefully ladle the crystal-clear consommé through a cheesecloth-lined sieve, ensuring not to disturb the raft. Season the consommé with salt to taste. Keep warm.",
+      "Dice bacon into small lardons. Render slowly in a cold pan over medium-low heat until golden-brown and very crispy. Drain on paper towels. Set aside.",
+      "Cook fine egg noodles according to package instructions until just al dente. Rinse under cold water to prevent sticking and remove excess starch. Drain well. Form into small, neat nests.",
+      "Heat neutral oil in a small saucepan over low heat. Add sliced red chilies. Gently infuse for 5 minutes. Strain the oil through a fine-mesh sieve to remove chili solids for a clear chili oil. Let cool slightly.",
+      "To serve, place a small nest of fine noodles in the center of each deep bowl. Carefully ladle hot consommé around the noodles. Arrange a few crispy bacon lardons artfully over the noodles. Drizzle a few precise drops of chili oil around the noodles. Garnish with a single sprig of micro cilantro. Serve immediately."
+    ],
+    "notes": [
+      "Consommé clarification requires patience. Do not rush the simmering or straining process to achieve perfect clarity. The broth must be chilled before clarification."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 352,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 12.1,
+      "saturated_fat_g": 3,
+      "sodium_mg": 716,
+      "total_carbs_g": 41.3,
+      "total_fat_g": 15.5,
+      "total_sugars_g": 18.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 60.3,
+      "cholesterol_mg": 6.3,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 2.1,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 122.6,
+      "total_carbs_g": 7.1,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 12,
+      "dietary_fiber": 9,
+      "protein": 24,
+      "saturated_fat": 15,
+      "sodium": 31,
+      "total_carbs": 15,
+      "total_fat": 20
+    },
+    "serving_size_g": 583.8,
+    "total_recipe_weight_g": 2335
+  },
+  {
+    "recipe_name": "Fermented Cabbage and Crispy Pork Belly Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_cabbage_and_crispy_pork_belly_salad_20250627_040056_d72086c3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:00:57.145658000Z",
+    "selected_ingredients": [
+      {
+        "name": "pork"
+      },
+      {
+        "name": "parmesan cheese"
+      },
+      {
+        "name": "oil"
+      },
+      {
+        "name": "basil"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Italian",
+    "visual_description": "The salad is presented on a handcrafted, matte ceramic plate in an earthy cream or beige tone. A mound of shredded, pale green fermented cabbage is lightly tossed with vibrant, thinly sliced red radishes. Irregular, rustic cubes of crispy pork belly, with golden-brown, crackled skin, are scattered generously over the cabbage. Delicate, ivory-white flakes of Parmigiano Reggiano are artfully placed amongst the greens and pork. A vibrant green basil oil is drizzled over the entire composition, creating a natural sheen. Fresh basil leaves are sparingly placed. The arrangement is organic, emphasizing each ingredient's natural beauty. The plate has ample negative space. The setting features a light, reclaimed wood surface, an undyed linen napkin, and soft, natural lighting. Simple, traditional Italian flatware rests beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with slices of rustic, crusty bread to sop up the dressing.",
+      "A dry, crisp white wine like Vermentino or Pinot Grigio pairs well."
+    ],
+    "hero_ingredient": "Fermented Cabbage",
+    "ingredients": [
+      {
+        "name": "Pork belly",
+        "quantity": "500 g, skin on"
+      },
+      {
+        "name": "Fermented cabbage (e.g., sauerkraut)",
+        "quantity": "300 g, drained"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "50 g, block for shaving"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100 ml, plus more for cooking"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "4-5 small"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Score pork belly skin in a criss-cross pattern. Season generously with salt and pepper.",
+      "Place pork belly skin-side up in a roasting dish. Roast for 2 hours until tender.",
+      "Increase oven temperature to 220°C. Roast for another 20-30 minutes until skin is crispy and crackled.",
+      "Remove pork belly from oven. Let rest for 15 minutes. Cut into 2-3 cm cubes.",
+      "For the basil oil: Blanch basil leaves quickly in boiling water. Immediately plunge into ice water. Squeeze dry. Blend blanched basil with 100 ml extra virgin olive oil until smooth. Strain through a fine-mesh sieve for clear oil.",
+      "For the dressing: Whisk together 30 ml basil oil, red wine vinegar, Dijon mustard, salt, and pepper.",
+      "Thinly slice the radishes.",
+      "In a large bowl, combine drained fermented cabbage and thinly sliced radishes. Drizzle with half of the dressing. Toss gently.",
+      "Arrange the dressed cabbage and radish mixture on a large serving plate or individual plates.",
+      "Scatter the crispy pork belly cubes over the salad.",
+      "Shave generous flakes of Parmigiano Reggiano directly over the salad.",
+      "Drizzle remaining basil oil and dressing over the entire dish. Garnish with a few fresh basil leaves."
+    ],
+    "notes": [
+      "The rendered pork fat can be strained and saved for future cooking, a true zero-waste practice.",
+      "For a richer basil oil, infuse basil stems and leaves in warm oil for an hour before blending."
+    ],
+    "traditional_techniques": [
+      "Slow roasting"
+    ]
+  },
+  {
+    "recipe_name": "Fermented Kimchi Pineapple Mushroom Broth",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_kimchi_pineapple_mushroom_broth_20250627_040028_559402e8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:00:29.360032000Z",
+    "selected_ingredients": [
+      "kimchi",
+      "pineapple",
+      "mozzarella",
+      "mushroom",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of vibrant, reddish-orange broth fills a handcrafted ceramic bowl in earthy tones. Tender, earthy brown sautéed mushroom slices and soft, translucent onion strips are nestled within the clear liquid. Small, creamy white cubes of fresh mozzarella float delicately, some just beginning to soften from the warmth. A scattering of finely sliced bright green spring onion tops provides a fresh, verdant contrast on the surface. The bowl rests on a light, textured bamboo or reclaimed wood table surface, accompanied by an undyed linen napkin. Soft, natural lighting illuminates the dish, emphasizing its organic beauty and clean lines. The background is minimalist, with subtle hints of natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Kimchi",
+    "ingredients": [
+      {
+        "name": "Mushroom stems and trimmings",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion skins and ends",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Pineapple core and skin",
+        "quantity": "1, rinsed"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 litres"
+      },
+      {
+        "name": "Mixed mushrooms (e.g., shiitake, cremini, oyster), sliced or quartered",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Large onion, thinly sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "Kimchi, roughly chopped",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Kimchi brine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh pineapple, diced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh mozzarella, cut into 1 cm cubes or small pearls",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Neutral oil (e.g., sunflower, canola)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Green tops of 2 spring onions, thinly sliced",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Fresh cilantro or dill sprigs (optional)",
+        "quantity": "small handful for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Zero-Waste Broth: Combine mushroom stems, onion skins, pineapple core, and water in a large pot. Bring to a boil. Reduce heat. Simmer gently for 60 minutes. Strain broth through a fine-mesh sieve. Discard solids. Set broth aside.",
+      "Sauté Aromatics: Heat oil in a large pot over medium heat. Add sliced onion. Sauté until softened, about 5-7 minutes.",
+      "Cook Mushrooms: Add sliced mixed mushrooms to the pot. Sauté until mushrooms are tender and slightly browned, about 8-10 minutes.",
+      "Add Kimchi and Pineapple: Stir in chopped kimchi, kimchi brine, and diced fresh pineapple. Cook for 5 minutes, allowing flavors to meld.",
+      "Combine and Simmer: Pour the prepared zero-waste broth into the pot. Bring to a gentle simmer. Cook for 10-15 minutes to allow flavors to deepen.",
+      "Season Soup: Taste and season with salt and pepper as needed.",
+      "Serve: Ladle hot soup into individual bowls. Distribute mozzarella cubes evenly into each bowl. Garnish with sliced green onion tops and cilantro/dill if using. Serve immediately."
+    ],
+    "notes": [
+      "This recipe maximizes flavor from often-discarded parts of vegetables and fruits. The fermentation in kimchi adds complex umami and a tangy depth. Adjust spiciness by adding more or less kimchi brine."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 292.8,
+      "cholesterol_mg": 39.5,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 16,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 800.5,
+      "total_carbs_g": 17.7,
+      "total_fat_g": 18.8,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 73.2,
+      "cholesterol_mg": 9.9,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 4,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 200.1,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13,
+      "dietary_fiber": 18,
+      "protein": 32,
+      "saturated_fat": 36,
+      "sodium": 35,
+      "total_carbs": 6,
+      "total_fat": 24
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  }
+]

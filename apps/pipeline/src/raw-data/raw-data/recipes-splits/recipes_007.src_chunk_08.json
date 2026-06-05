@@ -1,0 +1,615 @@
+[
+  {
+    "recipe_name": "Baked Bell Peppers Stuffed with Cottage Cheese and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_bell_peppers_stuffed_with_cottage_cheese_and_rice_20250903_073453_a091bf6e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T07:34:53.449865000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "без сахара",
+    "visual_description": "A vibrant red or yellow bell pepper half, baked until tender with slightly charred edges, is the focal point on a simple, round ceramic plate. It is generously filled with a creamy, textured cottage cheese and rice mixture, visibly flecked with chopped fresh parsley and dill. The filling's surface is lightly golden and bubbled. The plate rests on a well-worn wooden dining table. A sturdy fork and knife with wooden handles are casually placed on a plain linen napkin beside the plate. Warm, natural kitchen lighting illuminates the scene, casting soft shadows. The background hints at a cozy, lived-in family kitchen, slightly blurred to keep focus on the hearty, comforting single portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Home",
+    "cultural_origin": "European Home Cooking",
+    "cultural_serving_suggestions": [
+      "A simple green salad with vinaigrette.",
+      "Crusty bread for dipping in the broth."
+    ],
+    "hero_ingredient": "Cottage Cheese",
+    "ingredients": [
+      {
+        "name": "Large bell peppers (red, yellow, or orange)",
+        "quantity": "4 (halved)"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cooked long-grain rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh dill, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Grated cheese (e.g., cheddar or mozzarella, optional)",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Halve bell peppers lengthwise. Remove seeds and membranes.",
+      "Heat olive oil in a pan. Sauté diced onion until softened, about 5 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant. Remove from heat.",
+      "In a large bowl, combine cottage cheese, cooked rice, sautéed onion and garlic, chopped parsley, chopped dill, egg, tomato paste, smoked paprika, salt, and pepper. Mix well.",
+      "Arrange bell pepper halves in a baking dish.",
+      "Spoon cottage cheese mixture into each bell pepper half. Fill generously.",
+      "Pour vegetable broth around the stuffed peppers in the baking dish.",
+      "Sprinkle grated cheese over the stuffed peppers (optional).",
+      "Bake for 30-35 minutes, or until peppers are tender and filling is heated through and lightly golden on top.",
+      "Serve hot."
+    ],
+    "notes": [
+      "For a richer flavor, use full-fat cottage cheese.",
+      "Adjust herbs to your preference."
+    ],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 351.4,
+      "cholesterol_mg": 64.8,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 24.3,
+      "saturated_fat_g": 5,
+      "sodium_mg": 660.9,
+      "total_carbs_g": 33.8,
+      "total_fat_g": 14.3,
+      "total_sugars_g": 11.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 71.7,
+      "cholesterol_mg": 13.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 5,
+      "saturated_fat_g": 1,
+      "sodium_mg": 134.8,
+      "total_carbs_g": 6.9,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21.6,
+      "dietary_fiber": 17.1,
+      "protein": 48.6,
+      "saturated_fat": 25,
+      "sodium": 28.7,
+      "total_carbs": 12.3,
+      "total_fat": 18.3
+    },
+    "serving_size_g": 490.1,
+    "total_recipe_weight_g": 1960.3
+  },
+  {
+    "recipe_name": "Cheesy Spinach Cottage Cheese Stuffed Shells",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_spinach_cottage_cheese_stuffed_shells_20250903_073413_96f60b46.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T07:34:13.846032000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "без сахара",
+    "visual_description": "A modest individual portion of two to three large stuffed pasta shells, nestled together, is served in an everyday ceramic bowl with a slightly chipped rim. The shells are plump, overflowing with a creamy, herbed cottage cheese and finely chopped spinach filling. They are generously coated in a rich, deep red marinara sauce, visible between and around the shells. The top is covered with a bubbly, golden-brown layer of melted mozzarella and Parmesan cheese, showing some browned spots and stretchy textures. A few vibrant green flecks of fresh chopped parsley are scattered casually over the top. The bowl sits on a well-worn, light-colored wooden dining table. A simple, folded cloth napkin in a neutral tone is placed to the side. A fork with a slightly tarnished handle rests beside the bowl. The lighting is warm and soft, mimicking natural light from a nearby kitchen window, creating a cozy, inviting atmosphere. A blurred background shows hints of a casual family kitchen, perhaps a salt shaker or a simple water glass.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Cottage cheese",
+    "ingredients": [
+      {
+        "name": "Jumbo pasta shells",
+        "quantity": "250-300g"
+      },
+      {
+        "name": "Full-fat cottage cheese",
+        "quantity": "500g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Nutmeg, ground",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Marinara sauce",
+        "quantity": "700g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook pasta shells according to package directions until al dente. Drain. Rinse with cold water to prevent sticking.",
+      "Heat olive oil in a pan over medium heat. Add minced garlic. Sauté 1 minute until fragrant.",
+      "Add fresh spinach. Cook until wilted. Remove from heat. Squeeze excess water from spinach. Chop finely.",
+      "In a large bowl, combine cottage cheese, 50g grated Parmesan, 100g shredded mozzarella, egg, chopped spinach, oregano, nutmeg, salt, and pepper. Mix well.",
+      "Spread a thin layer of marinara sauce (about 200g) on the bottom of a 23x33 cm baking dish.",
+      "Fill each cooked pasta shell with the cottage cheese mixture using a spoon.",
+      "Arrange filled shells in the baking dish over the sauce.",
+      "Pour remaining marinara sauce over the shells.",
+      "Sprinkle remaining 50g Parmesan and 100g mozzarella over the top.",
+      "Cover baking dish with foil. Bake for 25 minutes.",
+      "Remove foil. Bake for another 10-15 minutes, or until cheese is bubbly and lightly golden.",
+      "Let rest 5 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "This dish reheats well. Leftovers can be stored in the refrigerator for up to 3 days."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.5,
+      "calories": 763,
+      "cholesterol_mg": 122,
+      "dietary_fiber_g": 7,
+      "protein_g": 48.8,
+      "saturated_fat_g": 16.3,
+      "sodium_mg": 2348,
+      "total_carbs_g": 69.6,
+      "total_fat_g": 33,
+      "total_sugars_g": 15.4,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 123,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.9,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 379,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 25,
+      "protein": 98,
+      "saturated_fat": 82,
+      "sodium": 102,
+      "total_carbs": 25,
+      "total_fat": 42
+    },
+    "serving_size_g": 619,
+    "total_recipe_weight_g": 2475
+  },
+  {
+    "recipe_name": "Cottage Cheese and Herb Crostini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cottage_cheese_and_herb_crostini_20250903_073307_ee511a30.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T07:33:07.508868000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "без сахара",
+    "visual_description": "A rustic ceramic plate holds several Cottage Cheese and Herb Crostini. The crostini are natural, slightly irregular rounds of toasted baguette, golden-brown and crisp, with some char marks. Each is topped with a generous, slightly mounded portion of creamy white cottage cheese, visibly flecked with finely chopped vibrant green parsley and chives. The texture contrast is evident: crunchy bread against soft, fresh cheese. A subtle drizzle of olive oil glistens on top. The plate sits on a well-used wooden dining table. A simple, slightly crumpled linen napkin and basic, sturdy cutlery are casually placed nearby. Warm, inviting kitchen light illuminates the scene, highlighting the natural colors and textures of the homely starter. Portions are ample, filling the plate without overcrowding, suggesting a comforting, approachable meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Cottage Cheese",
+    "ingredients": [
+      {
+        "name": "Baguette",
+        "quantity": "1 (approx. 300g)"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Slice baguette into 1.5 cm thick rounds. You should get about 16-20 slices.",
+      "Arrange baguette slices on a baking sheet. Drizzle lightly with 30 ml olive oil.",
+      "Bake for 8-10 minutes, or until golden and crisp. Remove from oven.",
+      "While warm, rub each toasted baguette slice with a peeled garlic clove. Discard garlic.",
+      "Finely chop fresh parsley and chives. Combine them in a medium bowl.",
+      "Add cottage cheese to the herbs. Season with sea salt and black pepper. Mix gently until just combined.",
+      "Spoon a generous amount of the herb cottage cheese mixture onto each toasted baguette slice.",
+      "Arrange crostini on a serving platter. Drizzle with remaining 30 ml olive oil before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 410,
+      "cholesterol_mg": 9,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 19.4,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 713,
+      "total_carbs_g": 46.5,
+      "total_fat_g": 17.3,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 202,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.5,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 351,
+      "total_carbs_g": 22.9,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 3,
+      "dietary_fiber": 8,
+      "protein": 39,
+      "saturated_fat": 18,
+      "sodium": 31,
+      "total_carbs": 17,
+      "total_fat": 22
+    },
+    "serving_size_g": 203.3,
+    "total_recipe_weight_g": 813.2
+  },
+  {
+    "recipe_name": "Savory Cottage Cheese Toasts with Roasted Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_cottage_cheese_toasts_with_roasted_tomatoes_20250903_063750_fa3785ef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T06:37:50.665323000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "без сахара",
+    "visual_description": "The dish features two generous slices of rustic, golden-brown toasted bread, each thickly spread with creamy, white cottage cheese. On top of the cottage cheese, several vibrant red roasted plum tomato rounds are casually arranged, some slightly overlapping. The tomatoes show a hint of caramelization from roasting. A sprinkle of freshly chopped green dill adds a pop of color and freshness. The textures are varied: crisp bread, soft cottage cheese, and tender, juicy tomatoes. The toasts are presented on an everyday, slightly imperfect ceramic plate, showcasing natural, unpretentious portions. The scene is set on a well-used wooden dining table, illuminated by warm, cozy kitchen lighting. A simple, folded linen napkin rests nearby. This homely presentation emphasizes comfort and approachability, reflecting Eastern European culinary traditions.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with strong black tea or kvass.",
+      "Offer additional fresh dill for garnish."
+    ],
+    "hero_ingredient": "Cottage cheese",
+    "ingredients": [
+      {
+        "name": "Cottage cheese",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Plum tomatoes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Rustic bread slices (e.g., rye or sourdough)",
+        "quantity": "8 slices"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh dill, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Slice plum tomatoes into 1 cm thick rounds.",
+      "Arrange tomato rounds on a baking tray. Drizzle with olive oil. Season with salt and pepper.",
+      "Roast tomatoes for 15-20 minutes. They should be softened and slightly caramelized.",
+      "While tomatoes roast, toast bread slices until golden brown and crisp.",
+      "Cut one garlic clove in half. Rub the cut side of the garlic generously over one side of each toasted bread slice.",
+      "In a medium bowl, combine cottage cheese, chopped fresh dill, salt, and pepper. Mix well to combine.",
+      "Spread a generous amount of the cottage cheese mixture evenly onto the garlic-rubbed side of each toast slice.",
+      "Top each cottage cheese toast with the roasted tomato slices, arranging them casually.",
+      "Serve immediately as a starter."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 365,
+      "cholesterol_mg": 10,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 20.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 919,
+      "total_carbs_g": 45,
+      "total_fat_g": 11.1,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 7.9,
+      "saturated_fat_g": 1,
+      "sodium_mg": 359,
+      "total_carbs_g": 17.6,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 3,
+      "dietary_fiber": 20,
+      "protein": 41,
+      "saturated_fat": 14,
+      "sodium": 40,
+      "total_carbs": 16,
+      "total_fat": 14
+    },
+    "serving_size_g": 256.25,
+    "total_recipe_weight_g": 1025
+  },
+  {
+    "recipe_name": "Fermented Red Cabbage & Tofu Larb with Herb Couscous",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_red_cabbage_%26_tofu_larb_with_herb_couscous_20250903_060259_81c17bee.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T06:02:59.977305000Z",
+    "selected_ingredients": [
+      "red cabbage",
+      "couscous"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "thai cuisine, vegan",
+    "visual_description": "A single serving of Fermented Red Cabbage & Tofu Larb with Herb Couscous is presented in a handcrafted ceramic bowl with a matte, earthy beige finish. The bowl is shallow and wide, providing ample white space around the food. A neat mound of pale, fluffy couscous, infused with lime zest and herbs, forms the base. Over the couscous, the golden-brown, crumbly tofu larb is casually spooned, showcasing its textured surface and flecks of green herbs and red chili. Adjacent to the larb, a vibrant pile of thinly shredded, deep purple fermented red cabbage adds a striking color contrast and crunchy texture. Fresh sprigs of cilantro and mint are artfully placed on top of the larb, their bright green leaves providing a natural garnish. The dish is clean and minimalistic, emphasizing natural textures and colors. The table surface is light bamboo with a subtle grain. Accompanying the bowl are a pair of simple wooden chopsticks resting on a small, dark stone chopstick rest. A small ceramic dish holds a wedge of fresh lime. An undyed linen napkin in a natural beige tone is loosely draped beside the bowl. Soft, natural light illuminates the scene, highlighting the ingredients' pure beauty. The background is clean and unfussy, with a hint of natural plant foliage providing a subtle organic touch.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai Modern",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with fresh lettuce cups for wrapping the larb.",
+      "Offer extra fresh chilies on the side for those who prefer more heat."
+    ],
+    "hero_ingredient": "Fermented Red Cabbage",
+    "ingredients": [
+      {
+        "name": "Firm Tofu",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red Cabbage",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Couscous",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water or Vegetable Stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "2, juiced and zested"
+      },
+      {
+        "name": "Fresh Red Chilies",
+        "quantity": "2-3, thinly sliced"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": "1 bunch, roughly chopped"
+      },
+      {
+        "name": "Mint",
+        "quantity": "1/2 bunch, roughly chopped"
+      },
+      {
+        "name": "Roasted Rice Powder (Khao Khua)",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Agave Nectar or Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Press tofu for 30 minutes to remove excess water. Crumble it into small pieces.",
+      "Shred red cabbage finely. Reserve outer leaves and core for stock if desired. Place shredded cabbage in a bowl. Add 1 tsp salt. Massage cabbage for 5 minutes until it softens and releases liquid. Let sit for 30 minutes. Drain excess liquid.",
+      "Heat a dry pan over medium heat. Add 2 tbsp raw glutinous rice. Toast until golden brown. Grind to a fine powder using a mortar and pestle or spice grinder. Set aside.",
+      "Bring 250 ml water or vegetable stock to a boil. Add couscous, lime zest, and a pinch of salt. Cover. Remove from heat. Let sit for 5 minutes until water is absorbed. Fluff with a fork.",
+      "Heat vegetable oil in a large pan over medium-high heat. Add crumbled tofu. Cook, stirring occasionally, until golden brown and slightly crispy, about 8-10 minutes. Remove from pan. Set aside.",
+      "In the same pan, add shallots and garlic. Sauté for 2 minutes until fragrant. Add cooked tofu back to the pan.",
+      "Stir in lime juice, soy sauce, agave nectar, and half of the fresh chilies. Mix well. Remove from heat.",
+      "Add roasted rice powder, chopped cilantro, and chopped mint to the tofu mixture. Stir to combine. This is the tofu larb.",
+      "To serve, place a bed of herb couscous in each bowl. Top with the tofu larb. Arrange the fermented red cabbage around the larb. Garnish with remaining fresh chili slices and fresh herb sprigs."
+    ],
+    "notes": [
+      "The fermented red cabbage can be prepared a day in advance for deeper flavor.",
+      "Adjust chili to your spice preference. For less heat, remove seeds."
+    ],
+    "traditional_techniques": [
+      "Khao Khua (Roasted Rice Powder preparation)",
+      "Balancing sour, salty, and spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.9,
+      "calories": 421,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 18.6,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 117.2,
+      "total_carbs_g": 62.7,
+      "total_fat_g": 12.6,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 100,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 4.4,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 27.8,
+      "total_carbs_g": 14.9,
+      "total_fat_g": 3,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 26,
+      "protein": 37.1,
+      "saturated_fat": 9.4,
+      "sodium": 5.1,
+      "total_carbs": 22.8,
+      "total_fat": 16.2
+    },
+    "serving_size_g": 422,
+    "total_recipe_weight_g": 1688
+  }
+]

@@ -1,0 +1,661 @@
+[
+  {
+    "recipe_name": "French White Wine Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_french_white_wine_chicken_20250713_032427_fd826a6c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T03:24:28.237627000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of French White Wine Chicken is presented on a clean, round white porcelain dinner plate. Two golden-brown, seared bone-in chicken thighs, deeply colored from braising, are the centerpiece. They are positioned slightly overlapping, with their crispy skin facing upwards. A rich, creamy, light brown sauce, speckled with herbs, is generously spooned over and around the chicken. Scattered around the chicken are browned, quartered button mushrooms, glistening whole pearl onions, and crispy, diced lardons, adding textural contrast. The arrangement is organic yet intentional, allowing for moderate negative space on the plate. The dish sits on a simple wooden table surface, accompanied by traditional European flatware and a neatly folded white cotton napkin. Natural, even lighting illuminates the dish, highlighting its warmth and savory appeal, against a soft, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crusty baguette to soak up the sauce.",
+      "Accompany with simple buttered new potatoes or steamed rice.",
+      "A side of crisp green salad with a light vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Smoked lardons or bacon, diced",
+        "quantity": "150g"
+      },
+      {
+        "name": "Button mushrooms, quartered",
+        "quantity": "250g"
+      },
+      {
+        "name": "Pearl onions, peeled",
+        "quantity": "200g"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Dry white wine (e.g., Chardonnay, Sauvignon Blanc)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "20g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "In a large Dutch oven or heavy-bottomed pot, cook lardons over medium heat until crispy. Remove lardons with a slotted spoon. Reserve rendered fat.",
+      "Add olive oil and 15g butter to the pot. Sear chicken thighs skin-side down until golden brown and crispy, about 8-10 minutes. Flip and sear other side for 3-5 minutes. Remove chicken. Set aside.",
+      "Add pearl onions and mushrooms to the pot. Sauté until lightly browned, about 5-7 minutes. Remove and set aside with lardons.",
+      "Add shallots and garlic to the pot. Sauté for 2-3 minutes until fragrant.",
+      "Sprinkle flour over shallots. Stir for 1 minute to create a roux.",
+      "Gradually whisk in white wine, scraping up any browned bits from the bottom. Bring to a simmer.",
+      "Whisk in chicken broth. Bring to a gentle boil, then reduce heat to low.",
+      "Return chicken thighs to the pot. Cover and simmer for 25-30 minutes, or until internal temperature reaches 75°C (167°F).",
+      "Return cooked lardons, pearl onions, and mushrooms to the pot for the last 5 minutes of cooking to reheat.",
+      "Remove chicken from pot. Whisk remaining 15g butter into the sauce until melted and incorporated.",
+      "Taste and adjust seasoning if needed. Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For best flavor, use good quality dry white wine that you would enjoy drinking."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Deglazing",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 778,
+      "cholesterol_mg": 202,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 55.8,
+      "saturated_fat_g": 20.1,
+      "sodium_mg": 1316,
+      "total_carbs_g": 19.7,
+      "total_fat_g": 52.8,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 11.2,
+      "saturated_fat_g": 4,
+      "sodium_mg": 263,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 10.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 10,
+      "protein": 112,
+      "saturated_fat": 101,
+      "sodium": 57,
+      "total_carbs": 7,
+      "total_fat": 68
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Baked Chicken, Potato, and Orecchiette with Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_chicken%2C_potato%2C_and_orecchiette_with_mozzarella_20250713_022128_b9ab035a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T02:21:28.485912000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "tomato",
+      "oregano",
+      "pasta",
+      "mozzarella"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Baked Chicken, Potato, and Orecchiette with Mozzarella is presented in a deep, rustic white ceramic bowl. Golden-brown chicken chunks are nestled among tender roasted potato wedges and orecchiette pasta, all coated in a rich, vibrant red tomato sauce. The top features melted, slightly browned fresh mozzarella, creating inviting stretches of cheese. Chicken pieces are irregular chunks, and potatoes are rustic wedges. Fresh green basil leaves provide a vibrant color contrast. The dish is centrally placed on a simple, light-colored wooden table, with a folded off-white linen napkin and a fork beside the bowl. Natural, soft light illuminates the scene, highlighting textures and colors, maintaining a clean restaurant-style ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce.",
+      "Accompany with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil or oregano",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Cut chicken thighs into 3-4 cm chunks. Season chicken with salt and pepper.",
+      "Peel potatoes and cut into 2 cm wedges or large dice.",
+      "Heat 1 tbsp olive oil in a large oven-safe skillet or Dutch oven over medium-high heat. Sear chicken chunks until golden brown on all sides. Remove chicken from skillet and set aside.",
+      "Add remaining 2 tbsp olive oil to the skillet. Add diced onion and sauté until softened, about 5 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes, dried oregano, chicken broth, salt, and pepper. Bring sauce to a simmer.",
+      "Add potato wedges to the sauce. Cover and simmer for 10-12 minutes, or until potatoes are slightly tender but still firm.",
+      "Meanwhile, cook orecchiette pasta in salted boiling water according to package directions until al dente. Drain well.",
+      "Return seared chicken to the skillet with the sauce and potatoes. Stir in the drained orecchiette.",
+      "Tear or slice fresh mozzarella into pieces. Arrange mozzarella over the top of the dish.",
+      "Bake uncovered for 20-25 minutes, or until chicken is cooked through (internal temperature 75°C/167°F), cheese is melted and lightly golden, and sauce is bubbly.",
+      "Garnish with fresh basil or oregano before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Using an oven-safe skillet or Dutch oven minimizes cleanup."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 883,
+      "cholesterol_mg": 204,
+      "dietary_fiber_g": 7.9,
+      "protein_g": 59.8,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 713,
+      "total_carbs_g": 88.3,
+      "total_fat_g": 32.5,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.7,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 103,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 28,
+      "protein": 120,
+      "saturated_fat": 51,
+      "sodium": 31,
+      "total_carbs": 32,
+      "total_fat": 42
+    },
+    "serving_size_g": 690.5,
+    "total_recipe_weight_g": 2762
+  },
+  {
+    "recipe_name": "Mushroom and Beef Salad with Crispy Potato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom_and_beef_salad_with_crispy_potato_20250713_003647_1a4d76d4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T00:36:47.577270000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "onion",
+      "garlic",
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish, on an oversized white bone china plate, features an artful, flowing composition with generous negative space. Two to three perfectly seared beef tenderloin chunks, with deep mahogany crust, are nestled among roasted wild mushrooms, offering varied shapes and earthy tones. Crisp, golden potato tuiles are strategically placed, some standing upright, adding architectural height and textural contrast. Precise dots of glossy, deep amber caramelized shallot puree anchor the elements. A translucent, umami-rich mushroom dashi vinaigrette is artfully drizzled. Vibrant green microgreens provide a final color pop. The presentation emphasizes sophisticated simplicity and precise execution. The plate sits on a polished dark wood table with a pristine white linen napkin. Dramatic lighting casts soft shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Beef Tenderloin",
+        "quantity": "350 g"
+      },
+      {
+        "name": "Mixed Wild Mushrooms (e.g., King Oyster, Shiitake, Enoki)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large Potatoes",
+        "quantity": "2"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "3"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Microgreens (e.g., Pea Shoots, Shiso Cress)",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Dried Shiitake Mushrooms (for dashi)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Kombu (for dashi)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Water (for dashi)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Light Soy Sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Neutral Oil (e.g., grapeseed)",
+        "quantity": "60 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Mushroom Dashi Vinaigrette: Steep dried shiitake and kombu in cold water for 30 minutes. Gently heat to just below simmer. Remove kombu before boiling. Simmer shiitake for 10 minutes. Strain, reserving dashi. Whisk dashi with rice vinegar, soy sauce, mirin, and sesame oil. Slowly whisk in neutral oil to emulsify. Season to taste.",
+      "Prepare Potato Tuiles: Peel potatoes. Slice very thinly using a mandoline (0.5 mm). Rinse slices in cold water to remove starch. Pat completely dry. Pan-fry potato slices in a thin layer of olive oil until golden and crisp. Drain on paper towel. Season immediately with fine salt.",
+      "Prepare Caramelized Shallot Puree: Thinly slice shallots. Sauté in butter over low heat for 20-25 minutes until deeply caramelized and very soft. Add a splash of water or vegetable stock if needed. Blend until very smooth. Season with salt.",
+      "Roast Wild Mushrooms: Clean mushrooms. Cut larger ones into elegant shapes (e.g., King Oyster into thick rounds, Shiitake halved). Toss with olive oil, minced garlic, salt, and pepper. Roast at 200°C for 12-15 minutes until tender and slightly browned.",
+      "Sear Beef Tenderloin: Pat beef dry. Season generously with salt and pepper. Heat a heavy-bottomed pan with high smoke point oil until smoking. Sear beef tenderloin on all sides until a deep brown crust forms. Transfer to a preheated oven (180°C) until internal temperature reaches 55-58°C for medium-rare. Rest beef for 10 minutes. Cut into small, irregular, thick chunks.",
+      "Assemble and Plate: Spoon small dots of caramelized shallot puree onto the plate. Artistically arrange roasted mushrooms. Place beef chunks among the mushrooms. Stand crispy potato tuiles vertically or lean them elegantly. Drizzle mushroom dashi vinaigrette around the elements. Garnish with microgreens. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.74,
+      "calories": 557.97,
+      "cholesterol_mg": 72,
+      "dietary_fiber_g": 7.04,
+      "protein_g": 28.82,
+      "saturated_fat_g": 7.36,
+      "sodium_mg": 239.24,
+      "total_carbs_g": 38.53,
+      "total_fat_g": 32.35,
+      "total_sugars_g": 6.39,
+      "trans_fat_g": 0.15
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.37,
+      "calories": 118.71,
+      "cholesterol_mg": 15.32,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.13,
+      "saturated_fat_g": 1.57,
+      "sodium_mg": 50.89,
+      "total_carbs_g": 8.19,
+      "total_fat_g": 6.88,
+      "total_sugars_g": 1.36,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 24,
+      "dietary_fiber": 25.14,
+      "protein": 57.64,
+      "saturated_fat": 36.8,
+      "sodium": 10.4,
+      "total_carbs": 14.01,
+      "total_fat": 41.47
+    },
+    "serving_size_g": 470.025,
+    "total_recipe_weight_g": 1880.1
+  },
+  {
+    "recipe_name": "Hearty Paprika Beef and Chicken Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_paprika_beef_and_chicken_stew_20250713_001633_a48938c8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T00:16:33.905798000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "potato",
+      "garlic",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty Paprika Beef and Chicken Stew is presented centrally on a clean, round white porcelain dinner plate. The stew features generous, irregular chunks of slow-braised beef and tender diced chicken thighs, mixed with large, soft potato chunks. All elements are coated in a rich, glossy reddish-brown sauce, infused with paprika and tomato. The dish is garnished with a sprinkle of vibrant fresh green chopped parsley, providing a bright contrast. A small dollop of creamy white sour cream is placed beside the stew. The overall presentation is robust and inviting. The plate rests on a simple, light wooden table surface, with a folded white cotton napkin positioned to the side. Natural, even lighting illuminates the dish, creating a warm, approachable restaurant ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread or traditional small dumplings (nokedli/spaetzle) for soaking up the rich sauce.",
+      "A dollop of sour cream or crème fraîche is a traditional and essential accompaniment."
+    ],
+    "hero_ingredient": "Beef and Chicken",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "500 g, cut into 3 cm chunks"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400 g, cut into 2 cm dice"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large, finely chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Hot paprika (optional)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Waxy potatoes",
+        "quantity": "500 g, peeled and cut into 4 cm chunks"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped, for garnish"
+      },
+      {
+        "name": "Sour cream or Crème fraîche",
+        "quantity": "100 g, for serving"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Season beef chunks with salt and pepper. Sear beef in batches until browned on all sides. Remove beef from pot and set aside.",
+      "Season chicken dice with salt and pepper. Sear chicken in batches until lightly browned. Remove chicken from pot and set aside.",
+      "Add chopped onions to the pot. Sauté over medium heat until softened and translucent, about 8-10 minutes. Do not brown.",
+      "Add minced garlic, sweet paprika, hot paprika (if using), and caraway seeds to the pot. Stir constantly for 1 minute until fragrant. Do not burn the paprika.",
+      "Stir in tomato paste and cook for 2 minutes. Add diced tomatoes and cook for 3 minutes, scraping up any browned bits from the bottom.",
+      "Return seared beef to the pot. Pour in beef broth and add the bay leaf. Bring to a simmer, then reduce heat to low. Cover and cook for 1.5 hours, or until beef is nearly tender.",
+      "Add potato chunks to the pot. Continue to simmer, covered, for 20 minutes.",
+      "Add seared chicken dice to the pot. Cook for another 15-20 minutes, uncovered, until chicken is cooked through (internal temperature 75°C/167°F) and potatoes are tender. The sauce should be thickened.",
+      "Remove bay leaf. Season the stew with salt and pepper to taste.",
+      "Serve hot, garnished with fresh chopped parsley and a dollop of sour cream or crème fraîche."
+    ],
+    "notes": [
+      "For a deeper flavor, use a mix of sweet and hot paprika according to your preference.",
+      "Ensure paprika is not burnt during the sautéing step as it can turn bitter."
+    ],
+    "traditional_techniques": [
+      "Slow braising",
+      "Spice tempering (for paprika)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 710.53,
+      "cholesterol_mg": 177.5,
+      "dietary_fiber_g": 10.27,
+      "protein_g": 66.99,
+      "saturated_fat_g": 10.37,
+      "sodium_mg": 1516.77,
+      "total_carbs_g": 44.89,
+      "total_fat_g": 35.72,
+      "total_sugars_g": 9.42,
+      "trans_fat_g": 0.63
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101.5,
+      "cholesterol_mg": 25.36,
+      "dietary_fiber_g": 1.47,
+      "protein_g": 9.57,
+      "saturated_fat_g": 1.48,
+      "sodium_mg": 216.68,
+      "total_carbs_g": 6.41,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 1.35,
+      "trans_fat_g": 0.09
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.17,
+      "dietary_fiber": 36.68,
+      "protein": 133.98,
+      "saturated_fat": 51.85,
+      "sodium": 65.95,
+      "total_carbs": 16.32,
+      "total_fat": 45.79
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2800
+  },
+  {
+    "recipe_name": "Torradas de Pimentão e Queijo com Manjericão",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_torradas_de_piment%C3%A3o_e_queijo_com_manjeric%C3%A3o_20250713_000049_39fe7716.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T00:00:50.482356000Z",
+    "selected_ingredients": [
+      {
+        "name": "basil"
+      },
+      {
+        "name": "bell pepper"
+      },
+      {
+        "name": "bean"
+      },
+      {
+        "name": "cheese"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Brazilian",
+    "visual_description": "A single starter portion of Torradas de Pimentão e Queijo with Manjericão is presented on a simple, round, white ceramic plate. Two or three thick, golden-brown slices of toasted Pão Francês, roughly 1.5 cm thick, are casually arranged. Each toast is topped with a vibrant mound of finely diced red and yellow bell peppers, sautéed until tender-crisp. Melted, bubbly mozzarella cheese cascades over the peppers and bread edges. Fresh, bright green basil leaves are scattered across the melted cheese. The arrangement is inviting and unpretentious, showcasing the crisp bread, soft peppers, and gooey cheese. The scene is set on a well-used, rustic wooden dining table, with natural light. A casually folded, off-white linen napkin and a traditional Brazilian 'copo americano' glass are subtly visible, reinforcing a homely, authentic Brazilian dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Brazilian",
+    "cultural_origin": "Brazilian",
+    "cultural_serving_suggestions": [
+      "Serve as a 'petisco' (appetizer/snack) alongside chilled 'cerveja' (beer) or 'caipirinhas'.",
+      "Offer small plates for sharing, as these are often enjoyed in a communal setting."
+    ],
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Pão Francês (baguette style bread)",
+        "quantity": "1"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Yellow Bell Pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Mozzarella Cheese (shredded)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "20g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "35ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "1g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Slice 1 baguette into 1.5 cm thick rounds. Arrange on a baking sheet.",
+      "Drizzle bread slices with 20 ml olive oil. Toast in oven for 5-7 minutes until lightly golden.",
+      "Remove bread. Rub each toasted slice with 1 peeled garlic clove.",
+      "Dice 1 red bell pepper and 1 yellow bell pepper into small 0.5 cm cubes.",
+      "Heat 15 ml olive oil in a pan over medium heat. Add diced bell peppers. Sauté for 5-7 minutes until tender-crisp. Season with 2g salt and 1g black pepper.",
+      "Top each bread slice with a generous spoonful of sautéed bell peppers.",
+      "Add a layer of shredded mozzarella cheese over the bell peppers.",
+      "Return toasts to the oven. Bake for 5-8 minutes until cheese is melted and bubbly.",
+      "Garnish with fresh basil leaves before serving."
+    ],
+    "notes": [
+      "This starter is a popular 'petisco' in Brazil, often served at bars or casual gatherings. It's a versatile dish that can be adapted with various toppings."
+    ]
+  }
+]

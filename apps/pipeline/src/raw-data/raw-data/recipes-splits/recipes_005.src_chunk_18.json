@@ -1,0 +1,702 @@
+[
+  {
+    "recipe_name": "Mexican Beef and Bean Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_075343_3c93bc2b.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-05T07:53:43.645535000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "bean",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The stew is served in a traditional shallow terracotta cazuela placed on a clean white ceramic plate. The centerpiece features 3cm cubes of seared beef chuck, coated in a thick, vibrant red tomato and chili sauce. Whole black beans and finely diced onions are visible throughout the rich gravy. The meat is presented as hearty, intact chunks, never sliced. A garnish of fresh green cilantro leaves and a bright yellow lime wedge adds color contrast. The setting is a dark rustic wooden table with a side of three stacked, warm corn tortillas in a woven basket. Natural side lighting highlights the glossy texture of the sauce and the fibrous grain of the tender beef.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas",
+      "Accompany with fresh lime wedges",
+      "Garnish with fresh cilantro and sliced radishes"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 3cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cooked black beans, drained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry with paper towels.",
+      "Season beef generously with salt and pepper.",
+      "Heat oil in a heavy-based pot over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove beef.",
+      "Add onion to the pot. Sauté for 5 minutes until translucent.",
+      "Stir in garlic, cumin, chili powder, and oregano. Cook for 1 minute.",
+      "Add crushed tomatoes and beef stock. Stir to deglaze the pot.",
+      "Return beef to the pot. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 90 minutes.",
+      "Stir in black beans. Simmer uncovered for 15 minutes to thicken.",
+      "Adjust seasoning before serving."
+    ],
+    "notes": [
+      "Use a tough cut like chuck for the best results after slow cooking",
+      "Ensure the sauce reduces until it coats the back of a spoon"
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Slow simmering",
+      "Spice layering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 767,
+      "cholesterol_mg": 157.3,
+      "dietary_fiber_g": 12.6,
+      "protein_g": 51.1,
+      "saturated_fat_g": 16.2,
+      "sodium_mg": 899.5,
+      "total_carbs_g": 37.8,
+      "total_fat_g": 46.4,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165.8,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 11,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 194.5,
+      "total_carbs_g": 8.2,
+      "total_fat_g": 10,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.4,
+      "dietary_fiber": 45,
+      "protein": 102.2,
+      "saturated_fat": 81,
+      "sodium": 39.1,
+      "total_carbs": 13.7,
+      "total_fat": 59.5
+    },
+    "serving_size_g": 462.5,
+    "total_recipe_weight_g": 1850
+  },
+  {
+    "recipe_name": "Braised Beef in San Marzano Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_061309_a671dcfc.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-05T06:13:11.710799000Z",
+    "selected_ingredients": [
+      "tomato",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of braised beef served on a wide, flat white porcelain plate. Three large, 5cm chunks of tender beef chuck are positioned centrally, glistening with a thick, vibrant deep-red San Marzano tomato sauce. The sauce contains visible, finely diced softened carrots and onions from the soffritto. The beef remains whole and rustic, never sliced or fanned. A light garnish of chopped fresh flat-leaf parsley adds a pop of green. The plate rests on a dark oak wood table in a modern bistro. A polished silver fork and knife lie on a folded white cotton napkin. Soft, natural side-lighting emphasizes the fibrous texture of the beef and the rich, glossy consistency of the tomato reduction.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with creamy polenta",
+      "Accompany with crusty ciabatta bread",
+      "Pair with a glass of Chianti Classico"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "San Marzano canned tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "celery stalks",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "fresh thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef dry with paper towels.",
+      "Cut beef into 5cm chunks.",
+      "Season beef with salt and pepper.",
+      "Heat olive oil in a heavy pot over medium-high heat.",
+      "Sear beef chunks until browned on all sides.",
+      "Remove beef from the pot.",
+      "Add diced onion, carrots, and celery to the pot.",
+      "Sauté vegetables for 6 minutes until soft.",
+      "Add minced garlic and cook for 1 minute.",
+      "Pour in red wine to deglaze the pot.",
+      "Reduce wine by half.",
+      "Add crushed San Marzano tomatoes and beef stock.",
+      "Return beef to the pot with rosemary and thyme sprigs.",
+      "Cover and simmer on low heat for 150 minutes.",
+      "Remove lid and simmer for 20 minutes to thicken sauce.",
+      "Discard herb sprigs before serving."
+    ],
+    "notes": [
+      "Choose beef chuck with good marbling for tenderness",
+      "Ensure the sauce reduces until it coats the back of a spoon",
+      "Do not boil the sauce rapidly to avoid toughening the meat"
+    ],
+    "traditional_techniques": [
+      "soffritto",
+      "slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 542,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 37.2,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 1219,
+      "total_carbs_g": 17.3,
+      "total_fat_g": 30.2,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107.5,
+      "cholesterol_mg": 27.8,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 241.9,
+      "total_carbs_g": 3.4,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.7,
+      "dietary_fiber": 13.6,
+      "protein": 74.4,
+      "saturated_fat": 52,
+      "sodium": 53,
+      "total_carbs": 6.3,
+      "total_fat": 38.7
+    },
+    "serving_size_g": 504,
+    "total_recipe_weight_g": 2016
+  },
+  {
+    "recipe_name": "Braised Chinese Beef Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_054209_de4ee52a.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2026-05-05T05:42:10.137063000Z",
+    "selected_ingredients": [
+      "beef",
+      "noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "Chinese beef noodle soup, noodle shop style, practical commercial recipe, not zero-waste, not fine dining, not western pasta cuisine, Chinese beef noodle soup, noodle shop style, practical casual dining recipe, not zero-waste, not fine dining, not western pasta",
+    "visual_description": "A deep ceramic bowl filled with dark, amber-colored beef broth. Large, succulent chunks of braised beef shank sit atop thick, white wheat noodles. The beef chunks show visible grain and softened tendon. Two bright green blanched bok choy halves are placed neatly to one side. A small mound of finely chopped dark green pickled mustard greens and sliced scallions garnishes the center. The bowl rests on a rustic dark wood table. To the side, a pair of dark bamboo chopsticks and a flat-bottomed Chinese soup spoon are placed on a simple cotton napkin. The lighting is natural and directional, highlighting the steam rising from the hot liquid and the oily sheen of the rich, savory broth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Taiwanese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of spicy chili oil",
+      "Accompany with small plates of cold marinated tofu or seaweed",
+      "Use a traditional deep porcelain noodle bowl"
+    ],
+    "hero_ingredient": "Beef Shank",
+    "ingredients": [
+      {
+        "name": "beef shank, cut into 4cm chunks",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "fresh wheat noodles",
+        "quantity": "600 g"
+      },
+      {
+        "name": "ginger, sliced",
+        "quantity": "50 g"
+      },
+      {
+        "name": "garlic cloves, smashed",
+        "quantity": "6 pieces"
+      },
+      {
+        "name": "scallions, cut into 5cm lengths",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "spicy bean paste (doubanjiang)",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "tomato, quartered",
+        "quantity": "1 large"
+      },
+      {
+        "name": "rock sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "light soy sauce",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "dark soy sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "star anise",
+        "quantity": "3 pieces"
+      },
+      {
+        "name": "cinnamon stick",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "water",
+        "quantity": "2 liters"
+      },
+      {
+        "name": "bok choy, halved",
+        "quantity": "4 heads"
+      },
+      {
+        "name": "pickled mustard greens (suan cai), chopped",
+        "quantity": "100 g"
+      }
+    ],
+    "instructions": [
+      "Place beef chunks in a pot of cold water. Bring to a boil for 5 minutes. Drain and rinse beef with cold water.",
+      "Heat 2 tablespoons of oil in a heavy pot over medium heat. Sauté ginger, garlic, and scallions until fragrant.",
+      "Add spicy bean paste. Stir-fry for 1 minute until oil turns red.",
+      "Add blanched beef chunks. Stir to coat in the paste.",
+      "Pour in light soy sauce, dark soy sauce, and Shaoxing wine. Add rock sugar, tomato, star anise, and cinnamon.",
+      "Add 2 liters of water. Bring to a boil. Reduce heat to low. Cover and simmer for 2.5 hours until beef is tender.",
+      "Boil a separate pot of water. Cook wheat noodles according to package instructions. Drain.",
+      "Blanch bok choy in the noodle water for 1 minute. Drain.",
+      "Place noodles in four deep bowls. Top with beef chunks and broth.",
+      "Add bok choy and garnish with pickled mustard greens and fresh cilantro."
+    ],
+    "notes": [
+      "Beef shank is preferred for its gelatinous texture after long braising",
+      "Always cook noodles in a separate pot to keep the main broth clear",
+      "Internal beef temperature must reach 75°C during the braising process"
+    ],
+    "traditional_techniques": [
+      "blanching meat",
+      "braising",
+      "tempering aromatics"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 1038,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 79.7,
+      "saturated_fat_g": 10,
+      "sodium_mg": 4200,
+      "total_carbs_g": 104.5,
+      "total_fat_g": 29.9,
+      "total_sugars_g": 12.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 109.3,
+      "cholesterol_mg": 15.8,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.4,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 442.1,
+      "total_carbs_g": 11,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 20,
+      "protein": 159,
+      "saturated_fat": 50,
+      "sodium": 183,
+      "total_carbs": 38,
+      "total_fat": 38
+    },
+    "serving_size_g": 950,
+    "total_recipe_weight_g": 3800
+  },
+  {
+    "recipe_name": "Zero-Waste Braised Beef Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_053200_08e38892.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-05T05:32:01.155485000Z",
+    "selected_ingredients": [
+      "beef",
+      "noodle"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Chinese beef noodle soup, noodle shop style cuisine",
+    "visual_description": "A deep, hand-painted blue and white porcelain bowl sits on a reclaimed dark wood table. The rich, dark amber broth glistens with small droplets of rendered beef tallow. Large, irregular 4cm chunks of braised beef shank are piled in the center, showing a succulent, gelatinous texture. Thick, pale wheat noodles peek through the liquid. Vibrant blanched bok choy halves provide a crisp green contrast. A small heap of finely chopped, dark green preserved mustard greens and bright scallion rings rests on top. Soft natural light highlights the rising steam. A pair of dark bamboo chopsticks and a ceramic soup spoon rest on a natural linen napkin nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese (Taiwanese Style)",
+    "cultural_serving_suggestions": [
+      "Serve with a side of extra preserved mustard greens",
+      "Pair with chilled silken tofu with century egg",
+      "Provide black rice vinegar at the table for individual seasoning"
+    ],
+    "hero_ingredient": "Beef Shank",
+    "ingredients": [
+      {
+        "name": "Beef shank, cut into 4cm chunks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Beef bones and fat trimmings",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Fresh wheat noodles",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Fermented spicy bean paste (Doubanjiang)",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Ginger, sliced (keep peels for broth)",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "6 units"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Preserved mustard greens (Suancai), chopped",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Bok choy, halved",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Scallions, chopped",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 L"
+      }
+    ],
+    "instructions": [
+      "Place beef trimmings in a cold pot. Heat over medium until fat renders. Remove solids.",
+      "Sear beef shank chunks in the rendered tallow until browned on all sides. Remove beef.",
+      "Sauté ginger, garlic, star anise, and cinnamon in the same pot for 2 minutes.",
+      "Add fermented bean paste. Fry for 1 minute until fragrant and oil turns red.",
+      "Return beef to pot. Add light soy sauce, dark soy sauce, and 2 liters of water.",
+      "Add beef bones and ginger peels to the liquid.",
+      "Simmer on low heat for 2.5 hours until beef chunks are tender.",
+      "Strain broth through a fine sieve. Reserve beef chunks and discard other solids.",
+      "Boil wheat noodles in a separate pot of water until al dente. Drain.",
+      "Blanch bok choy in the noodle water for 1 minute.",
+      "Sauté preserved mustard greens in a dry pan for 2 minutes to intensify flavor.",
+      "Divide noodles into four bowls. Top with beef chunks and bok choy.",
+      "Ladle hot broth over the noodles. Garnish with mustard greens and scallions."
+    ],
+    "notes": [
+      "Use all vegetable scraps like onion skins and ginger peels in the broth for maximum flavor and zero waste.",
+      "Rendering the fat from trimmings provides a more authentic, deep beef flavor than commercial oil."
+    ],
+    "traditional_techniques": [
+      "Hong shao braising",
+      "Tallow rendering",
+      "Tempering spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 910,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 5,
+      "protein_g": 66.5,
+      "saturated_fat_g": 12.5,
+      "sodium_mg": 2125,
+      "total_carbs_g": 90,
+      "total_fat_g": 31.5,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.06,
+      "calories": 107.1,
+      "cholesterol_mg": 18.82,
+      "dietary_fiber_g": 0.59,
+      "protein_g": 7.82,
+      "saturated_fat_g": 1.47,
+      "sodium_mg": 250,
+      "total_carbs_g": 10.59,
+      "total_fat_g": 3.71,
+      "total_sugars_g": 0.29,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.3,
+      "dietary_fiber": 17.9,
+      "protein": 133,
+      "saturated_fat": 62.5,
+      "sodium": 92.4,
+      "total_carbs": 32.7,
+      "total_fat": 40.4
+    },
+    "serving_size_g": 850,
+    "total_recipe_weight_g": 3400
+  },
+  {
+    "recipe_name": "Peruvian Beef and Potato Stir-Fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_052118_0c5e6d9e.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-05T05:21:19.952296000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice",
+      "potato",
+      "green bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Peruvian Lomo Saltado presented on a clean white porcelain plate. A perfectly molded mound of fluffy white long-grain rice occupies one side. Beside it, a vibrant stir-fry features 3cm seared beef chunks, thick golden-brown fried potato batons, and crisp-tender bright green beans. The beef is coated in a glossy, dark savory sauce. Thick wedges of red onion and plum tomatoes show light charring from the high-heat wok. Freshly chopped cilantro is scattered over the dish. The arrangement is organic and professional, using negative space effectively. The plate sits on a light wooden table with a white cotton napkin and a simple fork, bathed in natural restaurant lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "cultural_origin": "Peruvian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Aji Verde (spicy green sauce)",
+      "Traditional Inca Kola beverage accompaniment",
+      "Presented in a wide-rimmed bowl or flat plate"
+    ],
+    "hero_ingredient": "Beef chunks",
+    "ingredients": [
+      {
+        "name": "Beef sirloin, 3cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Yukon Gold potatoes, cut into thick batons",
+        "quantity": "400g"
+      },
+      {
+        "name": "Green beans, trimmed",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red onion, thick wedges",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Plum tomatoes, thick wedges",
+        "quantity": "2"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60ml"
+      }
+    ],
+    "instructions": [
+      "Rinse rice until water runs clear. Cook in 450ml salted water until fluffy.",
+      "Heat 30ml oil in a pan. Fry potato batons until golden and crisp. Drain on paper towels.",
+      "Blanch green beans in boiling water for 2 minutes. Submerge in ice water to retain color.",
+      "Season beef chunks with salt and pepper. Heat remaining oil in a wok until smoking.",
+      "Sear beef chunks in small batches until browned. Remove and set aside.",
+      "Add onions to the wok. Stir-fry for 1 minute at high heat.",
+      "Add garlic, tomatoes, and blanched green beans. Toss for 1 minute.",
+      "Return beef to wok. Add soy sauce, vinegar, and aji amarillo paste.",
+      "Toss rapidly for 30 seconds to glaze ingredients.",
+      "Fold in fried potato batons gently. Garnish with cilantro."
+    ],
+    "notes": [
+      "Ensure the wok is extremely hot before adding beef to achieve 'wok hei' flavor.",
+      "Do not overcook the tomatoes; they should hold their shape.",
+      "Add potatoes at the very last second to maintain their crispness."
+    ],
+    "traditional_techniques": [
+      "Saltado",
+      "Wok searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 838,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 4,
+      "protein_g": 53.3,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 775,
+      "total_carbs_g": 85.3,
+      "total_fat_g": 31.5,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152.4,
+      "cholesterol_mg": 21.8,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 9.7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 140.9,
+      "total_carbs_g": 15.5,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 14,
+      "protein": 107,
+      "saturated_fat": 39,
+      "sodium": 34,
+      "total_carbs": 31,
+      "total_fat": 40
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  }
+]

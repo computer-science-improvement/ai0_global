@@ -1,0 +1,623 @@
+[
+  {
+    "recipe_name": "Beer-Braised Chicken Thigh, Roasted Tomato-Garlic Confit, Mushroom Ragout, and Pomme Purée",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_142558_f3ddf905.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-10-26T14:25:59.062188000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "chili",
+      "beer",
+      "garlic",
+      "mushroom",
+      "potato",
+      "oregano",
+      "oil"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, elegant serving is presented on a matte, neutral-toned ceramic plate. A smooth, velvety mound of pomme purée forms the base, slightly off-center. Perched atop is a perfectly golden-skinned, braised chicken thigh, its skin crisp and glistening. Beside the chicken, a small, artfully placed dollop of earthy mushroom ragout, featuring varied textures of sliced and quartered wild mushrooms. Scattered around are vibrant, glistening roasted cherry tomatoes and whole confit garlic cloves, providing pops of red and pale gold. A rich, glossy beer reduction sauce is drizzled gracefully over the chicken and plate. Delicate drops of crimson chili oil add a subtle contrast. A tiny sprig of fresh oregano provides a final touch of verdant color and height. The composition is organic and flowing, with ample negative space. The plate rests on a premium grey veined marble surface, with a pristine white linen napkin folded precisely in a triangle nearby. Dramatic professional lighting casts soft shadows, enhancing depth and texture, against an ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8 cloves"
+      },
+      {
+        "name": "Mixed wild mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes (floury variety)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Light beer (lager or pale ale)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 150°C.",
+      "For the Tomato-Garlic Confit: Place cherry tomatoes and peeled garlic cloves in a small oven-safe dish. Pour 50ml olive oil over them. Add one sprig of oregano. Season with salt and pepper. Roast for 45-60 minutes, or until tomatoes are soft and slightly wrinkled and garlic is golden.",
+      "For the Chicken: Pat chicken thighs dry. Season skin generously with salt and pepper. Heat 2 tablespoons olive oil in a heavy-bottomed pan over medium-high heat. Place chicken thighs skin-side down. Sear for 8-10 minutes until skin is deeply golden and crispy. Flip chicken. Sear for 2 minutes on the flesh side.",
+      "Pour beer and chicken stock into the pan with chicken. Bring to a simmer. Reduce heat to low, cover, and braise for 20-25 minutes, or until internal temperature reaches 75°C. Remove chicken from pan. Keep warm. Strain braising liquid into a small saucepan. Reduce over medium-high heat until slightly thickened to a sauce consistency.",
+      "For the Pomme Purée: Peel and dice potatoes into 2cm cubes. Place in a pot with cold, salted water. Bring to a boil. Cook until very tender, about 15-20 minutes. Drain potatoes thoroughly. Pass hot potatoes through a fine-mesh sieve or use a potato ricer into a clean pot. Heat milk and 75g butter until butter is melted. Gradually whisk hot milk-butter mixture into riced potatoes until smooth and creamy. Season with salt to taste. Keep warm.",
+      "For the Mushroom Ragout: Thinly slice shallots. Slice or quarter mixed mushrooms. Heat 1 tablespoon olive oil and remaining 25g butter in a pan over medium-high heat. Add shallots. Sauté until softened, about 3 minutes. Add mushrooms. Sauté until golden brown and tender, about 5-7 minutes. Season with salt and pepper. Finely chop remaining fresh oregano. Stir into mushrooms.",
+      "For Chili Oil (optional): Finely mince red chili. Heat 2 tablespoons olive oil in a small pan until shimmering. Remove from heat. Add minced chili. Let infuse for 5 minutes.",
+      "To Serve: Spoon a generous amount of pomme purée onto each plate. Place one braised chicken thigh on top of the purée. Spoon mushroom ragout beside the chicken. Arrange several confit tomatoes and garlic cloves around the plate. Drizzle reduced beer sauce over and around the chicken. Add a few drops of chili oil. Garnish with a small fresh oregano sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 958.3,
+      "cholesterol_mg": 216,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 41.1,
+      "saturated_fat_g": 24.6,
+      "sodium_mg": 718.1,
+      "total_carbs_g": 37.6,
+      "total_fat_g": 73.1,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145.8,
+      "cholesterol_mg": 32.9,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 6.3,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 109.3,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 11.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72,
+      "dietary_fiber": 20,
+      "protein": 82,
+      "saturated_fat": 123,
+      "sodium": 31,
+      "total_carbs": 14,
+      "total_fat": 94
+    },
+    "serving_size_g": 657.1,
+    "total_recipe_weight_g": 2628.5
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Skillet with Tomato and Oregano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_142244_5b87e0c8.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-26T14:22:44.909221000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "mushroom",
+      "oregano"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Chicken and Mushroom Skillet is presented on a round, off-white ceramic plate. Seared chicken chunks, approximately 3-4 cm in size, are nestled among sautéed sliced cremini mushrooms and diced onions. The ingredients are coated in a rich, rustic tomato and oregano sauce, exhibiting deep reds, earthy browns, and the vibrant green of fresh herbs. The chicken pieces show a golden-brown crust from searing, contrasting with the tender, sauce-coated interior. The mushrooms are caramelized and slightly wrinkled. A sprinkle of fresh, bright green chopped parsley adds a final touch of color and freshness. The dish is arranged naturally, allowing components to touch and overlap. The entire plate is visible, placed on a well-used wooden dining table, with warm, cozy lighting suggesting a homely family kitchen setting. A simple cloth napkin is casually placed nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Diced tomatoes (canned)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks. Season chicken with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken chunks.",
+      "Sear chicken for 3-4 minutes per side until golden brown. Remove chicken from skillet and set aside.",
+      "Add diced onion to the skillet. Cook for 5 minutes until softened.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms to the skillet. Cook for 5-7 minutes until browned and tender.",
+      "Stir in diced tomatoes and chicken broth. Add chopped fresh oregano.",
+      "Bring the mixture to a simmer. Reduce heat to medium-low.",
+      "Return seared chicken to the skillet. Ensure chicken is submerged in sauce.",
+      "Cover and simmer for 10-12 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 335,
+      "cholesterol_mg": 164,
+      "dietary_fiber_g": 5.11,
+      "protein_g": 31,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 451,
+      "total_carbs_g": 15.11,
+      "total_fat_g": 17.58,
+      "total_sugars_g": 6.28,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 80,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 1.21,
+      "protein_g": 7.37,
+      "saturated_fat_g": 0.93,
+      "sodium_mg": 107,
+      "total_carbs_g": 3.59,
+      "total_fat_g": 4.18,
+      "total_sugars_g": 1.49,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 18,
+      "protein": 62,
+      "saturated_fat": 20,
+      "sodium": 20,
+      "total_carbs": 5,
+      "total_fat": 23
+    },
+    "serving_size_g": 420.5,
+    "total_recipe_weight_g": 1682
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Skillet with Tomato and Oregano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_142124_808e4b7f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-26T14:21:24.829113000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "mushroom",
+      "oregano"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Chicken and Mushroom Skillet is presented on a round, off-white ceramic plate. Seared chicken chunks, approximately 3-4 cm in size, are nestled among sautéed sliced cremini mushrooms and diced onions. The ingredients are coated in a rich, rustic tomato and oregano sauce, exhibiting deep reds, earthy browns, and the vibrant green of fresh herbs. The chicken pieces show a golden-brown crust from searing, contrasting with the tender, sauce-coated interior. The mushrooms are caramelized and slightly wrinkled. A sprinkle of fresh, bright green chopped parsley adds a final touch of color and freshness. The dish is arranged naturally, allowing components to touch and overlap. The entire plate is visible, placed on a well-used wooden dining table, with warm, cozy lighting suggesting a homely family kitchen setting. A simple cloth napkin is casually placed nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Diced tomatoes (canned)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks. Season chicken with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken chunks.",
+      "Sear chicken for 3-4 minutes per side until golden brown. Remove chicken from skillet and set aside.",
+      "Add diced onion to the skillet. Cook for 5 minutes until softened.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms to the skillet. Cook for 5-7 minutes until browned and tender.",
+      "Stir in diced tomatoes and chicken broth. Add chopped fresh oregano.",
+      "Bring the mixture to a simmer. Reduce heat to medium-low.",
+      "Return seared chicken to the skillet. Ensure chicken is submerged in sauce.",
+      "Cover and simmer for 10-12 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 335,
+      "cholesterol_mg": 164,
+      "dietary_fiber_g": 5.11,
+      "protein_g": 31,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 451,
+      "total_carbs_g": 15.11,
+      "total_fat_g": 17.58,
+      "total_sugars_g": 6.28,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 80,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 1.21,
+      "protein_g": 7.37,
+      "saturated_fat_g": 0.93,
+      "sodium_mg": 107,
+      "total_carbs_g": 3.59,
+      "total_fat_g": 4.18,
+      "total_sugars_g": 1.49,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 18,
+      "protein": 62,
+      "saturated_fat": 20,
+      "sodium": 20,
+      "total_carbs": 5,
+      "total_fat": 23
+    },
+    "serving_size_g": 420.5,
+    "total_recipe_weight_g": 1682
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Skillet with Tomato and Oregano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_141847_d3d17ac2.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-26T14:18:48.189285000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "mushroom",
+      "oregano"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Chicken and Mushroom Skillet is presented on a round, off-white ceramic plate. Seared chicken chunks, approximately 3-4 cm in size, are nestled among sautéed sliced cremini mushrooms and diced onions. The ingredients are coated in a rich, rustic tomato and oregano sauce, exhibiting deep reds, earthy browns, and the vibrant green of fresh herbs. The chicken pieces show a golden-brown crust from searing, contrasting with the tender, sauce-coated interior. The mushrooms are caramelized and slightly wrinkled. A sprinkle of fresh, bright green chopped parsley adds a final touch of color and freshness. The dish is arranged naturally, allowing components to touch and overlap. The entire plate is visible, placed on a well-used wooden dining table, with warm, cozy lighting suggesting a homely family kitchen setting. A simple cloth napkin is casually placed nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Diced tomatoes (canned)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks. Season chicken with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken chunks.",
+      "Sear chicken for 3-4 minutes per side until golden brown. Remove chicken from skillet and set aside.",
+      "Add diced onion to the skillet. Cook for 5 minutes until softened.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms to the skillet. Cook for 5-7 minutes until browned and tender.",
+      "Stir in diced tomatoes and chicken broth. Add chopped fresh oregano.",
+      "Bring the mixture to a simmer. Reduce heat to medium-low.",
+      "Return seared chicken to the skillet. Ensure chicken is submerged in sauce.",
+      "Cover and simmer for 10-12 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 335,
+      "cholesterol_mg": 164,
+      "dietary_fiber_g": 5.11,
+      "protein_g": 31,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 451,
+      "total_carbs_g": 15.11,
+      "total_fat_g": 17.58,
+      "total_sugars_g": 6.28,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 80,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 1.21,
+      "protein_g": 7.37,
+      "saturated_fat_g": 0.93,
+      "sodium_mg": 107,
+      "total_carbs_g": 3.59,
+      "total_fat_g": 4.18,
+      "total_sugars_g": 1.49,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 18,
+      "protein": 62,
+      "saturated_fat": 20,
+      "sodium": 20,
+      "total_carbs": 5,
+      "total_fat": 23
+    },
+    "serving_size_g": 420.5,
+    "total_recipe_weight_g": 1682
+  },
+  {
+    "recipe_name": "Smoked Sausage and Lentil Soup with Maple-Mustard Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_113457_abc84b2b.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-26T11:34:57.744089000Z",
+    "selected_ingredients": [
+      "mustard",
+      "maple syrup",
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The soup is presented in a clean white porcelain bowl. A rich, earthy brown lentil soup forms the base, its surface gently simmering. Robust chunks of seared smoked sausage, golden-brown with caramelized edges, are prominently arranged within the soup, some peeking above the surface. Diced carrots and celery provide flecks of orange and light green, adding texture and color against the lentils. A vibrant sprinkle of fresh, finely chopped green parsley contrasts sharply with the deep tones of the soup and sausage. The bowl sits on a simple wooden table, with a folded cotton napkin beside it. Natural, even lighting highlights the soup's hearty texture and steam.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic American",
+    "hero_ingredient": "Smoked Sausage",
+    "ingredients": [
+      {
+        "name": "Smoked Sausage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Brown or Green Lentils",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken or Vegetable Broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium heat.",
+      "Add smoked sausage, cut into thick coins or half-moons. Cook until browned and slightly crispy.",
+      "Remove sausage from pot. Set aside.",
+      "Add diced carrots, celery, and onion to the pot. Sauté until softened, about 8-10 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in lentils and broth. Bring to a boil.",
+      "Reduce heat to low, cover, and simmer for 25-30 minutes, or until lentils are tender.",
+      "While soup simmers, prepare maple-mustard glaze. In a small bowl, whisk together Dijon mustard, maple syrup, and apple cider vinegar.",
+      "Once lentils are tender, return cooked sausage to the pot.",
+      "Stir in the maple-mustard glaze. Mix well.",
+      "Season soup with salt and black pepper to taste.",
+      "Ladle soup into bowls. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Adjust the amount of maple syrup or mustard to suit your preference for sweetness or tang."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.1,
+      "calories": 657,
+      "cholesterol_mg": 80,
+      "dietary_fiber_g": 17.4,
+      "protein_g": 33.3,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 2603,
+      "total_carbs_g": 46.4,
+      "total_fat_g": 36.8,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 101.5,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 5.1,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 402,
+      "total_carbs_g": 7.2,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26.7,
+      "dietary_fiber": 62.1,
+      "protein": 66.6,
+      "saturated_fat": 59,
+      "sodium": 113.2,
+      "total_carbs": 16.9,
+      "total_fat": 47.2
+    },
+    "serving_size_g": 647,
+    "total_recipe_weight_g": 2588
+  }
+]

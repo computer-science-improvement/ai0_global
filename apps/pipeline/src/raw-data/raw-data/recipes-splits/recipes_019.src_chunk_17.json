@@ -1,0 +1,657 @@
+[
+  {
+    "recipe_name": "Roasted Potato and Tomato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_potato_and_tomato_salad_20250625_081841_ad115818.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:18:41.465856000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, substantial Roasted Potato and Tomato Salad is presented on a clean white porcelain dinner plate. Golden-brown, tender roasted potato halves are mixed with slightly burst, warm red cherry tomatoes. Thinly sliced crimson red onion rings are interspersed throughout, adding sharp contrast. Fresh, dark green arugula leaves are lightly tossed, providing peppery freshness and a soft bed. The salad is lightly coated in a glistening herb vinaigrette, with visible flecks of green parsley and basil. Crumbled white feta cheese, if used, adds a creamy texture and brightens the composition. The arrangement is natural and inviting, showcasing varied textures and rich colors. Ample negative space frames the dish. A cotton napkin rests beside the plate on a simple wooden table, under natural, even lighting, creating an approachable bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the dressing."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Small new potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Arugula",
+        "quantity": "100g"
+      },
+      {
+        "name": "Feta cheese (crumbled, optional)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh parsley (chopped)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh basil (chopped)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Garlic (minced)",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and halve potatoes. Toss with 2 tablespoons olive oil, salt, and pepper on a baking tray.",
+      "Roast potatoes for 25 minutes.",
+      "Add cherry tomatoes to the baking tray with potatoes. Continue roasting for another 15-20 minutes, until potatoes are tender and golden, and tomatoes are slightly burst. Remove from oven.",
+      "While vegetables roast, prepare dressing: In a small bowl, whisk together remaining olive oil, red wine vinegar, Dijon mustard, minced garlic, salt, and pepper. Stir in chopped parsley and basil.",
+      "Thinly slice red onion.",
+      "In a large bowl, combine roasted potatoes and tomatoes, sliced red onion, and arugula.",
+      "Pour dressing over salad. Gently toss to combine.",
+      "Divide salad among four plates. Crumble feta cheese over each serving if using. Serve warm or at room temperature."
+    ],
+    "notes": [
+      "This salad can be served warm or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 464,
+      "cholesterol_mg": 33.4,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 11.7,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 962.8,
+      "total_carbs_g": 46.2,
+      "total_fat_g": 27.2,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 7.6,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 2.7,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 220.5,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 11,
+      "dietary_fiber": 25,
+      "protein": 23,
+      "saturated_fat": 41,
+      "sodium": 42,
+      "total_carbs": 17,
+      "total_fat": 35
+    },
+    "serving_size_g": 436.7,
+    "total_recipe_weight_g": 1746.6
+  },
+  {
+    "recipe_name": "Romaine Chicken Salad with Creamy Herb Dressing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_romaine_chicken_salad_with_creamy_herb_dressing_20250625_081826_210ae39d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:18:26.536866000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generously portioned Romaine Chicken Salad is presented in an everyday, wide ceramic bowl, placed on a well-used wooden dining table. Crisp, chopped romaine lettuce forms the base, intermingled with vibrant red halved cherry tomatoes, small diced green cucumber, and thin slivers of red onion. Tender, shredded chicken pieces are scattered throughout, adding a comforting texture. The creamy, pale green herb dressing lightly coats all ingredients, with visible flecks of fresh dill and parsley. The arrangement is natural and casual, with components touching and overlapping, reflecting a homestyle preparation. Warm, cozy lighting from kitchen fixtures illuminates the dish. A simple cloth napkin and a standard fork are casually placed beside the bowl, completing the homely family kitchen scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of warm, crusty bread or simple crackers.",
+      "Often served as a main course for a casual family lunch or light dinner.",
+      "Best enjoyed fresh, as a comforting meal with minimal fuss."
+    ],
+    "hero_ingredient": "Romaine lettuce",
+    "ingredients": [
+      {
+        "name": "Romaine lettuce",
+        "quantity": "2 heads"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "2 tbsp, chopped"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tbsp, chopped"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Season chicken breasts with salt, pepper, and 1 tbsp olive oil. Roast chicken for 20-25 minutes, until internal temperature reaches 75°C. Let cool. Shred the cooked chicken using two forks.",
+      "Wash and chop romaine lettuce into bite-sized pieces. Halve cherry tomatoes. Dice cucumber into small cubes. Thinly slice red onion.",
+      "In a medium bowl, whisk together mayonnaise, plain yogurt, chopped fresh dill, chopped fresh parsley, Dijon mustard, white wine vinegar, garlic powder, salt, and pepper until smooth.",
+      "In a large serving bowl, combine chopped romaine, halved cherry tomatoes, diced cucumber, and sliced red onion.",
+      "Add shredded chicken to the vegetables. Pour the creamy herb dressing over the salad. Toss gently to coat all ingredients evenly.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "For extra flavor, you can marinate the chicken breast for 30 minutes before roasting.",
+      "Adjust the amount of dressing to your preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 450,
+      "cholesterol_mg": 98,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 35.3,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 323,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 28.7,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 100,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 72,
+      "total_carbs_g": 3,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 20,
+      "protein": 71,
+      "saturated_fat": 25,
+      "sodium": 14,
+      "total_carbs": 5,
+      "total_fat": 37
+    },
+    "serving_size_g": 451.1,
+    "total_recipe_weight_g": 1804.2
+  },
+  {
+    "recipe_name": "Pea and Cheddar Macaroni Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pea_and_cheddar_macaroni_salad_20250625_081755_33fc4364.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:17:55.656674000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, comforting portion of Pea and Cheddar Macaroni Salad is presented on a simple, off-white ceramic plate. The macaroni pasta, tender green peas, and small cubes of yellow cheddar cheese are visibly mixed throughout, coated in a creamy, pale yellow dressing. Diced celery and finely minced red onion add subtle textural contrast and flecks of light green and pinkish-red. The arrangement is natural and mounded, reflecting a homestyle, unpretentious serving. A light sprinkle of freshly ground black pepper is visible on top. The plate rests on a warm-toned, well-used wooden kitchen table, suggesting a family meal setting. A casual metal fork and a casually placed, slightly crumpled cloth napkin sit nearby. Soft, warm natural light illuminates the dish, highlighting its comforting textures and colors. The entire plate is visible, showing a hearty, appealing individual serving.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve chilled as a side dish for backyard barbecues, picnics, or family potlucks.",
+      "Pairs well with grilled hot dogs, hamburgers, or fried chicken."
+    ],
+    "hero_ingredient": "Peas",
+    "ingredients": [
+      {
+        "name": "Macaroni pasta",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Cheddar cheese, diced",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Celery, diced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "0.5 medium"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2 grams"
+      }
+    ],
+    "instructions": [
+      "Cook macaroni pasta according to package directions until al dente. Drain well. Rinse with cold water until cool. Drain thoroughly again.",
+      "Bring a small pot of water to a boil. Add frozen peas and cook for 1 minute. Drain immediately and rinse with cold water to stop cooking. Drain well.",
+      "In a large bowl, whisk together mayonnaise, Dijon mustard, apple cider vinegar, salt, and black pepper until smooth.",
+      "Add the cooled macaroni, blanched peas, diced cheddar cheese, diced celery, and finely diced red onion to the bowl with the dressing.",
+      "Gently fold all ingredients until evenly coated with the dressing.",
+      "Cover the bowl and refrigerate for at least 1 hour before serving. This allows flavors to meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 766,
+      "cholesterol_mg": 57,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 22.6,
+      "saturated_fat_g": 12.9,
+      "sodium_mg": 1095,
+      "total_carbs_g": 68.2,
+      "total_fat_g": 44.8,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 238,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 7,
+      "saturated_fat_g": 4,
+      "sodium_mg": 340,
+      "total_carbs_g": 21.2,
+      "total_fat_g": 13.9,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19,
+      "dietary_fiber": 21,
+      "protein": 45,
+      "saturated_fat": 65,
+      "sodium": 48,
+      "total_carbs": 25,
+      "total_fat": 57
+    },
+    "serving_size_g": 322,
+    "total_recipe_weight_g": 1288
+  },
+  {
+    "recipe_name": "Fermented Garlic Chicken with Tomato Salsa and Potato Crisps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_garlic_chicken_with_tomato_salsa_and_potato_crisps_20250625_081740_95321d8b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:17:40.719449000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "cheese",
+      "tomato",
+      "potato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of 'Fermented Garlic Chicken with Tomato Salsa and Potato Crisps' is presented on a handcrafted, matte ceramic plate in an earthy cream tone. The plate rests on a light, textured reclaimed wood surface. A generous mound of smooth, pale potato puree forms the base. A whole, seared chicken thigh, its skin golden-brown and slightly crinkled, sits prominently on the puree. Beside the chicken, a vibrant, chunky dollop of lacto-fermented tomato salsa displays varying shades of red and hints of green herbs. Scattered around the plate are irregular, golden-brown potato crisps, made from peels, adding a rustic texture. Grated Parmesan cheese lightly dusts the chicken and puree. An undyed linen napkin in a natural beige tone is folded neatly beside the plate. Soft, diffused natural light illuminates the scene from the side, highlighting the food's natural textures. The background is minimalist, with subtle hints of green foliage from a nearby plant, maintaining an eco-conscious aesthetic. The entire plate is visible, showcasing ample negative space and a clean, unforced composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 150g each)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "12, peeled (for fermentation)"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml (for brine)"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g (for brine, plus more to taste)"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "400 g, mixed sizes"
+      },
+      {
+        "name": "Fresh herbs (e.g., oregano, thyme)",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Maris Piper)",
+        "quantity": "2 large (approx. 600g)"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or chives",
+        "quantity": "15 g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented garlic: Dissolve 10g salt in 500ml water to make a 2% brine. Place 12 peeled garlic cloves in a clean jar. Pour brine over garlic, ensuring cloves are fully submerged. Seal jar loosely. Ferment at room temperature for 7-10 days, burping daily, until slightly tangy and softened. Reserve garlic and brine.",
+      "Prepare lacto-fermented tomato salsa: Wash tomatoes. Cut tomatoes into irregular 1-2 cm chunks. Place in a clean jar. Add 5g sea salt and gently toss. Press tomatoes down to release juices. If needed, add a splash of reserved garlic brine to cover. Seal loosely. Ferment at room temperature for 3-5 days, burping daily, until tangy. Once fermented, drain excess liquid, stir in half the chopped parsley/chives. Refrigerate.",
+      "Prepare chicken: Pat chicken thighs dry. Marinate chicken in 60ml of the fermented garlic brine for at least 30 minutes, or up to 4 hours refrigerated. Remove chicken from brine; pat dry. Season with black pepper. Heat 15ml olive oil in a pan over medium-high heat. Sear chicken thighs skin-side down for 5-7 minutes until golden brown and crispy. Flip. Cook for another 5-7 minutes until internal temperature reaches 75°C (167°F). Rest chicken for 5 minutes.",
+      "Prepare potato puree: Peel potatoes. Reserve peels for crisps. Cut peeled potatoes into 2 cm chunks. Boil potato chunks in salted water until very tender, about 15-20 minutes. Drain well. Mash or pass through a ricer until smooth. Stir in 15ml olive oil and a pinch of salt. Keep warm.",
+      "Prepare potato crisps: Wash reserved potato peels thoroughly. Pat very dry. Toss peels with a small amount of olive oil and a pinch of salt. Spread in a single layer on a baking sheet. Bake at 200°C (390°F) for 10-15 minutes, or until crispy and golden. Watch carefully to prevent burning.",
+      "Assemble dish: Spoon a generous portion of warm potato puree onto the center of each plate. Place one seared chicken thigh on top of the puree. Spoon a dollop of fermented tomato salsa beside the chicken. Scatter potato crisps around the plate. Grate fresh Parmesan cheese over the chicken and puree. Garnish with remaining fresh parsley or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 527.4,
+      "cholesterol_mg": 174.6,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 39.7,
+      "saturated_fat_g": 7,
+      "sodium_mg": 841.5,
+      "total_carbs_g": 38,
+      "total_fat_g": 24.8,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160.6,
+      "cholesterol_mg": 53.2,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 12.1,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 256.3,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.2,
+      "dietary_fiber": 19.8,
+      "protein": 79.4,
+      "saturated_fat": 34.8,
+      "sodium": 36.6,
+      "total_carbs": 13.8,
+      "total_fat": 31.8
+    },
+    "serving_size_g": 328.4,
+    "total_recipe_weight_g": 1313.5
+  },
+  {
+    "recipe_name": "Cajun-Spiced Chicken with Beer-Braised Pork and Crab Remoulade",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cajun-spiced_chicken_with_beer-braised_pork_and_crab_remoulade_20250625_081722_2a06abe7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:17:22.581606000Z",
+    "selected_ingredients": [
+      "crab",
+      "chicken",
+      "beer",
+      "mayonnaise",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A seared chicken thigh, golden-brown and glistening, rests centered on a clean white porcelain dinner plate. Beside it, a rustic mound of fork-tender, beer-braised shredded pork, dark and rich, is nestled. A portion of fluffy white rice forms a base. A vibrant, creamy dollop of orange-hued crab remoulade, studded with green herbs, sits adjacent to the chicken. The dish is drizzled with a glossy, reduced pan sauce from the pork braise. Fresh chopped green onions and parsley are scattered over the dish for a pop of color. The setting features a simple wooden table, a folded cotton napkin, and a clear glass of amber ale in the background, all bathed in natural, even light.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American (Cajun/Southern)",
+    "cultural_serving_suggestions": [
+      "Serve with hot sauce on the side.",
+      "Offer cornbread as an accompaniment."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Pork Belly",
+        "quantity": "600g, cut into 2-3 cm cubes"
+      },
+      {
+        "name": "Chicken Thighs",
+        "quantity": "4 boneless, skinless (approx. 180-200g each)"
+      },
+      {
+        "name": "Lump Crab Meat",
+        "quantity": "200g, drained"
+      },
+      {
+        "name": "Amber Ale",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Celery",
+        "quantity": "1 stalk, diced"
+      },
+      {
+        "name": "Green Bell Pepper",
+        "quantity": "1 small, diced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Cajun Seasoning",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Cayenne Pepper",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "0.5, juiced"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "2 tbsp, chopped"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": "2 tbsp, sliced"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Cooked White Rice",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Season pork belly cubes with 1 tbsp Cajun seasoning, salt, and pepper.",
+      "Heat 1 tbsp vegetable oil in a Dutch oven over medium-high heat. Sear pork belly until browned on all sides. Remove pork from pot.",
+      "Add diced onion, celery, and green bell pepper to the pot. Sauté 5 minutes until softened. Add minced garlic, cook 1 minute.",
+      "Return pork to the pot. Pour in amber ale and chicken stock. Bring to a simmer.",
+      "Reduce heat to low, cover, and braise 1.5-2 hours until pork is fork-tender.",
+      "Remove pork from liquid. Shred pork with two forks. Keep warm. Reduce braising liquid slightly for a thicker sauce, if desired.",
+      "Prepare remoulade: In a bowl, combine mayonnaise, Dijon mustard, Worcestershire sauce, lemon juice, smoked paprika, cayenne pepper, remaining 1 tbsp Cajun seasoning, chopped parsley, and sliced green onions. Mix well.",
+      "Gently fold drained lump crab meat into the remoulade. Chill until serving.",
+      "Season chicken thighs with salt and pepper.",
+      "Heat remaining 1 tbsp vegetable oil in a large skillet over medium-high heat. Sear chicken thighs 6-8 minutes per side, until internal temperature reaches 75°C.",
+      "To serve: Place a portion of cooked white rice on each plate. Top with a seared chicken thigh. Spoon shredded beer-braised pork alongside. Add a generous dollop of crab remoulade. Drizzle with reduced braising liquid. Garnish with fresh parsley and green onions."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.26,
+      "calories": 1470,
+      "cholesterol_mg": 388.7,
+      "dietary_fiber_g": 2.77,
+      "protein_g": 62.7,
+      "saturated_fat_g": 37.77,
+      "sodium_mg": 2076.9,
+      "total_carbs_g": 12.29,
+      "total_fat_g": 126.18,
+      "total_sugars_g": 2.57,
+      "trans_fat_g": 0.12
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.04,
+      "calories": 218.7,
+      "cholesterol_mg": 57.8,
+      "dietary_fiber_g": 0.41,
+      "protein_g": 9.33,
+      "saturated_fat_g": 5.62,
+      "sodium_mg": 309,
+      "total_carbs_g": 1.83,
+      "total_fat_g": 18.78,
+      "total_sugars_g": 0.38,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 129.6,
+      "dietary_fiber": 9.9,
+      "protein": 125.4,
+      "saturated_fat": 188.9,
+      "sodium": 90.3,
+      "total_carbs": 4.5,
+      "total_fat": 161.8
+    },
+    "serving_size_g": 672,
+    "total_recipe_weight_g": 2688
+  }
+]

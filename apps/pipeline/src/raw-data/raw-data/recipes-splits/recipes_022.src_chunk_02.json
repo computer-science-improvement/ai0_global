@@ -1,0 +1,670 @@
+[
+  {
+    "recipe_name": "Spicy Chicken and Tomato Rice Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_tomato_rice_soup_20250624_122441_f9c417f0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:24:42.355139000Z",
+    "selected_ingredients": [
+      "chicken",
+      "hot sauce",
+      "rice",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, clear amber soup presented in a pristine white porcelain bowl. The broth is rich and inviting. Tender shredded chicken pieces, approximately 1-2 cm in length, are evenly distributed throughout. Bright red diced tomato cubes, about 1 cm, add pops of color and texture. Individual grains of fluffy white long-grain rice are visible, suspended in the savory liquid. A generous sprinkle of fresh, finely chopped green parsley leaves adorns the surface, providing a fresh contrast. The bowl sits on a simple, light-colored wooden table surface, accompanied by a folded white cotton napkin and standard silver flatware. The lighting is natural and even, highlighting the soup's fresh ingredients and appealing warmth in a casual bistro setting. The background is minimally blurred, suggesting a relaxed restaurant atmosphere without distracting from the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Celery",
+        "quantity": "1 stalk, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g (undrained)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "15ml, or to taste"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g, or to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g, or to taste"
+      },
+      {
+        "name": "Fresh parsley or cilantro",
+        "quantity": "15g, chopped, for garnish"
+      },
+      {
+        "name": "Lemon wedges",
+        "quantity": "for serving (optional)"
+      }
+    ],
+    "instructions": [
+      "Place chicken breasts in a pot. Cover with 1 litre of chicken broth. Bring to a boil. Reduce heat. Simmer until chicken reaches 75°C internal temperature, about 15-20 minutes.",
+      "Remove chicken. Shred or dice into 1-2 cm pieces. Set aside. Strain broth and reserve.",
+      "In a large soup pot, heat olive oil over medium heat. Add diced onion, carrot, and celery. Sauté 5-7 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in remaining 500ml chicken broth, reserved chicken broth, and canned diced tomatoes with their juice. Bring to a simmer.",
+      "Stir in rice. Reduce heat to low. Cover and simmer 15-20 minutes, or until rice is tender. Stir occasionally to prevent sticking.",
+      "Return shredded chicken to the pot. Stir in hot sauce. Season with salt and pepper. Simmer 5 minutes to heat through.",
+      "Ladle soup into bowls. Garnish with fresh chopped parsley or cilantro. Serve with lemon wedges if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 435,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 48.5,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 1965,
+      "total_carbs_g": 41.5,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 61,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 6.8,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 274,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 1.3,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 11,
+      "protein": 97,
+      "saturated_fat": 9,
+      "sodium": 85,
+      "total_carbs": 15,
+      "total_fat": 12
+    },
+    "serving_size_g": 717.8,
+    "total_recipe_weight_g": 2871
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Garlic Parmesan Linguine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_garlic_parmesan_linguine_20250624_122440_b294d39b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:24:40.866913000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "pasta",
+      "parmesan"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A pristine white porcelain dinner plate cradles a generous portion of creamy linguine, elegantly coiled into a neat mound at the center. The pasta gleams with a rich, ivory sauce, subtly speckled with finely chopped green parsley and delicate white strands of melted Parmesan. Beside the pasta, two substantial, golden-brown pan-seared chicken breast medallions, each halved diagonally, rest prominently. Their perfectly seared crust contrasts with the tender, juicy interior. A sprinkle of vibrant green parsley and a dusting of freshly shaved Parmesan adorn the chicken and pasta. The presentation is clean and inviting, with moderate negative space. The plate sits on a simple wooden table, accompanied by a folded cotton napkin and traditional European flatware, under soft, natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty ciabatta bread for dipping in the sauce.",
+      "Offer a bowl of extra grated Parmesan cheese at the table for individual preference.",
+      "Pair with a crisp, light Italian white wine like Pinot Grigio or Vermentino."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Linguine",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g, freshly grated, plus extra for serving"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5g (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and pepper.",
+      "Heat olive oil in large skillet over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown and internal temperature reaches 75°C. Remove chicken. Rest on cutting board.",
+      "While chicken rests, cook linguine in salted boiling water until al dente. Reserve 250ml pasta water. Drain pasta.",
+      "In the same skillet, melt butter over medium heat. Add minced garlic and red pepper flakes (if using). Sauté 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer. Cook 2 minutes.",
+      "Stir in heavy cream. Reduce heat to low. Simmer 3-4 minutes until slightly thickened.",
+      "Gradually whisk in grated Parmesan cheese until melted and smooth. If sauce is too thick, add reserved pasta water gradually until desired consistency.",
+      "Add drained linguine to the sauce. Toss to coat pasta evenly.",
+      "Slice rested chicken breasts diagonally into thick medallions. Do not fan.",
+      "Plate pasta onto individual dishes. Arrange chicken medallions beside or on top of pasta.",
+      "Garnish with fresh chopped parsley and extra grated Parmesan. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "The reserved pasta water is key for adjusting the sauce's consistency and helping it emulsify.",
+      "For best results, use freshly grated Parmesan cheese, not pre-grated."
+    ],
+    "traditional_techniques": [
+      "Mantecare: The process of vigorously tossing pasta with sauce and cheese, often with a little pasta water, to create a creamy, emulsified coating.",
+      "Al Dente: Cooking pasta until it is firm to the bite, ensuring optimal texture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1114.3,
+      "cholesterol_mg": 267.38,
+      "dietary_fiber_g": 3.87,
+      "protein_g": 80.97,
+      "saturated_fat_g": 27.11,
+      "sodium_mg": 608.79,
+      "total_carbs_g": 80.57,
+      "total_fat_g": 51.07,
+      "total_sugars_g": 3.36,
+      "trans_fat_g": 1.05
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 191.5,
+      "cholesterol_mg": 45.94,
+      "dietary_fiber_g": 0.66,
+      "protein_g": 13.91,
+      "saturated_fat_g": 4.66,
+      "sodium_mg": 104.6,
+      "total_carbs_g": 13.84,
+      "total_fat_g": 8.77,
+      "total_sugars_g": 0.58,
+      "trans_fat_g": 0.18
+    },
+    "daily_value_percentages": {
+      "cholesterol": 89.1,
+      "dietary_fiber": 13.8,
+      "protein": 161.9,
+      "saturated_fat": 135.6,
+      "sodium": 26.5,
+      "total_carbs": 29.3,
+      "total_fat": 65.5
+    },
+    "serving_size_g": 582,
+    "total_recipe_weight_g": 2328
+  },
+  {
+    "recipe_name": "Pork Schnitzel with Dill Potato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_schnitzel_with_dill_potato_salad_20250624_122411_4eae2b90.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:24:12.113605000Z",
+    "selected_ingredients": [
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown Pork Schnitzel, pounded thin and pan-fried to a crisp texture, is centrally placed on a clean white round porcelain plate. Its light golden hue has subtle darker brown edges. Beside it, a neatly mounded portion of Dill Potato Salad features soft white potato 2cm cubes, generously flecked with vibrant green chopped dill and finely diced red onion. A bright yellow lemon wedge rests atop the schnitzel. The dish showcases golden-brown, creamy white, fresh green, and bright yellow colors. Textures include the schnitzel's crispy exterior and tender interior, contrasting with the soft, yielding potato salad. The plate sits on a simple, light wooden table surface, with a crisp white cotton napkin nearby. Natural, even lighting illuminates the scene, highlighting textures in a professional, approachable restaurant style.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "Austrian",
+    "cultural_serving_suggestions": [
+      "Lemon wedge",
+      "Lingonberry jam (optional)"
+    ],
+    "hero_ingredient": "Pork Cutlet",
+    "ingredients": [
+      {
+        "name": "Boneless pork loin cutlets",
+        "quantity": "4 (approx. 150-180g each)"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "200g"
+      },
+      {
+        "name": "Neutral oil for frying",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large, cut into wedges"
+      },
+      {
+        "name": "Waxy potatoes",
+        "quantity": "700g"
+      },
+      {
+        "name": "Small red onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30g"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Boil potatoes in salted water until tender. Drain well.",
+      "While potatoes are warm, combine with finely diced red onion and finely chopped dill.",
+      "Whisk white wine vinegar, olive oil, Dijon mustard, salt, and pepper for dressing.",
+      "Pour dressing over warm potatoes. Toss gently. Set aside.",
+      "Place pork cutlets between two sheets of cling film. Pound evenly to 3-4mm thickness.",
+      "Season both sides of pork with salt and pepper.",
+      "Set up breading station: Place flour in one shallow dish, beaten eggs in a second, and breadcrumbs in a third.",
+      "Dredge each cutlet in flour, shaking off excess. Dip in egg, allowing excess to drip off.",
+      "Press firmly into breadcrumbs, ensuring full coverage.",
+      "Heat neutral oil in a large skillet over medium-high heat (oil should be about 2-3cm deep).",
+      "Fry schnitzel one or two at a time, without overcrowding, for 2-3 minutes per side until golden brown and cooked through.",
+      "Transfer fried schnitzel to a wire rack lined with paper towels to drain excess oil.",
+      "Serve immediately with a generous portion of dill potato salad and a lemon wedge."
+    ],
+    "traditional_techniques": [
+      "Pounding meat thin",
+      "Pan-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1019.4,
+      "cholesterol_mg": 200.5,
+      "dietary_fiber_g": 7,
+      "protein_g": 60,
+      "saturated_fat_g": 8,
+      "sodium_mg": 945.1,
+      "total_carbs_g": 91.6,
+      "total_fat_g": 46.3,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170.4,
+      "cholesterol_mg": 33.5,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 10,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 158,
+      "total_carbs_g": 15.3,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.002
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.8,
+      "dietary_fiber": 25,
+      "protein": 119.9,
+      "saturated_fat": 40.2,
+      "sodium": 41.1,
+      "total_carbs": 33.3,
+      "total_fat": 59.4
+    },
+    "serving_size_g": 598.3,
+    "total_recipe_weight_g": 2393
+  },
+  {
+    "recipe_name": "Sustainable Seared Chicken with Fermented Chili Salsa and Crispy Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_seared_chicken_with_fermented_chili_salsa_and_crispy_rice_20250624_122405_5fc13d75.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:24:06.063589000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "tomato",
+      "onion",
+      "bell pepper",
+      "garlic",
+      "chili",
+      "corn"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A pristine white ceramic plate presents a golden-brown seared chicken thigh, whole and resting on irregularly shaped, crispy brown rice pieces. Beside it, a vibrant, reddish-orange fermented chili salsa is generously spooned, its slightly chunky texture adding depth. Scattered across the plate are bright pops of color and texture: golden charred corn kernels, small cubes of fresh red bell pepper, and delicate, paper-thin slivers of red onion, offering a refreshing crunch. Fresh green coriander leaves provide a final touch. The composition is clean and minimalist, with ample white space, emphasizing the natural beauty of each ingredient. The eco-conscious setting features a light reclaimed wood surface and a natural beige linen napkin. Soft, diffused natural light illuminates the dish, enhancing its organic appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 boneless, skinless (approx. 180g each)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "400g ripe, mixed varieties"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium (for salsa and fresh garnish)"
+      },
+      {
+        "name": "Bell pepper",
+        "quantity": "1 red (for salsa and fresh garnish)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh red chili",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10g (for salsa) + to taste for chicken/rice"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Corn",
+        "quantity": "1 cob (seasonal) or 150g kernels"
+      },
+      {
+        "name": "Fresh coriander or parsley",
+        "quantity": "a small bunch, for garnish"
+      },
+      {
+        "name": "Water",
+        "quantity": "filtered, for fermentation"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Chili Salsa (Start 5-7 days in advance):",
+      "Roughly chop 300g tomatoes, half of red onion, half of red bell pepper, 2 garlic cloves, and 1 chili.",
+      "Combine chopped vegetables and 10g sea salt in a clean jar.",
+      "Add filtered water to cover vegetables completely.",
+      "Place a fermentation weight or small bag of water on top to keep vegetables submerged.",
+      "Cover jar loosely with a lid or cloth.",
+      "Ferment at room temperature (18-24°C) for 5-7 days. Burp daily.",
+      "Once fermented (slightly tangy, bubbly), blend mixture until smooth or slightly chunky. Taste and adjust seasoning. Store in refrigerator.",
+      "Cook Rice:",
+      "Rinse 200g brown rice.",
+      "Combine rice with 400ml water and a pinch of salt in a pot.",
+      "Bring to a boil. Reduce heat to low. Cover.",
+      "Simmer for 30-35 minutes, or until water is absorbed and rice is tender.",
+      "Fluff with a fork. Spread cooked rice thinly on a baking sheet to cool and dry slightly.",
+      "Prepare Chicken:",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large pan over medium-high heat.",
+      "Sear chicken thighs for 6-8 minutes per side, until golden brown and internal temperature reaches 75°C.",
+      "Remove chicken from pan. Rest for 5 minutes.",
+      "Make Crispy Rice:",
+      "Heat remaining 15ml olive oil in a non-stick pan over medium heat.",
+      "Add cooled, dried rice to the pan, pressing down slightly to form a single layer.",
+      "Cook for 8-10 minutes, without stirring, until bottom layer is golden and crispy.",
+      "Break into large, irregular pieces.",
+      "Prepare Fresh Components:",
+      "Carefully cut kernels from corn cob. Lightly char corn kernels in a dry pan or under a grill until slightly browned.",
+      "Finely dice remaining red bell pepper.",
+      "Thinly slice remaining red onion.",
+      "Chop fresh coriander or parsley.",
+      "Plate the Dish:",
+      "Place a portion of crispy rice on each plate.",
+      "Arrange one seared chicken thigh on top of the rice.",
+      "Spoon generous amounts of fermented chili salsa alongside and partially over the chicken.",
+      "Scatter charred corn kernels, diced fresh bell pepper, and thinly sliced red onion over and around the dish.",
+      "Garnish with fresh coriander or parsley leaves."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 511,
+      "cholesterol_mg": 196,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 42.2,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 1631,
+      "total_carbs_g": 32.1,
+      "total_fat_g": 23.8,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 345,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 5,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 17,
+      "protein": 84,
+      "saturated_fat": 28,
+      "sodium": 71,
+      "total_carbs": 12,
+      "total_fat": 31
+    },
+    "serving_size_g": 473.5,
+    "total_recipe_weight_g": 1894
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Garlic, Broccoli, and Sun-Dried Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_garlic%2C_broccoli%2C_and_sun-dried_tomato_20250624_122405_2ad1fe60.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:24:06.001390000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "garlic",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a single pan-seared chicken breast, golden-brown and whole, centered on a clean white porcelain plate. Alongside, vibrant green broccoli florets are lightly sautéed, retaining their firm texture and bright color. Diced caramelized onions and minced garlic are interspersed among the broccoli, adding depth. Thinly sliced, rehydrated sun-dried tomatoes provide bursts of deep red, contrasting with the green and golden tones. A light, savory pan sauce, infused with garlic and chicken broth, pools subtly around the base. The dish is garnished with freshly chopped green basil leaves, providing a final touch of color and freshness. The plate sits on a simple wooden table, with a neatly folded cotton napkin and standard silver flatware beside it, under natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the sauce",
+      "Accompany with a simple green salad dressed with vinaigrette"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 large head, cut into florets"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-6, minced"
+      },
+      {
+        "name": "Sun-dried tomatoes (packed in oil)",
+        "quantity": "60g, drained and thinly sliced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh basil or parsley",
+        "quantity": "15g, chopped for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry with paper towels. Season generously with salt and black pepper.",
+      "Heat olive oil in a large, heavy-bottomed pan or skillet over medium-high heat.",
+      "Sear chicken breasts for 5-7 minutes per side until golden brown and cooked through. Ensure internal temperature reaches 75°C (167°F). Remove chicken from pan and set aside.",
+      "Add diced onion to the same pan. Sauté for 3-4 minutes until softened and translucent.",
+      "Add minced garlic to the pan. Sauté for 1 minute until fragrant.",
+      "If using, pour in white wine to deglaze the pan. Scrape up any browned bits from the bottom.",
+      "Add broccoli florets and chicken broth to the pan. Cover and cook for 5-7 minutes, or until broccoli is tender-crisp.",
+      "Stir in the sliced sun-dried tomatoes.",
+      "Return the cooked chicken breasts to the pan. Heat through for 1-2 minutes.",
+      "Garnish with fresh chopped basil or parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 513,
+      "cholesterol_mg": 162,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 67.6,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 1039,
+      "total_carbs_g": 20.1,
+      "total_fat_g": 16.6,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 13,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 200,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 22,
+      "protein": 135,
+      "saturated_fat": 16,
+      "sodium": 45,
+      "total_carbs": 7,
+      "total_fat": 21
+    },
+    "serving_size_g": 520.5,
+    "total_recipe_weight_g": 2082
+  }
+]

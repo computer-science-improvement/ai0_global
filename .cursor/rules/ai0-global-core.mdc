@@ -1,0 +1,14 @@
+---
+description: Core monorepo conventions for ai0_global — tooling, safety, Cursor assets, minimal diffs.
+alwaysApply: true
+---
+
+# ai0_global — core
+
+- **Package manager**: `pnpm` workspaces. Prefer `pnpm --filter pipeline` / `pnpm --filter automation` from repo root; avoid adding competing lockfiles under app folders without a reason.
+- **Secrets**: never commit real API keys, tokens, or `.env` contents; use `.env.example` patterns and env var names only.
+- **Change discipline**: smallest diff that solves the task; no drive-by refactors, formatting sweeps, or unrelated files.
+- **Cursor project assets**: `.cursor/agents/`, `.cursor/commands/`, and `.cursor/skills/` content must stay **English-only**.
+- **Cross-app edits**: touching both `apps/pipeline` and `apps/automation` in one change set requires an explicit user ask or a clear orchestration note; default to one app per PR-sized change when possible.
+- **Schema changes**: prefer a written handoff for `database/init.sql` unless the user explicitly bundled DB work into the same task; keep DDL idempotent (`IF NOT EXISTS`, etc.) to match the repo style.
+- **Orchestration** (`/do-ebbing`, `/orchestrate`, `/plan-step`): when the **Task** tool is available, follow **`.cursor/skills/monorepo-orchestrate-workflow/SKILL.md`**: delegate each MANIFEST row, run **`Task(code-reviewer)` immediately after each `Task(monorepo-developer)`** in the same turn, keep the **parent thin** (bookkeeping only in Phase B). Run inline only if Task is missing or fails. **Planner:** do not add a duplicate MANIFEST row with **`agent: code-reviewer`** after **`monorepo-developer`**. **Plan temp files** live only under **`tasks/<slug>/scratch/`**; **delete `scratch/`** after the MANIFEST is fully complete (not when **`BLOCKED:`**).

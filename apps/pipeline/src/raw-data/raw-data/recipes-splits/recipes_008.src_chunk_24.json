@@ -1,0 +1,654 @@
+[
+  {
+    "recipe_name": "Spicy Chicken & Cheese Quesadillas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_%26_cheese_quesadillas_20250809_190024_76ed8b0d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-09T19:00:24.929887000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A rustic wooden cutting board holds several golden-brown Spicy Chicken & Cheese Quesadilla wedges. The quesadillas are cut into thick triangles, revealing a generous, savory filling of diced chicken, softened red onion, vibrant red tomato, and specks of green chili. Melted, gooey cheddar cheese oozes slightly from the edges, binding the ingredients. The tortillas are lightly charred in spots, showing a crisp texture. The arrangement is casual and stacked slightly, suggesting a relaxed, shared meal. A small, simple ceramic bowl of fresh red salsa and another of white sour cream sit beside the board, ready for dipping. The scene is set on a well-worn wooden kitchen table, bathed in warm, inviting light from an overhead fixture, with a casually folded off-white cloth napkin nearby. Portions are generous and comforting, typical of a home-cooked snack.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with salsa, guacamole, or sour cream.",
+      "Often eaten by hand."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400g"
+      },
+      {
+        "name": "Flour tortillas",
+        "quantity": "8 medium"
+      },
+      {
+        "name": "Shredded cheddar cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red chili (e.g., jalapeño)",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into small cubes. Cook chicken in a pan with 5ml oil until cooked through to 75°C. Remove chicken from pan.",
+      "Dice onion, mince chili, and dice tomato.",
+      "Add 5ml oil to the same pan. Sauté diced onion over medium heat until softened.",
+      "Add minced chili and diced tomato to the pan. Cook 3-4 minutes until slightly softened.",
+      "Return cooked chicken to the pan. Stir in cumin powder, chili powder, salt, and black pepper. Mix well. Remove from heat.",
+      "Heat a large, dry pan or griddle over medium heat. Place one tortilla in the pan.",
+      "Sprinkle shredded cheese over half of one side of the tortilla.",
+      "Spoon a quarter of the chicken mixture over the cheese.",
+      "Fold the tortilla in half to create a crescent shape.",
+      "Cook 2-3 minutes per side until golden brown and cheese is melted.",
+      "Repeat for remaining tortillas and filling.",
+      "Cut each quesadilla into 2-3 wedges. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.7,
+      "calories": 702,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 51.5,
+      "saturated_fat_g": 13.9,
+      "sodium_mg": 914,
+      "total_carbs_g": 52.2,
+      "total_fat_g": 32,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 226,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 16.6,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 295,
+      "total_carbs_g": 16.8,
+      "total_fat_g": 10.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 13.9,
+      "protein": 103,
+      "saturated_fat": 69.5,
+      "sodium": 39.7,
+      "total_carbs": 19,
+      "total_fat": 41
+    },
+    "serving_size_g": 310.3,
+    "total_recipe_weight_g": 1241.3
+  },
+  {
+    "recipe_name": "Spiced Butterfish with Umami Udon Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_butterfish_with_umami_udon_noodles_20250809_182946_323216ef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-09T18:29:47.003106000Z",
+    "selected_ingredients": [
+      "butterfish",
+      "bean paste",
+      "coconut amino",
+      "tandoori masala",
+      "black cumin",
+      "coriander",
+      "udon noodle",
+      "soy sauce",
+      "pak choi",
+      "carrot",
+      "sunflower sprout"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a vibrant, balanced composition on a clean white porcelain dinner plate. A portion of glistening, savory udon noodles, tossed with tender-crisp pak choi quarters and bright julienned carrots, forms a neat mound on one side of the plate. The noodles exhibit a rich, glossy brown hue from the umami sauce, interspersed with the deep green of the pak choi and the orange of the carrots. Beside the noodles, a thick, pan-seared butterfish fillet, golden-brown and slightly caramelized, rests as the focal point. Its flaky texture is visible. The entire dish is crowned with a generous sprinkle of vibrant green sunflower sprouts, adding a fresh, contrasting color and delicate height. The plate sits on a simple wooden table surface, accompanied by a cotton napkin and a set of chopsticks, under even natural lighting, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a main course.",
+      "Offer additional soy sauce or a chili oil on the side for personal preference.",
+      "Best enjoyed with chopsticks."
+    ],
+    "hero_ingredient": "Butterfish",
+    "ingredients": [
+      {
+        "name": "Butterfish fillets",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Udon noodles",
+        "quantity": "400g (dried)"
+      },
+      {
+        "name": "Pak choi",
+        "quantity": "2 heads, quartered lengthwise"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "2 medium, julienned"
+      },
+      {
+        "name": "Sunflower sprouts",
+        "quantity": "50g, for garnish"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Coconut amino",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Savory bean paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Tandoori masala",
+        "quantity": "15g"
+      },
+      {
+        "name": "Black cumin seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Coriander seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20g, grated"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat butterfish fillets dry. Season generously with salt, black pepper, and 10g tandoori masala.",
+      "Cook udon noodles according to package directions. Drain and rinse with cold water. Set aside.",
+      "In a small bowl, whisk together soy sauce, coconut amino, and bean paste. Set aside.",
+      "Heat 15ml vegetable oil in a large non-stick pan over medium-high heat. Add butterfish fillets. Sear 3-4 minutes per side until golden brown and cooked through. Remove fish from pan. Keep warm.",
+      "In the same pan, add remaining 15ml vegetable oil. Add black cumin seeds and coriander seeds. Toast 30 seconds until fragrant.",
+      "Add minced garlic and grated ginger to the pan. Sauté 1 minute until fragrant.",
+      "Add julienned carrots to the pan. Stir-fry 2 minutes. Add pak choi quarters. Stir-fry 3 minutes until tender-crisp.",
+      "Add cooked udon noodles and the prepared sauce to the pan with vegetables. Toss to coat evenly. Cook 2-3 minutes, allowing sauce to thicken slightly.",
+      "Divide noodles and vegetables among four plates. Place one seared butterfish fillet beside the noodles on each plate.",
+      "Garnish generously with fresh sunflower sprouts."
+    ],
+    "traditional_techniques": [
+      "Tempering spices",
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 893,
+      "cholesterol_mg": 108,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 52.1,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 1483,
+      "total_carbs_g": 87.1,
+      "total_fat_g": 37.6,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 9.9,
+      "saturated_fat_g": 1,
+      "sodium_mg": 283,
+      "total_carbs_g": 16.6,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36,
+      "dietary_fiber": 27,
+      "protein": 104,
+      "saturated_fat": 28,
+      "sodium": 64,
+      "total_carbs": 32,
+      "total_fat": 48
+    },
+    "serving_size_g": 524,
+    "total_recipe_weight_g": 2095
+  },
+  {
+    "recipe_name": "Pan-Seared Lemon Oregano Chicken with Orzo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_lemon_oregano_chicken_with_orzo_20250809_172746_0065dc76.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-09T17:27:47.018294000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "Greek cuisine",
+    "visual_description": "A single portion of Pan-Seared Lemon Oregano Chicken with Orzo is presented on a clean, round white porcelain dinner plate. Golden-brown chicken breast chunks, about 2-3 cm thick, are arranged organically over a bed of vibrant, al dente orzo. The orzo is a light golden hue, flecked with bright red halved cherry tomatoes and dark purple-black Kalamata olives. A light sheen of olive oil and lemon juice glistens on the chicken and pasta. Crumbled white feta cheese is scattered over the dish, contrasting with the other colors. Fresh green oregano sprigs provide a final aromatic garnish. A bright yellow lemon wedge sits beside the chicken. The plate rests on a simple light wooden table surface, with a folded white cotton napkin positioned to the side. Natural, soft light illuminates the dish, highlighting its textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with fresh crusty bread for dipping in the sauce.",
+      "Offer a side of tzatziki or a simple Greek salad (Horiatiki)."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Orzo pasta",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml (hot)"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "20g (chopped, plus sprigs for garnish)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves (minced)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml (extra virgin)"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100g (crumbled)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "150g (halved)"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "80g (pitted, halved)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 30ml olive oil in a large skillet over medium-high heat.",
+      "Add chicken breasts. Sear for 6-8 minutes per side until golden brown and internal temperature reaches 75°C.",
+      "Remove chicken from skillet. Let rest on a cutting board for 5 minutes.",
+      "In the same skillet, add remaining 30ml olive oil. Reduce heat to medium.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Add orzo to the skillet. Stir constantly for 2 minutes until lightly toasted.",
+      "Pour in hot chicken broth gradually, about 100ml at a time. Stir frequently. Allow liquid to absorb before adding more. Continue until orzo is al dente, about 10-12 minutes.",
+      "Stir in chopped fresh oregano, halved cherry tomatoes, and halved Kalamata olives into the orzo.",
+      "Squeeze juice from 1 lemon into the orzo. Stir to combine.",
+      "Slice rested chicken breasts into thick 2-3 cm chunks.",
+      "To serve, spoon a generous portion of orzo onto each plate. Arrange chicken chunks on top of the orzo.",
+      "Crumble feta cheese over the chicken and orzo. Garnish with fresh oregano sprigs and lemon wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 768,
+      "cholesterol_mg": 183.8,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 73.3,
+      "saturated_fat_g": 8.3,
+      "sodium_mg": 1097.8,
+      "total_carbs_g": 50.5,
+      "total_fat_g": 30.1,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 136,
+      "cholesterol_mg": 32.5,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 12.9,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 193.9,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.3,
+      "dietary_fiber": 22.1,
+      "protein": 146.6,
+      "saturated_fat": 41.3,
+      "sodium": 47.7,
+      "total_carbs": 18.4,
+      "total_fat": 38.6
+    },
+    "serving_size_g": 566.25,
+    "total_recipe_weight_g": 2265
+  },
+  {
+    "recipe_name": "Vietnamese Crispy Chicken & Pork Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vietnamese_crispy_chicken_%26_pork_bites_20250809_160055_c2880c8f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-09T16:00:55.530817000Z",
+    "selected_ingredients": [
+      {
+        "name": "parmesan cheese"
+      },
+      {
+        "name": "garlic"
+      },
+      {
+        "name": "pork"
+      },
+      {
+        "name": "chicken"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Vietnamese",
+    "visual_description": "Eight to twelve golden-brown Vietnamese Crispy Chicken and Pork Bites are casually arranged on a rustic wooden serving board. Each bite, roughly 4 cm in diameter, has a visibly crisp, melted Parmesan crust on top, adding a rich, savory texture. The sides are pan-fried to a deep golden hue, showing the finely ground chicken and pork mixture within. A scattering of thinly sliced green scallions provides a fresh green contrast against the warm tones of the bites. The presentation is homely and inviting, typical of a family kitchen table. Natural light highlights the varied textures – the slightly irregular shapes of the hand-formed patties and the bubbly, crisp cheese. A small ceramic bowl of classic Vietnamese nuoc cham dipping sauce sits nearby. The setting features a simple, well-worn wooden table, creating a cozy, authentic family meal atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve warm with nuoc cham (Vietnamese dipping sauce) on the side.",
+      "Offer small fresh lettuce leaves and an assortment of fresh herbs (such as mint and cilantro) for wrapping the bites."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Ground chicken",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Ground pork",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Parmesan cheese, finely grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Scallions, thinly sliced",
+        "quantity": "2 stalks"
+      }
+    ],
+    "instructions": [
+      "In a large bowl, combine ground chicken, ground pork, minced garlic, fish sauce, sugar, black pepper, and cornstarch. Mix thoroughly until well combined.",
+      "Divide the mixture into 8-12 equal portions. Form each portion into a small, flattened patty, approximately 4-5 cm in diameter.",
+      "Heat vegetable oil in a large non-stick pan over medium heat.",
+      "Carefully place patties into the hot pan. Do not overcrowd. Cook for 4-5 minutes per side, until golden brown and cooked through.",
+      "Flip the patties. Immediately sprinkle a generous amount of grated Parmesan cheese over the top of each patty. Press lightly to adhere.",
+      "Continue cooking for another 2-3 minutes, or until the Parmesan cheese is melted, bubbly, and forms a crispy golden crust.",
+      "Remove patties from the pan. Drain on a paper towel-lined plate to remove excess oil.",
+      "Transfer the crispy bites to a serving platter. Garnish with thinly sliced scallions."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Avoid overcrowding the pan to allow for even browning and crisping of the bites."
+    ],
+    "traditional_techniques": [
+      "Pan-frying (Chiên)",
+      "Marinating"
+    ]
+  },
+  {
+    "recipe_name": "Hearty Chicken and Vegetable Stir-fry with Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_vegetable_stir-fry_with_brown_rice_20250809_151433_647ff205.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-09T15:14:33.833559000Z",
+    "selected_ingredients": [
+      "chicken",
+      "brown rice",
+      "bell pepper",
+      "broccoli",
+      "eggplant"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Hearty Chicken and Vegetable Stir-fry is presented in a simple, off-white ceramic bowl, placed on a well-worn wooden dining table. A bed of fluffy brown rice forms the base, topped with a colorful, naturally piled mound of stir-fried chicken cubes, vibrant green broccoli florets, glossy red and yellow bell pepper strips, and tender deep purple eggplant cubes. The chicken is golden-brown from searing, and the vegetables retain a slight crispness, glistening with the savory, slightly thickened sauce. The dish is casually garnished with a sprinkle of toasted sesame seeds and thinly sliced bright green onions, adding a fresh, aromatic contrast. A basic fork rests beside the bowl on the wooden surface, inviting a comforting, homely meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian Fusion",
+    "cultural_origin": "Asian Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with chopsticks or a fork.",
+      "Offer chili oil or sriracha on the side for added heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Uncooked brown rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Bell pepper (any color), cut into 3cm strips",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Broccoli, cut into small florets",
+        "quantity": "300g"
+      },
+      {
+        "name": "Eggplant, cut into 2cm cubes",
+        "quantity": "1 medium (approx. 250g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "2cm piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Honey or brown sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water or chicken broth",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Green onions, thinly sliced (for garnish)",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Toasted sesame seeds (for garnish)",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Cook brown rice. Follow package directions.",
+      "Cut chicken into 2cm cubes.",
+      "In a bowl, combine chicken with 15ml soy sauce, 5ml sesame oil, 5g cornstarch. Mix well. Set aside.",
+      "Prepare vegetables: Cut bell pepper into 3cm strips. Cut broccoli into small florets. Cut eggplant into 2cm cubes. Mince garlic. Grate ginger.",
+      "Prepare sauce: In a small bowl, whisk together remaining 45ml soy sauce, 10ml sesame oil, 15ml rice vinegar, 10g honey, remaining 10g cornstarch, and 60ml water or broth.",
+      "Heat 15ml vegetable oil in a large wok or skillet over high heat.",
+      "Add chicken. Stir-fry 4-5 minutes until browned and cooked through (75°C internal temperature). Remove chicken from wok. Set aside.",
+      "Add remaining 15ml vegetable oil to wok.",
+      "Add eggplant. Stir-fry 3-4 minutes until softened.",
+      "Add broccoli and bell pepper. Stir-fry 3-4 minutes until tender-crisp.",
+      "Add minced garlic and grated ginger. Stir-fry 1 minute until fragrant.",
+      "Return cooked chicken to wok.",
+      "Stir sauce mixture. Pour into wok. Cook, stirring constantly, 1-2 minutes until sauce thickens and coats ingredients.",
+      "Season with salt and pepper to taste.",
+      "Serve hot over cooked brown rice. Garnish with sliced green onions and toasted sesame seeds."
+    ],
+    "notes": [
+      "Adjust honey/sugar to taste for desired sweetness in the sauce.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.05,
+      "calories": 672,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 7.64,
+      "protein_g": 38.33,
+      "saturated_fat_g": 6.03,
+      "sodium_mg": 1607,
+      "total_carbs_g": 68.37,
+      "total_fat_g": 27.35,
+      "total_sugars_g": 8.93,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.43,
+      "calories": 140.92,
+      "cholesterol_mg": 34.62,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.04,
+      "saturated_fat_g": 1.27,
+      "sodium_mg": 337.27,
+      "total_carbs_g": 14.35,
+      "total_fat_g": 5.74,
+      "total_sugars_g": 1.87,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 27.3,
+      "protein": 76.7,
+      "saturated_fat": 30.2,
+      "sodium": 69.9,
+      "total_carbs": 24.9,
+      "total_fat": 35.1
+    },
+    "serving_size_g": 476.5,
+    "total_recipe_weight_g": 1906
+  }
+]

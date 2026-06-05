@@ -1,0 +1,633 @@
+[
+  {
+    "recipe_name": "Pollo alla Cacciatora",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260511_063249_8c467eda.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-11T06:32:49.559722000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented on a wide, matte white porcelain plate. Two whole, bone-in chicken thighs are stacked slightly in the center, featuring deeply browned, caramelized skin. A thick, rustic sauce covers the base of the plate, filled with visible small cubes of orange carrots, green celery, and translucent onions. Whole, dark purple kalamata olives are nestled within the vibrant red tomato sauce. A light dusting of bright green chopped parsley and a single fresh rosemary sprig garnish the top. Two thick batons of grilled sourdough bread lean against the side of the chicken. The lighting is natural and soft, emphasizing the glossy texture of the braised sauce and the crispness of the chicken skin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with toasted sourdough bread to soak up the sauce",
+      "Accompany with a glass of medium-bodied Italian red wine",
+      "Place on a bed of soft, buttery polenta"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine (Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide braising pan over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is deep golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add onion, carrot, and celery to the remaining fat.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in garlic, rosemary, and sage. Cook for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pan to deglaze.",
+      "Simmer wine for 3 minutes until reduced by half.",
+      "Add crushed tomatoes and stir to combine.",
+      "Place chicken thighs back into the sauce.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in olives and simmer uncovered for 5 minutes.",
+      "Remove rosemary sprigs before serving.",
+      "Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Always use a meat thermometer to ensure chicken reaches the safe internal temperature of 75°C",
+      "Browning the skin thoroughly at the start is essential for the final texture",
+      "The sauce should be thick and chunky, not watery"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1604,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 428,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 83,
+      "saturated_fat": 43,
+      "sodium": 70,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Cantonese Beef and Mushroom Clay Pot Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260511_062400_2b80b40a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-11T06:24:01.418933000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "garlic",
+      "mushroom",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "CHinese cuisine",
+    "visual_description": "The dish is presented in a traditional dark ceramic clay pot resting on a rustic wooden trivet. The surface is densely layered with succulent 2cm chunks of seared beef and thick-cut halved shiitake mushrooms. The beef exhibits a deep mahogany glaze from the oyster sauce. Two vibrant green blanched bok choy hearts are placed neatly to the side. A generous garnish of finely sliced scallions and thin ginger matchsticks provides a fresh contrast. The jasmine rice below is visible at the edges, showing a slight golden crust where it meets the pot. The scene is set on a light wood table with a white porcelain tea cup and dark wood chopsticks. Natural side-lighting emphasizes the glossy texture of the beef.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Cantonese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of chili oil or soy-soaked bird's eye chilies",
+      "Pour a small amount of sweet soy sauce over the rice at the table",
+      "Scrape the crispy rice crust (guoba) from the bottom of the pot to share"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef flank or sirloin, cut into 2cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh shiitake mushrooms, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger, julienned",
+        "quantity": "20g"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Scallions, finely sliced",
+        "quantity": "2 stalks"
+      }
+    ],
+    "instructions": [
+      "Mix beef chunks with soy sauce, wine, cornstarch, and 10ml oil.",
+      "Marinate beef for 20 minutes.",
+      "Rinse rice in cold water until the water runs clear.",
+      "Place rice and 600ml water in a heavy-bottomed clay pot or Dutch oven.",
+      "Bring to a boil over medium-high heat.",
+      "Reduce heat to low and simmer covered for 10 minutes.",
+      "Sauté onions, garlic, and mushrooms in a wok with remaining oil until browned.",
+      "Arrange the sautéed mushrooms and raw marinated beef chunks evenly over the rice.",
+      "Cover the pot tightly and cook on low heat for 10 minutes.",
+      "Increase heat to high for 2 minutes to crisp the bottom rice layer.",
+      "Remove from heat and let rest covered for 5 minutes.",
+      "Drizzle with oyster sauce and garnish with scallions and ginger."
+    ],
+    "notes": [
+      "The high-heat finish is essential for the traditional crispy rice base",
+      "Do not open the lid during the resting period to ensure even steaming"
+    ],
+    "traditional_techniques": [
+      "marinating",
+      "clay pot cooking",
+      "creating guoba rice crust"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 835,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 49.5,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 1054,
+      "total_carbs_g": 90.7,
+      "total_fat_g": 28.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.11,
+      "calories": 181.5,
+      "cholesterol_mg": 26.1,
+      "dietary_fiber_g": 0.61,
+      "protein_g": 10.76,
+      "saturated_fat_g": 1.85,
+      "sodium_mg": 229.1,
+      "total_carbs_g": 19.7,
+      "total_fat_g": 6.15,
+      "total_sugars_g": 0.33,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 10,
+      "protein": 99,
+      "saturated_fat": 43,
+      "sodium": 46,
+      "total_carbs": 33,
+      "total_fat": 36
+    },
+    "serving_size_g": 460,
+    "total_recipe_weight_g": 1840
+  },
+  {
+    "recipe_name": "Arroz Negro with Squid and Alioli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260510_194042_e4e53b57.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-10T19:40:42.487123000Z",
+    "selected_ingredients": [
+      "squid"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a traditional shallow carbon steel paella pan on a clean wooden bistro table. The base is a thin, even layer of jet-black rice, each grain distinct and glossy with squid ink. Distributed across the surface are seared white squid rings and whole curled tentacles, showing light golden charring. Five small, precise dollops of thick, creamy white garlic alioli are spaced evenly around the pan. A scattering of finely chopped bright green parsley provides a color contrast against the dark rice. A single lemon wedge is placed at the edge. The lighting is natural and even, highlighting the textures of the tender squid and the caramelized rice crust.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish Mediterranean",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly from the paella pan placed in the center of the table.",
+      "Provide a side bowl of extra alioli for guests.",
+      "Accompany with a crisp Spanish white wine like Albariño."
+    ],
+    "hero_ingredient": "squid",
+    "ingredients": [
+      {
+        "name": "squid (cleaned, tubes cut into 2cm rings, tentacles kept whole)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "hot fish stock",
+        "quantity": "800ml"
+      },
+      {
+        "name": "squid ink",
+        "quantity": "8g"
+      },
+      {
+        "name": "onion (finely diced)",
+        "quantity": "1 small"
+      },
+      {
+        "name": "garlic (minced)",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "tomato (grated)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "alioli",
+        "quantity": "60ml"
+      },
+      {
+        "name": "fresh parsley (finely chopped)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "lemon (cut into wedges)",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Heat 40ml olive oil in a 30cm paella pan over medium-high heat.",
+      "Sear squid rings and whole tentacles for 2 minutes until opaque and lightly charred.",
+      "Remove squid from the pan and set aside.",
+      "Reduce heat to medium and add remaining oil.",
+      "Sauté diced onion and minced garlic for 5 minutes until translucent.",
+      "Stir in grated tomato and smoked paprika.",
+      "Cook for 8 minutes until the mixture turns into a thick, dark jam.",
+      "Add rice to the pan and stir for 2 minutes to toast the grains.",
+      "Whisk squid ink into the hot fish stock until fully dissolved.",
+      "Pour the black stock over the rice and spread the grains evenly.",
+      "Simmer on medium-low heat for 15 minutes without stirring.",
+      "Arrange the seared squid rings and whole tentacles on top of the rice.",
+      "Increase heat to high for 1 minute to develop the socarrat crust on the bottom.",
+      "Remove from heat and let the dish rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Do not stir the rice after adding the stock to ensure the crust forms.",
+      "Ensure the fish stock is hot before adding it to the pan to maintain cooking temperature."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "socarrat"
+    ]
+  },
+  {
+    "recipe_name": "Nordic Beef and Fermented Onion Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260510_155554_16cb1761.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 7,
+    "timestamp": "2026-05-10T15:55:54.560465000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of soup is served in a deep, matte-black handcrafted ceramic bowl. The broth is a clear, dark amber color. Submerged within are 3cm browned chunks of beef and precise 1cm cubes of pale potato. Translucent ribbons of lacto-fermented onions swirl through the liquid. The dish is topped with a cluster of crispy, golden-brown roasted potato skin curls and a tiny sprig of fresh thyme. The bowl sits on a textured reclaimed wood surface next to an undyed beige linen napkin and a heavy forged-iron spoon. The lighting is soft and natural, emphasizing the steam and the organic textures of the ingredients. The entire plate is visible in a clean, minimalist composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Nordic",
+    "cultural_origin": "Nordic",
+    "cultural_serving_suggestions": [
+      "Serve with a side of dark rye sourdough bread",
+      "Accompany with cultured butter",
+      "Traditional hand-forged spoons and stoneware"
+    ],
+    "hero_ingredient": "Beef chunks",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 3cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes, peeled and diced into 1cm cubes (skins reserved)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Yellow onions, thinly sliced (skins reserved)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "20g"
+      },
+      {
+        "name": "Water",
+        "quantity": "1.5L"
+      },
+      {
+        "name": "Beef tallow or rapeseed oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Mix 200g of sliced onions with 4g of salt. Press into a jar. Ferment at room temperature for 5 days.",
+      "Toast all reserved onion skins in a dry pot over medium heat until charred and aromatic.",
+      "Add water and reserved potato peels to the charred skins. Simmer for 30 minutes. Strain and reserve the liquid.",
+      "Heat tallow in a large pot. Sear beef chunks until a dark brown crust forms on all sides.",
+      "Add the remaining fresh onions to the pot. Sauté until translucent and soft.",
+      "Pour the strained vegetable skin broth over the beef and onions. Add thyme.",
+      "Simmer gently for 60 minutes until beef is tender.",
+      "Add diced potatoes. Cook for 15 minutes until softened.",
+      "Stir in the fermented onions and their brine. Season with remaining salt.",
+      "Bake cleaned potato skins at 180°C for 10 minutes until crisp for garnish."
+    ],
+    "notes": [
+      "The onion skin broth provides deep color without commercial stock",
+      "Fermentation adds acidity to balance the rich beef tallow",
+      "Potato skins provide a zero-waste textural element"
+    ],
+    "traditional_techniques": [
+      "lacto-fermentation",
+      "charred vegetable broth",
+      "zero-waste infusion"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 572,
+      "cholesterol_mg": 124.4,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 32.1,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 2036.5,
+      "total_carbs_g": 31.2,
+      "total_fat_g": 35.5,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 81.1,
+      "cholesterol_mg": 17.6,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 4.5,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 288.7,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 5,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41.5,
+      "dietary_fiber": 16.1,
+      "protein": 64.2,
+      "saturated_fat": 74,
+      "sodium": 88.5,
+      "total_carbs": 11.3,
+      "total_fat": 45.5
+    },
+    "serving_size_g": 705.5,
+    "total_recipe_weight_g": 2822
+  },
+  {
+    "recipe_name": "Thai Basil Chicken with Jasmine Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260510_143017_6e803e45.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-10T14:30:18.186209000Z",
+    "selected_ingredients": [
+      "basil",
+      "rice",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A steaming mound of fluffy jasmine rice occupies half of a clean white porcelain plate. Beside it, glossy 2cm chunks of golden-brown seared chicken thighs are coated in a dark, savory sauce. Vibrant green Thai basil leaves are wilted throughout the stir-fry. A single fried egg with a lacy, golden-crisp edge and a bright runny yolk rests atop the chicken. The dish is presented on a dark teak wood table with a small side dish of fish sauce containing sliced red chilies. Soft natural lighting highlights the textures of the crispy egg and tender chicken. A traditional Thai stainless steel spoon and fork lie on a white cotton napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with Prik Nam Pla (fish sauce with chilies)",
+      "Eat with a spoon in the right hand and fork in the left",
+      "Provide cucumber slices to cool the palate"
+    ],
+    "hero_ingredient": "Thai Basil",
+    "ingredients": [
+      {
+        "name": "Jasmine rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken thighs, cut into 2cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Thai basil leaves",
+        "quantity": "2 cups"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "6"
+      },
+      {
+        "name": "Thai bird's eye chilies, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Rinse rice until water runs clear.",
+      "Cook rice in 600ml water until fluffy.",
+      "Heat 1 tbsp oil in a pan over high heat.",
+      "Fry eggs until edges are crispy and brown.",
+      "Remove eggs and set aside.",
+      "Heat remaining oil in a wok.",
+      "Sauté garlic and chilies until fragrant.",
+      "Add chicken chunks to the wok.",
+      "Stir-fry chicken until browned and internal temperature reaches 75°C.",
+      "Stir in oyster sauce, soy sauces, and sugar.",
+      "Add basil leaves and toss until wilted.",
+      "Divide rice into four plates.",
+      "Top rice with chicken and a fried egg."
+    ],
+    "notes": [
+      "Use Holy Basil for the most authentic flavor if available.",
+      "Adjust chili count based on heat preference."
+    ],
+    "traditional_techniques": [
+      "Wok hei",
+      "Pounding aromatics in a mortar"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 711,
+      "cholesterol_mg": 320,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 43.5,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 707,
+      "total_carbs_g": 84.3,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 145.8,
+      "cholesterol_mg": 65.6,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1,
+      "sodium_mg": 145,
+      "total_carbs_g": 17.3,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 106.7,
+      "dietary_fiber": 4.6,
+      "protein": 87,
+      "saturated_fat": 24,
+      "sodium": 30.7,
+      "total_carbs": 30.7,
+      "total_fat": 28.5
+    },
+    "serving_size_g": 487.5,
+    "total_recipe_weight_g": 1950
+  }
+]

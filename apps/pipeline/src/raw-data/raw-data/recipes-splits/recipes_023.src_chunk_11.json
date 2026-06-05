@@ -1,0 +1,647 @@
+[
+  {
+    "recipe_name": "Rigatoni with Spicy Italian Sausage and Smoked Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rigatoni_with_spicy_italian_sausage_and_smoked_mozzarella_20250624_104828_aed487dd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:48:29.285368000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mozzarella",
+      "italian sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Rigatoni with Spicy Italian Sausage and Smoked Mozzarella is presented on a clean, round white porcelain dinner plate. The rigatoni pasta is generously coated in a rich, rustic red tomato sauce, flecked with bright red chili flakes. Irregularly crumbled, golden-brown pan-seared Italian sausage chunks are interspersed throughout the pasta, providing robust texture and color. Small, irregularly diced melted smoked mozzarella pieces cling to the pasta, creating creamy pockets and a subtle sheen. Fresh, vibrant green basil leaves, torn into various sizes, are scattered over the top, offering a fresh contrast. The pasta is arranged naturally, forming a low mound in the center of the plate, with some sauce and sausage peeking out. Moderate negative space surrounds the dish. The setting features a simple wooden table surface, with a classic silver fork and knife placed to the right and left of the plate. A folded white cotton napkin rests beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and vibrant colors. The background is clean and slightly blurred, suggesting a casual bistro atmosphere without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with additional grated Parmigiano Reggiano or Pecorino Romano cheese.",
+      "Offer crusty Italian bread on the side for \"fare la scarpetta\" (soaking up the sauce)."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Rigatoni",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Italian sausage (casings removed)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Smoked mozzarella (diced into 1 cm cubes)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion (diced)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic (minced)",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil (leaves torn)",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Parmigiano Reggiano (grated)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "60 ml"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil.",
+      "Heat olive oil in a large skillet over medium heat.",
+      "Add crumbled Italian sausage to the skillet. Cook, breaking it up with a spoon, until browned and cooked through. Remove sausage from skillet and set aside.",
+      "Drain most of the fat from the skillet, leaving about 15 ml.",
+      "Add diced onion to the skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes. Cook for 1 minute until fragrant.",
+      "If using, add white wine to deglaze the pan. Scrape up any browned bits. Cook until wine evaporates.",
+      "Stir in crushed tomatoes. Bring to a simmer. Season with salt and black pepper.",
+      "Return cooked sausage to the sauce. Simmer for 15-20 minutes, allowing flavors to meld.",
+      "Add rigatoni to boiling water. Cook according to package directions until al dente.",
+      "Drain pasta, reserving 120 ml of pasta water.",
+      "Add cooked pasta to the skillet with the sauce.",
+      "Add diced smoked mozzarella and half of the fresh basil. Stir to combine.",
+      "Add reserved pasta water gradually, stirring until sauce coats the pasta well and mozzarella begins to melt into a creamy consistency.",
+      "Stir in grated Parmigiano Reggiano.",
+      "Serve immediately, garnished with remaining fresh basil."
+    ],
+    "notes": [
+      "For a richer flavor, use high-quality San Marzano crushed tomatoes.",
+      "Adjust red pepper flakes for desired spice level."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 985,
+      "cholesterol_mg": 118,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 42.9,
+      "saturated_fat_g": 18.8,
+      "sodium_mg": 1529,
+      "total_carbs_g": 88,
+      "total_fat_g": 49,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 190,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.3,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 294,
+      "total_carbs_g": 16.9,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 25,
+      "protein": 86,
+      "saturated_fat": 94,
+      "sodium": 66,
+      "total_carbs": 32,
+      "total_fat": 63
+    },
+    "serving_size_g": 520,
+    "total_recipe_weight_g": 2078
+  },
+  {
+    "recipe_name": "Baked Penne with Roasted Mushrooms and Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_penne_with_roasted_mushrooms_and_mozzarella_20250624_104828_0268a064.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:48:29.213407000Z",
+    "selected_ingredients": [
+      "pasta",
+      "cheese",
+      "mushroom",
+      "tomato",
+      "mozzarella"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The baked penne is presented in a deep white porcelain bowl, showcasing a generous individual portion. Golden-brown melted mozzarella forms a bubbly crust over a rich, red tomato sauce. Roasted cremini mushrooms, visibly tender and slightly caramelized, are interspersed throughout the al dente penne pasta. Fresh green basil leaves are scattered on top, providing a vibrant color contrast. The dish is arranged naturally, with visible textures of the pasta, sauce, and cheese. The bowl sits on a simple wooden table surface in a modern bistro setting. A crisp white cotton napkin is folded neatly beside the bowl. Lighting is natural and even, highlighting the dish's warmth and inviting appeal. A fork is placed casually on the table next to the bowl. The background is softly blurred, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread.",
+      "Offer a simple green salad with a vinaigrette.",
+      "Pair with a dry red wine."
+    ],
+    "hero_ingredient": "Roasted Mushrooms",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "500g, quartered"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g (San Marzano preferred)"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "250g, torn into pieces"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g, grated"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/2 bunch, leaves torn"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2g (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss quartered mushrooms with 30ml olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast mushrooms for 20-25 minutes, until tender and browned.",
+      "While mushrooms roast, heat remaining 30ml olive oil in a large pot over medium heat.",
+      "Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes. Cook 1 minute until fragrant.",
+      "Pour in crushed tomatoes and dried oregano. Bring to a simmer.",
+      "Reduce heat to low. Simmer sauce for 20 minutes, stirring occasionally. Season with salt and pepper.",
+      "Cook penne according to package directions until al dente. Drain well.",
+      "Add cooked penne, roasted mushrooms, and most torn basil to the sauce. Stir to combine.",
+      "Transfer half of the pasta mixture to a 23x33 cm baking dish.",
+      "Dot with half of the fresh mozzarella pieces.",
+      "Spoon remaining pasta mixture over mozzarella.",
+      "Top with remaining mozzarella and grated Parmesan.",
+      "Bake for 20-25 minutes, until cheese is melted and bubbly and edges are golden.",
+      "Garnish with remaining fresh basil before serving."
+    ],
+    "notes": [
+      "San Marzano tomatoes provide the best flavor for the sauce.",
+      "Adjust red pepper flakes for desired spice level."
+    ],
+    "traditional_techniques": [
+      "Sautéing aromatics for sauce base.",
+      "Roasting vegetables for enhanced flavor.",
+      "Cooking pasta al dente."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 812.4,
+      "cholesterol_mg": 53.5,
+      "dietary_fiber_g": 10,
+      "protein_g": 38.1,
+      "saturated_fat_g": 12.9,
+      "sodium_mg": 764.3,
+      "total_carbs_g": 90.6,
+      "total_fat_g": 32.4,
+      "total_sugars_g": 13.5,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 9.4,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 6.7,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 133.6,
+      "total_carbs_g": 15.8,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.8,
+      "dietary_fiber": 35.6,
+      "protein": 76.3,
+      "saturated_fat": 64.5,
+      "sodium": 33.2,
+      "total_carbs": 33,
+      "total_fat": 41.5
+    },
+    "serving_size_g": 572,
+    "total_recipe_weight_g": 2288
+  },
+  {
+    "recipe_name": "Braised Chicken with Mushrooms and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_mushrooms_and_potatoes_20250624_104824_4c168d0d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:48:24.924593000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "mushroom",
+      "potato",
+      "beef stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, whole braised chicken thigh is positioned centrally on a clean white porcelain dinner plate. Surrounding it are generous quartered potato wedges and halved cremini mushrooms, all glistening with a rich, glossy brown braising sauce. The colors are warm: golden-brown chicken, deep earthy mushrooms, creamy yellow potatoes, and vibrant green fresh parsley garnish. Textures are inviting: tender chicken, soft potatoes, and succulent mushrooms. The setting is a modern bistro, featuring a light wooden table and a neatly folded cotton napkin beside the plate. Natural, even lighting highlights the dish. Traditional flatware is placed. The background is subtly blurred, suggesting a casual restaurant ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "cultural_origin": "European",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g-720g total)"
+      },
+      {
+        "name": "Small potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat.",
+      "Sear chicken thighs until golden brown on all sides. Remove chicken from pot.",
+      "Add diced onion to pot. Cook until softened, about 3 minutes.",
+      "Add minced garlic and chopped rosemary and thyme. Cook 1 minute until fragrant.",
+      "Add quartered potatoes and halved mushrooms to pot. Stir to combine.",
+      "Pour in beef stock. Bring to a simmer.",
+      "Return chicken thighs to pot. Ensure chicken is partially submerged.",
+      "Cover pot. Transfer to preheated oven at 180°C (350°F).",
+      "Braise for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Taste and adjust seasoning.",
+      "Serve hot. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 492,
+      "cholesterol_mg": 149,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 39.7,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 504,
+      "total_carbs_g": 33.3,
+      "total_fat_g": 21.5,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93.5,
+      "cholesterol_mg": 28.2,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.5,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 95.6,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 16,
+      "protein": 79,
+      "saturated_fat": 25,
+      "sodium": 22,
+      "total_carbs": 12,
+      "total_fat": 28
+    },
+    "serving_size_g": 527,
+    "total_recipe_weight_g": 2107
+  },
+  {
+    "recipe_name": "White Bean and Tuna Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_white_bean_and_tuna_salad_20250624_104820_7a3a1950.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:48:21.029059000Z",
+    "selected_ingredients": [
+      "tuna",
+      "onion",
+      "bean",
+      "mayonnaise"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous scoop of White Bean and Tuna Salad is presented on a simple, slightly off-white ceramic plate. The salad features creamy white cannellini beans, flaky pale tuna, and small, distinct pieces of finely diced red onion and celery. The ingredients are casually mixed, creating a comforting, unpretentious mound. Flecks of vibrant green chopped fresh parsley are visible throughout, adding freshness. The creamy mayonnaise dressing lightly coats all components. The plate sits on a well-used, light-colored wooden dining table. A simple metal fork rests beside the plate. Warm, soft kitchen lighting creates a cozy, homely atmosphere. The entire plate is visible, with adequate negative space, emphasizing its comforting appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "White Bean",
+    "ingredients": [
+      {
+        "name": "Canned tuna in water, drained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned cannellini beans, rinsed and drained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "0.5 small"
+      },
+      {
+        "name": "Celery stalk, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Flake the drained tuna into a large mixing bowl.",
+      "Add the rinsed cannellini beans to the bowl.",
+      "Stir in the finely diced red onion and celery.",
+      "Add mayonnaise, Dijon mustard, and fresh lemon juice. Mix well until all ingredients are combined.",
+      "Season with salt and black pepper to taste. Adjust seasoning as needed.",
+      "Gently fold in the chopped fresh parsley.",
+      "Serve immediately or chill for at least 30 minutes for flavors to meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 413,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 7,
+      "protein_g": 31.5,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 716,
+      "total_carbs_g": 22.4,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 158,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 12.1,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 274,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20,
+      "dietary_fiber": 25,
+      "protein": 63,
+      "saturated_fat": 19,
+      "sodium": 31,
+      "total_carbs": 8,
+      "total_fat": 28
+    },
+    "serving_size_g": 261,
+    "total_recipe_weight_g": 1045
+  },
+  {
+    "recipe_name": "Spanish Tortilla with Caramelized Onion and Fresh Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_tortilla_with_caramelized_onion_and_fresh_tomato_20250624_104805_5036f58b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:48:05.766770000Z",
+    "selected_ingredients": [
+      "potato",
+      "cheese",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous wedge of golden-brown Spanish Tortilla rests slightly off-center on a clean, round white porcelain plate. The tortilla, thick and robust, reveals interior layers of tender, pale yellow thinly sliced potato rounds and translucent, amber caramelized onion half-moons, all bound within a creamy, eggy matrix with subtle flecks of melted cheese. Beside the tortilla, a vibrant mound of small diced red tomatoes, lightly dressed, adds a fresh contrast. A sprinkle of bright green chopped parsley adorns the top of the tortilla. The setting features a simple wooden table, a cotton napkin, and a subtle, blurred background hinting at a rustic Spanish bistro, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve at room temperature or slightly warm.",
+      "Accompanied by crusty bread.",
+      "Often enjoyed as part of a tapas spread or a light meal."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "8 large"
+      },
+      {
+        "name": "Manchego cheese",
+        "quantity": "100 g, grated"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "250 ml, plus more for serving"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Sherry vinegar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Thinly slice into uniform rounds, about 2 mm thick. Peel onions. Thinly slice into half-moons.",
+      "Heat 250 ml olive oil in a 24 cm non-stick pan over medium-low heat. Add sliced potatoes and onions. Cook slowly for 20-25 minutes. Stir occasionally until very tender but not browned.",
+      "Drain potatoes and onions through a colander. Reserve the oil for other uses or discard. Let potato-onion mixture cool slightly.",
+      "While cooling, crack eggs into a large bowl. Whisk well. Season with salt and pepper. Stir in grated Manchego cheese.",
+      "Add the cooled potato and onion mixture to the egg bowl. Gently fold to combine. Let sit for 5 minutes.",
+      "Wipe the 24 cm non-stick pan clean. Add 1 tablespoon fresh olive oil. Heat over medium heat.",
+      "Pour the potato-egg mixture into the hot pan. Spread evenly. Cook for 5-7 minutes until edges are set and bottom is golden.",
+      "Place a large plate over the pan. Invert the tortilla onto the plate. Slide the tortilla back into the pan, uncooked side down. Cook for another 3-5 minutes until golden and cooked through.",
+      "While tortilla cooks, dice tomatoes into small cubes. In a small bowl, combine diced tomatoes, minced garlic, chopped parsley, sherry vinegar, a drizzle of olive oil, salt, and pepper. Mix well.",
+      "Remove tortilla from pan. Let rest for 5 minutes. Cut into wedges. Serve a wedge with a side of the fresh tomato mixture."
+    ],
+    "traditional_techniques": [
+      "Slow frying potatoes and onions in olive oil until tender"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 964,
+      "cholesterol_mg": 398,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 24.7,
+      "saturated_fat_g": 16.9,
+      "sodium_mg": 866,
+      "total_carbs_g": 46.6,
+      "total_fat_g": 76.9,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163.9,
+      "cholesterol_mg": 67.7,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 4.2,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 147.2,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 13.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 133,
+      "dietary_fiber": 26,
+      "protein": 49,
+      "saturated_fat": 85,
+      "sodium": 38,
+      "total_carbs": 17,
+      "total_fat": 99
+    },
+    "serving_size_g": 588.3,
+    "total_recipe_weight_g": 2353
+  }
+]

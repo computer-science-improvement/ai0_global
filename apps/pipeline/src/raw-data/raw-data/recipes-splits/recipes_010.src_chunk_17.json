@@ -1,0 +1,663 @@
+[
+  {
+    "recipe_name": "Chicken Paella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_paella_20250713_093409_b3ddcde2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T09:34:09.634842000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Chicken Paella is presented on a round, shallow, clean white porcelain dinner plate. The rice is a vibrant golden-yellow, spread evenly across the plate. Two to three golden-brown, seared chicken thigh pieces are nestled into the rice, skin side up. The chicken pieces are whole, succulent, and not sliced. Diced red and green bell peppers are visible throughout the rice, adding bright flecks of color. A generous sprinkle of fresh, vibrant green chopped parsley is scattered over the top. Two bright yellow lemon wedges are placed thoughtfully on the side of the plate. The rice appears moist and tender, with a subtle hint of caramelized 'socarrat' texture on the bottom. The chicken skin is crispy, contrasting with the tender meat. The dominant color is golden-yellow from the saffron rice, complemented by the rich brown chicken, bright red and green peppers, and vibrant green parsley. The paella occupies the central two-thirds of the plate, leaving a clean white rim. The plate rests on a simple wooden table surface. A clean white cotton napkin is folded neatly beside the plate. The background is softly blurred, suggesting a casual restaurant atmosphere, with natural, even lighting highlighting the textures and colors of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly from the paella pan for a communal experience, or individually plated.",
+      "Offer extra lemon wedges on the side for squeezing over the dish.",
+      "Accompany with crusty bread to soak up any remaining juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large (approx. 200 g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red bell pepper, diced into 2 cm pieces",
+        "quantity": "1 large (approx. 200 g)"
+      },
+      {
+        "name": "Green bell pepper, diced into 2 cm pieces",
+        "quantity": "1 large (approx. 200 g)"
+      },
+      {
+        "name": "Ripe tomatoes, grated or finely diced",
+        "quantity": "2 medium (approx. 300 g)"
+      },
+      {
+        "name": "Calasparra or Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Saffron threads, steeped in 60 ml hot water",
+        "quantity": "0.2 g"
+      },
+      {
+        "name": "Hot chicken broth",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lemon, cut into wedges",
+        "quantity": "1 large"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2-3 pieces each. Season chicken with salt and pepper.",
+      "Heat olive oil in a large paella pan or wide, shallow skillet over medium-high heat.",
+      "Sear chicken pieces until golden brown on all sides. Cook to an internal temperature of 75°C (167°F). Remove chicken from pan and set aside.",
+      "Add diced onion to the pan. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and diced red and green bell peppers. Cook for 5-7 minutes until vegetables soften.",
+      "Stir in grated tomatoes. Cook for 5 minutes, allowing moisture to evaporate.",
+      "Add smoked paprika and stir for 1 minute until fragrant.",
+      "Add rice to the pan. Stir to coat rice grains with the sofrito mixture for 2-3 minutes.",
+      "Pour in hot chicken broth and the steeped saffron liquid. Stir gently to distribute ingredients. Bring to a boil.",
+      "Arrange the seared chicken pieces evenly over the rice. Do not stir the rice after this point.",
+      "Reduce heat to medium-low. Simmer uncovered for 15-20 minutes, or until most liquid is absorbed and rice is al dente. A crispy crust (socarrat) should form on the bottom.",
+      "If liquid evaporates too quickly, add a small amount more hot broth, but avoid over-wetting. Do not stir.",
+      "Remove from heat. Cover the paella pan with foil or a clean kitchen towel. Let rest for 5-10 minutes.",
+      "Garnish with fresh chopped parsley and lemon wedges before serving."
+    ],
+    "traditional_techniques": [
+      "Sofrito (aromatic base)",
+      "Socarrat (caramelized rice crust at the bottom of the pan)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 773,
+      "cholesterol_mg": 148,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 32.9,
+      "saturated_fat_g": 7.6,
+      "sodium_mg": 1069,
+      "total_carbs_g": 80.3,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 4.9,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 160,
+      "total_carbs_g": 12,
+      "total_fat_g": 5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 21,
+      "protein": 66,
+      "saturated_fat": 38,
+      "sodium": 47,
+      "total_carbs": 29,
+      "total_fat": 43
+    },
+    "serving_size_g": 666.8,
+    "total_recipe_weight_g": 2667.2
+  },
+  {
+    "recipe_name": "Hand-Rolled Potato Gnocchi with Brown Butter Sage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hand-rolled_potato_gnocchi_with_brown_butter_sage_20250713_093230_05de6f9c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T09:32:30.787997000Z",
+    "selected_ingredients": [
+      "potato",
+      "flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Hand-Rolled Potato Gnocchi with Brown Butter Sage presents as a warm, inviting main course on a clean, white porcelain dinner plate. The gnocchi pieces are plump, irregularly shaped, and golden-brown from the butter, with visible ridges. They are tossed generously in a glistening, fluid brown butter sauce, pooling slightly. Crispy, deep green sage leaves are scattered throughout, providing vibrant color contrast. A generous dusting of finely grated Parmigiano-Reggiano cheese tops the dish, melting slightly. A few cracks of fresh black pepper enhance texture. The composition is organic, flowing, with moderate negative space. The dish is presented on a simple wooden table, accompanied by a folded cotton napkin and traditional silver flatware. Natural, even lighting highlights textures and golden tones.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and red wine vinegar.",
+      "Offer crusty artisan bread to soak up the leftover sauce.",
+      "Pair with a light-bodied Italian white wine or a sparkling water."
+    ],
+    "hero_ingredient": "Potato Gnocchi",
+    "ingredients": [
+      {
+        "name": "Potatoes (starchy, like Russet or Desiree)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "00 Flour (or all-purpose flour)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "20-25 leaves"
+      },
+      {
+        "name": "Parmigiano-Reggiano, freshly grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      }
+    ],
+    "instructions": [
+      "Wash potatoes. Boil or steam whole potatoes in their skins until very tender. Drain well.",
+      "Peel hot potatoes. Pass them through a potato ricer or mash thoroughly. Ensure no lumps remain. Spread riced potato on a clean surface to cool slightly.",
+      "Create a well in the center of the riced potatoes. Add flour, egg yolk, and salt to the well. Gently mix with a fork, incorporating potato from the sides. Knead briefly and lightly until a soft, cohesive dough forms. Do not over-knead.",
+      "Divide dough into four portions. Roll each portion into a long rope, approximately 2 cm thick, on a lightly floured surface. Cut ropes into 2 cm pieces.",
+      "Gently roll each piece over the tines of a fork or a gnocchi board to create ridges.",
+      "Bring a large pot of salted water to a rolling boil. Add gnocchi in batches. Cook until gnocchi float to the surface, typically 1-2 minutes. Let them float for 15-30 seconds more. Remove with a slotted spoon.",
+      "While gnocchi cook, melt butter in a large skillet over medium heat. Add sage leaves. Cook until butter browns and sage leaves are crispy. Be careful not to burn.",
+      "Add cooked gnocchi directly to the skillet with the brown butter sage sauce. Toss gently to coat.",
+      "Plate immediately. Garnish with fresh Parmigiano-Reggiano and a grind of black pepper."
+    ],
+    "notes": [
+      "Use starchy potatoes for best gnocchi texture.",
+      "Avoid overworking the gnocchi dough; it will become tough.",
+      "Do not overcrowd the pot when boiling gnocchi; cook in batches."
+    ],
+    "traditional_techniques": [
+      "Hand-rolling gnocchi",
+      "Brown butter (burro fuso)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 761.19,
+      "cholesterol_mg": 137.95,
+      "dietary_fiber_g": 7.69,
+      "protein_g": 17.17,
+      "saturated_fat_g": 22.02,
+      "sodium_mg": 719.42,
+      "total_carbs_g": 92.59,
+      "total_fat_g": 36.2,
+      "total_sugars_g": 2.36,
+      "trans_fat_g": 1.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 206,
+      "cholesterol_mg": 37.33,
+      "dietary_fiber_g": 2.08,
+      "protein_g": 4.65,
+      "saturated_fat_g": 5.96,
+      "sodium_mg": 194.7,
+      "total_carbs_g": 25.06,
+      "total_fat_g": 9.8,
+      "total_sugars_g": 0.64,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45.98,
+      "dietary_fiber": 27.47,
+      "protein": 34.33,
+      "saturated_fat": 110.1,
+      "sodium": 31.28,
+      "total_carbs": 33.67,
+      "total_fat": 46.41
+    },
+    "serving_size_g": 369.5,
+    "total_recipe_weight_g": 1478
+  },
+  {
+    "recipe_name": "Savory Chicken Soba Stir-Fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_chicken_soba_stir-fry_20250713_090152_9d907ec1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T09:01:52.524001000Z",
+    "selected_ingredients": [
+      "soba noodle",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of Savory Chicken Soba Stir-Fry rests in a rustic, deep ceramic bowl on a well-used wooden dining table. The soba noodles, dark brown and slightly glossy from the sauce, are loosely piled. Tender, pan-fried chicken chunks, golden-brown and irregular in shape, are nestled among the noodles. Vibrant, crisp-tender vegetables – thin julienned carrot strips, bright red bell pepper slices, and whole green snap peas – are mixed throughout, adding bursts of color and texture. The dish is garnished simply with a sprinkle of toasted white sesame seeds and thinly sliced green spring onion tops. The bowl sits directly on the wooden table, alongside a pair of natural wooden chopsticks and a small, simple ceramic soy sauce dish. Warm, soft light from an overhead kitchen fixture illuminates the scene, highlighting the comforting appeal of the home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve immediately while hot.",
+      "Provide wooden chopsticks for eating.",
+      "Offer a small side dish of pickled ginger or shichimi togarashi for extra flavor."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Dried soba noodles",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Snap peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Sake (optional)",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Water or chicken broth",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Water (for cornstarch slurry)",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 2 cm cubes. Season with a pinch of salt and pepper.",
+      "Slice bell pepper into thin strips. Julienne carrots. Trim snap peas. Mince garlic. Grate ginger. Slice spring onions diagonally, separate white and green parts.",
+      "In a bowl, whisk together soy sauce, mirin, sake (if using), water/broth, brown sugar, and sesame oil. Set aside.",
+      "Cook soba noodles according to package directions until al dente. Drain well and rinse with cold water to prevent sticking. Drain again.",
+      "Heat 1 tbsp vegetable oil in a large wok or skillet over medium-high heat. Add chicken cubes. Cook until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet.",
+      "Add remaining 1 tbsp vegetable oil to the skillet. Add white parts of spring onions, minced garlic, and grated ginger. Sauté for 30 seconds until fragrant. Add carrots and bell pepper. Stir-fry for 3-4 minutes until crisp-tender. Add snap peas and stir-fry for 1-2 minutes.",
+      "Return cooked chicken to the skillet with vegetables. Add cooked soba noodles. Stir the sauce mixture, then pour over the noodles, chicken, and vegetables.",
+      "Bring to a simmer. In a small bowl, whisk cornstarch with 2 tbsp water to make a slurry. Add slurry to the skillet. Stir constantly until sauce thickens and coats ingredients.",
+      "Transfer to serving bowls. Garnish with green parts of spring onions and toasted sesame seeds. Serve hot."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.94,
+      "calories": 707.43,
+      "cholesterol_mg": 187.5,
+      "dietary_fiber_g": 7.49,
+      "protein_g": 44.96,
+      "saturated_fat_g": 4.94,
+      "sodium_mg": 1471.36,
+      "total_carbs_g": 76.91,
+      "total_fat_g": 24.05,
+      "total_sugars_g": 14.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.71,
+      "calories": 152.09,
+      "cholesterol_mg": 40.31,
+      "dietary_fiber_g": 1.61,
+      "protein_g": 9.67,
+      "saturated_fat_g": 1.06,
+      "sodium_mg": 316.33,
+      "total_carbs_g": 16.54,
+      "total_fat_g": 5.17,
+      "total_sugars_g": 3.12,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.5,
+      "dietary_fiber": 26.75,
+      "protein": 89.92,
+      "saturated_fat": 24.7,
+      "sodium": 63.97,
+      "total_carbs": 27.97,
+      "total_fat": 30.83
+    },
+    "serving_size_g": 465.13,
+    "total_recipe_weight_g": 1860.5
+  },
+  {
+    "recipe_name": "Creamy Tuscan Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tuscan_chicken_20250713_085923_3cbbdc2a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T08:59:23.926745000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents seared boneless, skinless chicken thighs, cut into generous 5cm chunks, coated in a rich, creamy sauce. The golden-brown chicken pieces are nestled amongst vibrant green wilted spinach and ruby-red sun-dried tomato halves. The sauce, a harmonious blend of cream and Parmesan, gently clings to all components, showcasing a velvety texture. Garnished with fresh chopped Italian parsley, the dish offers a delightful contrast of colors and textures. It is served in a clean, white porcelain dinner plate on a simple wooden table, accompanied by classic Italian flatware and a folded cotton napkin. Natural, even lighting illuminates the dish, highlighting its inviting, rustic elegance. A single portion is thoughtfully arranged with moderate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Serve alongside a simple green salad.",
+      "Serve over pasta, such as tagliatelle or penne."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Sun-dried tomatoes (oil-packed)",
+        "quantity": "60 g, drained and sliced"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g, grated"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Cut each thigh into 2-3 large chunks (approx. 5cm pieces). Season generously with salt and pepper.",
+      "Heat olive oil in a large pan or skillet over medium-high heat. Add chicken pieces. Sear for 4-5 minutes per side until golden brown and cooked through. Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add minced garlic and sliced sun-dried tomatoes to the pan. Sauté for 1-2 minutes until fragrant.",
+      "Pour in chicken broth and scrape up any browned bits from the bottom of the pan. Stir in heavy cream and dried oregano. Bring to a gentle simmer.",
+      "Reduce heat to low. Stir in grated Parmesan cheese until melted and smooth. Season sauce with salt and pepper to taste.",
+      "Add fresh spinach to the pan. Cook until spinach is wilted, about 2-3 minutes.",
+      "Return cooked chicken pieces to the pan. Toss to coat them in the creamy sauce. Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 631,
+      "cholesterol_mg": 262,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 39.8,
+      "saturated_fat_g": 21.7,
+      "sodium_mg": 726,
+      "total_carbs_g": 12.4,
+      "total_fat_g": 48.6,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 197,
+      "cholesterol_mg": 82,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 12.4,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 226,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 15.1,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 87,
+      "dietary_fiber": 10,
+      "protein": 80,
+      "saturated_fat": 109,
+      "sodium": 32,
+      "total_carbs": 5,
+      "total_fat": 62
+    },
+    "serving_size_g": 321.15,
+    "total_recipe_weight_g": 1284.6
+  },
+  {
+    "recipe_name": "Pan-Roasted Chicken with Herbed Potatoes and Asparagus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-roasted_chicken_with_herbed_potatoes_and_asparagus_20250713_085905_55bf4855.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T08:59:05.953227000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, individual portion of Pan-Roasted Chicken is centered on a clean white porcelain dinner plate. One whole, boneless, skin-on chicken thigh, boasting a deeply golden-brown and crispy skin, is the focal point. Adjacent to the chicken, a neat cluster of golden-brown roasted potato wedges is arranged. Alongside, several vibrant green asparagus spears, lightly charred, complete the main components. A rich, glossy pan sauce, infused with herbs and lemon, is artfully drizzled over the chicken and pooled at its base. The dish exhibits a natural color balance of golden browns, vibrant greens, and rich amber tones. Garnished simply with a fresh sprig of rosemary and a bright lemon wedge placed beside the plate. The setting is a modern bistro, featuring a simple wooden table surface, standard silver flatware, and a folded cotton napkin. Natural, even lighting highlights the textures and colors of the food. The background is softly blurred, hinting at a relaxed restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, Skin-on Chicken Thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "New Potatoes",
+        "quantity": "600g, cut into 2cm wedges"
+      },
+      {
+        "name": "Asparagus Spears",
+        "quantity": "400g, trimmed"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "2 sprigs, chopped"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "2 sprigs, chopped"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry White Wine (e.g., Sauvignon Blanc)",
+        "quantity": "125ml (optional)"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2, for juice and garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "In a large oven-safe skillet, heat 30ml olive oil over medium-high heat.",
+      "Place chicken thighs skin-side down in skillet. Sear for 8-10 minutes until skin is golden brown and crispy.",
+      "Flip chicken. Sear for 2-3 minutes on other side. Remove chicken from skillet. Set aside.",
+      "Add remaining 30ml olive oil to skillet. Add potato wedges. Season with salt, pepper, chopped rosemary, and chopped thyme.",
+      "Sauté potatoes for 5-7 minutes until lightly browned.",
+      "Return chicken thighs to skillet, nestling them among potatoes.",
+      "Transfer skillet to preheated oven. Roast for 20-25 minutes.",
+      "After 15 minutes of roasting, add asparagus spears to skillet. Continue roasting until chicken reaches 75°C internal temperature and potatoes are tender.",
+      "Remove skillet from oven. Transfer chicken, potatoes, and asparagus to a serving platter. Cover loosely with foil.",
+      "Place skillet back on stovetop over medium heat. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Deglaze with white wine (if using). Scrape up any browned bits. Simmer for 2 minutes.",
+      "Pour in chicken stock. Bring to a simmer. Reduce by half, about 5-7 minutes.",
+      "Remove from heat. Whisk in butter until melted and sauce is slightly thickened.",
+      "Squeeze fresh lemon juice into sauce. Taste and adjust seasoning.",
+      "Drizzle pan sauce over chicken and vegetables. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 765,
+      "cholesterol_mg": 185.3,
+      "dietary_fiber_g": 5.53,
+      "protein_g": 41.29,
+      "saturated_fat_g": 13.17,
+      "sodium_mg": 655,
+      "total_carbs_g": 38.95,
+      "total_fat_g": 45.06,
+      "total_sugars_g": 3.66,
+      "trans_fat_g": 0.43
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 137,
+      "cholesterol_mg": 33.2,
+      "dietary_fiber_g": 0.99,
+      "protein_g": 7.39,
+      "saturated_fat_g": 2.35,
+      "sodium_mg": 117.2,
+      "total_carbs_g": 6.97,
+      "total_fat_g": 8.06,
+      "total_sugars_g": 0.65,
+      "trans_fat_g": 0.08
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.8,
+      "dietary_fiber": 19.7,
+      "protein": 82.6,
+      "saturated_fat": 65.8,
+      "sodium": 28.5,
+      "total_carbs": 14.2,
+      "total_fat": 57.8
+    },
+    "serving_size_g": 558.75,
+    "total_recipe_weight_g": 2235
+  }
+]

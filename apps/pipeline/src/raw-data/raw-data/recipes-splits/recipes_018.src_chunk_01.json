@@ -1,0 +1,637 @@
+[
+  {
+    "recipe_name": "Spicy Tomato Chicken with Parmesan Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_tomato_chicken_with_parmesan_brown_rice_20250625_170356_8e3f592b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T17:03:56.880763000Z",
+    "selected_ingredients": [
+      "tomato",
+      "chicken",
+      "chili",
+      "parmesan cheese",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Spicy Tomato Chicken with Parmesan Brown Rice is presented on a clean white porcelain dinner plate. A bed of fluffy, earthy brown rice forms the base. Nestled on top are several thick, golden-brown seared chicken chunks, partially submerged in a vibrant, rich red tomato sauce. The sauce is flecked with bright red chili slices and hints of green from cooked herbs. A generous sprinkle of freshly grated pale yellow Parmesan cheese melts slightly over the chicken and sauce, adding a creamy texture. Scattered fresh green basil leaves provide a contrasting pop of color and freshness. The dish is arranged with moderate negative space, showcasing the natural textures and colors of the ingredients. The setting features a simple wooden table surface, a white cotton napkin placed beside the plate, and even natural lighting, creating an inviting bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Long-grain brown rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Fresh red chilies, thinly sliced",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Medium onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh basil leaves, torn",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cook brown rice according to package directions. Keep warm.",
+      "Cut chicken thighs into 3-4 cm chunks. Season chicken with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Add seasoned chicken chunks to skillet. Sear until golden brown on all sides. Do not cook through. Remove chicken from skillet.",
+      "Reduce heat to medium. Add diced onion to skillet. Sauté 5 minutes until softened.",
+      "Add minced garlic and sliced chili. Sauté 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Stir in oregano.",
+      "Bring sauce to a simmer. Return seared chicken to skillet.",
+      "Reduce heat to low. Cover and simmer 15-20 minutes, or until chicken is cooked through (75°C internal temperature).",
+      "Stir half of the grated Parmesan into the sauce.",
+      "Serve chicken and sauce over individual portions of brown rice.",
+      "Garnish with remaining grated Parmesan and fresh basil leaves."
+    ],
+    "notes": [
+      "Adjust chili amount for desired heat level.",
+      "Ensure chicken reaches 75°C internal temperature for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 689,
+      "cholesterol_mg": 192,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 47.2,
+      "saturated_fat_g": 8.3,
+      "sodium_mg": 1024,
+      "total_carbs_g": 62.3,
+      "total_fat_g": 27.1,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 103,
+      "cholesterol_mg": 28.7,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.1,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 153,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 22,
+      "protein": 94,
+      "saturated_fat": 42,
+      "sodium": 45,
+      "total_carbs": 23,
+      "total_fat": 35
+    },
+    "serving_size_g": 668,
+    "total_recipe_weight_g": 2670
+  },
+  {
+    "recipe_name": "Seared Pork Medallions with Creamy Cheddar Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_pork_medallions_with_creamy_cheddar_rigatoni_20250625_170336_9aae6a47.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T17:03:36.613255000Z",
+    "selected_ingredients": [
+      "cheddar",
+      "pasta",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Seared Pork Medallions with Creamy Cheddar Rigatoni is presented on a clean white porcelain dinner plate. A generous mound of golden-orange rigatoni pasta, coated in a rich, smooth cheddar sauce, sits prominently on one side of the plate. The rigatoni tubes are plump and clearly defined, showing their ridged texture. Beside the pasta, two to three thick, circular pork medallions are arranged. Each medallion features a deep golden-brown sear on its exterior, contrasting with the lighter, tender interior. The pork is presented as whole pieces, not sliced or fanned. A vibrant sprinkle of fresh, finely chopped green parsley garnishes both the pasta and the pork, adding a pop of color and freshness. The plate is set on a simple wooden table surface, accompanied by a silver fork and knife and a folded cotton napkin placed to the side. Natural, even lighting illuminates the dish, highlighting its textures and inviting colors. The background is minimal, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Pork Tenderloin",
+    "ingredients": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Rigatoni Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Sharp Cheddar Cheese, grated",
+        "quantity": "250g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Whole Milk, warmed",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Nutmeg, freshly grated",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cook rigatoni according to package directions until al dente. Drain pasta. Reserve 125ml pasta water.",
+      "Slice pork tenderloin into 2.5 cm thick medallions. Season pork medallions generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Sear pork medallions 3-4 minutes per side until golden brown and cooked through. Internal temperature should reach 71°C. Remove pork from skillet. Set aside.",
+      "Melt butter in the same skillet over medium heat. Add diced shallot. Cook 2 minutes until softened. Add minced garlic. Cook 1 minute until fragrant.",
+      "Whisk in flour. Cook 1 minute, stirring constantly, to create a roux.",
+      "Gradually whisk in warm milk until smooth. Bring sauce to a simmer. Cook 3-5 minutes, stirring, until sauce thickens.",
+      "Remove skillet from heat. Stir in grated cheddar cheese, Dijon mustard, and nutmeg until cheese is melted and sauce is smooth.",
+      "Add cooked rigatoni to the cheese sauce. Add reserved pasta water as needed to achieve creamy consistency. Stir well to coat pasta.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Plate creamy cheddar rigatoni. Arrange seared pork medallions alongside pasta. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1162,
+      "cholesterol_mg": 216,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 76.3,
+      "saturated_fat_g": 25.8,
+      "sodium_mg": 570,
+      "total_carbs_g": 99.7,
+      "total_fat_g": 50.5,
+      "total_sugars_g": 13.4,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 211,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 13.8,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 103,
+      "total_carbs_g": 18.1,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.1,
+      "dietary_fiber": 16.1,
+      "protein": 152.5,
+      "saturated_fat": 129.1,
+      "sodium": 24.8,
+      "total_carbs": 36.3,
+      "total_fat": 64.8
+    },
+    "serving_size_g": 550.75,
+    "total_recipe_weight_g": 2203
+  },
+  {
+    "recipe_name": "Smoked Paprika Pulled Pork Mac & Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_paprika_pulled_pork_mac_%26_cheese_20250625_170315_916076b2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T17:03:15.580294000Z",
+    "selected_ingredients": [
+      "cheddar",
+      "pasta",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous, rustic portion of Smoked Paprika Pulled Pork Mac & Cheese is presented on a round, clean white porcelain dinner plate. The cavatappi pasta is thoroughly coated in a rich, creamy, golden-orange cheddar and Gruyere cheese sauce, with a subtle bubbly crust from baking. Dark, tender, shredded pulled pork is generously mixed throughout and nestled on top, visible in savory, irregular chunks, providing a textural and color contrast. A vibrant sprinkle of freshly chopped green chives garnishes the dish, adding a fresh aromatic note and a pop of color. The plate sits on a simple light wooden table. A neatly folded white cotton napkin and classic silver flatware are placed beside it. Natural, even light illuminates the scene, highlighting the dish's comforting appeal within a modern bistro atmosphere. The entire plate is visible, with balanced negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of creamy coleslaw.",
+      "Accompany with warm, buttery cornbread.",
+      "Offer a selection of tangy pickled vegetables."
+    ],
+    "hero_ingredient": "Pulled Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Cavatappi pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Sharp cheddar cheese, grated",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Gruyere cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dry mustard powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh chives, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Season pork shoulder generously with salt, black pepper, smoked paprika, garlic powder, and onion powder.",
+      "Heat a large oven-safe pot or Dutch oven over medium-high heat. Sear pork shoulder on all sides until deeply browned. Remove pork.",
+      "Deglaze the pot with chicken broth. Return pork to the pot. Cover tightly.",
+      "Braise in the oven for 3-4 hours, or until pork is fork-tender and pulls apart easily. Remove pork from liquid. Shred pork using two forks. Discard any excess fat.",
+      "While pork braises, cook cavatappi pasta according to package directions until al dente. Drain well. Set aside.",
+      "In a large saucepan, melt butter over medium heat. Whisk in flour to create a roux. Cook for 2 minutes, stirring constantly.",
+      "Gradually whisk in milk until smooth. Bring to a simmer, stirring, until thickened.",
+      "Remove from heat. Add grated cheddar and Gruyere cheeses, and dry mustard powder. Stir until cheeses are fully melted and sauce is smooth. Season with salt and pepper to taste.",
+      "Combine cooked pasta and shredded pulled pork with the cheese sauce. Stir gently to coat all ingredients.",
+      "Transfer mixture to a large baking dish. Bake for 20-25 minutes, or until bubbly and lightly golden on top.",
+      "Garnish with fresh chopped chives before serving."
+    ],
+    "notes": [
+      "Ensure pork reaches an internal temperature of 71°C (160°F) for safety, though slow braising will typically exceed this significantly for tenderness.",
+      "For a creamier sauce, avoid overcooking the roux and ensure milk is added gradually."
+    ],
+    "traditional_techniques": [
+      "Slow Braising",
+      "Roux Preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1398,
+      "cholesterol_mg": 294,
+      "dietary_fiber_g": 5.33,
+      "protein_g": 93.4,
+      "saturated_fat_g": 42.13,
+      "sodium_mg": 1607,
+      "total_carbs_g": 101.29,
+      "total_fat_g": 80.84,
+      "total_sugars_g": 13.76,
+      "trans_fat_g": 1.95
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142.06,
+      "cholesterol_mg": 29.89,
+      "dietary_fiber_g": 0.54,
+      "protein_g": 9.5,
+      "saturated_fat_g": 4.28,
+      "sodium_mg": 163.39,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 8.22,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 98,
+      "dietary_fiber": 19.04,
+      "protein": 186.8,
+      "saturated_fat": 210.65,
+      "sodium": 69.88,
+      "total_carbs": 36.83,
+      "total_fat": 103.64
+    },
+    "serving_size_g": 983.75,
+    "total_recipe_weight_g": 3935
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs with Red Wine Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_with_red_wine_reduction_20250625_170212_8cebb1aa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T17:02:12.957198000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of braised beef short ribs rests centrally on a clean, white porcelain dinner plate. The substantial, dark brown beef chunk, un-sliced, glistens from a rich, dark red wine reduction sauce generously spooned over and around it. The meat is fork-tender, with visible, succulent fibers. A small, neat mound of creamy, pale yellow polenta or smooth, white mashed potatoes is positioned beside the short rib, offering a vibrant contrast. A sprinkle of bright green, finely chopped fresh parsley adds a pop of freshness. The plate sits on a simple, dark wooden table surface, suggesting a modern bistro. A crisp, folded white cotton napkin is placed to the side. Natural, even lighting highlights the dish's rich colors and textures. The background is softly blurred, hinting at a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "cultural_origin": "European Bistro",
+    "cultural_serving_suggestions": [
+      "Serve with creamy polenta or smooth mashed potatoes.",
+      "Offer crusty bread for dipping in the rich sauce."
+    ],
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Beef Short Ribs",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Celery",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Season short ribs generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat.",
+      "Sear short ribs on all sides until deeply browned. Remove ribs from pot.",
+      "Add diced carrots, celery, and onion to the pot. Sauté until softened, about 8-10 minutes.",
+      "Stir in minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Deglaze the pot with red wine, scraping up any browned bits from the bottom. Bring to a simmer and cook until reduced by half.",
+      "Return short ribs to the pot. Add beef broth, thyme, rosemary, and bay leaves. Liquid should almost cover the ribs.",
+      "Bring to a gentle simmer. Cover the pot and transfer to a preheated oven at 160°C (325°F).",
+      "Braise for 2.5-3 hours, or until meat is fork-tender.",
+      "Carefully remove short ribs from the pot. Strain the braising liquid through a fine-mesh sieve into a saucepan, discarding solids.",
+      "Skim any excess fat from the strained liquid. Reduce the liquid over medium-high heat until it thickens into a rich sauce consistency. Season with salt and pepper to taste.",
+      "Serve short ribs with the reduced sauce, garnished with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1485.7,
+      "cholesterol_mg": 371.3,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 82.9,
+      "saturated_fat_g": 44.8,
+      "sodium_mg": 1289.1,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 109.2,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 225,
+      "cholesterol_mg": 56.2,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 12.5,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 195.2,
+      "total_carbs_g": 2.5,
+      "total_fat_g": 16.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 123.8,
+      "dietary_fiber": 9.6,
+      "protein": 165.8,
+      "saturated_fat": 224,
+      "sodium": 56,
+      "total_carbs": 6,
+      "total_fat": 140
+    },
+    "serving_size_g": 660.6,
+    "total_recipe_weight_g": 2642.3
+  },
+  {
+    "recipe_name": "Coconut Cherry Friands",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coconut_cherry_friands_20250625_170056_1bba3888.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T17:00:56.665477000Z",
+    "selected_ingredients": [
+      {
+        "name": "coconut"
+      },
+      {
+        "name": "flour"
+      },
+      {
+        "name": "egg"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "icing sugar"
+      },
+      {
+        "name": "cherry"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": null,
+    "visual_description": "Eight uniform, golden-brown Coconut Cherry Friands are elegantly arranged on a white porcelain serving platter with a subtle decorative rim. Each miniature cake boasts a slightly crisp exterior and a tender, moist crumb, revealing flecks of toasted desiccated coconut. A vibrant, halved cherry rests prominently on the surface of each friand, its deep red hue contrasting beautifully with the rich, golden pastry. A very light, almost imperceptible sheen from a simple cream glaze adds a delicate finish. The platter sits on a well-used wooden dining table in a homely family kitchen, bathed in warm, natural light. A casually placed cloth napkin in a neutral tone completes the relaxed, inviting scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a cup of hot coffee or black tea.",
+      "Offer as part of an afternoon tea spread."
+    ],
+    "hero_ingredient": "Coconut",
+    "ingredients": [
+      {
+        "name": "Unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "40g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "4 large (approx. 120g)"
+      },
+      {
+        "name": "Desiccated coconut",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh or frozen cherries",
+        "quantity": "100g, pitted and halved"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "20ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Lightly grease and flour 8-12 friand molds or a mini loaf pan.",
+      "Melt butter in a small saucepan over medium heat. Cook until golden brown and nutty (beurre noisette). Remove from heat. Let cool slightly.",
+      "In a large bowl, whisk egg whites and icing sugar until combined and smooth.",
+      "Fold in all-purpose flour, desiccated coconut, and salt until just mixed.",
+      "Gradually fold in the cooled brown butter until batter is smooth.",
+      "Fill prepared molds about two-thirds full. Place 1-2 halved cherries on top of each friand.",
+      "Bake for 20-25 minutes, or until golden brown and a skewer inserted comes out clean. Edges should be crisp.",
+      "Remove from oven. Let cool in molds for 5 minutes, then transfer to a wire rack to cool completely.",
+      "For an optional light glaze, whisk heavy cream with an additional 50g of icing sugar until smooth. Drizzle sparingly over cooled friands before serving."
+    ],
+    "notes": [
+      "Ensure butter is cooled slightly before adding to batter to prevent cooking the egg whites.",
+      "Friands are best enjoyed fresh but can be stored in an airtight container for up to 3 days."
+    ],
+    "traditional_techniques": [
+      "Beurre noisette"
+    ]
+  }
+]

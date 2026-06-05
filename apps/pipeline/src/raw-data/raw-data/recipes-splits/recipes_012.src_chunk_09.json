@@ -1,0 +1,674 @@
+[
+  {
+    "recipe_name": "Bacon Cheddar Jalapeño Stuffed Chicken Breast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bacon_cheddar_jalape%C3%B1o_stuffed_chicken_breast_20250702_234110_bd303949.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:41:10.620370000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheddar",
+      "bacon",
+      "pickled jalapeno chilies",
+      "mustard"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Bacon Cheddar Jalapeño Stuffed Chicken Breast is presented on a clean, round white porcelain plate, centrally positioned on a rustic wooden table. The golden-brown seared chicken breast is cut diagonally into two thick, inviting pieces, revealing the melted yellow cheddar, crisp red bacon bits, and vibrant green diced jalapeños within the stuffing. A glistening, light brown pan sauce is gently spooned over and around the chicken. A sprinkle of fresh, bright green chopped parsley garnishes the dish, adding a pop of color. The arrangement is clean and professional, with moderate negative space. A folded cotton napkin rests beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and rich colors against a subtly blurred, modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of roasted potato wedges or a simple green salad.",
+      "Offer extra hot sauce on the side for those who prefer more heat."
+    ],
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200 g each)"
+      },
+      {
+        "name": "Streaky bacon",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Pickled jalapeño chilies, finely diced",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Toothpicks",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook bacon in a large oven-safe skillet over medium heat until crispy. Remove bacon, drain fat, and crumble. Set aside.",
+      "Carefully slice a deep pocket into the side of each chicken breast, ensuring not to cut all the way through.",
+      "In a small bowl, combine crumbled bacon, grated cheddar, diced jalapeños, and Dijon mustard. Mix well.",
+      "Generously stuff each chicken pocket with the bacon-cheese mixture. Secure openings with toothpicks if necessary.",
+      "Season chicken breasts on all sides with salt, pepper, and garlic powder.",
+      "Add olive oil to the same skillet (or a new one if bacon rendered too much fat) and heat over medium-high heat.",
+      "Sear stuffed chicken breasts for 3-4 minutes per side, until golden brown.",
+      "Transfer the skillet with the chicken to the preheated oven. Bake for 15-20 minutes, or until internal temperature reaches 75°C. Use a meat thermometer.",
+      "Remove chicken from oven and let rest on a cutting board for 5 minutes.",
+      "While chicken rests, return skillet to stovetop over medium heat. Pour in chicken stock. Scrape up any browned bits from the bottom of the pan. Reduce stock by half, creating a light pan sauce.",
+      "Remove toothpicks from chicken breasts. Cut each breast diagonally into two thick pieces.",
+      "Place cut chicken on individual plates. Spoon pan sauce over chicken. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust the amount of jalapeños based on desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 678,
+      "cholesterol_mg": 225.9,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 77.6,
+      "saturated_fat_g": 14.5,
+      "sodium_mg": 1179.9,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 37.2,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 200.4,
+      "cholesterol_mg": 66.8,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 22.9,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 348.8,
+      "total_carbs_g": 1,
+      "total_fat_g": 11,
+      "total_sugars_g": 0.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75.3,
+      "dietary_fiber": 2.1,
+      "protein": 155.2,
+      "saturated_fat": 72.5,
+      "sodium": 51.3,
+      "total_carbs": 1.3,
+      "total_fat": 47.7
+    },
+    "serving_size_g": 338.25,
+    "total_recipe_weight_g": 1353
+  },
+  {
+    "recipe_name": "Slow-Cooked Beef Ragu with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_ragu_with_pappardelle_20250702_233926_7a022b6c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:39:26.637347000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of wide, golden pappardelle ribbons nested in a shallow white porcelain bowl. Large, 3cm tender chunks of braised beef are distributed naturally throughout the pasta, coated in a thick, mahogany-colored tomato sauce. The sauce has a glossy sheen and visible small bits of diced carrots and onions. The dish is topped with a light, airy snowfall of finely grated Parmigiano-Reggiano. A small pinch of fresh, chopped flat-leaf parsley is scattered over the center. The bowl sits on a rustic light-wood bistro table next to a folded white cotton napkin and a polished silver fork. Natural daylight illuminates the textures of the shredded beef fibers and the silkiness of the pasta ribbons.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of full-bodied red wine like Chianti",
+      "Accompany with crusty sourdough bread for 'fare la scarpetta'",
+      "Present in wide-rimmed pasta bowls"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 3cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk, finely diced",
+        "quantity": "1 stalk"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Canned San Marzano tomatoes, crushed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmigiano-Reggiano, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh rosemary and thyme sprigs",
+        "quantity": "2 each"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper.",
+      "Heat oil in a heavy-based pot over medium-high heat.",
+      "Sear beef chunks in batches until browned on all sides. Remove beef.",
+      "Add onion, carrot, and celery to the same pot. Sauté 8 minutes until soft.",
+      "Stir in garlic and tomato paste. Cook for 2 minutes.",
+      "Pour in red wine. Scrape the bottom of the pot to release browned bits.",
+      "Return beef to the pot. Add crushed tomatoes, beef stock, and herb sprigs.",
+      "Bring to a simmer. Cover and reduce heat to low.",
+      "Cook for 2.5 to 3 hours until beef is fork-tender.",
+      "Remove herb sprigs. Adjust seasoning with salt and pepper.",
+      "Boil salted water in a large pot. Cook pappardelle until al dente.",
+      "Drain pasta. Reserve 60ml of pasta water.",
+      "Toss pasta with the ragu and reserved water over low heat for 1 minute.",
+      "Serve immediately with grated cheese."
+    ],
+    "notes": [
+      "Ensure the beef is seared deeply for maximum flavor development.",
+      "If the sauce is too thick, add more pasta water during the finishing stage.",
+      "Chuck roast or shin are the best cuts for this long-braising method."
+    ],
+    "traditional_techniques": [
+      "soffritto",
+      "braising",
+      "mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1181.7,
+      "cholesterol_mg": 207.3,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 82.5,
+      "saturated_fat_g": 17.7,
+      "sodium_mg": 2250,
+      "total_carbs_g": 96.9,
+      "total_fat_g": 46.7,
+      "total_sugars_g": 13.1,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146.3,
+      "cholesterol_mg": 25.7,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 10.2,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 278.6,
+      "total_carbs_g": 12,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 26,
+      "protein": 165,
+      "saturated_fat": 89,
+      "sodium": 98,
+      "total_carbs": 35,
+      "total_fat": 60
+    },
+    "serving_size_g": 807.5,
+    "total_recipe_weight_g": 3230
+  },
+  {
+    "recipe_name": "Savory Crispy Rice Patties",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_crispy_rice_patties_20250702_233746_774fd526.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:37:46.874371000Z",
+    "selected_ingredients": [
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "plant-based",
+    "visual_description": "A stack of golden-brown, Savory Crispy Rice Patties is casually arranged on a rustic, round ceramic platter with a slightly irregular rim, set on a warm, well-used wooden dining table. The patties are roughly 6-7cm in diameter and 2cm thick, with a visibly crisp, pan-fried exterior. Their surface shows a mottled golden-brown color with occasional darker, crispy bits. The interior, subtly revealed on a few patties, shows the soft white rice studded with finely diced onion and vibrant orange grated carrot, flecked with green chopped coriander. A small, simple white ceramic bowl of a light, creamy dipping sauce sits beside the platter. A casually folded, plain linen napkin rests nearby. The scene is lit by soft, inviting kitchen light, creating a cozy, lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Rice",
+    "ingredients": [
+      {
+        "name": "Cooked rice (preferably day-old)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chickpea flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "80g"
+      },
+      {
+        "name": "Small carrot, grated",
+        "quantity": "70g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "5g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Chili powder (optional)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh coriander (cilantro), chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Vegetable oil (for frying)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "50-70ml"
+      }
+    ],
+    "instructions": [
+      "Finely dice the onion. Grate the carrot, garlic, and ginger. Chop the fresh coriander.",
+      "In a large mixing bowl, combine the cooked rice, diced onion, grated carrot, minced garlic, grated ginger, chickpea flour, cumin, coriander, turmeric, chili powder (if using), salt, and black pepper.",
+      "Gradually add water to the mixture, mixing until a cohesive, moldable dough forms. Adjust water as needed for consistency.",
+      "Form the mixture into 12-16 small, flat patties, about 2cm thick and 6-7cm in diameter.",
+      "Heat the vegetable oil in a large non-stick pan over medium heat.",
+      "Carefully place the patties into the hot oil, ensuring not to overcrowd the pan. Fry for 4-5 minutes per side.",
+      "Continue frying until the patties are golden brown and crispy on both sides.",
+      "Transfer the fried patties to a plate lined with paper towel to drain any excess oil.",
+      "Serve the Savory Crispy Rice Patties hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 314.2,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 7.5,
+      "saturated_fat_g": 1,
+      "sodium_mg": 521.6,
+      "total_carbs_g": 42.2,
+      "total_fat_g": 13.9,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 162.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 3.9,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 269.9,
+      "total_carbs_g": 21.8,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 12.9,
+      "protein": 15,
+      "saturated_fat": 5,
+      "sodium": 22.7,
+      "total_carbs": 15.3,
+      "total_fat": 17.8
+    },
+    "serving_size_g": 193.25,
+    "total_recipe_weight_g": 773
+  },
+  {
+    "recipe_name": "Vitello Tonnato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vitello_tonnato_20250702_233527_11194351.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:35:27.881847000Z",
+    "selected_ingredients": [
+      "veal",
+      "tuna"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single starter portion of Vitello Tonnato is elegantly presented on a clean, round white porcelain plate. Thinly sliced, pale pink veal medallions are arranged neatly, slightly overlapping, covering the base of the plate. A generous, creamy, pale yellow tuna sauce is spooned generously over the veal, creating a smooth, inviting texture contrast. The dish is garnished with bright green capers and a few larger caper berries, along with a sprinkle of finely chopped fresh flat-leaf parsley and delicate curls of yellow lemon zest, adding pops of vibrant color. The composition is balanced, with moderate negative space around the edges of the plate. The setting features a simple, light-colored wooden table surface, with a folded white cotton napkin placed beside the plate. Natural, even lighting highlights the dish's freshness and refined simplicity. The background is minimal, suggesting a casual bistro atmosphere, allowing the focus to remain entirely on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve well chilled as an antipasto.",
+      "Offer crusty bread or grissini (breadsticks) alongside for dipping in the sauce."
+    ],
+    "hero_ingredient": "Veal",
+    "ingredients": [
+      {
+        "name": "Veal topside or eye of round",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Canned tuna in olive oil, drained",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Anchovy fillets in oil, drained",
+        "quantity": "4"
+      },
+      {
+        "name": "Capers, rinsed and drained",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Lemon, juice and zest",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Onion, quartered",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Carrot, roughly chopped",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Celery stalk, roughly chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Caper berries",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Pat veal dry. Season with salt.",
+      "Heat 15 ml olive oil in a pot over medium-high heat. Sear veal on all sides until browned. Remove veal.",
+      "Add remaining 15 ml olive oil to the pot. Sauté onion, carrot, and celery until softened, about 5 minutes.",
+      "Return veal to pot. Add white wine, bay leaf, and peppercorns. Pour in enough water to just cover the veal.",
+      "Bring to a simmer. Reduce heat to low. Cover and cook for 1.5 to 2 hours, or until veal is very tender.",
+      "Remove veal from liquid. Let cool completely. Chill in refrigerator for at least 2 hours.",
+      "Strain cooking liquid. Reserve 60 ml. Discard solids.",
+      "For the tuna sauce: Combine drained tuna, mayonnaise, anchovy fillets, half of the capers, lemon juice, and reserved cooking liquid in a blender or food processor. Blend until very smooth and creamy. Adjust seasoning with salt if needed.",
+      "Slice chilled veal very thinly, against the grain, into medallions.",
+      "Arrange veal slices neatly on serving plates, slightly overlapping. Spoon a generous amount of tuna sauce over the veal.",
+      "Garnish with remaining capers, caper berries, lemon zest, and chopped fresh parsley. Serve chilled."
+    ],
+    "traditional_techniques": [
+      "Poaching veal",
+      "Making an emulsion-based sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 649,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 44.4,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 850,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 42.5,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 206,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 14.1,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 269,
+      "total_carbs_g": 2,
+      "total_fat_g": 13.5,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47.1,
+      "dietary_fiber": 5.3,
+      "protein": 88.7,
+      "saturated_fat": 40.6,
+      "sodium": 37,
+      "total_carbs": 2.2,
+      "total_fat": 54.5
+    },
+    "serving_size_g": 315.75,
+    "total_recipe_weight_g": 1263
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Garlic Crumb Stuffing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_garlic_crumb_stuffing_20250702_233206_3b3c5415.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:32:07.283002000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "breadcrumbs",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, pan-seared chicken breast, golden-brown and plump, rests as the centerpiece on a handcrafted, off-white ceramic plate. The chicken is presented whole, its natural shape maintained, hinting at the savory stuffing within. Adjacent to the chicken, a small, organic cluster of vibrant green blanched kale or spinach provides a fresh textural contrast. Scattered delicately nearby are thinly sliced, deep purple quick-pickled red onions, adding a pop of color and tangy element. The composition is clean and minimalist, with ample negative space. The plate sits on a light, natural reclaimed wood surface. An undyed linen napkin in a natural beige tone and simple, clean utensils are subtly placed. Soft, diffused natural light illuminates the scene, highlighting the natural textures and colors of the ingredients against a clean, uncluttered background with a hint of soft green foliage in the distance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Stale bread, for breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fermented garlic paste",
+        "quantity": "20g"
+      },
+      {
+        "name": "White onion, finely diced",
+        "quantity": "75g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Red onion, thinly sliced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Seasonal green vegetables (e.g., kale, spinach)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare quick-pickled red onion: Combine vinegar, water, sugar, and 2.5g salt in a saucepan. Bring to a boil, stirring until dissolved. Pour over thinly sliced red onion in a heatproof jar. Let cool, then refrigerate. This can be done hours or a day in advance.",
+      "Make breadcrumbs from stale bread. Toast lightly in a dry pan until golden, then set aside.",
+      "Prepare stuffing: In a bowl, combine toasted breadcrumbs, fermented garlic paste, finely diced white onion, chopped parsley, 2.5g salt, and black pepper. Mix well.",
+      "Prepare chicken: Butterfly each chicken breast to create a pocket. Gently pound to an even 1.5 cm thickness.",
+      "Fill each chicken breast evenly with the stuffing mixture. Roll tightly and secure with kitchen twine or toothpicks.",
+      "Heat olive oil in an oven-safe skillet over medium-high heat.",
+      "Sear stuffed chicken breasts for 3-4 minutes per side until golden brown. Ensure all sides are browned.",
+      "Transfer the skillet to a preheated oven at 180°C (350°F). Cook for 15-20 minutes, or until the internal temperature of the chicken reaches 75°C (167°F).",
+      "Remove chicken from oven and let rest for 5 minutes. Remove twine or toothpicks.",
+      "While chicken rests, quickly blanch or sauté seasonal green vegetables until tender-crisp.",
+      "To plate, place one whole stuffed chicken breast on each plate. Arrange a portion of blanched greens next to it. Garnish with a small mound of quick-pickled red onion."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5.3,
+      "calories": 522.4,
+      "cholesterol_mg": 153,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 62.1,
+      "saturated_fat_g": 3,
+      "sodium_mg": 858.2,
+      "total_carbs_g": 31.8,
+      "total_fat_g": 14.7,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.3,
+      "calories": 125.3,
+      "cholesterol_mg": 36.7,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 14.9,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 205.8,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 13,
+      "protein": 124,
+      "saturated_fat": 15,
+      "sodium": 37,
+      "total_carbs": 12,
+      "total_fat": 19
+    },
+    "serving_size_g": 417,
+    "total_recipe_weight_g": 1668
+  }
+]

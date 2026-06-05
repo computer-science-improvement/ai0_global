@@ -1,0 +1,686 @@
+[
+  {
+    "recipe_name": "Braised Beef with Parmesan Polenta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_parmesan_polenta_20250627_042659_ff5710a1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:26:59.765451000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "parmesan cheese",
+      "mushroom",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Braised Beef with Parmesan Polenta is presented on a round, clean white porcelain dinner plate. A generous, free-flowing mound of creamy, golden-yellow polenta occupies the center. Nestled artfully atop the polenta are two or three glistening, rich brown chunks of slow-braised beef. Surrounding the beef and polenta are tender, rustic cubes of orange carrot and earthy cremini mushroom halves, all coated in a glossy, dark red-brown sauce. A sprinkle of vibrant green, finely chopped fresh parsley adds a pop of color. The entire plate is visible, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface, standard silver flatware, and a folded cotton napkin positioned beside the plate. Natural, even lighting highlights the dish's textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread to soak up the rich sauce",
+      "Pair with a robust red wine like Chianti or Barolo"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fine grain polenta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water or milk",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck roast into 4-5 cm thick chunks. Season generously with salt and black pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear beef chunks in batches until deeply browned on all sides. Remove beef and set aside.",
+      "Dice onion and carrots into 1.5 cm cubes. Mince garlic. Add onion and carrots to the pot. Sauté until softened, about 8 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Reduce wine by half.",
+      "Stir in crushed tomatoes and beef broth. Return seared beef to the pot.",
+      "Add rosemary, thyme, and bay leaf. Bring to a simmer. Reduce heat to low, cover, and braise for 2.5-3 hours, or until beef is very tender.",
+      "Halve or quarter mushrooms depending on size. Add mushrooms to the pot during the last 30 minutes of braising. Stir gently.",
+      "While beef finishes, prepare polenta. Bring 800 ml water or milk to a simmer in a separate saucepan. Gradually whisk in polenta, stirring constantly to prevent lumps.",
+      "Reduce heat to low. Cook polenta, stirring frequently, for 15-20 minutes until creamy and tender. If too thick, add more hot liquid.",
+      "Stir in butter and 50 g grated Parmesan cheese into the polenta. Season with salt to taste. Polenta should be fluid.",
+      "Remove beef from the pot. Discard herb sprigs and bay leaf from the sauce. Taste sauce and adjust seasoning.",
+      "To serve, ladle a generous portion of creamy polenta onto each plate. Top with 2-3 chunks of braised beef and a spoonful of the rich sauce with carrots and mushrooms.",
+      "Garnish with remaining grated Parmesan cheese and finely chopped fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Mirepoix",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1037.5,
+      "cholesterol_mg": 178.4,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 70.5,
+      "saturated_fat_g": 21.5,
+      "sodium_mg": 1105.8,
+      "total_carbs_g": 56.6,
+      "total_fat_g": 51.4,
+      "total_sugars_g": 8,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 111.4,
+      "cholesterol_mg": 19.1,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.6,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 118.7,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.5,
+      "dietary_fiber": 19.5,
+      "protein": 141,
+      "saturated_fat": 107.5,
+      "sodium": 48.1,
+      "total_carbs": 20.6,
+      "total_fat": 65.8
+    },
+    "serving_size_g": 931.8,
+    "total_recipe_weight_g": 3727
+  },
+  {
+    "recipe_name": "Filipino Pork Belly and Potato Adobo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_filipino_pork_belly_and_potato_adobo_20250627_042624_5512ceba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:26:24.630647000Z",
+    "selected_ingredients": [
+      "pork",
+      "potato",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Filipino Pork Belly and Potato Adobo is presented on a clean, round white porcelain dinner plate. A neat mound of fluffy white jasmine rice is positioned on one side of the plate. Adjacent to the rice, generous chunks of braised pork belly and potato cubes are arranged, glistening with a rich, dark, savory adobo sauce. The pork belly is cut into substantial 4 cm cubes, tender and dark brown from the braising. The potatoes are 3 cm cubes, soft and coated in the glossy sauce. A sprinkle of freshly chopped vibrant green onions garnishes the adobo, adding a pop of color. The setting features a simple wooden table surface. A small, matching white rice bowl is placed beside the main plate. Standard silver fork and spoon are beside the plate. A folded cotton napkin rests nearby. Natural, even lighting illuminates the dish, highlighting its textures and deep colors in a clean, professional restaurant-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Filipino",
+    "cultural_origin": "Filipino",
+    "cultural_serving_suggestions": [
+      "Serve hot with plenty of steamed jasmine rice to soak up the sauce.",
+      "Traditionally accompanied by a side of pickled green papaya (atchara) for a contrasting flavor."
+    ],
+    "hero_ingredient": "Pork Belly",
+    "ingredients": [
+      {
+        "name": "Pork belly, skin on",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Potatoes, medium",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Cane vinegar",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "10, crushed"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "3"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "1 teaspoon, whole"
+      },
+      {
+        "name": "Water or chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut pork belly into 4 cm cubes. Pat dry.",
+      "Heat cooking oil in a large pot or Dutch oven over medium-high heat. Sear pork belly cubes until browned on all sides. Remove pork. Drain excess fat, leaving 2 tablespoons.",
+      "Add crushed garlic to the pot. Sauté until fragrant, about 1 minute.",
+      "Return seared pork belly to the pot. Add soy sauce, cane vinegar, bay leaves, and black peppercorns. Pour in water or chicken broth.",
+      "Bring mixture to a boil. Reduce heat to low. Cover and simmer for 60-90 minutes, or until pork is very tender.",
+      "While pork simmers, peel potatoes. Cut into 3 cm cubes.",
+      "After pork is tender, add potato cubes to the pot. Stir gently. Ensure potatoes are submerged in the sauce.",
+      "Continue to simmer, uncovered, for 15-20 minutes, or until potatoes are tender and sauce has slightly reduced and thickened. Skim any excess fat if desired.",
+      "Adjust seasoning if needed. Remove bay leaves before serving.",
+      "Cook jasmine rice according to package instructions. Serve hot."
+    ],
+    "traditional_techniques": [
+      "Braising (Paksiw method)",
+      "Balancing sour, savory, and pungent flavors (Asim-alat balance)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1432,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 27.3,
+      "saturated_fat_g": 39.2,
+      "sodium_mg": 1755,
+      "total_carbs_g": 71.6,
+      "total_fat_g": 113.4,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 293,
+      "cholesterol_mg": 36.8,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 5.6,
+      "saturated_fat_g": 8,
+      "sodium_mg": 358.6,
+      "total_carbs_g": 14.6,
+      "total_fat_g": 23.2,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 12.2,
+      "protein": 54.7,
+      "saturated_fat": 196,
+      "sodium": 76.3,
+      "total_carbs": 26.1,
+      "total_fat": 145.4
+    },
+    "serving_size_g": 489.3,
+    "total_recipe_weight_g": 1957.2
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Thighs with Creamy Mushroom Mustard Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_thighs_with_creamy_mushroom_mustard_sauce_20250627_042547_15baad3c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:25:48.233528000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "mushroom",
+      "potato",
+      "tomato",
+      "garlic",
+      "pasta",
+      "pork",
+      "onion",
+      "mustard",
+      "apple",
+      "sausage",
+      "corn",
+      "peach",
+      "crab",
+      "orange"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown pan-seared chicken thigh, its skin crisp, sits as the centerpiece on a clean white porcelain plate. Alongside are golden roasted potato wedges, their edges slightly caramelized. A rich, creamy mushroom mustard sauce is generously spooned over the chicken and potatoes. To the side, a vibrant medley of sautéed yellow corn kernels and diced red tomatoes adds a pop of color and freshness. The dish is garnished with a sprinkle of fresh, bright green chopped parsley. The plating is clean and balanced, with moderate negative space. The scene is set on a simple wooden table, with a folded cotton napkin and standard silver flatware beside the plate, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Frozen corn kernels",
+        "quantity": "300g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Double cream (heavy cream)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Cut potatoes into wedges. Toss potatoes with 1 tablespoon olive oil, salt, and pepper. Spread on a baking tray. Roast for 30-35 minutes, or until tender and golden.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a large oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear for 8-10 minutes until skin is crispy and golden brown. Flip chicken. Sear for 2-3 minutes. Transfer skillet to oven for 10-15 minutes, or until internal temperature reaches 75°C (167°F). Remove chicken from skillet; set aside.",
+      "Drain excess fat from skillet, leaving 1 tablespoon. Add 1 tablespoon olive oil and butter to skillet. Add diced onion and quartered mushrooms. Sauté for 5-7 minutes until softened and browned. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Deglaze skillet with chicken stock, scraping up any browned bits. Stir in Dijon mustard. Bring to a simmer. Pour in double cream. Simmer for 3-5 minutes, stirring occasionally, until sauce thickens slightly. Season sauce with salt and pepper to taste.",
+      "While sauce simmers, heat a separate small pan with 1 tablespoon olive oil. Add frozen corn kernels and diced tomatoes. Sauté for 5-7 minutes until heated through and slightly softened. Season with salt and pepper.",
+      "To serve, place a roasted chicken thigh on a plate. Spoon generous amounts of creamy mushroom mustard sauce over the chicken and around the plate. Arrange roasted potato wedges alongside the chicken. Place the sautéed corn and tomato mixture next to the chicken. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1028,
+      "cholesterol_mg": 242,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 48.3,
+      "saturated_fat_g": 25.5,
+      "sodium_mg": 354,
+      "total_carbs_g": 61.5,
+      "total_fat_g": 66.6,
+      "total_sugars_g": 12.9,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.5,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 48,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 9,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81,
+      "dietary_fiber": 32,
+      "protein": 97,
+      "saturated_fat": 128,
+      "sodium": 15,
+      "total_carbs": 22,
+      "total_fat": 85
+    },
+    "serving_size_g": 739,
+    "total_recipe_weight_g": 2955
+  },
+  {
+    "recipe_name": "Slow-Cooked Beef with Fermented Potato Puree and Onion Gremolata",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_with_fermented_potato_puree_and_onion_gremolata_20250627_042430_b231db0d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:24:30.659923000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, generously portioned dish centered on a handcrafted ceramic plate in an earthy tone. A smooth, creamy mound of pale beige fermented potato puree anchors the composition. Nestled beside it is a rich, dark brown, slow-cooked beef chunk, showcasing its tender, fall-apart texture. A glossy, deep amber reduction sauce pools around the beef. A sprinkle of golden-brown, delicately crisp onion gremolata provides a contrasting texture and a touch of golden color. The arrangement is organic and natural, with ample negative space. The plate rests on a light bamboo table surface, accompanied by a simple undyed linen napkin and a single fork, all bathed in soft, natural light, emphasizing sustainability and the dish's inherent beauty.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or short ribs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes (e.g., Desiree or Russet)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Red wine (dry, optional)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Ferment Potatoes: Wash and peel 400g potatoes. Dice into 2cm cubes. Place in a clean jar. Add 10g sea salt per 500ml non-chlorinated water to make a brine. Pour brine over potatoes, ensuring they are fully submerged. Seal jar loosely. Ferment at room temperature for 3-5 days until slightly tangy.",
+      "Prepare Beef: Pat beef dry. Season generously with salt and pepper. Heat 15ml olive oil in a heavy pot over medium-high heat. Sear beef on all sides until deeply browned. Remove beef.",
+      "Build Braising Liquid: Add remaining 15ml olive oil to the pot. Add 1 diced onion, diced carrots, and diced celery. Sauté until softened, about 5 minutes. Add minced garlic, thyme, and rosemary. Sauté 1 minute more.",
+      "Deglaze (Optional): Pour in red wine. Scrape up any browned bits from the bottom of the pot. Reduce by half.",
+      "Braise Beef: Return beef to the pot. Pour in vegetable broth until beef is mostly submerged. Bring to a simmer. Cover and transfer to a preheated oven at 150°C for 2.5-3 hours, or until internal temperature reaches 75°C and beef is very tender.",
+      "Prepare Fermented Potato Puree: Drain fermented potatoes. Boil remaining 400g fresh potatoes until very tender. Combine boiled fresh potatoes and drained fermented potatoes in a bowl. Mash until smooth, adding a little braising liquid or hot water if needed for consistency. Season with salt and pepper.",
+      "Make Onion Gremolata: Carefully peel outer layers of the second onion, collecting all intact peels. Wash peels. Toss with a drizzle of olive oil, salt, and pepper. Spread on a baking sheet. Bake at 180°C for 8-12 minutes, or until crispy and golden. Crumble lightly.",
+      "Finish Beef: Remove beef from braising liquid. Strain braising liquid, pressing solids to extract flavor. Reduce liquid over high heat until it thickens into a rich sauce. Cut beef into thick chunks.",
+      "Plate: Spoon a generous dollop of fermented potato puree onto each plate. Place a chunk of slow-cooked beef next to it. Drizzle with reduced braising sauce. Sprinkle with crispy onion gremolata."
+    ],
+    "notes": [
+      "Emphasizes zero-waste by utilizing onion peels for a flavorful gremolata.",
+      "Fermenting potatoes adds a unique tangy flavor and aids in preservation."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 750,
+      "cholesterol_mg": 128,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 48.1,
+      "saturated_fat_g": 14.4,
+      "sodium_mg": 527,
+      "total_carbs_g": 49,
+      "total_fat_g": 40.2,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.4,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 92,
+      "total_carbs_g": 8.5,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 25,
+      "protein": 96,
+      "saturated_fat": 72,
+      "sodium": 23,
+      "total_carbs": 18,
+      "total_fat": 52
+    },
+    "serving_size_g": 575,
+    "total_recipe_weight_g": 2300
+  },
+  {
+    "recipe_name": "Sustainable Fermented Tomato Chicken Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_fermented_tomato_chicken_bowl_20250627_042245_e980be8c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:22:46.355285000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "broccoli",
+      "brown rice",
+      "swiss chard"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Asian cuisine",
+    "visual_description": "A single portion of the Sustainable Fermented Tomato Chicken Bowl rests in a handcrafted ceramic bowl, cream-toned, centered on a light bamboo surface. Brown rice forms the base, topped with golden-seared chicken chunks. Vibrant green broccoli florets and thinly sliced, blanched broccoli stems are arranged beside deep green, wilted swiss chard. A rich, reddish fermented tomato sauce is drizzled generously over the chicken and rice, lending a glossy sheen. The natural textures of each ingredient are highlighted: fluffy rice, crusty chicken, tender-crisp vegetables. An undyed linen napkin in natural beige is folded neatly to the side. Soft natural light illuminates the dish from above, creating subtle shadows. The background is clean and minimalist, with a hint of natural greenery. The presentation is simple, unforced, and celebrates the inherent beauty of sustainable, natural ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Asian",
+    "cultural_origin": "Modern Asian Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with a side of quick-pickled daikon or cucumber for added tang and crunch."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Ripe tomatoes, for fermenting",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented tomatoes: Dice tomatoes. Mix with 2% salt by weight. Place in a clean jar. Press down to submerge. Cover loosely or with an airlock. Ferment at room temperature for 3-5 days until tangy. Refrigerate.",
+      "Rinse brown rice. Combine with 400 ml water in a saucepan. Bring to boil. Reduce heat to low. Cover. Simmer 40 minutes, or until water is absorbed and rice is tender. Let rest, covered, for 10 minutes. Fluff with a fork.",
+      "Cut chicken thighs into 3 cm chunks. Season chicken with salt and pepper. Heat cooking oil in a large pan over medium-high heat. Sear chicken chunks until golden brown on all sides and cooked through. Ensure internal temperature reaches 75°C. Remove from pan. Set aside.",
+      "Separate broccoli florets. Peel broccoli stems. Slice stems thinly into rounds. Blanch florets and sliced stems in boiling water for 3-4 minutes until tender-crisp. Drain immediately. Plunge into ice water to stop cooking. Drain again.",
+      "Separate swiss chard leaves from stems. Finely chop chard stems. Roughly chop chard leaves. In the same pan, sauté chopped chard stems for 2 minutes. Add chard leaves. Sauté until wilted. Season with a pinch of salt.",
+      "Make fermented tomato sauce: In a blender, combine 200 g fermented tomatoes (with some liquid), peeled garlic cloves, grated ginger, soy sauce, rice vinegar, and sesame oil. Blend until smooth.",
+      "Assemble bowls: Divide brown rice among four serving bowls. Arrange cooked chicken chunks, blanched broccoli florets and stems, and sautéed swiss chard over the rice. Drizzle generously with fermented tomato sauce. Serve immediately."
+    ],
+    "notes": [
+      "The fermented tomatoes require preparation in advance. Start fermentation 3-5 days before cooking the dish.",
+      "This recipe emphasizes zero-waste by utilizing broccoli stems, which are often discarded."
+    ],
+    "traditional_techniques": [
+      "Lacto-fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 548,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 45.1,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 952,
+      "total_carbs_g": 53.5,
+      "total_fat_g": 19.3,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.2,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 153,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 24,
+      "protein": 90,
+      "saturated_fat": 23,
+      "sodium": 41,
+      "total_carbs": 19,
+      "total_fat": 25
+    },
+    "serving_size_g": 624,
+    "total_recipe_weight_g": 2495
+  }
+]

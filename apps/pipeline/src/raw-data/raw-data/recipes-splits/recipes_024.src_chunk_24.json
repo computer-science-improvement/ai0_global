@@ -1,0 +1,740 @@
+[
+  {
+    "recipe_name": "Fermented Urad Dal & Paneer Patties with Tamarind Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_urad_dal_%26_paneer_patties_with_tamarind_glaze_20250624_021436_e35a8781.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:14:36.801534000Z",
+    "selected_ingredients": [
+      "urad dal",
+      "hing",
+      "green chili",
+      "cumin",
+      "tamarind",
+      "ghee",
+      "coriander",
+      "paneer",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a handcrafted ceramic plate in an earthy cream or beige tone, allowing ample white space. Two or three golden-brown, round Fermented Urad Dal & Paneer Patties are centrally placed, their surfaces showing a subtle crispness from searing. Each patty is about 6-7 cm in diameter and 2 cm thick. A rich, dark amber tamarind glaze is artfully drizzled over the patties, glistening slightly. Alongside the patties, a small, intentional cluster of vibrant green zucchini batons, about 5 cm long and 1 cm thick, provides a contrasting natural color and fresh texture. The overall composition is clean and minimalist, highlighting the natural textures and colors of the ingredients. The background is uncluttered, featuring a light bamboo surface, an undyed linen napkin in natural beige, and a subtle hint of green from a distant plant, emphasizing an eco-conscious, natural aesthetic. A simple, artisanal spoon rests beside the plate, ready for serving.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a small bowl of plain fermented rice or millet for a complete meal.",
+      "Offer a simple cucumber raita on the side.",
+      "Best enjoyed fresh and warm."
+    ],
+    "hero_ingredient": "Urad Dal",
+    "ingredients": [
+      {
+        "name": "Urad Dal (split and skinned)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "200g"
+      },
+      {
+        "name": "Green Chili",
+        "quantity": "2 (finely chopped)"
+      },
+      {
+        "name": "Cumin Seeds",
+        "quantity": "5g (divided)"
+      },
+      {
+        "name": "Fresh Coriander",
+        "quantity": "20g (finely chopped, including tender stems)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves (minced)"
+      },
+      {
+        "name": "Hing (Asafoetida)",
+        "quantity": "1g"
+      },
+      {
+        "name": "Tamarind Paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Jaggery/Palm Sugar (optional, for glaze)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed for soaking/blending (approx. 200-250ml)"
+      },
+      {
+        "name": "Seasonal vegetable (e.g., small zucchini, bell pepper)",
+        "quantity": "100g (cut into small batons or thin slices for garnish/side)"
+      }
+    ],
+    "instructions": [
+      "Rinse urad dal thoroughly.",
+      "Soak dal in 500ml water for 4-6 hours.",
+      "Drain dal.",
+      "Blend soaked dal with 150ml fresh water until a smooth, thick batter forms.",
+      "Add 2g cumin seeds, a pinch of salt to batter.",
+      "Transfer batter to a bowl.",
+      "Cover batter loosely.",
+      "Let batter ferment at room temperature (25-30°C) for 8-12 hours, or until slightly bubbly and risen.",
+      "Grate paneer into a mixing bowl.",
+      "Add chopped green chili, minced garlic, chopped fresh coriander, remaining 3g cumin seeds, hing, and salt to taste to paneer.",
+      "Mix paneer ingredients well.",
+      "Gently fold the fermented dal batter into the paneer mixture.",
+      "Do not overmix.",
+      "If batter is too thick, add a tablespoon of water.",
+      "Form mixture into 8-10 uniform patties, about 2cm thick.",
+      "Heat ghee in a large non-stick pan over medium heat.",
+      "Place patties in the hot pan, leaving space between them.",
+      "Sear for 4-5 minutes per side, until golden brown and cooked through.",
+      "Patties should be firm to the touch.",
+      "Cook in batches if necessary.",
+      "In a small saucepan, combine tamarind paste with 50ml water and jaggery (if using).",
+      "Bring to a simmer.",
+      "Cook for 3-5 minutes, stirring, until glaze thickens slightly to a pourable consistency.",
+      "Season glaze with a pinch of salt.",
+      "Briefly blanch or lightly sauté the cut seasonal vegetables (e.g., zucchini batons) until tender-crisp.",
+      "Season vegetables lightly with salt.",
+      "Arrange 2-3 patties per plate.",
+      "Drizzle generously with tamarind glaze.",
+      "Place a small cluster of blanched seasonal vegetables alongside."
+    ],
+    "notes": [
+      "Adjust green chili quantity to desired spice level.",
+      "For a zero-waste approach, use any vegetable trimmings to make a light broth for another meal.",
+      "Ensure urad dal is properly fermented for best texture and digestibility.",
+      "The tamarind glaze can be made in advance and stored."
+    ],
+    "traditional_techniques": [
+      "Dal fermentation for batter",
+      "Tempering of cumin seeds"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.2,
+      "calories": 427,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 10.4,
+      "protein_g": 22,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 522,
+      "total_carbs_g": 39.2,
+      "total_fat_g": 19.7,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 204,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 5,
+      "protein_g": 10.5,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 249,
+      "total_carbs_g": 18.7,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20,
+      "dietary_fiber": 37,
+      "protein": 44,
+      "saturated_fat": 59,
+      "sodium": 23,
+      "total_carbs": 14,
+      "total_fat": 25
+    },
+    "serving_size_g": 209.25,
+    "total_recipe_weight_g": 837
+  },
+  {
+    "recipe_name": "Home-Style Chicken and Onion Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_home-style_chicken_and_onion_curry_20250624_021238_2c6259e3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:12:39.222208000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "cayenne pepper",
+      "mustard",
+      "garlic",
+      "oil",
+      "turmeric"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Home-Style Chicken and Onion Curry is presented in a deep, rustic ceramic bowl, showcasing tender, bone-in chicken thighs submerged in a rich, thick, reddish-brown onion-based gravy. The chicken is cooked until fork-tender, with its golden-brown skin visible. The gravy is deeply aromatic, flecked with finely softened onions and vibrant green fresh coriander leaves, which are sprinkled generously over the top. The dish is placed on a well-used wooden dining table, alongside a small, simple white ceramic bowl of fluffy, pearly basmati rice and a warm, slightly charred piece of naan bread. A plain metal spoon rests beside the bowl. The setting exudes a warm, lived-in family kitchen atmosphere with soft, cozy lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with fluffy Basmati rice.",
+      "Accompany with warm naan bread or roti.",
+      "Offer a side of cooling raita (yogurt dip) or a simple cucumber salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Onions, large",
+        "quantity": "2 (about 400 g), thinly sliced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "5, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Black mustard seeds",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "5 g (or to taste)"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Water or chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh coriander, chopped",
+        "quantity": "15 g (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt.",
+      "Heat oil in a large pot or Dutch oven over medium heat. Add mustard seeds. Cook until they start to pop.",
+      "Add sliced onions to the pot. Sauté until deeply golden brown and softened, about 10-15 minutes.",
+      "Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Stir in turmeric powder and cayenne pepper. Cook for 30 seconds, stirring constantly.",
+      "Add chicken thighs to the pot. Brown chicken on all sides for 5-7 minutes.",
+      "Pour in water or chicken broth. Bring to a simmer.",
+      "Reduce heat to low. Cover and cook for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is fork-tender. Stir occasionally.",
+      "Uncover the pot. Increase heat slightly and simmer for 5-10 minutes to reduce the sauce to desired thickness.",
+      "Taste and adjust salt if needed.",
+      "Garnish with fresh chopped coriander before serving."
+    ],
+    "traditional_techniques": [
+      "Tempering spices (Tadka)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 563,
+      "cholesterol_mg": 184,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 40.7,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 640,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 38.6,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145.1,
+      "cholesterol_mg": 47.4,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.5,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 165,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.3,
+      "dietary_fiber": 10.4,
+      "protein": 81.4,
+      "saturated_fat": 46,
+      "sodium": 27.8,
+      "total_carbs": 5.2,
+      "total_fat": 49.5
+    },
+    "serving_size_g": 388,
+    "total_recipe_weight_g": 1552
+  },
+  {
+    "recipe_name": "Savory Latin Beef and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_latin_beef_and_rice_20250624_021225_b60505e5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:12:25.716831000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice",
+      "tomato",
+      "onion",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Savory Latin Beef and Rice is presented on a clean white porcelain dinner plate, centrally mounded. Tender 2-3 cm chunks of seared beef are nestled amongst fluffy, al dente long-grain rice, infused with a rich, reddish-orange hue from the tomato base. Diced red bell pepper, green bell pepper, and yellow onion are visible, adding bursts of vibrant color and soft texture throughout the dish. The surface is lightly garnished with fresh, finely chopped cilantro, providing a contrasting green and aromatic freshness. The dish maintains a cohesive yet natural, free-flowing appearance, avoiding any rigid shaping. The plate rests on a simple wooden surface, accompanied by a folded cream-colored cotton napkin and standard silver flatware. Natural, even lighting illuminates the dish, highlighting its robust colors and inviting textures. The background is softly blurred, maintaining a casual bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Latin American",
+    "cultural_serving_suggestions": [
+      "Serve with lime wedges for squeezing over the dish.",
+      "Offer a simple side salad of crisp lettuce and cucumber.",
+      "Accompany with fried plantains or warm tortillas."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Boneless beef chuck",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 grams"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 2-3 cm chunks. Season beef generously with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef chunks in batches until well browned on all sides. Remove beef from pot and set aside.",
+      "Add diced onion and bell peppers to the pot. Cook for 5-7 minutes until softened, stirring occasionally.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste, ground cumin, smoked paprika, and dried oregano. Cook for 2 minutes, stirring constantly.",
+      "Add canned diced tomatoes and their juice. Bring to a simmer.",
+      "Return seared beef to the pot. Add uncooked rice and beef broth. Stir to combine.",
+      "Bring mixture to a boil. Reduce heat to low, cover tightly, and simmer for 20-25 minutes, or until rice is tender and liquid is absorbed.",
+      "Remove pot from heat. Let stand, covered, for 5 minutes.",
+      "Fluff the rice gently with a fork. Stir in half of the fresh cilantro.",
+      "Serve immediately, garnished with remaining fresh cilantro."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 800,
+      "cholesterol_mg": 106.8,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 50,
+      "saturated_fat_g": 10.3,
+      "sodium_mg": 297.4,
+      "total_carbs_g": 78.1,
+      "total_fat_g": 30.9,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.9,
+      "cholesterol_mg": 17.1,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 47.6,
+      "total_carbs_g": 12.5,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36,
+      "dietary_fiber": 19,
+      "protein": 100,
+      "saturated_fat": 52,
+      "sodium": 13,
+      "total_carbs": 28,
+      "total_fat": 40
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  },
+  {
+    "recipe_name": "Savory Latin Beef and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_latin_beef_and_rice_20250624_021209_4b3b9211.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:12:10.452894000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice",
+      "tomato",
+      "onion",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Savory Latin Beef and Rice is presented on a clean white porcelain dinner plate, centrally mounded. Tender 2-3 cm chunks of seared beef are nestled amongst fluffy, al dente long-grain rice, infused with a rich, reddish-orange hue from the tomato base. Diced red bell pepper, green bell pepper, and yellow onion are visible, adding bursts of vibrant color and soft texture throughout the dish. The surface is lightly garnished with fresh, finely chopped cilantro, providing a contrasting green and aromatic freshness. The dish maintains a cohesive yet natural, free-flowing appearance, avoiding any rigid shaping. The plate rests on a simple wooden surface, accompanied by a folded cream-colored cotton napkin and standard silver flatware. Natural, even lighting illuminates the dish, highlighting its robust colors and inviting textures. The background is softly blurred, maintaining a casual bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Latin American",
+    "cultural_serving_suggestions": [
+      "Serve with lime wedges for squeezing over the dish.",
+      "Offer a simple side salad of crisp lettuce and cucumber.",
+      "Accompany with fried plantains or warm tortillas."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Boneless beef chuck",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 grams"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 2-3 cm chunks. Season beef generously with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef chunks in batches until well browned on all sides. Remove beef from pot and set aside.",
+      "Add diced onion and bell peppers to the pot. Cook for 5-7 minutes until softened, stirring occasionally.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste, ground cumin, smoked paprika, and dried oregano. Cook for 2 minutes, stirring constantly.",
+      "Add canned diced tomatoes and their juice. Bring to a simmer.",
+      "Return seared beef to the pot. Add uncooked rice and beef broth. Stir to combine.",
+      "Bring mixture to a boil. Reduce heat to low, cover tightly, and simmer for 20-25 minutes, or until rice is tender and liquid is absorbed.",
+      "Remove pot from heat. Let stand, covered, for 5 minutes.",
+      "Fluff the rice gently with a fork. Stir in half of the fresh cilantro.",
+      "Serve immediately, garnished with remaining fresh cilantro."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 800,
+      "cholesterol_mg": 106.8,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 50,
+      "saturated_fat_g": 10.3,
+      "sodium_mg": 297.4,
+      "total_carbs_g": 78.1,
+      "total_fat_g": 30.9,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.9,
+      "cholesterol_mg": 17.1,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 47.6,
+      "total_carbs_g": 12.5,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36,
+      "dietary_fiber": 19,
+      "protein": 100,
+      "saturated_fat": 52,
+      "sodium": 13,
+      "total_carbs": 28,
+      "total_fat": 40
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  },
+  {
+    "recipe_name": "Sichuan Braised Beef with Preserved Mustard Greens & Fermented Black Bean Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sichuan_braised_beef_with_preserved_mustard_greens_%26_fermented_black_bean_rice_20250624_021152_f2f301ea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:11:53.155055000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "川菜 cuisine",
+    "visual_description": "A single portion of Sichuan Braised Beef with Preserved Mustard Greens & Fermented Black Bean Rice is presented on a round, handcrafted ceramic plate in an earthy, cream tone, leaving generous white space. Three substantial, irregular chunks of dark reddish-brown, tender braised beef are centrally placed, showing their natural form without slicing. Around the beef, vibrant green, slightly textured strands of stir-fried preserved mustard greens are artfully arranged, interspersed with dark, glossy fermented black beans. Adjacent to the beef and greens, a neat, slightly mounded portion of fluffy white rice with subtle dark specks of fermented black beans provides a contrasting texture and color. The dish is subtly garnished with a few bright green scallion julienne strips and one or two whole, deep red dried Sichuan chilies and a scattering of dark Sichuan peppercorns, providing small pops of color and authenticity. The composition is clean and minimalist, highlighting the natural beauty and textures of each ingredient. The plate rests on a light-colored, natural wood surface, possibly bamboo or reclaimed timber. An undyed linen napkin in a natural beige tone is folded nearby. A pair of dark wooden chopsticks are placed to the side. The scene is bathed in soft, natural lighting, with a clean, unobtrusive background that may hint at natural elements or plants, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Sichuan",
+    "cultural_origin": "Sichuan, China",
+    "cultural_serving_suggestions": [
+      "Serve with extra pào cài (Sichuan pickled vegetables) on the side.",
+      "Accompany with a simple clear broth or a light cucumber salad."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 4-5 cm chunks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Sichuan preserved mustard greens (Suan Cai), rinsed and chopped",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fermented black beans (Dòuchǐ), rinsed",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Sichuan Pixian Doubanjiang (broad bean paste)",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Dried Sichuan chilies",
+        "quantity": "10-15 pieces"
+      },
+      {
+        "name": "Sichuan peppercorns",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ginger, sliced",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic, smashed",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Scallions, white parts for cooking, green parts for garnish",
+        "quantity": "3-4 stalks"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Rock sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Water or beef stock",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Seasonal greens (e.g., Gai Lan or Bok Choy), blanched",
+        "quantity": "200 g"
+      }
+    ],
+    "instructions": [
+      "Blanch beef chunks: Place beef in a pot with cold water. Bring to a boil. Skim off impurities. Drain and rinse beef.",
+      "Prepare aromatics: Heat vegetable oil in a large pot or Dutch oven over medium heat. Add Sichuan peppercorns and dried chilies. Fry until fragrant, about 30 seconds. Remove and set aside.",
+      "Sauté aromatics: Add ginger, smashed garlic, and white parts of scallions to the pot. Sauté until fragrant, about 1 minute.",
+      "Brown beef: Add blanched beef chunks to the pot. Sear until lightly browned on all sides.",
+      "Add flavorings: Push beef to one side. Add Doubanjiang and half of the fermented black beans to the clear space. Fry for 1 minute until fragrant and oil turns red. Stir to combine with beef.",
+      "Deglaze and braise: Pour in Shaoxing wine. Stir well. Add light soy sauce, dark soy sauce, rock sugar, and water or stock. Bring to a boil.",
+      "Simmer: Reduce heat to low. Cover and simmer for 1.5 to 2 hours, or until beef is fork-tender.",
+      "Prepare mustard greens: While beef braises, heat a small amount of oil in a pan. Add chopped preserved mustard greens and remaining fermented black beans. Stir-fry for 3-5 minutes until fragrant. Set aside.",
+      "Cook rice: Rinse rice. Cook according to package directions, using water or vegetable stock.",
+      "Combine: Once beef is tender, add stir-fried preserved mustard greens to the braising pot. Add blanched seasonal greens. Simmer for 5-10 minutes to combine flavors.",
+      "Serve: Ladle braised beef and mustard greens over or alongside the cooked rice. Garnish with reserved fried Sichuan peppercorns, dried chilies, and fresh green scallion tops."
+    ],
+    "notes": [
+      "Use beef bones or trimmings to make a rich stock for braising.",
+      "Vegetable scraps (carrot peels, onion ends, celery trimmings) can be simmered to create a flavorful vegetable stock for cooking the rice.",
+      "Any leftover braising liquid can be frozen for future use as a base for noodles or another braise."
+    ],
+    "traditional_techniques": [
+      "Braising (Shāo)",
+      "Pickling (Pào Cài concept for mustard greens)",
+      "Flavor layering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 922,
+      "cholesterol_mg": 166,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 62.5,
+      "saturated_fat_g": 12.8,
+      "sodium_mg": 2928,
+      "total_carbs_g": 76.4,
+      "total_fat_g": 38.7,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 120,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 382,
+      "total_carbs_g": 10,
+      "total_fat_g": 5,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 15,
+      "protein": 125,
+      "saturated_fat": 64,
+      "sodium": 127,
+      "total_carbs": 28,
+      "total_fat": 50
+    },
+    "serving_size_g": 768,
+    "total_recipe_weight_g": 3070
+  }
+]

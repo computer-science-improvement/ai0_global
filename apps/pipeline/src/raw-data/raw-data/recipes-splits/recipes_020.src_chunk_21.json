@@ -1,0 +1,623 @@
+[
+  {
+    "recipe_name": "Homestyle Chicken and Garlic Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_chicken_and_garlic_rice_20250624_171903_1d63ea5f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:19:04.084762000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of Homestyle Chicken and Garlic Rice is presented in a deep, simple ceramic bowl with natural imperfections, resting on a well-used wooden dining table. A succulent, golden-brown seared chicken thigh, still on the bone, is positioned prominently atop a bed of fluffy, slightly golden-hued long-grain rice. The rice is naturally mixed with small diced red bell pepper and finely minced garlic, creating a comforting visual texture. Fresh, vibrant green chopped flat-leaf parsley is sprinkled over the dish, adding a pop of color. The plating is natural and unpretentious, reflecting a casual, family-style meal. A thick slice of rustic, crusty bread casually leans against the bowl. The scene is bathed in warm, inviting natural light, emphasizing the dish's homely appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and vinegar",
+      "Accompany with crusty bread for dipping into the flavorful rice"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800 g total)"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry with paper towels. Season generously with salt and black pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Place chicken thighs skin-side down in the hot oil. Sear for 6-8 minutes until skin is deeply golden and crispy. Flip and sear other side for 2-3 minutes. Remove chicken and set aside.",
+      "Add diced onion and diced red bell pepper to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic, smoked paprika, and dried oregano. Cook for 1 minute until fragrant.",
+      "Stir in the rice. Cook for 2 minutes, stirring constantly, to lightly toast the grains.",
+      "Pour in the chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the pot.",
+      "Nestle the seared chicken thighs into the rice mixture, ensuring they are partially submerged.",
+      "Reduce heat to low, cover the pot tightly, and cook for 20-25 minutes. Do not lift the lid during cooking.",
+      "Remove pot from heat. Let it rest, covered, for 10 minutes. This allows the rice to fully absorb liquid and chicken to finish cooking.",
+      "Check chicken internal temperature with a thermometer. It must reach 75°C (167°F).",
+      "Fluff the rice gently with a fork. Serve chicken and rice immediately. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Using bone-in, skin-on chicken thighs adds maximum flavor to the dish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 793,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 48.1,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 690,
+      "total_carbs_g": 68.3,
+      "total_fat_g": 36.7,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10,
+      "saturated_fat_g": 2,
+      "sodium_mg": 144,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 11,
+      "protein": 96,
+      "saturated_fat": 47,
+      "sodium": 30,
+      "total_carbs": 25,
+      "total_fat": 47
+    },
+    "serving_size_g": 480,
+    "total_recipe_weight_g": 1920
+  },
+  {
+    "recipe_name": "Pollo al Ajillo (Spanish Garlic Chicken)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_al_ajillo_%28spanish_garlic_chicken%29_20250624_171852_e7d5dd5d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:18:53.431575000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo al Ajillo served in a shallow white porcelain bowl. The dish features three large, whole chunks of bone-in chicken with crispy, deep-golden skin. Scattered around the chicken are twenty whole, softened garlic cloves, caramelized to a rich mahogany color. A glossy, amber-colored sherry reduction coats the base of the bowl. Vibrant green, finely chopped parsley is sprinkled over the meat and sauce. The arrangement is natural and rustic. The bowl sits on a dark oak bistro table. Beside the bowl is a small plate with two thick wedges of crusty sourdough bread and a clean white cotton napkin. Lighting is natural and soft from the side.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the garlic oil",
+      "Accompany with a glass of chilled Fino sherry",
+      "Traditional side of fried potatoes or a simple green salad"
+    ],
+    "hero_ingredient": "Garlic",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on, cut into large chunks",
+        "quantity": "1.2 kg"
+      },
+      {
+        "name": "Garlic cloves, peeled and whole",
+        "quantity": "20 cloves"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Dry Sherry (Fino or Manzanilla)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, finely chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry with paper towels.",
+      "Season chicken with salt and pepper.",
+      "Heat olive oil in a large heavy-based skillet over medium heat.",
+      "Add garlic cloves to the oil.",
+      "Fry garlic until golden brown on all sides.",
+      "Remove garlic and set aside.",
+      "Increase heat to medium-high.",
+      "Brown chicken chunks in batches skin-side down first.",
+      "Cook until skin is crisp and golden.",
+      "Remove excess oil, leaving 2 tablespoons in the pan.",
+      "Return all chicken and fried garlic to the skillet.",
+      "Add smoked paprika and stir for 30 seconds.",
+      "Pour in the sherry and deglaze the pan.",
+      "Reduce heat to low and cover.",
+      "Simmer for 15 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in chopped parsley before serving."
+    ],
+    "notes": [
+      "Use high-quality Spanish olive oil for the best flavor profile",
+      "Do not burn the garlic or the sauce will turn bitter",
+      "Ensure chicken skin is very dry before browning to achieve maximum crispness"
+    ],
+    "traditional_techniques": [
+      "Sautéing garlic",
+      "Browning meat",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 804,
+      "cholesterol_mg": 189,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 41.3,
+      "saturated_fat_g": 13.9,
+      "sodium_mg": 1137,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 66,
+      "total_sugars_g": 0.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 338.5,
+      "cholesterol_mg": 79.6,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 17.4,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 478.7,
+      "total_carbs_g": 2.9,
+      "total_fat_g": 27.8,
+      "total_sugars_g": 0.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 2.1,
+      "protein": 82.6,
+      "saturated_fat": 69.5,
+      "sodium": 49.4,
+      "total_carbs": 2.5,
+      "total_fat": 84.6
+    },
+    "serving_size_g": 237.5,
+    "total_recipe_weight_g": 950
+  },
+  {
+    "recipe_name": "Rustic Chicken and Tomato Penne",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_tomato_penne_20250624_171849_d73e9d11.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:18:49.764072000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "garlic",
+      "pasta",
+      "parmesan",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Rustic Chicken and Tomato Penne is presented in a deep, off-white ceramic pasta bowl, showcasing a hearty single portion. Tender penne pasta is generously coated in a rich, rustic red tomato sauce. Irregularly cut, succulent 2-3 cm chunks of seared chicken breast are mixed throughout the pasta, visible amongst the sauce. The sauce has visible flecks of finely diced onion and minced garlic, with a slight textural variation from the crushed tomatoes. A generous mound of freshly grated Parmesan cheese cascades over the top, melting slightly into the warm sauce. A few fresh basil leaves, torn simply, are scattered on top for a pop of green and aromatic freshness. The dish sits on a well-used, light-colored wooden dining table. A casually folded, plain linen napkin and a piece of crusty bread are placed beside the bowl. Warm, natural kitchen light illuminates the scene, creating a cozy, inviting atmosphere typical of a family meal.",
+    "number_of_servings": 2,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the sauce.",
+      "Accompany with a simple green salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "a few for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2-3 cm chunks. Season with salt and pepper.",
+      "Finely dice the onion. Mince the garlic.",
+      "Heat olive oil in a large pan over medium-high heat.",
+      "Add chicken chunks. Sear until golden brown on all sides. Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add diced onion to the pan. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken stock. Add dried oregano, salt, and pepper.",
+      "Bring sauce to a simmer. Return seared chicken to the pan. Reduce heat to low. Simmer for 15-20 minutes, or until chicken is cooked through to 75°C internal temperature.",
+      "While sauce simmers, cook penne pasta according to package directions until al dente.",
+      "Drain pasta. Add pasta directly to the sauce. Toss to combine.",
+      "Grate Parmesan cheese.",
+      "Serve hot. Garnish with fresh basil and grated Parmesan."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 932,
+      "cholesterol_mg": 145,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 72.9,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 920,
+      "total_carbs_g": 95.1,
+      "total_fat_g": 27.8,
+      "total_sugars_g": 13.1,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 151,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.8,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 149,
+      "total_carbs_g": 15.4,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 48,
+      "dietary_fiber": 25,
+      "protein": 146,
+      "saturated_fat": 41,
+      "sodium": 40,
+      "total_carbs": 35,
+      "total_fat": 36
+    },
+    "serving_size_g": 616.5,
+    "total_recipe_weight_g": 1233
+  },
+  {
+    "recipe_name": "Pollo al Limone e Aglio",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_al_limone_e_aglio_20250624_171835_cc7eae24.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:18:35.718885000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, perfectly seared golden-brown chicken breast is centered on a classic round white porcelain dinner plate. The chicken, cooked whole, is generously coated in a glossy, pale yellow lemon-garlic sauce. Vibrant green flecks of freshly chopped parsley are scattered artfully over the chicken and within the sauce, adding a pop of color and freshness. A bright yellow lemon wedge rests beside the chicken, ready to be squeezed. The plate is positioned on a simple, light-toned wooden table, accompanied by a neatly folded natural linen napkin and traditional silver flatware. Soft, even natural light illuminates the dish, highlighting the inviting textures and warm colors of the chicken and its rich sauce. The presentation is clean, professional, and approachable, embodying casual Italian dining elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of al dente pasta, such as linguine or angel hair, to soak up the sauce.",
+      "Offer crusty Italian bread (pane) for dipping.",
+      "Pair with a light green salad dressed with a simple vinaigrette."
+    ],
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large, juiced and zested, plus wedges for garnish"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Pound each chicken breast to an even thickness of 1.5-2 cm. Season both sides with salt and black pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Sear chicken breasts for 5-7 minutes per side until golden brown and cooked through. Ensure internal temperature reaches 75°C. Remove chicken from skillet; set aside on a plate.",
+      "Add minced garlic to the same skillet. Cook for 1 minute until fragrant. Do not brown.",
+      "Pour in white wine. Deglaze the skillet, scraping up any browned bits from the bottom. Simmer for 2 minutes.",
+      "Stir in chicken broth and lemon juice. Bring to a gentle simmer. Cook for 3-4 minutes, reducing the sauce slightly.",
+      "Remove skillet from heat. Stir in butter until melted and incorporated into the sauce.",
+      "Return cooked chicken breasts to the skillet. Spoon sauce over the chicken to coat. Sprinkle with fresh chopped parsley and lemon zest.",
+      "Serve immediately with lemon wedges."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 471,
+      "cholesterol_mg": 178,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 60.5,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 206,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 20.1,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 144,
+      "cholesterol_mg": 54,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 18.6,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 63,
+      "total_carbs_g": 1.4,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 3,
+      "protein": 121,
+      "saturated_fat": 34,
+      "sodium": 9,
+      "total_carbs": 2,
+      "total_fat": 26
+    },
+    "serving_size_g": 326,
+    "total_recipe_weight_g": 1304
+  },
+  {
+    "recipe_name": "Rustic Chicken with Tomatoes and Herbs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_with_tomatoes_and_herbs_20250624_171830_c3741d32.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:18:31.113111000Z",
+    "selected_ingredients": [
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of rustic chicken with tomato and herbs is presented on a simple, off-white ceramic plate. One or two whole, bone-in chicken thighs, seared to a deep golden-brown, rest nestled in a rich, chunky tomato sauce. The sauce, made from crushed tomatoes with visible pieces of diced onion and minced garlic, is a vibrant reddish-orange, coating the chicken and pooling invitingly on the plate. Freshly chopped green basil and oregano leaves are scattered over the dish, adding specks of verdant color. The chicken skin appears slightly crisp, contrasting with the tender, moist meat beneath. The scene is set on a well-worn, natural wood dining table, evoking a cozy, homely kitchen. A simple, dark-colored cloth napkin is casually placed beside the plate. The lighting is warm and inviting, suggesting an intimate family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce.",
+      "Serve alongside simple pasta like spaghetti or penne.",
+      "Offer a sprinkle of freshly grated Parmesan cheese."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh oregano, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large, oven-safe pan or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 5-7 minutes until skin is golden brown and crispy. Flip. Sear other side for 3-4 minutes. Remove chicken from pan. Set aside.",
+      "Add diced onion to the same pan. Sauté for 5-7 minutes until softened and translucent.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a gentle simmer.",
+      "Return chicken thighs to the pan. Ensure chicken is mostly submerged in the sauce.",
+      "Stir in chopped fresh oregano and basil. Cover the pan.",
+      "Reduce heat to low. Simmer for 25-30 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Uncover the pan. Increase heat slightly. Simmer for another 5-10 minutes to thicken the sauce to your desired consistency.",
+      "Taste and adjust seasoning with salt and pepper as needed. Serve hot."
+    ],
+    "notes": [
+      "This dish can be prepared ahead of time and reheated; flavors often deepen overnight.",
+      "For a spicier kick, add a pinch of red pepper flakes with the garlic."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 543,
+      "cholesterol_mg": 207,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 39.2,
+      "saturated_fat_g": 8.8,
+      "sodium_mg": 630,
+      "total_carbs_g": 15.4,
+      "total_fat_g": 36.3,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109.3,
+      "cholesterol_mg": 41.7,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.9,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 126.8,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 11,
+      "protein": 78,
+      "saturated_fat": 44,
+      "sodium": 27,
+      "total_carbs": 6,
+      "total_fat": 47
+    },
+    "serving_size_g": 497,
+    "total_recipe_weight_g": 1987
+  }
+]

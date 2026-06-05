@@ -1,0 +1,529 @@
+[
+  {
+    "recipe_name": "Sustainable Mango-Bacon Broth with Fermented Onion & Bell Pepper Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_mango-bacon_broth_with_fermented_onion_%26_bell_pepper_relish_20250724_132051_b4afdea6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T13:20:51.891126000Z",
+    "selected_ingredients": [
+      "mango",
+      "bacon",
+      "fish sauce",
+      "onion",
+      "bell pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single elegant portion of amber-hued soup is presented in a handcrafted, unglazed ceramic bowl with a natural, earthy texture. The sustainable Mango-Bacon Broth is clear yet rich, showcasing a subtle shimmer. Floating within are golden-brown, irregular chunks of crispy bacon. A small, vibrant mound of Fermented Onion and Bell Pepper Relish, finely diced in reds and whites, sits artfully on one side of the soup, offering a contrasting texture and color. The bowl is placed on a light, reclaimed wood surface, highlighting its natural grain. An undyed linen napkin in natural beige is folded simply beside the bowl. Soft, diffused natural light illuminates the scene, emphasizing the pure colors and textures of the ingredients. A simple, natural-wood spoon rests gently beside the bowl. The background is clean and minimalist, with a hint of green foliage from a potted plant, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Bacon",
+    "ingredients": [
+      {
+        "name": "Ripe Mango",
+        "quantity": "2 large (about 700g pulp)"
+      },
+      {
+        "name": "Smoked Bacon",
+        "quantity": "200g"
+      },
+      {
+        "name": "Brown Onion",
+        "quantity": "2 medium (about 300g)"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large (about 200g)"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4, crushed"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "20g, sliced"
+      },
+      {
+        "name": "Non-iodized Sea Salt",
+        "quantity": "10g (for relish), plus more for seasoning"
+      },
+      {
+        "name": "Filtered Water",
+        "quantity": "500ml (for relish), 1.5L (for broth)"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Onion and Bell Pepper Relish (at least 3 days in advance): Finely dice 50g of onion and 50g of red bell pepper. In a clean glass jar, combine diced vegetables with 10g non-iodized sea salt. Press down firmly. Cover with 500ml filtered water, ensuring vegetables are submerged. Seal loosely or use an airlock. Ferment at room temperature for 3-5 days until tangy. Refrigerate after fermentation.",
+      "Prepare Sustainable Broth: Reserve onion skins and root ends from remaining onions. Reserve bell pepper core and stem. Peel mangoes, reserving pits. Dice remaining onion and bell pepper (about 250g onion, 150g bell pepper).",
+      "In a large pot, combine reserved onion skins, bell pepper core/stem, mango pits, crushed garlic, and sliced ginger. Add 1.5L water. Bring to a boil, then reduce heat. Simmer for 45 minutes. Strain broth through a fine-mesh sieve. Discard solids. Set broth aside.",
+      "Cook Bacon: Cut bacon into 2cm chunks. In a large pot or Dutch oven, render bacon over medium heat until crispy. Remove crispy bacon chunks with a slotted spoon. Set aside for garnish. Leave rendered fat in the pot.",
+      "Sauté Aromatics: Add diced onion and bell pepper to the pot with bacon fat. Sauté over medium heat for 8-10 minutes until softened and translucent.",
+      "Combine and Simmer: Add strained sustainable broth to the pot with sautéed vegetables. Add mango pulp (from 2 mangoes). Bring to a gentle simmer. Cook for 10 minutes.",
+      "Blend Soup: Carefully transfer about half of the soup mixture to a blender. Blend until smooth. Return blended portion to the pot. Stir to combine. This creates a slightly thickened, cohesive soup.",
+      "Season Soup: Stir in 45ml fish sauce. Season with salt and black pepper to taste. Simmer for another 5 minutes.",
+      "Serve: Ladle hot soup into individual bowls. Garnish each serving with crispy bacon chunks and a spoonful of Fermented Onion and Bell Pepper Relish. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 440,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 22.9,
+      "saturated_fat_g": 7.2,
+      "sodium_mg": 4038,
+      "total_carbs_g": 39.5,
+      "total_fat_g": 21.2,
+      "total_sugars_g": 30.1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 49.8,
+      "cholesterol_mg": 6.2,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 2.6,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 457.6,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 19,
+      "protein": 46,
+      "saturated_fat": 36,
+      "sodium": 176,
+      "total_carbs": 14,
+      "total_fat": 27
+    },
+    "serving_size_g": 882,
+    "total_recipe_weight_g": 3530
+  },
+  {
+    "recipe_name": "Mango and Bacon Cream Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mango_and_bacon_cream_soup_20250724_131923_2b1ccc2c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T13:19:24.155674000Z",
+    "selected_ingredients": [
+      "mango",
+      "bacon",
+      "fish sauce",
+      "onion",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of the vibrant, creamy Mango and Bacon Cream Soup is presented in a pristine white porcelain bowl, centered on a light wooden table. The soup is a smooth, satiny liquid, showcasing a warm, inviting golden-orange hue. Garnishes are meticulously placed atop the soup, creating visual contrast and texture. Small, crisp diced bacon pieces are scattered across the surface. Alongside, a sprinkle of finely diced red bell pepper and tiny cubes of fresh, ripe mango add bright pops of red and yellow. A generous scattering of fresh, vibrant green chopped cilantro leaves provides a final aromatic and colorful accent. The bowl is surrounded by moderate negative space, with a simple white cotton napkin folded beside it. Natural, soft, even lighting illuminates the dish against a subtle, blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Mango",
+    "ingredients": [
+      {
+        "name": "Bacon",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Ripe Mango",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Chicken or Vegetable Stock",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Dice bacon into small pieces. Cook bacon in a large pot over medium heat until very crisp. Remove bacon with a slotted spoon. Set aside for garnish.",
+      "Reserve 15ml (1 tablespoon) of bacon fat in the pot. Add olive oil if needed.",
+      "Dice onion and most of the red bell pepper into small cubes. Reserve a small amount of diced bell pepper for garnish.",
+      "Add diced onion and bell pepper to the pot. Sauté over medium heat for 5-7 minutes until softened. Do not brown.",
+      "Peel and dice most of the mango into small cubes. Reserve a small amount of diced mango for garnish.",
+      "Add diced mango, chicken stock, and fish sauce to the pot. Bring to a simmer. Cook for 10-12 minutes until vegetables are tender.",
+      "Carefully transfer the soup mixture to a blender. Blend until completely smooth.",
+      "Return blended soup to the pot. Stir in heavy cream. Heat gently, do not boil.",
+      "Season soup with salt and black pepper to taste. Adjust fish sauce if desired for more umami.",
+      "Ladle soup into individual bowls. Garnish each serving with reserved crispy bacon, diced red bell pepper, diced mango, and fresh chopped cilantro."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 499.2,
+      "cholesterol_mg": 80,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 24.2,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 1504,
+      "total_carbs_g": 23.6,
+      "total_fat_g": 34.7,
+      "total_sugars_g": 18.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106.1,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 5.1,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 319.7,
+      "total_carbs_g": 5,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27,
+      "dietary_fiber": 12,
+      "protein": 48,
+      "saturated_fat": 68,
+      "sodium": 65,
+      "total_carbs": 9,
+      "total_fat": 44
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Savory Mango Bacon Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_mango_bacon_soup_20250724_131355_8e2aa718.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T13:13:55.853452000Z",
+    "selected_ingredients": [
+      "mango",
+      "bacon",
+      "fish sauce",
+      "onion",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Savory Mango Bacon Soup is presented in a rustic, earthy-toned ceramic bowl, placed on a well-used wooden dining table. The soup has a warm, inviting golden-orange hue with visible small, soft pieces of diced mango and bell pepper, indicating a comforting, chunky texture. Scattered across the surface are crisp, irregularly diced bacon bits, providing a contrasting deep brown color and appealing texture. A sprinkle of bright green fresh coriander leaves adds a pop of vibrant color. The scene is bathed in soft, natural kitchen lighting, creating a cozy, lived-in atmosphere. A simple, sturdy soup spoon rests beside the bowl, ready for a hearty meal. The overall presentation is unpretentious and homely, focused solely on the appetizing appeal of the comfort food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Mango",
+    "ingredients": [
+      {
+        "name": "Streaky bacon",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large ripe mangoes",
+        "quantity": "2"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh coriander (cilantro)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Dice the bacon into small pieces. Cook in a large pot over medium heat until crispy. Remove bacon with a slotted spoon. Reserve 15 ml of bacon fat in the pot. Drain remaining fat.",
+      "Peel and dice the onion and red bell pepper. Mince the garlic and grate the ginger.",
+      "Add diced onion and bell pepper to the pot with bacon fat. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Peel and dice the mangoes into 2 cm cubes. Add diced mango to the pot. Cook for 3 minutes, stirring gently.",
+      "Pour in the chicken or vegetable broth and fish sauce. Bring to a simmer. Cook for 10-15 minutes, allowing flavors to meld.",
+      "Carefully transfer about half of the soup to a blender or use an immersion blender directly in the pot. Blend until mostly smooth, leaving some small mango and vegetable pieces for texture. Return blended portion to the pot if using a separate blender.",
+      "Stir in fresh lime juice. Taste and adjust seasoning with additional fish sauce or black pepper if needed.",
+      "Ladle the hot soup into individual bowls. Garnish each serving with crispy bacon bits and fresh coriander leaves."
+    ],
+    "notes": [
+      "For best results, use ripe but firm mangoes that hold their shape somewhat when cooked.",
+      "Adjust fish sauce quantity to your preference for saltiness and umami depth.",
+      "A pinch of chili flakes can be added for a subtle spicy kick if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 387,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 16.9,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 2259,
+      "total_carbs_g": 35.5,
+      "total_fat_g": 19.7,
+      "total_sugars_g": 27.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 66,
+      "cholesterol_mg": 7.7,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 2.9,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 385.1,
+      "total_carbs_g": 6,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15,
+      "dietary_fiber": 17,
+      "protein": 34,
+      "saturated_fat": 32,
+      "sodium": 98,
+      "total_carbs": 13,
+      "total_fat": 25
+    },
+    "serving_size_g": 587,
+    "total_recipe_weight_g": 2347
+  },
+  {
+    "recipe_name": "Refined Chocolate Ripple Dessert",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_refined_chocolate_ripple_dessert_20250724_120052_f489a06f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T12:00:53.849624000Z",
+    "selected_ingredients": [
+      {
+        "name": "milk chocolate"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "icing sugar"
+      },
+      {
+        "name": "100s and 1000s"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Australian",
+    "visual_description": "The dessert is presented in a clear, small glass tumbler or a small, elegant ramekin, allowing visibility of the distinct layers. At the base, a firm, dark brown chocolate biscuit crumble forms a compact layer. Above this, a lighter, creamy milk chocolate mousse layer rises, showcasing a smooth, rich brown hue. The top is crowned with a generous swirl of pristine white, lightly sweetened whipped cream, creating a soft, airy contrast. A vibrant scattering of multi-colored 100s and 1000s sprinkles generously adorns the whipped cream, adding playful texture and a pop of color. The overall presentation is clean, balanced, and inviting, with moderate negative space on a white porcelain plate, set on a simple wooden surface.",
+    "number_of_servings": 4,
+    "cuisine_type": "Australian",
+    "cultural_origin": "Australian",
+    "cultural_serving_suggestions": [
+      "None specific for this refined version, as it is a modern interpretation of a traditional Australian dessert."
+    ],
+    "hero_ingredient": "Milk chocolate",
+    "ingredients": [
+      {
+        "name": "Milk chocolate, chopped",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "450 ml"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Chocolate ripple biscuits",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "50 g"
+      },
+      {
+        "name": "100s and 1000s (sprinkles)",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Crush biscuits finely. Mix crushed biscuits with melted butter. Press mixture evenly into bottom of 4 individual dessert glasses. Chill for 15 minutes.",
+      "Heat 100 ml of heavy cream until simmering. Remove from heat. Add chopped milk chocolate. Stir until melted and smooth. Let cool to room temperature.",
+      "In a separate bowl, whip 150 ml heavy cream until soft peaks form. Gently fold whipped cream into cooled chocolate mixture until combined.",
+      "Spoon chocolate cream mixture over chilled biscuit bases in glasses. Smooth top. Refrigerate for at least 2 hours, or until set.",
+      "In a clean bowl, whip remaining 200 ml heavy cream with icing sugar until firm peaks form.",
+      "Just before serving, spoon or pipe whipped cream onto set chocolate cream layer. Sprinkle generously with 100s and 1000s."
+    ],
+    "notes": [
+      "Ensure adequate chilling time for the chocolate cream to set properly before adding the whipped cream topping."
+    ],
+    "traditional_techniques": []
+  },
+  {
+    "recipe_name": "Fermented Beef Tartare with Pickled Red Onion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_beef_tartare_with_pickled_red_onion_20250724_113059_d4ebdef5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T11:30:59.668006000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, elegantly portioned starter on a light, textured ceramic plate. The plate is cream or beige, handcrafted, with a subtle organic rim. A circular mound of finely minced, deep red beef tartare sits centrally. Interspersed within the tartare are small, pale green cubes of fermented cucumber, providing a subtle textural contrast. Thin, translucent rings of vibrant pink pickled red onion are artfully placed over and around the tartare. A scattering of finely chopped fresh green dill adds a delicate, fresh highlight. The composition is clean and minimalist, with ample white space on the plate. The table surface is light, natural wood or stone. An undyed linen napkin in a natural beige tone is casually folded beside the plate. Lighting is soft, natural, and diffused, enhancing the ingredients' inherent colors and textures. The background is clean and uncluttered, with a hint of natural greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Beef",
+    "ingredients": [
+      {
+        "name": "Beef (tenderloin or sirloin, very lean)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small (approx. 80g)"
+      },
+      {
+        "name": "Lacto-fermented cucumber or daikon",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White wine vinegar (for pickling brine)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Water (for pickling brine)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Granulated sugar (for pickling brine)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt (for pickling brine)",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Pickled Red Onion: Thinly slice red onion into rings. Bring vinegar, water, sugar, and salt to a boil in a small saucepan. Pour hot brine over sliced red onion. Let cool to room temperature. Refrigerate for at least 30 minutes.",
+      "Prepare Fermented Cucumber/Daikon: Finely dice lacto-fermented cucumber or daikon into small cubes (approx. 3-5 mm).",
+      "Prepare Beef: Ensure beef is very cold. Finely mince beef using a sharp knife or meat grinder. Do not overwork.",
+      "Assemble Tartare: In a chilled bowl, gently combine minced beef, diced fermented cucumber/daikon, olive oil, sea salt, and black pepper. Mix just until combined.",
+      "Plate: Drain pickled red onion. Using a ring mold or free-form, place equal portions of tartare on each plate. Arrange a few pickled red onion rings on top or alongside.",
+      "Garnish: Finely chop fresh dill. Sprinkle over each tartare portion. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 124,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 11.7,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 515,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.6,
+      "calories": 87.1,
+      "cholesterol_mg": 19.3,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 8.3,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 362.1,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 9,
+      "dietary_fiber": 2,
+      "protein": 23,
+      "saturated_fat": 7,
+      "sodium": 22,
+      "total_carbs": 2,
+      "total_fat": 7
+    },
+    "serving_size_g": 142.25,
+    "total_recipe_weight_g": 569
+  }
+]

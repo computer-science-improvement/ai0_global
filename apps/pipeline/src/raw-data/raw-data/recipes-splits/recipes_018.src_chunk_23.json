@@ -1,0 +1,589 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken Supreme with Goat Cheese Mousse, Crispy Bacon, Parmesan Tuile, and Compressed Cucumber",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_supreme_with_goat_cheese_mousse%2C_crispy_bacon%2C_parmesan_tuile%2C_and_compressed_cucumber_20250625_153236_ab44ffb1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:32:37.507865000Z",
+    "selected_ingredients": [
+      "chicken",
+      "goat cheese",
+      "parmesan",
+      "bacon",
+      "cucumber"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, pan-seared chicken supreme with golden, crispy skin and juicy, thick meat rests elegantly on one side of a pristine white bone china plate. Beside the chicken, an artfully formed quenelle of creamy white goat cheese mousse provides a soft contrast. A delicate, irregular-shaped parmesan tuile, golden-brown and translucent, stands upright or leans gracefully near the mousse. Scattered precisely across the plate are small, deep red-brown pieces of crispy bacon crumble, adding texture and a savory accent. Thin, translucent rounds of vibrant green compressed cucumber are meticulously arranged, reflecting light and providing a fresh counterpoint. The composition emphasizes abundant negative space, creating a sophisticated and minimalist presentation. The dish is set on a premium white Carrara marble surface with dramatic professional lighting casting soft shadows. A pristine white linen napkin, folded into a precise triangle, complements the ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Supreme",
+    "ingredients": [
+      {
+        "name": "Chicken supremes (bone-in, skin-on)",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Goat cheese (soft, fresh)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Smoked bacon",
+        "quantity": "100g"
+      },
+      {
+        "name": "English cucumber",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Slice bacon into small lardons. Cook in a cold pan over medium heat until crispy. Drain on paper towels. Reserve rendered fat.",
+      "Grate parmesan finely. Arrange small, thin mounds (approx. 5cm diameter) on a baking sheet lined with parchment paper. Bake for 5-7 minutes until golden and crisp. Cool to form tuiles.",
+      "Peel cucumber. Using a mandoline, slice cucumber into very thin rounds. In a bowl, combine white wine vinegar, sugar, and a pinch of salt. Add cucumber slices and toss gently. Vacuum seal or press firmly between two plates for 15 minutes to compress.",
+      "Season chicken supremes generously with salt and pepper.",
+      "Heat olive oil and 15g butter in an oven-safe pan over medium-high heat. Sear chicken supremes skin-side down for 5-7 minutes until deeply golden and crisp. Flip. Add remaining 15g butter and thyme sprigs to the pan. Baste chicken.",
+      "Transfer pan to preheated oven. Roast chicken for 12-15 minutes, or until internal temperature reaches 75°C. Rest chicken for 5 minutes.",
+      "While chicken rests, combine goat cheese and heavy cream in a bowl. Whip with a fork until smooth and light. Season with salt and pepper.",
+      "To plate, place a chicken supreme on one side of a plate. Spoon an elegant quenelle of goat cheese mousse beside it. Artfully arrange a few compressed cucumber slices near the chicken. Scatter crispy bacon crumble over the dish. Gently place a parmesan tuile on the plate for height and texture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 908,
+      "cholesterol_mg": 275.8,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 72.6,
+      "saturated_fat_g": 28.2,
+      "sodium_mg": 833.9,
+      "total_carbs_g": 5,
+      "total_fat_g": 66.1,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 257,
+      "cholesterol_mg": 78,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 20.5,
+      "saturated_fat_g": 8,
+      "sodium_mg": 235.9,
+      "total_carbs_g": 1.4,
+      "total_fat_g": 18.7,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 91.9,
+      "dietary_fiber": 2.9,
+      "protein": 145.2,
+      "saturated_fat": 141,
+      "sodium": 36.3,
+      "total_carbs": 1.8,
+      "total_fat": 84.7
+    },
+    "serving_size_g": 353.5,
+    "total_recipe_weight_g": 1414
+  },
+  {
+    "recipe_name": "Tomato and Seared Salmon Salad with Chili-Olive Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato_and_seared_salmon_salad_with_chili-olive_vinaigrette_20250625_153049_1e41005b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:30:49.507858000Z",
+    "selected_ingredients": [
+      {
+        "name": "salmon"
+      },
+      {
+        "name": "chili"
+      },
+      {
+        "name": "olive"
+      },
+      {
+        "name": "parmesan cheese"
+      },
+      {
+        "name": "tomato"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "A vibrant Mediterranean salad is presented on a clean white porcelain dinner plate, set on a simple wooden table surface. The base consists of fresh, crisp mixed greens, providing a verdant backdrop. Bright red diced tomatoes and glossy black halved Kalamata olives are scattered generously throughout, offering pops of color and varied textures. Flaky, pan-seared salmon chunks, with a light pink interior and subtle golden-brown sear, are artfully placed amongst the vegetables. A light, glistening chili-olive vinaigrette coats all components, visible as a subtle sheen. Delicate shavings of Parmesan cheese are gracefully draped over the salad, adding a creamy white contrast. The entire plate is visible, with moderate negative space. A neatly folded cotton napkin rests beside the plate, completing the casual bistro setting. Natural, even lighting highlights the freshness of the ingredients and the inviting composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin on or off",
+        "quantity": "4 x 150g"
+      },
+      {
+        "name": "Mixed salad greens (e.g., rocket, baby spinach, butter lettuce)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh red chili",
+        "quantity": "1, small"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, shaved"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1, minced"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat salmon fillets dry. Season generously with sea salt and black pepper.",
+      "Heat 15ml olive oil in a large non-stick pan over medium-high heat. Sear salmon, skin-side down if applicable, for 4-5 minutes until skin is crisp. Flip and cook for another 3-5 minutes, or until internal temperature reaches 75°C. Remove from pan. Let rest 5 minutes. Flake into large pieces.",
+      "While salmon rests, prepare vegetables. Dice tomatoes into 2cm pieces. Halve pitted olives. Finely mince the red chili.",
+      "Prepare the dressing. In a small bowl, whisk together remaining 65ml olive oil, lemon juice, minced garlic, and minced chili. Season with sea salt and black pepper. Stir in chopped fresh parsley.",
+      "In a large mixing bowl, combine mixed salad greens, diced tomatoes, and halved olives.",
+      "Pour dressing over the salad ingredients. Gently toss to coat all components evenly.",
+      "Divide dressed salad among four plates. Arrange flaked salmon pieces over each salad portion.",
+      "Garnish each plate with shaved Parmesan cheese. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Chicken Fricassee with Creamy Garlic Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_fricassee_with_creamy_garlic_potatoes_20250625_152953_9b738033.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:29:54.314530000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "milk",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of tender Chicken Fricassee is presented on a clean white porcelain dinner plate. A neat, creamy mound of garlic mashed potatoes, made with whole milk and grated Gruyère, anchors the dish on one side. Three to four thick, golden-brown chicken thigh chunks, pan-seared then braised, are artfully placed atop the potatoes and alongside. A rich, velvety cream sauce, infused with chicken stock and aromatics, generously coats the chicken and pools elegantly around the base of the potatoes. The dish is garnished with a sprinkle of fresh, vibrant chopped parsley. Colors are warm and inviting: golden chicken, off-white potatoes and sauce, and green parsley. Textures are smooth and creamy from the potatoes and sauce, contrasting with the tender chicken. The plate is set on a simple wooden surface, accompanied by standard silver flatware and a folded white cotton napkin, under natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Classic",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crusty baguette to soak up the sauce",
+      "Pair with a light green salad"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes (Yukon Gold or Russet)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4 cm thick chunks. Season chicken with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pan or Dutch oven over medium-high heat. Sear chicken chunks until golden brown on all sides. Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add 20 g butter to the pan. Add diced shallot and 2 minced garlic cloves. Cook until fragrant, about 2 minutes.",
+      "Stir in flour to create a roux. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in white wine (if using), then chicken stock, scraping up any browned bits. Bring to a simmer. Stir in 100 ml milk.",
+      "Return seared chicken to the pan. Ensure chicken is submerged in sauce. Reduce heat to low, cover, and simmer for 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is tender.",
+      "While chicken simmers, peel and cut potatoes into 3 cm chunks. Place potatoes in a large pot, cover with cold salted water. Bring to a boil, then reduce heat and simmer until very tender, about 15-20 minutes.",
+      "Drain potatoes thoroughly. Return to the hot pot. Add remaining 200 ml milk, remaining 30 g butter, and 2 minced garlic cloves. Mash until smooth and creamy. Stir in grated Gruyère cheese until melted. Season with salt and pepper to taste.",
+      "Taste chicken sauce and adjust seasoning. Stir in chopped fresh parsley.",
+      "Serve chicken fricassee immediately over creamy garlic mashed potatoes. Garnish with additional parsley if desired."
+    ],
+    "traditional_techniques": [
+      "Fricassee",
+      "Roux"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 680,
+      "cholesterol_mg": 245,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 41.6,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 290,
+      "total_carbs_g": 48.8,
+      "total_fat_g": 34.8,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 52,
+      "total_carbs_g": 8.7,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 82,
+      "dietary_fiber": 19,
+      "protein": 83,
+      "saturated_fat": 74,
+      "sodium": 13,
+      "total_carbs": 18,
+      "total_fat": 45
+    },
+    "serving_size_g": 561,
+    "total_recipe_weight_g": 2243
+  },
+  {
+    "recipe_name": "Chocolate Dipped Banana & Strawberry Skewers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chocolate_dipped_banana_%26_strawberry_skewers_20250625_152946_fa34dc51.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:29:46.645450000Z",
+    "selected_ingredients": [
+      {
+        "name": "chocolate"
+      },
+      {
+        "name": "icing sugar"
+      },
+      {
+        "name": "strawberry"
+      },
+      {
+        "name": "macadamia nut"
+      },
+      {
+        "name": "rose"
+      },
+      {
+        "name": "banana"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "vegan",
+    "visual_description": "The Chocolate Dipped Banana & Strawberry Skewers are presented informally on a rustic wooden board, suitable for a home kitchen setting. Each skewer holds alternating pieces of ripe banana rounds and vibrant red strawberries, half-dipped in glossy, dark vegan chocolate. The chocolate coating is generously dusted with a coarse, pale mixture of crushed macadamia nuts, fine icing sugar, and delicate pink dried rose petals, creating a speckled texture. The natural colors of the golden banana and bright red strawberries contrast beautifully with the rich brown chocolate and the lighter dust. The skewers are casually arranged, some slightly overlapping, with a few loose macadamia nut pieces and rose petals scattered around the board. The scene is lit with warm, natural light, highlighting the inviting, homemade quality of the snack. A simple ceramic plate or a crumpled cloth napkin might be subtly placed nearby, enhancing the homely, unpretentious feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "ripe bananas",
+        "quantity": "2"
+      },
+      {
+        "name": "fresh strawberries",
+        "quantity": "200g"
+      },
+      {
+        "name": "vegan dark chocolate, chopped",
+        "quantity": "200g"
+      },
+      {
+        "name": "macadamia nuts",
+        "quantity": "50g"
+      },
+      {
+        "name": "icing sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "dried rose petals, food grade",
+        "quantity": "5g"
+      },
+      {
+        "name": "wooden skewers",
+        "quantity": "8"
+      }
+    ],
+    "instructions": [
+      "Prepare fruit. Peel bananas. Slice bananas into 2 cm thick rounds. Hull strawberries. Cut larger strawberries in half.",
+      "Toast macadamia nuts lightly in a dry pan over medium heat for 2-3 minutes. Cool completely.",
+      "Make rose-macadamia dust. Combine toasted macadamia nuts, icing sugar, and dried rose petals in a food processor. Pulse until a coarse, sandy mixture forms. Do not over-process into a paste.",
+      "Melt chocolate. Place chopped chocolate in a heatproof bowl over a pot of simmering water (double boiler method). Stir until smooth and fully melted. Alternatively, microwave in 30-second intervals, stirring between each, until melted.",
+      "Assemble skewers. Thread alternating banana rounds and strawberries onto wooden skewers. Use 3-4 pieces of fruit per skewer.",
+      "Dip skewers. Dip each skewer halfway into the melted chocolate. Allow excess chocolate to drip off.",
+      "Dust skewers. Immediately sprinkle the rose-macadamia dust generously over the chocolate-dipped fruit.",
+      "Set skewers. Place finished skewers on a baking sheet lined with parchment paper.",
+      "Chill skewers. Refrigerate for at least 15-20 minutes, or until chocolate is set. Serve cold."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 10.9,
+      "calories": 477,
+      "cholesterol_mg": 1.5,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 5.9,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 13.8,
+      "total_carbs_g": 47,
+      "total_fat_g": 31.1,
+      "total_sugars_g": 27,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 6.1,
+      "calories": 268,
+      "cholesterol_mg": 0.8,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 3.3,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 7.7,
+      "total_carbs_g": 26.4,
+      "total_fat_g": 17.5,
+      "total_sugars_g": 15.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 1,
+      "dietary_fiber": 32,
+      "protein": 12,
+      "saturated_fat": 69,
+      "sodium": 1,
+      "total_carbs": 17,
+      "total_fat": 40
+    },
+    "serving_size_g": 178,
+    "total_recipe_weight_g": 711
+  },
+  {
+    "recipe_name": "Pickled Herring with New Potatoes and Creamy Cucumber-Dill Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pickled_herring_with_new_potatoes_and_creamy_cucumber-dill_sauce_20250625_152915_d4ac7010.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:29:15.842232000Z",
+    "selected_ingredients": [
+      "herring",
+      "cucumber",
+      "milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate, showcasing a refined Scandinavian main course. A modest mound of warm, halved new potatoes, their skins intact, are lightly tossed with vibrant green chopped dill and chives, and delicate, thinly sliced red onion. Adjacent, several substantial chunks of pale, iridescent pickled herring are arranged. A generous ladle of creamy, pale green cucumber-dill sauce cascades gracefully over and around the herring and potatoes, revealing small, distinct cucumber brunoise. The sauce provides a soft contrast to the firm herring and tender potatoes. Fresh dill sprigs and snipped chives are artfully placed as garnish, adding a final touch of green. The plate is clean, with moderate negative space, resting on a simple light wooden table alongside a folded cotton napkin and European flatware. Natural, even lighting enhances the fresh ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Scandinavian",
+    "cultural_origin": "Scandinavian",
+    "cultural_serving_suggestions": [
+      "Often served with rye bread or crispbread",
+      "Aquavit or beer are traditional accompaniments"
+    ],
+    "hero_ingredient": "Pickled Herring",
+    "ingredients": [
+      {
+        "name": "Pickled herring fillets",
+        "quantity": "400g (drained)"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "English cucumber",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30g, finely chopped"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15g, finely chopped"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "50g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Sour cream (18-20% fat)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10g"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "freshly ground, to taste"
+      }
+    ],
+    "instructions": [
+      "Wash potatoes. Boil in salted water until tender, about 15-20 minutes. Drain. Let cool slightly. Cut into halves or quarters.",
+      "Peel cucumber if desired. Cut cucumber into small cubes (brunoise). Sprinkle with a pinch of salt. Let sit 10 minutes. Squeeze out excess water.",
+      "Peel red onion. Thinly slice red onion into half-moons.",
+      "In a bowl, whisk together milk, sour cream, Dijon mustard, white wine vinegar, and sugar. Stir in half of the chopped dill and half of the chopped chives. Add squeezed cucumber cubes. Season with salt and pepper.",
+      "In a large bowl, combine warm cut potatoes, thinly sliced red onion, and remaining chopped dill and chives. Gently toss.",
+      "Drain herring fillets. Cut into 2-3 cm pieces.",
+      "Arrange warm potato salad on plates. Place herring pieces beside the salad. Spoon creamy cucumber-dill sauce over the herring and around the plate. Garnish with fresh dill sprigs and a few chive pieces."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 435,
+      "cholesterol_mg": 94,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 24,
+      "saturated_fat_g": 7.2,
+      "sodium_mg": 1269,
+      "total_carbs_g": 35.6,
+      "total_fat_g": 24.7,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 110,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.1,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 321,
+      "total_carbs_g": 9,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 16,
+      "protein": 48,
+      "saturated_fat": 36,
+      "sodium": 55,
+      "total_carbs": 13,
+      "total_fat": 32
+    },
+    "serving_size_g": 395.06,
+    "total_recipe_weight_g": 1580.25
+  }
+]

@@ -1,0 +1,651 @@
+[
+  {
+    "recipe_name": "Creamy Chicken and Mushroom with Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_with_rice_20250624_104946_a5b365ba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:49:47.117205000Z",
+    "selected_ingredients": [
+      "rice",
+      "chicken",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous serving of creamy chicken and mushroom with rice is presented on an everyday, slightly off-white ceramic plate with a subtle rim. Tender, golden-brown chicken thighs, cooked whole, rest atop a bed of fluffy white rice. The chicken is not fanned, but placed as hearty individual pieces. Abundant, earthy brown sliced mushrooms are nestled around the chicken and mixed throughout the rich, pale cream sauce. The sauce, glistening and warm, lightly coats the chicken and mushrooms. A sprinkle of bright green chopped fresh parsley adds a pop of color and freshness. The dish is arranged naturally, with components touching and slightly overlapping, suggesting a comforting, homemade meal. The plate sits on a well-used wooden dining table, illuminated by warm, natural kitchen lighting. A simple, folded cloth napkin and a standard fork and knife are casually placed beside the plate. The scene evokes a relaxed, inviting family kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Comfort",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": "4 boneless, skinless"
+      },
+      {
+        "name": "White Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "400g, sliced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse 300g white rice. Combine with 600ml water in a saucepan. Bring to a boil. Reduce heat to low. Cover and simmer 15 minutes. Remove from heat. Let stand 10 minutes, covered. Fluff with a fork.",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add chicken thighs. Sear 5-7 minutes per side until golden brown and cooked through. Ensure internal temperature reaches 75°C. Remove chicken. Set aside.",
+      "Add 30g butter to the skillet. Add diced onion. Sauté 3-4 minutes until softened.",
+      "Add sliced mushrooms to the skillet. Cook 5-7 minutes until browned and softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in 500ml chicken broth. Bring to a simmer. Scrape up any browned bits.",
+      "Reduce heat to low. Stir in 150ml heavy cream. Simmer 2-3 minutes until sauce slightly thickens.",
+      "Return chicken thighs to the skillet. Spoon sauce over chicken.",
+      "Garnish with fresh chopped parsley. Serve immediately with cooked rice."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 828,
+      "cholesterol_mg": 257,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 43.3,
+      "saturated_fat_g": 17.7,
+      "sodium_mg": 356,
+      "total_carbs_g": 67.9,
+      "total_fat_g": 41.3,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.7,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 64,
+      "total_carbs_g": 12.1,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85.8,
+      "dietary_fiber": 9.3,
+      "protein": 86.6,
+      "saturated_fat": 88.5,
+      "sodium": 15.5,
+      "total_carbs": 24.7,
+      "total_fat": 53
+    },
+    "serving_size_g": 561.25,
+    "total_recipe_weight_g": 2245
+  },
+  {
+    "recipe_name": "Creamy Pork & Mushroom Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_pork_%26_mushroom_pasta_20250624_104941_366426c3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:49:42.378115000Z",
+    "selected_ingredients": [
+      "pork",
+      "mustard",
+      "mayonnaise",
+      "garlic",
+      "onion",
+      "pasta",
+      "soy sauce",
+      "corn",
+      "mushroom",
+      "noodle"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, natural portion of creamy pasta with pork, mushrooms, and corn is mounded in a rustic ceramic bowl. Pork cubes, sliced mushrooms, and bright corn kernels are intertwined, coated in a light golden-brown, creamy sauce. Fresh green parsley garnishes. The pork is light brown, mushrooms earthy, corn vibrant yellow, and the sauce creamy off-white. Pasta is al dente, pork tender, mushrooms soft, corn plump; the sauce is smooth and rich. The bowl sits on a warm-toned wooden kitchen table. A simple off-white cloth napkin is casually placed nearby. A fork rests in the bowl. Lighting is soft, warm, and inviting, suggesting a cozy kitchen. The background is slightly out of focus, showing subtle hints of a lived-in kitchen. The overall feel is unpretentious, comfortable, and inviting, like a homemade meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Pork Tenderloin",
+    "ingredients": [
+      {
+        "name": "Pork tenderloin",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Pasta (e.g., penne or fusilli)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Brown mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Sweet corn (canned or frozen)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Cook pasta. Follow package directions. Cook until al dente. Reserve 120 ml pasta water. Drain pasta.",
+      "Season pork. Pat pork cubes dry. Season with salt and pepper.",
+      "Brown pork. Heat olive oil in large skillet over medium-high heat. Add pork. Cook until browned on all sides. Remove pork from skillet. Set aside.",
+      "Sauté aromatics. Add diced onion to skillet. Cook 3-4 minutes until softened. Add minced garlic and sliced mushrooms. Cook 5-7 minutes until mushrooms are tender and browned.",
+      "Make sauce. Reduce heat to medium. Stir in mustard, mayonnaise, and soy sauce. Gradually whisk in broth and reserved pasta water until smooth. Bring to a gentle simmer.",
+      "Combine ingredients. Return pork to skillet. Add cooked pasta and corn. Toss to coat everything evenly in sauce. Cook 2-3 minutes, allowing sauce to thicken slightly.",
+      "Serve. Taste and adjust seasoning. Serve immediately. Garnish with fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.11,
+      "calories": 799.69,
+      "cholesterol_mg": 97.55,
+      "dietary_fiber_g": 5.64,
+      "protein_g": 51.1,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 875.08,
+      "total_carbs_g": 91.13,
+      "total_fat_g": 25.06,
+      "total_sugars_g": 8.83,
+      "trans_fat_g": 0.08
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.02,
+      "calories": 119.73,
+      "cholesterol_mg": 14.61,
+      "dietary_fiber_g": 0.85,
+      "protein_g": 7.66,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 131.1,
+      "total_carbs_g": 13.65,
+      "total_fat_g": 3.75,
+      "total_sugars_g": 1.32,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32.5,
+      "dietary_fiber": 20.1,
+      "protein": 102.2,
+      "saturated_fat": 23.5,
+      "sodium": 38.1,
+      "total_carbs": 33.1,
+      "total_fat": 32.1
+    },
+    "serving_size_g": 667.5,
+    "total_recipe_weight_g": 2670
+  },
+  {
+    "recipe_name": "Amaranth-Crusted Chicken with Roasted Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_amaranth-crusted_chicken_with_roasted_root_vegetables_20250624_104933_064cf8e7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:49:33.440981000Z",
+    "selected_ingredients": [
+      "amaranth flour"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A golden-brown amaranth-crusted chicken breast, seared to a crispy exterior and tender interior, rests centrally on a rustic off-white ceramic plate. The chicken is a whole, un-sliced piece, showcasing its inviting crust. Surrounding the chicken are generous portions of roasted vegetables: tender, earthy potato cubes with slightly browned edges, sweet carrot coins with a hint of caramelization, and vibrant green broccoli florets, all roasted until tender-crisp. The vegetables are arranged casually, some overlapping, creating a natural, home-style presentation. A scattering of fresh, bright green chopped parsley adds a touch of freshness. The plate is placed on a well-worn wooden dining table, illuminated by warm, soft kitchen lighting. Simple, everyday stainless steel flatware and a casually folded linen napkin are beside the plate. The background is minimal, hinting at a lived-in family kitchen atmosphere, ensuring the focus remains on the comforting, hearty meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Amaranth flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Milk",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "200g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Prepare vegetables: Wash and cut potatoes into 2 cm cubes. Peel and cut carrots into 1.5 cm thick coins. Wash broccoli and cut into medium florets.",
+      "Toss potatoes and carrots with 30ml olive oil, 3g salt, and 2g black pepper on a baking tray. Roast for 15 minutes.",
+      "Add broccoli florets to the tray with potatoes and carrots. Toss gently. Continue roasting for another 15-20 minutes, or until vegetables are tender and slightly caramelized.",
+      "Prepare chicken: Pat chicken breasts dry. Place each breast between two sheets of cling film. Pound with a mallet to an even 1.5 cm thickness.",
+      "Set up dredging station: In a shallow dish, whisk eggs and milk. In another shallow dish, combine amaranth flour, 7g salt, 3g black pepper, smoked paprika, garlic powder, and onion powder.",
+      "Dip each chicken breast into the egg mixture, letting excess drip off. Then dredge in the seasoned amaranth flour, pressing to ensure a thick, even coating.",
+      "Heat remaining 30ml olive oil in a large skillet over medium-high heat.",
+      "Carefully place coated chicken breasts in the hot skillet. Cook for 6-8 minutes per side, until golden brown and cooked through (internal temperature 75°C). Cook in batches if necessary to avoid overcrowding the pan.",
+      "Remove chicken from skillet. Let rest for 5 minutes.",
+      "Plate roasted chicken alongside roasted vegetables. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 739.6,
+      "cholesterol_mg": 246.9,
+      "dietary_fiber_g": 9.2,
+      "protein_g": 68.3,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 1206.9,
+      "total_carbs_g": 55.4,
+      "total_fat_g": 26.5,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155.7,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 14.4,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 254.1,
+      "total_carbs_g": 11.7,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 82,
+      "dietary_fiber": 33,
+      "protein": 137,
+      "saturated_fat": 27,
+      "sodium": 52,
+      "total_carbs": 20,
+      "total_fat": 34
+    },
+    "serving_size_g": 475,
+    "total_recipe_weight_g": 1900
+  },
+  {
+    "recipe_name": "Crispy Chicken with Creamy Macaroni, Mushroom, and Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_chicken_with_creamy_macaroni%2C_mushroom%2C_and_broccoli_20250624_104918_2a8b4fa7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:49:19.292551000Z",
+    "selected_ingredients": [
+      "chicken",
+      "breadcrumbs",
+      "mushroom",
+      "broccoli",
+      "macaroni"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Crispy Chicken with Creamy Macaroni, Mushroom, and Broccoli is presented on a clean, round white porcelain dinner plate. A golden-brown, crispy chicken breast, left whole and unsliced, is placed centrally atop a generous bed of creamy, free-flowing macaroni, sliced cremini mushrooms, and vibrant green broccoli florets. The macaroni mixture is subtly coated in a light, creamy sauce, showcasing the al dente texture of the pasta and the tender-crisp broccoli. A sprinkle of fresh, bright green chopped parsley garnishes the chicken and macaroni. The plate is set on a simple wooden table surface. Standard silver flatware, a fork and knife, are placed to the side, with a folded cotton napkin. Natural, even lighting highlights the dish, creating a professional yet approachable bistro atmosphere with a soft, blurred background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "300g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1, finely minced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Pound each chicken breast to an even 1.5 cm thickness. Season both sides with salt and pepper.",
+      "Set up a dredging station: one shallow dish with flour, one with beaten eggs, and one with panko breadcrumbs. Season flour and breadcrumbs with salt and pepper.",
+      "Dredge each chicken breast: first in flour, shaking off excess, then in egg, letting excess drip, then coat thoroughly in breadcrumbs, pressing gently to adhere.",
+      "Bring a large pot of salted water to a boil. Add macaroni and cook according to package directions until al dente. Drain well.",
+      "While macaroni cooks, bring a small pot of salted water to a boil. Add broccoli florets. Blanch for 2-3 minutes until tender-crisp and bright green. Drain immediately and set aside.",
+      "Slice cremini mushrooms. In a large pan, melt butter with olive oil over medium heat. Add minced shallot and cook for 2 minutes until softened.",
+      "Add minced garlic and sliced mushrooms to the pan. Sauté for 5-7 minutes until mushrooms are tender and lightly browned. Season with salt and pepper.",
+      "Pour in chicken stock and heavy cream. Bring to a gentle simmer. Cook for 3-5 minutes, stirring occasionally, until sauce slightly thickens.",
+      "Stir in cooked macaroni and blanched broccoli florets. Add grated Parmesan cheese. Stir until cheese is melted and sauce coats everything. Keep warm over low heat.",
+      "In a separate large skillet, heat 30ml olive oil over medium-high heat. Carefully place breaded chicken breasts in the hot oil. Do not overcrowd the pan; cook in batches if necessary.",
+      "Cook chicken for 4-6 minutes per side, until golden brown and crispy, and an internal temperature of 75°C (167°F) is reached. Remove from pan and rest for 5 minutes.",
+      "To serve, spoon a generous portion of creamy macaroni, mushroom, and broccoli mixture onto each plate. Top with one crispy chicken breast. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1165.4,
+      "cholesterol_mg": 314.4,
+      "dietary_fiber_g": 7,
+      "protein_g": 89.6,
+      "saturated_fat_g": 18.5,
+      "sodium_mg": 1016.5,
+      "total_carbs_g": 106.2,
+      "total_fat_g": 41.2,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152.9,
+      "cholesterol_mg": 41.3,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 11.8,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 133.4,
+      "total_carbs_g": 13.9,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 105,
+      "dietary_fiber": 25,
+      "protein": 179,
+      "saturated_fat": 93,
+      "sodium": 44,
+      "total_carbs": 39,
+      "total_fat": 53
+    },
+    "serving_size_g": 762,
+    "total_recipe_weight_g": 3048
+  },
+  {
+    "recipe_name": "Creamy Mincemeat and Mushroom Pasta Stroganoff",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_mincemeat_and_mushroom_pasta_stroganoff_20250624_104910_036e564c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:49:10.425347000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mincemeat",
+      "mushroom",
+      "garlic",
+      "cream",
+      "cheese",
+      "mayonnaise"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Creamy Mincemeat and Mushroom Pasta Stroganoff is presented in an everyday, round ceramic bowl with a subtle off-white glaze. The cooked tagliatelle pasta, golden-yellow, is loosely intertwined with irregular, browned chunks of mincemeat and thin slices of sautéed cremini mushrooms. A rich, creamy, light brown sauce coats all components, showing its smooth texture. A sprinkle of vibrant green, freshly chopped parsley garnishes the top, adding a pop of color. The bowl rests on a warm, well-worn wooden dining table. A simple, silver fork is casually placed beside the bowl. The background is softly blurred, hinting at a cozy, lived-in kitchen atmosphere with natural, warm lighting. The overall presentation is homely, comforting, and inviting.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad.",
+      "Accompany with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Mincemeat",
+    "ingredients": [
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Beef mincemeat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "50g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Cook tagliatelle pasta according to package directions until al dente. Drain and set aside.",
+      "Heat olive oil in a large skillet over medium-high heat. Add mincemeat. Brown thoroughly, breaking it into irregular small chunks. Drain excess fat.",
+      "Dice the onion. Add diced onion to the skillet with the mincemeat. Cook until softened, about 5 minutes.",
+      "Mince the garlic cloves. Add minced garlic and sliced mushrooms to the skillet. Cook until mushrooms are tender and liquid has evaporated, about 7-10 minutes.",
+      "Pour in beef broth. Bring to a simmer. Cook for 2 minutes.",
+      "Stir in heavy cream and mayonnaise. Mix well. Bring to a gentle simmer. Cook for 3-5 minutes, until sauce slightly thickens.",
+      "Remove from heat. Stir in grated Parmesan cheese until melted and smooth. Season with salt and black pepper to taste.",
+      "Add cooked pasta to the skillet with the sauce. Toss to coat all pasta evenly.",
+      "Chop fresh parsley. Serve immediately, garnished with chopped parsley."
+    ],
+    "notes": [
+      "For a richer flavor, use beef stock instead of broth.",
+      "Adjust the amount of mayonnaise to your preference for tanginess."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1094,
+      "cholesterol_mg": 167.6,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 42.82,
+      "saturated_fat_g": 26.21,
+      "sodium_mg": 443.2,
+      "total_carbs_g": 83.55,
+      "total_fat_g": 64.52,
+      "total_sugars_g": 7.69,
+      "trans_fat_g": 2.28
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 238,
+      "cholesterol_mg": 36.5,
+      "dietary_fiber_g": 1.02,
+      "protein_g": 9.33,
+      "saturated_fat_g": 5.71,
+      "sodium_mg": 96.6,
+      "total_carbs_g": 18.2,
+      "total_fat_g": 14.06,
+      "total_sugars_g": 1.67,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.9,
+      "dietary_fiber": 16.8,
+      "protein": 85.6,
+      "saturated_fat": 131.1,
+      "sodium": 19.3,
+      "total_carbs": 30.4,
+      "total_fat": 82.7
+    },
+    "serving_size_g": 459,
+    "total_recipe_weight_g": 1836
+  }
+]

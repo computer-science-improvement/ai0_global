@@ -1,0 +1,706 @@
+[
+  {
+    "recipe_name": "Tuscan Chicken and Sausage Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken_and_sausage_stew_20250722_211356_76ffcd9d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T21:13:56.607634000Z",
+    "selected_ingredients": [
+      "chili",
+      "tomato",
+      "bread",
+      "chicken",
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Tuscan Chicken and Sausage Stew is presented in a deep, rustic white ceramic bowl, showcasing its rich, deep red hue. Generous chunks of braised chicken, tender and moist, are nestled alongside crumbled, browned Italian sausage. Thin slices of vibrant red chili peek through the hearty tomato base. The stew's surface has a slight shimmer from olive oil, garnished with fresh, bright green basil leaves. Beside the bowl, thick, irregular slices of golden-crusted artisan bread, like ciabatta, are arranged invitingly for dipping. The setting is a simple wooden table, with a neatly folded white cotton napkin and a rustic fork and spoon. Natural, even lighting highlights the dish's warmth and texture, creating an authentic, inviting Italian bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra crusty bread for dipping into the rich sauce.",
+      "Pair with a simple green salad dressed with vinaigrette.",
+      "Accompany with a glass of dry red wine, such as Chianti."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Italian pork sausages",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1-2, thinly sliced"
+      },
+      {
+        "name": "Crusty artisan bread",
+        "quantity": "1 loaf"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare ingredients: Cut chicken thighs into 4-5 cm chunks. Remove sausage from casings. Dice onion. Mince garlic. Thinly slice red chili.",
+      "Heat 15ml olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Add crumbled sausage. Cook, breaking up with a spoon, until browned and cooked through. Remove sausage with a slotted spoon. Set aside.",
+      "Add remaining 15ml olive oil to the pot. Add chicken chunks. Sear until golden brown on all sides. Remove chicken. Set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and sliced chili. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Simmer for 2 minutes.",
+      "Stir in crushed tomatoes, chicken stock, dried oregano, salt, and black pepper. Bring to a simmer.",
+      "Return browned chicken and sausage to the pot. Ensure chicken is submerged.",
+      "Reduce heat to low. Cover. Simmer for 45-60 minutes, or until chicken is very tender and cooked to 75°C internal temperature.",
+      "Taste and adjust seasoning as needed.",
+      "Serve hot with crusty artisan bread for dipping."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 725,
+      "cholesterol_mg": 269,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 47.7,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 1648,
+      "total_carbs_g": 16.4,
+      "total_fat_g": 49.5,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 121.7,
+      "cholesterol_mg": 45.2,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 276.6,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 90,
+      "dietary_fiber": 13,
+      "protein": 95,
+      "saturated_fat": 74,
+      "sodium": 72,
+      "total_carbs": 6,
+      "total_fat": 63
+    },
+    "serving_size_g": 596,
+    "total_recipe_weight_g": 2382
+  },
+  {
+    "recipe_name": "Warm Goat Cheese Salad with Roasted Vegetables and Grilled Ciabatta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_warm_goat_cheese_salad_with_roasted_vegetables_and_grilled_ciabatta_20250722_203658_32b5a41f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T20:36:58.947639000Z",
+    "selected_ingredients": [
+      "salad green",
+      "goat cheese",
+      "mushroom",
+      "bread",
+      "tomato",
+      "basil",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of the Warm Goat Cheese Salad is presented on a clean, round white porcelain dinner plate, centered on a simple wooden table surface. A bed of vibrant green mixed salad leaves forms the base. Artfully scattered across the greens are deep red roasted cherry tomato halves and earthy brown cremini mushroom slices, showing tender, caramelized edges. Perched atop the salad, slightly off-center, is a warm, creamy round of goat cheese, gently softened and lightly golden. Two slices of golden-brown grilled ciabatta bread, exhibiting distinct char marks, rest beside the salad. A vibrant green basil-chili infused olive oil dressing is drizzled over the entire dish. Colors are rich and natural: the reds of tomatoes, browns of mushrooms, creamy white and pale gold of goat cheese, and vivid greens of basil and salad leaves. Standard silver flatware and a folded white cotton napkin are placed beside the plate. The scene is illuminated by natural, even lighting, creating a casual bistro atmosphere with a minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with additional freshly grilled ciabatta bread.",
+      "Pair with a crisp, dry white wine like Sauvignon Blanc or Pinot Grigio."
+    ],
+    "hero_ingredient": "Goat cheese",
+    "ingredients": [
+      {
+        "name": "Mixed salad greens",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Goat cheese log",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Ciabatta bread",
+        "quantity": "1 small loaf"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1, small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Halve cherry tomatoes. Slice mushrooms into 0.5 cm thick pieces.",
+      "Toss tomatoes and mushrooms with 30 ml olive oil, salt, and pepper on a baking sheet. Roast for 15-20 minutes until tender and lightly caramelized.",
+      "Slice ciabatta bread into 2 cm thick pieces. Brush with 15 ml olive oil. Grill or toast until golden with grill marks.",
+      "Slice goat cheese log into 1 cm thick rounds. Place on a small baking sheet. Bake for 5-7 minutes until warm and slightly softened.",
+      "Finely chop fresh basil leaves and red chili. Mince garlic.",
+      "In a small bowl, whisk together remaining 55 ml olive oil, balsamic vinegar, chopped basil, minced garlic, and chopped chili. Season with salt and pepper.",
+      "Divide mixed salad greens among four individual plates.",
+      "Arrange roasted tomatoes and mushrooms over the greens.",
+      "Carefully place warm goat cheese rounds on top of the salad.",
+      "Drizzle the chili-basil vinaigrette generously over each salad.",
+      "Serve immediately with grilled ciabatta bread alongside."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 640,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 4,
+      "protein_g": 22.4,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 544.8,
+      "total_carbs_g": 46.6,
+      "total_fat_g": 40,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 12.5,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.2,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 151.5,
+      "total_carbs_g": 13,
+      "total_fat_g": 11.1,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15,
+      "dietary_fiber": 14.4,
+      "protein": 44.9,
+      "saturated_fat": 68.1,
+      "sodium": 23.7,
+      "total_carbs": 16.9,
+      "total_fat": 51.3
+    },
+    "serving_size_g": 359.5,
+    "total_recipe_weight_g": 1438
+  },
+  {
+    "recipe_name": "Beer-Poached Chicken with Pickled Mushroom & Tomato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-poached_chicken_with_pickled_mushroom_%26_tomato_salad_20250722_203328_3dc9caba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T20:33:29.275451000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "mushroom",
+      "beer",
+      "tomato",
+      "onion",
+      "rosemary"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single starter portion is elegantly plated on a light cream-colored handcrafted ceramic plate. In the center, tender, shredded beer-poached chicken, naturally pale brown, forms a loose mound. Around the chicken, vibrant halved pickled cherry tomatoes and earthy, firm pickled mushroom halves are artfully scattered, creating a natural, organic flow. Very thinly sliced red onion rings are interspersed, adding a subtle purple hue. A light drizzle of clear, pale green rosemary vinaigrette glistens over the components. A small, fresh rosemary sprig rests alongside the chicken, providing a delicate green accent. The plate maintains ample negative space, highlighting the individual textures and colors of each ingredient. The setting features a light, textured reclaimed wood surface. An undyed linen napkin in natural beige is folded simply beside the plate. Soft, natural light illuminates the dish from the side, enhancing its clean, minimalist aesthetic. The background is uncluttered, suggesting a natural, eco-conscious environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (about 600g total)"
+      },
+      {
+        "name": "Beer (light lager or ale)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, halved"
+      },
+      {
+        "name": "Lacto-Fermented Garlic",
+        "quantity": "4 cloves, smashed"
+      },
+      {
+        "name": "Rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black Peppercorns",
+        "quantity": "5g"
+      },
+      {
+        "name": "Mushrooms (button or cremini), halved or quartered",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water (for pickled mushrooms)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "White Vinegar (for pickled mushrooms)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sugar (for pickled mushrooms)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt (for pickled mushrooms)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Rosemary sprig (small, for pickled mushrooms)",
+        "quantity": "1"
+      },
+      {
+        "name": "Cherry Tomatoes, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water (for pickled tomatoes)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Apple Cider Vinegar (for pickled tomatoes)",
+        "quantity": "75ml"
+      },
+      {
+        "name": "Sugar (for pickled tomatoes)",
+        "quantity": "8g"
+      },
+      {
+        "name": "Salt (for pickled tomatoes)",
+        "quantity": "4g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Apple Cider Vinegar (for vinaigrette)",
+        "quantity": "20ml"
+      },
+      {
+        "name": "Fresh Rosemary, finely chopped",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt (for vinaigrette)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black Pepper (for vinaigrette)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Red Onion, very thinly sliced",
+        "quantity": "1/4 small"
+      },
+      {
+        "name": "Fresh Rosemary sprigs (for garnish)",
+        "quantity": "2-4"
+      }
+    ],
+    "instructions": [
+      "Prepare Quick Pickled Mushrooms: In a small saucepan, combine 200ml water, 100ml white vinegar, 10g sugar, 5g salt, and 1 small rosemary sprig. Bring to a boil. Add mushrooms. Simmer 2 minutes. Remove from heat. Let cool completely in liquid.",
+      "Prepare Quick Pickled Tomatoes: In a small bowl, combine 150ml water, 75ml apple cider vinegar, 8g sugar, and 4g salt. Stir until sugar and salt dissolve. Add halved cherry tomatoes. Let sit at least 30 minutes, or refrigerate until ready.",
+      "Poach Chicken: Place chicken thighs in a pot. Add beer, halved onion, 4 smashed lacto-fermented garlic cloves, 2 rosemary sprigs, 5g salt, and 5g peppercorns. Add enough water to just cover chicken if beer is insufficient. Bring to a gentle simmer. Reduce heat. Poach gently 15-20 minutes, or until internal temperature reaches 75°C (167°F). Remove chicken. Let cool. Shred chicken into bite-sized chunks. Discard poaching liquid solids.",
+      "Make Rosemary Vinaigrette: In a small bowl, whisk together olive oil, apple cider vinegar, finely chopped rosemary, salt, and pepper.",
+      "Assemble Dish: On each serving plate, place a portion of shredded chicken. Arrange drained quick pickled mushrooms and quick pickled tomatoes around the chicken. Scatter very thinly sliced red onion. Drizzle with rosemary vinaigrette. Garnish with a small fresh rosemary sprig."
+    ],
+    "notes": [
+      "Lacto-fermented garlic should be prepared in advance. This process enhances flavor and contributes to a sustainable, zero-waste kitchen.",
+      "This recipe emphasizes preservation techniques like quick pickling to extend ingredient shelf life and reduce food waste.",
+      "Utilize leftover poaching liquid as a base for stock or soup to minimize waste.",
+      "Adjust sugar and vinegar in pickling liquids to suit personal preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.5,
+      "calories": 429,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 33,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 1575,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 26.2,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 104,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 8,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 381,
+      "total_carbs_g": 2.3,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 5,
+      "protein": 66,
+      "saturated_fat": 26,
+      "sodium": 68,
+      "total_carbs": 4,
+      "total_fat": 34
+    },
+    "serving_size_g": 413.75,
+    "total_recipe_weight_g": 1655
+  },
+  {
+    "recipe_name": "Belgian-Style Beer-Braised Chicken Thighs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_belgian-style_beer-braised_chicken_thighs_20250722_203214_694afc10.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T20:32:14.786089000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "mushroom",
+      "beer",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Golden-brown, seared chicken thighs are presented as whole pieces on a clean white porcelain plate, nestled in a rich, glossy, amber-hued beer-braising sauce. Quartered cremini mushrooms and roughly diced yellow onions are visible within the sauce, tender and caramelized. Burst cherry tomatoes add vibrant red pops. The dish is garnished with fresh, finely chopped flat-leaf parsley, providing a bright green contrast. The plate, featuring a single refined portion, sits on a simple wooden table with a white linen napkin and standard flatware. Natural, even lighting highlights textures and depth of color. A small, rustic piece of crusty bread completes the authentic Belgian bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Belgian",
+    "cultural_origin": "Belgian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the rich sauce",
+      "Accompanied by a side of Belgian frites (fries) or creamy mashed potatoes (stoemp)",
+      "Pair with a glass of the same Belgian ale used in the braise"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, roughly diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g, quartered"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g, whole"
+      },
+      {
+        "name": "Belgian ale or similar amber beer",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15g, finely chopped for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 5-7 minutes until golden brown and crispy. Flip and sear for 2-3 minutes more. Remove chicken and set aside.",
+      "Reduce heat to medium. Add butter to the pot. Add diced onion and sauté for 5 minutes until softened.",
+      "Add minced garlic and quartered mushrooms. Cook for 5-7 minutes until mushrooms are browned and tender.",
+      "Stir in flour and cook for 1 minute, stirring constantly.",
+      "Gradually pour in the beer, scraping up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Add chicken stock, cherry tomatoes, thyme sprigs, and bay leaf. Bring the sauce to a gentle simmer.",
+      "Return chicken thighs to the pot, nestling them into the sauce. Ensure chicken internal temperature reaches 75°C (167°F).",
+      "Cover the pot and transfer to a preheated oven at 170°C (340°F). Braise for 45-60 minutes, or until chicken is very tender.",
+      "Remove from oven. Discard thyme sprigs and bay leaf. Taste and adjust seasoning as needed.",
+      "Garnish generously with fresh chopped parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 593,
+      "cholesterol_mg": 172,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 41,
+      "saturated_fat_g": 10.9,
+      "sodium_mg": 342,
+      "total_carbs_g": 16.6,
+      "total_fat_g": 40.4,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 69,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 9,
+      "protein": 82,
+      "saturated_fat": 55,
+      "sodium": 15,
+      "total_carbs": 6,
+      "total_fat": 52
+    },
+    "serving_size_g": 496,
+    "total_recipe_weight_g": 1984
+  },
+  {
+    "recipe_name": "Sustainable Chicken & Mushroom Bites with Fermented Tomato Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_chicken_%26_mushroom_bites_with_fermented_tomato_relish_20250722_203138_5e60cf66.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T20:31:39.117683000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "mushroom",
+      "beer",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The snack is presented on a simple, light beige ceramic plate, with ample white space. Four individual portions are arranged organically, not in a rigid pattern. Each portion features a few rustic, golden-brown chicken thigh chunks, clearly seared and tender, nestled alongside roasted cremini mushroom halves, their earthy tones and textures visible. A glistening, dark amber beer-garlic reduction lightly coats the chicken and mushrooms. A small, vibrant dollop of chunky, bright red fermented tomato relish sits beside each cluster, showcasing its natural, slightly irregular texture. Scattered among the bites are a few pieces of crispy, golden-brown chicken skin, adding a contrasting texture and visual interest. The composition is clean and ingredient-focused, emphasizing the natural beauty of each component. The plate rests on a light reclaimed wood surface. A natural, undyed linen napkin in beige is casually folded nearby. Soft, diffused natural light illuminates the scene, highlighting the food's organic colors and textures. No ornate garnishes or elaborate arrangements are present; the focus is on the pure, unadorned ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, skin-on",
+        "quantity": "4 (approx. 600g total)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Light beer",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10g (for relish brine) + to taste"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "250ml (for relish brine)"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Tomato Relish: Wash cherry tomatoes. Pierce each tomato once with a skewer.",
+      "In a clean jar, combine 250g cherry tomatoes, 2 peeled garlic cloves, 10g sea salt, and 250ml filtered water. Ensure tomatoes are submerged.",
+      "Seal jar loosely or use an airlock. Ferment at room temperature (20-24°C) for 3-5 days, or until desired tanginess. Burp daily.",
+      "Once fermented, drain liquid. Roughly chop fermented tomatoes and garlic. Set aside.",
+      "Prepare Chicken: Separate chicken skin from thighs. Cut skin into 2cm pieces. Cut chicken thigh meat into 3-4cm chunks. Season meat with salt and pepper.",
+      "Cook Chicken Skin & Thighs: Heat a large pan over medium heat. Add chicken skin pieces. Render fat until skin is crispy and golden (approx. 8-10 minutes). Remove crispy skin; set aside. Reserve rendered chicken fat in pan.",
+      "Increase heat to medium-high. Add chicken thigh chunks to pan with rendered fat. Sear until golden-brown on all sides (approx. 6-8 minutes). Cook to internal temperature of 75°C. Remove chicken; set aside.",
+      "Cook Mushrooms & Garlic: Slice mushrooms into halves or quarters. Add mushrooms to the same pan. Sauté until tender and caramelized (approx. 5-7 minutes). Peel and smash 4 garlic cloves. Add to pan with mushrooms. Cook for 1 minute until fragrant.",
+      "Beer Reduction: Deglaze pan with 200ml beer, scraping up browned bits. Add thyme sprigs. Bring to a simmer. Reduce liquid by half, until slightly thickened (approx. 5-7 minutes). Remove thyme.",
+      "Assemble Bites: Combine cooked chicken and mushrooms in a bowl. Toss lightly with the beer-garlic reduction. Serve warm. Top each bite with a small spoonful of fermented tomato relish and a piece of crispy chicken skin."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 391,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 29.3,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 1082,
+      "total_carbs_g": 7.1,
+      "total_fat_g": 26.3,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 157,
+      "cholesterol_mg": 54,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 11.7,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 433,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 8,
+      "protein": 59,
+      "saturated_fat": 33,
+      "sodium": 47,
+      "total_carbs": 3,
+      "total_fat": 34
+    },
+    "serving_size_g": 250,
+    "total_recipe_weight_g": 1000
+  }
+]

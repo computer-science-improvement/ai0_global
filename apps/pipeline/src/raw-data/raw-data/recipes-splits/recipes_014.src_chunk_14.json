@@ -1,0 +1,714 @@
+[
+  {
+    "recipe_name": "Coffee-Seared Tuna with Ginger Butter Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coffee-seared_tuna_with_ginger_butter_noodles_20250630_035009_7ea31cf2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:50:09.691826000Z",
+    "selected_ingredients": [
+      "yeast",
+      "ginger",
+      "tuna",
+      "coffee",
+      "butter",
+      "noodle",
+      "onion",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Coffee-Seared Tuna with Ginger Butter Noodles is presented on a clean white porcelain dinner plate. The seared tuna, cut into thick, substantial medallions, exhibits a dark, aromatic coffee crust contrasting with a vibrant pink-red interior. It is arranged neatly beside a generous mound of glossy, golden-brown udon noodles, tossed with ginger and butter, showcasing their smooth, thick texture. A small, neat portion of fluffy white rice, subtly enhanced with nutritional yeast, sits beside the noodles. The dish is garnished with thinly sliced bright green scallions and a sprinkle of toasted sesame seeds, adding fresh color and texture. The plate is centered on a simple wooden table, with a cotton napkin to the side. Natural, even lighting highlights the ingredients' colors and textures, creating an inviting, casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian Fusion",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Tuna",
+    "ingredients": [
+      {
+        "name": "Tuna fillets",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Finely ground espresso coffee",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Freshly cracked black pepper",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Udon noodles",
+        "quantity": "400g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "40g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Scallions, thinly sliced",
+        "quantity": "4"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Uncooked rice (e.g., jasmine or sushi)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Nutritional yeast",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Water",
+        "quantity": "400ml (for rice)"
+      }
+    ],
+    "instructions": [
+      "Rinse rice thoroughly. Combine rice, 400ml water, and 2 tbsp nutritional yeast in a pot. Bring to a boil. Reduce heat to low. Cover and simmer for 15 minutes, or until water is absorbed. Let stand covered for 10 minutes.",
+      "Pat tuna fillets dry. Mix coffee grounds, cracked black pepper, and a pinch of salt. Press mixture onto all sides of tuna fillets, coating evenly.",
+      "Heat olive oil in a large non-stick pan over medium-high heat until shimmering. Sear tuna for 1-2 minutes per side for rare, or longer for desired doneness. Remove tuna from pan and let rest.",
+      "Cook udon noodles according to package instructions until al dente. Drain well.",
+      "In the same pan, melt butter over medium heat. Add grated ginger and minced garlic. Sauté for 1 minute until fragrant. Stir in soy sauce, rice vinegar, and sugar.",
+      "Add cooked, drained noodles to the pan with the sauce. Toss to coat evenly.",
+      "Divide rice among 4 plates. Slice each tuna fillet into thick medallions. Place sliced tuna alongside the rice. Serve ginger butter noodles next to tuna.",
+      "Sprinkle sliced scallions and toasted sesame seeds over the tuna and noodles."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 957.58,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 7.18,
+      "protein_g": 61.5,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 652,
+      "total_carbs_g": 120.76,
+      "total_fat_g": 25.41,
+      "total_sugars_g": 3.33,
+      "trans_fat_g": 0.45
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.17,
+      "calories": 163.4,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 1.22,
+      "protein_g": 10.5,
+      "saturated_fat_g": 1.72,
+      "sodium_mg": 111,
+      "total_carbs_g": 20.61,
+      "total_fat_g": 4.34,
+      "total_sugars_g": 0.57,
+      "trans_fat_g": 0.08
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 26,
+      "protein": 123,
+      "saturated_fat": 51,
+      "sodium": 28,
+      "total_carbs": 44,
+      "total_fat": 33
+    },
+    "serving_size_g": 586.08,
+    "total_recipe_weight_g": 2344.3
+  },
+  {
+    "recipe_name": "Roasted Chicken with Fermented Tomato & White Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_with_fermented_tomato_%26_white_beans_20250630_034505_d2e0cbcc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:45:06.349461000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bean",
+      "potato",
+      "onion",
+      "rice",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a handcrafted ceramic plate in an earthy tone, set on a light bamboo surface. A single roasted chicken thigh, skin golden and crisp, is placed off-center. Rustic 4cm roasted potato chunks and caramelized onion wedges are artfully arranged alongside, showcasing natural textures and colors. A halved roasted garlic head sits subtly. A generous spoonful of vibrant Fermented Tomato & White Bean Medley forms a soft mound, its rich hue contrasting with creamy beans and green herbs. Sautéed mushrooms intersperse within the medley. A neat portion of fluffy brown rice, cooked in zero-waste stock, completes the composition. Plating emphasizes clean lines and negative space. No ornate garnishes; only inherent beauty is highlighted. The scene is bathed in soft, natural lighting, with a minimalist background and an undyed linen napkin, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "ripe tomatoes, diced",
+        "quantity": "300g"
+      },
+      {
+        "name": "ripe tomatoes, quartered (for fermentation)",
+        "quantity": "200g"
+      },
+      {
+        "name": "dried white beans, soaked overnight",
+        "quantity": "200g"
+      },
+      {
+        "name": "medium potatoes, scrubbed",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "large onions",
+        "quantity": "2 (approx. 300g)"
+      },
+      {
+        "name": "whole head garlic",
+        "quantity": "1"
+      },
+      {
+        "name": "mixed mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "brown rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "fresh rosemary or thyme",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "chicken bones/trimmings (for stock)",
+        "quantity": "as needed"
+      },
+      {
+        "name": "mushroom stems (for stock)",
+        "quantity": "as needed"
+      },
+      {
+        "name": "onion peels (for stock)",
+        "quantity": "as needed"
+      },
+      {
+        "name": "garlic peels (for stock)",
+        "quantity": "as needed"
+      },
+      {
+        "name": "bay leaf (for stock)",
+        "quantity": "1"
+      },
+      {
+        "name": "water (for stock)",
+        "quantity": "1.5 litres"
+      }
+    ],
+    "instructions": [
+      "Combine quartered tomatoes, 2 peeled garlic cloves, and 5g salt in a clean jar. Cover with a breathable lid. Ferment at room temperature for 3-5 days until slightly fizzy and tangy. Blend into a paste. Refrigerate.",
+      "In a large pot, combine chicken bones/trimmings, mushroom stems, onion peels, garlic peels, bay leaf, and 1.5 litres water. Bring to a boil, then reduce heat. Simmer gently for 1-2 hours. Strain stock, discard solids.",
+      "If using dried beans, drain soaked beans. Place in a pot with fresh water, cover by 5cm. Bring to a boil, then reduce heat and simmer until tender, about 45-60 minutes. Drain.",
+      "Preheat oven to 200°C. Pat chicken thighs dry. Rub with 15ml olive oil, salt, and pepper. Cut potatoes into rustic 4cm chunks. Cut 1 onion into 8 wedges. Halve remaining garlic head horizontally. Toss potatoes, onion wedges, and garlic halves with 15ml olive oil, salt, and pepper on a baking tray. Add rosemary/thyme sprig. Place chicken thighs skin-side up on the tray with vegetables. Roast for 30-40 minutes, or until chicken reaches 75°C internal temperature and skin is golden.",
+      "While chicken roasts, combine brown rice with 400ml strained stock in a saucepan. Bring to a boil, reduce heat to low, cover, and simmer for 25-30 minutes until liquid is absorbed and rice is tender.",
+      "Slice remaining onion and mushrooms. Heat a pan over medium-high heat. Add a splash of olive oil. Sauté sliced onion until softened, about 5 minutes. Add sliced mushrooms and cook until browned, about 5-7 minutes. Stir in diced fresh tomatoes and cooked white beans. Cook for 5 minutes. Stir in 30-50g of the fermented tomato & garlic paste, adjusting to taste. Heat through."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1007,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 15.8,
+      "protein_g": 52.3,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 659,
+      "total_carbs_g": 116.8,
+      "total_fat_g": 38,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 112,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 5.8,
+      "saturated_fat_g": 1,
+      "sodium_mg": 74,
+      "total_carbs_g": 13,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 56,
+      "protein": 105,
+      "saturated_fat": 46,
+      "sodium": 29,
+      "total_carbs": 42,
+      "total_fat": 49
+    },
+    "serving_size_g": 895.6,
+    "total_recipe_weight_g": 3582.5
+  },
+  {
+    "recipe_name": "Creamy Chicken and Vegetable Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_vegetable_risotto_20250630_034340_ca8c898e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:43:41.288081000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "cottage cheese",
+      "broccoli",
+      "bell pepper",
+      "mozzarella",
+      "rice",
+      "onion",
+      "pasta",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a single, generous portion of creamy, free-flowing risotto, served in a clean white porcelain bowl. The risotto, a pale, inviting beige, is studded with vibrant green broccoli florets and bright red bell pepper cubes, contrasting beautifully against the creamy rice. Succulent, golden-brown chicken chunks are interspersed throughout the risotto, showcasing their seared exterior. Fresh basil leaves are gently mixed in and scattered over the top, providing a pop of fresh green. The texture is smooth and velvety, indicating the creamy consistency. The bowl sits on a simple light wooden table surface, accompanied by a folded cotton napkin and standard flatware. Natural, even lighting highlights the dish's warmth and freshness, with a softly blurred bistro-style background creating a casual yet refined atmosphere. The overall presentation is inviting and approachable, with moderate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with freshly grated Parmesan cheese.",
+      "A side of crusty bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mozzarella",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large, deep pan or Dutch oven over medium heat.",
+      "Add diced chicken. Cook until browned and cooked through, about 6-8 minutes. Internal temperature should reach 75°C. Remove chicken from pan and set aside.",
+      "Add diced onion to the same pan. Sauté until translucent, about 5 minutes. Add minced garlic and diced bell pepper. Cook for another 3-4 minutes until softened.",
+      "Add Arborio rice to the pan. Stir for 2 minutes until rice grains are coated and slightly translucent at the edges.",
+      "Pour in white wine. Stir constantly until liquid is absorbed.",
+      "Begin adding warm chicken broth, one ladleful at a time. Stir continuously. Allow each ladleful to be almost fully absorbed before adding the next. This process will take about 20-25 minutes.",
+      "After about 10 minutes of adding broth, add broccoli florets to the risotto. Continue adding broth and stirring.",
+      "When risotto is creamy and rice is al dente, stir in cottage cheese and shredded mozzarella. Stir until cheeses are melted and incorporated.",
+      "Stir in cooked chicken and chopped fresh basil. Season with salt and black pepper to taste.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Risotto method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 869.3,
+      "cholesterol_mg": 153.9,
+      "dietary_fiber_g": 5.09,
+      "protein_g": 79.79,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 2323.3,
+      "total_carbs_g": 83.15,
+      "total_fat_g": 22.4,
+      "total_sugars_g": 7.32,
+      "trans_fat_g": 0.24
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113.2,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 0.66,
+      "protein_g": 10.39,
+      "saturated_fat_g": 1.11,
+      "sodium_mg": 302.5,
+      "total_carbs_g": 10.83,
+      "total_fat_g": 2.92,
+      "total_sugars_g": 0.95,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.29,
+      "dietary_fiber": 18.18,
+      "protein": 159.57,
+      "saturated_fat": 42.52,
+      "sodium": 101.01,
+      "total_carbs": 30.24,
+      "total_fat": 28.72
+    },
+    "serving_size_g": 768,
+    "total_recipe_weight_g": 3072
+  },
+  {
+    "recipe_name": "Cheesy Beef and Rice Stuffed Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_beef_and_rice_stuffed_bell_peppers_20250630_033916_21d03267.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:39:16.678958000Z",
+    "selected_ingredients": [
+      "beef",
+      "cheese",
+      "breadcrumbs",
+      "rice",
+      "mushroom",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single vibrant bell pepper half, either red or yellow, is prominently displayed on a clean white porcelain dinner plate. The pepper is generously filled with a rich, savory mixture of ground beef, rice, and diced mushrooms. The top of the filling is crowned with a golden-brown, crispy layer of baked Panko breadcrumbs and melted Parmesan cheese. The pepper itself shows a slight tenderness from baking, with its edges subtly softened. A small, inviting pool of deep red tomato sauce rests at the base of the pepper on the plate, adding moisture and color. A sprinkle of vibrant green chopped fresh parsley garnishes the top of the stuffed pepper. The overall presentation is professional and approachable, with moderate negative space on the plate. The dish sits on a simple wooden table surface in a modern bistro setting. Standard silver flatware is placed alongside the plate. A folded white cotton napkin is neatly positioned beside the dish. Natural, even lighting highlights the textures and colors, creating an appealing and authentic visual.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Bell Peppers",
+    "ingredients": [
+      {
+        "name": "Large Bell Peppers",
+        "quantity": "4"
+      },
+      {
+        "name": "Ground Beef",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cooked Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Mushrooms, diced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chili Powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cheddar Cheese, shredded",
+        "quantity": "100g"
+      },
+      {
+        "name": "Parmesan Cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Panko Breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Halve bell peppers lengthwise. Remove seeds and membranes.",
+      "Heat olive oil in a large skillet over medium heat.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add ground beef. Brown, breaking it apart. Drain excess fat.",
+      "Stir in diced mushrooms. Cook until softened, about 5 minutes.",
+      "Add chili powder, smoked paprika, and oregano. Stir for 1 minute.",
+      "Pour in crushed tomatoes and beef broth. Bring to a simmer.",
+      "Reduce heat. Simmer for 10 minutes until sauce thickens.",
+      "Remove from heat. Stir in cooked rice and shredded cheddar cheese. Season with salt and pepper.",
+      "Arrange bell pepper halves cut-side up in a baking dish.",
+      "Fill each pepper half generously with the beef and rice mixture.",
+      "Bake for 30 minutes, or until peppers are tender.",
+      "In a small bowl, combine Parmesan cheese and Panko breadcrumbs.",
+      "Remove peppers from oven. Sprinkle the cheese and breadcrumb mixture evenly over each filled pepper.",
+      "Return to oven. Bake for another 10-15 minutes, until topping is golden brown and bubbly.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 762,
+      "cholesterol_mg": 137,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 52.1,
+      "saturated_fat_g": 17.2,
+      "sodium_mg": 764,
+      "total_carbs_g": 46.8,
+      "total_fat_g": 43.9,
+      "total_sugars_g": 13.6,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.2,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 120,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45.8,
+      "dietary_fiber": 29.6,
+      "protein": 104.2,
+      "saturated_fat": 86.2,
+      "sodium": 33.2,
+      "total_carbs": 17,
+      "total_fat": 56.3
+    },
+    "serving_size_g": 634,
+    "total_recipe_weight_g": 2536
+  },
+  {
+    "recipe_name": "Spicy Garlic Pork Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_garlic_pork_stir-fry_20250630_033618_2d03b588.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T03:36:18.945286000Z",
+    "selected_ingredients": [
+      "pork",
+      "garlic",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant single portion of Spicy Garlic Pork Stir-fry is neatly arranged on a clean white porcelain plate, showcasing its rich brown hues from the seared pork and the vivid green of tender-crisp green beans. The pork, cut into small, irregular bite-sized pieces, is perfectly cooked with caramelized edges. A glossy, savory sauce lightly coats all ingredients. Fresh green holy basil leaves are scattered generously over the top, adding aromatic freshness and a pop of color. A few thinly sliced red chilies are visible, hinting at the dish's spice. The plate is set on a simple light wooden table. Beside it, a small, pristine white bowl of fluffy jasmine rice, ready for scooping. A pair of elegant wooden chopsticks rests alongside the rice bowl, completing the authentic Thai dining experience under soft, natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice",
+      "Use chopsticks for eating"
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "500 grams, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "8-10 cloves, minced"
+      },
+      {
+        "name": "Thai bird's eye chilies",
+        "quantity": "3-5, thinly sliced (adjust to taste)"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "150 grams, trimmed"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "10 grams (or white sugar)"
+      },
+      {
+        "name": "Holy basil leaves",
+        "quantity": "1 cup, packed (or regular basil)"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Slice pork shoulder into thin strips or small bite-sized pieces.",
+      "Mince garlic and thinly slice chilies.",
+      "Heat vegetable oil in a wok or large pan over high heat.",
+      "Add minced garlic and sliced chilies. Stir-fry for 30 seconds until fragrant.",
+      "Add sliced pork to the wok. Stir-fry until pork is browned and cooked through, about 4-5 minutes.",
+      "Add green beans. Stir-fry for 2-3 minutes until tender-crisp.",
+      "Add fish sauce, oyster sauce, light soy sauce, and palm sugar. Stir well to coat all ingredients.",
+      "Add holy basil leaves. Stir-fry for 30 seconds until basil wilts.",
+      "Remove from heat immediately. Serve hot with steamed jasmine rice."
+    ],
+    "notes": [
+      "Adjust chili level to preference."
+    ],
+    "traditional_techniques": [
+      "Stir-frying",
+      "Balancing flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.9,
+      "calories": 418,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 34.1,
+      "saturated_fat_g": 7.4,
+      "sodium_mg": 1526,
+      "total_carbs_g": 12,
+      "total_fat_g": 25.7,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.3,
+      "calories": 197,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 16,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 718,
+      "total_carbs_g": 5.6,
+      "total_fat_g": 12.1,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 5,
+      "protein": 68,
+      "saturated_fat": 37,
+      "sodium": 66,
+      "total_carbs": 4,
+      "total_fat": 33
+    },
+    "serving_size_g": 212.5,
+    "total_recipe_weight_g": 850
+  }
+]

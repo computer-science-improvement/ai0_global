@@ -1,0 +1,665 @@
+[
+  {
+    "recipe_name": "Macaroni al Forno with Chicken and Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_macaroni_al_forno_with_chicken_and_mushrooms_20250702_194257_c2cfc091.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:42:57.927252000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "garlic",
+      "mushroom",
+      "basil",
+      "mozzarella",
+      "pasta",
+      "oregano",
+      "macaroni"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of baked macaroni al forno sits in a warm, rustic ceramic bowl on a well-used wooden dining table. The top is covered with a golden-brown, bubbly crust of melted mozzarella, with some darker, caramelized edges. Beneath the cheese, tender macaroni is coated in a rich, deep red tomato sauce, interspersed with visible chunks of diced, seared chicken and sliced, earthy mushrooms. Vibrant green specks of fresh basil are scattered over the top, providing a fresh contrast to the warm, savory tones. A simple fork and knife rest beside the bowl. The lighting is warm and inviting, typical of a cozy family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the sauce.",
+      "Pair with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Macaroni pasta",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "750 grams"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Fresh mozzarella cheese",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook macaroni pasta in salted water until al dente. Drain well.",
+      "Dice chicken thighs into 2 cm cubes. Dice onion. Mince garlic. Slice mushrooms.",
+      "Heat olive oil in a large oven-safe pan or Dutch oven over medium-high heat.",
+      "Add diced chicken. Sear until browned on all sides. Ensure internal temperature reaches 75°C. Remove chicken from pan. Set aside.",
+      "Add diced onion to the pan. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Add sliced mushrooms. Cook until softened and their liquid evaporates, about 5-7 minutes.",
+      "Return chicken to the pan. Stir in crushed tomatoes, dried oregano, salt, and black pepper. Bring to a simmer.",
+      "Reduce heat to low. Simmer for 15 minutes, stirring occasionally.",
+      "Roughly chop half of the fresh basil. Stir into the sauce.",
+      "Add cooked macaroni to the sauce. Stir to combine thoroughly.",
+      "If not using an oven-safe pan, transfer mixture to a 2.5-liter baking dish.",
+      "Tear or dice mozzarella cheese. Distribute evenly over the top of the macaroni mixture.",
+      "Bake for 20-25 minutes, or until mozzarella is melted and bubbly and the sauce is simmering.",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Chop remaining fresh basil. Garnish generously before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For best results, use fresh mozzarella that melts beautifully."
+    ],
+    "traditional_techniques": [
+      "Al Forno"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 920.2,
+      "cholesterol_mg": 243.9,
+      "dietary_fiber_g": 8.1,
+      "protein_g": 67.6,
+      "saturated_fat_g": 11.1,
+      "sodium_mg": 480.9,
+      "total_carbs_g": 94.3,
+      "total_fat_g": 30,
+      "total_sugars_g": 12.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 135.1,
+      "cholesterol_mg": 35.8,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.9,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 70.6,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81.3,
+      "dietary_fiber": 29,
+      "protein": 135.2,
+      "saturated_fat": 55.7,
+      "sodium": 20.9,
+      "total_carbs": 34.3,
+      "total_fat": 38.5
+    },
+    "serving_size_g": 681.5,
+    "total_recipe_weight_g": 2726
+  },
+  {
+    "recipe_name": "Cabbage & Roasted Root Vegetable Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cabbage_%26_roasted_root_vegetable_salad_20250702_194110_12a68da1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:41:10.690076000Z",
+    "selected_ingredients": [
+      "salad green"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian",
+    "visual_description": "A vibrant, individual portion of Cabbage & Roasted Root Vegetable Salad is artfully arranged on a handcrafted, cream-toned ceramic plate. The plate sits on a light, reclaimed wood surface. Diced roasted carrots, parsnips, and beetroot display earthy oranges, creams, and deep purples, contrasting with the pale yellow and green of the fermented cabbage. Fresh mixed greens provide a verdant base. Thinly sliced red onion adds a subtle pop of color. The ingredients are loosely tossed, allowing distinct textures—crisp greens, tender roasted roots, and crunchy pumpkin seeds—to be visible. A light vinaigrette glistens on the vegetables. The presentation is natural and unforced, with negative space around the central mound of salad. Soft, natural light illuminates the dish. A simple, undyed linen napkin and a single piece of natural stone complete the eco-conscious setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Cabbage",
+    "ingredients": [
+      {
+        "name": "Fermented Cabbage (Sauerkraut)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, peeled"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "2 medium, peeled"
+      },
+      {
+        "name": "Beetroot",
+        "quantity": "1 medium, peeled"
+      },
+      {
+        "name": "Mixed Salad Greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small, thinly sliced"
+      },
+      {
+        "name": "Pumpkin Seeds",
+        "quantity": "50 g, toasted"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Dill or Parsley",
+        "quantity": "15 g, finely chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut carrots, parsnips, and beetroot into 1 cm dice.",
+      "Toss diced vegetables with 15 ml olive oil, salt, and pepper on a baking sheet.",
+      "Roast for 25-30 minutes until tender and slightly caramelized. Let cool.",
+      "While vegetables roast, prepare the dressing. In a small bowl, whisk together remaining 30 ml olive oil, apple cider vinegar, Dijon mustard, maple syrup, salt, and pepper. Stir in chopped dill or parsley.",
+      "In a large mixing bowl, combine cooled roasted vegetables, fermented cabbage, mixed salad greens, and thinly sliced red onion.",
+      "Pour dressing over salad ingredients. Toss gently to combine.",
+      "Divide salad among four plates. Garnish with toasted pumpkin seeds. Serve immediately."
+    ],
+    "notes": [
+      "To reduce waste, save root vegetable peels for homemade vegetable stock.",
+      "Adjust the tanginess of the dressing to your preference by adding more apple cider vinegar."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.06,
+      "calories": 276.32,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.23,
+      "protein_g": 6.12,
+      "saturated_fat_g": 2.59,
+      "sodium_mg": 424.95,
+      "total_carbs_g": 25.91,
+      "total_fat_g": 15.81,
+      "total_sugars_g": 14.01,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.37,
+      "calories": 95.45,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 2.11,
+      "saturated_fat_g": 0.89,
+      "sodium_mg": 146.79,
+      "total_carbs_g": 8.95,
+      "total_fat_g": 5.46,
+      "total_sugars_g": 4.84,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 25.8,
+      "protein": 12.2,
+      "saturated_fat": 13,
+      "sodium": 18.5,
+      "total_carbs": 9.4,
+      "total_fat": 20.3
+    },
+    "serving_size_g": 289.5,
+    "total_recipe_weight_g": 1158
+  },
+  {
+    "recipe_name": "Italian Spinach and Celery Frittata",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_spinach_and_celery_frittata_20250702_194034_a694b775.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:40:35.129079000Z",
+    "selected_ingredients": [
+      "egg",
+      "spinach",
+      "celery"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Italian Spinach and Celery Frittata, golden-brown and puffed, sits centrally on a clean white porcelain dinner plate. The frittata is a thick, round wedge, showcasing creamy egg studded with bright green wilted spinach leaves and thin, pale green celery rounds. Its surface is lightly browned with a delicate crust. A sprinkle of fresh, finely chopped parsley garnishes the top, adding a pop of emerald green. The plate is positioned on a simple wooden table surface, suggesting a modern bistro setting. A neatly folded white cotton napkin rests beside the plate. Natural, even lighting illuminates the dish, highlighting its inviting textures and warm colors. The scene is uncluttered, focusing on the dish's rustic elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of dressed arugula salad.",
+      "Accompany with crusty Italian bread.",
+      "Enjoy for a casual lunch or light dinner."
+    ],
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "8"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Wash spinach thoroughly. Drain well.",
+      "Dice onion into small cubes. Mince garlic.",
+      "Thinly slice celery stalks into 3mm rounds.",
+      "Heat olive oil and butter in a 25cm oven-safe non-stick skillet over medium heat.",
+      "Add diced onion. Sauté 3-4 minutes until softened.",
+      "Add minced garlic and sliced celery. Sauté 2 minutes.",
+      "Add spinach. Cook until wilted, about 2-3 minutes. Remove excess liquid.",
+      "In a large bowl, whisk eggs. Season with salt and pepper.",
+      "Stir in grated Parmesan cheese into the egg mixture.",
+      "Pour egg mixture over vegetables in the skillet. Distribute vegetables evenly.",
+      "Cook on stovetop for 2-3 minutes until edges begin to set.",
+      "Transfer skillet to preheated oven. Bake 15-20 minutes, or until frittata is set and golden brown.",
+      "Remove from oven. Let rest 5 minutes before slicing.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure spinach is well-drained to prevent a watery frittata.",
+      "Do not overcook the frittata; it should be set but still moist."
+    ],
+    "traditional_techniques": [
+      "Sautéing vegetables until tender.",
+      "Baking in an oven-safe skillet."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 328,
+      "cholesterol_mg": 392,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 19.6,
+      "saturated_fat_g": 8.9,
+      "sodium_mg": 895,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 24.5,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145,
+      "cholesterol_mg": 173,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.7,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 395,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 10.8,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 130.7,
+      "dietary_fiber": 7.7,
+      "protein": 39.2,
+      "saturated_fat": 44.4,
+      "sodium": 38.9,
+      "total_carbs": 2.9,
+      "total_fat": 31.4
+    },
+    "serving_size_g": 226.7,
+    "total_recipe_weight_g": 906.6
+  },
+  {
+    "recipe_name": "Multicooker Eggplant and Pepper Stew with Baked Eggs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_multicooker_eggplant_and_pepper_stew_with_baked_eggs_20250702_193931_8a21324e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:39:31.948439000Z",
+    "selected_ingredients": [
+      "eggplant",
+      "tomato",
+      "pepper",
+      "egg",
+      "basil"
+    ],
+    "complexity": "simple",
+    "special_requests": "мультиварка",
+    "visual_description": "A single, modest portion of hearty multicooker vegetable stew is presented on a simple, slightly imperfect ceramic plate. The stew features chunky, 2.5 cm diced eggplant, bell peppers, tomatoes, and onions, naturally mixed and slightly overlapping. A single perfectly cooked egg, with a set white and a glistening, slightly runny yellow yolk, is nestled on top of the stew. The dish boasts rich red and earthy purple-brown tones from the cooked vegetables, contrasted by the vibrant green of fresh basil leaves generously scattered over the stew and egg. The plate rests on a well-used, rustic wooden dining table. A simple, heavy-gauge metal fork and spoon are casually placed beside the plate. A cream-colored, casually rumpled linen napkin is tucked beneath the plate. The scene is illuminated by warm, natural kitchen lighting, casting soft, inviting shadows. The background is minimally blurred, hinting at a lived-in family kitchen atmosphere, perhaps with a glass of water or a basket of dark rye bread slightly out of focus. The entire plate is visible, showcasing the homely comfort food with ample negative space.",
+    "number_of_servings": 10,
+    "cuisine_type": "Eastern European",
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Eggplant",
+        "quantity": "1.5 kg, diced into 2.5 cm cubes"
+      },
+      {
+        "name": "Bell Peppers",
+        "quantity": "5 large (mixed colors), diced into 2.5 cm cubes"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "8 cloves, minced"
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": "2 x 800g cans"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "1 large bunch (approx. 60g), leaves picked, some chopped, some for garnish"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "12 large"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "15g (or to taste)"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "5g (freshly ground, or to taste)"
+      },
+      {
+        "name": "Vegetable Broth or Water",
+        "quantity": "250 ml"
+      }
+    ],
+    "instructions": [
+      "Set multicooker to \"Sauté\" or \"Fry\" mode. Add vegetable oil.",
+      "Add diced onions. Sauté until softened, about 5 minutes.",
+      "Add minced garlic, smoked paprika, and dried oregano. Sauté for 1 minute until fragrant.",
+      "Add diced eggplant and bell peppers. Stir well to combine with aromatics.",
+      "Pour in crushed tomatoes and vegetable broth. Add salt and black pepper. Stir thoroughly.",
+      "Close multicooker lid. Select \"Stew\" or \"Slow Cook\" mode. Set timer for 60 minutes.",
+      "Once stewing is complete, open lid carefully. Stir the vegetable mixture.",
+      "Create 12 small wells in the hot stew using a spoon. Carefully crack one egg into each well.",
+      "Close lid. Select \"Bake\" or \"Steam\" mode (or a low \"Stew\" setting if \"Bake\" is unavailable). Cook for 10-15 minutes, or until egg whites are set and yolks are still slightly runny.",
+      "Turn off multicooker. Let rest for 5 minutes.",
+      "Garnish generously with fresh basil leaves. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 262.9,
+      "cholesterol_mg": 223.8,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 12.6,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 681.7,
+      "total_carbs_g": 28.9,
+      "total_fat_g": 13,
+      "total_sugars_g": 15.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 46.7,
+      "cholesterol_mg": 39.7,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 2.2,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 121,
+      "total_carbs_g": 5.1,
+      "total_fat_g": 2.3,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74.6,
+      "dietary_fiber": 35.1,
+      "protein": 25.1,
+      "saturated_fat": 12.8,
+      "sodium": 29.6,
+      "total_carbs": 10.5,
+      "total_fat": 16.6
+    },
+    "serving_size_g": 563.2,
+    "total_recipe_weight_g": 5632
+  },
+  {
+    "recipe_name": "Multicooker Eggplant Shakshuka",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_multicooker_eggplant_shakshuka_20250702_193619_7f6bcf05.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:36:19.947139000Z",
+    "selected_ingredients": [
+      "eggplant",
+      "tomato",
+      "pepper",
+      "egg",
+      "basil"
+    ],
+    "complexity": "simple",
+    "special_requests": "мультиварка",
+    "visual_description": "A single portion of Multicooker Eggplant Shakshuka is presented in a deep, rustic ceramic bowl with natural imperfections. The rich, vibrant red tomato base, simmered to a thick, comforting consistency, fills the bowl. Diced eggplant, cooked until tender with a slight char, and soft, diced red and yellow bell peppers are visibly integrated throughout the sauce, adding textural contrast and earthy tones. A perfectly cooked egg rests in the center, its bright yellow yolk still slightly runny, contrasting with the firm, opaque white. The dish is generously garnished with fresh, verdant basil leaves, providing a pop of color and aromatic freshness. The components are naturally arranged, touching and overlapping, reflecting a homely, casual plating style. The bowl sits on a well-used wooden dining table, with a simple, off-white ceramic plate peeking from beneath. A casual cloth napkin and a metal fork are placed nearby. The scene is bathed in warm, cozy lighting, evoking a comfortable family kitchen atmosphere with minimal background clutter to highlight the hearty meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve hot directly from the multicooker or in individual bowls.",
+      "Accompany with crusty bread, pita bread, or challah for dipping into the sauce and yolks."
+    ],
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Eggplant",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30g"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      }
+    ],
+    "instructions": [
+      "Dice eggplant into 2 cm cubes. Dice bell peppers into 1.5 cm pieces. Dice onion into small pieces. Mince garlic.",
+      "Set multicooker to 'Sauté' or 'Fry' mode. Add olive oil. Add diced onion and bell peppers. Sauté for 5-7 minutes until softened.",
+      "Add diced eggplant and minced garlic. Continue sautéing for 8-10 minutes until eggplant softens and lightly browns.",
+      "Stir in crushed tomatoes, smoked paprika, ground cumin, salt, black pepper, and water. Mix well.",
+      "Switch multicooker to 'Stew' or 'Simmer' mode. Close lid. Cook for 20 minutes.",
+      "Open lid. Make four small wells in the tomato mixture. Carefully crack one egg into each well.",
+      "Close lid. Continue cooking on 'Stew' or 'Simmer' mode for 7-10 minutes, or until egg whites are set and yolks are to desired consistency.",
+      "Garnish generously with fresh basil leaves before serving."
+    ],
+    "notes": [
+      "Adjust cooking time for eggs based on desired yolk firmness.",
+      "For spicier shakshuka, add a pinch of chili flakes with the spices."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 251,
+      "cholesterol_mg": 187,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 850,
+      "total_carbs_g": 25.2,
+      "total_fat_g": 13.3,
+      "total_sugars_g": 14.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 50,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 2.2,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 168,
+      "total_carbs_g": 5,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 30,
+      "protein": 22,
+      "saturated_fat": 14,
+      "sodium": 37,
+      "total_carbs": 9,
+      "total_fat": 17
+    },
+    "serving_size_g": 505.5,
+    "total_recipe_weight_g": 2022
+  }
+]

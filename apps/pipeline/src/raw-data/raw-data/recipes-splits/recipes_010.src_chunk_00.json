@@ -1,0 +1,551 @@
+[
+  {
+    "recipe_name": "Fermented Tomato-Chili Chicken Bites & Onion Skin Crisps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato-chili_chicken_bites_%26_onion_skin_crisps_20250714_073311_474c8638.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T07:33:12.292465000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "tomato",
+      "onion",
+      "chili"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A minimalist presentation on a handcrafted, matte cream or light grey ceramic plate. Three to four irregular, golden-brown chicken bites are casually arranged, their surfaces showing a slight char from searing. Surrounding them are scattered, brittle, light beige to golden-brown onion skin crisps, some curled, others flat, showcasing their natural, delicate texture. A few vibrant green fresh parsley leaves are placed sparingly, adding a fresh contrast without overwhelming. The composition allows ample negative space, highlighting the natural textures and earthy colors of the ingredients. The plate rests on a light-colored, natural wood or stone surface. Soft, diffused natural light illuminates the scene, emphasizing the simple, clean composition. The overall impression is organic, unforced, and focused on the inherent beauty of sustainable ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Tomato-Chili Chicken",
+    "ingredients": [
+      {
+        "name": "Minced Chicken",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fermented Tomato Paste",
+        "quantity": "60g"
+      },
+      {
+        "name": "Fermented Garlic Paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fermented Chili Paste",
+        "quantity": "10g"
+      },
+      {
+        "name": "Onion skins (from 2-3 medium onions)",
+        "quantity": "outer dry layers only"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh parsley or cilantro",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Clean onion skins thoroughly. Lay skins flat on a baking sheet.",
+      "Bake for 10-15 minutes until very crisp and golden. Watch carefully. Cool and break into irregular pieces.",
+      "In a bowl, combine minced chicken, fermented tomato paste, fermented garlic paste, fermented chili paste, cornstarch, salt, and black pepper. Mix thoroughly.",
+      "Form the chicken mixture into small, irregular bite-sized pieces (approx. 20-25g each).",
+      "Heat olive oil in a pan over medium heat. Add chicken bites.",
+      "Cook for 5-7 minutes, turning occasionally, until golden brown and cooked through (internal temperature 75°C).",
+      "Arrange cooked chicken bites on a ceramic plate. Scatter onion skin crisps around the bites.",
+      "Garnish with fresh parsley or cilantro leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 177.9,
+      "cholesterol_mg": 52.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 15.9,
+      "saturated_fat_g": 2,
+      "sodium_mg": 552.9,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 158.2,
+      "cholesterol_mg": 46.7,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 14.2,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 491.7,
+      "total_carbs_g": 7.2,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 3,
+      "protein": 32,
+      "saturated_fat": 10,
+      "sodium": 24,
+      "total_carbs": 3,
+      "total_fat": 11
+    },
+    "serving_size_g": 112.5,
+    "total_recipe_weight_g": 449.8
+  },
+  {
+    "recipe_name": "Garlic Parmesan Chicken and Broccoli Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_parmesan_chicken_and_broccoli_skillet_20250714_071710_fc97bcb1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T07:17:11.250082000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "fast lunch cuisine",
+    "visual_description": "A hearty, single portion of Garlic Parmesan Chicken and Broccoli is presented on a simple, round, off-white ceramic plate. The plate sits on a well-used wooden kitchen table, bathed in warm, natural light. Tender, pan-seared chicken medallions, golden-brown and slightly irregular in shape, are casually arranged. Alongside, bright green, tender-crisp broccoli florets are scattered, some touching the chicken, others forming a small cluster. A light, creamy garlic-Parmesan sauce subtly coats both the chicken and broccoli, catching the light. Specks of grated Parmesan are sprinkled over the dish. The overall presentation is comforting and unfussy, reflecting a home-cooked meal ready to be enjoyed. A plain cloth napkin and a fork rest beside the plate.",
+    "number_of_servings": 2,
+    "cuisine_type": "American Home",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "2 (approx. 350g total)"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 head (approx. 300g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "30g, grated"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breasts into 2 cm thick medallions. Season chicken with salt and black pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear chicken medallions 3-4 minutes per side until golden brown and cooked through. Ensure internal temperature reaches 75°C. Remove chicken from skillet and set aside.",
+      "Add broccoli florets to the same skillet. Sauté 3-4 minutes until bright green and slightly tender-crisp.",
+      "Add minced garlic to the skillet. Cook 1 minute until fragrant.",
+      "Pour in chicken broth. Bring liquid to a simmer.",
+      "Return chicken medallions to the skillet. Toss to coat evenly.",
+      "Stir in grated Parmesan cheese until it melts and forms a light sauce.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 466,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 4,
+      "protein_g": 64.3,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 454,
+      "total_carbs_g": 11.5,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 1,
+      "protein_g": 16.9,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 120,
+      "total_carbs_g": 3,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 14,
+      "protein": 129,
+      "saturated_fat": 26,
+      "sodium": 20,
+      "total_carbs": 4,
+      "total_fat": 23
+    },
+    "serving_size_g": 379.8,
+    "total_recipe_weight_g": 759.5
+  },
+  {
+    "recipe_name": "Cheesy Chicken & Broccoli Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_chicken_%26_broccoli_bites_20250714_071517_bc496f55.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T07:15:18.162409000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "fast lunch cuisine",
+    "visual_description": "A pile of golden-brown, rustic Cheesy Chicken & Broccoli Bites is casually arranged on a simple, round ceramic plate. The bites are irregular in shape, revealing flecks of vibrant green broccoli and tender white chicken mixed within. Some bites show the melted, slightly browned cheese on their surfaces. The plate, an everyday off-white ceramic with minor imperfections, sits on a well-used wooden dining table. A soft, warm light from a kitchen fixture illuminates the scene, highlighting the comforting textures. A casually folded, plain cloth napkin rests beside the plate. The background is minimal, suggesting a lived-in family kitchen atmosphere. The presentation is unpretentious and homely, inviting a quick, satisfying snack. The entire plate is visible, showcasing the modest and approachable portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Cooked chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Lightly grease a 12-cup mini muffin tin with olive oil.",
+      "Finely chop cooked chicken breast into small cubes or shred it.",
+      "Chop broccoli florets very finely. Steam or blanch broccoli for 3-4 minutes until tender-crisp. Drain well.",
+      "In a large bowl, combine chopped chicken, finely chopped broccoli, shredded cheddar cheese, eggs, breadcrumbs, onion powder, garlic powder, salt, and black pepper.",
+      "Mix all ingredients thoroughly until well combined.",
+      "Spoon the mixture evenly into the prepared mini muffin tin cups. Press down gently.",
+      "Bake for 18-22 minutes, or until golden brown and cooked through. Ensure chicken reaches 75°C internal temperature.",
+      "Let the bites cool in the tin for a few minutes before removing.",
+      "Serve warm or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 364,
+      "cholesterol_mg": 183,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 36.8,
+      "saturated_fat_g": 7.2,
+      "sodium_mg": 588,
+      "total_carbs_g": 19,
+      "total_fat_g": 15.9,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 176,
+      "cholesterol_mg": 89,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 17.8,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 284,
+      "total_carbs_g": 9.2,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 9,
+      "protein": 74,
+      "saturated_fat": 36,
+      "sodium": 26,
+      "total_carbs": 7,
+      "total_fat": 20
+    },
+    "serving_size_g": 207,
+    "total_recipe_weight_g": 828.1
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Breast with Broccoli Variations and Chicken Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_breast_with_broccoli_variations_and_chicken_jus_20250714_065002_ab926455.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T06:50:03.012479000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "chicken"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "fast lunch cuisine",
+    "visual_description": "A single portion of an ultra-sophisticated fine-dining dish is presented on a pristine, large, plain white bone china plate, occupying the lower-left quadrant with abundant negative space. A vibrant, silky green broccoli puree forms a delicate, flowing swoosh or an organic pool at the base. Resting atop or alongside the puree is a perfectly pan-seared chicken breast, cut into two thick, moist medallions or presented as a whole, golden-brown piece, showcasing its crisp, amber crust. Its interior is tender and white. A few slender, charred broccolini spears, deep green with subtly blackened edges, are artfully placed next to the chicken, adding texture and color contrast. A rich, glossy chicken jus is elegantly drizzled in a natural, organic pattern around the main components, reflecting light beautifully. A single, delicate sprig of bright green microgreens, like chervil or pea shoots, is precisely positioned on the chicken or puree as a final, minimalist accent. The plate sits on a luxurious white Carrara marble surface with subtle grey veins. A crisp, white linen napkin, folded into a precise triangle, is positioned to the left. Dramatic professional lighting creates soft shadows, highlighting the dish's architectural precision and premium ingredients. The background is ultra-minimalist, completely blurred to emphasize the food as the sole subject.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fine-Dining",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Premium Boneless, Skinless Chicken Breast",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Broccoli Florets",
+        "quantity": "500g"
+      },
+      {
+        "name": "Broccolini Spears",
+        "quantity": "200g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Garlic Clove",
+        "quantity": "1, minced"
+      },
+      {
+        "name": "Unsalted Butter, cold, cubed",
+        "quantity": "70g"
+      },
+      {
+        "name": "Double Cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "High-Quality Chicken Stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Grapeseed Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Microgreens (e.g., Chervil or Pea Shoots)",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken Jus: Pour chicken stock into a small saucepan. Bring to a simmer. Reduce heat. Gently simmer until liquid reduces by two-thirds, forming a concentrated jus. This takes about 20-30 minutes. Remove from heat. Whisk in 20g cold butter until emulsified and glossy. Season with salt and white pepper. Keep warm.",
+      "Prepare Broccoli Puree: Steam broccoli florets until very tender, about 8-10 minutes. Transfer steamed broccoli to a high-speed blender. Add 30g butter, double cream, a pinch of salt, and white pepper. Blend until perfectly smooth and creamy. Pass the puree through a fine-mesh sieve into a clean saucepan for ultra-smooth texture. Keep warm over very low heat or a bain-marie.",
+      "Prepare Charred Broccolini: Bring a pot of salted water to a boil. Blanch broccolini spears for 1-2 minutes until vibrant green and tender-crisp. Immediately transfer to an ice bath to stop cooking. Drain well and pat completely dry. Heat a cast-iron pan or grill pan over high heat until smoking. Add broccolini. Char for 2-3 minutes, turning occasionally, until slightly blackened in spots. Season with salt. Keep warm.",
+      "Cook Chicken Breast: Pat chicken breasts completely dry with paper towels. Season generously on all sides with salt and white pepper. Heat grapeseed oil in a heavy-bottomed pan over medium-high heat until shimmering. Carefully place chicken breasts in the hot pan. Sear for 4-5 minutes per side until golden-brown crust forms. Reduce heat to medium-low. Continue cooking, flipping occasionally, until internal temperature reaches 75°C (167°F). This takes about 8-12 minutes total depending on thickness. Remove chicken from pan. Rest on a wire rack for 5 minutes.",
+      "Plate Dish: Place a deliberate swoosh or pool of broccoli puree on one side of each plate. Slice each chicken breast into two or three thick, elegant medallions, or leave whole if preferred. Arrange chicken medallions artfully next to the puree. Place 2-3 charred broccolini spears alongside. Drizzle chicken jus elegantly around the chicken and puree. Garnish with a small sprig of microgreens. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 575,
+      "cholesterol_mg": 208,
+      "dietary_fiber_g": 5,
+      "protein_g": 62.8,
+      "saturated_fat_g": 14.2,
+      "sodium_mg": 324,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 29.6,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 11.9,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 61,
+      "total_carbs_g": 2.9,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 18,
+      "protein": 126,
+      "saturated_fat": 71,
+      "sodium": 14,
+      "total_carbs": 5,
+      "total_fat": 38
+    },
+    "serving_size_g": 527.1,
+    "total_recipe_weight_g": 2108.3
+  },
+  {
+    "recipe_name": "Crispy Rice Cake, Poached Chicken, Spicy Cheese Emulsion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_rice_cake%2C_poached_chicken%2C_spicy_cheese_emulsion_20250714_061426_10ac705a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T06:14:27.373210000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "hot sauce",
+      "cheese",
+      "garlic"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single serving is presented on a round, matte white ceramic plate with a wide, minimalist rim, allowing abundant negative space. Two perfectly golden-brown, rectangular rice cakes, approximately 5x3 cm each, are positioned slightly off-center. Each cake is topped with a delicate mound of pristine white, finely shredded poached chicken. A single, elegant quenelle of pale ivory, airy spicy cheese emulsion is meticulously placed beside the chicken. A precise, thin line of vibrant red hot sauce reduction is artfully drizzled across the plate as a bold accent. A few translucent, golden crispy garlic slivers are scattered delicately over the chicken and emulsion, providing textural contrast. The color palette is sophisticated: golden-brown, pristine white, pale ivory, and vibrant red, with translucent gold highlights. The plate rests on a white Carrara marble surface, accompanied by a single, pristine white linen napkin folded into a precise triangle. Dramatic, directional lighting creates soft shadows, enhancing the ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "2 large (approx. 400g total)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "300ml, plus more for poaching"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Full-fat cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Hot sauce (e.g., Sriracha)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Rice vinegar or white wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed or canola)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Poach Chicken: Place chicken breasts in a small saucepan. Cover with chicken stock and a pinch of salt. Bring to a gentle simmer. Cook 15-20 minutes, or until internal temperature reaches 75°C (167°F). Remove chicken. Cool completely. Finely shred chicken. Set aside.",
+      "Cook Rice: Rinse rice. In a small pot, combine rice and 300ml chicken stock. Bring to a boil, then reduce heat to low. Cover and simmer 15 minutes, or until liquid is absorbed and rice is tender. Spread rice evenly onto a parchment-lined baking sheet to a thickness of 1 cm. Press firmly. Chill 1 hour.",
+      "Prepare Rice Cakes: Once chilled, cut rice into 8 uniform 5x3 cm rectangles. Heat 2 cm neutral oil in a large non-stick pan over medium-high heat. Fry rice cakes 3-4 minutes per side until golden and crisp. Drain on paper towels. Season with salt.",
+      "Make Spicy Cheese Emulsion: Thinly slice 2 garlic cloves. In a small saucepan, combine grated Parmesan, cream, and sliced garlic. Gently heat over low heat, stirring until cheese melts. Do not boil. Remove from heat. Blend with an immersion blender until smooth and emulsified. Strain through a fine-mesh sieve for ultimate smoothness. Keep warm.",
+      "Prepare Hot Sauce Reduction: In a small saucepan, combine hot sauce, rice vinegar, and sugar. Bring to a simmer over medium heat. Reduce heat to low and simmer 5-7 minutes, stirring occasionally, until thickened to a syrupy consistency.",
+      "Make Crispy Garlic: Thinly slice remaining 2 garlic cloves. Heat 50ml neutral oil in a small pan over low heat. Add sliced garlic. Cook slowly, stirring frequently, until golden brown and crispy. Do not burn. Remove garlic with a slotted spoon. Drain on paper towels.",
+      "Assemble: On each plate, place two crispy rice cakes. Divide shredded chicken evenly and arrange a delicate mound on top of each rice cake. Spoon a small dollop of the warm spicy cheese emulsion beside the chicken. Drizzle hot sauce reduction artfully across the plate. Garnish with crispy garlic slivers. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.1,
+      "calories": 705.7,
+      "cholesterol_mg": 135.3,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 43.1,
+      "saturated_fat_g": 12.7,
+      "sodium_mg": 792.7,
+      "total_carbs_g": 37.1,
+      "total_fat_g": 41.9,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 233.1,
+      "cholesterol_mg": 44.7,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 14.2,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 261.6,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 13.8,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45.1,
+      "dietary_fiber": 3,
+      "protein": 86.2,
+      "saturated_fat": 63.4,
+      "sodium": 34.5,
+      "total_carbs": 13.5,
+      "total_fat": 53.8
+    },
+    "serving_size_g": 303,
+    "total_recipe_weight_g": 1212
+  }
+]

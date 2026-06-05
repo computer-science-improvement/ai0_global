@@ -1,0 +1,651 @@
+[
+  {
+    "recipe_name": "Roasted Chicken Thighs with Creamy Potato and Gruyere Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_thighs_with_creamy_potato_and_gruyere_gratin_20250624_171829_f44f0a46.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:18:30.236600000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Roasted Chicken Thighs with Creamy Potato and Gruyere Gratin is presented on a round, clean white porcelain plate. A golden-brown, crispy-skinned chicken thigh, in its natural whole form, rests prominently. Beside it, a generous, rectangular portion of gratin sits. The gratin's top is rich, bubbly golden-brown from melted Gruyere, revealing creamy, tender, uniformly thin potato slices beneath. Fresh thyme leaves are scattered over both, adding green. The color palette is warm, with golden browns, creamy whites, and subtle green accents. The plate is on a simple, light wooden table, with a folded white cotton napkin. Natural, soft light illuminates the dish, highlighting textures. The background is a subtly blurred, warm restaurant interior, keeping focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes (e.g., Desiree or Russet), peeled",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Nutmeg, freshly grated",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease a large gratin dish (approx. 25x35 cm) with butter.",
+      "Thinly slice potatoes, about 2-3 mm thick, using a mandoline or sharp knife.",
+      "In a large bowl, combine cream, minced garlic, a pinch of nutmeg, salt, and pepper. Add sliced potatoes and toss to coat evenly.",
+      "Arrange half of the potato slices in an even layer in the prepared gratin dish. Sprinkle with half of the grated Gruyère. Repeat with remaining potatoes and cheese.",
+      "Pour any remaining cream mixture over the potatoes. Place thyme sprigs on top.",
+      "Bake gratin for 45-50 minutes, or until potatoes are tender and top is golden brown and bubbling.",
+      "While gratin bakes, pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear for 8-10 minutes until skin is deeply golden and crispy.",
+      "Flip chicken thighs. Transfer skillet to oven during the last 20-25 minutes of gratin baking, or until chicken internal temperature reaches 75°C (167°F).",
+      "Remove chicken and gratin from oven. Let chicken rest for 5 minutes before serving.",
+      "Serve one chicken thigh with a generous portion of creamy potato gratin. Garnish with fresh thyme leaves."
+    ],
+    "traditional_techniques": [
+      "Gratin",
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1416,
+      "cholesterol_mg": 389,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 62.2,
+      "saturated_fat_g": 52.6,
+      "sodium_mg": 861,
+      "total_carbs_g": 48.6,
+      "total_fat_g": 106.3,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 2.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 220,
+      "cholesterol_mg": 60,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.7,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 134,
+      "total_carbs_g": 7.5,
+      "total_fat_g": 16.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 130,
+      "dietary_fiber": 20,
+      "protein": 124,
+      "saturated_fat": 263,
+      "sodium": 37,
+      "total_carbs": 18,
+      "total_fat": 136
+    },
+    "serving_size_g": 643.8,
+    "total_recipe_weight_g": 2575.1
+  },
+  {
+    "recipe_name": "Pan-Seared Crab with Garlic Herb Smashed Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_crab_with_garlic_herb_smashed_potatoes_20250624_171829_f73f725a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:18:29.907855000Z",
+    "selected_ingredients": [
+      "potato",
+      "crab"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, showcasing a single individual portion. A mound of creamy, textured smashed potatoes forms the base. Generous chunks of pan-seared crab, boasting a golden-brown crust and succulent interior, are artfully arranged atop the potatoes. A glistening lemon-herb butter sauce is drizzled over the crab and potatoes, adding a subtle sheen. The plate is garnished with vibrant green chopped fresh parsley and a bright yellow lemon wedge, adding bursts of color and freshness. The overall composition is balanced and elegant, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface, a neatly folded cotton napkin beside the plate, and natural, even lighting that highlights the food's natural colors and textures. The background is minimal and unobtrusive, contributing to a casual yet refined restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Lump crab meat",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5g, leaves picked"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Heavy cream or whole milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Peel and cut potatoes into large, even chunks. Place in a large pot. Cover with cold salted water.",
+      "Bring to a boil. Reduce heat. Simmer until very tender, about 15-20 minutes.",
+      "Drain potatoes thoroughly. Return to the hot pot. Add 50g butter, 50ml cream or milk, 2 minced garlic cloves, half of the chopped parsley, and all of the chopped chives.",
+      "Season with salt and pepper. Gently smash with a potato masher until creamy but with some texture. Keep warm.",
+      "Gently pick through crab meat to remove any shell fragments. Be careful not to break up the lumps. Season lightly with salt and pepper.",
+      "Heat 15ml olive oil and 25g butter in a large non-stick pan over medium-high heat until butter is melted and sizzling.",
+      "Add crab meat in a single layer. Sear for 2-3 minutes until golden brown and slightly crispy on one side. Gently flip.",
+      "Sear for another 1-2 minutes until heated through. Cook in batches if necessary to avoid overcrowding.",
+      "Remove seared crab from the pan. Set aside. Add remaining 15ml olive oil and 25g butter to the same pan.",
+      "Add remaining 2 minced garlic cloves and thyme leaves. Sauté for 30 seconds until fragrant.",
+      "Deglaze with remaining 50ml cream or milk. Add juice from half a lemon. Stir well, scraping up any browned bits.",
+      "Season sauce with salt and pepper.",
+      "Spoon a generous portion of smashed potatoes onto the center of each of four white plates.",
+      "Arrange seared crab artfully on top of the potatoes. Drizzle the lemon-herb butter sauce over the crab and potatoes.",
+      "Garnish with remaining fresh parsley and a lemon wedge. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 601,
+      "cholesterol_mg": 143,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 23.6,
+      "saturated_fat_g": 19.7,
+      "sodium_mg": 821,
+      "total_carbs_g": 44.9,
+      "total_fat_g": 37.5,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155.4,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6.1,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 212.3,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 48,
+      "dietary_fiber": 19,
+      "protein": 47,
+      "saturated_fat": 98,
+      "sodium": 36,
+      "total_carbs": 16,
+      "total_fat": 48
+    },
+    "serving_size_g": 386.75,
+    "total_recipe_weight_g": 1547
+  },
+  {
+    "recipe_name": "Spicy Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_mushroom_risotto_20250624_171827_28fa078d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:18:28.073076000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "mushroom",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy, fluid risotto is presented on a clean, round white porcelain dinner plate. The risotto forms an organic, slightly mounded pool in the center, exhibiting a rich, off-white color with flecks of golden-brown seared chicken chunks, earthy sliced mushrooms, and vibrant red chili pieces. The surface glistens, indicating its creamy texture, and is topped with a generous sprinkle of freshly grated Parmesan cheese and bright green chopped parsley. The chicken chunks are irregularly shaped, showcasing the rustic searing. There is moderate negative space around the risotto on the plate. The setting is a modern bistro, featuring a simple light wooden table surface. A neatly folded white cotton napkin is placed beside the plate. The lighting is natural and even, highlighting the dish's textures and colors against a soft, slightly blurred restaurant background. Traditional flatware (fork and spoon) are neatly arranged.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately after preparation. Risotto is traditionally enjoyed hot and fresh.",
+      "Offer extra grated Parmesan cheese at the table for individual preference.",
+      "Pair with a crisp dry white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken breast or thigh",
+        "quantity": "400g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "mixed mushrooms (cremini, shiitake), sliced",
+        "quantity": "300g"
+      },
+      {
+        "name": "red chili, finely chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "medium onion, finely chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "hot chicken stock",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "unsalted butter, cold",
+        "quantity": "30g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat 1 tablespoon olive oil in a large, heavy-bottomed pan or Dutch oven over medium-high heat.",
+      "Add chicken chunks. Season with salt and pepper. Sear chicken until golden brown on all sides and cooked through. Internal temperature must reach 75°C. Remove chicken from pan and set aside.",
+      "Add remaining 1 tablespoon olive oil to the same pan. Add chopped onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and chopped red chili. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms. Sauté until mushrooms release their liquid and start to brown, about 5-7 minutes.",
+      "Add Arborio rice to the pan. Stir constantly for 2 minutes until rice grains are translucent at the edges.",
+      "Pour in white wine. Stir until wine is completely absorbed.",
+      "Add hot chicken stock, one ladleful at a time. Stir constantly. Wait until each ladleful is almost completely absorbed before adding the next. This process takes about 18-20 minutes.",
+      "Continue adding stock and stirring until rice is creamy and al dente. It should be firm to the bite but not hard.",
+      "Remove pan from heat. Stir in cold butter and grated Parmesan cheese. Stir vigorously (mantecatura) to create a creamy, fluid consistency.",
+      "Gently fold in the seared chicken chunks.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately, garnished with fresh chopped parsley and extra grated Parmesan."
+    ],
+    "notes": [
+      "Constant stirring is crucial for releasing starch from the rice and achieving a creamy risotto.",
+      "Ensure chicken is cooked to an internal temperature of 75°C for food safety.",
+      "The risotto should be loose and flowing, not stiff or dry."
+    ],
+    "traditional_techniques": [
+      "Tostatura",
+      "Soffritto",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 604,
+      "cholesterol_mg": 114.5,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 45.1,
+      "saturated_fat_g": 9,
+      "sodium_mg": 624.7,
+      "total_carbs_g": 49.7,
+      "total_fat_g": 22.3,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134,
+      "cholesterol_mg": 25.4,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 10,
+      "saturated_fat_g": 2,
+      "sodium_mg": 138.8,
+      "total_carbs_g": 11,
+      "total_fat_g": 5,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.2,
+      "dietary_fiber": 8.7,
+      "protein": 90.3,
+      "saturated_fat": 44.9,
+      "sodium": 27.2,
+      "total_carbs": 18.1,
+      "total_fat": 28.6
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Classic Stuffed Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_stuffed_bell_peppers_20250624_171817_1d3910e9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:18:17.625655000Z",
+    "selected_ingredients": [
+      "pork",
+      "mustard",
+      "mayonnaise",
+      "rice",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, halved stuffed bell pepper, vibrant red or green, sits on a simple, off-white ceramic plate with a slight rim. The bell pepper is cut lengthwise, revealing a generously mounded filling of seasoned ground pork, fluffy white rice, and small, soft diced tomatoes. The filling is browned slightly on top from baking, with hints of melted, golden-brown cheddar cheese. The pepper itself is tender-crisp, holding its shape. A light, creamy sauce, subtly infused with mustard, coats the filling and pools slightly at the base of the pepper. A few fresh parsley leaves, roughly chopped, are casually scattered over the top. The plate rests on a well-used, warm-toned wooden dining table. Lighting is soft and inviting, typical of a cozy kitchen. A casually folded plain linen napkin and a simple fork are nearby, completing the homely scene. The background is a gently blurred, lived-in kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American Comfort",
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Large Bell Peppers",
+        "quantity": "4"
+      },
+      {
+        "name": "Ground Pork",
+        "quantity": "500g"
+      },
+      {
+        "name": "Uncooked White Rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Canned Diced Tomatoes, undrained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60g"
+      },
+      {
+        "name": "Chicken or Beef Broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Shredded Cheddar Cheese (optional)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley, chopped (for garnish)",
+        "quantity": "optional"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Cook rice according to package directions. Set aside.",
+      "Heat olive oil in a large skillet over medium-high heat. Add ground pork. Cook, breaking it apart, until browned. Drain excess fat.",
+      "Add diced onion and minced garlic to the skillet. Cook until softened, about 5 minutes.",
+      "Stir in diced tomatoes, cooked rice, dried oregano, salt, and pepper. Mix well. Remove from heat.",
+      "Halve bell peppers lengthwise. Remove seeds and membranes.",
+      "Stuff each pepper half generously with the pork and rice mixture.",
+      "Whisk together broth, mustard, and mayonnaise in a bowl.",
+      "Arrange stuffed peppers in a baking dish. Pour the broth mixture over and around the peppers.",
+      "Cover the baking dish with foil. Bake for 30 minutes.",
+      "Uncover the dish. If using, sprinkle shredded cheese over the stuffed peppers.",
+      "Bake uncovered for another 15-20 minutes, or until peppers are tender and cheese is bubbly and golden.",
+      "Serve hot, garnished with fresh parsley if desired."
+    ],
+    "notes": [
+      "Use a mix of bell pepper colors (red, green, yellow) for visual variety.",
+      "Any type of cheese that melts well can be used, such as mozzarella or Monterey Jack."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 780,
+      "cholesterol_mg": 131.3,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 34.4,
+      "saturated_fat_g": 16.1,
+      "sodium_mg": 1043.5,
+      "total_carbs_g": 50.5,
+      "total_fat_g": 50.9,
+      "total_sugars_g": 11.9,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.7,
+      "cholesterol_mg": 22.3,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 5.9,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 177.5,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43.8,
+      "dietary_fiber": 24.6,
+      "protein": 68.8,
+      "saturated_fat": 80.5,
+      "sodium": 45.4,
+      "total_carbs": 18.4,
+      "total_fat": 65.3
+    },
+    "serving_size_g": 587.8,
+    "total_recipe_weight_g": 2351
+  },
+  {
+    "recipe_name": "Roasted Veal Loin with Corn-Potato Puree and Peach Gastrique",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_veal_loin_with_corn-potato_puree_and_peach_gastrique_20250624_171808_721373fe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:18:09.278535000Z",
+    "selected_ingredients": [
+      "corn",
+      "peach",
+      "veal",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a refined yet approachable single serving on a clean white porcelain dinner plate, set on a simple wooden table. A mound of creamy, pale yellow corn-potato puree sits on one side, its smooth texture contrasting with subtle golden corn flecks. Beside it, two or three thick, succulent medallions of roasted veal loin display a beautiful golden-brown crust and tender, slightly pink interior. A glossy, amber-hued peach gastrique, with visible soft peach cubes and finely diced shallots, is artfully spooned over the veal. This adds vibrant color and a subtle sheen. A small sprig of fresh green thyme rests atop the veal, providing a delicate herbaceous accent. The composition is balanced with appropriate negative space, highlighting the natural colors of the ingredients. The overall presentation is clean, professional, and inviting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Veal Loin",
+    "ingredients": [
+      {
+        "name": "Veal Loin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Fresh Corn Kernels",
+        "quantity": "200g"
+      },
+      {
+        "name": "Peaches, ripe but firm",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chicken or Veal Stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "80g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "3-4 sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare the veal: Season veal loin generously with salt and pepper. Sear in hot olive oil in an oven-safe pan until browned on all sides. Transfer pan to a preheated oven at 180°C. Roast for 15-20 minutes, or until internal temperature reaches 60°C. Rest veal for 10 minutes before slicing.",
+      "Make the puree: Peel and dice potatoes into 2cm cubes. Boil in salted water until very tender. Drain well. In a separate pot, sauté half the diced shallots in 15g butter until softened. Add corn kernels and cook for 3-4 minutes. Combine cooked potatoes and corn. Mash or pass through a food mill. Stir in 30g butter and cream. Season with salt and pepper. Keep warm.",
+      "Prepare the gastrique: Dice peaches into 1cm cubes. Sauté remaining shallots and minced garlic in 15g butter in a small saucepan until fragrant. Add diced peaches and cook for 3-4 minutes until slightly softened. Deglaze with white wine. Reduce by half. Add stock and thyme sprigs. Simmer for 8-10 minutes until slightly thickened. Season with salt and pepper. Remove thyme.",
+      "Plate the dish: Spoon a generous portion of corn-potato puree onto each plate. Slice rested veal loin into thick medallions. Arrange veal medallions next to the puree. Spoon peach gastrique over the veal. Garnish with a fresh thyme sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 629.5,
+      "cholesterol_mg": 177,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 38.7,
+      "saturated_fat_g": 16.2,
+      "sodium_mg": 812,
+      "total_carbs_g": 44.5,
+      "total_fat_g": 33.4,
+      "total_sugars_g": 13,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117.2,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.2,
+      "saturated_fat_g": 3,
+      "sodium_mg": 151.2,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.1,
+      "dietary_fiber": 20.4,
+      "protein": 77.5,
+      "saturated_fat": 80.9,
+      "sodium": 35.3,
+      "total_carbs": 16.2,
+      "total_fat": 42.8
+    },
+    "serving_size_g": 537,
+    "total_recipe_weight_g": 2148
+  }
+]

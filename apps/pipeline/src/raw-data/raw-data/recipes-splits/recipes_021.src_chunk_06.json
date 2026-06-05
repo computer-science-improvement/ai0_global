@@ -1,0 +1,664 @@
+[
+  {
+    "recipe_name": "Savory Mushroom and Herb Bread Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_mushroom_and_herb_bread_pudding_20250624_142356_5d0f694e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:23:57.389797000Z",
+    "selected_ingredients": [
+      "bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of savory bread pudding rests on a clean white porcelain plate. The top crust is golden-brown and slightly crisp, showcasing visible cubes of bread. Below the crust, the interior is rich and custardy, revealing a medley of earthy brown mushrooms, some sliced, some quartered, interspersed with bright green flecks of fresh herbs like thyme and parsley. Melted, bubbly Gruyere cheese forms pockets of golden richness. The dish is presented as a rustic, hearty square portion, maintaining its shape. A scattering of freshly chopped vibrant green parsley adorns the top, adding a fresh contrast. The overall composition is inviting, showcasing comforting textures and warm, natural colors. The plate is positioned on a simple wooden table surface, with natural, even lighting highlighting the dish's warmth and texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic European",
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Stale crusty bread (sourdough or ciabatta)",
+        "quantity": "400g, cut into 2-3 cm cubes"
+      },
+      {
+        "name": "Mixed mushrooms (cremini, shiitake)",
+        "quantity": "400g, sliced or quartered"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Gruyere cheese",
+        "quantity": "150g, grated"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 tablespoon, finely minced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "3 tablespoons, chopped"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Lightly grease a 20x30 cm baking dish.",
+      "Spread bread cubes evenly in the prepared baking dish.",
+      "Heat butter and olive oil in a large pan over medium heat.",
+      "Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and finely minced rosemary. Cook 1 minute until fragrant.",
+      "Add sliced or quartered mushrooms. Sauté until mushrooms release their liquid and brown, about 8-10 minutes. Season with salt and pepper.",
+      "Remove pan from heat. Stir in fresh thyme and 2 tablespoons of chopped parsley.",
+      "In a large bowl, whisk eggs, milk, and cream. Season generously with salt and pepper.",
+      "Sprinkle half of the grated Gruyere cheese over the bread cubes in the baking dish.",
+      "Spoon the mushroom mixture evenly over the bread.",
+      "Pour the egg mixture over the bread and mushrooms. Gently press the bread to submerge it.",
+      "Sprinkle the remaining Gruyere cheese on top.",
+      "Let the dish stand for 15 minutes to allow the bread to absorb the liquid.",
+      "Bake for 40-50 minutes, or until the top is golden brown and the center is set. A knife inserted into the center should come out clean.",
+      "Let the bread pudding rest for 5 minutes after baking.",
+      "Garnish with the remaining fresh parsley. Serve warm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 796,
+      "cholesterol_mg": 290,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 35.2,
+      "saturated_fat_g": 22.8,
+      "sodium_mg": 1258,
+      "total_carbs_g": 66.3,
+      "total_fat_g": 44.2,
+      "total_sugars_g": 15.2,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 56,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.7,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 241,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97,
+      "dietary_fiber": 19,
+      "protein": 70,
+      "saturated_fat": 114,
+      "sodium": 55,
+      "total_carbs": 24,
+      "total_fat": 57
+    },
+    "serving_size_g": 522.75,
+    "total_recipe_weight_g": 2091
+  },
+  {
+    "recipe_name": "Lobster and Bell Pepper Pasta with Cherry-Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lobster_and_bell_pepper_pasta_with_cherry-tomato_sauce_20250624_142350_f678e8ef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:23:50.612776000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "bell pepper",
+      "cherry",
+      "pineapple",
+      "lobster"
+    ],
+    "complexity": "simple",
+    "special_requests": "Russian cuisine",
+    "visual_description": "The dish is presented in a deep, rustic ceramic bowl, showcasing a generous, comforting portion. Al dente fusilli pasta is generously coated in a rich, reddish-orange sauce. Interspersed throughout are substantial chunks of pink-white lobster meat, vibrant red and yellow bell pepper strips cut into 1cm batons, and halved, softened cherry tomatoes. A few pitted cherry halves are visible, adding a deeper red hue. The texture is hearty and inviting, with the tender lobster contrasting with the slightly firm vegetables and yielding pasta. The dish is garnished with a generous scattering of freshly chopped bright green dill and a prominent dollop of creamy white sour cream on top. The bowl sits on a well-used, light wooden dining table, revealing natural grain and minor imperfections. Beside it, a simple, sturdy metal fork and spoon are casually placed. A small, white ceramic dish holds a few sliced pickled cucumbers, their green skin and white interior providing a crisp contrast. A casually folded beige linen napkin rests nearby. The scene is illuminated by warm, inviting kitchen lighting, evoking a cozy, lived-in family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with extra sour cream (smetana) on the side.",
+      "Offer pickled cucumbers (marinované ogurtsy) and slices of dark rye bread (chernyy khleb) as accompaniments.",
+      "A glass of kvass or plain water is a suitable beverage."
+    ],
+    "hero_ingredient": "Lobster",
+    "ingredients": [
+      {
+        "name": "Lobster tails",
+        "quantity": "2 medium (approx. 400-500g total meat)"
+      },
+      {
+        "name": "Pasta (e.g., penne, fusilli)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Bell peppers (1 red, 1 yellow)",
+        "quantity": "2"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cherries (pitted, fresh or frozen)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Pineapple (finely diced, fresh or canned)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh dill (chopped, plus sprigs for garnish)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh parsley (chopped)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Sour cream (smetana)",
+        "quantity": "100g (plus extra for serving)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions. Drain. Set aside.",
+      "Prepare lobster. Boil lobster tails 5-7 minutes. Cool completely. Extract meat. Cut into 2-3 cm chunks.",
+      "Heat olive oil in a large pan over medium heat. Add diced onion. Sauté 5 minutes until softened.",
+      "Add minced garlic and bell pepper strips (cut into 1cm strips). Sauté 5-7 minutes until peppers soften.",
+      "Stir in halved cherry tomatoes, pitted cherries, and finely diced pineapple. Cook 3 minutes.",
+      "Add tomato paste and sweet paprika. Stir 1 minute.",
+      "Pour in vegetable broth. Bring to a simmer. Reduce heat. Simmer 10 minutes. Sauce will thicken slightly.",
+      "Add lobster chunks to sauce. Gently stir. Heat through 2 minutes.",
+      "Add cooked pasta to pan with sauce. Toss to combine.",
+      "Stir in chopped dill and parsley.",
+      "Serve immediately. Top each portion with a dollop of sour cream."
+    ],
+    "notes": [
+      "The use of cherry and pineapple in this savory dish is an inventive adaptation to create a subtle sweet-sour profile, reminiscent of some Russian culinary traditions that incorporate fruit into savory preparations or the sweet-sour balance found in dishes like borscht."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 692,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 39.5,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 688.8,
+      "total_carbs_g": 97.3,
+      "total_fat_g": 16.7,
+      "total_sugars_g": 16,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124.1,
+      "cholesterol_mg": 28.5,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 123.4,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 3,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 30.4,
+      "protein": 79,
+      "saturated_fat": 24,
+      "sodium": 29.9,
+      "total_carbs": 35.4,
+      "total_fat": 21.4
+    },
+    "serving_size_g": 558.25,
+    "total_recipe_weight_g": 2233
+  },
+  {
+    "recipe_name": "Creamy Chicken and Bean Skillet with Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_bean_skillet_with_brown_rice_20250624_142335_bec8f18d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:23:35.890357000Z",
+    "selected_ingredients": [
+      "chicken",
+      "parmesan cheese",
+      "onion",
+      "brown rice",
+      "bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "Русская cuisine",
+    "visual_description": "A single portion of hearty Russian Creamy Chicken is presented on a simple, round, off-white ceramic plate. Tender, golden-brown chicken chunks are naturally arranged beside a generous mound of fluffy brown rice. Red kidney beans are visibly mixed into the creamy, light beige sauce that coats the chicken. A vibrant sprinkle of fresh, chopped green dill adorns the dish, offering a pop of color and freshness. The setting is a warm, homely family kitchen: the plate rests on a well-used wooden dining table. A casually placed, light-colored linen napkin is nearby. The lighting is soft and warm, suggesting natural kitchen light. The overall presentation is rustic and comforting, emphasizing natural textures and inviting warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of dark rye bread (Borodinsky bread) for dipping into the sauce.",
+      "Offer a small bowl of pickled cucumbers (solenye ogurtsy) or sauerkraut (kvašená kapusta) to provide a tangy contrast.",
+      "A small extra dollop of fresh smetana (sour cream) can be offered at the table for individual preference."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Canned kidney beans, drained and rinsed",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Full-fat sour cream (smetana)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Fresh dill, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Parmesan cheese, grated (optional)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Olive oil or butter",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook brown rice according to package directions. Set aside.",
+      "Pat chicken thighs dry. Cut into 3 cm chunks. Season with salt and black pepper.",
+      "Heat olive oil or butter in a large, deep skillet or Dutch oven over medium-high heat.",
+      "Add chicken chunks to the skillet. Sear until golden brown on all sides. Do not overcrowd the pan. Cook in batches if necessary. Remove chicken from skillet and set aside.",
+      "Add diced onion to the same skillet. Reduce heat to medium. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the skillet. Bring to a simmer.",
+      "Return seared chicken chunks to the skillet. Cover. Simmer for 15 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Stir in drained kidney beans and sour cream. Heat gently, stirring constantly, until warmed through. Do not boil after adding sour cream, as it may curdle.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Stir in most of the chopped fresh dill, reserving some for garnish.",
+      "Serve chicken and sauce generously over cooked brown rice. Garnish with remaining fresh dill and a pinch of grated Parmesan cheese, if desired."
+    ],
+    "notes": [
+      "For best results, use full-fat sour cream to prevent curdling and achieve a richer sauce.",
+      "Ensure the chicken is cooked through to 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Тушение (Tushenie - slow simmering or braising)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 853.92,
+      "cholesterol_mg": 198.95,
+      "dietary_fiber_g": 10.71,
+      "protein_g": 49.1,
+      "saturated_fat_g": 11.71,
+      "sodium_mg": 1118.76,
+      "total_carbs_g": 78.36,
+      "total_fat_g": 33.14,
+      "total_sugars_g": 4.57,
+      "trans_fat_g": 0.35
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 151.81,
+      "cholesterol_mg": 35.37,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 8.73,
+      "saturated_fat_g": 2.08,
+      "sodium_mg": 198.89,
+      "total_carbs_g": 13.93,
+      "total_fat_g": 5.89,
+      "total_sugars_g": 0.81,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.32,
+      "dietary_fiber": 38.25,
+      "protein": 98.2,
+      "saturated_fat": 58.55,
+      "sodium": 48.64,
+      "total_carbs": 28.49,
+      "total_fat": 42.49
+    },
+    "serving_size_g": 562.5,
+    "total_recipe_weight_g": 2250
+  },
+  {
+    "recipe_name": "Spicy Chicken and Creamy Salmon Tortilla Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_creamy_salmon_tortilla_bake_20250624_142321_53606063.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:23:22.164304000Z",
+    "selected_ingredients": [
+      "chicken",
+      "oil",
+      "garlic",
+      "hot sauce",
+      "salmon",
+      "cream cheese",
+      "mayonnaise",
+      "tortilla",
+      "clam"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty, golden-brown tortilla bake is presented on a simple, round ceramic plate, showcasing layers of savory ingredients. The top layer reveals a creamy, off-white clam sauce dotted with tender clam pieces, partially covering the flaked, cooked salmon. Beneath, peeking out are hints of reddish-orange spicy shredded chicken and melted, bubbly cheddar cheese, all nestled between soft, baked flour tortillas. The bake has a rustic, comforting appearance, with slightly crisped edges from the oven. The plate sits on a well-used wooden dining table, with a casually placed plain cloth napkin and a standard metal fork beside it. Warm, natural light illuminates the scene, emphasizing the inviting textures and colors of the home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve directly from the baking dish at the table, allowing individuals to scoop their own portions.",
+      "Accompany with extra hot sauce or lime wedges on the side for personal preference."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salmon fillet",
+        "quantity": "300g, skinless"
+      },
+      {
+        "name": "Cream cheese",
+        "quantity": "125g, softened"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Large flour tortillas",
+        "quantity": "8"
+      },
+      {
+        "name": "Canned chopped clams",
+        "quantity": "200g, drained"
+      },
+      {
+        "name": "Shredded cheddar cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "a handful, chopped (optional)"
+      }
+    ],
+    "instructions": [
+      "Heat 15ml olive oil in a large pan over medium-high heat. Add chicken thighs. Cook until browned on all sides. Add half of minced garlic. Cook 1 minute. Add 120ml water. Bring to a simmer. Cover. Reduce heat to medium-low. Cook 20 minutes, or until chicken reaches an internal temperature of 75°C (167°F). Remove chicken. Shred chicken using two forks. Return shredded chicken to pan. Stir in hot sauce. Season with salt and pepper. Set aside.",
+      "Season salmon fillet with salt and pepper. Bake at 180°C for 12-15 minutes, or until cooked through and flaky. Flake salmon with a fork. Set aside.",
+      "In a small saucepan, melt cream cheese with mayonnaise over low heat, stirring until smooth. Add remaining minced garlic and drained chopped clams. Stir well. Season with salt and pepper. Keep warm.",
+      "Preheat oven to 190°C. Lightly grease a large baking dish (approximately 20x30cm).",
+      "Lay 2 flour tortillas flat in the bottom of the baking dish, overlapping slightly to cover the base.",
+      "Spread half of the shredded spicy chicken over the tortillas. Sprinkle with 1/3 of the shredded cheddar cheese.",
+      "Lay 2 more tortillas over the chicken layer.",
+      "Spread half of the flaked salmon over these tortillas. Sprinkle with 1/3 of the shredded cheddar cheese.",
+      "Repeat layers: 2 tortillas, remaining shredded spicy chicken, and the final 1/3 of the shredded cheddar cheese. Then, place the last 2 tortillas on top of this layer.",
+      "Pour the creamy clam sauce evenly over the top layer of tortillas.",
+      "Bake for 20-25 minutes, or until tortillas are lightly golden and cheese is bubbly and melted.",
+      "Let the bake stand for 5 minutes before serving. Garnish with fresh cilantro if desired."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Canned chopped clams simplify preparation for home cooking.",
+      "Adjust hot sauce quantity to personal spice preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1157,
+      "cholesterol_mg": 268,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 70.2,
+      "saturated_fat_g": 27.1,
+      "sodium_mg": 1419,
+      "total_carbs_g": 51.5,
+      "total_fat_g": 62.7,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 227,
+      "cholesterol_mg": 53,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 13.8,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 278,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 12.3,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 89,
+      "dietary_fiber": 9,
+      "protein": 140,
+      "saturated_fat": 136,
+      "sodium": 62,
+      "total_carbs": 19,
+      "total_fat": 80
+    },
+    "serving_size_g": 510,
+    "total_recipe_weight_g": 2040
+  },
+  {
+    "recipe_name": "Pan-Seared Cod with Fermented Broccoli and Crispy Stems",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_cod_with_fermented_broccoli_and_crispy_stems_20250624_142320_70ba7556.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:23:20.772327000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "fish"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared cod, presented as a whole, unsliced fillet, rests centrally on a handcrafted, natural cream-colored ceramic plate. The cod exhibits a crisp, golden-brown sear on its surface, revealing a moist, flaky white interior. Clustered organically around the fish are vibrant green fermented broccoli florets and golden-brown, roasted crispy broccoli stem batons. The florets are soft and slightly muted, while the irregular stem batons, approximately 1 cm x 4-5 cm, offer a contrasting firm, charred texture. Ample negative space surrounds the components, emphasizing their natural beauty. A light sprinkle of fresh lemon zest and a few small dill sprigs provide natural, understated garnish. The setting features a light bamboo table, undyed linen napkin, and soft natural lighting, creating a clean, eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Cod",
+    "ingredients": [
+      {
+        "name": "Cod fillets",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 large head (approx. 500 g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 mL"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "1 L"
+      },
+      {
+        "name": "Non-iodized salt",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fresh dill or parsley",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Broccoli (advance prep): Separate broccoli florets. Cut into bite-sized pieces. Dissolve 20 g non-iodized salt in 1 L filtered water to make a 2% brine. Pack florets into a clean glass jar. Pour brine over florets, ensuring they are fully submerged. Seal loosely. Ferment at room temperature for 3-5 days until tangy. Store in refrigerator.",
+      "Prepare Broccoli Stems: Peel tough outer layer from broccoli stems. Cut stems into irregular batons, approximately 1 cm x 4-5 cm.",
+      "Cook Fish: Pat cod fillets very dry with paper towel. Season generously with sea salt and black pepper. Heat 15 mL olive oil in a large non-stick pan over medium-high heat. Place cod fillets skin-side down (if applicable). Sear for 4-5 minutes until skin is crispy and golden. Flip carefully. Cook for another 3-4 minutes, or until internal temperature reaches 63°C.",
+      "Cook Crispy Stems: While fish cooks, toss broccoli stem batons with remaining 15 mL olive oil, a pinch of salt, and pepper. Spread on a baking sheet. Roast in a preheated oven at 200°C for 10-15 minutes, or pan-fry until golden brown and crispy.",
+      "Warm Fermented Broccoli: Gently warm desired amount of fermented broccoli florets in a small pan over low heat, or serve at room temperature if preferred.",
+      "Plate Dish: Place one seared cod fillet centrally on each plate. Arrange a cluster of warm fermented broccoli florets and crispy broccoli stem batons around the fish.",
+      "Finish: Squeeze fresh lemon juice over the fish and vegetables. Grate a little lemon zest over the dish. Garnish with a few small sprigs of fresh dill or parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 235,
+      "cholesterol_mg": 65,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 30,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 2061,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 75,
+      "cholesterol_mg": 20.7,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9.6,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 661,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 2.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 22,
+      "dietary_fiber": 17,
+      "protein": 60,
+      "saturated_fat": 6,
+      "sodium": 90,
+      "total_carbs": 4,
+      "total_fat": 11
+    },
+    "serving_size_g": 311.9,
+    "total_recipe_weight_g": 1247.6
+  }
+]

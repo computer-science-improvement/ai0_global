@@ -1,0 +1,14 @@
+---
+description: apps/pipeline — ESM parsers/loaders, src/data lifecycle, init-db path.
+globs: apps/pipeline/**/*
+alwaysApply: false
+---
+
+# apps/pipeline
+
+- Follow **`.cursor/skills/monorepo-apps-pipeline/SKILL.md`** for layout and conventions.
+- **Code** lives under `apps/pipeline/src/`. **Data** under `apps/pipeline/src/data/` (`raw/`, `normalized/`, `generated/`, `publish-ready/`).
+- **Parsers**: `src/parsers/*.js`, default export async `run`, bottom-of-file **CLI guard** so `run-parsers.js` does not double-execute; respect exclusions (`_*.js`, `example-parser.js`).
+- **Loaders**: use `src/lib/db.js` + `src/lib/loader.js`; paths from `src/loaders/` use `join(__dirname, '..', 'data', ...)`.
+- **DB bootstrap**: `src/init-db.js` reads repo-root `database/init.sql` — do not relocate SQL into `src/`.
+- **Docker**: volume paths must match `apps/pipeline/src/data` (not legacy `apps/pipeline/data`).

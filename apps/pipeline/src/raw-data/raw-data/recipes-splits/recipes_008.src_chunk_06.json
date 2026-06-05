@@ -1,0 +1,651 @@
+[
+  {
+    "recipe_name": "Herb-Roasted Chicken with Crispy Jalapeño Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_herb-roasted_chicken_with_crispy_jalape%C3%B1o_potatoes_20250811_192557_5995a5f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T19:25:58.118943000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "onion",
+      "oregano",
+      "pickled jalapeno chilies",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single roasted chicken thigh, golden-brown and glistening, rests on a pristine white round porcelain plate. The skin is visibly crisp, and the meat appears tender. Beside it, a generous mound of crispy jalapeño potatoes is artfully arranged. Each potato piece is irregularly smashed and pan-fried to a deep golden-brown, with some edges visibly crisped. Specks of vibrant green chopped pickled jalapeños and fresh herbs are interspersed throughout the potatoes. A light sprinkling of fresh chopped parsley adds a final touch of verdant color over both the chicken and potatoes. The plating is clean and professional, with thoughtful negative space. The dish is set on a simple light wooden table surface, accompanied by a folded cotton napkin and standard metal flatware. Natural, even lighting illuminates the dish, highlighting its textures and inviting colors. The background is minimal, suggesting a modern bistro atmosphere without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800 g total)"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh oregano sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Pickled jalapeño chilies",
+        "quantity": "30 g (drained weight)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "Peel and quarter the red onion. Smash 4 garlic cloves.",
+      "In a large roasting pan, toss chicken thighs, onion quarters, smashed garlic, 2 oregano sprigs, and 2 thyme sprigs with 30 ml olive oil. Ensure chicken skin is facing up.",
+      "Pour chicken broth into the bottom of the roasting pan.",
+      "Roast for 35-45 minutes, or until internal temperature reaches 75°C and skin is golden and crisp.",
+      "While chicken roasts, scrub potatoes. Boil potatoes whole in salted water until fork-tender, about 20-25 minutes.",
+      "Drain potatoes well. Let cool slightly.",
+      "Finely chop pickled jalapeño chilies. Mince remaining 2 garlic cloves. Roughly chop remaining oregano and thyme leaves.",
+      "Place boiled potatoes on a clean, flat surface. Using a potato masher or the bottom of a glass, gently smash each potato until flattened to about 1-2 cm thick, keeping them mostly intact.",
+      "Heat a large cast-iron skillet or heavy-bottomed pan over medium-high heat. Add remaining 30 ml olive oil and butter.",
+      "Once butter is melted and shimmering, carefully add smashed potatoes in a single layer. Do not overcrowd. Cook in batches if necessary.",
+      "Sear potatoes for 5-7 minutes per side, or until deeply golden brown and crispy.",
+      "During the last 2 minutes of cooking, add minced garlic, chopped jalapeños, oregano, and thyme to the pan with the potatoes. Toss to combine and cook until fragrant.",
+      "Season crispy potatoes with salt and pepper to taste.",
+      "Remove chicken from oven. Let rest for 5 minutes.",
+      "Chop fresh parsley.",
+      "Plate one or two roasted chicken thighs per serving. Arrange a generous portion of crispy jalapeño potatoes alongside.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 737,
+      "cholesterol_mg": 234.1,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 43,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 280.1,
+      "total_carbs_g": 32.3,
+      "total_fat_g": 48.6,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161.3,
+      "cholesterol_mg": 51.3,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.4,
+      "saturated_fat_g": 3,
+      "sodium_mg": 61.3,
+      "total_carbs_g": 7.1,
+      "total_fat_g": 10.6,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78,
+      "dietary_fiber": 16.1,
+      "protein": 86,
+      "saturated_fat": 68,
+      "sodium": 12.2,
+      "total_carbs": 11.7,
+      "total_fat": 62.3
+    },
+    "serving_size_g": 456.8,
+    "total_recipe_weight_g": 1827.2
+  },
+  {
+    "recipe_name": "Classic Beef Ragu with Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_beef_ragu_with_tagliatelle_20250811_164812_ac20b210.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T16:48:13.496791000Z",
+    "selected_ingredients": [
+      "mincemeat",
+      "olive oil",
+      "tomato",
+      "pasta",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous serving of Classic Beef Ragu with Tagliatelle is presented in a deep, rustic ceramic bowl. The broad, golden tagliatelle ribbons are coated in a rich, dark red-brown beef ragu. The sauce features finely broken, tender beef mincemeat and soft, diced vegetables (onion, carrot, celery) from the long simmer. The pasta is al dente, naturally intertwined with the hearty sauce. A generous, uneven sprinkle of freshly grated Parmigiano Reggiano cheese tops the dish, some melting gently into the warm ragu. The overall plating is natural and abundant, filling the bowl without overcrowding. The bowl sits on a well-worn wooden dining table. Simple, everyday flatware and a casually folded linen napkin are placed alongside. Warm, inviting light illuminates the scene, evoking a comfortable, lived-in Italian family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Offer extra grated Parmigiano Reggiano at the table",
+      "Pair with a simple, robust red wine"
+    ],
+    "hero_ingredient": "Beef Mincemeat",
+    "ingredients": [
+      {
+        "name": "Beef Mincemeat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Tagliatelle Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery Stalk, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium heat.",
+      "Add diced onion, carrot, and celery. Cook until softened, about 8-10 minutes. Do not brown.",
+      "Increase heat to medium-high. Add beef mincemeat. Break it apart with a spoon. Cook until browned, about 5-7 minutes. Drain excess fat.",
+      "Stir in tomato paste. Cook for 1 minute.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine evaporates, about 3 minutes.",
+      "Add crushed tomatoes and beef stock. Stir well.",
+      "Bring to a simmer. Reduce heat to low. Cover and simmer for at least 1.5 hours, or up to 3 hours, stirring occasionally. The longer, the better.",
+      "Season ragu with salt and black pepper to taste.",
+      "Cook tagliatelle according to package instructions in salted boiling water until al dente.",
+      "Drain pasta. Add directly to the ragu pot. Toss to coat the pasta thoroughly with the sauce.",
+      "Serve immediately. Garnish with grated Parmigiano Reggiano."
+    ],
+    "notes": [
+      "The ragu's flavor deepens significantly with longer simmering times.",
+      "This ragu freezes well for future meals."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 919,
+      "cholesterol_mg": 104,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 56.9,
+      "saturated_fat_g": 13.7,
+      "sodium_mg": 1057,
+      "total_carbs_g": 89.1,
+      "total_fat_g": 37.2,
+      "total_sugars_g": 11.6,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131,
+      "cholesterol_mg": 14.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 151,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 26,
+      "protein": 114,
+      "saturated_fat": 69,
+      "sodium": 46,
+      "total_carbs": 32,
+      "total_fat": 48
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2800
+  },
+  {
+    "recipe_name": "Spicy Garlic Chili Chicken Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_garlic_chili_chicken_stir-fry_20250811_161623_81276e7b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T16:16:23.481681000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "high protein, low carb, low fat",
+    "visual_description": "A vibrant Spicy Garlic Chili Chicken Stir-fry is neatly piled on a clean white porcelain dinner plate, centrally positioned. Tender, cubed chicken pieces, seared to a light golden-brown, are interspersed with bright green, crisp-tender broccoli florets. Thin slices of vivid red chili and tiny flecks of minced garlic and ginger are visible throughout the dish, coated in a glossy, light brown savory sauce. The chicken is presented in natural chunks, not fanned. The overall composition is balanced, with moderate negative space on the plate. Beside the plate, a pair of dark wooden chopsticks rests on a simple chopstick rest. The setting is a modern bistro, featuring a light wooden table surface and a subtly blurred background. Natural, even lighting illuminates the dish, highlighting its fresh ingredients and inviting textures.",
+    "number_of_servings": 2,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "250g"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2cm piece"
+      },
+      {
+        "name": "Low sodium soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Low sodium chicken broth",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Neutral cooking oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2cm cubes.",
+      "Cut broccoli into small florets.",
+      "Mince garlic and ginger. Thinly slice red chilies, removing seeds if preferred.",
+      "In a small bowl, whisk together soy sauce, rice vinegar, sesame oil, chicken broth, and the cornstarch mixed with cold water. Set aside.",
+      "Heat 10ml cooking oil in a large wok or skillet over high heat.",
+      "Add chicken cubes. Stir-fry for 4-5 minutes until browned and cooked through. Ensure internal temperature reaches 75°C. Remove chicken from wok.",
+      "Add remaining 5ml cooking oil to the wok. Add broccoli florets. Stir-fry for 3-4 minutes until crisp-tender.",
+      "Add minced garlic, ginger, and sliced chilies to the wok. Stir-fry for 1 minute until fragrant.",
+      "Return cooked chicken to the wok.",
+      "Pour the prepared sauce mixture over the chicken and vegetables. Stir constantly for 1-2 minutes until sauce thickens and coats ingredients.",
+      "Transfer immediately to serving plates. Garnish with thinly sliced green onions. Serve hot."
+    ],
+    "notes": [
+      "For a spicier dish, include chili seeds or add more chilies.",
+      "Ensure chicken is cooked to 75°C internal temperature for food safety."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 416.3,
+      "cholesterol_mg": 127.5,
+      "dietary_fiber_g": 3.77,
+      "protein_g": 52.14,
+      "saturated_fat_g": 2.43,
+      "sodium_mg": 721.2,
+      "total_carbs_g": 15.33,
+      "total_fat_g": 16.03,
+      "total_sugars_g": 3.16,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 35.5,
+      "dietary_fiber_g": 1.05,
+      "protein_g": 14.52,
+      "saturated_fat_g": 0.68,
+      "sodium_mg": 200.9,
+      "total_carbs_g": 4.27,
+      "total_fat_g": 4.46,
+      "total_sugars_g": 0.88,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.5,
+      "dietary_fiber": 13.5,
+      "protein": 104.3,
+      "saturated_fat": 12.2,
+      "sodium": 31.4,
+      "total_carbs": 5.6,
+      "total_fat": 20.6
+    },
+    "serving_size_g": 359,
+    "total_recipe_weight_g": 718
+  },
+  {
+    "recipe_name": "Sopa de Okra y Patata con Pimentón",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sopa_de_okra_y_patata_con_piment%C3%B3n_20250811_160044_14dac044.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T16:00:45.143684000Z",
+    "selected_ingredients": [
+      {
+        "name": "okra"
+      },
+      {
+        "name": "garlic"
+      },
+      {
+        "name": "potato"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Spanish",
+    "visual_description": "A single generous portion of rustic Spanish Okra and Potato Soup is presented in a deep, simple ceramic bowl with a slightly uneven, handmade feel, resting on a well-used, light-colored wooden dining table. The soup, a warm, inviting reddish-orange hue from the smoked paprika and tomato, is filled with tender, 1 cm thick rounds of okra and soft 2 cm potato cubes, visibly suspended in the savory broth. A scattering of bright green, freshly chopped parsley garnishes the top, adding a pop of color. The bowl is positioned slightly off-center, allowing for negative space. Adjacent to the bowl, a sturdy, everyday silver spoon rests on a casually draped, off-white linen napkin. The scene is lit by warm, natural kitchen light, casting soft shadows, evoking a comfortable, lived-in family kitchen atmosphere with a hint of natural clutter in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Okra",
+    "ingredients": [
+      {
+        "name": "Okra",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Wash and trim okra ends. Slice okra into 1 cm thick rounds.",
+      "Peel potatoes. Cut potatoes into 2 cm cubes.",
+      "Peel and finely chop onion. Peel and mince garlic.",
+      "Heat olive oil in a large pot over medium heat. Add chopped onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and sliced okra. Sauté for 3-4 minutes until okra softens slightly.",
+      "Stir in smoked paprika and tomato paste. Cook for 1 minute, stirring constantly, until fragrant.",
+      "Add potato cubes and vegetable broth. Bring soup to a boil.",
+      "Reduce heat to low. Simmer for 15-20 minutes, or until potatoes are tender.",
+      "Season with salt and black pepper to taste.",
+      "Ladle hot soup into bowls. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ]
+  },
+  {
+    "recipe_name": "Hearty Beef Bolognese with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_bolognese_with_pappardelle_20250811_150958_e1fb0551.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T15:09:58.563566000Z",
+    "selected_ingredients": [
+      "mincemeat"
+    ],
+    "complexity": "simple",
+    "special_requests": "Не пирог",
+    "visual_description": "A generous single serving of hearty beef Bolognese with pappardelle pasta is presented in a deep, slightly imperfect white ceramic bowl on a well-used rustic wooden dining table. The wide, golden-yellow pappardelle ribbons are thoroughly coated in the rich, deep reddish-brown sauce, which contains finely diced onion, carrot, and celery along with the browned mincemeat. A generous mound of freshly grated white Parmesan cheese melts slightly on top, accompanied by a few vibrant green fresh parsley leaves. A simple silver fork is casually twisted into the pasta. The scene is illuminated by warm, natural kitchen lighting, casting soft, inviting shadows. The background is minimally cluttered, showing a simple cloth napkin and a small bowl of additional Parmesan, emphasizing a homely, comfortable family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmesan cheese.",
+      "Offer crusty bread for dipping into the sauce.",
+      "Pair with a glass of dry red wine."
+    ],
+    "hero_ingredient": "Mincemeat",
+    "ingredients": [
+      {
+        "name": "Beef mincemeat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Crushed tomatoes, canned",
+        "quantity": "400g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "350g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion, carrot, and celery. Cook until softened, about 8 minutes. This is your soffritto base.",
+      "Add mincemeat. Break it up with a spoon. Cook until browned. Drain any excess fat.",
+      "Stir in minced garlic, tomato paste, and oregano. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is reduced by half.",
+      "Add crushed tomatoes, beef broth, milk, and bay leaf. Stir well to combine.",
+      "Bring the sauce to a gentle simmer. Reduce heat to low. Cover the pot.",
+      "Simmer for at least 1.5 hours, up to 3 hours, stirring occasionally. The longer it simmers, the richer the flavor.",
+      "Remove the bay leaf. Season the Bolognese with salt and black pepper to taste.",
+      "Cook pappardelle pasta according to package directions until al dente.",
+      "Drain the cooked pasta. Add it directly to the Bolognese sauce. Toss to combine thoroughly.",
+      "Serve hot in individual bowls. Garnish generously with grated Parmesan cheese and fresh chopped parsley."
+    ],
+    "notes": [
+      "Long simmering develops deep, complex flavors in the Bolognese sauce."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 802,
+      "cholesterol_mg": 93,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 40.8,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 403,
+      "total_carbs_g": 79.7,
+      "total_fat_g": 32.1,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 82,
+      "total_carbs_g": 16.2,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 20,
+      "protein": 82,
+      "saturated_fat": 53,
+      "sodium": 18,
+      "total_carbs": 29,
+      "total_fat": 41
+    },
+    "serving_size_g": 493,
+    "total_recipe_weight_g": 1970
+  }
+]

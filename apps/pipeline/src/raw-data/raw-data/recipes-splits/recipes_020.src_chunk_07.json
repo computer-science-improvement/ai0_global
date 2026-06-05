@@ -1,0 +1,680 @@
+[
+  {
+    "recipe_name": "Creamy Roasted Tomato Chicken Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_roasted_tomato_chicken_rigatoni_20250624_172945_85ea8ae1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:29:45.992836000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Creamy Roasted Tomato Chicken Rigatoni is presented in a clean white porcelain pasta bowl, centered on a simple wooden table surface. The al dente rigatoni pasta is generously coated in a rich, creamy, reddish-orange sauce, creating a cohesive and inviting texture. Golden-brown chicken chunks, approximately 3-4 cm, are nestled among the pasta, showcasing their seared exterior. Scattered throughout are softened, slightly burst roasted cherry tomatoes, some with caramelized edges, adding pops of deeper red. The dish is garnished with a light sprinkle of freshly grated Parmesan cheese and a few vibrant green, torn fresh basil leaves, providing color contrast and aromatic freshness. The composition is balanced and organic, with moderate negative space. Standard silver flatware is placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and appealing colors against a subtle, blurred background suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Double cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "20g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "freshly ground, to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2g (optional)"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve cherry tomatoes. Toss tomatoes with 15ml olive oil, salt, and pepper on a baking tray. Roast for 20-25 minutes until softened and slightly caramelized. Set aside.",
+      "Cut chicken thighs into 3-4 cm chunks. Season chicken with salt and pepper.",
+      "Heat 30ml olive oil in a large deep pan or Dutch oven over medium-high heat. Add chicken chunks. Sear until golden brown on all sides. Cook until internal temperature reaches 75°C. Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add remaining 15ml olive oil to the pan. Add diced onion. Sauté for 5-7 minutes until softened and translucent. Do not brown.",
+      "Mince garlic. Add minced garlic and red pepper flakes (if using) to the pan. Sauté for 1 minute until fragrant.",
+      "Pour in chicken stock. Bring to a simmer. Stir in double cream. Bring to a gentle simmer again.",
+      "Cook rigatoni according to package directions until al dente. Reserve 120ml of pasta water before draining.",
+      "Add roasted tomatoes, cooked chicken chunks, and cooked rigatoni to the pan with the sauce. Toss to combine. If sauce is too thick, add reserved pasta water gradually until desired consistency is reached.",
+      "Stir in most of the grated Parmesan cheese. Season with additional salt and pepper to taste.",
+      "Roughly chop fresh basil leaves. Stir most of the basil into the pasta. Serve immediately, garnished with remaining Parmesan and fresh basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1009.1,
+      "cholesterol_mg": 225.8,
+      "dietary_fiber_g": 5.74,
+      "protein_g": 47.97,
+      "saturated_fat_g": 20.69,
+      "sodium_mg": 754.33,
+      "total_carbs_g": 88.83,
+      "total_fat_g": 51.32,
+      "total_sugars_g": 10.32,
+      "trans_fat_g": 0.94
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 181.3,
+      "cholesterol_mg": 40.55,
+      "dietary_fiber_g": 1.03,
+      "protein_g": 8.62,
+      "saturated_fat_g": 3.72,
+      "sodium_mg": 135.48,
+      "total_carbs_g": 15.96,
+      "total_fat_g": 9.22,
+      "total_sugars_g": 1.85,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75.27,
+      "dietary_fiber": 20.48,
+      "protein": 95.94,
+      "saturated_fat": 103.45,
+      "sodium": 32.79,
+      "total_carbs": 32.3,
+      "total_fat": 65.8
+    },
+    "serving_size_g": 556.75,
+    "total_recipe_weight_g": 2227
+  },
+  {
+    "recipe_name": "Pollo alla Cacciatora",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_20250624_172942_83e55d10.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:29:42.635128000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented on a wide, matte white porcelain plate. Two whole, bone-in chicken thighs are stacked slightly in the center, featuring deeply browned, caramelized skin. A thick, rustic sauce covers the base of the plate, filled with visible small cubes of orange carrots, green celery, and translucent onions. Whole, dark purple kalamata olives are nestled within the vibrant red tomato sauce. A light dusting of bright green chopped parsley and a single fresh rosemary sprig garnish the top. Two thick batons of grilled sourdough bread lean against the side of the chicken. The lighting is natural and soft, emphasizing the glossy texture of the braised sauce and the crispness of the chicken skin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with toasted sourdough bread to soak up the sauce",
+      "Accompany with a glass of medium-bodied Italian red wine",
+      "Place on a bed of soft, buttery polenta"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine (Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide braising pan over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is deep golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add onion, carrot, and celery to the remaining fat.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in garlic, rosemary, and sage. Cook for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pan to deglaze.",
+      "Simmer wine for 3 minutes until reduced by half.",
+      "Add crushed tomatoes and stir to combine.",
+      "Place chicken thighs back into the sauce.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in olives and simmer uncovered for 5 minutes.",
+      "Remove rosemary sprigs before serving.",
+      "Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Always use a meat thermometer to ensure chicken reaches the safe internal temperature of 75°C",
+      "Browning the skin thoroughly at the start is essential for the final texture",
+      "The sauce should be thick and chunky, not watery"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1604,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 428,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 83,
+      "saturated_fat": 43,
+      "sodium": 70,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Hunter's Style Chicken with Bell Peppers and Herbs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hunter%27s_style_chicken_with_bell_peppers_and_herbs_20250624_172939_b3d7fc2e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:29:40.300823000Z",
+    "selected_ingredients": [
+      "olive oil",
+      "paprika",
+      "thyme",
+      "savory"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single, generous portion of Hunter's Style Chicken is presented on a clean, white porcelain dinner plate. Two whole, bone-in chicken thighs, seared to a golden-brown crisp, are nestled within a rich, vibrant red-orange tomato and bell pepper sauce. The sauce is thick and rustic, clinging to the chicken. Diced red and yellow bell peppers (approximately 1.5 cm cubes) are visible throughout the sauce, maintaining their form and adding bright color. Fresh thyme leaves are sprinkled over the chicken and sauce for a final garnish. The plate rests on a simple, warm-toned wooden table. A white linen napkin is folded neatly beside the plate. Simple stainless steel flatware is placed on either side. A small, rustic ceramic bowl with slices of crusty Italian bread sits slightly behind the main dish. Natural, soft, even lighting highlights the dish's textures and warm colors. The background is a subtly blurred, warm-toned bistro setting, providing a casual yet refined ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve hot with crusty artisanal bread for dipping into the sauce.",
+      "Accompany with creamy polenta or al dente pasta such as tagliatelle or pappardelle.",
+      "Pair with a simple green salad dressed with olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "8 (approx. 1.2 kg)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried savory",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Dry red wine (e.g., Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Crushed tomatoes, canned",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "6"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken pieces skin-side down until deep golden brown and crispy, about 6-8 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pot. Set aside.",
+      "Add diced onion and bell peppers to the pot. Reduce heat to medium. Sauté for 8-10 minutes until softened, stirring occasionally.",
+      "Add minced garlic, smoked paprika, and dried savory. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is slightly reduced, about 2-3 minutes.",
+      "Stir in crushed tomatoes and chicken broth. Bring the mixture to a simmer.",
+      "Return seared chicken pieces to the pot. Nestle them into the sauce. Add fresh thyme sprigs.",
+      "Cover the pot. Reduce heat to low. Simmer for 45-60 minutes, or until chicken is tender and reaches an internal temperature of 75°C (167°F).",
+      "Remove thyme sprigs before serving. Taste and adjust seasoning as needed."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 918,
+      "cholesterol_mg": 282,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 63.2,
+      "saturated_fat_g": 14.4,
+      "sodium_mg": 1304,
+      "total_carbs_g": 27.2,
+      "total_fat_g": 60.2,
+      "total_sugars_g": 14.7,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.7,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 201,
+      "total_carbs_g": 4.2,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 94,
+      "dietary_fiber": 25,
+      "protein": 126,
+      "saturated_fat": 72,
+      "sodium": 57,
+      "total_carbs": 10,
+      "total_fat": 77
+    },
+    "serving_size_g": 650,
+    "total_recipe_weight_g": 2600
+  },
+  {
+    "recipe_name": "Pan-Roasted Chicken Breast with Crispy Potato Wedges and Glazed Corn",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-roasted_chicken_breast_with_crispy_potato_wedges_and_glazed_corn_20250624_172927_3aa663b2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:29:28.151331000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "corn"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, pan-roasted chicken breast, skin-on and golden-brown, anchors the center of a round white porcelain plate. The chicken is a whole, un-sliced piece. Arranged beside it are crispy, golden-brown potato wedges. Vibrant yellow corn kernels, glazed with butter and lightly caramelized, are scattered alongside. A rich, glossy pan sauce is drizzled over the chicken and plate. Freshly chopped parsley adds a vibrant green garnish. The plating is clean and professional, with balanced elements and appropriate negative space. The dish rests on a simple wooden table, accompanied by standard flatware and a white cotton napkin. Natural, even lighting illuminates the textures and colors, set against a subtly blurred casual bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken breasts",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Yukon Gold potatoes, unpeeled",
+        "quantity": "800g"
+      },
+      {
+        "name": "Fresh corn kernels",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash potatoes thoroughly. Cut into 2cm thick wedges.",
+      "Place potato wedges in a large pot. Cover with cold water. Add a pinch of salt. Bring to a boil. Cook for 5-7 minutes until slightly tender. Drain well.",
+      "Toss drained potatoes with 30ml olive oil, 1 sprig rosemary (leaves picked), 2 sprigs thyme (leaves picked), salt, and pepper. Spread in a single layer on a baking tray.",
+      "Roast potatoes for 25-30 minutes, flipping halfway, until golden brown and crispy.",
+      "Pat chicken breasts very dry with paper towels. Season generously with salt and pepper on both sides.",
+      "Heat remaining 30ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Place chicken breasts skin-side down in the hot skillet. Sear for 6-8 minutes until skin is deep golden brown and crispy.",
+      "Flip chicken. Add butter, 1 sprig rosemary, 2 sprigs thyme, and crushed garlic to the skillet.",
+      "Transfer skillet to the preheated oven. Cook for 10-15 minutes, or until internal temperature reaches 75°C.",
+      "Remove chicken from oven. Transfer chicken to a cutting board. Tent loosely with foil. Let rest for 5-10 minutes.",
+      "While chicken rests, place the same skillet (with butter, herbs, garlic) over medium heat on the stovetop. Add corn kernels. Sauté for 5-7 minutes until corn is tender and lightly caramelized. Season with salt and pepper. Remove herbs and garlic.",
+      "Deglaze the skillet with chicken stock. Bring to a simmer. Cook for 2-3 minutes, scraping up any browned bits, until sauce slightly reduces.",
+      "To serve, place a chicken breast on each plate. Arrange a portion of crispy potato wedges beside the chicken. Spoon glazed corn alongside. Drizzle with pan sauce. Garnish with chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 897,
+      "cholesterol_mg": 194,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 61.4,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 214,
+      "total_carbs_g": 54,
+      "total_fat_g": 49.8,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160.2,
+      "cholesterol_mg": 34.7,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 38.2,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64.7,
+      "dietary_fiber": 22.1,
+      "protein": 122.8,
+      "saturated_fat": 68,
+      "sodium": 9.3,
+      "total_carbs": 19.6,
+      "total_fat": 63.9
+    },
+    "serving_size_g": 560.3,
+    "total_recipe_weight_g": 2241
+  },
+  {
+    "recipe_name": "Chicken and Tomato Paella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_tomato_paella_20250624_172927_e97ff29d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:29:28.056772000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "rice",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of golden-yellow Chicken and Tomato Paella is carefully mounded on a round, clean white porcelain dinner plate. The saffron-infused short-grain rice is moist yet distinct, with a few grains showing a slight crispness from the socarrat. Prominently placed on the rice are two to three substantial chunks of seared chicken, their skinless surfaces a rich golden-brown. Vibrant red diced bell peppers and bright green peas are interspersed throughout the rice, adding color and texture. A light sprinkling of freshly chopped parsley garnishes the top. A single, bright yellow lemon wedge rests on the rim of the plate. The plate is centered on a simple wooden table surface, with a folded cotton napkin beside it. A rustic, polished fork is placed to the right of the plate. Natural, even lighting illuminates the dish, highlighting the steam rising subtly from the warm rice. The background is a subtly blurred modern bistro setting, with hints of other tables and soft lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly from the paellera for a communal dining experience.",
+      "Accompany with lemon wedges for squeezing over individual portions.",
+      "Traditionally eaten with a spoon or fork, often directly from the pan in informal settings."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Spanish short-grain rice (Bomba or Calasparra)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "900ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "a few sprigs"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4-5cm chunks. Season with salt and pepper.",
+      "Dice onion and red bell pepper into 1cm cubes. Mince garlic.",
+      "Grate or finely dice tomatoes.",
+      "Heat 30ml olive oil in a 30cm paellera or large, shallow pan over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken and set aside. Ensure internal temperature reaches 75°C (167°F).",
+      "Add remaining 30ml olive oil to the pan. Sauté diced onion and bell pepper for 5-7 minutes until softened.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Stir in grated tomatoes. Cook for 5 minutes, reducing the liquid and deepening the color to create a sofrito.",
+      "Return chicken to the pan. Stir to combine with the sofrito.",
+      "Add rice to the pan. Stir for 2 minutes to coat rice grains with the sofrito and oil.",
+      "Heat chicken broth. Steep saffron threads in a small amount of warm broth for 5 minutes, then add to the main broth.",
+      "Pour hot saffron broth into the pan. Distribute ingredients evenly. Do not stir the rice after this point.",
+      "Bring to a simmer. Reduce heat to medium-low. Cook uncovered for 15-20 minutes, or until most liquid is absorbed. Listen for a crackling sound, indicating the formation of socarrat (crispy rice crust).",
+      "Sprinkle frozen peas over the paella during the last 5 minutes of cooking.",
+      "Remove paella from heat. Cover loosely with foil or a clean kitchen towel. Let rest for 5 minutes.",
+      "Chop fresh parsley. Cut lemon into wedges.",
+      "Garnish paella with fresh parsley and serve immediately with lemon wedges."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Socarrat"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 719,
+      "cholesterol_mg": 197.3,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 39.5,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 345.4,
+      "total_carbs_g": 74.6,
+      "total_fat_g": 28.9,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 31.2,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.2,
+      "saturated_fat_g": 1,
+      "sodium_mg": 54.6,
+      "total_carbs_g": 11.8,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65.8,
+      "dietary_fiber": 17,
+      "protein": 78.9,
+      "saturated_fat": 30.9,
+      "sodium": 15,
+      "total_carbs": 27.1,
+      "total_fat": 37
+    },
+    "serving_size_g": 632.7,
+    "total_recipe_weight_g": 2530.8
+  }
+]

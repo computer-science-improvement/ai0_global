@@ -1,0 +1,722 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Pineapple-Coconut Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_pineapple-coconut_glaze_20250626_090443_9f57869b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:04:43.860476000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pineapple",
+      "dark chocolate",
+      "lemon",
+      "coconut"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Chicken with Pineapple-Coconut Glaze is presented on a clean, round white porcelain dinner plate. The pan-seared chicken pieces, golden-brown and moist, are arranged as thick chunks, not sliced, at the center of the plate. Beside the chicken, a neat mound of fluffy white coconut rice rests. A glossy, rich reddish-brown pineapple-coconut glaze, with visible caramelized pineapple chunks, is artfully spooned over the chicken and around the plate, creating a vibrant contrast. Fresh, bright green cilantro leaves are scattered over the chicken and sauce as a garnish, adding a pop of color. The overall composition is balanced and professional, with appropriate negative space. The dish sits on a simple light wooden table surface. A neatly folded white cotton napkin is placed beside the plate. The scene is bathed in natural, even lighting, creating a warm and inviting atmosphere that highlights the dish's textures and colors. The background is minimal, suggesting a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Tropical Fusion",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts or thighs (boneless, skinless)",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "1 small (approx. 500g)"
+      },
+      {
+        "name": "Coconut milk (full-fat)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa or higher)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water",
+        "quantity": "400ml"
+      }
+    ],
+    "instructions": [
+      "Rinse basmati rice. Combine rice, 100ml coconut milk, 400ml water, and a pinch of salt in a saucepan. Bring to a boil. Reduce heat to low, cover, and simmer for 15 minutes, or until liquid is absorbed and rice is tender. Let stand 5 minutes, then fluff with a fork.",
+      "Pat chicken dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large pan over medium-high heat. Add chicken. Sear 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from pan. Set aside.",
+      "Dice red onion, mince garlic, grate ginger. Add to the same pan. Sauté 3-4 minutes until softened.",
+      "Cut pineapple into 2 cm chunks. Add to the pan. Sauté 5 minutes until lightly caramelized.",
+      "Pour in chicken stock. Bring to a simmer. Cook 5 minutes, scraping up any browned bits.",
+      "Stir in remaining 100ml coconut milk. Bring to a gentle simmer. Add grated dark chocolate. Stir until melted and sauce thickens slightly. Squeeze in juice from half a lemon. Season with salt and pepper to taste.",
+      "Place a portion of coconut rice on each plate. Arrange seared chicken pieces beside the rice. Spoon pineapple-coconut glaze generously over chicken and around the plate.",
+      "Garnish with fresh cilantro leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.75,
+      "calories": 760,
+      "cholesterol_mg": 153,
+      "dietary_fiber_g": 5.33,
+      "protein_g": 62.36,
+      "saturated_fat_g": 14.58,
+      "sodium_mg": 223,
+      "total_carbs_g": 66.17,
+      "total_fat_g": 28.03,
+      "total_sugars_g": 16.76,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.13,
+      "calories": 130,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 0.91,
+      "protein_g": 10.64,
+      "saturated_fat_g": 2.49,
+      "sodium_mg": 38,
+      "total_carbs_g": 11.29,
+      "total_fat_g": 4.78,
+      "total_sugars_g": 2.86,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.05,
+      "dietary_fiber": 19.02,
+      "protein": 124.71,
+      "saturated_fat": 72.88,
+      "sodium": 9.7,
+      "total_carbs": 24.06,
+      "total_fat": 35.93
+    },
+    "serving_size_g": 585.75,
+    "total_recipe_weight_g": 2343
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken and Beef Medallions with Mushroom-Brown Rice Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_and_beef_medallions_with_mushroom-brown_rice_risotto_20250626_090441_504321fa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:04:41.647628000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "brown rice",
+      "carrot",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Chicken and Beef Medallions with Mushroom-Brown Rice Risotto is presented on a clean white porcelain dinner plate. The creamy brown rice risotto, studded with sautéed cremini mushroom slices and finely diced shallots, forms a natural, free-flowing base. Two golden-brown seared chicken breast medallions and two perfectly pan-seared beef tenderloin medallions are arranged atop the risotto, slightly overlapping. Beside the protein, vibrant orange carrot batons, glazed to a subtle sheen, are neatly placed. The dish is garnished with a sprinkle of finely chopped fresh flat-leaf parsley, adding a pop of green and freshness. The overall presentation is professional and approachable. The plate sits on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting highlights the textures and colors of the food. The background is minimal, suggesting a modern bistro setting, keeping the focus entirely on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern European",
+    "cultural_serving_suggestions": [
+      "Serve immediately. Offer a side of crusty bread for soaking up the risotto."
+    ],
+    "hero_ingredient": "Beef Medallions",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "2 (approx. 400g total)"
+      },
+      {
+        "name": "Beef tenderloin",
+        "quantity": "250g"
+      },
+      {
+        "name": "Brown rice (short grain)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "250g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare ingredients. Slice chicken breast horizontally into 8 medallions. Cut beef tenderloin into 8 medallions. Pat meat dry. Season chicken and beef with salt and pepper.",
+      "Finely dice shallot. Mince garlic. Slice mushrooms thinly. Peel carrots, cut into 5cm batons.",
+      "Heat 15ml olive oil in a large pan over medium-high heat. Sear chicken medallions for 3-4 minutes per side until golden brown and cooked through. Internal temperature must reach 75°C. Remove chicken. Set aside.",
+      "Add remaining 15ml olive oil to the same pan. Sear beef medallions for 2-3 minutes per side for medium-rare, or longer to desired doneness. Remove beef. Set aside.",
+      "Melt 20g butter in a separate pot over medium heat. Add diced shallot. Cook until softened, about 3 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add brown rice to the pot. Stir for 1 minute to toast lightly. Pour in white wine. Stir until absorbed.",
+      "Add chicken broth, one ladleful at a time, stirring frequently. Allow each addition to be mostly absorbed before adding more. This will take 30-40 minutes for brown rice to become tender and creamy. Stir in sliced mushrooms during the last 10 minutes of cooking.",
+      "Remove risotto from heat. Stir in remaining 40g butter and grated Parmesan cheese. Stir until creamy. Season with salt and pepper.",
+      "While risotto cooks, steam carrot batons until tender-crisp, about 5-7 minutes. In a small pan, melt a knob of butter. Add steamed carrots. Toss to coat and glaze lightly.",
+      "Finely chop fresh parsley.",
+      "To plate: Spoon a generous portion of mushroom-brown rice risotto onto the center of a clean white porcelain dinner plate. Arrange two chicken medallions and two beef medallions artfully on top of the risotto. Place glazed carrot batons alongside the meat. Garnish with chopped fresh parsley."
+    ],
+    "notes": [
+      "Allow seared chicken and beef to rest for 5 minutes before serving for optimal juiciness.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 746.3,
+      "cholesterol_mg": 163.3,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 59.1,
+      "saturated_fat_g": 13.3,
+      "sodium_mg": 611.1,
+      "total_carbs_g": 47.6,
+      "total_fat_g": 32.1,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149.3,
+      "cholesterol_mg": 32.7,
+      "dietary_fiber_g": 1,
+      "protein_g": 11.8,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 122.2,
+      "total_carbs_g": 9.5,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54.41,
+      "dietary_fiber": 16.98,
+      "protein": 118.14,
+      "saturated_fat": 66.57,
+      "sodium": 26.57,
+      "total_carbs": 17.32,
+      "total_fat": 41.22
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Brasato di Manzo con Riso Integrale e Verdure Arrosto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_brasato_di_manzo_con_riso_integrale_e_verdure_arrosto_20250626_090412_6bcfabae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:04:13.265121000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "italian cuisine",
+    "visual_description": "A single portion of Italian braised beef is presented on a handcrafted ceramic plate in a creamy beige hue, set against a light, reclaimed wood table. Three substantial, rustic chunks of deeply browned, tender braised beef are placed centrally. Adjacent to the beef, a natural mound of fluffy brown rice showcases its distinct grains. Scattered around the beef are vibrantly colored roasted vegetables: thick rounds of caramelized zucchini, charred red bell pepper strips, and burst cherry tomatoes, maintaining their natural shapes. A rich, glossy reduction of the braising liquid pools beneath the beef, lightly coating the plate. A small, deliberate drizzle of bright, reddish-purple fermented agrodolce sauce adds a contrasting pop of color and tang. The dish is subtly garnished with a single, fresh sprig of rosemary. The composition is clean and minimalist, allowing generous negative space on the plate. The background is simple and uncluttered, featuring soft, natural lighting. An undyed linen napkin in a natural beige tone and simple, elegant flatware rest beside the plate, completing an eco-conscious and authentic Italian dining scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the rich sauce.",
+      "A glass of dry red wine, mirroring the wine used in braising."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red onion (for fermented agrodolce)",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Red wine vinegar (for fermented agrodolce)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Sugar (for fermented agrodolce)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Water (for fermented agrodolce)",
+        "quantity": "100 ml"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 5-6 cm large chunks. Season generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef and set aside.",
+      "Dice onion, carrots, and celery into small cubes (soffritto). Add to the same pot. Sauté until softened, about 8-10 minutes.",
+      "Mince garlic. Add to the pot and cook for 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Deglaze the pot with red wine. Scrape up any browned bits from the bottom. Reduce wine by half.",
+      "Return beef to the pot. Add beef broth, rosemary, and thyme sprigs. Bring to a simmer.",
+      "Cover the pot tightly. Reduce heat to low. Braise for 2.5-3 hours, or until beef is fork-tender. Check internal temperature to ensure it reaches at least 75°C (167°F).",
+      "While beef braises, prepare fermented agrodolce. Thinly slice red onion. In a small saucepan, combine red wine vinegar, sugar, water, and a pinch of salt. Bring to a simmer until sugar dissolves.",
+      "Pour hot liquid over sliced red onion in a clean jar. Let cool. Seal the jar. Allow to ferment at room temperature for 1-2 days, then refrigerate.",
+      "Cook brown rice according to package instructions. Typically, combine 300g rice with 600ml water and a pinch of salt. Bring to a boil, reduce heat, cover, and simmer for 30-40 minutes until water is absorbed and rice is tender. Let stand 5 minutes, then fluff.",
+      "Preheat oven to 200°C. Cut zucchini into thick rounds, bell pepper into large strips, and halve cherry tomatoes. Toss vegetables with a drizzle of olive oil, salt, and pepper.",
+      "Spread vegetables on a baking sheet. Roast for 20-25 minutes, until tender and lightly caramelized.",
+      "Remove beef from the pot. Strain braising liquid through a fine-mesh sieve into a clean saucepan. Discard herbs and solids.",
+      "Reduce braising liquid over medium-high heat until it thickens slightly into a rich sauce.",
+      "Serve braised beef chunks with a side of brown rice and roasted vegetables. Spoon reduced braising sauce over the beef. Garnish with a small amount of fermented agrodolce and a fresh sprig of rosemary."
+    ],
+    "traditional_techniques": [
+      "Braising (Brasato)",
+      "Soffritto",
+      "Salsa Agrodolce (with fermentation twist)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.5,
+      "calories": 1046.4,
+      "cholesterol_mg": 176.3,
+      "dietary_fiber_g": 7.05,
+      "protein_g": 63.24,
+      "saturated_fat_g": 13.73,
+      "sodium_mg": 543.7,
+      "total_carbs_g": 90.33,
+      "total_fat_g": 39.96,
+      "total_sugars_g": 23.08,
+      "trans_fat_g": 1.25
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.64,
+      "calories": 137.5,
+      "cholesterol_mg": 23.2,
+      "dietary_fiber_g": 0.93,
+      "protein_g": 8.31,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 71.4,
+      "total_carbs_g": 11.87,
+      "total_fat_g": 5.25,
+      "total_sugars_g": 3.03,
+      "trans_fat_g": 0.16
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 25,
+      "protein": 126,
+      "saturated_fat": 69,
+      "sodium": 24,
+      "total_carbs": 33,
+      "total_fat": 51
+    },
+    "serving_size_g": 761.3,
+    "total_recipe_weight_g": 3045
+  },
+  {
+    "recipe_name": "Hungarian Beef and Pork Goulash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hungarian_beef_and_pork_goulash_20250626_090344_123dbc73.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:03:45.025473000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "onion",
+      "garlic",
+      "potato",
+      "tomato",
+      "carrot",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Deep amber-red Hungarian Goulash, featuring large, tender chunks of braised beef and pork, nestled among vibrant orange carrot rounds, earthy potato chunks, and quartered cremini mushrooms. The rich, thick gravy coats all ingredients, showcasing hints of paprika and tomato. A sprinkle of fresh, vibrant green chopped parsley adds a contrasting pop of color. The dish is served in a clean white porcelain bowl with a moderate amount of negative space around the edges, allowing the richness of the stew to be the focal point. The bowl is placed on a simple, light-colored wooden table surface. Beside it, a crisp white cotton napkin is neatly folded. Traditional European-style flatware (fork and spoon) rests beside the bowl. Natural, even lighting illuminates the scene from the side, creating soft shadows that add depth without obscuring details. The background is a subtly blurred, warm-toned restaurant interior, maintaining focus on the food. A single, generous individual portion is presented.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Serve with fresh crusty bread for dipping.",
+      "Offer a dollop of sour cream or crème fraîche on top.",
+      "Traditionally served with nokedli (small Hungarian dumplings) or boiled potatoes."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "500g, cut into 3-4 cm cubes"
+      },
+      {
+        "name": "Pork shoulder",
+        "quantity": "300g, cut into 3-4 cm cubes"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g, peeled, cut into 2-3 cm chunks"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large, peeled, cut into 2 cm rounds"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g, quartered"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "30g"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "5g, crushed"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish, chopped"
+      },
+      {
+        "name": "Sour cream or crème fraîche",
+        "quantity": "For serving (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat beef and pork dry. Season with salt and pepper.",
+      "Heat vegetable oil in a large heavy-bottomed pot over medium-high heat.",
+      "Sear beef and pork in batches until browned on all sides. Remove meat from pot. Set aside.",
+      "Add diced onions to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and crushed caraway seeds. Cook 1 minute until fragrant.",
+      "Remove pot from heat. Stir in sweet paprika. Cook 30 seconds, stirring constantly.",
+      "Return pot to heat. Deglaze with a splash of beef broth, scraping up any browned bits.",
+      "Return seared beef and pork to the pot. Add remaining beef broth, diced tomatoes, and bay leaves.",
+      "Bring to a simmer. Reduce heat to low. Cover and cook 1.5 hours, stirring occasionally.",
+      "Add carrot rounds and potato chunks to the pot. Continue simmering, covered, for another 30-40 minutes, or until vegetables are tender.",
+      "Add quartered mushrooms. Cook uncovered for 10-15 minutes, or until mushrooms are tender and gravy has thickened slightly.",
+      "Remove bay leaves. Taste and adjust seasoning with salt and pepper.",
+      "Serve hot, garnished with fresh chopped parsley. Offer sour cream or crème fraîche on the side."
+    ],
+    "notes": [
+      "Goulash often tastes even better the next day as flavors meld.",
+      "Adjust paprika quantity to your preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Paprika bloom"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 724.29,
+      "cholesterol_mg": 147.5,
+      "dietary_fiber_g": 11.9,
+      "protein_g": 52.32,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 1384.44,
+      "total_carbs_g": 52.57,
+      "total_fat_g": 36.86,
+      "total_sugars_g": 13.91,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 83.22,
+      "cholesterol_mg": 16.95,
+      "dietary_fiber_g": 1.37,
+      "protein_g": 6.01,
+      "saturated_fat_g": 1.36,
+      "sodium_mg": 159.08,
+      "total_carbs_g": 6.04,
+      "total_fat_g": 4.24,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.09
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.17,
+      "dietary_fiber": 42.49,
+      "protein": 104.64,
+      "saturated_fat": 58.98,
+      "sodium": 60.19,
+      "total_carbs": 19.12,
+      "total_fat": 47.25
+    },
+    "serving_size_g": 870.25,
+    "total_recipe_weight_g": 3481
+  },
+  {
+    "recipe_name": "Sustainable Beef & Noodle Soup with Pickled Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_beef_%26_noodle_soup_with_pickled_vegetables_20250626_090324_78eb62f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:03:25.219938000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of clear, amber-hued beef and noodle soup rests in a handcrafted, unglazed ceramic bowl with earthy, natural tones. Tender, dark brown beef chunks (2-3 cm) and small, pale ditalini pasta shapes are visible beneath the surface of the rich broth. The soup is garnished minimally with a vibrant green cluster of finely chopped lacto-fermented cabbage, offering a textural contrast. A sprinkle of fresh green chives adds a final touch of color. The bowl sits on a light, naturally textured reclaimed wood surface, accompanied by an undyed linen napkin. Soft, diffused natural light illuminates the scene, highlighting the pure ingredients against a clean, minimalist background with subtle botanical elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef bones (mixed, marrow and knuckle)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Beef chuck (or similar stewing cut), trimmed, cut into 2-3 cm chunks",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Onion peels and ends",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Carrot peels and ends",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Celery stalks and leaves",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "10"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "3.5 litres"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Small pasta (e.g., ditalini, or broken spaghetti)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Lacto-fermented cabbage or radish greens, finely chopped",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh parsley or chives, finely chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Roast beef bones on a baking tray at 200°C for 30 minutes until browned.",
+      "Transfer roasted bones to a large pot. Add onion peels, carrot peels, celery, smashed garlic, bay leaves, and peppercorns.",
+      "Pour in cold water. Bring to a boil. Skim any foam. Reduce heat to low. Simmer gently for 4-6 hours.",
+      "Strain broth through a fine-mesh sieve. Discard solids. Let broth cool. Skim off any excess fat.",
+      "In a separate pot, bring a portion of the beef broth to a simmer. Add beef chunks. Simmer for 1-1.5 hours until beef is tender.",
+      "In the last 10 minutes of beef cooking, add pasta to the simmering broth. Cook until al dente.",
+      "Season soup with sea salt to taste.",
+      "Ladle soup into bowls. Top each serving with finely chopped lacto-fermented greens and fresh parsley or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 672.8,
+      "cholesterol_mg": 95,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 42.6,
+      "saturated_fat_g": 18.6,
+      "sodium_mg": 680.2,
+      "total_carbs_g": 30.2,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 86.8,
+      "cholesterol_mg": 12.3,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 5.5,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 87.8,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 0.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31.7,
+      "dietary_fiber": 7.6,
+      "protein": 85.2,
+      "saturated_fat": 93.1,
+      "sodium": 29.6,
+      "total_carbs": 11,
+      "total_fat": 52
+    },
+    "serving_size_g": 775,
+    "total_recipe_weight_g": 3100
+  }
+]

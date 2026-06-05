@@ -1,0 +1,639 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Sun-Dried Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251102_075435_bef5a576.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-11-02T07:54:35.873338000Z",
+    "selected_ingredients": [
+      "sun dried tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate. A single pan-seared chicken breast, golden-brown with a lightly crisp skin, is placed centrally. The chicken is cooked whole, not sliced. A rich, creamy, blush-colored sauce, flecked with deep red julienned sun-dried tomatoes and vibrant green wilted spinach, generously coats the chicken and pools around its base. The sauce has a glossy texture. A light scattering of freshly chopped bright green basil leaves provides a fresh counterpoint. Moderate negative space surrounds the dish. The background is a simple wooden table surface, with a cotton napkin beside the plate. Traditional flatware is arranged neatly. Natural, even lighting highlights the dish's textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of al dente fettuccine or creamy polenta.",
+      "Offer crusty ciabatta bread for dipping in the sauce.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken, Sun-Dried Tomatoes",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil",
+        "quantity": "80g (drained, sliced)"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves (minced)"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g (grated)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "Small bunch (chopped, for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear chicken breasts for 6-8 minutes per side. Cook until internal temperature reaches 75°C. Remove chicken. Set aside.",
+      "Add minced garlic to the skillet. Sauté for 1 minute until fragrant.",
+      "Stir in sliced sun-dried tomatoes. Cook for 2 minutes.",
+      "Pour in chicken stock. Bring to a simmer. Reduce by half.",
+      "Add heavy cream. Bring to a gentle simmer.",
+      "Stir in grated Parmesan cheese. Cook until sauce thickens slightly.",
+      "Add fresh spinach. Cook until wilted.",
+      "Return chicken breasts to the skillet. Coat with sauce.",
+      "Serve immediately. Garnish with fresh basil."
+    ],
+    "notes": [
+      "Ensure chicken is fully cooked for safety.",
+      "Adjust seasoning to personal preference."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Deglazing",
+      "Sauce reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 653,
+      "cholesterol_mg": 228,
+      "dietary_fiber_g": 2,
+      "protein_g": 67.3,
+      "saturated_fat_g": 17,
+      "sodium_mg": 739,
+      "total_carbs_g": 9.2,
+      "total_fat_g": 37.9,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 183,
+      "cholesterol_mg": 64,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 18.9,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 207,
+      "total_carbs_g": 2.6,
+      "total_fat_g": 10.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 7,
+      "protein": 135,
+      "saturated_fat": 85,
+      "sodium": 32,
+      "total_carbs": 3,
+      "total_fat": 49
+    },
+    "serving_size_g": 357,
+    "total_recipe_weight_g": 1427
+  },
+  {
+    "recipe_name": "Spiced Mushroom and Paneer Tikki",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251101_133527_037e065c.jpg",
+    "dish_type": "starter",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-11-01T13:35:28.022733000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "paneer",
+      "egg"
+    ],
+    "complexity": "simple",
+    "special_requests": "healthy",
+    "visual_description": "The dish presents a single, golden-brown Spiced Mushroom and Paneer Tikki on a small, round ceramic plate with a subtle, earthy tone. The tikki, approximately 7-8 cm in diameter and 1.5 cm thick, has a slightly irregular, rustic edge, showcasing its homemade nature. Its surface is crisp with visible flecks of green coriander and deeper brown mushroom pieces peeking through. A small dollop of vibrant green mint chutney is placed beside the tikki. The plate is set on a well-worn wooden table. A simple, folded cloth napkin and a small, unpretentious steel fork are nearby. Warm, inviting light illuminates the scene, highlighting the tikki's appetizing texture and color.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of fresh mint chutney or plain yogurt.",
+      "Can be accompanied by a wedge of lemon.",
+      "Often enjoyed as a starter or snack with chai."
+    ],
+    "hero_ingredient": "Paneer",
+    "ingredients": [
+      {
+        "name": "Paneer",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small (about 100 g)"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Green Chili",
+        "quantity": "1 (about 5 g)"
+      },
+      {
+        "name": "Fresh Coriander Leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Coriander Powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Gram Flour (Besan)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "60 ml"
+      }
+    ],
+    "instructions": [
+      "Finely chop mushrooms and dice onion. Mince green chili and chop coriander leaves.",
+      "Grate paneer into a large mixing bowl.",
+      "Heat 15 ml oil in a pan over medium heat. Add diced onion. Sauté until translucent, about 3-4 minutes.",
+      "Add finely chopped mushrooms. Cook until moisture evaporates and mushrooms are lightly browned, about 5-7 minutes.",
+      "Add ginger-garlic paste and minced green chili. Sauté for 1 minute until fragrant.",
+      "Add cumin powder, coriander powder, turmeric powder, and garam masala. Cook for 30 seconds, stirring constantly.",
+      "Remove from heat. Let the mixture cool slightly.",
+      "Add the cooled mushroom-onion mixture to the grated paneer.",
+      "Add chopped coriander leaves, salt, and gram flour to the bowl.",
+      "Crack the egg into the mixture. Mix thoroughly until well combined and a dough-like consistency forms.",
+      "Divide the mixture into 12 equal portions. Shape each portion into a flat, round tikki (patty), about 1.5 cm thick.",
+      "Heat the remaining 45 ml vegetable oil in a large non-stick pan over medium heat.",
+      "Carefully place tikkis in the hot oil, ensuring not to overcrowd the pan.",
+      "Shallow fry tikkis for 3-4 minutes per side, until golden brown and cooked through. Ensure internal temperature reaches 75°C (167°F).",
+      "Remove tikkis from pan. Drain excess oil on paper towels.",
+      "Serve hot with a side of mint chutney or plain yogurt."
+    ],
+    "notes": [
+      "For a crispier tikki, you can roll them in a light coating of breadcrumbs before frying.",
+      "Adjust green chili quantity to personal spice preference.",
+      "Ensure the mushroom mixture is cool before adding to paneer to prevent paneer from melting."
+    ],
+    "traditional_techniques": [
+      "Shallow frying (Tawa Fry)",
+      "Layering of spices (Bhuna)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 357,
+      "cholesterol_mg": 81,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 16.1,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 521,
+      "total_carbs_g": 13.9,
+      "total_fat_g": 27.5,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 204,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 9.2,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 298,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 15.7,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27,
+      "dietary_fiber": 10,
+      "protein": 32,
+      "saturated_fat": 43,
+      "sodium": 23,
+      "total_carbs": 5,
+      "total_fat": 35
+    },
+    "serving_size_g": 175.05,
+    "total_recipe_weight_g": 700.2
+  },
+  {
+    "recipe_name": "Spanish Chorizo and Tomato Stew with Baked Eggs and Avocado",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251101_114251_16fd3f1f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-11-01T11:42:52.071049000Z",
+    "selected_ingredients": [
+      "tomato",
+      "avocado",
+      "egg",
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a deep, rustic white ceramic bowl, showcasing a single individual portion. The base is a rich, savory Spanish chorizo and tomato stew, cooked until thick, with visible 1 cm diced red bell pepper and onion, and crumbled chorizo chunks. The stew has a vibrant reddish-brown color from the tomatoes and smoked paprika. Nestled within the stew is a perfectly baked egg, its firm, bright white contrasting with a golden, runny yolk at the center. Scattered generously over and around the egg are vibrant green 1.5 cm diced avocado cubes and freshly chopped bright green parsley, adding fresh color and texture. The presentation is organized but organic, with moderate negative space on the bowl's rim. The bowl rests on a simple, light-colored wooden table surface in a modern bistro setting. A crisp white cotton napkin is placed beside the bowl. Natural, even lighting highlights the textures and colors of the ingredients. Traditional metal flatware is set alongside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "Pair with a robust Spanish red wine like Rioja."
+    ],
+    "hero_ingredient": "Chorizo",
+    "ingredients": [
+      {
+        "name": "Chorizo sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Avocados",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Remove chorizo from casings. Crumble into a large oven-safe skillet. Cook over medium-high heat until browned. Remove chorizo with a slotted spoon. Reserve 15 ml rendered fat.",
+      "Dice onion and red bell pepper into 1 cm cubes. Mince garlic.",
+      "Add remaining 15 ml olive oil to skillet if needed. Add diced onion and bell pepper. Sauté 5-7 minutes until softened. Add minced garlic, smoked paprika, cumin, and oregano. Cook 1 minute until fragrant.",
+      "Pour in diced tomatoes and chicken stock. Bring to a simmer. Return cooked chorizo to skillet. Simmer gently for 10 minutes to allow flavors to meld. Season with salt and pepper.",
+      "Preheat oven to 180°C. Create four small wells in the stew. Crack one egg into each well. Transfer skillet to oven.",
+      "Bake 8-12 minutes, or until egg whites are set and yolks are still runny. Monitor carefully to avoid overcooking yolks.",
+      "While eggs bake, dice avocados into 1.5 cm cubes. Roughly chop fresh parsley.",
+      "Remove skillet from oven. Garnish generously with diced avocado and fresh parsley. Serve immediately directly from the skillet or portion into individual bowls."
+    ],
+    "notes": [],
+    "traditional_techniques": [
+      "Sofrito base"
+    ]
+  },
+  {
+    "recipe_name": "Greek Shrimp Saganaki",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251101_105826_42d28800.jpg",
+    "dish_type": "starter",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2025-11-01T10:58:26.772581000Z",
+    "selected_ingredients": [
+      "feta cheese",
+      "shrimp",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a rustic, shallow ceramic saganaki pan, still warm from cooking. Vibrant red crushed tomatoes form the base, with plump, pink, whole shrimp nestled within the sauce. The shrimp show a slight curl. Crumbled white feta cheese is melted and slightly browned in spots on top, creating a creamy contrast. Freshly chopped bright green flat-leaf parsley is generously scattered over the dish. The pan sits on a well-used wooden dining table. Alongside, a thick slice of crusty, artisanal bread, with an irregular golden-brown crust, rests on a simple, off-white ceramic plate. A small, rustic metal fork is placed beside the plate. A loosely folded linen napkin sits nearby. Warm, inviting light illuminates the scene, suggesting a cozy family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Served as a meze (appetizer) with plenty of crusty bread for dipping into the sauce."
+    ],
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Large shrimp, peeled and deveined",
+        "quantity": "500g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2g"
+      },
+      {
+        "name": "Ouzo or dry white wine (optional)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Feta cheese, crumbled",
+        "quantity": "150g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a medium, oven-safe skillet or a saganaki pan over medium heat.",
+      "Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes, oregano, and red pepper flakes (if using). Bring to a simmer.",
+      "If using ouzo, carefully add it and simmer for 2 minutes to cook off alcohol.",
+      "Season sauce with salt and pepper.",
+      "Add shrimp to the simmering sauce. Cook for 2-3 minutes, until shrimp just turn pink. Do not overcook.",
+      "Crumble feta cheese evenly over the shrimp and sauce.",
+      "Remove pan from heat. The residual heat will soften the feta.",
+      "Garnish generously with fresh chopped parsley.",
+      "Serve immediately directly from the pan, with crusty bread for dipping."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 391,
+      "cholesterol_mg": 270,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 37,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 1261,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 22.5,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 122,
+      "cholesterol_mg": 84,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.5,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 394,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 89.9,
+      "dietary_fiber": 8.2,
+      "protein": 74,
+      "saturated_fat": 38.5,
+      "sodium": 54.8,
+      "total_carbs": 3.9,
+      "total_fat": 28.8
+    },
+    "serving_size_g": 320.3,
+    "total_recipe_weight_g": 1281.2
+  },
+  {
+    "recipe_name": "Brasato di Manzo con Mela e Rosmarino",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251101_065954_790919fa.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2025-11-01T06:59:55.202214000Z",
+    "selected_ingredients": [
+      "beef",
+      "apple"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single portion of Brasato di Manzo con Mela e Rosmarino is presented on a clean, round white porcelain dinner plate. At the center, two thick, irregular chunks of dark brown, slow-braised beef, tender and glistening, are arranged organically. A rich, glossy, dark red-brown sauce, studded with softened 1 cm apple cubes and fine herb specks, is generously spooned over and around the beef. Beside the beef, a creamy, pale yellow mound of polenta provides a soft textural contrast. A small, vibrant green sprig of fresh rosemary is placed on top of the beef as a garnish. The composition is balanced with moderate negative space. The dish is set on a simple wooden bistro table, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting highlights the deep colors and textures, creating an inviting, casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with creamy polenta or mashed potatoes.",
+      "Pair with a robust Italian red wine, such as Chianti or Barolo."
+    ],
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Granny Smith apple",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Tomato passata",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chuck dry. Cut into four large, even chunks. Season generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef from pot and set aside.",
+      "Dice onion, carrot, and celery into small cubes (soffritto). Add to the pot. Sauté for 8-10 minutes until softened and translucent, scraping up any browned bits from the bottom.",
+      "Peel, core, and dice the apple into 1 cm cubes. Add to the pot with the soffritto. Cook for 5 minutes, stirring occasionally.",
+      "Pour in red wine. Bring to a simmer, scraping the bottom of the pot. Cook for 5-7 minutes until wine has reduced by half.",
+      "Return seared beef to the pot. Add beef broth, tomato passata, rosemary sprigs, and bay leaf. Ensure beef is mostly submerged; add more broth if needed.",
+      "Bring liquid to a gentle simmer. Cover the pot tightly. Reduce heat to low. Braise for 2.5-3 hours, or until beef is fork-tender. Internal temperature should reach 75°C.",
+      "Remove beef from the pot. Tent with foil to keep warm. Remove rosemary sprigs and bay leaf.",
+      "Increase heat to medium-high. Simmer the sauce for 10-15 minutes, stirring occasionally, until it thickens slightly to a rich consistency. Season with salt and pepper to taste.",
+      "Serve braised beef chunks with the rich sauce. Garnish with fresh rosemary."
+    ],
+    "traditional_techniques": [
+      "Braising (Brasato)",
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 865,
+      "cholesterol_mg": 175,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 67.5,
+      "saturated_fat_g": 15.9,
+      "sodium_mg": 243,
+      "total_carbs_g": 20.2,
+      "total_fat_g": 44.7,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 11.7,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 42,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 12,
+      "protein": 135,
+      "saturated_fat": 80,
+      "sodium": 11,
+      "total_carbs": 7,
+      "total_fat": 57
+    },
+    "serving_size_g": 577,
+    "total_recipe_weight_g": 2307
+  }
+]

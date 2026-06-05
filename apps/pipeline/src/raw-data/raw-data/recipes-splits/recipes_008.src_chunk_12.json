@@ -1,0 +1,670 @@
+[
+  {
+    "recipe_name": "Savory Braised Chicken with Herb Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_braised_chicken_with_herb_rice_20250811_053524_682ef6b6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T05:35:24.578658000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "beef stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a single, robust braised chicken thigh, skin-on and deeply caramelized, resting atop a mound of fluffy, off-white long-grain rice. The chicken, cooked to tender perfection, exhibits rich brown and golden hues from searing and braising. The rice is loosely piled, showing individual grains, flecked with finely chopped green parsley. A glossy, rich brown braising liquid, slightly reduced, pools around the base of the chicken and seeps into the rice, adding depth and sheen. The plate is a clean, round white porcelain dinner plate, centrally composed with ample negative space. A cotton napkin is folded beside it on a simple wooden table. Natural, even lighting illuminates the dish, highlighting its textures and inviting warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Long-grain rice (Basmati or Jasmine)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large braiser or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy. Cook for 6-8 minutes.",
+      "Flip chicken. Sear for 2-3 minutes. Remove chicken from pot. Set aside.",
+      "Dice onion, carrots, and celery into small cubes (mirepoix).",
+      "Add mirepoix to the pot. Sauté until softened, about 5-7 minutes.",
+      "Mince garlic. Add minced garlic and tomato paste to the pot. Cook for 2 minutes, stirring constantly.",
+      "Deglaze the pot with 60ml of beef stock, scraping up any browned bits from the bottom.",
+      "Return chicken to the pot. Add remaining beef stock, thyme, rosemary, and bay leaf.",
+      "Bring liquid to a simmer. Cover the pot. Reduce heat to low. Braise for 45-60 minutes, or until chicken is very tender and internal temperature reaches 75°C (167°F).",
+      "While chicken braises, prepare the rice. Rinse rice under cold water until water runs clear.",
+      "In a medium saucepan, combine rinsed rice with 600ml water and a pinch of salt.",
+      "Bring to a boil. Reduce heat to low. Cover. Cook for 15 minutes, or until all water is absorbed.",
+      "Remove saucepan from heat. Let stand, covered, for 10 minutes. Fluff with a fork.",
+      "Remove braised chicken from the pot. Strain the braising liquid into a clean saucepan. Discard solids.",
+      "Reduce strained braising liquid over medium-high heat until slightly thickened and flavorful. Adjust seasoning as needed.",
+      "To serve, place a portion of fluffy rice on each plate. Top with a braised chicken thigh.",
+      "Spoon reduced braising liquid over the chicken and rice. Garnish with chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 829,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 50.5,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 858,
+      "total_carbs_g": 70.2,
+      "total_fat_g": 35.9,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174.5,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.6,
+      "saturated_fat_g": 2,
+      "sodium_mg": 180.6,
+      "total_carbs_g": 14.8,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.3,
+      "dietary_fiber": 11.4,
+      "protein": 101,
+      "saturated_fat": 46.5,
+      "sodium": 37.3,
+      "total_carbs": 25.5,
+      "total_fat": 46
+    },
+    "serving_size_g": 475,
+    "total_recipe_weight_g": 1900
+  },
+  {
+    "recipe_name": "Запеченные Колбаски с Картофелем и Розмарином",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_%D0%B7%D0%B0%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BE%D0%BB%D0%B1%D0%B0%D1%81%D0%BA%D0%B8_%D1%81_%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D1%84%D0%B5%D0%BB%D0%B5%D0%BC_%D0%B8_%D1%80%D0%BE%D0%B7%D0%BC%D0%B0%D1%80%D0%B8%D0%BD%D0%BE%D0%BC_20250811_050440_109ba7ff.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T05:04:41.009583000Z",
+    "selected_ingredients": [
+      "potato",
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "Сделай вкусно, напиши рецепт на русском",
+    "visual_description": "An individual portion is presented on a clean white porcelain dinner plate. Two or three beautifully browned sausage links are centrally placed. Golden-crisp roasted potato wedges and tender, caramelized onion quarters are scattered around the sausages in an organic, inviting arrangement. Whole, roasted garlic cloves are nestled amongst the vegetables. The dish boasts rich golden-browns from the potatoes and sausages, deep purple-reds from the roasted onions, and vibrant green accents from fresh rosemary sprigs. Textures range from crispy exteriors to soft, fluffy interiors. The plating is professional yet approachable, with moderate negative space. Garnished simply with fresh rosemary sprigs and a light sprinkle of chopped parsley. The plate rests on a simple light wooden table surface, accompanied by a folded cotton napkin. Natural, even lighting highlights the textures, with a softly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Подавайте с простым зеленым салатом или соленьями.",
+      "Можно дополнить горчицей или сметанным соусом."
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Колбаски (свиные или куриные)",
+        "quantity": "600 г"
+      },
+      {
+        "name": "Картофель (средний)",
+        "quantity": "800 г"
+      },
+      {
+        "name": "Лук (красный или желтый)",
+        "quantity": "2 шт."
+      },
+      {
+        "name": "Чеснок",
+        "quantity": "4 зубчика"
+      },
+      {
+        "name": "Розмарин (свежий)",
+        "quantity": "3-4 веточки"
+      },
+      {
+        "name": "Оливковое масло",
+        "quantity": "60 мл"
+      },
+      {
+        "name": "Соль",
+        "quantity": "по вкусу"
+      },
+      {
+        "name": "Черный перец",
+        "quantity": "по вкусу"
+      },
+      {
+        "name": "Петрушка или зеленый лук (свежий)",
+        "quantity": "для украшения"
+      }
+    ],
+    "instructions": [
+      "Разогрейте духовку до 200°C.",
+      "Очистите картофель. Нарежьте картофель крупными дольками или четвертинками.",
+      "Очистите лук. Нарежьте лук крупными четвертинками.",
+      "Очистите чеснок. Раздавите зубчики чеснока ножом, но не режьте мелко.",
+      "В большой миске смешайте картофель, лук, чеснок, оливковое масло, соль и перец.",
+      "Добавьте веточки розмарина. Перемешайте.",
+      "Выложите овощи в один слой на противень.",
+      "Разложите колбаски между овощами.",
+      "Запекайте 30 минут.",
+      "Переверните колбаски и овощи.",
+      "Запекайте еще 20-25 минут, до золотистой корочки картофеля и готовности колбасок.",
+      "Перед подачей украсьте свежей зеленью."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 788.3,
+      "cholesterol_mg": 127.5,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 26.1,
+      "saturated_fat_g": 16.9,
+      "sodium_mg": 1140.5,
+      "total_carbs_g": 50.9,
+      "total_fat_g": 56,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 183.2,
+      "cholesterol_mg": 29.6,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 6.1,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 265.1,
+      "total_carbs_g": 11.8,
+      "total_fat_g": 13,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.5,
+      "dietary_fiber": 19.8,
+      "protein": 52.3,
+      "saturated_fat": 84.5,
+      "sodium": 49.6,
+      "total_carbs": 18.5,
+      "total_fat": 71.8
+    },
+    "serving_size_g": 430.2,
+    "total_recipe_weight_g": 1720.9
+  },
+  {
+    "recipe_name": "Fermented Strawberry Yogurt Mini Entremet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_strawberry_yogurt_mini_entremet_20250811_040055_904e6daa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T04:00:55.926555000Z",
+    "selected_ingredients": [
+      {
+        "name": "yogurt"
+      },
+      {
+        "name": "strawberry"
+      },
+      {
+        "name": "sugar"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "A single Fermented Strawberry Yogurt Mini Entremet is centrally placed on a handcrafted, matte cream-colored ceramic plate, leaving generous white space around it. The entremet is a clean, cylindrical shape, approximately 6cm in diameter and 4cm high, showcasing distinct layers. The top layer is a smooth, off-white plant-based yogurt mousse, subtly creamy. Below, a vibrant, slightly translucent pink layer of fermented strawberry gel is visible, offering a striking color contrast. The base is a natural, rustic oat crumble, with visible whole and crushed oats, providing an earthy brown texture. The overall presentation is minimalistic, emphasizing natural textures and colors. A single, very thin slice of fresh strawberry, a delicate, almost translucent pink, is gently placed on top of the entremet, slightly off-center. A tiny, vibrant green mint leaf or a small, pale pink edible flower is placed beside the strawberry slice. The plate rests on a light, textured bamboo surface. The background is clean and uncluttered, with soft, natural light illuminating the dish, creating subtle shadows and highlighting its organic beauty. An undyed linen napkin in natural beige is folded simply beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Strawberry",
+    "ingredients": [
+      {
+        "name": "Lacto-fermented strawberry puree",
+        "quantity": "150g"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2.5g"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "80g"
+      },
+      {
+        "name": "Coconut sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Coconut oil, melted",
+        "quantity": "30g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Unsweetened plant-based yogurt",
+        "quantity": "250g"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "40g"
+      },
+      {
+        "name": "Plant-based milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh strawberry, thinly sliced",
+        "quantity": "4 slices (for garnish)"
+      },
+      {
+        "name": "Edible flower or mint leaf",
+        "quantity": "4 small (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Prepare lacto-fermented strawberry puree: Combine 200g fresh strawberries (halved or quartered) with 2g sea salt in a clean jar. Cover loosely. Ferment at room temperature for 2-3 days until lightly fizzy. Puree the fermented strawberries. Strain if desired for smoother gel.",
+      "Make strawberry gel inserts: Combine 100g fermented strawberry puree, 20g sugar, and 1g agar-agar in a small saucepan. Bring to a simmer, whisking constantly, for 1 minute. Pour into small silicone molds (e.g., 3-4cm discs). Freeze until solid, about 1 hour.",
+      "Prepare oat crumble base: Preheat oven to 160°C. In a bowl, combine 80g rolled oats, 20g coconut sugar, 30g melted coconut oil, and a pinch of salt. Mix well. Spread on a baking sheet. Bake for 10-12 minutes until golden and crisp. Let cool completely. Crush lightly if needed.",
+      "Make yogurt mousse: In a small saucepan, combine 50ml plant-based milk and 1.5g agar-agar. Whisk and bring to a simmer for 1 minute. Remove from heat. In a separate bowl, whisk together 250g plant-based yogurt, 40g maple syrup, and 1 tsp vanilla extract. Slowly whisk in the warm agar-agar mixture until smooth.",
+      "Assemble mini entremets: Line four individual entremet molds (e.g., 6-7cm diameter) with acetate strips if desired for clean edges. Pour a thin layer of yogurt mousse into the bottom of each mold. Place a frozen strawberry gel insert in the center of the mousse. Cover with more yogurt mousse, filling molds about two-thirds full.",
+      "Add crumble layer: Gently press a layer of oat crumble over the mousse in each mold. Chill entremets in the refrigerator for at least 4 hours, or until fully set.",
+      "Unmold and garnish: Carefully unmold the entremets. Place each on a serving plate. Garnish each entremet with one thin slice of fresh strawberry and a tiny edible flower or mint leaf. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Aloo Chicken Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_aloo_chicken_curry_20250811_032230_98bcab16.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T03:22:30.730497000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion",
+      "garlic",
+      "green pea",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Aloo Chicken Curry is presented in a wide, shallow white ceramic bowl. The centerpiece features large 4cm chunks of moist, seared chicken and 3cm cubes of golden-tender potatoes, all coated in a thick, mahogany-colored gravy. Vibrant green peas are distributed evenly throughout the dish, adding texture and bright color. Softened diced tomatoes are visible within the rich, glossy sauce. The chicken chunks remain whole and unsliced, showing a succulent texture. The arrangement is natural and centered with clean edges. A garnish of vibrant, finely chopped cilantro is scattered over the top. The bowl is placed on a dark walnut table accompanied by a side of fluffy white basmati rice and a piece of charred garlic naan. Soft, natural daylight creates a subtle sheen on the aromatic gravy.",
+    "number_of_servings": 4,
+    "cuisine_type": "North Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm garlic naan or buttered roti",
+      "Accompany with long-grain basmati rice",
+      "Provide a side of cucumber raita to balance the heat",
+      "Serve with a fresh onion and lime kachumber salad"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless and skinless, cut into 4cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Potatoes, peeled and cut into 3cm cubes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onions, finely diced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Ginger, finely grated",
+        "quantity": "20g"
+      },
+      {
+        "name": "Tomatoes, diced",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Green peas, fresh or frozen",
+        "quantity": "150g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "10g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a heavy-bottomed pot over medium-high heat.",
+      "Add cumin seeds and fry until they sizzle and become fragrant.",
+      "Add diced onions to the pot. Sauté until they reach a deep golden brown color.",
+      "Stir in the minced garlic and grated ginger. Cook for 2 minutes.",
+      "Add the chicken chunks. Sear until browned on all sides.",
+      "Stir in the turmeric, ground coriander, and chili powder. Toast for 1 minute.",
+      "Add the diced tomatoes. Cook until they soften and the oil begins to separate from the spice base.",
+      "Add the potato cubes and 400ml of water. Bring the mixture to a boil.",
+      "Reduce the heat to low. Cover the pot and simmer for 20 minutes.",
+      "Add the green peas. Simmer for an additional 5 minutes.",
+      "Verify the chicken internal temperature reaches 75°C.",
+      "Stir in the garam masala and season with salt to taste.",
+      "Garnish with fresh chopped cilantro before serving."
+    ],
+    "notes": [
+      "Ensure the onions are well-browned to develop the deep base flavor of the gravy",
+      "Adjust the chili powder according to preferred spice level",
+      "Use waxy potatoes to ensure they hold their shape during the simmering process"
+    ],
+    "traditional_techniques": [
+      "Tadka",
+      "Bhuna",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 697,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 52.4,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 661,
+      "total_carbs_g": 39.3,
+      "total_fat_g": 37.8,
+      "total_sugars_g": 8.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139.4,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.74,
+      "protein_g": 10.48,
+      "saturated_fat_g": 1.92,
+      "sodium_mg": 132.2,
+      "total_carbs_g": 7.86,
+      "total_fat_g": 7.56,
+      "total_sugars_g": 1.74,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 31,
+      "protein": 105,
+      "saturated_fat": 48,
+      "sodium": 29,
+      "total_carbs": 14,
+      "total_fat": 48
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Beer-Braised Chicken and Turkey with Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_chicken_and_turkey_with_roasted_vegetables_20250811_031204_63ed8802.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T03:12:04.493316000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "rice",
+      "oil",
+      "breadcrumbs",
+      "lemon",
+      "potato",
+      "asparagus",
+      "bean",
+      "beer",
+      "bread",
+      "pickled jalapeno chilies",
+      "turkey"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of Beer-Braised Chicken and Turkey is presented on a clean white porcelain dinner plate. A golden-brown, whole braised chicken thigh rests prominently beside tender, rustic chunks of braised turkey. A generous scoop of fluffy white long-grain rice sits adjacent. Alongside, vibrant roasted vegetables are arranged naturally: golden-brown potato wedges, bright green asparagus spears, and crisp-tender green beans. The chicken and turkey are lightly drizzled with the rich, amber braising liquid. The dish is garnished with a sprinkle of toasted panko breadcrumbs, fresh chopped parsley, and a few bright red pickled jalapeno slices. A fresh lemon wedge is placed on the side. The plate is centered on a simple, light wooden table, accompanied by standard silverware and a folded cotton napkin. A small rustic bowl of extra pickled jalapenos and a thick slice of crusty artisan bread complete the authentic, casual bistro setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the braising liquid."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g total)"
+      },
+      {
+        "name": "turkey breast, cut into 2cm chunks",
+        "quantity": "200g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "light beer (e.g., lager or pale ale)",
+        "quantity": "330ml"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "fresh thyme sprigs",
+        "quantity": "5g"
+      },
+      {
+        "name": "small potatoes, halved or quartered",
+        "quantity": "500g"
+      },
+      {
+        "name": "asparagus spears, trimmed",
+        "quantity": "250g"
+      },
+      {
+        "name": "green beans, trimmed",
+        "quantity": "200g"
+      },
+      {
+        "name": "long-grain rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "water (for rice)",
+        "quantity": "400ml"
+      },
+      {
+        "name": "panko breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "lemon, cut into wedges",
+        "quantity": "1"
+      },
+      {
+        "name": "pickled jalapeno slices, for garnish",
+        "quantity": "30g"
+      },
+      {
+        "name": "fresh parsley, chopped, for garnish",
+        "quantity": "15g"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Season chicken thighs and turkey chunks with salt and pepper.",
+      "Heat 15ml olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs 3-4 minutes per side until golden brown. Remove chicken.",
+      "Add turkey chunks to the pot. Sear until browned. Remove turkey.",
+      "Add remaining 15ml olive oil to the pot. Add diced onion. Sauté 5 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Add chicken stock and thyme sprigs. Return chicken thighs and turkey chunks to the pot. Liquid should partially cover meat.",
+      "Cover pot. Transfer to preheated oven. Braise 30 minutes.",
+      "While chicken braises, prepare vegetables. Toss potatoes with a drizzle of oil, salt, and pepper on a baking sheet. Roast 20 minutes.",
+      "Add asparagus and green beans to the baking sheet with potatoes. Roast another 10-15 minutes, until vegetables are tender and lightly browned.",
+      "Cook rice: Combine rice and 400ml water in a saucepan. Bring to a boil, then reduce heat to low. Cover and simmer 15 minutes, until water is absorbed. Fluff with a fork.",
+      "Remove pot from oven. Check internal temperature of chicken, ensuring it reaches 75°C.",
+      "Toast breadcrumbs: Lightly toast panko breadcrumbs in a dry pan over medium heat until golden and crispy.",
+      "Serve: Place a chicken thigh and turkey chunks on each plate. Spoon braising liquid over. Serve with a portion of rice and roasted vegetables. Garnish with toasted breadcrumbs, fresh chopped parsley, lemon wedge, and pickled jalapeno slices."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for safety. Adjust spiciness by adding more or fewer pickled jalapenos."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 782,
+      "cholesterol_mg": 166,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 49.8,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 277,
+      "total_carbs_g": 88.4,
+      "total_fat_g": 23,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.4,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 36,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 31,
+      "protein": 100,
+      "saturated_fat": 26,
+      "sodium": 12,
+      "total_carbs": 32,
+      "total_fat": 29
+    },
+    "serving_size_g": 775,
+    "total_recipe_weight_g": 3100
+  }
+]

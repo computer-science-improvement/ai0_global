@@ -1,0 +1,543 @@
+[
+  {
+    "recipe_name": "Braised Beef with Thyme and Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_thyme_and_root_vegetables_20250702_180625_7cfaf332.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:06:25.981300000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot",
+      "onion",
+      "thyme",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of rich, savory Braised Beef with Thyme and Root Vegetables is presented in a deep, off-white ceramic bowl, typical of rustic French bistroware. Three generous, irregular chunks of dark, tender braised beef are nestled among vibrant, tender-crisp carrot batons and softened onion wedges. The beef boasts a deep mahogany brown crust from initial searing, contrasting with its moist, shreddable interior. The carrots retain their bright orange hue, while the onions are translucent and slightly caramelized. A glistening, dark brown, thick sauce coats the beef and vegetables, reflecting the rich flavors of red wine and beef broth. Fresh green thyme sprigs are scattered artfully over the top as a garnish, adding a pop of color and aromatic freshness. The bowl is centered on a simple, light-colored wooden table surface, suggesting a casual yet refined dining experience. A folded white linen napkin and a classic silver fork and knife are placed to the side. Natural, soft, even lighting illuminates the dish, highlighting its textures and deep colors without harsh shadows. The background is minimally blurred, hinting at a cozy bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "6"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck roast into 5 cm chunks. Pat dry with paper towels. Season beef generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat. Sear beef chunks in batches until deeply browned on all sides. Remove beef from pot and set aside.",
+      "Reduce heat to medium. Add chopped onions and carrots to the pot. Cook, stirring occasionally, until softened, about 8-10 minutes.",
+      "Mince garlic. Add minced garlic and tomato paste to vegetables. Cook for 2 minutes, stirring constantly.",
+      "Sprinkle flour over vegetables. Stir for 1 minute to cook flour.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer. Cook until wine is reduced by half.",
+      "Return beef to the pot. Add beef broth and thyme sprigs. Ensure beef is mostly submerged. If not, add more broth or water.",
+      "Bring liquid to a gentle simmer. Cover pot tightly. Transfer to a preheated oven at 160°C (325°F).",
+      "Braise for 2.5 to 3 hours, or until beef is fork-tender. Stir occasionally during braising.",
+      "Remove pot from oven. Discard thyme sprigs. Taste and adjust seasoning with salt and pepper.",
+      "Serve braised beef and vegetables hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 758,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 6.09,
+      "protein_g": 69.27,
+      "saturated_fat_g": 11.01,
+      "sodium_mg": 389.4,
+      "total_carbs_g": 33.21,
+      "total_fat_g": 32.61,
+      "total_sugars_g": 11.94,
+      "trans_fat_g": 1.18
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107.6,
+      "cholesterol_mg": 28.4,
+      "dietary_fiber_g": 0.87,
+      "protein_g": 9.83,
+      "saturated_fat_g": 1.56,
+      "sodium_mg": 55.3,
+      "total_carbs_g": 4.71,
+      "total_fat_g": 4.63,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.7,
+      "dietary_fiber": 21.8,
+      "protein": 138.5,
+      "saturated_fat": 55,
+      "sodium": 16.9,
+      "total_carbs": 12.1,
+      "total_fat": 41.8
+    },
+    "serving_size_g": 704.5,
+    "total_recipe_weight_g": 2818
+  },
+  {
+    "recipe_name": "Kombucha-Poached Pears with Citrus Zest",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_kombucha-poached_pears_with_citrus_zest_20250702_180057_07822dc3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:00:57.605925000Z",
+    "selected_ingredients": [
+      {
+        "name": "salmon"
+      },
+      {
+        "name": "corn"
+      },
+      {
+        "name": "bean"
+      },
+      {
+        "name": "tomato"
+      },
+      {
+        "name": "swiss chard"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "A single portion of kombucha-poached pears is elegantly presented on a round, handcrafted ceramic plate in a natural cream hue, resting on a light, textured reclaimed wood surface. Two pear halves, gently poached to a tender, pale golden hue, are arranged side-by-side, cut-side down, showcasing their smooth, unblemished skin. A light, translucent syrup, reduced from the kombucha poaching liquid, is subtly drizzled over and around the pears, creating a delicate sheen. A small, artful scattering of finely julienned candied lemon and orange zest, translucent and glistening, is placed beside the pears, adding a vibrant pop of yellow and orange and a hint of texture. The composition is clean and minimalist, with generous negative space emphasizing the pears as the focal point. An undyed linen napkin in a natural beige tone is folded neatly beside the plate. Soft, diffused natural light illuminates the dish from the side, enhancing its organic beauty and inviting texture, against a clean, uncluttered background that hints at natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Seasonal Pears",
+    "ingredients": [
+      {
+        "name": "Pears (firm, e.g., Bosc or Anjou)",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Plain unsweetened kombucha",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Peel pears. Cut each pear in half lengthwise. Carefully remove the core.",
+      "In a saucepan, combine kombucha, maple syrup, and juice from half a lemon.",
+      "Add pear halves to the liquid. Ensure pears are mostly submerged. Add a splash of water if needed.",
+      "Bring liquid to a gentle simmer over medium heat. Poach pears for 15-20 minutes, or until tender but still holding their shape. Do not overcook.",
+      "While pears poach, prepare citrus zest. Carefully peel zest from the lemon and orange in large strips, avoiding the white pith.",
+      "Cut zest into very thin julienne strips.",
+      "In a small saucepan, combine water and granulated sugar. Bring to a boil, stirring until sugar dissolves.",
+      "Add julienned citrus zest to the syrup. Simmer for 5-7 minutes until zest becomes translucent.",
+      "Drain candied zest and spread it on parchment paper to cool and dry slightly.",
+      "Remove poached pears from the liquid. If desired, reduce the poaching liquid over high heat for a few minutes until it thickens slightly into a light syrup.",
+      "To serve, place two pear halves per serving on a plate. Drizzle with the reduced poaching liquid.",
+      "Garnish each serving with the cooled candied citrus zest."
+    ]
+  },
+  {
+    "recipe_name": "Spicy Salami & Creamy Tomato Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_salami_%26_creamy_tomato_rigatoni_20250702_173744_32b64611.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T17:37:44.760956000Z",
+    "selected_ingredients": [
+      "pasta",
+      "salami",
+      "cream",
+      "egg",
+      "olive",
+      "hot sauce",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Spicy Salami & Creamy Tomato Rigatoni is presented in a white porcelain shallow bowl, centered on a simple, textured wooden table. The rigatoni is coated in a glossy, light orange-red sauce, showcasing its creamy texture. Scattered throughout are golden-brown, crisped diced salami pieces, providing a visual and textural contrast. Halved, plump red cherry tomatoes and dark, glossy black olive halves are interspersed, adding vibrant color and briny notes. A sprinkle of fresh green chopped parsley garnishes the dish, along with a light dusting of grated Pecorino Romano. The composition is natural and balanced, with appropriate negative space. A neatly folded white cotton napkin rests beside the bowl, and a small, rustic ceramic dish holds extra grated cheese, slightly out of focus in the background. Natural, soft light illuminates the scene, highlighting the rich colors and textures of the dish in a casual bistro setting.",
+    "number_of_servings": 1,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Pecorino Romano cheese.",
+      "Offer crusty Italian bread for dipping in the sauce.",
+      "Pair with a glass of light-bodied red wine, such as a Sangiovese or Chianti."
+    ],
+    "hero_ingredient": "Salami",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "90g"
+      },
+      {
+        "name": "Hard salami",
+        "quantity": "50g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "100g"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "20g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Large egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Pecorino Romano cheese, grated",
+        "quantity": "20g"
+      },
+      {
+        "name": "Garlic clove, minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Calabrian chili paste (or hot sauce)",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Boil a pot of salted water. Cook rigatoni according to package directions until al dente.",
+      "Before draining, reserve 60ml of pasta cooking water. Drain pasta.",
+      "While pasta cooks, dice salami into small cubes. Heat olive oil in a large skillet over medium heat.",
+      "Add diced salami to the skillet. Cook 3-4 minutes until crisp. Remove salami with a slotted spoon, leaving rendered fat in the pan. Set salami aside.",
+      "Add minced garlic, halved cherry tomatoes, and Calabrian chili paste to the skillet. Sauté 3-4 minutes until tomatoes soften slightly.",
+      "Stir in heavy cream. Simmer 1 minute.",
+      "In a small bowl, whisk egg yolk with grated Pecorino Romano and 30ml of reserved pasta water until smooth.",
+      "Add cooked rigatoni and crisped salami back into the skillet with the sauce. Toss to coat.",
+      "Remove skillet from heat. Slowly pour in the egg yolk mixture while stirring constantly. The sauce will emulsify and thicken. Add more reserved pasta water if needed for a creamy consistency.",
+      "Stir in halved black olives and fresh chopped parsley. Season with salt and black pepper to taste.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Emulsification"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 989.55,
+      "cholesterol_mg": 311.9,
+      "dietary_fiber_g": 4.89,
+      "protein_g": 32.23,
+      "saturated_fat_g": 25.72,
+      "sodium_mg": 2248.42,
+      "total_carbs_g": 77.35,
+      "total_fat_g": 61.07,
+      "total_sugars_g": 7.28,
+      "trans_fat_g": 0.75
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 265.15,
+      "cholesterol_mg": 83.57,
+      "dietary_fiber_g": 1.31,
+      "protein_g": 8.63,
+      "saturated_fat_g": 6.89,
+      "sodium_mg": 602.47,
+      "total_carbs_g": 20.73,
+      "total_fat_g": 16.36,
+      "total_sugars_g": 1.95,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 103.97,
+      "dietary_fiber": 17.46,
+      "protein": 64.46,
+      "saturated_fat": 128.6,
+      "sodium": 97.76,
+      "total_carbs": 28.13,
+      "total_fat": 78.29
+    },
+    "serving_size_g": 373.2,
+    "total_recipe_weight_g": 373.2
+  },
+  {
+    "recipe_name": "Fermented Carrot & Lentil Spread",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_carrot_%26_lentil_spread_20250702_173614_83c36f30.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T17:36:14.991355000Z",
+    "selected_ingredients": [
+      "carrot",
+      "lentil"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The Fermented Carrot & Lentil Spread is presented in a handcrafted, matte beige ceramic bowl, centered on a light reclaimed wood table. The spread itself is a smooth, creamy texture with a warm, earthy orange hue. A few thinly sliced fermented carrot rounds are artfully placed on top, showcasing their slightly translucent, vibrant color and adding a subtle textural contrast. A scattering of finely chopped fresh parsley provides a pop of bright green and aromatic freshness. The overall plating is minimalistic and organic, allowing the natural colors and textures of the ingredients to shine. The bowl sits on an undyed linen napkin, with ample negative space around it. Soft, natural light illuminates the scene from the side, highlighting the spread's inviting texture. The background is clean and uncluttered, with subtle natural elements, emphasizing an eco-conscious aesthetic. The dish is a single sharing portion, inviting a relaxed, communal experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Carrots",
+        "quantity": "500g"
+      },
+      {
+        "name": "Brown Lentils",
+        "quantity": "200g dried"
+      },
+      {
+        "name": "Non-chlorinated Water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Wash carrots thoroughly. Thinly slice or grate carrots.",
+      "Dissolve sea salt in non-chlorinated water to create brine.",
+      "Pack sliced carrots tightly into a clean, sterile glass jar. Pour brine over carrots, ensuring they are fully submerged. Use a weight if necessary to keep carrots under liquid.",
+      "Seal the jar loosely or use an airlock lid. Ferment at room temperature (20-24°C) for 3-5 days. Burp the jar daily to release gas.",
+      "Rinse brown lentils. Combine lentils with 600ml fresh water in a pot. Bring to a boil, then reduce heat and simmer for 20-25 minutes until tender. Drain well.",
+      "Drain fermented carrots, reserving about 50ml of the brine.",
+      "Combine cooked lentils, fermented carrots, peeled garlic cloves, lemon juice, and olive oil in a food processor.",
+      "Process until a smooth, creamy spread forms. Add reserved carrot brine gradually to achieve desired consistency.",
+      "Season the spread with black pepper and additional salt if needed. Taste and adjust.",
+      "Transfer the Fermented Carrot & Lentil Spread to a serving bowl. Garnish with finely chopped fresh parsley."
+    ],
+    "notes": [
+      "Serve with homemade seed crackers, vegetable crudités, or toasted sourdough bread.",
+      "This recipe embraces zero-waste by utilizing whole carrots, including their natural sugars for fermentation.",
+      "Adjust fermentation time based on desired tanginess."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ]
+  },
+  {
+    "recipe_name": "Creamy Salami and Mushroom Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_salami_and_mushroom_tagliatelle_20250702_173610_93554418.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T17:36:11.356521000Z",
+    "selected_ingredients": [
+      "pasta",
+      "salami",
+      "cream",
+      "egg",
+      "olive",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Salami and Mushroom Tagliatelle is presented in a clean, deep white porcelain bowl, centrally placed on a simple wooden table surface. The tagliatelle is neatly coiled, coated in a glossy, rich, off-white cream sauce. Interspersed among the pasta are golden-brown, thin slices of sautéed button mushrooms and crisp, savory 1 cm cubes of hard salami. Halved black olives provide dark contrasting accents. The dish is finished with a sprinkle of bright green chopped fresh parsley, adding a pop of color. The arrangement is natural and inviting, with moderate negative space on the plate. A folded white cotton napkin and standard silver fork are placed beside the bowl. Natural, even lighting highlights the textures and colors. The background suggests a modern bistro setting, subtly blurred to keep focus on the dish.",
+    "number_of_servings": 1,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately, ensuring the pasta is hot and the sauce emulsified.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Salami",
+    "ingredients": [
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Hard salami",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Button mushrooms",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Large egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Black olives",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White onion",
+        "quantity": "20 g"
+      }
+    ],
+    "instructions": [
+      "Cook tagliatelle pasta in salted boiling water according to package directions until al dente. Reserve 60 ml pasta water. Drain pasta.",
+      "While pasta cooks, dice salami into 1 cm cubes. Slice mushrooms thinly. Mince garlic. Finely dice white onion.",
+      "Heat olive oil in a large skillet over medium heat. Add salami cubes. Cook until crispy and fat is rendered, about 4-5 minutes. Remove salami from skillet, leave rendered fat.",
+      "Add diced onion to the skillet. Sauté until softened, about 2 minutes. Add minced garlic. Sauté for 30 seconds until fragrant.",
+      "Add sliced mushrooms to the skillet. Cook until golden brown and tender, about 4-5 minutes. Season with salt and pepper.",
+      "Pour heavy cream into the skillet. Bring to a gentle simmer. Reduce heat to low.",
+      "In a small bowl, whisk egg yolk with 30 ml of reserved pasta water. Gradually whisk this mixture into the cream sauce in the skillet. Stir constantly to prevent scrambling.",
+      "Add cooked tagliatelle to the skillet. Add crispy salami cubes and halved black olives. Toss well to coat pasta evenly with the sauce, allowing it to emulsify. Add more reserved pasta water if needed for desired consistency.",
+      "Stir in grated Parmesan cheese. Taste and adjust seasoning.",
+      "Chop fresh parsley. Garnish pasta with fresh parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Mantecare"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1182,
+      "cholesterol_mg": 351,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 38.5,
+      "saturated_fat_g": 32.9,
+      "sodium_mg": 1491,
+      "total_carbs_g": 86.5,
+      "total_fat_g": 76.1,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 289,
+      "cholesterol_mg": 85.9,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9.4,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 364.4,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 18.6,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 117,
+      "dietary_fiber": 19,
+      "protein": 77,
+      "saturated_fat": 165,
+      "sodium": 65,
+      "total_carbs": 31,
+      "total_fat": 98
+    },
+    "serving_size_g": 409,
+    "total_recipe_weight_g": 409
+  }
+]

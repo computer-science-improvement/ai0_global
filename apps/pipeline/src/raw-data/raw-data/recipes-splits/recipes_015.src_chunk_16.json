@@ -1,0 +1,704 @@
+[
+  {
+    "recipe_name": "Refined Pork and Chicken Consommé with Poached Chicken and Confit Potato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_refined_pork_and_chicken_consomm%C3%A9_with_poached_chicken_and_confit_potato_20250628_075043_1a05733e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:50:44.112817000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "parmesan cheese",
+      "chili",
+      "onion",
+      "oil",
+      "brown rice",
+      "pork"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Russian cuisine",
+    "visual_description": "A pristine, wide, shallow white bone china bowl centers the composition on a premium grey veined marble surface. Abundant negative space surrounds the elegantly presented consommé. The crystal-clear, deep amber consommé forms the base. Nestled within are precise 1.5 cm cubes of pale white poached chicken breast and creamy yellow confit potato, arranged organically in the bowl's center. A single, irregularly shaped brown rice and Parmesan crisp, golden-brown and delicate, rests artfully at the rim. A few precise droplets of vibrant red chili-garlic oil dot the consommé's surface, providing a subtle color contrast. Two or three tiny, fresh green micro dill sprigs are placed delicately alongside the main elements, adding a final touch of fresh color. The scene is lit with dramatic professional lighting, casting soft shadows, enhancing the dish's sophisticated minimalism. A perfectly folded white linen napkin and simple, elegant silver flatware complete the refined setting.",
+    "number_of_servings": 2,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a small dollop of high-quality smetana (sour cream) on the side for those who wish to add it, presented in a small, elegant spoon.",
+      "Accompany with a thin slice of Borodinsky bread (dark rye bread) if desired, served on a separate small plate."
+    ],
+    "hero_ingredient": "Clarified Broth",
+    "ingredients": [
+      {
+        "name": "Pork neck bones",
+        "quantity": "500g"
+      },
+      {
+        "name": "Chicken wings/carcasses",
+        "quantity": "500g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "3 litres"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lean ground chicken",
+        "quantity": "200g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "2"
+      },
+      {
+        "name": "Finely diced onion",
+        "quantity": "100g"
+      },
+      {
+        "name": "Finely diced carrot",
+        "quantity": "50g"
+      },
+      {
+        "name": "Finely diced celery",
+        "quantity": "50g"
+      },
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "200g"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Firm potato (e.g., Yukon Gold), peeled",
+        "quantity": "200g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Cooked brown rice",
+        "quantity": "30g"
+      },
+      {
+        "name": "Finely grated Parmesan cheese",
+        "quantity": "30g"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Garlic clove, thinly sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried chili flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Micro dill sprigs",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Broth: Place roasted pork bones, chicken wings, quartered onion, smashed garlic, carrots, celery, peppercorns, and bay leaf in a large pot. Cover with cold water. Bring slowly to a simmer. Skim any foam. Reduce heat to low. Simmer gently for 4-6 hours. Strain broth through a fine-mesh sieve lined with cheesecloth. Discard solids. Season broth with salt. Chill completely.",
+      "Clarify Broth (Consommé): In a large bowl, combine ground chicken, egg whites, finely diced onion, carrot, and celery. Mix well. Gently whisk this \"raft\" mixture into the chilled broth. Place pot over medium-low heat. Stir constantly until raft begins to form and float to the top. Stop stirring. Create a small \"chimney\" in the raft for steam to escape. Simmer very gently for 45-60 minutes. The broth should be clear. Carefully ladle the clear consommé through a fine-mesh sieve lined with cheesecloth, avoiding disturbing the raft. Keep warm.",
+      "Poach Chicken: Season chicken breast with salt and white pepper. Gently poach in simmering water or chicken broth until internal temperature reaches 75°C. This takes about 10-15 minutes depending on thickness. Cool slightly. Cut chicken into small, precise cubes (approx. 1.5 cm).",
+      "Prepare Confit Potato: Cut peeled potato into small, precise cubes (approx. 1.5 cm). Place potato cubes, neutral oil, smashed garlic, thyme, and salt in a small saucepan. Heat gently over very low heat. Cook until potatoes are tender but hold their shape, about 20-30 minutes. Do not fry. Drain potatoes.",
+      "Make Brown Rice & Parmesan Crisp: Preheat oven to 160°C. Line a baking sheet with parchment paper. Mix cooked brown rice, grated Parmesan, and a pinch of salt. Spread mixture very thinly in an irregular, organic shape (approx. 8x10 cm) on the parchment paper. Bake for 10-15 minutes, or until golden brown and crispy. Watch carefully to prevent burning. Cool on a wire rack.",
+      "Prepare Chili-Garlic Oil: Heat neutral oil in a small saucepan over low heat. Add sliced garlic and chili flakes. Gently infuse for 5-7 minutes. Do not brown garlic. Strain oil, discarding solids.",
+      "Assemble Dish: Gently warm the cubed chicken and confit potato. Place precise amounts of chicken cubes and potato cubes artfully in the bottom of a wide, shallow soup bowl. Carefully ladle the hot, clear consommé around the elements, filling the bowl about halfway. Place one brown rice and Parmesan crisp delicately on the side of the bowl or slightly submerged. Drizzle a few drops of chili-garlic oil over the consommé. Garnish with a few micro dill sprigs. Serve immediately."
+    ],
+    "notes": [
+      "Achieving a truly clear consommé requires patience and careful simmering.",
+      "The brown rice and Parmesan crisp adds textural contrast and a hint of umami, elevating the traditional broth."
+    ],
+    "traditional_techniques": [
+      "Clarification (for consommé)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 632.5,
+      "cholesterol_mg": 119,
+      "dietary_fiber_g": 2.45,
+      "protein_g": 45.1,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 1350,
+      "total_carbs_g": 23.3,
+      "total_fat_g": 41.25,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 112.6,
+      "cholesterol_mg": 21.18,
+      "dietary_fiber_g": 0.44,
+      "protein_g": 8.03,
+      "saturated_fat_g": 1.37,
+      "sodium_mg": 240.32,
+      "total_carbs_g": 4.15,
+      "total_fat_g": 7.34,
+      "total_sugars_g": 0.14,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.67,
+      "dietary_fiber": 8.75,
+      "protein": 90.2,
+      "saturated_fat": 38.5,
+      "sodium": 58.7,
+      "total_carbs": 8.47,
+      "total_fat": 52.88
+    },
+    "serving_size_g": 561.75,
+    "total_recipe_weight_g": 1123.5
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Breast with Truffled Potato Purée and Dill Oil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_breast_with_truffled_potato_pur%C3%A9e_and_dill_oil_20250628_074804_c1773ca8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:48:05.185792000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Russian cuisine",
+    "visual_description": "A refined pan-seared chicken breast, golden-brown and plump, rests slightly off-center on a large, pristine white bone china plate. Adjacent, a graceful quenelle of silky, off-white truffled potato purée is artfully placed, its smooth texture contrasting with the chicken's seared surface. A few deliberate droplets and a thin, swirling line of vibrant green dill oil encircle the chicken and purée, adding a splash of intense color and artistic flair. Two or three delicate, translucent potato tuile shards are meticulously positioned atop the purée, offering a textural counterpoint. The composition is minimalist, with abundant negative space highlighting the precise placement of each element. A few micro dill sprigs provide a final fresh garnish. The setting is a luxurious white Carrara marble surface, complemented by a precisely folded white linen napkin. Dramatic professional lighting casts soft shadows, emphasizing the dish's architectural precision and premium ingredients against an ultra-minimalist background, with a single refined restaurant portion presented.",
+    "number_of_servings": 2,
+    "cuisine_type": "Russian",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast, skinless boneless",
+        "quantity": "2 (approx. 180g each)"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "300g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30g"
+      },
+      {
+        "name": "White truffle oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Potato starch",
+        "quantity": "10g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare dill oil: Blanch 20g dill briefly. Immediately shock in ice water. Squeeze dry. Blend dill with 50ml olive oil until smooth. Strain through a fine mesh sieve. Set aside.",
+      "Prepare herbed butter: Soften 50g butter. Finely chop 10g dill and mince garlic. Mix dill, garlic, salt, and pepper into butter. Form into a small log, wrap in cling film, chill until firm.",
+      "Prepare potato purée: Peel potatoes. Cut into 2cm cubes. Boil in salted water until very tender. Drain well. Pass potatoes through a ricer or fine mesh sieve into a warm saucepan.",
+      "Heat cream and milk. Add remaining 50g butter to riced potatoes. Gradually whisk in warm cream and milk until purée is silky smooth. Season with salt. Stir in truffle oil just before serving. Keep warm.",
+      "Prepare potato tuiles: Whisk potato starch with 50ml water until smooth. Heat a non-stick pan over medium heat. Pour a thin layer of starch mixture onto the hot pan to form small, irregular shapes. Cook until crisp and translucent. Carefully remove and let cool. Break into shards.",
+      "Prepare chicken: Pat chicken breasts dry. Make a deep pocket horizontally in each chicken breast without cutting through. Insert half of the chilled herbed butter into each pocket. Secure opening with toothpicks if needed.",
+      "Season chicken breasts generously with salt and pepper. Heat a heavy-bottomed pan over medium-high heat with a drizzle of olive oil. Sear chicken breasts skin-side down (if skin-on) or presentation-side down for 5-7 minutes until golden brown.",
+      "Flip chicken. Transfer pan to a preheated oven at 180°C (350°F). Roast for 10-12 minutes, or until internal temperature reaches 75°C (167°F). Rest chicken for 5 minutes before plating."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1123,
+      "cholesterol_mg": 291,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 61.3,
+      "saturated_fat_g": 37.3,
+      "sodium_mg": 987,
+      "total_carbs_g": 34.5,
+      "total_fat_g": 82.8,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 222,
+      "cholesterol_mg": 57,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 12.1,
+      "saturated_fat_g": 7.4,
+      "sodium_mg": 195,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 16.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97,
+      "dietary_fiber": 12.5,
+      "protein": 122.6,
+      "saturated_fat": 186.5,
+      "sodium": 42.9,
+      "total_carbs": 12.5,
+      "total_fat": 106.2
+    },
+    "serving_size_g": 506,
+    "total_recipe_weight_g": 1012
+  },
+  {
+    "recipe_name": "Roasted Tomato and Feta Salad with Poached Eggs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_tomato_and_feta_salad_with_poached_eggs_20250628_074730_4f041cee.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:47:30.855577000Z",
+    "selected_ingredients": [
+      "egg",
+      "milk",
+      "cheese",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented on a clean, round white porcelain dinner plate, showcasing a vibrant composition. A generous bed of fresh, crisp green arugula forms the base. Scattered artfully across the arugula are plump, roasted cherry tomato halves, their skins slightly wrinkled and caramelized, revealing a deeper red hue. Interspersed among the tomatoes are delicate, thinly sliced rings of red onion, providing a subtle purple contrast. Crumbled white feta cheese is generously sprinkled over the vegetables, adding creamy texture and bright color. Each plate is crowned with a perfectly poached egg, its pristine white exterior holding a promise of a golden, runny yolk. A light drizzle of golden-green vinaigrette glistens over all components, enhancing their natural colors. The dish is arranged with a natural, organic flow, ensuring each ingredient is visible. The presentation is professional yet approachable, with moderate negative space. The plate rests on a simple wooden table surface, accompanied by standard silver flatware and a folded cotton napkin, evoking a modern bistro setting with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "200 g, crumbled"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh arugula",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2, thinly sliced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve cherry tomatoes. Toss with 15 ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 15-20 minutes until slightly softened and caramelized.",
+      "Prepare the dressing. In a small bowl, whisk remaining 45 ml olive oil, red wine vinegar, Dijon mustard, honey, and dried oregano. Season with salt and pepper.",
+      "Poach the eggs. Fill a medium saucepan with water. Bring to a gentle simmer. Add a splash of vinegar. Carefully crack each egg into a small ramekin. Gently slide eggs into simmering water. Cook for 3-4 minutes for runny yolks. Remove with a slotted spoon. Drain on paper towels.",
+      "Assemble the salad. In a large bowl, combine arugula, roasted tomatoes, and thinly sliced red onion. Drizzle with half the dressing. Toss gently to coat.",
+      "Divide salad among four plates. Top each portion with crumbled feta cheese. Place one poached egg on top of each salad. Drizzle with remaining dressing. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.5,
+      "calories": 376,
+      "cholesterol_mg": 231,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 15.6,
+      "saturated_fat_g": 11.1,
+      "sodium_mg": 846,
+      "total_carbs_g": 11.7,
+      "total_fat_g": 30.3,
+      "total_sugars_g": 8.7,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 125,
+      "cholesterol_mg": 77,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 5.2,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 281,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 10,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 77,
+      "dietary_fiber": 9,
+      "protein": 31,
+      "saturated_fat": 56,
+      "sodium": 37,
+      "total_carbs": 4,
+      "total_fat": 39
+    },
+    "serving_size_g": 301,
+    "total_recipe_weight_g": 1205
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Saffron Corn Risotto and Roasted Pepper Coulis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_saffron_corn_risotto_and_roasted_pepper_coulis_20250628_074655_0ea20516.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:46:55.923603000Z",
+    "selected_ingredients": [
+      "chicken",
+      "carrot",
+      "tomato",
+      "corn",
+      "basil",
+      "rice",
+      "parmesan cheese",
+      "broccoli",
+      "bell pepper"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, elegant portion of pan-seared chicken breast rests atop a vibrant, creamy saffron corn risotto on a pristine, matte white designer plate. The chicken, with its crisp, golden-brown skin, is cut into thick, succulent chunks, showcasing its moist interior. The risotto, a rich yellow hue from saffron and studded with bright corn kernels, flows organically on the plate, its creamy texture evident. A vibrant, smooth roasted red bell pepper and tomato coulis is artfully swiped across the plate, creating a contrasting pop of deep red. Precisely placed beside the risotto are a few tender, glazed orange carrot batons and crisp, blanched green broccoli florets. A delicate drizzle of emerald green basil oil completes the composition, adding a final touch of color and aroma. The dish is presented on a luxurious white Carrara marble surface with abundant negative space. Dramatic, professional lighting casts subtle shadows, highlighting the textures. A perfectly folded white linen napkin sits beside the plate, emphasizing the refined dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, skin-on, boneless",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Butter, unsalted",
+        "quantity": "50g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5g"
+      },
+      {
+        "name": "Fresh corn kernels",
+        "quantity": "150g (from approx. 2 ears)"
+      },
+      {
+        "name": "Red bell peppers, roasted, peeled, deseeded",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Roma tomatoes, roasted",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Baby carrots, peeled",
+        "quantity": "12"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Saffron Corn Risotto: Warm chicken stock in a saucepan. Infuse saffron threads in a small amount of warm stock. In a separate large pan, melt 25g butter with 1 tbsp olive oil over medium heat. Sauté diced shallots until translucent. Add Arborio rice; toast for 2 minutes, stirring constantly. Pour in white wine; stir until absorbed. Begin adding warm stock, one ladle at a time, stirring continuously. Wait for each addition to be absorbed before adding more. After 10 minutes, stir in fresh corn kernels. Continue adding stock and stirring for 8-10 more minutes, until rice is al dente and creamy. Stir in remaining 25g butter, grated Parmesan, and saffron-infused stock. Season with salt and pepper. Cover and rest for 2 minutes.",
+      "Prepare Roasted Pepper & Tomato Coulis: Preheat oven to 200°C. Halve bell peppers and tomatoes. Drizzle with olive oil, season with salt and pepper. Roast for 20-25 minutes until tender and slightly charred. Cool, then peel bell peppers and tomatoes. In a blender, combine roasted bell peppers, tomatoes, 1 garlic clove, and 2 tbsp olive oil. Blend until very smooth. Pass through a fine-mesh sieve for a refined texture. Season with salt.",
+      "Prepare Vegetables: Bring a pot of salted water to a boil. Blanch broccoli florets for 2 minutes until tender-crisp. Immediately transfer to an ice bath to stop cooking. Drain well. In a small pan, boil baby carrots in salted water until tender. Drain. Glaze carrots in a separate pan with a knob of butter and a splash of water until slightly caramelized.",
+      "Prepare Basil Oil: Blanch basil leaves in boiling water for 10 seconds. Immediately transfer to an ice bath. Squeeze out excess water. Blend blanched basil with 3 tbsp olive oil until smooth. Pass through a fine-mesh sieve for clear oil.",
+      "Cook Chicken: Pat chicken breasts dry. Season generously with salt and pepper. Heat 1 tbsp olive oil in an oven-safe, heavy-bottomed pan over medium-high heat. Place chicken breasts skin-side down. Sear for 6-8 minutes until skin is golden brown and crispy. Flip chicken. Transfer pan to preheated 180°C oven. Roast for 10-12 minutes, or until internal temperature reaches 75°C. Rest chicken for 5 minutes before slicing thick pieces.",
+      "Assemble Dish: Ladle a generous portion of Saffron Corn Risotto onto the center of each plate. Create a fluid, organic shape. Spoon Roasted Pepper & Tomato Coulis artfully around or beside the risotto. Place a few glazed carrot batons and blanched broccoli florets precisely on or next to the risotto. Arrange thick-cut pieces of seared chicken breast on top of the risotto. Drizzle sparingly with basil oil. Serve immediately."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1151.8,
+      "cholesterol_mg": 238.8,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 77.6,
+      "saturated_fat_g": 20.3,
+      "sodium_mg": 1405.5,
+      "total_carbs_g": 86.8,
+      "total_fat_g": 41.7,
+      "total_sugars_g": 11.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153.6,
+      "cholesterol_mg": 31.8,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 10.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 187.4,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80,
+      "dietary_fiber": 25,
+      "protein": 155,
+      "saturated_fat": 102,
+      "sodium": 61,
+      "total_carbs": 32,
+      "total_fat": 53
+    },
+    "serving_size_g": 750,
+    "total_recipe_weight_g": 3000
+  },
+  {
+    "recipe_name": "Roasted Chicken Supreme, Potato Gratin, Mushroom-Dill Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_supreme%2C_potato_gratin%2C_mushroom-dill_jus_20250628_074648_cecd2799.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:46:48.503357000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Russian cuisine",
+    "visual_description": "A single, perfectly roasted chicken supreme, skin golden and crispy, rests gracefully on a premium bone china plate. Adjacent, a precisely cut rectangular portion of creamy potato gratin, its layers visible, offers a soft counterpoint. A rich, glossy mushroom-dill jus, deep amber-brown, pools elegantly beneath and around the chicken, its velvety texture inviting. Garnish is minimal: a few delicate, vibrant green dill fronds are artfully placed atop the gratin and near the chicken. The color palette is sophisticated, with warm golden browns, creamy whites, and deep earthy tones complemented by fresh green. Abundant negative space surrounds the central composition, emphasizing the dish's refined simplicity and precision.",
+    "number_of_servings": 2,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a small side of quick-pickled cucumbers or a simple fresh dill salad."
+    ],
+    "hero_ingredient": "Chicken Supreme",
+    "ingredients": [
+      {
+        "name": "Chicken Supremes (bone-in, skin-on chicken breast)",
+        "quantity": "2 (approx. 250g each)"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "150g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Prepare potato gratin: Thinly slice potatoes (1-2mm). Mince 1 clove garlic. In a saucepan, gently heat cream with minced garlic, pinch of nutmeg, salt, and pepper. Do not boil. Arrange potato slices in a small oven-safe dish, layering and pouring cream mixture over each layer. Ensure potatoes are fully submerged. Bake for 40-50 minutes, or until tender and golden brown.",
+      "Prepare chicken: Pat chicken supremes dry. Season generously with salt and pepper. Heat olive oil in an oven-safe skillet over medium-high heat. Place chicken skin-side down. Sear for 5-7 minutes until skin is golden and crispy. Flip chicken. Add 20g butter to skillet. Transfer skillet to preheated oven. Roast for 15-20 minutes, or until internal temperature reaches 75°C (167°F). Rest chicken for 5 minutes before serving.",
+      "Prepare mushroom-dill jus: While chicken roasts, slice mushrooms and mince shallot and remaining garlic clove. In the same skillet (after removing chicken), add remaining butter. Sauté shallot and garlic for 2 minutes until fragrant. Add mushrooms. Cook until tender and browned, about 5-7 minutes. Pour in chicken stock. Bring to a simmer. Reduce heat and cook until liquid is reduced by half and slightly thickened, about 10-15 minutes. Strain jus through a fine-mesh sieve for a smooth consistency. Stir in finely chopped fresh dill. Season with salt and pepper.",
+      "To serve: Cut the potato gratin into two precise rectangular portions. Place one portion on each plate. Position a roasted chicken supreme next to the gratin. Spoon the mushroom-dill jus artfully around the chicken and gratin. Garnish with a few small sprigs of fresh dill."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For the gratin, pressing down on the potatoes during baking helps achieve a denser, more cohesive texture."
+    ],
+    "traditional_techniques": [
+      "Use of dill as a prominent herb",
+      "Incorporation of potato as a staple",
+      "Classic roasting technique"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1372,
+      "cholesterol_mg": 398.5,
+      "dietary_fiber_g": 12.8,
+      "protein_g": 78.8,
+      "saturated_fat_g": 45.5,
+      "sodium_mg": 516.5,
+      "total_carbs_g": 49.1,
+      "total_fat_g": 99.1,
+      "total_sugars_g": 6,
+      "trans_fat_g": 2.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160.3,
+      "cholesterol_mg": 46.6,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9.2,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 60.4,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 11.6,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 132.8,
+      "dietary_fiber": 45.5,
+      "protein": 157.5,
+      "saturated_fat": 227.3,
+      "sodium": 22.5,
+      "total_carbs": 17.9,
+      "total_fat": 127.1
+    },
+    "serving_size_g": 855.5,
+    "total_recipe_weight_g": 1711
+  }
+]

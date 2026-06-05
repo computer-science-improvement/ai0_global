@@ -1,0 +1,795 @@
+[
+  {
+    "recipe_name": "Chicken Cacciatore with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260512_172711_8c6229a2.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-12T17:27:12.327782000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of wide, golden pappardelle ribbons is nested in a clean white porcelain pasta bowl. The pasta is coated in a thick, vibrant red San Marzano tomato sauce. A whole, bone-in braised chicken thigh rests centrally on the pasta, showing a rich, caramelized exterior. Small, tender cubes of carrot and celery, along with dark, wrinkled Kalamata olives, are distributed throughout the sauce. Freshly chopped flat-leaf parsley provides a vivid green garnish. The dish is set on a dark wood table with a folded linen napkin and a silver fork. Soft, natural light emphasizes the glossy texture of the sauce and the rustic appeal of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta bread",
+      "Pair with a medium-bodied Chianti wine",
+      "Offer freshly grated Pecorino Romano at the table"
+    ],
+    "hero_ingredient": "Braised Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "bone-in, skin-on chicken thighs",
+        "quantity": "800g"
+      },
+      {
+        "name": "pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "crushed San Marzano tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "dry red wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "celery stalk, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "fresh rosemary, chopped",
+        "quantity": "10g"
+      },
+      {
+        "name": "fresh thyme, chopped",
+        "quantity": "10g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "50g"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken with salt and pepper.",
+      "Heat olive oil in a large pan over medium-high heat.",
+      "Sear chicken skin-side down until golden.",
+      "Flip chicken and brown the other side.",
+      "Remove chicken from pan. Set aside.",
+      "Add onion, carrot, and celery to the pan.",
+      "Sauté vegetables for 5 minutes.",
+      "Stir in garlic, rosemary, and thyme. Cook 1 minute.",
+      "Pour in wine. Deglaze the pan bottom.",
+      "Add tomatoes and olives. Stir well.",
+      "Return chicken to the pan. Cover.",
+      "Simmer 30 minutes until chicken reaches 75°C.",
+      "Boil salted water. Cook pappardelle until al dente.",
+      "Drain pasta. Toss with sauce.",
+      "Place pasta in bowls. Top with one whole chicken thigh."
+    ],
+    "notes": [
+      "Ensure the sauce is thick enough to coat the wide pasta ribbons",
+      "Use high-quality San Marzano tomatoes for authentic flavor"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 877,
+      "cholesterol_mg": 185,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 43.2,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 364,
+      "total_carbs_g": 85,
+      "total_fat_g": 38.5,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 219,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 10.8,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 91,
+      "total_carbs_g": 21.3,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 20,
+      "protein": 86,
+      "saturated_fat": 51,
+      "sodium": 16,
+      "total_carbs": 31,
+      "total_fat": 49
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Korean Braised Beef with Pear and Gochugaru",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260512_041323_1c95072d.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-12T04:13:23.957355000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken",
+      "pasta",
+      "tomato",
+      "bread",
+      "onion",
+      "potato",
+      "mustard",
+      "apple",
+      "rice",
+      "sausage",
+      "pork",
+      "chocolate",
+      "bell pepper",
+      "corn",
+      "flour",
+      "cheddar",
+      "garlic",
+      "hot sauce",
+      "sugar",
+      "coffee",
+      "lemon",
+      "mushroom",
+      "bacon",
+      "cream",
+      "orange",
+      "shrimp",
+      "coriander",
+      "margarine",
+      "milk",
+      "oats",
+      "mozzarella",
+      "yogurt",
+      "ginger",
+      "yeast",
+      "basil",
+      "ham",
+      "oil",
+      "butter",
+      "broccoli",
+      "parsley",
+      "soy sauce",
+      "brown sugar",
+      "lime",
+      "noodle",
+      "pear",
+      "vanilla",
+      "cheese",
+      "cream cheese",
+      "cocoa powder",
+      "tortilla",
+      "soba noodle",
+      "seaweed",
+      "pomelo",
+      "nori",
+      "kefir",
+      "jasmine tea",
+      "heavy cream",
+      "gochugaru",
+      "coconut butter",
+      "coconut cream",
+      "7 up",
+      "vermicelli",
+      "turnip",
+      "rice flour",
+      "pepperoni",
+      "oyster sauce",
+      "gnocchi",
+      "cacao",
+      "smoked paprika",
+      "rice vinegar",
+      "rice paper",
+      "egg yolk",
+      "cornstarch",
+      "sunflower seed",
+      "sweetened condensed milk",
+      "green onion",
+      "white pepper",
+      "vinegar",
+      "salami",
+      "sesame oil",
+      "popcorn",
+      "orange zest",
+      "mandarin",
+      "macadamia nut",
+      "lime zest",
+      "green tea",
+      "egg white",
+      "clove",
+      "chive",
+      "black tea",
+      "vodka",
+      "tea",
+      "sweet potato",
+      "smoked sausage",
+      "sour cream",
+      "rice noodle",
+      "pomegranate",
+      "lemon zest",
+      "ketchup",
+      "fish",
+      "egg noodle",
+      "coca cola",
+      "cardamom",
+      "caramel",
+      "banana",
+      "tofu",
+      "white wine",
+      "rye bread",
+      "pretzel",
+      "milk chocolate",
+      "curry",
+      "coconut milk",
+      "buttermilk",
+      "bay leaf",
+      "rosemary",
+      "orange juice",
+      "paprika",
+      "olive oil",
+      "marshmallow",
+      "hazelnut",
+      "cabbage",
+      "brown rice",
+      "honey",
+      "egg",
+      "carrot",
+      "spinach",
+      "mint",
+      "beer",
+      "white chocolate",
+      "peanut",
+      "cucumber",
+      "cashew",
+      "thyme",
+      "peanut butter",
+      "mayonnaise"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features large, 4cm cubes of tender braised beef coated in a glossy, dark mahogany glaze. The beef is piled naturally in a deep, textured ceramic bowl. To the side, a neat mound of fluffy, white jasmine rice provides a neutral base. Vibrant green broccoli florets and bright orange carrot batons are arranged beside the beef, retaining a slight crunch. Thinly sliced green onions and a sprinkle of toasted sunflower seeds garnish the top. The bowl sits on a dark wood table. Beside it, a pair of stainless steel Korean chopsticks and a long-handled spoon rest on a small stone holder. A small side dish of pickled cucumber slices adds a pop of freshness. Natural side lighting highlights the succulent texture of the meat.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with stainless steel chopsticks and a long-handled spoon",
+      "Accompany with kimchi or pickled radish (mu-ssam)",
+      "Provide a small bowl of clear vegetable broth on the side"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "beef chuck, 4cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "pear, grated",
+        "quantity": "1"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "gochugaru (Korean chili flakes)",
+        "quantity": "15g"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "ginger, minced",
+        "quantity": "20g"
+      },
+      {
+        "name": "sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "honey",
+        "quantity": "30ml"
+      },
+      {
+        "name": "jasmine rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "broccoli florets",
+        "quantity": "200g"
+      },
+      {
+        "name": "carrot batons",
+        "quantity": "1"
+      },
+      {
+        "name": "green onions, sliced",
+        "quantity": "2"
+      },
+      {
+        "name": "sunflower seeds",
+        "quantity": "10g"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Combine grated pear, soy sauce, gochugaru, garlic, ginger, sesame oil, and honey in a bowl.",
+      "Toss beef cubes in the marinade. Refrigerate for 30 minutes.",
+      "Heat vegetable oil in a heavy-bottomed pot over medium-high heat.",
+      "Sear beef cubes in batches until browned on all sides.",
+      "Pour remaining marinade and 200ml water into the pot.",
+      "Bring to a boil, then reduce heat to low.",
+      "Cover and simmer for 90 minutes until beef is fork-tender.",
+      "Cook jasmine rice according to package instructions.",
+      "Steam broccoli florets and carrot batons until tender-crisp.",
+      "Remove lid from beef and increase heat to medium.",
+      "Reduce liquid until it forms a thick, glossy glaze over the beef.",
+      "Serve beef over rice with steamed vegetables.",
+      "Garnish with green onions and sunflower seeds."
+    ],
+    "notes": [
+      "Ensure beef is simmered slowly to maintain tenderness.",
+      "The pear contains enzymes that naturally tenderize the beef fibers.",
+      "Adjust gochugaru quantity to control the spice level."
+    ],
+    "traditional_techniques": [
+      "fruit-based tenderizing",
+      "braising",
+      "reduction glazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.6,
+      "calories": 860.3,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 4,
+      "protein_g": 44.4,
+      "saturated_fat_g": 16.5,
+      "sodium_mg": 1110,
+      "total_carbs_g": 59.4,
+      "total_fat_g": 49.5,
+      "total_sugars_g": 14.6,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.9,
+      "calories": 191.2,
+      "cholesterol_mg": 34.7,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.9,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 246.7,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 11,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 14.3,
+      "protein": 88.8,
+      "saturated_fat": 82.5,
+      "sodium": 48.3,
+      "total_carbs": 21.6,
+      "total_fat": 63.5
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Mexican Pork Adobo (Adobo de Cerdo)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260511_183340_1f89244f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-11T18:33:41.519996000Z",
+    "selected_ingredients": [
+      "pork",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Adobo de Cerdo presented in a wide, shallow white porcelain bowl. The dish features four large, rustic 4cm chunks of tender braised pork shoulder. The meat is thoroughly coated in a thick, mahogany-colored sauce with a glossy sheen. A garnish of fresh, vibrant green cilantro leaves and three thin rings of raw white onion are placed centrally. A single bright green lime wedge sits on the rim. The plate is set on a dark walnut wood table with a folded white linen napkin. In the background, a small stack of warm corn tortillas is partially visible, wrapped in a traditional woven cloth. Natural daylight highlights the rich textures of the sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas",
+      "Accompany with Mexican red rice",
+      "Provide extra lime wedges and pickled red onions"
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, cut into 4cm chunks",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Dried ancho chilies",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Dried guajillo chilies",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried Mexican oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Remove stems and seeds from all dried chilies.",
+      "Toast chilies in a dry pan for 2 minutes over medium heat.",
+      "Soak toasted chilies in hot water for 15 minutes.",
+      "Blend soaked chilies, garlic, vinegar, cumin, and oregano into a smooth paste.",
+      "Season pork chunks with salt.",
+      "Heat oil in a heavy-bottomed pot over medium-high heat.",
+      "Sear pork chunks in batches until browned on all sides.",
+      "Return all pork to the pot.",
+      "Pour chili paste over the meat.",
+      "Add chicken stock and stir to combine.",
+      "Simmer covered for 90 minutes until meat is tender.",
+      "Remove lid and reduce sauce for 15 minutes until thick and glossy."
+    ],
+    "notes": [
+      "Ensure the pork shoulder has some fat for a tender result.",
+      "Strain the chili paste through a fine-mesh sieve for a smoother sauce texture."
+    ],
+    "traditional_techniques": [
+      "toasting dried chilies",
+      "braising",
+      "spice grinding"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 748,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 7,
+      "protein_g": 54.5,
+      "saturated_fat_g": 16.8,
+      "sodium_mg": 1531,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 52.5,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 239.4,
+      "cholesterol_mg": 64,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 17.4,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 489.9,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 16.8,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 25,
+      "protein": 109,
+      "saturated_fat": 84,
+      "sodium": 67,
+      "total_carbs": 5,
+      "total_fat": 67
+    },
+    "serving_size_g": 312.5,
+    "total_recipe_weight_g": 1250
+  },
+  {
+    "recipe_name": "Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260511_152545_eb80726a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-11T15:25:53.677511000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "high protein",
+    "visual_description": "A single portion of rustic chicken cacciatore served in a shallow, cream-colored ceramic bowl with minor surface imperfections. Two whole, bone-in chicken thighs are the centerpiece, their skin appearing dark golden and tender from braising. The chicken is partially submerged in a thick, chunky tomato sauce featuring visible pieces of softened translucent onions and whole black olives. A single fresh rosemary sprig is placed casually on top. The bowl sits on a weathered dark wood kitchen table. Beside the bowl is a thick piece of torn crusty bread. The scene is illuminated by warm, soft overhead kitchen lighting, creating a cozy, authentic Italian home-dining atmosphere. A simple linen napkin and a stainless steel fork are placed to the left of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough bread to soak up the tomato sauce",
+      "Pair with a side of simple polenta or rustic mashed potatoes",
+      "Traditional family-style dining involves placing the skillet in the center of the table"
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Heat olive oil in a large deep skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden brown.",
+      "Flip chicken and sear for 4 minutes. Remove chicken from skillet.",
+      "Add diced onion to the skillet. Sauté for 5 minutes until soft.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes, oregano, and the rosemary sprig.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Simmer on low heat for 30 minutes until chicken reaches 75°C internally.",
+      "Stir in the olives 5 minutes before serving."
+    ],
+    "notes": [
+      "Use bone-in thighs for maximum flavor and protein content",
+      "Ensure the sauce reduces until thick to concentrate the savory tomato profile",
+      "Always check the thickest part of the chicken for a safe internal temperature of 75°C"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1716,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 444.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 53,
+      "sodium": 75,
+      "total_carbs": 7,
+      "total_fat": 54
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1543
+  },
+  {
+    "recipe_name": "Spaghetti alla Gricia with White Onion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260511_135642_d9ec9c3a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 7,
+    "timestamp": "2026-05-11T13:56:43.265705000Z",
+    "selected_ingredients": [
+      {
+        "name": "onion",
+        "comment": "white"
+      },
+      "bacon",
+      {
+        "name": "pasta",
+        "comment": "spaghetti"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features a clean, professional presentation on a wide white porcelain plate. A generous, organic nest of glossy spaghetti sits in the center, coated in a creamy, translucent emulsion. Prominent 1 cm chunks of golden-brown, rendered bacon are distributed throughout the pasta. Soft, translucent white onion strips are visible, entwined with the noodles. A light dusting of finely grated Pecorino Romano and coarse black pepper specks finish the top. The plate is set on a dark walnut wood table with a folded white linen napkin. A small bowl of extra Pecorino and a glass of red wine sit in the soft-focus background. Lighting is natural and even, highlighting the textures of the silk-like sauce and the crispy meat.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve in a pre-warmed pasta bowl",
+      "Pair with a dry Frascati or structured red wine",
+      "Provide extra Pecorino Romano on the side"
+    ],
+    "hero_ingredient": "Bacon",
+    "ingredients": [
+      {
+        "name": "spaghetti",
+        "quantity": "400 g"
+      },
+      {
+        "name": "bacon (thick-cut)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "white onion",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Pecorino Romano cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "black peppercorns",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "sea salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring 4 liters of water to a boil. Add 40 g of salt.",
+      "Cut bacon into 1 cm thick chunks.",
+      "Peel and slice onions into thin half-moons.",
+      "Place bacon in a cold large skillet. Heat over medium-high.",
+      "Fry bacon until fat renders and edges turn golden-brown. Remove chunks. Keep fat in pan.",
+      "Add onions to the skillet. Cook over medium heat until translucent and soft.",
+      "Boil spaghetti until 2 minutes before al dente.",
+      "Crush peppercorns coarsely in a mortar and pestle.",
+      "Transfer 120 ml of pasta water to the onion pan. Add pepper.",
+      "Drain pasta. Add to the skillet with onions.",
+      "Toss pasta vigorously over medium heat. Add bacon chunks back to the pan.",
+      "Remove from heat. Add grated Pecorino Romano.",
+      "Stir quickly to create a creamy emulsion. Add more pasta water if dry.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Always use cold bacon in a cold pan to maximize fat rendering",
+      "Do not add salt to the sauce; the bacon and Pecorino provide sufficient salt",
+      "The creaminess comes from the emulsion of cheese and starchy water, not cream"
+    ],
+    "traditional_techniques": [
+      "mantecatura",
+      "rendering fat"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 736,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 24.8,
+      "saturated_fat_g": 11.2,
+      "sodium_mg": 1412,
+      "total_carbs_g": 83.1,
+      "total_fat_g": 31.5,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 245,
+      "cholesterol_mg": 18.3,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.3,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 470.7,
+      "total_carbs_g": 27.7,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18.3,
+      "dietary_fiber": 15.4,
+      "protein": 49.6,
+      "saturated_fat": 56,
+      "sodium": 61.4,
+      "total_carbs": 30.2,
+      "total_fat": 40.4
+    },
+    "serving_size_g": 300,
+    "total_recipe_weight_g": 1200
+  }
+]

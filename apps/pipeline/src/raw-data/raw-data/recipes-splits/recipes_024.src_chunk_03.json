@@ -1,0 +1,619 @@
+[
+  {
+    "recipe_name": "Classic Vanilla Celebration Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_vanilla_celebration_cake_20250624_031821_03734851.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:18:22.191902000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single slice of Classic Vanilla Celebration Cake rests on a simple, round white ceramic plate. The slice reveals two layers of light, airy vanilla sponge separated by a generous layer of creamy white vanilla buttercream. The top and sides of the slice are also coated in buttercream, with a few rustic swirls. In the background, the remaining whole cake, lightly frosted with more rustic swirls, sits on a wooden cake stand on a well-used wooden dining table. The table features a casually placed, folded beige linen napkin and a plain fork. Warm, soft light from an overhead kitchen fixture illuminates the scene, creating a cozy, lived-in atmosphere. The colors are natural: golden-brown cake, off-white buttercream. The focus is on the inviting texture and homemade appeal of the cake.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Vanilla",
+    "ingredients": [
+      {
+        "name": "Self-raising flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "150g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Milk",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Unsalted butter (for buttercream)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vanilla extract (for buttercream)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Milk (for buttercream)",
+        "quantity": "1-2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 15cm round cake tin. Line base with baking paper.",
+      "Beat 150g butter and 150g caster sugar in a bowl until pale and fluffy.",
+      "Add eggs one at a time. Beat well after each addition.",
+      "Stir in 1 tsp vanilla extract.",
+      "Fold in 150g self-raising flour gradually until just combined.",
+      "Add 2 tbsp milk. Mix gently.",
+      "Pour batter into prepared tin. Smooth top.",
+      "Bake 25-30 minutes. Cake is done when a skewer inserted into the center comes out clean.",
+      "Cool in tin for 10 minutes. Transfer to wire rack to cool completely.",
+      "For buttercream: Beat 100g softened butter in a clean bowl until soft.",
+      "Gradually add 200g icing sugar. Beat until smooth.",
+      "Stir in 1 tsp vanilla extract and 1-2 tbsp milk. Beat until light and fluffy.",
+      "Once cake is completely cool, slice horizontally into two even layers.",
+      "Spread half the buttercream on the bottom layer.",
+      "Place top layer on. Spread remaining buttercream over top and sides of the cake.",
+      "Decorate simply as desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 87.5,
+      "calories": 995,
+      "cholesterol_mg": 275,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.6,
+      "saturated_fat_g": 33.6,
+      "sodium_mg": 211,
+      "total_carbs_g": 117.5,
+      "total_fat_g": 55.3,
+      "total_sugars_g": 89.1,
+      "trans_fat_g": 2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 34.4,
+      "calories": 391,
+      "cholesterol_mg": 108,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 3.8,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 83,
+      "total_carbs_g": 46.2,
+      "total_fat_g": 21.7,
+      "total_sugars_g": 35,
+      "trans_fat_g": 0.8
+    },
+    "daily_value_percentages": {
+      "cholesterol": 92,
+      "dietary_fiber": 4,
+      "protein": 19,
+      "saturated_fat": 168,
+      "sodium": 9,
+      "total_carbs": 43,
+      "total_fat": 71
+    },
+    "serving_size_g": 254.5,
+    "total_recipe_weight_g": 1018
+  },
+  {
+    "recipe_name": "Chicken with Savory Chocolate-Chili Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_with_savory_chocolate-chili_sauce_20250624_031821_09ba5741.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:18:21.625230000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chocolate",
+      "lemon",
+      "hot sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, pan-seared chicken breast, golden-brown with a crisp exterior, is centered on a clean white porcelain dinner plate. A rich, glossy dark chocolate-chili sauce is generously spooned over the chicken, creating a deep, appealing sheen. A vibrant lemon wedge rests beside the chicken, offering a bright color contrast. Alongside, a neat mound of fluffy white quinoa or rice provides a neutral base. Bright green, whole asparagus spears are artfully arranged next to the starch, adding a fresh visual element. A sprinkle of finely chopped fresh cilantro or parsley garnishes the dish. The plate sits on a simple wooden table surface with a folded cotton napkin beside it. Natural, even lighting illuminates the dish, highlighting its textures and colors, creating a professional yet inviting presentation in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dark chocolate (70-85% cocoa)",
+        "quantity": "50 g, finely chopped"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "10 ml, or to taste"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Fresh cilantro or parsley",
+        "quantity": "15 g, chopped, for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Quinoa or rice",
+        "quantity": "200 g, uncooked"
+      },
+      {
+        "name": "Asparagus spears or green beans",
+        "quantity": "250 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts 4-5 minutes per side until golden brown. Internal temperature must reach 75°C. Remove chicken from skillet; set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Cook until softened, about 3 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in chicken stock. Bring to a simmer. Scrape up any browned bits from the bottom of the pan.",
+      "Add chopped dark chocolate and hot sauce. Stir until chocolate is melted and sauce is smooth.",
+      "Return chicken breasts to the skillet. Spoon sauce over chicken. Simmer gently for 5 minutes, ensuring chicken is cooked through.",
+      "Stir in fresh lemon juice and lemon zest. Taste and adjust seasoning.",
+      "While chicken cooks, prepare quinoa or rice according to package directions.",
+      "Steam or blanch asparagus spears or green beans until tender-crisp.",
+      "To serve, place a portion of quinoa or rice on each plate. Arrange chicken breast beside it. Spoon ample chocolate-chili sauce over chicken. Arrange asparagus spears neatly. Garnish with fresh chopped cilantro or parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 650,
+      "cholesterol_mg": 153.4,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 66.7,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 219.7,
+      "total_carbs_g": 44.4,
+      "total_fat_g": 21.9,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 143.8,
+      "cholesterol_mg": 33.9,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 14.7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 48.6,
+      "total_carbs_g": 9.8,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.1,
+      "dietary_fiber": 24.3,
+      "protein": 133.4,
+      "saturated_fat": 31,
+      "sodium": 9.6,
+      "total_carbs": 16.1,
+      "total_fat": 28.1
+    },
+    "serving_size_g": 452.25,
+    "total_recipe_weight_g": 1809
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Tomato Basil Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_tomato_basil_pasta_20250624_031810_c894da39.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:18:10.909040000Z",
+    "selected_ingredients": [
+      "chicken",
+      "basil",
+      "onion",
+      "pasta",
+      "parmesan",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Golden-brown pan-seared chicken medallions are artfully arranged on a clean white porcelain dinner plate, nestled beside a generous portion of rigatoni pasta. The pasta is richly coated in a vibrant, slightly rustic tomato-basil sauce, showing flecks of red tomato and green basil. Finely grated Parmesan cheese is lightly scattered over the entire dish, adding a delicate white contrast. Fresh basil leaves, whole or gently torn, are sparsely placed as a garnish, enhancing the aromatic appeal and color. The chicken is cooked through, juicy, and prominently displayed. The composition maintains moderate negative space, showcasing the dish as the focal point. The setting features a simple wooden table, a folded cotton napkin, and traditional flatware, all under natural, even lighting, creating a modern bistro ambiance with an Italian touch.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with fresh, crusty Italian bread for dipping in the sauce.",
+      "Offer a simple green salad dressed with olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and pepper. Cut each breast into 2-3 thick medallions.",
+      "Heat 30 ml olive oil in a large skillet over medium-high heat. Sear chicken medallions 4-5 minutes per side until golden brown and cooked to 75°C internal temperature. Remove chicken. Set aside.",
+      "Finely dice the onion. Mince the garlic. Add remaining 30 ml olive oil to the same skillet. Add diced onion. Sauté 5 minutes until softened.",
+      "Add minced garlic. Sauté 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Bring to a simmer. Reduce heat to low. Simmer sauce 15-20 minutes, stirring occasionally, until slightly thickened.",
+      "While sauce simmers, cook rigatoni pasta according to package directions until al dente. Drain pasta. Reserve 120 ml pasta water.",
+      "Roughly chop half the fresh basil. Stir chopped basil into the tomato sauce. Season sauce with salt and pepper to taste.",
+      "Add cooked rigatoni to the sauce. Toss to coat pasta evenly. If sauce is too thick, add reserved pasta water as needed.",
+      "Return seared chicken medallions to the skillet with the pasta and sauce. Gently toss to combine.",
+      "Grate Parmesan cheese. Roughly tear remaining fresh basil leaves for garnish.",
+      "Serve immediately. Top each portion with grated Parmesan and fresh basil."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 933,
+      "cholesterol_mg": 171,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 78.9,
+      "saturated_fat_g": 7.6,
+      "sodium_mg": 761,
+      "total_carbs_g": 88.1,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170,
+      "cholesterol_mg": 31.1,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 14.3,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 138.4,
+      "total_carbs_g": 16,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 22.1,
+      "protein": 157.8,
+      "saturated_fat": 38,
+      "sodium": 33.1,
+      "total_carbs": 32,
+      "total_fat": 36
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Tomato and Paneer Salad with Roasted Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato_and_paneer_salad_with_roasted_onions_20250624_031709_0a9ea841.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:17:10.273966000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "paneer",
+      "coriander",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented on a clean, round white porcelain plate. Diced red tomatoes form the base, interspersed with thin, caramelized roasted red onion slices. Golden-brown, 2cm paneer cubes are artfully arranged among the vegetables, ensuring even distribution. A vibrant green scattering of fresh coriander leaves garnishes the top, contrasting with the rich reds and golden tones. The light, zesty dressing is visibly drizzled over the components, adding a subtle sheen. The plate is set on a simple wooden table surface, accompanied by a folded white cotton napkin and a small white ceramic bowl holding a side of mint chutney. Natural, even lighting highlights the fresh ingredients and balanced composition, creating an approachable yet refined restaurant-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve alongside warm naan bread or roti.",
+      "Offer a small side of mint chutney or raita."
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Paneer",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "4 large (approx. 600g)"
+      },
+      {
+        "name": "Red Onions",
+        "quantity": "2 medium (approx. 300g)"
+      },
+      {
+        "name": "Fresh Coriander",
+        "quantity": "30g bunch"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Chili Powder (mild)",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Slice red onions into thin rings. Toss with 15ml olive oil, a pinch of salt, and pepper. Spread on a baking tray. Roast for 15-20 minutes until tender and slightly caramelized. Let cool.",
+      "Cut paneer into 2cm cubes. Heat 15ml olive oil in a non-stick pan over medium-high heat. Add paneer cubes. Pan-fry for 2-3 minutes per side until golden brown and slightly crisp. Remove and set aside.",
+      "Dice tomatoes into 1.5cm pieces. Finely chop fresh coriander. Mince garlic cloves.",
+      "Prepare the dressing: In a small bowl, whisk together remaining 30ml olive oil, juice of 1 lemon, minced garlic, cumin powder, chili powder, salt, and pepper. Mix well.",
+      "In a large serving bowl, combine diced tomatoes, roasted onion slices, and pan-fried paneer cubes. Pour the dressing over the salad. Gently toss to coat all ingredients.",
+      "Garnish generously with chopped fresh coriander before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 418,
+      "cholesterol_mg": 52.5,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 16.6,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 536.9,
+      "total_carbs_g": 18.7,
+      "total_fat_g": 31.9,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123,
+      "cholesterol_mg": 15.4,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 4.9,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 157.9,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 15,
+      "protein": 33,
+      "saturated_fat": 66,
+      "sodium": 23,
+      "total_carbs": 7,
+      "total_fat": 41
+    },
+    "serving_size_g": 340,
+    "total_recipe_weight_g": 1360
+  },
+  {
+    "recipe_name": "Pan-Seared Pork with Creamy Mustard-Chili Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_pork_with_creamy_mustard-chili_sauce_20250624_031706_b28cdc92.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:17:07.332341000Z",
+    "selected_ingredients": [
+      "cornstarch",
+      "pork",
+      "cream",
+      "onion",
+      "mustard",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Pork with Creamy Mustard-Chili Sauce is presented on a clean, round white porcelain dinner plate. Three to four thick, golden-brown seared pork medallions are arranged naturally in the center. A generous amount of rich, creamy, off-white mustard-chili sauce coats the pork and pools elegantly. Thinly sliced, caramelized onions are visible beneath and around the medallions. Bright flecks of minced red chili and vibrant green chopped fresh parsley are scattered over the sauce, providing pops of color and freshness. The presentation is professional and balanced, with moderate negative space. The plate rests on a simple wooden table, accompanied by a folded white cotton napkin and standard silver flatware, under soft, natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Pork Tenderloin",
+    "ingredients": [
+      {
+        "name": "Pork tenderloin",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Trim pork tenderloin. Cut into 2.5 cm thick medallions. Season generously with salt and pepper.",
+      "Heat olive oil and butter in a large pan over medium-high heat. Sear pork medallions for 3-4 minutes per side until golden brown. Cook to an internal temperature of 63°C. Remove pork from pan. Set aside.",
+      "Reduce heat to medium. Add thinly sliced onions to the pan. Sauté for 8-10 minutes until softened and caramelized.",
+      "Add minced garlic and finely minced red chili to the pan. Cook for 1 minute until fragrant.",
+      "Deglaze the pan with chicken stock. Scrape up any browned bits. Bring to a simmer.",
+      "Stir in heavy cream and Dijon mustard. Reduce heat to low. Simmer for 5 minutes.",
+      "In a small bowl, whisk cornstarch with cold water to create a slurry. Slowly whisk slurry into the sauce. Cook for 2-3 minutes, stirring constantly, until sauce thickens.",
+      "Return seared pork medallions to the pan. Spoon sauce over pork. Heat through for 1-2 minutes.",
+      "Taste and adjust seasoning. Garnish with freshly chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the amount of red chili to your preferred spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 493,
+      "cholesterol_mg": 173,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 48.9,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 258,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 27.1,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 49,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 13.7,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 72,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57.8,
+      "dietary_fiber": 5,
+      "protein": 97.7,
+      "saturated_fat": 66.2,
+      "sodium": 11.2,
+      "total_carbs": 4,
+      "total_fat": 34.7
+    },
+    "serving_size_g": 357,
+    "total_recipe_weight_g": 1428
+  }
+]

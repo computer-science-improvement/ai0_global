@@ -1,0 +1,678 @@
+[
+  {
+    "recipe_name": "Aji de Gallina",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_aji_de_gallina_20250625_081428_3f8de2af.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:14:29.324723000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "potato",
+      "chili",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Aji de Gallina is presented on a clean, round white porcelain plate, resting on a rustic wooden table. Thick rounds of boiled potato form a neat base. Piled atop is a generous portion of creamy, vibrant yellow-orange chicken stew. Shredded chicken is visibly integrated into the rich, velvety sauce, which shows subtle red from tomato and white from melted queso fresco. The sauce is thick, clinging to chicken and potatoes, yet fluid. Garnishes are meticulously placed: two half-moon slices of hard-boiled egg, two halved black olives, and a sprinkle of bright green chopped parsley provide contrasting colors and textures. The composition is balanced, with moderate negative space. A simple cotton napkin rests beside the plate. Natural, even lighting illuminates the dish, highlighting its comforting warmth and vibrant hues, creating an approachable, refined restaurant presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "cultural_origin": "Peruvian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of fluffy white rice to absorb the creamy sauce.",
+      "Traditionally, aji de gallina is accompanied by hard-boiled eggs and black olives.",
+      "Consider a simple side salad with a light vinaigrette to cut through the richness."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Queso Fresco",
+        "quantity": "150 g, crumbled"
+      },
+      {
+        "name": "Evaporated milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Hard-boiled eggs",
+        "quantity": "2, sliced"
+      },
+      {
+        "name": "Black olives",
+        "quantity": "8, halved"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Boil chicken breasts in salted water until cooked through. Internal temperature must reach 75°C. Remove chicken. Shred chicken finely using two forks. Reserve 400 ml of chicken broth.",
+      "While chicken boils, boil potatoes in a separate pot of salted water until fork-tender. Drain. Peel and slice three-quarters of the potatoes into 1 cm thick rounds. Set aside. Mash the remaining quarter of the potatoes.",
+      "Heat vegetable oil in a large pot or deep skillet over medium heat. Add finely diced onion. Sauté until translucent, about 8-10 minutes.",
+      "Add minced garlic and tomato paste. Cook for 1 minute until fragrant. Add aji amarillo paste. Stir and cook for 3 minutes, stirring constantly.",
+      "Pour in reserved chicken broth. Bring to a simmer. Add shredded chicken and mashed potato. Stir well to combine.",
+      "Reduce heat to low. Stir in crumbled queso fresco and evaporated milk. Cook, stirring occasionally, until cheese melts and sauce thickens to a creamy consistency, about 5-7 minutes. Do not boil vigorously. Season with salt and pepper to taste.",
+      "Arrange sliced potatoes on individual serving plates. Ladle generous portions of the creamy chicken mixture over the potatoes.",
+      "Garnish each plate with hard-boiled egg slices, black olive halves, and chopped fresh parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "The spice level can be adjusted by varying the amount of aji amarillo paste.",
+      "The sauce should be creamy and rich, not watery. Adjust broth or mashed potato if needed."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Aji"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.42,
+      "calories": 711.19,
+      "cholesterol_mg": 226.02,
+      "dietary_fiber_g": 6.88,
+      "protein_g": 58.69,
+      "saturated_fat_g": 8.97,
+      "sodium_mg": 1289.97,
+      "total_carbs_g": 49.52,
+      "total_fat_g": 31.25,
+      "total_sugars_g": 8.75,
+      "trans_fat_g": 0.27
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.08,
+      "calories": 135.49,
+      "cholesterol_mg": 43.06,
+      "dietary_fiber_g": 1.31,
+      "protein_g": 11.18,
+      "saturated_fat_g": 1.71,
+      "sodium_mg": 245.75,
+      "total_carbs_g": 9.43,
+      "total_fat_g": 5.95,
+      "total_sugars_g": 1.67,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75.34,
+      "dietary_fiber": 24.57,
+      "protein": 117.38,
+      "saturated_fat": 44.85,
+      "sodium": 56.09,
+      "total_carbs": 18.01,
+      "total_fat": 40.06
+    },
+    "serving_size_g": 524.9,
+    "total_recipe_weight_g": 2099.6
+  },
+  {
+    "recipe_name": "Spanish Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_arroz_con_pollo_20250625_081428_29c928ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:14:29.069013000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil",
+      "parsley",
+      "thyme",
+      "red pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A wide, shallow white porcelain bowl contains a vibrant mound of golden-hued short-grain rice. Two whole bone-in, skin-on chicken thighs rest atop the rice, featuring a deeply seared, crispy bronze skin. Evenly distributed through the rice are 1cm cubes of charred red bell pepper and finely diced translucent onions. The rice is moist and slightly glossy from the olive oil and tomato reduction. Sprigs of fresh, bright green flat-leaf parsley are scattered over the dish. The plate sits on a rustic light oak table next to a folded white cotton napkin and a polished silver fork. Natural side-lighting highlights the textures of the crispy skin and the individual grains of rice.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve in a traditional shallow terracotta dish or paella pan",
+      "Accompany with a side of garlic aioli",
+      "Pair with a chilled glass of Spanish Albariño"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red bell pepper, 1cm dice",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Roma tomatoes, grated",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide pan over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden.",
+      "Flip chicken and sear for 3 minutes. Remove from pan.",
+      "Sauté onion and red pepper in the same pan for 5 minutes.",
+      "Add garlic and thyme. Cook for 1 minute until fragrant.",
+      "Stir in grated tomato. Cook for 4 minutes until liquid evaporates.",
+      "Add rice to the pan. Stir for 2 minutes to toast the grains.",
+      "Pour in white wine. Scrape the bottom of the pan to deglaze.",
+      "Add chicken stock. Bring to a simmer.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Reduce heat to low. Cover and simmer for 20 minutes.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Remove from heat. Let rest covered for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form",
+      "Grate the tomatoes to remove skins easily while keeping the pulp"
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "deglazing",
+      "toasting rice"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 700,
+      "cholesterol_mg": 134,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 31,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 1444,
+      "total_carbs_g": 64.5,
+      "total_fat_g": 32.1,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 175,
+      "cholesterol_mg": 33.5,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 361,
+      "total_carbs_g": 16.1,
+      "total_fat_g": 8,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 9,
+      "protein": 62,
+      "saturated_fat": 36,
+      "sodium": 63,
+      "total_carbs": 23,
+      "total_fat": 41
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Fermented Tomato & Sourdough Panzanella with Roasted Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_%26_sourdough_panzanella_with_roasted_chicken_20250625_081423_19b9928b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:14:24.340409000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A vibrant Fermented Tomato & Sourdough Panzanella with Roasted Chicken is presented on a handcrafted ceramic plate in a natural beige tone, set on a light bamboo table surface. The dish features a balanced composition of diced roasted chicken, golden-brown toasted sourdough cubes, bright red fresh tomato wedges, and crisp diced cucumber, interspersed with thinly sliced red onion. The star, quick-fermented cherry tomato halves, add a unique visual pop and depth. Fresh green basil and parsley leaves are gently folded throughout, providing fresh color and texture. The dressing lightly coats all components, integrating them visually. The plate is intentionally uncluttered, with ample negative space to highlight the pure beauty and natural textures of each ingredient. A single, natural, undyed linen napkin rests beside the plate. Soft, natural light illuminates the scene, emphasizing the ingredients' inherent colors and forms. The background is clean and minimalist, with subtle hints of green from a nearby plant, enhancing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "cultural_serving_suggestions": [
+      "Serve immediately to enjoy crisp textures.",
+      "Emphasize the use of local, seasonal produce.",
+      "Consider serving with a simple glass of water or naturally infused water."
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Stale sourdough bread",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Filtered water (for ferment)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Non-iodized salt (for ferment)",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented cherry tomatoes: Halve cherry tomatoes. Dissolve 5 g non-iodized salt in 250 ml filtered water to make a brine. Place halved cherry tomatoes in a clean jar. Pour brine over tomatoes, ensuring they are fully submerged. Seal jar loosely. Ferment at room temperature for 2-3 days until slightly tangy. Refrigerate.",
+      "Roast chicken: Preheat oven to 200°C. Season chicken breast with salt and pepper. Roast for 20-25 minutes, or until internal temperature reaches 75°C. Let rest, then dice into 2 cm cubes.",
+      "Prepare bread: Cut stale sourdough bread into 2-3 cm cubes. Toss with 15 ml olive oil. Toast in oven or a dry pan until golden and crisp. Set aside.",
+      "Chop vegetables: Cut ripe tomatoes into wedges. Dice cucumber into 1.5 cm pieces. Thinly slice red onion.",
+      "Make dressing: In a small bowl, whisk together remaining 65 ml olive oil, red wine vinegar, 15 ml of the fermented cherry tomato brine, salt, and pepper.",
+      "Assemble salad: In a large bowl, combine roasted chicken cubes, toasted sourdough cubes, fresh tomato wedges, diced cucumber, and sliced red onion. Add fermented cherry tomatoes. Pour dressing over the salad. Gently toss to combine.",
+      "Finish and serve: Roughly chop fresh basil and parsley. Fold into the salad. Serve immediately."
+    ],
+    "notes": [
+      "The fermentation time for cherry tomatoes can vary based on ambient temperature and desired tanginess. Taste after 2 days.",
+      "Using stale bread is key for the correct Panzanella texture, preventing sogginess.",
+      "Adjust seasoning based on the tanginess of your fermented tomatoes."
+    ],
+    "traditional_techniques": [
+      "Lacto-fermentation (for tomatoes)",
+      "Zero-waste cooking (using stale bread, tomato brine)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 440.9,
+      "cholesterol_mg": 53.1,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 27,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 793.9,
+      "total_carbs_g": 34.9,
+      "total_fat_g": 21.9,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.4,
+      "cholesterol_mg": 14.9,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.6,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 222.3,
+      "total_carbs_g": 9.8,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.7,
+      "dietary_fiber": 14.6,
+      "protein": 54.1,
+      "saturated_fat": 16.6,
+      "sodium": 34.5,
+      "total_carbs": 12.7,
+      "total_fat": 28
+    },
+    "serving_size_g": 357.2,
+    "total_recipe_weight_g": 1428.6
+  },
+  {
+    "recipe_name": "Hainanese Chicken Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hainanese_chicken_rice_20250625_081358_1a5b5f07.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:13:59.473399000Z",
+    "selected_ingredients": [
+      "rice",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features large, succulent chunks of bone-in poached chicken with glossy, pale skin. The chicken rests on a bed of fragrant, light-yellow Jasmine rice infused with ginger and pandan. Slices of fresh, cool cucumber are arranged neatly to the side. The chicken is lightly drizzled with a mixture of soy sauce and sesame oil. Three small ceramic dipping bowls contain bright red chili sauce, dark soy sauce, and a vibrant green ginger-scallion oil. The meal is served on a clean white porcelain plate on a light wood table. A pair of dark wood chopsticks and a traditional ceramic soup spoon sit to the right. Natural light highlights the moist texture of the meat and the individual grains of rice.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Singaporean",
+    "cultural_serving_suggestions": [
+      "Serve with a side bowl of hot chicken broth",
+      "Include chili sauce, ginger-garlic sauce, and dark soy sauce",
+      "Serve at room temperature as per tradition"
+    ],
+    "hero_ingredient": "Poached Chicken",
+    "ingredients": [
+      {
+        "name": "Whole chicken",
+        "quantity": "1.5kg"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Pandan leaves",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Scallions",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Salt",
+        "quantity": "20g"
+      }
+    ],
+    "instructions": [
+      "Rub chicken with salt to remove impurities.",
+      "Rinse chicken under cold water.",
+      "Boil 3 liters of water with 30g crushed ginger and scallions.",
+      "Submerge chicken in boiling water.",
+      "Simmer for 20 minutes.",
+      "Turn off heat and cover pot.",
+      "Steep chicken for 30 minutes.",
+      "Confirm internal temperature reaches 75°C.",
+      "Submerge chicken in ice water for 5 minutes.",
+      "Drain chicken and rub skin with sesame oil.",
+      "Sauté 20g minced ginger and minced garlic in chicken fat.",
+      "Add rice and toast for 2 minutes.",
+      "Add 600ml poaching liquid and pandan leaves.",
+      "Cook rice until liquid is absorbed.",
+      "Cut chicken into large chunks."
+    ],
+    "notes": [
+      "Save the remaining poaching liquid for a light soup",
+      "Rubbing the chicken with salt ensures a smooth skin texture",
+      "Using rendered chicken fat for the rice is essential for authenticity"
+    ],
+    "traditional_techniques": [
+      "Poaching",
+      "Fat rendering",
+      "Rice toasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1168,
+      "cholesterol_mg": 281,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 74.5,
+      "saturated_fat_g": 16.8,
+      "sodium_mg": 2423,
+      "total_carbs_g": 84,
+      "total_fat_g": 59.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 186.9,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 11.9,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 387.7,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 0.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 93.7,
+      "dietary_fiber": 6.1,
+      "protein": 149,
+      "saturated_fat": 84,
+      "sodium": 105.3,
+      "total_carbs": 30.5,
+      "total_fat": 76
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  },
+  {
+    "recipe_name": "Braised Chicken with Tomato and Basil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_tomato_and_basil_20250625_081335_c53ef92b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:13:35.598210000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "garlic",
+      "tomato",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of braised chicken is centered on a clean white porcelain dinner plate, resting on a simple wooden table surface. One golden-brown, skin-on chicken thigh, cooked to tender perfection, rests in a rich, rustic tomato sauce. The sauce, vibrant red with hints of orange, envelops the chicken, showcasing small, softened pieces of diced onion and minced garlic. Fresh, torn basil leaves, deep green and slightly wilted from the heat, are scattered generously over the chicken and sauce, providing a fresh contrast. The chicken skin is crisp and slightly browned. The sauce has a glossy, thick texture. A folded white cotton napkin is placed beside the plate. The scene is illuminated by natural, even lighting, with a subtly blurred casual restaurant background. Traditional flatware is neatly arranged beside the plate. Moderate negative space surrounds the dish, highlighting the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "Serve alongside simple pasta or polenta."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 pieces (approx. 200-250g each)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves (minced)"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/2 bunch (leaves torn)"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crisp, about 6-8 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from skillet.",
+      "Reduce heat to medium. Add diced onion to skillet. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken stock. Bring to a simmer.",
+      "Return chicken thighs to skillet, nestling them into the sauce.",
+      "Cover skillet. Braise in a preheated oven at 180°C (350°F) for 25-30 minutes, or until chicken reaches an internal temperature of 75°C.",
+      "Remove from oven. Stir in fresh basil.",
+      "Serve hot with sauce."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for safety.",
+      "Adjust seasoning to taste before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 604.5,
+      "cholesterol_mg": 222.8,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 44,
+      "saturated_fat_g": 10.3,
+      "sodium_mg": 549.8,
+      "total_carbs_g": 12.5,
+      "total_fat_g": 41.3,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130,
+      "cholesterol_mg": 47.9,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 118.3,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 9,
+      "protein": 88,
+      "saturated_fat": 51,
+      "sodium": 24,
+      "total_carbs": 5,
+      "total_fat": 53
+    },
+    "serving_size_g": 464.9,
+    "total_recipe_weight_g": 1859.5
+  }
+]

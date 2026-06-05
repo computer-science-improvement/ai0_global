@@ -1,0 +1,633 @@
+[
+  {
+    "recipe_name": "Seared Beef with Fermented Roots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_beef_with_fermented_roots_20250628_063215_42b8a66c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:32:16.401754000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single seared beef chunk rests on a handcrafted ceramic plate in an earthy cream tone. The beef, dark golden-brown on its seared exterior, maintains its natural, robust shape. Adjacent, a vibrant mound of mixed lacto-fermented root vegetables, julienned into crisp, colorful strips of orange, yellow, and deep purple, provides a lively contrast. A few bright green steamed broccoli florets and thinly sliced stem medallions are arranged naturally on the plate, adding fresh texture. A glossy, dark pan sauce is artfully drizzled over the beef and around the plate, enhancing its richness. The composition is minimalistic, allowing ample white space. A subtle garnish of fresh parsley leaves adds a touch of green. The plate sits on a light, textured reclaimed wood surface. An undyed linen napkin is subtly placed. Soft, natural light illuminates the scene, with a clean background hinting at natural elements like faint green foliage.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or chuck, in 4 large chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Mixed root vegetables (carrots, parsnips, radishes), julienned or small diced",
+        "quantity": "250g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 head"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Beef or vegetable broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented root vegetables: Submerge julienned or diced root vegetables in a 2% brine solution (20g salt per liter water). Seal in a jar. Ferment at room temperature for 3-5 days. Refrigerate once desired tanginess is achieved. Drain before serving.",
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a heavy skillet over medium-high heat. Sear beef chunks 4-5 minutes per side until deeply browned. Remove beef from skillet. Set aside to rest.",
+      "Reduce heat to medium. Add chopped onion and minced garlic to the same skillet. Sauté 3-4 minutes until softened.",
+      "Pour beef or vegetable broth into the skillet. Bring to a simmer. Scrape up any browned bits from the bottom. Reduce heat and simmer until sauce slightly thickens, about 5-7 minutes.",
+      "Separate broccoli florets. Thinly slice broccoli stems into medallions. Steam florets and stem medallions until tender-crisp, about 3-4 minutes.",
+      "To serve, place one seared beef chunk on each plate. Arrange a small mound of drained fermented root vegetables beside the beef. Add steamed broccoli florets and stem medallions. Drizzle with the reduced pan sauce. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 449,
+      "cholesterol_mg": 129,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 47,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 823,
+      "total_carbs_g": 17.3,
+      "total_fat_g": 21.4,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 12.1,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 211,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 19,
+      "protein": 94,
+      "saturated_fat": 32,
+      "sodium": 36,
+      "total_carbs": 6,
+      "total_fat": 27
+    },
+    "serving_size_g": 389.3,
+    "total_recipe_weight_g": 1557
+  },
+  {
+    "recipe_name": "Vegan Cherry Marzipan Petit Fours",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vegan_cherry_marzipan_petit_fours_20250628_063028_e4020c27.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:30:28.896778000Z",
+    "selected_ingredients": [
+      "cherry",
+      "marzipan",
+      "flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "Vegan",
+    "visual_description": "Six to nine perfectly uniform, small rectangular Vegan Cherry Marzipan Petit Fours are elegantly arranged on a pristine white porcelain rectangular serving platter. Each petit four, approximately 3cm by 4cm, showcases distinct layers: a tender, light golden-brown cake base, a thin creamy white marzipan layer, and a smooth, glossy, pale pink cherry glaze. The glaze is perfectly set, offering a refined sheen. A single vibrant red glacé cherry half precisely crowns the center of each petit four, providing a pop of contrasting color. The pieces are spaced consistently across the platter, creating a balanced and inviting display. The platter rests on a clean, light-colored wooden table, with a neatly folded light linen napkin beside it. Natural, soft, even lighting illuminates the scene, emphasizing the delicate textures and refined appearance of the desserts.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Served as part of a dessert course or with coffee/tea after a meal."
+    ],
+    "hero_ingredient": "Marzipan",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Vegan butter, melted",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Unsweetened plant milk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Almond extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Vegan marzipan",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cherry jam",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cherry juice (unsweetened)",
+        "quantity": "30-40 ml"
+      },
+      {
+        "name": "Glacé cherries, halved",
+        "quantity": "6-9 pieces"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Line a small loaf tin (approx. 20x10 cm) with parchment paper.",
+      "Combine flour, sugar, baking powder, and salt in a bowl.",
+      "Add melted vegan butter, plant milk, almond extract, and vanilla extract. Mix until just combined. Do not overmix.",
+      "Pour batter into the prepared loaf tin. Bake 25-30 minutes, or until a skewer inserted comes out clean.",
+      "Cool cake completely in the tin on a wire rack.",
+      "Once cool, carefully remove cake from tin. Trim top to level if needed. Slice cake horizontally into two equal layers.",
+      "Spread cherry jam evenly over the bottom cake layer.",
+      "Roll out marzipan on a lightly floured surface to the size of the cake layers. Place marzipan over the jam.",
+      "Place the second cake layer on top of the marzipan. Press gently.",
+      "Chill assembled cake for 30 minutes to firm up.",
+      "Prepare glaze: Whisk powdered sugar and cherry juice until smooth and pourable. Add more juice or sugar if needed for desired consistency.",
+      "Place chilled cake on a wire rack over a baking tray. Pour glaze evenly over the entire cake, ensuring full coverage.",
+      "Allow glaze to set slightly. Use a hot, sharp knife to trim edges neatly. Cut cake into 6-9 uniform small rectangles or squares.",
+      "Place a glacé cherry half on top of each petit four. Let glaze fully set before serving."
+    ],
+    "notes": [
+      "Ensure marzipan is vegan, as some brands contain egg whites."
+    ],
+    "traditional_techniques": [
+      "Layering",
+      "Precise glazing",
+      "Neat cutting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 99,
+      "calories": 713.06,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.68,
+      "protein_g": 6.72,
+      "saturated_fat_g": 6.49,
+      "sodium_mg": 259.93,
+      "total_carbs_g": 134.3,
+      "total_fat_g": 17.87,
+      "total_sugars_g": 103.17,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 45.52,
+      "calories": 327.85,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.23,
+      "protein_g": 3.09,
+      "saturated_fat_g": 2.98,
+      "sodium_mg": 119.51,
+      "total_carbs_g": 61.75,
+      "total_fat_g": 8.22,
+      "total_sugars_g": 47.43,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 9.57,
+      "protein": 13.44,
+      "saturated_fat": 32.45,
+      "sodium": 11.3,
+      "total_carbs": 48.84,
+      "total_fat": 22.91
+    },
+    "serving_size_g": 217.5,
+    "total_recipe_weight_g": 870
+  },
+  {
+    "recipe_name": "Aloo Tamatar Sabzi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_aloo_tamatar_sabzi_20250628_063006_2ac443bc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:30:06.530121000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Aloo Tamatar Sabzi is presented in a deep, pristine white ceramic bowl, centrally placed on a simple, light-colored wooden table surface. The curry features tender, diced potato cubes coated in a rich, reddish-orange gravy, interspersed with soft, broken-down tomato pieces and flecks of green from coriander. The texture is thick and comforting, with a slight sheen from the oil. A vibrant swirl of the golden tadka, containing small, dark mustard seeds and bright green curry leaves, glistens on top. Freshly chopped bright green coriander leaves are generously scattered over the dish, providing a contrasting color and fresh aroma. The bowl is positioned with moderate negative space. Beside the bowl, a small, white side plate holds a piece of warm, golden-brown naan bread, folded neatly. A simple cotton napkin, a neutral cream color, is placed to the side. The scene is illuminated by natural, even lighting, creating soft shadows and highlighting the inviting textures. The background is subtly blurred, suggesting a casual restaurant or bistro setting, maintaining focus on the authentic Indian dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with warm naan bread, roti, or steamed basmati rice.",
+      "Accompaniments can include a side of plain yogurt or a simple cucumber raita.",
+      "Traditionally eaten with hands, scooping with bread."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "500 g, peeled and diced into 2 cm cubes"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "400 g, finely chopped"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, finely chopped"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2, slit lengthwise (adjust to taste)"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "5 g (adjust to taste)"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml (for cooking)"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "30 g, chopped (for garnish)"
+      },
+      {
+        "name": "Mustard seeds",
+        "quantity": "5 g (for tadka)"
+      },
+      {
+        "name": "Curry leaves",
+        "quantity": "8-10 (for tadka)"
+      },
+      {
+        "name": "Asafoetida (Hing)",
+        "quantity": "pinch (for tadka, optional)"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml (for tadka)"
+      }
+    ],
+    "instructions": [
+      "Heat 30 ml oil in a large pot or karahi over medium heat.",
+      "Add chopped onions. Sauté until golden brown, about 8-10 minutes.",
+      "Add ginger-garlic paste and green chilies. Sauté for 1 minute until fragrant.",
+      "Stir in cumin seeds, turmeric powder, coriander powder, and red chili powder. Cook for 30 seconds, stirring constantly.",
+      "Add chopped tomatoes and salt. Cook, mashing with a spoon, until tomatoes soften and oil begins to separate, about 8-10 minutes.",
+      "Add diced potatoes and mix well with the masala. Cook for 2-3 minutes, coating potatoes.",
+      "Pour in 250 ml water. Bring to a boil, then reduce heat to low. Cover and simmer for 15-20 minutes, or until potatoes are tender. Stir occasionally to prevent sticking.",
+      "While potatoes cook, prepare the tadka. Heat 15 ml oil in a small pan over medium heat.",
+      "Add mustard seeds. Once they splutter, add curry leaves and asafoetida (if using). Cook for 10 seconds.",
+      "Pour the hot tadka directly over the cooked potato curry.",
+      "Stir in Garam Masala and half of the fresh coriander leaves.",
+      "Serve hot, garnished with remaining fresh coriander."
+    ],
+    "notes": [
+      "Adjust green chilies and red chili powder to your preferred spice level.",
+      "Ensure potatoes are tender but not mushy for best texture."
+    ],
+    "traditional_techniques": [
+      "Tempering spices (Tadka)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 274,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 5.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 508,
+      "total_carbs_g": 36.1,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 0.04
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 72,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 1.5,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 135,
+      "total_carbs_g": 9.5,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 27,
+      "protein": 11,
+      "saturated_fat": 9,
+      "sodium": 22,
+      "total_carbs": 13,
+      "total_fat": 16
+    },
+    "serving_size_g": 378,
+    "total_recipe_weight_g": 1511
+  },
+  {
+    "recipe_name": "Vanilla Bean Crème Brûlée",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vanilla_bean_cr%C3%A8me_br%C3%BBl%C3%A9e_20250628_062528_e257b539.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:25:28.870848000Z",
+    "selected_ingredients": [
+      "vanilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Vanilla Bean Crème Brûlée is presented in a classic white ceramic ramekin, approximately 10-12 cm in diameter. The top surface features a perfectly caramelized, glossy, amber-brown sugar crust. The crust is thin, uniform, and shows subtle cracks, indicating crispness. The creamy, pale yellow custard is visible beneath the edges of the hardened sugar. A single fresh raspberry is placed delicately on the rim of the ramekin, providing a vibrant red color contrast. A small, delicate sprig of fresh mint is tucked beside the raspberry. The ramekin rests on a clean, white round porcelain dessert plate. The plate is placed on a simple, light-colored wooden table surface, suggesting a modern bistro setting. A crisp white linen napkin is folded neatly beside the plate. The background is softly blurred, hinting at a casual restaurant ambiance. Natural, even lighting illuminates the dish, highlighting the glossy sugar crust.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve chilled.",
+      "Crack the caramelized sugar crust with a spoon before eating."
+    ],
+    "hero_ingredient": "Vanilla Bean",
+    "ingredients": [
+      {
+        "name": "Heavy Cream",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Vanilla Bean",
+        "quantity": "1"
+      },
+      {
+        "name": "Egg Yolks",
+        "quantity": "8"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 150°C.",
+      "Slice vanilla bean lengthwise. Scrape seeds into a medium saucepan. Add bean pod and heavy cream to saucepan.",
+      "Heat cream over medium heat until simmering. Do not boil. Remove from heat. Let steep 15 minutes. Remove vanilla pod.",
+      "In a bowl, whisk egg yolks and 100 g granulated sugar until pale and thick.",
+      "Slowly pour warm cream into egg yolk mixture, whisking constantly.",
+      "Strain custard through a fine-mesh sieve into a clean bowl.",
+      "Pour custard into four 150 ml ramekins.",
+      "Place ramekins in a baking dish. Fill baking dish with hot water halfway up the sides of the ramekins.",
+      "Bake 30-35 minutes, or until edges are set but centers still slightly jiggle.",
+      "Carefully remove ramekins from water bath. Let cool completely on a wire rack.",
+      "Chill in refrigerator for at least 4 hours, or overnight.",
+      "Before serving, sprinkle remaining 50 g granulated sugar evenly over each chilled crème brûlée.",
+      "Use a kitchen torch to caramelize sugar until golden brown and bubbly.",
+      "Let sit 1-2 minutes for sugar to harden. Serve immediately."
+    ],
+    "notes": [
+      "Ensure the water bath is hot to ensure even cooking.",
+      "Do not overbake; the custard will continue to set as it cools.",
+      "For best results, chill overnight.",
+      "Caramelize sugar just before serving to maintain crispness."
+    ],
+    "traditional_techniques": [
+      "Bain-marie (water bath) cooking",
+      "Caramelization (using a torch)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.5,
+      "calories": 682,
+      "cholesterol_mg": 499.4,
+      "dietary_fiber_g": 0,
+      "protein_g": 8,
+      "saturated_fat_g": 32.1,
+      "sodium_mg": 255.8,
+      "total_carbs_g": 42.7,
+      "total_fat_g": 54.6,
+      "total_sugars_g": 41.8,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19,
+      "calories": 345,
+      "cholesterol_mg": 252.6,
+      "dietary_fiber_g": 0,
+      "protein_g": 4.1,
+      "saturated_fat_g": 16.2,
+      "sodium_mg": 129.3,
+      "total_carbs_g": 21.6,
+      "total_fat_g": 27.6,
+      "total_sugars_g": 21.1,
+      "trans_fat_g": 0.8
+    },
+    "daily_value_percentages": {
+      "cholesterol": 166.5,
+      "dietary_fiber": 0,
+      "protein": 16.1,
+      "saturated_fat": 160.5,
+      "sodium": 11.1,
+      "total_carbs": 15.5,
+      "total_fat": 70
+    },
+    "serving_size_g": 197.8,
+    "total_recipe_weight_g": 791
+  },
+  {
+    "recipe_name": "Rustic Baked Eggs with Spinach, Tomato, and Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_baked_eggs_with_spinach%2C_tomato%2C_and_mozzarella_20250628_062237_d7c83062.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:22:38.353641000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "spinach",
+      "olive oil",
+      "bread",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is presented in two individual rustic ceramic ramekins on a well-used wooden dining table. Each ramekin holds two perfectly baked eggs, their whites set around vibrant, slightly runny yolks. Beneath the eggs, a bed of deep green, wilted spinach is visible, interspersed with bright red, diced tomatoes. Melted, golden-brown mozzarella cheese bubbles gently over the top, creating a comforting, inviting crust. A light sprinkle of dried oregano adds a touch of herbaceousness. Beside each ramekin, a thick, golden-brown slice of toasted crusty bread is casually placed, ready for dipping. The scene is bathed in warm, natural kitchen light, emphasizing the homely, comforting nature of the meal. The focus is on the simple, wholesome ingredients and their natural textures.",
+    "number_of_servings": 2,
+    "cuisine_type": "Rustic Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with extra crusty bread for dipping into the egg yolks and sauce.",
+      "A simple green salad with a vinaigrette can accompany the dish."
+    ],
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Mozzarella cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "4 thick slices"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Chop tomatoes into small cubes. Mince garlic.",
+      "Heat 15 ml olive oil in a small pan over medium heat. Add minced garlic. Sauté 30 seconds until fragrant.",
+      "Add spinach to the pan. Cook until wilted, about 2-3 minutes. Remove from heat.",
+      "Lightly grease two individual oven-safe ramekins or a small baking dish with remaining olive oil.",
+      "Divide wilted spinach evenly between the ramekins.",
+      "Scatter diced tomatoes over the spinach.",
+      "Break 2 eggs into each ramekin, being careful not to break yolks.",
+      "Sprinkle mozzarella cheese over the eggs and vegetables. Season with salt, pepper, and oregano.",
+      "Bake for 12-15 minutes, or until egg whites are set and yolks are still runny. Adjust time for desired yolk doneness.",
+      "While eggs bake, toast bread slices.",
+      "Serve baked eggs immediately with toasted bread for dipping."
+    ],
+    "notes": [
+      "Adjust baking time for desired yolk consistency. For firmer yolks, bake longer.",
+      "Fresh basil can be used instead of dried oregano for a brighter flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 634,
+      "cholesterol_mg": 400,
+      "dietary_fiber_g": 5.37,
+      "protein_g": 36.8,
+      "saturated_fat_g": 10.86,
+      "sodium_mg": 865,
+      "total_carbs_g": 47.01,
+      "total_fat_g": 34.81,
+      "total_sugars_g": 8.44,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145,
+      "cholesterol_mg": 92,
+      "dietary_fiber_g": 1.23,
+      "protein_g": 8.45,
+      "saturated_fat_g": 2.49,
+      "sodium_mg": 199,
+      "total_carbs_g": 10.79,
+      "total_fat_g": 7.99,
+      "total_sugars_g": 1.94,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 133,
+      "dietary_fiber": 19,
+      "protein": 74,
+      "saturated_fat": 54,
+      "sodium": 38,
+      "total_carbs": 17,
+      "total_fat": 45
+    },
+    "serving_size_g": 435.5,
+    "total_recipe_weight_g": 871
+  }
+]

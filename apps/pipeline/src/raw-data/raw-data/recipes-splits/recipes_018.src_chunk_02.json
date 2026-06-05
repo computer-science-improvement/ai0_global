@@ -1,0 +1,698 @@
+[
+  {
+    "recipe_name": "Slow-Cooked Shredded Beef",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_shredded_beef_20250625_165931_e790ec2f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:59:32.093073000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "dinner social; not heavy, standing room; platter",
+    "visual_description": "A natural light photograph captures a rustic wooden dining table. A generous pile of slow-cooked shredded beef, rich brown with tender strands, is presented on a large, oval, off-white ceramic serving platter. The beef is naturally piled, showcasing its moist, succulent texture. Small amounts of savory cooking liquid pool gently. Fresh chopped parsley leaves provide subtle color contrast. Beside the platter, a stack of golden-brown mini slider buns is casually arranged. A simple ceramic side plate holds a single assembled slider: shredded beef nestled within a bun. A casually folded plain cloth napkin and everyday fork rest on the table. The background shows hints of a warm kitchen environment. The scene is homely, comforting, and inviting.",
+    "number_of_servings": 30,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with mini slider buns or small dinner rolls for easy portioning"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef Chuck Roast",
+        "quantity": "7 kg, trimmed of excess fat"
+      },
+      {
+        "name": "Large Onions",
+        "quantity": "6, roughly chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "30 cloves, minced"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "4 litres"
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "6"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "1 large bunch, chopped (for garnish)"
+      },
+      {
+        "name": "Mini Slider Buns",
+        "quantity": "30-60 (for serving)"
+      }
+    ],
+    "instructions": [
+      "Cut beef into large 100-150g chunks. Pat dry thoroughly. Season beef generously with salt and black pepper.",
+      "Heat olive oil in a very large Dutch oven or heavy-bottomed pot over medium-high heat. Work in batches. Sear beef chunks on all sides until deeply browned. Remove beef and set aside.",
+      "Add chopped onions to the pot. Sauté until softened and translucent, about 8-10 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Deglaze the pot with a splash of beef broth, scraping up any browned bits from the bottom.",
+      "Return seared beef to the pot. Add remaining beef broth, Worcestershire sauce, and bay leaves. Ensure beef is mostly submerged.",
+      "Bring liquid to a simmer. Reduce heat to low. Cover the pot tightly.",
+      "Slow cook for 4-6 hours, or until beef is fork-tender and easily shreds. Alternatively, transfer to a slow cooker and cook on low for 8-10 hours or high for 4-6 hours.",
+      "Remove beef from the pot. Discard bay leaves.",
+      "Using two forks, shred the beef into tender strands.",
+      "Skim any excess fat from the cooking liquid. Taste the liquid and adjust seasoning if needed. Return shredded beef to the liquid. Simmer for 10-15 minutes to allow beef to absorb more flavor.",
+      "Serve warm on a large platter. Garnish with fresh chopped parsley. Offer mini slider buns on the side."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 600.8,
+      "cholesterol_mg": 198.3,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 68,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 888.1,
+      "total_carbs_g": 9,
+      "total_fat_g": 35.4,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 134.8,
+      "cholesterol_mg": 44.5,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 15.3,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 199.3,
+      "total_carbs_g": 2,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.1,
+      "dietary_fiber": 5.2,
+      "protein": 136.1,
+      "saturated_fat": 68.1,
+      "sodium": 38.6,
+      "total_carbs": 3.3,
+      "total_fat": 45.3
+    },
+    "serving_size_g": 445.7,
+    "total_recipe_weight_g": 13371
+  },
+  {
+    "recipe_name": "Roasted Beet & Potato Stacks with Macaroni Cheese, Peach-Coffee Glaze, and Walnut-Rye Crumble, served with a Lemon-Mint Cucumber & Tomato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_beet_%26_potato_stacks_with_macaroni_cheese%2C_peach-coffee_glaze%2C_and_walnut-rye_crumble%2C_served_with_a_lemon-mint_cucumber_%26_tomato_salad_20250625_165913_facc7466.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:59:13.703487000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "potato",
+      "salad green",
+      "garlic",
+      "sugar",
+      "peach",
+      "coffee",
+      "lemon",
+      "breadcrumbs",
+      "milk",
+      "butter",
+      "brown sugar",
+      "cheese",
+      "cucumber",
+      "macaroni",
+      "walnut",
+      "beet",
+      "mint",
+      "egg",
+      "honey",
+      "olive oil",
+      "cinnamon",
+      "rye bread",
+      "banana",
+      "sour cream",
+      "tea",
+      "chive",
+      "popcorn",
+      "vinegar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, set on a rustic light wooden table surface in a modern bistro setting. The main feature is a meticulously crafted stack, approximately 6 cm tall and 8 cm in diameter, composed of thinly sliced roasted beets and potatoes, layered alternately, with creamy, golden macaroni cheese peeking between the layers. The edges of the stack are beautifully caramelized and slightly crisp. A rich, glossy peach-coffee glaze is generously drizzled over the stack, with some pooling elegantly at its base. A textural contrast is provided by a scattering of golden-brown toasted walnut and rye bread crumble over and around the stack. To the side, a vibrant and fresh salad of thinly sliced cucumber rounds, halved cherry tomatoes, and crisp mixed salad greens is artfully arranged, brightened by flecks of fresh green mint and chives. A small, pristine dollop of white sour cream, garnished with finely chopped chives, rests beside the stack, adding a creamy counterpoint. The composition is balanced, with moderate negative space, highlighting the dish's refined yet approachable nature. Standard silver flatware and a folded white cotton napkin are placed beside the plate. Natural, even lighting illuminates the scene, creating a professional and inviting culinary photograph.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Roasted Beet and Potato",
+    "ingredients": [
+      {
+        "name": "potatoes",
+        "quantity": "2 large (500g)"
+      },
+      {
+        "name": "beets",
+        "quantity": "2 medium (300g)"
+      },
+      {
+        "name": "butter, melted",
+        "quantity": "60g"
+      },
+      {
+        "name": "milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "grated cheese (e.g., cheddar or Gruyere)",
+        "quantity": "50g"
+      },
+      {
+        "name": "egg, beaten",
+        "quantity": "1"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "macaroni pasta",
+        "quantity": "100g"
+      },
+      {
+        "name": "butter (for macaroni cheese)",
+        "quantity": "15g"
+      },
+      {
+        "name": "plain flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "milk (for macaroni cheese)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "grated cheese (for macaroni cheese)",
+        "quantity": "75g"
+      },
+      {
+        "name": "nutmeg",
+        "quantity": "pinch"
+      },
+      {
+        "name": "peach, peeled and diced",
+        "quantity": "1 large (approx. 150g)"
+      },
+      {
+        "name": "brewed strong coffee",
+        "quantity": "60ml"
+      },
+      {
+        "name": "brown sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "honey",
+        "quantity": "15ml"
+      },
+      {
+        "name": "apple cider vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "cinnamon",
+        "quantity": "pinch"
+      },
+      {
+        "name": "water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "rye bread, cubed",
+        "quantity": "50g"
+      },
+      {
+        "name": "walnuts, roughly chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "breadcrumbs",
+        "quantity": "30g"
+      },
+      {
+        "name": "butter, melted (for crumble)",
+        "quantity": "15g"
+      },
+      {
+        "name": "cucumber, thinly sliced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "cherry tomatoes, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "fresh salad greens",
+        "quantity": "30g"
+      },
+      {
+        "name": "fresh mint leaves, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "fresh chives, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "sour cream",
+        "quantity": "60g"
+      },
+      {
+        "name": "extra fresh chives, finely chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Peel potatoes and beets. Slice potatoes and beets into 3mm thick rounds using a mandoline or sharp knife.",
+      "In a bowl, whisk together 60g melted butter, 50ml milk, egg, 50g cheese, salt, and pepper. Toss potato and beet slices in the mixture until coated.",
+      "Cook macaroni according to package directions until al dente. Drain.",
+      "In a saucepan, melt 15g butter. Whisk in flour to form a roux. Gradually add 150ml milk, whisking constantly until thickened. Stir in 75g cheese and nutmeg until melted and smooth. Season with salt and pepper. Add cooked macaroni; stir to coat.",
+      "Lightly grease a baking dish or individual ramekins. Layer potato and beet slices, alternating. After every 2-3 layers, add a spoonful of the macaroni cheese mixture. Build stacks approximately 5-6 cm high.",
+      "Bake for 45-55 minutes, or until potatoes and beets are tender and stacks are golden. Cover with foil if browning too quickly.",
+      "While stacks bake, combine diced peach, coffee, brown sugar, honey, vinegar, minced garlic, cinnamon, and water in a small saucepan. Bring to a simmer. Cook over medium-low heat for 15-20 minutes, stirring occasionally, until peaches are very soft and sauce has thickened. Mash peaches lightly with a fork or process briefly for a smoother glaze. Season with salt.",
+      "In a dry pan, toast rye bread cubes and walnuts over medium heat until lightly golden. Remove from pan. In the same pan, melt 15g butter. Add breadcrumbs and toast until golden and crispy. Combine toasted rye, walnuts, and breadcrumbs. Season with salt.",
+      "In a bowl, combine sliced cucumber, halved cherry tomatoes, salad greens, chopped mint, and chopped chives. In a small bowl, whisk together olive oil, lemon juice, salt, and pepper for the dressing. Pour over salad and toss gently.",
+      "Carefully remove stacks from oven. Let rest for a few minutes. Place 1-2 stacks per plate. Drizzle generously with the warm peach-coffee glaze. Sprinkle with walnut-rye crumble. Serve with a side of the lemon-mint cucumber & tomato salad. Garnish the plate with a dollop of sour cream and extra fresh chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 10.4,
+      "calories": 883.2,
+      "cholesterol_mg": 141.7,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 23.4,
+      "saturated_fat_g": 22.9,
+      "sodium_mg": 447.9,
+      "total_carbs_g": 87.9,
+      "total_fat_g": 48.6,
+      "total_sugars_g": 27.1,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.6,
+      "calories": 136.9,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 3.6,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 69.4,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47.2,
+      "dietary_fiber": 34.8,
+      "protein": 46.8,
+      "saturated_fat": 114.6,
+      "sodium": 19.5,
+      "total_carbs": 32,
+      "total_fat": 62.4
+    },
+    "serving_size_g": 645,
+    "total_recipe_weight_g": 2580
+  },
+  {
+    "recipe_name": "Classic Cocktail Beef Meatballs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_cocktail_beef_meatballs_20250625_165846_6debe421.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:58:47.140636000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "dinner social; not heavy, standing room; platter",
+    "visual_description": "A large, oval rustic ceramic platter is generously filled with Classic Cocktail Beef Meatballs. The meatballs are uniformly round, about 2.5 cm in diameter, with a rich, glossy brown glaze from the sauce. They are arranged in a natural, slightly mounded pile, some touching or overlapping, showcasing their ample quantity for a gathering. A scattering of bright green, finely chopped fresh parsley provides a vibrant contrast against the dark meatballs. Several wooden toothpicks are inserted into the meatballs for easy grabbing. The platter sits on a well-used, light wooden dining table, revealing its natural grain. A simple, folded cream-colored cloth napkin is casually placed nearby. The scene is bathed in warm, inviting kitchen lighting, evoking a relaxed, lived-in family atmosphere. The background is softly blurred, keeping the focus on the inviting platter of comfort food.",
+    "number_of_servings": 30,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve directly from a large communal platter.",
+      "Provide wooden toothpicks for easy handling.",
+      "Ideal as a stand-up appetizer for social gatherings."
+    ],
+    "hero_ingredient": "Ground Beef",
+    "ingredients": [
+      {
+        "name": "Ground Beef",
+        "quantity": "2.5 kg"
+      },
+      {
+        "name": "Plain Breadcrumbs",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "6"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "2 large, finely diced"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "6, minced"
+      },
+      {
+        "name": "Salt",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "1 bunch, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F). Line large baking sheets with parchment paper.",
+      "In a large bowl, combine ground beef, breadcrumbs, eggs, diced onion, minced garlic, salt, and pepper. Mix until just combined. Do not overmix.",
+      "Roll mixture into small, uniform meatballs, about 2.5 cm (1 inch) in diameter. Place them in a single layer on the prepared baking sheets.",
+      "Bake meatballs for 20-25 minutes, or until browned and cooked through. Internal temperature should reach 75°C (167°F).",
+      "While meatballs bake, prepare the sauce. In a large saucepan, combine ketchup, brown sugar, apple cider vinegar, Worcestershire sauce, Dijon mustard, and water. Bring to a simmer over medium heat, stirring occasionally.",
+      "Reduce heat to low. Simmer sauce for 10 minutes, allowing it to thicken slightly.",
+      "Carefully add cooked meatballs to the sauce. Stir gently to coat all meatballs. Simmer for another 10-15 minutes, allowing flavors to meld.",
+      "Transfer meatballs and sauce to a large serving platter. Garnish generously with fresh chopped parsley. Serve warm with toothpicks."
+    ],
+    "notes": [
+      "For best results, make sure the meatballs are uniform in size for even cooking.",
+      "Meatballs can be prepared in advance and reheated gently in the sauce.",
+      "This recipe scales well for larger or smaller crowds; adjust quantities proportionally."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 13.1,
+      "calories": 334,
+      "cholesterol_mg": 105.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 21.3,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 666.4,
+      "total_carbs_g": 24.2,
+      "total_fat_g": 16.9,
+      "total_sugars_g": 14.9,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 7.8,
+      "calories": 199.8,
+      "cholesterol_mg": 63.2,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 12.7,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 398.7,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.2,
+      "dietary_fiber": 2.6,
+      "protein": 42.5,
+      "saturated_fat": 32,
+      "sodium": 29,
+      "total_carbs": 8.8,
+      "total_fat": 21.7
+    },
+    "serving_size_g": 167.2,
+    "total_recipe_weight_g": 5015
+  },
+  {
+    "recipe_name": "Slow-Cooked Shredded Beef Sliders",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_shredded_beef_sliders_20250625_165732_a13dc409.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:57:32.671741000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "dinner social; not heavy, standing room",
+    "visual_description": "A single, modest portion of a Slow-Cooked Shredded Beef Slider rests on a simple, round, off-white ceramic plate. The slider bun is lightly toasted, a warm golden brown. Inside, a generous mound of rich, dark brown shredded beef is nestled, its tender fibers glistening with a savory, unctuous sauce. On top of the beef, a crisp, vibrant green and orange coleslaw provides a fresh contrast, with finely shredded cabbage and carrots. A few small, bright green herb flecks (such as chopped parsley) are sprinkled sparingly over the beef for a hint of freshness. The overall presentation is natural and unforced, conveying homemade comfort. The plate sits on a well-used wooden dining table, illuminated by warm, inviting kitchen lighting. A casually placed, folded beige cloth napkin and a simple glass of water are visible in the background, completing the homely family kitchen scene.",
+    "number_of_servings": 30,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve buffet style, allowing guests to assemble their own sliders.",
+      "Provide extra napkins due to the saucy nature of the beef."
+    ],
+    "hero_ingredient": "Beef Chuck Roast",
+    "ingredients": [
+      {
+        "name": "Beef Chuck Roast",
+        "quantity": "4.5 kg"
+      },
+      {
+        "name": "Onions",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "15"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "75 ml"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Slider Buns",
+        "quantity": "60"
+      },
+      {
+        "name": "Prepared Coleslaw",
+        "quantity": "3 kg"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck roast into 500g chunks. Season beef generously with salt and pepper.",
+      "Heat a large pot or Dutch oven over medium-high heat. Sear beef chunks in batches until browned on all sides. Remove beef from pot.",
+      "Add chopped onions to the pot. Cook until softened, about 5 minutes. Add minced garlic. Cook 1 minute more until fragrant.",
+      "Deglaze the pot with a small amount of beef broth, scraping up any browned bits from the bottom.",
+      "Return seared beef to the pot. Add remaining beef broth, Worcestershire sauce, apple cider vinegar, brown sugar, smoked paprika, and oregano.",
+      "Bring liquid to a simmer. Cover the pot tightly.",
+      "Reduce heat to low. Cook for 3 to 4 hours, or until beef is extremely tender and shreds easily with a fork. Alternatively, cook in a slow cooker on low for 6 to 8 hours.",
+      "Remove beef from the pot. Use two forks to shred the beef into fine strands.",
+      "Return shredded beef to the pot with the cooking liquid. Stir to combine and keep warm.",
+      "Lightly toast slider buns if desired.",
+      "Assemble sliders: Place a portion of shredded beef onto the bottom half of a slider bun. Top with prepared coleslaw. Place the top bun. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 15.88,
+      "calories": 733.82,
+      "cholesterol_mg": 121.5,
+      "dietary_fiber_g": 5.07,
+      "protein_g": 47.23,
+      "saturated_fat_g": 11.79,
+      "sodium_mg": 1071.68,
+      "total_carbs_g": 54.42,
+      "total_fat_g": 36.41,
+      "total_sugars_g": 18.7,
+      "trans_fat_g": 0.75
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4.16,
+      "calories": 192.27,
+      "cholesterol_mg": 31.83,
+      "dietary_fiber_g": 1.33,
+      "protein_g": 12.37,
+      "saturated_fat_g": 3.09,
+      "sodium_mg": 280.79,
+      "total_carbs_g": 14.26,
+      "total_fat_g": 9.54,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.5,
+      "dietary_fiber": 18.11,
+      "protein": 94.46,
+      "saturated_fat": 58.95,
+      "sodium": 46.59,
+      "total_carbs": 19.79,
+      "total_fat": 46.68
+    },
+    "serving_size_g": 381.67,
+    "total_recipe_weight_g": 11450
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Tenderloin Medallions with Herb Jus and Roasted Asparagus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_tenderloin_medallions_with_herb_jus_and_roasted_asparagus_20250625_165651_5320e42a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:56:51.530889000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "dinner social; not heavy, standing room",
+    "visual_description": "Beef medallions, each approximately 4 cm thick, are seared to a medium-rare finish, showcasing a deep brown crust and tender pink interior. Three medallions are arranged slightly overlapping in the center of a clean white porcelain dinner plate. Alongside, a generous portion of vibrant green asparagus spears, roasted to a tender-crisp texture, is neatly placed. A rich, glossy herb jus is artfully drizzled around the beef, pooling slightly on the plate. A small sprig of fresh thyme garnishes the beef. The overall presentation is professional and refined, with moderate negative space. The setting features a simple light wooden table, traditional silver flatware, and a folded cotton napkin beside the plate. Natural, even lighting illuminates the dish, highlighting its rich colors and textures.",
+    "number_of_servings": 30,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Beef Tenderloin",
+    "ingredients": [
+      {
+        "name": "Beef tenderloin",
+        "quantity": "4 kg"
+      },
+      {
+        "name": "Fresh asparagus",
+        "quantity": "3 kg"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 heads"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "2.5 litres"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2 bunches"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2 bunches"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Trim beef tenderloin of silver skin and excess fat. Cut into 4 cm thick medallions. Season generously with salt and pepper. Set aside.",
+      "Preheat oven to 200°C (390°F).",
+      "For the jus: Mince shallots and garlic. In a large saucepan, melt 50g butter with 50ml olive oil over medium heat. Add shallots and garlic. Sauté until softened, about 5 minutes.",
+      "Pour in red wine. Increase heat to high. Reduce by half, scraping up any browned bits. Add beef stock, thyme, and rosemary. Bring to a simmer. Reduce heat to medium-low. Simmer gently until liquid is reduced by two-thirds and coats a spoon, about 30-40 minutes. Strain jus through a fine-mesh sieve into a clean saucepan. Discard solids. Keep warm.",
+      "Prepare asparagus: Wash asparagus. Snap off woody ends. Toss spears with 50ml olive oil, salt, and pepper on a large baking sheet. Roast in preheated oven for 10-15 minutes, until tender-crisp.",
+      "Cook beef: Heat remaining olive oil and 50g butter in large heavy-bottomed pans or cast-iron skillets over medium-high heat until shimmering. Sear beef medallions in batches without overcrowding. Cook 3-4 minutes per side for medium-rare, or until desired doneness is achieved. Transfer seared beef to a resting rack. Loosely tent with foil. Let rest for 10 minutes.",
+      "Serve: Place 3 beef medallions on each clean white porcelain plate. Arrange a portion of roasted asparagus alongside. Drizzle generously with warm herb jus. Garnish with a small fresh thyme sprig."
+    ],
+    "notes": [
+      "For best results, bring beef tenderloin to room temperature before searing.",
+      "Ensure pans are very hot before adding beef to achieve a good sear.",
+      "Do not overcrowd the pans; cook beef in batches if necessary."
+    ]
+  }
+]

@@ -1,0 +1,623 @@
+[
+  {
+    "recipe_name": "Seared Chicken & Root Vegetable Noodle Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_%26_root_vegetable_noodle_bowl_20250625_153807_250fda2b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:38:07.671454000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "carrot",
+      "chicken stock",
+      "noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A deep, matte black ceramic bowl holds a generous portion of Seared Chicken & Root Vegetable Noodle Bowl. Golden-brown seared chicken medallions, approximately 2 cm thick, are artfully arranged atop a bed of thick, ivory udon noodles. Interspersed are vibrant orange, 2 cm thick diagonal carrot slices and golden-brown, 2 cm potato chunks, their roasted edges visible. A clear, amber chicken broth, infused with soy and sesame, fills the bowl, partially submerging the ingredients. A scattering of bright green, thinly sliced spring onions and fresh coriander leaves provides a fresh, contrasting garnish. The arrangement is natural and inviting, with components distinct yet harmoniously composed. The entire bowl is centered on a simple light wooden table, beside a clean white cotton napkin and black chopsticks, under even natural light, evoking a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a small side dish of chili oil or sriracha for those desiring extra heat.",
+      "Offer a side of pickled ginger or kimchi for a refreshing counterpoint."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "New potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Fresh Udon or Ramen noodles",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare vegetables. Cut potatoes into 2 cm chunks. Cut carrots into 2 cm thick diagonal slices.",
+      "Preheat oven to 200°C. Toss potatoes and carrots with 15ml vegetable oil, salt, and pepper. Roast for 25-30 minutes until tender and lightly caramelized.",
+      "Season chicken thighs with salt and pepper. Heat 15ml vegetable oil in a large skillet over medium-high heat. Sear chicken thighs presentation-side down for 5-7 minutes until golden brown. Flip. Cook for another 5-7 minutes until internal temperature reaches 75°C. Rest chicken for 5 minutes. Slice rested chicken into 2 cm thick medallions.",
+      "While chicken rests, prepare broth. In a large pot, combine chicken stock, sliced ginger, and smashed garlic. Bring to a simmer. Cook for 10 minutes. Strain broth to remove ginger and garlic. Stir in soy sauce and sesame oil. Keep warm.",
+      "Cook noodles according to package instructions. Drain well.",
+      "Slice spring onions thinly. Roughly chop fresh coriander.",
+      "To serve, divide cooked noodles among four deep bowls. Arrange roasted potatoes, carrots, and sliced chicken over noodles. Ladle hot broth over ingredients. Garnish with spring onions and fresh coriander."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for safety.",
+      "Roast vegetables until tender but not mushy for best texture.",
+      "Strain the broth for a cleaner presentation."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 605,
+      "cholesterol_mg": 195,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 39.1,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 2830,
+      "total_carbs_g": 51.9,
+      "total_fat_g": 27.3,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 72.7,
+      "cholesterol_mg": 23.4,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 4.7,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 340.1,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97.5,
+      "dietary_fiber": 22.1,
+      "protein": 78.2,
+      "saturated_fat": 30.5,
+      "sodium": 123,
+      "total_carbs": 18.9,
+      "total_fat": 35
+    },
+    "serving_size_g": 832,
+    "total_recipe_weight_g": 3328
+  },
+  {
+    "recipe_name": "Beef Fillet, Red Wine Reduction, Garlic Confit, Roasted Vine Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_fillet%2C_red_wine_reduction%2C_garlic_confit%2C_roasted_vine_tomatoes_20250625_153716_d3e974bc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:37:17.040975000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "onion",
+      "tomato",
+      "oil",
+      "red wine"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a pristine, large white bone china plate, maximizing negative space. A rich, dark red wine reduction forms a glossy, organic pool at the plate's center. A perfectly seared, thick beef fillet medallion, boasting a deep mahogany crust and tender medium-rare interior, rests elegantly on the reduction. Adjacent, a small, artfully shaped quenelle of creamy, pale ivory garlic confit puree provides subtle contrast. A vibrant cluster of roasted cherry tomatoes on their vine, skins slightly blistered, is delicately placed nearby. The composition is natural and flowing, devoid of rigid geometric shapes. A few microgreens are precisely placed for a delicate accent. The setting features a luxurious white Carrara marble surface, a precisely folded crisp white linen napkin, and elegant modern flatware. Dramatic professional lighting enhances depth and texture, creating an ultra-minimalist, impactful presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "French",
+    "hero_ingredient": "Beef Fillet",
+    "ingredients": [
+      {
+        "name": "Beef Fillet (centre cut)",
+        "quantity": "600g (4 x 150g portions)"
+      },
+      {
+        "name": "Dry Red Wine (e.g., Bordeaux)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 whole head, cloves peeled"
+      },
+      {
+        "name": "Cherry Tomatoes (on the vine)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Beef Stock (high quality)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Fresh Thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh Rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "freshly ground, to taste"
+      },
+      {
+        "name": "Microgreens (e.g., micro basil, cress)",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Garlic Confit: Place peeled garlic cloves in a small saucepan. Cover with 100ml olive oil. Cook over very low heat for 45-60 minutes until garlic is tender and golden, not browned. Strain garlic, reserving oil. Blend confit garlic with a splash of its oil to a smooth puree. Season with a pinch of salt.",
+      "Prepare Red Wine Reduction: In a saucepan, sauté diced shallots in 10ml olive oil until translucent. Add red wine, thyme, and rosemary. Bring to a simmer. Reduce by half. Add beef stock. Continue simmering until sauce coats the back of a spoon. Strain through a fine-mesh sieve. Whisk in 20g cold butter. Season with salt and pepper. Keep warm.",
+      "Prepare Roasted Vine Tomatoes: Preheat oven to 180°C. Place cherry tomatoes on the vine on a baking tray. Drizzle with 10ml olive oil, salt, and pepper. Roast for 10-15 minutes until skins just begin to burst and tomatoes are softened. Remove.",
+      "Cook Beef Fillet: Season beef fillets generously with salt and black pepper. Place each fillet in a vacuum-sealable bag with a sprig of thyme and a small knob of butter. Vacuum seal. Cook in a preheated water bath at 54°C for 1.5-2 hours for medium-rare. Remove from bags. Pat dry thoroughly.",
+      "Sear Beef Fillet: Heat 30ml olive oil and remaining butter in a heavy-bottomed pan over high heat until shimmering. Sear beef fillets for 2-3 minutes per side until a deep golden-brown crust forms. Baste with pan juices. Let rest on a wire rack for 5 minutes.",
+      "Plate the Dish: Spoon a pool of red wine reduction onto the center of each large, white plate. Place one seared beef fillet medallion atop the reduction. Artfully place a small quenelle or smear of garlic confit puree beside the beef. Arrange a cluster of roasted vine tomatoes next to the other elements. Garnish with a few microgreens. Serve immediately."
+    ],
+    "notes": [
+      "Use a high-quality, full-bodied red wine for the reduction; its flavor will be concentrated.",
+      "Ensure the beef is thoroughly patted dry before searing to achieve a superior crust.",
+      "The garlic confit oil can be strained and used for other culinary applications."
+    ],
+    "traditional_techniques": [
+      "Reduction",
+      "Confit",
+      "Sous Vide"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 705.13,
+      "cholesterol_mg": 116.88,
+      "dietary_fiber_g": 1.66,
+      "protein_g": 34.49,
+      "saturated_fat_g": 14.25,
+      "sodium_mg": 712.82,
+      "total_carbs_g": 12.24,
+      "total_fat_g": 52.51,
+      "total_sugars_g": 3.83,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.67,
+      "cholesterol_mg": 28.46,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 8.4,
+      "saturated_fat_g": 3.47,
+      "sodium_mg": 173.54,
+      "total_carbs_g": 2.98,
+      "total_fat_g": 12.78,
+      "total_sugars_g": 0.93,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.96,
+      "dietary_fiber": 5.93,
+      "protein": 68.98,
+      "saturated_fat": 71.25,
+      "sodium": 30.99,
+      "total_carbs": 4.45,
+      "total_fat": 67.32
+    },
+    "serving_size_g": 410.75,
+    "total_recipe_weight_g": 1643
+  },
+  {
+    "recipe_name": "Potato Confit Salad with Crispy Shallots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_confit_salad_with_crispy_shallots_20250625_153629_2c7992c8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:36:29.867757000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "plant-based",
+    "visual_description": "The dish is presented on a minimalist, round white bone china plate, placed on a premium grey veined marble surface. Dramatic, professional lighting creates subtle shadows. Small, precise potato cylinders, confit-cooked to a tender, slightly golden hue, are artfully arranged in a flowing, organic composition. Each potato piece gleams from the olive oil. Delicately scattered among them are thin, golden-brown crispy shallot rings, providing textural contrast. Vibrant green herb oil is strategically dotted around the potatoes, adding intense color. A few delicate microgreens and purple edible flowers are placed with precision as the sole garnishes. Abundant negative space surrounds the central composition, emphasizing the dish's refined simplicity. The overall impression is one of sophisticated elegance and culinary restraint.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Small waxy potatoes",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, lightly crushed"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Fresh tarragon leaves",
+        "quantity": "10 grams"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10 grams"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Microgreens",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Edible flowers",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Wash and peel potatoes. Cut into small, uniform cylinders or precise rounds, approximately 2 cm thick. Blot dry.",
+      "Place potatoes, olive oil, garlic, and thyme in a small saucepan. Ensure potatoes are fully submerged. Cook over very low heat for 25-30 minutes. Potatoes should be fork-tender but hold their shape. Do not boil. Remove potatoes with a slotted spoon. Drain excess oil. Cool completely.",
+      "Thinly slice shallots into rings. Heat a small amount of the confit oil in a separate pan over medium-low heat. Fry shallot rings until golden and crispy. Remove with a slotted spoon. Drain on paper towels. Season with a pinch of salt.",
+      "For the herb oil, combine parsley, chives, tarragon, and 60 ml of fresh olive oil in a blender. Blend until very smooth and vibrant green. Strain through a fine-mesh sieve if desired for a clearer oil.",
+      "For the vinaigrette, whisk together white wine vinegar, Dijon mustard, a pinch of salt, and pepper in a small bowl. Slowly drizzle in 60 ml of fresh olive oil, whisking constantly until emulsified.",
+      "Gently toss the cooled confit potatoes with a small amount of the prepared vinaigrette.",
+      "Arrange the dressed potato cylinders or rounds artistically on individual plates. Leave generous negative space.",
+      "Scatter crispy shallots sparingly over and around the potatoes.",
+      "Dot the plate with small amounts of the vibrant green herb oil. Use a spoon to create small pools or lines.",
+      "Garnish precisely with microgreens and a few edible flowers.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Use small, firm waxy potatoes for best results, as they hold their shape well during confit.",
+      "Maintain very low heat for the confit to ensure gentle cooking without frying the potatoes.",
+      "Strain the herb oil for a more refined, vibrant green color and smoother texture."
+    ],
+    "traditional_techniques": [
+      "Confit"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 487,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 4.7,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 48,
+      "total_carbs_g": 31.3,
+      "total_fat_g": 38.1,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 203,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 2,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 20,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 15.9,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 17,
+      "protein": 9,
+      "saturated_fat": 26,
+      "sodium": 2,
+      "total_carbs": 11,
+      "total_fat": 49
+    },
+    "serving_size_g": 240,
+    "total_recipe_weight_g": 960
+  },
+  {
+    "recipe_name": "Fermented Huckleberry Matcha Chocolate Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_huckleberry_matcha_chocolate_bites_20250625_153612_27ae5b15.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:36:12.989328000Z",
+    "selected_ingredients": [
+      {
+        "name": "egg"
+      },
+      {
+        "name": "chocolate"
+      },
+      {
+        "name": "huckleberry"
+      },
+      {
+        "name": "macadamia nut"
+      },
+      {
+        "name": "icing sugar"
+      },
+      {
+        "name": "matcha green tea powder"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian",
+    "visual_description": "Individual spherical bites are artfully arranged on a smooth, light beige handcrafted ceramic plate. The plate rests on a subtly textured reclaimed wood surface. Each bite, approximately 3 cm in diameter, features a crisp, pale green matcha meringue shell, delicately toasted in places, revealing subtle variations in color. Beneath the meringue, a rich, dark chocolate and coarsely crushed macadamia nut core is visible, hinting at its dense texture. A peek of deep purple fermented huckleberry filling emerges from select bites, adding a vibrant color contrast. The arrangement is organic and unforced, with ample negative space. A few fresh huckleberry leaves are sparingly placed as natural garnish. Soft, natural light illuminates the scene, highlighting the varied textures and natural colors. The background is clean and minimalist, with a hint of green foliage.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Fermented Huckleberry",
+    "ingredients": [
+      {
+        "name": "Fresh Huckleberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dark Chocolate (70% cacao)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Macadamia Nuts",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Icing Sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Matcha Green Tea Powder",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Wash huckleberries. Place in a clean jar. Add sea salt and cover with filtered water.",
+      "Seal jar loosely. Ferment at room temperature for 2-3 days, burping daily.",
+      "Strain huckleberries, reserving a small amount of liquid. Mash huckleberries coarsely.",
+      "Melt dark chocolate in a double boiler. Crush macadamia nuts coarsely.",
+      "In a bowl, combine melted chocolate, crushed macadamia nuts, and 2 egg yolks. Mix well.",
+      "Roll chocolate mixture into small spheres, approximately 2 cm in diameter.",
+      "Make a small indentation in each sphere. Fill indentation with a small amount of mashed fermented huckleberries. Gently reshape to enclose huckleberry.",
+      "In a clean, dry bowl, whisk 2 egg whites until soft peaks form. Gradually add icing sugar, whisking until stiff, glossy peaks form.",
+      "Gently fold in matcha green tea powder until just combined.",
+      "Dip each chocolate-huckleberry sphere into the matcha meringue, ensuring it is fully coated.",
+      "Place coated bites on a baking sheet lined with parchment paper. Bake at 100°C for 30-40 minutes until meringue is dry and crisp. Alternatively, gently torch the meringue for a toasted finish.",
+      "Allow bites to cool completely. Chill in refrigerator for 30 minutes before serving."
+    ],
+    "notes": [
+      "The fermentation process extends the shelf life of huckleberries and adds a complex tangy flavor, aligning with preservation techniques.",
+      "Utilizing both egg yolks and whites minimizes food waste.",
+      "Adjust sweetness based on personal preference and chocolate bitterness."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ]
+  },
+  {
+    "recipe_name": "Panang Chicken Curry with Breadfruit and Butternut Squash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_panang_chicken_curry_with_breadfruit_and_butternut_squash_20250625_153543_a7fdd584.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:35:43.808085000Z",
+    "selected_ingredients": [
+      "breadfruit",
+      "squash",
+      "panang curry paste"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Panang Chicken Curry is presented in a deep, clean white porcelain bowl. The rich, red-orange curry broth, infused with coconut milk, cradles tender chunks of cooked chicken, soft, white breadfruit cubes, and bright orange butternut squash cubes. The surface is adorned with vibrant green Thai basil leaves and thin, bright red slices of spur chili. A few torn kaffir lime leaves are subtly visible. The curry has a medium-thick, glossy consistency. The bowl sits on a simple light wooden table, accompanied by a small, separate white bowl of fluffy steamed jasmine rice and a traditional Thai spoon and fork. A simple cotton napkin is placed beside the bowl. Natural, even light illuminates the dish, highlighting its rich colors and inviting textures. The background is clean and slightly blurred, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice.",
+      "Offer a side of fresh cucumber slices to balance the richness.",
+      "A small dish of 'Nam Pla Prik' (fish sauce with sliced chilies) can be offered for extra heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Breadfruit",
+        "quantity": "300g"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "300g"
+      },
+      {
+        "name": "Panang curry paste",
+        "quantity": "80g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Kaffir lime leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh Thai basil leaves",
+        "quantity": "1 cup"
+      },
+      {
+        "name": "Red spur chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Steamed jasmine rice",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Peel, core, and cut breadfruit into 2.5cm cubes.",
+      "Peel, deseed, and cut butternut squash into 2.5cm cubes.",
+      "Cut chicken thighs into 3cm chunks.",
+      "Heat vegetable oil in a large pot or wok over medium heat.",
+      "Add Panang curry paste. Stir-fry for 2 minutes until fragrant.",
+      "Add chicken chunks. Cook until lightly browned on all sides.",
+      "Pour in 400ml of coconut milk. Bring to a simmer.",
+      "Add breadfruit and butternut squash cubes. Stir well.",
+      "Add fish sauce and palm sugar. Stir until sugar dissolves.",
+      "Add torn kaffir lime leaves. Simmer for 15-20 minutes, or until chicken is cooked through and vegetables are tender.",
+      "Pour in remaining 400ml coconut milk. Heat through for 2 minutes. Do not boil.",
+      "Stir in fresh Thai basil leaves just before serving.",
+      "Thinly slice red spur chili for garnish.",
+      "Serve hot with steamed jasmine rice. Garnish with sliced chili."
+    ],
+    "traditional_techniques": [
+      "Phad Prik Gaeng (stir-frying curry paste)",
+      "Balancing sweet, sour, salty, and spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.6,
+      "calories": 897,
+      "cholesterol_mg": 195,
+      "dietary_fiber_g": 10.7,
+      "protein_g": 35.3,
+      "saturated_fat_g": 47,
+      "sodium_mg": 1651,
+      "total_carbs_g": 47,
+      "total_fat_g": 67.2,
+      "total_sugars_g": 21.8,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 169.2,
+      "cholesterol_mg": 36.8,
+      "dietary_fiber_g": 2,
+      "protein_g": 6.7,
+      "saturated_fat_g": 8.9,
+      "sodium_mg": 311.6,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 12.7,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 38,
+      "protein": 71,
+      "saturated_fat": 235,
+      "sodium": 72,
+      "total_carbs": 17,
+      "total_fat": 86
+    },
+    "serving_size_g": 530,
+    "total_recipe_weight_g": 2119
+  }
+]

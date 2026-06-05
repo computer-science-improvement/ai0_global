@@ -1,0 +1,651 @@
+[
+  {
+    "recipe_name": "Beer-Braised Pork with Annatto Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_pork_with_annatto_rice_20250627_034828_53db51a5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:48:28.559580000Z",
+    "selected_ingredients": [
+      "pork",
+      "beer",
+      "chili",
+      "rice",
+      "onion",
+      "garlic",
+      "jalapeno chile",
+      "annatto"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, white porcelain dinner plate, set on a simple wooden table. Natural, even light illuminates the scene from the side. The plate holds a single, refined portion. On one side, a mound of vibrant, golden-orange annatto rice, its individual grains distinct, forms a soft base. Beside it, generous, rustic chunks of fork-tender, beer-braised pork, some with slightly crisped edges, are nestled. The pork is rich, dark reddish-brown, glistening with its savory, thick braising sauce. Scattered over the pork are bright green flecks of freshly chopped cilantro, alongside thin, translucent slices of crimson red onion and vivid green rings of fresh jalapeño, providing pops of contrasting color and texture. A subtle sheen of the pork's rich sauce pools slightly on the plate. Beside the plate, a crisp white cotton napkin is neatly folded. A traditional Mexican ceramic bowl filled with additional lime wedges and a small, rustic molcajete holding a simple salsa verde sit subtly in the background, adding cultural authenticity without distracting from the main dish. The background is a soft, blurred restaurant setting, suggesting a casual yet refined bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for wrapping the pork and rice.",
+      "Offer extra lime wedges for squeezing over the dish.",
+      "Provide a side of pickled red onions or a fresh salsa."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1 kg, cut into 5 cm chunks"
+      },
+      {
+        "name": "Dried Ancho chiles",
+        "quantity": "3, destemmed, deseeded"
+      },
+      {
+        "name": "Dried Guajillo chiles",
+        "quantity": "2, destemmed, deseeded"
+      },
+      {
+        "name": "Lager beer",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 large, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6, peeled"
+      },
+      {
+        "name": "Annatto seeds (achiote)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Orange juice",
+        "quantity": "120 ml, fresh"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "60 ml, fresh"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5 g, ground"
+      },
+      {
+        "name": "Mexican oregano",
+        "quantity": "3 g, dried"
+      },
+      {
+        "name": "Salt",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g, freshly ground"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Jalapeño chile",
+        "quantity": "1, thinly sliced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 small, thinly sliced"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": "15 g, fresh, chopped"
+      }
+    ],
+    "instructions": [
+      "Place dried chiles in a bowl. Cover with hot water. Soak for 20 minutes until softened. Drain.",
+      "Combine rehydrated chiles, white onion, garlic, annatto seeds, orange juice, lime juice, apple cider vinegar, cumin, oregano, salt, and black pepper in a blender. Add 100 ml of beer. Blend until a smooth paste forms.",
+      "Place pork chunks in a large bowl. Pour marinade over pork. Toss to coat evenly. Cover and refrigerate for at least 2 hours, or overnight.",
+      "Preheat oven to 160°C. Transfer marinated pork and remaining beer to a Dutch oven or oven-safe pot. Cover tightly. Braise in oven for 2.5 to 3 hours, or until pork is fork-tender.",
+      "While pork braises, heat vegetable oil in a medium saucepan over medium heat. Add rice. Toast for 2 minutes, stirring constantly. Add chicken broth. Bring to a boil. Reduce heat to low, cover, and simmer for 15-18 minutes, until liquid is absorbed and rice is tender.",
+      "Remove pork from oven. Using two forks, shred the pork chunks directly in the braising liquid. Stir to combine with the rich sauce.",
+      "Thinly slice jalapeño and red onion. Chop fresh cilantro.",
+      "Spoon annatto rice onto plates. Top with generous portions of shredded beer-braised pork. Garnish with fresh jalapeño slices, red onion slices, and chopped cilantro."
+    ],
+    "notes": [
+      "Adjust the amount of jalapeño to control the spice level.",
+      "The braising liquid will reduce and thicken, coating the shredded pork in rich flavor.",
+      "Pork shoulder works best for its fat content and ability to become very tender."
+    ],
+    "traditional_techniques": [
+      "Slow Braising",
+      "Chile Rehydration",
+      "Annatto Infusion"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1137.2,
+      "cholesterol_mg": 182.5,
+      "dietary_fiber_g": 7,
+      "protein_g": 60.11,
+      "saturated_fat_g": 17.31,
+      "sodium_mg": 2287.4,
+      "total_carbs_g": 87.64,
+      "total_fat_g": 54.95,
+      "total_sugars_g": 7.08,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 188.5,
+      "cholesterol_mg": 30.25,
+      "dietary_fiber_g": 1.16,
+      "protein_g": 9.96,
+      "saturated_fat_g": 2.87,
+      "sodium_mg": 379.09,
+      "total_carbs_g": 14.52,
+      "total_fat_g": 9.11,
+      "total_sugars_g": 1.17,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.8,
+      "dietary_fiber": 25,
+      "protein": 120.2,
+      "saturated_fat": 86.6,
+      "sodium": 99.5,
+      "total_carbs": 31.9,
+      "total_fat": 70.5
+    },
+    "serving_size_g": 603.4,
+    "total_recipe_weight_g": 2413.6
+  },
+  {
+    "recipe_name": "Tatsoi and Mint Dumplings with Savory Chocolate-Soy Dipping Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tatsoi_and_mint_dumplings_with_savory_chocolate-soy_dipping_sauce_20250627_034738_b6a7e87c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:47:38.732136000Z",
+    "selected_ingredients": [
+      "mint",
+      "chocolate",
+      "egg",
+      "tatsoi",
+      "flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain starter plate. Four perfectly formed, pan-fried and steamed dumplings are arranged in a neat arc on one side of the plate. Their bottoms display a crisp, golden-brown sear, contrasting with the soft, translucent steamed tops. The filling, visible through the wrapper, hints at the vibrant green of the finely chopped tatsoi and mint. A small, elegant white ceramic dipping bowl, positioned opposite the dumplings, holds the dark, glossy savory chocolate-soy sauce. The sauce's deep brown hue is subtly reflective, indicating its rich texture. A single fresh mint sprig, with its bright green leaves, rests delicately atop the dumplings, providing a pop of fresh color and aromatic contrast. A few thinly sliced red chili rounds are scattered near the sauce for a subtle hint of color and heat. The overall presentation is clean, balanced, and professional, with moderate negative space. The table setting features a simple wooden surface, a cotton napkin folded beside the plate, and a pair of dark chopsticks resting neatly beside the dipping bowl, all under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "East Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a small bowl of chili oil on the side for extra heat.",
+      "Traditionally enjoyed as a shared appetizer or snack.",
+      "Use chopsticks for eating."
+    ],
+    "hero_ingredient": "Tatsoi",
+    "ingredients": [
+      {
+        "name": "Ground pork",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh tatsoi, finely chopped",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh mint leaves, finely chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Small garlic clove, minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 mL"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5 mL"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Round dumpling wrappers (8 cm diameter)",
+        "quantity": "40"
+      },
+      {
+        "name": "Neutral oil for pan-frying",
+        "quantity": "15 mL"
+      },
+      {
+        "name": "Water for steaming",
+        "quantity": "100 mL"
+      },
+      {
+        "name": "Soy sauce (for dipping sauce)",
+        "quantity": "50 mL"
+      },
+      {
+        "name": "Rice vinegar (for dipping sauce)",
+        "quantity": "30 mL"
+      },
+      {
+        "name": "Water (for dipping sauce)",
+        "quantity": "15 mL"
+      },
+      {
+        "name": "Dark chocolate (70% cacao or higher), finely grated",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Sesame oil (for dipping sauce)",
+        "quantity": "5 mL"
+      },
+      {
+        "name": "Chili flakes (optional)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh ginger, grated (for dipping sauce)",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh mint sprigs (for garnish)",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Thinly sliced red chili (optional, for garnish)",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "Prepare Filling: In a large bowl, combine ground pork, chopped tatsoi, chopped mint, minced garlic, grated ginger, 15 mL soy sauce, 5 mL sesame oil, and white pepper. Mix thoroughly until well combined.",
+      "Assemble Dumplings: Place about 10-12 g of filling in the center of each dumpling wrapper. Moisten the edges of half the wrapper with water. Fold the wrapper in half to form a crescent. Pinch and pleat the edges to seal securely. Repeat for all wrappers.",
+      "Cook Dumplings: Heat 15 mL neutral oil in a large non-stick pan over medium-high heat. Arrange dumplings in a single layer, ensuring they do not touch. Pan-fry for 2-3 minutes until bottoms are golden brown.",
+      "Steam Dumplings: Carefully pour 100 mL water into the pan. Immediately cover with a lid. Reduce heat to medium-low. Steam for 6-8 minutes, or until pork is cooked through and wrappers are translucent. Ensure internal temperature reaches 75°C. Remove lid and cook for another 1-2 minutes to evaporate any remaining water and crisp the bottoms further.",
+      "Prepare Sauce: While dumplings cook, whisk together 50 mL soy sauce, rice vinegar, 15 mL water, grated dark chocolate, 5 mL sesame oil, chili flakes (if using), and 2 g grated ginger in a small bowl. Whisk until chocolate is fully dissolved and sauce is smooth.",
+      "Serve: Arrange 4-5 cooked dumplings per plate. Serve immediately with a small bowl of the savory chocolate-soy dipping sauce. Garnish with fresh mint sprigs and thinly sliced red chili, if desired."
+    ],
+    "notes": [
+      "Ensure dumplings are sealed well to prevent filling leakage during cooking.",
+      "The dark chocolate in the sauce provides an umami depth rather than sweetness.",
+      "Adjust chili flakes in the sauce to personal spice preference."
+    ],
+    "traditional_techniques": [
+      "Pan-frying and steaming (potsticker method)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 650,
+      "cholesterol_mg": 40.3,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 17.9,
+      "saturated_fat_g": 7.9,
+      "sodium_mg": 1380.2,
+      "total_carbs_g": 56.6,
+      "total_fat_g": 38.5,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 293,
+      "cholesterol_mg": 18.2,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.1,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 622.7,
+      "total_carbs_g": 25.5,
+      "total_fat_g": 17.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13,
+      "dietary_fiber": 11,
+      "protein": 36,
+      "saturated_fat": 39,
+      "sodium": 60,
+      "total_carbs": 21,
+      "total_fat": 49
+    },
+    "serving_size_g": 221.6,
+    "total_recipe_weight_g": 886.5
+  },
+  {
+    "recipe_name": "Classic Apple Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_apple_crumble_20250627_034738_aca1cfd7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:47:38.637743000Z",
+    "selected_ingredients": [
+      "apple"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of classic apple crumble served in a shallow, cream-colored ceramic bowl with subtle rim imperfections. The topping is a rugged, golden-brown crust featuring coarse flour crumbs and toasted rolled oats. Soft, 2cm chunks of stewed Granny Smith apples are visible beneath the topping, with thick, caramelized amber juices bubbling slightly at the dish's edges. A single, generous pour of thick, pale yellow vanilla custard pools naturally on one side, partially melting into the warm crumble. The bowl sits on a dark, weathered oak table beside a folded linen napkin and a tarnished silver spoon. Soft, warm kitchen light emphasizes the crunchy textures and steam rising from the fruit.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve warm with hot vanilla custard",
+      "Accompany with a dollop of clotted cream",
+      "Pair with a scoop of vanilla bean ice cream"
+    ],
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Granny Smith apples",
+        "quantity": "800g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cold unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "50g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Peel, core, and cut apples into 2cm chunks.",
+      "Toss apples with 50g sugar, cinnamon, and lemon juice in a bowl.",
+      "Transfer apple mixture to a 20cm baking dish.",
+      "Cut cold butter into small cubes.",
+      "Rub butter into flour using fingertips until mixture resembles coarse breadcrumbs.",
+      "Stir in remaining 100g sugar and rolled oats.",
+      "Spread crumble topping evenly over the apples.",
+      "Bake for 35 to 40 minutes until the top is golden brown and fruit is bubbling.",
+      "Remove from oven and rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Use cold butter to ensure a crisp, crumbly texture.",
+      "Do not overwork the dough or it will become tough.",
+      "Granny Smith apples provide the best tart balance to the sweet topping."
+    ],
+    "traditional_techniques": [
+      "rubbing-in method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.5,
+      "calories": 677.4,
+      "cholesterol_mg": 53.75,
+      "dietary_fiber_g": 7.83,
+      "protein_g": 7.85,
+      "saturated_fat_g": 13.05,
+      "sodium_mg": 6,
+      "total_carbs_g": 112.1,
+      "total_fat_g": 21.95,
+      "total_sugars_g": 58.3,
+      "trans_fat_g": 0.81
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 12.65,
+      "calories": 228.5,
+      "cholesterol_mg": 18.13,
+      "dietary_fiber_g": 2.64,
+      "protein_g": 2.65,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 2.02,
+      "total_carbs_g": 37.81,
+      "total_fat_g": 7.41,
+      "total_sugars_g": 19.67,
+      "trans_fat_g": 0.27
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.9,
+      "dietary_fiber": 31.3,
+      "protein": 15.7,
+      "saturated_fat": 65.3,
+      "sodium": 0.25,
+      "total_carbs": 37.4,
+      "total_fat": 33.8
+    },
+    "serving_size_g": 296.45,
+    "total_recipe_weight_g": 1185.8
+  },
+  {
+    "recipe_name": "Warm Chicken and Sausage Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_warm_chicken_and_sausage_salad_20250627_034709_d695e043.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:47:09.749140000Z",
+    "selected_ingredients": [
+      "salad green",
+      "chicken",
+      "bacon",
+      "sausage",
+      "tomato",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Warm Chicken and Sausage Salad is presented on a clean white porcelain dinner plate, showcasing a balanced and appealing composition. A generous base of vibrant mixed robust salad greens forms the foundation. Scattered across the greens are golden-brown seared chicken chunks and caramelized sausage medallions. Interspersed among the proteins are burst, slightly charred roasted cherry tomato halves, adding pops of red. Crispy bacon crumbles are sprinkled over the entire dish, providing texture and contrasting color. A light, glossy vinaigrette is drizzled over the components. The arrangement is natural and flowing, with moderate negative space. The plate rests on a simple wooden table surface, accompanied by standard silver flatware and a folded cotton napkin beside the plate. Natural, even lighting highlights the fresh ingredients and diverse textures. The background is minimal and unobtrusive, maintaining a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Pork sausages",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Mixed robust salad greens",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Honey",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Dice chicken breasts into 2-3 cm chunks. Season with salt and pepper.",
+      "Halve cherry tomatoes. Toss with 15 ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 15-20 minutes until tender and slightly charred. Set aside.",
+      "Slice bacon into 1 cm pieces. Cook in a large pan over medium heat until crispy. Remove bacon with a slotted spoon, place on paper towels. Reserve bacon fat in the pan.",
+      "Remove sausage casings. Break sausage meat into small chunks. Add to the pan with bacon fat. Cook until browned and cooked through. Remove sausage and set aside.",
+      "Add remaining 15 ml olive oil to the pan. Add chicken chunks. Sear over medium-high heat for 6-8 minutes, turning occasionally, until golden-brown and cooked to an internal temperature of 75°C (167°F).",
+      "For the dressing, finely mince the red chili. In a small bowl, whisk together 30 ml olive oil, red wine vinegar, Dijon mustard, honey, minced chili, salt, and pepper.",
+      "In a large bowl, lightly toss the mixed salad greens with half of the dressing.",
+      "Divide greens among four individual serving plates.",
+      "Top the greens with warm chicken chunks, sausage meat, and roasted cherry tomato halves. Scatter crispy bacon crumbles over each salad.",
+      "Drizzle remaining dressing over the assembled salads. Garnish with fresh parsley."
+    ]
+  },
+  {
+    "recipe_name": "Warm Chicken, Bacon, and Sausage Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_warm_chicken%2C_bacon%2C_and_sausage_salad_20250627_034648_3d3ba03b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:46:48.777916000Z",
+    "selected_ingredients": [
+      "salad green",
+      "chicken",
+      "bacon",
+      "sausage",
+      "tomato",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Seared chicken medallions, crispy bacon lardons, and thick-sliced pan-fried sausage are artfully arranged atop a vibrant bed of fresh mixed salad greens on a clean white porcelain plate. Halved roasted cherry tomatoes, bursting with color, are scattered throughout. The chicken is golden-brown with a tender interior, the bacon perfectly crisp, and the sausage richly caramelized. A bright chili-lime vinaigrette is drizzled over, adding a glossy sheen. Garnish with thin fresh red chili slices and a lime wedge. The dish presents a balanced composition of greens, proteins, and colorful vegetables, showing varied textures. A simple wooden table and a folded white cotton napkin accompany the plate, under natural, even lighting, creating a modern bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Smoked bacon",
+        "quantity": "150g"
+      },
+      {
+        "name": "Pork sausage",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300g"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1 (small)"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Halve cherry tomatoes. Toss with 15ml olive oil, salt, and pepper. Roast for 15 minutes, or until slightly softened.",
+      "Season chicken breasts with salt and pepper. Heat 15ml olive oil in a large pan over medium-high heat. Sear chicken breasts for 5-7 minutes per side, until golden brown and internal temperature reaches 75°C. Remove from pan. Let rest 5 minutes, then slice into thick medallions.",
+      "Cut bacon into 1 cm lardons. Add bacon to the same pan. Cook over medium heat until crispy. Remove bacon with a slotted spoon. Reserve rendered fat.",
+      "Slice pork sausage into 1.5 cm thick rounds. Add sausage to the pan with bacon fat. Cook over medium-high heat until browned and cooked through. Remove from pan.",
+      "For the vinaigrette: Finely chop red chili and garlic. In a small bowl, whisk together remaining 30ml olive oil, lime juice, honey, chopped chili, garlic, salt, and pepper.",
+      "Divide mixed salad greens among four plates. Arrange chicken medallions, crispy bacon lardons, sliced sausage, and roasted cherry tomatoes over the greens.",
+      "Drizzle each salad with chili-lime vinaigrette. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.31,
+      "calories": 871.32,
+      "cholesterol_mg": 240.5,
+      "dietary_fiber_g": 1.98,
+      "protein_g": 80.15,
+      "saturated_fat_g": 15.23,
+      "sodium_mg": 1635.56,
+      "total_carbs_g": 10.62,
+      "total_fat_g": 53.82,
+      "total_sugars_g": 7.31,
+      "trans_fat_g": 0.35
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.96,
+      "calories": 194.25,
+      "cholesterol_mg": 53.62,
+      "dietary_fiber_g": 0.44,
+      "protein_g": 17.87,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 364.64,
+      "total_carbs_g": 2.37,
+      "total_fat_g": 12,
+      "total_sugars_g": 1.63,
+      "trans_fat_g": 0.08
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80.2,
+      "dietary_fiber": 7.1,
+      "protein": 160.3,
+      "saturated_fat": 76.2,
+      "sodium": 71.1,
+      "total_carbs": 3.9,
+      "total_fat": 69
+    },
+    "serving_size_g": 448.55,
+    "total_recipe_weight_g": 1794
+  }
+]

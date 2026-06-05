@@ -1,0 +1,613 @@
+[
+  {
+    "recipe_name": "Fortified Wine Layer Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fortified_wine_layer_cake_20250714_040041_30760866.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T04:00:41.922123000Z",
+    "selected_ingredients": [
+      {
+        "name": "sherry"
+      },
+      {
+        "name": "marsala wine"
+      },
+      {
+        "name": "white port"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "An elegant slice of Fortified Wine Layer Cake rests on a clean white porcelain plate. The cake features distinct layers: a tender, light golden sponge cake alternates with creamy, off-white White Port pastry cream. The sponge layers are visibly moist and glistening from the wine syrup soak. The top of the slice is lightly dusted with fine white icing sugar, enhancing its refined appearance. A few vibrant, fresh raspberries and blueberries are scattered artfully beside the slice, adding a pop of natural color. The plate is positioned on a simple, light wooden table surface, with a neatly folded white cotton napkin placed to the side. Natural, soft, even light illuminates the dessert, highlighting its textures and colors. In the background, slightly out of focus, a whole, round cake stands on a simple white cake stand, hinting at its complete form.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Served with a small cup of espresso",
+      "Paired with a small digestif glass of chilled White Port"
+    ],
+    "hero_ingredient": "Fortified Wines",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Caster sugar (for cake)",
+        "quantity": "90g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "90g"
+      },
+      {
+        "name": "Unsalted butter (melted, for cake)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Marsala wine (for syrup)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sherry (for syrup)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water (for syrup)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Caster sugar (for syrup)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Caster sugar (for pastry cream)",
+        "quantity": "60g"
+      },
+      {
+        "name": "Cornflour (cornstarch)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Unsalted butter (for pastry cream)",
+        "quantity": "20g"
+      },
+      {
+        "name": "White Port",
+        "quantity": "40ml"
+      },
+      {
+        "name": "Fresh mixed berries (for garnish)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Icing sugar (for dusting)",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 170°C. Grease and flour a 15cm round cake tin.",
+      "Whisk eggs and 90g caster sugar in a heatproof bowl over a bain-marie until thick, pale, and warm (around 40°C).",
+      "Remove from heat. Continue whisking until cool and very thick. Sift in flour and salt, fold gently.",
+      "Fold in melted butter. Pour batter into prepared tin. Bake 25-30 minutes, until golden and springy.",
+      "Cool cake in tin for 5 minutes. Invert onto a wire rack to cool completely.",
+      "For the wine syrup: Combine Marsala, Sherry, water, and 50g caster sugar in a saucepan. Bring to a simmer, stir until sugar dissolves. Cool.",
+      "For the pastry cream: Heat milk in a saucepan until simmering. In a bowl, whisk egg yolks, 60g caster sugar, and cornflour until smooth.",
+      "Gradually whisk hot milk into egg mixture. Return mixture to saucepan. Cook over medium heat, whisking constantly, until thick and bubbling. Cook 1 minute more.",
+      "Remove from heat. Stir in 20g butter and White Port until smooth. Transfer to a bowl, cover surface with cling film. Chill completely.",
+      "To assemble: Slice cooled cake horizontally into three equal layers.",
+      "Place one cake layer on a serving plate. Brush generously with wine syrup.",
+      "Spread half of the chilled pastry cream evenly over the layer. Place second cake layer on top. Brush with syrup, spread remaining pastry cream.",
+      "Top with final cake layer. Brush generously with remaining syrup. Chill cake for at least 2 hours to set.",
+      "Before serving, dust top of cake with icing sugar. Arrange fresh berries around the base or on top of the slice."
+    ],
+    "notes": [
+      "Ensure pastry cream is fully chilled before assembly for best results.",
+      "Chilling the cake for at least 2 hours allows the flavors to meld and the cake to set properly."
+    ]
+  },
+  {
+    "recipe_name": "Sous Vide Chicken Breast with Lemongrass-Galangal Coconut Emulsion and Garlic-Infused Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sous_vide_chicken_breast_with_lemongrass-galangal_coconut_emulsion_and_garlic-infused_broccoli_20250714_024330_ddbc07c8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T02:43:31.227686000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "garlic",
+      "broccoli"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "thai cuisine",
+    "visual_description": "A single, perfectly seared chicken breast, its skin a rich golden-brown, rests on a pristine white bone china plate. Adjacent to the chicken, a lustrous, pale ivory coconut-lemongrass emulsion forms an elegant, organic pool, reflecting soft light. Three vibrant green broccoli florets, slightly charred at their edges, are precisely arranged near the chicken, showcasing their intricate textures. A sparse, artful scattering of micro cilantro adds a delicate touch of freshness and color. The plating emphasizes abundant negative space, highlighting the precise execution of each component. The scene is set on a superpremium grey veined marble surface, with a pristine white linen napkin folded into a sharp triangle. Dramatic professional lighting casts soft shadows, enhancing the dish's sophisticated minimalism and refined presentation. The entire plate is visible, showcasing an individual portion designed for a Michelin-starred experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai Modern",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve as a sophisticated main course, emphasizing the individual components and their refined preparation."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Shallots, thinly sliced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "8"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh lemongrass, bruised",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Fresh galangal, sliced",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Kaffir lime leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Micro cilantro or chive batons",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and white pepper. Vacuum seal each breast individually.",
+      "Preheat a sous vide water bath to 75°C. Cook sealed chicken breasts for 1.5 hours.",
+      "Prepare the coconut-lemongrass emulsion: Heat 15 ml neutral oil in a saucepan over medium heat. Add 50 g thinly sliced shallots, 2 bruised lemongrass stalks, 50 g sliced galangal, and 2 kaffir lime leaves. Sauté until fragrant, about 5 minutes.",
+      "Add 200 ml chicken stock and 400 ml coconut milk. Bring to a simmer. Reduce heat and cook for 15 minutes, allowing flavors to infuse. Remove lemongrass, galangal, and kaffir lime leaves.",
+      "Blend the sauce until very smooth. Pass through a fine-mesh sieve into a clean saucepan. Whisk in 30 ml fish sauce, 15 g palm sugar, and 30 ml lime juice. Keep warm, do not boil.",
+      "Prepare garlic-infused broccoli: Blanch broccoli florets in boiling salted water for 2 minutes. Drain immediately and transfer to an ice bath to retain vibrant color. Drain well.",
+      "In a small saucepan, combine 8 peeled garlic cloves with 35 ml neutral oil. Cook over very low heat until garlic is golden brown and tender, about 15-20 minutes. Do not burn. Remove garlic cloves.",
+      "Heat a large non-stick pan over medium-high heat. Add 15 ml of the garlic-infused oil. Sear blanched broccoli florets for 3-4 minutes until lightly charred and tender-crisp. Season with salt.",
+      "Once chicken is cooked sous vide, remove from bags. Pat very dry with paper towels. Heat a cast iron or heavy-bottomed pan over high heat with 15 ml neutral oil. Add chicken breasts, skin-side down. Sear for 4-5 minutes until skin is deeply golden and crispy. Flip and sear for 1 minute on the flesh side. Remove from pan and rest for 5 minutes.",
+      "Just before serving, whisk 30 g cold butter into the warm coconut-lemongrass emulsion until emulsified and glossy. Adjust seasoning if needed.",
+      "To plate: Spoon a generous pool of the coconut-lemongrass emulsion slightly off-center on each plate. Place one seared chicken breast next to the sauce. Arrange 3-4 charred broccoli florets artfully near the chicken. Garnish with a few micro cilantro leaves or chive batons. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety. The sous vide method ensures even cooking to this temperature, with searing for texture.",
+      "For the emulsion, ensure all aromatics are removed before blending for a silky-smooth consistency."
+    ],
+    "traditional_techniques": [
+      "Aromatic Infusion",
+      "Emulsification",
+      "Confit"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.6,
+      "calories": 943,
+      "cholesterol_mg": 196,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 55.8,
+      "saturated_fat_g": 33.8,
+      "sodium_mg": 956,
+      "total_carbs_g": 23.8,
+      "total_fat_g": 71.3,
+      "total_sugars_g": 11.2,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 180.7,
+      "cholesterol_mg": 37.6,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 10.7,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 183.2,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 13.7,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 21,
+      "protein": 112,
+      "saturated_fat": 169,
+      "sodium": 42,
+      "total_carbs": 9,
+      "total_fat": 91
+    },
+    "serving_size_g": 522,
+    "total_recipe_weight_g": 2087
+  },
+  {
+    "recipe_name": "Lemon Herb Chicken Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_chicken_skillet_20250714_013230_71dda0b5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T01:32:30.661270000Z",
+    "selected_ingredients": [
+      "spinach",
+      "green onion",
+      "olive oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "non-alcohol, don't add heavy cream",
+    "visual_description": "A single portion of Lemon Herb Chicken Skillet is presented on a simple, round ceramic plate with a natural, off-white glaze. The pan-seared chicken breast, golden-brown and whole, rests slightly off-center. Alongside it, a generous pile of vibrant green wilted spinach, tossed with sliced green onions, spills naturally onto the plate. Scattered around the chicken and spinach are chunky, golden-roasted potato cubes, their skins slightly crisped. A subtle sheen of pan sauce coats the spinach. The scene is set on a well-worn, light wooden kitchen table, with a casually placed, folded linen napkin. Warm, inviting light from an overhead fixture illuminates the dish, highlighting the natural textures and comforting colors. A basic fork and knife are positioned to the side, ready for a homely meal.",
+    "number_of_servings": 3,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "3 (approx. 180-200g each)"
+      },
+      {
+        "name": "Small potatoes (e.g., Yukon Gold)",
+        "quantity": "450g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "3g"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and chop potatoes into 2cm cubes. Toss with 15ml olive oil, salt, and pepper. Spread on a baking tray.",
+      "Roast potatoes for 25-30 minutes, or until tender and golden.",
+      "Pat chicken breasts dry. Season with salt, pepper, oregano, and thyme.",
+      "Heat remaining 15ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts 4-5 minutes per side until golden brown and internal temperature reaches 75°C. Remove chicken from skillet.",
+      "Add minced garlic to skillet. Sauté 1 minute until fragrant.",
+      "Pour in chicken broth and juice from half the lemon. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Add spinach to skillet. Cook 2-3 minutes until wilted.",
+      "Return chicken to skillet. Sprinkle with chopped green onion and lemon zest from the remaining lemon half.",
+      "Serve chicken with spinach and roasted potatoes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 560,
+      "cholesterol_mg": 162,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 65.6,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 333,
+      "total_carbs_g": 36.9,
+      "total_fat_g": 16.8,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 12.7,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 64,
+      "total_carbs_g": 7.1,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 26,
+      "protein": 131,
+      "saturated_fat": 16,
+      "sodium": 14,
+      "total_carbs": 13,
+      "total_fat": 22
+    },
+    "serving_size_g": 518,
+    "total_recipe_weight_g": 1555
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamed Spinach and Green Onion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamed_spinach_and_green_onion_20250714_013119_326faf7f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T01:31:19.507866000Z",
+    "selected_ingredients": [
+      "spinach",
+      "green onion",
+      "olive oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "non-alcohol",
+    "visual_description": "One pan-seared chicken breast, sliced into thick medallions, is presented on a round, rustic ceramic plate. The chicken boasts a golden-brown crust and moist interior. A generous mound of vibrant, creamy spinach, studded with finely chopped green onion whites, is nestled beside the chicken. The spinach is rich green with a smooth, velvety texture. Thinly sliced green onion tops are sprinkled over the spinach for garnish. The plate rests on a well-worn wooden kitchen table, suggesting a cozy, lived-in family kitchen. A simple fork and knife are casually placed beside the plate. Warm, natural light illuminates the dish, highlighting its comforting appeal. Portions are modest and inviting.",
+    "number_of_servings": 3,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "3 (approx. 180-200g each)"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "300g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry with paper towels. Season generously with salt and black pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear chicken breasts 6-8 minutes per side until golden brown and internal temperature reaches 75°C (167°F).",
+      "Remove chicken from skillet. Let rest on a cutting board for 5 minutes.",
+      "In the same skillet, melt butter over medium heat. Add minced garlic and the white parts of green onions (sliced). Sauté for 1 minute until fragrant.",
+      "Add fresh spinach to the skillet. Cook, stirring occasionally, until spinach is completely wilted.",
+      "Stir in heavy cream and chicken broth. Bring the mixture to a gentle simmer.",
+      "Stir in grated Parmesan cheese. Season with salt and pepper to taste. Cook for 2-3 minutes, stirring, until the sauce slightly thickens.",
+      "Slice each chicken breast into 2-3 thick medallions.",
+      "Serve the sliced chicken alongside the creamed spinach. Garnish with the green parts of the sliced green onions."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 621,
+      "cholesterol_mg": 222,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 67.2,
+      "saturated_fat_g": 15.5,
+      "sodium_mg": 450,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 35.4,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160,
+      "cholesterol_mg": 57,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 17.3,
+      "saturated_fat_g": 4,
+      "sodium_mg": 116,
+      "total_carbs_g": 2,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 10,
+      "protein": 134,
+      "saturated_fat": 78,
+      "sodium": 20,
+      "total_carbs": 3,
+      "total_fat": 45
+    },
+    "serving_size_g": 388,
+    "total_recipe_weight_g": 1163
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Spinach and Green Onion Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_spinach_and_green_onion_sauce_20250714_012919_f0da804e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T01:29:20.005662000Z",
+    "selected_ingredients": [
+      "spinach",
+      "green onion",
+      "olive oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "non-alcohol",
+    "visual_description": "A single, modest portion of Pan-Seared Chicken with Creamy Spinach and Green Onion Sauce is presented on an everyday, off-white ceramic plate with a subtle rim. A whole, golden-brown pan-seared chicken breast, cooked to perfection, is centered on the plate. A generous, flowing pool of creamy, light green spinach sauce cascades over and around the chicken, with visible tender, wilted spinach leaves and small pieces of vibrant green onion. The sauce has a rich, slightly glossy texture. A sprinkle of freshly sliced green onion greens adds a pop of bright color and freshness on top. The plate sits on a well-used, warm-toned wooden dining table. A simple, silver fork and knife are placed casually to the side. The scene is illuminated by warm, cozy lighting, typical of a lived-in family kitchen, creating a comforting and inviting atmosphere. The focus is entirely on the hearty, homely dish, with natural imperfections in the plate and table adding to the authentic, unpretentious feel.",
+    "number_of_servings": 3,
+    "cuisine_type": "Home Cooking",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "3 x 180g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "300g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Carefully place chicken breasts in the hot skillet. Sear for 5-7 minutes per side, until golden brown and cooked through. Ensure internal temperature reaches 75°C (167°F).",
+      "Remove chicken from skillet. Place on a plate and cover loosely with foil. Let rest for 5 minutes.",
+      "While chicken rests, reduce heat to medium. Add minced garlic and the white parts of sliced green onions to the skillet. Sauté for 1 minute until fragrant.",
+      "Add fresh spinach to the skillet. Cook, stirring occasionally, until spinach is wilted, about 2-3 minutes.",
+      "Pour in chicken stock. Bring to a simmer. Cook for 2 minutes, scraping up any browned bits from the bottom of the skillet.",
+      "Stir in heavy cream. Simmer for 3-5 minutes, or until sauce slightly thickens. Season with salt and pepper to taste.",
+      "Return chicken breasts to the skillet, or spoon sauce over chicken on individual plates. Garnish with the green parts of sliced green onions. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 530,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 61,
+      "saturated_fat_g": 10.7,
+      "sodium_mg": 278,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 28,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 15.4,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 70,
+      "total_carbs_g": 1.9,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 10,
+      "protein": 122,
+      "saturated_fat": 54,
+      "sodium": 12,
+      "total_carbs": 3,
+      "total_fat": 36
+    },
+    "serving_size_g": 396,
+    "total_recipe_weight_g": 1187
+  }
+]

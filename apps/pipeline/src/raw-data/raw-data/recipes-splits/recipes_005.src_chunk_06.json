@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Shio Koji Tuna and Fermented Radish Broth",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_190522_9c09e8c9.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-08T19:05:22.848324000Z",
+    "selected_ingredients": [
+      "tuna"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of clear, golden-amber broth is presented in a handcrafted, deep-charcoal ceramic bowl. The bowl sits on a textured, reclaimed light oak table. Four 3cm cubes of shio-koji marinated tuna are positioned in the center, showing a delicate matte texture from light poaching. Translucent, paper-thin rounds of white radish float gracefully around the protein. A precise mound of finely julienned scallion greens sits atop the central tuna cube. The lighting is soft and natural, highlighting the clarity of the liquid and the organic textures of the ceramic. A pair of dark bamboo chopsticks rests on a small river-stone holder beside the bowl. The arrangement is minimalist, emphasizing negative space and sustainable materials.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese Modern",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve in a pre-warmed ceramic Wanmori bowl",
+      "Accompany with a small side of seasonal Tsukemono",
+      "Provide reusable bamboo chopsticks and a ceramic soup spoon"
+    ],
+    "hero_ingredient": "Tuna",
+    "ingredients": [
+      {
+        "name": "Fresh tuna loin, cut into 3cm cubes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Tuna bones and trimmings",
+        "quantity": "500g"
+      },
+      {
+        "name": "Water",
+        "quantity": "1.5L"
+      },
+      {
+        "name": "Shio Koji",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Daikon radish, thinly sliced rounds",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fermented radish brine",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried kombu",
+        "quantity": "10g"
+      },
+      {
+        "name": "Fresh ginger, sliced",
+        "quantity": "20g"
+      },
+      {
+        "name": "Scallion greens, finely julienned",
+        "quantity": "2 stalks"
+      }
+    ],
+    "instructions": [
+      "Rinse tuna bones in cold running water.",
+      "Blanch bones in boiling water for 30 seconds.",
+      "Drain and remove any dark blood line or impurities.",
+      "Place cleaned bones, kombu, and ginger in 1.5L cold water.",
+      "Simmer gently for 40 minutes without boiling.",
+      "Strain broth through a fine-mesh cloth into a clean pot.",
+      "Marinate tuna cubes in 30ml shio koji for 15 minutes.",
+      "Add remaining shio koji and radish brine to the strained broth.",
+      "Bring broth to a very low simmer.",
+      "Add radish rounds and cook for 2 minutes.",
+      "Gently place tuna cubes into the liquid.",
+      "Poach tuna for 3 minutes until the exterior is opaque.",
+      "Remove from heat immediately."
+    ],
+    "notes": [
+      "Use tuna bones from the same fish as the loin to ensure zero waste.",
+      "Do not boil the broth after adding shio koji to preserve enzyme activity.",
+      "The tuna should remain slightly pink in the very center for best texture."
+    ],
+    "traditional_techniques": [
+      "Aradaki stock making",
+      "Koji fermentation",
+      "Tsukemono preservation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 160,
+      "cholesterol_mg": 58,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 27.9,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 845,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 1.9,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 43.5,
+      "cholesterol_mg": 15.78,
+      "dietary_fiber_g": 0.22,
+      "protein_g": 7.59,
+      "saturated_fat_g": 0.14,
+      "sodium_mg": 229.9,
+      "total_carbs_g": 2.07,
+      "total_fat_g": 0.52,
+      "total_sugars_g": 1.03,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19.3,
+      "dietary_fiber": 2.9,
+      "protein": 55.8,
+      "saturated_fat": 2.5,
+      "sodium": 36.7,
+      "total_carbs": 2.8,
+      "total_fat": 2.4
+    },
+    "serving_size_g": 367.5,
+    "total_recipe_weight_g": 1470
+  },
+  {
+    "recipe_name": "Thai Peanut Chicken Linguine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_140409_60beb9df.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-08T14:04:10.323421000Z",
+    "selected_ingredients": [
+      "peanut butter",
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Thai Peanut Chicken Linguine served in a wide, shallow white porcelain pasta bowl. The linguine is expertly swirled, coated in a glossy, rich tan-colored peanut sauce. Large 3cm chunks of golden-seared chicken are nestled among the pasta strands, never sliced or fanned. The dish is topped with vibrant green chopped cilantro and sliced scallions. Fine shards of bright red chili and pale, crunchy crushed peanuts add texture and contrast. The bowl sits on a dark walnut wood table in a modern bistro setting. Beside the bowl is a neatly folded white cotton napkin and a small ceramic side dish containing two fresh lime wedges. Natural side lighting highlights the creamy texture of the sauce and the steam rising from the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai Fusion",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Thai cucumber relish (Ajad) to cut the richness",
+      "Provide extra lime wedges for brightness",
+      "Traditional Thai-style spoon and fork or wooden chopsticks"
+    ],
+    "hero_ingredient": "Creamy Peanut Butter",
+    "ingredients": [
+      {
+        "name": "Chicken breast, cut into 3cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Linguine pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Creamy peanut butter",
+        "quantity": "150g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Thai red curry paste",
+        "quantity": "40g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Peanut oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Roasted peanuts, crushed",
+        "quantity": "30g"
+      },
+      {
+        "name": "Scallions, sliced",
+        "quantity": "2 stalks"
+      }
+    ],
+    "instructions": [
+      "Boil 4 liters of salted water.",
+      "Cook linguine until al dente.",
+      "Reserve 100ml pasta water. Drain pasta.",
+      "Heat peanut oil in a large skillet over medium-high heat.",
+      "Add chicken chunks. Sear until golden and internal temperature reaches 75°C.",
+      "Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add garlic and ginger. Sauté for 1 minute.",
+      "Add red curry paste. Stir for 2 minutes until fragrant.",
+      "Whisk in peanut butter, coconut milk, fish sauce, and brown sugar.",
+      "Simmer sauce for 3 minutes until thick and glossy.",
+      "Return chicken to the skillet. Add pasta and reserved water.",
+      "Toss ingredients to coat evenly.",
+      "Stir in lime juice.",
+      "Garnish with cilantro, crushed peanuts, and scallions."
+    ],
+    "notes": [
+      "Ensure the curry paste is fried until the oil begins to separate for maximum flavor",
+      "Adjust the amount of pasta water to achieve a fluid, coating consistency"
+    ],
+    "traditional_techniques": [
+      "tempering aromatics",
+      "emulsifying sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5.3,
+      "calories": 1080,
+      "cholesterol_mg": 111,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 72,
+      "saturated_fat_g": 18.3,
+      "sodium_mg": 970,
+      "total_carbs_g": 87.9,
+      "total_fat_g": 49,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 195.5,
+      "cholesterol_mg": 20.1,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 13,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 175.6,
+      "total_carbs_g": 15.9,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 23,
+      "protein": 144,
+      "saturated_fat": 92,
+      "sodium": 42,
+      "total_carbs": 32,
+      "total_fat": 63
+    },
+    "serving_size_g": 552.5,
+    "total_recipe_weight_g": 2210
+  },
+  {
+    "recipe_name": "Bengali Beef Curry with Mustard and Apple",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_132617_f0695e97.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-08T13:26:17.864422000Z",
+    "selected_ingredients": [
+      "beef",
+      "curry",
+      "watermelon",
+      "apple",
+      "mustard",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A deep-toned, rich beef curry is presented in a traditional hammered brass bowl. The beef is cut into substantial 4cm chunks, coated in a thick, dark mahogany sauce made from caramelized onions and melted apple. Tiny black mustard seeds are visible throughout the glossy gravy. To the side of the main bowl, a small stack of vibrant red, 2cm chilled watermelon cubes offers a refreshing color contrast. The dish is placed on a dark teak wood surface with a simple white linen napkin. A side of fluffy white long-grain rice is visible in a separate small dish. The lighting is natural and soft, emphasizing the tender texture of the unsliced beef chunks.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Bengali",
+    "cultural_serving_suggestions": [
+      "Serve with steamed Basmati rice",
+      "Accompany with a side of cooling yogurt or raita",
+      "Enjoy with traditional Bengali luchi or paratha"
+    ],
+    "hero_ingredient": "Beef chunks",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Yellow onions, thinly sliced",
+        "quantity": "300g"
+      },
+      {
+        "name": "Grated green apple",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mustard seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Curry powder",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh watermelon, 2cm cubes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Green chillies, slit",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 4cm cubes.",
+      "Heat mustard oil in a heavy-bottomed pot until it smokes.",
+      "Reduce heat and add mustard seeds until they pop.",
+      "Add sliced onions and sauté until deep golden brown.",
+      "Add beef chunks and sear for 8 minutes until browned.",
+      "Stir in ginger-garlic paste and curry powder.",
+      "Cook for 5 minutes until oil separates from the spices.",
+      "Add grated apple and green chillies.",
+      "Pour in 250ml water and season with salt.",
+      "Cover and simmer on low heat for 90 minutes until beef is tender.",
+      "Remove lid and increase heat to reduce sauce to a thick consistency.",
+      "Serve hot with fresh chilled watermelon cubes on the side."
+    ],
+    "notes": [
+      "Mustard oil must reach smoking point to remove its raw pungency.",
+      "The grated apple acts as a natural sweetener and thickener for the gravy.",
+      "The watermelon provides a necessary cooling element to the spicy mustard base."
+    ],
+    "traditional_techniques": [
+      "bhuna",
+      "tempering",
+      "mustard oil smoking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 698,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 39.7,
+      "saturated_fat_g": 16.6,
+      "sodium_mg": 625,
+      "total_carbs_g": 18.8,
+      "total_fat_g": 51.5,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 232.7,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 13.2,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 208.3,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 17.2,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 12.9,
+      "protein": 79.4,
+      "saturated_fat": 83,
+      "sodium": 27.2,
+      "total_carbs": 6.8,
+      "total_fat": 66
+    },
+    "serving_size_g": 300,
+    "total_recipe_weight_g": 1200
+  },
+  {
+    "recipe_name": "Beef with Mustard and Mushroom Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_114212_0d49224d.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-08T11:42:13.097264000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "onion",
+      "potato",
+      "mustard",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, thick seared beef medallion serves as the focal point on a round white porcelain plate. The beef features a deep brown, caramelized exterior. Beside it, 2cm potato cubes are roasted to a vibrant golden-brown. Quartered cremini mushrooms are coated in a glossy, pale-yellow mustard cream sauce that flows naturally around the meat. The sauce contains visible bits of translucent diced onion and minced garlic. The arrangement leaves ample white space on the plate edges. The setting is a rustic oak table with a folded white cotton napkin and silver flatware. Natural side lighting highlights the contrast between the matte beef crust and the shimmering sauce. A light dusting of chopped parsley adds green color.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Bistro",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crusty French baguette to soak up the mustard sauce",
+      "Pair with a medium-bodied red wine like Pinot Noir",
+      "Traditional bistro service includes a small side of dressed green salad"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef tenderloin medallions",
+        "quantity": "800g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "40g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Cut into 2cm cubes.",
+      "Boil cubes in salted water for 10 minutes. Drain well.",
+      "Melt 20g butter with 15ml oil in a pan. Fry potatoes until golden and crisp. Season with salt.",
+      "Season 200g beef medallions with salt and pepper.",
+      "Heat remaining oil in a heavy skillet. Sear beef 4 minutes per side. Remove and rest.",
+      "Add quartered mushrooms to the same skillet. Sauté until browned.",
+      "Add finely diced onion and minced garlic. Cook 2 minutes until translucent.",
+      "Stir in Dijon mustard and beef stock. Scrape the pan bottom to deglaze.",
+      "Simmer liquid until reduced by half. Stir in cream. Simmer until thickened.",
+      "Return beef to the pan to coat with sauce. Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Ensure the pan is very hot before searing the beef to achieve a proper crust",
+      "Do not crowd the mushrooms in the pan or they will steam instead of browning",
+      "Use high-quality Dijon mustard for the most authentic flavor profile"
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing",
+      "Reduction",
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 720.5,
+      "cholesterol_mg": 166,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 50.2,
+      "saturated_fat_g": 18.2,
+      "sodium_mg": 503.6,
+      "total_carbs_g": 33.4,
+      "total_fat_g": 42.4,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155.1,
+      "cholesterol_mg": 35.7,
+      "dietary_fiber_g": 1,
+      "protein_g": 10.8,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 108.4,
+      "total_carbs_g": 7.2,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 16,
+      "protein": 100,
+      "saturated_fat": 91,
+      "sodium": 22,
+      "total_carbs": 12,
+      "total_fat": 54
+    },
+    "serving_size_g": 464.5,
+    "total_recipe_weight_g": 1858
+  },
+  {
+    "recipe_name": "Thai Basil Beef with Savory Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_113711_8ba73c99.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-08T11:37:12.217427000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken stock",
+      "brown rice",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features a mound of nutty brown rice beside savory beef chunks on a matte grey ceramic plate. The beef consists of 2cm cubes seared to a deep mahogany brown with a glossy, translucent glaze. Vibrant green Thai basil leaves are tossed through the meat, showing slight wilting from the high heat. A traditional Thai fried egg with a crispy, golden-edged white and a bright, runny yolk tops the beef. The arrangement is clean, showing the entire plate with balanced negative space. The setting is a dark wood table with a simple linen napkin and a traditional Thai spoon and fork. Natural side-lighting highlights the textures of the grains and the succulent, seared meat in a minimalist bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thailand",
+    "cultural_serving_suggestions": [
+      "Serve with a side of prik nam pla (fish sauce with sliced chilies)",
+      "Provide a traditional Thai spoon and fork for dining",
+      "Serve with fresh cucumber slices to balance the heat"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin, cut into 2cm cubes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Fresh Thai holy basil leaves",
+        "quantity": "60g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Bird's eye chilies",
+        "quantity": "4"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Palm sugar or brown sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Rinse brown rice under cold water.",
+      "Bring 550ml chicken stock to a boil in a medium pot.",
+      "Add rice, reduce heat to low, cover, and simmer for 40 minutes.",
+      "Remove rice from heat and let stand covered for 5 minutes.",
+      "Pound garlic and chilies in a mortar and pestle into a coarse paste.",
+      "Heat 15ml oil in a wok over high heat until smoking.",
+      "Sauté garlic-chili paste for 30 seconds until fragrant.",
+      "Add beef cubes and sear for 3 minutes until deeply browned.",
+      "Stir in oyster sauce, fish sauce, dark soy sauce, and sugar.",
+      "Add remaining 50ml chicken stock to deglaze the wok.",
+      "Toss in basil leaves and stir for 30 seconds until wilted.",
+      "In a separate pan, fry eggs in remaining oil until edges are crispy and yolk is runny.",
+      "Serve beef immediately over the cooked brown rice topped with a fried egg."
+    ],
+    "notes": [
+      "Ensure the wok is extremely hot before adding beef to achieve wok hei flavor.",
+      "Do not overcook the beef cubes to maintain a juicy interior.",
+      "Holy basil is preferred for authenticity, but Thai purple basil is a suitable substitute."
+    ],
+    "traditional_techniques": [
+      "wok hei",
+      "pounding aromatics",
+      "flash frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.5,
+      "calories": 811.7,
+      "cholesterol_mg": 306,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 53.9,
+      "saturated_fat_g": 11.7,
+      "sodium_mg": 1421.5,
+      "total_carbs_g": 63.3,
+      "total_fat_g": 38.1,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 199.2,
+      "cholesterol_mg": 75.1,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 13.2,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 348.8,
+      "total_carbs_g": 15.5,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 102,
+      "dietary_fiber": 11.1,
+      "protein": 107.8,
+      "saturated_fat": 58.5,
+      "sodium": 61.8,
+      "total_carbs": 23,
+      "total_fat": 48.8
+    },
+    "serving_size_g": 407.5,
+    "total_recipe_weight_g": 1630
+  }
+]

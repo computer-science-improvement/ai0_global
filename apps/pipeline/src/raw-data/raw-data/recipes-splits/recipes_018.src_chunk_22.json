@@ -1,0 +1,638 @@
+[
+  {
+    "recipe_name": "Italian Baked Chicken with Olives and Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_baked_chicken_with_olives_and_mozzarella_20250625_153541_7d012f49.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:35:41.964158000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "oregano",
+      "cheese",
+      "olive",
+      "onion",
+      "chili"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Italian baked chicken is presented in a rustic, shallow ceramic bowl with slightly chipped edges. Two golden-brown, seared chicken thighs, cooked to tender perfection, are partially submerged in a rich, vibrant red tomato sauce. The sauce is thick with softened, diced red onion and scattered, dark purple Kalamata olives. Melted, bubbly fresh mozzarella cheese blankets the chicken and parts of the sauce, showing slight browning in areas. A sprinkle of fresh green basil leaves contrasts with the red sauce and white cheese. The dish is placed on a well-worn, light wooden dining table. Warm, inviting light from a kitchen fixture illuminates the scene. A simple, off-white linen napkin is casually folded beside the bowl, with a basic fork and knife. The overall impression is one of comforting, expertly prepared home cooking.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "A simple green salad with a vinaigrette is also traditional."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "4 (approx. 600g total)"
+      },
+      {
+        "name": "Crushed tomatoes, canned",
+        "quantity": "800g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh mozzarella cheese",
+        "quantity": "200g, torn into pieces"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g, freshly ground"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "a few, for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken thighs for 3 minutes per side until golden. Remove chicken from skillet.",
+      "Add diced red onion to the skillet. Sauté for 5 minutes until softened.",
+      "Add minced garlic and red chili flakes. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Stir in dried oregano and a pinch more salt and pepper. Bring to a simmer.",
+      "Return seared chicken thighs to the skillet, nestling them into the tomato sauce.",
+      "Scatter pitted Kalamata olives around the chicken.",
+      "Bake for 20 minutes.",
+      "Remove skillet from oven. Arrange torn mozzarella pieces over chicken and sauce.",
+      "Return to oven. Bake for another 10-15 minutes, until chicken reaches 75°C internal temperature and cheese is melted and bubbly.",
+      "Let rest for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 548,
+      "cholesterol_mg": 180.5,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 43.8,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 1408.6,
+      "total_carbs_g": 15.6,
+      "total_fat_g": 33.8,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 38.1,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.2,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 297,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 88,
+      "saturated_fat": 56,
+      "sodium": 61,
+      "total_carbs": 6,
+      "total_fat": 43
+    },
+    "serving_size_g": 474,
+    "total_recipe_weight_g": 1897
+  },
+  {
+    "recipe_name": "Creamy Plant-Based 'Chicken' and Mushroom Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_plant-based_%27chicken%27_and_mushroom_tagliatelle_20250625_153424_49840e58.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:34:24.587065000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "A single portion of creamy plant-based 'chicken' and mushroom tagliatelle sits on a clean white porcelain dinner plate. The tagliatelle is loosely coiled in the center, coated in a rich, pale cream sauce. Thick chunks of golden-brown seared plant-based 'chicken' are nestled within the pasta. Uniformly sliced browned cremini mushrooms and vibrant wilted spinach leaves are interspersed throughout, adding earthy tones and fresh green. A sprinkle of bright green chopped fresh parsley garnishes the top. The dish is presented on a simple wooden table with a folded cotton napkin and standard European flatware. Natural, even lighting illuminates the dish, highlighting its comforting textures and colors against a soft, blurred bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Crusty bread for dipping"
+    ],
+    "hero_ingredient": "Plant-based 'chicken'",
+    "ingredients": [
+      {
+        "name": "Plant-based 'chicken' pieces",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Cremini mushrooms, sliced",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Plant-based cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Nutritional yeast",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Cook tagliatelle according to package directions. Reserve 120 ml pasta water. Drain pasta.",
+      "Heat olive oil in a large pan over medium-high heat.",
+      "Add plant-based 'chicken' chunks. Sear until golden and cooked through. Remove 'chicken' from pan.",
+      "Add diced onion to the pan. Sauté until softened, about 3 minutes.",
+      "Add sliced mushrooms. Cook until browned and tender, about 5-7 minutes.",
+      "Stir in minced garlic. Cook 1 minute until fragrant.",
+      "Pour in plant-based cream and vegetable broth. Bring mixture to a simmer.",
+      "Stir in nutritional yeast. Season with salt and pepper.",
+      "Return 'chicken' to the pan. Add cooked tagliatelle. Toss to coat.",
+      "Add reserved pasta water as needed to achieve desired creamy sauce consistency.",
+      "Stir in fresh spinach until wilted.",
+      "Serve immediately. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "This recipe is entirely plant-based, offering a delicious and sustainable alternative to a classic creamy pasta dish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 661.9,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 37.7,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 472.4,
+      "total_carbs_g": 79.1,
+      "total_fat_g": 21.2,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 8.8,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 110.6,
+      "total_carbs_g": 18.5,
+      "total_fat_g": 5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 29.4,
+      "protein": 75.3,
+      "saturated_fat": 12.1,
+      "sodium": 20.5,
+      "total_carbs": 28.8,
+      "total_fat": 27.2
+    },
+    "serving_size_g": 426.8,
+    "total_recipe_weight_g": 1707
+  },
+  {
+    "recipe_name": "Bacon-Wrapped Goat Cheese Stuffed Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bacon-wrapped_goat_cheese_stuffed_chicken_20250625_153415_bff5cfc5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:34:16.362403000Z",
+    "selected_ingredients": [
+      "chicken",
+      {
+        "name": "goat cheese",
+        "comment": "sauce"
+      },
+      "parmesan",
+      "bacon",
+      "cucumber"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A pan-seared, bacon-wrapped chicken breast, golden-brown with crispy bacon, rests prominently on a clean white porcelain dinner plate. The chicken is cut in half diagonally to reveal the creamy, herb-flecked goat cheese stuffing. A generous pool of pale yellow parmesan cream sauce elegantly cradles the chicken. Beside the chicken, a small, vibrant mound of freshly diced green cucumber salad provides a crisp, refreshing contrast. The plate features moderate negative space, ensuring a professional yet approachable presentation. The setting is a modern bistro, with the plate centered on a simple wooden table. A neatly folded white cotton napkin is placed beside the plate. Natural, even lighting illuminates the dish, highlighting the textures and colors against a subtly blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Soft goat cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Streaky bacon",
+        "quantity": "8 slices"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Double cream (heavy cream)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1, finely minced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Dry white wine or chicken stock",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large (approx. 300g)"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "1 tablespoon, chopped (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Butterfly chicken breasts. Season inside and out with salt and pepper.",
+      "In a small bowl, mix goat cheese with chopped chives and parsley.",
+      "Divide goat cheese mixture. Stuff each chicken breast with goat cheese. Fold chicken over.",
+      "Wrap each stuffed chicken breast with two slices of bacon. Secure with toothpicks if needed.",
+      "Heat olive oil in an oven-safe pan over medium-high heat.",
+      "Sear chicken breasts for 3-4 minutes per side until bacon is crispy and golden.",
+      "Transfer pan to preheated oven. Bake for 15-20 minutes, or until internal temperature reaches 75°C.",
+      "While chicken bakes, prepare sauce. In a small saucepan, melt butter over medium heat. Sauté minced shallot for 2 minutes until soft. Add minced garlic; cook 1 minute.",
+      "Deglaze with white wine or chicken stock. Cook until liquid reduces by half.",
+      "Stir in double cream and grated Parmesan. Simmer gently for 3-5 minutes until sauce thickens slightly. Season with salt and pepper. Keep warm.",
+      "Prepare cucumber salad. Dice cucumber into small cubes. In a bowl, combine diced cucumber, red wine vinegar, and chopped dill. Season with salt and pepper.",
+      "Remove chicken from oven. Rest for 5 minutes. Remove toothpicks.",
+      "To plate: Spoon a pool of parmesan cream sauce onto each plate. Place one whole chicken breast, cut in half diagonally, on the sauce. Serve a small mound of cucumber salad alongside."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1024.1,
+      "cholesterol_mg": 317.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 89.33,
+      "saturated_fat_g": 31.9,
+      "sodium_mg": 1140.5,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 66.45,
+      "total_sugars_g": 4.83,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 229,
+      "cholesterol_mg": 71,
+      "dietary_fiber_g": 0.36,
+      "protein_g": 19.96,
+      "saturated_fat_g": 7.13,
+      "sodium_mg": 254.9,
+      "total_carbs_g": 1.81,
+      "total_fat_g": 14.85,
+      "total_sugars_g": 1.08,
+      "trans_fat_g": 0.29
+    },
+    "daily_value_percentages": {
+      "cholesterol": 105.93,
+      "dietary_fiber": 5.71,
+      "protein": 178.66,
+      "saturated_fat": 159.5,
+      "sodium": 49.59,
+      "total_carbs": 2.95,
+      "total_fat": 85.19
+    },
+    "serving_size_g": 447.5,
+    "total_recipe_weight_g": 1790
+  },
+  {
+    "recipe_name": "Korean Honey-Apple Tartlet with Cranberry Cinnamon Compote",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_korean_honey-apple_tartlet_with_cranberry_cinnamon_compote_20250625_153408_33f3b4fd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:34:08.952315000Z",
+    "selected_ingredients": [
+      {
+        "name": "cranberry"
+      },
+      {
+        "name": "honey"
+      },
+      {
+        "name": "apple"
+      },
+      {
+        "name": "cinnamon"
+      },
+      {
+        "name": "flour"
+      },
+      {
+        "name": "sweet wine"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian Korean",
+    "visual_description": "A single, golden-baked tartlet rests centered on a clean white porcelain dinner plate. Its pâte sablée crust is crisp, with neatly crimped edges. The filling, a mound of finely diced honey-glazed apples, is visible beneath a shimmering layer of ruby-red cranberry-cinnamon compote. The tartlet's surface is gently drizzled with a translucent Korean honey glaze, catching the light. Scattered delicately on top are a few toasted pine nuts, adding a subtle textural contrast and an earthy, nutty aroma. The overall presentation is clean and elegant, with ample negative space. The plate sits on a simple wooden table surface, beside a folded cotton napkin and standard flatware, all under natural, even lighting, evoking a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve alongside a warm cup of Korean herbal tea, such as Sujeonggwa (cinnamon punch) or a light floral tea.",
+      "Offer as a delicate individual dessert after a casual Korean meal."
+    ],
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cold butter, cubed",
+        "quantity": "100g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Ice water",
+        "quantity": "2 tbsp (if needed)"
+      },
+      {
+        "name": "Apples (e.g., Fuji or Gala), peeled, cored, diced small",
+        "quantity": "2 medium (approx. 300g)"
+      },
+      {
+        "name": "Korean honey",
+        "quantity": "50g"
+      },
+      {
+        "name": "Cinnamon powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Sweet white wine",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Fresh cranberries",
+        "quantity": "100g"
+      },
+      {
+        "name": "Granulated sugar (for compote)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Water (for compote)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh ginger, thinly sliced (optional)",
+        "quantity": "1 cm"
+      },
+      {
+        "name": "Korean honey (for glaze)",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Hot water (for glaze)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Toasted pine nuts OR dried jujube, thinly sliced",
+        "quantity": "1 tbsp OR 2-3 slices"
+      }
+    ],
+    "instructions": [
+      "Prepare the tartlet dough: Combine flour, sugar, salt, and cold butter in a food processor. Pulse until crumbly. Add egg yolk and pulse until dough forms. Add ice water if needed. Form into a disc. Wrap and chill for 30 minutes.",
+      "Preheat oven to 180°C (350°F).",
+      "Roll chilled dough to 3mm thickness. Line four 10cm tartlet molds. Trim edges. Prick bottoms with a fork. Line with parchment paper and fill with pie weights. Blind bake for 15 minutes.",
+      "Remove weights and parchment. Bake for 5-7 more minutes until lightly golden. Cool shells.",
+      "Prepare apple filling: Combine diced apples, 50g Korean honey, 1 tsp cinnamon, sweet wine, cornstarch, and lemon juice in a saucepan. Cook over medium heat for 8-10 minutes, stirring, until apples are tender and sauce thickens. Cool.",
+      "Prepare cranberry compote: Combine cranberries, 30g sugar, 50ml water, cinnamon stick, and optional ginger in a small saucepan. Cook over medium heat for 8-10 minutes, stirring occasionally, until cranberries burst and compote thickens. Remove cinnamon stick and ginger. Cool.",
+      "Fill cooled tartlet shells: Spoon apple filling into each tartlet shell. Top each with a generous dollop of cranberry-cinnamon compote.",
+      "Prepare honey glaze: Whisk 2 tbsp Korean honey with 1 tbsp hot water until smooth.",
+      "Garnish: Drizzle honey glaze over each tartlet. Sprinkle with toasted pine nuts or arrange thin slices of dried jujube on top.",
+      "Serve immediately or chill until ready to serve."
+    ],
+    "notes": [
+      "This recipe fuses traditional Korean honey and flavor notes like cinnamon and optional ginger with a classic French tartlet structure.",
+      "Using high-quality Korean honey enhances the authentic flavor profile."
+    ]
+  },
+  {
+    "recipe_name": "Creamy Chicken and Bacon Penne with Goat Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_bacon_penne_with_goat_cheese_20250625_153322_d1622108.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:33:22.439694000Z",
+    "selected_ingredients": [
+      "chicken",
+      {
+        "name": "goat cheese",
+        "comment": "sauce"
+      },
+      "parmesan",
+      "bacon",
+      "cucumber"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of creamy chicken and bacon penne pasta rests on a simple, rustic ceramic plate. The penne is coated in a rich, pale ivory sauce, with tender, seared chicken chunks and crisp, golden-brown bacon pieces nestled throughout. Small, vibrant green cubes of fresh cucumber are mixed into the pasta, adding a pop of color and texture. The dish is garnished with a scattering of roughly chopped fresh parsley. The plate sits on a well-used, warm-toned wooden dining table. A casual cloth napkin and a simple fork are placed beside the plate. The scene is bathed in warm, cozy kitchen lighting, creating a homely, inviting atmosphere. The entire plate is visible, showcasing natural portions and a comforting, unpretentious presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Soft goat cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large (approx. 300 g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook penne pasta according to package directions. Drain. Reserve 100 ml pasta water.",
+      "Cut bacon into 1 cm pieces. Cook in a large pan over medium heat until crispy. Remove bacon. Drain all but 1 tbsp fat.",
+      "Cut chicken thighs into 2-3 cm chunks. Season with salt and pepper. Add chicken to the pan with bacon fat. Sear chicken over medium-high heat until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C (167°F). Remove chicken.",
+      "Dice onion. Mince garlic. Add onion to the pan. Cook until softened, about 3-4 minutes. Add garlic. Cook 1 minute more until fragrant.",
+      "Pour in chicken broth. Bring to a simmer. Add heavy cream, goat cheese, and grated Parmesan. Stir until cheeses melt and sauce is smooth. If sauce is too thick, add reserved pasta water gradually.",
+      "Return cooked chicken and crispy bacon to the pan with the sauce. Add cooked pasta. Toss to coat evenly.",
+      "Dice cucumber into 1 cm cubes. Add to the pasta mixture. Toss gently.",
+      "Chop fresh parsley. Garnish pasta with parsley before serving."
+    ]
+  }
+]

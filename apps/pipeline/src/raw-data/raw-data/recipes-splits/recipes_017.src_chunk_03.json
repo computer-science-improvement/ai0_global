@@ -1,0 +1,671 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Bacon Mushroom Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_bacon_mushroom_sauce_20250626_100614_458dd3f5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:06:14.536566000Z",
+    "selected_ingredients": [
+      "bacon",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast, golden-brown and tender, is centrally placed on a clean white porcelain dinner plate. A generous portion of creamy, rich mushroom and bacon sauce is spooned artfully over and around the chicken. The sauce is off-white with visible dark brown sliced mushrooms and crispy, reddish-brown diced bacon pieces. The chicken shows a beautiful sear mark. A sprinkle of vibrant green chopped fresh parsley garnishes the top of the chicken and sauce, adding a pop of color. The plate is positioned on a simple, light-colored wooden table surface. A neatly folded white cotton napkin and standard silver flatware (fork and knife) are placed beside the plate. Natural, soft, even lighting illuminates the dish, creating subtle shadows and highlighting textures. The background is a slightly blurred, casual bistro setting. The entire plate is visible with appropriate negative space, showcasing a refined yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "cultural_serving_suggestions": [
+      "Serve with creamy mashed potatoes or steamed rice.",
+      "Offer a side of simple green salad with a light vinaigrette.",
+      "Provide crusty bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "smoked streaky bacon, diced",
+        "quantity": "150g"
+      },
+      {
+        "name": "cremini mushrooms, sliced",
+        "quantity": "200g"
+      },
+      {
+        "name": "large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "heavy cream (35% fat)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a large skillet over medium-high heat. Sear chicken breasts for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet. Set aside.",
+      "Add diced bacon to the same skillet. Cook over medium heat until crispy. Remove bacon with a slotted spoon. Set aside. Leave rendered bacon fat in the skillet.",
+      "Add remaining 1 tablespoon olive oil to the skillet if needed. Add diced onion and sliced mushrooms. Sauté for 5-7 minutes until softened and browned.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the skillet. Bring to a simmer.",
+      "Stir in heavy cream. Reduce heat to low. Simmer for 5 minutes, or until sauce slightly thickens. Season sauce with salt and pepper to taste.",
+      "Return cooked chicken breasts and cooked bacon to the skillet. Spoon sauce over chicken. Heat gently for 1-2 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust sauce consistency by simmering longer for a thicker sauce, or adding a splash more broth for a thinner sauce."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 727,
+      "cholesterol_mg": 256.5,
+      "dietary_fiber_g": 2,
+      "protein_g": 68.4,
+      "saturated_fat_g": 19,
+      "sodium_mg": 788.3,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 45.4,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 208,
+      "cholesterol_mg": 73.3,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 19.6,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 225.2,
+      "total_carbs_g": 2.5,
+      "total_fat_g": 13,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85.5,
+      "dietary_fiber": 7,
+      "protein": 136.9,
+      "saturated_fat": 95,
+      "sodium": 34.3,
+      "total_carbs": 3.1,
+      "total_fat": 58.2
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Spanish Chicken and Potato Croquettes with Spicy Tomato Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_potato_croquettes_with_spicy_tomato_relish_20250626_100553_872c46e9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:05:53.604904000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bread",
+      "potato",
+      "milk",
+      "yogurt",
+      "margarine",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single starter portion of Spanish Chicken and Potato Croquettes is elegantly presented on a clean, round white porcelain plate, centrally placed on a simple wooden table. Three golden-brown, elongated croquettes are arranged neatly, slightly overlapping, their crisp, textured breadcrumb coating visible. A vibrant mound of chunky, deep red spicy tomato relish is spooned beside them, showcasing diced tomatoes and flecks of green chili. Fresh, finely chopped parsley garnishes the relish, adding a pop of color. A slice of lightly toasted, crusty white bread rests to the side. The setting includes a folded white cotton napkin and classic flatware. Natural, even lighting highlights the warm tones of the croquettes and rich relish. The background features a subtle, out-of-focus modern bistro ambiance, creating moderate negative space on the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve as part of a tapas spread.",
+      "Accompany with additional crusty bread for dipping."
+    ],
+    "hero_ingredient": "Chicken and Potato Croquettes",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "200g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "4 slices"
+      }
+    ],
+    "instructions": [
+      "Cook chicken breast. Shred finely. Boil potatoes until tender. Mash well.",
+      "Heat butter in a pan. Sauté 1 diced onion until soft. Add 2 minced garlic cloves. Cook 1 minute.",
+      "Stir in flour. Cook 1 minute, stirring constantly, to form a roux.",
+      "Gradually whisk in milk until smooth and thick béchamel forms. Cook 2-3 minutes.",
+      "Stir in shredded chicken, mashed potatoes, salt, pepper, and nutmeg. Mix well.",
+      "Transfer mixture to a shallow dish. Cover with cling film touching surface. Chill 2 hours or until firm.",
+      "Shape chilled mixture into small oval or cylindrical croquettes (approx. 30g each).",
+      "Set up breading station: one bowl with beaten eggs, one with breadcrumbs.",
+      "Dip each croquette in egg, then roll in breadcrumbs, ensuring full coating.",
+      "Heat vegetable oil in a deep pot to 170°C.",
+      "Fry croquettes in batches until golden brown and crispy. Drain on paper towels. Cook chicken to 75°C (167°F).",
+      "For the relish: Heat olive oil in a small saucepan. Sauté 1 diced onion until soft.",
+      "Add 2 minced garlic cloves and chopped red chili. Cook 1 minute.",
+      "Add diced tomatoes, white wine vinegar, and sugar.",
+      "Simmer 10-15 minutes, stirring occasionally, until tomatoes break down and relish thickens.",
+      "Season with salt and pepper.",
+      "Plate 3-4 croquettes with a dollop of relish. Garnish with chopped parsley. Serve with toasted crusty bread."
+    ],
+    "notes": [
+      "Croquettes can be prepared ahead of time and fried just before serving.",
+      "Ensure the croquette mixture is well chilled for easier shaping."
+    ],
+    "traditional_techniques": [
+      "Making a béchamel sauce base for croquettes",
+      "Sofrito base for the tomato relish"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 772.1,
+      "cholesterol_mg": 158.3,
+      "dietary_fiber_g": 5.64,
+      "protein_g": 31.98,
+      "saturated_fat_g": 8.75,
+      "sodium_mg": 968.2,
+      "total_carbs_g": 76.57,
+      "total_fat_g": 40.83,
+      "total_sugars_g": 12.59,
+      "trans_fat_g": 0.09
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.27,
+      "calories": 164.9,
+      "cholesterol_mg": 33.8,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.83,
+      "saturated_fat_g": 1.87,
+      "sodium_mg": 206.8,
+      "total_carbs_g": 16.36,
+      "total_fat_g": 8.72,
+      "total_sugars_g": 2.69,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.8,
+      "dietary_fiber": 20.1,
+      "protein": 64,
+      "saturated_fat": 43.7,
+      "sodium": 42.1,
+      "total_carbs": 27.8,
+      "total_fat": 52.3
+    },
+    "serving_size_g": 468.1,
+    "total_recipe_weight_g": 1872.3
+  },
+  {
+    "recipe_name": "Thai Green Curry with Kale and Edamame",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_green_curry_with_kale_and_edamame_20250626_100533_05c826f0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:05:33.832401000Z",
+    "selected_ingredients": [
+      "kale",
+      "coconut milk",
+      "ginger",
+      "chili",
+      "lime",
+      "edamame"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "A vibrant Thai Green Curry with plant-based ingredients is presented in a deep, pristine white porcelain bowl. The creamy, aromatic green sauce envelops golden-brown pan-seared tofu cubes, tender-crisp, roughly chopped kale leaves, and bright green edamame. Thin red chili slices and fresh cilantro leaves are scattered across the top as a fresh garnish, adding pops of color. A lime wedge rests on the rim of the bowl, ready to be squeezed. Adjacent to the curry, a smaller, matching white porcelain bowl holds a perfectly mounded portion of fluffy white jasmine rice. Chopsticks are neatly placed across the rice bowl. The scene is set on a simple, light wooden table surface, with a folded cotton napkin beside the bowls. Natural, soft lighting illuminates the dish, highlighting its rich textures and inviting colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve immediately with a side of steamed jasmine rice.",
+      "Offer additional lime wedges for guests to squeeze over their curry.",
+      "Provide small bowls of chili flakes or a mild chili oil for extra heat."
+    ],
+    "hero_ingredient": "Green Curry Paste",
+    "ingredients": [
+      {
+        "name": "Firm tofu",
+        "quantity": "400g block"
+      },
+      {
+        "name": "Green curry paste",
+        "quantity": "2-3 tablespoons"
+      },
+      {
+        "name": "Coconut milk",
+        "quantity": "400ml can"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Kale",
+        "quantity": "200g"
+      },
+      {
+        "name": "Shelled edamame",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2cm piece"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Press tofu for 15 minutes to remove excess water. Cut into 2cm cubes.",
+      "Heat cooking oil in a large pot or wok over medium heat. Add diced shallot and minced garlic. Sauté for 2 minutes until fragrant.",
+      "Add grated ginger and green curry paste. Cook for 1 minute, stirring constantly, until aromatic.",
+      "Pour in coconut milk and vegetable broth. Stir well to combine. Bring to a gentle simmer.",
+      "Add tofu cubes to the simmering curry. Cook for 5-7 minutes, allowing tofu to absorb flavors.",
+      "Add kale (stems removed, roughly chopped) and edamame. Cook for another 3-5 minutes, until kale is tender-crisp and edamame is heated through.",
+      "Stir in soy sauce and brown sugar. Adjust seasoning to taste. Squeeze in fresh lime juice.",
+      "Remove from heat. Garnish with thin slices of red chili and fresh cilantro leaves. Serve hot."
+    ],
+    "notes": [
+      "Adjust the amount of green curry paste to your preferred spice level.",
+      "For extra protein, lightly pan-fry the tofu cubes until golden before adding to the curry."
+    ],
+    "traditional_techniques": [
+      "Balancing the five core Thai flavors (spicy, sour, sweet, salty, umami)",
+      "Sautéing curry paste to release aromatics"
+    ]
+  },
+  {
+    "recipe_name": "Savory Baked Pasta Cups",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_baked_pasta_cups_20250626_100532_132d135d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:05:32.892564000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Individual savory baked pasta cups are presented on a rustic wooden board. Each cup is golden-brown on top, with visible flecks of green herbs and melted cheese, showcasing a crisp exterior and a tender, creamy interior. The cups are perfectly portioned, filled with orzo pasta, diced crispy pancetta, and finely minced shallots. A light sprinkle of fresh chives garnishes the tops. The setting is a modern bistro, featuring a simple wooden table and clean white porcelain dinner plates. Natural, even lighting highlights the inviting warmth and texture of the snack. A folded off-white cotton napkin rests beside the board, maintaining a clean, professional, yet approachable aesthetic. The dish is designed for relaxed, casual sharing.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Inspired",
+    "cultural_origin": "Italian Inspired",
+    "cultural_serving_suggestions": [
+      "Ideal for an Italian-style aperitivo or as a sophisticated finger food at gatherings.",
+      "Serve with a side of simple tomato confit or a light roasted red pepper aioli for dipping."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Orzo pasta",
+        "quantity": "200g"
+      },
+      {
+        "name": "Pancetta, diced",
+        "quantity": "100g"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fontina or Gruyere cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh chives, chopped",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Lightly grease a 12-cup muffin tin.",
+      "Cook orzo pasta according to package directions until al dente. Drain well.",
+      "In a large skillet, cook diced pancetta over medium heat until crisp. Remove pancetta with a slotted spoon; set aside. Leave rendered fat in skillet.",
+      "Add finely diced shallot to the skillet. Sauté for 3 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant. Remove from heat.",
+      "In a large bowl, whisk eggs, heavy cream, and milk until combined. Stir in grated Parmesan, grated Fontina/Gruyere, chopped parsley, chopped chives, salt, and black pepper.",
+      "Add cooked orzo, crispy pancetta, and sautéed shallot-garlic mixture to the egg mixture. Stir gently to combine.",
+      "Spoon the mixture evenly into the prepared muffin tin cups. Fill each cup almost to the top.",
+      "Bake for 20-25 minutes, or until the cups are golden brown and set. A toothpick inserted into the center should come out clean.",
+      "Let cool in the muffin tin for 5 minutes before carefully removing. Serve warm or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 584,
+      "cholesterol_mg": 213,
+      "dietary_fiber_g": 2,
+      "protein_g": 25.1,
+      "saturated_fat_g": 17,
+      "sodium_mg": 751,
+      "total_carbs_g": 40.2,
+      "total_fat_g": 35.3,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 299,
+      "cholesterol_mg": 109,
+      "dietary_fiber_g": 1,
+      "protein_g": 12.9,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 384,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 18.1,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 7.1,
+      "protein": 50.2,
+      "saturated_fat": 85,
+      "sodium": 32.7,
+      "total_carbs": 14.6,
+      "total_fat": 45.3
+    },
+    "serving_size_g": 195,
+    "total_recipe_weight_g": 781
+  },
+  {
+    "recipe_name": "Lomo Saltado",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lomo_saltado_20250626_100519_2c84886d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:05:20.123801000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Lomo Saltado presented on a clean white porcelain plate. The dish features 3cm chunks of seared beef sirloin with a deep brown crust. These are mixed with thick, glossy wedges of purple red onion and bright red Roma tomatoes. Golden, thick-cut potato batons are scattered through the beef mixture, all coated in a dark, shimmering sauce. A neat, molded dome of fluffy white rice sits on the side of the plate. Fresh green cilantro leaves garnish the top. The scene is set on a light wooden bistro table with a white cotton napkin and a small side bowl of spicy green aji sauce. The lighting is natural and even.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian Fusion",
+    "cultural_origin": "Peru",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Aji Verde (green chili sauce)",
+      "Accompany with Inca Kola or a glass of red wine",
+      "Traditionally eaten with both rice and potatoes in the same meal"
+    ],
+    "hero_ingredient": "Beef Sirloin",
+    "ingredients": [
+      {
+        "name": "Beef sirloin, cut into 3cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Red onions, cut into thick wedges",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Roma tomatoes, cut into thick wedges",
+        "quantity": "4"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh cilantro, roughly chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Thick-cut potato fries, cooked",
+        "quantity": "400g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Cooked white long-grain rice",
+        "quantity": "500g"
+      }
+    ],
+    "instructions": [
+      "Season beef chunks with salt and pepper.",
+      "Heat 2 tablespoons of oil in a wok over high heat until smoking.",
+      "Sear beef in batches until browned and medium-rare.",
+      "Remove beef from wok and set aside.",
+      "Add remaining oil to the wok.",
+      "Stir-fry onion wedges for 2 minutes until slightly charred but crisp.",
+      "Add garlic and aji amarillo paste. Stir for 30 seconds.",
+      "Return beef to the wok.",
+      "Pour in soy sauce and red wine vinegar. Toss quickly.",
+      "Add tomato wedges. Stir for 30 seconds to warm through.",
+      "Fold in the cooked potato fries and half the cilantro.",
+      "Remove from heat immediately.",
+      "Serve with white rice."
+    ],
+    "notes": [
+      "Ensure the wok is extremely hot before adding beef to achieve a smoky flavor.",
+      "Do not overcook the tomatoes; they should be warm but hold their shape.",
+      "The potatoes should be added at the very last second to maintain some crispness."
+    ],
+    "traditional_techniques": [
+      "wok hei",
+      "stir-frying",
+      "flambéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 973,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 5,
+      "protein_g": 49.5,
+      "saturated_fat_g": 12.75,
+      "sodium_mg": 1100,
+      "total_carbs_g": 81.25,
+      "total_fat_g": 50,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 189.85,
+      "cholesterol_mg": 23.41,
+      "dietary_fiber_g": 0.98,
+      "protein_g": 9.66,
+      "saturated_fat_g": 2.49,
+      "sodium_mg": 214.63,
+      "total_carbs_g": 15.85,
+      "total_fat_g": 9.76,
+      "total_sugars_g": 0.88,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 17.86,
+      "protein": 99,
+      "saturated_fat": 63.75,
+      "sodium": 47.83,
+      "total_carbs": 29.55,
+      "total_fat": 64.1
+    },
+    "serving_size_g": 512.5,
+    "total_recipe_weight_g": 2050
+  }
+]

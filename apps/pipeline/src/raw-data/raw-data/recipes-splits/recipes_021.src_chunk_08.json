@@ -1,0 +1,689 @@
+[
+  {
+    "recipe_name": "Turkey Mince Stir-fry with Spinach and Carrot",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_turkey_mince_stir-fry_with_spinach_and_carrot_20250624_142224_5f0a870c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:22:24.487201000Z",
+    "selected_ingredients": [
+      "milk",
+      "egg",
+      "greek yogurt",
+      "chicken stock",
+      "mincemeat",
+      "chicken",
+      "beef",
+      "turkey",
+      "spinach",
+      "carrot",
+      "banana",
+      "apple",
+      "avocado",
+      "tomato",
+      "rice",
+      "bread",
+      "onion",
+      "cucumber",
+      "coriander",
+      "garlic",
+      "ginger",
+      "chili",
+      "lime",
+      "coconut oil",
+      "olive oil",
+      "butter",
+      "maple syrup",
+      "honey",
+      "peanut butter",
+      "coconut cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "make turkey mince the main protein. Stir fry style",
+    "visual_description": "A single portion of Turkey Mince Stir-fry is presented in a pristine white porcelain bowl, set on a simple wooden table. Steamed jasmine rice forms a neat base. The stir-fry is mounded artfully atop the rice, showcasing crumbled, savory brown turkey mince, vibrant green wilted spinach, and bright orange julienned carrots. Thin red chili slices and finely minced ginger are visible throughout, adding visual texture and color. A generous sprinkle of fresh green coriander leaves garnishes the peak, with a bright lime wedge resting beside the mound. The dish has a natural, flowing arrangement. Chopsticks lie parallel to the bowl on a clean cotton napkin. Natural, even lighting illuminates the dish, highlighting its fresh ingredients and inviting textures, against a subtly blurred casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian Stir-fry",
+    "cultural_origin": "East Asian",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice as the primary accompaniment",
+      "Provide chopsticks for eating",
+      "Offer a small side dish of soy sauce or chili oil for individual seasoning"
+    ],
+    "hero_ingredient": "Turkey Mince",
+    "ingredients": [
+      {
+        "name": "Turkey mince",
+        "quantity": "500g"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2cm piece"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1 (or to taste)"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Coconut oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Rinse jasmine rice. Cook rice according to package directions.",
+      "Prepare vegetables. Julienne carrot into thin strips. Dice onion. Mince garlic and ginger. Thinly slice chili.",
+      "Heat coconut oil in a large wok or deep skillet over high heat.",
+      "Add turkey mince. Break it apart with a spoon. Cook until browned and cooked through, reaching an internal temperature of 75°C (167°F). Remove turkey from wok, set aside.",
+      "Add diced onion to the wok. Stir-fry for 2 minutes until softened.",
+      "Add minced garlic, ginger, and sliced chili. Stir-fry for 1 minute until fragrant.",
+      "Add julienned carrot. Stir-fry for 3 minutes until tender-crisp.",
+      "Return cooked turkey mince to the wok. Add fresh spinach. Stir until spinach wilts.",
+      "Pour in chicken stock and soy sauce. Squeeze in juice from half a lime. Stir to combine.",
+      "Simmer for 2 minutes, allowing flavors to meld. Taste and adjust seasoning with salt or more lime juice.",
+      "Serve immediately over hot jasmine rice. Garnish with fresh coriander leaves and a lime wedge."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (chǎo)",
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 573.4,
+      "cholesterol_mg": 87.5,
+      "dietary_fiber_g": 4,
+      "protein_g": 33.9,
+      "saturated_fat_g": 8.3,
+      "sodium_mg": 482.2,
+      "total_carbs_g": 71,
+      "total_fat_g": 16.6,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102.3,
+      "cholesterol_mg": 15.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.1,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 86.1,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 3,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 14,
+      "protein": 68,
+      "saturated_fat": 41,
+      "sodium": 21,
+      "total_carbs": 26,
+      "total_fat": 21
+    },
+    "serving_size_g": 560.75,
+    "total_recipe_weight_g": 2243
+  },
+  {
+    "recipe_name": "Garlic Herb Cottage Cheese Toasts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_herb_cottage_cheese_toasts_20250624_142220_4e26ec46.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:22:21.068616000Z",
+    "selected_ingredients": [
+      "cottage cheese",
+      "garlic",
+      "salad green"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single starter portion of Garlic Herb Cottage Cheese Toasts rests on a rustic, everyday ceramic plate. Two thick slices of golden-brown rustic bread are generously topped with a creamy, white cottage cheese mixture, flecked with finely minced garlic and vibrant green chopped chives and parsley. The cottage cheese is spread naturally, allowing some texture to show. Beside the toasts, a small, natural pile of crisp mixed salad greens, lightly dressed with olive oil, salt, and pepper, adds a contrasting fresh element. The entire plate is visible, placed on a well-used wooden dining table. Warm, inviting light from kitchen fixtures illuminates the scene, creating a homely, lived-in atmosphere. A casually placed cloth napkin and simple, traditional flatware complete the comforting, unpretentious presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Cottage cheese",
+    "ingredients": [
+      {
+        "name": "Rustic bread",
+        "quantity": "8 slices"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Slice rustic bread into 2 cm thick pieces. Arrange on a baking tray.",
+      "Toast bread in the oven for 8-10 minutes, until golden and crisp.",
+      "Finely mince garlic cloves.",
+      "Chop fresh chives and parsley.",
+      "In a bowl, combine cottage cheese, minced garlic, chopped chives, chopped parsley, 2 tablespoons of olive oil, salt, and black pepper. Mix well.",
+      "In a separate bowl, toss mixed salad greens with 1 tablespoon of olive oil, salt, and pepper.",
+      "Spread a generous amount of cottage cheese mixture onto each toasted bread slice.",
+      "Arrange the cottage cheese toasts on a serving plate. Serve with the simple green salad on the side."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.8,
+      "calories": 316,
+      "cholesterol_mg": 2.5,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 14.1,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 533,
+      "total_carbs_g": 35.3,
+      "total_fat_g": 12.8,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.7,
+      "calories": 194,
+      "cholesterol_mg": 1.5,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 328,
+      "total_carbs_g": 21.7,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 1,
+      "dietary_fiber": 7,
+      "protein": 28,
+      "saturated_fat": 11,
+      "sodium": 23,
+      "total_carbs": 13,
+      "total_fat": 16
+    },
+    "serving_size_g": 162.6,
+    "total_recipe_weight_g": 650.5
+  },
+  {
+    "recipe_name": "Hearty Beef, Blue Cheese & Paprika Pizza",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef%2C_blue_cheese_%26_paprika_pizza_20250624_142148_92cfc836.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:21:49.418526000Z",
+    "selected_ingredients": [
+      "olive",
+      "blue cheese",
+      "paprika"
+    ],
+    "complexity": "simple",
+    "special_requests": "Make me a pizza with these ingredients and horse meat",
+    "visual_description": "A single slice of hearty pizza rests on a round, rustic ceramic plate with natural imperfections. The pizza slice features a golden-brown crust, generously topped with melted, bubbly mozzarella and crumbled blue cheese. Dark, sliced black olives are scattered over the rich, browned ground beef, which is visibly seasoned with specks of vibrant red paprika. A sprinkle of fresh, chopped green parsley adds a final touch of color. The plate sits on a well-worn wooden kitchen table. A simple, folded cloth napkin is casually placed nearby. Warm, inviting light from an overhead kitchen fixture illuminates the scene, creating a cozy, homely atmosphere. The background is slightly blurred, showing a glimpse of a comfortable, lived-in family dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Ground Beef",
+    "ingredients": [
+      {
+        "name": "Pizza dough",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Ground beef",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Blue cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Black olives, sliced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 220°C. Lightly grease a large pizza pan or baking sheet.",
+      "Heat olive oil in a large skillet over medium-high heat. Add diced onion. Cook until softened, about 3 minutes.",
+      "Add ground beef to the skillet. Break it apart with a spoon. Cook until browned, about 8-10 minutes. Drain any excess fat.",
+      "Stir in minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Season the beef mixture with salt and black pepper to taste. Remove from heat.",
+      "On a lightly floured surface, roll out the pizza dough to your desired thickness and shape. Transfer dough to the prepared pizza pan.",
+      "Spread tomato paste evenly over the pizza dough, leaving a small border for the crust.",
+      "Distribute the cooked beef mixture over the tomato paste.",
+      "Sprinkle shredded mozzarella cheese and crumbled blue cheese over the beef.",
+      "Scatter the sliced black olives over the cheese.",
+      "Bake for 12-18 minutes, or until the crust is golden brown and the cheese is bubbly and melted.",
+      "Carefully remove the pizza from the oven. Garnish with fresh chopped parsley.",
+      "Let rest for 5 minutes before slicing and serving."
+    ],
+    "notes": [
+      "For convenience, store-bought pizza dough works perfectly.",
+      "Ensure ground beef reaches an internal temperature of 70°C (160°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 907,
+      "cholesterol_mg": 121,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 50.5,
+      "saturated_fat_g": 20.9,
+      "sodium_mg": 1529,
+      "total_carbs_g": 74.8,
+      "total_fat_g": 48.2,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 236,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 13.1,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 397,
+      "total_carbs_g": 19.4,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 23,
+      "protein": 101,
+      "saturated_fat": 104,
+      "sodium": 67,
+      "total_carbs": 27,
+      "total_fat": 62
+    },
+    "serving_size_g": 385,
+    "total_recipe_weight_g": 1540
+  },
+  {
+    "recipe_name": "Arroz con Pollo with Roasted Broccoli and Oaxaca Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_with_roasted_broccoli_and_oaxaca_cheese_20250624_142148_78fe7a47.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:21:49.106735000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "garlic",
+      "onion",
+      "rice",
+      "broccoli",
+      "cheese",
+      "hot sauce",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of vibrant Arroz con Pollo is presented on a clean, round white porcelain dinner plate. The fluffy, tomato-infused rice forms the base, showcasing its rich orange-red hue. Tender, golden-brown chicken thick chunks are nestled atop the rice. Around the base, perfectly roasted broccoli small florets, with slightly charred edges, are arranged. Melted, creamy Oaxaca cheese is visibly integrated into the rice, offering a soft, inviting texture. The dish is garnished generously with bright green chopped fresh cilantro. The plate sits on a simple wooden table surface. A neatly folded white cotton napkin is placed beside the plate. In the background, a small, authentic molcajete with a vibrant green salsa and a stack of warm corn tortillas in a traditional warmer enhance the cultural setting. Natural, even lighting highlights the textures and colors of the dish, creating an inviting, casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Oaxaca or Monterey Jack cheese",
+        "quantity": "150 g, shredded"
+      },
+      {
+        "name": "Chipotle hot sauce",
+        "quantity": "15 ml (or to taste)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g, chopped (for garnish)"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "4 (for serving)"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm thick chunks. Season with salt and pepper.",
+      "Heat 15 ml olive oil in a large, deep skillet or Dutch oven over medium-high heat. Sear chicken chunks until golden brown on all sides. Remove chicken from skillet; set aside. Ensure chicken reaches an internal temperature of 75°C (167°F) later.",
+      "Add remaining 15 ml olive oil to the skillet. Add diced onion and bell pepper. Sauté 5 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in rice, cumin, and oregano. Toast rice for 2 minutes, stirring constantly.",
+      "Pour in crushed tomatoes, chicken broth, and chipotle hot sauce. Stir well.",
+      "Return seared chicken chunks to the skillet. Bring liquid to a boil. Reduce heat to low. Cover and simmer 20 minutes, or until rice is tender and liquid is absorbed.",
+      "Preheat oven to 200°C (390°F). Toss broccoli florets with a drizzle of olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast broccoli 15 minutes, or until tender-crisp and slightly charred.",
+      "Once rice is cooked, remove from heat. Stir in shredded cheese until melted and creamy. Taste and adjust seasoning.",
+      "Serve Arroz con Pollo hot, topped with roasted broccoli florets. Garnish with fresh cilantro and serve with lime wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 667,
+      "cholesterol_mg": 175,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 50.3,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 633,
+      "total_carbs_g": 42.3,
+      "total_fat_g": 33.6,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 90.5,
+      "cholesterol_mg": 23.7,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.8,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 86,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 22,
+      "protein": 101,
+      "saturated_fat": 60,
+      "sodium": 28,
+      "total_carbs": 15,
+      "total_fat": 43
+    },
+    "serving_size_g": 736.8,
+    "total_recipe_weight_g": 2947
+  },
+  {
+    "recipe_name": "Sustainable Beef & Fermented Tomato Rice Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_beef_%26_fermented_tomato_rice_bowl_20250624_142132_3620d5ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:21:33.371994000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, individual portion presented in a handcrafted, natural beige ceramic bowl with a wide rim. The base is fluffy brown rice. Arranged artfully atop the rice are seared beef cubes, their surfaces caramelized and rich brown. Alongside are vibrant roasted seasonal vegetables: bright green broccoli florets, crimson diced bell peppers, and tender green courgette half-moons, showcasing their natural colors and textures. A generous dollop of deep red Fermented Tomato Relish sits prominently, its texture slightly chunky, adding a pop of color and acidity. The composition is clean and minimalist, with ample negative space around the ingredients. Garnished sparingly with fresh, green cilantro leaves. The bowl rests on a light, textured reclaimed wood table surface, accompanied by a simple, undyed linen napkin. Soft, diffused natural light illuminates the dish from the side, enhancing its organic beauty. The background is clean and unobtrusive, hinting at natural elements without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Fermented Tomato Relish",
+    "ingredients": [
+      {
+        "name": "Beef Sirloin or Chuck",
+        "quantity": "600g"
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Broccoli Florets",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Courgette",
+        "quantity": "1"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "2cm piece"
+      },
+      {
+        "name": "Low Sodium Soy Sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Cilantro or Basil",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fermented Tomato Relish",
+        "quantity": "200g"
+      }
+    ],
+    "instructions": [
+      "Cook brown rice. Use 600ml water. Simmer covered for 40 minutes. Let stand 10 minutes. Fluff rice.",
+      "Preheat oven to 200°C. Cut beef into 2cm cubes. Dice bell pepper. Slice courgette into half-moons. Thinly slice red onion. Mince garlic. Grate ginger.",
+      "Toss broccoli florets, diced bell pepper, and courgette slices with 15ml olive oil, salt, and pepper. Roast 15-20 minutes until tender-crisp.",
+      "Heat remaining 15ml olive oil in a large pan over medium-high heat. Add beef cubes. Sear 3-4 minutes until browned on all sides. Remove beef. Ensure internal temperature reaches 75°C.",
+      "In the same pan, add minced garlic, grated ginger, and sliced red onion. Sauté 2-3 minutes until fragrant.",
+      "Return beef to pan. Add soy sauce, rice vinegar, and sesame oil. Toss to coat. Cook 1 minute until sauce slightly reduces.",
+      "To assemble bowls: Divide cooked rice among 4 bowls. Arrange seared beef chunks and roasted vegetables over rice.",
+      "Spoon generous amounts of Fermented Tomato Relish over each bowl.",
+      "Garnish with fresh chopped cilantro or basil. Serve immediately."
+    ],
+    "notes": [
+      "To prepare Fermented Tomato Relish: Dice 500g ripe tomatoes (including cores and skins for zero-waste). Combine with 10g sea salt, 2 cloves minced garlic, and a pinch of chili flakes. Pack tightly into a clean jar. Cover loosely or use an airlock. Ferment at room temperature for 3-5 days until bubbly and tangy. Refrigerate. This relish is a versatile way to preserve seasonal tomato abundance and reduce food waste.",
+      "Consider using beef fat rendered from trimmings for cooking vegetables or rice, enhancing flavor and reducing waste.",
+      "This recipe champions seasonal ingredients and minimizes waste, reflecting eco-conscious cooking principles."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.1,
+      "calories": 647.6,
+      "cholesterol_mg": 112.5,
+      "dietary_fiber_g": 7,
+      "protein_g": 49.3,
+      "saturated_fat_g": 9.9,
+      "sodium_mg": 1025.1,
+      "total_carbs_g": 44,
+      "total_fat_g": 30.3,
+      "total_sugars_g": 18.5,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 115.3,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.8,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 182.5,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 25,
+      "protein": 99,
+      "saturated_fat": 50,
+      "sodium": 45,
+      "total_carbs": 16,
+      "total_fat": 39
+    },
+    "serving_size_g": 562,
+    "total_recipe_weight_g": 2247
+  }
+]

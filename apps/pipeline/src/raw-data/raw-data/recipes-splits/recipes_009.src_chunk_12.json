@@ -1,0 +1,670 @@
+[
+  {
+    "recipe_name": "Hearty Sausage and Tomato Skillet with Fried Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_sausage_and_tomato_skillet_with_fried_egg_20250723_172820_d3175014.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T17:28:20.575626000Z",
+    "selected_ingredients": [
+      "sausage",
+      "egg",
+      "tomato",
+      "cucumber",
+      "sour cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of hearty sausage and tomato skillet is presented on a simple, round ceramic plate with natural imperfections, set on a well-used wooden dining table. The base consists of savory, browned sausage chunks intermingled with softened, diced red tomatoes, creating a rustic, comforting bed. A perfectly fried egg, with a glistening, runny yolk and crisp white edges, rests gently atop the sausage and tomato mixture. A dollop of creamy white sour cream is placed beside the egg, slightly melting into the warm dish. Alongside, a small mound of fresh, diced green cucumber provides a crisp, cool contrast. The components are arranged casually, touching and overlapping, reflecting a homely, natural plating style. Warm, cozy lighting from kitchen fixtures illuminates the scene, highlighting the dish's comforting appeal. A casually placed cloth napkin and minimal, unobtrusive background elements maintain a lived-in, family kitchen atmosphere.",
+    "number_of_servings": 1,
+    "cuisine_type": "Homestyle",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Pork sausage",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium tomato",
+        "quantity": "1"
+      },
+      {
+        "name": "Small cucumber",
+        "quantity": "0.5"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Remove sausage from casing if using links. Break into small chunks.",
+      "Heat olive oil in a medium skillet over medium-high heat.",
+      "Add sausage chunks to skillet. Cook, breaking apart with a spoon, until browned and cooked through. This takes 5-7 minutes. Ensure internal temperature reaches 75°C (167°F).",
+      "While sausage cooks, dice the tomato into 1 cm cubes. Dice the cucumber into 1 cm cubes.",
+      "Add diced tomato to the cooked sausage in the skillet. Cook for 3-4 minutes until tomatoes soften slightly.",
+      "Remove sausage and tomato mixture from skillet. Keep warm on a plate.",
+      "In the same skillet, add a little more oil if needed. Fry the egg to your preference (sunny-side up or over easy recommended).",
+      "Spoon the warm sausage and tomato mixture onto an everyday ceramic plate. Arrange naturally.",
+      "Carefully place the fried egg on top of the sausage and tomato mixture.",
+      "Place the diced cucumber next to the sausage mixture.",
+      "Add a dollop of sour cream next to the egg or on the side.",
+      "Season the dish with a pinch of salt and black pepper.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 681,
+      "cholesterol_mg": 312,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 35.5,
+      "saturated_fat_g": 20.9,
+      "sodium_mg": 1405,
+      "total_carbs_g": 9.9,
+      "total_fat_g": 58.2,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 81,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.3,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 367,
+      "total_carbs_g": 2.6,
+      "total_fat_g": 15.2,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 104,
+      "dietary_fiber": 7,
+      "protein": 71,
+      "saturated_fat": 104,
+      "sodium": 61,
+      "total_carbs": 4,
+      "total_fat": 75
+    },
+    "serving_size_g": 383,
+    "total_recipe_weight_g": 383
+  },
+  {
+    "recipe_name": "Sustainable Turkey & Fermented Tomato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_turkey_%26_fermented_tomato_salad_20250723_172149_83fc7779.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T17:21:50.128863000Z",
+    "selected_ingredients": [
+      "turkey"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single starter portion of blanched turkey cubes, diced small and uniform, is elegantly presented in a shallow, handcrafted ceramic bowl of cream or beige hue. The pale pink turkey pieces are loosely arranged at the bowl's center. Around them, vibrant, thinly sliced pickled red onion provides a pop of magenta. Fresh green cilantro leaves are sparingly placed for natural color and texture. A clear, amber-hued pool of fermented tomato water collects subtly at the bowl's base, reflecting light. The composition emphasizes ample white space, highlighting each ingredient's natural beauty. The bowl rests on a light, textured bamboo surface, accompanied by an undyed linen napkin. Soft, natural light illuminates the scene, with a blurred natural green background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Turkey Breast",
+    "ingredients": [
+      {
+        "name": "Turkey breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Jalapeño",
+        "quantity": "1 (optional)"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml (for pickling)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Tomato Water: Roughly chop tomatoes. Blend lightly. Strain through fine mesh sieve or cheesecloth overnight at room temperature to collect clear liquid. Refrigerate liquid.",
+      "Prepare Pickled Red Onion: Thinly slice red onion. In a small saucepan, combine 100 ml water, white wine vinegar, and sugar. Bring to a boil, stir to dissolve sugar. Pour hot liquid over sliced red onion. Let cool completely, then refrigerate.",
+      "Prepare Turkey: Cut turkey breast into small 1.5 cm cubes. Bring a pot of lightly salted water to a rolling boil. Add diced turkey. Cook for 1-2 minutes until internal temperature reaches 75°C. Immediately remove turkey with a slotted spoon and plunge into an ice bath to stop cooking. Drain well and pat dry.",
+      "Assemble Salad: In a bowl, gently combine blanched, chilled turkey cubes with 60 ml of fermented tomato water, a few spoonfuls of pickled red onion, and chopped cilantro. Add thinly sliced jalapeño if desired. Season with sea salt to taste and a light drizzle of olive oil.",
+      "Serve: Plate a single starter portion in a shallow bowl. Serve immediately."
+    ],
+    "notes": [
+      "Ensure turkey is very fresh and handled with care for food safety. Blanching ensures it meets temperature requirements.",
+      "The fermented tomato water can be prepared up to 3 days in advance and stored in the refrigerator."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 179,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 23.9,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 554,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 3,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 54,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 7.3,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 168,
+      "total_carbs_g": 4,
+      "total_fat_g": 0.9,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 8,
+      "protein": 48,
+      "saturated_fat": 3,
+      "sodium": 24,
+      "total_carbs": 5,
+      "total_fat": 4
+    },
+    "serving_size_g": 329.9,
+    "total_recipe_weight_g": 1319.6
+  },
+  {
+    "recipe_name": "Obsidian Entremet with Shattered Confetti",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_obsidian_entremet_with_shattered_confetti_20250723_165703_2e97e2cf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T16:57:03.929207000Z",
+    "selected_ingredients": [
+      {
+        "name": "100s and 1000s",
+        "comment": "100s and 1000s"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "macabre style",
+    "visual_description": "A single, perfectly cut square slice of \"Obsidian Entremet\" stands precisely centered on an elegant, matte black ceramic dessert plate with a subtle, dark gold rim. The entremet boasts a pristine, ultra-glossy, obsidian-black mirror glaze that reflects light dramatically, creating deep shadows. Its sharp, clean edges reveal the sophisticated internal architecture: a dark, intensely black cocoa sponge base, topped by a vibrant, blood-red layer of blood orange crémeux, and crowned with a contrasting, ethereal ivory vanilla bean mousse. A single, irregularly shaped shard of \"Shattered Confetti\" tuile, dark and delicate with embedded black sprinkles, leans artistically against the entremet, adding a textural counterpoint and subtle, unsettling beauty. The plate features abundant negative space, emphasizing the dessert's minimalist and architectural form. Lighting is dramatic and directional, casting long, deliberate shadows that enhance the macabre elegance. The background is a pristine white marble surface, minimalistic and clean, with a precisely folded white linen napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Patisserie",
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "all-purpose flour",
+        "quantity": "60g"
+      },
+      {
+        "name": "Dutch-processed black cocoa powder",
+        "quantity": "30g"
+      },
+      {
+        "name": "baking soda",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "salt",
+        "quantity": "1/4 tsp"
+      },
+      {
+        "name": "large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "buttermilk",
+        "quantity": "60ml"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "hot water",
+        "quantity": "60ml"
+      },
+      {
+        "name": "fresh blood orange juice",
+        "quantity": "120ml"
+      },
+      {
+        "name": "large egg yolks",
+        "quantity": "2"
+      },
+      {
+        "name": "granulated sugar (for crémeux)",
+        "quantity": "50g"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": "10g"
+      },
+      {
+        "name": "unsalted butter, cold, diced",
+        "quantity": "60g"
+      },
+      {
+        "name": "heavy cream (35% fat)",
+        "quantity": "300ml"
+      },
+      {
+        "name": "vanilla bean, scraped",
+        "quantity": "1/2"
+      },
+      {
+        "name": "large egg yolk (for mousse)",
+        "quantity": "1"
+      },
+      {
+        "name": "granulated sugar (for mousse)",
+        "quantity": "30g"
+      },
+      {
+        "name": "gold strength gelatin powder",
+        "quantity": "9g"
+      },
+      {
+        "name": "cold water (for gelatin)",
+        "quantity": "45ml"
+      },
+      {
+        "name": "glucose syrup",
+        "quantity": "75g"
+      },
+      {
+        "name": "unsweetened black cocoa powder (for glaze)",
+        "quantity": "50g"
+      },
+      {
+        "name": "unsalted butter, melted (for tuile)",
+        "quantity": "30g"
+      },
+      {
+        "name": "powdered sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "all-purpose flour (for tuile)",
+        "quantity": "30g"
+      },
+      {
+        "name": "large egg white",
+        "quantity": "1"
+      },
+      {
+        "name": "black sprinkles (100s and 1000s)",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Line a 20x20cm baking pan with parchment. Sift flour, black cocoa, baking soda, salt into a bowl.",
+      "Whisk egg, 100g sugar, buttermilk, oil, vanilla extract in a separate bowl. Add wet ingredients to dry. Mix until just combined. Stir in hot water until smooth. Pour into prepared pan. Bake 12-15 minutes, until a toothpick comes out clean. Cool completely. Cut a 10x10cm square from the sponge. Set aside.",
+      "Whisk blood orange juice, 2 egg yolks, 50g sugar, cornstarch in a saucepan. Cook over medium heat, stirring constantly, until thickened and boiling. Remove from heat. Whisk in 60g cold butter until smooth. Strain through a fine-mesh sieve. Cover surface with plastic wrap directly. Chill until firm, about 2 hours.",
+      "Hydrate 5g gelatin in 25ml cold water. Heat 150ml heavy cream and vanilla bean seeds in a saucepan until simmering. Whisk 1 egg yolk and 30g sugar. Temper hot cream into yolk mixture. Return to saucepan. Cook over low heat, stirring, until thickened (nappe consistency). Remove from heat. Stir in hydrated gelatin until dissolved. Strain. Cool to 30°C. Whip remaining 150ml cold heavy cream to soft peaks. Fold whipped cream into cooled vanilla base.",
+      "Line a 10x10cm square mold with acetate. Place the 10x10cm black cocoa sponge square at the bottom. Spread the chilled blood orange crémeux evenly over the sponge. Pour the vanilla bean mousse over the crémeux. Gently tap mold to release air bubbles. Freeze for at least 4 hours, preferably overnight, until completely solid.",
+      "Hydrate 4g gelatin in 20ml cold water. In a saucepan, combine 75g sugar, glucose syrup, and 35ml water. Heat until sugar dissolves and mixture boils. Remove from heat. Whisk in 50g black cocoa powder until smooth. Stir in 50ml heavy cream. Add hydrated gelatin, stir until dissolved. Use an immersion blender to emulsify, keeping the head submerged. Strain. Cool to 32-35°C (glazing temperature).",
+      "Place frozen entremet on a wire rack over a baking sheet. Pour tempered glaze evenly over the frozen entremet, ensuring full coverage. Let excess drip. Carefully transfer to a clean plate.",
+      "Preheat oven to 160°C. Line a baking sheet with silicone mat. Whisk 30g melted butter, 30g powdered sugar, 30g flour, and 1 egg white until smooth. Spread a very thin, irregular layer of batter onto the silicone mat. Sprinkle black sprinkles over the batter. Bake 8-10 minutes, until edges are golden and crisp. Cool completely. Break into irregular, sharp shards.",
+      "Plate one entremet slice per person. Arrange 1-2 shattered confetti tuile shards artistically on or beside the entremet."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 58.59,
+      "calories": 922.61,
+      "cholesterol_mg": 337.65,
+      "dietary_fiber_g": 8.09,
+      "protein_g": 15.22,
+      "saturated_fat_g": 33.32,
+      "sodium_mg": 147.11,
+      "total_carbs_g": 103.6,
+      "total_fat_g": 58.17,
+      "total_sugars_g": 65.81,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 16.25,
+      "calories": 255.89,
+      "cholesterol_mg": 93.65,
+      "dietary_fiber_g": 2.24,
+      "protein_g": 4.22,
+      "saturated_fat_g": 9.24,
+      "sodium_mg": 40.8,
+      "total_carbs_g": 28.73,
+      "total_fat_g": 16.13,
+      "total_sugars_g": 18.25,
+      "trans_fat_g": 0.47
+    },
+    "daily_value_percentages": {
+      "cholesterol": 112.55,
+      "dietary_fiber": 28.89,
+      "protein": 30.44,
+      "saturated_fat": 166.6,
+      "sodium": 6.4,
+      "total_carbs": 37.67,
+      "total_fat": 74.58
+    },
+    "serving_size_g": 360.55,
+    "total_recipe_weight_g": 1442.2
+  },
+  {
+    "recipe_name": "Crimson Velvet Cake with Shattered Glass",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crimson_velvet_cake_with_shattered_glass_20250723_165615_b5ff43f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T16:56:15.544226000Z",
+    "selected_ingredients": [
+      {
+        "name": "100s and 1000s",
+        "comment": "100s and 1000s"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "macabre style",
+    "visual_description": "A single, tall slice of Crimson Velvet Cake stands on a stark white porcelain plate. Its deep, dark red crumb contrasts with a rich, glossy black chocolate glaze that pools subtly around the base of the slice. Jagged, clear sugar shards resembling shattered glass are artfully arranged on the dark glaze, some partially embedded into the cake, creating a stark, broken effect. A sparse scattering of black and red 100s and 1000s is distributed over the glaze and near the base of the cake, adding a disturbing, granular texture. The whole cake, also glazed and adorned with scattered shards and sprinkles, is visible in the slightly shadowed background on a dark cake stand. The setting is a simple dark wooden table, with dramatic, natural lighting highlighting the contrasting textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Red Velvet Cake",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder (dark)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Buttermilk",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Red gel food colouring",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Granulated sugar (for candy)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water (for candy)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Light corn syrup",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "100s and 1000s (black, red, and white mix)",
+        "quantity": "30 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour two 20 cm round cake pans.",
+      "In a large bowl, whisk together flour, cocoa powder, sugar, baking soda, and salt.",
+      "In a separate bowl, whisk buttermilk, eggs, vanilla extract, red food colouring, and vegetable oil.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Stir in white vinegar.",
+      "Divide batter evenly between prepared pans. Bake for 25-30 minutes, or until a skewer inserted into the centre comes out clean.",
+      "Cool cakes in pans for 10 minutes. Transfer to a wire rack to cool completely.",
+      "For shattered glass candy: Combine sugar, water, and corn syrup in a saucepan. Cook over medium-high heat without stirring until mixture reaches 150°C (hard crack stage).",
+      "Pour hot sugar mixture onto a silicone mat or parchment-lined baking sheet. Let cool completely and harden. Once hard, break into jagged shards.",
+      "For dark chocolate glaze: Chop dark chocolate. Heat cream and butter in a small saucepan until simmering. Remove from heat.",
+      "Pour hot cream mixture over chopped chocolate. Let stand for 5 minutes. Whisk until smooth and glossy.",
+      "Place one cooled cake layer on a serving plate or stand. Spread a thin layer of glaze on top.",
+      "Place the second cake layer on top. Pour remaining glaze over the entire cake, allowing it to drip down the sides.",
+      "While glaze is still wet, arrange jagged sugar shards on top of the cake and around its base.",
+      "Sprinkle 100s and 1000s sparsely over the glazed cake and around the plate, focusing on areas with the glaze."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 148,
+      "calories": 1604,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 17.4,
+      "saturated_fat_g": 31.1,
+      "sodium_mg": 721,
+      "total_carbs_g": 225.6,
+      "total_fat_g": 74,
+      "total_sugars_g": 153.9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 34.5,
+      "calories": 373.5,
+      "cholesterol_mg": 38.4,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 4.1,
+      "saturated_fat_g": 7.3,
+      "sodium_mg": 167.9,
+      "total_carbs_g": 52.5,
+      "total_fat_g": 17.2,
+      "total_sugars_g": 35.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 33,
+      "protein": 35,
+      "saturated_fat": 156,
+      "sodium": 31,
+      "total_carbs": 82,
+      "total_fat": 95
+    },
+    "serving_size_g": 429.4,
+    "total_recipe_weight_g": 1717.5
+  },
+  {
+    "recipe_name": "Vanilla Bean Sprinkle Celebration Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vanilla_bean_sprinkle_celebration_cake_20250723_165540_1f46bd9e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T16:55:40.721858000Z",
+    "selected_ingredients": [
+      {
+        "name": "100s and 1000s",
+        "comment": "100s and 1000s"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "100s and 1000s 100s and 1000s 100s and 1000s 100s and 1000s 100s and 1000s 100s and 1000s",
+    "visual_description": "A single, elegant slice of Vanilla Bean Sprinkle Celebration Cake is presented on a clean, round white porcelain dinner plate. The slice reveals distinct layers: a tender, golden-hued vanilla bean sponge cake speckled with tiny black vanilla seeds, alternating with smooth, creamy white chocolate ganache. The cake's exterior is expertly frosted with a thin, even layer of ganache, completely adorned with a vibrant, dense covering of multi-colored 100s and 1000s, creating a playful yet refined texture. A small, artful scattering of extra 100s and 1000s is delicately placed beside the cake slice on the plate. The background features a modern bistro setting: a simple wooden table surface, with natural, even lighting casting soft shadows. A neatly folded white cotton napkin rests beside the plate, and the blurred background suggests a casual, inviting restaurant atmosphere, allowing the cake to remain the focal point. The full cake, still on its cake stand, is partially visible in the background, adding context to the individual slice.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "100s and 1000s",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "115 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Vanilla bean paste",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "White chocolate, chopped",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "100s and 1000s (sprinkles)",
+        "quantity": "150 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour two 15 cm round cake pans.",
+      "Whisk flour, sugar, baking powder, and salt in a large bowl. Set aside.",
+      "In a separate bowl, cream softened butter until light and fluffy.",
+      "Beat in eggs one at a time. Mix in vanilla bean paste.",
+      "Gradually add dry ingredients to wet ingredients, alternating with milk. Begin and end with dry ingredients. Mix until just combined.",
+      "Divide batter evenly between prepared cake pans. Smooth tops.",
+      "Bake for 25-30 minutes. Or until a skewer inserted into center comes out clean.",
+      "Cool cakes in pans for 10 minutes. Invert onto a wire rack. Cool completely.",
+      "For ganache, place chopped white chocolate in a heatproof bowl.",
+      "Heat heavy cream in a small saucepan until simmering. Do not boil.",
+      "Pour hot cream over white chocolate. Let stand 5 minutes. Stir until smooth and glossy.",
+      "Refrigerate ganache for 30-60 minutes. Or until thick enough to spread.",
+      "Place one cooled cake layer on a serving plate. Spread half of the ganache evenly over top.",
+      "Place second cake layer on top. Spread remaining ganache over top and sides of cake.",
+      "Gently press 100s and 1000s onto the sides and top of the cake. Ensure even coverage.",
+      "Chill cake for at least 30 minutes before slicing to set ganache."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 108.7,
+      "calories": 1206,
+      "cholesterol_mg": 198,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 14.8,
+      "saturated_fat_g": 32.8,
+      "sodium_mg": 426,
+      "total_carbs_g": 167.8,
+      "total_fat_g": 54.6,
+      "total_sugars_g": 117.5,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 32.5,
+      "calories": 361,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 4.4,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 127,
+      "total_carbs_g": 50.2,
+      "total_fat_g": 16.3,
+      "total_sugars_g": 35.1,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 6,
+      "protein": 30,
+      "saturated_fat": 164,
+      "sodium": 19,
+      "total_carbs": 61,
+      "total_fat": 70
+    },
+    "serving_size_g": 334.5,
+    "total_recipe_weight_g": 1338
+  }
+]

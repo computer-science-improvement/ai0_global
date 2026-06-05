@@ -1,0 +1,660 @@
+[
+  {
+    "recipe_name": "Pork Medallions with Beer-Cheese Sauce and Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_medallions_with_beer-cheese_sauce_and_caramelized_onions_20250810_013855_4f87d5a7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T01:38:56.383694000Z",
+    "selected_ingredients": [
+      "pork",
+      "beer",
+      "mustard",
+      "cheese",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Two or three golden-brown, pan-seared pork medallions are centrally placed on a clean, round white porcelain dinner plate. A rich, golden-amber beer-cheese sauce is generously spooned over and around the pork, pooling elegantly on the plate. Alongside, a neat mound of deeply caramelized, glistening onion half-moons adds a contrasting dark brown hue. Small, crisp roasted potato wedges, golden-brown and slightly irregular in shape, are arranged neatly to the side of the pork. A light sprinkle of finely chopped fresh parsley provides a vibrant green garnish over the pork and sauce. The composition is balanced and professional, with moderate negative space. The setting is a simple wooden table, with a white cotton napkin placed beside the plate and traditional German-style flatware. Natural, even lighting highlights the textures and colors of the dish, creating an inviting, authentic presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Serve with a side of traditional German spätzle or sauerkraut.",
+      "Offer a good quality German beer as an accompaniment."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork loin",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dark beer (e.g., Märzen or Lager)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Gruyère cheese",
+        "quantity": "150 g, grated"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold)",
+        "quantity": "600 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash and cut potatoes into 2 cm wedges. Toss with 1 tablespoon olive oil, salt, and pepper. Spread on a baking sheet. Roast for 30-35 minutes until golden and tender.",
+      "Slice pork loin into 2.5 cm thick medallions. Pat dry. Season pork medallions with salt and pepper. Lightly dredge in flour, shaking off excess.",
+      "Heat 1 tablespoon olive oil and butter in a large skillet over medium-high heat. Sear pork medallions for 3-4 minutes per side until golden brown. Remove pork from skillet and set aside. Ensure internal temperature reaches 75°C.",
+      "Reduce heat to medium. Slice onions into thin half-moons. Add onions to the skillet. Cook, stirring occasionally, for 10-12 minutes until deeply caramelized and soft.",
+      "Deglaze the skillet with beer, scraping up any browned bits. Simmer for 2 minutes. Stir in chicken stock and Dijon mustard. Bring to a gentle simmer.",
+      "Gradually whisk in grated Gruyère cheese until melted and smooth. Stir in heavy cream. Season sauce with salt and pepper to taste.",
+      "Return pork medallions to the skillet. Spoon sauce over pork. Simmer for 2-3 minutes to heat through.",
+      "Serve pork and sauce immediately with roasted potato wedges. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best results, use a quality German lager or Märzen beer for the sauce.",
+      "Ensure the cheese is fully melted into the sauce for a smooth consistency."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Caramelizing onions",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 729,
+      "cholesterol_mg": 181.8,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 53.1,
+      "saturated_fat_g": 16.9,
+      "sodium_mg": 379.8,
+      "total_carbs_g": 39.7,
+      "total_fat_g": 37.4,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 33.2,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.7,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 69.4,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.6,
+      "dietary_fiber": 17.5,
+      "protein": 106.2,
+      "saturated_fat": 84.6,
+      "sodium": 16.5,
+      "total_carbs": 14.4,
+      "total_fat": 47.9
+    },
+    "serving_size_g": 547,
+    "total_recipe_weight_g": 2188
+  },
+  {
+    "recipe_name": "Steamed Crab and Mung Bean Cake (Chả Cua Đậu Xanh Hấp)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_steamed_crab_and_mung_bean_cake_%28ch%E1%BA%A3_cua_%C4%91%E1%BA%ADu_xanh_h%E1%BA%A5p%29_20250810_000105_74e00d43.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T00:01:06.419998000Z",
+    "selected_ingredients": [
+      {
+        "name": "crab"
+      },
+      {
+        "name": "bean"
+      },
+      {
+        "name": "annatto"
+      },
+      {
+        "name": "onion"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Vietnamese",
+    "visual_description": "A rustic, steamed savory cake, golden-orange from annatto oil, presented on a simple, off-white ceramic plate. The cake is cut into thick, irregular squares, showcasing a soft, slightly springy texture. Visible within are tender chunks of flaked crab meat, speckled with creamy pale yellow mung beans and finely diced green onion. The surface has a subtle sheen. Portions are arranged casually, slightly overlapping, filling the plate naturally. The setting is a well-used wooden dining table, illuminated by warm, natural kitchen light. A small bowl of classic Vietnamese nước chấm (dipping fish sauce) sits beside the plate. Fresh coriander leaves are scattered nearby. A pair of simple wooden chopsticks rests beside the plate. The overall impression is homely, comforting, and authentically Vietnamese.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve with Nước Chấm (Vietnamese dipping fish sauce).",
+      "Accompany with fresh herbs like mint, perilla, or coriander.",
+      "Can be eaten with rice or as a snack."
+    ],
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Fresh crab meat",
+        "quantity": "300g"
+      },
+      {
+        "name": "Dried mung beans",
+        "quantity": "100g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 (finely minced)"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "3 (finely chopped, white and green parts separated)"
+      },
+      {
+        "name": "Annatto oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Tapioca starch",
+        "quantity": "20g"
+      },
+      {
+        "name": "Coconut milk",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Rinse mung beans. Soak in warm water for 1 hour. Drain.",
+      "Steam mung beans until tender, about 15-20 minutes. Mash lightly.",
+      "Heat vegetable oil in a pan. Sauté minced shallots and white parts of green onions until fragrant.",
+      "Add flaked crab meat to the pan. Sauté briefly, 1-2 minutes. Remove from heat.",
+      "In a large bowl, combine mashed mung beans, sautéed crab mixture, rice flour, tapioca starch, coconut milk, fish sauce, sugar, black pepper, and annatto oil. Mix well until combined.",
+      "Lightly grease a 20cm round or square heatproof dish or individual ramekins.",
+      "Pour the mixture into the prepared dish. Smooth the top.",
+      "Steam the cake over high heat for 25-30 minutes, or until firm and cooked through. A skewer inserted into the center should come out clean.",
+      "Remove from steamer. Let cool slightly before slicing into portions.",
+      "Garnish with remaining green onion greens. Serve warm."
+    ],
+    "notes": [
+      "Adjust seasoning to taste.",
+      "For a firmer cake, increase tapioca starch slightly.",
+      "Annatto oil can be made by simmering annatto seeds in oil until desired color is achieved, then straining."
+    ],
+    "traditional_techniques": [
+      "Steaming (Hấp)",
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 328,
+      "cholesterol_mg": 75,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 21.1,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 575,
+      "total_carbs_g": 33.3,
+      "total_fat_g": 12.3,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 218.7,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 14.1,
+      "saturated_fat_g": 3,
+      "sodium_mg": 383.3,
+      "total_carbs_g": 22.2,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 25,
+      "dietary_fiber": 16.4,
+      "protein": 42.2,
+      "saturated_fat": 22.5,
+      "sodium": 25,
+      "total_carbs": 12.1,
+      "total_fat": 15.8
+    },
+    "serving_size_g": 150,
+    "total_recipe_weight_g": 600
+  },
+  {
+    "recipe_name": "Spanish Garlic Chicken with Roasted Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_garlic_chicken_with_roasted_potatoes_20250809_202931_e03915cd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-09T20:29:32.180246000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Garlic Chicken is presented on a clean, round white porcelain dinner plate, centrally composed. A bone-in, skin-on chicken thigh, cooked to a rich golden-brown with visible crispy skin, is the focal point. Surrounding the chicken are several rustic, golden-brown roasted potato wedges, their edges slightly crisped. A generous scattering of aromatic, lightly browned garlic cloves is interspersed among the chicken and potatoes. A glistening, light amber pan sauce, rich with chicken drippings, white wine, and paprika, is spooned over the chicken and pooled around the potatoes. The dish is garnished with a vibrant sprinkle of freshly chopped flat-leaf parsley and a bright lemon wedge placed beside the chicken. The overall impression is one of comforting, robust flavors and textures, with natural, inviting colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread (like a baguette) to soak up the flavorful sauce.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar.",
+      "Pair with a glass of dry Spanish white wine or a light-bodied red."
+    ],
+    "hero_ingredient": "Garlic",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Small red potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 whole head, peeled, cloves lightly smashed"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dry white wine (e.g., Fino sherry or Sauvignon Blanc)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, half sliced for garnish, half for juice"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and cut potatoes into rustic wedges. Toss with 30ml olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast potatoes for 20 minutes.",
+      "Pat chicken thighs dry. Season generously with salt, pepper, and smoked paprika.",
+      "Heat remaining 30ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Place chicken skin-side down in the hot skillet. Sear for 8-10 minutes until skin is deeply golden and crisp.",
+      "Flip chicken. Add smashed garlic cloves to the skillet around the chicken. Cook for 2 minutes.",
+      "Deglaze the skillet with white wine, scraping up any browned bits.",
+      "Add chicken broth to the skillet. Bring to a simmer.",
+      "Transfer the skillet with chicken and garlic to the oven alongside the potatoes. Roast for another 20-25 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are tender and golden.",
+      "Remove skillet from oven. Transfer chicken and potatoes to a serving platter. Cover loosely to keep warm.",
+      "Place skillet back on stovetop over medium-high heat. Reduce pan sauce for 3-5 minutes until slightly thickened.",
+      "Stir in chopped parsley and a squeeze of fresh lemon juice into the sauce.",
+      "Spoon sauce over chicken and potatoes. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing",
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 733,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 38,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 785,
+      "total_carbs_g": 38.8,
+      "total_fat_g": 44.7,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 215,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 11.1,
+      "saturated_fat_g": 3,
+      "sodium_mg": 230,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 13.1,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.7,
+      "dietary_fiber": 18.1,
+      "protein": 75.9,
+      "saturated_fat": 52,
+      "sodium": 34.1,
+      "total_carbs": 14.1,
+      "total_fat": 57.3
+    },
+    "serving_size_g": 341.6,
+    "total_recipe_weight_g": 1367
+  },
+  {
+    "recipe_name": "Tôm Hùm Xào Ớt Xanh Tỏi (Stir-fried Lobster with Green Chili and Garlic)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_t%C3%B4m_h%C3%B9m_x%C3%A0o_%E1%BB%9Bt_xanh_t%E1%BB%8Fi_%28stir-fried_lobster_with_green_chili_and_garlic%29_20250809_200051_d13f9436.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-09T20:00:53.066087000Z",
+    "selected_ingredients": [
+      {
+        "name": "lobster"
+      },
+      {
+        "name": "thai green chili"
+      },
+      {
+        "name": "brown rice"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Vietnamese",
+    "visual_description": "A single, modest individual portion is presented in a rustic, off-white ceramic bowl. Golden-brown brown rice forms the base. Generous, irregular chunks of vibrant red-orange lobster meat, lightly seared and coated in a glossy, savory-spicy sauce, are spooned over the rice. Specks of minced green chili and golden-brown garlic cling to the lobster. Bright green chopped spring onions and fresh cilantro leaves provide a fresh contrast. The arrangement is casual, with components naturally overlapping. The bowl rests on a well-worn, warm-toned wooden kitchen table. A pair of dark wooden chopsticks lies across a small, matching ceramic dipping bowl. A simple, folded linen napkin is placed to the side. Warm, soft kitchen lighting creates a cozy, inviting atmosphere typical of a Vietnamese family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve with a small side dish of Nước Chấm (Vietnamese dipping sauce) for extra flavor.",
+      "Offer additional fresh sliced bird's eye chilies for those who prefer more heat.",
+      "Enjoy family-style, with individual bowls of rice and the stir-fry served from a central platter."
+    ],
+    "hero_ingredient": "Lobster",
+    "ingredients": [
+      {
+        "name": "Lobster",
+        "quantity": "2 small whole lobsters (approx. 1 kg total) or 4 lobster tails (approx. 800 g total)"
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": "300 g uncooked"
+      },
+      {
+        "name": "Thai Green Chili",
+        "quantity": "2-3, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "8 cloves, minced"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium, thinly sliced"
+      },
+      {
+        "name": "Fish Sauce (Nước Mắm)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Oyster Sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "5 g, freshly ground"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Spring Onions",
+        "quantity": "2 stalks, chopped"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": "small bunch, chopped"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, cut into wedges"
+      }
+    ],
+    "instructions": [
+      "Cook brown rice. Rinse 300g brown rice. Combine with 600ml water in a saucepan. Bring to a boil, then reduce heat to low. Cover and simmer 40-45 minutes until water is absorbed and rice is tender. Let stand 10 minutes.",
+      "Prepare lobster. If using whole lobsters, blanch in boiling water for 5-7 minutes. Cool, then extract meat from tail and claws. Cut lobster meat into 3-4 cm chunks.",
+      "Prepare aromatics. Mince garlic. Slice shallots thinly. Thinly slice green chilies.",
+      "Make sauce. In a small bowl, combine fish sauce, oyster sauce, sugar, and black pepper. Stir until sugar dissolves.",
+      "Heat wok. Add vegetable oil to a large wok or skillet over high heat.",
+      "Sauté aromatics. Add minced garlic, sliced shallots, and sliced green chilies to the hot oil. Stir-fry 1-2 minutes until fragrant.",
+      "Stir-fry lobster. Add lobster chunks to the wok. Stir-fry 2-3 minutes until heated through and lightly seared.",
+      "Add sauce. Pour the prepared sauce over the lobster. Toss quickly to coat, about 1 minute.",
+      "Serve. Divide cooked brown rice among 4 individual bowls. Spoon stir-fried lobster mixture over rice. Garnish with chopped spring onions and cilantro. Serve immediately with lime wedges."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Xào)"
+    ]
+  },
+  {
+    "recipe_name": "Pollo alla Cacciatora",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_20250809_195718_1622cd41.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-09T19:57:19.147306000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented on a wide, matte white porcelain plate. Two whole, bone-in chicken thighs are stacked slightly in the center, featuring deeply browned, caramelized skin. A thick, rustic sauce covers the base of the plate, filled with visible small cubes of orange carrots, green celery, and translucent onions. Whole, dark purple kalamata olives are nestled within the vibrant red tomato sauce. A light dusting of bright green chopped parsley and a single fresh rosemary sprig garnish the top. Two thick batons of grilled sourdough bread lean against the side of the chicken. The lighting is natural and soft, emphasizing the glossy texture of the braised sauce and the crispness of the chicken skin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with toasted sourdough bread to soak up the sauce",
+      "Accompany with a glass of medium-bodied Italian red wine",
+      "Place on a bed of soft, buttery polenta"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine (Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide braising pan over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is deep golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add onion, carrot, and celery to the remaining fat.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in garlic, rosemary, and sage. Cook for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pan to deglaze.",
+      "Simmer wine for 3 minutes until reduced by half.",
+      "Add crushed tomatoes and stir to combine.",
+      "Place chicken thighs back into the sauce.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in olives and simmer uncovered for 5 minutes.",
+      "Remove rosemary sprigs before serving.",
+      "Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Always use a meat thermometer to ensure chicken reaches the safe internal temperature of 75°C",
+      "Browning the skin thoroughly at the start is essential for the final texture",
+      "The sauce should be thick and chunky, not watery"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1604,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 428,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 83,
+      "saturated_fat": 43,
+      "sodium": 70,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  }
+]

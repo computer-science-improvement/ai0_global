@@ -1,0 +1,661 @@
+[
+  {
+    "recipe_name": "Smoked Paprika Salmon with Bell Pepper Romesco",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_paprika_salmon_with_bell_pepper_romesco_20250624_142020_9f5cf803.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:20:21.148821000Z",
+    "selected_ingredients": [
+      "bell pepper",
+      "salmon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A pan-seared salmon fillet, approximately 180g, sits centered on a clean white porcelain plate. The salmon features a crisp, golden-brown crust from the searing, contrasting with its flaky, moist pink interior. Beside the salmon, a generous dollop of vibrant red-orange bell pepper romesco sauce is artfully spooned, showing its slightly coarse, rustic texture with visible flecks of roasted pepper and almond. Roasted baby potatoes, golden and lightly browned, are neatly arranged alongside the salmon. The dish is garnished with a sprinkle of finely chopped fresh parsley, adding a pop of green. The overall presentation is clean, professional, and inviting, with moderate negative space. The plate rests on a simple wooden table, accompanied by traditional flatware and a linen napkin.",
+    "number_of_servings": 41,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in Romesco sauce."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets",
+        "quantity": "7.38 kg"
+      },
+      {
+        "name": "Red bell peppers",
+        "quantity": "4.2 kg"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "3.15 kg"
+      },
+      {
+        "name": "Blanched almonds",
+        "quantity": "550 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "41 cloves"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Sherry vinegar",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "3 bunches"
+      },
+      {
+        "name": "Baby potatoes",
+        "quantity": "6.15 kg"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and halve bell peppers. Core and halve tomatoes. Peel garlic cloves.",
+      "Toss bell peppers, tomatoes, and garlic with 100ml olive oil, salt, and pepper. Roast on a baking tray for 25-30 minutes until tender and slightly charred.",
+      "While vegetables roast, toast blanched almonds in a dry pan over medium heat until lightly golden. Set aside.",
+      "Combine roasted vegetables, toasted almonds, 40g smoked paprika, sherry vinegar, and 100ml olive oil in a blender. Blend until a rustic, chunky sauce forms. Season Romesco with salt and pepper. Set aside.",
+      "Wash baby potatoes. Toss with 100ml olive oil, salt, and pepper. Roast in a separate tray for 30-40 minutes until tender and golden.",
+      "Pat salmon fillets dry. Season each fillet generously with salt, pepper, and 20g smoked paprika.",
+      "Heat 200ml olive oil in large non-stick pans over medium-high heat. Sear salmon fillets skin-side down for 5-7 minutes until skin is crispy.",
+      "Flip salmon fillets and cook for another 3-5 minutes, or until internal temperature reaches 63°C.",
+      "Spoon a generous amount of Romesco sauce onto each plate. Place one seared salmon fillet beside the sauce. Arrange roasted baby potatoes next to the salmon.",
+      "Sprinkle finely chopped fresh parsley over the dish before serving."
+    ],
+    "traditional_techniques": [
+      "Romesco sauce preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 724,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 44.2,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 126,
+      "total_carbs_g": 40.9,
+      "total_fat_g": 42.1,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 23,
+      "total_carbs_g": 7.5,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 31,
+      "protein": 88,
+      "saturated_fat": 39,
+      "sodium": 5,
+      "total_carbs": 15,
+      "total_fat": 54
+    },
+    "serving_size_g": 548.1,
+    "total_recipe_weight_g": 22472
+  },
+  {
+    "recipe_name": "Spicy Sausage & Blue Cheese Pizza",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_sausage_%26_blue_cheese_pizza_20250624_142001_844495ce.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:20:01.830709000Z",
+    "selected_ingredients": [
+      "olive",
+      "blue cheese",
+      "paprika"
+    ],
+    "complexity": "simple",
+    "special_requests": "Make me a pizza with these ingredients and beaver meat",
+    "visual_description": "A single, generous slice of rustic pizza rests on a simple, round ceramic plate with natural imperfections, placed on a well-used wooden dining table. The pizza slice has a golden, slightly irregular crust with visible air pockets. The surface is covered with bubbling, melted mozzarella and distinct crumbles of tangy blue cheese. Scattered generously are browned, savory chunks of spicy Italian sausage and dark, glossy sliced black olives. A light dusting of vibrant red paprika is visible over the toppings. Fresh green basil leaves are casually placed on top. The setting is a homely family kitchen, illuminated by warm, cozy lighting, with a casually placed cloth napkin nearby. The overall presentation is unpretentious, inviting, and focused on hearty comfort.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Spicy Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Pizza dough",
+        "quantity": "500g"
+      },
+      {
+        "name": "Spicy Italian sausage",
+        "quantity": "300g"
+      },
+      {
+        "name": "Blue cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Black olives",
+        "quantity": "80g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Mozzarella cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "a few"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 220°C (425°F). If using a pizza stone, place it in the oven.",
+      "Heat olive oil in a pan over medium heat. Add diced onion. Sauté until softened, about 3 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add sausage meat. Break it apart with a spoon. Cook until browned and cooked through, about 5-7 minutes. Drain excess fat.",
+      "Stir in smoked paprika with the cooked sausage. Cook for 1 minute. Remove from heat.",
+      "Roll out pizza dough on a lightly floured surface to desired thickness. Transfer to a baking sheet or pizza peel.",
+      "Spread crushed tomatoes evenly over the dough, leaving a 1 cm border.",
+      "Distribute shredded mozzarella cheese over the sauce.",
+      "Scatter cooked sausage mixture, sliced black olives, and crumbled blue cheese over the mozzarella.",
+      "Bake for 12-15 minutes, or until crust is golden brown and cheese is bubbly and lightly browned.",
+      "Remove from oven. Garnish with fresh basil leaves. Slice and serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 863.8,
+      "cholesterol_mg": 110.8,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 41.5,
+      "saturated_fat_g": 20,
+      "sodium_mg": 2036.8,
+      "total_carbs_g": 70.8,
+      "total_fat_g": 46.7,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 234.3,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 11.2,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 552.4,
+      "total_carbs_g": 19.2,
+      "total_fat_g": 12.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 18,
+      "protein": 83,
+      "saturated_fat": 100,
+      "sodium": 89,
+      "total_carbs": 26,
+      "total_fat": 60
+    },
+    "serving_size_g": 368.7,
+    "total_recipe_weight_g": 1474.8
+  },
+  {
+    "recipe_name": "Hearty Russian Vegetable Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_russian_vegetable_pasta_20250624_141951_f5ad9fe2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:19:51.958215000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "bell pepper",
+      "cherry",
+      "pineapple"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian, Russian cuisine",
+    "visual_description": "A single, generous portion of hearty pasta is served in a deep, rustic ceramic bowl. The pasta, perfectly al dente, is coated in a rich, thick Russian-style vegetable ragout. Diced red and yellow bell peppers and diced tomatoes create vibrant color. Small, caramelized pineapple chunks and rehydrated tart cherries are subtly visible, adding depth. Freshly chopped dill and parsley are generously sprinkled over the top, providing a verdant contrast. A small dollop of creamy sour cream rests on the side of the pasta. The dish is presented on a well-used wooden dining table, with a simple metal fork and spoon beside the bowl. Warm, inviting kitchen lighting illuminates the scene, enhancing the homely, comforting feel. Portions are natural, components touch, embodying authentic home cooking.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of fresh smetana (sour cream).",
+      "Offer a side of pickled gherkins or kvass (traditional fermented beverage)."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., fusilli or penne)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Bell peppers (mixed colors)",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dried tart cherries",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "1/4 bunch"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "1/4 bunch"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sour cream (smetana), for serving",
+        "quantity": "optional"
+      }
+    ],
+    "instructions": [
+      "Finely chop the onion and garlic. Dice the bell peppers into 2 cm cubes. Dice the fresh pineapple into 1 cm chunks.",
+      "Heat 1 tablespoon of vegetable oil in a large pot or deep skillet over medium-high heat. Add pineapple chunks. Cook until lightly caramelized, about 5-7 minutes. Remove pineapple and set aside.",
+      "Add remaining 1 tablespoon of vegetable oil to the same pot. Add chopped onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in diced bell peppers. Cook for 5 minutes until slightly tender.",
+      "Add tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in canned diced tomatoes and vegetable broth. Add bay leaf and dried tart cherries. Return caramelized pineapple to the pot.",
+      "Bring the mixture to a simmer. Reduce heat to low, cover, and let the ragout simmer for 20-25 minutes. Stir occasionally. The vegetables should be tender and the sauce thickened.",
+      "While the ragout simmers, cook the pasta according to package instructions until al dente. Drain well.",
+      "Remove bay leaf from the ragout. Season the ragout with salt and black pepper to taste. Roughly chop fresh dill and parsley.",
+      "Add cooked pasta to the ragout. Toss to combine thoroughly. Stir in most of the fresh dill and parsley, reserving some for garnish.",
+      "Serve immediately in individual portions. Garnish each serving with remaining fresh dill and parsley. Offer a dollop of sour cream on the side."
+    ],
+    "notes": [
+      "This recipe uses a unique combination of fruits in a savory context. The pineapple and cherries are cooked down to blend their flavors, providing a subtle sweet-tart counterpoint rather than a dominant fruity note."
+    ],
+    "traditional_techniques": [
+      "Slow simmering of vegetables for flavor development.",
+      "Generous use of fresh dill and parsley, characteristic of Russian cuisine."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 556,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 16.4,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 89,
+      "total_carbs_g": 103.8,
+      "total_fat_g": 9,
+      "total_sugars_g": 21.3,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 3.7,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 20,
+      "total_carbs_g": 23.3,
+      "total_fat_g": 2,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0.002
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 28,
+      "protein": 33,
+      "saturated_fat": 5,
+      "sodium": 4,
+      "total_carbs": 38,
+      "total_fat": 12
+    },
+    "serving_size_g": 445.75,
+    "total_recipe_weight_g": 1783
+  },
+  {
+    "recipe_name": "Choy Sum Salad with Savory Black Bean Dressing and Chinese Sausage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_choy_sum_salad_with_savory_black_bean_dressing_and_chinese_sausage_20250624_141900_8b0934b0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:19:00.514100000Z",
+    "selected_ingredients": [
+      "chinese sausage",
+      "preserved black bean",
+      "choy sum",
+      "coriander root",
+      "sesame oil",
+      "soy sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "Filipino cuisine",
+    "visual_description": "A homely, comforting Choy Sum Salad is presented on a simple, round ceramic plate, resting on a well-used wooden dining table. Blanched choy sum, cut into manageable lengths, forms a vibrant green base, loosely arranged with natural overlaps. The tender-crisp stems and leaves retain their fresh color. Scattered generously over the greens are pan-fried Chinese sausage slices, golden-brown and slightly glistening, their reddish hue contrasting with the green. A rich, dark, savory black bean dressing, flecked with finely chopped garlic and coriander root, is generously drizzled over the entire salad, pooling slightly at the bottom. The presentation is unpretentious and inviting, like a meal prepared for family. A pair of wooden chopsticks rests casually beside the plate, hinting at the traditional way of eating. Warm, soft light from a kitchen window illuminates the scene, enhancing the dish's natural colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Filipino",
+    "cultural_origin": "Filipino",
+    "cultural_serving_suggestions": [
+      "Serve with steamed white rice.",
+      "Typically eaten with a spoon and fork, or chopsticks."
+    ],
+    "hero_ingredient": "Choy Sum",
+    "ingredients": [
+      {
+        "name": "choy sum",
+        "quantity": "500g, trimmed and washed"
+      },
+      {
+        "name": "Chinese sausage (lap cheong)",
+        "quantity": "150g, sliced into thin rounds"
+      },
+      {
+        "name": "garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "preserved black beans",
+        "quantity": "2 tablespoons, rinsed and roughly chopped"
+      },
+      {
+        "name": "fresh coriander root",
+        "quantity": "2 tablespoons, finely chopped"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Filipino cane vinegar",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "sesame oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "sugar",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "water",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "cooking oil",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Heat cooking oil in a pan over medium heat. Add sliced Chinese sausage. Pan-fry until browned and slightly crispy. Remove sausage from pan. Drain excess oil. Set aside.",
+      "Bring a large pot of water to a boil. Add choy sum. Blanch for 1-2 minutes until tender-crisp. Drain immediately. Plunge into ice water to stop cooking, then drain well.",
+      "Prepare the dressing: In a small bowl, combine minced garlic, chopped preserved black beans, chopped coriander root, soy sauce, cane vinegar, sesame oil, sugar, and water. Mix well.",
+      "Arrange blanched choy sum, cut into manageable lengths, on a serving platter or individual plates.",
+      "Drizzle the savory black bean dressing generously over the choy sum.",
+      "Scatter the pan-fried Chinese sausage slices over the salad. Serve immediately."
+    ],
+    "notes": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.9,
+      "calories": 285,
+      "cholesterol_mg": 37.5,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 11.4,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 1634.4,
+      "total_carbs_g": 8.8,
+      "total_fat_g": 22.6,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.4,
+      "calories": 134,
+      "cholesterol_mg": 17.7,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 5.4,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 770.9,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 10.7,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 12.5,
+      "dietary_fiber": 8.2,
+      "protein": 22.8,
+      "saturated_fat": 33.2,
+      "sodium": 71.1,
+      "total_carbs": 3.2,
+      "total_fat": 29
+    },
+    "serving_size_g": 212,
+    "total_recipe_weight_g": 848
+  },
+  {
+    "recipe_name": "Savory Cheddar and Caramelized Onion Bread Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_cheddar_and_caramelized_onion_bread_pudding_20250624_141855_fcde6fda.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:18:56.174435000Z",
+    "selected_ingredients": [
+      "salad green",
+      "bread",
+      "cheddar",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single generous square portion of golden-brown Savory Cheddar and Caramelized Onion Bread Pudding sits centrally on a clean, round white porcelain dinner plate. The pudding has a slightly crisp, deeply golden-brown cheesy crust on top, revealing soft, custardy interior layers of cubed sourdough bread, melted sharp cheddar, and dark amber, thinly sliced caramelized onions. A scattering of fresh green thyme leaves adorns the top of the pudding. Beside it, a vibrant green mound of lightly dressed mixed salad greens provides a fresh contrast. The plate is positioned on a simple wooden table surface, with a folded white cotton napkin to the side. Natural, even lighting highlights the varied textures and rich colors. The background is softly blurred, suggesting a modern bistro setting. The entire plate is visible, showcasing a balanced and appealing composition with appropriate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Caramelized Onion",
+    "ingredients": [
+      {
+        "name": "stale sourdough bread",
+        "quantity": "400g"
+      },
+      {
+        "name": "sharp cheddar cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "large yellow onions",
+        "quantity": "2"
+      },
+      {
+        "name": "mixed salad greens",
+        "quantity": "150g"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "whole milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10g"
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": "50ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "red wine vinegar",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Slice onions thinly. Melt butter and 10ml olive oil in a large pan over medium-low heat. Add onions. Cook slowly for 30-40 minutes until deeply caramelized and tender. Stir occasionally.",
+      "Deglaze pan with vegetable broth. Scrape up browned bits. Remove from heat.",
+      "Preheat oven to 180°C. Lightly grease a 20x25 cm baking dish.",
+      "Cut stale bread into 2-3 cm cubes. Spread on a baking sheet. Toast in oven for 10 minutes until lightly golden. Remove.",
+      "Grate cheddar cheese. Chop garlic finely. Pick thyme leaves from sprigs.",
+      "In a large bowl, whisk eggs, milk, cream, Dijon mustard, chopped garlic, and half of the thyme leaves. Season with salt and pepper.",
+      "Add toasted bread cubes, caramelized onions, and 150g of grated cheddar to the egg mixture. Stir gently to combine. Ensure bread is coated.",
+      "Pour mixture into the prepared baking dish. Press down lightly. Sprinkle remaining 50g cheddar and remaining thyme leaves on top.",
+      "Bake for 40-50 minutes, or until golden brown, puffed, and a knife inserted into the center comes out clean.",
+      "While pudding bakes, prepare salad. In a small bowl, whisk remaining 10ml olive oil and red wine vinegar. Season with salt and pepper.",
+      "Gently toss mixed salad greens with dressing just before serving.",
+      "Let bread pudding rest for 5 minutes after baking. Cut into 4 generous squares.",
+      "Plate a square of bread pudding with a side of dressed mixed greens."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 858.9,
+      "cholesterol_mg": 307.3,
+      "dietary_fiber_g": 5,
+      "protein_g": 35.4,
+      "saturated_fat_g": 27.9,
+      "sodium_mg": 972.9,
+      "total_carbs_g": 66.9,
+      "total_fat_g": 54.4,
+      "total_sugars_g": 14.1,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168.8,
+      "cholesterol_mg": 60.4,
+      "dietary_fiber_g": 1,
+      "protein_g": 7,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 191.3,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 10.7,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 102.4,
+      "dietary_fiber": 17.9,
+      "protein": 70.8,
+      "saturated_fat": 139.5,
+      "sodium": 42.3,
+      "total_carbs": 24.3,
+      "total_fat": 69.7
+    },
+    "serving_size_g": 508.85,
+    "total_recipe_weight_g": 2035.4
+  }
+]

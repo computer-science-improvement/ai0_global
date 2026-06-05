@@ -1,0 +1,673 @@
+[
+  {
+    "recipe_name": "Creamy Macaroni and Mushroom Bake with Fresh Herb Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_macaroni_and_mushroom_bake_with_fresh_herb_salad_20250707_040902_95566992.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T04:09:02.694300000Z",
+    "selected_ingredients": [
+      "potato",
+      "tomato",
+      "pasta",
+      "chili",
+      "onion",
+      "mustard",
+      "salad green",
+      "flour",
+      "sugar",
+      "mushroom",
+      "parsley",
+      "mayonnaise",
+      "dill",
+      "cucumber",
+      "macaroni",
+      "black pepper",
+      "egg",
+      "cabbage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Macaroni and Mushroom Bake is presented in a clean, white, individual ceramic gratin dish, set on a simple light wooden table surface. The bake features a golden-brown, bubbly cheese crust on top, revealing creamy macaroni pasta, tender sautéed sliced mushrooms, and diced tomatoes underneath. Scattered fresh green parsley adds vibrant color. Beside the gratin dish, a small, pristine white side plate holds a fresh, crisp salad. The salad comprises mixed salad greens, thinly sliced cucumber, and finely shredded green cabbage, lightly tossed in a creamy, pale dressing. Sprigs of fresh dill and parsley are visible within the salad, enhancing its freshness. The composition is balanced, with moderate negative space. A neatly folded light-colored cotton napkin rests beside the plate. The scene is illuminated by soft, natural, even lighting, creating a professional yet approachable bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Casual",
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Macaroni pasta",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh mushrooms",
+        "quantity": "400g, sliced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Grated cheese (e.g., Cheddar or Gruyère)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Chili flakes",
+        "quantity": "2g (optional)"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1, thinly sliced"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "150g, shredded"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "White wine vinegar or lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Cook macaroni according to package directions until al dente. Drain well. Set aside.",
+      "Heat 15ml olive oil in a large oven-safe skillet or Dutch oven over medium-high heat.",
+      "Add sliced mushrooms. Sauté until golden brown and liquid has evaporated, about 5-7 minutes. Remove mushrooms from skillet and set aside.",
+      "Add remaining 15ml olive oil to the skillet. Add diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and diced tomatoes. Cook for 3 minutes until slightly softened.",
+      "Stir in flour. Cook for 1 minute, stirring constantly, to create a roux.",
+      "Gradually whisk in milk until smooth and thickened, about 5 minutes.",
+      "Reduce heat to low. Stir in grated cheese, Dijon mustard, salt, pepper, and chili flakes (if using). Stir until cheese is melted and sauce is creamy.",
+      "Return cooked mushrooms to the skillet. Add cooked macaroni and half of the chopped parsley. Stir to combine thoroughly.",
+      "Transfer mixture to a 2.5-liter baking dish if not using an oven-safe skillet. Sprinkle with a little extra cheese on top for a crust.",
+      "Bake for 20-25 minutes, or until bubbling and golden brown on top.",
+      "While bake cooks, prepare the salad. In a large bowl, combine mixed salad greens, thinly sliced cucumber, and shredded green cabbage.",
+      "In a small bowl, whisk together mayonnaise, sugar, white wine vinegar or lemon juice, chopped dill, salt, and pepper to make the dressing.",
+      "Pour dressing over the salad. Toss gently to coat.",
+      "Remove macaroni bake from oven. Garnish with remaining fresh parsley.",
+      "Serve hot macaroni bake with the fresh herb salad on the side."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 908.6,
+      "cholesterol_mg": 58,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 30.9,
+      "saturated_fat_g": 13.1,
+      "sodium_mg": 463.3,
+      "total_carbs_g": 92.5,
+      "total_fat_g": 36.3,
+      "total_sugars_g": 18.4,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 139.5,
+      "cholesterol_mg": 8.9,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 4.7,
+      "saturated_fat_g": 2,
+      "sodium_mg": 71.1,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19,
+      "dietary_fiber": 30,
+      "protein": 62,
+      "saturated_fat": 66,
+      "sodium": 20,
+      "total_carbs": 34,
+      "total_fat": 47
+    },
+    "serving_size_g": 651.25,
+    "total_recipe_weight_g": 2605
+  },
+  {
+    "recipe_name": "Hearty Vegetarian Stuffed Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_vegetarian_stuffed_bell_peppers_20250707_040349_eb08e0a0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T04:03:50.034556000Z",
+    "selected_ingredients": [
+      "tomato",
+      "bean",
+      "bell pepper",
+      "oregano",
+      "basil"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of Hearty Vegetarian Stuffed Bell Peppers rests on a simple, round ceramic plate, subtly off-center on a well-used wooden kitchen table. One vibrant, roasted bell pepper half, slightly softened but holding its shape, is generously filled with a rich, reddish-brown mixture of kidney beans, diced onion, and rice. The filling shows visible flecks of green herbs. The pepper's skin has a slight char from baking, and the interior is tender. A few fresh green basil leaves are casually placed on top of the filling as a garnish. The plate is surrounded by a warm, inviting light, with a casually placed cloth napkin and a standard fork nearby, suggesting a comfortable home meal. The background is minimal, hinting at a lived-in kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American Home Cooking",
+    "cultural_serving_suggestions": [
+      "Crusty bread"
+    ],
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Bell peppers",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Kidney beans",
+        "quantity": "1 x 400g can, rinsed and drained"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "1 x 400g can"
+      },
+      {
+        "name": "Cooked rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried basil",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cut bell peppers in half lengthwise. Remove seeds and membranes. Place cut-side up in a baking dish.",
+      "Heat olive oil in a large skillet over medium heat. Add diced onion. Sauté 5 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in rinsed kidney beans, crushed tomatoes, cooked rice, dried oregano, and dried basil. Season with salt and pepper.",
+      "Bring mixture to a simmer. Cook 5 minutes, stirring occasionally, until slightly thickened.",
+      "Spoon the filling evenly into each bell pepper half.",
+      "Pour vegetable broth into the bottom of the baking dish.",
+      "Bake 30-35 minutes, or until peppers are tender and filling is heated through.",
+      "Garnish with fresh basil leaves if desired. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 265,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.2,
+      "protein_g": 10.1,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 401,
+      "total_carbs_g": 49.5,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 15.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 53.9,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 2.1,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 81.5,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 1,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 40,
+      "protein": 20,
+      "saturated_fat": 4,
+      "sodium": 17,
+      "total_carbs": 18,
+      "total_fat": 6
+    },
+    "serving_size_g": 491.5,
+    "total_recipe_weight_g": 1966
+  },
+  {
+    "recipe_name": "Vegan Dark Chocolate Pear Cake with Cinnamon Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vegan_dark_chocolate_pear_cake_with_cinnamon_glaze_20250707_040041_7a51febd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T04:00:41.924543000Z",
+    "selected_ingredients": [
+      {
+        "name": "pear"
+      },
+      {
+        "name": "flour"
+      },
+      {
+        "name": "dark chocolate"
+      },
+      {
+        "name": "cinnamon"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "vegan American",
+    "visual_description": "A single, elegant slice of Vegan Dark Chocolate Pear Cake is centrally plated on a clean, round white porcelain dinner plate. The cake features two distinct, moist dark chocolate layers with visible, soft diced pear pieces integrated within. A glossy, light brown cinnamon glaze cascades gently over the top and down the sides of the slice, creating delicate drips. The texture of the cake is rich and tender, contrasting with the smooth glaze. The plate rests on a simple, light-colored wooden table surface, accompanied by a folded white cotton napkin to the side. In the background, the remaining whole cake stands on a simple cake stand, partially visible. Natural, even lighting highlights the cake's dark hues and the sheen of the glaze. The scene is uncluttered, focusing on the refined dessert presentation in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a cup of freshly brewed coffee or a hot tea."
+    ],
+    "hero_ingredient": "Pear",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Plant-based milk (e.g., soy or almond)",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dark chocolate (vegan, 70% cacao), melted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Firm ripe pears, peeled and diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Plant-based milk",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour two 15 cm round cake pans.",
+      "In a large bowl, whisk together flour, granulated sugar, cocoa powder, baking soda, and salt.",
+      "In a separate bowl, combine plant-based milk, vegetable oil, apple cider vinegar, and vanilla extract.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Do not overmix.",
+      "Fold in melted dark chocolate and diced pears.",
+      "Divide batter evenly between prepared cake pans. Smooth tops.",
+      "Bake for 25-30 minutes. A toothpick inserted into the center should come out clean.",
+      "Cool cakes in pans for 10 minutes. Transfer to a wire rack to cool completely.",
+      "Prepare cinnamon glaze: Whisk powdered sugar, plant-based milk, and ground cinnamon in a small bowl until smooth.",
+      "Place one cake layer on a serving plate. Spread a thin layer of glaze on top. Place second cake layer on top.",
+      "Pour remaining glaze over the top of the cake, allowing it to drip down the sides.",
+      "Allow glaze to set before serving. Garnish with additional chocolate shavings or a thin pear slice if desired."
+    ],
+    "notes": [
+      "Ensure all chocolate used is certified vegan. The apple cider vinegar reacts with baking soda to create lift, mimicking buttermilk in non-vegan recipes. Do not overmix the batter to maintain a tender crumb."
+    ]
+  },
+  {
+    "recipe_name": "Braised Beef with Rosemary Potatoes and Charred Corn Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_rosemary_potatoes_and_charred_corn_salsa_20250707_034314_ae3cf0fa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T03:43:14.868923000Z",
+    "selected_ingredients": [
+      "potato",
+      "beef",
+      "tomato",
+      "corn"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic yet refined presentation on a clean white porcelain dinner plate. At the center, a generous portion of deeply caramelized, fork-tender braised beef chunks, bathed in its rich, glossy, dark brown pan sauce. The beef retains its natural, irregular shapes. Beside it, a cluster of golden-brown roasted potato halves or wedges, their skins slightly crisp, dusted with rosemary and thyme. Adjacent, a vibrant charred corn and cherry tomato salsa, its yellows and reds contrasting with the deeper tones. The corn shows subtle char marks, and tomatoes are plump. Fresh, bright green chopped parsley garnishes the beef and potatoes. The plate has appropriate negative space. The setting features a simple wooden table, cotton napkin, and standard flatware, emphasizing approachable restaurant style. The entire plate is visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the braising sauce."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "800 g, cut into 5 cm chunks"
+      },
+      {
+        "name": "Potatoes (small new potatoes or Yukon Gold)",
+        "quantity": "600 g, halved or quartered"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g, halved"
+      },
+      {
+        "name": "Corn kernels (fresh or frozen)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dry red wine (e.g., Merlot or Cabernet Sauvignon)",
+        "quantity": "200 ml (optional, replace with more broth if omitted)"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat 30 ml olive oil in a large Dutch oven or oven-safe pot over medium-high heat. Sear beef chunks in batches until deeply browned on all sides. Remove beef and set aside.",
+      "Add remaining 30 ml olive oil to the pot. Add chopped onion and cook until softened, about 5 minutes. Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine (if using). Scrape bottom of pot to deglaze. Bring to a simmer. Add beef broth, rosemary sprigs, and thyme sprigs. Return seared beef to the pot.",
+      "Bring to a gentle simmer. Cover pot tightly. Transfer to preheated oven. Braise for 2.5-3 hours, or until beef is fork-tender.",
+      "While beef braises, prepare potatoes. Toss potatoes with 2 tablespoons olive oil, salt, pepper, and a few sprigs of fresh rosemary or thyme. Spread on a baking sheet.",
+      "Increase oven temperature to 200°C for potatoes during the last 45-60 minutes of beef braising, or roast separately after removing beef from oven. Roast until golden brown and tender, turning halfway.",
+      "For the salsa: In a dry skillet over high heat, char corn kernels until slightly browned, about 3-5 minutes. Remove from heat. Combine charred corn with halved cherry tomatoes. Season with salt, pepper, and a drizzle of olive oil.",
+      "Remove braised beef from oven. Let rest briefly. Remove rosemary and thyme sprigs from sauce.",
+      "Serve braised beef chunks with a generous spoon of the rich pan sauce. Plate alongside roasted potatoes and a spoonful of charred corn-tomato salsa. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 847,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 60.5,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 893.9,
+      "total_carbs_g": 54.7,
+      "total_fat_g": 40.2,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 118,
+      "cholesterol_mg": 21.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 124.9,
+      "total_carbs_g": 7.7,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 24.8,
+      "protein": 120.9,
+      "saturated_fat": 63.1,
+      "sodium": 38.9,
+      "total_carbs": 19.9,
+      "total_fat": 51.6
+    },
+    "serving_size_g": 715,
+    "total_recipe_weight_g": 2860
+  },
+  {
+    "recipe_name": "Savory Sausage & Cheese Toast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_sausage_%26_cheese_toast_20250707_030929_abba28c7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T03:09:29.404064000Z",
+    "selected_ingredients": [
+      "potato",
+      "tomato",
+      "onion",
+      "garlic",
+      "bread",
+      "american cheese",
+      "carrot",
+      "sausage"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous slice of golden-brown toasted country bread rests on a simple, slightly off-white ceramic plate with a subtle rim. The toast is piled high with a hearty, savory mixture. Crumbled, browned sausage pieces are mixed with soft, diced potatoes, tender orange diced carrots, and translucent diced onions. The mixture is bound by melted, gooey yellow American cheese, which slightly drips down the sides. Scattered over the top are small, bright red diced fresh tomatoes, adding a pop of color and freshness. The overall presentation is warm, comforting, and abundant. The plate is set on a well-used, light-toned wooden kitchen table. A casually folded plain beige cloth napkin is visible nearby. Warm, soft light illuminates the scene, suggesting a cozy, lived-in family kitchen environment. Portions are substantial and inviting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a hearty starter or light meal.",
+      "Offer with common American condiments like ketchup or hot sauce on the side.",
+      "Serve casually at a family kitchen table."
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Pork sausage",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Sturdy bread slices",
+        "quantity": "4"
+      },
+      {
+        "name": "American cheese slices",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven broiler.",
+      "Peel and dice potatoes into small cubes. Dice carrot into small cubes. Dice onion finely. Mince garlic.",
+      "Remove sausage from casings. Cook sausage in a large skillet over medium heat. Crumble with a spoon as it cooks. Cook until browned and cooked through. Drain excess fat. Remove sausage from skillet; set aside.",
+      "Add olive oil to the same skillet. Add diced potatoes and carrots. Sauté for 5 minutes, stirring occasionally. Add diced onion and minced garlic. Continue to sauté until vegetables are tender, about 7-10 minutes.",
+      "Return cooked sausage to the skillet with the vegetables. Mix well. Season with salt and black pepper to taste.",
+      "Toast bread slices until golden brown.",
+      "Spoon the sausage and vegetable mixture generously onto each toasted bread slice. Place one slice of American cheese on top of the mixture on each toast.",
+      "Place toasts on a baking sheet. Broil for 1-2 minutes, or until cheese is melted and bubbly. Watch carefully to prevent burning.",
+      "Dice the large tomato into small cubes. Garnish each toast with fresh diced tomato before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.2,
+      "calories": 417,
+      "cholesterol_mg": 51.8,
+      "dietary_fiber_g": 4,
+      "protein_g": 18,
+      "saturated_fat_g": 9,
+      "sodium_mg": 788.2,
+      "total_carbs_g": 35.2,
+      "total_fat_g": 23.4,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 156,
+      "cholesterol_mg": 19.4,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.7,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 294.9,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.3,
+      "dietary_fiber": 14.3,
+      "protein": 36,
+      "saturated_fat": 45,
+      "sodium": 34.3,
+      "total_carbs": 12.8,
+      "total_fat": 30
+    },
+    "serving_size_g": 267.3,
+    "total_recipe_weight_g": 1069
+  }
+]

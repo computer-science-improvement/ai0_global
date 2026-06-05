@@ -1,0 +1,607 @@
+[
+  {
+    "recipe_name": "Slow-Cooked Chicken with Fermented Tomato Essence",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_chicken_with_fermented_tomato_essence_20250624_024254_52f61c02.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:42:54.535620000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, perfectly slow-cooked chicken thigh sits centrally on a handcrafted, matte cream ceramic plate. The chicken, presented whole with its bone, features a beautifully crisped, golden-brown skin. Beside it, a rich, deep red-orange pool of reduced fermented tomato essence gleams. Scattered around the chicken are a few whole, roasted garlic cloves, their skins lightly charred, revealing soft, creamy interiors. A small, artfully arranged cluster of vibrant green seasonal vegetables adds a fresh counterpoint. The composition emphasizes natural shapes and textures, with ample white space on the plate. The setting features a light, textured reclaimed wood surface, an undyed linen napkin, and soft, diffused natural light from the side, creating a clean, minimalist, and eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Sea salt (for fermentation)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Filtered water (for fermentation)",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800 g total)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic head",
+        "quantity": "1"
+      },
+      {
+        "name": "Seasonal green vegetables (e.g., asparagus, green beans)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Chop tomatoes into quarters. Place in a clean 1.5-litre glass jar.",
+      "Dissolve 20g sea salt in 1 litre filtered water to make a brine. Pour brine over tomatoes, ensuring they are fully submerged. Use a fermentation weight to keep tomatoes under liquid.",
+      "Seal jar loosely. Let ferment at room temperature (20-24°C) for 3-5 days. Bubbles indicate active fermentation. Strain fermented tomatoes. Reserve liquid (fermented tomato essence).",
+      "Pat chicken thighs dry. Carefully remove skin from thighs. Set skin aside. Season chicken thighs generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large, oven-safe pot over medium-high heat.",
+      "Sear chicken thighs, flesh side down, for 4-5 minutes until golden brown. Flip. Sear skin side down for 2-3 minutes.",
+      "Pour reserved fermented tomato essence over chicken. Add unpeeled garlic cloves from the whole head.",
+      "Bring liquid to a gentle simmer. Cover pot. Transfer to a preheated oven at 160°C.",
+      "Braise for 45-60 minutes, or until chicken is very tender and internal temperature reaches 75°C.",
+      "While chicken braises, place reserved chicken skin in a cold, dry pan. Heat over medium-low heat. Slowly render fat and crisp skin, pressing down occasionally, until deeply golden and shatteringly crisp (10-15 minutes). Remove from pan. Drain on paper towel. Season with a pinch of salt.",
+      "Remove chicken from pot. Set aside. Strain braising liquid into a small saucepan, discarding garlic skins if desired. Keep roasted garlic cloves.",
+      "Bring liquid to a vigorous simmer over medium-high heat. Reduce until thickened to a desired sauce consistency (approx. 5-10 minutes).",
+      "Blanch or steam green vegetables until tender-crisp.",
+      "Place one slow-cooked chicken thigh on each plate. Spoon reduced fermented tomato essence around chicken. Arrange a few roasted garlic cloves and a small portion of green vegetables beside chicken. Crumble crisped chicken skin over or beside the chicken. Serve immediately."
+    ],
+    "notes": [
+      "Chicken bones can be saved for making stock.",
+      "Fermented tomato pulp can be used in other dishes, such as a base for soup or a spread."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 551,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 4.31,
+      "protein_g": 39.15,
+      "saturated_fat_g": 9.14,
+      "sodium_mg": 163.76,
+      "total_carbs_g": 15.84,
+      "total_fat_g": 37.56,
+      "total_sugars_g": 7.58,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 36.21,
+      "dietary_fiber_g": 0.83,
+      "protein_g": 7.54,
+      "saturated_fat_g": 1.76,
+      "sodium_mg": 31.54,
+      "total_carbs_g": 3.05,
+      "total_fat_g": 7.23,
+      "total_sugars_g": 1.46,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 15,
+      "protein": 78,
+      "saturated_fat": 46,
+      "sodium": 7,
+      "total_carbs": 6,
+      "total_fat": 48
+    },
+    "serving_size_g": 519.25,
+    "total_recipe_weight_g": 2077
+  },
+  {
+    "recipe_name": "Seared Rice Cake with Poached Egg, Tomato Confit, and Noodle Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_rice_cake_with_poached_egg%2C_tomato_confit%2C_and_noodle_crisp_20250624_024248_2ba54ce4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:42:48.944661000Z",
+    "selected_ingredients": [
+      "egg",
+      "noodle",
+      "tomato",
+      "green onion",
+      "sesame oil",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single golden-brown seared rice cake sits off-center on a pristine white bone china plate. A perfectly poached egg, its delicate white encasing a visible yolk, rests atop or beside it. Around the base, glossy, ruby-red confit cherry tomatoes, some slightly burst, gleam with their rich oil. Vibrant emerald-green green onion oil is artfully drizzled, creating subtle pools that contrast with the porcelain. A small, airy cluster of golden crispy noodles is delicately perched, adding textural counterpoint. The minimalist composition features generous negative space, emphasizing precise component placement. The scene is on a luxurious grey-veined marble surface, with dramatic professional lighting and soft shadows. A pristine white linen napkin, folded precisely, completes the elegant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "cooked sushi rice (day-old preferred)",
+        "quantity": "300g"
+      },
+      {
+        "name": "rice flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "garlic, thinly sliced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "fresh thyme",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "sugar",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "large fresh eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "white vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "water",
+        "quantity": "2L"
+      },
+      {
+        "name": "green onion (white and light green parts), thinly sliced",
+        "quantity": "50g"
+      },
+      {
+        "name": "neutral oil (e.g., grapeseed, canola)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "thin egg noodles (vermicelli type)",
+        "quantity": "50g"
+      },
+      {
+        "name": "neutral oil for deep frying",
+        "quantity": "250ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 120°C. Place cherry tomatoes, olive oil, sliced garlic, thyme, salt, and sugar in a small oven-safe dish. Toss gently. Roast for 45-60 minutes, or until tomatoes are soft and slightly shriveled. Remove thyme sprig. Set aside.",
+      "Heat neutral oil in a small saucepan over low heat. Add sliced green onion. Gently simmer for 15-20 minutes, until green onions are fragrant and slightly crisp. Strain oil through a fine-mesh sieve into a heatproof bowl. Discard solids. Stir in sesame oil and salt. Set aside.",
+      "In a bowl, combine cooked sushi rice, rice flour, sesame oil, and salt. Mix thoroughly by hand until well combined and slightly sticky. Form into 4 compact, flat discs, about 1.5 cm thick and 6-7 cm in diameter.",
+      "Heat neutral oil in a small pot to 175°C. Carefully add a small handful of egg noodles. Fry for 10-20 seconds until golden and crispy. Remove with a slotted spoon and drain on paper towels. Season lightly with salt. Repeat with remaining noodles.",
+      "Heat a non-stick pan over medium-high heat. Add a small amount of neutral oil. Carefully place rice cakes in the pan. Sear for 4-5 minutes per side, until golden brown and crispy.",
+      "Bring a large pot of water to a gentle simmer. Add white vinegar. Carefully crack each egg into a separate small bowl. Gently slide eggs into simmering water. Cook for 3-4 minutes for a runny yolk. Remove with a slotted spoon. Drain excess water.",
+      "Place one seared rice cake slightly off-center on each plate. Gently place a poached egg on top of or slightly next to the rice cake. Spoon a few confit cherry tomatoes and a drizzle of their oil around the rice cake. Drizzle generously with green onion oil. Garnish with a small, delicate cluster of crispy noodles."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 615,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 11.2,
+      "saturated_fat_g": 6,
+      "sodium_mg": 70,
+      "total_carbs_g": 39.8,
+      "total_fat_g": 38.8,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 254,
+      "cholesterol_mg": 79,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 4.6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 29,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 16,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 6,
+      "protein": 22,
+      "saturated_fat": 30,
+      "sodium": 3,
+      "total_carbs": 14,
+      "total_fat": 50
+    },
+    "serving_size_g": 241.8,
+    "total_recipe_weight_g": 967.1
+  },
+  {
+    "recipe_name": "Baked Chicken with Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_chicken_with_roasted_vegetables_20250624_024208_19385bdb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:42:08.501295000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "tomato",
+      "onion",
+      "broccoli"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of baked chicken with roasted vegetables rests on an off-white ceramic dinner plate. A golden-brown, tender chicken thigh is positioned slightly off-center. Around the chicken, a natural scattering of vibrant green broccoli florets, deep brown sliced mushrooms, soft reddish-brown onion wedges, and burst red cherry tomatoes creates a comforting, abundant feel. Some vegetables display slight charring on their edges, indicating the roasting process. A light sprinkle of fresh green chopped parsley garnishes the dish. The entire plate is visible, showcasing a modest, homely portion. The setting is a well-used wooden dining table, illuminated by warm, natural kitchen lighting. A simple fork and knife are placed beside the plate on a casual paper towel, reflecting an everyday family meal atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g total)"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 large head (about 400g), cut into florets"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g, sliced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large, quartered into wedges"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g, halved"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2.5ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15ml, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Place broccoli florets, sliced mushrooms, onion wedges, and halved cherry tomatoes into a large mixing bowl.",
+      "Add olive oil, minced garlic, dried thyme, salt, and black pepper to the vegetables. Toss until vegetables are evenly coated.",
+      "Spread the seasoned vegetables in a single layer on a large baking sheet.",
+      "Pat chicken thighs dry. Season chicken with additional salt and pepper.",
+      "Arrange chicken thighs among the vegetables on the baking sheet.",
+      "Bake for 25-30 minutes. Chicken is done when internal temperature reaches 75°C.",
+      "Remove from oven. Let chicken rest 5 minutes.",
+      "Garnish with fresh chopped parsley.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 407,
+      "cholesterol_mg": 164,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 36.8,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 736,
+      "total_carbs_g": 20.4,
+      "total_fat_g": 19.8,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.9,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 159,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 21,
+      "protein": 74,
+      "saturated_fat": 22,
+      "sodium": 32,
+      "total_carbs": 7,
+      "total_fat": 25
+    },
+    "serving_size_g": 463.9,
+    "total_recipe_weight_g": 1855.8
+  },
+  {
+    "recipe_name": "Thai Coconut Chicken Soup (Tom Kha Gai)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_coconut_chicken_soup_%28tom_kha_gai%29_20250624_024202_9fe3e87c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:42:02.913855000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Thai Coconut Chicken Soup (Tom Kha Gai) is presented in a deep, clean white porcelain bowl. The soup, a milky white from the coconut milk, has visible chunks of cooked white chicken and light brown, tender sliced oyster mushrooms. Bright green pieces of chopped cilantro are scattered over the top, with a few vibrant red chili slices adding a pop of color. The surface of the soup shows subtle steam rising. The bowl sits on a simple, light wooden table surface, characteristic of a modern bistro setting. To the side, a traditional white ceramic Chinese soup spoon rests on the table. A small, neatly folded cotton napkin is placed beside the bowl. The background is softly blurred, suggesting a casual restaurant atmosphere, maintaining focus on the elegantly plated soup. The overall presentation is clean, balanced, and inviting, highlighting the fresh ingredients and the soup's comforting warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve hot with a side bowl of steamed jasmine rice.",
+      "Offer a small dish of Prik Nam Pla (fish sauce with sliced bird's eye chilies) for individual seasoning adjustment."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Coconut milk",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Galangal",
+        "quantity": "5 cm piece"
+      },
+      {
+        "name": "Lemongrass stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Kaffir lime leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Oyster mushrooms",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Red bird's eye chilies",
+        "quantity": "2"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Palm sugar (or granulated sugar)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Slice chicken breast into 2 cm thick chunks. Set aside.",
+      "Thinly slice galangal. Smash lemongrass stalks with the back of a knife; cut into 5 cm pieces. Tear kaffir lime leaves.",
+      "In a medium pot, combine chicken broth, galangal, lemongrass, and kaffir lime leaves. Bring to a simmer over medium heat.",
+      "Add chicken chunks to the simmering broth. Cook for 5-7 minutes, or until chicken reaches an internal temperature of 75°C (167°F). Skim any foam.",
+      "Add coconut milk and sliced oyster mushrooms. Bring to a gentle simmer. Do not boil vigorously after adding coconut milk.",
+      "Stir in fish sauce, lime juice, and palm sugar. Taste and adjust seasoning as needed for a balance of sour, salty, and sweet.",
+      "Thinly slice red chilies. Roughly chop cilantro.",
+      "Ladle hot soup into individual bowls. Garnish with fresh cilantro and sliced red chilies. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Infusion of aromatics (galangal, lemongrass, kaffir lime leaves)",
+      "Balancing of four key flavors: sour, salty, sweet, and spicy"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 476.8,
+      "cholesterol_mg": 106.25,
+      "dietary_fiber_g": 3.46,
+      "protein_g": 44.82,
+      "saturated_fat_g": 22.46,
+      "sodium_mg": 1583.28,
+      "total_carbs_g": 10.73,
+      "total_fat_g": 29.53,
+      "total_sugars_g": 6.15,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.28,
+      "calories": 105.53,
+      "cholesterol_mg": 23.52,
+      "dietary_fiber_g": 0.77,
+      "protein_g": 9.92,
+      "saturated_fat_g": 4.97,
+      "sodium_mg": 350.48,
+      "total_carbs_g": 2.38,
+      "total_fat_g": 6.54,
+      "total_sugars_g": 1.36,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.42,
+      "dietary_fiber": 12.36,
+      "protein": 89.64,
+      "saturated_fat": 112.3,
+      "sodium": 68.84,
+      "total_carbs": 3.9,
+      "total_fat": 37.86
+    },
+    "serving_size_g": 451.75,
+    "total_recipe_weight_g": 1807
+  },
+  {
+    "recipe_name": "Penne al Pomodoro Arrosto con Burrata",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_penne_al_pomodoro_arrosto_con_burrata_20250624_024141_19d47644.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:41:41.757252000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of penne pasta is artfully arranged on a clean white porcelain dinner plate, showcasing its vibrant roasted tomato sauce. The pasta is tossed with a rich, reddish-orange sauce, highlighting the softened, blistered roasted cherry tomatoes, some whole and some gently burst, alongside golden-brown, tender whole garlic cloves. Fresh green basil leaves are generously scattered throughout, providing a striking color contrast. A generous dollop of creamy white burrata is torn and placed gently atop the pasta, its soft interior beginning to melt into the warm sauce. The dish is presented with moderate negative space, allowing each ingredient to be appreciated. The setting is a modern bistro, featuring a simple wooden table surface. A neatly folded cotton napkin and a polished fork and spoon are placed beside the plate. Natural, even lighting illuminates the scene, creating an inviting, authentic Italian dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Grated Pecorino Romano or Parmigiano Reggiano",
+      "Crusty Italian bread for dipping in the sauce"
+    ],
+    "hero_ingredient": "Roasted Cherry Tomatoes",
+    "ingredients": [
+      {
+        "name": "Penne Rigate",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "8 whole"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Burrata Cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "freshly ground, to taste"
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": "5 g (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Place cherry tomatoes and whole garlic cloves on a baking tray. Drizzle with 50 ml olive oil. Season with salt, pepper, and red pepper flakes (if using).",
+      "Roast for 25-30 minutes, or until tomatoes are blistered and garlic is tender.",
+      "Bring a large pot of salted water to a rolling boil. Add penne pasta. Cook according to package directions until al dente.",
+      "While pasta cooks, transfer roasted tomatoes and garlic to a large pan. Gently mash some tomatoes to create a rustic sauce. Add remaining 50 ml olive oil.",
+      "Drain pasta, reserving 120 ml of pasta water.",
+      "Add drained pasta to the pan with the roasted tomato sauce. Add half of the fresh basil leaves, torn.",
+      "Toss well, adding reserved pasta water as needed to create a light sauce consistency.",
+      "Tear burrata into large pieces. Gently fold into the pasta or place on top when serving.",
+      "Serve immediately, garnished with remaining fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Al dente cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 880,
+      "cholesterol_mg": 37.5,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 29.6,
+      "saturated_fat_g": 11.1,
+      "sodium_mg": 167.7,
+      "total_carbs_g": 107.8,
+      "total_fat_g": 38.1,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 187.3,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 6.3,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 35.7,
+      "total_carbs_g": 23,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 12.5,
+      "dietary_fiber": 27.5,
+      "protein": 59.1,
+      "saturated_fat": 55.5,
+      "sodium": 7.3,
+      "total_carbs": 39.2,
+      "total_fat": 48.8
+    },
+    "serving_size_g": 469.6,
+    "total_recipe_weight_g": 1878.5
+  }
+]

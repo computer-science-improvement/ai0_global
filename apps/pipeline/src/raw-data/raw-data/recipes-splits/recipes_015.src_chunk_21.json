@@ -1,0 +1,818 @@
+[
+  {
+    "recipe_name": "Sustainable Harvest Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_harvest_bowl_20250628_064211_5b83350c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:42:12.053935000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean",
+      "onion",
+      "squash",
+      "salad green",
+      "garlic",
+      "lemon",
+      "green pea",
+      "green bean",
+      "cucumber",
+      "lentil",
+      "carrot",
+      "egg",
+      "olive oil",
+      "paprika",
+      "bay leaf",
+      "coconut milk",
+      "banana",
+      "fish",
+      "sun dried tomato",
+      "tahini",
+      "vinegar",
+      "red lentil",
+      "brussels sprout",
+      "mixed spice",
+      "smoked paprika",
+      "baguette",
+      "ghee"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of the Sustainable Harvest Bowl is presented in a wide, shallow handcrafted ceramic bowl in a natural cream tone. A bed of vibrant green salad leaves supports a scoop of soft, orange-red cooked red lentils. Artfully arranged around the lentils are distinct clusters of roasted vegetables: golden-brown diced butternut squash, deep green halved Brussels sprouts with crispy edges, bright orange carrot batons, and vibrant green whole green beans and peas. Thick, succulent chunks of seared chicken breast are nestled alongside, unsliced. Bright pink, thinly sliced pickled red onions and translucent, thinly sliced pickled cucumber add pops of color. A creamy, pale orange sun-dried tomato tahini dressing is drizzled. Fresh chopped green parsley adds final vibrancy. The entire bowl is visible with ample negative space, resting on a light, reclaimed wood surface with an undyed linen napkin and simple utensils. Soft, natural light illuminates textures and colors against a minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Red Lentils",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "2 (approx. 400g)"
+      },
+      {
+        "name": "Red lentils",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water or Vegetable broth",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 small"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Water (for pickling)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt (for pickling)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "300g, diced"
+      },
+      {
+        "name": "Brussels sprouts",
+        "quantity": "200g, halved"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, sliced into batons"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "100g, trimmed"
+      },
+      {
+        "name": "Green peas",
+        "quantity": "50g (fresh or frozen)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, juiced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml, plus more for chicken"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Salad greens",
+        "quantity": "100g (e.g., mixed leaves)"
+      },
+      {
+        "name": "Sun-dried tomatoes (oil-packed)",
+        "quantity": "50g, drained"
+      },
+      {
+        "name": "Tahini",
+        "quantity": "40g"
+      },
+      {
+        "name": "Fresh parsley or dill",
+        "quantity": "small bunch, chopped"
+      }
+    ],
+    "instructions": [
+      "Prepare pickled vegetables. Thinly slice red onion and cucumber. Combine 100ml white vinegar, 100ml water, 10g sugar, and 5g salt in a small saucepan. Heat until sugar and salt dissolve. Pour over onion and cucumber in separate jars. Set aside to cool.",
+      "Cook lentils. Rinse red lentils. Combine lentils, 600ml water or broth, and bay leaf in a pot. Bring to a boil, then reduce heat. Simmer 15-20 minutes until tender. Drain excess liquid. Remove bay leaf.",
+      "Roast vegetables. Preheat oven to 200°C. Toss diced butternut squash, halved Brussels sprouts, carrot batons, and green beans with 30ml olive oil, smoked paprika, salt, and pepper on a baking sheet. Roast 20-25 minutes. Add green peas for the last 5 minutes of roasting.",
+      "Cook chicken. Season chicken breasts with salt, pepper, and oregano. Heat a pan with a little olive oil over medium-high heat. Sear chicken 5-7 minutes per side until golden and cooked through to 75°C. Rest chicken 5 minutes, then cut into thick chunks.",
+      "Make dressing. In a small blender or food processor, combine drained sun-dried tomatoes, tahini, minced garlic, lemon juice, 30ml olive oil, and 30ml water. Blend until smooth. Add more water if needed for desired consistency. Season with salt and pepper.",
+      "Assemble bowls. Place a bed of salad greens in each of four large bowls. Spoon cooked lentils onto greens. Arrange roasted vegetables around lentils. Add chicken chunks. Top with pickled red onion and cucumber. Drizzle generously with sun-dried tomato tahini dressing. Garnish with fresh chopped parsley or dill."
+    ],
+    "notes": [
+      "This recipe emphasizes seasonal ingredients and zero-waste practices. Utilize vegetable trimmings for homemade broth. The pickled elements extend shelf life and add vibrant flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 686,
+      "cholesterol_mg": 85,
+      "dietary_fiber_g": 17.07,
+      "protein_g": 50.85,
+      "saturated_fat_g": 4.49,
+      "sodium_mg": 247.08,
+      "total_carbs_g": 63.75,
+      "total_fat_g": 27.88,
+      "total_sugars_g": 13.15,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.36,
+      "calories": 98.88,
+      "cholesterol_mg": 12.26,
+      "dietary_fiber_g": 2.46,
+      "protein_g": 7.33,
+      "saturated_fat_g": 0.65,
+      "sodium_mg": 35.63,
+      "total_carbs_g": 9.19,
+      "total_fat_g": 4.02,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 61,
+      "protein": 102,
+      "saturated_fat": 22,
+      "sodium": 11,
+      "total_carbs": 23,
+      "total_fat": 36
+    },
+    "serving_size_g": 693.5,
+    "total_recipe_weight_g": 2774
+  },
+  {
+    "recipe_name": "Roasted Beet & Red Lentil Patties with Fermented Cabbage Slaw",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_beet_%26_red_lentil_patties_with_fermented_cabbage_slaw_20250628_063859_1926af7a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:38:59.724318000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean",
+      "onion",
+      "apple",
+      "rice",
+      "chicken stock",
+      "squash",
+      "salad green",
+      "corn",
+      "bell pepper",
+      "cherry",
+      "orange",
+      "garlic",
+      "coffee",
+      "lemon",
+      "mushroom",
+      "olive",
+      "cream",
+      "gherkin",
+      "tuna",
+      "green pea",
+      "basil",
+      "oil",
+      "salmon",
+      "butter",
+      "green bean",
+      "lime",
+      "vegetable stock",
+      "broccoli",
+      "cashew",
+      "cucumber",
+      "lentil",
+      "walnut",
+      "beet",
+      "celery",
+      "grapefruit",
+      "fig",
+      "carrot",
+      "egg",
+      "cabbage",
+      "whole wheat flour",
+      "olive oil",
+      "paprika",
+      "asparagus",
+      "bay leaf",
+      "cauliflower",
+      "cinnamon",
+      "coconut milk",
+      "banana",
+      "fish",
+      "sweet potato",
+      "arugula",
+      "sun dried tomato",
+      "tahini",
+      "vinegar",
+      "avocado",
+      "kale",
+      "polenta",
+      "red lentil",
+      "brussels sprout",
+      "mixed spice",
+      "smoked paprika",
+      "baguette",
+      "edamame",
+      "ghee",
+      "quinoa"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish presents a minimalist composition on a matte cream ceramic plate, resting on reclaimed wood. Two substantial, irregularly shaped roasted beet and red lentil patties, about 7cm in diameter, are centrally placed on vibrant arugula. Patties are rich crimson with visible lentil flecks, exhibiting a crisp exterior from pan-searing. Adjacent, a generous mound of glistening, pale green fermented cabbage slaw reveals thin slices of cabbage, apple, and red onion, with a subtle brine sheen. A light drizzle of golden olive oil dressing, dotted with finely minced preserved lemon, coats the elements. The clean, uncluttered presentation emphasizes the earthy colors and natural textures of plant-forward ingredients. Soft natural light illuminates the scene, promoting sustainable simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "cultural_serving_suggestions": [
+      "Serve on handcrafted ceramic plates",
+      "Embrace natural, rustic textures",
+      "Accompany with a glass of still water or natural wine"
+    ],
+    "hero_ingredient": "Beet",
+    "ingredients": [
+      {
+        "name": "Beet",
+        "quantity": "2 large (approx. 400g)"
+      },
+      {
+        "name": "Red Lentils",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cabbage",
+        "quantity": "1 small (approx. 500g)"
+      },
+      {
+        "name": "Apple",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Mixed Spice",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Arugula",
+        "quantity": "100g"
+      },
+      {
+        "name": "Water",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Whole Wheat Flour",
+        "quantity": "1-2 tbsp (optional)"
+      },
+      {
+        "name": "Preserved Lemon",
+        "quantity": "1 (optional)"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Cabbage Slaw (ideally 3-5 days in advance):",
+      "Thinly slice cabbage. Core and thinly slice apple. Thinly slice red onion.",
+      "Combine cabbage, apple, onion in a large bowl. Add 1.5 tsp salt.",
+      "Massage mixture vigorously for 5-10 minutes until liquid releases.",
+      "Pack tightly into a clean glass jar. Press down to submerge vegetables in their brine.",
+      "Top with a weight if needed to keep submerged. Cover with an airlock lid or loose lid.",
+      "Ferment at room temperature for 3-5 days, or until desired tanginess. Refrigerate.",
+      "Cook Lentils and Roast Beets:",
+      "Rinse red lentils. Combine with 500ml water in a pot. Bring to boil. Reduce heat. Simmer 15-20 minutes until tender. Drain.",
+      "Preheat oven to 200°C.",
+      "Wash beets. Trim ends. Do not peel. Cut beets into 2cm cubes.",
+      "Toss beet cubes with 1 tbsp olive oil, salt, and pepper.",
+      "Spread on a baking sheet. Roast 25-30 minutes until tender and slightly caramelized. Let cool slightly.",
+      "Prepare Beet & Lentil Patties:",
+      "In a large bowl, mash roasted beets with a fork or potato masher.",
+      "Add cooked lentils, minced garlic, smoked paprika, mixed spice, lemon zest.",
+      "Mix well. Season with salt and pepper.",
+      "If mixture is too wet, add 1-2 tbsp whole wheat flour.",
+      "Form into 8 equal patties, about 2cm thick.",
+      "Cook Patties:",
+      "Heat 2 tbsp olive oil in a large non-stick pan over medium heat.",
+      "Cook patties 4-5 minutes per side until golden brown and heated through.",
+      "Prepare Preserved Lemon Dressing (if using fresh lemon):",
+      "Finely mince a small piece of preserved lemon rind (about 1 tsp) or use 1/2 tsp fresh lemon zest.",
+      "Combine with 1 tbsp fresh lemon juice and 1 tbsp olive oil. Whisk well. Season with salt and pepper.",
+      "Assemble Dish:",
+      "Divide arugula among 4 plates.",
+      "Place two beet and lentil patties on each bed of arugula.",
+      "Spoon a generous amount of fermented cabbage slaw next to the patties.",
+      "Drizzle preserved lemon dressing over patties and slaw. Serve immediately."
+    ],
+    "notes": [
+      "For best flavor, prepare the fermented cabbage slaw at least 3-5 days in advance.",
+      "The beet peels can be used to make vegetable stock or composted.",
+      "Adjust patty consistency with whole wheat flour if needed.",
+      "This recipe can be made entirely plant-based by ensuring no chicken stock is used elsewhere in your meal preparation if applicable."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 395.2,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 18.9,
+      "protein_g": 15.8,
+      "saturated_fat_g": 2,
+      "sodium_mg": 596,
+      "total_carbs_g": 55.9,
+      "total_fat_g": 14.7,
+      "total_sugars_g": 19,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 79.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 3.2,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 119.6,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 67.6,
+      "protein": 31.7,
+      "saturated_fat": 9.9,
+      "sodium": 25.9,
+      "total_carbs": 20.3,
+      "total_fat": 18.8
+    },
+    "serving_size_g": 498.25,
+    "total_recipe_weight_g": 1993
+  },
+  {
+    "recipe_name": "Chicken Cacciatore with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_with_pappardelle_20250628_063617_2fbebcdd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:36:18.319421000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of wide, golden pappardelle ribbons is nested in a clean white porcelain pasta bowl. The pasta is coated in a thick, vibrant red San Marzano tomato sauce. A whole, bone-in braised chicken thigh rests centrally on the pasta, showing a rich, caramelized exterior. Small, tender cubes of carrot and celery, along with dark, wrinkled Kalamata olives, are distributed throughout the sauce. Freshly chopped flat-leaf parsley provides a vivid green garnish. The dish is set on a dark wood table with a folded linen napkin and a silver fork. Soft, natural light emphasizes the glossy texture of the sauce and the rustic appeal of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta bread",
+      "Pair with a medium-bodied Chianti wine",
+      "Offer freshly grated Pecorino Romano at the table"
+    ],
+    "hero_ingredient": "Braised Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "bone-in, skin-on chicken thighs",
+        "quantity": "800g"
+      },
+      {
+        "name": "pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "crushed San Marzano tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "dry red wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "celery stalk, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "fresh rosemary, chopped",
+        "quantity": "10g"
+      },
+      {
+        "name": "fresh thyme, chopped",
+        "quantity": "10g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "50g"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken with salt and pepper.",
+      "Heat olive oil in a large pan over medium-high heat.",
+      "Sear chicken skin-side down until golden.",
+      "Flip chicken and brown the other side.",
+      "Remove chicken from pan. Set aside.",
+      "Add onion, carrot, and celery to the pan.",
+      "Sauté vegetables for 5 minutes.",
+      "Stir in garlic, rosemary, and thyme. Cook 1 minute.",
+      "Pour in wine. Deglaze the pan bottom.",
+      "Add tomatoes and olives. Stir well.",
+      "Return chicken to the pan. Cover.",
+      "Simmer 30 minutes until chicken reaches 75°C.",
+      "Boil salted water. Cook pappardelle until al dente.",
+      "Drain pasta. Toss with sauce.",
+      "Place pasta in bowls. Top with one whole chicken thigh."
+    ],
+    "notes": [
+      "Ensure the sauce is thick enough to coat the wide pasta ribbons",
+      "Use high-quality San Marzano tomatoes for authentic flavor"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 877,
+      "cholesterol_mg": 185,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 43.2,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 364,
+      "total_carbs_g": 85,
+      "total_fat_g": 38.5,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 219,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 10.8,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 91,
+      "total_carbs_g": 21.3,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 20,
+      "protein": 86,
+      "saturated_fat": 51,
+      "sodium": 16,
+      "total_carbs": 31,
+      "total_fat": 49
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Thai Green Curry with Chicken and Pineapple",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_green_curry_with_chicken_and_pineapple_20250628_063421_5e2989f7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:34:21.564901000Z",
+    "selected_ingredients": [
+      "tomato",
+      "garlic",
+      "chicken",
+      "basil",
+      "pineapple"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Thai Green Curry with Chicken and Pineapple is presented in a deep, clean white porcelain bowl. The creamy green curry base shimmers, flecked with darker green basil and hints of red from halved cherry tomatoes. Succulent, irregularly cut chunks of chicken are nestled within, alongside golden-yellow pineapple pieces that retain their shape. The dish is garnished with fresh, vibrant green Thai basil leaves, providing aromatic contrast. The bowl sits on a simple, light wooden table. Beside it, a small mound of fluffy white jasmine rice is presented in a separate, smaller white porcelain bowl. Elegant wooden chopsticks rest diagonally across the rice bowl. A crisp, natural-toned cotton napkin is neatly folded beside the main curry. Natural, even lighting creates a welcoming, modern bistro atmosphere. The entire plate is visible, showcasing a balanced single serving portion with appropriate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with additional fish sauce or chili flakes on the side for individual seasoning.",
+      "Offer a side of fresh sliced cucumber or lime wedges to cut richness.",
+      "Eaten with a spoon and fork, or chopsticks for the rice."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (boneless, skinless)",
+        "quantity": "600g, cut into 3cm chunks"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "200g, peeled, cored, and cut into 2cm chunks"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "150g, halved"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Thai green curry paste",
+        "quantity": "80g"
+      },
+      {
+        "name": "Coconut milk (full-fat)",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Palm sugar (or brown sugar)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Kaffir lime leaves",
+        "quantity": "4, bruised"
+      },
+      {
+        "name": "Thai basil leaves",
+        "quantity": "40g, roughly torn"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "300g uncooked"
+      }
+    ],
+    "instructions": [
+      "Cook jasmine rice according to package directions. Keep warm.",
+      "Heat vegetable oil in a large pot or wok over medium heat. Add minced garlic. Sauté 30 seconds until fragrant.",
+      "Add green curry paste. Cook, stirring constantly, for 2 minutes until aromatic.",
+      "Pour in half of the coconut milk. Stir well to combine with the curry paste. Bring to a simmer.",
+      "Add chicken chunks. Cook for 5-7 minutes, stirring occasionally, until chicken is mostly cooked through. Internal temperature should reach 75°C (167°F).",
+      "Add remaining coconut milk, fish sauce, palm sugar, and bruised kaffir lime leaves. Stir. Bring to a gentle simmer.",
+      "Add pineapple chunks and halved cherry tomatoes. Cook for 3-5 minutes, until pineapple is slightly softened and tomatoes begin to burst.",
+      "Stir in most of the Thai basil leaves. Remove from heat.",
+      "Ladle curry into deep serving bowls. Garnish with remaining fresh Thai basil leaves. Serve immediately with jasmine rice."
+    ],
+    "notes": [
+      "Adjust green curry paste quantity to control spice level.",
+      "Ensure chicken reaches internal temperature of 75°C (167°F)."
+    ],
+    "traditional_techniques": [
+      "Building layers of flavor by blooming curry paste.",
+      "Balancing sweet, sour, salty, and spicy elements."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 1087,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 41.9,
+      "saturated_fat_g": 46.3,
+      "sodium_mg": 1365,
+      "total_carbs_g": 86.8,
+      "total_fat_g": 65.9,
+      "total_sugars_g": 16.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 152.2,
+      "cholesterol_mg": 18.9,
+      "dietary_fiber_g": 1,
+      "protein_g": 5.9,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 191.1,
+      "total_carbs_g": 12.2,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 26,
+      "protein": 84,
+      "saturated_fat": 232,
+      "sodium": 59,
+      "total_carbs": 32,
+      "total_fat": 84
+    },
+    "serving_size_g": 714,
+    "total_recipe_weight_g": 2856
+  },
+  {
+    "recipe_name": "Roasted Potato and Fermented Tomato Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_potato_and_fermented_tomato_pasta_20250628_063312_f398339e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:33:12.879185000Z",
+    "selected_ingredients": [
+      "tomato",
+      "potato",
+      "cheese",
+      "pasta",
+      "cream",
+      "cream cheese"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Roasted Potato and Fermented Tomato Pasta is presented in a handcrafted, off-white ceramic bowl on a light reclaimed wood surface. The pasta, rigatoni or penne, is coated in a vibrant, rustic red tomato sauce, interspersed with golden-brown roasted potato cubes. The sauce has visible texture from the broken-down tomatoes. A creamy, pale drizzle of cream cheese sauce elegantly cascades over the top, creating subtle contrast. Fresh green basil leaves are scattered naturally over the dish, providing a pop of color and freshness. The arrangement is organic and unforced, emphasizing the natural beauty and textures of each ingredient. The setting is minimalist, with soft natural light illuminating the dish. An undyed linen napkin rests nearby. The focus is entirely on the food, showcasing its simple, wholesome appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Fermented Tomato",
+    "ingredients": [
+      {
+        "name": "Small waxy potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Pasta (e.g., Rigatoni or Penne)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Light cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Cream cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh basil or parsley",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Wash potatoes thoroughly. Cut potatoes into 2cm cubes. Toss with 15ml olive oil, salt, and pepper. Roast in an oven preheated to 200°C for 25-30 minutes, until tender and lightly browned. Leave skins on for zero-waste.",
+      "Dice tomatoes into 1cm cubes. Place in a bowl. Add 5g salt. Gently toss. Let sit at room temperature for 2 hours. This begins a quick fermentation process and draws out liquid. Stir occasionally.",
+      "Finely dice onion and mince garlic. Heat remaining 15ml olive oil in a large pan over medium heat. Sauté onion until translucent, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Add the salted tomatoes and their liquid to the pan. Bring to a simmer. Cook for 15-20 minutes, stirring occasionally, until tomatoes break down into a rustic sauce. Season with salt and pepper.",
+      "Cook pasta according to package directions in salted water until al dente. Reserve 200ml pasta cooking water before draining.",
+      "In a small saucepan, gently warm the light cream and cream cheese. Whisk until smooth and combined. Season lightly.",
+      "Add drained pasta and roasted potatoes to the tomato sauce. Add 100ml reserved pasta water. Toss to combine. If needed, add more pasta water for desired consistency.",
+      "Divide pasta into serving bowls. Drizzle each portion with the warm cream cheese sauce. Garnish generously with fresh basil or parsley leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 665,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 19.3,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 76,
+      "total_carbs_g": 112.2,
+      "total_fat_g": 15.7,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 144,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 4.2,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 16,
+      "total_carbs_g": 24.3,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 11,
+      "dietary_fiber": 31,
+      "protein": 39,
+      "saturated_fat": 27,
+      "sodium": 3,
+      "total_carbs": 41,
+      "total_fat": 20
+    },
+    "serving_size_g": 462.25,
+    "total_recipe_weight_g": 1849
+  }
+]

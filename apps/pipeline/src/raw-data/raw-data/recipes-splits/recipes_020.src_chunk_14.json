@@ -1,0 +1,662 @@
+[
+  {
+    "recipe_name": "Creamy Tuscan Chicken with Linguine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tuscan_chicken_with_linguine_20250624_172432_474b2d9a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:24:32.533642000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A creamy Tuscan chicken and linguine dish is presented on a clean, round white porcelain dinner plate. Golden-brown pan-seared chicken breasts, either whole or halved crosswise, are placed atop a generous swirl of al dente linguine. The pasta is generously coated in a rich, velvety sauce, infused with crimson sun-dried tomato pieces and deep green wilted spinach. Fresh basil leaves, vibrant green, are scattered as a garnish, adding a pop of color and freshness. A light dusting of freshly grated Parmesan cheese completes the dish. The overall composition is balanced, with moderate negative space, showcasing the appealing textures and warm colors. The plate rests on a simple rustic wooden table, accompanied by a neatly folded white cotton napkin and classic silver flatware, under soft, natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Pair with a simple green salad dressed with vinaigrette.",
+      "Enjoy with a glass of light-bodied Italian white wine like Pinot Grigio."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "4 pieces (approx. 180-200g each)"
+      },
+      {
+        "name": "Linguine",
+        "quantity": "400g"
+      },
+      {
+        "name": "Sun-dried tomatoes (oil-packed)",
+        "quantity": "80g, drained and sliced"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, freshly grated, plus more for serving"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2g (optional)"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "10g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and black pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken. Sear for 5-7 minutes per side until golden brown and cooked through. Internal temperature should reach 75°C (167°F). Remove chicken from skillet. Set aside. Keep warm.",
+      "While chicken cooks, bring a large pot of salted water to a boil. Add linguine. Cook according to package directions until al dente. Drain pasta. Reserve 125ml of pasta water.",
+      "Reduce heat to medium. Add butter to the same skillet. Add diced shallot. Sauté for 2-3 minutes until softened. Add minced garlic and red pepper flakes (if using). Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the skillet. Bring to a simmer. Cook for 2 minutes.",
+      "Stir in heavy cream and sliced sun-dried tomatoes. Bring to a gentle simmer. Add fresh spinach. Cook until spinach wilts, about 2-3 minutes.",
+      "Add cooked linguine to the skillet with the sauce. Add grated Parmesan cheese and reserved pasta water. Toss well to combine. Ensure pasta is fully coated.",
+      "Slice chicken breasts into thick pieces or halve them crosswise. Place chicken on top of the sauced linguine.",
+      "Garnish with fresh chopped basil and additional grated Parmesan cheese before serving."
+    ],
+    "notes": [
+      "Chicken thighs can be used instead of breasts for richer flavor.",
+      "Adjust red pepper flakes to desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1109,
+      "cholesterol_mg": 256,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 80.8,
+      "saturated_fat_g": 22.2,
+      "sodium_mg": 634,
+      "total_carbs_g": 85.5,
+      "total_fat_g": 47.6,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 216,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 15.8,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 124,
+      "total_carbs_g": 16.7,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85.2,
+      "dietary_fiber": 19.8,
+      "protein": 161.7,
+      "saturated_fat": 110.8,
+      "sodium": 27.6,
+      "total_carbs": 31.1,
+      "total_fat": 61
+    },
+    "serving_size_g": 513.3,
+    "total_recipe_weight_g": 2053
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Lemon-Herb Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_lemon-herb_sauce_20250624_172432_7fd85ce3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:24:32.487059000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown pan-seared chicken breast, presented whole, rests centrally on a clean white porcelain dinner plate. The chicken has a crisp, well-developed crust and a tender appearance. Beside it, a neat arrangement of vibrant green roasted asparagus spears. A glossy, pale yellow lemon-herb pan sauce is elegantly spooned over the chicken and around the plate, showing specks of fresh green parsley. A fresh lemon wedge is placed to the side, and a small sprig of fresh thyme garnishes the chicken. The dish is set on a simple wooden table surface, with a folded cotton napkin and standard restaurant flatware beside the plate. The lighting is natural and even, creating a clean, professional bistro atmosphere with a soft, unobtrusive background. The portion is a single, refined serving.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": "500g"
+      },
+      {
+        "name": "Lemons",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "15g, leaves"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g, cold, cubed"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry with paper towels. Season generously with salt and pepper.",
+      "Preheat oven to 200°C.",
+      "Trim woody ends from asparagus. Toss asparagus with 15ml olive oil, salt, and pepper on a baking sheet.",
+      "Roast asparagus for 10-12 minutes, or until tender-crisp.",
+      "While asparagus roasts, heat remaining 15ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 5-7 minutes per side, until golden brown and a crust forms.",
+      "Transfer skillet with chicken to the preheated oven. Bake for 8-12 minutes, or until internal temperature reaches 75°C (167°F).",
+      "Remove chicken from skillet and let rest on a cutting board for 5 minutes.",
+      "Return skillet to medium heat. Add minced garlic and sauté for 30 seconds until fragrant.",
+      "Deglaze skillet with chicken stock. Bring to a simmer, scraping up any browned bits.",
+      "Reduce stock by half, about 3-5 minutes.",
+      "Remove skillet from heat. Whisk in cold butter, one cube at a time, until sauce is emulsified and glossy.",
+      "Stir in fresh lemon juice from one lemon and chopped parsley. Taste and adjust seasoning.",
+      "Serve chicken breasts whole, alongside roasted asparagus. Spoon lemon-herb sauce generously over chicken."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 532.7,
+      "cholesterol_mg": 193.8,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 63.9,
+      "saturated_fat_g": 10.6,
+      "sodium_mg": 866.2,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 26.2,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120.9,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 14.5,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 196.5,
+      "total_carbs_g": 2.4,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64.6,
+      "dietary_fiber": 14.9,
+      "protein": 127.7,
+      "saturated_fat": 52.9,
+      "sodium": 37.7,
+      "total_carbs": 3.8,
+      "total_fat": 33.6
+    },
+    "serving_size_g": 440.8,
+    "total_recipe_weight_g": 1763
+  },
+  {
+    "recipe_name": "Hearty Beef and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_potato_stew_20250624_172416_394a9745.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:24:16.540691000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "tomato",
+      "onion",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty, rustic beef and potato stew is presented in a deep, earthenware bowl on a well-used wooden dining table. The stew features generous chunks of tender, dark brown beef, nestled among soft, golden-yellow potato cubes, vibrant orange carrot rounds, and earthy brown quartered mushrooms. A rich, thick reddish-brown gravy coats all ingredients, with visible flecks of dried herbs. A light scattering of fresh green chopped parsley brightens the top. The stew has a comforting, slightly irregular texture, reflecting home cooking. The bowl sits on a simple ceramic plate. A linen napkin and a sturdy spoon are casually placed beside it. Warm, natural light illuminates the scene, creating a cozy, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread."
+    ],
+    "hero_ingredient": "Beef chunks",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove beef from pot.",
+      "Add chopped onion and carrots to the pot. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic and dried thyme. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste and flour. Cook for 2 minutes, stirring constantly.",
+      "Gradually stir in beef broth, scraping up any browned bits from the bottom.",
+      "Add diced tomatoes and bay leaf. Bring to a simmer.",
+      "Return seared beef to the pot. Cover and reduce heat to low.",
+      "Simmer for 1.5 hours, stirring occasionally.",
+      "Add potato cubes and quartered mushrooms. Continue to simmer, covered, for another 30-40 minutes, or until beef and potatoes are tender.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper.",
+      "Ladle stew into bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 495,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 42.6,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 307,
+      "total_carbs_g": 43.2,
+      "total_fat_g": 17,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.3,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 53,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 24,
+      "protein": 85,
+      "saturated_fat": 24,
+      "sodium": 13,
+      "total_carbs": 16,
+      "total_fat": 22
+    },
+    "serving_size_g": 582,
+    "total_recipe_weight_g": 2328
+  },
+  {
+    "recipe_name": "Spicy Rigatoni with Roasted Tomatoes and Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_rigatoni_with_roasted_tomatoes_and_chicken_20250624_172359_5df0115d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:24:00.127Z",
+    "selected_ingredients": [
+      "chicken stock",
+      "pasta",
+      "tomato",
+      "chili",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate. A generous portion of glossy, al dente rigatoni pasta forms the base, coated in a vibrant, rustic red tomato sauce. The sauce, thickened by absorbed chicken stock, has a slight sheen and visible specks of red chili flakes and thinly sliced garlic. Interspersed among the pasta are irregular, tender 2 cm chunks of golden-brown seared chicken breast. Roasted cherry tomatoes, slightly collapsed and caramelized, add bursts of deeper red. Freshly grated Parmesan cheese is lightly melted into the sauce, with a sprinkle of additional grated Parmesan over the top. Torn fresh green basil leaves are scattered across the dish. The composition is natural, with moderate negative space. The plate sits on a simple wooden table, with standard silver flatware and a folded cotton napkin. Natural, even lighting illuminates the dish against a soft, blurred bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread.",
+      "Offer additional grated Parmesan cheese at the table.",
+      "Pair with a simple green salad."
+    ],
+    "hero_ingredient": "Rigatoni",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "2 (approx. 450 g total)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss cherry tomatoes with 30 ml olive oil, salt, and pepper on a baking sheet. Roast 20-25 minutes until softened.",
+      "Season chicken breasts with salt and pepper. Heat 15 ml olive oil in a large pan over medium-high heat. Sear chicken 5-7 minutes per side until golden and cooked through (internal temperature 75°C). Remove chicken. Let rest 5 minutes. Cut into 2 cm chunks.",
+      "In the same pan, reduce heat to medium. Add remaining 15 ml olive oil. Add thinly sliced garlic and chili flakes. Sauté 1 minute until fragrant. Do not brown garlic.",
+      "Add roasted tomatoes to the pan. Lightly crush some with a spoon. Pour in chicken stock. Bring to a simmer.",
+      "Add uncooked rigatoni to the simmering sauce. Stir well. Cook 10-12 minutes, stirring frequently, until pasta is al dente and most liquid is absorbed. Add more stock or pasta water if sauce becomes too thick.",
+      "Stir in grated Parmesan cheese and cooked chicken chunks. Mix until cheese is melted and sauce is creamy.",
+      "Taste and adjust seasoning. Stir in torn fresh basil leaves just before serving."
+    ],
+    "traditional_techniques": [
+      "Al dente cooking",
+      "Freshly grating Parmesan"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 836.8,
+      "cholesterol_mg": 117.9,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 60.8,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 1173.4,
+      "total_carbs_g": 82.7,
+      "total_fat_g": 27.4,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160.9,
+      "cholesterol_mg": 22.7,
+      "dietary_fiber_g": 1,
+      "protein_g": 11.7,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 225.6,
+      "total_carbs_g": 15.9,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 19,
+      "protein": 122,
+      "saturated_fat": 40,
+      "sodium": 51,
+      "total_carbs": 30,
+      "total_fat": 35
+    },
+    "serving_size_g": 520,
+    "total_recipe_weight_g": 2080
+  },
+  {
+    "recipe_name": "Beer-Braised Pork with Spicy Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_pork_with_spicy_tomato_rice_20250624_172335_c1fb5494.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:23:35.876653000Z",
+    "selected_ingredients": [
+      "pork",
+      "beer",
+      "hot sauce",
+      "tomato",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Beer-Braised Pork with Spicy Tomato Rice is presented on a clean, white round porcelain plate. Three to four substantial, irregular chunks of fork-tender braised pork are artfully arranged atop a mound of vibrant, reddish-orange tomato rice. The pork exhibits a deep, caramelized brown exterior. The rice is fluffy, speckled with small, soft pieces of tomato. A rich, glossy reduction of the braising liquid, deep amber in color, is drizzled generously over the pork and around the rice. The dish is garnished with a scattering of fresh, bright green cilantro leaves for color and freshness. The plate rests on a simple wooden table surface, accompanied by a folded grey cotton napkin and classic silver fork and knife. Natural, even lighting highlights the inviting textures. The background is softly blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Braised Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1 kg, cut into 5-6 cm chunks"
+      },
+      {
+        "name": "Amber ale or dark beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30 ml, or to taste"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Chicken or vegetable stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat pork chunks dry. Season generously with salt and pepper.",
+      "Heat vegetable oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear pork chunks on all sides until deeply browned. Work in batches to avoid overcrowding. Remove pork and set aside.",
+      "Add diced onion, garlic, and red bell pepper to the pot. Sauté until softened, about 5-7 minutes.",
+      "Stir in smoked paprika, cumin, and oregano. Cook for 1 minute until fragrant.",
+      "Deglaze the pot with beer, scraping up any browned bits from the bottom.",
+      "Return pork to the pot. Add diced tomatoes, hot sauce, and chicken stock. Bring to a simmer.",
+      "Reduce heat to low, cover, and braise for 2.5-3 hours, or until pork is fork-tender. Stir occasionally.",
+      "While pork braises, prepare the rice. In a separate pot, combine rice with 600 ml water and a pinch of salt. Bring to a boil, then reduce heat to low, cover, and cook for 15 minutes, or until water is absorbed and rice is tender. Fluff with a fork.",
+      "Once pork is tender, remove pork chunks from the pot. Increase heat to medium-high and reduce the braising liquid until it thickens into a sauce, about 10-15 minutes.",
+      "To serve, place a portion of fluffy rice on each plate. Arrange several pork chunks on top of the rice. Spoon the reduced braising sauce generously over the pork and rice. Garnish with fresh chopped cilantro."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1054.12,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 5.66,
+      "protein_g": 65.51,
+      "saturated_fat_g": 15.91,
+      "sodium_mg": 357.95,
+      "total_carbs_g": 78.55,
+      "total_fat_g": 50.07,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 136.05,
+      "cholesterol_mg": 25.81,
+      "dietary_fiber_g": 0.73,
+      "protein_g": 8.46,
+      "saturated_fat_g": 2.05,
+      "sodium_mg": 46.2,
+      "total_carbs_g": 10.14,
+      "total_fat_g": 6.46,
+      "total_sugars_g": 0.95,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.7,
+      "dietary_fiber": 20.2,
+      "protein": 131,
+      "saturated_fat": 79.5,
+      "sodium": 15.6,
+      "total_carbs": 28.6,
+      "total_fat": 64.2
+    },
+    "serving_size_g": 774.75,
+    "total_recipe_weight_g": 3099
+  }
+]

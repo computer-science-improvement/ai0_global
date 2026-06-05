@@ -1,0 +1,631 @@
+[
+  {
+    "recipe_name": "Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_20250624_104647_414e6be7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:48.249162000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "high protein",
+    "visual_description": "A single portion of rustic chicken cacciatore served in a shallow, cream-colored ceramic bowl with minor surface imperfections. Two whole, bone-in chicken thighs are the centerpiece, their skin appearing dark golden and tender from braising. The chicken is partially submerged in a thick, chunky tomato sauce featuring visible pieces of softened translucent onions and whole black olives. A single fresh rosemary sprig is placed casually on top. The bowl sits on a weathered dark wood kitchen table. Beside the bowl is a thick piece of torn crusty bread. The scene is illuminated by warm, soft overhead kitchen lighting, creating a cozy, authentic Italian home-dining atmosphere. A simple linen napkin and a stainless steel fork are placed to the left of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough bread to soak up the tomato sauce",
+      "Pair with a side of simple polenta or rustic mashed potatoes",
+      "Traditional family-style dining involves placing the skillet in the center of the table"
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Heat olive oil in a large deep skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden brown.",
+      "Flip chicken and sear for 4 minutes. Remove chicken from skillet.",
+      "Add diced onion to the skillet. Sauté for 5 minutes until soft.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes, oregano, and the rosemary sprig.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Simmer on low heat for 30 minutes until chicken reaches 75°C internally.",
+      "Stir in the olives 5 minutes before serving."
+    ],
+    "notes": [
+      "Use bone-in thighs for maximum flavor and protein content",
+      "Ensure the sauce reduces until thick to concentrate the savory tomato profile",
+      "Always check the thickest part of the chicken for a safe internal temperature of 75°C"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1716,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 444.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 53,
+      "sodium": 75,
+      "total_carbs": 7,
+      "total_fat": 54
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1543
+  },
+  {
+    "recipe_name": "Cheesy Bacon Bread Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_bacon_bread_bake_20250624_104647_0d753d44.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:47.834884000Z",
+    "selected_ingredients": [
+      "bread",
+      "bacon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of golden-brown Cheesy Bacon Bread Bake is served on an everyday, slightly off-white ceramic plate. The baked strata, a roughly square cut from the casserole, features visible cubes of day-old bread, crispy crumbled bacon, and pockets of melted, bubbly cheddar cheese. Its top crust is beautifully browned and slightly crisp, contrasting with the soft, custardy interior. Beside the strata, a small, fresh green salad with mixed leaves provides a vibrant green counterpoint, adding a touch of freshness. The plate sits on a well-worn, natural wood dining table. A simple metal fork and knife are casually placed next to the plate. A soft, warm light from above illuminates the dish, highlighting its comforting textures and colors. The background shows a hint of a lived-in kitchen, with a subtle blur of a wooden cutting board and simple salt and pepper shakers, reinforcing a homely atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad with vinaigrette."
+    ],
+    "hero_ingredient": "Bacon",
+    "ingredients": [
+      {
+        "name": "Day-old rustic bread",
+        "quantity": "400 g, cut into 2-3 cm cubes"
+      },
+      {
+        "name": "Thick-cut bacon",
+        "quantity": "200 g, diced"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "6"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Shredded sharp cheddar cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease a 23x33 cm baking dish.",
+      "Cook diced bacon in a large skillet over medium heat until crisp. Remove bacon with a slotted spoon. Place on paper towels to drain. Reserve 15 ml bacon fat in the skillet.",
+      "Add butter to skillet with reserved bacon fat. Add diced onion. Sauté 5-7 minutes until softened. Add minced garlic. Sauté 1 minute more until fragrant. Remove from heat.",
+      "In the prepared baking dish, combine bread cubes, cooked bacon, sautéed onion and garlic, and shredded cheddar cheese. Toss gently to distribute.",
+      "In a large bowl, whisk eggs, milk, salt, black pepper, and dried thyme until well combined.",
+      "Pour egg mixture evenly over bread mixture in the baking dish. Gently press down on bread to ensure all pieces are soaked.",
+      "Cover baking dish with foil. Refrigerate at least 30 minutes, or up to 4 hours, to allow bread to absorb custard.",
+      "Bake covered for 30 minutes.",
+      "Uncover. Continue baking 20-25 minutes, or until top is golden brown and a knife inserted into the center comes out clean.",
+      "Let stand 5-10 minutes before serving."
+    ],
+    "notes": [
+      "For best results, use day-old bread. Fresh bread can become too soggy.",
+      "Soaking time is crucial for a custardy texture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 901,
+      "cholesterol_mg": 390,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 49.1,
+      "saturated_fat_g": 23.1,
+      "sodium_mg": 2136,
+      "total_carbs_g": 61.8,
+      "total_fat_g": 50.3,
+      "total_sugars_g": 11.7,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 252,
+      "cholesterol_mg": 108.9,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 13.7,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 597.3,
+      "total_carbs_g": 17.3,
+      "total_fat_g": 14.1,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 130,
+      "dietary_fiber": 11,
+      "protein": 98,
+      "saturated_fat": 116,
+      "sodium": 93,
+      "total_carbs": 22,
+      "total_fat": 64
+    },
+    "serving_size_g": 357.5,
+    "total_recipe_weight_g": 1430
+  },
+  {
+    "recipe_name": "Sausage and Mushroom Tagliatelle with Roasted Cherry Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sausage_and_mushroom_tagliatelle_with_roasted_cherry_tomatoes_20250624_104644_1e47d1ba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:45.246051000Z",
+    "selected_ingredients": [
+      "pasta",
+      "cheese",
+      "mushroom",
+      "tomato",
+      "sausage",
+      "mozzarella"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Tagliatelle pasta is elegantly coiled in a shallow, matte white ceramic pasta bowl, its strands evenly coated in a rich, rustic tomato sauce. Visible throughout the pasta are hearty, browned chunks of Italian sausage and earthy, sautéed cremini mushrooms. Scattered among the pasta are vibrant, slightly burst roasted cherry tomatoes, adding pops of red. Melted, irregular pieces of fresh mozzarella are draped over the top, creating a creamy contrast. The dish is garnished with a scattering of fresh green basil leaves, providing a fragrant, bright counterpoint. The composition is balanced, allowing for moderate negative space. The bowl rests on a light, natural wood table surface, accompanied by a simple silver fork and a folded off-white linen napkin. Natural, soft light illuminates the scene, highlighting the textures and colors without harsh shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce",
+      "Pair with a simple green salad dressed with vinaigrette",
+      "Enjoy with a glass of dry red wine, such as Chianti"
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Italian sausage (mild or hot)",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Cremini mushrooms, sliced",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh mozzarella, torn",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Fresh basil leaves, torn",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Water for pasta",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss cherry tomatoes with 15 ml olive oil, salt, and pepper on a baking tray. Roast for 15-20 minutes until softened and slightly burst. Set aside.",
+      "Remove sausage from casings. In a large skillet, heat 15 ml olive oil over medium-high heat. Add sausage, break into chunks. Cook, stirring occasionally, until browned and cooked through. Drain excess fat. Transfer sausage to a plate.",
+      "Add diced onion to the same skillet. Cook until softened, about 5 minutes. Add minced garlic and sliced mushrooms. Cook until mushrooms are tender and browned, about 7-10 minutes.",
+      "Stir in tomato paste and red pepper flakes (if using). Cook for 1 minute. Pour in crushed tomatoes and broth. Bring to a simmer. Reduce heat to low, cover, and cook for 15 minutes, stirring occasionally.",
+      "While sauce simmers, bring a large pot of salted water to a rolling boil. Add tagliatelle pasta. Cook according to package directions until al dente.",
+      "Drain pasta, reserving 125 ml pasta water. Add drained pasta to the sauce. Add roasted cherry tomatoes and grated Parmesan cheese. Toss to combine, adding reserved pasta water as needed to create a smooth sauce.",
+      "Serve immediately. Top each portion with torn fresh mozzarella and fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering",
+      "Cooking pasta al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1034,
+      "cholesterol_mg": 116,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 49.9,
+      "saturated_fat_g": 18.9,
+      "sodium_mg": 2081,
+      "total_carbs_g": 88.4,
+      "total_fat_g": 45.2,
+      "total_sugars_g": 10.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 190,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 9.1,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 381,
+      "total_carbs_g": 16.2,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 27,
+      "protein": 100,
+      "saturated_fat": 95,
+      "sodium": 90,
+      "total_carbs": 32,
+      "total_fat": 58
+    },
+    "serving_size_g": 545.5,
+    "total_recipe_weight_g": 2182
+  },
+  {
+    "recipe_name": "Mushroom, White Bean, and Spinach Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom%2C_white_bean%2C_and_spinach_salad_20250624_104640_fdc3b5ea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:41.383361000Z",
+    "selected_ingredients": [
+      "bean",
+      "salad green",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The salad is presented in a large, rustic ceramic serving bowl, placed centrally on a well-used wooden dining table. The colors are natural and inviting: vibrant green baby spinach forms the base, topped with earthy brown sautéed mushroom slices and creamy white cannellini beans. Bright red cherry tomato halves are scattered throughout, along with delicate rings of thinly sliced red onion. The components are casually mixed, allowing some ingredients to overlap naturally, creating a homely, comforting appearance. A light sheen from the Dijon vinaigrette coats the ingredients, making them look fresh and appetizing. The bowl is surrounded by a simple, slightly rumpled cloth napkin and basic, sturdy flatware, suggesting a relaxed family meal. Warm, soft light from kitchen fixtures illuminates the scene, highlighting the textures of the ingredients. The overall impression is one of wholesome, expertly prepared home cooking, ready to be shared.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Cremini or button mushrooms, sliced",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cannellini beans, rinsed and drained",
+        "quantity": "2 x 400 g cans"
+      },
+      {
+        "name": "Baby spinach",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red onion, thinly sliced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat 15 ml olive oil in a large pan over medium-high heat. Add sliced mushrooms. Sauté until golden brown and tender, about 8-10 minutes. Season with salt and pepper.",
+      "In a small bowl, whisk together remaining 45 ml olive oil, Dijon mustard, and apple cider vinegar. Season with salt and pepper.",
+      "In a large serving bowl, combine baby spinach, rinsed white beans, thinly sliced red onion, and halved cherry tomatoes.",
+      "Add warm sautéed mushrooms to the salad bowl.",
+      "Pour dressing over the salad ingredients. Toss gently to combine all ingredients and coat with dressing.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 361,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 12.8,
+      "protein_g": 18.5,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 387,
+      "total_carbs_g": 42,
+      "total_fat_g": 15.5,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 89,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 4.5,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 95,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 46,
+      "protein": 37,
+      "saturated_fat": 10,
+      "sodium": 17,
+      "total_carbs": 15,
+      "total_fat": 20
+    },
+    "serving_size_g": 407.5,
+    "total_recipe_weight_g": 1630
+  },
+  {
+    "recipe_name": "Spanish Chorizo, White Bean, and Tomato Braise",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chorizo%2C_white_bean%2C_and_tomato_braise_20250624_104628_5ac186f6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:28.541689000Z",
+    "selected_ingredients": [
+      "tomato",
+      "bean",
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Spanish Chorizo, White Bean, and Tomato Braise is presented in a deep, pristine white ceramic bowl, showcasing its rich, rustic appeal. The hearty braise features plump, creamy white cannellini beans suspended in a vibrant, reddish-brown tomato sauce, infused with smoked paprika and a hint of saffron. Thick, seared rounds of Spanish chorizo, slightly caramelized at the edges, are interspersed throughout the beans. The sauce has a moderate thickness, clinging to the ingredients. A generous sprinkle of freshly chopped bright green flat-leaf parsley provides a fresh, aromatic contrast. The dish is centered on a simple wooden table with a white cotton napkin and standard flatware. A slice of crusty rustic bread rests beside the bowl, inviting dipping. Natural, even lighting illuminates the dish, highlighting its textures and deep colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve immediately with slices of crusty rustic bread, such as a baguette or Spanish pan rústico, for dipping into the flavorful sauce.",
+      "Accompany with a glass of robust Spanish red wine."
+    ],
+    "hero_ingredient": "Spanish Chorizo",
+    "ingredients": [
+      {
+        "name": "Spanish Chorizo",
+        "quantity": "300 g, sliced into 1 cm thick rounds"
+      },
+      {
+        "name": "Canned Cannellini Beans",
+        "quantity": "2 x 400 g cans, rinsed and drained"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "1 x 400 g can"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Smoked Paprika (Pimentón)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Saffron Threads",
+        "quantity": "Pinch (optional)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Flat-Leaf Parsley",
+        "quantity": "30 g, chopped for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Add chorizo slices to the pot. Sear until browned and slightly crisp at the edges, about 2-3 minutes per side. Remove chorizo from pot with a slotted spoon. Set aside.",
+      "Add diced onion to the pot, using the rendered chorizo fat. Sauté until softened and translucent, about 5 minutes.",
+      "Add minced garlic to the pot. Cook for 1 minute until fragrant.",
+      "Stir in smoked paprika and saffron threads (if using). Cook for 30 seconds, stirring constantly.",
+      "Pour in diced tomatoes and chicken stock. Bring the mixture to a gentle simmer.",
+      "Add rinsed cannellini beans and the seared chorizo back into the pot.",
+      "Reduce heat to medium-low. Simmer gently for 15-20 minutes, allowing flavors to meld and the sauce to thicken slightly.",
+      "Season with salt and black pepper to taste. Adjust seasoning as needed.",
+      "Ladle the hot braise into individual serving bowls. Garnish generously with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 616,
+      "cholesterol_mg": 68,
+      "dietary_fiber_g": 11.5,
+      "protein_g": 29.9,
+      "saturated_fat_g": 12.4,
+      "sodium_mg": 1948,
+      "total_carbs_g": 41.4,
+      "total_fat_g": 38.6,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 14,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 6.3,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 408,
+      "total_carbs_g": 8.7,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 41,
+      "protein": 60,
+      "saturated_fat": 62,
+      "sodium": 85,
+      "total_carbs": 15,
+      "total_fat": 49
+    },
+    "serving_size_g": 478,
+    "total_recipe_weight_g": 1912
+  }
+]

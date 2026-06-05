@@ -1,0 +1,674 @@
+[
+  {
+    "recipe_name": "Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_20250628_074555_251e01bd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:45:55.797793000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo presented on a clean white porcelain plate. Two whole, bone-in chicken thighs with deeply browned, crispy skin sit atop a bed of golden, saffron-stained rice. The rice grains are plump and distinct, interspersed with fine bits of softened onion and concentrated red tomato. The dish shows vibrant yellow and orange hues from the saffron and paprika. A generous sprinkle of bright green, finely chopped parsley is scattered over the top. A single lemon wedge is placed neatly on the side. The plate sits on a light oak wooden table with a folded white cotton napkin. Lighting is bright, natural, and even, highlighting the textures of the crispy skin and the moist rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Alioli (garlic mayonnaise)",
+      "Accompany with crusty bread and a glass of chilled white wine",
+      "Present in a traditional terracotta cazuela for family-style dining"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip and brown the other side. Remove chicken from pan.",
+      "Add onion to the same pan. Sauté until translucent.",
+      "Stir in garlic and grated tomato. Cook until liquid evaporates and mixture darkens.",
+      "Add smoked paprika and rice. Stir to coat rice in oil for 2 minutes.",
+      "Pour in white wine. Deglaze the pan. Simmer until wine reduces by half.",
+      "Add hot stock and saffron. Stir once to distribute.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer undisturbed over medium-low heat for 18-20 minutes.",
+      "Ensure chicken reaches internal temperature of 75°C.",
+      "Remove from heat. Cover with a clean cloth. Rest for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form on the bottom.",
+      "Use a wide pan to ensure even rice cooking."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice absorption method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1414,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 8.6,
+      "protein": 66.4,
+      "saturated_fat": 46.5,
+      "sodium": 61.5,
+      "total_carbs": 24.5,
+      "total_fat": 52.1
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Tomato and Fermented Noodle Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato_and_fermented_noodle_salad_20250628_074506_b9a4dc05.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:45:06.851644000Z",
+    "selected_ingredients": [
+      "egg noodle",
+      "tomato",
+      "cheese"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A vibrant salad presented on a minimalist, handcrafted ceramic plate in an earthy tone, set on a light reclaimed wood surface. Cooked egg noodles form a loose, natural base. Diced fresh tomatoes, their red hues contrasting with the noodles, are scattered throughout. Interspersed are plump, whole lacto-fermented cherry tomatoes, their skins slightly taut, offering a deeper color. Grated cheese is lightly sprinkled over the top, adding a textural element. Fresh basil and parsley leaves provide bursts of green. The overall composition is clean and uncluttered, with ample white space, highlighting the natural beauty and varied textures of the ingredients. Soft, natural light illuminates the dish. An undyed linen napkin and simple wooden fork complete the eco-conscious setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "dried egg noodles",
+        "quantity": "300g"
+      },
+      {
+        "name": "ripe tomatoes (mixed)",
+        "quantity": "500g"
+      },
+      {
+        "name": "firm savory cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "fresh basil leaves",
+        "quantity": "30g"
+      },
+      {
+        "name": "fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "non-iodized salt",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "filtered water",
+        "quantity": "240ml"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "apple cider vinegar (optional)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dijon mustard (optional)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "black peppercorns (optional)",
+        "quantity": "5-6"
+      },
+      {
+        "name": "bay leaf (optional)",
+        "quantity": "1 small"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Tomatoes: Gently prick 300g cherry tomatoes. Place in a clean jar with optional bay leaf and peppercorns. Dissolve 1 tsp non-iodized salt in 240ml filtered water to create a 2% brine. Pour brine over tomatoes, ensuring full submersion. Use a weight. Seal with an airlock lid or burp daily. Ferment 3-7 days at room temperature until tangy. Refrigerate.",
+      "Cook Noodles: Bring a large pot of salted water to a boil. Cook 300g egg noodles to al dente according to package directions. Drain, reserving 100ml cooking water. Rinse noodles with cold water. Drain well.",
+      "Prepare Fresh Tomatoes: Dice the remaining 200g fresh tomatoes into 1cm cubes.",
+      "Prepare Cheese: Grate or crumble 100g cheese.",
+      "Make Dressing: Whisk 60ml reserved fermented tomato brine, 30ml extra virgin olive oil, and optional 15ml apple cider vinegar and 1 tsp Dijon mustard. Season with salt and pepper.",
+      "Combine Salad: In a large bowl, combine cooled noodles, diced fresh tomatoes, 2 minced garlic cloves, 30g chopped basil, and 15g chopped parsley. Add the fermented tomatoes.",
+      "Dress and Serve: Pour dressing over salad. Toss gently. Add grated/crumbled cheese. Toss lightly. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 527,
+      "cholesterol_mg": 64,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 20.5,
+      "saturated_fat_g": 7.4,
+      "sodium_mg": 1039,
+      "total_carbs_g": 58.8,
+      "total_fat_g": 23.8,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 166,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 327,
+      "total_carbs_g": 18.5,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32,
+      "dietary_fiber": 13,
+      "protein": 41,
+      "saturated_fat": 37,
+      "sodium": 45,
+      "total_carbs": 21,
+      "total_fat": 31
+    },
+    "serving_size_g": 318,
+    "total_recipe_weight_g": 1272
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Herb Parmesan Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_herb_parmesan_risotto_20250628_074427_91c9866c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:44:28.368998000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "thyme",
+      "parmesan cheese",
+      "rosemary"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A creamy, free-flowing Parmesan risotto forms the base on a clean white porcelain dinner plate. The Arborio rice is al dente, infused with fresh thyme and rosemary, showcasing a rich, off-white hue with vibrant green herb flecks. Thick slices of golden-brown pan-seared chicken breast, cooked to perfection, are arranged neatly atop the risotto, not fanned. The chicken is juicy with a slight crisp exterior. A light sprinkle of freshly grated Parmesan cheese and a few delicate sprigs of fresh thyme garnish the dish. The overall presentation is clean and inviting, with moderate negative space. The setting features a simple wooden table, a white cotton napkin, and traditional silver flatware, all under natural, even lighting, creating a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately upon completion, as risotto's creamy texture is best enjoyed fresh.",
+      "While often a 'primo piatto' (first course) in Italy, this is presented as a substantial main course."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres, warm"
+      },
+      {
+        "name": "Dry white wine (e.g., Pinot Grigio)",
+        "quantity": "120ml (optional)"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g, freshly grated"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "2 sprigs, leaves chopped"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig, leaves chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare ingredients. Dice onion finely. Mince garlic. Chop thyme and rosemary leaves. Grate parmesan.",
+      "Season chicken breasts generously with salt and black pepper.",
+      "Heat olive oil in a large, heavy-bottomed pan or Dutch oven over medium-high heat. Sear chicken breasts 6-8 minutes per side until golden-brown and cooked through (internal temperature 75°C). Remove chicken. Rest on a cutting board.",
+      "In the same pan, reduce heat to medium. Add butter. Sauté diced onion until softened, about 3-4 minutes. Add minced garlic. Cook 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Stir constantly for 2 minutes until edges become translucent.",
+      "Pour in white wine (if using). Cook, stirring, until liquid is completely absorbed.",
+      "Add one ladle of warm chicken broth to the rice. Stir constantly until broth is absorbed. Continue adding broth, one ladle at a time, stirring until each addition is absorbed before adding the next. This process takes approximately 18-20 minutes.",
+      "When rice is creamy and al dente (still has a slight bite), stir in grated parmesan, chopped thyme, and chopped rosemary. Season with salt and black pepper to taste.",
+      "Slice rested chicken breasts into thick pieces.",
+      "Serve risotto immediately in individual bowls or plates. Top each serving with sliced chicken. Garnish with a sprinkle of fresh parmesan or a small sprig of fresh herbs."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Risotto should be al dente and creamy, known as 'all'onda' (flowing or wavy)."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 887,
+      "cholesterol_mg": 191.1,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 75.1,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 2190.8,
+      "total_carbs_g": 71.4,
+      "total_fat_g": 29.1,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119.1,
+      "cholesterol_mg": 25.7,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 10.1,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 294.2,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 0.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.7,
+      "dietary_fiber": 5.4,
+      "protein": 150.2,
+      "saturated_fat": 57.5,
+      "sodium": 95.3,
+      "total_carbs": 26,
+      "total_fat": 37.3
+    },
+    "serving_size_g": 744.7,
+    "total_recipe_weight_g": 2978.6
+  },
+  {
+    "recipe_name": "Seared Chicken Breast, Sesame-Infused Risotto, Tomato Consommé, Avocado Emulsion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_breast%2C_sesame-infused_risotto%2C_tomato_consomm%C3%A9%2C_avocado_emulsion_20250628_073735_b5b1f661.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:37:35.942540000Z",
+    "selected_ingredients": [
+      "chicken",
+      "parmesan cheese",
+      "avocado",
+      "hot sauce",
+      "rice",
+      "sesame oil",
+      "tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a large, round, matte white bone china plate with abundant negative space. A fluid, creamy mound of sesame-infused risotto anchors the composition. Two thick, seared chicken breast pieces, golden and crisp-skinned, contrast with tender interior. A small, clear pool of vibrant red tomato consommé glistens. Precise dots of pale green avocado emulsion offer creamy counterpoints. A delicate, golden-brown parmesan crisp stands elegantly, providing textural contrast. Finely chopped bright green chives and two halved red cherry tomatoes add pops of color. The organic, flowing, minimalist composition highlights natural forms. The plate rests on a smooth, cool grey marble surface. A pristine white linen napkin, precisely folded, sits to the side. Dramatic, soft professional lighting casts subtle shadows. An ultra-minimalist dark grey background ensures the dish remains the sole focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Asian",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Parmigiano-Reggiano, grated",
+        "quantity": "80g (for risotto) + 30g (for crisps)"
+      },
+      {
+        "name": "Ripe avocados",
+        "quantity": "2 large"
+      },
+      {
+        "name": "High-quality hot sauce",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "500g (for consommé)"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "8-12 (for garnish)"
+      },
+      {
+        "name": "High-quality chicken stock, hot",
+        "quantity": "1L"
+      },
+      {
+        "name": "Shallots, finely minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh chives, finely chopped",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Season chicken breasts with salt and pepper. Vacuum seal individually. Sous vide chicken at 63°C for 1.5 hours. Remove from bag. Pat dry thoroughly. Sear chicken in hot olive oil, skin-side down, until golden and crispy. Finish searing other side briefly. Rest.",
+      "Roughly chop tomatoes. Blend lightly. Strain tomato mixture through a fine-mesh sieve lined with cheesecloth. Do not press. Collect clear liquid. Season with salt. Gently warm consommé just before serving.",
+      "Finely mince shallots and garlic. Sauté shallots in butter until translucent. Add garlic, cook 1 minute. Add rice. Toast 2 minutes. Deglaze with white wine. Cook until absorbed. Add hot chicken stock, ladle by ladle, stirring constantly. Add next ladle when previous is absorbed. Cook until rice is al dente, about 18-20 minutes. Stir in 80g grated Parmesan and toasted sesame oil. Season. Risotto should be fluid and creamy.",
+      "Scoop avocado flesh into a blender. Add a pinch of salt and a few drops of hot sauce. Blend until perfectly smooth and emulsified. Pass through a fine sieve.",
+      "Preheat oven to 180°C. Grate 30g Parmesan finely. Arrange small mounds (approx. 5g each) on a baking sheet lined with parchment paper. Bake 5-7 minutes until golden and crisp. Cool.",
+      "Place a generous spoon of risotto slightly off-center on each plate. Slice chicken breast into 2-3 thick, clean pieces. Arrange next to risotto. Do not fan. Spoon a small pool of warm tomato consommé next to the chicken. Dot the plate with small amounts of avocado emulsion. Place a delicate parmesan crisp on top of the chicken or next to it. Garnish with finely chopped chives and 2-3 halved cherry tomatoes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1171,
+      "cholesterol_mg": 213.6,
+      "dietary_fiber_g": 11.4,
+      "protein_g": 83,
+      "saturated_fat_g": 19.3,
+      "sodium_mg": 1888,
+      "total_carbs_g": 78.6,
+      "total_fat_g": 54.9,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128,
+      "cholesterol_mg": 23.4,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.1,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 206.7,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 6,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71.2,
+      "dietary_fiber": 40.5,
+      "protein": 165.9,
+      "saturated_fat": 96.3,
+      "sodium": 82.1,
+      "total_carbs": 28.6,
+      "total_fat": 70.4
+    },
+    "serving_size_g": 913.3,
+    "total_recipe_weight_g": 3653
+  },
+  {
+    "recipe_name": "Spicy Chicken and Avocado Rice Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_avocado_rice_bowl_20250628_073615_740a59c6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:36:16.384257000Z",
+    "selected_ingredients": [
+      "chicken",
+      "parmesan cheese",
+      "avocado",
+      "hot sauce",
+      "rice",
+      "sesame oil",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, well-balanced individual serving is presented in a shallow white porcelain bowl. A base of fluffy, pearly white long-grain rice supports golden-brown pan-seared chicken cubes. Creamy green avocado slices are arranged beside bright red cherry tomato halves. A glossy orange-red hot sauce dressing lightly coats the ingredients. Delicate shavings of pale yellow parmesan cheese are scattered over the chicken and vegetables. Fresh green cilantro leaves are sprinkled as a final garnish, adding a pop of color. The entire bowl is centered on a simple light wooden table surface. A white cotton napkin is folded beside the bowl. Natural, even lighting illuminates the dish, creating subtle shadows. The background is clean and slightly blurred, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Long-grain rice (e.g., Jasmine)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ripe avocados",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse 300g long-grain rice. Combine with 600ml water in a saucepan. Bring to a boil. Reduce heat to low. Cover and simmer for 15 minutes. Remove from heat. Let stand covered for 10 minutes. Fluff with a fork.",
+      "Cut 600g chicken breast into 2cm cubes. Season with salt and pepper. Heat 15ml olive oil in a large skillet over medium-high heat. Add chicken. Cook, stirring occasionally, until browned and cooked through. Internal temperature should reach 75°C (167°F). Remove from skillet.",
+      "In a small bowl, whisk together 30ml hot sauce, 15ml toasted sesame oil, juice from 1 lime, and 2 minced garlic cloves.",
+      "Halve 200g cherry tomatoes. Halve and pit 2 large ripe avocados. Slice each half into 1cm thick pieces.",
+      "Divide cooked rice among 4 serving bowls. Arrange cooked chicken, sliced avocado, and halved cherry tomatoes over the rice. Drizzle evenly with the prepared hot sauce mixture.",
+      "Using a vegetable peeler, shave 50g parmesan cheese over each bowl. Scatter 15g chopped fresh cilantro over the top."
+    ],
+    "notes": [
+      "Ensure chicken is cooked thoroughly to 75°C (167°F).",
+      "Adjust hot sauce to desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 662,
+      "cholesterol_mg": 139,
+      "dietary_fiber_g": 8.1,
+      "protein_g": 56.5,
+      "saturated_fat_g": 6.9,
+      "sodium_mg": 878,
+      "total_carbs_g": 33.6,
+      "total_fat_g": 31,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 159,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 13.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 211,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.2,
+      "dietary_fiber": 28.8,
+      "protein": 113,
+      "saturated_fat": 34.5,
+      "sodium": 38.2,
+      "total_carbs": 12.2,
+      "total_fat": 39.7
+    },
+    "serving_size_g": 416,
+    "total_recipe_weight_g": 1664
+  }
+]

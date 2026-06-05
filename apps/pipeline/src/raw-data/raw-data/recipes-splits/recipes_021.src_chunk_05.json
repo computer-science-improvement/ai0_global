@@ -1,0 +1,603 @@
+[
+  {
+    "recipe_name": "Homestyle Baked Chicken and Rice with Asparagus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_baked_chicken_and_rice_with_asparagus_20250624_142424_67be2f95.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:24.865037000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "asparagus"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous individual portion of Homestyle Baked Chicken and Rice with Asparagus rests on an everyday, slightly off-white ceramic plate. A whole, bone-in, skin-on chicken thigh, its skin crisped to a deep golden-brown, is the focal point. Adjacent to the chicken is a hearty scoop of fluffy, savory white rice, showcasing individual, tender grains. Several vibrant green asparagus spears, cooked until tender-crisp, are arranged casually next to the chicken and rice. The dish is garnished simply with fresh, chopped bright green parsley, sprinkled over the chicken and rice, adding a pop of color. The arrangement is natural and comforting, with components touching and slightly overlapping, reflecting a home-cooked meal. The plate sits on a well-used wooden dining table, revealing its natural grain and subtle imperfections. A simple silver fork and knife are placed beside the plate. A casually folded, light-colored cloth napkin is nearby. Warm, cozy lighting from an unseen kitchen fixture illuminates the scene, creating a lived-in, inviting atmosphere typical of a family kitchen table.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Remove chicken from packaging. Pat dry with paper towels.",
+      "Season chicken thighs generously with salt, pepper, and dried thyme.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium-high heat. Place chicken thighs skin-side down in the hot oil. Sear for 5-7 minutes until skin is golden brown and crispy. Flip chicken. Sear for another 3 minutes. Remove chicken from skillet. Set aside.",
+      "Dice the onion. Mince the garlic.",
+      "Add diced onion to the skillet. Sauté for 3-5 minutes until softened. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Stir in the rice. Cook for 1 minute, stirring constantly. Pour in the chicken broth. Bring to a simmer.",
+      "Carefully place the seared chicken thighs, skin-side up, on top of the rice mixture in the skillet. Ensure chicken is mostly above the liquid.",
+      "Transfer the skillet to the preheated oven. Bake for 25 minutes.",
+      "While chicken bakes, trim woody ends from asparagus spears.",
+      "After 25 minutes, remove skillet from oven. Arrange asparagus spears around the chicken and over the rice. Return to oven. Bake for another 15-20 minutes, or until chicken internal temperature reaches 75°C and rice is tender and has absorbed most liquid.",
+      "Chop fresh parsley.",
+      "Remove skillet from oven. Let rest for 5 minutes. Garnish with chopped fresh parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 847,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 53.6,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 360,
+      "total_carbs_g": 70.3,
+      "total_fat_g": 38.7,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 59,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 16,
+      "protein": 107,
+      "saturated_fat": 48,
+      "sodium": 16,
+      "total_carbs": 26,
+      "total_fat": 50
+    },
+    "serving_size_g": 605.5,
+    "total_recipe_weight_g": 2422
+  },
+  {
+    "recipe_name": "Zero-Waste Chicken & Fermented Eggplant Broth with Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zero-waste_chicken_%26_fermented_eggplant_broth_with_brown_rice_20250624_142421_8f6c30d9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:21.450268000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "eggplant"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of Zero-Waste Chicken & Fermented Eggplant Broth with Brown Rice is presented in a handcrafted, earthy-toned ceramic bowl. The clear, golden chicken broth forms the base. Cooked brown rice, distinct and slightly chewy, rests at the bottom of the bowl. Tender, shredded chicken pieces, naturally textured, are gently arranged on one side of the rice. Bright purple-tinged quick-pickled eggplant cubes, approximately 1 cm, are placed on the opposite side, offering a visual and textural contrast. The dish is garnished simply with finely chopped green parsley, including some stem pieces, scattered over the surface. The bowl sits on a light, reclaimed wood surface, with a natural undyed linen napkin subtly placed to the side. Soft, natural light illuminates the scene, emphasizing the purity of the ingredients and the minimalist composition, with ample negative space around the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Broth",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Medium eggplant",
+        "quantity": "1"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh ginger, 2 cm piece",
+        "quantity": "1"
+      },
+      {
+        "name": "Mixed vegetable scraps (carrot peels, celery ends, mushroom stems)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 litres"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley or coriander (for garnish, including stems)",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Roast chicken thighs for 25 minutes until golden. This adds flavor to the broth. Remove chicken from oven. Pick meat from bones. Shred chicken meat into small pieces. Set meat aside. Return chicken bones and skin to roasting pan.",
+      "Place roasted chicken bones, onion (peeled, quartered), garlic (peeled), ginger (sliced), and vegetable scraps into a large pot. Add 2 litres of cold water. Bring to a boil, then reduce heat to low. Simmer gently for 2 hours. Skim any foam. Strain broth through a fine-mesh sieve. Discard solids. Season broth with salt and pepper. Keep warm.",
+      "While broth simmers, prepare quick-pickled eggplant. Dice eggplant into 1 cm cubes. Bring a small pot of water to a boil. Blanch eggplant cubes for 2 minutes. Drain well.",
+      "In a small saucepan, combine apple cider vinegar, 150 ml water, and sugar. Bring to a boil. Pour hot pickling liquid over blanched eggplant cubes. Let marinate for at least 30 minutes. Drain before serving.",
+      "Cook brown rice according to package instructions. Typically, combine 150 g brown rice with 300 ml water in a pot. Bring to a boil, reduce heat, cover, and simmer for 40-45 minutes until tender. Let stand 5 minutes, then fluff with a fork.",
+      "To serve, place a portion of cooked brown rice in each bowl. Arrange shredded chicken pieces next to the rice. Add drained quick-pickled eggplant cubes.",
+      "Ladle hot chicken broth generously over the ingredients in each bowl. Garnish with chopped fresh parsley or coriander, using some finely chopped stems for zero-waste flavor. Ensure chicken meat reaches an internal temperature of 75°C when cooked."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 519,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 31.3,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 613,
+      "total_carbs_g": 47.2,
+      "total_fat_g": 23.8,
+      "total_sugars_g": 12.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 63.7,
+      "cholesterol_mg": 16.6,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 3.8,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 75.3,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 16,
+      "protein": 63,
+      "saturated_fat": 31,
+      "sodium": 27,
+      "total_carbs": 17,
+      "total_fat": 30
+    },
+    "serving_size_g": 815,
+    "total_recipe_weight_g": 3260
+  },
+  {
+    "recipe_name": "Rigatoni with Spicy Sausage and Ricotta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rigatoni_with_spicy_sausage_and_ricotta_20250624_142418_35f0d154.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:18.910772000Z",
+    "selected_ingredients": [
+      "pasta",
+      "ricotta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Rigatoni with Spicy Sausage and Ricotta is presented in a clean, white porcelain bowl, mounded naturally. Hearty rigatoni pasta is coated in a rich, creamy, reddish-orange tomato sauce. Visible elements include irregular, browned chunks of spicy Italian sausage and vibrant green wilted spinach leaves. Creamy white pockets of ricotta cheese are interspersed throughout. The dish is garnished generously with fresh, bright green basil leaves, scattered across the top, and a light dusting of finely grated Parmigiano Reggiano. The textures are a mix of al dente pasta, crumbly sausage, tender spinach, and smooth sauce. The composition is inviting and professional, with balanced color and moderate negative space. It sits on a simple light wooden table, accompanied by silver flatware and a folded cotton napkin, under soft, natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping",
+      "Serve with a simple green salad"
+    ],
+    "hero_ingredient": "Spicy Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Rigatoni",
+        "quantity": "400g"
+      },
+      {
+        "name": "Spicy Italian sausage",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pasta water",
+        "quantity": "120ml"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil.",
+      "Heat olive oil in a large skillet over medium heat.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes. Cook for 1 minute until fragrant.",
+      "Add sausage meat to the skillet. Break it apart with a spoon. Cook until browned, about 8-10 minutes. Drain excess fat if needed.",
+      "Pour crushed tomatoes into the skillet. Stir well. Bring to a simmer.",
+      "Cook rigatoni in the boiling water according to package directions until al dente. Reserve 120ml pasta water before draining.",
+      "Add spinach to the sauce. Cook until wilted, about 2-3 minutes.",
+      "Reduce heat to low. Stir in ricotta cheese and 60ml reserved pasta water until creamy.",
+      "Add cooked rigatoni to the skillet with the sauce. Toss to coat. Add more reserved pasta water if needed for desired consistency.",
+      "Stir in grated Parmigiano Reggiano. Season with salt and black pepper to taste.",
+      "Serve immediately. Garnish with fresh basil leaves and extra Parmigiano Reggiano."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 873,
+      "cholesterol_mg": 87,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 41.5,
+      "saturated_fat_g": 13.3,
+      "sodium_mg": 1326,
+      "total_carbs_g": 88.8,
+      "total_fat_g": 36.2,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 186,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.9,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 283,
+      "total_carbs_g": 18.9,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 23,
+      "protein": 83,
+      "saturated_fat": 67,
+      "sodium": 58,
+      "total_carbs": 32,
+      "total_fat": 46
+    },
+    "serving_size_g": 469.25,
+    "total_recipe_weight_g": 1877
+  },
+  {
+    "recipe_name": "One-Pan Rosemary Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_one-pan_rosemary_chicken_and_rice_20250624_142416_fa26891d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:16.845419000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single modest portion of One-Pan Rosemary Chicken and Rice is presented on a simple, round, off-white ceramic plate with a slightly rustic edge. A golden-brown, crispy-skinned chicken thigh, cooked whole, rests naturally atop a generous bed of fluffy, light golden-yellow long-grain rice. Visible among the rice are tender, diced carrots and celery, cut into small, uniform cubes approximately 1 cm. A small, fresh sprig of rosemary is casually placed on the chicken. The overall arrangement is casual and inviting, reflecting a home-cooked meal. The plate is set on a well-used, light-colored wooden dining table. A simple, folded cream-colored cloth napkin is placed beside the plate. The lighting is warm and natural, coming from a window, creating soft shadows and highlighting the comforting appearance of the food. Standard metal flatware is casually placed. The background is minimal, with other rustic ceramic serving dishes slightly out of focus, suggesting a shared family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800 g total)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1 (diced)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 (diced)"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2 (diced)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3 (minced)"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 5-7 minutes until golden brown and crispy. Flip and sear for 2-3 minutes on the other side. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion, carrots, and celery to the skillet. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in rice, coating it with the vegetable mixture. Cook for 1-2 minutes.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the skillet.",
+      "Arrange seared chicken thighs skin-side up on top of the rice mixture. Nestle rosemary sprigs among the chicken.",
+      "Cover the skillet tightly with a lid or foil.",
+      "Bake for 25 minutes. Remove lid/foil and continue baking for another 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and rice is tender and has absorbed the liquid.",
+      "Remove from oven. Let rest for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 759,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 3,
+      "protein_g": 43.3,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 1050,
+      "total_carbs_g": 59.7,
+      "total_fat_g": 38.7,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155.2,
+      "cholesterol_mg": 36.8,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 214.8,
+      "total_carbs_g": 12.2,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 11,
+      "protein": 87,
+      "saturated_fat": 47,
+      "sodium": 46,
+      "total_carbs": 22,
+      "total_fat": 50
+    },
+    "serving_size_g": 488.65,
+    "total_recipe_weight_g": 1954.6
+  },
+  {
+    "recipe_name": "Roasted Chicken with Fermented Cabbage Puree",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_with_fermented_cabbage_puree_20250624_142401_04ccda60.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:24:01.600933000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Russian cuisine",
+    "visual_description": "A single, perfectly roasted chicken thigh, skin rendered golden-brown and crisp, rests slightly off-center on a smooth, pale cream-colored handcrafted ceramic plate. The chicken is presented as a whole piece, not sliced. Adjacent to the chicken is a generous, artfully swirled dollop of creamy, off-white potato and fermented cabbage puree, its texture subtly speckled. A few vibrant green, freshly picked dill sprigs are delicately placed atop the puree, providing a fresh color contrast. The composition is clean and minimalist, emphasizing the natural beauty and textures of each ingredient against the ample white space of the plate. The background features a light, natural wood surface, an undyed linen napkin in a soft beige, and subtle, blurred green foliage, illuminated by soft, natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a small side of quick-pickled cucumbers or additional fresh dill for a true Russian touch."
+    ],
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": "4 (bone-in, skin-on)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g (starchy, e.g., Russet or Maris Piper)"
+      },
+      {
+        "name": "Sauerkraut",
+        "quantity": "200g (well-drained, mild)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "30g"
+      },
+      {
+        "name": "Neutral Oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sour Cream",
+        "quantity": "50g (optional, for puree)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs completely dry. Season generously with salt and black pepper.",
+      "Heat neutral oil in an oven-safe skillet over medium-high heat. Place chicken skin-side down. Sear for 5-7 minutes until skin is golden-brown and crisp. Flip chicken.",
+      "Transfer skillet to preheated oven. Roast chicken for 20-25 minutes, or until internal temperature reaches 75°C. Remove from oven and let rest for 5 minutes.",
+      "While chicken roasts, thoroughly wash potato peels. Place peels in a small saucepan. Cover with 500ml water. Add a pinch of salt and a few black peppercorns. Bring to a simmer and cook for 20 minutes. Strain the liquid, discarding the peels. This is your potato peel stock.",
+      "Peel and dice potatoes into 2cm cubes. Boil diced potatoes in lightly salted water until very tender. Drain well.",
+      "Gently rinse sauerkraut if it is too salty. Squeeze out excess liquid. Finely chop the sauerkraut.",
+      "Mash cooked potatoes until smooth. Gradually add warm potato peel stock until the puree reaches a creamy consistency. Stir in the finely chopped sauerkraut and optional sour cream. Season puree with salt and pepper to taste.",
+      "Spoon the potato-fermented cabbage puree onto individual plates. Place a roasted chicken thigh on top of or beside the puree. Garnish generously with fresh dill sprigs."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety.",
+      "Use a mild, finely chopped sauerkraut to ensure the flavor integrates well into the puree without overpowering it.",
+      "The potato peel stock is a zero-waste technique that adds subtle flavor and nutrients to the puree."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 579,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 5,
+      "protein_g": 35.9,
+      "saturated_fat_g": 8.9,
+      "sodium_mg": 471,
+      "total_carbs_g": 29.1,
+      "total_fat_g": 35.8,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 10,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 131,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 18,
+      "protein": 72,
+      "saturated_fat": 45,
+      "sodium": 20,
+      "total_carbs": 11,
+      "total_fat": 46
+    },
+    "serving_size_g": 360,
+    "total_recipe_weight_g": 1440
+  }
+]

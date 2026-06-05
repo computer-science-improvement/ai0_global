@@ -1,0 +1,668 @@
+[
+  {
+    "recipe_name": "Seared Egg and Grapefruit Salad with Chili-Coriander Dressing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_egg_and_grapefruit_salad_with_chili-coriander_dressing_20250625_160649_ec0e1b47.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:06:50.124991000Z",
+    "selected_ingredients": [
+      "egg",
+      "grapefruit",
+      "green chili",
+      "cucumber",
+      "coriander"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, simple white porcelain dinner plate, set on a natural wooden table surface. Two seared eggs, with crisp, slightly frilly edges and vibrant runny yolks, are the central focus. They rest atop a bed of thinly sliced, bright green cucumber ribbons, artfully arranged to create a fresh base. Juicy, pink-hued grapefruit segments are neatly placed around the eggs, adding bursts of color and citrusy appeal. A generous drizzle of the emerald green chili-coriander dressing glistens over the components. The salad is garnished with fresh, verdant coriander leaves and a few thin, bright red slices of green chili for a touch of heat and visual contrast. The plating is clean and balanced, with moderate negative space. A cotton napkin and simple chopsticks are placed beside the plate, hinting at a modern Asian bistro setting with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "8"
+      },
+      {
+        "name": "Large grapefruits",
+        "quantity": "2"
+      },
+      {
+        "name": "Large cucumber",
+        "quantity": "1 (approx. 300g)"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "60g"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Segment grapefruits. Remove all white pith and membranes. Set aside.",
+      "Thinly slice cucumber into ribbons using a mandoline or vegetable peeler. Set aside.",
+      "For the dressing, finely chop one green chili and half of the fresh coriander. Mince garlic cloves.",
+      "In a small bowl, whisk together lime juice, fish sauce, sugar, minced garlic, chopped green chili, and chopped coriander. Add sesame oil. Stir well. Taste and adjust seasoning.",
+      "Heat vegetable oil in a large non-stick skillet over medium-high heat.",
+      "Carefully crack eggs into the hot skillet. Cook 2-3 minutes until whites are set and edges are crispy. Yolks should remain runny. Cook in batches if necessary. Season with salt and pepper.",
+      "Arrange cucumber ribbons artfully on individual serving plates. Place grapefruit segments around the cucumber.",
+      "Carefully transfer two seared eggs onto each plate, resting them on the cucumber and grapefruit.",
+      "Drizzle generously with the chili-coriander dressing.",
+      "Garnish with remaining fresh coriander leaves and thin slices of the second green chili."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 343,
+      "cholesterol_mg": 373,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 15.6,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 211,
+      "total_carbs_g": 24.4,
+      "total_fat_g": 21.3,
+      "total_sugars_g": 15.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 95,
+      "cholesterol_mg": 103,
+      "dietary_fiber_g": 1,
+      "protein_g": 4.3,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 58,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 124,
+      "dietary_fiber": 13,
+      "protein": 31,
+      "saturated_fat": 26,
+      "sodium": 9,
+      "total_carbs": 9,
+      "total_fat": 27
+    },
+    "serving_size_g": 361,
+    "total_recipe_weight_g": 1443
+  },
+  {
+    "recipe_name": "Butter Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_butter_chicken_20250625_160521_226cdae8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:05:22.385756000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "yogurt"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of vibrant Butter Chicken is presented in a clean, shallow white porcelain bowl. Generous 3-4cm chunks of seared, tender chicken are nestled in a rich, creamy, and smooth orange-red tomato-yogurt gravy. The sauce shimmers with a glossy finish. A delicate swirl of fresh white cream adorns the surface, contrasting beautifully with the sauce's deep hue. The dish is garnished generously with bright green, freshly chopped coriander leaves, adding a pop of color and freshness. The chicken pieces maintain their shape, not sliced. The bowl is placed on a simple wooden table surface, accompanied by a small, separate bowl of fluffy white basmati rice and a piece of soft, torn naan bread. A clean, folded cotton napkin rests nearby. Natural, even lighting highlights the dish's inviting colors and textures, set against a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with fluffy Basmati rice.",
+      "Accompany with fresh naan bread or roti for scooping the gravy.",
+      "Offer a side of cooling raita (yogurt dip) or sliced red onion."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g, cut into 3-4cm chunks"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "150g"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "40g (20g for marinade, 20g for sauce)"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Kashmiri red chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Ghee or unsalted butter",
+        "quantity": "60g (30g for cooking, 30g for finishing)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (approx. 150g), finely chopped"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "30g, soaked in hot water for 15 minutes"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Kasoori Methi (dried fenugreek leaves)",
+        "quantity": "5g, crushed"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "5g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Combine chicken chunks with yogurt, 20g ginger-garlic paste, 2g turmeric powder, 5g Kashmiri red chili powder, and a pinch of salt. Mix well. Marinate for at least 30 minutes in the refrigerator.",
+      "Melt 30g ghee or butter in a large pot or deep pan over medium heat. Add chopped onion. Sauté until translucent, about 8-10 minutes.",
+      "Add remaining 20g ginger-garlic paste. Cook for 1 minute until fragrant. Add 3g turmeric powder, 5g Kashmiri red chili powder, cumin powder, and coriander powder. Sauté for 30 seconds until aromatic, adding a splash of water if spices stick.",
+      "Add crushed tomatoes and soaked cashews to the pot. Bring to a simmer. Cook for 10-15 minutes, stirring occasionally, until the sauce thickens slightly.",
+      "Remove the pot from heat. Allow to cool slightly. Carefully transfer the sauce mixture to a blender. Blend until completely smooth. Strain through a fine-mesh sieve back into the pot for a silkier texture, if desired.",
+      "In a separate pan, sear the marinated chicken chunks in a small amount of oil or ghee over medium-high heat until lightly browned on all sides. Do not overcrowd the pan; cook in batches if necessary. Chicken does not need to be cooked through at this stage.",
+      "Add the seared chicken chunks to the smooth tomato gravy in the pot. Add 150ml water or chicken stock. Bring to a gentle simmer. Cover and cook for 15-20 minutes, or until chicken is tender and cooked through (internal temperature 75°C).",
+      "Crush kasoori methi between your palms and add to the pot. Stir in garam masala. Add the remaining 30g unsalted butter and heavy cream. Stir until butter melts and cream is incorporated. Do not boil after adding cream.",
+      "Taste and adjust salt as needed. Garnish with fresh coriander leaves before serving."
+    ],
+    "notes": [
+      "For best flavor, marinate the chicken overnight.",
+      "Adjust the amount of Kashmiri red chili powder to control the spice level; it primarily provides color.",
+      "The gravy can be made ahead of time and stored in the refrigerator for up to 3 days."
+    ],
+    "traditional_techniques": [
+      "Yogurt marination",
+      "Spice blooming (bhunao)",
+      "Slow simmering gravy"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 608,
+      "cholesterol_mg": 219,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 34.5,
+      "saturated_fat_g": 20.4,
+      "sodium_mg": 641,
+      "total_carbs_g": 20.9,
+      "total_fat_g": 43.4,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 149,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 19,
+      "protein": 69,
+      "saturated_fat": 102,
+      "sodium": 28,
+      "total_carbs": 8,
+      "total_fat": 56
+    },
+    "serving_size_g": 431.25,
+    "total_recipe_weight_g": 1725
+  },
+  {
+    "recipe_name": "Seared Tuna Loin, Roasted Bell Pepper Essence, Tagliolini, Lemon Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_tuna_loin%2C_roasted_bell_pepper_essence%2C_tagliolini%2C_lemon_cream_20250625_160419_f5bbc416.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:04:20.541567000Z",
+    "selected_ingredients": [
+      "pasta",
+      "bell pepper",
+      "cream",
+      "tuna",
+      "tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single portion of an ultra-sophisticated dish is presented on a large, pristine white bone china plate. A shallow, vibrant pool of clear, red-orange roasted bell pepper essence forms the base, occupying the plate's center. Off-center, a delicate, artfully arranged nest of golden tagliolini sits elegantly. Resting against the pasta is a thick, perfectly seared tuna loin, exhibiting a deep, crisp crust and a striking pink interior. A light, ethereal cloud of bright white lemon cream foam is carefully placed beside the tuna. A few tiny, bright green micro basil leaves are precisely scattered to add a final touch of color and freshness. The plate rests on a luxurious white Carrara marble surface. A crisp white linen napkin, folded into a precise triangle, is positioned beside the plate. Dramatic, focused lighting casts soft shadows, enhancing the dish's contours and textures. The background is clean and minimalist, allowing the dish to be the sole focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp, light-bodied Italian white wine such as Vermentino or Pinot Grigio."
+    ],
+    "hero_ingredient": "Tuna",
+    "ingredients": [
+      {
+        "name": "Fresh Tuna Loins, sashimi-grade",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Fresh Tagliolini",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red Bell Peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (zest and juice)"
+      },
+      {
+        "name": "Micro Basil",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve bell peppers, remove seeds. Place cut-side down on baking sheet. Roast 20-25 minutes until skin blisters. Transfer to bowl, cover tightly. Let steam 10 minutes. Peel and discard skins. Roughly chop roasted bell peppers.",
+      "Finely dice shallot and garlic. In a saucepan, heat a small amount of olive oil. Sauté shallot and garlic until fragrant, about 2 minutes. Add chopped tomatoes and roasted bell pepper. Cook 5 minutes.",
+      "Deglaze with white wine. Reduce by half. Add vegetable stock. Simmer 15 minutes. Remove from heat. Carefully blend mixture until very smooth. Strain through a fine-mesh sieve or cheesecloth, pressing solids to extract all liquid. Discard solids. Season essence with sea salt and black pepper. Keep warm.",
+      "In a small saucepan, gently warm heavy cream. Stir in lemon zest and a squeeze of lemon juice. Season with a pinch of sea salt. Using an immersion blender or whisk, aerate the cream until a light foam forms. Keep warm and foamy.",
+      "Bring a large pot of salted water to a rolling boil. Add tagliolini. Cook according to package directions until al dente. Drain pasta immediately. Toss with a drizzle of olive oil to prevent sticking.",
+      "Pat tuna loins dry. Season generously with sea salt and black pepper on all sides. Heat a heavy-bottomed pan or cast iron skillet over high heat until smoking. Add a thin film of olive oil. Carefully place tuna loins in the hot pan. Sear 1-2 minutes per side for rare to medium-rare. Adjust time for desired doneness. Remove tuna from pan. Rest 2 minutes.",
+      "To plate, spoon a shallow pool of the warm bell pepper essence onto the center of each large, individual plate. Create a small, artful nest of tagliolini slightly off-center in the essence. Place one seared tuna loin against the pasta. Gently spoon a dollop of lemon cream foam next to the tuna. Garnish with a few micro basil leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 554.06,
+      "cholesterol_mg": 139.25,
+      "dietary_fiber_g": 4.49,
+      "protein_g": 51.3,
+      "saturated_fat_g": 7.61,
+      "sodium_mg": 630.8,
+      "total_carbs_g": 40.34,
+      "total_fat_g": 19.47,
+      "total_sugars_g": 8.37,
+      "trans_fat_g": 0.28
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110.1,
+      "cholesterol_mg": 27.67,
+      "dietary_fiber_g": 0.89,
+      "protein_g": 10.19,
+      "saturated_fat_g": 1.51,
+      "sodium_mg": 125.35,
+      "total_carbs_g": 8.02,
+      "total_fat_g": 3.87,
+      "total_sugars_g": 1.66,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.42,
+      "dietary_fiber": 16.03,
+      "protein": 102.61,
+      "saturated_fat": 38.05,
+      "sodium": 27.42,
+      "total_carbs": 14.67,
+      "total_fat": 24.96
+    },
+    "serving_size_g": 503.25,
+    "total_recipe_weight_g": 2013
+  },
+  {
+    "recipe_name": "Mediterranean Pan-Seared Chicken with Lemon-Herb Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_pan-seared_chicken_with_lemon-herb_sauce_20250625_160254_21c34627.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:02:54.844774000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown pan-seared chicken thigh, skin-on and whole, is centrally placed on a clean white porcelain plate. It's surrounded by halved bright red cherry tomatoes and dark Kalamata olives. A rich, amber pan sauce, infused with herbs, pools around the chicken and vegetables. Fresh green oregano and parsley are scattered for contrast. The chicken skin exhibits a beautiful, crispy sear. A small portion of fluffy orzo pasta accompanies the dish. The setting is a simple wooden table with natural lighting, a folded cotton napkin, and standard flatware, reflecting a professional bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to dip in the sauce",
+      "Accompany with a simple green salad with lemon vinaigrette"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, skin-on, bone-in",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Shallots, thinly sliced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Dry white wine (e.g., Pinot Grigio)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh oregano, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lemon, juice of",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken thighs skin-side down for 8-10 minutes until golden brown and crispy.",
+      "Flip chicken. Cook for 2-3 minutes on the other side. Remove chicken from skillet.",
+      "Reduce heat to medium. Add sliced shallots to the skillet. Sauté for 3 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in white wine. Deglaze the pan, scraping up any browned bits. Simmer for 2 minutes.",
+      "Add chicken stock, cherry tomatoes, and Kalamata olives to the skillet. Bring to a simmer.",
+      "Return chicken thighs to the skillet, skin-side up.",
+      "Transfer skillet to a preheated oven at 180°C (350°F). Bake for 15-20 minutes, or until chicken reaches an internal temperature of 75°C.",
+      "Remove skillet from oven. Stir in fresh oregano, parsley, and lemon juice.",
+      "Check seasoning. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches internal temperature of 75°C (167°F) for food safety.",
+      "Bone-in, skin-on chicken thighs provide best flavor and moisture."
+    ],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 623,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 4,
+      "protein_g": 43,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 361,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 41.8,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 157.2,
+      "cholesterol_mg": 50.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 10.9,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 91.1,
+      "total_carbs_g": 3.4,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 14,
+      "protein": 86,
+      "saturated_fat": 52,
+      "sodium": 16,
+      "total_carbs": 5,
+      "total_fat": 54
+    },
+    "serving_size_g": 396.3,
+    "total_recipe_weight_g": 1585.1
+  },
+  {
+    "recipe_name": "Pan-Seared Garlic Herb Beef and Chicken with Mushroom Cream Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_garlic_herb_beef_and_chicken_with_mushroom_cream_sauce_20250625_160254_3bfe9557.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:02:54.733663000Z",
+    "selected_ingredients": [
+      "beef",
+      "oil",
+      "garlic",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Plated on a clean white porcelain dinner plate, a single serving features two pan-seared beef medallions and one golden-brown chicken breast piece. The beef, with a rich brown crust, is nestled beside the chicken. A generous ladle of creamy, light brown mushroom sauce, with visible sliced mushrooms and herb flecks, coats the meats. Fresh green chopped parsley is scattered over the top, providing vibrant contrast. The arrangement is organic, balanced, with moderate negative space. Textures include seared meat, tender mushrooms, and a smooth, rich sauce. The plate rests on a simple wooden table with silver flatware and a folded cotton napkin. Natural, even lighting highlights the dish. The background is minimal, suggesting a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Mushrooms (cremini or button)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef and chicken dry. Season generously with salt and pepper. Cut beef into 8 medallions. Cut chicken breast into 4 pieces or thick slices.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear beef medallions for 2-3 minutes per side for medium-rare. Remove from skillet. Set aside.",
+      "Add chicken pieces to the same skillet. Sear for 4-5 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove and set aside with beef.",
+      "Add butter to the skillet. Sauté diced shallot until softened, about 2 minutes.",
+      "Add sliced mushrooms. Cook until browned and tender, about 5-7 minutes.",
+      "Stir in minced garlic, chopped rosemary, and thyme. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the skillet. Reduce heat to medium.",
+      "Stir in heavy cream. Simmer gently for 5 minutes, or until sauce slightly thickens. Season with salt and pepper.",
+      "Return beef and chicken to the skillet. Spoon sauce over the meats. Heat gently for 1-2 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 535.4,
+      "cholesterol_mg": 187.38,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 47.55,
+      "saturated_fat_g": 15.27,
+      "sodium_mg": 196.48,
+      "total_carbs_g": 8.88,
+      "total_fat_g": 33.1,
+      "total_sugars_g": 4.12,
+      "trans_fat_g": 0.99
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147.7,
+      "cholesterol_mg": 51.69,
+      "dietary_fiber_g": 0.38,
+      "protein_g": 13.12,
+      "saturated_fat_g": 4.21,
+      "sodium_mg": 54.2,
+      "total_carbs_g": 2.45,
+      "total_fat_g": 9.13,
+      "total_sugars_g": 1.14,
+      "trans_fat_g": 0.27
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.5,
+      "dietary_fiber": 5,
+      "protein": 95.1,
+      "saturated_fat": 76.4,
+      "sodium": 8.5,
+      "total_carbs": 3.2,
+      "total_fat": 42.4
+    },
+    "serving_size_g": 362.5,
+    "total_recipe_weight_g": 1450
+  }
+]

@@ -1,0 +1,618 @@
+[
+  {
+    "recipe_name": "Carrot & Lentil Pickled Vegetable Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_carrot_%26_lentil_pickled_vegetable_salad_20250722_225246_375b0d2f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T22:52:47.314714000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "carrot",
+      "pork",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "plant-based",
+    "visual_description": "A vibrant Carrot & Lentil Pickled Vegetable Salad is presented on a handcrafted ceramic plate in an unglazed cream tone. The plate rests on a light, reclaimed wood table surface, emphasizing natural textures. The salad features thinly sliced, bright orange carrots and pale pink red onion, softened and slightly translucent from pickling. Deep crimson, slightly burst roasted cherry tomatoes are interspersed with tender, golden-brown whole roasted garlic cloves. Earthy green-brown cooked green lentils and vibrant deep green mixed greens form the base, with golden, irregularly shaped toasted pumpkin seeds scattered throughout. The dressing lightly coats all components, adding a subtle sheen. Ingredients are artfully scattered across the plate, creating natural clusters of color and texture, allowing negative space to highlight the simplicity and pure beauty of each component. An undyed linen napkin in natural beige is folded simply beside the plate. Soft, diffused natural light illuminates the scene, casting gentle shadows. The minimalist background features blurred green foliage from a potted plant, reinforcing the sustainable and natural theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Carrots",
+        "quantity": "250g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4 whole"
+      },
+      {
+        "name": "Green Lentils (dried)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": "100g"
+      },
+      {
+        "name": "Pumpkin Seeds",
+        "quantity": "30g"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "5g"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water (for pickling)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Sugar (for pickling)",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Thinly slice carrots into rounds. Thinly slice red onion. Place both in a heatproof bowl.",
+      "For pickling brine, combine 120ml hot water, 60ml apple cider vinegar, 5g salt, and 5g sugar. Stir until dissolved.",
+      "Pour hot brine over sliced carrots and red onion. Ensure vegetables are submerged. Let cool completely, then marinate for at least 30 minutes.",
+      "Halve cherry tomatoes. Place on a baking tray with whole, unpeeled garlic cloves. Drizzle with a little olive oil, salt, and pepper.",
+      "Roast for 15-20 minutes until tomatoes soften and char, and garlic is tender. Remove from oven. Peel roasted garlic cloves.",
+      "Rinse green lentils. In a saucepan, combine 200g lentils with 600ml water. Bring to a boil, reduce heat, and simmer for 20-25 minutes until tender. Drain excess water.",
+      "While lentils cook, toast pumpkin seeds in a dry pan over medium heat for 2-3 minutes until fragrant. Set aside.",
+      "For the dressing, whisk together 60ml extra virgin olive oil, 30ml apple cider vinegar, 5g Dijon mustard, 5ml maple syrup, salt, and black pepper.",
+      "In a large bowl, combine cooked lentils, roasted cherry tomatoes, peeled roasted garlic cloves (roughly chopped), mixed greens, and drained pickled carrots and red onion. Add toasted pumpkin seeds.",
+      "Pour dressing over the salad. Toss gently to combine all ingredients.",
+      "Divide the salad among four plates. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.28,
+      "calories": 408.27,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 19.29,
+      "protein_g": 15.81,
+      "saturated_fat_g": 2.65,
+      "sodium_mg": 69.72,
+      "total_carbs_g": 46.48,
+      "total_fat_g": 18.43,
+      "total_sugars_g": 9.18,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 107.58,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5.08,
+      "protein_g": 4.17,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 18.37,
+      "total_carbs_g": 12.25,
+      "total_fat_g": 4.86,
+      "total_sugars_g": 2.42,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 68.89,
+      "protein": 31.62,
+      "saturated_fat": 13.25,
+      "sodium": 3.03,
+      "total_carbs": 16.9,
+      "total_fat": 23.63
+    },
+    "serving_size_g": 379.51,
+    "total_recipe_weight_g": 1518.05
+  },
+  {
+    "recipe_name": "Fermented Carrot and Tomato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_carrot_and_tomato_salad_20250722_225215_1aed0ec1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T22:52:16.017100000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "carrot",
+      "pork",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "plant-based",
+    "visual_description": "A vibrant, fresh Fermented Carrot and Tomato Salad is presented on a handcrafted, matte cream ceramic plate, resting on a light, reclaimed wood table. The base consists of crisp mixed greens, topped with an artful scattering of thinly sliced carrot rounds, delicate julienned carrot strips, bright halved cherry tomatoes, and tender, pale purple quick-pickled red onion slices. Each component is distinctly visible, naturally arranged to highlight its color and texture. A glistening, light vinaigrette coats the ingredients, reflecting the soft natural light. The salad is garnished with golden-brown toasted pumpkin seeds and finely chopped fresh parsley, or vibrant green carrot tops for a zero-waste touch. The composition is clean and minimalist, with ample negative space. An undyed linen napkin in natural beige and a subtle green plant in the background complete the eco-conscious, natural setting, emphasizing the dish's fresh, sustainable essence.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Carrots",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Pumpkin Seeds",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "White Vinegar",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Pickled Onions: Thinly slice red onion. In a small saucepan, combine 120 ml water, 120 ml white vinegar, 15 ml sugar, and 2.5 ml salt. Heat until sugar dissolves. Pour hot brine over sliced onions in a jar. Cool. Refrigerate 30 minutes.",
+      "Prepare Carrots: Thinly slice 2 carrots into rounds. Julienne 1 carrot.",
+      "Halve Tomatoes: Cut cherry tomatoes in half.",
+      "Make Dressing: Mince garlic. In a bowl, whisk 60 ml olive oil, 30 ml apple cider vinegar, 5 ml Dijon mustard, minced garlic, 2.5 ml salt, and 2.5 ml black pepper.",
+      "Toast Seeds: Toast pumpkin seeds in a dry pan until fragrant. Cool.",
+      "Chop Herbs: Chop fresh parsley. Use carrot tops if available for zero-waste.",
+      "Combine Salad: In a large bowl, combine mixed greens, sliced carrot rounds, julienned carrot, halved tomatoes, and drained pickled onions.",
+      "Dress and Serve: Pour dressing over salad. Toss gently. Divide among 4 plates. Garnish with toasted pumpkin seeds and chopped parsley or carrot tops."
+    ],
+    "notes": [
+      "This recipe emphasizes sustainability through using pickled elements and prioritizing plant-based ingredients. Consider composting vegetable scraps."
+    ]
+  },
+  {
+    "recipe_name": "Carrot & Pickled Onion Zero-Waste Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_carrot_%26_pickled_onion_zero-waste_salad_20250722_225147_134be933.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T22:51:47.803448000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "carrot",
+      "pork",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "plant-based",
+    "visual_description": "A vibrant, rustic salad is artfully arranged on a handcrafted ceramic plate in an earthy tone. Roasted carrot chunks, some halved lengthwise and others cut into 2 cm pieces, exhibit a caramelized char. Bright red pickled onion rings are scattered throughout, providing a sharp color contrast. Halved cherry tomatoes burst with juicy redness. Fresh mixed tender greens form a verdant base. The salad is lightly coated in a verdant green carrot top pesto vinaigrette, which pools slightly at the plate's edge, highlighting its natural oil separation. Toasted pumpkin seeds are sprinkled on top for texture. The presentation is minimalistic, emphasizing natural ingredient beauty. The plate sits on a light, reclaimed wood surface, with an undyed linen napkin nearby. Soft, natural light illuminates the scene, with a subtle, clean background showing natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Carrots",
+        "quantity": "500 g, various sizes with tops"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Mixed tender greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Pumpkin seeds",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml, plus more for roasting"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2, juiced"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash carrots thoroughly. Trim tops from 300g of carrots; reserve tops for dressing. Cut these carrots into 2 cm chunks. Halve remaining 200g carrots lengthwise. Toss all carrot pieces with 2 unpeeled garlic cloves, a drizzle of olive oil, salt, and pepper. Roast for 25-30 minutes until tender and slightly caramelized. Let cool.",
+      "Thinly slice the red onion into rings. In a small bowl, combine apple cider vinegar, 120 ml hot water, a pinch of salt, and a dash of maple syrup. Add onion rings. Let pickle for at least 20 minutes.",
+      "For the carrot top pesto vinaigrette: In a food processor, combine reserved carrot tops, 2 peeled fresh garlic cloves, 60 ml olive oil, lemon juice, 5 ml maple syrup, salt, and pepper. Blend until smooth. Adjust consistency with a little water if too thick.",
+      "Halve cherry tomatoes. Toast pumpkin seeds in a dry pan over medium heat until lightly golden and fragrant. Remove from heat.",
+      "In a large bowl, combine roasted carrots, roasted garlic (peeled), pickled red onions (drained), halved cherry tomatoes, and mixed greens. Drizzle generously with the carrot top pesto vinaigrette. Toss gently to combine all ingredients.",
+      "Divide the salad among four plates. Garnish with toasted pumpkin seeds. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.1,
+      "calories": 324,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 6.1,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 594,
+      "total_carbs_g": 24.1,
+      "total_fat_g": 23.9,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 102,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 1.9,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 187,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 23,
+      "protein": 12,
+      "saturated_fat": 17,
+      "sodium": 26,
+      "total_carbs": 9,
+      "total_fat": 31
+    },
+    "serving_size_g": 317,
+    "total_recipe_weight_g": 1268
+  },
+  {
+    "recipe_name": "Brazilian Black Bean & Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_brazilian_black_bean_%26_potato_stew_20250722_220613_a35b70fb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T22:06:14.000513000Z",
+    "selected_ingredients": [
+      "potato",
+      "bean",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Brazilian Black Bean & Potato Stew is presented in a deep, rustic ceramic bowl. The rich, dark brown bean stew, thick and glossy, forms the base, its surface gently rippled. Nestled within the stew are golden-brown, crispy roasted potato chunks, their irregular shapes adding visual interest. A generous portion of fluffy white long-grain rice is served neatly beside the bowl on a clean white porcelain plate. Bright green chopped cilantro is scattered over the stew, providing a fresh color contrast. The setting is a warm, modern bistro with a simple wooden table. A white cotton napkin and traditional flatware are placed beside the plate. The lighting is natural and even, highlighting the dish's inviting textures and colors. A small dish of sliced fresh oranges sits nearby, offering a traditional Brazilian accompaniment. The plate is well-proportioned, allowing for moderate negative space around the main dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Brazilian",
+    "cultural_origin": "Brazilian",
+    "cultural_serving_suggestions": [
+      "Serve with white rice.",
+      "Offer farofa (toasted cassava flour) for sprinkling.",
+      "Include fresh orange slices on the side to cut the richness.",
+      "A side of sautéed collard greens (couve refogada) is also a traditional accompaniment."
+    ],
+    "hero_ingredient": "Black Beans",
+    "ingredients": [
+      {
+        "name": "Dried Black Beans",
+        "quantity": "250g"
+      },
+      {
+        "name": "Smoked Sausage (Linguiça or Chorizo)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable Broth or Water",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Yukon Gold)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Long-grain White Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "1/4 cup"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse dried black beans. Soak beans in cold water overnight. Drain before cooking.",
+      "Place soaked beans in a large pot. Cover with fresh water by 5 cm. Add 1 bay leaf. Bring to a boil, then reduce heat. Simmer for 60-90 minutes until very tender. Drain most liquid, reserving 250ml.",
+      "Preheat oven to 200°C. Wash and cut potatoes into 2 cm chunks. Toss potatoes with 2 tbsp olive oil, salt, and pepper. Spread on a baking sheet. Roast for 25-30 minutes until golden and crisp.",
+      "While potatoes roast, cook rice. Combine rice, 600ml water, and 1 tsp salt in a saucepan. Bring to a boil. Reduce heat to low, cover, and simmer for 15 minutes. Remove from heat and let stand, covered, for 5 minutes. Fluff with a fork.",
+      "Dice smoked sausage into 1 cm pieces. Heat 2 tbsp olive oil in a large pot or Dutch oven over medium heat. Add sausage. Cook until browned and crisp, about 5-7 minutes. Remove sausage with a slotted spoon; set aside, leaving fat in the pot.",
+      "Dice onion. Mince garlic. Add onion to the pot with sausage fat. Sauté until softened, about 5 minutes. Add minced garlic, ground cumin, smoked paprika, and remaining bay leaf. Cook for 1 minute until fragrant.",
+      "Add cooked black beans and reserved bean liquid to the pot. Add 500ml vegetable broth or water. Bring to a simmer. Cook for 15-20 minutes, stirring occasionally, until stew thickens. Mash some beans against the side of the pot for creaminess.",
+      "Stir cooked sausage back into the bean stew. Season with salt and black pepper to taste.",
+      "Ladle black bean stew into serving bowls. Top with roasted potato chunks. Garnish with chopped fresh cilantro. Serve immediately with a side of fluffy white rice."
+    ],
+    "notes": [
+      "Soaking dried beans overnight significantly reduces cooking time and helps with digestion.",
+      "For a thicker stew, mash more beans against the side of the pot. For a thinner stew, add more broth or water.",
+      "The smoked sausage is crucial for authentic flavor, use linguiça if available."
+    ],
+    "traditional_techniques": [
+      "Refogado (sautéing aromatics to build flavor)",
+      "Slow simmering (for tender beans and rich stew)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 891.8,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 14.35,
+      "protein_g": 30.8,
+      "saturated_fat_g": 6.82,
+      "sodium_mg": 584.7,
+      "total_carbs_g": 129.19,
+      "total_fat_g": 28.5,
+      "total_sugars_g": 5.03,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129.95,
+      "cholesterol_mg": 5.69,
+      "dietary_fiber_g": 2.09,
+      "protein_g": 4.49,
+      "saturated_fat_g": 0.99,
+      "sodium_mg": 85.2,
+      "total_carbs_g": 18.83,
+      "total_fat_g": 4.15,
+      "total_sugars_g": 0.73,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13,
+      "dietary_fiber": 51.3,
+      "protein": 61.6,
+      "saturated_fat": 34.1,
+      "sodium": 25.4,
+      "total_carbs": 47,
+      "total_fat": 36.5
+    },
+    "serving_size_g": 686.25,
+    "total_recipe_weight_g": 2745
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken and Swiss Chard Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_and_swiss_chard_risotto_20250722_213558_f94ffae9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T21:35:59.428856000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "garlic",
+      "oregano",
+      "swiss chard"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Pan-Seared Chicken and Swiss Chard Risotto is presented in a clean, white, shallow porcelain bowl. The risotto is free-flowing, forming a natural mound in the center of the bowl, showcasing its rich, creamy texture. Nestled atop the risotto are golden-brown, seared chicken chunks, each about 3-4 cm, displaying a perfect crust and moist interior. Vibrant green, roughly chopped Swiss chard leaves and tender, thinly sliced stems are visibly integrated throughout the creamy, pale yellow rice, adding bursts of color and texture. A generous sprinkle of freshly grated Parmigiano Reggiano covers the top, adding a light, snowy finish. A small sprig of fresh oregano or parsley provides a final touch of green. The dish is placed on a simple wooden table surface, accompanied by classic Italian-style flatware and a folded cotton napkin. Natural, even lighting highlights the dish, with a minimal, unobtrusive restaurant-style background creating a casual yet refined atmosphere. The entire plate is visible, showcasing a balanced and appetizing composition with appropriate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Arborio Rice",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15g"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "400g"
+      },
+      {
+        "name": "Hot chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large, deep pan over medium-high heat. Sear chicken chunks until golden brown on all sides and cooked through. Internal temperature must reach 75°C. Remove chicken from pan and set aside.",
+      "Finely dice the onion. Mince the garlic. Separate Swiss chard stems from leaves. Thinly slice stems. Roughly chop leaves.",
+      "Add remaining 15ml olive oil to the same pan. Reduce heat to medium. Add diced onion and cook until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Toast rice for 2 minutes, stirring constantly until edges become translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add a ladleful (about 250ml) of hot chicken broth to the rice. Stir continuously until broth is mostly absorbed. Add sliced Swiss chard stems.",
+      "Continue adding broth, one ladleful at a time, stirring constantly and waiting until each addition is almost fully absorbed before adding the next. This process takes about 18-20 minutes.",
+      "After 15 minutes of cooking, add chopped Swiss chard leaves. Continue stirring and adding broth until rice is al dente and risotto is creamy and fluid. It should not be dry.",
+      "Stir in cooked chicken chunks. Remove pan from heat. Add butter and grated Parmigiano Reggiano. Stir vigorously for 1 minute to emulsify and create a creamy texture (mantecatura).",
+      "Season with salt and pepper to taste. Let risotto rest for 2 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 850,
+      "cholesterol_mg": 236,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 51.7,
+      "saturated_fat_g": 13.3,
+      "sodium_mg": 1743,
+      "total_carbs_g": 74.9,
+      "total_fat_g": 35.5,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.1,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 239,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 79,
+      "dietary_fiber": 16,
+      "protein": 103,
+      "saturated_fat": 67,
+      "sodium": 76,
+      "total_carbs": 27,
+      "total_fat": 46
+    },
+    "serving_size_g": 728,
+    "total_recipe_weight_g": 2912
+  }
+]

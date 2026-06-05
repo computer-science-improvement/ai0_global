@@ -1,0 +1,715 @@
+[
+  {
+    "recipe_name": "Crab and Blue Cheese Burgers with Paprika Corn Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crab_and_blue_cheese_burgers_with_paprika_corn_salsa_20250624_142603_967012d6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:26:03.843505000Z",
+    "selected_ingredients": [
+      "blue cheese",
+      "paprika",
+      "corn",
+      "crab"
+    ],
+    "complexity": "simple",
+    "special_requests": "Make me a juicy crab burger",
+    "visual_description": "A single, hearty crab and blue cheese burger is presented on a simple, round, off-white ceramic plate. The golden-brown crab patty is thick and substantial, resting on a crisp green lettuce leaf. Visible flecks of crab and pockets of melted blue cheese are evident within the patty. A thick, vibrant red tomato slice peeks out from beneath the patty. The burger is generously topped with a chunky paprika corn salsa, showcasing bright yellow corn kernels, finely diced red onion, and green cilantro. A small, natural mound of additional corn salsa is casually placed beside the burger on the plate. The setting is a well-used wooden dining table, with warm, cozy lighting from a kitchen fixture. The background is blurred, hinting at a lived-in family kitchen atmosphere. A simple, folded cloth napkin rests nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Fresh crab meat",
+        "quantity": "400g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "60g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10g"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Blue cheese, crumbled",
+        "quantity": "80g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Frozen or canned corn, drained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Burger buns",
+        "quantity": "4"
+      },
+      {
+        "name": "Lettuce leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Tomato, sliced",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Prepare corn salsa. In a medium bowl, combine corn, smoked paprika, diced red onion, chopped cilantro, lime juice, and olive oil. Season with salt and pepper. Mix well. Set aside.",
+      "Prepare crab patties. Gently flake crab meat into a large bowl. Remove any shell pieces. Do not overhandle.",
+      "Add panko breadcrumbs, egg, mayonnaise, Dijon mustard, lemon juice, and chopped parsley to the crab. Season with salt and pepper. Gently mix until just combined.",
+      "Fold in the crumbled blue cheese. Form the mixture into 4 equal, thick patties, about 2.5 cm thick.",
+      "Cook patties. Heat vegetable oil in a large non-stick pan over medium heat.",
+      "Place patties in the hot pan. Cook for 4 to 5 minutes per side, until golden brown and heated through.",
+      "Assemble burgers. Lightly toast the burger buns.",
+      "Place a lettuce leaf on the bottom half of each bun. Top with a crab patty and a tomato slice.",
+      "Spoon a generous amount of paprika corn salsa over the patty. Place the top bun. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.4,
+      "calories": 638.21,
+      "cholesterol_mg": 119.78,
+      "dietary_fiber_g": 5.78,
+      "protein_g": 35.98,
+      "saturated_fat_g": 7.61,
+      "sodium_mg": 1159,
+      "total_carbs_g": 66.14,
+      "total_fat_g": 28.58,
+      "total_sugars_g": 12.97,
+      "trans_fat_g": 0.08
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.62,
+      "calories": 165.66,
+      "cholesterol_mg": 31.09,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9.34,
+      "saturated_fat_g": 1.97,
+      "sodium_mg": 300.84,
+      "total_carbs_g": 17.17,
+      "total_fat_g": 7.42,
+      "total_sugars_g": 3.37,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.93,
+      "dietary_fiber": 20.65,
+      "protein": 71.96,
+      "saturated_fat": 38.03,
+      "sodium": 50.39,
+      "total_carbs": 24.05,
+      "total_fat": 36.64
+    },
+    "serving_size_g": 385.25,
+    "total_recipe_weight_g": 1541
+  },
+  {
+    "recipe_name": "Creamy Tuscan Chicken with Tagliatelle and Seared Peaches",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tuscan_chicken_with_tagliatelle_and_seared_peaches_20250624_142601_4b14b31e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:26:02.129733000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "peach"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Tuscan Chicken with Tagliatelle and Seared Peaches is presented in a clean, wide white porcelain pasta bowl. Al dente tagliatelle forms a generous base, coated in a rich, creamy, light orange-hued sauce with visible flecks of red from the sun-dried tomatoes and vibrant green from wilted spinach leaves. Tender, golden-brown chicken medallions are nestled atop the pasta. Interspersed are soft, caramelized peach wedges, adding a warm, golden hue. The dish is garnished with a sprinkle of fresh, bright green chopped basil, providing a fresh contrast. The composition is balanced, allowing for moderate negative space. The bowl rests on a simple wooden table surface. A white cotton napkin is folded beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and colors, with a soft, inviting restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the creamy sauce.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Tagliatelle",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh ripe peaches",
+        "quantity": "2-3 medium"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Sun-dried tomatoes (oil-packed)",
+        "quantity": "50g, drained and sliced"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Small yellow onion",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, freshly grated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh basil or parsley",
+        "quantity": "Small bunch, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and pepper. Heat 15ml olive oil in a large pan over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown and cooked through to 75°C (167°F) internal temperature. Remove chicken from pan. Rest for 5 minutes, then cut into thick medallions or chunks.",
+      "While chicken rests, bring a large pot of salted water to a boil. Add tagliatelle. Cook according to package directions until al dente. Drain pasta, reserving 100ml pasta water.",
+      "Cut peaches into 1.5 cm thick wedges. In the same pan used for chicken, add remaining 15ml olive oil. Add peach wedges. Sear 2-3 minutes per side until slightly softened and caramelized. Remove from pan and set aside.",
+      "Add diced onion to the pan. Sauté 3-4 minutes until translucent. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the pan. Bring to a simmer.",
+      "Stir in heavy cream and sliced sun-dried tomatoes. Reduce heat to medium-low. Simmer for 2 minutes until sauce slightly thickens.",
+      "Add fresh spinach to the sauce. Cook until wilted, about 1-2 minutes.",
+      "Return chicken medallions/chunks and seared peach wedges to the pan. Add cooked tagliatelle. Toss gently to combine. Add a splash of reserved pasta water if needed to reach desired consistency.",
+      "Stir in grated Parmesan cheese. Season with additional salt and pepper to taste. Serve immediately, garnished with fresh basil or parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Use ripe but firm peaches to ensure they hold their shape when seared."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1034,
+      "cholesterol_mg": 219,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 77.7,
+      "saturated_fat_g": 17.1,
+      "sodium_mg": 541,
+      "total_carbs_g": 87.9,
+      "total_fat_g": 38.6,
+      "total_sugars_g": 13,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 194,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 14.6,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 102,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 22,
+      "protein": 155,
+      "saturated_fat": 85,
+      "sodium": 24,
+      "total_carbs": 32,
+      "total_fat": 50
+    },
+    "serving_size_g": 533,
+    "total_recipe_weight_g": 2132
+  },
+  {
+    "recipe_name": "Creamy Tomato Basil Pasta with Burrata",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_basil_pasta_with_burrata_20250624_142600_2dd89071.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:26:00.718714000Z",
+    "selected_ingredients": [
+      "pasta",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish presents as a vibrant, inviting mound of rigatoni pasta, perfectly al dente, coated in a luscious, creamy tomato-basil sauce. The sauce, made from halved cherry tomatoes that have burst and softened, is a rich reddish-orange hue, flecked with finely diced onion and thinly sliced garlic. Nestled atop the pasta mound is a generous, irregular piece of fresh burrata cheese, its creamy white exterior gently yielding to reveal a soft, milky interior. The entire composition is brightly accented with roughly torn fresh basil leaves, their deep green contrasting beautifully with the sauce and burrata. A light drizzle of golden olive oil adds a subtle sheen. The pasta is served on a clean, round white porcelain plate, with ample negative space. The setting includes simple, elegant silver flatware and a folded white linen napkin, evoking a modern Italian bistro ambiance with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh burrata cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions until al dente. Reserve 250ml pasta water. Drain pasta.",
+      "While pasta cooks, heat olive oil in a large skillet over medium heat. Add finely diced onion. Cook until softened, about 5 minutes.",
+      "Add thinly sliced garlic to skillet. Cook 1 minute until fragrant. Do not brown.",
+      "Add halved cherry tomatoes to skillet. Cook, stirring occasionally, for 10-12 minutes until tomatoes burst and soften into a sauce. Mash some tomatoes with a spoon.",
+      "Pour in vegetable broth. Bring to a simmer. Cook 5 minutes.",
+      "Stir in heavy cream. Simmer for 2-3 minutes until slightly thickened.",
+      "Add cooked pasta to the skillet with the sauce. Add grated Parmesan cheese and half of the reserved pasta water. Stir vigorously to combine and emulsify the sauce.",
+      "Remove from heat. Stir in most of the roughly torn fresh basil. Season with salt and pepper.",
+      "Divide pasta among four plates. Place a piece of burrata on top of each serving. Garnish with remaining fresh basil leaves and a drizzle of olive oil."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 772,
+      "cholesterol_mg": 62,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 24.7,
+      "saturated_fat_g": 14,
+      "sodium_mg": 482,
+      "total_carbs_g": 85.6,
+      "total_fat_g": 34.7,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 201,
+      "cholesterol_mg": 16,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6.4,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 125,
+      "total_carbs_g": 22.2,
+      "total_fat_g": 9,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21,
+      "dietary_fiber": 19,
+      "protein": 49,
+      "saturated_fat": 70,
+      "sodium": 21,
+      "total_carbs": 31,
+      "total_fat": 44
+    },
+    "serving_size_g": 385,
+    "total_recipe_weight_g": 1540
+  },
+  {
+    "recipe_name": "Spicy Beer-Braised Gizzards with Cheesy Moong Dal",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_beer-braised_gizzards_with_cheesy_moong_dal_20250624_142554_f2a96bab.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:25:54.836737000Z",
+    "selected_ingredients": [
+      "chicken gizzard",
+      "cheese",
+      "hot sauce",
+      "moong dal",
+      "dark beer"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of spicy beer-braised chicken gizzards is presented on a round, rustic ceramic plate. The gizzards, cooked until fork-tender and retaining their natural, irregular shapes, are a deep reddish-brown from the braising liquid. They are nestled atop a generous bed of creamy, golden-yellow moong dal mash, which has a smooth yet slightly textured appearance. A rich, dark brown braising liquid pools around the gizzards and slightly into the dal, glistening subtly. A light sprinkle of vibrant green chopped fresh parsley provides a simple, functional garnish. The plate rests on a well-used wooden dining table, illuminated by warm, natural kitchen lighting, creating a cozy, lived-in atmosphere. A simple, off-white cloth napkin is casually placed beside the plate. The overall presentation is homely and comforting, highlighting the hearty nature of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "cultural_origin": "American Comfort",
+    "hero_ingredient": "Chicken Gizzard",
+    "ingredients": [
+      {
+        "name": "Chicken gizzards",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Moong dal (split yellow lentils)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Dark beer",
+        "quantity": "350 ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Sharp cheddar cheese, grated",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Onion, medium",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped (for garnish)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Trim chicken gizzards. Remove any tough silver skin or fat. Rinse well. Pat dry.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear gizzards in batches until browned on all sides. Do not overcrowd the pot. Remove gizzards. Set aside.",
+      "Reduce heat to medium. Add chopped onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in dark beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Stir in hot sauce and chicken broth. Return seared gizzards to the pot.",
+      "Bring liquid to a boil. Reduce heat to low. Cover pot tightly. Simmer for 1.5 to 2 hours, or until gizzards are very tender. Internal temperature must reach 75°C.",
+      "While gizzards simmer, rinse moong dal thoroughly under cold water.",
+      "Combine rinsed dal with 600 ml fresh water in a medium saucepan. Bring to a boil. Reduce heat to low. Simmer, uncovered, for 15-20 minutes, or until dal is tender and water is mostly absorbed. Stir occasionally.",
+      "Drain any excess water from the cooked dal. Stir in butter and grated cheddar cheese until melted and creamy. Season dal with salt and pepper to taste. Mash lightly for a smoother consistency.",
+      "Once gizzards are tender, remove them from the pot. Increase heat to medium-high. Reduce braising liquid until slightly thickened, about 5-10 minutes.",
+      "Season braising liquid with salt and pepper as needed.",
+      "Serve hot gizzards over generous portions of cheesy moong dal. Spoon reduced braising liquid over gizzards. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 705,
+      "cholesterol_mg": 603,
+      "dietary_fiber_g": 9,
+      "protein_g": 58.5,
+      "saturated_fat_g": 14.4,
+      "sodium_mg": 536,
+      "total_carbs_g": 39.9,
+      "total_fat_g": 33.7,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 157,
+      "cholesterol_mg": 134.6,
+      "dietary_fiber_g": 2,
+      "protein_g": 13.1,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 119.6,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 201,
+      "dietary_fiber": 32,
+      "protein": 117,
+      "saturated_fat": 72,
+      "sodium": 23,
+      "total_carbs": 15,
+      "total_fat": 43
+    },
+    "serving_size_g": 448.3,
+    "total_recipe_weight_g": 1793.1
+  },
+  {
+    "recipe_name": "Spicy Turkey Mince Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_turkey_mince_stir-fry_20250624_142552_4ae2d2d7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:25:53.331969000Z",
+    "selected_ingredients": [
+      "milk",
+      "egg",
+      "greek yogurt",
+      "chicken stock",
+      "mincemeat",
+      "chicken",
+      "beef",
+      "turkey",
+      "spinach",
+      "carrot",
+      "banana",
+      "apple",
+      "avocado",
+      "tomato",
+      "rice",
+      "bread",
+      "onion",
+      "cucumber",
+      "coriander",
+      "garlic",
+      "ginger",
+      "chili",
+      "lime",
+      "coconut oil",
+      "olive oil",
+      "butter",
+      "maple syrup",
+      "honey",
+      "peanut butter",
+      "coconut cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "make turkey mince the main protein. Stir fry style",
+    "visual_description": "A single portion of Spicy Turkey Mince Stir-fry is presented on a clean white porcelain dinner plate. A neat mound of fluffy white Jasmine rice occupies one side of the plate. Adjacent to it, a generous, free-form serving of the glossy, savory turkey mince stir-fry is arranged. The finely browned turkey mince is interspersed with vibrant green wilted spinach leaves, bright orange julienned carrots, and subtle flecks of red chili and dark green coriander. The dish is garnished with a scattering of fresh chopped coriander over the stir-fry and a bright green lime wedge placed beside the rice. The textures are varied: fluffy rice, tender mince, and slightly crisp carrots. The scene is set on a simple wooden table, with a plain white cotton napkin and chopsticks resting on a small ceramic holder beside the plate, all under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Southeast Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of chili-garlic sauce for extra heat.",
+      "Offer fresh lime wedges for squeezing over the dish.",
+      "Serve in individual bowls, allowing guests to combine rice and stir-fry as desired."
+    ],
+    "hero_ingredient": "Turkey Mince",
+    "ingredients": [
+      {
+        "name": "Turkey mince",
+        "quantity": "500g"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "250g uncooked"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1-2, to taste"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Coconut oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "1/4 cup, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse rice. Cook rice according to package instructions. Set aside.",
+      "Dice onion. Mince garlic. Grate ginger. Thinly slice red chili. Julienne carrots. Roughly chop spinach.",
+      "Heat coconut oil in a large wok or deep skillet over medium-high heat.",
+      "Add diced onion. Sauté until translucent, about 3 minutes.",
+      "Add minced garlic, grated ginger, and sliced chili. Stir-fry for 1 minute until fragrant.",
+      "Add turkey mince to the wok. Break it up with a spoon. Cook, stirring occasionally, until browned and cooked through, about 8-10 minutes. Ensure internal temperature reaches 75°C (167°F).",
+      "Drain any excess fat from the wok.",
+      "Stir in julienned carrots. Cook for 2-3 minutes, retaining slight crispness.",
+      "Pour in soy sauce, chicken stock, and honey/maple syrup. Bring to a simmer. Cook for 2 minutes.",
+      "Add fresh spinach. Stir until wilted, about 1 minute.",
+      "Remove from heat. Squeeze in fresh lime juice. Season with salt and pepper to taste.",
+      "Serve immediately with hot Jasmine rice. Garnish with fresh chopped coriander."
+    ],
+    "notes": [
+      "Ensure turkey mince reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust chili quantity based on preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 554,
+      "cholesterol_mg": 95,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 35.1,
+      "saturated_fat_g": 8,
+      "sodium_mg": 855,
+      "total_carbs_g": 68.2,
+      "total_fat_g": 15.9,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 109,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.9,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 168,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31.7,
+      "dietary_fiber": 14.9,
+      "protein": 70.3,
+      "saturated_fat": 40.2,
+      "sodium": 37.2,
+      "total_carbs": 24.8,
+      "total_fat": 20.3
+    },
+    "serving_size_g": 510,
+    "total_recipe_weight_g": 2038
+  }
+]

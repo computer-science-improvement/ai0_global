@@ -1,0 +1,660 @@
+[
+  {
+    "recipe_name": "Zero-Waste Chicken with Fermented Tomato-Onion Sauce and Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zero-waste_chicken_with_fermented_tomato-onion_sauce_and_pasta_20250625_083458_faf63f00.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:34:59.135787000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "onion",
+      "mustard",
+      "cheddar"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of seared chicken thigh rests centrally on a bed of al dente whole grain fusilli pasta. The chicken, with its golden-brown, crispy skin, is presented as a whole piece. Around the chicken, a rich, rustic tomato-onion sauce, made from slow-cooked diced tomatoes and caramelized onions, pools gently, showcasing its deep reddish-brown hue and a few visible herb flecks. Alongside, a vibrant quick-fermented red onion and tomato relish, with thinly sliced red onion rings and small tomato wedges, adds a bright pop of color and texture. A thin, irregular shard of golden-brown aged cheddar crisp leans artfully against the chicken, providing a textural contrast. The composition is clean and uncrowded, allowing each element to breathe. The dish is served on a handcrafted, matte cream ceramic plate, set on a light, textured reclaimed wood surface. An undyed linen napkin in a natural beige tone is casually folded to the side. Soft, diffused natural light illuminates the scene, highlighting the dish's natural colors and textures. A subtle, out-of-focus hint of green foliage from a potted plant is visible in the background, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 pieces (approx. 700g total)"
+      },
+      {
+        "name": "Whole grain fusilli pasta",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Red onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Aged cheddar cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or basil",
+        "quantity": "small bunch, for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Quick Fermented Relish: Dice 200g tomatoes and thinly slice half a red onion. Combine in a bowl with a pinch of salt and 15ml white wine vinegar. Let sit at room temperature for at least 30 minutes, or refrigerate for longer fermentation up to 2 days.",
+      "Prepare Cheddar Crisps: Preheat oven to 180°C. Grate aged cheddar cheese onto a baking sheet lined with parchment paper, forming four thin circles (approx. 8cm diameter). Bake for 8-10 minutes, or until golden and crisp. Let cool and harden. Break into irregular shards.",
+      "Cook Chicken: Pat chicken thighs dry. Season generously with salt and black pepper. Heat 15ml olive oil in a large oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear for 8-10 minutes until skin is deeply golden and crisp. Flip chicken. Transfer skillet to preheated oven. Bake for 15-20 minutes, or until internal temperature reaches 75°C. Remove chicken, rest on a cutting board.",
+      "Prepare Sauce: While chicken bakes, finely chop remaining 300g tomatoes and remaining 1.5 red onions. Mince garlic. In the same skillet (after removing chicken), add remaining 15ml olive oil if needed. Add chopped onions and cook over medium heat for 5-7 minutes until softened. Add minced garlic and cook for 1 minute until fragrant. Stir in chopped tomatoes and vegetable stock. Bring to a simmer. Cook for 10-15 minutes, stirring occasionally, until sauce slightly thickens. Stir in Dijon mustard. Season with salt and pepper.",
+      "Cook Pasta: Bring a large pot of salted water to a boil. Add whole grain fusilli pasta. Cook according to package directions until al dente. Drain, reserving 50ml pasta water.",
+      "Combine and Serve: Add drained pasta to the tomato-onion sauce. Add reserved pasta water if needed to achieve desired consistency. Slice chicken thighs in half if desired, or keep whole. Plate a portion of pasta and sauce. Top with a seared chicken thigh. Spoon a generous amount of the Quick Fermented Relish alongside. Garnish with cheddar crisp shards and fresh parsley or basil leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 866.47,
+      "cholesterol_mg": 191.25,
+      "dietary_fiber_g": 9.03,
+      "protein_g": 50.32,
+      "saturated_fat_g": 14.47,
+      "sodium_mg": 555.42,
+      "total_carbs_g": 67.2,
+      "total_fat_g": 44.69,
+      "total_sugars_g": 9.22,
+      "trans_fat_g": 0.25
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 164.01,
+      "cholesterol_mg": 36.22,
+      "dietary_fiber_g": 1.71,
+      "protein_g": 9.53,
+      "saturated_fat_g": 2.74,
+      "sodium_mg": 105.19,
+      "total_carbs_g": 12.73,
+      "total_fat_g": 8.46,
+      "total_sugars_g": 1.75,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.75,
+      "dietary_fiber": 32.25,
+      "protein": 100.64,
+      "saturated_fat": 72.35,
+      "sodium": 24.15,
+      "total_carbs": 24.44,
+      "total_fat": 57.29
+    },
+    "serving_size_g": 528,
+    "total_recipe_weight_g": 2112
+  },
+  {
+    "recipe_name": "Tofu Teriyaki Donburi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tofu_teriyaki_donburi_20250625_083451_c64018ea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:34:52.000893000Z",
+    "selected_ingredients": [
+      "tofu",
+      "soy sauce",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Tofu Teriyaki Donburi is presented in an everyday, deep ceramic donburi bowl. A generous bed of fluffy white Japanese short-grain rice fills the bottom. Golden-brown, pan-fried tofu cubes, generously coated in a glossy, dark amber teriyaki glaze, are casually arranged on top of the rice. The tofu pieces are whole, not sliced or fanned. Bright green, thinly sliced green onions are scattered across the top, alongside a sprinkle of pale, toasted sesame seeds, adding contrasting color and texture. The bowl sits on a well-used wooden dining table, illuminated by warm, cozy kitchen lighting. Chopsticks are casually placed beside the bowl. The scene evokes a relaxed, homely family dining atmosphere with natural imperfections and minimal clutter.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a small bowl of miso soup",
+      "Offer a side of pickled ginger (gari)",
+      "Use chopsticks for eating"
+    ],
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Tofu, extra-firm",
+        "quantity": "800g"
+      },
+      {
+        "name": "Japanese short-grain rice",
+        "quantity": "400g (dry)"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Sake (cooking)",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Water (for slurry)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "3 stalks, thinly sliced"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Press tofu: Drain tofu. Wrap in paper towels. Place between two plates. Weigh down top plate with heavy object for 30 minutes to 1 hour.",
+      "Prepare rice: Rinse rice until water runs clear. Cook rice in a rice cooker or pot according to package directions.",
+      "Cut tofu: Cut pressed tofu into 2 cm cubes.",
+      "Make teriyaki sauce: Combine soy sauce, mirin, sake, and sugar in a small bowl. Stir until sugar dissolves.",
+      "Cook tofu: Heat vegetable oil in a large non-stick pan over medium-high heat. Add tofu cubes. Cook, turning occasionally, until all sides are golden brown and slightly crispy. This takes 8-10 minutes.",
+      "Glaze tofu: Pour teriyaki sauce over tofu in the pan. Bring to a simmer. In a separate small bowl, mix cornstarch with 2 tablespoons water to create a slurry. Add slurry to simmering sauce, stirring constantly. Cook until sauce thickens and coats tofu.",
+      "Assemble: Divide cooked rice among four donburi bowls. Arrange glazed tofu cubes over rice.",
+      "Garnish: Sprinkle generously with sliced green onions and toasted sesame seeds. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Pressing tofu for optimal texture",
+      "Preparing a traditional teriyaki glaze",
+      "Properly cooking short-grain Japanese rice"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 18.01,
+      "calories": 746.58,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.44,
+      "protein_g": 26.53,
+      "saturated_fat_g": 2.38,
+      "sodium_mg": 139.73,
+      "total_carbs_g": 111.51,
+      "total_fat_g": 18.66,
+      "total_sugars_g": 19.25,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3.07,
+      "calories": 127.08,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 0.41,
+      "protein_g": 4.52,
+      "saturated_fat_g": 0.41,
+      "sodium_mg": 23.78,
+      "total_carbs_g": 18.98,
+      "total_fat_g": 3.18,
+      "total_sugars_g": 3.28,
+      "trans_fat_g": 0.001
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 8.71,
+      "protein": 53.06,
+      "saturated_fat": 11.9,
+      "sodium": 6.07,
+      "total_carbs": 40.55,
+      "total_fat": 23.92
+    },
+    "serving_size_g": 587.5,
+    "total_recipe_weight_g": 2350
+  },
+  {
+    "recipe_name": "Spicy Korean Beef Rice Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_korean_beef_rice_bowl_20250625_083407_1276b8e6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:34:07.691392000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "onion",
+      "chili",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Spicy Korean Beef Rice Bowl is presented in a clean, white porcelain bowl. A generous bed of fluffy, steamed short-grain white rice forms the base. Piled on top are irregular, medium-sized chunks of savory, deeply browned beef, interspersed with tender, caramelized slivers of onion and minced garlic. The beef exhibits a slight char and glossy coating from the spicy sauce. Scattered across the top are vibrant red, thinly sliced rounds of fresh chili and bright green, thinly sliced green onions, providing pops of color and freshness. A sprinkle of toasted sesame seeds adds a subtle textural contrast. The dish is arranged organically, allowing the textures and colors of the ingredients to speak for themselves, with moderate negative space in the bowl. The setting is a modern bistro, featuring a simple wooden table surface. A white cotton napkin is placed beside the bowl. Chopsticks rest beside the bowl, ready for use. Natural, even lighting illuminates the dish, with a minimal, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with small side dishes (banchan) such as kimchi or pickled radish.",
+      "Offer a clear, light broth on the side.",
+      "Eat with chopsticks and a spoon for the rice."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or short rib meat",
+        "quantity": "600 g, cut into 2-3 cm chunks"
+      },
+      {
+        "name": "Short-grain rice",
+        "quantity": "400 g (uncooked)"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, minced"
+      },
+      {
+        "name": "Fresh red chili",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4, thinly sliced"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Gochugaru (Korean chili powder)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Sugar or honey",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "1 tbsp, grated"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 tsp"
+      }
+    ],
+    "instructions": [
+      "Rinse rice. Cook rice according to package directions. Set aside.",
+      "Combine soy sauce, gochujang, gochugaru, sesame oil, sugar or honey, grated ginger, and black pepper in a bowl. Add beef chunks. Mix well. Marinate for at least 30 minutes, or up to 4 hours in the refrigerator.",
+      "Heat cooking oil in a large skillet or wok over high heat.",
+      "Add marinated beef to the hot skillet. Cook for 3-4 minutes, stirring occasionally, until beef is browned and slightly caramelized. Cook in batches if necessary to avoid overcrowding.",
+      "Add sliced onion and minced garlic to the skillet with the beef. Stir-fry for another 5-7 minutes until onions are tender-crisp and beef is cooked through.",
+      "Divide cooked rice among four individual serving bowls.",
+      "Spoon the spicy beef and onion mixture over the rice in each bowl.",
+      "Garnish each bowl with thinly sliced fresh red chili, sliced green onions, and toasted sesame seeds. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Marinating beef for flavor infusion",
+      "High-heat stir-frying for caramelization and texture"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5.5,
+      "calories": 801.1,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 43.3,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 1139.4,
+      "total_carbs_g": 96.8,
+      "total_fat_g": 25.3,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.5,
+      "calories": 221.6,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 1,
+      "protein_g": 12,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 315.2,
+      "total_carbs_g": 26.8,
+      "total_fat_g": 7,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 12.8,
+      "protein": 86.7,
+      "saturated_fat": 30.8,
+      "sodium": 49.5,
+      "total_carbs": 35.2,
+      "total_fat": 32.5
+    },
+    "serving_size_g": 361.5,
+    "total_recipe_weight_g": 1446
+  },
+  {
+    "recipe_name": "Mushroom and Parmesan Risotto with Poached Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom_and_parmesan_risotto_with_poached_egg_20250625_083329_9c80c436.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:33:30.257106000Z",
+    "selected_ingredients": [
+      "egg",
+      "mushroom",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Mushroom and Parmesan Risotto is presented in a deep, clean white porcelain bowl, positioned on a simple wooden table surface. The risotto forms a fluid, organic mound, showcasing its rich, creamy texture and light golden color. Sliced, golden-brown sautéed mushrooms are visibly folded into the risotto and gently arranged on top. A perfectly poached egg, with its delicate white set and a hint of its golden yolk peeking through, rests centrally on the risotto. The dish is garnished with a light sprinkle of freshly grated Parmesan cheese and finely chopped vibrant green parsley. To the side, a small plate holds a piece of crusty ciabatta bread, accompanied by standard European flatware (fork and spoon) and a cotton napkin. The setting is a modern bistro, with natural, even lighting casting soft shadows and a subtly blurred, casual restaurant background, highlighting the authentic Italian presentation and the inviting warmth of the dish. The entire plate and surrounding elements are visible, with appropriate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Mixed mushrooms (e.g., cremini, shiitake)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Vegetable or chicken stock, warm",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Clean mushrooms. Slice larger mushrooms. Set aside.",
+      "Heat 1 tablespoon olive oil and 10g butter in a large saucepan over medium heat. Add diced onion. Cook until translucent, about 5 minutes. Add minced garlic. Cook 1 minute until fragrant.",
+      "Add Arborio rice to the saucepan. Stir for 2 minutes until rice grains are translucent at edges.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add one ladle of warm stock to the rice. Stir constantly until liquid is absorbed. Continue adding stock one ladle at a time, stirring until absorbed before adding more. This takes about 18-20 minutes. Risotto should be creamy and rice al dente.",
+      "While risotto cooks, heat remaining 1 tablespoon olive oil in a separate pan. Add sliced mushrooms. Sauté over medium-high heat until golden brown and tender, about 7-10 minutes. Season with salt and pepper. Set aside a few slices for garnish.",
+      "When risotto is nearly done, bring a pot of water to a gentle simmer. Add a splash of vinegar if desired. Carefully crack each egg into a small bowl, then gently slide into the simmering water. Poach eggs for 3-4 minutes until whites are set and yolks are still runny.",
+      "Remove risotto from heat. Stir in remaining 50g butter and 80g grated Parmesan cheese. Stir vigorously until butter and cheese are fully incorporated and risotto is creamy (mantecatura). Fold in most of the sautéed mushrooms.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "To serve, ladle a generous portion of creamy risotto into each warm bowl. Place one poached egg gently on top of each serving. Garnish with remaining sautéed mushroom slices, a sprinkle of fresh Parmesan, and chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 721,
+      "cholesterol_mg": 241,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 24.9,
+      "saturated_fat_g": 15.1,
+      "sodium_mg": 857,
+      "total_carbs_g": 76.4,
+      "total_fat_g": 32.4,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 3.9,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 134,
+      "total_carbs_g": 12,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80,
+      "dietary_fiber": 11,
+      "protein": 50,
+      "saturated_fat": 76,
+      "sodium": 37,
+      "total_carbs": 28,
+      "total_fat": 42
+    },
+    "serving_size_g": 637.5,
+    "total_recipe_weight_g": 2550
+  },
+  {
+    "recipe_name": "Spicy Beer-Braised Chicken with Tomato Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_beer-braised_chicken_with_tomato_brown_rice_20250625_083249_d4c11e2e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:32:49.657766000Z",
+    "selected_ingredients": [
+      "chicken",
+      "brown rice",
+      "beer",
+      "chili",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single braised chicken thigh, golden-brown and glistening, rests atop a vibrant mound of reddish-orange brown rice. The chicken is whole, tender, with visible crispy skin edges. The rice is fluffy, infused with tomato, and shows flecks of red and orange. A rich, savory, slightly thickened beer-tomato braising sauce pools around the chicken and rice. Freshly chopped green cilantro is scattered over the dish, adding a pop of color and freshness. A bright green lime wedge is placed beside the chicken. The dish is presented on a clean white porcelain dinner plate, set on a simple wooden table surface. A cotton napkin is neatly folded beside the plate. The overall composition is balanced and inviting, with moderate negative space. The lighting is natural and even.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas on the side for dipping into the sauce.",
+      "Offer extra lime wedges."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Beer (lager or pale ale)",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Chili (e.g., jalapeño or serrano), finely diced",
+        "quantity": "1-2 (adjust to taste)"
+      },
+      {
+        "name": "Onion, medium, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cumin, ground",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g (or to taste)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g (or to taste)"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Lime, wedges",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy, about 5-7 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pot.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic, diced chili, chili powder, cumin, and oregano. Cook for 1 minute until fragrant.",
+      "Pour in beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Add diced tomatoes and chicken broth. Return chicken thighs to the pot, skin-side up. Ensure chicken is partially submerged.",
+      "Bring to a gentle simmer. Cover the pot and transfer to a preheated oven at 180°C (350°F).",
+      "Braise for 45-60 minutes, or until chicken is very tender and reaches an internal temperature of 75°C (167°F).",
+      "While chicken braises, cook brown rice. Rinse brown rice thoroughly.",
+      "In a medium saucepan, combine brown rice with 500ml water. Bring to a boil.",
+      "Reduce heat to low, cover, and simmer for 35-40 minutes, or until water is absorbed and rice is tender. Let stand covered for 5 minutes, then fluff with a fork.",
+      "Taste braising liquid for seasoning. Adjust salt and pepper as needed.",
+      "To serve, place a mound of tomato brown rice on each plate. Top with a braised chicken thigh. Spoon generous amount of braising liquid over chicken and rice.",
+      "Garnish with fresh chopped cilantro and a lime wedge."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 677,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 46.5,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 1328,
+      "total_carbs_g": 31.4,
+      "total_fat_g": 38.8,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117.7,
+      "cholesterol_mg": 32.7,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 231,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 16,
+      "protein": 93,
+      "saturated_fat": 48,
+      "sodium": 58,
+      "total_carbs": 11,
+      "total_fat": 50
+    },
+    "serving_size_g": 575,
+    "total_recipe_weight_g": 2300
+  }
+]

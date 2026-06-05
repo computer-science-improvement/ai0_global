@@ -1,0 +1,662 @@
+[
+  {
+    "recipe_name": "Smoked Paprika Beef Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_paprika_beef_pasta_20250713_222333_bedaa2c0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T22:23:33.810435000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "onion",
+      "bell pepper",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A robust, savory \"Smoked Paprika Beef Pasta\" is presented on a clean white porcelain dinner plate. The rich, deep reddish-brown beef and bell pepper ragu is generously spooned over a bed of golden, al dente wide egg noodles. Tender, braised beef chunks, approximately 3-4 cm, are interspersed with vibrant diced red and green bell peppers and soft, translucent diced onions. The sauce has a glossy sheen, indicating its slow-cooked richness. A small dollop of creamy white sour cream sits beside the ragu, offering a striking color contrast. A sprinkle of freshly chopped green parsley adds a final touch of color and freshness. The dish is centered on a simple wooden table, with a cotton napkin and classic flatware beside it, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Central European",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread to soak up the rich sauce.",
+      "Offer a dollop of sour cream or crème fraîche for added richness.",
+      "Garnish with fresh parsley or finely chopped red onion."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef Chuck",
+        "quantity": "800g (cut into 3-4 cm cubes)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves (minced)"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large (diced)"
+      },
+      {
+        "name": "Green Bell Pepper",
+        "quantity": "1 large (diced)"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Sweet Paprika",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pasta (e.g., egg noodles or pappardelle)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "for garnish (chopped)"
+      },
+      {
+        "name": "Sour Cream",
+        "quantity": "for serving (optional)"
+      }
+    ],
+    "instructions": [
+      "Season beef cubes generously with salt and black pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until deeply browned on all sides. Do not overcrowd the pot. Remove beef and set aside.",
+      "Add diced onion to the same pot. Cook, stirring occasionally, until softened and translucent, about 5-7 minutes.",
+      "Stir in minced garlic and tomato paste. Cook for 1 minute until fragrant.",
+      "Add smoked paprika and sweet paprika. Stir well and cook for 30 seconds until aromatic.",
+      "Return seared beef to the pot. Add diced red and green bell peppers, beef broth, and diced tomatoes. Stir to combine.",
+      "Bring the mixture to a simmer. Reduce heat to low, cover the pot, and braise for 2 to 2.5 hours, or until the beef is fork-tender. Stir occasionally to prevent sticking.",
+      "While the beef braises, cook pasta according to package directions until al dente. Drain well.",
+      "Taste the beef sauce and adjust seasoning with salt and pepper as needed.",
+      "Serve the rich beef and bell pepper sauce generously over the cooked pasta.",
+      "Garnish each serving with fresh chopped parsley. Offer sour cream on the side for individual preference."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1043,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 9.75,
+      "protein_g": 71.21,
+      "saturated_fat_g": 13.68,
+      "sodium_mg": 356,
+      "total_carbs_g": 96.18,
+      "total_fat_g": 40.11,
+      "total_sugars_g": 12.49,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9.46,
+      "saturated_fat_g": 1.82,
+      "sodium_mg": 47,
+      "total_carbs_g": 12.78,
+      "total_fat_g": 5.33,
+      "total_sugars_g": 1.66,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.67,
+      "dietary_fiber": 34.82,
+      "protein": 142.42,
+      "saturated_fat": 68.39,
+      "sodium": 15.48,
+      "total_carbs": 34.97,
+      "total_fat": 51.42
+    },
+    "serving_size_g": 752.5,
+    "total_recipe_weight_g": 3010
+  },
+  {
+    "recipe_name": "Pan-Seared Coconut Almond Crusted Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_coconut_almond_crusted_chicken_20250713_205731_a167f82e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T20:57:31.841212000Z",
+    "selected_ingredients": [
+      "coconut flour",
+      "egg",
+      "almond"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Coconut Almond Crusted Chicken is presented centrally on a clean white porcelain dinner plate. The chicken breast is a whole, thick piece, showcasing a rich golden-brown, visibly crispy crust. A light, glossy lemon butter sauce is gently spooned over the chicken and around its base. Alongside the chicken, a neat cluster of vibrant green beans, blanched to tender-crisp, and bright red cherry tomato halves are artfully arranged. The green beans are presented as whole batons. The overall composition is balanced with moderate negative space. The setting is a modern bistro: a simple wooden table surface, a white cotton napkin placed beside the plate, and standard flatware. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 pieces (approx. 180-200g each)"
+      },
+      {
+        "name": "Coconut flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Ground almonds",
+        "quantity": "100g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2, beaten"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "5g"
+      },
+      {
+        "name": "Green beans, trimmed",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "100g"
+      }
+    ],
+    "instructions": [
+      "Pound chicken breasts to an even thickness of about 1.5 cm. Season chicken with salt and pepper.",
+      "Prepare three shallow dishes: one with coconut flour, one with beaten eggs, and one with ground almonds.",
+      "Dredge each chicken breast first in coconut flour, shaking off any excess.",
+      "Dip chicken in beaten egg, ensuring it is fully coated.",
+      "Press chicken into ground almonds, coating completely.",
+      "Heat olive oil in a large non-stick pan over medium-high heat.",
+      "Add chicken breasts to the hot pan. Sear for 4-5 minutes per side until golden brown and cooked through (internal temperature 75°C).",
+      "Remove chicken from pan and keep warm.",
+      "In the same pan, add butter. Deglaze with chicken broth.",
+      "Stir in lemon juice. Simmer for 2 minutes until the sauce slightly reduces.",
+      "Blanch green beans in boiling salted water for 2-3 minutes. Drain well.",
+      "Plate each chicken breast centrally. Arrange green beans (batons) and cherry tomato halves neatly beside it.",
+      "Spoon lemon butter sauce over the chicken. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 263,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 71.5,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 692,
+      "total_carbs_g": 18.1,
+      "total_fat_g": 34,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 70,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 19.1,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 185,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 88,
+      "dietary_fiber": 35,
+      "protein": 143,
+      "saturated_fat": 41,
+      "sodium": 30,
+      "total_carbs": 7,
+      "total_fat": 44
+    },
+    "serving_size_g": 374.9,
+    "total_recipe_weight_g": 1499.5
+  },
+  {
+    "recipe_name": "Chicken and Gruyère Tart",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_gruy%C3%A8re_tart_20250713_201044_760e9b19.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T20:10:45.300680000Z",
+    "selected_ingredients": [
+      "egg",
+      "milk",
+      "sugar",
+      "flour",
+      "cheese",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown Chicken and Gruyère Tart slice rests on a clean white porcelain dinner plate. The tart features a crisp, flaky pastry crust encasing a rich, creamy custard filling. Tender, medium-diced pieces of roasted chicken, showing a slight golden sear, are embedded within, alongside streaks of melted, slightly browned Gruyère cheese and translucent sautéed onion. The tart's top is deep golden, with some caramelized cheese. The neatly cut slice reveals defined crust and filling layers. A small sprig of fresh thyme garnishes the plate. The plate sits on a light wooden surface, beside a folded grey cotton napkin. Natural, even lighting highlights the dish's textures and warm colors. The background is softly blurred, suggesting a casual bistro. This single, generous slice showcases the entire tart portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve warm or at room temperature.",
+      "Often accompanied by a simple green salad with a vinaigrette.",
+      "Enjoyed as a light lunch or dinner."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cold unsalted butter, diced",
+        "quantity": "125g"
+      },
+      {
+        "name": "Large egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Ice water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fine salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400g"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "150g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Double cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Freshly grated nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Combine flour, salt, and sugar in a large bowl.",
+      "Add cold diced butter. Rub butter into flour using fingertips until mixture resembles coarse breadcrumbs.",
+      "Add egg yolk and ice water, a little at a time. Mix until dough just comes together. Do not overwork.",
+      "Form dough into a disc. Wrap in cling film. Chill for 30 minutes.",
+      "Preheat oven to 200°C.",
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in an oven-safe pan over medium-high heat. Sear chicken thighs until golden brown on all sides.",
+      "Transfer pan to oven. Roast chicken for 15-20 minutes, or until internal temperature reaches 75°C.",
+      "Remove chicken from oven. Let rest 5 minutes. Dice chicken into small cubes (approx. 1 cm).",
+      "Reduce oven temperature to 180°C.",
+      "In a small pan, heat a touch of olive oil. Sauté diced onion over medium heat until softened, about 5 minutes.",
+      "Add minced garlic. Sauté for 1 minute until fragrant. Set aside.",
+      "In a large bowl, whisk eggs, milk, and cream.",
+      "Season with salt, pepper, and a pinch of nutmeg.",
+      "Stir in grated Gruyère cheese, diced chicken, and sautéed onion and garlic.",
+      "On a lightly floured surface, roll out chilled pastry dough to a 30cm circle.",
+      "Carefully transfer pastry to a 24cm tart tin with a removable bottom. Press gently into sides. Trim excess pastry.",
+      "Line pastry with parchment paper. Fill with pie weights or dried beans. Blind bake for 15 minutes.",
+      "Remove weights and parchment. Bake for another 5 minutes until crust is lightly golden.",
+      "Pour chicken and cheese filling into the pre-baked tart shell.",
+      "Bake for 35-45 minutes, or until the filling is set and golden brown. A knife inserted near the center should come out clean.",
+      "Let tart cool in tin for 10-15 minutes before removing."
+    ],
+    "notes": [
+      "Ensure the chicken is fully cooked to 75°C before dicing.",
+      "Do not overmix the pastry dough for a tender crust.",
+      "For best results, use a tart tin with a removable bottom."
+    ],
+    "traditional_techniques": [
+      "Blind baking",
+      "Making a custard filling (appareil)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 1022,
+      "cholesterol_mg": 464,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 44,
+      "saturated_fat_g": 35.4,
+      "sodium_mg": 501,
+      "total_carbs_g": 57.1,
+      "total_fat_g": 67.5,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 248.5,
+      "cholesterol_mg": 112.9,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 10.7,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 122,
+      "total_carbs_g": 13.9,
+      "total_fat_g": 16.4,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 155,
+      "dietary_fiber": 8,
+      "protein": 88,
+      "saturated_fat": 177,
+      "sodium": 22,
+      "total_carbs": 21,
+      "total_fat": 87
+    },
+    "serving_size_g": 411,
+    "total_recipe_weight_g": 1644
+  },
+  {
+    "recipe_name": "Mushroom and Roasted Tomato Salad with Rosemary-Verjus Dressing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom_and_roasted_tomato_salad_with_rosemary-verjus_dressing_20250713_200045_347991fd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T20:00:45.887043000Z",
+    "selected_ingredients": [
+      {
+        "name": "ketchup"
+      },
+      {
+        "name": "verjus"
+      },
+      {
+        "name": "rosemary"
+      },
+      {
+        "name": "tomato"
+      },
+      {
+        "name": "mushroom"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "The salad is presented on a clean white porcelain dinner plate, showcasing a vibrant mix of colors and textures. Roasted cremini mushroom slices, approximately 1 cm thick, are gently tossed with halved cherry tomatoes. These warm components are nestled amongst crisp, vibrant green mixed salad leaves, creating a harmonious and inviting mound. A glossy Rosemary-Verjus dressing is artfully drizzled over the salad, catching the light. The arrangement is natural and flowing, allowing all ingredients to be visible. The plate is set on a simple wooden table surface with a linen napkin and standard silver cutlery beside it, under soft, natural, even lighting, evoking a casual bistro atmosphere. The overall presentation is professional yet approachable, emphasizing the freshness of the vegetables.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "500 g, sliced 1 cm thick"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g, halved"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "3 sprigs (2 for roasting, 1 for dressing)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Verjus",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "On a baking sheet, combine sliced mushrooms, halved cherry tomatoes, 2 rosemary sprigs, and 30 ml olive oil. Season with salt and pepper. Toss to coat.",
+      "Roast for 15-20 minutes, or until mushrooms are tender and tomatoes slightly burst. Remove rosemary sprigs.",
+      "While vegetables roast, prepare the dressing. Finely chop leaves from remaining rosemary sprig.",
+      "In a small bowl, whisk together ketchup, verjus, chopped rosemary, and remaining 50 ml olive oil. Season with salt and pepper.",
+      "In a large bowl, combine roasted mushrooms and tomatoes with mixed salad greens. Gently toss.",
+      "Drizzle dressing over the salad. Toss lightly to coat.",
+      "Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Spanish Chicken and Rice with Fried Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_rice_with_fried_egg_20250713_182544_9679c881.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T18:25:44.829918000Z",
+    "selected_ingredients": [
+      "tomato",
+      "chicken",
+      "rice",
+      "onion",
+      "oil",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Spanish Chicken and Rice dish, centrally mounded on a clean white porcelain plate. Fluffy, saffron-infused golden-yellow rice forms the base. Tender, rustic chunks of seasoned chicken, pulled from bone-in thighs, are arranged artfully around the rice. A perfectly fried egg, with a glistening, slightly runny yolk and crisp edges, crowns the rice. Freshly chopped flat-leaf parsley is sprinkled generously for a burst of green and freshness. Diced red bell pepper and tomato pieces are visible throughout the rice, adding color and texture. The presentation is clean and inviting, with moderate negative space. Served on a simple wooden table with traditional Spanish flatware, a cotton napkin, and a minimalist bistro background under natural, even lighting. The focus is entirely on the inviting colors and textures of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve hot as a main course.",
+      "Offer crusty bread to sop up any remaining sauce.",
+      "Serve with a simple green salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Ripe tomatoes, diced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Smoked paprika (pimentón dulce)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "30 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat 30 ml olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down for 5-7 minutes until golden brown and crisp. Flip and sear for 3-4 minutes on the other side. Remove chicken from pot and set aside.",
+      "Reduce heat to medium. Add remaining 30 ml olive oil to the pot. Add diced onion and red bell pepper. Sauté for 5-7 minutes until softened.",
+      "Stir in minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Add diced tomatoes and cook for 5 minutes, breaking them down with a spoon.",
+      "Stir in rice. Cook for 2 minutes, coating rice in the sofrito.",
+      "Pour in chicken broth. Add saffron threads. Bring to a boil.",
+      "Return chicken thighs to the pot, nestling them into the rice. Reduce heat to low. Cover tightly and simmer for 20-25 minutes, or until chicken reaches 75°C internal temperature and rice is tender and liquid absorbed.",
+      "Remove chicken from pot. Shred or cut into rustic chunks. Discard bones and skin if desired. Keep warm.",
+      "Fluff rice with a fork. Adjust seasoning with salt and pepper.",
+      "Heat a separate non-stick pan over medium heat. Add a small amount of oil. Fry eggs sunny-side up or over easy until whites are set and yolks are desired consistency.",
+      "Plate individual portions of rice. Arrange chicken chunks around the rice. Top each serving with a fried egg. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best flavor, use high-quality chicken broth.",
+      "Adjust the amount of smoked paprika to your preference for a deeper smoky flavor."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 965,
+      "cholesterol_mg": 370,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 54,
+      "saturated_fat_g": 12.2,
+      "sodium_mg": 1331,
+      "total_carbs_g": 70.9,
+      "total_fat_g": 51.5,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148,
+      "cholesterol_mg": 57,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 204,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 123,
+      "dietary_fiber": 13,
+      "protein": 108,
+      "saturated_fat": 61,
+      "sodium": 58,
+      "total_carbs": 26,
+      "total_fat": 66
+    },
+    "serving_size_g": 653,
+    "total_recipe_weight_g": 2611
+  }
+]

@@ -1,0 +1,602 @@
+[
+  {
+    "recipe_name": "Mediterranean Eggplant and Leek Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_eggplant_and_leek_gratin_20250707_064229_2f4df359.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T06:42:29.626992000Z",
+    "selected_ingredients": [
+      "leek",
+      "eggplant"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Eggplant and Leek Gratin is served on a clean, round white porcelain dinner plate, centrally placed on a simple light wooden table. The gratin is a substantial rectangular slice, showing distinct layers of tender, browned eggplant rounds, creamy pale green leeks, and rich red tomato sauce, all bound by melted, bubbly golden-brown mozzarella and parmesan cheeses. The top crust is golden and crisp from the baked breadcrumbs. A few vibrant green fresh basil leaves are scattered artfully over the gratin, providing a pop of fresh color and aromatic contrast. The plate is surrounded by moderate negative space. Beside the plate, a neatly folded linen napkin and standard silver flatware are arranged. The background is softly blurred, hinting at a casual bistro atmosphere with natural, even lighting illuminating the dish from above, highlighting its textures and warm colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Eggplants",
+        "quantity": "2 medium (approx. 700g)"
+      },
+      {
+        "name": "Leeks",
+        "quantity": "2 large (approx. 400g)"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Mozzarella cheese",
+        "quantity": "150g, shredded"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/4 cup, chopped"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Slice eggplants into 1 cm thick rounds. Place in a colander. Sprinkle generously with salt. Let sit for 30 minutes to draw out moisture. Pat dry thoroughly with paper towels.",
+      "Preheat oven to 200°C. Slice leeks into 1 cm thick rounds. Mince garlic.",
+      "Heat 30 ml olive oil in a large pan over medium heat. Add leeks. Sauté until softened, about 8 minutes. Add minced garlic. Cook for 1 minute more. Remove from pan. Set aside.",
+      "Add remaining 30 ml olive oil to the same pan. Add eggplant slices in batches. Cook until golden brown on both sides, about 3-4 minutes per side. Remove and drain on paper towels.",
+      "In a medium saucepan, combine crushed tomatoes, dried oregano, salt, and pepper. Simmer for 10 minutes. Stir in half of the fresh basil.",
+      "Lightly grease a 20x30 cm baking dish. Spread a thin layer of tomato sauce on the bottom.",
+      "Arrange a layer of cooked eggplant slices over the sauce. Top with a layer of sautéed leeks. Sprinkle with some shredded mozzarella and grated Parmesan.",
+      "Repeat layers: tomato sauce, eggplant, leeks, cheeses. Finish with a final layer of eggplant, then remaining tomato sauce.",
+      "In a small bowl, mix breadcrumbs with a drizzle of olive oil. Sprinkle evenly over the top of the gratin.",
+      "Bake for 25-30 minutes, or until bubbling and the top is golden brown. Let rest for 5 minutes before serving.",
+      "Garnish with remaining fresh basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 448,
+      "cholesterol_mg": 31.3,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 21.4,
+      "saturated_fat_g": 8,
+      "sodium_mg": 535.9,
+      "total_carbs_g": 40.8,
+      "total_fat_g": 24.6,
+      "total_sugars_g": 13.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 98,
+      "cholesterol_mg": 6.8,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 4.7,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 117.3,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 31,
+      "protein": 43,
+      "saturated_fat": 40,
+      "sodium": 23,
+      "total_carbs": 15,
+      "total_fat": 32
+    },
+    "serving_size_g": 456.8,
+    "total_recipe_weight_g": 1827
+  },
+  {
+    "recipe_name": "Teriyaki Glazed Salmon with Coconut Rice and Roasted Sweet Potato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_teriyaki_glazed_salmon_with_coconut_rice_and_roasted_sweet_potato_20250707_064013_e8e8773b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T06:40:13.932966000Z",
+    "selected_ingredients": [
+      "salmon",
+      "rice",
+      "sweet potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A professionally plated individual portion of Teriyaki Glazed Salmon with Coconut Rice and Roasted Sweet Potato on a clean, white porcelain dinner plate. Two medium-sized, pan-seared salmon fillets, with a glossy, deep amber teriyaki glaze and slightly charred edges, are the central focus. They are placed slightly overlapping. A neat, fluffy mound of white coconut rice sits beside the salmon. Golden-brown roasted sweet potato wedges, their edges slightly caramelized, are arranged around the salmon and rice. The dish is garnished with bright green, thinly sliced green onions scattered over the salmon and rice, and a sprinkle of toasted sesame seeds over the salmon. The composition is balanced with moderate negative space. The cutting shapes are whole salmon fillets and thick sweet potato wedges. The setting is a modern bistro, featuring a simple wooden table surface. A pair of dark wooden chopsticks rests beside the plate. Natural, even lighting highlights the dish. The background is minimal and unobtrusive, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese-inspired",
+    "cultural_serving_suggestions": [
+      "Serve with chopsticks and a small individual rice bowl.",
+      "Offer a small side dish of pickled ginger or a light miso soup."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin on or off",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Sake (cooking sake or dry white wine)",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Coconut milk (full fat)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Sweet potatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Green onions, thinly sliced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and peel sweet potatoes. Cut into 2 cm thick wedges.",
+      "Toss sweet potato wedges with 15 ml olive oil and a pinch of salt. Spread on a baking sheet.",
+      "Roast sweet potatoes for 20-25 minutes, or until tender and lightly caramelized. Flip halfway through.",
+      "Rinse jasmine rice under cold water until water runs clear. Drain well.",
+      "Combine rinsed rice, coconut milk, 200 ml water, and 5 g salt in a medium saucepan.",
+      "Bring to a boil over medium-high heat. Reduce heat to low. Cover and simmer for 15 minutes.",
+      "Remove from heat. Let sit, covered, for 10 minutes. Fluff with a fork.",
+      "Combine soy sauce, mirin, sake, brown sugar, grated ginger, and minced garlic in a small saucepan.",
+      "Bring to a simmer over medium heat. Cook for 5-7 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Pat salmon fillets dry with paper towels.",
+      "Heat 15 ml vegetable oil in a large non-stick pan over medium-high heat.",
+      "Place salmon fillets skin-side down (if skin-on) in the hot pan. Cook for 4-5 minutes until skin is crispy.",
+      "Flip salmon. Cook for another 3-4 minutes, or until cooked through and internal temperature reaches 63°C.",
+      "Brush salmon with a generous amount of teriyaki glaze during the last minute of cooking. Reserve some glaze for serving.",
+      "To plate, place a mound of coconut rice on one side of a white plate. Arrange two salmon fillets next to the rice.",
+      "Place roasted sweet potato wedges around the salmon and rice.",
+      "Drizzle remaining teriyaki glaze over the salmon.",
+      "Garnish with thinly sliced green onions and toasted sesame seeds."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.31,
+      "calories": 1033.71,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 5.55,
+      "protein_g": 47.33,
+      "saturated_fat_g": 17.81,
+      "sodium_mg": 356.18,
+      "total_carbs_g": 97.1,
+      "total_fat_g": 47.38,
+      "total_sugars_g": 20.88,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.47,
+      "calories": 208.3,
+      "cholesterol_mg": 19.95,
+      "dietary_fiber_g": 1.12,
+      "protein_g": 9.54,
+      "saturated_fat_g": 3.59,
+      "sodium_mg": 71.77,
+      "total_carbs_g": 19.57,
+      "total_fat_g": 9.56,
+      "total_sugars_g": 4.21,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 19.8,
+      "protein": 94.7,
+      "saturated_fat": 89.1,
+      "sodium": 15.5,
+      "total_carbs": 35.3,
+      "total_fat": 60.7
+    },
+    "serving_size_g": 496.25,
+    "total_recipe_weight_g": 1985
+  },
+  {
+    "recipe_name": "Risotto al Pollo e Carote Fermentate",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_risotto_al_pollo_e_carote_fermentate_20250707_063210_24c9b169.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T06:32:11.112172000Z",
+    "selected_ingredients": [
+      "chili",
+      "chicken",
+      "garlic",
+      "rice",
+      "carrot"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "italian cuisine",
+    "visual_description": "A single portion of creamy, free-flowing risotto is presented on a handcrafted ceramic plate in an earth-toned cream or beige. The risotto, a pale, creamy hue, is generously studded with vibrant orange cubes of both fresh and fermented carrots, creating a natural color contrast. Tender, irregular chunks of seared chicken are interspersed throughout the risotto, not fanned or sliced, showcasing their natural form. A delicate drizzle of golden chili garlic oil, infused with subtle red chili flecks, artfully garnishes the surface, adding a touch of warmth and sheen. A scattering of finely chopped fresh parsley or blanched carrot tops provides a vibrant green accent. The plating is minimalistic and unforced, emphasizing the natural textures and colors of the ingredients with ample white space around the dish. The plate rests on a light bamboo or reclaimed wood surface. An undyed linen napkin in natural beige is casually placed nearby. Soft, natural lighting illuminates the scene, highlighting the dish's organic beauty. The background is clean and uncluttered, with hints of natural elements like subtle greenery, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a primo piatto or main course.",
+      "Accompany with a simple green salad dressed with olive oil and lemon."
+    ],
+    "hero_ingredient": "Fermented Carrots",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Carrots, fresh",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrots, fermented (pre-prepared)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red chili, fresh",
+        "quantity": "1-2 (to taste)"
+      },
+      {
+        "name": "Onion, medium",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken or vegetable broth (warm)",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or carrot tops, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Dice fresh carrots into small cubes. Dice fermented carrots similarly. Mince garlic and chili. Finely chop onion.",
+      "Heat 20ml olive oil in a large pot or Dutch oven over medium-high heat. Sear chicken thighs until golden brown on all sides. Remove chicken. Set aside. Cook chicken to 75°C internal temperature.",
+      "Add remaining 20ml olive oil and butter to the pot. Add chopped onion. Cook until translucent, about 5 minutes.",
+      "Add fresh diced carrots, minced garlic, and chili. Cook for 3-4 minutes until fragrant.",
+      "Add Arborio rice to the pot. Toast rice for 2 minutes, stirring constantly, until edges are translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Begin adding warm broth, one ladleful at a time. Stir constantly. Wait for liquid to be almost absorbed before adding next ladleful.",
+      "While risotto cooks, shred or cut seared chicken into irregular, tender chunks.",
+      "After about 15 minutes of adding broth, add fermented carrots and chicken chunks to the risotto. Continue adding broth and stirring.",
+      "Cook until rice is al dente, creamy, and free-flowing, about 20-25 minutes total. Risotto should not be dry.",
+      "Remove from heat. Stir in grated Parmesan cheese and a final 20ml olive oil. Season with salt and pepper to taste. Let rest for 2 minutes.",
+      "Serve immediately in warm bowls. Garnish with chopped fresh parsley or finely chopped carrot tops."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by encouraging homemade broth from chicken bones and vegetable scraps. Carrot tops can be used for garnish.",
+      "Fermentation adds a unique tangy depth, enhancing the flavor profile sustainably."
+    ],
+    "traditional_techniques": [
+      "Manteca (mantecatura)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 818.1,
+      "cholesterol_mg": 164.5,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 37.3,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 1582.7,
+      "total_carbs_g": 81.5,
+      "total_fat_g": 35.1,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 21.3,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 4.8,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 205.1,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 16,
+      "protein": 75,
+      "saturated_fat": 59,
+      "sodium": 69,
+      "total_carbs": 30,
+      "total_fat": 45
+    },
+    "serving_size_g": 771.75,
+    "total_recipe_weight_g": 3087
+  },
+  {
+    "recipe_name": "Sweet Potato and Onion Fritters",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_potato_and_onion_fritters_20250707_062655_0ca6d61a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T06:26:56.002424000Z",
+    "selected_ingredients": [
+      "sweet potato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A stack of golden-brown Sweet Potato and Onion Fritters is arranged casually on a simple, round, off-white ceramic plate. The fritters are irregularly shaped, showcasing visible strands of grated sweet potato and small, soft pieces of onion, with some edges slightly crispier and darker golden. A light scattering of finely chopped fresh chives adds a subtle green accent. The plate sits on a well-used, light-toned wooden dining table, revealing its natural grain and imperfections. Beside it, a casually folded, light grey linen napkin adds a homely touch. The scene is bathed in warm, soft overhead lighting, creating a comforting and inviting atmosphere typical of a family kitchen. The entire plate is visible, presenting a generous, unpretentious portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Cooked",
+    "hero_ingredient": "Sweet Potato",
+    "ingredients": [
+      {
+        "name": "Sweet Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Peel sweet potatoes. Grate sweet potatoes coarsely.",
+      "Peel and finely dice onion.",
+      "In a large bowl, combine grated sweet potato, diced onion, flour, egg, salt, and pepper. Mix well until just combined.",
+      "Heat vegetable oil in a large frying pan over medium heat. Oil should be about 1 cm deep.",
+      "Spoon 2-3 tablespoons of mixture per fritter into the hot oil. Flatten slightly with the back of a spoon.",
+      "Cook fritters for 3-4 minutes per side, until golden brown and cooked through.",
+      "Remove fritters with a slotted spoon. Place on a wire rack lined with paper towels to drain excess oil.",
+      "Finely chop fresh chives. Sprinkle over warm fritters.",
+      "Serve warm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 255.2,
+      "cholesterol_mg": 46.6,
+      "dietary_fiber_g": 4.86,
+      "protein_g": 5.59,
+      "saturated_fat_g": 0.98,
+      "sodium_mg": 570.4,
+      "total_carbs_g": 39.93,
+      "total_fat_g": 8.42,
+      "total_sugars_g": 6.74,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131.9,
+      "cholesterol_mg": 24.1,
+      "dietary_fiber_g": 2.51,
+      "protein_g": 2.89,
+      "saturated_fat_g": 0.51,
+      "sodium_mg": 294.8,
+      "total_carbs_g": 20.63,
+      "total_fat_g": 4.35,
+      "total_sugars_g": 3.48,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15.5,
+      "dietary_fiber": 17.4,
+      "protein": 11.2,
+      "saturated_fat": 4.9,
+      "sodium": 24.8,
+      "total_carbs": 14.5,
+      "total_fat": 10.8
+    },
+    "serving_size_g": 193.5,
+    "total_recipe_weight_g": 774
+  },
+  {
+    "recipe_name": "Hazelnut Dacquoise Sandwiches with Milk Chocolate Ganache",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hazelnut_dacquoise_sandwiches_with_milk_chocolate_ganache_20250707_060045_34bd5dc9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T06:00:46.407758000Z",
+    "selected_ingredients": [
+      {
+        "name": "hazelnut"
+      },
+      {
+        "name": "vanilla"
+      },
+      {
+        "name": "milk chocolate"
+      },
+      {
+        "name": "egg white"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Japanese",
+    "visual_description": "Six to nine perfectly uniform miniature hazelnut dacquoise sandwiches are precisely arranged on a sleek, rectangular white porcelain serving platter. Each sandwich features two crisp, light golden-brown dacquoise discs, about 4 cm in diameter, joined by a generous layer of smooth, creamy milk chocolate ganache. The dacquoise has a delicate, airy texture with finely ground hazelnuts visible. A light, even dusting of white icing sugar graces the top of each piece, with a single, small, perfectly roasted hazelnut half pressed gently onto the center for visual accent. The arrangement is clean and linear, showcasing the consistent size and refined finish of each petit four. The platter is positioned on a simple wooden surface, accompanied by a folded light grey cotton napkin. Natural, soft lighting illuminates the scene, highlighting the delicate textures and balanced colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Japanese",
+    "cultural_origin": "Modern Japanese",
+    "cultural_serving_suggestions": [
+      "Served on a single elegant platter for shared enjoyment, reflecting Japanese hospitality and aesthetic."
+    ],
+    "hero_ingredient": "Hazelnut",
+    "ingredients": [
+      {
+        "name": "Egg whites",
+        "quantity": "4 large (approx. 120g)"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "60g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "60g"
+      },
+      {
+        "name": "Ground hazelnuts",
+        "quantity": "100g"
+      },
+      {
+        "name": "Milk chocolate",
+        "quantity": "150g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Pinch of salt"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Line two baking sheets with parchment paper.",
+      "Whip egg whites with a pinch of salt in a clean bowl until soft peaks form.",
+      "Gradually add granulated sugar. Continue whipping until stiff, glossy peaks form.",
+      "Sift icing sugar and ground hazelnuts together. Gently fold into the meringue mixture until just combined.",
+      "Transfer meringue to a piping bag with a round nozzle. Pipe small, uniform discs (approx. 4 cm diameter) onto the prepared baking sheets. Leave space between discs.",
+      "Bake for 15-20 minutes, or until light golden and crisp. Turn off oven, leave dacquoise inside for 10 minutes to dry. Remove and cool completely on a wire rack.",
+      "Finely chop milk chocolate. Place in a heatproof bowl.",
+      "Heat heavy cream and vanilla extract in a small saucepan until just simmering. Do not boil.",
+      "Pour hot cream over chopped chocolate. Let stand for 2 minutes. Whisk gently from the center outwards until smooth and emulsified. This is your ganache.",
+      "Let ganache cool to a spreadable consistency, about 20-30 minutes at room temperature, or briefly chill in refrigerator, stirring occasionally.",
+      "Once dacquoise discs are cool and ganache is set, spread or pipe a generous amount of ganache onto the flat side of half the dacquoise discs.",
+      "Top with the remaining discs to form sandwiches. Gently press together.",
+      "Arrange the finished dacquoise sandwiches on a serving platter. Lightly dust with additional icing sugar if desired. Serve immediately or chill briefly to firm up."
+    ],
+    "notes": [
+      "Ensure dacquoise discs are completely cool before assembling to prevent ganache from melting.",
+      "For best results, store assembled petit fours in an airtight container in a cool, dry place or refrigerate lightly if ganache is too soft."
+    ],
+    "traditional_techniques": [
+      "Precision baking",
+      "Mise en place"
+    ]
+  }
+]

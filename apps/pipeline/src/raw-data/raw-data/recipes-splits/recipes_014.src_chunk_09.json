@@ -1,0 +1,654 @@
+[
+  {
+    "recipe_name": "Broccoli Rabe and Orzo Pasta Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_broccoli_rabe_and_orzo_pasta_salad_20250630_051418_28cff3bf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:14:19.106680000Z",
+    "selected_ingredients": [
+      "pasta",
+      "broccoli rabe"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A homely, comforting Broccoli Rabe and Orzo Pasta Salad is presented in a rustic, shallow ceramic serving bowl on a well-used wooden dining table. The orzo pasta is small and rice-shaped, lightly coated in a bright lemon-garlic olive oil dressing. Interspersed throughout are vibrant green, tender-crisp chopped broccoli rabe florets and stems, about 2-3 cm in length. Bright red halved cherry tomatoes add pops of color and freshness, mixed evenly with the other ingredients. The salad has a natural, slightly loose arrangement, allowing components to touch and overlap, appearing casually tossed. A light sprinkle of grated Parmesan cheese, if used, is visible on top. The overall color palette is natural greens, yellows, and reds, with a soft, inviting texture. The table setting includes simple, everyday ceramic plates and standard metal flatware. Warm, natural lighting from a kitchen window or overhead fixture illuminates the scene, creating a cozy, lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in any residual dressing."
+    ],
+    "hero_ingredient": "Broccoli Rabe",
+    "ingredients": [
+      {
+        "name": "Broccoli Rabe",
+        "quantity": "500g"
+      },
+      {
+        "name": "Orzo Pasta",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, juice and zest"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50g, grated (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200g, halved"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Add orzo pasta. Cook according to package directions until al dente. Drain pasta.",
+      "While pasta cooks, wash and trim broccoli rabe. Discard tough ends. Chop broccoli rabe into 2-3 cm pieces.",
+      "In a large pan, heat 30ml olive oil over medium heat. Add minced garlic and red pepper flakes. Sauté for 1 minute until fragrant. Do not brown garlic.",
+      "Add chopped broccoli rabe to the pan. Sauté for 5-7 minutes until tender-crisp.",
+      "In a large mixing bowl, combine cooked orzo pasta, sautéed broccoli rabe, and halved cherry tomatoes.",
+      "Pour remaining 50ml olive oil over the pasta and vegetables. Add lemon juice and lemon zest.",
+      "Add grated Parmesan cheese, if using. Season with salt and black pepper to taste.",
+      "Toss gently to combine all ingredients. Serve warm or at room temperature."
+    ],
+    "notes": [
+      "This salad can be served warm or at room temperature. For a bolder broccoli rabe flavor, blanching before sautéing is optional to reduce bitterness, but sautéing directly provides a more robust taste."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 494.4,
+      "cholesterol_mg": 11.1,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 16.6,
+      "saturated_fat_g": 5,
+      "sodium_mg": 711.9,
+      "total_carbs_g": 57.3,
+      "total_fat_g": 23.3,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 175.6,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 5.9,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 252.9,
+      "total_carbs_g": 20.4,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 5.6,
+      "dietary_fiber": 26.5,
+      "protein": 33.1,
+      "saturated_fat": 24.9,
+      "sodium": 31,
+      "total_carbs": 20.8,
+      "total_fat": 29.9
+    },
+    "serving_size_g": 281.5,
+    "total_recipe_weight_g": 1126
+  },
+  {
+    "recipe_name": "Spiced Chicken and Bulgur Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_chicken_and_bulgur_pilaf_20250630_051004_112116dc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:10:04.926779000Z",
+    "selected_ingredients": [
+      "bulgur"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Spiced Chicken and Bulgur Pilaf is presented on a clean, round white ceramic dinner plate. The bulgur pilaf forms a rustic, fluffy mound at the center, its grains distinct and golden-brown from aromatic spices like cumin and paprika. Nestled atop the pilaf are several substantial, tender chunks of seared chicken thigh, their exteriors a rich, caramelized brown. The chicken is not fanned, but placed as whole, inviting pieces. Vibrant green chopped fresh parsley is generously sprinkled over the chicken and bulgur, providing a fresh contrast. A scattering of golden, toasted pine nuts adds a delicate crunch and visual appeal. A bright yellow lemon wedge is placed to the side, ready to be squeezed. The plate is set on a simple light-colored wooden table. A folded, light-colored cotton napkin rests beside the plate. The scene is illuminated by soft, natural, even lighting from the side, creating subtle shadows and highlighting the textures and warm colors of the dish. The background is minimal, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Middle Eastern",
+    "cultural_origin": "Middle Eastern",
+    "cultural_serving_suggestions": [
+      "Serve with a side of plain yogurt or labneh.",
+      "Offer a simple cucumber and tomato salad (Shirazi salad).",
+      "Accompany with warm flatbread or pita bread."
+    ],
+    "hero_ingredient": "Bulgur and Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Coarse bulgur",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Allspice",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Pine nuts, toasted",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon wedges",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until deeply golden brown on all sides. Remove chicken from pot. Set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic, cumin, coriander, paprika, and allspice. Cook 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Add bulgur to the pot. Stir to coat grains with spices and tomato paste.",
+      "Pour in chicken broth. Bring to a boil.",
+      "Return seared chicken thighs to the pot. Nestle them into the bulgur mixture.",
+      "Reduce heat to low. Cover pot tightly. Simmer for 20-25 minutes, or until bulgur is tender and chicken reaches an internal temperature of 75°C (167°F).",
+      "Remove pot from heat. Let rest, covered, for 5 minutes.",
+      "Fluff bulgur with a fork. Slice chicken thighs into thick chunks.",
+      "Stir in half of the fresh parsley. Adjust seasoning as needed.",
+      "Serve pilaf in individual portions. Top with chicken chunks. Garnish with remaining fresh parsley, toasted pine nuts, and a lemon wedge."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Coarse bulgur is recommended for best texture in this pilaf."
+    ],
+    "traditional_techniques": [
+      "Pilaf method",
+      "Spice blooming"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 629,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 13.8,
+      "protein_g": 43.6,
+      "saturated_fat_g": 5,
+      "sodium_mg": 321,
+      "total_carbs_g": 57.3,
+      "total_fat_g": 26.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 9.6,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 71,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 49,
+      "protein": 87,
+      "saturated_fat": 25,
+      "sodium": 14,
+      "total_carbs": 21,
+      "total_fat": 34
+    },
+    "serving_size_g": 452.25,
+    "total_recipe_weight_g": 1809
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Lavender-Tarragon Cream Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_lavender-tarragon_cream_sauce_20250630_050839_28666e0a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:08:40.394182000Z",
+    "selected_ingredients": [
+      "lavender",
+      "tarragon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast rests centrally on a clean white porcelain dinner plate. The chicken, cooked to a tender finish, displays a light golden-brown sear. A generous pool of creamy, pale ivory sauce, infused with subtle lavender specks and vibrant green tarragon, partially covers the chicken. Alongside, a neat cluster of golden-brown roasted potato wedges is arranged, their exteriors slightly crisp, interiors soft. Bright green, tender-crisp asparagus spears are gracefully placed beside the potatoes. The dish is garnished with a fresh sprig of tarragon. The overall presentation is refined yet approachable, with moderate negative space. The plate is set on a simple, light-colored wooden table. A folded cotton napkin is placed to the side. Natural, even lighting illuminates the scene, creating a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Dried culinary lavender buds",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Fresh tarragon leaves",
+        "quantity": "3 tablespoons, chopped"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely minced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold)",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Fresh asparagus spears",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash and pat dry chicken breasts. Season generously with salt and pepper.",
+      "Wash potatoes. Cut into 2 cm wedges. Toss with 1 tablespoon olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast potatoes for 20 minutes. Add asparagus spears to the baking sheet. Drizzle asparagus with remaining olive oil, salt, and pepper. Continue roasting for 10-15 minutes until potatoes are tender and golden, and asparagus is tender-crisp.",
+      "Heat a large oven-safe skillet over medium-high heat. Add butter and 1 tablespoon olive oil.",
+      "Sear chicken breasts for 4-5 minutes per side until golden brown. Transfer chicken to a plate. Internal temperature should reach 75°C.",
+      "Reduce heat to medium. Add minced shallots to the skillet. Cook for 2 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the pan. Bring to a simmer. Cook for 2 minutes until slightly reduced.",
+      "Stir in chicken stock, heavy cream, and dried lavender buds. Bring to a gentle simmer. Cook for 5-7 minutes until sauce thickens slightly.",
+      "Stir in chopped fresh tarragon. Season sauce with salt and pepper to taste.",
+      "Return seared chicken breasts to the skillet with the sauce. Spoon sauce over chicken. Serve immediately with roasted potatoes and asparagus."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 356.1,
+      "cholesterol_mg": 160.5,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 57.2,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 657.1,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 62.5,
+      "cholesterol_mg": 28.2,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 10,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 115.3,
+      "total_carbs_g": 1.3,
+      "total_fat_g": 1.7,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.5,
+      "dietary_fiber": 4.6,
+      "protein": 114.4,
+      "saturated_fat": 16.5,
+      "sodium": 28.6,
+      "total_carbs": 2.7,
+      "total_fat": 12.2
+    },
+    "serving_size_g": 569.8,
+    "total_recipe_weight_g": 2279
+  },
+  {
+    "recipe_name": "Lavender and Tarragon Roasted Chicken with Cream Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lavender_and_tarragon_roasted_chicken_with_cream_sauce_20250630_050555_f38918ce.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:05:56.130721000Z",
+    "selected_ingredients": [
+      "lavender",
+      "tarragon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of roasted chicken breast is presented on a clean, round white porcelain plate. The chicken, cut into two or three thick, succulent pieces, rests slightly offset, displaying its golden-brown, herb-crusted skin. A generous pool of creamy, pale ivory white wine sauce, flecked with bright green tarragon, is spooned beneath and around the chicken. Roasted new potatoes, their skins slightly browned, are neatly arranged beside it. Vibrant green blanched asparagus spears are placed alongside the potatoes. A sprinkle of fresh lemon zest and a small tarragon sprig garnish the chicken. The composition is balanced, with moderate negative space. The dish sits on a simple wooden table. Silver flatware is placed beside, with a folded cotton napkin. Natural, even lighting highlights the textures and colors of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp green salad.",
+      "Serve with a good quality baguette.",
+      "Pair with a glass of the white wine used in the sauce."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Dried lavender",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Fresh tarragon",
+        "quantity": "3 tbsp (chopped, plus extra for garnish)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 (finely minced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves (minced)"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Potatoes (small, new potatoes or fingerlings)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": "200g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (for zest)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Mix lavender, 1 tbsp chopped tarragon, salt, and pepper. Rub mixture onto chicken.",
+      "Preheat oven to 200°C. Toss potatoes with 1 tbsp olive oil, salt, and pepper. Roast for 25-30 minutes until tender and golden.",
+      "Heat 1 tbsp olive oil in an oven-safe pan over medium-high heat. Sear chicken breasts 3-4 minutes per side until golden.",
+      "Transfer pan with chicken to oven. Roast for 10-15 minutes, or until internal temperature reaches 75°C. Remove chicken, let rest.",
+      "Blanch asparagus in boiling salted water for 2-3 minutes. Drain and shock in ice water.",
+      "In the same pan (after removing chicken), add butter. Sauté shallots until softened, about 3 minutes. Add garlic, cook 1 minute.",
+      "Pour in white wine. Scrape up browned bits. Reduce by half.",
+      "Add chicken stock and heavy cream. Simmer until sauce thickens slightly.",
+      "Stir in remaining 2 tbsp fresh tarragon. Season with salt and pepper.",
+      "Slice chicken breasts diagonally into 2-3 thick pieces. Arrange chicken on plates with roasted potatoes and blanched asparagus. Spoon sauce over chicken. Garnish with lemon zest and a small tarragon sprig."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Deglazing",
+      "Reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 704,
+      "cholesterol_mg": 220,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 67.7,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 222,
+      "total_carbs_g": 34,
+      "total_fat_g": 29.6,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 12.8,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 42,
+      "total_carbs_g": 6.4,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 15,
+      "protein": 135,
+      "saturated_fat": 63,
+      "sodium": 10,
+      "total_carbs": 12,
+      "total_fat": 38
+    },
+    "serving_size_g": 528.4,
+    "total_recipe_weight_g": 2113.6
+  },
+  {
+    "recipe_name": "Hearty Beef and Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_vegetable_stew_20250630_050305_565a2274.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:03:05.599776000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of Hearty Beef and Vegetable Stew is presented in a deep, rustic ceramic bowl. The stew features tender, irregular chunks of browned beef, approximately 3-4 cm, nestled amongst soft, diced carrots (1.5 cm cubes) and creamy, diced potatoes (2 cm cubes). The rich, dark brown gravy, thickened slightly, coats all ingredients, with a gentle sheen from slow cooking. A few vibrant green, roughly chopped fresh parsley leaves are sprinkled over the top, adding a pop of color and freshness. The bowl sits on a well-worn, light wooden dining table. The lighting is warm and inviting, typical of a home kitchen. A simple, off-white linen napkin is casually folded beside the bowl. The overall presentation is homely, comforting, and unpretentious, reflecting a satisfying family meal.",
+    "number_of_servings": 2,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "400g, cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "300g, peeled and diced into 2 cm cubes"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "150g, peeled and diced into 1.5 cm cubes"
+      },
+      {
+        "name": "Onion",
+        "quantity": "100g, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, roughly chopped"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat. Sear beef in batches until browned on all sides. Remove beef and set aside.",
+      "Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in flour. Cook for 2 minutes, stirring constantly.",
+      "Stir in tomato paste. Cook for 1 minute.",
+      "Gradually pour in beef broth, stirring to scrape up any browned bits from the bottom. Bring to a simmer.",
+      "Return beef to the pot. Add bay leaf. Bring to a gentle simmer.",
+      "Reduce heat to low. Cover and cook for 1.5 hours, or until beef is tender.",
+      "Add diced potatoes and carrots to the pot. Stir well.",
+      "Cover and continue to cook for 30-40 minutes, or until vegetables are tender.",
+      "Remove bay leaf. Taste and adjust seasoning as needed. The stew should be thick.",
+      "Ladle into bowls. Garnish with fresh chopped parsley. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 869,
+      "cholesterol_mg": 162,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 50.1,
+      "saturated_fat_g": 17.4,
+      "sodium_mg": 1855,
+      "total_carbs_g": 55.6,
+      "total_fat_g": 48.7,
+      "total_sugars_g": 9,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.3,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 235,
+      "total_carbs_g": 7,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 27,
+      "protein": 100,
+      "saturated_fat": 87,
+      "sodium": 81,
+      "total_carbs": 20,
+      "total_fat": 62
+    },
+    "serving_size_g": 790.5,
+    "total_recipe_weight_g": 1581
+  }
+]

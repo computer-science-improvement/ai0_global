@@ -1,0 +1,599 @@
+[
+  {
+    "recipe_name": "Hearty Chicken and Tomato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_tomato_stew_20250706_212912_e4d37558.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T21:29:12.459074000Z",
+    "selected_ingredients": [
+      "chicken",
+      "oil",
+      "chili",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of Hearty Chicken and Tomato Stew is presented in a deep, rustic ceramic bowl with a slightly uneven, earthy glaze. The bowl sits on a well-used wooden dining table. Large, irregular chunks of tender, braised chicken, cut into 4-5 cm pieces, are nestled within a rich, thick, deep red tomato sauce. The sauce has visible specks of vibrant red chili and finely diced garlic and onion, giving it a comforting, rustic texture. A few vibrant green flecks of fresh chopped parsley are scattered casually over the top, adding a fresh contrast. The chicken pieces are golden-brown from initial searing and now coated in the glossy sauce. The overall presentation is homely and unpretentious, as if served directly from the pot at a family dinner. A simple metal fork rests beside the bowl on a plain, slightly textured cloth napkin. The lighting is warm and inviting, coming from an overhead kitchen fixture, casting soft shadows and highlighting the comforting steam. The entire bowl is visible in the frame, showing natural portioning and ample negative space around it.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Home",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken thighs",
+        "quantity": "800g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "red chilies, thinly sliced",
+        "quantity": "1-2"
+      },
+      {
+        "name": "can diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "5g"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add chicken chunks. Brown chicken on all sides. Do not cook through. Remove chicken from pot and set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Stir in minced garlic and sliced chilies. Cook for 1 minute until fragrant.",
+      "Add tomato paste. Stir and cook for 2 minutes, stirring constantly.",
+      "Pour in diced tomatoes and chicken broth. Bring to a simmer.",
+      "Return chicken to the pot. Stir to combine.",
+      "Reduce heat to low. Cover and simmer for 25-30 minutes, or until chicken is tender and reaches an internal temperature of 75°C.",
+      "Season with salt and black pepper to taste.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 467.5,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 52.6,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 227.3,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 23.3,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107.5,
+      "cholesterol_mg": 50.1,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 12.1,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 52.3,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 9,
+      "protein": 105,
+      "saturated_fat": 27,
+      "sodium": 10,
+      "total_carbs": 4,
+      "total_fat": 30
+    },
+    "serving_size_g": 434.8,
+    "total_recipe_weight_g": 1739
+  },
+  {
+    "recipe_name": "Beef Involtini with Mushroom and Olive Stuffing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_involtini_with_mushroom_and_olive_stuffing_20250706_211334_e4274760.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T21:13:35.152460000Z",
+    "selected_ingredients": [
+      "beef",
+      "oregano",
+      "mushroom",
+      "breadcrumbs",
+      "parmesan",
+      "olive"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents two golden-brown beef involtini, each a substantial cylindrical piece approximately 8-10 cm long, nestled in a vibrant, rust-red tomato and mushroom sauce. The beef is seared to a rich, deep caramel color, revealing its tender, braised texture and hints of the savory mushroom, olive, and oregano stuffing peeking from the ends. The sauce, thick and glossy, is rich with finely diced mushrooms and black olive pieces. A light scattering of bright green, finely chopped fresh parsley provides a striking color contrast and fresh aroma. Plated centrally on a clean, white round porcelain plate, the composition is balanced and inviting, with moderate negative space, showcasing a refined casual dining presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of creamy polenta or al dente pasta (e.g., pappardelle, tagliatelle) to soak up the rich sauce.",
+      "Offer crusty bread for dipping.",
+      "A simple green salad with a vinaigrette."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef topside or silverside, thinly sliced",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cremini mushrooms, finely diced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "80g"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "60g"
+      },
+      {
+        "name": "Pitted black olives, finely chopped",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh oregano, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, finely chopped, for garnish",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Pound beef slices to 5mm thickness. Season with salt and pepper.",
+      "Sauté diced onion and minced garlic in 30ml olive oil until softened. Add finely diced mushrooms. Cook until moisture evaporates.",
+      "Remove from heat. Mix with breadcrumbs, grated Parmesan, finely chopped olives, and chopped fresh oregano. Season.",
+      "Place a spoonful of stuffing on each beef slice. Roll tightly. Secure with toothpicks or kitchen twine.",
+      "Heat 15ml olive oil in a large oven-safe pan over medium-high heat. Sear involtini on all sides until browned.",
+      "Pour in beef stock. Scrape up browned bits from the pan.",
+      "Stir in crushed tomatoes. Bring to a simmer.",
+      "Cover pan. Transfer to preheated oven at 160°C (320°F). Cook for 45-60 minutes, or until beef is tender.",
+      "Remove from oven. Let involtini rest a few minutes before serving. Remove toothpicks or twine."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Braising",
+      "Rolling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 525,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 46.5,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 752,
+      "total_carbs_g": 28.6,
+      "total_fat_g": 22.9,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 10.2,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 165,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.5,
+      "dietary_fiber": 18.6,
+      "protein": 93,
+      "saturated_fat": 34,
+      "sodium": 32.7,
+      "total_carbs": 10.4,
+      "total_fat": 29.3
+    },
+    "serving_size_g": 455.5,
+    "total_recipe_weight_g": 1822
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Mango Avocado Relish and Blackberry Coulis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_mango_avocado_relish_and_blackberry_coulis_20250706_210328_1e6af7c0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T21:03:29.113275000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mango",
+      "sugar snap pea",
+      "salad greens",
+      "avocado",
+      "blackberry"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined serving on a clean white porcelain dinner plate. A golden-brown seared chicken breast, left whole, is the focal point, positioned slightly off-center. Beside it, a vibrant mound of mango avocado relish, with small diced mango and avocado cubes, minced red onion, and chopped cilantro, provides a burst of orange, green, and red. Bright green blanched sugar snap peas are arranged neatly. A rich, deep purple blackberry coulis is artfully drizzled over the chicken and around the plate. A small bed of fresh mixed salad greens, lightly dressed, sits opposite. The plate exhibits moderate negative space, highlighting the dish's balanced composition. Set on a simple wooden table with a cotton napkin beside the plate. Natural, even lighting illuminates the scene with a subtle, blurred modern bistro background. No sliced or fanned meat.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Ripe mangoes",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Ripe avocados",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Sugar snap peas",
+        "quantity": "200g"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh blackberries",
+        "quantity": "150g"
+      },
+      {
+        "name": "Lime",
+        "quantity": "2"
+      },
+      {
+        "name": "Small red onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml, plus more for greens"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "15ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Blackberry Coulis: Combine blackberries, honey/maple syrup, and white wine vinegar in a small saucepan. Bring to a simmer over medium heat. Cook for 5-7 minutes, until berries soften. Press mixture through a fine-mesh sieve into a bowl, discarding solids. Season with a pinch of salt. Set aside.",
+      "Prepare Mango Avocado Relish: Peel and small dice mangoes. Peel and small dice avocados. Finely mince red onion. Roughly chop cilantro. Combine diced mango, avocado, red onion, and cilantro in a bowl. Squeeze juice from 1 lime over mixture. Drizzle with 15ml olive oil. Season with salt and pepper. Gently toss. Set aside.",
+      "Prepare Sugar Snap Peas: Bring a pot of salted water to a boil. Add sugar snap peas. Blanch for 1-2 minutes until bright green and tender-crisp. Drain immediately. Plunge into ice water to stop cooking. Drain well.",
+      "Cook Chicken: Pat chicken breasts dry. Season generously with salt and pepper. Heat 15ml olive oil in a large oven-safe skillet over medium-high heat. Add chicken breasts. Sear for 5-7 minutes per side until golden brown. Transfer skillet to a preheated oven at 190°C (375°F). Roast for 10-15 minutes, or until internal temperature reaches 75°C (167°F). Remove from oven. Let rest for 5 minutes.",
+      "Assemble Plates: Place a bed of mixed salad greens on each plate. Drizzle greens with a little olive oil and a squeeze of lime juice. Season lightly with salt. Place a seared chicken breast beside the greens. Spoon a generous portion of mango avocado relish next to the chicken. Arrange blanched sugar snap peas around the plate. Drizzle blackberry coulis artfully over the chicken and around the plate."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 696,
+      "cholesterol_mg": 162,
+      "dietary_fiber_g": 14,
+      "protein_g": 63.1,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 637,
+      "total_carbs_g": 36.8,
+      "total_fat_g": 34.9,
+      "total_sugars_g": 25,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 124,
+      "cholesterol_mg": 28.8,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 11.3,
+      "saturated_fat_g": 1,
+      "sodium_mg": 113.6,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 50,
+      "protein": 126,
+      "saturated_fat": 29,
+      "sodium": 28,
+      "total_carbs": 13,
+      "total_fat": 45
+    },
+    "serving_size_g": 560.35,
+    "total_recipe_weight_g": 2241.4
+  },
+  {
+    "recipe_name": "Smoked Chorizo & Pickled Okra Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_chorizo_%26_pickled_okra_rice_20250706_210058_c03fa84a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T21:00:59.107366000Z",
+    "selected_ingredients": [
+      {
+        "name": "okra"
+      },
+      {
+        "name": "chorizo"
+      },
+      {
+        "name": "chili"
+      },
+      {
+        "name": "rice"
+      },
+      {
+        "name": "chipotle chile"
+      },
+      {
+        "name": "smoked paprika"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "A single, individual serving of Smoked Chorizo & Pickled Okra Rice is presented on a round, handcrafted ceramic plate in a muted cream or beige tone, showcasing ample white space around the food. The plate rests on a light-colored, natural wood or stone surface. At the center, a mound of fluffy basmati rice, infused with reddish-orange hues from chipotle and smoked paprika, forms the base. Scattered over the rice are irregular, golden-brown, crispy chunks of pan-fried chorizo, providing a textural contrast. Bright green, thinly sliced pickled okra rounds are artfully placed around the chorizo and rice, adding a vibrant pop of color and a fresh, acidic counterpoint. A few small, fresh cilantro leaves or green microgreens are delicately placed as a garnish, enhancing the natural aesthetic without overcrowding. The composition is clean and minimalist, allowing the natural colors and textures of each ingredient to be the focal point. Soft, natural light illuminates the dish from the side, highlighting its organic beauty. An undyed linen napkin in a natural beige tone is casually folded beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chorizo",
+    "ingredients": [
+      {
+        "name": "Basmati rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cured Spanish chorizo, diced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh okra, trimmed, cut into 1cm thick rounds",
+        "quantity": "250g"
+      },
+      {
+        "name": "Dried chipotle Morita chiles, rehydrated, deseeded (or 1 tbsp chipotle in adobo paste)",
+        "quantity": "2"
+      },
+      {
+        "name": "Sweet smoked paprika (Pimentón de la Vera)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Small yellow onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 tsp + to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro or microgreens (optional)",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Pickled Okra: In a small saucepan, combine 120ml apple cider vinegar, 120ml water, 1 tbsp sugar, and 1 tsp salt. Bring to a boil. Add sliced okra. Remove from heat immediately. Let sit for 15 minutes, then drain and cool.",
+      "Cook Rice: Rinse rice thoroughly until water runs clear. Heat 1 tbsp olive oil in a medium pot over medium heat. Add diced onion and cook until translucent, about 5 minutes. Add minced garlic and cook for 1 minute more.",
+      "Add rehydrated, deseeded chipotle chiles and smoked paprika to the pot. Stir for 30 seconds until fragrant. Add rinsed rice and stir to coat.",
+      "Pour in 600ml vegetable broth. Bring to a simmer, then reduce heat to low, cover, and cook for 15-18 minutes, or until liquid is absorbed and rice is tender. Let stand covered for 5 minutes, then fluff with a fork.",
+      "Cook Chorizo: While rice cooks, heat a separate pan over medium-high heat. Add diced chorizo. Cook, stirring occasionally, until crispy and fat is rendered, about 8-10 minutes. Remove chorizo with a slotted spoon, reserving rendered fat.",
+      "Assemble and Serve: Divide chipotle-paprika rice among four plates. Top each portion with crispy chorizo chunks and a generous portion of pickled okra. Garnish with fresh cilantro or microgreens if desired."
+    ]
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Mango Salsa and Sugar Snap Pea Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_mango_salsa_and_sugar_snap_pea_salad_20250706_210035_381007ef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T21:00:36.238096000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mango",
+      "sugar snap pea",
+      "salad greens"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast, golden-brown and whole, rests at the center of a clean white porcelain dinner plate. Beside the chicken, a vibrant mound of fresh mango salsa is neatly spooned, showcasing small diced mango cubes, finely diced red onion, and flecks of green coriander. On the opposite side, blanched sugar snap peas, whole and bright green, are artfully arranged alongside fresh, crisp mixed salad greens. The chicken's surface displays a crisp, seared texture. The salsa offers juicy, soft textures. The sugar snap peas provide a firm, crisp bite. The greens are delicate and leafy. The overall composition is balanced and inviting, with a natural flow. The plate is set on a simple wooden table, accompanied by standard silver flatware and a folded cotton napkin. Natural, even lighting illuminates the dish, highlighting its fresh colors and inviting textures. The background is minimal and subtly out of focus, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g-200g each)"
+      },
+      {
+        "name": "Ripe mangoes",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "30g"
+      },
+      {
+        "name": "Lime",
+        "quantity": "2"
+      },
+      {
+        "name": "Sugar snap peas",
+        "quantity": "200g"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml for dressing, plus more for searing"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Honey (optional)",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare mango salsa: Dice mangoes into 1cm cubes. Finely dice red onion. Roughly chop coriander. In a bowl, combine diced mango, red onion, and coriander. Squeeze in juice from one lime. Add a pinch of salt and optional honey. Mix gently.",
+      "Prepare sugar snap peas: Bring a pot of salted water to a boil. Add sugar snap peas. Blanch for 1-2 minutes until bright green and crisp-tender. Drain immediately. Plunge into ice water to stop cooking. Drain thoroughly.",
+      "Make vinaigrette: In a small bowl, whisk 30ml olive oil, white wine vinegar, juice from the second lime, salt, and black pepper.",
+      "Cook chicken: Pat chicken breasts dry. Season generously with salt and black pepper. Heat a large skillet over medium-high heat. Add a thin layer of olive oil. Sear chicken breasts for 5-7 minutes per side. Cook until golden brown and internal temperature reaches 75°C. Remove chicken from skillet. Let rest on a cutting board for 5 minutes.",
+      "Assemble plates: Toss blanched sugar snap peas and mixed salad greens with half of the prepared vinaigrette. Place one pan-seared chicken breast on each plate. Spoon a generous amount of mango salsa beside the chicken. Arrange the dressed sugar snap peas and salad greens on the plate."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 554.7,
+      "cholesterol_mg": 161.5,
+      "dietary_fiber_g": 5,
+      "protein_g": 62.6,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 159.8,
+      "total_carbs_g": 35.2,
+      "total_fat_g": 18.1,
+      "total_sugars_g": 28.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 109.1,
+      "cholesterol_mg": 31.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 12.3,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 31.4,
+      "total_carbs_g": 6.9,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.8,
+      "dietary_fiber": 17.9,
+      "protein": 125.2,
+      "saturated_fat": 17.5,
+      "sodium": 7,
+      "total_carbs": 12.8,
+      "total_fat": 23.3
+    },
+    "serving_size_g": 508.4,
+    "total_recipe_weight_g": 2033.4
+  }
+]

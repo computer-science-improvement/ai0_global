@@ -1,0 +1,630 @@
+[
+  {
+    "recipe_name": "Cheesy Sausage and Potato Hash with Fried Eggs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_sausage_and_potato_hash_with_fried_eggs_20250624_141254_b1520fb9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:12:54.886063000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "potato",
+      "sausage",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Cheesy Sausage and Potato Hash is presented on a simple, round ceramic plate with a subtle off-white glaze. The hash is piled naturally, showcasing a hearty mix of golden-brown roasted potato cubes, crumbled, well-browned sausage pieces, translucent sautéed onion, and bright red diced tomato. Melted, gooey yellow cheddar cheese lightly coats the hash, creating appealing textures. A perfectly fried egg, with a firm white and a vibrant, runny yolk, rests atop the hash. A sprinkle of fresh green chopped parsley adds a functional burst of color. The setting is a warm, inviting home kitchen. The plate sits on a well-used, light-colored wooden dining table. A simple metal fork and knife are casually placed beside the plate. Warm, natural lighting from overhead kitchen fixtures illuminates the scene, creating a cozy and comforting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with hot sauce on the side.",
+      "Offer ketchup as an optional condiment."
+    ],
+    "hero_ingredient": "Sausage and Potato",
+    "ingredients": [
+      {
+        "name": "Pork sausage",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 grams"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Dice potatoes into 1.5 cm cubes.",
+      "Dice onion into 1 cm pieces.",
+      "Dice tomatoes into 1 cm pieces.",
+      "Remove sausage from casings if necessary. Crumble sausage into a large skillet over medium-high heat. Cook, breaking up with a spoon, until browned and cooked through, about 8-10 minutes. Drain excess fat. Transfer sausage to a plate.",
+      "Add olive oil to the same skillet. Add diced potatoes. Cook, stirring occasionally, until tender and golden brown, about 15-20 minutes.",
+      "Add diced onion to the skillet with potatoes. Cook until softened, about 5 minutes.",
+      "Stir in diced tomatoes and cooked sausage. Cook for 2-3 minutes to heat through.",
+      "Season hash with salt and black pepper to taste.",
+      "Sprinkle shredded cheddar cheese over the hash. Cover skillet for 1-2 minutes until cheese melts.",
+      "While cheese melts, fry or poach eggs to your preference. Cook until whites are set and yolks are runny.",
+      "Divide hash among four plates. Top each portion with one fried egg.",
+      "Garnish with chopped fresh parsley. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Mediterranean Turkey Meatballs with Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_turkey_meatballs_with_tomato_rice_20250624_141250_e00c8138.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:12:50.666835000Z",
+    "selected_ingredients": [
+      "milk",
+      "egg",
+      "greek yogurt",
+      "chicken stock",
+      "mincemeat",
+      "chicken",
+      "beef",
+      "turkey",
+      "spinach",
+      "carrot",
+      "banana",
+      "apple",
+      "avocado",
+      "tomato",
+      "rice",
+      "bread",
+      "onion",
+      "cucumber",
+      "coriander",
+      "garlic",
+      "ginger",
+      "chili",
+      "lime",
+      "coconut oil",
+      "olive oil",
+      "butter",
+      "maple syrup",
+      "honey",
+      "peanut butter",
+      "coconut cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "make turkey mince the main protein",
+    "visual_description": "A single portion of Mediterranean Turkey Meatballs with Tomato Rice is presented in a rustic, shallow ceramic bowl. Fluffy white rice forms a generous bed. Four plump, browned turkey meatballs, roughly 4cm in diameter, are nestled naturally on the rice, slightly overlapping. They are partially coated in a rich, simmering red tomato sauce, which pools gently around the base. The sauce is thick with visible crushed tomato pieces. Flecks of dark green spinach are visible within the meatballs. A scattering of fresh, vibrant green chopped coriander leaves garnishes the dish. The bowl sits on a well-used, warm wooden dining table. A simple, off-white linen napkin is casually folded beside it. Lighting is warm and inviting, typical of a home kitchen. The scene is uncluttered, focusing on the hearty, comforting meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and lemon.",
+      "Offer crusty bread for dipping in the tomato sauce."
+    ],
+    "hero_ingredient": "Turkey Mince",
+    "ingredients": [
+      {
+        "name": "Turkey Mince",
+        "quantity": "500g"
+      },
+      {
+        "name": "Fresh Spinach",
+        "quantity": "100g"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Long-grain Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Large Egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Day-old Bread",
+        "quantity": "2 slices"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Coriander",
+        "quantity": "15g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Finely chop spinach. Dice half of the onion. Mince 2 garlic cloves.",
+      "Tear bread into small pieces. Process into breadcrumbs.",
+      "In a large bowl, combine turkey mince, chopped spinach, diced onion, minced garlic, egg, and breadcrumbs. Add oregano, salt, and pepper. Mix well.",
+      "Form the mixture into roughly 4cm diameter meatballs.",
+      "Heat olive oil in a large skillet over medium-high heat. Add meatballs. Sear until browned on all sides. Remove meatballs from skillet. Set aside.",
+      "Dice the remaining half onion. Mince the remaining 2 garlic cloves.",
+      "Add diced onion to the skillet. Sauté until softened, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken stock. Bring sauce to a simmer.",
+      "Return browned meatballs to the simmering sauce. Cover. Reduce heat to medium-low. Simmer for 15-20 minutes, or until meatballs are cooked through and reach an internal temperature of 75°C (167°F).",
+      "While meatballs simmer, cook rice according to package directions.",
+      "Chop fresh coriander.",
+      "Serve meatballs and sauce over cooked rice. Garnish with fresh coriander."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 680,
+      "cholesterol_mg": 142,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 37,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 285,
+      "total_carbs_g": 84.3,
+      "total_fat_g": 21.5,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 116,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.3,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 49,
+      "total_carbs_g": 14.4,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 21,
+      "protein": 74,
+      "saturated_fat": 25,
+      "sodium": 12,
+      "total_carbs": 31,
+      "total_fat": 28
+    },
+    "serving_size_g": 585.75,
+    "total_recipe_weight_g": 2343
+  },
+  {
+    "recipe_name": "Fermented Cabbage, Bean & Brown Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_cabbage%2C_bean_%26_brown_rice_salad_20250624_141248_70772556.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:12:48.765196000Z",
+    "selected_ingredients": [
+      "bean",
+      "brown rice",
+      "turkey",
+      "chili",
+      "pork"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "An individual serving of a vibrant, sustainable salad is presented in a handcrafted, earthy-toned ceramic bowl. The base consists of fluffy brown rice and a mix of whole black and kidney beans. Abundantly layered on top are shredded, pale green fermented cabbage, bright orange julienned carrots, and thinly sliced pink radishes, providing a fresh, crunchy texture. Small, golden-brown crispy pork lardons are scattered sparingly, alongside delicate crumbles of smoked turkey meat, offering savory accents. Thinly sliced red chili adds a pop of vibrant color. The entire composition is lightly coated with a glossy, integrated dressing, highlighting the natural textures and colors of each ingredient. The bowl rests on a light, textured reclaimed wood surface, with an undyed linen napkin subtly placed beside it. Soft, natural light illuminates the scene, emphasizing the clean, minimalist plating and the dish's focus on wholesome, natural ingredients. A hint of green plants provides a clean background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Fermented Cabbage",
+    "ingredients": [
+      {
+        "name": "Green cabbage",
+        "quantity": "250 g, shredded"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "50 g, julienned"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "30 g, thinly sliced"
+      },
+      {
+        "name": "Non-chlorinated water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Cooked brown rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Mixed beans",
+        "quantity": "200 g, cooked (e.g., black beans, kidney beans)"
+      },
+      {
+        "name": "Pork belly",
+        "quantity": "80 g, skin on, diced into 1 cm cubes"
+      },
+      {
+        "name": "Smoked turkey leg meat",
+        "quantity": "80 g, shredded"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1, thinly sliced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented vegetables: Combine shredded cabbage, julienned carrots, and sliced radishes in a clean jar. Dissolve sea salt in non-chlorinated water to make brine. Pour brine over vegetables, ensuring they are fully submerged. Seal jar loosely. Ferment at room temperature for 3-5 days until desired tanginess is achieved. Refrigerate.",
+      "Cook pork lardons: Place diced pork belly in a cold pan. Cook over medium-low heat until fat renders and pork cubes are crispy and golden brown. Remove lardons; set aside. Reserve rendered pork fat.",
+      "Prepare dressing: In a small bowl, whisk together 30 ml of the reserved fermented vegetable brine, 60 ml olive oil, 15 ml rendered pork fat, apple cider vinegar, minced garlic, and a pinch of black pepper.",
+      "Assemble salad: In a large bowl, combine cooked brown rice, mixed beans, prepared fermented vegetables, shredded smoked turkey meat, and most of the sliced red chili. Add chopped fresh parsley.",
+      "Dress and serve: Pour dressing over salad ingredients. Toss gently to combine. Divide salad among four serving bowls. Garnish each portion with crispy pork lardons and remaining sliced red chili."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 411.2,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 12.9,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 1611.4,
+      "total_carbs_g": 30.7,
+      "total_fat_g": 26.8,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108.3,
+      "cholesterol_mg": 8.7,
+      "dietary_fiber_g": 2,
+      "protein_g": 3.4,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 424.3,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 11,
+      "dietary_fiber": 26.5,
+      "protein": 25.7,
+      "saturated_fat": 31.8,
+      "sodium": 70.1,
+      "total_carbs": 11.2,
+      "total_fat": 34.3
+    },
+    "serving_size_g": 379.8,
+    "total_recipe_weight_g": 1519
+  },
+  {
+    "recipe_name": "Bavette with Rustic Tomato and Red Bell Pepper Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bavette_with_rustic_tomato_and_red_bell_pepper_sauce_20250624_141231_1f0a2da1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:12:31.563531000Z",
+    "selected_ingredients": [
+      {
+        "name": "pasta",
+        "comment": "bavette"
+      },
+      {
+        "name": "tomato",
+        "comment": "not cherry"
+      },
+      {
+        "name": "bell pepper",
+        "comment": "red"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of bavette pasta is presented on a simple, off-white ceramic plate with a slightly imperfect rim. The pasta is loosely twirled, coated generously with a vibrant, rustic red sauce. Visible elements within the sauce include tender, diced red bell pepper and softened, roughly cubed tomato pieces, alongside flecks of onion and garlic. A scattering of fresh, green basil leaves rests on top, providing a pop of color and freshness. A small pile of finely grated Parmigiano Reggiano sits casually on the pasta. The scene is set on a well-used, warm-toned wooden dining table, illuminated by soft, natural light, evoking a cozy, homely kitchen atmosphere. A plain fork rests beside the plate. The entire plate is visible, showcasing the comfort-focused, unpretentious presentation of a satisfying home-cooked meal.",
+    "number_of_servings": 1,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread to sop up the leftover sauce.",
+      "Offer extra grated Parmigiano Reggiano at the table."
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Bavette pasta",
+        "quantity": "100g"
+      },
+      {
+        "name": "Ripe tomato",
+        "quantity": "1 medium (about 150g)"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "0.5 medium (about 75g)"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "0.25 (about 30g)"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "a few, for garnish"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "10g, grated"
+      }
+    ],
+    "instructions": [
+      "Dice the onion into small pieces. Mince the garlic clove. Dice the tomato into rough 1cm cubes. Dice the red bell pepper into similar 1cm cubes.",
+      "Heat olive oil in a medium skillet over medium heat. Add diced onion. Sauté until softened, about 3-4 minutes.",
+      "Add minced garlic. Cook for 30 seconds until fragrant. Do not brown the garlic.",
+      "Add diced red bell pepper to the skillet. Cook for 5 minutes, stirring occasionally, until slightly tender.",
+      "Stir in the diced tomato. Cook for 8-10 minutes, stirring occasionally, until tomatoes break down and a rustic sauce forms. Season with salt and black pepper.",
+      "While the sauce cooks, bring a large pot of salted water to a rolling boil. Add bavette pasta. Cook according to package directions until al dente.",
+      "Before draining, reserve 60ml of the pasta cooking water.",
+      "Drain the cooked pasta. Add the drained pasta directly to the skillet with the sauce. Add 30ml of the reserved pasta water.",
+      "Toss the pasta with the sauce until well coated. Add more pasta water if needed for desired consistency.",
+      "Transfer the pasta to a serving plate. Garnish with fresh basil leaves and grated Parmigiano Reggiano. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 602.1,
+      "cholesterol_mg": 8.8,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 19.4,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 171.7,
+      "total_carbs_g": 88.5,
+      "total_fat_g": 18.8,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 157.7,
+      "cholesterol_mg": 2.3,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 5.1,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 45,
+      "total_carbs_g": 23.2,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 2.9,
+      "dietary_fiber": 25.4,
+      "protein": 38.8,
+      "saturated_fat": 20.5,
+      "sodium": 7.5,
+      "total_carbs": 32.2,
+      "total_fat": 24.1
+    },
+    "serving_size_g": 381.8,
+    "total_recipe_weight_g": 381.8
+  },
+  {
+    "recipe_name": "Potato and Sausage Warm Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_and_sausage_warm_salad_20250624_141230_ad81651e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:12:30.578620000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "potato",
+      "sausage",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A warm potato salad is presented in a large, deep ceramic serving bowl, placed on a well-used wooden dining table. The potato cubes, some with skin on, are lightly coated in a glistening vinaigrette, showing a mix of soft textures and firm edges. Slices of browned smoked sausage are interspersed throughout, adding darker accents. Vibrant red diced tomatoes and thin, translucent slices of red onion provide fresh color and crispness. Cubes of yellow cheddar cheese are visible, some slightly softened by the warmth of the potatoes. Quartered hard-boiled eggs, with their distinct white and yellow, are artfully placed on top and around the salad. Freshly chopped green parsley is sprinkled generously over the dish, providing a final pop of color. The arrangement is casual and abundant, reflecting a homemade, comfort food style. The bowl sits on a simple cloth napkin. A fork rests beside the bowl. Warm, inviting kitchen light illuminates the scene, enhancing the natural colors of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Served as a hearty side dish or a light main course.",
+      "Often enjoyed at potlucks, barbecues, or family gatherings."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "New potatoes or Yukon Gold potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Smoked sausage (like kielbasa)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Sharp cheddar cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Granulated sugar (optional)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Place potato cubes in a large pot. Cover with cold water. Add a pinch of salt. Bring to a boil. Reduce heat. Simmer until tender, about 10-15 minutes. Drain well.",
+      "Place eggs in a small saucepan. Cover with cold water. Bring to a rolling boil. Boil for 9 minutes. Drain. Cool eggs in ice water. Peel and quarter them.",
+      "Heat a large skillet over medium heat. Add sliced sausage. Cook until lightly browned and heated through, about 5-7 minutes. Remove sausage from skillet.",
+      "In a small bowl, whisk together olive oil, apple cider vinegar, Dijon mustard, and sugar (if using). Season with salt and pepper.",
+      "In a large mixing bowl, combine warm drained potatoes, cooked sausage, diced tomatoes, thinly sliced red onion, and cheddar cheese cubes.",
+      "Pour dressing over the potato mixture. Gently toss to coat all ingredients.",
+      "Add quartered eggs and chopped fresh parsley. Gently fold into the salad. Serve warm."
+    ],
+    "notes": [
+      "For a tangier flavor, add more apple cider vinegar.",
+      "For extra creaminess, a tablespoon of mayonnaise can be added to the dressing."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 647,
+      "cholesterol_mg": 248,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 24.6,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 1250,
+      "total_carbs_g": 42.4,
+      "total_fat_g": 42.5,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 149,
+      "cholesterol_mg": 57,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 5.7,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 288,
+      "total_carbs_g": 9.8,
+      "total_fat_g": 9.8,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 83,
+      "dietary_fiber": 21,
+      "protein": 49,
+      "saturated_fat": 69,
+      "sodium": 54,
+      "total_carbs": 15,
+      "total_fat": 54
+    },
+    "serving_size_g": 434,
+    "total_recipe_weight_g": 1736
+  }
+]

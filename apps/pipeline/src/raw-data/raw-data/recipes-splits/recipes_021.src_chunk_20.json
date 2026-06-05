@@ -1,0 +1,630 @@
+[
+  {
+    "recipe_name": "Hearty Chicken and Vegetable Stew with Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_vegetable_stew_with_brown_rice_20250624_141137_3bd9ef2d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:11:37.595427000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "corn",
+      "brown rice",
+      "mushroom",
+      "cayenne pepper",
+      "oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest individual portion of Hearty Chicken and Vegetable Stew is served in a deep, rustic ceramic bowl. The stew features chunky pieces of seared chicken thigh, tender diced potatoes (2cm cubes), quartered earthy cremini mushrooms, and bright yellow corn kernels in a rich, savory amber-brown broth. A bed of fluffy brown rice is nestled beneath the stew. The chicken pieces are irregular, showcasing their braised texture. Fresh, vibrant green chopped parsley provides a functional garnish on top. Components touch and overlap naturally, creating an asymmetrical, inviting arrangement. The bowl rests on a well-used wooden dining table. Simple, everyday metal flatware is placed casually beside the bowl. A folded, plain linen napkin is tucked nearby. Warm, soft kitchen light illuminates the scene, enhancing the homely atmosphere. The background hints at a lived-in kitchen, reinforcing a relaxed family dining environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread for dipping"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Frozen corn kernels",
+        "quantity": "200g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium carrot",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 3cm cubes. Peel and dice potatoes into 2cm cubes. Mince garlic. Quarter mushrooms. Dice onion and carrot.",
+      "Cook brown rice. Combine 200g brown rice with 400ml water in a pot. Bring to a boil. Reduce heat to low. Simmer 35-40 minutes until water is absorbed.",
+      "Heat 15ml vegetable oil in a large pot or Dutch oven over medium-high heat.",
+      "Add diced chicken. Season with salt and pepper. Sear chicken 3-4 minutes until browned on all sides. Remove chicken and set aside.",
+      "Add remaining 15ml vegetable oil to the pot. Add diced onion and carrot. Cook 5 minutes until softened.",
+      "Add minced garlic and quartered mushrooms. Cook 3-4 minutes until fragrant and mushrooms soften.",
+      "Stir in cayenne pepper. Cook 1 minute.",
+      "Return chicken to the pot. Add diced potatoes and frozen corn.",
+      "Pour in chicken broth. Bring to a simmer.",
+      "Reduce heat to medium-low. Cover. Simmer 20-25 minutes until chicken is cooked through (internal temperature 75°C) and potatoes are tender.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Ladle stew over cooked brown rice in bowls. Garnish with fresh chopped parsley. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 688,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 8,
+      "protein_g": 42.5,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 34,
+      "total_carbs_g": 78.4,
+      "total_fat_g": 21.9,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 91,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 5.6,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 4,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 28.6,
+      "protein": 85,
+      "saturated_fat": 22.5,
+      "sodium": 1.5,
+      "total_carbs": 28.5,
+      "total_fat": 28.1
+    },
+    "serving_size_g": 754,
+    "total_recipe_weight_g": 3016
+  },
+  {
+    "recipe_name": "Hearty Chicken and Stout Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_stout_stew_20250624_141124_57b353fc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:11:25.119760000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "green pea",
+      "dark beer",
+      "beef stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic, hearty chicken and stout stew is presented in a deep, off-white ceramic bowl, centered on a simple, light-colored wooden table. The stew features generous, golden-brown seared chicken chunks, approximately 4 cm, nestled among tender, rough-cut 3 cm potato cubes, thick-sliced carrots, and vibrant green peas. The rich, dark brown gravy, thickened naturally, coats all ingredients, showcasing its deep savory character. A sprinkle of fresh, coarsely chopped parsley garnishes the top, adding a pop of green. The composition is clean, organized yet natural, with moderate negative space. Beside the bowl, a neatly folded off-white cotton napkin and a piece of crusty Irish soda bread rest. Natural, even lighting highlights the stew's comforting textures and warm colors. The background is softly blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Irish",
+    "cultural_origin": "Irish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Irish soda bread for dipping.",
+      "Enjoy as a warming meal on a cool evening."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes (e.g., Maris Piper or Russet)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Dark stout beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Yellow onion, large",
+        "quantity": "1"
+      },
+      {
+        "name": "Carrots, medium",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "Small bunch (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4 cm chunks. Season with salt and pepper. Dredge chicken in flour, shaking off excess.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear chicken chunks in batches until golden brown on all sides. Do not overcrowd the pot. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion, thick-sliced carrots, and thick-sliced celery to the pot. Cook, stirring occasionally, until vegetables soften, about 8-10 minutes.",
+      "Add minced garlic and tomato paste. Cook for 1 minute, stirring constantly.",
+      "Pour in dark stout beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and reduce by half, about 5 minutes.",
+      "Stir in beef stock, fresh thyme sprigs, and bay leaf. Return seared chicken to the pot. Add 3 cm cubed potatoes.",
+      "Bring the stew to a gentle simmer. Reduce heat to low, cover, and cook for 30-40 minutes, or until chicken is cooked through and potatoes are tender. Chicken internal temperature must reach 75°C (167°F).",
+      "Stir in frozen green peas during the last 5 minutes of cooking. Cook until peas are tender and vibrant green.",
+      "Remove bay leaf and thyme sprigs. Taste and adjust seasoning with salt and pepper as needed. If stew is too thin, simmer uncovered for a few more minutes to reduce slightly. If too thick, add a splash of stock or water."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "The stew will thicken further upon standing."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 546,
+      "cholesterol_mg": 163.5,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 39.4,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 246.4,
+      "total_carbs_g": 46,
+      "total_fat_g": 19.6,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93,
+      "cholesterol_mg": 27.9,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 6.7,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 42.1,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54.5,
+      "dietary_fiber": 26.2,
+      "protein": 78.8,
+      "saturated_fat": 22.4,
+      "sodium": 10.7,
+      "total_carbs": 16.7,
+      "total_fat": 25.1
+    },
+    "serving_size_g": 585,
+    "total_recipe_weight_g": 2340
+  },
+  {
+    "recipe_name": "Sustainable Seared Cod with Fermented Broccoli & Stem Puree",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_seared_cod_with_fermented_broccoli_%26_stem_puree_20250624_141110_f75d1dfb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:11:11.123714000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "fish"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Sustainable Seared Cod with Fermented Broccoli & Stem Puree is presented on a handcrafted, matte ceramic plate in a warm cream tone. The plate is set on a light-colored, naturally textured reclaimed wood surface. A perfectly seared cod fillet, skin-side up and golden-brown, rests beside a smooth, vibrant green pool of broccoli stem puree. Roasted broccoli florets, retaining their natural shape and deep green color, are artfully arranged with negative space around the cod. A small, inviting mound of pale green fermented broccoli stems and leaves adds a contrasting texture and color. A few crisp, slightly charred broccoli leaves are placed delicately on the plate for visual interest and a subtle textural crunch. The overall composition is clean, minimalistic, and celebrates the natural beauty and earthy tones of the ingredients. An undyed linen napkin in a natural beige is folded simply beside the plate. The scene is bathed in soft, natural lighting from the side, highlighting the textures and colors. The background is clean and minimalist, with a subtle hint of a green plant visible, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Cod",
+    "ingredients": [
+      {
+        "name": "Cod fillets, skin on",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "2 large heads"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "1/2 teaspoon (optional)"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "20g"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Vegetable broth or water",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented broccoli: Separate broccoli florets, stems, and leaves. Reserve florets and outer leaves. Peel tough outer layer from stems. Thinly slice inner stems and tender inner leaves. Combine sliced stems and leaves with garlic and chili flakes in a clean jar.",
+      "Dissolve sea salt in filtered water to make a brine. Pour brine over broccoli in the jar, ensuring broccoli is fully submerged. Seal jar. Allow to ferment at room temperature for 2-3 days, burping daily. Refrigerate once desired tang is reached.",
+      "Preheat oven to 200°C. Toss broccoli florets with 15ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 12-15 minutes until tender-crisp.",
+      "For broccoli stem puree: Dice remaining peeled broccoli stems into small cubes. In a saucepan, combine diced stems with vegetable broth or water. Simmer until very tender, about 10-15 minutes.",
+      "Blend cooked stems and cooking liquid until smooth. Add remaining 15ml olive oil. Season with salt and pepper. Adjust consistency with more water if needed.",
+      "Crisp outer broccoli leaves: Toss outer leaves with a drizzle of olive oil, salt, and pepper. Roast alongside florets for the last 5-7 minutes, or until crisp.",
+      "Pat cod fillets dry. Season generously with salt and pepper. Heat a large oven-safe pan over medium-high heat. Add a thin layer of olive oil.",
+      "Place cod fillets skin-side down in the hot pan. Sear for 4-5 minutes until skin is golden and crispy. Flip fillets. Transfer pan to the preheated oven.",
+      "Bake for 5-7 minutes, or until internal temperature reaches 63°C and fish flakes easily. (Note: For food safety, if using chicken, cook to 75°C).",
+      "To plate: Spoon a generous pool of broccoli stem puree onto each plate. Place a seared cod fillet on top or alongside the puree. Arrange roasted broccoli florets neatly around the cod.",
+      "Add a small mound of fermented broccoli near the fish. Garnish with a few crispy broccoli leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 309,
+      "cholesterol_mg": 77.4,
+      "dietary_fiber_g": 9.2,
+      "protein_g": 38.9,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 2226.3,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 48,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 345.9,
+      "total_carbs_g": 3.2,
+      "total_fat_g": 1.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26,
+      "dietary_fiber": 33,
+      "protein": 78,
+      "saturated_fat": 7,
+      "sodium": 97,
+      "total_carbs": 7,
+      "total_fat": 12
+    },
+    "serving_size_g": 643.6,
+    "total_recipe_weight_g": 2574.3
+  },
+  {
+    "recipe_name": "Hearty Bavette Pasta with Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_bavette_pasta_with_roasted_vegetables_20250624_141105_7cfe6d91.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:11:06.197020000Z",
+    "selected_ingredients": [
+      {
+        "name": "pasta",
+        "comment": "bavette"
+      },
+      "tomato",
+      "mushroom",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of bavette pasta is presented on a simple, round, off-white ceramic plate with a slightly uneven rim. The pasta is generously coated in a rustic, chunky sauce featuring sautéed diced red bell pepper and sliced cremini mushrooms. Halved cherry tomatoes have burst and slightly reduced, creating a vibrant, natural red hue throughout the sauce. A subtle sheen of olive oil coats the pasta and vegetables. A few fresh, torn basil leaves are scattered over the top, adding a pop of green. A light dusting of grated Parmesan cheese rests over the pasta. The plate sits on a well-used, light-colored wooden dining table. A simple silver fork rests beside the plate, ready for use. Warm, soft light from an overhead kitchen fixture illuminates the scene, highlighting the comforting textures and colors. The background is slightly out of focus, showing glimpses of a lived-in kitchen environment, perhaps a casually draped cloth napkin, enhancing the homely, inviting atmosphere.",
+    "number_of_servings": 1,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmesan cheese on the side.",
+      "Accompany with crusty Italian bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Bavette Pasta",
+    "ingredients": [
+      {
+        "name": "Bavette pasta",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "20 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Bring a pot of salted water to a boil. Cook bavette pasta according to package directions until al dente. Reserve 50 ml pasta water. Drain pasta.",
+      "While pasta cooks, prepare vegetables. Halve cherry tomatoes. Slice cremini mushrooms. Dice red bell pepper into 1 cm pieces. Dice onion finely. Mince garlic.",
+      "Heat olive oil in a large skillet over medium heat. Add diced onion and cook until softened, about 3 minutes.",
+      "Add minced garlic and diced bell pepper. Sauté for 5 minutes until bell pepper slightly softens.",
+      "Stir in sliced mushrooms. Cook for 5-7 minutes until mushrooms release their liquid and brown slightly.",
+      "Add halved cherry tomatoes to the skillet. Cook for 5 minutes, pressing gently on tomatoes to help them burst and release juices. The sauce will thicken slightly.",
+      "Add cooked bavette pasta to the skillet with the vegetables. Add reserved pasta water. Toss well to combine.",
+      "Season generously with salt and black pepper. Toss again.",
+      "Serve immediately. Garnish with torn fresh basil leaves and grated Parmesan cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 675,
+      "cholesterol_mg": 13,
+      "dietary_fiber_g": 8.4,
+      "protein_g": 24.8,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 1062,
+      "total_carbs_g": 94.9,
+      "total_fat_g": 25.3,
+      "total_sugars_g": 14,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131.3,
+      "cholesterol_mg": 2.5,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 4.8,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 206.7,
+      "total_carbs_g": 18.5,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 30,
+      "protein": 50,
+      "saturated_fat": 29,
+      "sodium": 46,
+      "total_carbs": 35,
+      "total_fat": 32
+    },
+    "serving_size_g": 513.9,
+    "total_recipe_weight_g": 513.9
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Tenderloin with Red Wine Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_tenderloin_with_red_wine_reduction_20250624_141104_6429906b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:11:05.228036000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of pan-seared beef tenderloin medallions is presented on a round, clean white porcelain dinner plate. The thick-cut beef, perfectly seared to a deep mahogany crust, reveals a juicy medium-rare interior. A glossy, dark red wine reduction is elegantly spooned over the beef, catching the light. Alongside, vibrant green roasted asparagus spears, showing slight charring and a tender-crisp texture, are neatly arranged. The dish exhibits excellent color balance and moderate negative space, creating a professional yet approachable presentation. The setting features a simple wooden table surface, with a folded cotton napkin and classic flatware beside the plate. Natural, even lighting illuminates the dish, emphasizing its refined restaurant-quality appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Beef Tenderloin",
+    "ingredients": [
+      {
+        "name": "Beef Tenderloin",
+        "quantity": "600-800 g"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2-3, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Pat beef tenderloin dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe skillet over high heat. Sear beef tenderloin on all sides until a deep brown crust forms, about 2-3 minutes per side.",
+      "Transfer skillet to preheated oven. Roast until internal temperature reaches 55-60°C (130-140°F) for medium-rare, about 8-12 minutes.",
+      "Remove beef from oven. Transfer to a cutting board. Tent loosely with foil. Let rest for 10-15 minutes.",
+      "While beef rests, trim woody ends from asparagus. Toss with 10 ml olive oil, 1 minced garlic clove, salt, and pepper.",
+      "Roast asparagus in the same oven (or a separate tray) at 200°C (390°F) until tender-crisp, about 8-10 minutes.",
+      "In the same skillet (after removing beef), add diced shallots. Sauté over medium heat until softened. Add remaining minced garlic. Cook 1 minute.",
+      "Pour in red wine. Scrape up browned bits from bottom of skillet. Bring to a simmer. Reduce by half.",
+      "Add beef broth and thyme sprigs. Simmer until sauce thickens slightly, about 5-7 minutes. Remove thyme.",
+      "Stir in butter until melted and glossy. Season red wine reduction with salt and pepper.",
+      "Slice beef tenderloin into thick medallions. Arrange beef medallions on plates. Place roasted asparagus alongside. Spoon red wine reduction over beef. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 548,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 48.6,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 266,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 31.3,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 56,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 13.9,
+      "protein": 97.2,
+      "saturated_fat": 63,
+      "sodium": 11.6,
+      "total_carbs": 4.8,
+      "total_fat": 40.1
+    },
+    "serving_size_g": 473,
+    "total_recipe_weight_g": 1892
+  }
+]

@@ -1,0 +1,659 @@
+[
+  {
+    "recipe_name": "Coq au Vin Blanc",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coq_au_vin_blanc_20250623_125806_3dbac2a4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:58:07.377536000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features two whole, bone-in chicken thighs with crisp, golden-brown skin. They sit in a shallow, wide white porcelain bowl filled with a glossy, ivory-colored cream sauce. Thick-cut bacon lardons and browned, halved button mushrooms are distributed naturally around the chicken. Whole, softened shallots are visible in the sauce. Finely chopped flat-leaf parsley is sprinkled over the top for color. The plating is clean with moderate negative space. The setting includes a rustic wooden table, a linen napkin, and a side of crusty baguette slices. Lighting is natural and bright, emphasizing the textures of the seared skin and the velvety sauce consistency. The entire plate is visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a fresh, crusty baguette to soak up the sauce",
+      "Accompany with buttery mashed potatoes or buttered egg noodles",
+      "Pair with a chilled glass of the same dry white wine used in cooking"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Smoked bacon lardons",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Button mushrooms, halved",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Shallots, peeled and halved",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 pieces"
+      },
+      {
+        "name": "Dry white wine (Riesling or Chardonnay)",
+        "quantity": "375 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "Flat-leaf parsley, finely chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat oil in a heavy pan over medium-high heat.",
+      "Sear chicken skin-side down until deep golden brown.",
+      "Flip chicken and sear for 2 minutes.",
+      "Remove chicken from the pan and set aside.",
+      "Add bacon lardons to the same pan. Fry until crisp.",
+      "Add halved mushrooms. Sauté until browned.",
+      "Stir in shallots and garlic. Cook for 2 minutes.",
+      "Pour in white wine. Scrape the pan bottom to release browned bits.",
+      "Add chicken stock and thyme sprigs.",
+      "Place chicken back into the pan.",
+      "Simmer on low heat for 20 minutes.",
+      "Confirm chicken internal temperature reaches 75°C.",
+      "Transfer chicken to a warm plate.",
+      "Whisk heavy cream and butter into the pan juices.",
+      "Simmer until the sauce thickens slightly.",
+      "Return chicken to the sauce. Garnish with parsley."
+    ],
+    "notes": [
+      "Use a high-quality dry white wine for the best sauce flavor",
+      "Do not boil the sauce vigorously after adding cream to avoid curdling",
+      "Keep the skin above the liquid level during braising to maintain crispness"
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing",
+      "Monter au beurre"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 938,
+      "cholesterol_mg": 271.5,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 54.6,
+      "saturated_fat_g": 24.4,
+      "sodium_mg": 1029,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 66.3,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 197.5,
+      "cholesterol_mg": 57.16,
+      "dietary_fiber_g": 0.31,
+      "protein_g": 11.49,
+      "saturated_fat_g": 5.13,
+      "sodium_mg": 216.6,
+      "total_carbs_g": 3.18,
+      "total_fat_g": 13.96,
+      "total_sugars_g": 0.94,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 91,
+      "dietary_fiber": 5,
+      "protein": 109,
+      "saturated_fat": 122,
+      "sodium": 45,
+      "total_carbs": 5,
+      "total_fat": 85
+    },
+    "serving_size_g": 475,
+    "total_recipe_weight_g": 1900
+  },
+  {
+    "recipe_name": "Chicken and Roasted Bell Pepper Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_roasted_bell_pepper_risotto_20250623_125737_23d51cae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:57:37.570056000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "rice",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of creamy Chicken and Roasted Bell Pepper Risotto is presented on a clean, round white porcelain dinner plate. The risotto is fluid and spreads naturally on the plate, showcasing its rich, velvety texture. Tender, diced chicken pieces are interspersed throughout, along with vibrant strips of roasted red and yellow bell peppers, adding pops of color and slight char. The dish is garnished with fresh, bright green chopped parsley and a light dusting of finely grated Parmesan cheese. The composition is balanced, with moderate negative space. The plate rests on a simple light wooden table surface. Beside the plate, a neatly folded white cotton napkin and classic Italian-style silver flatware are arranged. The background is softly blurred, hinting at a modern bistro setting. Natural, even lighting illuminates the dish, highlighting its warmth and fresh ingredients. The chicken is presented as tender, distinct diced pieces, not sliced or fanned.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the creamy risotto.",
+      "Pair with a crisp, dry white wine like Pinot Grigio or Sauvignon Blanc.",
+      "Offer a simple green salad dressed with vinaigrette as a refreshing accompaniment."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Cut bell peppers into 2 cm wide strips. Toss with 10 ml olive oil, salt, and pepper. Roast for 20-25 minutes until tender and slightly charred. Set aside.",
+      "Dice chicken breast into 2 cm cubes. Season with salt and pepper. Heat 10 ml olive oil in a large pan over medium-high heat. Add chicken. Sear until golden brown and cooked through. Ensure internal temperature reaches 75°C. Remove chicken from pan. Set aside.",
+      "Finely dice onion. Mince garlic. In a large, heavy-bottomed pot or Dutch oven, heat remaining 10 ml olive oil and 20 g butter over medium heat. Add onion. Cook until softened and translucent, about 5-7 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes until edges of rice grains become translucent. This is toasting the rice.",
+      "Pour in white wine. Stir until wine is fully absorbed by the rice.",
+      "Heat chicken broth in a separate saucepan until simmering. Add one ladleful of hot broth to the rice. Stir constantly until broth is almost fully absorbed. Continue adding broth, one ladleful at a time, stirring continuously until each addition is absorbed before adding the next. This process takes about 18-22 minutes.",
+      "The risotto should be creamy and fluid, not dry. The rice should be al dente, tender with a slight bite.",
+      "Stir in cooked chicken and roasted bell peppers during the last 5 minutes of cooking.",
+      "Remove pot from heat. Stir in remaining 40 g butter and grated Parmesan cheese. Stir vigorously for 1-2 minutes. This is 'mantecatura' for creaminess. Adjust seasoning with salt and pepper.",
+      "Serve immediately. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Tostatura",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 857,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 59.3,
+      "saturated_fat_g": 14,
+      "sodium_mg": 1582,
+      "total_carbs_g": 76,
+      "total_fat_g": 31.9,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.9,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 316,
+      "total_carbs_g": 15.2,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 13,
+      "protein": 119,
+      "saturated_fat": 70,
+      "sodium": 69,
+      "total_carbs": 28,
+      "total_fat": 41
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Garlic Parmesan Cream and Roasted Asparagus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_garlic_parmesan_cream_and_roasted_asparagus_20250623_125650_a80308be.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:56:50.676040000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "parmesan cheese",
+      "asparagus"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown pan-seared chicken breast, cooked to perfection, is presented whole on a clean white porcelain dinner plate. It rests upon a luscious pool of creamy, pale yellow garlic-Parmesan sauce, with a light drizzle extending over the chicken. Alongside, vibrant green roasted asparagus spears, cut into approximately 15cm lengths, are neatly arranged, showcasing their tender-crisp texture. The dish is garnished with a fresh sprinkle of finely chopped parsley, adding a pop of bright green. The composition balances rich golden, creamy white, and verdant green tones. The setting is a modern bistro, with a simple wooden table, a folded white cotton napkin, and polished silver flatware, all illuminated by soft, natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken Breasts",
+        "quantity": "4 (approx. 180-200g each), boneless, skinless"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": "500g, trimmed"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "80g, freshly grated"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g, finely chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 15ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts 4-5 minutes per side until golden brown.",
+      "Transfer skillet with chicken to preheated oven. Bake 10-15 minutes, or until internal temperature reaches 75°C. Remove chicken from skillet. Rest on a cutting board.",
+      "While chicken bakes, toss trimmed asparagus with remaining 15ml olive oil, salt, and pepper on a baking sheet.",
+      "Roast asparagus in oven 8-12 minutes until tender-crisp.",
+      "Return skillet to stovetop over medium heat. Add butter.",
+      "Add minced garlic to skillet. Sauté 1 minute until fragrant. Do not brown.",
+      "Pour in chicken broth and heavy cream. Bring to a gentle simmer.",
+      "Stir in grated Parmesan cheese. Whisk until sauce thickens slightly. Season with salt and pepper to taste."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 717,
+      "cholesterol_mg": 260,
+      "dietary_fiber_g": 3,
+      "protein_g": 71.1,
+      "saturated_fat_g": 21.9,
+      "sodium_mg": 1055,
+      "total_carbs_g": 8.8,
+      "total_fat_g": 43.8,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 60,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 16.4,
+      "saturated_fat_g": 5,
+      "sodium_mg": 243,
+      "total_carbs_g": 2,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 87,
+      "dietary_fiber": 11,
+      "protein": 142,
+      "saturated_fat": 109,
+      "sodium": 46,
+      "total_carbs": 3,
+      "total_fat": 56
+    },
+    "serving_size_g": 433.6,
+    "total_recipe_weight_g": 1734.5
+  },
+  {
+    "recipe_name": "Fermented Daikon & Crab Broth",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_daikon_%26_crab_broth_20250623_125635_381a48a3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:56:36.328285000Z",
+    "selected_ingredients": [
+      "crab"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of clear, golden-amber broth is presented in a handcrafted, unglazed ceramic bowl with a subtle, organic texture. Tender, white chunks of crab meat are gently submerged, visible through the translucent liquid. Thin, delicate rounds of fermented daikon radish are scattered throughout the broth, offering a slight pearlescent sheen. A vibrant green garnish of finely sliced daikon greens or scallions floats on the surface, providing a fresh contrast. The composition is clean and minimalist, allowing the natural colors and textures of the ingredients to stand out. The bowl rests on a light-colored, reclaimed wood table. An undyed linen napkin is folded simply beside it, alongside a pair of natural wood chopsticks, emphasizing an eco-conscious and respectful dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Sustainable Modern",
+    "cultural_origin": "Sustainable Modern",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Fresh whole crab",
+        "quantity": "2 (approx. 800g-1kg total)"
+      },
+      {
+        "name": "Daikon radish",
+        "quantity": "500g (1 large, with greens if possible)"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 litres"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Scallions",
+        "quantity": "3 stalks"
+      },
+      {
+        "name": "Kombu",
+        "quantity": "10g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g (plus more to taste)"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "10ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Daikon: Wash daikon thoroughly. Cut daikon into thin rounds (approx. 2mm thick). Reserve any daikon greens for garnish. In a clean glass jar, layer daikon slices with 8g salt and 10ml rice vinegar. Press down firmly. Cover the jar loosely. Ferment at room temperature for 3-5 days, or until slightly sour and bubbly. Refrigerate once fermented.",
+      "Prepare Crab: Bring a large pot of water to a rolling boil. Add whole crabs to the boiling water. Cook for 8-10 minutes until crabs turn bright red. Remove crabs from water. Let cool completely. Carefully pick all meat from the crab bodies and claws. Reserve all crab shells.",
+      "Make Crab Broth: In a large pot, combine the reserved crab shells, 2 litres of water, peels from ginger and garlic, and the white parts of the scallions. Add the kombu. Bring the mixture to a gentle simmer. Cook uncovered for 30 minutes. Strain the broth through a fine-mesh sieve into a clean pot. Discard all solids.",
+      "Assemble Soup: Return the strained crab broth to a gentle simmer. Add approximately 100g of the prepared fermented daikon slices to the broth. Simmer for 5 minutes.",
+      "Season and Finish: Stir in the soy sauce and mirin. Add the picked crab meat to the simmering broth. Heat through for 1-2 minutes; do not boil vigorously. Taste the broth and adjust salt if needed.",
+      "Serve: Ladle the hot Fermented Daikon & Crab Broth into individual serving bowls. Garnish each bowl with thinly sliced reserved daikon greens or fresh scallion greens."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing crab shells for broth and daikon greens for garnish.",
+      "Fermentation adds depth of flavor and promotes gut health."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Broth Making"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.5,
+      "calories": 276,
+      "cholesterol_mg": 124,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 44.9,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 2147,
+      "total_carbs_g": 12,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 30,
+      "cholesterol_mg": 13,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 4.9,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 233,
+      "total_carbs_g": 1.3,
+      "total_fat_g": 0.4,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 9,
+      "protein": 90,
+      "saturated_fat": 3,
+      "sodium": 93,
+      "total_carbs": 4,
+      "total_fat": 5
+    },
+    "serving_size_g": 920,
+    "total_recipe_weight_g": 3680
+  },
+  {
+    "recipe_name": "Baked Jumbo Shells with Creamy Ricotta and Crispy Pancetta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_jumbo_shells_with_creamy_ricotta_and_crispy_pancetta_20250623_125558_b8d69764.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:55:58.791199000Z",
+    "selected_ingredients": [
+      "pasta",
+      "ricotta",
+      "cottage cheese",
+      "bacon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of baked jumbo pasta shells rests on a clean, white porcelain dinner plate. Three large shells are generously stuffed, nestled in a vibrant red tomato sauce. The shells exhibit a golden-brown hue from baking. A thick layer of melted, bubbly mozzarella and grated Parmesan cheese covers the shells, with visible pockets of golden-brown, crispy diced pancetta scattered across the top. Fresh, torn green basil leaves are artfully sprinkled over the dish, providing a contrasting color and freshness. The textures are varied: tender pasta, creamy filling, rich sauce, and crisp pancetta. The plate is set on a simple wooden table, accompanied by standard flatware and a folded white cotton napkin. Natural, even lighting highlights the dish against a softly blurred, casual restaurant background. The composition is clean and professional, focusing on the dish's inviting presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Comfort",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with warm, crusty Italian bread for dipping in the sauce.",
+      "Offer extra grated Parmesan cheese at the table.",
+      "Pair with a simple green salad dressed with a vinaigrette."
+    ],
+    "hero_ingredient": "Jumbo Pasta Shells",
+    "ingredients": [
+      {
+        "name": "Jumbo pasta shells",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Pancetta, diced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "optional"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease a 20x30 cm baking dish.",
+      "Cook jumbo pasta shells in salted boiling water according to package directions until al dente. Drain well. Set aside.",
+      "Heat a large skillet over medium heat. Add diced pancetta. Cook until crispy. Remove pancetta with a slotted spoon; set aside. Leave rendered fat in the skillet.",
+      "Add onion to the skillet with pancetta fat. Sauté until softened, about 5 minutes. Add minced garlic; cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Stir in half of the fresh basil, salt, pepper, and red pepper flakes if using. Bring sauce to a simmer. Cook for 10 minutes, stirring occasionally. Set aside.",
+      "In a large bowl, combine ricotta cheese, cottage cheese, egg, 25g of grated Parmesan, and half of the crispy pancetta. Season with salt and pepper. Mix well.",
+      "Carefully stuff each cooked jumbo shell with the cheese mixture.",
+      "Spread a thin layer of tomato sauce on the bottom of the prepared baking dish.",
+      "Arrange the stuffed shells in a single layer over the sauce. Pour the remaining tomato sauce over the shells.",
+      "Sprinkle the remaining 25g of Parmesan cheese, all of the shredded mozzarella, and the remaining crispy pancetta over the shells.",
+      "Bake for 20-25 minutes, or until the cheese is melted and bubbly and the sauce is heated through and simmering at the edges. The top should be golden brown.",
+      "Garnish with the remaining fresh basil before serving."
+    ],
+    "notes": [
+      "Ensure pasta shells are cooked al dente; they will continue to cook in the oven.",
+      "Adjust seasoning of the sauce and cheese filling to your taste preferences."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for the sauce base)",
+      "Cooking pasta al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 665.28,
+      "cholesterol_mg": 118,
+      "dietary_fiber_g": 3.36,
+      "protein_g": 37.51,
+      "saturated_fat_g": 14.75,
+      "sodium_mg": 1072.82,
+      "total_carbs_g": 48.98,
+      "total_fat_g": 33.27,
+      "total_sugars_g": 8.53,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 175.71,
+      "cholesterol_mg": 31.17,
+      "dietary_fiber_g": 0.89,
+      "protein_g": 9.91,
+      "saturated_fat_g": 3.89,
+      "sodium_mg": 283.35,
+      "total_carbs_g": 12.94,
+      "total_fat_g": 8.79,
+      "total_sugars_g": 2.25,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.33,
+      "dietary_fiber": 12,
+      "protein": 75.02,
+      "saturated_fat": 73.73,
+      "sodium": 46.64,
+      "total_carbs": 17.81,
+      "total_fat": 42.65
+    },
+    "serving_size_g": 378.63,
+    "total_recipe_weight_g": 1514.5
+  }
+]

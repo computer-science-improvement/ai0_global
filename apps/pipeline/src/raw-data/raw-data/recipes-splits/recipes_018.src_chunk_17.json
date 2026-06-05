@@ -1,0 +1,645 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Orange Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_orange_glaze_20250625_155249_0a6924a6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:52:49.780773000Z",
+    "selected_ingredients": [
+      "orange"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, pan-seared chicken breast, cooked to a rich golden-brown, is the centerpiece on a clean white porcelain dinner plate. The chicken, presented as a whole piece, is generously coated with a glossy, amber-hued orange glaze that shimmers under the light. Fresh, vibrant orange segments are thoughtfully arranged alongside the chicken, providing a burst of bright color. A sprinkle of finely chopped fresh green parsley or chives adds a delicate contrast and freshness. The plate rests on a simple, light-toned wooden table surface. A neatly folded light grey cotton napkin is placed to the left of the plate. The background suggests a modern bistro, softly blurred to keep focus on the dish. Natural, even overhead lighting highlights the dish's textures and colors, creating an inviting, professional presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Oranges",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "5g (optional)"
+      },
+      {
+        "name": "Fresh Parsley or Chives",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 4-5 minutes per side until golden brown.",
+      "Transfer skillet to a preheated oven at 180°C (350°F). Bake for 10-15 minutes, or until internal temperature reaches 75°C. Remove chicken. Rest on a cutting board.",
+      "While chicken rests, drain excess fat from skillet, leaving 15ml. Add shallots to skillet. Sauté 2-3 minutes until softened.",
+      "Add minced garlic and thyme sprigs. Cook 1 minute until fragrant.",
+      "Deglaze with orange juice (from 2 oranges, about 150ml). Scrape up browned bits.",
+      "Add chicken stock. Bring to a simmer. Reduce by half, about 5-7 minutes.",
+      "Whisk in butter until sauce is glossy. Season with salt and pepper. For a thicker sauce, mix cornstarch with 15ml cold water, whisk into sauce, then simmer 1 minute.",
+      "Cut remaining orange into segments for garnish. Zest some orange peel into the sauce.",
+      "Plate chicken as a whole piece. Spoon orange glaze over chicken.",
+      "Garnish with fresh orange segments and chopped parsley or chives."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for food safety.",
+      "Rest chicken for at least 5 minutes after cooking to ensure it remains juicy."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 463.5,
+      "cholesterol_mg": 177.6,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 60.7,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 193.3,
+      "total_carbs_g": 15.5,
+      "total_fat_g": 16.6,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.4,
+      "cholesterol_mg": 48.8,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 16.7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 53.1,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.2,
+      "dietary_fiber": 9.9,
+      "protein": 121.3,
+      "saturated_fat": 31.4,
+      "sodium": 8.4,
+      "total_carbs": 5.6,
+      "total_fat": 21.3
+    },
+    "serving_size_g": 364,
+    "total_recipe_weight_g": 1455
+  },
+  {
+    "recipe_name": "Hearty Apple and Lentil Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_apple_and_lentil_stew_20250625_155247_27aa48df.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:52:47.868389000Z",
+    "selected_ingredients": [
+      "apple"
+    ],
+    "complexity": "simple",
+    "special_requests": "plant-based",
+    "visual_description": "A comforting, single portion of Hearty Apple and Lentil Stew fills a rustic, deep ceramic bowl. The stew presents a rich, earthy reddish-brown hue, with visible, tender chunks of bright orange diced carrots, pale green diced celery, and soft, lighter-colored diced apples. The red lentils are fully cooked, creating a thick, hearty, yet still fluid consistency. A sprinkle of vibrant green chopped fresh parsley rests on top, adding a fresh contrast. The bowl sits on a well-worn, natural wooden dining table, suggesting a homely kitchen setting. A simple, everyday fork is casually placed beside the bowl. Warm, diffused lighting illuminates the scene, enhancing the natural colors and inviting texture of the stew. The entire bowl is visible, with ample negative space around it, emphasizing its comforting simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Cooking",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Red lentils",
+        "quantity": "200g"
+      },
+      {
+        "name": "Apples (e.g., Honeycrisp or Fuji)",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "a handful, chopped"
+      }
+    ],
+    "instructions": [
+      "Rinse red lentils under cold water. Drain.",
+      "Heat olive oil in a large pot or Dutch oven over medium heat.",
+      "Add diced onion, carrots, and celery. Sauté 5-7 minutes until softened.",
+      "Stir in minced garlic and dried thyme. Cook 1 minute until fragrant.",
+      "Add rinsed lentils, vegetable broth, and canned diced tomatoes to the pot. Add bay leaf.",
+      "Bring to a boil, then reduce heat to low. Cover and simmer 15 minutes.",
+      "Stir in diced apples. Continue to simmer, uncovered, for another 10-15 minutes, or until lentils are tender and stew has thickened slightly.",
+      "Remove bay leaf. Season with salt and black pepper to taste.",
+      "Ladle hot stew into bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 356,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 13.5,
+      "protein_g": 15.4,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 304,
+      "total_carbs_g": 58.3,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 17.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 58.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 2.5,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 50,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 1.3,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 48,
+      "protein": 31,
+      "saturated_fat": 6,
+      "sodium": 13,
+      "total_carbs": 21,
+      "total_fat": 10
+    },
+    "serving_size_g": 606,
+    "total_recipe_weight_g": 2423
+  },
+  {
+    "recipe_name": "Chicken Parmesan with Spaghetti",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_parmesan_with_spaghetti_20250625_155222_3c4086ab.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:52:23.207427000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown chicken cutlet, generously topped with melted, bubbly mozzarella and Parmesan cheese, rests on a bed of perfectly cooked spaghetti. A rich, vibrant red marinara sauce pools around the chicken and coats the pasta. The chicken cutlet is a thick, substantial piece, not sliced. Fresh green basil leaves are scattered over the dish for a pop of color and freshness. The dish is presented on a simple, slightly off-white ceramic plate with natural imperfections, placed on a well-used wooden dining table. A basic silver fork lies beside the plate. The scene is illuminated by warm, cozy light, typical of a family kitchen, creating a lived-in, comforting atmosphere. The portion is modest and homely, filling the plate adequately without overcrowding.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty bread for dipping in the extra sauce."
+    ],
+    "hero_ingredient": "Breaded Chicken Cutlet",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "4 (about 180g each)"
+      },
+      {
+        "name": "Spaghetti",
+        "quantity": "400g"
+      },
+      {
+        "name": "Marinara sauce",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g (plus more for pasta water)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Prepare chicken: Place each chicken breast between two sheets of plastic wrap. Pound to 1.5 cm thickness using a mallet or rolling pin.",
+      "Set up breading station: Place flour in a shallow dish. Whisk eggs in a second shallow dish. Combine breadcrumbs, garlic powder, oregano, salt, and pepper in a third shallow dish.",
+      "Dredge each chicken cutlet in flour, shaking off excess. Dip in egg, coating completely. Press into breadcrumb mixture, ensuring full coverage.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear breaded chicken for 3-4 minutes per side until golden brown. Do not fully cook through. Transfer chicken to a plate.",
+      "Pour half of the marinara sauce into the skillet. Arrange seared chicken cutlets over the sauce.",
+      "Top each chicken cutlet with remaining marinara sauce. Sprinkle generously with mozzarella cheese, then Parmesan cheese.",
+      "Bake for 15-20 minutes, or until chicken reaches an internal temperature of 75°C and cheese is bubbly and golden.",
+      "While chicken bakes, cook spaghetti according to package directions in salted boiling water until al dente. Drain well.",
+      "Serve baked chicken parmesan over a bed of spaghetti. Garnish with fresh basil leaves."
+    ],
+    "notes": [
+      "Pounding the chicken ensures even cooking and tenderness.",
+      "Using an oven-safe skillet reduces cleanup."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1626,
+      "cholesterol_mg": 638,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 107.4,
+      "saturated_fat_g": 24.7,
+      "sodium_mg": 1351,
+      "total_carbs_g": 142.4,
+      "total_fat_g": 69,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 215,
+      "cholesterol_mg": 84,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 14.2,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 179,
+      "total_carbs_g": 18.8,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 213,
+      "dietary_fiber": 35,
+      "protein": 215,
+      "saturated_fat": 124,
+      "sodium": 59,
+      "total_carbs": 52,
+      "total_fat": 88
+    },
+    "serving_size_g": 756.5,
+    "total_recipe_weight_g": 3026
+  },
+  {
+    "recipe_name": "Apple and Onion Risotto with Toasted Pecans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_apple_and_onion_risotto_with_toasted_pecans_20250625_155123_ade71e23.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:51:23.640010000Z",
+    "selected_ingredients": [
+      "apple"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A creamy, free-flowing Apple and Onion Risotto is presented centrally on a round, matte white porcelain plate. The risotto has a soft, pale golden hue, studded with small, tender cubes of caramelized apple and translucent slivers of onion. Its texture appears luscious and yielding, not stiff or dry. A scattering of roughly chopped, golden-brown toasted pecans provides a contrasting crunch and warmth across the surface. Several fresh green thyme sprigs are artfully placed, adding a pop of vibrant color and aromatic appeal. The plate features moderate negative space, allowing the risotto to be the clear focal point. It sits on a simple wooden table, accompanied by a folded cotton napkin and standard modern flatware. Natural, even lighting highlights the dish's comforting warmth and inviting textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Honeycrisp apples",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 grams"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "Pecans",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large heavy-bottomed pot over medium heat.",
+      "Add thinly sliced onion. Sauté 5-7 minutes until translucent and soft.",
+      "Peel, core, and dice apples into 1 cm cubes. Add to pot. Cook 3 minutes until slightly softened.",
+      "Stir in Arborio rice. Cook 2 minutes, stirring constantly, until rice edges are translucent.",
+      "Pour in white wine. Stir until completely absorbed by the rice.",
+      "Add hot vegetable broth, one ladle (about 120 ml) at a time. Stir constantly.",
+      "Wait until liquid is almost fully absorbed before adding the next ladle of broth.",
+      "Continue adding broth and stirring for 18-20 minutes until rice is creamy and al dente.",
+      "Remove pot from heat. Stir in butter and grated Parmesan cheese.",
+      "Season with salt and black pepper to taste. Stir until smooth and creamy.",
+      "While risotto cooks, toast pecans in a dry pan over medium heat for 3-5 minutes until fragrant. Roughly chop.",
+      "Serve risotto immediately. Garnish each portion with toasted pecans and a fresh thyme sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 709.1,
+      "cholesterol_mg": 50.1,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 15.4,
+      "saturated_fat_g": 13.3,
+      "sodium_mg": 635.3,
+      "total_carbs_g": 79.7,
+      "total_fat_g": 34.8,
+      "total_sugars_g": 11.9,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121.1,
+      "cholesterol_mg": 8.6,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 2.6,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 108.5,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17,
+      "dietary_fiber": 17,
+      "protein": 31,
+      "saturated_fat": 67,
+      "sodium": 28,
+      "total_carbs": 29,
+      "total_fat": 45
+    },
+    "serving_size_g": 585.4,
+    "total_recipe_weight_g": 2341.6
+  },
+  {
+    "recipe_name": "Mediterranean Herb Chicken and Beef Skewers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_herb_chicken_and_beef_skewers_20250625_155120_9fff50dd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:51:21.333619000Z",
+    "selected_ingredients": [
+      "chicken",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features two perfectly grilled skewers, one predominantly chicken and the other beef, artfully arranged on a clean, round white porcelain plate. The chicken pieces are golden-brown with visible grill marks, showcasing a tender, cooked interior. The beef cubes are seared to a rich brown, revealing a juicy, medium-rare center. Both meats are cut into uniform 2.5 cm cubes. Interspersed between the meat on the skewers are vibrant roasted bell pepper chunks (red, yellow, orange) and red onion wedges, displaying caramelized edges and a soft texture. A generous bed of roasted vegetables, including bell pepper chunks, red onion pieces, and burst cherry tomatoes, forms the base, exhibiting a medley of warm, earthy colors. The entire composition is garnished with fresh green oregano and thyme sprigs, and bright lemon wedges are placed beside the skewers, adding a pop of color and freshness. The plate is presented on a simple wooden table, accompanied by a folded white cotton napkin and standard silver flatware. Natural, even lighting illuminates the dish, highlighting its textures and vibrant colors. The presentation is clean, professional, and balanced, allowing moderate negative space to emphasize the quality ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of tzatziki or a fresh cucumber-yogurt sauce.",
+      "Offer warm pita bread or flatbread for dipping.",
+      "Accompany with a simple Greek salad."
+    ],
+    "hero_ingredient": "Grilled Chicken and Beef",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400g"
+      },
+      {
+        "name": "Beef sirloin",
+        "quantity": "400g"
+      },
+      {
+        "name": "Bell peppers (mixed colors)",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "10g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Wooden or metal skewers",
+        "quantity": "8"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2.5 cm cubes.",
+      "Cut beef sirloin into 2.5 cm cubes.",
+      "In a large bowl, combine chicken and beef cubes.",
+      "Mince garlic. Finely chop oregano, thyme, and rosemary.",
+      "Add minced garlic, chopped herbs, 30ml olive oil, juice of half lemon, 5g salt, and 3g black pepper to the meat. Mix well.",
+      "Marinate meat for at least 30 minutes at room temperature, or up to 4 hours refrigerated.",
+      "Preheat oven to 200°C (400°F).",
+      "Core and deseed bell peppers. Cut into 2.5 cm pieces.",
+      "Cut red onion into 2.5 cm pieces. Separate layers.",
+      "In a separate bowl, toss bell peppers, red onion, and cherry tomatoes with remaining 30ml olive oil, 5g salt, and 2g black pepper.",
+      "Spread vegetables on a baking sheet. Roast for 20-25 minutes, until tender and slightly charred.",
+      "Thread marinated chicken and beef cubes alternately onto skewers. Add bell pepper and onion pieces between meat. Aim for 4 chicken-dominant skewers and 4 beef-dominant skewers, or mix evenly.",
+      "Heat a grill pan or outdoor grill to medium-high heat.",
+      "Grill skewers for 8-10 minutes, turning frequently, until chicken is cooked through and beef reaches desired doneness. Chicken internal temperature must reach 75°C (167°F).",
+      "Let skewers rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "For food safety, ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Soak wooden skewers in water for 30 minutes before use to prevent burning."
+    ],
+    "traditional_techniques": [
+      "Marinating meats for flavor and tenderness.",
+      "Grilling over open flame."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 546,
+      "cholesterol_mg": 161,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 63.7,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 1114.2,
+      "total_carbs_g": 18.9,
+      "total_fat_g": 24.3,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119.6,
+      "cholesterol_mg": 35.3,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 14,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 244,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 24,
+      "protein": 127,
+      "saturated_fat": 28,
+      "sodium": 48,
+      "total_carbs": 7,
+      "total_fat": 31
+    },
+    "serving_size_g": 456.6,
+    "total_recipe_weight_g": 1826.2
+  }
+]

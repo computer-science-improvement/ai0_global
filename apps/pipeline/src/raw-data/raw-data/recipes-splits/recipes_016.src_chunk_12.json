@@ -1,0 +1,684 @@
+[
+  {
+    "recipe_name": "Orange-Coffee Cake with Candied Eggplant and Umami Caramel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orange-coffee_cake_with_candied_eggplant_and_umami_caramel_20250627_033010_6c9587aa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:30:10.939821000Z",
+    "selected_ingredients": [
+      "eggplant",
+      "chicken",
+      "beef",
+      "rice",
+      "beef stock",
+      "orange",
+      "coffee",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single slice of Orange-Coffee Cake sits elegantly on a clean white porcelain dinner plate, centrally positioned. The cake, a warm golden-brown, reveals a tender, moist crumb dotted with translucent, glistening 5mm dice of candied eggplant. A rich, glossy Umami Caramel, dark amber in hue, is artfully drizzled over the cake, creating a natural flow across the surface and pooling slightly at the base. A light scattering of fine, golden-brown crispy chicken skin crumble provides a contrasting texture and subtle savory note atop the caramel. The plate offers moderate negative space, allowing the cake to be the focal point. The setting is a modern bistro, with the plate resting on a simple wooden table. A folded cotton napkin is placed to the side. Natural, even lighting highlights the cake's textures and the caramel's sheen. The entire plate is visible, showcasing a balanced and refined presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Coffee",
+    "ingredients": [
+      {
+        "name": "unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "caster sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "strong brewed coffee",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "fresh orange juice",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "orange zest",
+        "quantity": "Zest of 1 orange"
+      },
+      {
+        "name": "all-purpose flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "rice flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "eggplant",
+        "quantity": "100 g"
+      },
+      {
+        "name": "water",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "caster sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "caster sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "heavy cream",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "highly reduced beef stock",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "chicken skin",
+        "quantity": "50 g"
+      },
+      {
+        "name": "caster sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Prepare Candied Eggplant: Combine 100 ml water and 100 g sugar in a small saucepan. Bring to a boil. Add 5mm diced eggplant. Simmer gently for 20-25 minutes until translucent. Drain well. Spread on parchment paper to dry slightly.",
+      "Prepare Cake Batter: Preheat oven to 170°C. Grease and flour a 20 cm round cake tin or 4 individual molds. In a bowl, cream softened butter and 150 g sugar until light and fluffy. Beat in eggs one at a time.",
+      "Combine Liquids and Dry: In a separate bowl, whisk together coffee, orange juice, orange zest, and oil. In another bowl, whisk together all-purpose flour, rice flour, baking powder, and 2 g salt.",
+      "Mix Batter: Gradually add dry ingredients to wet ingredients, alternating with liquid mixture, beginning and ending with dry. Mix until just combined. Fold in candied eggplant.",
+      "Bake Cake: Pour batter into prepared tin(s). Bake for 25-35 minutes for individual cakes, or 40-50 minutes for a single cake, until a skewer inserted comes out clean. Cool on a wire rack.",
+      "Prepare Umami Caramel: In a heavy-bottomed saucepan, combine 100 g sugar and 30 ml water. Cook over medium heat without stirring until it turns an amber color. Remove from heat. Carefully pour in warmed heavy cream, stirring constantly. Stir in reduced beef stock. Cool to room temperature.",
+      "Prepare Crispy Chicken Skin Garnish: Roast chicken skin until very crispy. Drain excess fat. Chop finely or crumble. Toss with 5 g sugar and a pinch of salt. Set aside.",
+      "Assemble and Plate: Cut the cake into individual portions if baking a single large cake. Place one cake portion on each plate. Drizzle generously with Umami Caramel. Sprinkle a small amount of Crispy Chicken Skin Garnish over the caramel."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 88.75,
+      "calories": 945.78,
+      "cholesterol_mg": 180.75,
+      "dietary_fiber_g": 2.22,
+      "protein_g": 11.14,
+      "saturated_fat_g": 20.83,
+      "sodium_mg": 487.31,
+      "total_carbs_g": 132.05,
+      "total_fat_g": 43.39,
+      "total_sugars_g": 91.78,
+      "trans_fat_g": 1.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 26.79,
+      "calories": 285.52,
+      "cholesterol_mg": 54.57,
+      "dietary_fiber_g": 0.67,
+      "protein_g": 3.36,
+      "saturated_fat_g": 6.29,
+      "sodium_mg": 147.11,
+      "total_carbs_g": 39.86,
+      "total_fat_g": 13.1,
+      "total_sugars_g": 27.71,
+      "trans_fat_g": 0.34
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.25,
+      "dietary_fiber": 7.93,
+      "protein": 22.28,
+      "saturated_fat": 104.15,
+      "sodium": 21.19,
+      "total_carbs": 48.02,
+      "total_fat": 55.63
+    },
+    "serving_size_g": 331.25,
+    "total_recipe_weight_g": 1325
+  },
+  {
+    "recipe_name": "Lemon Herb Roasted Chicken and Vegetable Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_roasted_chicken_and_vegetable_pasta_20250627_033000_a0f86e13.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:30:00.661716000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "Non-spicy, easy on a stomach, rich in flavor, many vegetables and protein, low fat, low oil",
+    "visual_description": "A single portion of Lemon Herb Roasted Chicken and Vegetable Pasta rests on a simple, slightly imperfect off-white ceramic plate. The dish features thick chunks of roasted chicken breast, golden-brown and tender. It is generously mixed with vibrant, roasted vegetables: crisp-tender green broccoli florets, brightly colored diced bell peppers, soft zucchini half-moons, and bursting red cherry tomatoes. The components are naturally intertwined with al dente pasta, coated lightly in a savory, light lemon-herb sauce. Fresh green chopped parsley is scattered over the top. The plate is casually placed on a well-used, warm-toned wooden dining table. A casually draped cloth napkin is visible nearby. The scene is illuminated by warm, inviting light, suggesting a relaxed family meal in a comfortable kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 600g total)"
+      },
+      {
+        "name": "Pasta (e.g., penne or fusilli)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "300g"
+      },
+      {
+        "name": "Bell peppers (various colors), diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Zucchini, cut into half-moons",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Lemon, juiced and zested",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth (low sodium)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a large baking sheet with parchment paper.",
+      "Cut chicken breasts into 3cm thick chunks. Toss chicken with 15ml olive oil, half the minced garlic, salt, and pepper.",
+      "On the same baking sheet, toss broccoli florets, diced bell peppers, zucchini half-moons, and halved cherry tomatoes with remaining 15ml olive oil, salt, and pepper.",
+      "Spread chicken and vegetables in a single layer on the baking sheet. Roast for 20-25 minutes. Chicken internal temperature must reach 75°C. Vegetables should be tender-crisp.",
+      "While chicken and vegetables roast, cook pasta according to package directions until al dente. Drain, reserving 60ml pasta water.",
+      "In a large skillet, heat reserved minced garlic for 30 seconds until fragrant. Do not brown.",
+      "Add chicken broth, lemon juice, and lemon zest to the skillet. Bring to a simmer.",
+      "Add cooked pasta, roasted chicken chunks, and roasted vegetables to the skillet. Toss gently to combine. If too dry, add a little reserved pasta water.",
+      "Stir in fresh chopped parsley. Season with additional salt and pepper to taste.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 671.9,
+      "cholesterol_mg": 127.5,
+      "dietary_fiber_g": 8.1,
+      "protein_g": 61.4,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 182.2,
+      "total_carbs_g": 73.2,
+      "total_fat_g": 14.5,
+      "total_sugars_g": 9.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 122.5,
+      "cholesterol_mg": 23.3,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 11.2,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 33.2,
+      "total_carbs_g": 13.3,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.5,
+      "dietary_fiber": 28.9,
+      "protein": 122.8,
+      "saturated_fat": 14,
+      "sodium": 7.9,
+      "total_carbs": 26.6,
+      "total_fat": 18.6
+    },
+    "serving_size_g": 548.4,
+    "total_recipe_weight_g": 2193.6
+  },
+  {
+    "recipe_name": "Orecchiette with Italian Sausage, Roasted Peppers, and Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orecchiette_with_italian_sausage%2C_roasted_peppers%2C_and_tomato_20250627_032940_f17556bd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:29:41.301860000Z",
+    "selected_ingredients": [
+      "pasta",
+      "oregano",
+      "tomato",
+      "italian sausage",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Orecchiette pasta, generously coated in a rustic, vibrant red tomato sauce, is piled centrally on a clean white porcelain dinner plate. Crumbled, browned Italian sausage chunks are interspersed throughout the pasta, alongside tender, diced roasted red and yellow bell peppers. The dish features a natural balance of deep reds, golden browns, and bright greens from fresh oregano and a sprinkle of chopped parsley. Grated Parmigiano-Reggiano crowns the dish, adding a touch of creamy white. The textures are a pleasing contrast of al dente pasta, hearty sausage, and soft vegetables. The plate rests on a simple wooden table, accompanied by standard flatware and a folded white cotton napkin. A small bowl of extra grated cheese and a piece of crusty Italian bread complete the authentic, casual dining scene under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Pair with a medium-bodied red wine, such as Chianti or Sangiovese.",
+      "Offer extra grated Parmigiano-Reggiano at the table."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Italian sausage (mild or spicy)",
+        "quantity": "450 grams"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese",
+        "quantity": "80 grams, grated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F). Halve and deseed bell peppers. Place cut-side down on a baking sheet. Roast for 25-30 minutes until skins blister and char. Remove, cool slightly, then peel skins. Dice roasted peppers into small cubes.",
+      "Remove sausage from casings. Crumble into a large skillet over medium-high heat. Cook, breaking up with a spoon, until browned and cooked through. Drain excess fat. Remove sausage from skillet; set aside.",
+      "Reduce heat to medium. Add 1 tablespoon olive oil to the same skillet. Add diced onion. Sauté until softened, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes and chopped fresh oregano. Bring to a simmer. Return cooked sausage and diced roasted bell peppers to the skillet. Season with salt and black pepper. Simmer gently for 15-20 minutes, allowing flavors to meld.",
+      "Meanwhile, bring a large pot of salted water to a rolling boil. Add orecchiette pasta. Cook according to package directions until al dente.",
+      "Drain pasta, reserving about 125 ml of pasta water. Add drained pasta directly to the sauce. Toss well to coat. If sauce is too thick, add a little reserved pasta water until desired consistency is reached.",
+      "Serve immediately. Garnish each portion with grated Parmigiano-Reggiano and fresh chopped parsley."
+    ],
+    "notes": [
+      "Roasting the bell peppers intensifies their sweetness and adds a smoky depth to the sauce.",
+      "Using fresh oregano provides a brighter, more authentic Italian flavor compared to dried."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 967,
+      "cholesterol_mg": 96,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 43.1,
+      "saturated_fat_g": 15.5,
+      "sodium_mg": 1199,
+      "total_carbs_g": 92.7,
+      "total_fat_g": 46.1,
+      "total_sugars_g": 13.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.6,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 184,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32,
+      "dietary_fiber": 26,
+      "protein": 86,
+      "saturated_fat": 78,
+      "sodium": 52,
+      "total_carbs": 34,
+      "total_fat": 59
+    },
+    "serving_size_g": 650,
+    "total_recipe_weight_g": 2600
+  },
+  {
+    "recipe_name": "Sustainable Braised Beef & Chicken with Fermented Eggplant and Crispy Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_braised_beef_%26_chicken_with_fermented_eggplant_and_crispy_rice_20250627_032856_7727df4f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:28:56.623677000Z",
+    "selected_ingredients": [
+      "eggplant",
+      "chicken",
+      "beef",
+      "rice",
+      "beef stock",
+      "orange",
+      "coffee",
+      "oil"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of the dish is presented on a handcrafted ceramic plate in an earthy cream or beige tone, showcasing a minimalistic and natural composition. A golden-brown crispy rice cake forms the base, positioned slightly off-center. Beside it, a substantial, dark brown braised beef chunk sits next to a lighter, tender piece of braised chicken. Both meats appear as whole, un-sliced pieces, with a rich, glossy sheen from the jus. A small, vibrant mound of diced or roughly pureed fermented eggplant, with its subtle purple hues, provides a contrasting texture and color. A dark, glistening coffee-orange jus is artfully drizzled over the meat and around the plate, creating subtle pools. The plating emphasizes negative space, allowing each ingredient to stand out. Garnish is minimal, perhaps a single small sprig of fresh thyme or a few small, green herb leaves, positioned naturally. The plate rests on a light, textured surface, such as reclaimed wood or natural stone. The background is clean and unfussy, with soft, natural lighting highlighting the food's textures and colors. An undyed linen napkin in a natural beige tone is folded simply beside the plate, and a hint of a green plant or natural element is visible in the soft-focus background, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Chicken thighs, boneless",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Eggplant",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1"
+      },
+      {
+        "name": "Strong brewed coffee",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water (for brine)",
+        "quantity": "500 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Eggplant (3-5 days in advance): Slice eggplants into 1 cm rounds. Lightly salt slices; let sit 30 minutes. Rinse and pat dry. Prepare a 2% brine: dissolve 10g salt in 500ml water. Pack eggplant slices and 1 crushed garlic clove into a clean jar. Pour brine over, ensuring eggplant is submerged. Seal and ferment at room temperature for 3-5 days. Refrigerate once fermented. When ready to use, dice fermented eggplant into small cubes or roughly puree.",
+      "Braise Beef: Cut beef chuck into 5 cm thick chunks. Season beef with salt and pepper. Heat 15 ml olive oil in a large oven-safe pot over medium-high heat. Sear beef chunks on all sides until browned. Remove beef. Add chopped onion, carrot, and celery to the pot. Sauté until softened, about 5 minutes. Add 2 minced garlic cloves, thyme, and bay leaf. Cook 1 minute more. Return beef to the pot. Pour in beef stock. Bring to a simmer. Cover and braise in a preheated oven at 160°C for 2.5-3 hours, or until beef is fork-tender.",
+      "Braise Chicken: Remove beef from the pot when tender. Keep warm. Add chicken thigh pieces to the braising liquid. Simmer on stovetop or return to oven for 20-25 minutes, or until internal temperature reaches 75°C. Remove chicken. Strain braising liquid, discarding solids. Skim excess fat.",
+      "Make Coffee-Orange Jus: Return strained braising liquid to a saucepan. Add orange zest and juice from 1 orange. Add strong brewed coffee. Bring to a simmer. Reduce over medium heat until the jus thickens to a glaze-like consistency. Season with salt and pepper to taste.",
+      "Prepare Crispy Rice Cakes: Cook rice according to package instructions. Spread cooked rice thinly on a baking sheet to cool slightly. Press cooled rice into 6-8 compact round cakes, about 1.5 cm thick. Heat remaining 15 ml olive oil in a non-stick pan over medium-high heat. Fry rice cakes 3-4 minutes per side until golden brown and crispy.",
+      "Assemble and Serve: Place one crispy rice cake on a plate. Arrange a piece of braised beef and a piece of braised chicken next to it. Spoon a generous dollop of diced or pureed fermented eggplant beside the meat. Drizzle the coffee-orange jus over the meat and around the plate. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 790.3,
+      "cholesterol_mg": 210,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 64.6,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 823.3,
+      "total_carbs_g": 58,
+      "total_fat_g": 31.1,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 30.3,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.3,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 118.8,
+      "total_carbs_g": 8.4,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 22.5,
+      "protein": 129.1,
+      "saturated_fat": 49,
+      "sodium": 35.8,
+      "total_carbs": 21.1,
+      "total_fat": 39.8
+    },
+    "serving_size_g": 693,
+    "total_recipe_weight_g": 2772
+  },
+  {
+    "recipe_name": "Seared Pork Loin with Fermented Tomato Relish, White Bean Purée, and Roasted Eggplant",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_pork_loin_with_fermented_tomato_relish%2C_white_bean_pur%C3%A9e%2C_and_roasted_eggplant_20250627_032126_074cd9c6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:21:26.853581000Z",
+    "selected_ingredients": [
+      "tomato",
+      "corn",
+      "eggplant",
+      "pork",
+      "bean"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, refined restaurant portion of Seared Pork Loin with Fermented Tomato Relish, White Bean Purée, and Roasted Eggplant is presented on a handcrafted, natural cream-colored ceramic plate. A smooth white bean purée forms an organic base. A thick, golden-brown seared pork loin chunk rests on the purée. Roasted eggplant planks, with soft, slightly browned edges, are arranged naturally beside it. Bright yellow, charred corn kernels are scattered around. A vibrant red, chunky fermented tomato relish is spooned over or beside the pork, adding contrasting color. The composition is minimalistic and clean, with ample white space. Soft, natural light highlights ingredient textures and colors. The setting features a light bamboo table surface, an undyed linen napkin, and a clean background with subtle plant elements. Traditional flatware accompanies the dish. The entire plate is visible, showcasing a sustainable and elegant dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "N/A",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Pork Loin",
+    "ingredients": [
+      {
+        "name": "Pork loin",
+        "quantity": "600 g"
+      },
+      {
+        "name": "White beans, dried",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Tomatoes, ripe",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Eggplant",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Corn kernels, fresh or frozen",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Soak dried white beans overnight. Drain and rinse. Cook beans in fresh water until tender, about 60-90 minutes. Drain, reserving 100 ml cooking liquid.",
+      "For Fermented Tomato Relish: Dice tomatoes into small cubes. Mince 2 garlic cloves. Combine tomatoes, minced garlic, 15 ml olive oil, 15 ml red wine vinegar, a pinch of salt, and a pinch of pepper in a clean jar. Cover loosely. Let ferment at room temperature for 24-48 hours, tasting periodically for desired tang. Refrigerate after desired tang achieved.",
+      "Preheat oven to 200°C (400°F).",
+      "Cut eggplants lengthwise into 1.5 cm thick planks. Brush both sides with 15 ml olive oil. Season with salt and pepper. Place on a baking sheet. Roast for 20-25 minutes, or until tender and lightly browned.",
+      "Heat a dry skillet over high heat. Add corn kernels. Char corn for 5-7 minutes, stirring occasionally, until kernels are lightly browned and blistered. Set aside.",
+      "Prepare White Bean Purée: In a food processor, combine cooked white beans, remaining 30 ml olive oil, remaining 2 minced garlic cloves, and reserved bean cooking liquid or vegetable stock. Blend until smooth and creamy. Season with salt and pepper. Keep warm.",
+      "Pat pork loin dry. Season generously with salt and pepper. Heat an oven-safe skillet over medium-high heat. Add 15 ml olive oil. Sear pork loin on all sides until golden brown, about 2-3 minutes per side. Add rosemary and thyme sprigs to the pan.",
+      "Transfer skillet to preheated oven. Roast pork for 15-20 minutes, or until internal temperature reaches 75°C (167°F). Let rest 5 minutes before slicing into 4 thick chunks.",
+      "To plate: Spoon a generous portion of white bean purée onto each plate. Arrange 1-2 roasted eggplant planks beside the purée. Place one thick chunk of seared pork loin on the plate. Spoon a dollop of fermented tomato relish over the pork or beside it. Scatter charred corn kernels around the dish. Garnish with fresh herb sprigs if desired."
+    ],
+    "notes": [
+      "The fermented tomato relish can be made several days in advance for deeper flavor. Store refrigerated.",
+      "Use any vegetable trimmings (eggplant ends, corn cobs) to make a flavorful vegetable stock for future use, adhering to zero-waste principles."
+    ],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 639,
+      "cholesterol_mg": 107,
+      "dietary_fiber_g": 15.9,
+      "protein_g": 56.1,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 238,
+      "total_carbs_g": 54.3,
+      "total_fat_g": 23.5,
+      "total_sugars_g": 12.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 95,
+      "cholesterol_mg": 15.8,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 8.3,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 35.3,
+      "total_carbs_g": 8,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.5,
+      "dietary_fiber": 56.8,
+      "protein": 112.2,
+      "saturated_fat": 24.4,
+      "sodium": 10.4,
+      "total_carbs": 19.7,
+      "total_fat": 30.1
+    },
+    "serving_size_g": 674.25,
+    "total_recipe_weight_g": 2697
+  }
+]

@@ -26,7 +26,7 @@ function slugify(text) {
     .slice(0, 120);
 }
 
-const COLUMNS  = ['title', 'slug', 'url', 'description', 'ingredients', 'instructions', 'image_url', 'category', 'tags', 'post_text', 'posted', 'raw'];
+const COLUMNS  = ['title', 'slug', 'url', 'description', 'ingredients', 'instructions', 'image_url', 'category', 'tags', 'post_text', 'posted', 'kcal', 'protein_g', 'fat_g', 'carbs_g', 'serving_size_g', 'raw'];
 const CONFLICT = '(slug)';
 
 /** Encode a JS array as a Postgres text[] literal */
@@ -48,6 +48,11 @@ function mapRecipe(recipe) {
     tags:         pgArray(recipe.tags),
     post_text:    recipe.post_text    ?? recipe.postText ?? null,
     posted:       '{}',
+    kcal:           recipe.kcal           ?? null,
+    protein_g:      recipe.protein_g      ?? null,
+    fat_g:          recipe.fat_g          ?? null,
+    carbs_g:        recipe.carbs_g        ?? null,
+    serving_size_g: recipe.serving_size_g ?? null,
     // Strip NUL escapes — Postgres jsonb (and text) reject . Some source
     // recipes carry a stray null char in free-text fields (e.g. serving tips).
     raw:          recipe.raw ? JSON.stringify(recipe.raw).replace(/\\u0000/g, '') : null,

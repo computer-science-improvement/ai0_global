@@ -1,0 +1,717 @@
+[
+  {
+    "recipe_name": "Basil & Cheese Stuffed Chicken with Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_basil_%26_cheese_stuffed_chicken_with_roasted_vegetables_20250630_013033_56142cab.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T01:30:34.244699000Z",
+    "selected_ingredients": [
+      "chicken",
+      "broccoli",
+      "cheese",
+      "carrot",
+      "cauliflower",
+      "mushroom",
+      "basil",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, perfectly portioned stuffed chicken breast sits prominently on a clean white porcelain dinner plate, showcasing a golden-brown, seared exterior. The chicken is presented as a whole piece, not sliced. Alongside, vibrant roasted broccoli and cauliflower florets, with slightly charred edges, are artfully arranged. Bright orange carrot batons, glistening from a light glaze, add a pop of color. The plate features moderate negative space, allowing each component to stand out. A light drizzle of golden pan sauce cascades over the chicken. A fresh, green basil sprig rests delicately on top of the chicken as a garnish. The setting is a modern bistro, with a simple wooden table surface. A neatly folded cotton napkin is placed beside the plate. Natural, even lighting illuminates the dish, emphasizing its textures and inviting colors. The background is softly blurred, hinting at a casual restaurant atmosphere without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g, finely diced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small (approx. 100g), finely diced"
+      },
+      {
+        "name": "Gruyère or mozzarella cheese",
+        "quantity": "100g, shredded"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30g, finely chopped"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cauliflower florets",
+        "quantity": "300g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (approx. 150g), peeled and cut into batons"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss broccoli and cauliflower florets with 30ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 15-20 minutes until tender-crisp.",
+      "In a small saucepan, combine carrot batons with 50ml water and 10g butter. Bring to a simmer, cover, and cook for 8-10 minutes until tender. Uncover and cook until liquid evaporates and carrots are lightly glazed. Season with salt.",
+      "Heat 15ml olive oil and 20g butter in a pan over medium heat. Add diced onion and cook until softened, about 5 minutes. Add diced mushrooms and minced garlic. Cook until mushrooms release their liquid and brown, about 8-10 minutes. Remove from heat. Stir in shredded cheese and chopped basil. Season with salt and pepper.",
+      "Butterfly each chicken breast horizontally, cutting almost all the way through to create a pocket. Season chicken inside and out with salt and pepper.",
+      "Divide the mushroom-cheese mixture evenly among the chicken breasts. Carefully spoon the filling into each pocket. Secure with toothpicks if needed.",
+      "Heat remaining 15ml olive oil in an oven-safe pan over medium-high heat. Sear stuffed chicken breasts for 3-4 minutes per side until golden brown.",
+      "Transfer the pan with chicken to the preheated oven. Bake for 15-20 minutes, or until internal temperature reaches 75°C.",
+      "Remove chicken from pan. Deglaze pan with chicken broth, scraping up any browned bits. Reduce slightly until thickened.",
+      "Plate one stuffed chicken breast per person. Arrange roasted broccoli, cauliflower, and glazed carrots alongside. Drizzle chicken with pan sauce. Garnish with a fresh basil sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 681,
+      "cholesterol_mg": 206,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 70.2,
+      "saturated_fat_g": 12.9,
+      "sodium_mg": 329,
+      "total_carbs_g": 17.5,
+      "total_fat_g": 35.6,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 13.4,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 63,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 20,
+      "protein": 140,
+      "saturated_fat": 65,
+      "sodium": 14,
+      "total_carbs": 6,
+      "total_fat": 46
+    },
+    "serving_size_g": 525.3,
+    "total_recipe_weight_g": 2101
+  },
+  {
+    "recipe_name": "Pan-Seared Pork Medallions with Buckwheat Kasha and Dill-Cucumber Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_pork_medallions_with_buckwheat_kasha_and_dill-cucumber_salad_20250630_012836_2dfc2d35.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T01:28:37.009453000Z",
+    "selected_ingredients": [
+      "pork",
+      "salad green",
+      "strawberry",
+      "milk",
+      "onion",
+      "sugar",
+      "mayonnaise",
+      "cucumber",
+      "dill",
+      "egg",
+      "green onion",
+      "buckwheat groat"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate set on a simple wooden table. A generous mound of creamy, earthy buckwheat kasha, flecked with finely chopped green onions, occupies one side of the plate. Adjacent to the kasha are three golden-brown, pan-seared pork medallions, cooked to a tender, juicy finish. On the opposite side, a vibrant salad composed of thinly sliced red strawberries, crisp thin cucumber rounds, and fresh mixed salad greens is lightly dressed and artfully arranged. The entire dish is garnished with delicate sprigs of fresh green dill, enhancing both aroma and visual appeal. The presentation is balanced and organized, with moderate negative space, showcasing the rich colors and textures of each component. Standard silver flatware and a folded white cotton napkin are placed beside the plate, creating a professional yet approachable bistro setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with a side of rye bread.",
+      "A dollop of sour cream can be offered with the kasha."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork tenderloin",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Buckwheat groats",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Milk",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Strawberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Rinse buckwheat groats. Heat 15 ml olive oil in a saucepan over medium heat. Add diced onion; cook until translucent, about 5 minutes. Add buckwheat groats; toast for 3 minutes, stirring constantly. Pour in milk and water. Bring to a boil. Reduce heat to low, cover, and simmer for 15-20 minutes, until liquid is absorbed and buckwheat is tender. Stir in 15 g butter, salt, and pepper. Keep warm.",
+      "Slice pork tenderloin into 2.5 cm thick medallions. Season generously with salt and pepper. Heat remaining 15 ml olive oil in a large frying pan over medium-high heat. Sear pork medallions for 3-4 minutes per side, until golden brown and cooked through. Remove from pan; let rest for 5 minutes.",
+      "In a small bowl, whisk together mayonnaise, egg yolk (from 1 egg, reserving white for other use if desired), granulated sugar, white wine vinegar, 20 g chopped fresh dill, salt, and pepper.",
+      "In a large bowl, combine mixed salad greens, thinly sliced cucumber rounds, and thinly sliced strawberries.",
+      "Place a portion of warm buckwheat kasha on each white porcelain plate. Arrange 3-4 pork medallions next to the kasha. Spoon a portion of the dill-cucumber dressing over the salad. Arrange the dressed salad on the plate beside the pork. Garnish kasha with finely chopped green onions. Garnish salad and pork with fresh dill sprigs. Serve immediately."
+    ],
+    "notes": [],
+    "traditional_techniques": [
+      "Toasting buckwheat groats for kasha"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.87,
+      "calories": 761.23,
+      "cholesterol_mg": 187.6,
+      "dietary_fiber_g": 8.57,
+      "protein_g": 51.36,
+      "saturated_fat_g": 10.86,
+      "sodium_mg": 483.89,
+      "total_carbs_g": 56.62,
+      "total_fat_g": 39.96,
+      "total_sugars_g": 13.33,
+      "trans_fat_g": 0.39
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.68,
+      "calories": 133.55,
+      "cholesterol_mg": 32.91,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9.01,
+      "saturated_fat_g": 1.91,
+      "sodium_mg": 84.89,
+      "total_carbs_g": 9.93,
+      "total_fat_g": 7.01,
+      "total_sugars_g": 2.34,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.53,
+      "dietary_fiber": 30.61,
+      "protein": 102.72,
+      "saturated_fat": 54.3,
+      "sodium": 21.04,
+      "total_carbs": 20.59,
+      "total_fat": 51.23
+    },
+    "serving_size_g": 570,
+    "total_recipe_weight_g": 2280
+  },
+  {
+    "recipe_name": "Crispy Pork Cutlets with Savory Buckwheat and Strawberry-Dill Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_pork_cutlets_with_savory_buckwheat_and_strawberry-dill_salad_20250630_012655_453acdab.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T01:26:55.959026000Z",
+    "selected_ingredients": [
+      "pork",
+      "salad green",
+      "strawberry",
+      "milk",
+      "onion",
+      "sugar",
+      "mayonnaise",
+      "cucumber",
+      "dill",
+      "egg",
+      "green onion",
+      "buckwheat groat"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features two golden-brown, pan-fried pork cutlets, crispy on the exterior, placed slightly overlapping on a pristine white ceramic plate. Adjacent to the pork is a neatly mounded portion of fluffy, savory buckwheat groats, speckled with finely diced, caramelized onion. A vibrant, fresh salad occupies the remaining space, composed of crisp green salad leaves, thinly sliced cucumber rounds, and bright red quartered strawberries. Thinly sliced green onions and fresh dill sprigs are interspersed throughout the salad, adding color and freshness. The overall composition is clean and balanced, with moderate negative space. The pork is presented as whole pieces. A small, fresh dill sprig garnishes the pork. The setting is a modern bistro, with the dish resting on a simple wooden table under even, natural lighting. A cotton napkin and standard flatware complete the approachable restaurant-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork loin",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Buckwheat groats",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Salad greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Strawberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse buckwheat groats. Place in a saucepan. Add 400 ml water and a pinch of salt. Bring to a boil. Reduce heat. Simmer 15 minutes, or until water is absorbed. Fluff with a fork.",
+      "Dice half the onion finely. Sauté in 15 ml oil until translucent. Stir into cooked buckwheat. Keep warm.",
+      "Slice pork loin into 8 equal cutlets. Place each between plastic wrap. Pound to 5 mm thickness. Season with salt and pepper.",
+      "Prepare breading stations: one plate with flour, one shallow bowl with beaten eggs and milk, one plate with breadcrumbs.",
+      "Dredge each pork cutlet in flour, shaking off excess. Dip in egg mixture. Coat thoroughly in breadcrumbs.",
+      "Heat remaining vegetable oil in a large skillet over medium-high heat.",
+      "Fry pork cutlets 3-4 minutes per side, until golden brown and cooked through. Internal temperature should reach 63°C (145°F). Remove to a wire rack to rest.",
+      "Thinly slice cucumber. Quarter strawberries. Thinly slice green onions. Roughly chop 15g fresh dill.",
+      "In a small bowl, whisk mayonnaise, sugar, chopped dill, salt, and pepper.",
+      "In a large bowl, combine salad greens, cucumber, strawberries, green onions, and remaining dill. Toss gently with dressing just before serving.",
+      "Serve two crispy pork cutlets per plate. Place a mound of savory buckwheat beside. Arrange a portion of the strawberry-dill salad next to the buckwheat."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 1075,
+      "cholesterol_mg": 212.9,
+      "dietary_fiber_g": 10.7,
+      "protein_g": 51.2,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 499.7,
+      "total_carbs_g": 100,
+      "total_fat_g": 53.8,
+      "total_sugars_g": 12,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 175,
+      "cholesterol_mg": 34.7,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 8.3,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 81.4,
+      "total_carbs_g": 16.3,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 38,
+      "protein": 102.4,
+      "saturated_fat": 47.4,
+      "sodium": 21.7,
+      "total_carbs": 36.4,
+      "total_fat": 69
+    },
+    "serving_size_g": 613.5,
+    "total_recipe_weight_g": 2454
+  },
+  {
+    "recipe_name": "Beef and Eggplant Masala with Spiced Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_and_eggplant_masala_with_spiced_brown_rice_20250630_012046_5b50d154.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T01:20:46.667892000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "brown rice",
+      "eggplant"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Beef and Eggplant Masala is elegantly presented on a round white porcelain plate. A generous mound of fluffy, earthy brown rice is placed to one side. The rich, dark reddish-brown beef and eggplant masala is spooned beside the rice, showcasing tender 3cm beef chunks and soft, deep purple 2cm eggplant cubes immersed in a glossy, thick curry sauce. A vibrant sprinkle of fresh green cilantro leaves garnishes the masala, adding a pop of color. The plate sits on a simple wooden table. Beside the main dish, a small white bowl holds a portion of cooling raita. A simple metal fork rests on a white cotton napkin. Natural, even lighting highlights the textures and deep colors of the dish, creating an inviting, authentic Indian culinary scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm naan bread or roti for scooping the rich curry.",
+      "Offer a side of cooling raita (yogurt with cucumber and mint) to balance the spices.",
+      "Serve with a small side of kachumber (finely chopped onion, cucumber, and tomato salad)."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Boneless beef chuck",
+        "quantity": "600g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Onions, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Eggplant, 2cm cubes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Canned chopped tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "2cm piece"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "2.5g"
+      },
+      {
+        "name": "Kashmiri chili powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Rinse brown rice thoroughly. Cook rice with 750ml water and a pinch of salt. Cook until tender, about 40 minutes. Fluff with a fork.",
+      "Cut beef chuck into 3cm cubes. Pat beef dry.",
+      "Heat oil in a large pot or Dutch oven over medium-high heat. Sear beef cubes in batches until well browned on all sides. Remove beef from pot. Set aside.",
+      "Add diced onions to the same pot. Sauté onions over medium heat until golden brown, about 8-10 minutes.",
+      "Add minced garlic and grated ginger to the pot. Cook for 1 minute until fragrant.",
+      "Stir in cumin powder, coriander powder, turmeric powder, and Kashmiri chili powder. Cook spices for 30 seconds, stirring constantly, until aromatic.",
+      "Pour in chopped tomatoes. Cook for 5 minutes, stirring occasionally, until tomatoes break down and sauce thickens.",
+      "Return seared beef to the pot. Add 250ml water or beef broth. Bring to a simmer. Cover and cook on low heat for 1.5 hours, or until beef is nearly tender.",
+      "Add 2cm eggplant cubes to the pot. Cook for another 20-30 minutes, uncovered, until eggplant is soft and beef is fork-tender. Stir occasionally.",
+      "Remove pot from heat. Stir in plain yogurt until well combined. Stir in garam masala. Season with salt to taste.",
+      "Garnish generously with fresh chopped cilantro before serving."
+    ],
+    "traditional_techniques": [
+      "Layering spices",
+      "Slow simmering (Dum style cooking)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 708.86,
+      "cholesterol_mg": 106.25,
+      "dietary_fiber_g": 11.09,
+      "protein_g": 40.36,
+      "saturated_fat_g": 9.27,
+      "sodium_mg": 804.66,
+      "total_carbs_g": 74.61,
+      "total_fat_g": 28.82,
+      "total_sugars_g": 12.64,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.79,
+      "cholesterol_mg": 18.55,
+      "dietary_fiber_g": 1.94,
+      "protein_g": 7.05,
+      "saturated_fat_g": 1.62,
+      "sodium_mg": 140.52,
+      "total_carbs_g": 13.03,
+      "total_fat_g": 5.03,
+      "total_sugars_g": 2.21,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.42,
+      "dietary_fiber": 39.61,
+      "protein": 80.72,
+      "saturated_fat": 46.35,
+      "sodium": 34.98,
+      "total_carbs": 27.13,
+      "total_fat": 36.95
+    },
+    "serving_size_g": 572.63,
+    "total_recipe_weight_g": 2290.5
+  },
+  {
+    "recipe_name": "Sago and Red Date Kheer Parfait with Spiced Buttermilk Cream and Seasonal Fruits",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sago_and_red_date_kheer_parfait_with_spiced_buttermilk_cream_and_seasonal_fruits_20250630_010153_bde68441.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T01:01:54.213817000Z",
+    "selected_ingredients": [
+      {
+        "name": "buttermilk"
+      },
+      {
+        "name": "red date"
+      },
+      {
+        "name": "milk"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "sago"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Indian",
+    "visual_description": "The Sago and Red Date Kheer Parfait is presented in a clear, footed glass tumbler, showcasing its vibrant layers. A creamy, translucent sago kheer forms the base. Above it, bright yellow diced mango cubes are neatly arranged. A rich, dark red layer of red date compote sits atop the mango. This is followed by a light, airy, off-white cloud of spiced buttermilk cream, softly mounded. Layers are repeated, culminating in a final generous dollop of buttermilk cream. The top is garnished with ruby-red pomegranate arils and finely chopped, toasted pistachios, offering contrasting textures. A fresh mint leaf is placed delicately on the side. The overall presentation is clean, balanced, and inviting. The glass sits on a simple light wooden table, with a white porcelain side plate and traditional silver flatware. A folded cotton napkin rests beside the glass. Natural, even light illuminates the dish against a soft restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve chilled as a dessert or light snack.",
+      "Traditionally enjoyed after a meal.",
+      "Can be served with a small spoon."
+    ],
+    "hero_ingredient": "Sago, Red Date",
+    "ingredients": [
+      {
+        "name": "Sago (small pearls)",
+        "quantity": "80g"
+      },
+      {
+        "name": "Full-fat Milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Cardamom pods, crushed",
+        "quantity": "3"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Red dates (jujubes), pitted and finely diced",
+        "quantity": "100g"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sugar (for compote)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Saffron strands",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Buttermilk",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Powdered Sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Rose water",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Nutmeg, grated",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Mango, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Pomegranate arils",
+        "quantity": "50g"
+      },
+      {
+        "name": "Green grapes, halved",
+        "quantity": "100g"
+      },
+      {
+        "name": "Toasted slivered almonds or pistachios",
+        "quantity": "20g"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "A few sprigs"
+      }
+    ],
+    "instructions": [
+      "Rinse sago pearls. In a saucepan, combine milk and crushed cardamom pods. Bring to a gentle simmer. Add sago pearls. Cook on low heat, stirring constantly, until sago is translucent and mixture thickens, about 15-20 minutes. Stir in 50g sugar. Remove from heat. Let cool completely. Remove cardamom pods.",
+      "In a small saucepan, combine diced red dates, 100ml water, 20g sugar, and saffron (if using). Bring to a simmer. Cook until dates are soft and mixture thickens into a compote, about 10-12 minutes. Mash lightly if desired. Let cool completely.",
+      "In a chilled bowl, combine buttermilk, heavy cream, powdered sugar, rose water, and grated nutmeg. Whisk until soft peaks form. Do not overwhisk.",
+      "In individual serving glasses, layer the components. Start with a spoonful of sago kheer at the bottom.",
+      "Add a layer of diced mango.",
+      "Spoon in some red date compote.",
+      "Add a layer of spiced buttermilk cream.",
+      "Repeat layers with sago kheer, mango, and red date compote. Finish with a generous dollop of spiced buttermilk cream on top.",
+      "Garnish with pomegranate arils and toasted nuts. Garnish with a fresh mint leaf. Serve chilled."
+    ],
+    "notes": [
+      "Adjust sweetness of kheer and compote to your preference.",
+      "For best results, chill all components thoroughly before assembling.",
+      "The buttermilk cream should be light and airy, not stiff."
+    ],
+    "traditional_techniques": [
+      "Kheer preparation",
+      "Compote making"
+    ]
+  }
+]

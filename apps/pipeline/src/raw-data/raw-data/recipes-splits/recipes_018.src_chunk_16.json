@@ -1,0 +1,741 @@
+[
+  {
+    "recipe_name": "Perkedel Jagung Kari Merah dengan Acar Fermentasi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_perkedel_jagung_kari_merah_dengan_acar_fermentasi_20250625_155615_240f6d21.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:56:15.822554000Z",
+    "selected_ingredients": [
+      {
+        "name": "egg"
+      },
+      {
+        "name": "coconut cream"
+      },
+      {
+        "name": "cornmeal"
+      },
+      {
+        "name": "panang curry paste"
+      },
+      {
+        "name": "kewra"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Indonesian",
+    "visual_description": "Golden-brown, rustic corn fritters are arranged casually on a light, textured reclaimed wood board. Each fritter is roughly circular, about 6-7 cm in diameter, with visible whole corn kernels embedded in a subtly red-orange matrix. The edges are slightly irregular and crisp. Adjacent to the fritters, a small, handcrafted ceramic bowl in an earthy cream tone holds a vibrant quick-fermented acar. The acar features thinly sliced cucumber, carrot, and shallots, with a few small red chili slices, glistening with pickling liquid. A few fresh cilantro sprigs are scattered over the fritters and near the acar, adding a pop of green. The overall plating is natural and unforced, with ample negative space. The background is minimalist, with a hint of natural light and an undyed linen napkin in beige. The entire arrangement is presented as a relaxed sharing portion, highlighting the natural textures and colors of the ingredients. The fritters are whole pieces, not cut or fanned.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indonesian",
+    "cultural_origin": "Indonesian",
+    "cultural_serving_suggestions": [
+      "Serve as a light snack or appetizer.",
+      "Often enjoyed with a cup of hot tea or coffee.",
+      "Can be accompanied by a simple sambal for extra heat."
+    ],
+    "hero_ingredient": "Corn",
+    "ingredients": [
+      {
+        "name": "Fresh corn kernels",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cornmeal",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Coconut cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Indonesian Red Curry Paste (Bumbu Kari Merah)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Kewra water",
+        "quantity": "2 drops"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "for shallow frying"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 (for acar)"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 (for acar)"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 (for acar)"
+      },
+      {
+        "name": "Red bird's eye chilies",
+        "quantity": "2 (for acar, optional)"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "50 ml (for acar)"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10 g (for acar)"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml (for acar)"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "small bunch (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Prepare Acar: Thinly slice cucumber, carrot, and shallots. Combine vinegar, sugar, water, and sliced chilies in a small bowl. Stir until sugar dissolves. Add sliced vegetables. Let sit for at least 30 minutes, or longer for more fermentation.",
+      "Prepare Curry Paste: If making from scratch, blend 5 red chilies, 3 shallots, 2 cloves garlic, 1 cm galangal, 1 stalk lemongrass (white part), 1 cm kencur, 1/2 tsp turmeric, 2 candlenuts, 1/2 tsp shrimp paste (optional), 1/2 tsp palm sugar, and 1/4 tsp salt into a smooth paste. Set aside 30 g.",
+      "Combine Fritter Batter: In a large bowl, whisk eggs. Stir in coconut cream and kewra water. Add cornmeal, salt, and white pepper. Mix well.",
+      "Add Corn and Curry Paste: Stir in fresh corn kernels and Indonesian Red Curry Paste into the batter. Mix until well combined.",
+      "Heat Oil: Heat vegetable oil in a large frying pan over medium heat. Oil should be about 2 cm deep.",
+      "Fry Fritters: Spoon about 2 tablespoons of batter per fritter into the hot oil. Flatten slightly. Do not overcrowd the pan.",
+      "Cook Fritters: Fry for 3-4 minutes per side, until golden brown and cooked through. Ensure corn is tender. Adjust heat as needed to prevent burning.",
+      "Drain Fritters: Transfer cooked fritters to a wire rack lined with paper towels to drain excess oil.",
+      "Serve: Arrange fritters on a serving platter. Serve immediately with the prepared acar on the side. Garnish with fresh cilantro."
+    ],
+    "notes": [
+      "This recipe adapts the 'Panang curry paste' ingredient into an Indonesian 'Bumbu Kari Merah' for cultural authenticity, while incorporating the unique aromatic note of kewra water subtly into the fritter batter.",
+      "The acar (pickles) provide a fermented, refreshing counterpoint, utilizing zero-waste principles by using common vegetable scraps for pickling."
+    ],
+    "traditional_techniques": [
+      "Shallow frying (menggoreng)",
+      "Making Bumbu (spice paste preparation)",
+      "Acar (quick pickling/fermentation)"
+    ]
+  },
+  {
+    "recipe_name": "Chicken and Squid Saffron Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_squid_saffron_rice_20250625_155501_8002687a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:55:01.785759000Z",
+    "selected_ingredients": [
+      "chicken",
+      "squid"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Chicken and Squid Saffron Rice rests on a rustic, off-white ceramic plate. The rice is a warm, golden-yellow from saffron, studded with vibrant red diced bell pepper, green peas, and flecks of fresh green parsley. Browned chicken chunks, approximately 3 cm, are scattered throughout, alongside glistening white squid rings and whole tentacles, which show slight char from cooking. The dish has a slightly moist, cohesive texture, with some rice grains visibly separate. It is presented casually, as if scooped from a larger communal pan, with components naturally overlapping. The plate is placed on a well-used wooden dining table. A simple cloth napkin is casually folded beside the plate. A few lemon wedges are placed on the side. The lighting is warm and inviting, typical of a home kitchen. The entire plate is visible, with adequate negative space around the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with fresh lemon wedges for squeezing over the rice.",
+      "Offer crusty bread to soak up any remaining juices.",
+      "Traditionally eaten directly from the paella pan at the table in a communal setting before individual plating."
+    ],
+    "hero_ingredient": "Chicken & Squid",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Squid",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Arborio or short-grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm chunks. Cut squid tubes into 1.5 cm rings. Leave tentacles whole.",
+      "Heat olive oil in a large, shallow pan over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken from pan.",
+      "Add diced onion and red bell pepper to the pan. Cook until softened, about 5 minutes.",
+      "Stir in minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Add diced tomatoes to the pan. Cook for 3 minutes, stirring occasionally.",
+      "Return chicken to the pan. Add rice and stir to coat.",
+      "Warm chicken broth. Steep saffron threads in a small amount of warm broth for 5 minutes. Add saffron-infused broth and remaining broth to the pan.",
+      "Bring to a simmer. Spread rice evenly. Do not stir after this point.",
+      "Reduce heat to medium-low. Cook uncovered for 15-20 minutes, or until most liquid is absorbed and rice is almost tender. Add squid rings and tentacles during the last 5-7 minutes of cooking.",
+      "Stir in frozen peas. Cover the pan with a lid or foil. Let rest off heat for 5-10 minutes.",
+      "Check chicken internal temperature to ensure it reaches 75°C.",
+      "Garnish with fresh chopped parsley and lemon wedges."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 758,
+      "cholesterol_mg": 374,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 57.5,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 1261,
+      "total_carbs_g": 73.7,
+      "total_fat_g": 22.3,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 75,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.5,
+      "saturated_fat_g": 1,
+      "sodium_mg": 252,
+      "total_carbs_g": 14.7,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 125,
+      "dietary_fiber": 19,
+      "protein": 115,
+      "saturated_fat": 24,
+      "sodium": 55,
+      "total_carbs": 27,
+      "total_fat": 29
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Spiced Brown Sugar Sable Entremet with Caramelized Onion Confit and White Cheddar Mousse",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_brown_sugar_sable_entremet_with_caramelized_onion_confit_and_white_cheddar_mousse_20250625_155456_9a346d00.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:54:56.904335000Z",
+    "selected_ingredients": [
+      {
+        "name": "cheddar"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "milk"
+      },
+      {
+        "name": "lemon"
+      },
+      {
+        "name": "brown sugar"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Moroccan",
+    "visual_description": "A single, impeccably cut slice of entremet is presented on a pristine white porcelain plate with a subtle gold rim. The slice stands elegantly, revealing distinct, architectural layers. At the base is a crisp, light brown spiced brown sugar sable, providing a firm foundation. Above it, a golden-amber layer of glistening caramelized onion and lemon confit creates a vibrant visual contrast. The thickest layer is an airy, off-white white cheddar mousse, its creamy texture evident. The entire entremet is enveloped in a glossy, reflective lemon-brown sugar mirror glaze, catching the light with a soft sheen. A single, delicate curl of candied lemon peel is precisely placed atop the glaze, adding a bright yellow accent and textural interest. The plate is largely empty, emphasizing abundant negative space, highlighting the dessert as a sculptural centerpiece. The setting is a pristine white marble display surface, with dramatic professional lighting casting soft shadows to enhance depth and form. A precisely folded white linen napkin sits beside the plate, completing the ultra-minimalist, sophisticated haute patisserie presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Moroccan",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Serve alongside a small, delicate glass of traditional Moroccan mint tea."
+    ],
+    "hero_ingredient": "Caramelized Onion",
+    "ingredients": [
+      {
+        "name": "Unsalted butter, cold, diced",
+        "quantity": "125 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Brown sugar, packed",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Ground ginger",
+        "quantity": "1.5 g"
+      },
+      {
+        "name": "Large yellow onion",
+        "quantity": "1 (approx. 200g)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Orange blossom water (optional)",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Mild white cheddar cheese, finely grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Full-fat cream cheese, softened",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Heavy cream (for infusion)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Powdered gelatin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cold water (for gelatin bloom)",
+        "quantity": "25 ml"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "25 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Heavy cream (for whipping)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "75 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Glucose syrup (or light corn syrup)",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Sweetened condensed milk",
+        "quantity": "50 g"
+      },
+      {
+        "name": "White chocolate, chopped",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Powdered gelatin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cold water (for gelatin bloom)",
+        "quantity": "25 ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Yellow food coloring (optional)",
+        "quantity": "Few drops"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (for candied peel)"
+      }
+    ],
+    "instructions": [
+      "Prepare the Brown Sugar Sable:",
+      "Combine flour, brown sugar, cinnamon, and ginger in a food processor. Pulse briefly.",
+      "Add cold diced butter. Pulse until mixture resembles coarse crumbs.",
+      "Add egg yolk. Pulse until dough just comes together.",
+      "Form dough into a disk. Wrap in plastic. Chill 30 minutes.",
+      "Roll dough 3 mm thick. Cut four 8 cm diameter rounds. Place on parchment-lined baking sheet.",
+      "Bake at 170°C for 12-15 minutes until golden. Cool completely.",
+      "Prepare the Caramelized Onion & Lemon Confit:",
+      "Thinly slice the yellow onion into half-moons.",
+      "Melt 15 g butter in a saucepan over medium-low heat. Add sliced onion. Cook slowly for 20-25 minutes until deeply caramelized and very soft, stirring occasionally.",
+      "Add 50 g brown sugar, 15 ml lemon juice, lemon zest, 30 ml water, and optional orange blossom water. Cook for 5-7 minutes, stirring, until liquid reduces to a syrupy consistency.",
+      "Cool completely. Divide into four portions.",
+      "Prepare the White Cheddar Mousse:",
+      "Bloom 5 g gelatin in 25 ml cold water. Set aside.",
+      "In a saucepan, gently heat 100 ml heavy cream and 50 ml whole milk. Do not boil.",
+      "Remove from heat. Add grated cheddar cheese. Stir until cheese melts completely. Strain through a fine-mesh sieve to remove any solids. Return liquid to clean saucepan.",
+      "Add softened cream cheese to the warm cheddar-milk mixture. Whisk until smooth.",
+      "Gently heat the bloomed gelatin until dissolved. Stir into the cheese mixture.",
+      "Add powdered sugar and vanilla extract. Stir well. Let cool to room temperature.",
+      "Whip 200 ml cold heavy cream to soft peaks.",
+      "Gently fold whipped cream into the cooled cheese mixture until combined. Be careful not to deflate.",
+      "Assembly:",
+      "Line four 8 cm diameter individual entremet rings or molds with acetate strips.",
+      "Place one sable round at the bottom of each mold.",
+      "Spoon a layer of caramelized onion confit over the sable (approx. 20 g per mold). Spread evenly.",
+      "Pour the white cheddar mousse over the confit, filling each mold. Smooth the tops.",
+      "Freeze for at least 4 hours, preferably overnight, until completely solid.",
+      "Prepare the Lemon Brown Sugar Mirror Glaze:",
+      "Bloom 5 g gelatin in 25 ml cold water. Set aside.",
+      "In a saucepan, combine 75 ml water, 100 g brown sugar, and glucose syrup. Bring to a boil, stirring until sugar dissolves. Remove from heat.",
+      "Add condensed milk and chopped white chocolate. Stir until chocolate is melted and smooth.",
+      "Gently heat the bloomed gelatin until dissolved. Stir into the glaze mixture.",
+      "Add 10 ml fresh lemon juice and optional yellow food coloring. Stir well.",
+      "Use an immersion blender to emulsify the glaze. Blend slowly to avoid air bubbles. Strain through a fine-mesh sieve.",
+      "Let glaze cool to 35-38°C for optimal pouring consistency.",
+      "Glaze and Garnish:",
+      "Remove frozen entremets from molds. Place on a wire rack over a baking sheet.",
+      "Pour the warm glaze evenly over each frozen entremet, ensuring full coverage. Let excess drip off.",
+      "Carefully transfer glazed entremets to serving plates using a thin spatula.",
+      "For candied lemon peel: Thinly slice lemon into rounds. Cook in simple syrup (1:1 sugar:water) until translucent. Dry on parchment paper. Cut into delicate curls.",
+      "Garnish each entremet with a delicate candied lemon peel curl."
+    ],
+    "notes": [
+      "Use a very mild, high-quality white cheddar to ensure a subtle, balanced flavor that complements the sweetness, rather than overpowering it.",
+      "The caramelized onion confit is key to transforming the onion into a sweet, jam-like component."
+    ]
+  },
+  {
+    "recipe_name": "Cuban Chicken and Rice with Black Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cuban_chicken_and_rice_with_black_beans_20250625_155440_51bf65d8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:54:41.325032000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, white porcelain dinner plate, showcasing a generous portion of vibrant Cuban Chicken and Rice. Tender, succulent chicken chunks, cooked until golden and then simmered to perfection, are interspersed throughout the rich, saffron-infused yellow rice. The rice grains are separate and fluffy, absorbing the savory flavors of tomato, cumin, and bell pepper. Dark, glossy black beans are gently folded into the rice, adding a contrasting color and creamy texture. The overall composition is organic and inviting, with a scattering of fresh, bright green cilantro leaves providing a pop of color and freshness. The plate is moderately spaced, allowing the dish to breathe without being sparse or overcrowded. The background features a simple wooden table surface, a neatly folded cotton napkin, and a minimalist bistro setting, with natural, even lighting highlighting the dish's warmth and texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Cuban",
+    "cultural_origin": "Cuban",
+    "cultural_serving_suggestions": [
+      "Serve with a side of fried plantains (maduros).",
+      "Offer hot sauce or mojo sauce on the side.",
+      "Serve with a simple green salad dressed with lime and olive oil."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Canned black beans, drained and rinsed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1 (150g)"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1 (150g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Dry white wine (or chicken broth)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "100g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Saffron threads (optional)",
+        "quantity": "0.25 tsp"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden brown on both sides. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add diced onion and bell pepper to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic, cumin, and oregano. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Deglaze the pot with white wine (or chicken broth), scraping up any browned bits. Cook until liquid reduces slightly.",
+      "Return chicken thighs to the pot. Add chicken broth, saffron (if using), and bay leaf. Bring to a simmer.",
+      "Reduce heat to low, cover, and simmer for 20 minutes, or until chicken is nearly cooked through (internal temperature 70°C/158°F).",
+      "Remove chicken from pot. Shred or cut into large chunks. Set aside.",
+      "Add rinsed rice to the simmering broth in the pot. Stir well. Bring to a boil.",
+      "Reduce heat to low, cover, and cook for 15-18 minutes, or until rice is tender and liquid is absorbed. Do not lift lid during cooking.",
+      "Gently stir in shredded chicken and drained black beans into the rice.",
+      "Cover and let rest off heat for 5 minutes.",
+      "Fluff with a fork. Check chicken internal temperature (75°C/167°F). Adjust seasoning as needed.",
+      "Garnish with fresh cilantro before serving."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 860,
+      "cholesterol_mg": 179,
+      "dietary_fiber_g": 12,
+      "protein_g": 65.2,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 1017,
+      "total_carbs_g": 95.4,
+      "total_fat_g": 24.1,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 9.3,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 145,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 43,
+      "protein": 130,
+      "saturated_fat": 29,
+      "sodium": 44,
+      "total_carbs": 35,
+      "total_fat": 31
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2800
+  },
+  {
+    "recipe_name": "Tuscan Garlic Chicken with Mushrooms and Basil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_garlic_chicken_with_mushrooms_and_basil_20250625_155251_1adbcfca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:52:51.970697000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "garlic",
+      "mushroom",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tuscan Garlic Chicken is presented on a clean, round white porcelain dinner plate. Two golden-brown, seared chicken breast medallions, each about 2cm thick, are positioned slightly overlapping towards the center. Around the chicken, a rustic yet organized arrangement of sautéed quartered cremini mushrooms and vibrant halved cherry tomatoes creates a rich, earthy base. Thinly sliced garlic bits and chopped sun-dried tomatoes are interspersed throughout the glossy, light amber sauce, which lightly coats the ingredients. A generous scattering of fresh, roughly torn basil leaves adds pops of bright green, contrasting with the deep reds and browns of the dish. The overall presentation is natural and abundant, with moderate negative space. The plate rests on a simple light wooden table. Standard silver flatware is placed to the side, with a folded white cotton napkin. Natural, soft, even lighting illuminates the dish from above, creating subtle shadows and highlighting the textures. The background is softly blurred, suggesting a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the flavorful sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each), halved horizontally or cut into thick medallions"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g, quartered"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g, halved"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, thinly sliced"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil",
+        "quantity": "50g, drained and chopped"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Generous handful, roughly torn"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and pepper. Dredge lightly in flour, shaking off excess.",
+      "Heat 30ml olive oil in a large skillet over medium-high heat. Sear chicken until golden brown and cooked through, about 4-5 minutes per side. Internal temperature must reach 75°C. Remove chicken from skillet. Set aside.",
+      "Add remaining 30ml olive oil to the skillet. Add quartered mushrooms. Sauté until tender and browned, about 5-7 minutes.",
+      "Add sliced garlic and chopped sun-dried tomatoes to the skillet. Cook for 1 minute until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the pan. Reduce by half, about 2 minutes.",
+      "Stir in chicken broth and halved cherry tomatoes. Bring to a simmer.",
+      "Return chicken to the skillet. Simmer for 5-7 minutes, allowing chicken to absorb flavors and sauce to thicken slightly.",
+      "Remove from heat. Stir in unsalted butter until melted and incorporated.",
+      "Stir in fresh basil. Taste and adjust seasoning.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "This dish pairs well with a side of pasta or roasted potatoes."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Deglazing"
+    ]
+  }
+]

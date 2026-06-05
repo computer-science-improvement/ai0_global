@@ -1,0 +1,677 @@
+[
+  {
+    "recipe_name": "Roasted Peri-Peri Chicken with Lemon Herb Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_peri-peri_chicken_with_lemon_herb_potatoes_20250627_024231_3e5e0336.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T02:42:31.876985000Z",
+    "selected_ingredients": [
+      "chicken",
+      "hot sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single roasted peri-peri chicken thigh, golden-brown with slight charring, is centrally placed on a clean white porcelain dinner plate. Beside it, a generous portion of roasted potato wedges, tender and golden, are arranged alongside vibrant chunks of red and yellow bell peppers and caramelized red onion wedges. The chicken is a deep reddish-orange from the sauce, contrasting with the earthy tones of the potatoes and bright colors of the peppers. A thin drizzle of extra peri-peri sauce artfully cascades over the chicken. Freshly chopped green parsley is scattered over the dish for a pop of color. The entire plate rests on a simple wooden table surface with a natural finish. A folded cotton napkin is placed beside the plate. The scene is lit with soft, even natural lighting, creating a warm and inviting casual bistro atmosphere. The background is minimal and unobtrusive, focusing entirely on the well-portioned, appealing dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Portuguese African",
+    "cultural_origin": "Portuguese",
+    "cultural_serving_suggestions": [
+      "Serve with extra peri-peri sauce on the side for added heat.",
+      "Accompany with a simple green salad or rice."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 700g total)"
+      },
+      {
+        "name": "Peri-Peri sauce",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Small potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a large baking sheet with parchment paper.",
+      "Pat chicken thighs dry. Place in a bowl. Pour 80 ml peri-peri sauce over chicken. Toss to coat. Marinate for at least 15 minutes, or up to 2 hours in refrigerator.",
+      "Wash potatoes. Cut small potatoes into halves or quarters. Cut larger potatoes into 2-3 cm wedges.",
+      "Core and deseed red and yellow bell peppers. Cut into 2 cm chunks.",
+      "Peel red onion. Cut into thick wedges.",
+      "Smash garlic cloves. Leave skins on.",
+      "In a large bowl, combine potatoes, bell peppers, onion, and garlic. Drizzle with olive oil. Season with smoked paprika, oregano, salt, and black pepper. Toss to coat evenly.",
+      "Spread seasoned vegetables in a single layer on the prepared baking sheet.",
+      "Arrange marinated chicken thighs among the vegetables on the baking sheet. Ensure chicken skin is facing up.",
+      "Roast for 30-35 minutes. Chicken internal temperature should reach 75°C. Vegetables should be tender and lightly charred.",
+      "Remove from oven. Let chicken rest for 5 minutes.",
+      "Cut lemon into wedges. Squeeze some lemon juice over chicken and vegetables.",
+      "Chop fresh parsley. Garnish dish with parsley.",
+      "Serve immediately. Offer remaining peri-peri sauce on the side."
+    ],
+    "notes": [
+      "Adjust peri-peri sauce quantity based on desired spice level.",
+      "Ensure chicken reaches an internal temperature of 75°C for food safety."
+    ],
+    "traditional_techniques": [
+      "Roasting",
+      "Marinating"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 617,
+      "cholesterol_mg": 175,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 38.5,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 933,
+      "total_carbs_g": 38.3,
+      "total_fat_g": 34.4,
+      "total_sugars_g": 8.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 142.4,
+      "cholesterol_mg": 40.4,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 215.4,
+      "total_carbs_g": 8.8,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.3,
+      "dietary_fiber": 26.1,
+      "protein": 77,
+      "saturated_fat": 40.5,
+      "sodium": 40.6,
+      "total_carbs": 13.9,
+      "total_fat": 44.1
+    },
+    "serving_size_g": 432.9,
+    "total_recipe_weight_g": 1731.5
+  },
+  {
+    "recipe_name": "Coq au Vin Blanc (Chicken in White Wine Sauce)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coq_au_vin_blanc_%28chicken_in_white_wine_sauce%29_20250627_024135_9967cb87.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T02:41:36.046873000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Coq au Vin Blanc is presented on a clean, classic white porcelain dinner plate. A golden-brown seared chicken thigh and a drumstick are positioned centrally, glistening with the rich, amber-hued white wine sauce. The sauce pools gently around the chicken, studded with tender, whole pearl onions and earthy, halved cremini mushrooms. Diced carrots add flecks of orange within the sauce. The chicken skin is slightly crisp, contrasting with the succulent, braised meat underneath. A generous sprinkle of vibrant green, chopped fresh flat-leaf parsley provides a pop of color and freshness. The plate sits on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. The setting is a modern bistro, with soft, natural, even lighting that highlights the dish's textures and colors. The background is minimal, suggesting a casual, welcoming restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bone-in, skin-on chicken drumsticks",
+        "quantity": "4"
+      },
+      {
+        "name": "Smoked bacon or pancetta",
+        "quantity": "150 g, cut into 1 cm lardons"
+      },
+      {
+        "name": "Pearl onions",
+        "quantity": "200 g, peeled"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g, halved or quartered"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, peeled and diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Dry white wine (e.g., Chardonnay or Pinot Grigio)",
+        "quantity": "350 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "20 g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken pieces dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Add bacon lardons. Cook until crisp. Remove lardons with a slotted spoon. Set aside.",
+      "Add chicken pieces to the pot, skin-side down. Sear until deeply golden brown on all sides. This takes about 5-7 minutes per side. Work in batches if necessary to avoid overcrowding. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add pearl onions, cremini mushrooms, and diced carrots to the pot. Sauté for 8-10 minutes until softened and lightly browned.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer. Cook for 3-5 minutes until wine reduces slightly.",
+      "Return chicken to the pot. Add chicken stock, thyme sprigs, and bay leaf. Ensure chicken is mostly submerged. Bring to a gentle simmer.",
+      "Cover the pot. Transfer to a preheated oven at 175°C (350°F). Braise for 45-60 minutes, or until chicken is very tender and cooked through (internal temperature 75°C).",
+      "Remove chicken from the pot. Discard thyme sprigs and bay leaf.",
+      "Place the pot back on the stovetop over medium heat. Bring the sauce to a simmer. Reduce the sauce by about one-third, until slightly thickened.",
+      "In a small bowl, combine butter and flour to make a beurre manié. Whisk small pieces of the beurre manié into the simmering sauce until desired thickness is reached.",
+      "Return chicken to the pot with the sauce. Add reserved bacon lardons. Simmer for 5 minutes to heat through.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 969,
+      "cholesterol_mg": 283,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 64,
+      "saturated_fat_g": 19.9,
+      "sodium_mg": 879,
+      "total_carbs_g": 16.8,
+      "total_fat_g": 62.3,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 9.2,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 127,
+      "total_carbs_g": 2.4,
+      "total_fat_g": 9,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 94,
+      "dietary_fiber": 10,
+      "protein": 128,
+      "saturated_fat": 100,
+      "sodium": 38,
+      "total_carbs": 6,
+      "total_fat": 80
+    },
+    "serving_size_g": 693,
+    "total_recipe_weight_g": 2771
+  },
+  {
+    "recipe_name": "Patatas Bravas with Crispy Chorizo and Smoked Paprika Aioli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_patatas_bravas_with_crispy_chorizo_and_smoked_paprika_aioli_20250627_024014_2797b700.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T02:40:14.865661000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken",
+      "pasta",
+      "tomato",
+      "pork",
+      "bread",
+      "bean",
+      "onion",
+      "potato",
+      "apple",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single starter portion of Patatas Bravas is presented on a clean, round white porcelain plate. Irregularly cut 3-4 cm golden-brown potato chunks, with visibly crispy exteriors, are loosely piled in the center. A vibrant red, slightly textured bravas sauce is generously drizzled over the potatoes, creating appealing pools and coating the surfaces. Small, deep red, crispy diced chorizo cubes (0.5 cm) are scattered over the sauce and potatoes. A delicate swirl of pale orange-pink smoked paprika aioli rests beside the main potato mound. The dish is garnished with bright green, freshly chopped parsley. The plating is clean and professional, with moderate negative space. The setting is a modern bistro: a simple wooden table surface, a white cotton napkin folded neatly beside the plate, and standard silver flatware. Natural, even lighting illuminates the dish, highlighting its textures and rich colors. The background is minimal and slightly blurred, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve as part of a tapas spread.",
+      "Accompany with a glass of dry sherry or a light red wine."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Cured Chorizo",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Smoked Paprika (dulce)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Chili flakes",
+        "quantity": "2 g (optional)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Cut into irregular 3-4 cm chunks. Place in a large pot. Cover with cold water. Add a pinch of salt. Bring to a boil. Cook for 8-10 minutes, until just tender but not falling apart. Drain well. Let steam dry for 5 minutes.",
+      "Dice chorizo into 0.5 cm cubes. Heat a large frying pan over medium heat. Add chorizo. Cook until crispy and fat is rendered. Remove chorizo with a slotted spoon. Reserve rendered fat. Set chorizo aside.",
+      "For the Bravas Sauce: Finely dice onion. Mince garlic. Add 30 ml olive oil to the pan with chorizo fat (if needed). Sauté onion over medium heat for 5-7 minutes, until softened. Add minced garlic. Cook for 1 minute until fragrant. Stir in 5 g smoked paprika and chili flakes (if using). Cook for 30 seconds. Pour in crushed tomatoes. Bring to a simmer. Cook for 15-20 minutes, stirring occasionally, until sauce thickens. Season with salt and pepper. Set aside.",
+      "For the Smoked Paprika Aioli: In a small bowl, combine mayonnaise, remaining 5 g smoked paprika, and lemon juice. Mix well until smooth. Season with salt to taste. Set aside.",
+      "Heat remaining 70 ml olive oil in a large deep frying pan or Dutch oven over medium-high heat. Add dried potato chunks in batches. Fry for 8-10 minutes, turning occasionally, until golden brown and crispy. Drain potatoes on paper towels. Season lightly with salt.",
+      "To serve: Arrange crispy potato chunks on individual white porcelain starter plates. Spoon a generous amount of warm bravas sauce over the potatoes. Scatter crispy chorizo pieces over the sauce. Place a small dollop or swirl of smoked paprika aioli beside the potatoes. Garnish with freshly chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Sofrito (for the sauce base)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.14,
+      "calories": 732.66,
+      "cholesterol_mg": 43.41,
+      "dietary_fiber_g": 7.26,
+      "protein_g": 15.16,
+      "saturated_fat_g": 11.61,
+      "sodium_mg": 847.87,
+      "total_carbs_g": 45.83,
+      "total_fat_g": 56.03,
+      "total_sugars_g": 6.34,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.03,
+      "calories": 172.9,
+      "cholesterol_mg": 10.24,
+      "dietary_fiber_g": 1.71,
+      "protein_g": 3.58,
+      "saturated_fat_g": 2.74,
+      "sodium_mg": 200.09,
+      "total_carbs_g": 10.82,
+      "total_fat_g": 13.22,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14.47,
+      "dietary_fiber": 25.93,
+      "protein": 30.32,
+      "saturated_fat": 58.05,
+      "sodium": 36.86,
+      "total_carbs": 16.67,
+      "total_fat": 71.83
+    },
+    "serving_size_g": 423.75,
+    "total_recipe_weight_g": 1695
+  },
+  {
+    "recipe_name": "Caramelized Onion Tart with Thyme and Gruyere",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_onion_tart_with_thyme_and_gruyere_20250627_024003_9e324158.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T02:40:03.952291000Z",
+    "selected_ingredients": [
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generously portioned wedge of golden-brown Caramelized Onion Tart sits on a clean, round white porcelain dinner plate. The tart features thinly sliced, deeply caramelized onions, glossy and tender, nestled within a flaky, golden puff pastry crust. Specks of fresh green thyme leaves are visible, and a melted, lightly browned Gruyere cheese topping adds a delicate crust. Beside the tart, a small, neatly arranged side salad of vibrant mixed greens, lightly dressed, provides a fresh green contrast. The setting is a simple wooden table, with a silver fork and knife neatly placed alongside a folded white cotton napkin. Natural, even lighting illuminates the dish, creating soft shadows against a minimal, modern bistro-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve warm with a simple green salad dressed with vinaigrette",
+      "Pair with a dry white wine like Sauvignon Blanc or Pinot Grigio"
+    ],
+    "hero_ingredient": "Caramelized Onion",
+    "ingredients": [
+      {
+        "name": "Puff pastry",
+        "quantity": "1 sheet (approx. 320g)"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "4-5 (about 1 kg), thinly sliced"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5g, leaves picked"
+      },
+      {
+        "name": "Gruyere cheese",
+        "quantity": "150g, grated"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Melt butter and olive oil in a large skillet over medium-low heat.",
+      "Add thinly sliced onions. Cook slowly, stirring occasionally, for 45-60 minutes until deeply caramelized and tender. Do not rush.",
+      "Stir in fresh thyme leaves. Season with salt and pepper. Set aside to cool slightly.",
+      "Preheat oven to 190°C. Lightly grease a 24-26 cm tart tin.",
+      "Unroll puff pastry. Gently press into the tart tin. Trim excess pastry, leaving a slight overhang.",
+      "Scatter half of the grated Gruyere cheese over the base of the pastry.",
+      "Evenly spread the cooled caramelized onions over the cheese layer.",
+      "In a bowl, whisk eggs and heavy cream. Season with salt and pepper. Pour mixture over the onions.",
+      "Sprinkle remaining Gruyere cheese over the top.",
+      "Bake for 30-35 minutes, or until the pastry is golden-brown and the filling is set and lightly browned.",
+      "Remove from oven. Let tart rest for 10 minutes before slicing and serving."
+    ],
+    "notes": [
+      "Caramelizing onions requires patience; low heat and slow cooking are key for deep flavor.",
+      "Ensure the tart tin is well-greased for easy removal."
+    ],
+    "traditional_techniques": [
+      "Caramelizing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 946.7,
+      "cholesterol_mg": 191.9,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 22.6,
+      "saturated_fat_g": 36.5,
+      "sodium_mg": 501.4,
+      "total_carbs_g": 57.3,
+      "total_fat_g": 68.4,
+      "total_sugars_g": 13.1,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 214.1,
+      "cholesterol_mg": 43.4,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 5.1,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 113.4,
+      "total_carbs_g": 13,
+      "total_fat_g": 15.5,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 18.6,
+      "protein": 45.2,
+      "saturated_fat": 182.5,
+      "sodium": 21.8,
+      "total_carbs": 20.8,
+      "total_fat": 87.7
+    },
+    "serving_size_g": 442.2,
+    "total_recipe_weight_g": 1768.8
+  },
+  {
+    "recipe_name": "Lamb Massaman Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lamb_massaman_curry_20250627_023339_08397628.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T02:33:40.052523000Z",
+    "selected_ingredients": [
+      "lamb"
+    ],
+    "complexity": "standard",
+    "special_requests": "thai cuisine",
+    "visual_description": "A single portion of Lamb Massaman Curry served in a deep, hand-glazed celadon ceramic bowl. The dish features large, 5cm tender chunks of braised lamb shoulder and 3cm cubes of golden potato submerged in a rich, velvety reddish-brown coconut gravy. A visible swirl of white coconut cream and a sprinkling of whole roasted peanuts and crispy fried shallots garnish the top. The bowl sits on a dark teak wood table next to a small side bowl of fluffy white jasmine rice and a small dish of cucumber Arjad relish. A traditional Thai spoon and fork rest on a folded white cotton napkin. The lighting is soft and natural, highlighting the glossy texture of the curry.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thailand",
+    "cultural_serving_suggestions": [
+      "Serve with steamed Jasmine rice",
+      "Accompany with Arjad (cucumber, shallot, and chili vinegar relish)",
+      "Use a spoon and fork as per Thai custom",
+      "Serve in a shared ceramic bowl or individual deep bowls"
+    ],
+    "hero_ingredient": "Lamb shoulder",
+    "ingredients": [
+      {
+        "name": "Lamb shoulder, cut into 5cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Massaman curry paste",
+        "quantity": "100g"
+      },
+      {
+        "name": "Waxy potatoes, cut into 3cm cubes",
+        "quantity": "300g"
+      },
+      {
+        "name": "Small shallots, peeled and kept whole",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Roasted unsalted peanuts",
+        "quantity": "50g"
+      },
+      {
+        "name": "Palm sugar, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Tamarind paste",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "2 pieces"
+      },
+      {
+        "name": "Cardamom pods, bruised",
+        "quantity": "5 pieces"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Heat oil in a heavy-based pot over medium-high heat.",
+      "Sear lamb chunks in batches until browned on all sides. Remove and set aside.",
+      "Spoon 100ml of the thick coconut cream from the top of the can into the pot.",
+      "Fry the cream over medium heat until it splits and oil separates.",
+      "Add curry paste to the split cream. Stir for 2 minutes until fragrant.",
+      "Return lamb to the pot. Add remaining coconut milk and enough water to cover.",
+      "Add cinnamon, star anise, and cardamom pods.",
+      "Simmer on low heat for 90 minutes until lamb is nearly tender.",
+      "Add potatoes and whole shallots. Simmer for 20 minutes until potatoes are soft.",
+      "Stir in palm sugar, fish sauce, and tamarind paste. Balance for sweet, salty, and sour.",
+      "Add roasted peanuts. Simmer for 2 minutes. Remove whole spices before serving."
+    ],
+    "notes": [
+      "Ensure the coconut cream 'cracks' (separates into oil) to properly fry the curry paste.",
+      "The lamb should be fork-tender but still holding its chunk shape.",
+      "Adjust the tamarind and sugar at the end to achieve the signature savory-sweet balance."
+    ],
+    "traditional_techniques": [
+      "cracking the coconut cream",
+      "slow-braising",
+      "toasting whole spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 962,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 45,
+      "saturated_fat_g": 35.1,
+      "sodium_mg": 1833,
+      "total_carbs_g": 39.6,
+      "total_fat_g": 69.9,
+      "total_sugars_g": 17.9,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.8,
+      "calories": 234.6,
+      "cholesterol_mg": 34.1,
+      "dietary_fiber_g": 1,
+      "protein_g": 11,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 447.1,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 17,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.7,
+      "dietary_fiber": 14.6,
+      "protein": 90,
+      "saturated_fat": 175.5,
+      "sodium": 79.7,
+      "total_carbs": 14.4,
+      "total_fat": 89.6
+    },
+    "serving_size_g": 410,
+    "total_recipe_weight_g": 1640
+  }
+]

@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Spicy Pork Ragu with Pasta and Crispy Tortillas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_pork_ragu_with_pasta_and_crispy_tortillas_20250624_122212_3a8aadfe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:13.124676000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "mushroom",
+      "hot sauce",
+      "tomato",
+      "cheese",
+      "mayonnaise",
+      "pasta",
+      "tortilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of hearty Spicy Pork Ragu with Pasta is presented in a deep, clean white porcelain bowl. The rich, reddish-brown ragu, featuring tender, shredded pork chunks, diced onion, and sliced mushrooms, coats al dente penne pasta. Vibrant green chopped parsley is sprinkled over the top, providing a fresh contrast. A delicate drizzle of creamy, pale orange spicy mayonnaise zigzags across the dish. A generous scattering of golden-brown, crispy tortilla strips adds visual texture and height. The bowl rests on a simple wooden table, with a neatly folded white cotton napkin beside it. Natural, even lighting highlights the dish's warmth and inviting textures. The background is softly blurred, hinting at a casual bistro atmosphere, ensuring the food remains the focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Fusion",
+    "cultural_origin": "American Fusion",
+    "hero_ingredient": "Pork Ragu",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "700 g, diced into 2.5 cm cubes"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g, sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30 ml, or to taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "4, cut into 1 cm strips"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat pork cubes dry. Season with salt and pepper.",
+      "Heat 15 ml olive oil in a large Dutch oven over medium-high heat. Sear pork in batches until browned on all sides. Remove pork and set aside.",
+      "Reduce heat to medium. Add remaining 15 ml olive oil. Add diced onion and sliced mushrooms. Sauté until softened, about 8 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Return pork to the pot. Stir in crushed tomatoes, chicken broth, hot sauce, oregano, and bay leaf. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer for 2.5 to 3 hours, or until pork is very tender and easily shreddable. Stir occasionally.",
+      "While ragu simmers, prepare crispy tortillas. Preheat oven to 180°C. Toss tortilla strips with a drizzle of olive oil. Spread on a baking sheet. Bake for 10-15 minutes, until golden and crispy. Alternatively, shallow fry until crispy.",
+      "For spicy mayonnaise: In a small bowl, whisk together mayonnaise, a dash of hot sauce, and lime juice. Season with a pinch of salt.",
+      "When ragu is ready, remove bay leaf. Shred pork directly in the pot using two forks. Stir to combine with sauce. Taste and adjust seasoning.",
+      "Cook penne pasta according to package directions until al dente. Drain, reserving 125 ml pasta water.",
+      "Add drained pasta to the ragu. Stir well. Add a splash of reserved pasta water if needed to loosen sauce.",
+      "Serve ragu and pasta in individual bowls. Top with grated Parmesan cheese, a drizzle of spicy mayonnaise, and a generous sprinkle of crispy tortilla strips and fresh chopped parsley."
+    ],
+    "notes": [
+      "Pork shoulder can be replaced with pork butt or Boston butt.",
+      "Adjust hot sauce to your preferred spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1021.84,
+      "cholesterol_mg": 148.98,
+      "dietary_fiber_g": 10.32,
+      "protein_g": 62.31,
+      "saturated_fat_g": 10.44,
+      "sodium_mg": 655,
+      "total_carbs_g": 105.95,
+      "total_fat_g": 39.12,
+      "total_sugars_g": 12.99,
+      "trans_fat_g": 0.06
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131.88,
+      "cholesterol_mg": 19.23,
+      "dietary_fiber_g": 1.33,
+      "protein_g": 8.04,
+      "saturated_fat_g": 1.35,
+      "sodium_mg": 84.54,
+      "total_carbs_g": 13.67,
+      "total_fat_g": 5.05,
+      "total_sugars_g": 1.68,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.66,
+      "dietary_fiber": 36.87,
+      "protein": 124.63,
+      "saturated_fat": 52.2,
+      "sodium": 28.48,
+      "total_carbs": 38.53,
+      "total_fat": 50.15
+    },
+    "serving_size_g": 774.75,
+    "total_recipe_weight_g": 3099
+  },
+  {
+    "recipe_name": "Rustic Rigatoni with Slow-Roasted Tomato, Caramelized Onion, and Crispy Potato Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_rigatoni_with_slow-roasted_tomato%2C_caramelized_onion%2C_and_crispy_potato_crumble_20250624_122204_08c99bbd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:05.058098000Z",
+    "selected_ingredients": [
+      "onion",
+      "pasta",
+      "tomato",
+      "bread",
+      "potato",
+      "apple"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of rustic rigatoni pasta is presented in a clean white porcelain bowl, set on a simple wooden table surface. The pasta is generously coated in a rich, slightly chunky, deep red slow-roasted tomato and caramelized onion sauce. The rigatoni tubes are plump and al dente, nestled together. Scattered over the pasta are golden-brown, crispy 1 cm potato cubes, offering a delightful textural contrast. Interspersed are golden, apple-infused breadcrumbs, adding another layer of crunch and subtle aroma. A scattering of vibrant green, freshly chopped basil and parsley provides a fresh, aromatic garnish. The composition is balanced, with moderate negative space, showcasing the dish as the focal point. Natural, even lighting highlights the varied textures and colors. A simple cotton napkin is placed beside the bowl, with a fork, enhancing the modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of freshly grated Pecorino Romano or Parmesan cheese.",
+      "Accompany with a simple green salad dressed with olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Rigatoni Pasta",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Large red onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Potatoes (Russet or similar)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Stale bread",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Apple (e.g., Honeycrisp or Fuji)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large handful"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "Small handful"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Parmesan cheese (optional, for serving)",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Halve tomatoes. Slice red onions thinly. Mince garlic.",
+      "Spread tomatoes, half the sliced onions, and garlic on a baking tray. Drizzle with 30 ml olive oil. Season with salt and pepper. Roast for 30-40 minutes until softened and slightly charred.",
+      "While tomatoes roast, peel and dice potatoes into 1 cm cubes. Heat 15 ml olive oil in a large skillet over medium-high heat. Add potato cubes. Cook until golden brown and crispy, about 10-12 minutes. Season with salt. Set aside.",
+      "Grate stale bread into coarse crumbs. Finely dice the apple. Heat remaining 15 ml olive oil in the same skillet over medium heat. Add remaining sliced onions and diced apple. Sauté until onions are caramelized and apple is soft, about 15-20 minutes.",
+      "Add breadcrumbs to the skillet with caramelized onions and apple. Toast until golden and fragrant, about 5-7 minutes. Set aside. This is your crispy crumble.",
+      "Transfer roasted tomatoes, onions, and garlic to a large pot. Crush tomatoes with a spoon. Add red wine vinegar. Simmer gently for 10 minutes. Adjust seasoning. This is your sauce.",
+      "Cook rigatoni according to package directions in salted water until al dente. Reserve 120 ml pasta water.",
+      "Drain pasta. Add cooked pasta to the sauce. Add reserved pasta water as needed to create a glossy sauce. Toss to coat.",
+      "Finely chop fresh basil and parsley. Stir most of the fresh herbs into the pasta. Reserve some for garnish.",
+      "Serve hot pasta in individual bowls. Top each portion with crispy potato cubes and the apple-infused breadcrumb crumble. Garnish with remaining fresh herbs. Serve with optional Parmesan cheese."
+    ],
+    "notes": [
+      "The apple provides a subtle sweetness and depth to the caramelized onions, not a dominant fruit flavor.",
+      "Ensure potatoes are truly crispy for best texture contrast."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for sauce base, though modified with roasting)",
+      "Al dente cooking of pasta"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.2,
+      "calories": 801,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 11.7,
+      "protein_g": 26.1,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 848,
+      "total_carbs_g": 131.7,
+      "total_fat_g": 20.3,
+      "total_sugars_g": 20.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 123,
+      "cholesterol_mg": 2,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 4,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 131,
+      "total_carbs_g": 20.3,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 42,
+      "protein": 52,
+      "saturated_fat": 23,
+      "sodium": 37,
+      "total_carbs": 48,
+      "total_fat": 26
+    },
+    "serving_size_g": 649.5,
+    "total_recipe_weight_g": 2598
+  },
+  {
+    "recipe_name": "Rustic Sausage and Potato Roast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_sausage_and_potato_roast_20250624_122157_f1714865.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:21:57.696502000Z",
+    "selected_ingredients": [
+      "potato",
+      "sausage"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Rustic Sausage and Potato Roast is presented on a round, off-white ceramic plate with slight imperfections. Golden-brown roasted potato 2 cm chunks are scattered naturally alongside browned, plump 3 cm sausage pieces. Interspersed are caramelized onion 2 cm wedges and vibrant red bell pepper 2 cm strips, all showing slight charring from roasting. A sprinkle of fresh green chopped parsley adds a pop of color. The dish is arranged casually, with components touching and slightly overlapping, reflecting a homely, comforting meal. The plate sits on a well-used, warm-toned wooden dining table. Lighting is soft and inviting, simulating natural kitchen light. A simple, folded cloth napkin rests beside the plate. The background is blurred, focusing solely on the hearty, rustic meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad.",
+      "Offer crusty bread on the side."
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "medium potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "thick pork sausages",
+        "quantity": "500 g"
+      },
+      {
+        "name": "large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "large red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "dried rosemary",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "dried thyme",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "salt",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut potatoes into 2 cm chunks. Cut sausages into 3 cm pieces. Cut onion into 2 cm wedges. Cut bell pepper into 2 cm strips.",
+      "Place potatoes, sausages, onion, and bell pepper in a large roasting pan.",
+      "Add olive oil, minced garlic, dried rosemary, dried thyme, salt, and black pepper.",
+      "Toss ingredients thoroughly to coat.",
+      "Spread in a single layer in the pan.",
+      "Roast 30 minutes. Stir.",
+      "Continue roasting 20-30 minutes. Potatoes should be tender. Sausages should be browned. Internal temperature must reach 75°C.",
+      "Remove from oven. Stir in chopped fresh parsley.",
+      "Serve hot."
+    ],
+    "notes": [
+      "This dish is easily adaptable with different types of sausages or vegetables."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 648,
+      "cholesterol_mg": 94,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 28,
+      "saturated_fat_g": 14.7,
+      "sodium_mg": 1537,
+      "total_carbs_g": 46.8,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 173,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 7.5,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 411,
+      "total_carbs_g": 12.5,
+      "total_fat_g": 11.3,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 24,
+      "protein": 56,
+      "saturated_fat": 74,
+      "sodium": 67,
+      "total_carbs": 17,
+      "total_fat": 54
+    },
+    "serving_size_g": 374,
+    "total_recipe_weight_g": 1496
+  },
+  {
+    "recipe_name": "Koji-Marinated Pork Loin with Umami Mushrooms and Black Garlic Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_koji-marinated_pork_loin_with_umami_mushrooms_and_black_garlic_rice_20250624_122156_a83c2fca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:21:56.477301000Z",
+    "selected_ingredients": [
+      "pork",
+      "mushroom",
+      "rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a handcrafted, matte ceramic plate in an earthy cream or beige tone, resting on a light, textured bamboo surface. Soft, natural light illuminates the scene. A generous, irregular mound of light brown black garlic rice forms the base. Beside it, several thick, succulent chunks of golden-brown roasted pork loin are arranged naturally, showcasing their seared crust and tender interior. Scattered around the rice and pork are an assortment of roasted mushrooms—some whole, some halved, some quartered—displaying varied earthy tones of brown and grey, with slightly crinkled, meaty textures. A light sprinkle of thinly sliced green scallions provides a fresh, natural accent. The plating is minimalistic, with ample negative space. A set of simple, elegant wooden chopsticks rests beside the plate on an undyed linen napkin, emphasizing the clean, sustainable aesthetic. The background is clean and uncluttered, with subtle natural elements visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Pork Loin",
+    "ingredients": [
+      {
+        "name": "Pork Loin",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Mixed Mushrooms (shiitake, cremini, oyster)",
+        "quantity": "400 g, cleaned, larger ones halved or quartered"
+      },
+      {
+        "name": "Short-Grain Brown Rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Rice Koji (shio koji paste or granular koji)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "20 g, grated"
+      },
+      {
+        "name": "Black Garlic",
+        "quantity": "3 cloves, peeled"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, thinly sliced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Toasted Sesame Oil",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Scallions",
+        "quantity": "2, green parts thinly sliced (for garnish)"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat pork loin dry. In a shallow dish, combine rice koji, soy sauce, mirin, and grated ginger. Coat pork loin thoroughly. Cover and refrigerate for 8-24 hours.",
+      "Rinse brown rice. Cook according to package directions. While rice cooks, mash black garlic cloves into a paste. Once rice is cooked and rested, gently fold in black garlic paste and toasted sesame oil. Keep warm.",
+      "Preheat oven to 200°C. Toss mushrooms with 15 ml olive oil, sliced garlic, salt, and pepper. Spread on a baking sheet. Roast for 15-20 minutes, or until tender and lightly browned.",
+      "Remove pork from marinade. Scrape off excess koji but do not rinse. Heat remaining 15 ml olive oil in an oven-safe skillet over medium-high heat. Sear pork loin on all sides until golden brown, about 2-3 minutes per side.",
+      "Transfer skillet to preheated oven. Roast for 15-25 minutes, or until internal temperature reaches 75°C. Use a meat thermometer.",
+      "Remove pork from oven. Let rest on a cutting board for 10 minutes. Slice pork into thick, even chunks.",
+      "Spoon a mound of black garlic rice onto each handcrafted ceramic plate. Arrange thick pork chunks beside the rice. Scatter roasted mushrooms around the pork and rice. Garnish with thinly sliced scallion greens. Serve immediately."
+    ],
+    "notes": [
+      "Utilize mushroom stems by finely chopping and adding to the rice during cooking for extra umami and zero-waste.",
+      "Any pork trimmings can be saved for making stock.",
+      "Consider sourcing ingredients from local farms to further enhance the eco-conscious aspect."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.8,
+      "calories": 638,
+      "cholesterol_mg": 110,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 49.7,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 1580,
+      "total_carbs_g": 70.5,
+      "total_fat_g": 18.3,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 169.2,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 13.2,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 419,
+      "total_carbs_g": 18.7,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 15,
+      "protein": 99,
+      "saturated_fat": 21,
+      "sodium": 69,
+      "total_carbs": 26,
+      "total_fat": 23
+    },
+    "serving_size_g": 377,
+    "total_recipe_weight_g": 1508
+  },
+  {
+    "recipe_name": "Crispy Chicken Cutlets with Caramelized Onion Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_chicken_cutlets_with_caramelized_onion_jus_20250624_122155_2546c321.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:21:55.782477000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "breadcrumbs"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown crispy chicken cutlet, pan-fried to perfection, is elegantly presented on a pristine white porcelain dinner plate. The chicken, pounded thin, has a visibly crunchy breadcrumb crust. Alongside, a generous pool of rich, dark amber caramelized onion jus is spooned, its glossy surface reflecting light. The onions within the jus are visibly soft and deeply browned. A vibrant sprinkle of fresh chopped parsley garnishes the chicken and jus, adding a pop of green. A bright yellow lemon wedge sits neatly beside the cutlet, ready for a squeeze. The plate rests on a simple wooden table surface in a modern bistro setting. Standard silver flatware and a folded white cotton napkin are placed alongside. Natural, even lighting highlights the dish, with a minimal, blurred background suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2, beaten"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "60ml (optional)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, cut into wedges"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Place each breast between two sheets of cling film. Pound chicken to an even 1.5 cm thickness using a meat mallet. Season both sides with salt and black pepper.",
+      "Set up a breading station. Place flour in a shallow dish. Place beaten eggs in a second shallow dish. Place Panko breadcrumbs in a third shallow dish.",
+      "Dredge each pounded chicken breast in flour. Shake off excess. Dip in beaten egg, ensuring full coverage. Transfer to breadcrumbs. Press firmly to coat evenly. Set aside.",
+      "Heat 20g butter and 10ml olive oil in a large saucepan over medium heat. Add thinly sliced onions and thyme sprigs. Cook slowly for 20-25 minutes until deeply caramelized and tender. Stir occasionally.",
+      "Deglaze the pan with white wine, if using. Scrape up any browned bits. Add chicken stock. Bring to a simmer. Reduce heat and cook for 5-7 minutes until the liquid slightly thickens to a jus consistency. Season with salt and pepper. Remove thyme sprigs.",
+      "Heat remaining 30g butter and 20ml olive oil in a large frying pan over medium-high heat. Add breaded chicken cutlets. Do not overcrowd the pan; cook in batches if necessary.",
+      "Pan-fry chicken for 4-6 minutes per side, until golden brown and crispy. Ensure internal temperature reaches 75°C (167°F). Transfer cooked cutlets to a wire rack to drain excess oil.",
+      "Serve crispy chicken cutlets immediately. Spoon generous amounts of caramelized onion jus alongside each cutlet. Garnish with fresh chopped parsley and a lemon wedge."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 768,
+      "cholesterol_mg": 273,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 67.5,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 907,
+      "total_carbs_g": 55.6,
+      "total_fat_g": 27.5,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 166,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 14.6,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 196,
+      "total_carbs_g": 12,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 91,
+      "dietary_fiber": 11,
+      "protein": 135,
+      "saturated_fat": 51,
+      "sodium": 39,
+      "total_carbs": 20,
+      "total_fat": 35
+    },
+    "serving_size_g": 461.75,
+    "total_recipe_weight_g": 1847
+  }
+]

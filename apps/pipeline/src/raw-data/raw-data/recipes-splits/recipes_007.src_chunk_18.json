@@ -1,0 +1,724 @@
+[
+  {
+    "recipe_name": "Raspberry Cinnamon Bavaroise, Brown Butter Sponge",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_raspberry_cinnamon_bavaroise%2C_brown_butter_sponge_20250902_120148_db83cbd2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T12:01:48.712430000Z",
+    "selected_ingredients": [
+      {
+        "name": "raspberry"
+      },
+      {
+        "name": "cinnamon"
+      },
+      {
+        "name": "butter"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "The finished dessert presents a sophisticated, minimalist composition on a round, matte white bone china plate. A perfectly unmolded, smooth dome of Raspberry Cinnamon Bavaroise, with its soft pink hue, sits elegantly on the left side of the plate, slightly off-center. Its surface is pristine and reflects light subtly. Around the Bavaroise, 3-4 irregularly shaped, golden-brown chunks of Brown Butter Sponge are thoughtfully placed, offering a textural contrast. The sponge pieces have a delicate, airy crumb. Three small, vibrant ruby-red pools of Raspberry Fluid Gel are artfully dotted across the plate, their organic shapes contrasting with the Bavaroise's clean form, adding a glossy sheen. Two thin, crisp, amber-colored Cinnamon Tuile shards are positioned vertically and slightly askew, providing architectural height and a delicate, almost translucent texture. Abundant negative space surrounds the elements, enhancing their visual impact. The overall impression is one of refined elegance and precise execution. The plate rests on a polished grey veined marble surface, accompanied by a precisely folded white linen napkin. Dramatic, soft lighting casts subtle shadows, highlighting the dessert's textures and contours.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "cultural_origin": "German",
+    "hero_ingredient": "Raspberry",
+    "ingredients": [
+      {
+        "name": "fresh raspberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "gelatin sheets",
+        "quantity": "5 g"
+      },
+      {
+        "name": "heavy cream (35% fat)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "ground cinnamon",
+        "quantity": "2 g"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "large egg",
+        "quantity": "1 (approx. 50g)"
+      },
+      {
+        "name": "all-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "baking powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "fresh raspberry puree",
+        "quantity": "150 g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "agar-agar powder",
+        "quantity": "1 g"
+      },
+      {
+        "name": "unsalted butter, melted",
+        "quantity": "20 g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "egg white",
+        "quantity": "20 g"
+      },
+      {
+        "name": "all-purpose flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "ground cinnamon",
+        "quantity": "1 g"
+      }
+    ],
+    "instructions": [
+      "Brown the butter in a small saucepan over medium heat until fragrant and amber. Strain solids. Let cool slightly.",
+      "Whip sugar and egg until pale and fluffy.",
+      "Fold in brown butter.",
+      "Sift flour and baking powder together. Gently fold into egg mixture until just combined.",
+      "Spread thinly onto a parchment-lined baking tray.",
+      "Bake at 170\nDBC for 8-10 minutes, until golden.",
+      "Cool completely. Cut into small irregular chunks.",
+      "Combine raspberry puree, sugar, and agar-agar in a small saucepan.",
+      "Bring to a boil, stirring constantly. Simmer for 1 minute.",
+      "Pour into a shallow dish. Chill until set, about 30 minutes.",
+      "Blend the set gel until smooth and fluid. Pass through a fine-mesh sieve. Keep chilled.",
+      "Soak gelatin sheets in cold water for 5 minutes.",
+      "Puree fresh raspberries. Pass through a fine-mesh sieve to remove seeds.",
+      "Heat raspberry puree, sugar, and cinnamon in a saucepan until sugar dissolves. Do not boil.",
+      "Squeeze excess water from gelatin. Stir into warm raspberry mixture until dissolved.",
+      "Let cool to room temperature, about 25\nDBC.",
+      "Whip heavy cream to soft peaks.",
+      "Gently fold whipped cream into the cooled raspberry mixture in three additions.",
+      "Pour into desired molds (e.g., small dome or cylindrical molds). Chill for at least 4 hours, or until set.",
+      "Combine melted butter, sugar, egg white, flour, and cinnamon. Mix until smooth.",
+      "Spread a very thin layer onto a silicone mat or parchment paper using an offset spatula.",
+      "Bake at 160\nDBC for 5-7 minutes, until golden brown and crisp.",
+      "Remove from oven. Immediately shape if desired (e.g., over a rolling pin for curves) or let cool flat. Break into irregular shards.",
+      "Unmold the Raspberry Cinnamon Bavaroise. Place one Bavaroise in the center-left of a clean, minimalist plate.",
+      "Artistically arrange 3-4 brown butter sponge chunks around the Bavaroise.",
+      "Spoon 2-3 small pools of raspberry fluid gel onto the plate, creating natural, flowing shapes.",
+      "Garnish with 1-2 cinnamon tuile shards, positioned for height and visual interest."
+    ],
+    "notes": [
+      "Ensure all components are thoroughly chilled before plating for optimal texture and presentation.",
+      "The brown butter sponge can be made a day in advance and stored in an airtight container.",
+      "Work quickly when folding whipped cream into the Bavaroise base to maintain aeration."
+    ],
+    "traditional_techniques": [
+      "Mise en place",
+      "Tempering gelatin"
+    ]
+  },
+  {
+    "recipe_name": "Apfel-Zimt Texturen",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_apfel-zimt_texturen_20250902_120052_236fc373.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T12:00:53.362897000Z",
+    "selected_ingredients": [
+      {
+        "name": "sugar"
+      },
+      {
+        "name": "cinnamon"
+      },
+      {
+        "name": "apple"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "The dish is a study in minimalist elegance, presented on an oversized, matte white bone china plate. A single, perfectly poached apple wedge, its surface glistening, sits slightly off-center. Adjacent to it, a small, artfully arranged cluster of golden-brown streusel crumbs provides textural counterpoint. A precise, flowing line of translucent amber apple-cinnamon gel curves gracefully across the plate, connecting the apple and streusel. On the opposite side, a light, ethereal cloud of warm, off-white cinnamon crème anglaise foam adds volume. A single, ultra-thin, almost transparent dehydrated apple crisp stands upright, leaning against the poached apple, offering a final textural and visual accent. Abundant negative space surrounds the elements, emphasizing their individual beauty. The setting features a polished grey veined marble surface, a pristine white linen napkin folded into a sharp triangle, and subtle, dramatic lighting creating soft shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern German",
+    "cultural_origin": "German",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Firm apples (e.g., Gala, Honeycrisp)",
+        "quantity": "2, peeled, cored"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cinnamon sticks",
+        "quantity": "2"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "1 (optional)"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "Juice of 1/2 lemon"
+      },
+      {
+        "name": "Fresh apple juice (clear)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "N2O chargers",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Firm apple (e.g., Gala)",
+        "quantity": "1, unpeeled"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "20 ml"
+      },
+      {
+        "name": "Simple syrup (1:1 sugar:water)",
+        "quantity": "10 ml"
+      }
+    ],
+    "instructions": [
+      "Slice unpeeled apple very thinly (1 mm) using a mandoline. Brush slices with lemon juice and simple syrup. Arrange on a baking sheet lined with parchment paper. Dehydrate in oven at 80°C (175°F) for 2-3 hours, or until completely dry and crisp. Store in an airtight container.",
+      "Cut peeled, cored apples into precise 3 cm x 3 cm cubes or elegant wedge shapes. In a saucepan, combine water, 100g sugar, 2 cinnamon sticks, star anise (if using), and lemon juice. Bring to a simmer. Add apple pieces. Poach gently for 5-7 minutes until tender but still firm. Do not overcook. Remove apples from liquid. Chill immediately. Strain poaching liquid and reserve.",
+      "In a saucepan, combine 200ml apple juice, 50g sugar, and 1/2 cinnamon stick. Bring to a simmer. Whisk in agar-agar powder. Simmer for 1 minute, stirring constantly. Remove cinnamon stick. Pour liquid into a shallow dish. Chill until set, about 30 minutes. Blend the set gel until smooth in a high-speed blender. Pass through a fine-mesh sieve. Transfer to a squeeze bottle. Keep at room temperature or slightly chilled.",
+      "Melt 50g butter in a small saucepan over medium heat. Cook until it turns golden brown and smells nutty. Strain out solids. Let cool slightly. In a bowl, combine flour, 30g sugar, ground cinnamon, and pinch of salt. Pour in the brown butter. Mix until crumbly. Spread streusel on a baking sheet. Bake at 160°C (325°F) for 10-12 minutes, or until golden and crisp. Let cool completely. Break into small crumbs.",
+      "In a saucepan, combine milk, cream, 1 cinnamon stick, and pinch of salt. Bring to a gentle simmer. Remove from heat. Let infuse for 15 minutes. In a separate bowl, whisk egg yolks and 40g sugar until pale. Remove cinnamon stick from milk mixture. Slowly temper hot milk mixture into egg yolk mixture, whisking constantly. Return mixture to saucepan. Cook over low heat, stirring constantly, until it thickens slightly and coats the back of a spoon. Do not boil. Strain through a fine-mesh sieve. Chill completely. Pour chilled crème anglaise into a siphon. Charge with 1-2 N2O chargers. Shake well. Keep warm in a bain-marie at about 50-60°C (120-140°F) for serving.",
+      "Place 1-2 pieces of cinnamon-poached apple slightly off-center on a pristine white plate. Arrange a small, elegant line or cluster of brown butter streusel next to the apple. Pipe a few dots or a delicate swirl of apple-cinnamon gel onto the plate, complementing the apple and streusel. Dispense a cloud of warm cinnamon crème anglaise foam on the side of the apple. Garnish with one dehydrated apple crisp, placed vertically or artfully leaning against an apple piece."
+    ],
+    "notes": [
+      "This dessert plays on contrasting textures and temperatures. Ensure each component is executed perfectly for maximum impact."
+    ],
+    "traditional_techniques": [
+      "Mise en place"
+    ]
+  },
+  {
+    "recipe_name": "Rhubarb & Cashew Milk Tart",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rhubarb_%26_cashew_milk_tart_20250902_115739_e41938aa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T11:57:40.017830000Z",
+    "selected_ingredients": [
+      "cashew milk",
+      "butter",
+      "pastry cream",
+      "rhubarb",
+      "flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single slice of Rhubarb & Cashew Milk Tart is presented centrally on a clean white porcelain dinner plate. The golden-brown tart crust has a crisp, uniform edge. Inside, a smooth, pale ivory layer of cashew milk pastry cream fills the shell. Vibrant pink and green rhubarb pieces, cut into 2 cm lengths, are arranged neatly but naturally over the cream, showcasing their tender yet structured texture. A light dusting of icing sugar subtly enhances the top. The slice reveals the distinct layers. The background features a simple wooden table, a folded white cotton napkin, and a fork, creating a modern bistro setting with natural, even lighting. The focus is entirely on the dessert's elegant simplicity and balanced composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Rhubarb",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter (cold, cubed)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cashew milk",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "25 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Rhubarb stalks",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Combine 200 g plain flour, 100 g cold butter, and 40 g icing sugar in a food processor. Pulse until mixture resembles fine breadcrumbs.",
+      "Add 1 egg yolk and 15 ml cold water. Pulse until dough just comes together. Do not overmix.",
+      "Form dough into a flat disc. Wrap in cling film. Chill 30 minutes.",
+      "Preheat oven to 180°C (350°F).",
+      "Roll out chilled dough on a lightly floured surface to 3 mm thickness.",
+      "Line a 22 cm tart tin with the dough. Trim edges. Prick base with a fork.",
+      "Line dough with parchment paper. Fill with baking beans or rice.",
+      "Bake 15 minutes. Remove paper and beans. Bake 10-12 minutes more, until golden.",
+      "Cool completely on a wire rack.",
+      "Wash rhubarb. Cut into 2 cm pieces.",
+      "Combine rhubarb, 70 g caster sugar, and 30 ml water in a saucepan.",
+      "Cook over medium heat 5-7 minutes, until rhubarb is tender but still holds its shape. Do not overcook.",
+      "Drain any excess liquid. Cool completely.",
+      "Heat 300 ml cashew milk in a saucepan until simmering.",
+      "Whisk 3 egg yolks and 75 g caster sugar in a bowl until pale.",
+      "Whisk in 25 g plain flour until smooth.",
+      "Gradually whisk hot cashew milk into egg mixture.",
+      "Return mixture to saucepan. Cook over medium heat, whisking constantly, until thick and bubbling. Cook 1 minute more.",
+      "Remove from heat. Stir in 20 g butter and 5 ml vanilla extract until smooth.",
+      "Transfer pastry cream to a clean bowl. Cover surface with cling film to prevent a skin. Cool completely.",
+      "Spoon cooled cashew milk pastry cream into the cooled tart shell. Spread evenly.",
+      "Arrange cooled rhubarb pieces decoratively over the pastry cream.",
+      "Chill tart for at least 1 hour before serving."
+    ],
+    "notes": [
+      "For best results, ensure all ingredients for the tart dough are cold.",
+      "Allow the pastry cream to cool completely before assembling to prevent the tart from becoming soggy.",
+      "The rhubarb should be tender but not mushy, maintaining some structure."
+    ],
+    "traditional_techniques": [
+      "Pâte Sablée",
+      "Crème Pâtissière"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 46.2,
+      "calories": 694,
+      "cholesterol_mg": 249,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 9.7,
+      "saturated_fat_g": 17.4,
+      "sodium_mg": 47,
+      "total_carbs_g": 95.1,
+      "total_fat_g": 31.4,
+      "total_sugars_g": 47.6,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.7,
+      "calories": 206,
+      "cholesterol_mg": 74,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 2.9,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 14,
+      "total_carbs_g": 28.2,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 14.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 83,
+      "dietary_fiber": 13,
+      "protein": 19,
+      "saturated_fat": 87,
+      "sodium": 2,
+      "total_carbs": 35,
+      "total_fat": 40
+    },
+    "serving_size_g": 337,
+    "total_recipe_weight_g": 1348
+  },
+  {
+    "recipe_name": "Clarified Chicken Consommé with Tomato Essence, Potato Gnocchi, and Bell Pepper Oil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_clarified_chicken_consomm%C3%A9_with_tomato_essence%2C_potato_gnocchi%2C_and_bell_pepper_oil_20250902_112914_c15fbf6f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T11:29:14.514421000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "potato",
+      "bell pepper"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A pristine, shallow white bone china bowl holds a single serving, positioned on a luxurious grey veined marble surface. The center features three perfectly formed, small potato gnocchi, their pale ivory color contrasting with the clear, amber chicken consommé. A translucent, vibrant red tomato essence is artfully swirled around the gnocchi. Precisely placed droplets of bright orange-red bell pepper oil dot the surface, creating an elegant pattern. A single, fresh micro basil leaf rests delicately on one gnocchi. The composition is minimalist and refined, with abundant negative space. Dramatic lighting casts soft shadows, highlighting textures. A pristine white linen napkin, folded precisely, sits to the left.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "chicken bones (backs, wings)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "chicken breast, minced",
+        "quantity": "500 g"
+      },
+      {
+        "name": "carrots, finely diced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "celery, finely diced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "leek, finely diced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "large egg whites",
+        "quantity": "2"
+      },
+      {
+        "name": "cold water",
+        "quantity": "2 L"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100 mL"
+      },
+      {
+        "name": "black peppercorns",
+        "quantity": "5 g"
+      },
+      {
+        "name": "fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "fine sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "ripe plum tomatoes, roughly chopped",
+        "quantity": "500 g"
+      },
+      {
+        "name": "fresh basil leaves",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Russet potatoes, peeled",
+        "quantity": "300 g"
+      },
+      {
+        "name": "'00' flour",
+        "quantity": "50 g, plus extra for dusting"
+      },
+      {
+        "name": "small egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "red bell pepper, deseeded and roughly chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "grapeseed oil",
+        "quantity": "100 mL"
+      },
+      {
+        "name": "micro basil or chervil",
+        "quantity": "optional"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken Stock: In a large pot, combine chicken bones, carrots, celery, leek, peppercorns, thyme, and bay leaf. Add 2 L cold water. Bring to a gentle simmer over low heat. Skim any impurities. Simmer for 2 hours. Strain the stock through a fine-mesh sieve, then through a cheesecloth-lined sieve. Discard solids. Cool the stock completely.",
+      "Clarify Consommé: In a large bowl, combine minced chicken breast, egg whites, and white wine. Mix well. Add the cold chicken stock to the chicken mixture. Stir gently. Place the pot over medium-low heat. Slowly bring to a simmer, stirring until a 'raft' of solids forms. Stop stirring. Reduce heat to very low. Gently crack a small hole in the raft. Simmer for 45-60 minutes without disturbing.",
+      "Strain Consommé: Carefully ladle the clear consommé through a fine-mesh sieve lined with a clean, damp cheesecloth. Do not press the raft. Season with salt to taste. Keep warm.",
+      "Prepare Tomato Essence: Combine chopped tomatoes, basil, and salt in a blender. Blend until smooth. Pour the mixture into a cheesecloth-lined sieve set over a bowl. Let it drain naturally for at least 2 hours, or overnight in the refrigerator, without pressing. Collect the clear tomato essence. Season with a tiny pinch of salt if needed.",
+      "Prepare Potato Gnocchi: Boil potatoes in salted water until very tender. Drain well. Pass the hot potatoes through a potato ricer or mash thoroughly. Spread mashed potato on a clean surface to cool slightly. Once cooled, add flour, egg yolk, and salt. Gently knead until just combined into a soft dough. Do not overmix.",
+      "Form Gnocchi: Roll small portions of dough into thin ropes (approx. 1 cm diameter). Cut ropes into 1.5 cm pieces. Gently roll each piece over the tines of a fork or a gnocchi board to create ridges.",
+      "Cook Gnocchi: Bring a pot of lightly salted water to a gentle boil. Add gnocchi in batches. Cook until they float to the surface, about 1-2 minutes. Remove with a slotted spoon and place on a lightly oiled tray to prevent sticking.",
+      "Prepare Bell Pepper Oil: In a small saucepan, combine chopped red bell pepper and grapeseed oil. Heat gently over very low heat for 15-20 minutes, allowing the oil to infuse. Remove from heat. Let cool slightly. Blend the mixture until smooth. Strain through a fine-mesh sieve lined with cheesecloth, pressing gently to extract all oil. Season with a pinch of salt.",
+      "Assemble and Serve: Gently reheat gnocchi in a little consommé if cooled. Pour a small amount of warm consommé into each serving bowl. Carefully place 3-5 gnocchi in the center of the bowl. Drizzle a small amount of tomato essence around the gnocchi. Add a few drops of bell pepper oil artistically. Garnish with a micro basil or chervil leaf if desired. Serve immediately."
+    ],
+    "notes": [
+      "For the clearest consommé, ensure the stock is completely cold before adding the raft ingredients.",
+      "Do not stir the consommé once the raft has formed, as this will break it and cloud the soup.",
+      "The potato gnocchi should be light and tender; avoid overworking the dough."
+    ],
+    "traditional_techniques": [
+      "Consommé Clarification"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 367.3,
+      "cholesterol_mg": 48.6,
+      "dietary_fiber_g": 2,
+      "protein_g": 12.2,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 300,
+      "total_carbs_g": 24.5,
+      "total_fat_g": 25,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 94.2,
+      "cholesterol_mg": 12.5,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 3.1,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 76.9,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16,
+      "dietary_fiber": 7,
+      "protein": 24,
+      "saturated_fat": 14,
+      "sodium": 13,
+      "total_carbs": 9,
+      "total_fat": 32
+    },
+    "serving_size_g": 390,
+    "total_recipe_weight_g": 1560
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Thighs with Spicy Breadcrumb Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_thighs_with_spicy_breadcrumb_crumble_20250902_094146_a64468c5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T09:41:46.855093000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "breadcrumbs",
+      "onion",
+      "hot sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken thigh, golden-brown and glistening, rests centered on a clean white porcelain dinner plate. The chicken, cooked to a perfect crust, displays a rich, savory hue. Over and beside it, a generous sprinkling of vibrant, golden-brown breadcrumb crumble, featuring finely diced caramelized onion and minced garlic, adds textural contrast and visual depth. A rich, glossy hot sauce reduction, a deep orange-red, is artfully spooned around the base of the chicken, creating a vibrant pool. The dish is garnished with a scatter of fresh, bright green chopped parsley, providing a fresh color pop. The scene is set on a simple light wooden table, with a neatly folded white cotton napkin positioned beside the plate. Natural, even lighting highlights the dish, showcasing its appealing colors and textures in a modern bistro atmosphere. The presentation is professional, clean, and inviting, with moderate negative space. Chicken is presented whole, not sliced.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad or roasted seasonal vegetables."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Hot sauce (e.g., Frank's RedHot)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt, black pepper, and 2g smoked paprika.",
+      "Heat 15ml olive oil in a large oven-safe pan over medium-high heat. Sear chicken thighs for 5-7 minutes per side until golden brown and a crust forms. Ensure internal temperature reaches 75°C (167°F).",
+      "Remove chicken from pan. Rest on a cutting board, tented with foil.",
+      "In the same pan, add remaining 15ml olive oil. Add finely diced onion and cook until softened, about 5 minutes. Add half of the minced garlic and cook for 1 minute until fragrant.",
+      "Stir in Panko breadcrumbs and remaining 3g smoked paprika. Toast until golden and crispy, about 3-5 minutes. Remove from pan and set aside as the crumble.",
+      "Deglaze the pan with apple cider vinegar. Add hot sauce, chicken stock, and sugar. Bring to a simmer. Cook for 5-7 minutes, reducing slightly. Stir in remaining half of minced garlic and butter until melted and sauce is glossy.",
+      "To serve, place one chicken thigh on each plate. Spoon hot sauce reduction around the chicken. Sprinkle generously with the spicy breadcrumb crumble. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches internal temperature of 75°C (167°F) for food safety.",
+      "Adjust hot sauce quantity to desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2,
+      "calories": 499,
+      "cholesterol_mg": 206,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 42.5,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 766,
+      "total_carbs_g": 25.3,
+      "total_fat_g": 24.4,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 146,
+      "cholesterol_mg": 60,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 12.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 224,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 7,
+      "protein": 85,
+      "saturated_fat": 39,
+      "sodium": 33,
+      "total_carbs": 9,
+      "total_fat": 31
+    },
+    "serving_size_g": 342,
+    "total_recipe_weight_g": 1368
+  }
+]

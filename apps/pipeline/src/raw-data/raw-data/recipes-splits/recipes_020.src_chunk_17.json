@@ -1,0 +1,697 @@
+[
+  {
+    "recipe_name": "Chorizo Mole with Cucumber Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chorizo_mole_with_cucumber_salsa_20250624_172228_6c45c742.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:22:29.320144000Z",
+    "selected_ingredients": [
+      "chocolate",
+      "chorizo",
+      "semi sweet chocolate",
+      "white chocolate liqueur",
+      "cumin",
+      "cucumber",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chorizo Mole is presented on a clean white porcelain dinner plate, centrally placed on a simple wooden table surface. Thick chunks of browned chorizo are generously coated in a rich, glossy, deep reddish-brown mole sauce. The sauce clings to the chorizo, showcasing its luxurious texture. A small, neat mound of fluffy white rice sits to one side of the plate. Opposite the rice, a vibrant pile of fresh cucumber and red onion salsa provides a cool, crisp contrast with its green and white hues. A stack of warm, golden corn tortillas is arranged beside the plate. Two bright green lime wedges rest near the salsa, ready for squeezing. The dish is garnished with a scattering of fresh, bright green cilantro leaves over the chorizo and sauce. The setting includes a folded white cotton napkin beside the plate and a small, rustic Mexican ceramic bowl holding extra salsa. Natural, even lighting highlights the dish, with a softly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping the mole.",
+      "Offer extra lime wedges for fresh acidity.",
+      "Accompany with a side of Mexican rice."
+    ],
+    "hero_ingredient": "Chorizo",
+    "ingredients": [
+      {
+        "name": "Mexican chorizo",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, plus 1/2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chipotle peppers in adobo sauce",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Semi-sweet chocolate (70% cocoa)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Unsweetened chocolate",
+        "quantity": "25 g"
+      },
+      {
+        "name": "White chocolate liqueur",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Lime",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "12 small"
+      }
+    ],
+    "instructions": [
+      "Cook rice according to package directions. Set aside.",
+      "Prepare cucumber salsa: Dice the large cucumber into small cubes. Dice the 1/2 medium onion into small cubes. Chop 1/4 bunch of cilantro. Combine cucumber, onion, and cilantro in a bowl. Squeeze juice from 1 lime over salsa. Season with salt. Mix well. Set aside.",
+      "Remove chorizo from casings. Heat 15 ml olive oil in a large skillet or Dutch oven over medium-high heat. Add chorizo. Break it into thick chunks. Cook until browned and cooked through, about 8-10 minutes. Remove chorizo from skillet. Drain excess fat, leaving about 15 ml in the pan.",
+      "Dice the large onion for the sauce. Add to the skillet. Cook until softened, about 5 minutes. Mince garlic cloves. Add minced garlic and ground cumin to the skillet. Cook for 1 minute until fragrant.",
+      "Add diced tomatoes and chipotle peppers (chopped) to the skillet. Stir. Pour in chicken broth. Bring to a simmer.",
+      "Roughly chop semi-sweet and unsweetened chocolates. Add to the simmering sauce. Stir until chocolates are melted and sauce is smooth. Stir in white chocolate liqueur.",
+      "Return cooked chorizo chunks to the sauce. Reduce heat to low. Simmer for 15-20 minutes, allowing flavors to meld and sauce to thicken slightly. Season with salt and black pepper to taste.",
+      "Warm corn tortillas. Chop remaining cilantro for garnish.",
+      "Serve chorizo mole hot with a side of rice, a generous portion of cucumber salsa, warm corn tortillas, and lime wedges."
+    ],
+    "traditional_techniques": [
+      "Slow simmering",
+      "Toasting spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 9.5,
+      "calories": 1023,
+      "cholesterol_mg": 112.5,
+      "dietary_fiber_g": 11.35,
+      "protein_g": 36.38,
+      "saturated_fat_g": 19.27,
+      "sodium_mg": 1680.56,
+      "total_carbs_g": 111.11,
+      "total_fat_g": 52.54,
+      "total_sugars_g": 19.84,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.3,
+      "calories": 140,
+      "cholesterol_mg": 15.43,
+      "dietary_fiber_g": 1.56,
+      "protein_g": 4.99,
+      "saturated_fat_g": 2.64,
+      "sodium_mg": 230.53,
+      "total_carbs_g": 15.24,
+      "total_fat_g": 7.21,
+      "total_sugars_g": 2.72,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 41,
+      "protein": 73,
+      "saturated_fat": 96,
+      "sodium": 73,
+      "total_carbs": 40,
+      "total_fat": 67
+    },
+    "serving_size_g": 729,
+    "total_recipe_weight_g": 2916
+  },
+  {
+    "recipe_name": "Roasted Paprika-Thyme Chicken with Caramelized Acorn Squash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_paprika-thyme_chicken_with_caramelized_acorn_squash_20250624_172214_929698a1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:22:15.402979000Z",
+    "selected_ingredients": [
+      "acorn",
+      "olive oil",
+      "paprika",
+      "thyme",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single roasted chicken thigh, bone-in and skin-on, sits as the centerpiece on a round white porcelain plate. Its skin is a deep golden-brown, crisped and lightly blistered, dusted with hints of red paprika. The chicken is plump and juicy, presented whole. Around the chicken, three to four caramelized acorn squash wedges are artfully arranged, their edges deeply browned and slightly charred, showcasing the tender, vibrant orange flesh. A rich, dark pan sauce, glossy and slightly thickened, pools elegantly beside the chicken, reflecting the ambient light. The sauce is flecked with finely minced parsley and a subtle red hue from paprika. A sprinkle of fresh, roughly chopped flat-leaf parsley provides a pop of bright green over the chicken and squash. The overall composition is clean and balanced, with moderate negative space. The dish rests on a simple, light-toned wooden table surface. A folded white cotton napkin and classic silver flatware are placed beside the plate, completing a refined yet approachable bistro setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Rustic",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty rustic bread to soak up the pan sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Acorn squash",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Yellow onion, roughly chopped",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Honey or maple syrup (optional)",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. In a bowl, toss chicken with 10g smoked paprika, 3g dried thyme, salt, pepper, and 30ml olive oil. Rub seasoning evenly.",
+      "Halve acorn squash. Scoop out seeds. Cut each half into 2 cm thick wedges. Toss squash with remaining 30ml olive oil, salt, pepper, and honey or maple syrup if using.",
+      "Place seasoned chicken thighs skin-side up in a large roasting pan or oven-safe skillet. Roast for 20 minutes.",
+      "Add acorn squash wedges to the roasting pan with the chicken. Continue roasting for 25-30 minutes, or until chicken reaches an internal temperature of 75°C and squash is tender and caramelized.",
+      "Remove chicken and squash from the pan. Tent with foil to keep warm.",
+      "Place the roasting pan over medium heat. Add chopped onion and minced garlic to the pan drippings. Sauté for 3 minutes until softened.",
+      "Stir in remaining 5g smoked paprika and 2g dried thyme. Cook for 1 minute.",
+      "Pour in chicken stock. Bring to a simmer. Scrape up any browned bits from the bottom of the pan. Reduce sauce by half, about 5-7 minutes.",
+      "Season sauce with salt and pepper to taste. Stir in chopped fresh parsley.",
+      "Serve chicken and squash immediately with pan sauce."
+    ],
+    "traditional_techniques": [
+      "Roasting",
+      "Pan Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 671,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 37.6,
+      "saturated_fat_g": 10.7,
+      "sodium_mg": 866,
+      "total_carbs_g": 31.1,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 14.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 153,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 198,
+      "total_carbs_g": 7.1,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 24,
+      "protein": 75,
+      "saturated_fat": 54,
+      "sodium": 38,
+      "total_carbs": 11,
+      "total_fat": 59
+    },
+    "serving_size_g": 438,
+    "total_recipe_weight_g": 1750
+  },
+  {
+    "recipe_name": "Hungarian Pork Goulash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hungarian_pork_goulash_20250624_172139_00fe00cd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:21:40.025412000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "bell pepper",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Hungarian Pork Goulash is presented in a deep, pristine white porcelain bowl. Thick, succulent chunks of braised pork, rich with a reddish-brown hue, are nestled among tender, vibrant red and green bell pepper strips and softened diced onions. The dish is enveloped in a glossy, thick, deep reddish-brown paprika-infused sauce. A small, creamy dollop of bright white sour cream crowns the center, garnished with a sprinkle of freshly chopped vivid green parsley. The composition is naturally arranged, allowing the rich colors and textures of the stew to dominate. The bowl rests on a simple, light-toned wooden table, with a neatly folded white cotton napkin placed beside it. Lighting is soft, even, and natural, highlighting the warmth and depth of the dish. The background is minimally blurred, suggesting a casual bistro atmosphere. A small, separate serving of traditional Hungarian nokedli (dumplings) or crusty bread is subtly visible beside the main bowl, completing the authentic presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Serve with nokedli (Hungarian dumplings)",
+      "Serve with boiled potatoes",
+      "Serve with crusty bread",
+      "Garnish with a dollop of sour cream"
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1 kg, cut into 4-5 cm chunks"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, cut into 2 cm thick strips"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1, cut into 2 cm thick strips"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Sweet Hungarian paprika",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "5 g, crushed"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "100 g (for serving)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 4-5 cm chunks. Season generously with salt and black pepper.",
+      "Heat vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear pork chunks in batches until deeply browned on all sides. Remove pork and set aside.",
+      "Reduce heat to medium. Add diced onions to the pot. Cook, stirring occasionally, until softened and translucent, about 8-10 minutes.",
+      "Add minced garlic, sweet paprika, smoked paprika, and crushed caraway seeds. Stir constantly for 1 minute until fragrant. Do not burn the paprika.",
+      "Stir in tomato paste. Cook for 2 minutes.",
+      "Return seared pork to the pot. Add bell pepper strips, crushed tomatoes, bay leaf, and beef broth. Bring to a simmer.",
+      "Reduce heat to low, cover, and simmer for 2-2.5 hours, or until pork is fork-tender. Stir occasionally.",
+      "Uncover the pot for the last 30 minutes of cooking. This allows the sauce to thicken slightly.",
+      "Taste and adjust seasoning with salt and pepper. Remove bay leaf before serving.",
+      "Serve hot, garnished with a dollop of sour cream and fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Paprika blooming"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 481,
+      "cholesterol_mg": 146,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 48,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 269,
+      "total_carbs_g": 26.8,
+      "total_fat_g": 21.7,
+      "total_sugars_g": 11.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 75,
+      "cholesterol_mg": 22.8,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.5,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 41.9,
+      "total_carbs_g": 4.2,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 30,
+      "protein": 96,
+      "saturated_fat": 27,
+      "sodium": 12,
+      "total_carbs": 10,
+      "total_fat": 28
+    },
+    "serving_size_g": 641,
+    "total_recipe_weight_g": 2563
+  },
+  {
+    "recipe_name": "Penne Arrabbiata with Roasted Broccoli and Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_penne_arrabbiata_with_roasted_broccoli_and_mozzarella_20250624_172131_ab45a4ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:21:32.080468000Z",
+    "selected_ingredients": [
+      "tomato",
+      "chili",
+      "mozzarella",
+      "basil",
+      "broccoli",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, featuring a generous mound of penne pasta coated in a rich, vibrant red arrabbiata sauce. Scattered throughout are bright green, tender-crisp roasted broccoli florets and irregular chunks of creamy white fresh mozzarella, some slightly melted and stringy. The sauce has a visible sheen from olive oil and flecks of red chili. Fresh, vibrant green basil leaves are artfully torn and scattered over the top, providing a fresh aromatic contrast. The composition is organic and inviting, with a balanced display of color and texture. The plate is surrounded by moderate negative space on a simple wooden table. A folded cotton napkin and standard European flatware are placed beside the plate, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread for dipping into the sauce.",
+      "Offer grated Parmigiano-Reggiano cheese at the table."
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "250g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "500g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss broccoli florets with 15ml olive oil, salt, and pepper. Roast for 15-20 minutes until tender-crisp.",
+      "Bring a large pot of salted water to a boil. Add penne pasta and cook according to package directions until al dente.",
+      "While pasta cooks, heat remaining 45ml olive oil in a large skillet over medium heat. Add minced garlic and red chili flakes. Sauté for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Bring to a simmer. Cook for 15-20 minutes, stirring occasionally, until sauce slightly thickens. Season with salt and pepper.",
+      "Drain cooked pasta. Add pasta to the skillet with the sauce. Toss to coat.",
+      "Add roasted broccoli florets to the pasta and sauce. Gently toss.",
+      "Tear fresh mozzarella into irregular chunks. Add to the pasta. Gently stir until mozzarella slightly melts.",
+      "Tear fresh basil leaves. Stir most of the basil into the pasta. Reserve some for garnish.",
+      "Serve immediately. Garnish each portion with remaining fresh basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 764,
+      "cholesterol_mg": 49.4,
+      "dietary_fiber_g": 9.4,
+      "protein_g": 32.3,
+      "saturated_fat_g": 11,
+      "sodium_mg": 440.1,
+      "total_carbs_g": 95.5,
+      "total_fat_g": 30.2,
+      "total_sugars_g": 10.9,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148.3,
+      "cholesterol_mg": 9.6,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 6.3,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 85.5,
+      "total_carbs_g": 18.5,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16,
+      "dietary_fiber": 34,
+      "protein": 65,
+      "saturated_fat": 55,
+      "sodium": 19,
+      "total_carbs": 35,
+      "total_fat": 39
+    },
+    "serving_size_g": 515,
+    "total_recipe_weight_g": 2060
+  },
+  {
+    "recipe_name": "Spicy Mexican Chicken and Rice with Black Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_mexican_chicken_and_rice_with_black_beans_20250624_172125_f5dbb929.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:21:25.992992000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "bean",
+      "garlic",
+      "rice",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Spicy Mexican Chicken and Rice with Black Beans is presented on a clean, round white porcelain dinner plate. The base is a vibrant, fluffy, orange-red rice, cooked to perfection with distinct grains. Nestled within the rice are generous, golden-brown seared chicken chunks, cooked until tender, showcasing a beautiful crust. Dark, glossy black beans are evenly interspersed throughout the dish, adding visual contrast and earthy flavor. The dish is brightly garnished with a generous sprinkle of fresh, chopped green cilantro and two bright lime wedges placed neatly to the side. The scene is set on a simple wooden table, accompanied by a folded cotton napkin. A small bowl of vibrant salsa roja and a stack of warm corn tortillas are placed alongside, enhancing the authentic Mexican dining experience. Natural, even lighting highlights the dish's rich colors and textures, creating an inviting, professional presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas",
+      "Offer salsa roja or pico de gallo on the side"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Chipotle in adobo, minced",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Canned black beans, rinsed and drained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh coriander, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into thick chunks. Season with salt and pepper.",
+      "Heat olive oil in a large, deep skillet or Dutch oven over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Do not overcrowd the pan. Remove chicken and set aside.",
+      "Add diced onion to the same pan. Cook until softened, about 5 minutes.",
+      "Stir in minced garlic and minced chipotle. Cook for 1 minute until fragrant.",
+      "Add tomato paste, ground cumin, smoked paprika, and dried oregano. Cook for 2 minutes, stirring constantly.",
+      "Add rice to the pan. Stir to coat rice with spices and aromatics. Toast for 2-3 minutes.",
+      "Pour in chicken broth. Bring to a boil, scraping up any browned bits from the bottom of the pan.",
+      "Return seared chicken to the pan. Reduce heat to low. Cover and simmer for 15 minutes.",
+      "Stir in rinsed black beans. Continue to simmer, covered, for another 5-7 minutes, or until rice is tender and liquid is absorbed. Ensure chicken reaches 75°C (167°F).",
+      "Remove from heat. Let rest, covered, for 5 minutes.",
+      "Squeeze fresh lime juice over the dish. Garnish with chopped fresh coriander before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 724,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 9.2,
+      "protein_g": 45.5,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 1516,
+      "total_carbs_g": 85.8,
+      "total_fat_g": 21.1,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128.6,
+      "cholesterol_mg": 30.9,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.1,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 269.5,
+      "total_carbs_g": 15.3,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 33,
+      "protein": 91,
+      "saturated_fat": 24,
+      "sodium": 66,
+      "total_carbs": 31,
+      "total_fat": 27
+    },
+    "serving_size_g": 562.5,
+    "total_recipe_weight_g": 2250
+  }
+]

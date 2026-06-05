@@ -1,0 +1,709 @@
+[
+  {
+    "recipe_name": "Hearty Beef Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_stew_20250624_141721_b44d0593.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:17:21.868499000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of hearty beef stew is presented in a deep, rustic ceramic bowl with natural imperfections. The stew fills the bowl, showcasing tender, browned beef chunks, soft, chunky potatoes, and vibrant orange carrot pieces nestled in a rich, dark brown, slightly glossy gravy. The ingredients are naturally arranged, slightly overlapping, creating a comforting, unpretentious look. A scattering of fresh, bright green chopped parsley provides a functional garnish and a pop of color. The bowl sits on a well-used, warm-toned wooden dining table with visible grain. Beside the bowl, a simple, off-white ceramic plate holds a slice of crusty bread. A plain, folded linen napkin in a neutral tone and a sturdy, everyday metal fork are casually placed. Warm, cozy lighting from an overhead kitchen fixture illuminates the scene, highlighting the steam gently rising from the stew. The background hints at a lived-in kitchen, slightly blurred, maintaining focus on the food. Beef chuck is cut into 3-4 cm cubes, carrots into 2 cm chunks, and potatoes into 3 cm chunks.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "Serve with a simple green salad."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 3-4 cm cubes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large (approx. 200 g)"
+      },
+      {
+        "name": "Carrots, peeled and cut into 2 cm chunks",
+        "quantity": "3 medium (approx. 250 g)"
+      },
+      {
+        "name": "Potatoes, peeled and cut into 3 cm chunks",
+        "quantity": "4 medium (approx. 400 g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Red wine (optional)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh parsley, chopped (for garnish)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Do not overcrowd the pot. Remove beef and set aside.",
+      "Reduce heat to medium. Add diced onion and carrots to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic and tomato paste. Cook for 1 minute, stirring constantly.",
+      "Sprinkle flour over vegetables. Stir for 1 minute to cook off raw flour taste.",
+      "Pour in red wine (if using) and beef broth. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return seared beef to the pot. Add dried thyme and bay leaves.",
+      "Add potatoes. Ensure liquid covers most ingredients. Add more broth if needed.",
+      "Bring to a gentle simmer. Cover the pot.",
+      "Cook on low heat for 2-2.5 hours, or until beef is very tender. Stir occasionally.",
+      "Remove bay leaves before serving. Taste and adjust seasoning.",
+      "Ladle hot stew into bowls. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best flavor, brown the beef well in batches.",
+      "Stew can be made ahead and reheats well. Flavors often improve the next day."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 530,
+      "cholesterol_mg": 123,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 46.5,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 859,
+      "total_carbs_g": 39.3,
+      "total_fat_g": 18.2,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.4,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 137,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 22,
+      "protein": 93,
+      "saturated_fat": 28,
+      "sodium": 37,
+      "total_carbs": 14,
+      "total_fat": 23
+    },
+    "serving_size_g": 625.25,
+    "total_recipe_weight_g": 2501
+  },
+  {
+    "recipe_name": "Chiles Rellenos con Queso Chihuahua",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chiles_rellenos_con_queso_chihuahua_20250624_141720_ff5d6c07.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:17:21.008119000Z",
+    "selected_ingredients": [
+      "chihuahua cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown, puffed poblano pepper, deep-fried to perfection, rests on a vibrant pool of rich, rustic red tomato sauce. The pepper is plump, showcasing the melted chihuahua cheese subtly within. The exterior of the chile has a light, crispy texture from the egg batter. A scattering of fresh, bright green chopped cilantro provides a color contrast. The dish is presented on a clean white porcelain dinner plate, centrally placed. A simple cotton napkin and traditional flatware are positioned beside the plate on a warm wooden table surface. Natural, even lighting highlights the textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas",
+      "A side of fluffy Mexican red rice",
+      "Creamy refried beans",
+      "Offer a small bowl of crema and a spicy salsa verde for additional toppings"
+    ],
+    "hero_ingredient": "Poblano Peppers",
+    "ingredients": [
+      {
+        "name": "Poblano peppers",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Chihuahua cheese",
+        "quantity": "300 g, cut into 4 thick batons"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4 large, separated"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g, plus extra for dusting"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500 mL, for frying"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "400 g, roughly chopped"
+      },
+      {
+        "name": "White onion",
+        "quantity": "100 g, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, peeled"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 mL"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15 g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Roast poblano peppers over an open flame or under a broiler until skin is charred and blistered.",
+      "Place roasted peppers in a bowl, cover tightly with plastic wrap. Let steam for 15 minutes.",
+      "Peel the skin from the peppers. Make a slit down one side of each pepper. Carefully remove seeds and veins, keeping stem intact.",
+      "Insert one baton of chihuahua cheese into each poblano pepper. Set aside.",
+      "Prepare the tomato sauce: Blend roughly chopped tomatoes, onion, and garlic until smooth.",
+      "Heat 15 mL of vegetable oil in a saucepan over medium heat. Pour in blended tomato mixture.",
+      "Cook sauce, stirring occasionally, for 10 minutes until thickened. Add chicken broth, oregano, salt, and pepper. Simmer for 15 minutes. Keep warm.",
+      "Prepare the egg batter: In a large bowl, beat egg whites with an electric mixer until stiff peaks form.",
+      "In a separate bowl, lightly beat egg yolks. Gently fold egg yolks into the stiff egg whites.",
+      "Dust each cheese-stuffed poblano pepper lightly with flour.",
+      "Heat remaining vegetable oil in a deep skillet or pot to 175°C (350°F).",
+      "Dip each floured pepper into the egg batter, ensuring it is fully coated.",
+      "Carefully place coated peppers into the hot oil. Fry for 3-4 minutes per side, until golden brown and puffed.",
+      "Remove fried chiles with a slotted spoon. Drain excess oil on paper towels.",
+      "To serve, spoon warm tomato sauce onto a plate. Place a fried chile relleno on top of the sauce.",
+      "Garnish with fresh chopped cilantro."
+    ],
+    "traditional_techniques": [
+      "Roasting peppers (tatemado)",
+      "Preparing egg batter (capeado)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 700.5,
+      "cholesterol_mg": 254,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 29.8,
+      "saturated_fat_g": 19.7,
+      "sodium_mg": 584.2,
+      "total_carbs_g": 24.9,
+      "total_fat_g": 55.5,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.8,
+      "cholesterol_mg": 56.1,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.6,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 129.1,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 12.3,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 84.7,
+      "dietary_fiber": 16.1,
+      "protein": 59.6,
+      "saturated_fat": 98.7,
+      "sodium": 25.4,
+      "total_carbs": 9.1,
+      "total_fat": 71.1
+    },
+    "serving_size_g": 452.5,
+    "total_recipe_weight_g": 1810
+  },
+  {
+    "recipe_name": "Pan-Seared Salmon with Spicy Thai Basil Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_salmon_with_spicy_thai_basil_stir-fry_20250624_141714_d29dbd9a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:17:15.233555000Z",
+    "selected_ingredients": [
+      "salmon",
+      "mushroom",
+      "sweet potato",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "Thai cuisine",
+    "visual_description": "A single portion of Pan-Seared Salmon with Spicy Thai Basil Stir-fry is presented on a clean, round white porcelain dinner plate. A neat mound of fluffy jasmine rice sits beside a vibrant stir-fry. The stir-fry features tender-crisp, medium-sized green broccoli florets, bright orange 1.5 cm diced sweet potato cubes, and earthy brown sliced shiitake mushrooms, all coated in a glossy, savory-spicy sauce with fresh, dark green Thai basil leaves. A golden-brown, crispy-skinned seared salmon fillet is placed atop the stir-fry. A fresh lime wedge and scattered Thai basil leaves garnish the plate. The dish rests on a simple wooden table surface, accompanied by traditional wooden chopsticks and a folded cotton napkin. Natural, even lighting highlights the colors and textures in a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve immediately with extra jasmine rice.",
+      "Traditionally, Thai meals are served family-style with multiple dishes shared among diners.",
+      "Offer small bowls of nam prik (chili fish sauce) on the side for extra spice."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets",
+        "quantity": "4 x 180g (skin on)"
+      },
+      {
+        "name": "Sweet potato",
+        "quantity": "1 large (about 300g)"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 head (about 300g)"
+      },
+      {
+        "name": "Shiitake mushrooms",
+        "quantity": "150g"
+      },
+      {
+        "name": "Thai basil leaves",
+        "quantity": "50g, packed"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Thai bird's eye chilies",
+        "quantity": "2-4, or to taste"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "5g (or brown sugar)"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "400g uncooked"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Cook jasmine rice according to package directions. Set aside.",
+      "Peel sweet potato. Dice into 1.5 cm cubes. Cut broccoli into medium florets. Slice shiitake mushrooms.",
+      "Mince garlic. Slice Thai chilies finely.",
+      "In a small bowl, combine fish sauce, oyster sauce, light soy sauce, and palm sugar. Stir until sugar dissolves. This is the stir-fry sauce.",
+      "Heat 15ml vegetable oil in a large wok or pan over medium-high heat. Add sweet potato cubes. Stir-fry for 5-7 minutes until slightly tender. Add broccoli florets. Stir-fry for another 3-4 minutes until tender-crisp. Remove vegetables from pan. Set aside.",
+      "Pat salmon fillets dry with paper towels. Season lightly with salt and pepper.",
+      "Heat remaining 30ml vegetable oil in the same wok or a separate non-stick pan over medium-high heat. Place salmon fillets skin-side down. Sear for 4-5 minutes until skin is crispy and golden brown. Flip salmon. Cook for another 3-5 minutes until salmon is cooked through and flaky. Remove salmon from pan. Set aside.",
+      "Reduce heat to medium. Add minced garlic and sliced chilies to the wok. Sauté for 30 seconds until fragrant. Do not burn.",
+      "Add sliced mushrooms to the wok. Stir-fry for 2-3 minutes until softened. Return sweet potato and broccoli to the wok.",
+      "Pour the prepared stir-fry sauce over the vegetables. Toss to coat. Cook for 1-2 minutes until sauce thickens slightly.",
+      "Remove wok from heat. Stir in Thai basil leaves until just wilted.",
+      "To plate, place a portion of jasmine rice on one side of a clean white porcelain round plate. Spoon the spicy Thai basil stir-fry next to the rice. Carefully place one seared salmon fillet on top of or slightly overlapping the stir-fry. Garnish with a fresh lime wedge and a few extra Thai basil leaves."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Pad)",
+      "Searing",
+      "Balancing sweet, sour, salty, and spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 965.5,
+      "cholesterol_mg": 113.5,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 49.6,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 1819.5,
+      "total_carbs_g": 107.7,
+      "total_fat_g": 32.6,
+      "total_sugars_g": 8.7,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 188.2,
+      "cholesterol_mg": 22.1,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9.7,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 354.6,
+      "total_carbs_g": 21,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.002
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.8,
+      "dietary_fiber": 26.8,
+      "protein": 99.2,
+      "saturated_fat": 33.6,
+      "sodium": 79.1,
+      "total_carbs": 39.2,
+      "total_fat": 41.7
+    },
+    "serving_size_g": 513.1,
+    "total_recipe_weight_g": 2052.4
+  },
+  {
+    "recipe_name": "Coffee Chocolate Mug Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coffee_chocolate_mug_cake_20250624_141708_5cce2030.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:17:08.453283000Z",
+    "selected_ingredients": [
+      "coffee",
+      "cocoa powder",
+      "milk"
+    ],
+    "complexity": "simple",
+    "special_requests": "in a cup",
+    "visual_description": "A single, warm Coffee Chocolate Mug Cake sits on a rustic wooden dining table. The cake, baked directly in a sturdy, off-white ceramic mug, has a slightly domed, rich dark brown surface. A light dusting of cocoa powder gently covers the top, enhancing its comforting appeal. The cake's texture appears moist and soft, with occasional glimpses of melted chocolate chips within. The mug rests on a simple, slightly worn wooden surface, illuminated by soft, warm kitchen lighting that highlights the cake's inviting steam. A plain cloth napkin is casually placed nearby. The scene evokes a cozy, lived-in family kitchen, with the mug cake serving as a perfect, easy-to-enjoy individual dessert.",
+    "number_of_servings": 1,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "45 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "2 ml"
+      },
+      {
+        "name": "Instant coffee powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Hot water",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Chocolate chips (optional)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Dissolve instant coffee in hot water in a small bowl. Set aside.",
+      "In a large microwave-safe mug, whisk together flour, sugar, cocoa powder, baking powder, and salt.",
+      "Add milk, vegetable oil, vanilla extract, and dissolved coffee to the mug. Stir until just combined. Do not overmix.",
+      "Stir in chocolate chips if using.",
+      "Microwave on high for 60-90 seconds, or until cake is set and springs back when lightly touched. Cooking time varies by microwave.",
+      "Let stand for 1 minute before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 36.8,
+      "calories": 547,
+      "cholesterol_mg": 4.5,
+      "dietary_fiber_g": 8.1,
+      "protein_g": 10,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 434,
+      "total_carbs_g": 86.7,
+      "total_fat_g": 22,
+      "total_sugars_g": 40.1,
+      "trans_fat_g": 0.11
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 21,
+      "calories": 313,
+      "cholesterol_mg": 2.6,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 5.7,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 248,
+      "total_carbs_g": 49.5,
+      "total_fat_g": 12.6,
+      "total_sugars_g": 22.9,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 2,
+      "dietary_fiber": 29,
+      "protein": 20,
+      "saturated_fat": 29,
+      "sodium": 19,
+      "total_carbs": 32,
+      "total_fat": 28
+    },
+    "serving_size_g": 175,
+    "total_recipe_weight_g": 175
+  },
+  {
+    "recipe_name": "Thai Basil Turkey Mince with Fried Egg and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_basil_turkey_mince_with_fried_egg_and_rice_20250624_141650_4d77e09e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:16:50.775473000Z",
+    "selected_ingredients": [
+      "milk",
+      "egg",
+      "greek yogurt",
+      "chicken stock",
+      "mincemeat",
+      "chicken",
+      "beef",
+      "turkey",
+      "spinach",
+      "carrot",
+      "banana",
+      "apple",
+      "avocado",
+      "tomato",
+      "rice",
+      "bread",
+      "onion",
+      "cucumber",
+      "coriander",
+      "garlic",
+      "ginger",
+      "chili",
+      "lime",
+      "coconut oil",
+      "olive oil",
+      "butter",
+      "maple syrup",
+      "honey",
+      "peanut butter",
+      "coconut cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "Thai cuisine, make turkey mince the main protein",
+    "visual_description": "A single generous portion of Thai Basil Turkey Mince is presented on a simple, round, white ceramic plate, resting on a well-used wooden dining table. Steamed Jasmine rice forms a neat mound to one side. The stir-fried turkey mince, rich brown and crumbly, is spooned next to it, showing vibrant green roughly chopped spinach and slender julienned carrot strips, along with visible minced garlic, diced onion, and thinly sliced red chilies. A perfectly fried egg with a crisp edge and glistening yolk is placed atop the mince. Fresh green coriander leaves are scattered, and a bright lime wedge sits on the plate's rim. The arrangement is casual and inviting, lit by warm kitchen light. A traditional ceramic bowl of Prik Nam Pla is subtly visible in the background, indicating an authentic Thai dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with steamed Jasmine rice.",
+      "Accompanied by 'Prik Nam Pla' (fish sauce with sliced chilies and lime) for extra seasoning.",
+      "Eaten with a spoon and fork."
+    ],
+    "hero_ingredient": "Turkey Mince",
+    "ingredients": [
+      {
+        "name": "Turkey Mince",
+        "quantity": "500g"
+      },
+      {
+        "name": "Jasmine Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red Chilies (Thai bird's eye)",
+        "quantity": "2-4"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh Holy Basil leaves",
+        "quantity": "2 cups"
+      },
+      {
+        "name": "Fresh Coriander",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Coconut Oil",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Light Soy Sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Dark Soy Sauce",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Palm Sugar (or brown sugar)",
+        "quantity": "1-2 tsp"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "50ml"
+      }
+    ],
+    "instructions": [
+      "Cook jasmine rice according to package directions. Keep warm.",
+      "Prepare vegetables: Dice the onion. Mince garlic. Thinly slice chilies. Julienne the carrot. Roughly chop spinach. Roughly chop coriander for garnish.",
+      "In a small bowl, combine fish sauce, light soy sauce, dark soy sauce, palm sugar, and chicken stock. Stir until sugar dissolves.",
+      "Heat 2 tablespoons of coconut oil in a large wok or frying pan over medium-high heat.",
+      "Add diced onion, minced garlic, and sliced chilies. Stir-fry for 1-2 minutes until fragrant.",
+      "Add turkey mince to the pan. Break it apart with a spoon. Cook until thoroughly browned, about 5-7 minutes. Ensure no pink remains. Cook turkey to an internal temperature of 74°C (165°F).",
+      "Add julienned carrot and chopped spinach. Stir-fry for 2-3 minutes until spinach wilts and carrot slightly softens.",
+      "Pour the prepared sauce mixture into the pan. Stir well to coat the mince and vegetables. Cook for 1 minute.",
+      "Stir in the holy basil leaves. Cook for 30 seconds until basil wilts. Remove from heat immediately.",
+      "Heat remaining 2 tablespoons of coconut oil in a separate pan over medium heat. Fry the eggs one at a time until whites are set and edges are crispy, but yolks are still runny.",
+      "Serve the turkey mince stir-fry alongside steamed jasmine rice. Place one fried egg on top of each serving. Garnish with fresh coriander and a lime wedge."
+    ],
+    "traditional_techniques": [
+      "Stir-frying",
+      "Balancing sweet, sour, salty, and spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.9,
+      "calories": 714,
+      "cholesterol_mg": 273,
+      "dietary_fiber_g": 6,
+      "protein_g": 41.5,
+      "saturated_fat_g": 16.2,
+      "sodium_mg": 2185,
+      "total_carbs_g": 71.6,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 120,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 1,
+      "protein_g": 7,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 368,
+      "total_carbs_g": 12.1,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 91,
+      "dietary_fiber": 21,
+      "protein": 83,
+      "saturated_fat": 81,
+      "sodium": 95,
+      "total_carbs": 26,
+      "total_fat": 36
+    },
+    "serving_size_g": 593.1,
+    "total_recipe_weight_g": 2372.5
+  }
+]

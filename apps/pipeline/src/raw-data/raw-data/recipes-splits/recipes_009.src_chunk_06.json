@@ -1,0 +1,797 @@
+[
+  {
+    "recipe_name": "Creamy Andean Chicken and Potato Soup with Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_andean_chicken_and_potato_soup_with_rice_20250724_003522_3fdfc54b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T00:35:23.245946000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "rice",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Creamy Andean Chicken and Potato Soup is presented in a deep, rustic ceramic bowl with a subtle off-white glaze. The soup is a warm, inviting pale yellow, thick and velvety from pureed potatoes, with visible, tender shredded chicken pieces and soft, diced potato chunks. Grains of white rice are evenly dispersed throughout the rich broth. A generous crumble of bright white queso fresco rests on the surface, melting slightly into the warmth. Fresh green cilantro leaves are scattered artfully over the cheese, providing a vibrant color contrast. The bowl is centered on a simple, light-colored wooden table, with a neatly folded natural linen napkin beside it. Natural, soft light illuminates the dish from the side, highlighting its comforting textures. A simple, silver soup spoon rests gently inside the bowl. The background is clean and slightly blurred, suggesting a cozy, casual dining setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Andean",
+    "cultural_origin": "Andean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of sliced avocado.",
+      "Offer a small bowl of ají (spicy sauce) for those who prefer heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Yukon Gold potatoes, peeled and diced",
+        "quantity": "600g"
+      },
+      {
+        "name": "White rice, cooked",
+        "quantity": "100g"
+      },
+      {
+        "name": "Queso Fresco, crumbled",
+        "quantity": "150g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 liters"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add chicken thighs. Brown on all sides, about 5-7 minutes.",
+      "Add diced potatoes, chicken broth, cumin, salt, and pepper. Bring to a boil.",
+      "Reduce heat to low. Simmer covered for 20 minutes, or until chicken is cooked through and potatoes are tender. Ensure chicken reaches 75°C (167°F) internal temperature.",
+      "Remove chicken from pot. Shred chicken using two forks. Set aside.",
+      "Carefully scoop out one-third of the cooked potatoes from the soup. Place potatoes in a blender with 250ml of soup liquid. Blend until smooth.",
+      "Pour blended mixture back into the pot. Stir well to thicken the soup.",
+      "Return shredded chicken to the pot. Add cooked white rice. Stir to combine.",
+      "Heat through gently for 2-3 minutes.",
+      "Ladle soup into individual bowls. Garnish each serving with crumbled queso fresco and fresh cilantro. Serve hot."
+    ],
+    "notes": [
+      "Blending some of the potatoes creates a natural creaminess without added dairy.",
+      "Adjust salt and pepper to taste before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 585.3,
+      "cholesterol_mg": 150.9,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 39.3,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 1166.4,
+      "total_carbs_g": 41,
+      "total_fat_g": 29.1,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 75.7,
+      "cholesterol_mg": 19.5,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 5.1,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 150.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50.3,
+      "dietary_fiber": 16.9,
+      "protein": 78.6,
+      "saturated_fat": 51.1,
+      "sodium": 50.7,
+      "total_carbs": 14.9,
+      "total_fat": 37.3
+    },
+    "serving_size_g": 773.5,
+    "total_recipe_weight_g": 3094
+  },
+  {
+    "recipe_name": "Roasted Pumpkin and Cucumber Salad with Spiced Lamb and Pickled Red Onion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_pumpkin_and_cucumber_salad_with_spiced_lamb_and_pickled_red_onion_20250724_000046_e4023b05.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T00:00:47.451077000Z",
+    "selected_ingredients": [
+      {
+        "name": "cucumber"
+      },
+      {
+        "name": "lamb"
+      },
+      {
+        "name": "onion"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Australian",
+    "visual_description": "The salad is presented on a clean white porcelain dinner plate, set on a simple light wooden table surface. A generous mound of vibrant green baby spinach leaves forms the base. Scattered artfully over the greens are warm, golden-orange 2cm roasted pumpkin cubes, interspersed with crisp, thinly sliced cucumber rounds. Small, irregular crumbles of spiced lamb are distributed throughout the vegetables. Bright pink, very thinly sliced pickled red onion rings add a tangy visual pop. Crumbled white feta cheese and golden-brown toasted pepitas are sprinkled over for texture and visual interest. A light drizzle of the pale yellow lemon vinaigrette glistens on the ingredients, enhancing their natural colors. Fresh, bright green mint leaves are placed on top as a final garnish. A neatly folded light grey cotton napkin is positioned beside the plate. The scene is illuminated by natural, even overhead lighting, creating a professional yet approachable restaurant-style presentation with a subtle blurred background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Australian",
+    "hero_ingredient": "Pumpkin",
+    "ingredients": [
+      {
+        "name": "Butternut pumpkin",
+        "quantity": "500g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Baby spinach leaves",
+        "quantity": "100g"
+      },
+      {
+        "name": "Crumbled feta cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Pepitas (pumpkin seeds), toasted",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh mint leaves, roughly chopped",
+        "quantity": "20g"
+      },
+      {
+        "name": "Lean lamb mince",
+        "quantity": "200g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Chilli flakes",
+        "quantity": "Pinch (optional)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Red onion, very thinly sliced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "1/2 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Combine thinly sliced red onion, apple cider vinegar, caster sugar, and 1/2 teaspoon salt in a small bowl. Stir well. Set aside to pickle for at least 20 minutes.",
+      "Preheat oven to 200°C (400°F). Toss diced pumpkin with 1 tablespoon olive oil, salt, and pepper on a baking tray. Roast for 20-25 minutes, or until tender and lightly caramelised. Let cool slightly.",
+      "Heat 1 tablespoon olive oil in a frying pan over medium-high heat. Add lamb mince, breaking it up with a spoon. Cook until browned. Drain excess fat. Stir in ground cumin, smoked paprika, and chilli flakes (if using). Cook for 1-2 minutes until fragrant. Season with salt and pepper. Set aside.",
+      "In a small jar or bowl, combine extra virgin olive oil, lemon juice, Dijon mustard, honey, salt, and pepper. Shake or whisk until emulsified.",
+      "In a large bowl, combine roasted pumpkin, thinly sliced cucumber, baby spinach, crumbled feta, and toasted pepitas. Add half of the pickled red onion (drain excess liquid) and the spiced lamb. Drizzle with most of the lemon vinaigrette. Gently toss to combine.",
+      "Arrange salad on individual plates. Garnish with fresh mint leaves and remaining pickled red onion."
+    ]
+  },
+  {
+    "recipe_name": "Hearty Lentil Shepherd's Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_lentil_shepherd%27s_pie_20250723_221425_57421be5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T22:14:25.868301000Z",
+    "selected_ingredients": [
+      "bean",
+      "peanut butter",
+      "peanut",
+      "lentil",
+      "tofu",
+      "dried pea",
+      "chickpea flour",
+      "chickpea",
+      "miso paste",
+      "black bean sauce",
+      "adzuki bean",
+      "red lentil",
+      "runner bean",
+      "soybean",
+      "fava bean",
+      "edamame",
+      "moong dal",
+      "soy flour",
+      "anasazi bean",
+      "urad dal",
+      "toor dal",
+      "tempeh",
+      "soybean paste",
+      "red miso",
+      "preserved black bean",
+      "red bean paste",
+      "pigeon pea",
+      "okara",
+      "mung bean",
+      "mung dal",
+      "masoor dal",
+      "lima bean",
+      "kidney bean",
+      "koshi an",
+      "fermented black bean",
+      "hot bean paste",
+      "dal",
+      "chinese sweet bean paste",
+      "channa dal",
+      "chickpea dal",
+      "black bean paste",
+      "black bean",
+      "bean flour",
+      "bean paste",
+      "ginger",
+      "brown rice",
+      "coconut",
+      "onion",
+      "tomato",
+      "potato",
+      "mustard",
+      "carrot",
+      "tatsoi",
+      "broccoli",
+      "bell pepper",
+      "garlic",
+      "coriander",
+      "parmesan cheese",
+      "tamarind",
+      "shallot",
+      "kudzu",
+      "robiola",
+      "amchoor",
+      "cumin",
+      "mushroom",
+      "kimchi",
+      "barley",
+      "basil",
+      "corn",
+      "thai chili",
+      "cauliflower",
+      "thyme",
+      "eggplant",
+      "swiss chard",
+      "parsley",
+      "rosemary",
+      "noodle",
+      "squash",
+      "lemon",
+      "celery",
+      "jasmine tea",
+      "mayonnaise",
+      "okra",
+      "vegetable stock",
+      "vinegar",
+      "verjus",
+      "paprika",
+      "oregano",
+      "cabbage",
+      "arame seaweed",
+      "breadcrumbs",
+      "gochugaru",
+      "sauerkraut",
+      "annatto",
+      "tortilla",
+      "bread",
+      "savory",
+      "bay leaf",
+      "lemongrass",
+      "grains of paradise",
+      "chipotle chile",
+      "yogurt",
+      "marjoram",
+      "macaroni",
+      "olive",
+      "polenta",
+      "egg",
+      "pasta",
+      "mozzarella",
+      "sunflower sprout",
+      "kewra",
+      "pickled jalapeno chilies",
+      "salad green",
+      "cinnamon",
+      "tandoori masala",
+      "cream",
+      "cheddar",
+      "beet",
+      "horseradish",
+      "pomelo",
+      "lime",
+      "chive",
+      "cherry",
+      "asparagus",
+      "choy sum",
+      "tarragon",
+      "orange",
+      "pineapple",
+      "anise",
+      "oil",
+      "pear",
+      "grape",
+      "beer",
+      "ketchup",
+      "apple",
+      "curry",
+      "fennel seed",
+      "gherkin",
+      "turmeric",
+      "buttermilk",
+      "plum",
+      "dill",
+      "cucumber",
+      "sherry"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A generous, rustic portion of Hearty Lentil Shepherd's Pie is served on a simple, round white ceramic plate. The golden-brown mashed potato topping, slightly mounded, shows peaks and valleys from a fork, with a light crispness on its surface and scattered melted Parmesan. Below, the rich, savory lentil and vegetable filling, visible where the mash is slightly uneven, reveals diced carrots, onions, and mushrooms in a thick, herb-flecked gravy. The colors are warm and earthy: deep brown for the filling, golden-cream for the potato, and flecks of green from fresh herbs. The plate rests on a well-used wooden dining table. In the background, the full ceramic baking dish of the pie is visible, suggesting a family meal. A plain cloth napkin is casually placed nearby. Warm, natural light from kitchen fixtures illuminates the scene, creating a cozy, inviting atmosphere typical of a family kitchen.",
+    "number_of_servings": 7,
+    "cuisine_type": "British Comfort",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Served directly from the baking dish at the family table.",
+      "Often accompanied by a simple side of steamed green vegetables like peas or green beans."
+    ],
+    "hero_ingredient": "Green Lentils",
+    "ingredients": [
+      {
+        "name": "Green Lentils",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 kg"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Celery",
+        "quantity": "3 stalks"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "70g"
+      },
+      {
+        "name": "Flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "10g"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "Prepare lentils: Rinse lentils. Boil lentils in 1 litre water for 20 minutes. Drain.",
+      "Prepare vegetables: Dice carrots, onions, celery. Mince garlic. Slice mushrooms.",
+      "Sauté aromatics: Heat oil in a large pot or Dutch oven. Add diced onions, carrots, and celery. Cook 8-10 minutes until softened. Add minced garlic and sliced mushrooms. Cook 5 more minutes.",
+      "Build base: Stir in tomato paste. Cook 2 minutes. Stir in flour. Cook 1 minute.",
+      "Add liquids and lentils: Gradually whisk in vegetable stock. Add cooked lentils, chopped thyme, and rosemary. Bring to a simmer.",
+      "Cook filling: Reduce heat. Simmer gently for 20-25 minutes, stirring occasionally, until sauce thickens and flavors meld. Season with salt and pepper.",
+      "Prepare mash: Peel and cut potatoes into large chunks. Boil potatoes in salted water until very tender, about 15-20 minutes. Drain well.",
+      "Mash potatoes: Return hot potatoes to the pot. Add butter and milk. Mash until smooth. Season with salt and pepper.",
+      "Assemble pie: Preheat oven to 190°C. Pour lentil filling into a large oven-safe baking dish (approx. 30x20 cm). Spread mashed potato evenly over the filling.",
+      "Bake: Sprinkle grated Parmesan cheese over the potato. Bake for 25-30 minutes, or until topping is golden brown and filling is bubbling.",
+      "Rest and serve: Let pie rest 10 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 732,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 18.6,
+      "protein_g": 30.7,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 572,
+      "total_carbs_g": 74.2,
+      "total_fat_g": 17.4,
+      "total_sugars_g": 10.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 90,
+      "cholesterol_mg": 3,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 3.8,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 70,
+      "total_carbs_g": 9.1,
+      "total_fat_g": 2.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7,
+      "dietary_fiber": 66,
+      "protein": 61,
+      "saturated_fat": 29,
+      "sodium": 25,
+      "total_carbs": 27,
+      "total_fat": 22
+    },
+    "serving_size_g": 816,
+    "total_recipe_weight_g": 5712
+  },
+  {
+    "recipe_name": "Classic Lemon Sponge Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_lemon_sponge_cake_20250723_221331_8456851e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T22:13:31.997691000Z",
+    "selected_ingredients": [
+      "lemon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, thick slice of classic lemon sponge cake rests on a modest, cream-colored ceramic plate, showing its tender, pale yellow crumb. A thick, slightly opaque lemon glaze pools over the top, glistening softly and gently cascading down the sides. A delicate, thin curl of fresh lemon zest is casually placed beside the slice. The plate sits on a well-loved, rustic wooden kitchen table, bathed in warm, natural light. A soft, light-colored linen napkin is casually draped nearby. In the background, a portion of the remaining whole cake is visible on a simple cooling rack, suggesting a freshly cut, homemade dessert ready for sharing in a cozy family setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Classic",
+    "cultural_origin": "European",
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "1.5 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Lemons",
+        "quantity": "2 (zest of 2, juice of 1 for cake, 2-3 tbsp juice for glaze)"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "100 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (160°C fan/Gas Mark 4).",
+      "Grease and line a 15 cm round cake tin or a small loaf tin.",
+      "Cream softened butter and caster sugar in a bowl until light and fluffy.",
+      "Beat in eggs one by one, adding a spoonful of flour with each egg to prevent curdling.",
+      "Stir in the lemon zest.",
+      "Sift remaining flour, baking powder, and salt into the mixture. Fold gently until just combined.",
+      "Stir in the juice of one lemon.",
+      "Pour batter into the prepared tin. Smooth the top.",
+      "Bake for 30-35 minutes, or until a skewer inserted into the center comes out clean.",
+      "Let cake cool in the tin for 10 minutes, then transfer to a wire rack to cool completely.",
+      "For the glaze: Sift icing sugar into a small bowl. Gradually whisk in 2-3 tablespoons of lemon juice until smooth and pourable.",
+      "Once the cake is completely cool, drizzle the lemon glaze over the top."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 62.5,
+      "calories": 715,
+      "cholesterol_mg": 221,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 9.2,
+      "saturated_fat_g": 20.5,
+      "sodium_mg": 261,
+      "total_carbs_g": 93.7,
+      "total_fat_g": 34.9,
+      "total_sugars_g": 63.6,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 31.8,
+      "calories": 363,
+      "cholesterol_mg": 112,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 4.7,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 132,
+      "total_carbs_g": 47.6,
+      "total_fat_g": 17.7,
+      "total_sugars_g": 32.3,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 6,
+      "protein": 18,
+      "saturated_fat": 103,
+      "sodium": 11,
+      "total_carbs": 34,
+      "total_fat": 45
+    },
+    "serving_size_g": 197,
+    "total_recipe_weight_g": 787
+  },
+  {
+    "recipe_name": "Lemon Celebration Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_celebration_cake_20250723_221159_06cef8db.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T22:11:59.654734000Z",
+    "selected_ingredients": [
+      "lemon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A tall, three-layer Lemon Celebration Cake is presented on a simple white ceramic cake stand on a well-used wooden dining table. The cake features light golden-yellow cake layers, generously filled and frosted with creamy, pale yellow lemon buttercream. The buttercream has a natural, slightly rustic texture with soft swirls. Visible flecks of lemon zest are embedded in both the cake and frosting. A single, generous slice of cake, showing clear distinct layers, is placed on an everyday off-white ceramic plate with natural imperfections, positioned next to the whole cake. A casually draped linen napkin sits nearby. The scene is illuminated by warm, cozy kitchen lighting, creating a lived-in, homely atmosphere with minimal background clutter.",
+    "number_of_servings": 12,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with coffee or tea",
+      "Perfect for birthdays or gatherings"
+    ],
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "225 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "From 3 large lemons"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Unsalted butter, softened (for buttercream)",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Powdered sugar, sifted",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Fresh lemon juice (for buttercream)",
+        "quantity": "60-90 ml"
+      },
+      {
+        "name": "Lemon zest (for buttercream)",
+        "quantity": "From 1 large lemon"
+      },
+      {
+        "name": "Vanilla extract (for buttercream)",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Pinch of salt (for buttercream)",
+        "quantity": "1 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour three 20 cm round cake pans.",
+      "In a medium bowl, whisk together flour, baking powder, and salt. Set aside.",
+      "In a large bowl, cream softened butter and granulated sugar until light and fluffy.",
+      "Beat in eggs one at a time. Mix well after each addition.",
+      "Alternately add dry ingredients and milk to the butter mixture, beginning and ending with dry ingredients. Mix until just combined. Do not overmix.",
+      "Fold in lemon zest and lemon juice.",
+      "Divide batter evenly among the prepared cake pans.",
+      "Bake for 25-30 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Cool cakes in pans for 10 minutes. Invert onto wire racks to cool completely.",
+      "For the buttercream: In a large bowl, beat softened butter until creamy and fluffy.",
+      "Gradually add sifted powdered sugar, beating until smooth.",
+      "Beat in fresh lemon juice, lemon zest, vanilla extract, and salt until light and fluffy. Adjust lemon juice for desired consistency and tartness.",
+      "Level cooled cake layers with a serrated knife if needed.",
+      "Place one cake layer on a serving plate. Spread a generous layer of lemon buttercream over it.",
+      "Top with the second cake layer. Spread with more buttercream.",
+      "Place the third cake layer on top. Cover the entire cake with remaining buttercream.",
+      "Decorate simply with rustic swirls or a smooth finish.",
+      "Refrigerate for at least 30 minutes to set before serving."
+    ],
+    "notes": [
+      "Ensure butter and eggs are at room temperature for best results.",
+      "Do not overmix the cake batter; mix only until just combined.",
+      "Adjust the amount of lemon juice in the buttercream to achieve your desired tartness and consistency."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 99.9,
+      "calories": 973,
+      "cholesterol_mg": 186,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.2,
+      "saturated_fat_g": 29.9,
+      "sodium_mg": 336,
+      "total_carbs_g": 131.5,
+      "total_fat_g": 48.4,
+      "total_sugars_g": 101.6,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 38.9,
+      "calories": 379,
+      "cholesterol_mg": 72,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 2.8,
+      "saturated_fat_g": 11.6,
+      "sodium_mg": 131,
+      "total_carbs_g": 51.2,
+      "total_fat_g": 18.8,
+      "total_sugars_g": 39.6,
+      "trans_fat_g": 0.7
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 5,
+      "protein": 14,
+      "saturated_fat": 150,
+      "sodium": 15,
+      "total_carbs": 48,
+      "total_fat": 62
+    },
+    "serving_size_g": 257,
+    "total_recipe_weight_g": 3083
+  }
+]

@@ -1,0 +1,654 @@
+[
+  {
+    "recipe_name": "Cucumber Chicken and Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cucumber_chicken_and_rice_salad_20250624_173525_2d9600e4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:35:26.025418000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A vibrant, hearty Cucumber Chicken and Rice Salad is presented in a simple, deep ceramic bowl with a slightly rustic glaze, resting on a well-used wooden kitchen table. Diced roasted chicken pieces, fluffy white rice, finely diced red onion, crisp diced cucumber, and halved cherry tomatoes are thoroughly mixed, creating a medley of colors and textures. Freshly chopped parsley is generously sprinkled throughout, adding a touch of bright green. The ingredients are naturally arranged, with some components overlapping, reflecting a casual, homestyle plating. A simple fork is placed beside the bowl. The scene is lit by warm, natural kitchen light, emphasizing the comforting and unpretentious nature of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Cucumber",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "White rice",
+        "quantity": "200 g uncooked"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 ml"
+      }
+    ],
+    "instructions": [
+      "Cook chicken breast: Season chicken with salt and pepper. Pan-fry or roast chicken until internal temperature reaches 75°C (167°F). Let cool slightly, then dice into 1.5 cm cubes.",
+      "Cook rice: Prepare white rice according to package instructions. Fluff with a fork. Let cool completely.",
+      "Prepare vegetables: Finely dice the red onion. Dice the cucumber into 1 cm cubes. Halve the cherry tomatoes. Coarsely chop the fresh parsley.",
+      "Make dressing: In a small bowl, whisk together olive oil, lemon juice, Dijon mustard, salt, and black pepper until well combined.",
+      "Combine ingredients: In a large mixing bowl, combine the cooled diced chicken, cooled rice, diced red onion, diced cucumber, halved cherry tomatoes, and chopped parsley.",
+      "Dress and serve: Pour the prepared dressing over the salad ingredients. Toss gently until all components are evenly coated. Serve immediately or chill for later."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 463,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 30.3,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 653,
+      "total_carbs_g": 49.9,
+      "total_fat_g": 17.1,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101.2,
+      "cholesterol_mg": 12.9,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.6,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 142.8,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20,
+      "dietary_fiber": 13,
+      "protein": 61,
+      "saturated_fat": 14,
+      "sodium": 28,
+      "total_carbs": 18,
+      "total_fat": 22
+    },
+    "serving_size_g": 457.05,
+    "total_recipe_weight_g": 1828.2
+  },
+  {
+    "recipe_name": "Braised Beef and Potato Gratin with Roasted Tomato-Onion Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_and_potato_gratin_with_roasted_tomato-onion_relish_20250624_173511_45700850.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:35:11.662188000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "potato",
+      "onion",
+      "cheese",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, set on a simple wooden table. A rectangular cut of golden-brown potato gratin, with its bubbly, cheesy crust, anchors the center. Beside it, tender, dark brown braised beef chunks are arranged naturally. A vibrant, rustic red roasted tomato-onion relish is spooned atop the beef, adding a pop of color and glossy texture. A neat mound of creamy, cheesy brown rice sits to the side. The overall composition is balanced, showcasing distinct textures and warm, inviting colors. A sprinkle of fresh green chopped parsley brightens the plate. A cotton napkin is placed beside the plate. Natural, even lighting illuminates the scene, highlighting the food. The setting evokes a modern bistro feel, professional yet approachable.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800 g, cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Potatoes (Russet or similar)",
+        "quantity": "1 kg, thinly sliced (2-3 mm)"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, one finely diced, one roughly chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Gruyère or mature cheddar cheese",
+        "quantity": "200 g, grated (150g for gratin, 50g for rice)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped, for garnish"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g, halved"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "5 g (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper. Heat 15 ml olive oil in a large oven-safe pot over medium-high heat. Sear beef until browned on all sides. Remove beef.",
+      "Add finely diced onion to pot, cook until softened, about 5 minutes. Add minced garlic, cook 1 minute. Stir in crushed tomatoes, beef broth, thyme sprigs, and bay leaf. Bring to a simmer. Return beef to pot. Cover and braise in oven at 160°C for 2.5-3 hours, or until very tender.",
+      "Preheat oven to 180°C. Grease a 20x20 cm baking dish. Arrange a layer of thinly sliced potatoes in the dish. Season with salt and pepper. Sprinkle with 50g grated cheese. Pour some heavy cream over. Repeat layers until potatoes are used, ending with a layer of cheese and cream. Cover with foil. Bake for 45 minutes. Remove foil, bake an additional 15-20 minutes, or until golden and bubbly.",
+      "Toss roughly chopped onion and halved cherry tomatoes with 15 ml olive oil, balsamic vinegar, a pinch of brown sugar (optional), salt, and pepper on a baking sheet. Roast in oven at 180°C alongside gratin for 25-30 minutes, until softened and slightly caramelized. Transfer to a small saucepan. Mash slightly with a fork or potato masher. Simmer gently for 5-7 minutes, until slightly reduced to a jam-like consistency.",
+      "Cook brown rice according to package instructions. Once cooked, stir in remaining 50g grated cheese until melted and combined.",
+      "Remove beef from braising liquid. Discard thyme and bay leaf. Skim fat from liquid if desired, reduce slightly if too thin. Cut gratin into 4 equal portions. Plate one portion of gratin. Place several braised beef chunks next to it. Spoon a generous dollop of roasted tomato-onion relish over or beside the beef. Serve a small mound of cheesy brown rice on the side. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 1491,
+      "cholesterol_mg": 292.5,
+      "dietary_fiber_g": 10.5,
+      "protein_g": 69.3,
+      "saturated_fat_g": 44,
+      "sodium_mg": 1110.8,
+      "total_carbs_g": 102,
+      "total_fat_g": 87.5,
+      "total_sugars_g": 14.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 153,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.1,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 113.9,
+      "total_carbs_g": 10.5,
+      "total_fat_g": 9,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97.5,
+      "dietary_fiber": 37.5,
+      "protein": 138.5,
+      "saturated_fat": 220,
+      "sodium": 48.3,
+      "total_carbs": 37.1,
+      "total_fat": 112.2
+    },
+    "serving_size_g": 975,
+    "total_recipe_weight_g": 3900
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Giblets with Creamy Broccoli Puree, Roasted Peaches, and Herring Butter Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_giblets_with_creamy_broccoli_puree%2C_roasted_peaches%2C_and_herring_butter_sauce_20250624_173501_6207889d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:35:01.631473000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "chicken giblet",
+      "peach",
+      "herring",
+      "milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A clean white porcelain dinner plate holds a single serving. A smooth, vibrant green mound of creamy broccoli puree anchors one side of the plate. Adjacent to it, irregularly shaped, deeply caramelized pan-seared chicken giblet pieces are artfully arranged, showcasing their rich brown crust. Scattered amongst the giblets are several golden-orange roasted peach wedges, their edges slightly softened and caramelized. A lustrous, pale golden herring butter sauce is drizzled generously over the giblets and peaches, pooling slightly around the base. A sprinkle of bright green chopped fresh parsley provides a final pop of color and freshness. The setting is a simple wooden table surface with a white cotton napkin folded neatly beside the plate and standard silver flatware. Natural, even lighting from the side creates soft shadows, highlighting the food against a minimal background that suggests a casual, refined bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Giblets",
+    "ingredients": [
+      {
+        "name": "Chicken Giblets (hearts, livers, gizzards)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500g"
+      },
+      {
+        "name": "Peaches",
+        "quantity": "2 large, firm-ripe"
+      },
+      {
+        "name": "Smoked Herring Fillets (drained)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley (chopped)",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Prepare giblets: Clean giblets. Separate hearts, livers, gizzards. Trim silver skin from gizzards. Cut gizzards and hearts into 1.5 cm pieces. Halve large livers or leave whole. Pat dry.",
+      "Roast peaches: Preheat oven to 200°C. Halve peaches, remove pits. Cut each half into 3-4 wedges. Toss with 1 tbsp olive oil. Arrange on baking sheet. Roast 15-20 minutes until tender and slightly caramelized.",
+      "Prepare broccoli puree: Cut broccoli into florets. Steam or boil broccoli until very tender, about 8-10 minutes. Drain well. Transfer to blender or food processor. Add 200ml milk and 25g butter. Blend until smooth. Season with salt and pepper. Keep warm.",
+      "Make herring butter sauce: Finely chop shallots and garlic. In a small saucepan, melt 25g butter over medium heat. Add shallots and garlic. Sauté until softened, about 3 minutes. Deglaze with white wine, reduce by half. Add chicken stock and smoked herring. Bring to a simmer. Reduce heat. Slowly whisk in remaining 50g cold butter, one piece at a time, until sauce is emulsified and creamy. Do not boil. Season with lemon juice, salt, and pepper. Strain through a fine-mesh sieve for smoother sauce, if desired. Keep warm.",
+      "Sear giblets: Heat a large cast-iron skillet or heavy-bottomed pan over medium-high heat. Add 1 tbsp olive oil and 25g butter. Once butter foams, add giblets in a single layer. Do not overcrowd. Sear 3-4 minutes per side until golden brown and cooked through (internal temp 75°C). Season with salt, pepper, and fresh thyme leaves. Cook in batches if necessary.",
+      "Plate: Spoon a generous portion of creamy broccoli puree onto each plate. Arrange seared giblet pieces and roasted peach wedges beside the puree. Drizzle generously with herring butter sauce. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 578.86,
+      "cholesterol_mg": 782.14,
+      "dietary_fiber_g": 5.58,
+      "protein_g": 37.97,
+      "saturated_fat_g": 17.95,
+      "sodium_mg": 924.07,
+      "total_carbs_g": 26.02,
+      "total_fat_g": 39.58,
+      "total_sugars_g": 13.8,
+      "trans_fat_g": 0.82
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110.26,
+      "cholesterol_mg": 149,
+      "dietary_fiber_g": 1.06,
+      "protein_g": 7.23,
+      "saturated_fat_g": 3.42,
+      "sodium_mg": 176.01,
+      "total_carbs_g": 4.96,
+      "total_fat_g": 7.54,
+      "total_sugars_g": 2.63,
+      "trans_fat_g": 0.16
+    },
+    "daily_value_percentages": {
+      "cholesterol": 260.71,
+      "dietary_fiber": 19.94,
+      "protein": 75.93,
+      "saturated_fat": 89.74,
+      "sodium": 40.18,
+      "total_carbs": 9.46,
+      "total_fat": 50.74
+    },
+    "serving_size_g": 525,
+    "total_recipe_weight_g": 2100
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Risotto with Roasted Cherry Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_risotto_with_roasted_cherry_tomatoes_20250624_173436_1635c0a5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:34:37.089012000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "garlic",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Chicken and Mushroom Risotto is served in a shallow, matte white porcelain bowl, artfully mounded but with a natural, free-flowing consistency. The risotto, a pale creamy hue, is speckled with golden-brown diced chicken pieces (2 cm cubes) and earthy, sliced cremini mushrooms. Scattered generously over the top are vibrant red, slightly blistered halved cherry tomatoes. A few fresh, bright green basil leaves are artfully placed as a garnish, along with a delicate drizzle of golden olive oil. The composition is clean and professional, with moderate negative space around the risotto. The bowl rests on a simple, light-colored wooden table surface, accompanied by a folded white cotton napkin and classic Italian flatware. Natural, even lighting highlights the dish, with a softly blurred modern bistro background to maintain focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to 'fare la scarpetta' (mop up remaining risotto).",
+      "Pair with a light-bodied Italian white wine like Pinot Grigio or Vermentino."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "450 grams"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 grams"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "80 grams"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "45 grams"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Halve cherry tomatoes. Toss with 15 ml olive oil, 2 minced garlic cloves, salt, and pepper. Roast for 15-20 minutes until slightly softened and blistered.",
+      "Pat chicken thighs dry. Season with salt and pepper. Heat 15 ml olive oil in a large pan over medium-high heat. Sear chicken thighs 4-5 minutes per side until golden brown and cooked through (75°C internal temperature). Remove chicken. Let rest 5 minutes. Dice into 2 cm cubes.",
+      "Slice mushrooms. Heat 15 ml olive oil in a separate pan over medium-high heat. Sauté mushrooms until golden brown and tender, about 5-7 minutes. Season with salt. Set aside.",
+      "Finely dice shallot. Mince remaining 2 garlic cloves. In a large, heavy-bottomed pot or Dutch oven, heat remaining 15 ml olive oil and 15 grams butter over medium heat. Add shallot. Cook until softened, about 3 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant. Add Arborio rice. Stir for 2 minutes to toast rice kernels.",
+      "Pour in white wine. Stir until absorbed. Gradually add hot chicken stock, one ladle at a time, stirring constantly. Wait until each addition is almost fully absorbed before adding the next. This takes about 20-25 minutes. Risotto should be creamy and rice al dente.",
+      "Stir in diced chicken and sautéed mushrooms during the last 5 minutes of cooking. Continue adding stock until desired consistency.",
+      "Remove from heat. Stir in remaining 30 grams butter and grated Parmigiano Reggiano. Stir vigorously for 1 minute for 'mantecatura' (creamy finish). Season with salt and pepper to taste.",
+      "Serve immediately. Top with roasted cherry tomatoes and fresh basil leaves."
+    ],
+    "notes": [
+      "Ensure chicken stock is hot when added to the rice to maintain cooking temperature.",
+      "Risotto should be stirred constantly for creaminess and even cooking.",
+      "The final consistency should be fluid, allowing the risotto to spread slightly on the plate."
+    ],
+    "traditional_techniques": [
+      "Tostatura (toasting the rice)",
+      "Mantecatura (finishing the risotto with butter and cheese for a creamy texture)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 873,
+      "cholesterol_mg": 147.7,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 44.4,
+      "saturated_fat_g": 14.2,
+      "sodium_mg": 1544.5,
+      "total_carbs_g": 77.1,
+      "total_fat_g": 40.3,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 188.7,
+      "cholesterol_mg": 31.9,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 9.6,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 333.9,
+      "total_carbs_g": 16.7,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.2,
+      "dietary_fiber": 13,
+      "protein": 88.8,
+      "saturated_fat": 70.8,
+      "sodium": 67.2,
+      "total_carbs": 28,
+      "total_fat": 51.7
+    },
+    "serving_size_g": 462.5,
+    "total_recipe_weight_g": 1850
+  },
+  {
+    "recipe_name": "Pasta with Crispy Pancetta, Tomato, and Ricotta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_with_crispy_pancetta%2C_tomato%2C_and_ricotta_20250624_173422_27eafa27.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:34:22.852037000Z",
+    "selected_ingredients": [
+      "pasta",
+      "bacon",
+      "cheese",
+      "tomato",
+      "ricotta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of rigatoni pasta is served in a rustic, off-white ceramic bowl, typical of Italian home kitchens. The rigatoni is generously coated in a rich, rustic, reddish-orange tomato sauce, clinging to the pasta's ridges. Visible throughout are golden-brown, irregular cubes of crispy pancetta, with some pieces resting on top. Creamy white dollops of ricotta cheese are gently swirled into the pasta, creating soft, lighter streaks. A light dusting of freshly grated Parmesan cheese covers the dish. Fresh, vibrant green basil leaves are loosely scattered on top, adding a pop of color and freshness. The bowl sits on a well-used wooden dining table, suggesting a lived-in family kitchen. A simple fork and knife are placed beside the bowl. A casually crumpled cloth napkin or paper towel is nearby. The scene is illuminated by warm, inviting overhead lighting, creating a cozy and authentic family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread (pane casereccio) to sop up the sauce.",
+      "Pair with a simple green salad dressed with olive oil and vinegar.",
+      "Offer a glass of a light-bodied red wine, such as Chianti or Montepulciano d'Abruzzo."
+    ],
+    "hero_ingredient": "Crispy Pancetta",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Pancetta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut pancetta into small cubes. Place pancetta in a large cold skillet. Cook over medium heat until crispy. Remove pancetta with a slotted spoon. Reserve rendered fat in the skillet.",
+      "Dice the onion. Mince the garlic. Add onion to the skillet with pancetta fat. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Season with salt and black pepper. Simmer the sauce for 15 minutes, stirring occasionally.",
+      "While sauce simmers, cook rigatoni according to package directions until al dente. Reserve 250 ml of pasta cooking water. Drain pasta.",
+      "Add cooked pasta to the tomato sauce. Stir well to coat.",
+      "Gently fold in 200 g of ricotta cheese and most of the crispy pancetta. If the sauce is too thick, add reserved pasta water, 50 ml at a time, until desired consistency is reached.",
+      "Serve immediately. Garnish each portion with remaining crispy pancetta, grated Parmesan cheese, and fresh basil leaves."
+    ],
+    "notes": [
+      "The reserved pasta water helps to emulsify the sauce and create a creamy texture.",
+      "Fresh basil is essential for authentic Italian flavor."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 864,
+      "cholesterol_mg": 90.5,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 39,
+      "saturated_fat_g": 15.7,
+      "sodium_mg": 1117,
+      "total_carbs_g": 85.4,
+      "total_fat_g": 39.5,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 230,
+      "cholesterol_mg": 24.1,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 10.4,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 297.1,
+      "total_carbs_g": 22.7,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30.2,
+      "dietary_fiber": 18.4,
+      "protein": 78,
+      "saturated_fat": 78.3,
+      "sodium": 48.6,
+      "total_carbs": 31.1,
+      "total_fat": 50.7
+    },
+    "serving_size_g": 376,
+    "total_recipe_weight_g": 1504
+  }
+]

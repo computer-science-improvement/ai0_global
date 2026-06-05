@@ -1,0 +1,636 @@
+[
+  {
+    "recipe_name": "Mexican Beef in Red Chili Sauce (Carne con Chile Rojo)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_051403_fd19a49a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-05T05:14:04.319566000Z",
+    "selected_ingredients": [
+      "tomato",
+      "beef",
+      "garlic",
+      "onion",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A deep-rimmed white porcelain bowl holds thick, tender 3cm chunks of braised beef coated in a vibrant, glossy dark red tomato and chili sauce. The seared beef chunks are piled naturally in the center, showing a rich, tender texture. Small flecks of fresh chopped cilantro and fine white onion dice garnish the top. The simmered sauce is thick and coats the meat entirely. To the side, three warm, slightly charred corn tortillas are stacked in a small cloth-lined basket. A small side of fluffy steamed white rice sits in a separate terracotta bowl. The setting is a rustic wooden table with a simple cotton napkin and a heavy spoon. Natural light highlights the rich sauce sheen and the steam rising from the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas",
+      "Side of Mexican red rice",
+      "Fresh lime wedges on the side"
+    ],
+    "hero_ingredient": "Beef chunks",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 3cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Roma tomatoes, quartered",
+        "quantity": "400g"
+      },
+      {
+        "name": "White onion, finely chopped",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "4"
+      },
+      {
+        "name": "Dried Guajillo chilis, seeded",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Serrano chili, halved",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Toast dried chilis in a dry pan for 2 minutes.",
+      "Soak toasted chilis in hot water for 10 minutes.",
+      "Blend tomatoes, soaked chilis, garlic, and cumin until smooth.",
+      "Heat oil in a heavy pot over medium-high heat.",
+      "Brown beef cubes in batches until seared on all sides.",
+      "Remove beef and sauté onions for 5 minutes.",
+      "Return beef to the pot.",
+      "Pour in blended sauce and beef stock.",
+      "Add fresh Serrano chili.",
+      "Simmer covered for 90 minutes until beef is tender.",
+      "Season with salt."
+    ],
+    "notes": [
+      "Do not crowd the pan when browning beef to ensure a good sear.",
+      "Adjust heat by leaving or removing the seeds from the Serrano chili."
+    ],
+    "traditional_techniques": [
+      "toasting dried chilis",
+      "simmering",
+      "blending salsa"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 616,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 40.1,
+      "saturated_fat_g": 15,
+      "sodium_mg": 1025,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 44.8,
+      "total_sugars_g": 4,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 176,
+      "cholesterol_mg": 45.7,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.5,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 292.9,
+      "total_carbs_g": 3,
+      "total_fat_g": 12.8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.3,
+      "dietary_fiber": 8.6,
+      "protein": 80.2,
+      "saturated_fat": 75,
+      "sodium": 44.6,
+      "total_carbs": 3.9,
+      "total_fat": 57.4
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Chinese Red-Braised Beef Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_050952_bef1e4df.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2026-05-05T05:09:52.603849000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "garlic",
+      "chili",
+      "ginger",
+      "beef stock",
+      "soy sauce",
+      "star anise",
+      "cinnamon",
+      "bay leaf",
+      "noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "Chinese red-braised beef noodle soup, rich beef broth, noodle shop style, beef brisket or beef shank, no cheese, no cream, no western pasta cuisine",
+    "visual_description": "A single individual portion of beef noodle soup served in a deep, dark ceramic bowl on a rustic wooden table. The broth is a deep, translucent mahogany color with small oil droplets on the surface. Thick, round wheat noodles are submerged in the liquid. Four large, irregular chunks of tender braised beef shank are positioned on one side, showing visible collagen striations. Opposite the beef, two bright green, blanched bok choy halves provide a vertical element. The dish is garnished with a neat pile of finely sliced green scallions. A pair of dark wood chopsticks and a flat-bottomed ceramic soup spoon rest on a linen napkin beside the bowl. Lighting is natural and directional, highlighting the textures of the meat and the sheen of the broth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled mustard greens (suan cai).",
+      "Provide chili oil or black vinegar for individual seasoning.",
+      "Use a deep ceramic spoon to sip the broth between noodle bites."
+    ],
+    "hero_ingredient": "Beef Shank",
+    "ingredients": [
+      {
+        "name": "Beef shank or brisket, cut into 4cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Fresh wheat noodles",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yellow onion, quartered",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Ginger, sliced into thick coins",
+        "quantity": "40g"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "6"
+      },
+      {
+        "name": "Dried red chilies",
+        "quantity": "3"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "3 whole"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "1.5L"
+      },
+      {
+        "name": "Rock sugar or granulated sugar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Bok choy, halved lengthwise",
+        "quantity": "4 heads"
+      },
+      {
+        "name": "Scallions, thinly sliced",
+        "quantity": "2"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Place beef chunks in a pot of cold water. Bring to a boil for 5 minutes. Drain and rinse beef under cold water.",
+      "Heat oil in a heavy-bottomed pot over medium heat. Sauté onion, ginger, garlic, and dried chilies until fragrant.",
+      "Add star anise, cinnamon, and bay leaves. Stir for 1 minute.",
+      "Add the blanched beef chunks to the pot. Stir to combine with aromatics.",
+      "Pour in light soy sauce, dark soy sauce, and sugar. Stir until beef is evenly coated.",
+      "Add beef stock. Bring to a boil, then reduce heat to low. Cover and simmer for 2 to 2.5 hours until beef is tender.",
+      "Cook wheat noodles in a separate pot of boiling water according to package instructions. Drain.",
+      "Blanch bok choy in the noodle water for 1 minute. Drain.",
+      "Place a portion of noodles in a deep bowl. Top with 4-5 beef chunks and bok choy.",
+      "Ladle hot braising liquid over the noodles. Garnish with sliced scallions."
+    ],
+    "notes": [
+      "Blanching the beef from cold water is essential for a clear, clean-tasting broth.",
+      "Rock sugar provides a more rounded sweetness and a glossier finish to the beef than granulated sugar.",
+      "Do not overcook the noodles; they should maintain a slight chew (al dente) to withstand the hot broth."
+    ],
+    "traditional_techniques": [
+      "blanching meat",
+      "red braising",
+      "spice tempering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 906.5,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 4.75,
+      "protein_g": 70,
+      "saturated_fat_g": 10,
+      "sodium_mg": 3525,
+      "total_carbs_g": 92.5,
+      "total_fat_g": 28.5,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.38,
+      "calories": 113.3,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 0.59,
+      "protein_g": 8.75,
+      "saturated_fat_g": 1.25,
+      "sodium_mg": 440.6,
+      "total_carbs_g": 11.56,
+      "total_fat_g": 3.56,
+      "total_sugars_g": 1.25,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.3,
+      "dietary_fiber": 17,
+      "protein": 140,
+      "saturated_fat": 50,
+      "sodium": 153.3,
+      "total_carbs": 33.6,
+      "total_fat": 36.5
+    },
+    "serving_size_g": 800,
+    "total_recipe_weight_g": 3200
+  },
+  {
+    "recipe_name": "Cauliflower and Ham Gratin with Soft-Boiled Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_050946_795369f9.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-05T05:09:46.727027000Z",
+    "selected_ingredients": [
+      "cauliflower",
+      "cheese",
+      "ham",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of cauliflower gratin served in a shallow white porcelain bistro bowl. The dish features large, tender cauliflower florets and thick 2cm cubes of smoked ham enveloped in a creamy, pale ivory Mornay sauce. The top is finished with a vibrant golden-brown crust of melted Gruyère and toasted panko breadcrumbs. A single, whole, peeled soft-boiled egg sits prominently in the center of the gratin. The egg white is firm and opaque, while the yolk remains liquid and hidden. Freshly chopped green parsley is scattered across the top. The bowl sits on a light oak table with a folded white cotton napkin and a polished silver fork to the side. Natural light highlights the textures of the crispy cheese and soft vegetables.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Bistro",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty baguette to soak up the Mornay sauce",
+      "Pair with a crisp green salad tossed in a simple vinaigrette",
+      "Serve in individual ceramic ramekins for an authentic bistro presentation"
+    ],
+    "hero_ingredient": "Cauliflower",
+    "ingredients": [
+      {
+        "name": "Cauliflower florets",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Smoked ham, 2cm cubes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Boil cauliflower florets in salted water for 4 minutes. Drain well.",
+      "Melt butter in a saucepan over medium heat. Whisk in flour for 2 minutes.",
+      "Slowly whisk in milk. Simmer until sauce thickens.",
+      "Remove from heat. Stir in 100g Gruyère, mustard, and nutmeg.",
+      "Place cauliflower and ham cubes into a baking dish.",
+      "Pour cheese sauce over the mixture. Top with remaining Gruyère and breadcrumbs.",
+      "Bake for 20 minutes until the top is golden and bubbling.",
+      "Boil eggs for 6.5 minutes. Place in ice water immediately. Peel carefully.",
+      "Portion the gratin into shallow bowls. Place one whole soft-boiled egg on each portion.",
+      "Garnish with chopped parsley and serve immediately."
+    ],
+    "notes": [
+      "Ensure the cauliflower is well-drained to prevent the sauce from becoming watery",
+      "Use a high-quality aged Gruyère for the best depth of flavor",
+      "The egg yolk should be runny to create a natural sauce when broken"
+    ],
+    "traditional_techniques": [
+      "Mornay sauce",
+      "Gratiner",
+      "Blanching"
+    ]
+  },
+  {
+    "recipe_name": "Rigatoni with Bel Paese, Pancetta, and Toasted Walnuts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_043807_fe82737a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 8,
+    "timestamp": "2026-05-05T04:38:08.028768000Z",
+    "selected_ingredients": [
+      "pasta",
+      "bel paese cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of rigatoni served in a wide, shallow white porcelain bowl on a rustic oak table. The pasta tubes are coated in a glossy, pale ivory Bel Paese sauce that clings to the ridges. Thick-cut 1cm cubes of crispy, golden-brown pancetta and roughly chopped toasted walnut halves are distributed evenly throughout the dish. Three whole, dark green fried sage leaves rest on top as a garnish. The lighting is natural and soft, coming from the side to highlight the creamy texture of the sauce and the crisp edges of the pork. A light grey linen napkin sits beside the bowl with a polished silver fork. Moderate negative space around the rim emphasizes the centered, clean arrangement.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of dry white wine from the Lombardy region",
+      "Present with a side of crusty ciabatta bread"
+    ],
+    "hero_ingredient": "Bel Paese cheese",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Bel Paese cheese, cubed",
+        "quantity": "200g"
+      },
+      {
+        "name": "Pancetta, 1cm cubes",
+        "quantity": "150g"
+      },
+      {
+        "name": "Walnut halves, roughly chopped",
+        "quantity": "50g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "10 leaves"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Boil 4 liters of water with sea salt.",
+      "Cook rigatoni until al dente.",
+      "Sauté diced pancetta in a large skillet over medium heat until crispy.",
+      "Remove pancetta with a slotted spoon. Set aside.",
+      "Fry sage leaves in the pancetta fat until translucent and crisp.",
+      "Remove sage. Set aside.",
+      "Add heavy cream and cubed Bel Paese to the skillet over low heat.",
+      "Whisk until cheese melts into a smooth sauce.",
+      "Reserve 125ml of pasta water before draining pasta.",
+      "Add pasta and reserved water to the cheese sauce.",
+      "Toss vigorously to emulsify the sauce.",
+      "Fold in the crispy pancetta and chopped walnuts.",
+      "Season with freshly cracked black pepper."
+    ],
+    "notes": [
+      "Ensure the cheese sauce does not boil to prevent the Bel Paese from becoming stringy.",
+      "Toast walnuts in a dry pan for 3 minutes before chopping for maximum flavor."
+    ],
+    "traditional_techniques": [
+      "mantecatura",
+      "emulsifying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 823,
+      "cholesterol_mg": 96.8,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 30.9,
+      "saturated_fat_g": 19,
+      "sodium_mg": 1070,
+      "total_carbs_g": 78,
+      "total_fat_g": 43.1,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 238.6,
+      "cholesterol_mg": 28.1,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 310.1,
+      "total_carbs_g": 22.6,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32.3,
+      "dietary_fiber": 13.9,
+      "protein": 61.8,
+      "saturated_fat": 95,
+      "sodium": 46.5,
+      "total_carbs": 28.4,
+      "total_fat": 55.3
+    },
+    "serving_size_g": 345,
+    "total_recipe_weight_g": 1380
+  },
+  {
+    "recipe_name": "Spezzatino di Manzo con Pomodoro",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_042647_e3082e8a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-05T04:26:47.729581000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spezzatino di Manzo served in a shallow white porcelain bowl. The dish features tender 3cm beef chunks coated in a thick, vibrant red tomato sauce. Glossy diced onions and visible bits of garlic are incorporated into the rich ragu. The meat remains as whole chunks, not sliced. The bowl sits on a rustic wooden bistro table. A side of creamy polenta is placed nearby in a small copper dish. A sprinkle of bright green chopped parsley adds color contrast. Lighting is natural and even, highlighting the textures of the braised meat and the velvety sauce. The composition uses moderate negative space with a clean white cotton napkin and a simple fork to the side.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Tuscan bread for 'scarpetta'",
+      "Accompany with a side of creamy polenta or mashed potatoes",
+      "Pair with a medium-bodied Italian red wine like Chianti"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, 3cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "San Marzano tomatoes, crushed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow onions, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2 pieces"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a heavy-bottomed pot over medium-high heat.",
+      "Brown beef chunks in batches. Remove and set aside.",
+      "Lower heat to medium. Add onions. Sauté 5 minutes until soft.",
+      "Add garlic. Stir for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pot. Reduce by half.",
+      "Return beef to the pot. Add crushed tomatoes, beef stock, rosemary, and bay leaves.",
+      "Bring to a boil. Reduce heat to low. Cover.",
+      "Simmer for 90 minutes or until beef is tender.",
+      "Remove lid. Simmer 15 minutes to thicken sauce.",
+      "Remove rosemary and bay leaves. Adjust seasoning.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Ensure beef is dried thoroughly before searing to achieve a deep crust",
+      "Slow simmering is essential for breaking down the connective tissue in the chuck"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 707,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 40.8,
+      "saturated_fat_g": 16.9,
+      "sodium_mg": 1219,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 51.8,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170.4,
+      "cholesterol_mg": 37.6,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 9.8,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 293.7,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 8,
+      "protein": 82,
+      "saturated_fat": 85,
+      "sodium": 53,
+      "total_carbs": 4,
+      "total_fat": 66
+    },
+    "serving_size_g": 415,
+    "total_recipe_weight_g": 1660
+  }
+]

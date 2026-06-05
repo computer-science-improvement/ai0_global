@@ -1,0 +1,673 @@
+[
+  {
+    "recipe_name": "Tomato Garlic Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato_garlic_risotto_20250713_160053_63eec029.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T16:00:53.911803000Z",
+    "selected_ingredients": [
+      {
+        "name": "chicken stock"
+      },
+      {
+        "name": "bay leaf"
+      },
+      {
+        "name": "black pepper"
+      },
+      {
+        "name": "garlic"
+      },
+      {
+        "name": "tomato"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "A single serving of creamy, vibrant red-orange risotto is presented on a clean, round white porcelain starter plate. The risotto forms a flowing, slightly mounded pool in the center, exhibiting a fluid, 'all'onda' consistency rather than a stiff pile. Small, soft pieces of diced tomato are visible throughout the creamy rice. A few fresh, vibrant green basil leaves are artfully placed on top of the risotto. A light dusting of finely grated Parmigiano Reggiano is scattered over, with a delicate drizzle of golden olive oil circling the base of the risotto. The plate rests on a simple, light-colored wooden table surface. Beside the plate, a neatly folded white cotton napkin and a set of polished silver flatware (fork and spoon) are placed. The background is softly blurred, hinting at a modern bistro ambiance, with natural, even lighting casting subtle, soft shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a small glass of dry white wine.",
+      "Offer crusty bread for 'scarpetta' (mopping up sauce)."
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1 liter"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "40g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a wide, heavy-bottomed pot over medium heat. Add finely diced onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic and bay leaf. Cook 1 minute until fragrant. Do not brown garlic.",
+      "Add Arborio rice. Toast rice for 2 minutes, stirring constantly, until edges are translucent.",
+      "Pour in white wine. Stir until wine is fully absorbed.",
+      "Add diced tomatoes. Cook 2 minutes.",
+      "Begin adding hot chicken stock, one ladleful (about 125ml) at a time. Stir constantly. Wait until each ladleful is almost fully absorbed before adding the next.",
+      "Continue adding stock and stirring for 18-20 minutes, until rice is creamy but still al dente (firm to the bite). Remove bay leaf.",
+      "Remove pot from heat. Stir in butter and grated Parmigiano Reggiano. Stir vigorously for 1 minute until risotto is creamy and 'all'onda'.",
+      "Season with freshly ground black pepper. Taste and adjust salt if needed. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Tostatura",
+      "Mantecatura",
+      "All'onda consistency"
+    ]
+  },
+  {
+    "recipe_name": "Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_20250713_155413_1c821737.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T15:54:14.384656000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo presented on a clean white porcelain plate. Two whole, bone-in chicken thighs with deeply browned, crispy skin sit atop a bed of golden, saffron-stained rice. The rice grains are plump and distinct, interspersed with fine bits of softened onion and concentrated red tomato. The dish shows vibrant yellow and orange hues from the saffron and paprika. A generous sprinkle of bright green, finely chopped parsley is scattered over the top. A single lemon wedge is placed neatly on the side. The plate sits on a light oak wooden table with a folded white cotton napkin. Lighting is bright, natural, and even, highlighting the textures of the crispy skin and the moist rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Alioli (garlic mayonnaise)",
+      "Accompany with crusty bread and a glass of chilled white wine",
+      "Present in a traditional terracotta cazuela for family-style dining"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip and brown the other side. Remove chicken from pan.",
+      "Add onion to the same pan. Sauté until translucent.",
+      "Stir in garlic and grated tomato. Cook until liquid evaporates and mixture darkens.",
+      "Add smoked paprika and rice. Stir to coat rice in oil for 2 minutes.",
+      "Pour in white wine. Deglaze the pan. Simmer until wine reduces by half.",
+      "Add hot stock and saffron. Stir once to distribute.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer undisturbed over medium-low heat for 18-20 minutes.",
+      "Ensure chicken reaches internal temperature of 75°C.",
+      "Remove from heat. Cover with a clean cloth. Rest for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form on the bottom.",
+      "Use a wide pan to ensure even rice cooking."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice absorption method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1414,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 8.6,
+      "protein": 66.4,
+      "saturated_fat": 46.5,
+      "sodium": 61.5,
+      "total_carbs": 24.5,
+      "total_fat": 52.1
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Ga Xao Xa Ot (Lemongrass Chili Chicken)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ga_xao_xa_ot_%28lemongrass_chili_chicken%29_20250713_155321_344ebc4a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T15:53:21.688615000Z",
+    "selected_ingredients": [
+      "fish sauce",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "vietnamese",
+    "visual_description": "A vibrant Vietnamese Lemongrass Chili Chicken stir-fry is presented on a clean white porcelain dinner plate. Golden-brown chicken chunks, seared and coated in a glossy, savory-spicy sauce, are piled neatly. The chicken is cut into bite-sized pieces. Finely minced lemongrass, garlic, shallots, and red chili are visible, contributing to texture and color. Fresh, diagonally sliced spring onion greens and vibrant cilantro leaves garnish the dish, adding freshness. Adjacent, a mound of fluffy white jasmine rice sits in a small, traditional Vietnamese ceramic bowl. The composition is balanced and inviting. The setting features a simple wooden table, with chopsticks resting beside the plate. A small dish of Nuoc Cham is placed to the side. Natural, even lighting highlights the dish's rich colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice.",
+      "Offer a side of Nuoc Cham (Vietnamese dipping sauce) for additional flavor.",
+      "Accompany with fresh herbs like mint and perilla leaves."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "600 g, boneless, skinless"
+      },
+      {
+        "name": "Lemongrass",
+        "quantity": "3 stalks, tender inner part"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Bird's eye chilies",
+        "quantity": "2-3, or to taste"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2, green parts"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "300 g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm bite-sized chunks. In a bowl, toss chicken with 15 ml fish sauce and 5 g cornstarch. Marinate for 15 minutes.",
+      "Finely mince the tender inner part of lemongrass. Finely mince garlic and shallots. Thinly slice bird's eye chilies.",
+      "In a small bowl, combine remaining 45 ml fish sauce, 30 g sugar, and 15 ml lime juice. Stir until sugar dissolves. Set aside.",
+      "Heat 30 ml vegetable oil in a large wok or skillet over medium-high heat until shimmering.",
+      "Add minced lemongrass, garlic, shallots, and chilies to the wok. Stir-fry for 2-3 minutes until fragrant.",
+      "Add marinated chicken to the wok. Stir-fry for 5-7 minutes, breaking up clumps, until chicken is cooked through and golden-brown. Ensure internal temperature reaches 75°C (167°F).",
+      "Pour the prepared sauce mixture over the chicken. Stir well to coat, cooking for 1-2 minutes until the sauce thickens slightly.",
+      "Slice spring onion greens diagonally. Roughly chop fresh cilantro.",
+      "Remove from heat. Stir in half of the spring onions and cilantro.",
+      "Serve immediately with steamed jasmine rice, garnished with remaining spring onions and cilantro."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Stir-frying",
+      "Marinading"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.9,
+      "calories": 686.3,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 39.9,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 1767.8,
+      "total_carbs_g": 84.1,
+      "total_fat_g": 19.1,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.4,
+      "calories": 208.9,
+      "cholesterol_mg": 50.2,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 12.2,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 538.1,
+      "total_carbs_g": 25.6,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 18.9,
+      "protein": 79.8,
+      "saturated_fat": 23.5,
+      "sodium": 76.9,
+      "total_carbs": 30.6,
+      "total_fat": 24.5
+    },
+    "serving_size_g": 328.5,
+    "total_recipe_weight_g": 1314.1
+  },
+  {
+    "recipe_name": "Asian Glazed Chicken with Coconut Rice and Sesame Slaw",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_asian_glazed_chicken_with_coconut_rice_and_sesame_slaw_20250713_155251_80f19139.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T15:52:51.576049000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "salad green"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion is presented on a clean white porcelain dinner plate, on a simple wooden table. A whole, golden-brown glazed chicken thigh is prominently placed, its surface shimmering with a rich, dark amber glaze. Next to the chicken, a neat mound of fluffy, pearly white coconut rice contrasts beautifully. Beside the rice, a vibrant pile of sesame slaw adds color and texture, showcasing finely shredded green and purple cabbage, julienned carrots, and thin red bell pepper slices. Toasted sesame seeds and fresh cilantro leaves garnish the dish. A lime wedge rests beside the chicken. The composition is balanced and professional, with appropriate negative space. Chopsticks rest on a cotton napkin, reinforcing the Asian theme. Natural, even lighting illuminates the dish against a soft, restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Serve with small individual bowls for additional rice or sauce.",
+      "Offer extra lime wedges for fresh citrus notes.",
+      "Present with chopsticks as the primary utensil."
+    ],
+    "hero_ingredient": "Glazed Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g total)"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "honey or maple syrup",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "rice vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "fresh ginger, grated",
+        "quantity": "15g"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "jasmine rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "full-fat coconut milk",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "green cabbage, finely shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "red cabbage, finely shredded",
+        "quantity": "100g"
+      },
+      {
+        "name": "large carrot, julienned",
+        "quantity": "1"
+      },
+      {
+        "name": "red bell pepper, thinly sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "lime, juiced",
+        "quantity": "1/2"
+      },
+      {
+        "name": "toasted sesame seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "lime wedges",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Rinse jasmine rice under cold water until water runs clear. Combine rice, coconut milk, water, and 5g salt in a medium saucepan. Bring to a boil. Reduce heat to low, cover, and simmer for 15-18 minutes, or until liquid is absorbed and rice is tender. Remove from heat and let stand, covered, for 5 minutes. Fluff with a fork.",
+      "In a small bowl, whisk together soy sauce, honey, rice vinegar, sesame oil, grated ginger, and minced garlic for the glaze. Set aside.",
+      "Pat chicken thighs dry. Season with salt and pepper. Heat olive oil in a large skillet over medium-high heat. Add chicken thighs. Sear for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet and set aside.",
+      "Pour glaze into the same skillet. Bring to a simmer, scraping up any browned bits from the bottom. Return chicken to the skillet. Turn chicken to coat evenly with the glaze. Cook for 1-2 minutes, spooning glaze over chicken, until sauce thickens slightly and coats chicken.",
+      "In a large bowl, combine shredded green cabbage, red cabbage, julienned carrot, thinly sliced red bell pepper, and chopped cilantro.",
+      "In a small bowl, whisk together 30 ml rice vinegar, 15 ml sesame oil, 15 ml soy sauce, 10 ml honey, and juice of 1/2 lime for the slaw dressing. Pour dressing over slaw mixture. Toss to combine.",
+      "Divide coconut rice among 4 plates. Place glazed chicken thighs next to the rice. Arrange a generous portion of sesame slaw beside the chicken and rice.",
+      "Garnish each plate with toasted sesame seeds and a lime wedge. Serve immediately."
+    ],
+    "notes": [
+      "Adjust glaze sweetness and spice to personal preference.",
+      "For spicier chicken, add a pinch of red chili flakes to the glaze."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.6,
+      "calories": 943,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 47.3,
+      "saturated_fat_g": 26.1,
+      "sodium_mg": 2450,
+      "total_carbs_g": 86.7,
+      "total_fat_g": 45.4,
+      "total_sugars_g": 17.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.6,
+      "calories": 180,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9,
+      "saturated_fat_g": 5,
+      "sodium_mg": 467,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 20,
+      "protein": 95,
+      "saturated_fat": 131,
+      "sodium": 107,
+      "total_carbs": 32,
+      "total_fat": 58
+    },
+    "serving_size_g": 525,
+    "total_recipe_weight_g": 2100
+  },
+  {
+    "recipe_name": "Thai Basil Chicken (Pad Krapow Gai)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_basil_chicken_%28pad_krapow_gai%29_20250713_155138_5e7f67d0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T15:51:39.376585000Z",
+    "selected_ingredients": [
+      "basil",
+      "rice",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A clean white porcelain plate features a mound of fluffy, steamed jasmine rice alongside savory Thai basil chicken. The chicken is cut into uniform 2cm chunks, seared until golden and coated in a glossy, dark umami sauce flecked with minced garlic and vibrant red bird's eye chilies. A Thai-style fried egg with golden, lacy crispy edges and a soft runny yolk rests atop the chicken. Bright green, wilted holy basil leaves are scattered throughout the dish. The plate sits on a rustic teak wood table next to a small ceramic bowl of prik nam pla and a traditional stainless steel spoon and fork. Natural daylight illuminates the textures of the crispy egg and tender chicken.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thailand",
+    "cultural_serving_suggestions": [
+      "Serve with Prik Nam Pla (fish sauce with chopped chilies and lime)",
+      "Eat using a spoon in the right hand and a fork in the left to push food onto the spoon",
+      "Pair with a cold Thai lager or iced black tea"
+    ],
+    "hero_ingredient": "Thai Basil",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, cut into 2cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Thai holy basil leaves (or Thai basil)",
+        "quantity": "2 cups"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Thai bird's eye chilies, minced",
+        "quantity": "5"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Rinse jasmine rice until water runs clear. Cook in 600ml water until tender.",
+      "Combine oyster sauce, soy sauces, fish sauce, and sugar in a small bowl.",
+      "Heat 1 tbsp oil in a wok over high heat. Fry eggs individually until edges are brown and crispy. Set aside.",
+      "Heat remaining oil in the wok. Add garlic and chilies. Sauté 30 seconds until fragrant.",
+      "Add chicken chunks. Stir-fry until chicken is opaque and reaches an internal temperature of 75°C.",
+      "Pour the sauce mixture over the chicken. Toss to coat evenly for 1 minute.",
+      "Turn off the heat. Add basil leaves. Stir until leaves are just wilted.",
+      "Divide rice among four plates. Top with chicken and one fried egg per serving."
+    ],
+    "notes": [
+      "Use Thai Holy Basil for the most authentic peppery flavor",
+      "Ensure the wok is extremely hot before adding chicken to achieve wok hei",
+      "Do not overcook the basil; it should only wilt from residual heat"
+    ],
+    "traditional_techniques": [
+      "wok hei",
+      "tempering aromatics",
+      "Thai-style egg frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.25,
+      "calories": 708.85,
+      "cholesterol_mg": 327,
+      "dietary_fiber_g": 1.55,
+      "protein_g": 41.95,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 1038,
+      "total_carbs_g": 84.75,
+      "total_fat_g": 22.45,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.46,
+      "calories": 146,
+      "cholesterol_mg": 67.35,
+      "dietary_fiber_g": 0.32,
+      "protein_g": 8.64,
+      "saturated_fat_g": 1.01,
+      "sodium_mg": 213.8,
+      "total_carbs_g": 17.46,
+      "total_fat_g": 4.62,
+      "total_sugars_g": 0.51,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 109,
+      "dietary_fiber": 6,
+      "protein": 84,
+      "saturated_fat": 25,
+      "sodium": 45,
+      "total_carbs": 31,
+      "total_fat": 35
+    },
+    "serving_size_g": 485.5,
+    "total_recipe_weight_g": 1942
+  }
+]

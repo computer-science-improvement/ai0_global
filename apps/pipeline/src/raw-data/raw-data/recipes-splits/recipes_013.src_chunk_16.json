@@ -1,0 +1,579 @@
+[
+  {
+    "recipe_name": "Exotic Fruit Medley with Passion Fruit-Mint Drizzle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_exotic_fruit_medley_with_passion_fruit-mint_drizzle_20250701_144407_8dc0b45e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:44:07.912438000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Exotic Fruit Medley is presented in a clean, shallow white porcelain bowl, resting on a simple light wooden table. The arrangement is professional yet organic. Vibrant 2 cm cubes of golden mango and emerald 0.5 cm kiwi rounds are scattered amongst halved crimson strawberries, deep purple grapes, and plump blue blueberries. Bright orange segments add a citrusy pop. A glistening sheen from the passion fruit-mint drizzle coats the fruits, highlighting their natural textures and colors. A few finely chopped mint leaves are sprinkled across the top for freshness. The bowl is positioned slightly off-center, allowing for moderate negative space. A neatly folded white cotton napkin sits beside the bowl. Natural, even lighting illuminates the scene, emphasizing the fresh, appealing presentation of the individual fruit pieces. The background is softly blurred, suggesting a casual, modern bistro atmosphere, keeping the focus solely on the vibrant, inviting fruit salad.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Passion Fruit",
+    "ingredients": [
+      {
+        "name": "Mango",
+        "quantity": "2 large (ripe)"
+      },
+      {
+        "name": "Kiwi fruit",
+        "quantity": "4"
+      },
+      {
+        "name": "Strawberries",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Blueberries",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red grapes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Passion fruit",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Honey",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 (juice of)"
+      }
+    ],
+    "instructions": [
+      "Wash all fruits thoroughly.",
+      "Peel mangoes. Cut mango flesh into 2 cm cubes.",
+      "Peel kiwi fruit. Slice kiwi into 0.5 cm thick rounds.",
+      "Hull strawberries. Halve or quarter larger strawberries.",
+      "Remove grapes from stems.",
+      "Segment the orange. Remove all white pith and membranes.",
+      "Halve passion fruits. Scoop out pulp into a small bowl.",
+      "Finely chop fresh mint leaves.",
+      "Add honey and lime juice to passion fruit pulp. Stir well to combine. This is the dressing.",
+      "Gently combine all prepared fruits in a large bowl.",
+      "Pour the passion fruit dressing over the fruit mixture. Toss gently to coat.",
+      "Divide fruit salad among four serving bowls or plates."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.6,
+      "calories": 294,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.7,
+      "protein_g": 3.9,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 13,
+      "total_carbs_g": 73.9,
+      "total_fat_g": 1.6,
+      "total_sugars_g": 58.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.8,
+      "calories": 62.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 0.8,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 2.7,
+      "total_carbs_g": 15.6,
+      "total_fat_g": 0.3,
+      "total_sugars_g": 12.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 38,
+      "protein": 8,
+      "saturated_fat": 1,
+      "sodium": 1,
+      "total_carbs": 27,
+      "total_fat": 2
+    },
+    "serving_size_g": 474,
+    "total_recipe_weight_g": 1895
+  },
+  {
+    "recipe_name": "Miso Bacon Potato Hash with Fried Eggs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_miso_bacon_potato_hash_with_fried_eggs_20250701_144405_959cf180.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:44:06.017110000Z",
+    "selected_ingredients": [
+      "potato",
+      "onion",
+      "bacon",
+      "egg",
+      "miso paste",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Miso Bacon Potato Hash is presented on a simple, round, off-white ceramic plate with a slightly rustic edge. The hash forms a natural, mounded shape, showcasing golden-brown diced potatoes, crispy dark brown bacon bits, and soft diced onions, bound by melted cheddar cheese. A vibrant yellow-orange egg yolk, surrounded by tender white, rests invitingly on top. The hash surface reveals varied textures, with crisped and softer potato cubes. Freshly sliced green onions are scattered casually, adding bright green color. The plate sits on a well-used, warm-toned wooden dining table. A simple, folded cloth napkin is placed to the side. Soft, warm, natural kitchen lighting creates a cozy, inviting atmosphere. The entire plate is visible, showcasing a modest, satisfying home-style portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a small dish of Japanese pickles (tsukemono) on the side.",
+      "Offer a drizzle of Japanese seven-spice blend (shichimi togarashi) for a mild kick."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "800 g, peeled and diced into 1.5 cm cubes"
+      },
+      {
+        "name": "Smoked Bacon",
+        "quantity": "200 g, diced"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4 large"
+      },
+      {
+        "name": "White Miso Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cheddar Cheese",
+        "quantity": "100 g, grated"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "15 ml (if needed)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": "2, thinly sliced (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Heat a large frying pan over medium heat. Add diced bacon. Cook until crispy. Remove bacon with a slotted spoon. Drain excess fat, leaving about 30 ml in the pan.",
+      "Add diced onion to the pan. Sauté until softened and translucent, about 5 minutes.",
+      "Add diced potatoes to the pan. Increase heat to medium-high. Cook, stirring occasionally, until potatoes are tender and golden-brown, about 15-20 minutes. Add a little vegetable oil if the pan becomes too dry.",
+      "Reduce heat to low. Stir in the white miso paste until well combined with the potatoes and onions.",
+      "Return the crispy bacon to the pan. Stir in grated cheddar cheese until melted and gooey. Season with salt and black pepper to taste.",
+      "While the hash cooks, heat another pan or clean the first one. Add a little oil. Fry the eggs to your desired doneness, preferably with runny yolks.",
+      "Divide the hash among 4 plates. Top each serving with a fried egg. Garnish with thinly sliced green onions."
+    ],
+    "notes": [
+      "Adjust miso paste quantity to your preference; some miso varieties are saltier than others.",
+      "For extra crispiness, avoid overcrowding the pan when cooking potatoes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 670,
+      "cholesterol_mg": 260.3,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 36.5,
+      "saturated_fat_g": 14.4,
+      "sodium_mg": 1381.5,
+      "total_carbs_g": 43.3,
+      "total_fat_g": 38,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.5,
+      "cholesterol_mg": 66.6,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9.3,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 353.3,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 86.8,
+      "dietary_fiber": 20.4,
+      "protein": 73.1,
+      "saturated_fat": 72,
+      "sodium": 60.1,
+      "total_carbs": 15.8,
+      "total_fat": 48.7
+    },
+    "serving_size_g": 391,
+    "total_recipe_weight_g": 1564
+  },
+  {
+    "recipe_name": "Beer-Infused Cornbread Pudding with Spiced Tomato Jam",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-infused_cornbread_pudding_with_spiced_tomato_jam_20250701_144400_3b401145.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:44:01.316793000Z",
+    "selected_ingredients": [
+      "tomato",
+      "corn",
+      "beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of golden-brown cornbread pudding, baked in a round ramekin, is centrally placed on a clean white porcelain dessert plate. The pudding is moist and slightly risen, with visible flecks of corn kernels. Beside it, a vibrant ruby-red dollop of spiced tomato jam glistens, its smooth texture contrasting with the pudding. A delicate sprig of fresh mint rests atop the pudding, adding a pop of green. A light dusting of powdered sugar covers the pudding surface. The overall presentation is refined and balanced, with moderate negative space. The plate sits on a simple wooden table, accompanied by a silver dessert fork and a folded white cotton napkin. Natural, soft light illuminates the scene, creating a warm, inviting ambiance. The background is minimal, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Corn",
+    "ingredients": [
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Light lager or pale ale",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fine cornmeal",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Fresh or frozen corn kernels",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Ripe plum tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Granulated sugar (for jam)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh mint sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "For dusting"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease four 200 ml ramekins or a 1.5 L baking dish.",
+      "For the pudding: In a large bowl, whisk together melted butter, 100g sugar, eggs, milk, beer, and vanilla extract.",
+      "In a separate bowl, combine flour, cornmeal, baking powder, and salt.",
+      "Gradually add dry ingredients to wet ingredients. Mix until just combined. Do not overmix.",
+      "Fold in corn kernels.",
+      "Divide batter evenly into prepared ramekins. Place ramekins in a larger baking pan. Pour hot water into the larger pan to reach halfway up the sides of the ramekins. This creates a water bath.",
+      "Bake for 30-35 minutes, or until a toothpick inserted into the center comes out clean. Remove from water bath. Let cool slightly.",
+      "For the tomato jam: Core and roughly chop plum tomatoes.",
+      "In a medium saucepan, combine chopped tomatoes, 150g sugar, lemon juice, cinnamon stick, and star anise.",
+      "Bring to a simmer over medium heat. Reduce heat to low. Cook for 45-60 minutes, stirring occasionally, until mixture thickens to a jam-like consistency. Remove cinnamon stick and star anise.",
+      "Remove pudding from ramekins or cut into desired portions if using a baking dish.",
+      "Plate a single portion of warm cornbread pudding. Spoon a dollop of spiced tomato jam alongside.",
+      "Garnish with a fresh mint sprig. Dust lightly with powdered sugar before serving."
+    ]
+  },
+  {
+    "recipe_name": "Spicy Salmon Rice Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_salmon_rice_bowl_20250701_144345_1ff55c1b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:43:45.545210000Z",
+    "selected_ingredients": [
+      "salmon",
+      "rice",
+      "mayonnaise",
+      "chili"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Spicy Salmon Rice Bowl is presented in a deep, rustic ceramic donburi bowl, resting on a well-used wooden dining table. Fluffy white short-grain rice forms the base, topped with thick, flaky chunks of pan-seared salmon. The salmon is cooked to a tender, moist consistency with a slight golden crust, showcasing its natural pink-orange hue. A creamy, vibrant orange-red spicy mayonnaise is generously drizzled over the salmon and rice, creating appealing streaks. Thinly sliced bright green spring onions and a sprinkle of toasted golden-brown sesame seeds are scattered over the top as a simple, functional garnish. The components are naturally layered and slightly overlap, creating a comforting, home-style appearance. A pair of simple wooden chopsticks rests beside the bowl on the table. A casually placed, slightly wrinkled cloth napkin is nearby. The scene is bathed in warm, soft lighting from kitchen fixtures, highlighting the dish's inviting textures and colors, with a subtly blurred background suggesting a lived-in family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese Fusion",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled ginger (gari)",
+      "Serve with a small bowl of miso soup",
+      "Serve with a simple Japanese-style cucumber salad"
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin on or off",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Short-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Water (for rice)",
+        "quantity": "360 ml"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Sriracha chili sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegetable oil (for cooking)",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Rinse rice under cold water until water runs clear. Drain well. Combine rice and water in a medium saucepan. Bring to a boil, then reduce heat to low. Cover and simmer for 15 minutes, or until water is absorbed. Remove from heat. Let stand, covered, for 10 minutes. Fluff with a fork.",
+      "While rice cooks, prepare spicy mayonnaise. In a small bowl, whisk together mayonnaise, sriracha, soy sauce, and sesame oil until smooth. Adjust sriracha to taste for desired spice level.",
+      "Pat salmon fillets dry with paper towels. Season both sides with salt and pepper.",
+      "Heat vegetable oil in a large non-stick skillet over medium-high heat. Place salmon, skin-side down if applicable, in the hot skillet. Cook for 4-6 minutes per side, depending on thickness, until salmon is cooked through and flakes easily with a fork. Internal temperature should reach 63°C (145°F).",
+      "Transfer cooked salmon to a plate. Break into large, rustic chunks using a fork or spatula. Do not slice.",
+      "Thinly slice green onions.",
+      "Divide cooked rice among four individual serving bowls. Top each bowl with salmon chunks. Drizzle generously with spicy mayonnaise. Garnish with sliced green onions and toasted sesame seeds. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.3,
+      "calories": 750.6,
+      "cholesterol_mg": 93.1,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 36.1,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 816.9,
+      "total_carbs_g": 50.4,
+      "total_fat_g": 45.9,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 203.3,
+      "cholesterol_mg": 25.2,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 9.8,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 221.2,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 5.4,
+      "protein": 72.2,
+      "saturated_fat": 49,
+      "sodium": 35.5,
+      "total_carbs": 18.3,
+      "total_fat": 58.8
+    },
+    "serving_size_g": 369.2,
+    "total_recipe_weight_g": 1476.9
+  },
+  {
+    "recipe_name": "Pan-Seared Pork Loin with Apple Calvados Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_pork_loin_with_apple_calvados_sauce_20250701_144259_77691875.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:43:00.137285000Z",
+    "selected_ingredients": [
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared pork loin with apple Calvados sauce is presented on a clean white porcelain dinner plate. The pork loin, cut into thick, succulent medallions, displays a beautiful golden-brown sear, revealing its tender, juicy interior. The medallions are arranged organically on the plate. Beside the pork, vibrant apple wedges, softened and lightly caramelized, are nestled within the creamy, light brown Calvados sauce. The sauce, rich with shallots and a hint of fresh thyme, pools invitingly around the elements. A sprig of fresh thyme garnishes the dish, adding a touch of green. The overall composition is balanced with moderate negative space. The plate rests on a simple wooden table surface, accompanied by classic French flatware and a folded cotton napkin. Natural, even lighting illuminates the dish, creating a warm, inviting atmosphere typical of a modern bistro.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Pork Loin",
+    "ingredients": [
+      {
+        "name": "Pork Loin",
+        "quantity": "650g"
+      },
+      {
+        "name": "Apples",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Calvados",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Pat pork loin dry. Season generously with salt and pepper.",
+      "Heat olive oil and 15g butter in an oven-safe skillet over medium-high heat.",
+      "Sear pork loin until golden brown on all sides, about 8-10 minutes total.",
+      "Transfer skillet to preheated oven. Roast until internal temperature reaches 70°C (158°F), about 15-20 minutes.",
+      "Remove pork from oven. Transfer to a cutting board. Tent loosely with foil. Let rest 10 minutes (temperature will rise to 75°C/167°F).",
+      "While pork rests, return skillet to medium heat. Add remaining 15g butter. Add thinly sliced shallots. Sauté until softened, about 3-4 minutes.",
+      "Add apple wedges. Cook until tender-crisp, about 5-7 minutes.",
+      "Pour Calvados into skillet. Deglaze, scraping up any browned bits. Cook until almost evaporated.",
+      "Stir in chicken stock and fresh thyme leaves. Bring to a simmer. Reduce liquid by half, about 5-7 minutes.",
+      "Stir in heavy cream. Simmer gently until sauce slightly thickens, about 3-5 minutes.",
+      "Taste and adjust seasoning if needed.",
+      "Slice rested pork loin into thick medallions. Arrange pork on plates. Spoon apple Calvados sauce generously over pork and apples. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 534,
+      "cholesterol_mg": 171,
+      "dietary_fiber_g": 3,
+      "protein_g": 47.4,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 169,
+      "total_carbs_g": 18,
+      "total_fat_g": 27.3,
+      "total_sugars_g": 12.3,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 135,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 12,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 43,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 11,
+      "protein": 95,
+      "saturated_fat": 68,
+      "sodium": 7,
+      "total_carbs": 7,
+      "total_fat": 35
+    },
+    "serving_size_g": 395,
+    "total_recipe_weight_g": 1581
+  }
+]

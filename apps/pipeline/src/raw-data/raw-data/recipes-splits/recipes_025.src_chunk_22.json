@@ -1,0 +1,684 @@
+[
+  {
+    "recipe_name": "Smoked Salmon and Tatsoi Frittata",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_salmon_and_tatsoi_frittata_20250623_125523_b27e73f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:55:23.888697000Z",
+    "selected_ingredients": [
+      "smoked salmon",
+      "egg",
+      "mustard",
+      "tatsoi",
+      "rosemary"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous wedge of golden-brown frittata rests on a simple, round ceramic plate. The frittata, cooked to a firm yet tender consistency, shows visible pieces of pink smoked salmon, dark green wilted tatsoi leaves, and small diced onion. The top surface is lightly browned and speckled with finely chopped fresh rosemary. A few small, whole tatsoi leaves are casually placed alongside the frittata. The plate sits on a well-worn wooden kitchen table, bathed in warm, natural light. A folded, plain cloth napkin is positioned beside the plate. The overall scene evokes a cozy, lived-in family kitchen atmosphere, highlighting comfort and simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Smoked salmon",
+    "ingredients": [
+      {
+        "name": "Smoked salmon",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "8"
+      },
+      {
+        "name": "Fresh tatsoi",
+        "quantity": "150g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Milk or cream",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1 (diced)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2 (minced)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease a 24cm oven-safe non-stick pan.",
+      "Heat olive oil in the pan over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add tatsoi to the pan. Cook until just wilted, about 2-3 minutes. Remove from heat.",
+      "In a large bowl, whisk eggs. Add milk or cream, Dijon mustard, chopped rosemary leaves, salt, and pepper. Whisk until well combined.",
+      "Tear smoked salmon into pieces. Add smoked salmon and wilted tatsoi mixture to the egg mixture. Stir gently.",
+      "Pour the egg mixture back into the prepared pan. Spread ingredients evenly.",
+      "Cook on the stovetop over medium-low heat for 3-5 minutes until the edges begin to set.",
+      "Transfer the pan to the preheated oven. Bake for 15-20 minutes, or until the frittata is set and lightly golden brown on top.",
+      "Remove from oven. Let rest for 5 minutes before slicing into 4 wedges. Serve warm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 271,
+      "cholesterol_mg": 400,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 23.2,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 514,
+      "total_carbs_g": 5.1,
+      "total_fat_g": 17.1,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.02
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 118,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 10.1,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 224,
+      "total_carbs_g": 2.2,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 133.2,
+      "dietary_fiber": 3.4,
+      "protein": 46.5,
+      "saturated_fat": 24,
+      "sodium": 22.4,
+      "total_carbs": 1.9,
+      "total_fat": 21.9
+    },
+    "serving_size_g": 230,
+    "total_recipe_weight_g": 919
+  },
+  {
+    "recipe_name": "Braised Beef with Caramelized Onion, Tomato, and Dijon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_caramelized_onion%2C_tomato%2C_and_dijon_20250623_125356_6bbd7067.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:53:56.577977000Z",
+    "selected_ingredients": [
+      "beef",
+      "chili",
+      "onion",
+      "tomato",
+      "mustard"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of rich, dark brown braised beef stew is centered on a clean, round white porcelain plate. Three substantial, fork-tender chunks of beef, approximately 5cm each, are nestled amidst a glossy, thick sauce. The sauce is a deep reddish-brown, flecked with tender, translucent strands of caramelized onion and small, softened pieces of tomato. A subtle sheen on the sauce indicates its richness. A light scattering of vibrant green, freshly chopped parsley garnishes the top, providing a fresh contrast. The beef chunks are irregularly shaped from the braising, showcasing their tender texture. The plate is set on a simple light wooden table surface, accompanied by a folded white cotton napkin and standard silver flatware. Natural, even lighting highlights the dish, with a softly blurred background suggesting a casual bistro atmosphere. The entire plate is visible, with moderate negative space around the food, creating a professional yet inviting presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, thinly sliced"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ancho chili powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear beef chunks in batches until well browned on all sides. Remove beef and set aside.",
+      "Add sliced onions to the pot. Reduce heat to medium-low. Cook, stirring occasionally, for 20-25 minutes until deeply caramelized and soft.",
+      "Add minced garlic and ancho chili powder. Cook for 1 minute until fragrant.",
+      "Stir in flour. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Stir in crushed tomatoes, beef broth, Dijon mustard, bay leaves, and thyme sprigs.",
+      "Return seared beef to the pot. Ensure beef is mostly submerged.",
+      "Bring to a gentle simmer. Cover pot tightly.",
+      "Transfer to a preheated oven at 160°C (325°F). Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Remove bay leaves and thyme sprigs. Adjust seasoning with salt and pepper.",
+      "Let stew rest for 10 minutes before serving."
+    ],
+    "notes": [
+      "Serve hot with creamy mashed potatoes, polenta, or crusty bread for soaking up the rich sauce."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 739,
+      "cholesterol_mg": 152,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 51,
+      "saturated_fat_g": 16.5,
+      "sodium_mg": 739,
+      "total_carbs_g": 27.2,
+      "total_fat_g": 46.4,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 24.7,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 120,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 15,
+      "protein": 102,
+      "saturated_fat": 83,
+      "sodium": 32,
+      "total_carbs": 10,
+      "total_fat": 59
+    },
+    "serving_size_g": 615.5,
+    "total_recipe_weight_g": 2462
+  },
+  {
+    "recipe_name": "Lomo Saltado (Peruvian Beef Stir-Fry)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lomo_saltado_%28peruvian_beef_stir-fry%29_20250623_125352_0edbcd1c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:53:52.870857000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Seared beef sirloin strips, vibrant red onion wedges, and ripe tomato chunks are quickly stir-fried, coated in a glossy, savory soy-based sauce. Golden-brown potato batons, crisply fried, are mixed throughout the stir-fry, adding a satisfying textural contrast. This flavorful mixture is piled generously over a pristine bed of fluffy white Jasmine rice. A generous scattering of fresh green cilantro leaves provides a vibrant color pop. The dish is presented on a clean, round white porcelain dinner plate. A simple cotton napkin and standard flatware are placed beside the plate, all set on a natural wooden table surface under soft, even lighting, creating an inviting bistro atmosphere. The presentation is professional yet approachable, with moderate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "cultural_origin": "Peruvian",
+    "cultural_serving_suggestions": [
+      "Serve with Aji Verde (Peruvian green chili sauce) on the side.",
+      "Traditionally, the French fries are mixed directly into the stir-fry with the beef and vegetables."
+    ],
+    "hero_ingredient": "Beef Sirloin",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes (Russet or similar)",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "20 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse rice. Cook rice according to package instructions. Set aside.",
+      "Cut beef into 2 cm thick strips. Season beef with salt and pepper.",
+      "Cut red onion into 1.5 cm thick wedges. Cut tomatoes into 2 cm chunks. Mince garlic.",
+      "Peel potatoes. Cut potatoes into 1 cm x 1 cm x 6 cm batons.",
+      "Heat 75 ml vegetable oil in a large pan or deep pot over medium-high heat. Fry potato batons until golden brown and crispy. Remove potatoes, drain on paper towels. Season with salt.",
+      "Heat remaining 25 ml vegetable oil in a large wok or cast-iron skillet over very high heat until smoking.",
+      "Add beef strips in a single layer. Sear beef quickly for 1-2 minutes per side until browned. Do not overcrowd the pan; cook in batches if necessary. Remove beef from pan. Set aside.",
+      "Add red onion and minced garlic to the hot pan. Stir-fry for 1 minute until fragrant.",
+      "Add tomato chunks and aji amarillo paste. Stir-fry for 1-2 minutes until tomatoes just begin to soften.",
+      "Return beef to the pan. Add soy sauce and red wine vinegar. Toss quickly to coat all ingredients. Cook for 30 seconds.",
+      "Add fried potato batons and half of the fresh cilantro. Toss gently to combine.",
+      "Serve immediately by spooning the Lomo Saltado mixture over the cooked Jasmine rice. Garnish with remaining fresh cilantro."
+    ],
+    "notes": [
+      "Ensure the pan is very hot before adding beef to achieve a good sear and avoid stewing.",
+      "Cook beef in small batches if your pan is not large enough to prevent overcrowding, which lowers pan temperature."
+    ],
+    "traditional_techniques": [
+      "Saltear (high-heat stir-frying)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 861,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 49.7,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 1070,
+      "total_carbs_g": 87.9,
+      "total_fat_g": 34.9,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130,
+      "cholesterol_mg": 16,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.5,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 161,
+      "total_carbs_g": 13.3,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 24,
+      "protein": 99,
+      "saturated_fat": 28,
+      "sodium": 47,
+      "total_carbs": 32,
+      "total_fat": 45
+    },
+    "serving_size_g": 662.5,
+    "total_recipe_weight_g": 2650
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Fettuccine with Creamy Garlic Parmesan Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_fettuccine_with_creamy_garlic_parmesan_sauce_20250623_125305_96b73bd5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:53:05.850870000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "pasta",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Chicken Fettuccine with Creamy Garlic Parmesan Sauce rests centrally on a clean, round white porcelain plate. Al dente fettuccine, coated in a luscious, creamy, pale ivory sauce, forms a generous swirl. Three to four thick, golden-brown medallions of seared chicken breast are nestled atop the pasta, showcasing their moist interior and crispy exterior. The chicken is not fanned. A vibrant sprinkle of finely chopped fresh green parsley adds a pop of color. The presentation is professional yet approachable, with moderate negative space. The dish sits on a simple light wooden table surface. A white cotton napkin, silver fork, and large spoon are beside the plate. Natural, even lighting highlights textures and colors. The background is softly blurred, hinting at a casual bistro.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping.",
+      "Offer freshly grated Parmesan cheese at the table.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Fettuccine",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g, freshly grated"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6, minced"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat 15 ml olive oil and 30 g butter in a large skillet over medium-high heat.",
+      "Add chicken breasts to hot skillet. Sear 4-5 minutes per side until golden brown.",
+      "Reduce heat to medium-low. Cover skillet. Cook chicken 8-10 minutes more until internal temperature reaches 75°C.",
+      "Remove chicken from skillet. Set aside. Keep warm.",
+      "Add remaining 15 ml olive oil and 30 g butter to same skillet. Add minced garlic. Sauté 1-2 minutes until fragrant. Do not brown garlic.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from bottom of skillet.",
+      "Stir in heavy cream. Simmer gently 3-4 minutes, until sauce thickens slightly.",
+      "Gradually whisk in grated Parmesan cheese until melted and smooth. Season sauce with salt and pepper.",
+      "While sauce simmers, cook fettuccine in a large pot of salted boiling water according to package directions until al dente.",
+      "Drain pasta. Reserve 120 ml pasta water.",
+      "Add drained fettuccine to skillet with sauce. Toss to coat. If sauce is too thick, add reserved pasta water, 30 ml at a time, until desired consistency.",
+      "Slice cooked chicken breasts into thick medallions.",
+      "Divide pasta among four plates. Arrange chicken medallions over pasta.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches internal temperature of 75°C (167°F) for food safety.",
+      "Adjust sauce consistency with reserved pasta water."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing",
+      "Finishing pasta in sauce (mantecare)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1176,
+      "cholesterol_mg": 286,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 83.4,
+      "saturated_fat_g": 29.4,
+      "sodium_mg": 613,
+      "total_carbs_g": 80.1,
+      "total_fat_g": 56.3,
+      "total_sugars_g": 5,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 259,
+      "cholesterol_mg": 63,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 18.4,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 135,
+      "total_carbs_g": 17.6,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 95,
+      "dietary_fiber": 13,
+      "protein": 167,
+      "saturated_fat": 147,
+      "sodium": 27,
+      "total_carbs": 29,
+      "total_fat": 72
+    },
+    "serving_size_g": 453.75,
+    "total_recipe_weight_g": 1815
+  },
+  {
+    "recipe_name": "Earthy Mushroom & Bean Stew with Pickled Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_earthy_mushroom_%26_bean_stew_with_pickled_peppers_20250623_125215_d2e3a540.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:52:15.583811000Z",
+    "selected_ingredients": [
+      "beef",
+      "bean",
+      "sausage",
+      "chicken stock",
+      "rice",
+      "bell pepper",
+      "beef stock",
+      "mushroom",
+      "coconut",
+      "olive",
+      "veal",
+      "cream"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Earthy Mushroom & Bean Stew is presented in a handcrafted, rustic ceramic bowl with a soft, matte cream finish. The rich, thick stew showcases tender, plump cannellini beans, earthy quartered cremini mushrooms, and soft, diced red bell pepper, interspersed with small, succulent beef chunks and crumbled sausage. Its deep, savory brown is punctuated by vibrant ingredient colors. A distinct mound of fluffy brown rice sits beside the stew, its nutty texture visible. Thinly sliced, quick-pickled red bell pepper strips are naturally arranged on top, offering bright contrast. Fresh green parsley leaves provide a final touch. The dish rests on a light, reclaimed wood table surface with an undyed linen napkin. Soft, natural light illuminates the scene, highlighting organic textures. The background is clean and minimalist, focusing solely on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beans",
+    "ingredients": [
+      {
+        "name": "Dried Cannellini Beans",
+        "quantity": "250g"
+      },
+      {
+        "name": "Beef Chuck",
+        "quantity": "200g"
+      },
+      {
+        "name": "Pork Sausage",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red Bell Peppers",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Homemade Beef Stock",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Full-Fat Coconut Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Kalamata Olives",
+        "quantity": "50g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh Parsley or Basil",
+        "quantity": "a few sprigs"
+      }
+    ],
+    "instructions": [
+      "Prepare Beans: Soak cannellini beans overnight. Drain and rinse.",
+      "Make Stock: Combine beef bones/trimmings, chicken carcass (if available), onion peels, carrot tops, mushroom stems, and bell pepper cores in a large pot. Add 1.5 liters water. Simmer 2-3 hours. Strain. Reserve 750ml stock.",
+      "Sear Meat: Heat olive oil in a large pot. Sear beef cubes until browned on all sides. Remove beef. Add crumbled sausage. Cook until browned. Drain excess fat. Remove sausage.",
+      "Sauté Aromatics: Add diced onion, carrot, and minced garlic to the pot. Sauté 5 minutes until softened.",
+      "Simmer Stew: Return beef and sausage to the pot. Add drained beans, quartered mushrooms, and one diced red bell pepper. Pour in 750ml homemade stock. Add 1 bay leaf. Bring to a boil. Reduce heat. Simmer covered for 1.5-2 hours, or until beans are tender. Stir occasionally.",
+      "Cook Rice: While stew simmers, cook brown rice according to package instructions. Typically, combine 200g rice with 400ml water. Bring to boil. Reduce heat. Simmer covered 35-40 minutes until water absorbed.",
+      "Quick Pickle Peppers: Slice remaining red bell pepper into thin strips. In a small saucepan, combine apple cider vinegar, 50ml water, and sugar. Bring to a simmer. Add bell pepper strips. Remove from heat. Let sit 15 minutes.",
+      "Finish Stew: Stir coconut milk and halved olives into the stew. Simmer 5 minutes. Season with salt and black pepper. Remove bay leaf.",
+      "Plate Dish: Ladle a single portion of stew into a handcrafted ceramic bowl. Place a small mound of brown rice next to it or at the base. Arrange a few quick-pickled bell pepper strips naturally on top of the stew. Garnish with fresh parsley or basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 841,
+      "cholesterol_mg": 62,
+      "dietary_fiber_g": 15.8,
+      "protein_g": 41,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 334,
+      "total_carbs_g": 94.4,
+      "total_fat_g": 35,
+      "total_sugars_g": 12.6,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 127,
+      "cholesterol_mg": 9,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 6.2,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 50,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21,
+      "dietary_fiber": 56,
+      "protein": 82,
+      "saturated_fat": 68,
+      "sodium": 15,
+      "total_carbs": 34,
+      "total_fat": 45
+    },
+    "serving_size_g": 663,
+    "total_recipe_weight_g": 2652
+  }
+]

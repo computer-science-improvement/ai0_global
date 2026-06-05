@@ -1,0 +1,664 @@
+[
+  {
+    "recipe_name": "Smoked Bacon & Three Cheese Pasta Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_bacon_%26_three_cheese_pasta_bake_20250707_070612_7f953eaf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T07:06:12.670296000Z",
+    "selected_ingredients": [
+      "cheddar",
+      "cottage cheese",
+      "mustard",
+      "bacon",
+      "basil",
+      "breadcrumbs",
+      "parmesan"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a white, oval ceramic baking dish, showcasing a generous portion of golden-brown pasta bake. Rigatoni, coated in a rich, creamy, and bubbly cheddar-parmesan sauce, peeks through a crisp, golden Panko breadcrumb and parmesan crust. Scattered across the top are chunks of deeply caramelized, smoky bacon, providing textural contrast and dark accents. Fresh, bright green basil leaves are scattered over the top, adding a pop of color and freshness. The pasta bake itself is a warm, inviting amber-gold, with the melted cheese creating an appealingly fluid texture around the pasta. The overall presentation is rustic yet refined, with visible individual pasta tubes, crispy bacon, and vibrant basil. The dish sits on a simple wooden table, with a folded white linen napkin beside it. Natural, soft lighting highlights the dish's comforting appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Smoked Bacon",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Smoked bacon",
+        "quantity": "200g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Sharp cheddar cheese, grated",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Cook rigatoni al dente according to package directions. Drain well.",
+      "Dice smoked bacon into small chunks. Cook bacon in a large skillet over medium heat until crispy. Remove bacon with a slotted spoon; drain fat, reserving a small amount if desired. Set crispy bacon aside.",
+      "In a large saucepan, melt butter over medium heat. Whisk in flour to create a roux. Cook, stirring constantly, for 1-2 minutes until lightly golden.",
+      "Gradually whisk in warm whole milk until the sauce is smooth and thickened. Bring to a gentle simmer.",
+      "Reduce heat to low. Stir in grated sharp cheddar, 50g of the grated parmesan, cottage cheese, and Dijon mustard. Stir until cheeses are melted and sauce is smooth. Season with salt, black pepper, and a pinch of nutmeg.",
+      "Combine cooked rigatoni and most of the crispy bacon chunks with the cheese sauce. Stir gently to coat.",
+      "Transfer the pasta mixture to a 2.5-liter baking dish.",
+      "In a small bowl, mix Panko breadcrumbs with the remaining 50g grated parmesan. Sprinkle this mixture evenly over the pasta in the baking dish.",
+      "Bake for 20-25 minutes, or until the sauce is bubbly and the breadcrumb topping is golden brown and crisp.",
+      "Remove from oven. Garnish generously with fresh chopped basil and the remaining crispy bacon chunks before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1300,
+      "cholesterol_mg": 172,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 67.7,
+      "saturated_fat_g": 35,
+      "sodium_mg": 1966,
+      "total_carbs_g": 106.6,
+      "total_fat_g": 65.3,
+      "total_sugars_g": 14.2,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 195,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 10.1,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 295,
+      "total_carbs_g": 16,
+      "total_fat_g": 9.8,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57.3,
+      "dietary_fiber": 15,
+      "protein": 135.4,
+      "saturated_fat": 175,
+      "sodium": 85.5,
+      "total_carbs": 38.8,
+      "total_fat": 83.7
+    },
+    "serving_size_g": 667.25,
+    "total_recipe_weight_g": 2669
+  },
+  {
+    "recipe_name": "Sustainable Fermented Bean Dip with Vegetable Crisps and Shredded Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_fermented_bean_dip_with_vegetable_crisps_and_shredded_chicken_20250707_070410_9f81bca6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T07:04:10.562839000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "bell pepper",
+      "garlic",
+      "tomato",
+      "onion",
+      "bean",
+      "basil",
+      "eggplant",
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The snack is presented on a light bamboo serving board. A central mound of creamy, pale green-beige bean dip, flecked with subtle red tomato and green bell pepper pieces, sits nestled in the middle. The dip has a smooth, natural texture. Beside it, a small pile of finely shredded, tender chicken breast, subtly golden, adds a contrasting element. Around the dip and chicken, an array of thinly sliced, baked eggplant and mushroom crisps are arranged casually. The eggplant crisps are dark brown with visible skin texture, while the mushroom crisps are lighter beige-brown. All elements are presented with ample white space, emphasizing their natural forms and textures. Fresh green basil leaves are scattered sparingly over the dip and crisps, providing a pop of vibrant color. The overall composition is clean, organic, and unfussy, highlighting the inherent beauty of each ingredient. The setting features a handcrafted ceramic plate in an earthy cream tone, an undyed linen napkin in natural beige, and soft, diffused natural lighting, with a hint of natural greenery in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Beans",
+    "ingredients": [
+      {
+        "name": "Cooked Cannellini Beans",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "Eggplant",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Mixed Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken Breast",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Quick-Fermented Tomato & Bell Pepper: Dice 150g tomatoes and all bell pepper into 1cm cubes. Combine in a clean bowl. Add 5g salt. Massage well with hands for 2-3 minutes until vegetables release liquid. Transfer to a clean jar, pressing down to submerge vegetables in their liquid. Cover loosely. Let sit at room temperature for 12-24 hours for a quick ferment, or at least 4 hours for flavor development. Refrigerate after desired time.",
+      "Roast Garlic & Onion: Peel garlic cloves. Quarter the onion. Toss with a drizzle of olive oil. Roast at 180°C for 20-25 minutes until soft and caramelized.",
+      "Prepare Chicken: Poach chicken breast in lightly salted water until internal temperature reaches 75°C (approx. 15-20 minutes). Cool slightly. Shred chicken finely using two forks. Season with a pinch of salt.",
+      "Make Bean Dip: Drain cooked beans. Combine beans, roasted garlic, roasted onion, remaining 50g fresh diced tomato, and 100g of the quick-fermented tomato/bell pepper (if using) in a food processor. Add half of the fresh basil, 15ml olive oil, salt, and pepper. Blend until smooth, adding a little bean liquid or water if needed to reach a creamy consistency.",
+      "Make Vegetable Crisps: Preheat oven to 120°C. Thinly slice eggplant and mushrooms (2-3mm thick). Lay in a single layer on baking sheets. Lightly salt. Bake for 60-90 minutes, flipping once, until completely dry and crispy.",
+      "Assemble Snack: Spoon bean dip onto a serving platter. Arrange shredded chicken next to the dip. Place eggplant and mushroom crisps around the dip for dipping. Garnish with remaining fresh basil leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 341.5,
+      "cholesterol_mg": 42.5,
+      "dietary_fiber_g": 11.6,
+      "protein_g": 27.9,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 72.5,
+      "total_carbs_g": 35.6,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85.7,
+      "cholesterol_mg": 10.7,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 7,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 18.2,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14.2,
+      "dietary_fiber": 41.4,
+      "protein": 55.8,
+      "saturated_fat": 7.9,
+      "sodium": 3.2,
+      "total_carbs": 12.9,
+      "total_fat": 12.4
+    },
+    "serving_size_g": 398.7,
+    "total_recipe_weight_g": 1594.6
+  },
+  {
+    "recipe_name": "Dark Chocolate Crémeux with Rum-Poached Plum and Almond Tuile",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dark_chocolate_cr%C3%A9meux_with_rum-poached_plum_and_almond_tuile_20250707_070101_5fa7094c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T07:01:01.545953000Z",
+    "selected_ingredients": [
+      {
+        "name": "almond"
+      },
+      {
+        "name": "dark chocolate"
+      },
+      {
+        "name": "plum"
+      },
+      {
+        "name": "rum"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "butter"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": null,
+    "visual_description": "A single individual portion is elegantly presented on a round, white bone china plate with a subtle, delicate pattern. The plating is minimalist, featuring abundant negative space. A perfectly formed, elongated quenelle of dark chocolate crémeux, a rich, glossy dark brown, rests slightly off-center. Adjacent to the crémeux, two halved rum-poached plum pieces, their deep purple skin contrasting with tender, blush-toned flesh, are arranged naturally. Leaning artfully against the crémeux is a delicate, golden-brown almond tuile, thin and crisp, with a subtle curve. A single, small, precisely cut square of vibrant plum gelée, glistening with a deep jewel-toned purple, is placed thoughtfully on the pristine white plate, adding a pop of color and texture. The overall composition is organic and flowing, not geometric, emphasizing the natural beauty of each component. The scene is lit with dramatic professional lighting, casting soft shadows that highlight textures. The background is ultra-minimalist, featuring a premium white Carrara marble surface beneath the plate and a crisp white linen napkin folded into a precise triangle beside it, enhancing the luxury aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Dark Chocolate (70% cacao), finely chopped",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Granulated sugar (for crémeux)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Unsalted butter, cold, cubed (for crémeux)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh plums (firm, ripe), halved and pitted",
+        "quantity": "4-5 (approx. 300 g)"
+      },
+      {
+        "name": "Water (for poaching)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Granulated sugar (for poaching)",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Dark rum",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Vanilla bean, split lengthwise (optional)",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Granulated sugar (for tuiles)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter, melted (for tuiles)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Egg white",
+        "quantity": "1 large"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Plum puree (from poached plums or fresh)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar (for gelée)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Gelatin sheet, bloomed in cold water (approx. 2g)",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Prepare Dark Chocolate Crémeux: Heat cream in a saucepan until simmering. Whisk egg yolks and 20g sugar in a bowl. Slowly temper hot cream into egg mixture. Return mixture to saucepan. Cook over medium-low heat, stirring constantly, until thickened (coats the back of a spoon, 82°C). Remove from heat. Strain custard over chopped dark chocolate. Let stand 1 minute. Stir gently until chocolate is melted and smooth. Add cold butter cubes. Emulsify with an immersion blender until smooth and glossy. Pour into a shallow dish. Cover surface with plastic wrap. Chill at least 4 hours, or overnight.",
+      "Prepare Rum-Poached Plums: In a saucepan, combine water, 80g sugar, rum, and vanilla bean (if using). Bring to a simmer. Add halved, pitted plums. Poach gently for 5-7 minutes, until tender but still holding shape. Remove plums from liquid. Reduce poaching liquid by half over medium-high heat. Set aside liquid and plums to cool.",
+      "Prepare Almond Tuiles: Preheat oven to 160°C. Line a baking sheet with parchment paper or silicone mat. In a bowl, whisk almond flour, 30g sugar, melted butter, egg white, and all-purpose flour until smooth. Spread very thin layers of batter onto the prepared baking sheet using an offset spatula. Bake for 5-8 minutes, until golden brown and crisp. Remove from oven. Immediately shape over a rolling pin or desired form while warm. Let cool and harden.",
+      "Prepare Plum Gelée: Warm plum puree with 10g sugar in a small saucepan. Squeeze excess water from bloomed gelatin sheet. Stir gelatin into warm plum puree until dissolved. Pour into a small, flat container or onto a silpat, about 2-3 mm thick. Chill until set (about 1 hour). Cut into small, precise shapes.",
+      "Assemble Dessert: Remove crémeux from refrigerator. Allow to soften slightly at room temperature for 10-15 minutes. Place a quenelle or piped dot of dark chocolate crémeux on one side of a white plate. Arrange 2-3 pieces of rum-poached plum next to the crémeux. Lean an almond tuile against the crémeux or plums. Place 1-2 small, precise pieces of plum gelée on the plate. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Pollo alla Cacciatora con Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_con_pappardelle_20250707_065346_857a582d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T06:53:46.694605000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single generous portion of Pollo alla Cacciatora con Pappardelle is presented in a deep, clean white porcelain bowl. The al dente pappardelle pasta forms a base, thoroughly coated in a rich, rustic reddish-brown tomato sauce. A tender, braised bone-in chicken thigh, with its skin a deep golden-brown, rests prominently on top of the pasta. The sauce is visibly chunky with softened, roughly chopped red bell pepper and green bell pepper, sliced cremini mushrooms, and diced soffritto vegetables (onion, carrot, celery). A vibrant sprinkle of fresh, finely chopped flat-leaf parsley adds a pop of green, contrasting with the deep red sauce. Delicate, thin shavings of Parmigiano Reggiano are scattered over the dish, adding a light, creamy texture. The plating is clean and inviting, with moderate negative space. The bowl sits on a simple wooden table, accompanied by traditional Italian flatware and a folded white cotton napkin. A small side dish holds a slice of crusty artisan bread, ready for dipping. Natural, even lighting illuminates the dish, highlighting its comforting textures and colors in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the rich sauce.",
+      "Pair with a glass of dry red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, Skin-on Chicken Thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Pappardelle Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "San Marzano Crushed Tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Celery Stalk",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "200g, sliced"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1, roughly chopped"
+      },
+      {
+        "name": "Green Bell Pepper",
+        "quantity": "1, roughly chopped"
+      },
+      {
+        "name": "Dry Red Wine (e.g., Chianti)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Rosemary Sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Flat-leaf Parsley",
+        "quantity": "Small bunch, chopped for garnish"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy, about 8-10 minutes. Flip and sear other side for 2-3 minutes. Remove chicken. Set aside.",
+      "Reduce heat to medium. Add diced onion, carrot, and celery to the pot (this is the soffritto). Cook, stirring occasionally, until softened, about 8-10 minutes.",
+      "Add minced garlic, sliced mushrooms, red bell pepper, and green bell pepper. Cook for 5-7 minutes until vegetables soften slightly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer. Cook for 2 minutes.",
+      "Stir in crushed tomatoes, chicken broth, rosemary, thyme, and bay leaf. Bring to a gentle simmer.",
+      "Return seared chicken thighs to the pot, nestling them into the sauce. Ensure chicken is mostly submerged.",
+      "Cover the pot. Reduce heat to low. Simmer for 45-60 minutes, or until chicken is very tender and cooked to an internal temperature of 75°C (167°F).",
+      "While chicken braises, cook pappardelle according to package directions in salted boiling water until al dente.",
+      "Remove bay leaf, rosemary, and thyme sprigs from the sauce. Taste and adjust seasoning with salt and pepper.",
+      "Drain pasta. Add pasta directly to the pot with the chicken and sauce. Toss gently to coat.",
+      "Serve immediately in deep bowls. Garnish with fresh chopped parsley and shavings of Parmigiano Reggiano."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1000,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 62.5,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 771,
+      "total_carbs_g": 97.3,
+      "total_fat_g": 41.4,
+      "total_sugars_g": 13.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134.1,
+      "cholesterol_mg": 25.5,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.4,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 103.3,
+      "total_carbs_g": 13,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 32,
+      "protein": 125,
+      "saturated_fat": 52,
+      "sodium": 34,
+      "total_carbs": 35,
+      "total_fat": 53
+    },
+    "serving_size_g": 746,
+    "total_recipe_weight_g": 2985
+  },
+  {
+    "recipe_name": "Korean Spicy Braised Pork Belly with Eggplant and Leek",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_korean_spicy_braised_pork_belly_with_eggplant_and_leek_20250707_064601_a8f632ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T06:46:02.233192000Z",
+    "selected_ingredients": [
+      "leek",
+      "eggplant"
+    ],
+    "complexity": "standard",
+    "special_requests": "Asian cuisine",
+    "visual_description": "A single portion of Korean Spicy Braised Pork Belly with Eggplant and Leek is presented in a deep, rustic ceramic bowl. Thick, succulent chunks of braised pork belly are centrally placed, surrounded by tender, glossy pieces of dark purple-skinned eggplant and vibrant green leek rounds. The dish is generously coated in a rich, reddish-brown, slightly thickened gochujang-based sauce. A sprinkle of bright green chopped green onions and white toasted sesame seeds adds contrast and freshness. The bowl sits on a simple dark wooden table. A small, white porcelain side dish of bright red kimchi and a separate small bowl of fluffy white steamed rice are placed nearby. A pair of dark wooden chopsticks rests beside the rice bowl. Natural, soft light illuminates the scene, highlighting the textures and colors of the dish. The background is minimal, creating a clean, authentic Korean dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with steamed white rice to soak up the rich sauce.",
+      "Accompany with various banchan (small side dishes) such as kimchi or pickled radishes.",
+      "Use chopsticks for eating."
+    ],
+    "hero_ingredient": "Pork Belly",
+    "ingredients": [
+      {
+        "name": "Pork belly",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Eggplant",
+        "quantity": "2 medium (approx. 400 g)"
+      },
+      {
+        "name": "Leek",
+        "quantity": "2 large (white and light green parts)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "3 cm piece, grated"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Mirin (rice wine)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Water or Dashi broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks, chopped for garnish"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "1 teaspoon, for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut pork belly into 2-3 cm thick chunks. Cut eggplant into 3 cm thick rounds or large chunks. Cut leek into 3 cm thick rounds.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat.",
+      "Add pork belly chunks. Sear until browned on all sides. Remove pork belly and set aside.",
+      "Reduce heat to medium. Add minced garlic and grated ginger to the pot. Sauté for 1 minute until fragrant.",
+      "Stir in gochujang, soy sauce, mirin, and sugar. Cook for 1 minute, stirring constantly.",
+      "Return seared pork belly to the pot. Pour in water or Dashi broth. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 30 minutes.",
+      "Add eggplant and leek to the pot. Continue to simmer, covered, for another 20-25 minutes, or until pork is tender and vegetables are soft. Sauce should thicken slightly.",
+      "Stir in sesame oil.",
+      "Serve hot. Garnish with chopped green onions and toasted sesame seeds."
+    ],
+    "traditional_techniques": [
+      "Braising (Jorim)",
+      "Balancing spicy, savory, and sweet flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.5,
+      "calories": 833,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 16,
+      "saturated_fat_g": 25,
+      "sodium_mg": 832,
+      "total_carbs_g": 30.2,
+      "total_fat_g": 74.3,
+      "total_sugars_g": 15.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2,
+      "calories": 198,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 3.8,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 197,
+      "total_carbs_g": 7.2,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 19,
+      "protein": 32,
+      "saturated_fat": 125,
+      "sodium": 36,
+      "total_carbs": 11,
+      "total_fat": 95
+    },
+    "serving_size_g": 421.25,
+    "total_recipe_weight_g": 1685
+  }
+]

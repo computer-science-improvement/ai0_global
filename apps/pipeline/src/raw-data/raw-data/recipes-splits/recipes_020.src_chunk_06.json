@@ -1,0 +1,680 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Savory Coconut-Cherry Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_savory_coconut-cherry_sauce_20250624_173034_23d70800.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:30:35.434356000Z",
+    "selected_ingredients": [
+      "apple",
+      "banana",
+      "coconut",
+      "cherry"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features a golden-brown pan-seared chicken breast, cooked whole, resting centrally on a clean white porcelain dinner plate. The chicken is moist, with a slightly crisp exterior. It is generously spooned with a vibrant, creamy, and slightly chunky sauce. The sauce, rich with coconut milk, showcases visible pieces of tender, diced apple, soft diced banana, and halved, plump red cherries, creating a harmonious blend of colors and textures. A sprinkle of fresh, bright green chopped cilantro contrasts beautifully against the sauce. The plate has appropriate negative space, allowing the elements to breathe. The setting is a modern bistro, with the plate placed on a simple light wooden table. A folded cotton napkin sits beside the plate. Lighting is natural and even, highlighting the dish's freshness and warmth without harsh shadows. The background is subtly blurred, suggesting a casual, inviting restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Apple (Granny Smith)",
+        "quantity": "1 large, cored, diced"
+      },
+      {
+        "name": "Cherries (fresh or frozen, pitted)",
+        "quantity": "150g, halved"
+      },
+      {
+        "name": "Banana (firm, unripe)",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Coconut milk (full-fat)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1 tsp, grated"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Curry powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Turmeric",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "0.25 tsp (optional)"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "2 tbsp, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Season chicken breasts with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear chicken breasts 4-5 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add butter to the skillet.",
+      "Add finely diced onion. Cook 3-4 minutes until softened.",
+      "Add minced garlic and grated ginger. Cook 1 minute until fragrant.",
+      "Stir in curry powder, turmeric, and red pepper flakes. Cook 30 seconds.",
+      "Add diced apple and diced banana to the skillet. Cook 2-3 minutes, stirring occasionally.",
+      "Pour in coconut milk, chicken broth, and apple cider vinegar. Bring to a simmer.",
+      "Add halved cherries. Simmer 5-7 minutes, stirring occasionally, until sauce slightly thickens and fruits are tender.",
+      "Return chicken to the skillet, spooning sauce over it. Heat through for 1-2 minutes.",
+      "Serve chicken with sauce. Garnish with fresh chopped cilantro."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588.4,
+      "cholesterol_mg": 160.5,
+      "dietary_fiber_g": 3,
+      "protein_g": 56.4,
+      "saturated_fat_g": 15.1,
+      "sodium_mg": 707.8,
+      "total_carbs_g": 24.5,
+      "total_fat_g": 28.3,
+      "total_sugars_g": 15.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.9,
+      "cholesterol_mg": 42.3,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 14.8,
+      "saturated_fat_g": 4,
+      "sodium_mg": 186.3,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 11,
+      "protein": 113,
+      "saturated_fat": 75,
+      "sodium": 31,
+      "total_carbs": 9,
+      "total_fat": 36
+    },
+    "serving_size_g": 379.9,
+    "total_recipe_weight_g": 1519.5
+  },
+  {
+    "recipe_name": "Coffee-Rubbed Chicken with Goat Cheese Lime Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coffee-rubbed_chicken_with_goat_cheese_lime_sauce_20250624_173031_9960c647.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:30:31.982941000Z",
+    "selected_ingredients": [
+      "milk",
+      "goat cheese",
+      "goat milk",
+      "lime",
+      "coffee"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features a single pan-seared chicken breast, cooked to a golden-brown crust, positioned centrally on a clean white porcelain plate. The chicken is presented as a whole piece, showcasing its natural shape. A rich, creamy goat cheese lime sauce is artfully spooned alongside the chicken, creating a smooth, inviting pool. The sauce has a soft, off-white hue, contrasting with the chicken's darker, coffee-rubbed exterior. Fresh lime zest and finely chopped parsley are scattered over the sauce and chicken, adding vibrant green flecks and a bright aroma. The overall presentation is professional yet approachable, with moderate negative space on the plate. The setting is a modern bistro, with the plate resting on a simple wooden surface, accompanied by a folded cotton napkin and standard flatware. Natural, even lighting illuminates the scene, highlighting the dish's textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Finely ground coffee",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Goat milk",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Soft goat cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Lime, juice and zest",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Combine ground coffee, paprika, garlic powder, onion powder, salt, and pepper in a small bowl. Mix well.",
+      "Pat chicken breasts dry. Rub coffee spice mix generously onto chicken breasts.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 4-5 minutes per side until golden brown. Transfer skillet to preheated oven. Cook for 10-15 minutes, or until internal temperature reaches 75°C. Remove chicken from skillet. Rest on a cutting board.",
+      "Return skillet to medium heat. Add diced shallots to skillet. Sauté for 2-3 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the skillet. Reduce by half.",
+      "Stir in chicken stock, full-fat milk, and goat milk. Bring to a gentle simmer. Reduce heat to low.",
+      "Whisk in goat cheese until smooth and fully melted. Stir in lime juice and half of the lime zest. Season sauce with salt and pepper to taste.",
+      "Slice chicken breasts into thick chunks or serve whole. Plate chicken. Spoon goat cheese lime sauce over and around chicken. Garnish with remaining lime zest and chopped fresh parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 563,
+      "cholesterol_mg": 186,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 69.7,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 896,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 17.1,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 219,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 5,
+      "protein": 139,
+      "saturated_fat": 42,
+      "sodium": 39,
+      "total_carbs": 4,
+      "total_fat": 28
+    },
+    "serving_size_g": 408.4,
+    "total_recipe_weight_g": 1633.7
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Fillet, Pomme Puree, Roasted Bell Pepper, Red Wine Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_fillet%2C_pomme_puree%2C_roasted_bell_pepper%2C_red_wine_reduction_20250624_173030_e9e48850.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:30:31.052533000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "bell pepper"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a pristine, matte white bone china plate, allowing abundant negative space to highlight each component. A flowing, organic swathe of glossy, ivory pomme puree occupies the lower left quadrant. Nestled beside it, a perfectly seared, thick-cut beef fillet, exhibiting a deep mahogany crust and a hint of rosy interior, sits as the centerpiece. A few vibrant, ruby-red and sun-kissed yellow roasted bell pepper petals, their edges softly charred, are artfully arranged near the beef, adding a touch of natural color and form. A rich, dark red wine reduction forms a lustrous pool, partially embracing the beef and puree. A scattering of delicate micro arugula leaves or precisely cut chive batons provides a final, verdant accent. The overall composition is architectural, minimalist, and exudes refined elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Beef Fillet",
+    "ingredients": [
+      {
+        "name": "Beef Fillet",
+        "quantity": "4 x 180g portions"
+      },
+      {
+        "name": "Russet Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Yellow Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "3 small"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "High-Quality Beef Stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Thyme Sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Micro Arugula or Chive Batons",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Red Wine Reduction:",
+      "Finely chop shallots and garlic.",
+      "Heat 10ml olive oil in a small saucepan. Sauté shallots until translucent. Add garlic. Cook 1 minute.",
+      "Deglaze pan with red wine. Bring to a simmer. Reduce liquid by half.",
+      "Add beef stock. Continue simmering until sauce is syrupy and coats the back of a spoon. This takes 15-20 minutes.",
+      "Strain reduction through a fine-mesh sieve. Whisk in 20g cold butter. Season with salt and pepper. Keep warm.",
+      "Roasted Bell Pepper Petals:",
+      "Halve bell peppers. Remove seeds and membranes. Place skin-side up on a baking sheet.",
+      "Roast in a preheated oven at 200°C for 20-25 minutes, until skin is blistered and charred.",
+      "Transfer roasted peppers to a bowl. Cover tightly with cling film. Let steam 10 minutes.",
+      "Peel off skins. Cut bell pepper flesh into elegant, irregular 'petals'. Season lightly with salt. Keep warm.",
+      "Pomme Puree:",
+      "Peel and quarter potatoes. Place in a large pot. Cover with cold, salted water.",
+      "Bring to a boil. Cook potatoes until very tender, about 15-20 minutes.",
+      "Drain potatoes thoroughly. Pass through a ricer or fine-mesh sieve into a warm saucepan.",
+      "Heat remaining butter (80g) and heavy cream in a small pan until melted and warm.",
+      "Gradually whisk warm butter-cream mixture into the riced potatoes until smooth and silky. Do not overmix.",
+      "Season with salt and white pepper. Keep warm.",
+      "Pan-Seared Beef Fillet:",
+      "Pat beef fillets dry with paper towels. Season generously with salt and black pepper.",
+      "Heat remaining olive oil (20ml) in a heavy-bottomed, oven-safe pan over high heat until smoking.",
+      "Carefully place fillets in the hot pan. Sear for 3-4 minutes per side for medium-rare, or until desired doneness.",
+      "During the last minute of cooking, add a knob of butter, the thyme sprig, and a smashed garlic clove to the pan. Baste beef continuously with the melted butter.",
+      "Transfer beef fillets to a wire rack. Rest for 5-7 minutes.",
+      "Plating:",
+      "Spoon a generous, flowing dollop of pomme puree slightly off-center on each plate.",
+      "Carefully place a rested beef fillet beside the puree.",
+      "Artfully arrange a few roasted bell pepper petals near the beef, allowing natural shapes to emerge.",
+      "Drizzle a lustrous pool of red wine reduction around the beef and puree.",
+      "Garnish precisely with a few micro arugula leaves or chive batons."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 870.5,
+      "cholesterol_mg": 175.5,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 46.3,
+      "saturated_fat_g": 25.1,
+      "sodium_mg": 183.1,
+      "total_carbs_g": 41.4,
+      "total_fat_g": 53.9,
+      "total_sugars_g": 11.8,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.1,
+      "cholesterol_mg": 31.1,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.2,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 32.4,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.5,
+      "dietary_fiber": 25.8,
+      "protein": 92.6,
+      "saturated_fat": 125.6,
+      "sodium": 8,
+      "total_carbs": 15.1,
+      "total_fat": 69
+    },
+    "serving_size_g": 565,
+    "total_recipe_weight_g": 2260
+  },
+  {
+    "recipe_name": "Italian Sausage and Tomato Egg Drop Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_sausage_and_tomato_egg_drop_soup_20250624_173011_948265a8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:30:12.130640000Z",
+    "selected_ingredients": [
+      "egg",
+      "sausage",
+      "tomato",
+      "cheese",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of hearty Italian Sausage and Tomato Egg Drop Soup is presented in a clean, off-white ceramic bowl. The rich, deep red broth, simmered with San Marzano tomatoes and minced garlic, holds golden-brown crumbled Italian sausage pieces and delicate, silky strands of egg. The soup is generously garnished with a fresh sprinkle of finely grated Parmesan cheese, melting slightly into the warm broth, and a few vibrant green basil leaves, providing a fresh aromatic contrast. The bowl sits on a simple light wooden table. A silver soup spoon is placed to the right, and a neatly folded neutral-toned cotton napkin is positioned to the left. Natural, soft lighting illuminates the dish, highlighting its comforting textures and vibrant colors. Crusty Italian bread is subtly visible in the background, suggesting a traditional accompaniment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread, such as ciabatta or sourdough, for dipping.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Crushed San Marzano tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Freshly grated Parmesan cheese",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15 g, for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Remove sausage from casings. Crumble into a large pot or Dutch oven. Cook over medium-high heat until browned and cooked through. Break up any large pieces. Drain excess fat. Remove sausage and set aside.",
+      "Add olive oil to the same pot. Reduce heat to medium. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant. Do not brown.",
+      "Pour in crushed San Marzano tomatoes and broth. Stir well. Bring to a simmer.",
+      "Return cooked sausage to the pot. Season with salt and black pepper. Simmer for 15 minutes to allow flavors to meld.",
+      "In a small bowl, lightly whisk eggs. Slowly drizzle whisked eggs into the simmering soup in a thin stream, stirring gently with a fork or whisk to create delicate egg strands. Cook for 1-2 minutes until eggs are set.",
+      "Ladle soup into individual bowls. Garnish each serving with a generous sprinkle of freshly grated Parmesan cheese and a few fresh basil leaves. Serve immediately."
+    ],
+    "notes": [
+      "Use high-quality Italian sausage and San Marzano tomatoes for best flavor.",
+      "Adjust seasoning to taste before adding eggs."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 504.34,
+      "cholesterol_mg": 176.45,
+      "dietary_fiber_g": 3.01,
+      "protein_g": 29.75,
+      "saturated_fat_g": 13.15,
+      "sodium_mg": 1242.93,
+      "total_carbs_g": 15.59,
+      "total_fat_g": 36.92,
+      "total_sugars_g": 6.68,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 80.3,
+      "cholesterol_mg": 28.07,
+      "dietary_fiber_g": 0.48,
+      "protein_g": 4.73,
+      "saturated_fat_g": 2.09,
+      "sodium_mg": 197.77,
+      "total_carbs_g": 2.48,
+      "total_fat_g": 5.87,
+      "total_sugars_g": 1.06,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.8,
+      "dietary_fiber": 10.8,
+      "protein": 59.5,
+      "saturated_fat": 65.8,
+      "sodium": 54,
+      "total_carbs": 5.7,
+      "total_fat": 47.3
+    },
+    "serving_size_g": 628.7,
+    "total_recipe_weight_g": 2514.8
+  },
+  {
+    "recipe_name": "Zucchini, Chickpea, and Grilled Chicken Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zucchini%2C_chickpea%2C_and_grilled_chicken_salad_20250624_172946_4d952fd8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:29:46.915403000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A homely Zucchini, Chickpea, and Grilled Chicken Salad is presented on a simple, natural-toned ceramic plate, resting on a well-used wooden kitchen table. The dish features a generous mix of diced roasted zucchini, golden-brown grilled chicken cubes, firm beige chickpeas, vibrant halved red cherry tomatoes, and thinly sliced red onion. Fresh, bright green chopped parsley is scattered throughout, adding color and freshness. Crumbled white feta cheese provides a creamy contrast. The ingredients are casually arranged, allowing components to touch and overlap naturally, with a visible light lemon-herb vinaigrette coating the elements. The plate is adequately filled but not overcrowded, allowing negative space around the edges. Warm, cozy lighting from overhead kitchen fixtures illuminates the scene, enhancing the inviting, unpretentious atmosphere of a family meal. A simple fork and a casually placed cloth napkin complete the relaxed, home-style setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Zucchini",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Canned chickpeas",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 small"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "1/4 cup chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Dice zucchini into 2 cm cubes. Toss with 15 ml olive oil, 1/4 tsp salt, and 1/4 tsp black pepper. Spread on a baking sheet.",
+      "Roast zucchini for 15-20 minutes, or until tender and slightly browned. Set aside to cool.",
+      "Cut chicken breast into 2 cm cubes. Season with 1/2 tsp dried oregano, 1/2 tsp garlic powder, 1/4 tsp salt, and 1/4 tsp black pepper.",
+      "Heat 15 ml olive oil in a large skillet over medium-high heat. Add chicken cubes and cook for 6-8 minutes, stirring occasionally, until cooked through and an internal temperature of 75°C (167°F) is reached. Set aside to cool.",
+      "Rinse and drain canned chickpeas. Halve cherry tomatoes. Thinly slice red onion.",
+      "In a large bowl, combine cooled roasted zucchini, cooked chicken cubes, chickpeas, halved cherry tomatoes, thinly sliced red onion, and chopped fresh parsley.",
+      "For the dressing, whisk together remaining 30 ml olive oil, 30 ml lemon juice, 1/2 tsp dried oregano, and salt and black pepper to taste.",
+      "Pour dressing over the salad ingredients. Toss gently to combine.",
+      "Crumble feta cheese over the salad just before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 554.6,
+      "cholesterol_mg": 107,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 45.4,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 385,
+      "total_carbs_g": 35.9,
+      "total_fat_g": 25.7,
+      "total_sugars_g": 10.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134.5,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 11,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 93.5,
+      "total_carbs_g": 8.7,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36,
+      "dietary_fiber": 35,
+      "protein": 91,
+      "saturated_fat": 35,
+      "sodium": 17,
+      "total_carbs": 13,
+      "total_fat": 33
+    },
+    "serving_size_g": 412.3,
+    "total_recipe_weight_g": 1649.1
+  }
+]

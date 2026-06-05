@@ -1,0 +1,679 @@
+[
+  {
+    "recipe_name": "Pollo e Peperoni alla Romana with Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_114430_8eb275f1.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-04T11:44:31.148605000Z",
+    "selected_ingredients": [
+      "pasta",
+      "oregano",
+      "bell pepper",
+      "onion",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single portion of Pollo e Peperoni alla Romana served in a wide, shallow white porcelain bowl. The base consists of rigatoni pasta coated in a vibrant, glossy sauce of reduced white wine and chicken juices. Intermingled with the pasta are soft, julienned strips of red and yellow bell peppers and translucent red onion wedges showing light caramelization. Resting prominently on top are two whole, golden-brown pan-seared chicken thighs with visible crispy skin. The dish is garnished with scattered fresh oregano leaves and a drizzle of extra virgin olive oil. The setting is a dark wood bistro table with a clean cotton napkin. Natural light emphasizes the textures of the seared chicken and the silkiness of the pepper sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian (Roman)",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta to mop up the sauce",
+      "Pair with a crisp Italian white wine like Frascati",
+      "Enjoy as a 'Piatto Unico' combining protein and starch"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skin-on",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red and yellow bell peppers, julienned",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Red onion, sliced into wedges",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "3"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh oregano leaves",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken with salt and pepper.",
+      "Heat oil in a large pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip chicken and cook until internal temperature reaches 75°C.",
+      "Remove chicken and keep warm.",
+      "Add onions and peppers to the same pan.",
+      "Sauté vegetables until softened and slightly charred.",
+      "Add garlic and dried oregano. Cook 1 minute.",
+      "Pour in white wine. Scrape the pan bottom.",
+      "Add chicken stock. Simmer until liquid reduces by half.",
+      "Boil rigatoni in salted water until al dente.",
+      "Drain pasta and reserve 50 ml of pasta water.",
+      "Toss pasta with peppers and sauce. Add pasta water if needed to emulsify.",
+      "Divide pasta into bowls. Place whole chicken thighs on top.",
+      "Garnish with fresh oregano."
+    ],
+    "notes": [
+      "Always use skin-on chicken for maximum flavor and texture",
+      "Ensure the pasta water is as salty as the sea",
+      "Do not slice the chicken before serving to retain juices"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Deglazing",
+      "Emulsifying pasta sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 810,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 7,
+      "protein_g": 45,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 280,
+      "total_carbs_g": 87,
+      "total_fat_g": 31,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 158,
+      "cholesterol_mg": 27.3,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.8,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 54.6,
+      "total_carbs_g": 17,
+      "total_fat_g": 6,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 25,
+      "protein": 90,
+      "saturated_fat": 43,
+      "sodium": 12,
+      "total_carbs": 32,
+      "total_fat": 40
+    },
+    "serving_size_g": 512.5,
+    "total_recipe_weight_g": 2050
+  },
+  {
+    "recipe_name": "Mexican Charro Beans with Smoked Sausage and Charred Corn",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_084558_12031dbb.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-04T08:45:59.533590000Z",
+    "selected_ingredients": [
+      "corn",
+      "smoked sausage",
+      "bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A deep, rustic terracotta cazuela holds a hearty portion of Mexican Charro bean stew. The broth is a rich, opaque reddish-brown color, filled with tender, whole pinto beans. Large, 2cm thick chunks of browned smoked sausage and small bits of crispy bacon are distributed throughout the stew. Bright yellow corn kernels with distinct black char marks provide a vibrant visual contrast. The dish is finished with a generous scattering of freshly chopped green cilantro. The cazuela sits on a dark, weathered wooden table. A side of three warm, slightly charred corn tortillas is folded in a traditional woven basket. Fresh lime wedges and a small bowl of salsa verde are placed nearby. Natural window light creates a soft glow on the steam and the glossy surfaces of the sausage.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Warm corn tortillas",
+      "Fresh lime wedges",
+      "Salsa verde",
+      "Pickled jalapeños"
+    ],
+    "hero_ingredient": "Smoked Sausage",
+    "ingredients": [
+      {
+        "name": "Dried pinto beans",
+        "quantity": "400g"
+      },
+      {
+        "name": "Smoked sausage (cut into 2cm chunks)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh corn kernels",
+        "quantity": "200g"
+      },
+      {
+        "name": "Smoked bacon (diced)",
+        "quantity": "100g"
+      },
+      {
+        "name": "White onion (diced)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic (minced)",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Roma tomatoes (diced)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Jalapeño (seeded and minced)",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1 liter"
+      },
+      {
+        "name": "Fresh cilantro (chopped)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Soak pinto beans in water for 8 hours.",
+      "Drain beans. Place in a large pot with chicken stock.",
+      "Simmer beans for 90 minutes until tender.",
+      "Heat a dry skillet over high heat. Char corn kernels until dark spots appear. Remove.",
+      "Sauté diced bacon in a separate pan until crispy.",
+      "Add sausage chunks to the pan. Brown for 5 minutes.",
+      "Add onion, garlic, and jalapeño. Cook until soft.",
+      "Stir in tomatoes, oregano, and cumin. Cook for 5 minutes.",
+      "Combine sausage mixture and charred corn with the beans.",
+      "Simmer for 15 minutes to marry flavors.",
+      "Season with salt and pepper.",
+      "Stir in cilantro before serving."
+    ],
+    "notes": [
+      "Ensure beans are fully tender before adding the acidic tomato mixture.",
+      "Use a high-quality smoked sausage like Chorizo or Longaniza for authentic flavor.",
+      "The broth should be thick but not dry; add a splash of water if it reduces too much."
+    ],
+    "traditional_techniques": [
+      "charring",
+      "simmering",
+      "sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 803,
+      "cholesterol_mg": 81.3,
+      "dietary_fiber_g": 18.7,
+      "protein_g": 47.5,
+      "saturated_fat_g": 10.8,
+      "sodium_mg": 1929.5,
+      "total_carbs_g": 82.3,
+      "total_fat_g": 32,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146,
+      "cholesterol_mg": 14.8,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2,
+      "sodium_mg": 350.8,
+      "total_carbs_g": 15,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27.1,
+      "dietary_fiber": 66.8,
+      "protein": 95,
+      "saturated_fat": 54,
+      "sodium": 83.9,
+      "total_carbs": 29.9,
+      "total_fat": 41
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Pork in Salsa Roja",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_084222_0188095e.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-04T08:42:23.471551000Z",
+    "selected_ingredients": [
+      "pork",
+      "tomato",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A deep, wide terracotta bowl holds the Cerdo en Salsa Roja. The pork appears as large 3cm tender chunks, thoroughly coated in a thick, vibrant crimson sauce made from blended tomatoes and guajillo chilies. The sauce has a glossy, rich texture with visible specks of oregano. The dish is garnished with a sprig of fresh cilantro and a few rings of raw white onion. Beside the bowl sits a small stack of warm, folded corn tortillas on a linen napkin. The setting is a dark wood table under soft, natural light. A single portion is shown, emphasizing the rustic yet clean presentation with ample space around the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Warm corn tortillas",
+      "Mexican red rice",
+      "Refried beans",
+      "Lime wedges"
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, cut into 3cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Guajillo chilies, stems and seeds removed",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "White onion, quartered",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "2g"
+      },
+      {
+        "name": "Dried Mexican oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Water",
+        "quantity": "250ml"
+      }
+    ],
+    "instructions": [
+      "Cut pork into 3cm cubes and season with salt.",
+      "Toast guajillo chilies in a dry skillet over medium heat for 2 minutes.",
+      "Soak toasted chilies in hot water for 15 minutes until soft.",
+      "Boil tomatoes and onion in water for 10 minutes.",
+      "Blend boiled tomatoes, onion, garlic, and soaked chilies until completely smooth.",
+      "Heat oil in a heavy pot over medium-high heat.",
+      "Sear pork cubes in batches until browned on all sides.",
+      "Pour the blended salsa over the pork.",
+      "Add cumin and oregano.",
+      "Reduce heat to low and simmer for 45 minutes until meat is tender.",
+      "Adjust salt to taste before serving."
+    ],
+    "notes": [
+      "Ensure the sauce is blended very smooth to achieve a professional texture.",
+      "Sieve the sauce before adding to the meat if the chili skins remain coarse.",
+      "Use a heavy-bottomed pot to prevent the sauce from scorching during the braise."
+    ],
+    "traditional_techniques": [
+      "searing",
+      "braising",
+      "chili rehydration"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 591.5,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 38.1,
+      "saturated_fat_g": 14,
+      "sodium_mg": 1088.8,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 43.4,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161,
+      "cholesterol_mg": 40.8,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 10.4,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 296.3,
+      "total_carbs_g": 2.9,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 11.5,
+      "protein": 76.2,
+      "saturated_fat": 70,
+      "sodium": 47.3,
+      "total_carbs": 3.9,
+      "total_fat": 55.6
+    },
+    "serving_size_g": 367.5,
+    "total_recipe_weight_g": 1470
+  },
+  {
+    "recipe_name": "Tartiflette Savoyarde",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_083909_e13ef3b4.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-04T08:39:10.829332000Z",
+    "selected_ingredients": [
+      "potato",
+      "cheese",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion served in a small, round white ceramic gratin dish. The dish sits on a clean white porcelain dinner plate. The top features two large, thick chunks of Reblochon cheese with the characteristic orange-pink rind facing upward. The cheese is melted and bubbling, with charred golden-brown spots. Visible underneath are one centimeter thick potato rounds and small cubes of browned smoked lardons. Golden caramelized onion strips peek through the creamy sauce. A small sprig of fresh flat-leaf parsley provides a green accent. The setting is a modern bistro with a light oak wood table. A glass of white wine and a linen napkin are nearby. Natural side lighting highlights the creamy texture and bubbling surface.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Bistro",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp green salad tossed in a sharp vinaigrette",
+      "Pair with a chilled Apremont or Roussette de Savoie white wine",
+      "Serve with cornichons and pickled onions on the side"
+    ],
+    "hero_ingredient": "Reblochon Cheese",
+    "ingredients": [
+      {
+        "name": "Firm-fleshed potatoes (such as Charlotte)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Reblochon cheese",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Yellow onions, thinly sliced",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Smoked bacon lardons (small cubes)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Crème fraîche",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Dry white wine (Savoy region)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Boil potatoes in salted water for 15 minutes until tender but firm.",
+      "Drain potatoes and allow to cool slightly.",
+      "Peel potatoes and cut into 1 cm thick rounds.",
+      "Sauté lardons in a large pan over medium heat until fat renders and they turn golden.",
+      "Add sliced onions to the pan with the lardons.",
+      "Cook onions until soft and lightly caramelized.",
+      "Pour in white wine to deglaze the pan.",
+      "Simmer wine until the liquid is reduced by half.",
+      "Preheat oven to 200°C.",
+      "Rub a ceramic baking dish with the garlic clove and butter.",
+      "Layer half of the potato rounds in the bottom of the dish.",
+      "Spread half of the onion and lardon mixture over the potatoes.",
+      "Repeat layers with remaining potatoes and onion mixture.",
+      "Spoon crème fraîche evenly over the top.",
+      "Season with black pepper.",
+      "Slice the Reblochon cheese in half horizontally to create two circles.",
+      "Place cheese halves crust-side up on top of the potatoes.",
+      "Bake for 20 minutes until the cheese is melted, bubbling, and golden brown."
+    ],
+    "notes": [
+      "Do not remove the rind from the Reblochon as it provides essential flavor",
+      "Ensure potatoes are waxy varieties to prevent them from turning to mash",
+      "The dish should be served immediately while the cheese is fluid"
+    ],
+    "traditional_techniques": [
+      "gratiné",
+      "deglazing",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 904.5,
+      "cholesterol_mg": 190.75,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 36.95,
+      "saturated_fat_g": 35.25,
+      "sodium_mg": 1790,
+      "total_carbs_g": 52.25,
+      "total_fat_g": 58.6,
+      "total_sugars_g": 6.55,
+      "trans_fat_g": 0.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 180.18,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.37,
+      "protein_g": 7.36,
+      "saturated_fat_g": 7.02,
+      "sodium_mg": 356.57,
+      "total_carbs_g": 10.41,
+      "total_fat_g": 11.67,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.6,
+      "dietary_fiber": 24.6,
+      "protein": 73.9,
+      "saturated_fat": 176.3,
+      "sodium": 77.8,
+      "total_carbs": 19,
+      "total_fat": 75.1
+    },
+    "serving_size_g": 502,
+    "total_recipe_weight_g": 2008
+  },
+  {
+    "recipe_name": "Cantonese Claypot Rice with Chinese Sausage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_064306_38aeb78b.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-04T06:43:06.819765000Z",
+    "selected_ingredients": [
+      "chinese sausage",
+      "chicken stock",
+      "rice",
+      "dark soy sauce",
+      "ginger",
+      "shallot",
+      "oil",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "chinese cuisine",
+    "visual_description": "The dish is served in a traditional dark-textured ceramic claypot set on a rustic wooden table. The focal point is a mound of fluffy jasmine rice, featuring visible mahogany streaks from the dark soy sauce. Thick 1cm diagonal chunks of reddish-pink Chinese sausage are distributed across the surface, showing a glossy, rendered fat sheen. Fine 2cm julienne strips of pale yellow ginger and translucent softened shallots are scattered over the meat. Along the edges of the pot, a golden-brown, crispy rice crust is clearly visible. The composition is clean and centered, showing the entire pot. Natural side-lighting emphasizes the steam and the contrast between the white rice and dark sauce. A pair of dark wood chopsticks sits on a ceramic rest nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Cantonese",
+    "cultural_serving_suggestions": [
+      "Serve directly in the cooking claypot to maintain heat",
+      "Scrape the crispy rice crust (guo ba) from the bottom to share",
+      "Pair with blanched gai lan or bok choy",
+      "Serve with a side of chili oil or soy-marinated bird's eye chilies"
+    ],
+    "hero_ingredient": "Chinese sausage",
+    "ingredients": [
+      {
+        "name": "Jasmine rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Chinese sausage (Lap Cheong)",
+        "quantity": "4 links"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "30g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Rinse rice until water runs clear. Drain well.",
+      "Cut Chinese sausage into 1cm thick diagonal chunks.",
+      "Peel ginger and cut into fine julienne strips.",
+      "Peel and thinly slice shallots. Mince garlic cloves.",
+      "Heat oil in a heavy-bottomed pot or claypot over medium heat.",
+      "Sauté shallots and garlic for 2 minutes until fragrant.",
+      "Add rice to the pot. Stir to coat with oil for 1 minute.",
+      "Pour in chicken stock. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 10 minutes.",
+      "Place sausage chunks and ginger strips on top of the rice.",
+      "Cover and continue cooking for 8 minutes.",
+      "Increase heat to medium-high for 2 minutes to crisp the bottom rice.",
+      "Mix dark soy sauce, light soy sauce, and sugar in a small bowl.",
+      "Drizzle sauce over the rice and sausage. Cover for 2 minutes.",
+      "Remove from heat. Let stand for 5 minutes before serving."
+    ],
+    "notes": [
+      "The high sugar content in Chinese sausage helps create the caramelized crust.",
+      "Do not stir the rice during the final high-heat phase to ensure the crust forms properly."
+    ],
+    "traditional_techniques": [
+      "claypot cooking",
+      "rice crust formation (guo ba)",
+      "ginger julienne",
+      "aromatic oil infusion"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 640.3,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 14.6,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 1487.5,
+      "total_carbs_g": 91.1,
+      "total_fat_g": 22.6,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.6,
+      "calories": 232.8,
+      "cholesterol_mg": 9.1,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 5.3,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 540.9,
+      "total_carbs_g": 33.1,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 8.3,
+      "dietary_fiber": 5.4,
+      "protein": 29.2,
+      "saturated_fat": 34,
+      "sodium": 64.7,
+      "total_carbs": 33.1,
+      "total_fat": 34.8
+    },
+    "serving_size_g": 275,
+    "total_recipe_weight_g": 1100
+  }
+]

@@ -1,0 +1,678 @@
+[
+  {
+    "recipe_name": "Spicy Beef and Bean Rice Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_beef_and_bean_rice_skillet_20250623_131300_b83fd7ce.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:13:01.114628000Z",
+    "selected_ingredients": [
+      "beef",
+      "bell pepper",
+      "tomato",
+      "rice",
+      "garlic",
+      "pickled jalapeno chilies",
+      "bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Spicy Beef and Bean Rice Skillet is presented in a deep, earthy-toned ceramic bowl. The dish showcases well-browned ground beef mixed with fluffy rice, vibrant diced red and green bell peppers, and dark red kidney beans. Small, irregular pieces of beef are visible throughout. The rice is fully cooked and has absorbed the rich, savory, and subtly spicy tomato-based sauce, displaying natural, appealing colors. Textures are varied: tender beef, soft rice, and slightly firm beans. A sprinkle of fresh, chopped green cilantro rests on top, adding a bright color contrast. A bright green lime wedge is placed on the rim of the bowl. The bowl sits on a worn, dark wooden kitchen table, which shows natural grain and imperfections. A simple, casually placed off-white cloth napkin lies nearby. The scene is illuminated by warm, inviting kitchen lighting, creating a cozy and homely atmosphere. The entire bowl is visible, with ample negative space around it.",
+    "number_of_servings": 4,
+    "cuisine_type": "Tex-Mex",
+    "cultural_origin": "Tex-Mex",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn or flour tortillas for scooping.",
+      "Offer a side of tortilla chips for dipping.",
+      "Provide optional toppings such as sour cream, shredded cheese, or extra sliced pickled jalapenos."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Bell pepper",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned kidney beans",
+        "quantity": "400 g, rinsed and drained"
+      },
+      {
+        "name": "Pickled jalapeno chilies",
+        "quantity": "60 g, sliced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large, deep skillet over medium-high heat. Add ground beef. Brown beef, breaking it into small pieces with a spoon. Cook until no pink remains. Drain excess fat from the skillet.",
+      "Add diced onion and diced bell pepper to the skillet. Sauté 5-7 minutes, until vegetables soften.",
+      "Stir in minced garlic, chili powder, ground cumin, and dried oregano. Cook 1 minute, stirring constantly, until fragrant.",
+      "Add long-grain rice, crushed tomatoes, rinsed kidney beans, sliced pickled jalapeno chilies, and beef broth to the skillet. Stir well to combine all ingredients.",
+      "Increase heat to high. Bring the mixture to a rolling boil.",
+      "Reduce heat to low. Cover the skillet tightly with a lid. Simmer 20 minutes, or until rice is tender and most of the liquid is absorbed.",
+      "Remove skillet from heat. Let stand, covered, for 5 minutes. This allows the rice to finish steaming.",
+      "Remove lid. Fluff the rice mixture with a fork. Season with salt and black pepper to taste.",
+      "Serve hot in individual bowls. Garnish with fresh cilantro and a lime wedge."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 757,
+      "cholesterol_mg": 111,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 35.6,
+      "saturated_fat_g": 10.8,
+      "sodium_mg": 647,
+      "total_carbs_g": 79.6,
+      "total_fat_g": 32.8,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 5.7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 104,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 33,
+      "protein": 71,
+      "saturated_fat": 54,
+      "sodium": 28,
+      "total_carbs": 29,
+      "total_fat": 42
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  },
+  {
+    "recipe_name": "Salted Caramel Chocolate Tart",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_salted_caramel_chocolate_tart_20250623_131143_5e219dc1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:11:43.605339000Z",
+    "selected_ingredients": [
+      "flour",
+      "caramel",
+      "cream",
+      "cocoa powder",
+      "vanilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single clean wedge slice of a Salted Caramel Chocolate Tart is centrally plated on a round, clean white porcelain dinner plate. The tart features a crisp, dark chocolate crust that encases two distinct, smooth layers: a glossy, golden-amber salted caramel layer below a rich, dark chocolate ganache layer. The edges of the slice are sharp, clearly defining each layer. A light sprinkle of bright, crystalline flaky sea salt rests on the dark ganache. The plating is minimalist and elegant, showcasing the dessert’s refined textures and deep, complementary colors. The scene is set on a simple wooden table, accompanied by a silver fork and a folded cotton napkin beside the plate. Natural, even lighting illuminates the dish, with a softly blurred, casual restaurant-style background, maintaining focus on the tart’s sophisticated presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Caramel",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter, cold, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Large egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Ice water (if needed)",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Heavy cream, warmed",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Unsalted butter, room temperature, diced",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Flaky sea salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dark chocolate (70% cacao), chopped",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      }
+    ],
+    "instructions": [
+      "Combine flour, cocoa powder, powdered sugar, and salt in a food processor. Pulse to combine.",
+      "Add cold diced butter. Pulse until mixture resembles coarse crumbs.",
+      "Add egg yolk. Pulse until dough just comes together. If dry, add ice water, 5 ml at a time. Do not overmix.",
+      "Gather dough into a disc. Wrap tightly in plastic wrap. Refrigerate for 30 minutes.",
+      "Preheat oven to 180°C. Lightly butter a 22 cm tart pan with a removable bottom.",
+      "On a lightly floured surface, roll out dough to a 3 mm thickness. Transfer dough to the tart pan. Press into bottom and up the sides. Trim excess dough. Prick bottom with a fork.",
+      "Line crust with parchment paper. Fill with pie weights or dried beans. Blind bake for 15 minutes.",
+      "Remove weights and parchment. Continue baking for 5-7 minutes, until crust is dry and firm. Cool completely on a wire rack.",
+      "In a heavy-bottomed saucepan, combine 200g granulated sugar and 60ml water. Heat over medium-high, stirring until sugar dissolves. Stop stirring.",
+      "Boil until syrup turns deep amber. Do not burn.",
+      "Remove from heat. Slowly pour in warmed heavy cream, whisking constantly. Mixture will bubble vigorously.",
+      "Add diced butter and 5g sea salt. Whisk until smooth.",
+      "Pour caramel into the cooled tart crust. Cool at room temperature for 30 minutes, then refrigerate for 1 hour to set.",
+      "Place chopped dark chocolate in a heatproof bowl. Heat 150ml heavy cream in a small saucepan until simmering.",
+      "Pour hot cream over chocolate. Let sit for 2 minutes. Whisk gently until smooth and glossy.",
+      "Pour ganache over the set caramel layer in the tart. Gently tilt tart to spread ganache evenly.",
+      "Refrigerate tart for at least 3 hours, or until ganache is firm.",
+      "Remove tart from refrigerator 15 minutes before serving. Carefully remove from tart pan. Slice into 4 equal clean wedge slices. Serve each slice on a plate. Garnish with a sprinkle of flaky sea salt."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 71.3,
+      "calories": 1231,
+      "cholesterol_mg": 225.7,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 12.1,
+      "saturated_fat_g": 46.7,
+      "sodium_mg": 535.8,
+      "total_carbs_g": 127.5,
+      "total_fat_g": 75.5,
+      "total_sugars_g": 76.4,
+      "trans_fat_g": 2.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 28.2,
+      "calories": 486,
+      "cholesterol_mg": 89.2,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 4.8,
+      "saturated_fat_g": 18.5,
+      "sodium_mg": 211.7,
+      "total_carbs_g": 50.4,
+      "total_fat_g": 29.8,
+      "total_sugars_g": 30.2,
+      "trans_fat_g": 0.9
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 29,
+      "protein": 24,
+      "saturated_fat": 234,
+      "sodium": 23,
+      "total_carbs": 46,
+      "total_fat": 97
+    },
+    "serving_size_g": 253.1,
+    "total_recipe_weight_g": 1012.5
+  },
+  {
+    "recipe_name": "Pasta Amatriciana",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_amatriciana_20250623_131119_7e4caa6e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:11:19.487795000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of Pasta Amatriciana is presented in a clean, shallow white porcelain bowl. The bucatini pasta is glistening with the rich, vibrant red tomato sauce, which clings beautifully to each strand. Small, crisp cubes of golden-brown guanciale are visibly interspersed throughout the pasta, offering textural contrast. The dominant color is the deep, inviting red of the tomato sauce, accented by the golden-brown guanciale and flecks of green from freshly chopped parsley. The pasta is al dente, providing a firm bite, contrasted by the crispy guanciale and the smooth, emulsified sauce. A sprinkle of finely chopped fresh parsley and a light dusting of grated Pecorino Romano cheese sit atop the pasta. The bowl rests on a simple, light-colored wooden table surface, suggesting a modern bistro setting. A neatly folded white cotton napkin is placed beside the bowl. The lighting is natural and even, highlighting the dish's warmth and texture. The background is clean and slightly out of focus, maintaining focus on the food while suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping",
+      "Pair with a simple green salad"
+    ],
+    "hero_ingredient": "Guanciale",
+    "ingredients": [
+      {
+        "name": "Bucatini Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Guanciale",
+        "quantity": "150g"
+      },
+      {
+        "name": "Pecorino Romano Cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "San Marzano Canned Tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red Chili Flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Bring large pot of salted water to boil. Cook bucatini according to package directions until al dente. Reserve 250ml pasta water.",
+      "While pasta cooks, dice guanciale into 1cm cubes.",
+      "Heat large skillet over medium heat. Add diced guanciale. Cook until crispy and fat is rendered. Remove guanciale with slotted spoon. Set aside. Leave rendered fat in skillet.",
+      "Add finely diced red onion to skillet with guanciale fat. Cook until softened, about 5 minutes.",
+      "Add minced garlic and chili flakes. Cook 1 minute until fragrant.",
+      "Pour in white wine. Deglaze skillet, scraping up any browned bits. Simmer 2 minutes until wine reduces slightly.",
+      "Add crushed San Marzano tomatoes to skillet. Stir well. Bring to gentle simmer. Cook 15-20 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Add cooked guanciale back to sauce. Stir.",
+      "Drain pasta. Add pasta directly to sauce skillet. Add 100ml reserved pasta water. Toss vigorously to coat pasta.",
+      "Gradually add grated Pecorino Romano, tossing constantly, until sauce emulsifies and coats pasta. Add more pasta water if needed for desired consistency.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately. Garnish with fresh chopped parsley and extra Pecorino Romano."
+    ],
+    "notes": [
+      "Guanciale is cured pork jowl and is essential for authentic Amatriciana. Pancetta can be substituted but will alter the flavor profile."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecare"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 792.8,
+      "cholesterol_mg": 78.75,
+      "dietary_fiber_g": 5.26,
+      "protein_g": 26.77,
+      "saturated_fat_g": 15.19,
+      "sodium_mg": 1571.58,
+      "total_carbs_g": 83.3,
+      "total_fat_g": 37.71,
+      "total_sugars_g": 6.52,
+      "trans_fat_g": 0.33
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 253.6,
+      "cholesterol_mg": 25.19,
+      "dietary_fiber_g": 1.68,
+      "protein_g": 8.56,
+      "saturated_fat_g": 4.86,
+      "sodium_mg": 502.7,
+      "total_carbs_g": 26.65,
+      "total_fat_g": 12.06,
+      "total_sugars_g": 2.09,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26.25,
+      "dietary_fiber": 18.79,
+      "protein": 53.54,
+      "saturated_fat": 75.95,
+      "sodium": 68.33,
+      "total_carbs": 30.29,
+      "total_fat": 48.35
+    },
+    "serving_size_g": 312.63,
+    "total_recipe_weight_g": 1250.5
+  },
+  {
+    "recipe_name": "Pan-Seared Sirloin Steak with Red Wine Jus and Roasted Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_sirloin_steak_with_red_wine_jus_and_roasted_root_vegetables_20250623_131035_2a5fac44.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:10:36.271005000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A pan-seared sirloin steak, cooked medium-rare with a dark, crusty exterior, centers a clean, white porcelain plate. The steak is a thick, uncut piece, showcasing its juicy interior. Thick chunks of golden-brown roasted potatoes, vibrant orange carrots, and creamy parsnips are arranged alongside. Vegetables show caramelized surfaces and tender textures. A glossy, deep red-brown red wine jus drizzles over the steak, pooling subtly. A small fresh thyme sprig garnishes the dish. The plate rests on a simple wooden table with standard European silver flatware and a white cotton napkin. Natural, even lighting highlights textures and colors, against a softly blurred, casual bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Served with classic European flatware"
+    ],
+    "hero_ingredient": "Sirloin Steak",
+    "ingredients": [
+      {
+        "name": "Beef Sirloin Steaks",
+        "quantity": "4 x 200g pieces"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300g"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "200g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss carrots, parsnips, and potatoes (cut into thick chunks) with 30ml olive oil, roughly chopped rosemary, salt, and pepper on a baking tray. Roast for 30-40 minutes until tender and caramelized, flipping halfway.",
+      "Pat sirloin steaks dry with paper towels. Season generously with salt and pepper on all sides.",
+      "Heat remaining 30ml olive oil in a heavy-bottomed skillet over high heat until shimmering.",
+      "Carefully place steaks in hot skillet. Sear for 3-4 minutes per side for medium-rare, or longer for desired doneness.",
+      "Remove steaks from skillet. Transfer to a cutting board. Tent loosely with foil. Let rest for 10 minutes.",
+      "While steaks rest, reduce heat to medium. Add diced shallots to skillet. Sauté for 2 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Deglaze skillet with red wine. Scrape up any browned bits from bottom. Bring to a simmer. Reduce wine by half.",
+      "Pour in beef broth. Simmer for 5-7 minutes until sauce thickens slightly.",
+      "Remove skillet from heat. Whisk in butter until melted and incorporated. Taste and adjust seasoning.",
+      "Plate each steak alongside a portion of roasted root vegetables. Drizzle generously with red wine jus. Garnish with fresh thyme sprigs. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Deglazing",
+      "Reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 720.6,
+      "cholesterol_mg": 156.1,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 55.1,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 375.3,
+      "total_carbs_g": 37.4,
+      "total_fat_g": 34.3,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125.8,
+      "cholesterol_mg": 27.3,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9.6,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 65.5,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 25.6,
+      "protein": 110.1,
+      "saturated_fat": 58.8,
+      "sodium": 16.3,
+      "total_carbs": 13.6,
+      "total_fat": 44
+    },
+    "serving_size_g": 572.8,
+    "total_recipe_weight_g": 2291
+  },
+  {
+    "recipe_name": "Seared Beef Medallions with Root Vegetable Puree and Red Wine Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_beef_medallions_with_root_vegetable_puree_and_red_wine_reduction_20250623_131002_eb9c5d8c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:10:02.550750000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single seared beef medallion is placed on a clean white porcelain dinner plate, resting slightly beside a smooth, creamy mound of pale orange and yellow root vegetable puree. The beef, with a rich, dark brown crust from searing, shows a tender interior. A glossy, deep red wine reduction is artfully drizzled over the beef and around the plate, creating a professional, elegant frame. A sprinkle of vibrant green chopped fresh parsley adds a pop of color on the beef. The plate is presented on a simple wooden table surface, with standard modern flatware and a folded cotton napkin beside it. The overall presentation is clean and professional, with moderate negative space, highlighted by natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Beef Medallions",
+    "ingredients": [
+      {
+        "name": "Beef tenderloin medallions",
+        "quantity": "4 x 200g"
+      },
+      {
+        "name": "Carrots, peeled, 2cm chunks",
+        "quantity": "300g"
+      },
+      {
+        "name": "Parsnips, peeled, 2cm chunks",
+        "quantity": "200g"
+      },
+      {
+        "name": "Potatoes (Yukon Gold), peeled, 2cm chunks",
+        "quantity": "200g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Cold unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Prepare root vegetable puree: Place carrots, parsnips, and potatoes in a large pot. Cover with cold salted water. Bring to a boil. Cook until very tender, about 15-20 minutes. Drain vegetables thoroughly. Return to pot.",
+      "Mash vegetables with 50g unsalted butter and heavy cream until smooth. Season with salt and pepper. Keep warm.",
+      "Prepare red wine reduction: Heat a small saucepan over medium heat. Add a splash of olive oil. Sauté diced shallots until softened, about 3-4 minutes. Add minced garlic; cook for 1 minute until fragrant.",
+      "Pour in red wine. Bring to a simmer. Reduce by half, about 5-7 minutes. Add beef broth and thyme sprigs. Simmer until sauce coats the back of a spoon, about 10-15 minutes. Strain sauce through a fine-mesh sieve into a clean saucepan. Discard solids. Whisk in 30g cold unsalted butter until melted and glossy. Keep warm.",
+      "Sear beef medallions: Pat beef medallions dry with paper towels. Season generously with salt and pepper on all sides.",
+      "Heat olive oil in a large skillet over medium-high heat until shimmering. Carefully place beef medallions in the hot skillet. Sear for 3-4 minutes per side for medium-rare, or to desired doneness. Do not overcrowd the pan. Cook in batches if necessary.",
+      "Transfer seared beef to a cutting board. Rest for 5-7 minutes before serving.",
+      "Plate the dish: Spoon a generous portion of root vegetable puree onto the center of each plate. Place one seared beef medallion beside or slightly on top of the puree. Drizzle red wine reduction artfully over the beef and around the plate. Garnish with chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 884.03,
+      "cholesterol_mg": 242.5,
+      "dietary_fiber_g": 6.51,
+      "protein_g": 63.03,
+      "saturated_fat_g": 24.46,
+      "sodium_mg": 261.44,
+      "total_carbs_g": 32.6,
+      "total_fat_g": 50.92,
+      "total_sugars_g": 9.52,
+      "trans_fat_g": 1.79
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152.07,
+      "cholesterol_mg": 41.67,
+      "dietary_fiber_g": 1.12,
+      "protein_g": 10.83,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 44.92,
+      "total_carbs_g": 5.6,
+      "total_fat_g": 8.75,
+      "total_sugars_g": 1.63,
+      "trans_fat_g": 0.31
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80.83,
+      "dietary_fiber": 23.25,
+      "protein": 126.06,
+      "saturated_fat": 122.3,
+      "sodium": 11.37,
+      "total_carbs": 11.85,
+      "total_fat": 65.28
+    },
+    "serving_size_g": 582,
+    "total_recipe_weight_g": 2328
+  }
+]

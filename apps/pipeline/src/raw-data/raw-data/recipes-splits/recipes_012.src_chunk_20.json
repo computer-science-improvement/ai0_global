@@ -1,0 +1,620 @@
+[
+  {
+    "recipe_name": "Hearty Beef Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_stew_20250702_192412_9e4b2f5a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:24:13.224945000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of hearty beef stew is presented in a deep, rustic ceramic bowl with natural imperfections. The stew fills the bowl, showcasing tender, browned beef chunks, soft, chunky potatoes, and vibrant orange carrot pieces nestled in a rich, dark brown, slightly glossy gravy. The ingredients are naturally arranged, slightly overlapping, creating a comforting, unpretentious look. A scattering of fresh, bright green chopped parsley provides a functional garnish and a pop of color. The bowl sits on a well-used, warm-toned wooden dining table with visible grain. Beside the bowl, a simple, off-white ceramic plate holds a slice of crusty bread. A plain, folded linen napkin in a neutral tone and a sturdy, everyday metal fork are casually placed. Warm, cozy lighting from an overhead kitchen fixture illuminates the scene, highlighting the steam gently rising from the stew. The background hints at a lived-in kitchen, slightly blurred, maintaining focus on the food. Beef chuck is cut into 3-4 cm cubes, carrots into 2 cm chunks, and potatoes into 3 cm chunks.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "Serve with a simple green salad."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 3-4 cm cubes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large (approx. 200 g)"
+      },
+      {
+        "name": "Carrots, peeled and cut into 2 cm chunks",
+        "quantity": "3 medium (approx. 250 g)"
+      },
+      {
+        "name": "Potatoes, peeled and cut into 3 cm chunks",
+        "quantity": "4 medium (approx. 400 g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Red wine (optional)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh parsley, chopped (for garnish)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Do not overcrowd the pot. Remove beef and set aside.",
+      "Reduce heat to medium. Add diced onion and carrots to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic and tomato paste. Cook for 1 minute, stirring constantly.",
+      "Sprinkle flour over vegetables. Stir for 1 minute to cook off raw flour taste.",
+      "Pour in red wine (if using) and beef broth. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return seared beef to the pot. Add dried thyme and bay leaves.",
+      "Add potatoes. Ensure liquid covers most ingredients. Add more broth if needed.",
+      "Bring to a gentle simmer. Cover the pot.",
+      "Cook on low heat for 2-2.5 hours, or until beef is very tender. Stir occasionally.",
+      "Remove bay leaves before serving. Taste and adjust seasoning.",
+      "Ladle hot stew into bowls. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best flavor, brown the beef well in batches.",
+      "Stew can be made ahead and reheats well. Flavors often improve the next day."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 530,
+      "cholesterol_mg": 123,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 46.5,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 859,
+      "total_carbs_g": 39.3,
+      "total_fat_g": 18.2,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.4,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 137,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 22,
+      "protein": 93,
+      "saturated_fat": 28,
+      "sodium": 37,
+      "total_carbs": 14,
+      "total_fat": 23
+    },
+    "serving_size_g": 625.25,
+    "total_recipe_weight_g": 2501
+  },
+  {
+    "recipe_name": "Hearty Potato, Bacon, and Egg Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_potato%2C_bacon%2C_and_egg_skillet_20250702_191712_3625d67d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:17:12.712315000Z",
+    "selected_ingredients": [
+      "potato",
+      "bacon",
+      "onion",
+      "egg",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of \"Hearty Potato, Bacon, and Egg Skillet\" is presented on a round, sturdy ceramic plate with natural, earthy tones. The base consists of golden-brown diced potatoes, roughly 1.5 cm cubes, showing varied textures from crispy edges to tender interiors. Interspersed throughout are irregular pieces of pan-fried bacon, some curled and crisp, alongside translucent, softened diced onions. The ingredients are casually mounded, creating a comforting, unpretentious pile. On top, a perfectly cooked fried egg rests, its bright yellow yolk still slightly runny, surrounded by fully set white. Melted, gooey grated cheddar cheese cascades over parts of the egg and potato mixture, creating inviting streaks of warmth. A sprinkle of fresh, vibrant green chopped parsley adds a touch of color. The entire scene is set on a well-worn wooden dining table, illuminated by soft, warm kitchen lighting. A simple, slightly wrinkled cloth napkin is casually placed beside the plate. The overall impression is one of wholesome, satisfying home cooking, ready to be enjoyed.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of ketchup or hot sauce",
+      "Offer with toasted bread or biscuits",
+      "Pair with coffee or orange juice"
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "800 g, peeled and diced into 1.5 cm cubes"
+      },
+      {
+        "name": "Bacon",
+        "quantity": "200 g, diced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200 g), diced"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Cheddar Cheese",
+        "quantity": "150 g, grated"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "2 tablespoons (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Heat a large cast iron skillet or heavy-bottomed pan over medium heat. Add diced bacon. Cook until crispy.",
+      "Remove bacon with a slotted spoon. Reserve 2 tablespoons of bacon fat in the skillet. Discard excess fat. Add vegetable oil if needed.",
+      "Add diced potatoes to the skillet. Cook, stirring occasionally, for 15-20 minutes until tender and browned.",
+      "Add diced onion to the skillet with the potatoes. Cook for 8-10 minutes until onions are softened and lightly caramelized.",
+      "Return cooked bacon to the skillet with the potatoes and onions. Stir to combine. Season with salt and pepper.",
+      "Make four wells in the potato mixture. Crack one egg into each well.",
+      "Sprinkle grated cheese over the eggs and potato mixture.",
+      "Cover the skillet. Cook for 5-7 minutes, or until egg whites are set and yolks are to your desired doneness.",
+      "Remove from heat. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 735.5,
+      "cholesterol_mg": 273.4,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 38.8,
+      "saturated_fat_g": 17.2,
+      "sodium_mg": 1161,
+      "total_carbs_g": 40.9,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 184.8,
+      "cholesterol_mg": 68.7,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 9.7,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 291.7,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 11.5,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 91,
+      "dietary_fiber": 19,
+      "protein": 78,
+      "saturated_fat": 86,
+      "sodium": 50,
+      "total_carbs": 15,
+      "total_fat": 59
+    },
+    "serving_size_g": 398.1,
+    "total_recipe_weight_g": 1592.2
+  },
+  {
+    "recipe_name": "Homely Spanish Chicken and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homely_spanish_chicken_and_potato_stew_20250702_191634_494f60dc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:16:35.151785000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "potato",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of Homely Spanish Chicken and Potato Stew is presented in a deep, rustic ceramic bowl with a subtly chipped rim, reflecting everyday use. A golden-brown, seared chicken thigh, its skin slightly crisped, rests prominently amidst chunky, tender quartered potatoes and vibrant red bell pepper pieces. The rich, ruddy tomato-based sauce, flecked with diced onion and a hint of smoked paprika, coats all ingredients, creating a comforting, cohesive look. A scattering of fresh, bright green chopped parsley provides a simple, functional garnish. The bowl is set on a well-used, warm-toned wooden dining table. A simple, folded white cloth napkin and a traditional fork and spoon are casually placed beside the bowl. Natural, soft, warm light illuminates the scene, evoking a cozy, lived-in family kitchen atmosphere. The background is minimal, showing just a hint of a relaxed dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800 g)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, deep pan or Dutch oven over medium-high heat. Sear chicken thighs skin-side down until golden brown and crispy, about 5-7 minutes. Flip and sear for another 3 minutes. Remove chicken from pan. Set aside.",
+      "Reduce heat to medium. Add diced onion to the pan. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and diced red bell pepper. Cook for 3-4 minutes until fragrant and slightly softened.",
+      "Stir in smoked paprika. Cook for 1 minute, stirring constantly.",
+      "Add crushed tomatoes, chicken broth, and bay leaf. Bring to a simmer.",
+      "Return chicken thighs to the pan. Nestle them into the sauce.",
+      "Add peeled and quartered potatoes around the chicken.",
+      "Cover the pan. Reduce heat to low. Simmer for 25-30 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender. Stir occasionally to prevent sticking.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 685,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 43.3,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 484,
+      "total_carbs_g": 36.4,
+      "total_fat_g": 41,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 103,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.5,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 73,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.7,
+      "dietary_fiber": 23.1,
+      "protein": 86.6,
+      "saturated_fat": 49,
+      "sodium": 21,
+      "total_carbs": 13.2,
+      "total_fat": 52.6
+    },
+    "serving_size_g": 666,
+    "total_recipe_weight_g": 2665
+  },
+  {
+    "recipe_name": "Hearty Chicken and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_potato_stew_20250702_190654_cdab9c3d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:06:55.334430000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "potato",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty chicken and potato stew is presented in a rustic, deep ceramic bowl on a well-used wooden dining table. The stew features two golden-brown chicken thighs, cooked until tender, nestled among substantial chunks of soft, pale yellow potatoes. Diced red tomatoes and translucent onion pieces are visible within the rich, savory, reddish-brown broth. The surface of the stew is lightly speckled with vibrant green chopped fresh parsley. The chicken skin is slightly crinkled, showing its slow-cooked texture. The broth has a natural, slightly viscous consistency, clinging to the ingredients. The bowl is placed slightly off-center on a simple, slightly worn, off-white ceramic plate. A simple fork and spoon rest beside the bowl. Warm, soft kitchen light illuminates the scene, highlighting the comforting textures and colors of the home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Cooking",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 (about 800g), bone-in, skin-on"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g, cut into large chunks"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, chopped"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry. Season chicken with salt and pepper.",
+      "Heat olive oil in a large pot over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden brown, about 5-7 minutes. Flip. Sear other side 3 minutes. Remove chicken from pot.",
+      "Add chopped onions to pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in diced tomatoes, chicken broth, dried thyme, and bay leaf. Bring mixture to a simmer.",
+      "Add potato chunks to pot. Return chicken to pot. Ensure chicken is mostly submerged in liquid.",
+      "Reduce heat to low. Cover pot. Simmer 30-40 minutes.",
+      "Cook until chicken internal temperature reaches 75°C and potatoes are tender.",
+      "Remove bay leaf. Taste and adjust seasoning as needed.",
+      "Garnish with fresh chopped parsley. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 668,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 6,
+      "protein_g": 44.2,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 428,
+      "total_carbs_g": 38.1,
+      "total_fat_g": 37.8,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 105.8,
+      "cholesterol_mg": 28.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 67.8,
+      "total_carbs_g": 6,
+      "total_fat_g": 6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 21.4,
+      "protein": 88.4,
+      "saturated_fat": 45.5,
+      "sodium": 18.6,
+      "total_carbs": 13.9,
+      "total_fat": 48.5
+    },
+    "serving_size_g": 631,
+    "total_recipe_weight_g": 2524
+  },
+  {
+    "recipe_name": "Rustic Potato and Tomato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_potato_and_tomato_bake_20250702_190507_220ab59e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:05:08.730346000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "potato",
+      "garlic",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented as a generous single portion on a clean, round white porcelain plate. Thick-cut potato rounds and tomato wedges are layered and roasted, creating a rustic, slightly uneven mound. The potatoes exhibit golden-brown edges from roasting, with some pieces showing tender, creamy interiors. Vibrant red tomato wedges are interspersed, some softened and slightly blistered, adding bursts of color. Deeply caramelized onion slices, rich golden-brown, are visible throughout the layers, adding depth. Fresh green thyme sprigs are nestled among the vegetables, providing a verdant contrast. The overall texture is a mix of crisp edges and tender centers. A cotton napkin in a neutral tone is folded beside the plate, with traditional silver flatware positioned for dining. The setting is a simple wooden bistro table, illuminated by soft, natural, even lighting, with a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Rustic",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the pan juices."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg, peeled, cut into 1 cm thick rounds"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "500 g, cut into thick wedges"
+      },
+      {
+        "name": "Large Onions",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, thinly sliced"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "1 large bunch (about 15-20 sprigs)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "5 g, freshly ground"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Heat 15 ml olive oil in a large oven-safe pan or Dutch oven over medium heat. Add sliced onions. Cook slowly for 20-25 minutes until deeply caramelized and tender. Remove onions and set aside.",
+      "In a large bowl, combine potato rounds, tomato wedges, sliced garlic, and half of the fresh thyme sprigs. Drizzle with remaining 45 ml olive oil. Season with salt and black pepper. Toss gently to coat.",
+      "Arrange half of the potato mixture evenly in the bottom of the same pan or a large baking dish. Spread half of the caramelized onions over the potatoes.",
+      "Layer remaining potato mixture over onions. Top with remaining caramelized onions. Pour vegetable stock over the mixture.",
+      "Place remaining fresh thyme sprigs on top.",
+      "Bake for 45-60 minutes, or until potatoes are tender and golden brown on top. Liquid should be mostly absorbed.",
+      "Serve hot directly from the baking dish or portion onto plates."
+    ],
+    "notes": [
+      "Adjust baking time based on potato thickness and oven.",
+      "For extra flavor, a touch of red wine can be added with the stock."
+    ],
+    "traditional_techniques": [
+      "Caramelizing onions"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 398,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 1059,
+      "total_carbs_g": 62.9,
+      "total_fat_g": 14.6,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 69,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 1.4,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 183,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 2.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 36,
+      "protein": 16,
+      "saturated_fat": 10,
+      "sodium": 46,
+      "total_carbs": 23,
+      "total_fat": 19
+    },
+    "serving_size_g": 577,
+    "total_recipe_weight_g": 2308
+  }
+]

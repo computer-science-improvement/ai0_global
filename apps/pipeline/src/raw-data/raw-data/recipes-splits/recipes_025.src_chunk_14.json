@@ -1,0 +1,636 @@
+[
+  {
+    "recipe_name": "Rigatoni ai Carciofi e Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rigatoni_ai_carciofi_e_mozzarella_20250623_132334_140d752f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:23:35.343713000Z",
+    "selected_ingredients": [
+      "pasta",
+      "cheese",
+      "artichoke",
+      "mozzarella"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Rigatoni ai Carciofi e Mozzarella is presented in a clean, shallow white porcelain pasta bowl. The rigatoni is piled loosely in the center, showcasing its ridged texture. Visible among the pasta are golden-browned artichoke hearts and strands of melted, stretchy mozzarella clinging to the rigatoni. Specks of vibrant green chopped parsley are distributed throughout the dish, adding fresh color. A light dusting of finely grated Parmigiano-Reggiano crowns the top, along with a small sprig of fresh parsley. The bowl sits on a simple, light wooden table surface. A neatly folded white cotton napkin is placed to the left, with standard silver flatware to the right. Natural, even lighting highlights the dish, with a subtly blurred, modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread for soaking up the sauce.",
+      "Pair with a simple green salad dressed with olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Artichoke hearts (canned or jarred, drained)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh mozzarella, diced",
+        "quantity": "250g"
+      },
+      {
+        "name": "Parmigiano-Reggiano, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Pancetta, diced (optional)",
+        "quantity": "80g"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of heavily salted water to a rolling boil.",
+      "Add rigatoni. Cook according to package directions until al dente. Reserve 250ml pasta cooking water before draining pasta.",
+      "While pasta cooks, heat olive oil in a large sauté pan over medium heat. Add diced pancetta, if using. Cook until crisp. Remove pancetta from pan and set aside.",
+      "Add minced garlic to the same pan. Sauté for 1 minute until fragrant.",
+      "Add drained artichoke hearts to the pan. Sauté for 5-7 minutes until lightly browned. Deglaze with white wine, if using. Cook until wine evaporates.",
+      "Add the cooked rigatoni to the pan with the artichokes. Add 150ml of the reserved pasta water.",
+      "Add diced fresh mozzarella, grated Parmigiano-Reggiano, and unsalted butter. Stir vigorously, adding more pasta water as needed, until cheese melts and a creamy sauce emulsifies, coating the pasta.",
+      "Stir in chopped fresh parsley. Season with sea salt and freshly ground black pepper to taste.",
+      "Serve immediately, garnished with reserved crisp pancetta, if used."
+    ],
+    "notes": [
+      "Using good quality fresh mozzarella and aged Parmigiano-Reggiano will significantly enhance the dish's flavor and texture."
+    ],
+    "traditional_techniques": [
+      "Mantecatura (emulsifying pasta with cheese, fat, and pasta water to create a creamy sauce)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 868.6,
+      "cholesterol_mg": 93.6,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 45.7,
+      "saturated_fat_g": 19.5,
+      "sodium_mg": 1363.8,
+      "total_carbs_g": 84.1,
+      "total_fat_g": 40.5,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.8,
+      "cholesterol_mg": 18.5,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 269.9,
+      "total_carbs_g": 16.6,
+      "total_fat_g": 8,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 21,
+      "protein": 91,
+      "saturated_fat": 98,
+      "sodium": 59,
+      "total_carbs": 31,
+      "total_fat": 52
+    },
+    "serving_size_g": 505.5,
+    "total_recipe_weight_g": 2022
+  },
+  {
+    "recipe_name": "Hearty Beef and Bell Pepper Rice Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_bell_pepper_rice_skillet_20250623_132324_35974da7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:23:24.918866000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "rice",
+      "bell pepper",
+      "oil",
+      "parmesan cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of Hearty Beef and Bell Pepper Rice Skillet rests on a simple, off-white ceramic plate. Tender, browned 2cm diced beef cubes intersperse among fluffy, savory long-grain white rice. Brightly colored 2cm diced red and green bell peppers are visible, along with softened diced onion and minced garlic. The mixture has a rich, reddish-brown hue, with a natural, slightly moist texture. Freshly grated Parmesan cheese melts gently over the top. A scattering of bright green chopped fresh parsley provides a functional garnish. The components are naturally piled, creating a comforting, unpretentious mound. The plate sits on a well-used wooden dining table. A casual, folded off-white cloth napkin is beside the plate. Warm, inviting light enhances the homely, lived-in atmosphere of a family kitchen table. A simple fork rests near the plate. The overall presentation is modest and approachable, showcasing expertly prepared home cooking.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "hero_ingredient": "Diced Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or stewing beef",
+        "quantity": "500g, diced into 2cm cubes"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large, diced into 2cm pieces"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large, diced into 2cm pieces"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g (undrained)"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Freshly grated Parmesan cheese",
+        "quantity": "50g, plus extra for serving"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped (for garnish, optional)"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large, deep skillet or Dutch oven over medium-high heat.",
+      "Add diced beef to the hot skillet. Brown beef on all sides, about 5-7 minutes. Remove beef from skillet and set aside.",
+      "Reduce heat to medium. Add diced onion and diced bell peppers to the skillet. Cook, stirring occasionally, until softened, about 6-8 minutes.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Stir in long-grain white rice, canned diced tomatoes (undrained), beef broth, dried oregano, salt, and black pepper.",
+      "Return browned beef to the skillet. Bring the mixture to a simmer.",
+      "Reduce heat to low, cover the skillet, and cook for 20-25 minutes, or until rice is tender and most liquid is absorbed. Stir occasionally to prevent sticking.",
+      "Remove skillet from heat. Stir in 50g of grated Parmesan cheese until melted and combined.",
+      "Let stand, covered, for 5 minutes before serving.",
+      "Serve warm, topped with additional grated Parmesan cheese and chopped fresh parsley if desired."
+    ],
+    "notes": [
+      "Ensure beef is well-browned for maximum flavor before adding other ingredients."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 626,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 41.7,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 1199,
+      "total_carbs_g": 65.8,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 98,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.6,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 188,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32.8,
+      "dietary_fiber": 18.8,
+      "protein": 83.4,
+      "saturated_fat": 38.9,
+      "sodium": 52.1,
+      "total_carbs": 23.9,
+      "total_fat": 28.4
+    },
+    "serving_size_g": 637,
+    "total_recipe_weight_g": 2547
+  },
+  {
+    "recipe_name": "Braised Chicken with Bell Peppers and Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_bell_peppers_and_tomatoes_20250623_132247_7095980c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:22:47.978916000Z",
+    "selected_ingredients": [
+      "bell pepper",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of braised chicken served in a shallow white porcelain bowl. Two whole, golden-brown chicken thighs rest atop a vibrant, chunky sauce of red and yellow bell pepper batons and softened diced tomatoes. The sauce is glossy and deep red, showing visible bits of sautéed onion and garlic. A light sprinkle of finely chopped flat-leaf parsley adds a fresh green contrast. The dish is placed on a dark wood bistro table. Beside the bowl sits a small plate with a thick slice of crusty rustic bread and a clean cotton napkin. The lighting is natural and soft, highlighting the moist texture of the chicken skin and the silky consistency of the peppers.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty rustic bread for dipping",
+      "Pair with a glass of Spanish Tempranillo",
+      "Present in a traditional terracotta cazuela"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Red bell peppers, cut into batons",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Yellow bell peppers, cut into batons",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Tomatoes, diced",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Smoked paprika (Pimentón)",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a large pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from the pan and set aside.",
+      "Add diced onions and bell pepper batons to the pan.",
+      "Sauté for 8 minutes until softened.",
+      "Stir in minced garlic and smoked paprika. Cook for 1 minute.",
+      "Add diced tomatoes and white wine. Deglaze the pan.",
+      "Pour in chicken stock. Return chicken to the pan.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Uncover and simmer for 10 minutes to thicken the sauce.",
+      "Confirm chicken internal temperature reaches 75°C.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Use high-quality smoked Spanish paprika for authentic depth",
+      "Do not remove the chicken skin as it flavors the braising liquid",
+      "Ensure the sauce reduces until it coats the back of a spoon"
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 491,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 31.7,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 489,
+      "total_carbs_g": 19.4,
+      "total_fat_g": 29.5,
+      "total_sugars_g": 10.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 84,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 5.4,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 84,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 17.1,
+      "protein": 63.4,
+      "saturated_fat": 35.5,
+      "sodium": 21.3,
+      "total_carbs": 7.1,
+      "total_fat": 37.8
+    },
+    "serving_size_g": 585,
+    "total_recipe_weight_g": 2340
+  },
+  {
+    "recipe_name": "Rustic Skillet Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_skillet_chicken_and_rice_20250623_132205_57376147.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:22:06.105542000Z",
+    "selected_ingredients": [
+      "chicken",
+      "thyme",
+      "rice",
+      "garlic",
+      "bell pepper",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Rustic Skillet Chicken and Rice is presented on a simple, off-white ceramic plate. Diced chicken chunks, tender rice, vibrant red bell pepper strips, and earthy sliced mushrooms are naturally mixed together, forming a comforting, cohesive mound. The chicken pieces are golden-brown from searing, contrasting with the soft, fluffy texture of the rice. Bell pepper strips retain a slight crispness, while mushrooms are deeply browned. A few fresh thyme leaves are scattered over the top, adding a pop of green and aromatic freshness. The dish sits on a well-used dark wooden dining table, with a simple grey linen napkin and a silver fork placed casually beside the plate. Warm, natural light illuminates the scene, highlighting the inviting textures and colors of the home-cooked meal.",
+    "number_of_servings": 2,
+    "cuisine_type": "Rustic American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "2 (approx. 300g)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "350ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Dice chicken into 2-3 cm chunks. Season with salt and pepper.",
+      "Slice bell pepper into thin strips. Slice mushrooms. Mince garlic. Remove thyme leaves from sprigs, chop half, keep remaining sprigs whole.",
+      "Heat olive oil in a large skillet or deep pan over medium-high heat. Add chicken chunks. Sear until golden brown on all sides. Remove chicken from skillet. Set aside.",
+      "Add bell pepper and sliced mushrooms to the same skillet. Sauté for 5-7 minutes until softened and lightly browned.",
+      "Add minced garlic and chopped thyme to the skillet. Sauté for 1 minute until fragrant.",
+      "Stir in the rice. Cook for 1 minute, stirring to coat the grains.",
+      "Pour in chicken broth. Scrape any browned bits from the bottom of the skillet. Bring to a simmer.",
+      "Return seared chicken chunks to the skillet. Add whole thyme sprigs. Stir gently.",
+      "Reduce heat to low. Cover the skillet tightly. Simmer for 18-20 minutes, or until rice is tender and most liquid is absorbed. Ensure chicken reaches an internal temperature of 75°C.",
+      "Remove from heat. Let stand, covered, for 5 minutes. Remove whole thyme sprigs.",
+      "Fluff the rice and chicken mixture with a fork. Taste and adjust seasoning if needed. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 593.6,
+      "cholesterol_mg": 126,
+      "dietary_fiber_g": 4.67,
+      "protein_g": 36.93,
+      "saturated_fat_g": 3.96,
+      "sodium_mg": 211.4,
+      "total_carbs_g": 70.36,
+      "total_fat_g": 17.92,
+      "total_sugars_g": 5.44,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 104.4,
+      "cholesterol_mg": 22.17,
+      "dietary_fiber_g": 0.82,
+      "protein_g": 6.5,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 37.19,
+      "total_carbs_g": 12.38,
+      "total_fat_g": 3.15,
+      "total_sugars_g": 0.96,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 16.7,
+      "protein": 73.9,
+      "saturated_fat": 19.8,
+      "sodium": 9.2,
+      "total_carbs": 25.6,
+      "total_fat": 23
+    },
+    "serving_size_g": 568.4,
+    "total_recipe_weight_g": 1136.8
+  },
+  {
+    "recipe_name": "Fermented Crab & Okra Stuffed Eggplant",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_crab_%26_okra_stuffed_eggplant_20250623_132002_bfe49285.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:20:03.469977000Z",
+    "selected_ingredients": [
+      "crab",
+      "okra",
+      "beer",
+      "mayonnaise",
+      "eggplant"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, halved eggplant, deeply roasted, sits on a minimalist, unglazed natural ceramic plate. Its deep purple skin contrasts with the vibrant, abundant filling. The stuffing is a harmonious mix of tender crab meat, its white and pink hues visible, interspersed with bright green, crisp-tender okra rounds and soft, golden-brown diced eggplant flesh. A rich, reddish-orange Beer-Fermented Chili Sauce is artfully drizzled over the stuffed eggplant. Beside it, a dollop of smooth, off-white Zero-Waste Aioli provides a cool, contrasting element. The dish is garnished simply with fresh, finely chopped green herbs. The presentation is clean, highlighting natural textures and colors. A light, reclaimed wood surface, soft natural light, and a simple undyed linen napkin complete the eco-conscious setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Large eggplants",
+        "quantity": "2 (about 600g total)"
+      },
+      {
+        "name": "Fresh crab meat",
+        "quantity": "250g, picked clean"
+      },
+      {
+        "name": "Okra",
+        "quantity": "150g, trimmed, sliced into 1cm rounds"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Fresh breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh herbs (e.g., parsley, cilantro)",
+        "quantity": "15g, chopped for garnish"
+      },
+      {
+        "name": "Red chilies (e.g., Fresno or Serrano)",
+        "quantity": "100g, roughly chopped (for Beer-Fermented Chili Sauce)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves (for Beer-Fermented Chili Sauce)"
+      },
+      {
+        "name": "Unpasteurized beer",
+        "quantity": "150ml (e.g., a sour or saison, for Beer-Fermented Chili Sauce)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g (for Beer-Fermented Chili Sauce)"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g (for Beer-Fermented Chili Sauce)"
+      },
+      {
+        "name": "Whey or kraut juice",
+        "quantity": "15ml (starter for fermentation, for Beer-Fermented Chili Sauce)"
+      },
+      {
+        "name": "Aquafaba (chickpea brine)",
+        "quantity": "60ml (from a can of chickpeas, for Zero-Waste Aioli)"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5ml (for Zero-Waste Aioli)"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "5ml (for Zero-Waste Aioli)"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "180ml (for Zero-Waste Aioli)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "A pinch (for Zero-Waste Aioli)"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Chili Sauce (at least 5-7 days in advance): Combine chilies, garlic, beer, salt, sugar, and whey/kraut juice in a clean jar. Stir well. Seal with an airlock lid or burp daily. Ferment at room temperature for 5-7 days, or until desired tanginess. Blend until smooth. Store in the refrigerator.",
+      "Prepare Zero-Waste Aioli: Combine aquafaba, Dijon, vinegar, and salt in a blender. Blend until foamy. Slowly drizzle in oil while blending until emulsified and thick like mayonnaise. Refrigerate.",
+      "Prepare Eggplants: Preheat oven to 200°C. Halve eggplants lengthwise. Score the flesh in a crosshatch pattern. Brush with olive oil, season with salt and pepper. Roast cut-side up for 20-25 minutes until tender.",
+      "Scoop Eggplant: Once cooled slightly, scoop out the eggplant flesh, leaving a 1cm border. Dice the scooped flesh. Reserve skins.",
+      "Cook Filling: Heat remaining olive oil in a pan. Sauté diced onion until translucent, about 5 minutes. Add minced garlic and diced eggplant flesh; cook for 7-10 minutes until soft.",
+      "Add Crab and Okra: Stir in crab meat and sliced okra. Cook for 3-5 minutes until okra is tender-crisp. Add breadcrumbs and vegetable stock. Simmer for 2 minutes until liquid is absorbed. Season with salt and pepper.",
+      "Stuff Eggplants: Fill reserved eggplant skins evenly with the crab and okra mixture.",
+      "Bake Stuffed Eggplants: Return stuffed eggplants to the oven. Bake for 10-15 minutes until heated through and lightly golden on top.",
+      "Serve: Plate one stuffed eggplant half per person. Drizzle with Beer-Fermented Chili Sauce. Dollop with Zero-Waste Aioli. Garnish with fresh chopped herbs."
+    ]
+  }
+]

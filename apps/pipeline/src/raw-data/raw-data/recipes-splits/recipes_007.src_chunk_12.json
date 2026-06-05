@@ -1,0 +1,617 @@
+[
+  {
+    "recipe_name": "Ziegenkäse Mousse, Weißwein-Port Gelée, Rote Bete",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ziegenk%C3%A4se_mousse%2C_wei%C3%9Fwein-port_gel%C3%A9e%2C_rote_bete_20250903_000056_628d975f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T00:00:57.049994000Z",
+    "selected_ingredients": [
+      {
+        "name": "goat cheese"
+      },
+      {
+        "name": "white port"
+      },
+      {
+        "name": "beet"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single Ziegenkäse Mousse quenelle, pristine white and delicately textured, sits off-center on a round, modern designer bone china plate. Around it, translucent, pale golden Weißwein-Port Gelée pieces are scattered with intentional asymmetry, catching the light. Vibrant crimson Rote Bete Fluid Gel is artfully dotted in organic shapes across the plate, contrasting sharply with the white porcelain. Roughly chopped Kandierte Walnüsse provide an earthy brown accent and textural counterpoint. A thin, crisp shard of Rote Bete Tuile stands elegantly, providing height and a delicate, almost architectural element. The composition is minimalist and flowing, with abundant negative space. The plate rests on a cool grey marble surface, accompanied by polished German stainless steel flatware and a precisely folded white linen napkin. Dramatic professional lighting casts soft shadows, emphasizing the textures and colors against an ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "hero_ingredient": "Goat Cheese",
+    "ingredients": [
+      {
+        "name": "Fresh goat cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Gelatin leaves",
+        "quantity": "2 sheets (approx. 4 g)"
+      },
+      {
+        "name": "White Port wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Gelatin leaves",
+        "quantity": "1 sheet (approx. 2 g)"
+      },
+      {
+        "name": "Beetroot juice (freshly pressed)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "1.5 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Walnut halves",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Beetroot puree",
+        "quantity": "40 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "For the Ziegenkäse Mousse: Soak 2 gelatin leaves in cold water. Whip heavy cream to soft peaks. In a separate bowl, combine goat cheese and 30 g sugar. Gently warm 20 ml cream, squeeze excess water from gelatin, dissolve gelatin in warm cream. Fold dissolved gelatin cream into goat cheese mixture. Gently fold in whipped cream. Pipe into desired molds or small ramekins. Chill for at least 3 hours.",
+      "For the Weißwein-Port Gelée: Soak 1 gelatin leaf in cold water. Gently warm white port with 20 g sugar until sugar dissolves. Squeeze excess water from gelatin, dissolve gelatin in warm port. Pour into a shallow dish to a thickness of 0.5 cm. Chill until set, about 2 hours. Cut into small, irregular pieces.",
+      "For the Rote Bete Fluid Gel: Combine beetroot juice, agar-agar, and 5 g sugar in a small saucepan. Bring to a simmer, whisking constantly for 2 minutes. Remove from heat, stir in lemon juice. Pour into a shallow container. Chill until firm. Blend the firm gel in a high-speed blender until completely smooth and fluid. Pass through a fine sieve. Transfer to a squeeze bottle. Keep chilled.",
+      "For the Kandierte Walnüsse: In a small saucepan, combine 30 g sugar and 15 ml water. Bring to a boil, stirring until sugar dissolves. Add walnuts, stir until liquid evaporates and sugar crystallizes onto walnuts. Transfer to parchment paper to cool. Chop roughly.",
+      "For the Rote Bete Tuile: Preheat oven to 150°C (300°F). Line a baking sheet with silicone mat. Whisk beetroot puree, flour, melted butter, and powdered sugar until smooth. Spread very thinly onto the silicone mat using an offset spatula. Bake for 8-10 minutes, or until crisp. Cool completely, then break into shards.",
+      "To plate: Unmold Ziegenkäse Mousse. Place one mousse on each plate. Arrange a few irregular pieces of Weißwein-Port Gelée around the mousse. Dot the plate artfully with Rote Bete Fluid Gel. Scatter Kandierte Walnüsse. Insert a Rote Bete Tuile shard vertically into the mousse or beside it. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Mise en place",
+      "Geliertechnik",
+      "Tempering"
+    ]
+  },
+  {
+    "recipe_name": "Hearty Pasta with Braised Meats and Cherry Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_pasta_with_braised_meats_and_cherry_tomato_sauce_20250902_225155_e2981381.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T22:51:56.173750000Z",
+    "selected_ingredients": [
+      "cherry",
+      "chicken",
+      "tomato",
+      "bread",
+      "potato",
+      "onion",
+      "sausage",
+      "pasta",
+      "beef",
+      "bacon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of rigatoni pasta is presented centrally on a clean, round white porcelain plate. The al dente pasta is thoroughly coated in a rich, glossy, reddish-brown sauce. Visible within the sauce are golden-seared chicken chunks, crumbled browned Italian sausage, finely crumbled ground beef, and crispy diced bacon. Halved, slightly burst red cherry tomatoes and soft caramelized onion pieces are interspersed throughout. The dish is garnished simply with vibrant green fresh basil leaves and a dusting of finely grated Parmesan cheese. The arrangement is natural and inviting, with moderate negative space around the pasta. A thick slice of crusty artisanal bread rests beside the plate. A folded white cotton napkin completes the modern bistro table setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty artisanal bread for dipping into the rich sauce."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Ground beef",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Italian sausage, casing removed",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Smoked bacon",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh cherries, pitted and halved",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Dry red wine (e.g., Chianti)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "4 slices"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm chunks. Season with salt and pepper.",
+      "Dice bacon into 1 cm pieces.",
+      "Heat 15 ml olive oil in a large pot or Dutch oven over medium-high heat. Add bacon. Cook until crispy. Remove bacon with a slotted spoon; set aside. Reserve rendered fat.",
+      "Add ground beef and crumbled sausage to the pot with bacon fat. Brown thoroughly, breaking up meat. Drain excess fat. Remove meat; set aside.",
+      "Add remaining 15 ml olive oil to the pot. Add chicken chunks. Sear until golden brown on all sides. Cook until no pink remains and internal temperature reaches 75°C. Remove chicken; set aside.",
+      "Add diced onion to the pot. Sauté until softened and lightly caramelized, about 8-10 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Deglaze the pot, scraping up any browned bits. Reduce by half.",
+      "Stir in crushed tomatoes, halved cherry tomatoes, and halved fresh cherries. Bring to a simmer.",
+      "Return browned beef, sausage, and seared chicken to the pot. Add crispy bacon. Stir to combine. Season with salt and pepper.",
+      "Reduce heat to low. Simmer gently, covered, for at least 30 minutes to allow flavors to meld. Stir occasionally.",
+      "While sauce simmers, cook rigatoni pasta according to package instructions until al dente.",
+      "Drain pasta. Add directly to the sauce. Toss well to coat.",
+      "Serve immediately, garnished with fresh basil and grated Parmesan cheese. Serve with crusty bread."
+    ],
+    "notes": [
+      "A touch of sugar or balsamic vinegar can balance the sauce's acidity and sweetness if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1162,
+      "cholesterol_mg": 190.4,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 58.6,
+      "saturated_fat_g": 15.4,
+      "sodium_mg": 1629.5,
+      "total_carbs_g": 106.8,
+      "total_fat_g": 50.2,
+      "total_sugars_g": 16.5,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156,
+      "cholesterol_mg": 25.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.9,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 218.3,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.5,
+      "dietary_fiber": 27.2,
+      "protein": 117.3,
+      "saturated_fat": 77.1,
+      "sodium": 70.9,
+      "total_carbs": 38.8,
+      "total_fat": 64.3
+    },
+    "serving_size_g": 746.8,
+    "total_recipe_weight_g": 2987
+  },
+  {
+    "recipe_name": "Pollo alla Cacciatora with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_with_pappardelle_20250902_224103_af0b5ae2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T22:41:03.837670000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented in a wide, shallow white porcelain bowl. The foundation is a bed of broad, al dente pappardelle ribbons thoroughly coated in a vibrant, chunky tomato sauce. Three large, succulent chunks of seared chicken thigh are nestled atop the pasta, displaying a rich, golden-brown caramelized crust. Visible within the sauce are softened julienned onions and whole, blistered cherry tomatoes. Small flecks of fresh rosemary and cracked black pepper garnish the dish. The plating is clean with moderate negative space around the rim. It sits on a dark wood bistro table with a neutral linen napkin and polished silver fork under soft, natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with warm crusty ciabatta bread to mop up the sauce.",
+      "Pair with a crisp Italian white wine like Vermentino or Pinot Grigio.",
+      "Provide a small bowl of freshly grated Pecorino Romano for dusting."
+    ],
+    "hero_ingredient": "Seared chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless and skinless, cut into 5cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned San Marzano crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow onion, julienned",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Fresh rosemary, finely chopped",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Sea salt and black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry with paper towels.",
+      "Season chicken generously with salt and pepper.",
+      "Heat 30ml olive oil in a wide skillet over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides.",
+      "Remove chicken from the skillet and set aside.",
+      "Add remaining olive oil and julienned onion to the same skillet.",
+      "Sauté onion 6 minutes until softened and translucent.",
+      "Stir in minced garlic and rosemary for 1 minute.",
+      "Pour in white wine and scrape the bottom of the pan to deglaze.",
+      "Add crushed tomatoes, cherry tomatoes, and chicken stock.",
+      "Return chicken to the skillet and submerge in the sauce.",
+      "Reduce heat to low and simmer for 20 minutes.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Boil pappardelle in salted water until al dente.",
+      "Drain pasta and reserve 60ml of cooking water.",
+      "Toss pasta with the sauce and reserved water over low heat until glossy.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Using San Marzano tomatoes provides the authentic sweetness required for this sauce.",
+      "Ensure the pasta is tossed in the sauce for one minute to achieve the perfect mantecatura consistency."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1343,
+      "cholesterol_mg": 232.3,
+      "dietary_fiber_g": 12,
+      "protein_g": 78.4,
+      "saturated_fat_g": 17,
+      "sodium_mg": 1238,
+      "total_carbs_g": 143.9,
+      "total_fat_g": 53.3,
+      "total_sugars_g": 17.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146,
+      "cholesterol_mg": 25.3,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 134.9,
+      "total_carbs_g": 15.7,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 77.4,
+      "dietary_fiber": 42.9,
+      "protein": 156.9,
+      "saturated_fat": 85.1,
+      "sodium": 53.8,
+      "total_carbs": 52.3,
+      "total_fat": 68.4
+    },
+    "serving_size_g": 917.5,
+    "total_recipe_weight_g": 3670
+  },
+  {
+    "recipe_name": "Honey Mousse with Orange Gel and Spiced Walnuts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_honey_mousse_with_orange_gel_and_spiced_walnuts_20250902_200153_3f4f26b0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T20:01:53.896824000Z",
+    "selected_ingredients": [
+      {
+        "name": "honey"
+      },
+      {
+        "name": "orange zest"
+      },
+      {
+        "name": "walnut"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single, elegantly plated dessert portion rests on a pristine white bone china plate. A perfectly formed quenelle of pale golden honey mousse anchors the composition, positioned slightly off-center. Adjacent to the mousse, a vibrant swipe of smooth, glistening orange gel provides a striking color contrast and a clean line. A small, artfully arranged cluster of deep brown, roughly chopped spiced walnuts adds textural intrigue and a subtle height element. The walnuts feature a glossy, candied finish. The overall presentation is minimalist, emphasizing abundant negative space. Colors are natural and sophisticated: the creamy pale gold of the mousse, the intense orange of the gel, and the rich brown of the walnuts. The textures are distinctly varied: smooth, creamy mousse, silky gel, and crunchy walnuts. The setting features a white Carrara marble surface, a crisp white linen napkin folded precisely, and dramatic professional lighting casting soft shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "hero_ingredient": "Honey",
+    "ingredients": [
+      {
+        "name": "Heavy cream",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "2 (2g each)"
+      },
+      {
+        "name": "Orange juice (freshly squeezed)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "For the Honey Mousse: Soak gelatin sheets in cold water for 5 minutes. Whip 200 ml heavy cream to soft peaks. Set aside.",
+      "Heat 50 g honey gently until warm. Whisk egg yolks in a heatproof bowl. Slowly temper warm honey into egg yolks, whisking constantly.",
+      "Set bowl over a bain-marie. Whisk until mixture thickens and reaches 80°C. Remove from heat. Squeeze excess water from gelatin. Stir into warm egg yolk mixture until dissolved.",
+      "Fold whipped cream into the honey-egg yolk mixture in two additions. Pour mousse into desired molds or a shallow dish. Chill for at least 4 hours or until set.",
+      "For the Orange Gel: Combine orange juice, 50 g sugar, and agar-agar in a small saucepan. Bring to a boil, whisking constantly. Boil for 1 minute. Pour into a shallow dish. Chill until set, about 1 hour.",
+      "Once set, cut the orange gel into small, irregular pieces or blend until smooth. Keep chilled.",
+      "For the Spiced Walnuts: Combine 50 g honey, 30 ml water, and cinnamon in a small saucepan. Bring to a simmer. Add walnuts. Cook, stirring, until liquid evaporates and walnuts are coated.",
+      "Spread walnuts on parchment paper. Let cool completely. They will become crunchy. Roughly chop some for garnish.",
+      "To Assemble: Gently unmold the honey mousse. Place one portion on each plate. Arrange orange gel pieces or a swipe of smooth gel alongside the mousse. Sprinkle spiced walnuts over and around the mousse. Serve immediately."
+    ],
+    "notes": [
+      "For a cleaner presentation, pipe the mousse into silicone molds for perfect shapes.",
+      "Ensure agar-agar is fully dissolved for a smooth gel texture."
+    ]
+  },
+  {
+    "recipe_name": "Potato-Apple Terrine, Malted Beer Gel, Vanilla Crème",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato-apple_terrine%2C_malted_beer_gel%2C_vanilla_cr%C3%A8me_20250902_200100_b172cbae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T20:01:01.124912000Z",
+    "selected_ingredients": [
+      {
+        "name": "beer"
+      },
+      {
+        "name": "potato"
+      },
+      {
+        "name": "oil"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "The dish presents a minimalist, architectural composition on a pristine white bone china plate. A single, precisely cut rectangular slice of Potato-Apple Terrine, approximately 2 cm wide by 8 cm long, with distinct, alternating layers of pale potato and slightly darker apple, forms the focal point, positioned slightly off-center. Its edges are clean and sharp, showcasing expert knife work. Beside the terrine, a few artfully placed, translucent amber dots or a delicate line of Malted Beer Gel provide a contrasting deep hue and glossy texture. A small, elegant pool of creamy, pale yellow Vanilla Bean Crème Anglaise nestles gracefully at the base, its smooth surface inviting. A single, irregularly shaped, golden-brown Crisp Potato Tuile, light and airy, stands upright or leans delicately against the terrine, adding a vertical element and a textural counterpoint. The plate features abundant negative space, enhancing the visual impact of each component. The overall palette is subtle, with warm golden and amber tones, complemented by the creamy yellow and the crisp white of the plate. The setting is a luxurious, grey-veined marble surface, with a crisp, precisely folded white linen napkin. Dramatic professional lighting creates soft shadows, highlighting the dish's contours and textures against an ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "A small, chilled glass of German Bierbrand (beer schnapps) could be offered as an optional digestif."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "waxy potatoes (e.g., Annabelle or Charlotte), peeled",
+        "quantity": "200 g"
+      },
+      {
+        "name": "firm apples (e.g., Honeycrisp or Braeburn), peeled, cored",
+        "quantity": "200 g"
+      },
+      {
+        "name": "light German lager or pilsner",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "vanilla bean, split, scraped",
+        "quantity": "1"
+      },
+      {
+        "name": "agar-agar powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "dark German beer (e.g., Dunkel or Schwarzbier)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "malt extract",
+        "quantity": "20 g"
+      },
+      {
+        "name": "sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "agar-agar powder",
+        "quantity": "1 g"
+      },
+      {
+        "name": "whole milk",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "heavy cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "40 g"
+      },
+      {
+        "name": "vanilla bean, split, scraped",
+        "quantity": "1/2"
+      },
+      {
+        "name": "potato starch",
+        "quantity": "20 g"
+      },
+      {
+        "name": "all-purpose flour",
+        "quantity": "10 g"
+      },
+      {
+        "name": "unsalted butter, melted",
+        "quantity": "20 g"
+      },
+      {
+        "name": "water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "neutral oil (e.g., rapeseed oil) for frying",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "Slice potatoes and apples very thinly, 1 mm thick, using a mandoline. Combine beer, 50 g sugar, 1 vanilla bean, and pinch of salt in a saucepan. Bring to a simmer. Add 5 g agar-agar, whisk until dissolved. Layer potato and apple slices alternately in a small, parchment-lined loaf pan (approx. 15x5 cm). Pour warm beer mixture over layers. Press firmly. Chill for at least 4 hours, or overnight, until set.",
+      "Combine dark beer, malt extract, and 5 g sugar in a small saucepan. Bring to a simmer. Add 1 g agar-agar, whisk until dissolved. Pour into a shallow dish. Chill until set. Once firm, blend until smooth and gel-like. Pass through a fine sieve. Store in a squeeze bottle.",
+      "In a saucepan, combine milk, cream, and 1/2 vanilla bean. Heat until simmering. In a bowl, whisk egg yolks and 40 g sugar until pale. Gradually temper hot milk mixture into egg yolks, whisking constantly. Return mixture to saucepan. Cook over low heat, stirring constantly, until sauce thickens and coats the back of a spoon (82-85°C). Do not boil. Strain through a fine sieve. Chill.",
+      "Whisk potato starch, flour, melted butter, water, 10 g sugar, and pinch of salt until smooth. Heat neutral oil in a small pan to 170°C. Drop small spoonfuls of batter into hot oil. Fry until golden and crisp. Drain on paper towels.",
+      "Unmold terrine. Cut into 4 equal, precise rectangular slices. Place one slice off-center on each plate. Create a few artistic dots or a delicate line of malted beer gel next to the terrine. Gently spoon a pool of chilled vanilla bean crème anglaise beside the terrine. Carefully place one crisp potato tuile standing upright or elegantly leaning against the terrine."
+    ],
+    "notes": [
+      "For best results, ensure all terrine ingredients are sliced uniformly thin.",
+      "The malted beer gel can be prepared ahead and stored in the refrigerator.",
+      "The crème anglaise should be smooth and pourable, not too thick."
+    ]
+  }
+]

@@ -1,0 +1,722 @@
+[
+  {
+    "recipe_name": "Creamy Chicken and Orzo Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_orzo_bites_20250626_094438_17d73f83.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:44:38.725614000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Eight to twelve golden-brown Creamy Chicken and Orzo Bites are casually arranged on a rustic wooden serving board. The spherical bites are crispy on the outside, with some showing glimpses of the creamy orzo, shredded chicken, and melted mozzarella within. A light dusting of finely chopped fresh parsley adds a vibrant green contrast. The board sits on a well-used, light wooden kitchen table. A simple, folded white cloth napkin is casually placed beside the board. Warm, soft lighting illuminates the scene, creating a cozy and inviting atmosphere. The background is minimally blurred, suggesting a homely family kitchen setting, keeping the focus entirely on the comforting food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American Comfort",
+    "cultural_serving_suggestions": [
+      "Served warm with a side of simple marinara sauce for dipping."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Cooked chicken breast, shredded",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Orzo pasta",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Mozzarella cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable oil for frying",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh parsley, finely chopped",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Sauté diced onion in a large pan until translucent. Add minced garlic and cook for 1 minute.",
+      "Stir in orzo pasta. Pour in chicken broth. Bring to a simmer.",
+      "Cook orzo until al dente and most liquid is absorbed, stirring occasionally. Cool completely.",
+      "In a large bowl, combine cooled orzo, shredded chicken, grated mozzarella, grated Parmesan, egg, salt, and pepper. Mix well.",
+      "Form the mixture into 8-12 uniform, bite-sized balls.",
+      "Set up a breading station: one shallow dish with flour, one with beaten egg, and one with panko breadcrumbs.",
+      "Dredge each ball in flour, then dip in egg, then coat thoroughly in panko breadcrumbs.",
+      "Heat vegetable oil in a deep pot to 175°C (350°F).",
+      "Fry the orzo bites in batches until golden brown and cooked through. Ensure internal temperature reaches 75°C (167°F).",
+      "Remove with a slotted spoon and drain on a wire rack lined with paper towels.",
+      "Garnish with finely chopped fresh parsley before serving."
+    ],
+    "notes": [
+      "Ensure the orzo mixture is fully cooled before shaping; this prevents the bites from falling apart.",
+      "Do not overcrowd the frying pot; fry in batches to maintain oil temperature and ensure even cooking."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 682,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 34.9,
+      "saturated_fat_g": 7.9,
+      "sodium_mg": 786,
+      "total_carbs_g": 60.9,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 244,
+      "cholesterol_mg": 42.9,
+      "dietary_fiber_g": 1,
+      "protein_g": 12.5,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 281.1,
+      "total_carbs_g": 21.8,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 10,
+      "protein": 70,
+      "saturated_fat": 40,
+      "sodium": 34,
+      "total_carbs": 22,
+      "total_fat": 36
+    },
+    "serving_size_g": 279.5,
+    "total_recipe_weight_g": 1118
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Thighs with Garlic-Rosemary Potatoes and Caramelized Onion Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_thighs_with_garlic-rosemary_potatoes_and_caramelized_onion_jus_20250626_094429_99f382ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:44:29.933781000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken thigh, its skin deeply golden and crisp, rests prominently on a clean white porcelain plate. Beside it, a neat cluster of golden-brown roasted potato cubes, each approximately 2 cm, displays a slightly charred exterior and tender appearance. A rich, glossy caramelized onion jus, made from thinly sliced onions, is artfully spooned over the chicken and around the base of the potatoes, creating a warm, inviting pool of deep amber. A small, vibrant sprig of fresh rosemary adds a touch of green. The overall presentation is balanced and organized, with moderate negative space. The dish is set on a simple wooden table, accompanied by a folded grey cotton napkin and classic silver flatware, illuminated by soft, natural light from the side, with a subtly blurred bistro-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "French-Inspired",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a vinaigrette.",
+      "Offer crusty baguette slices to soak up the delicious jus."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold or Desiree)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and cut potatoes into 2 cm cubes. Peel and mince garlic. Finely chop one rosemary sprig.",
+      "In a large bowl, toss potato cubes with 30 ml olive oil, minced garlic, chopped rosemary, 5 ml salt, and 2 ml black pepper. Spread potatoes in a single layer on a large baking tray.",
+      "Roast potatoes for 25-30 minutes, or until tender and golden brown. Flip halfway through.",
+      "Pat chicken thighs very dry with paper towels. Season generously with salt and black pepper on all sides.",
+      "Heat remaining 30 ml olive oil in a large oven-safe skillet over medium-high heat until shimmering.",
+      "Place chicken thighs skin-side down in the hot skillet. Sear for 8-10 minutes until skin is deeply golden and crispy. Do not move chicken during this time.",
+      "Flip chicken thighs. Transfer skillet to the preheated oven with the potatoes. Roast for 15-20 minutes, or until chicken reaches an internal temperature of 75°C.",
+      "Remove chicken from skillet and set aside on a cutting board to rest for 5 minutes. Keep warm.",
+      "While chicken rests, prepare the jus. Thinly slice yellow onions. Add sliced onions to the same skillet with chicken drippings. Sauté over medium heat for 10-12 minutes, stirring occasionally, until deeply caramelized and dark golden brown.",
+      "Pour chicken stock into the skillet. Bring to a simmer, scraping up any browned bits from the bottom. Reduce heat to low and simmer for 5-7 minutes, or until the liquid has slightly thickened.",
+      "Remove skillet from heat. Whisk in butter until melted and incorporated. Season jus with additional salt and pepper to taste.",
+      "To plate, arrange a portion of roasted potato cubes on a clean white porcelain dinner plate. Place one chicken thigh beside the potatoes. Spoon a generous amount of caramelized onion jus over the chicken and around the potatoes. Garnish with a small fresh rosemary sprig."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Roasting",
+      "Deglazing",
+      "Making a jus"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 801,
+      "cholesterol_mg": 196.1,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 41.9,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 182.8,
+      "total_carbs_g": 46.7,
+      "total_fat_g": 50.2,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133.6,
+      "cholesterol_mg": 32.7,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 30.5,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 23,
+      "protein": 84,
+      "saturated_fat": 69,
+      "sodium": 8,
+      "total_carbs": 17,
+      "total_fat": 64
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2399
+  },
+  {
+    "recipe_name": "Agnolotti del Plin, Smoked Provolone Brodo, Broccoli Rabe Essence",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_agnolotti_del_plin%2C_smoked_provolone_brodo%2C_broccoli_rabe_essence_20250626_094417_65fd1daa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:44:17.559763000Z",
+    "selected_ingredients": [
+      "pasta",
+      "broccoli rabe",
+      "smoked provolone cheese",
+      "spinach",
+      "ricotta"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on an exquisite, pristine white bone china plate. Five to seven perfectly formed Agnolotti del Plin, their pale yellow pasta glistening, are artfully clustered slightly off-center. A shallow, luminous pool of crystal-clear smoked provolone brodo cradles the pasta, its depth revealing the brodo's clarity. A vibrant emerald-green drizzle of broccoli rabe essence oil elegantly swirls through the brodo, creating a striking color contrast. Two or three delicate, shatteringly crisp spinach leaves are strategically placed to add height and textural intrigue. The composition embraces abundant negative space, emphasizing each element's precision and beauty. The plate rests on a polished white Carrara marble surface, complemented by a precisely folded crisp white linen napkin. Dramatic, focused lighting casts subtle, intentional shadows, highlighting the dish's refined simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "hero_ingredient": "Agnolotti",
+    "ingredients": [
+      {
+        "name": "00 flour",
+        "quantity": "300g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh ricotta, drained",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "100g"
+      },
+      {
+        "name": "Parmigiano-Reggiano, finely grated",
+        "quantity": "30g"
+      },
+      {
+        "name": "Freshly grated nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "High-quality clear vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Smoked provolone cheese, 1cm cubes",
+        "quantity": "100g"
+      },
+      {
+        "name": "Shallot, finely sliced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Celery stalk, finely sliced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Carrot, finely sliced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Fresh broccoli rabe, tough stems removed",
+        "quantity": "150g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh spinach leaves, washed and dried",
+        "quantity": "20g"
+      },
+      {
+        "name": "Neutral oil for deep frying",
+        "quantity": "300ml"
+      }
+    ],
+    "instructions": [
+      "Prepare the Smoked Provolone Brodo: Combine broth, smoked provolone cubes, finely sliced shallot, celery, carrot, bay leaf, and peppercorns in a saucepan. Bring to a gentle simmer over low heat. Do not boil. Simmer for 30 minutes. Strain the brodo through a fine-mesh sieve lined with cheesecloth. Discard solids. Season the clear brodo with salt. Keep warm.",
+      "Prepare the Agnolotti Dough: Sift flour onto a clean work surface. Make a well in the center. Crack eggs into the well. Add salt. Gradually incorporate flour into eggs with a fork. Knead dough for 10-15 minutes until smooth and elastic. Wrap dough in plastic film. Rest at room temperature for 30 minutes.",
+      "Prepare the Agnolotti Filling: Blanch spinach in boiling salted water for 30 seconds. Drain immediately. Plunge into ice water. Squeeze spinach very dry. Finely chop the spinach. In a bowl, combine drained ricotta, chopped spinach, Parmigiano-Reggiano, nutmeg, salt, and pepper. Mix well.",
+      "Form the Agnolotti: Divide pasta dough into four portions. Keep unused portions covered. Roll one portion through a pasta machine, gradually thinning to setting 7 (or second to last setting). The pasta sheet should be very thin. Place small dollops (approx. 1/2 teaspoon) of filling along one edge of the pasta sheet, 2cm apart. Fold the pasta sheet over the filling to enclose it. Press firmly around each dollop to seal. Using a fluted pasta wheel or knife, cut between each agnolotto, leaving a small border. Pinch the top edge of each agnolotto firmly to create the 'plin' (pinch). Place finished agnolotti on a lightly floured tray. Repeat with remaining dough and filling.",
+      "Prepare the Broccoli Rabe Essence Oil: Blanch broccoli rabe florets in boiling salted water for 1 minute. Drain and immediately plunge into ice water. Squeeze very dry. Blend blanched broccoli rabe with neutral oil and a pinch of salt until very smooth. Strain the mixture through a fine-mesh sieve lined with cheesecloth or a super bag. Press firmly to extract all oil. Discard solids. The oil should be a vibrant green. Set aside.",
+      "Prepare the Crispy Spinach: Heat neutral oil in a small saucepan to 170°C. Carefully add a few spinach leaves at a time. They will crisp quickly (10-15 seconds). Remove with a slotted spoon. Drain on paper towels. Season lightly with salt.",
+      "Cook and Plate: Bring a large pot of salted water to a rolling boil. Carefully add agnolotti. Cook for 2-3 minutes, or until al dente and floating. Using a slotted spoon, transfer 15-20 agnolotti per plate. Arrange agnolotti artfully on each warm plate, leaving abundant white space. Ladle a small amount (approx. 60-80ml) of warm smoked provolone brodo around the agnolotti. Drizzle a few drops of the vibrant broccoli rabe essence oil over the agnolotti and brodo. Garnish with 2-3 crispy spinach leaves. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Plin (pinch) for agnolotti",
+      "Brodo (broth making)",
+      "Al dente cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 884,
+      "cholesterol_mg": 210.2,
+      "dietary_fiber_g": 4.93,
+      "protein_g": 32.06,
+      "saturated_fat_g": 13.07,
+      "sodium_mg": 1283.1,
+      "total_carbs_g": 72.36,
+      "total_fat_g": 52.62,
+      "total_sugars_g": 5.71,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 151,
+      "cholesterol_mg": 35.86,
+      "dietary_fiber_g": 0.84,
+      "protein_g": 5.47,
+      "saturated_fat_g": 2.23,
+      "sodium_mg": 218.92,
+      "total_carbs_g": 12.35,
+      "total_fat_g": 8.98,
+      "total_sugars_g": 0.97,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70.07,
+      "dietary_fiber": 17.6,
+      "protein": 64.13,
+      "saturated_fat": 65.35,
+      "sodium": 55.79,
+      "total_carbs": 26.31,
+      "total_fat": 67.46
+    },
+    "serving_size_g": 586.1,
+    "total_recipe_weight_g": 2344.4
+  },
+  {
+    "recipe_name": "Baked Jumbo Shells with Broccoli Rabe, Spinach, and Smoked Provolone",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_jumbo_shells_with_broccoli_rabe%2C_spinach%2C_and_smoked_provolone_20250626_094344_2742294c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:43:44.825180000Z",
+    "selected_ingredients": [
+      "pasta",
+      "broccoli rabe",
+      "smoked provolone cheese",
+      "spinach",
+      "ricotta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of baked jumbo pasta shells is presented in a clean, white porcelain individual baking dish. Three to four generously stuffed shells are nestled in a vibrant red marinara sauce. The top of each shell features a bubbly, golden-brown crust of melted smoked provolone cheese, with glimpses of the creamy ricotta and tender green spinach and broccoli rabe filling peeking from the sides. The broccoli rabe is chopped into discernible 2-3 cm pieces. Fresh, bright green basil leaves are scattered artfully over the top, providing a color contrast. The dish sits on a simple wooden table surface in a modern bistro setting. A crisp white cotton napkin is folded beside the dish. Traditional Italian flatware (fork and spoon) rests next to the plate. The background is softly blurred, showing a casual restaurant atmosphere with natural, even lighting that highlights the food's textures and colors. The entire plate is visible, with moderate negative space. A small, white ramekin holding extra grated Parmesan cheese is placed nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve hot with crusty Italian bread for dipping in the sauce.",
+      "Accompany with a simple green salad dressed with vinaigrette.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Smoked Provolone",
+    "ingredients": [
+      {
+        "name": "Jumbo pasta shells",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Broccoli rabe",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Whole milk ricotta cheese",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Smoked provolone cheese, shredded",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Marinara sauce",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Bring a large pot of salted water to a boil. Add jumbo pasta shells. Cook according to package directions until al dente. Drain. Rinse with cold water to prevent sticking. Set aside.",
+      "Wash broccoli rabe thoroughly. Trim tough ends. Blanch broccoli rabe in boiling water for 2 minutes. Immediately transfer to an ice bath to stop cooking. Drain well. Squeeze out excess water. Coarsely chop the blanched broccoli rabe into 2-3 cm pieces.",
+      "Heat olive oil in a large pan over medium heat. Add minced garlic and red pepper flakes. Sauté for 1 minute until fragrant. Add chopped broccoli rabe. Sauté for 3-4 minutes. Add fresh spinach. Cook until spinach wilts completely. Remove from heat. Season with salt and pepper. Let cool slightly. Squeeze out any remaining liquid from the greens.",
+      "In a large bowl, combine ricotta cheese, 100 grams of shredded smoked provolone, and Parmesan cheese. Add the sautéed broccoli rabe and spinach mixture. Mix well. Season with salt and black pepper to taste.",
+      "Spread 200 ml of marinara sauce evenly on the bottom of a 23x33 cm (9x13 inch) baking dish.",
+      "Carefully stuff each cooked pasta shell with the ricotta and greens mixture. Arrange stuffed shells in a single layer in the baking dish over the marinara sauce.",
+      "Pour the remaining marinara sauce over the stuffed shells. Sprinkle the remaining 50 grams of shredded smoked provolone cheese over the top.",
+      "Bake for 20-25 minutes, or until the sauce is bubbly and the cheese is melted and lightly golden. If desired, broil for the last 2 minutes for extra browning.",
+      "Remove from oven. Let rest for 5 minutes before serving. Garnish with fresh basil leaves."
+    ],
+    "notes": [
+      "Ensure broccoli rabe and spinach are well-drained after blanching and sautéing to prevent a watery filling.",
+      "For best results, use whole milk ricotta for a richer, creamier filling."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 842.23,
+      "cholesterol_mg": 108.75,
+      "dietary_fiber_g": 10.12,
+      "protein_g": 42.72,
+      "saturated_fat_g": 20.51,
+      "sodium_mg": 1162.15,
+      "total_carbs_g": 77.59,
+      "total_fat_g": 40.86,
+      "total_sugars_g": 13.11,
+      "trans_fat_g": 1.06
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.56,
+      "calories": 156.91,
+      "cholesterol_mg": 20.26,
+      "dietary_fiber_g": 1.88,
+      "protein_g": 7.96,
+      "saturated_fat_g": 3.82,
+      "sodium_mg": 216.51,
+      "total_carbs_g": 14.45,
+      "total_fat_g": 7.61,
+      "total_sugars_g": 2.44,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36.25,
+      "dietary_fiber": 36.14,
+      "protein": 85.44,
+      "saturated_fat": 102.55,
+      "sodium": 50.53,
+      "total_carbs": 28.21,
+      "total_fat": 52.38
+    },
+    "serving_size_g": 536.75,
+    "total_recipe_weight_g": 2147
+  },
+  {
+    "recipe_name": "Compressed Beef Terrine, Potato Pavé, Truffle Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_compressed_beef_terrine%2C_potato_pav%C3%A9%2C_truffle_jus_20250626_094319_176ba2db.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:43:19.961572000Z",
+    "selected_ingredients": [
+      "mincemeat"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Hamburger cuisine",
+    "visual_description": "A single, meticulously composed portion rests upon an expansive white bone china plate. The centerpiece is a dark, perfectly seared rectangular block of compressed beef terrine, showcasing a rich, deep brown crust and a tender, dense interior. Adjacent to it, a golden-brown, equally precise rectangular block of crispy potato pavé rises, its layers subtly visible, offering a textural contrast. A glossy, dark truffle jus is artfully drizzled in a clean, elegant line or a delicate pool alongside the main components, catching the light. A few vibrant green micro-basil leaves are strategically placed on top of the beef terrine, providing a fresh pop of color. The plating emphasizes abundant negative space, highlighting the architectural precision and refined simplicity of each element. The scene is set on a pristine white Carrara marble surface, with dramatic, directional lighting creating subtle shadows that enhance depth and texture. A crisp white linen napkin, precisely folded into a triangle, sits nearby, completing the sophisticated, minimalist tableau.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "premium beef mincemeat (80/20 lean/fat ratio)",
+        "quantity": "500g"
+      },
+      {
+        "name": "shallots, finely minced",
+        "quantity": "50g"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "beef stock",
+        "quantity": "50ml"
+      },
+      {
+        "name": "fresh thyme, finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "black pepper, freshly ground",
+        "quantity": "2g"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "red wine (e.g., Pinot Noir)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "large Russet potatoes, peeled",
+        "quantity": "4"
+      },
+      {
+        "name": "double cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "garlic powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "onion powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "nutmeg, freshly grated",
+        "quantity": "3g"
+      },
+      {
+        "name": "white pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "clarified butter or duck fat, for searing",
+        "quantity": "50g"
+      },
+      {
+        "name": "high-quality beef demi-glace",
+        "quantity": "200ml"
+      },
+      {
+        "name": "black truffle oil (high quality)",
+        "quantity": "10ml"
+      },
+      {
+        "name": "fresh black truffle, finely shaved (optional)",
+        "quantity": "5g"
+      },
+      {
+        "name": "micro-basil or micro-parsley",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Melt butter in a heavy-bottomed pan over medium heat. Sauté shallots until translucent, about 3 minutes. Add garlic; cook 1 minute more.",
+      "Add mincemeat. Break apart with a spoon. Brown evenly. Drain excess fat.",
+      "Pour in red wine. Reduce by half. Add beef stock, thyme, smoked paprika, salt, and pepper. Simmer 10 minutes until liquid is mostly absorbed.",
+      "Press the mixture into a parchment-lined terrine mold or small rectangular container (approx. 15cm x 10cm). Cover with another layer of parchment. Place a heavy weight on top.",
+      "Chill overnight in the refrigerator.",
+      "Slice peeled potatoes very thinly, ideally using a mandoline, into 1.5mm thick slices.",
+      "In a large bowl, combine cream, milk, garlic powder, onion powder, nutmeg, salt, and white pepper. Whisk well.",
+      "Add potato slices to the cream mixture. Toss gently to coat.",
+      "Layer potato slices tightly in a parchment-lined rectangular baking dish (approx. 15cm x 10cm). Press down firmly after each layer.",
+      "Bake at 160°C (325°F) for 1 hour 30 minutes, or until potatoes are tender.",
+      "Place parchment paper directly on top of the cooked potatoes. Apply a heavy weight. Chill overnight in the refrigerator.",
+      "Gently warm the beef demi-glace in a small saucepan over low heat.",
+      "Stir in truffle oil. Taste and adjust seasoning with salt. Keep warm.",
+      "Preheat oven to 180°C (350°F).",
+      "Unmold the compressed beef terrine. Cut into 4 equal, precise rectangular portions (approx. 7.5cm x 5cm each).",
+      "Unmold the potato pavé. Cut into 4 equal, precise rectangular portions (approx. 7.5cm x 5cm each).",
+      "Heat clarified butter in a non-stick pan over medium-high heat.",
+      "Carefully sear the beef terrine portions on all sides until a dark, crispy crust forms, about 2-3 minutes per side. Transfer to a baking sheet.",
+      "Sear the potato pavé portions in the same pan until golden and crispy on all sides, about 2-3 minutes per side. Transfer to the baking sheet.",
+      "Finish beef and potato in the preheated oven for 5-7 minutes, until heated through.",
+      "On each plate, carefully place one seared beef terrine portion. Place one seared potato pavé portion directly adjacent or slightly overlapping.",
+      "Spoon a clean, precise line or a small pool of truffle jus next to the beef and potato.",
+      "Garnish each plate with a few delicate micro-basil or micro-parsley leaves placed precisely on or near the beef.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Compression",
+      "Precise Knife Work",
+      "Reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1004.7,
+      "cholesterol_mg": 218.4,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 39.7,
+      "saturated_fat_g": 37.6,
+      "sodium_mg": 904.8,
+      "total_carbs_g": 56.6,
+      "total_fat_g": 70.8,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 2.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178.6,
+      "cholesterol_mg": 38.8,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.1,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 160.8,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 12.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.8,
+      "dietary_fiber": 26.4,
+      "protein": 79.4,
+      "saturated_fat": 188,
+      "sodium": 39.3,
+      "total_carbs": 20.6,
+      "total_fat": 90.8
+    },
+    "serving_size_g": 562.6,
+    "total_recipe_weight_g": 2250.5
+  }
+]

@@ -1,0 +1,648 @@
+[
+  {
+    "recipe_name": "Orange Chocolate Grape Tartlets",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orange_chocolate_grape_tartlets_20250707_020046_bd2ec3b5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T02:00:46.804256000Z",
+    "selected_ingredients": [
+      {
+        "name": "grape"
+      },
+      {
+        "name": "orange zest"
+      },
+      {
+        "name": "butter"
+      },
+      {
+        "name": "milk"
+      },
+      {
+        "name": "chocolate"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Turkish",
+    "visual_description": "A single Orange Chocolate Grape Tartlet is centered on a clean, round white porcelain dessert plate. The tartlet features a golden-brown, crisp pastry shell, approximately 10cm in diameter. Inside, a rich, dark, glossy chocolate ganache fills the shell to the brim. Neatly arranged on the ganache are vibrant, halved red and black grapes, cut-side up, showcasing their juicy interior. A delicate sprinkle of bright green, finely chopped pistachios adorns the grapes, adding a pop of color and texture. The plate is positioned on a simple wooden table surface. Beside the plate, a small, clear Turkish tea glass, filled with amber-colored tea, stands elegantly. A folded white cotton napkin rests beside the plate. The scene is illuminated by natural, even lighting, creating a professional yet inviting atmosphere, with moderate negative space emphasizing the dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Turkish",
+    "cultural_origin": "Turkish",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of hot Turkish black tea or Turkish coffee.",
+      "Offer a small bowl of unsalted pistachios or a piece of plain Turkish delight on the side."
+    ],
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "Unsalted butter, cold, cubed",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Cold milk",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Orange zest",
+        "quantity": "from 1 large orange"
+      },
+      {
+        "name": "Orange blossom water",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Seedless red or black grapes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Pistachios, unsalted, finely chopped",
+        "quantity": "20 g"
+      }
+    ],
+    "instructions": [
+      "Prepare the tartlet dough: In a large bowl, rub cold butter into flour until crumbly. Stir in icing sugar.",
+      "Add egg yolk and milk. Mix until just combined. Do not overmix. Form into a disc. Wrap in cling film. Chill for 30 minutes.",
+      "Preheat oven to 180°C. Grease four 10cm tartlet tins.",
+      "On a lightly floured surface, roll dough to 3mm thickness. Cut out four circles to fit tins. Press dough into tins. Prick bases with a fork.",
+      "Line tartlet shells with parchment paper. Fill with baking beans or rice. Blind bake for 15 minutes.",
+      "Remove paper and beans. Bake for another 5-7 minutes, until golden. Cool completely on a wire rack.",
+      "Make the chocolate ganache: Chop chocolate finely. Place in a heatproof bowl.",
+      "Heat heavy cream in a small saucepan until just simmering. Remove from heat. Pour hot cream over chocolate.",
+      "Let stand for 2 minutes. Stir until smooth and glossy. Stir in orange zest and orange blossom water.",
+      "Pour ganache into cooled tartlet shells. Fill evenly. Chill for at least 2 hours, until set.",
+      "Halve the grapes. Arrange grapes decoratively on top of each set tartlet.",
+      "Sprinkle with finely chopped pistachios before serving."
+    ],
+    "notes": [
+      "Ensure tartlet shells are fully cooled before filling to prevent ganache from melting.",
+      "For best results, use high-quality dark chocolate with a minimum of 70% cocoa."
+    ]
+  },
+  {
+    "recipe_name": "Caribbean Coconut Rice and Beans with Corn",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caribbean_coconut_rice_and_beans_with_corn_20250707_013921_6eabfe96.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T01:39:22.386431000Z",
+    "selected_ingredients": [
+      "rice",
+      "bean",
+      "corn",
+      "coconut milk"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single modest portion of Caribbean Coconut Rice and Beans with Corn is served in a rustic ceramic bowl. The dish features creamy, tender white rice, plump black beans, and bright yellow corn kernels, all infused with coconut milk. The ingredients are naturally mixed, forming a comforting, hearty mound. Fresh chopped cilantro is generously sprinkled over the top for color and freshness. A lime wedge rests casually on the bowl's rim. The bowl sits on a well-used wooden dining table, showcasing its natural grain. The setting is a homely family kitchen, bathed in warm, cozy lighting, creating a comfortable atmosphere. The background is subtly blurred, hinting at a lived-in kitchen environment, reinforcing the authentic home-cooked feel. The presentation is simple, inviting, and focuses on the comforting nature of the dish.",
+    "number_of_servings": 3,
+    "cuisine_type": "Caribbean",
+    "cultural_origin": "Caribbean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of plantains.",
+      "Serve with a simple green salad."
+    ],
+    "hero_ingredient": "Coconut Rice",
+    "ingredients": [
+      {
+        "name": "long-grain white rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "canned black beans, drained, rinsed",
+        "quantity": "400g"
+      },
+      {
+        "name": "frozen corn kernels",
+        "quantity": "200g"
+      },
+      {
+        "name": "full-fat coconut milk",
+        "quantity": "400ml"
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "medium onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "red bell pepper, diced",
+        "quantity": "1/2"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "lime, cut into wedges",
+        "quantity": "1/2"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion and red bell pepper. Sauté 5 minutes until softened.",
+      "Add minced garlic, ground cumin, and dried oregano. Cook 1 minute until fragrant.",
+      "Stir in uncooked rice, black beans, and corn kernels.",
+      "Pour in coconut milk and vegetable broth. Add salt and black pepper. Stir well.",
+      "Bring mixture to a boil. Reduce heat to low, cover pot.",
+      "Simmer 18-20 minutes, or until rice absorbs liquid and is tender.",
+      "Remove from heat. Let stand covered 5 minutes.",
+      "Fluff rice gently with a fork. Taste and adjust seasoning.",
+      "Serve hot. Garnish with fresh chopped cilantro. Serve with lime wedges."
+    ],
+    "traditional_techniques": [
+      "Simmering",
+      "Sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 890,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 18,
+      "protein_g": 22.4,
+      "saturated_fat_g": 29,
+      "sodium_mg": 1214,
+      "total_carbs_g": 116.7,
+      "total_fat_g": 39.1,
+      "total_sugars_g": 11.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 3.9,
+      "saturated_fat_g": 5,
+      "sodium_mg": 209.5,
+      "total_carbs_g": 20.1,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 64,
+      "protein": 45,
+      "saturated_fat": 145,
+      "sodium": 53,
+      "total_carbs": 42,
+      "total_fat": 50
+    },
+    "serving_size_g": 579.3,
+    "total_recipe_weight_g": 1737.8
+  },
+  {
+    "recipe_name": "Pollo alla Cacciatora con Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_con_pappardelle_20250707_012219_25a8ebac.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T01:22:20.316587000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single generous portion of Pollo alla Cacciatora con Pappardelle is presented in a deep, clean white porcelain bowl. The al dente pappardelle pasta forms a base, thoroughly coated in a rich, rustic reddish-brown tomato sauce. A tender, braised bone-in chicken thigh, with its skin a deep golden-brown, rests prominently on top of the pasta. The sauce is visibly chunky with softened, roughly chopped red bell pepper and green bell pepper, sliced cremini mushrooms, and diced soffritto vegetables (onion, carrot, celery). A vibrant sprinkle of fresh, finely chopped flat-leaf parsley adds a pop of green, contrasting with the deep red sauce. Delicate, thin shavings of Parmigiano Reggiano are scattered over the dish, adding a light, creamy texture. The plating is clean and inviting, with moderate negative space. The bowl sits on a simple wooden table, accompanied by traditional Italian flatware and a folded white cotton napkin. A small side dish holds a slice of crusty artisan bread, ready for dipping. Natural, even lighting illuminates the dish, highlighting its comforting textures and colors in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the rich sauce.",
+      "Pair with a glass of dry red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, Skin-on Chicken Thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Pappardelle Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "San Marzano Crushed Tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Celery Stalk",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "200g, sliced"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1, roughly chopped"
+      },
+      {
+        "name": "Green Bell Pepper",
+        "quantity": "1, roughly chopped"
+      },
+      {
+        "name": "Dry Red Wine (e.g., Chianti)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Rosemary Sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Flat-leaf Parsley",
+        "quantity": "Small bunch, chopped for garnish"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy, about 8-10 minutes. Flip and sear other side for 2-3 minutes. Remove chicken. Set aside.",
+      "Reduce heat to medium. Add diced onion, carrot, and celery to the pot (this is the soffritto). Cook, stirring occasionally, until softened, about 8-10 minutes.",
+      "Add minced garlic, sliced mushrooms, red bell pepper, and green bell pepper. Cook for 5-7 minutes until vegetables soften slightly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer. Cook for 2 minutes.",
+      "Stir in crushed tomatoes, chicken broth, rosemary, thyme, and bay leaf. Bring to a gentle simmer.",
+      "Return seared chicken thighs to the pot, nestling them into the sauce. Ensure chicken is mostly submerged.",
+      "Cover the pot. Reduce heat to low. Simmer for 45-60 minutes, or until chicken is very tender and cooked to an internal temperature of 75°C (167°F).",
+      "While chicken braises, cook pappardelle according to package directions in salted boiling water until al dente.",
+      "Remove bay leaf, rosemary, and thyme sprigs from the sauce. Taste and adjust seasoning with salt and pepper.",
+      "Drain pasta. Add pasta directly to the pot with the chicken and sauce. Toss gently to coat.",
+      "Serve immediately in deep bowls. Garnish with fresh chopped parsley and shavings of Parmigiano Reggiano."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1000,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 62.5,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 771,
+      "total_carbs_g": 97.3,
+      "total_fat_g": 41.4,
+      "total_sugars_g": 13.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134.1,
+      "cholesterol_mg": 25.5,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.4,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 103.3,
+      "total_carbs_g": 13,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 32,
+      "protein": 125,
+      "saturated_fat": 52,
+      "sodium": 34,
+      "total_carbs": 35,
+      "total_fat": 53
+    },
+    "serving_size_g": 746,
+    "total_recipe_weight_g": 2985
+  },
+  {
+    "recipe_name": "Raspberry & Kewra Sago Pudding with Cinnamon Crisps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_raspberry_%26_kewra_sago_pudding_with_cinnamon_crisps_20250707_010053_b6770292.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T01:00:54.608151000Z",
+    "selected_ingredients": [
+      {
+        "name": "raspberry"
+      },
+      {
+        "name": "cinnamon"
+      },
+      {
+        "name": "kewra"
+      },
+      {
+        "name": "flour"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "sago"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian Indian",
+    "visual_description": "The homely dessert is presented in simple, off-white ceramic bowls, showcasing a generous portion of creamy sago pudding. The pudding is a soft, translucent white, with individual sago pearls visible, reflecting its comforting texture. A vibrant, deep red raspberry compote is spooned unevenly over the top, creating a natural swirl of color. A few whole raspberries are nestled into the compote, adding fresh visual appeal. Alongside the bowls, on a well-used wooden dining table, are golden-brown, rustic cinnamon crisps. The crisps are irregularly shaped squares or rectangles, showing a slightly rough, homemade texture. The scene is lit with warm, natural kitchen lighting, emphasizing the comfort and unpretentious nature of the dish. A casually placed, simple cloth napkin sits nearby. The overall presentation is inviting and feels like a genuine family kitchen setting, with all elements clearly visible and ample negative space around the main subject.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian Sweet",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve warm, though it can also be enjoyed chilled.",
+      "Garnish with chopped nuts like pistachios or almonds for added crunch, though not essential for this homely version.",
+      "Enjoy as a light snack or a comforting dessert after a meal."
+    ],
+    "hero_ingredient": "Raspberry",
+    "ingredients": [
+      {
+        "name": "Small sago (sabudana)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Full-fat cream",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh or frozen raspberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Kewra water",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Ghee or unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml (for dough) + 30 ml (for compote)"
+      }
+    ],
+    "instructions": [
+      "Rinse sago under cold water. Soak sago in 200 ml water for 30 minutes. Drain well.",
+      "Pour cream into a heavy-bottomed saucepan. Bring to a gentle boil over medium heat.",
+      "Add drained sago to the boiling cream. Reduce heat to low. Simmer, stirring frequently, for 15-20 minutes. Cook until sago pearls are translucent and pudding thickens.",
+      "Stir in 75 g sugar, 2 g ground cinnamon, and kewra water. Mix well. Cook for 2 more minutes. Remove from heat. Set aside.",
+      "Combine raspberries, remaining 25 g sugar, and 30 ml water in a small saucepan. Cook over medium heat for 5-7 minutes. Mash raspberries slightly with a spoon. Simmer until sauce thickens slightly. Remove from heat.",
+      "Preheat oven to 180°C. Line a baking tray with parchment paper.",
+      "In a bowl, combine plain flour, 3 g ground cinnamon, and baking powder. Add ghee. Rub ghee into flour mixture until crumbly.",
+      "Add 50 ml water gradually. Mix until a soft dough forms. Do not overmix.",
+      "Roll dough thinly on a lightly floured surface. Cut into rustic 5 cm squares or rectangles. Place on prepared baking tray.",
+      "Bake for 12-15 minutes. Bake until golden brown and crisp. Cool on a wire rack.",
+      "Ladle warm sago pudding into individual serving bowls. Spoon raspberry compote generously over each serving. Serve immediately with cinnamon crisps on the side."
+    ],
+    "traditional_techniques": [
+      "Simmering (for kheer)"
+    ]
+  },
+  {
+    "recipe_name": "Spicy Cajun Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_cajun_chicken_pasta_20250707_003628_5758761d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T00:36:28.532052000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "PDO-only ingredients, HIGH CAPSAICIN",
+    "visual_description": "A single portion of Spicy Cajun Chicken Pasta is presented on a clean, round white porcelain dinner plate. The creamy, vibrant orange-red pasta, coated in a rich sauce, forms the centerpiece. Scattered generously throughout are golden-brown, seared 2.5 cm chicken chunks, alongside browned 1 cm thick slices of andouille sausage. Diced red and green bell peppers, and finely diced onions and celery, are visible, adding color and texture. A sprinkle of freshly chopped green onions or flat-leaf parsley provides a fresh green contrast. The dish has a robust, rustic yet refined appearance, with elements naturally arranged. The plate rests on a simple, light-colored wooden table surface, with a folded cotton napkin positioned beside it. Natural, even lighting illuminates the dish, highlighting its textures and rich colors. The background suggests a modern bistro, casual and unobtrusive.",
+    "number_of_servings": 4,
+    "cuisine_type": "Cajun",
+    "cultural_origin": "Cajun",
+    "cultural_serving_suggestions": [
+      "Side of warm cornbread"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Andouille sausage",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Cajun seasoning",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried chili flakes",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions until al dente. Drain. Reserve 120 ml pasta water.",
+      "Cut chicken into 2.5 cm chunks. Pat chicken dry. Season with half of Cajun seasoning, salt, and black pepper.",
+      "Slice andouille sausage into 1 cm rounds.",
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat. Sear chicken chunks until browned on all sides. Remove chicken from skillet.",
+      "Add sliced andouille sausage to skillet. Cook until browned and crisp. Remove sausage.",
+      "Dice onion, green bell pepper, red bell pepper, and celery. Add diced vegetables to skillet. Sauté 5-7 minutes until softened.",
+      "Minced garlic. Add minced garlic, remaining Cajun seasoning, cayenne pepper, and chili flakes to skillet. Cook 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from bottom of skillet.",
+      "Stir in heavy cream. Return chicken and sausage to skillet. Simmer 5-7 minutes until sauce thickens slightly and chicken is cooked through.",
+      "Add cooked pasta to skillet. Toss to coat. If sauce is too thick, add reserved pasta water until desired consistency.",
+      "Taste and adjust seasoning.",
+      "Chop fresh parsley. Serve hot. Garnish with fresh parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1127.7,
+      "cholesterol_mg": 291.3,
+      "dietary_fiber_g": 8,
+      "protein_g": 55.7,
+      "saturated_fat_g": 23.8,
+      "sodium_mg": 1484.3,
+      "total_carbs_g": 93.6,
+      "total_fat_g": 57.7,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 167.4,
+      "cholesterol_mg": 43.2,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.3,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 220.4,
+      "total_carbs_g": 13.9,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97.1,
+      "dietary_fiber": 28.7,
+      "protein": 111.4,
+      "saturated_fat": 119,
+      "sodium": 64.5,
+      "total_carbs": 34,
+      "total_fat": 74
+    },
+    "serving_size_g": 673.5,
+    "total_recipe_weight_g": 2694
+  }
+]

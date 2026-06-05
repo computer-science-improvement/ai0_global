@@ -1,0 +1,730 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Mocha Glaze, Crab & Cheddar Fritters, and Basil-Olive Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_mocha_glaze%2C_crab_%26_cheddar_fritters%2C_and_basil-olive_salad_20250624_105023_09cfcd41.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:50:24.127459000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chocolate",
+      "salad green",
+      "cheddar",
+      "crab",
+      "coffee",
+      "coconut",
+      "olive",
+      "bacon",
+      "mozzarella",
+      "basil",
+      "oil",
+      "cheese",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, centered on a simple wooden table. A single, refined portion showcases two to three thick, pan-seared chicken pieces, golden-brown with a glossy finish, arranged slightly overlapping. A rich, dark mocha glaze generously coats the chicken, pooling lightly. Two golden-brown, irregularly shaped crab and cheddar fritters, showing visible crab and melted cheese, are neatly placed beside the chicken. A vibrant mound of fresh basil-olive salad, with bright green mixed greens, dark halved olives, and creamy white mozzarella pearls, offers refreshing contrast. The salad appears crisp and lightly dressed. Small, dark golden crumbles of crispy bacon are scattered over the chicken and fritters. A cotton napkin rests beside the plate. The composition is balanced, professional, and inviting, with natural lighting highlighting textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "strong brewed coffee",
+        "quantity": "120ml"
+      },
+      {
+        "name": "unsweetened cocoa powder",
+        "quantity": "30g"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "60ml"
+      },
+      {
+        "name": "apple cider vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "dark chocolate (70% cacao or higher), finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "maple syrup or honey",
+        "quantity": "15ml"
+      },
+      {
+        "name": "fresh ginger, grated",
+        "quantity": "5g"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "red pepper flakes",
+        "quantity": "pinch"
+      },
+      {
+        "name": "cooked crab meat, drained and flaked",
+        "quantity": "200g"
+      },
+      {
+        "name": "shredded sharp cheddar cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "all-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "large egg, beaten",
+        "quantity": "1"
+      },
+      {
+        "name": "milk (or coconut milk)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "chopped fresh basil",
+        "quantity": "15g"
+      },
+      {
+        "name": "vegetable oil, for frying",
+        "quantity": "30ml"
+      },
+      {
+        "name": "mixed salad greens",
+        "quantity": "150g"
+      },
+      {
+        "name": "black olives, pitted and halved",
+        "quantity": "60g"
+      },
+      {
+        "name": "fresh mozzarella pearls (bocconcini), halved",
+        "quantity": "60g"
+      },
+      {
+        "name": "fresh basil leaves, torn or roughly chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "balsamic vinegar (or red wine vinegar)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "bacon, cooked crispy and crumbled",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "Prepare the Mocha Glaze: In a small saucepan, combine coffee, cocoa powder, chicken stock, apple cider vinegar, maple syrup, grated ginger, oregano, and red pepper flakes. Bring to a simmer over medium heat. Whisk until smooth. Reduce heat to low. Stir in chopped dark chocolate until melted and glaze thickens slightly, about 5-7 minutes. Season with salt. Keep warm.",
+      "Cook the Chicken: Pat chicken breasts dry. Season generously with salt and pepper. Heat 15ml olive oil in a large skillet over medium-high heat. Sear chicken breasts for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove from skillet. Let rest 5 minutes.",
+      "Make the Crab & Cheddar Fritters: In a medium bowl, combine crab meat, shredded cheddar, flour, egg, milk, chopped basil, oregano, salt, and pepper. Mix until just combined.",
+      "Heat 30ml vegetable oil in a non-stick skillet over medium heat. Spoon 2-3 tablespoons of the crab mixture per fritter, gently flattening into small patties (approx. 5-6 cm diameter). Fry for 3-4 minutes per side until golden brown and cooked through. Transfer to a plate lined with paper towel to drain excess oil.",
+      "Assemble the Basil-Olive Salad: In a medium bowl, combine mixed salad greens, halved olives, halved mozzarella pearls, and torn basil. In a small bowl, whisk together 30ml olive oil, balsamic vinegar, salt, and pepper. Pour dressing over salad. Toss gently to coat.",
+      "Plate the Dish: Slice each chicken breast into 2-3 thick pieces (do not fan). Arrange chicken pieces on a plate. Spoon a generous amount of mocha glaze over the chicken. Place 2-3 crab & cheddar fritters next to the chicken. Add a portion of the basil-olive salad beside the chicken and fritters. Sprinkle crispy bacon bits over the chicken and fritters. Serve immediately."
+    ],
+    "notes": [
+      "The glaze can be made ahead of time.",
+      "Adjust sweetness of glaze to your preference.",
+      "Ensure chicken reaches 75°C internal temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 780.7,
+      "cholesterol_mg": 288.3,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 89.5,
+      "saturated_fat_g": 14,
+      "sodium_mg": 1122.3,
+      "total_carbs_g": 24.5,
+      "total_fat_g": 35.3,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 158.9,
+      "cholesterol_mg": 58.7,
+      "dietary_fiber_g": 1,
+      "protein_g": 18.2,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 228.5,
+      "total_carbs_g": 5,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 96.1,
+      "dietary_fiber": 17.5,
+      "protein": 179,
+      "saturated_fat": 69.8,
+      "sodium": 48.8,
+      "total_carbs": 8.9,
+      "total_fat": 45.2
+    },
+    "serving_size_g": 491.2,
+    "total_recipe_weight_g": 1964.9
+  },
+  {
+    "recipe_name": "Chicken and Potato Gratin with Gruyere",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_potato_gratin_with_gruyere_20250624_105005_573b1a7d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:50:06.184950000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "beef stock",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken and Potato Gratin with Gruyere is presented in a classic white porcelain oval gratin dish, set on a simple light wooden table surface. The dish features tender, thinly sliced potatoes, layered and baked until soft, with a golden-brown, bubbly Gruyere cheese crust on top. Visible beneath the cheese are creamy, garlic-infused potato slices. Two generous, irregular chunks of seared chicken thigh, with a golden-brown exterior, are nestled amidst the gratin, not sliced or fanned. The rich, savory sauce is visible, coating the potatoes. Freshly chopped green parsley and a few small thyme leaves are scattered over the top as a vibrant garnish. The plate is well-proportioned with appropriate negative space. A folded white cotton napkin and classic silver bistro flatware are placed beside the dish. The scene is lit by soft, natural, even light, creating a professional yet inviting restaurant-style ambiance with a subtle, blurred background.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Gruyere cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden brown on both sides. Cook for 3-4 minutes per side. Remove chicken from skillet. Set aside.",
+      "Melt butter in the same skillet. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in beef stock. Bring to a simmer. Scrape up any browned bits from the bottom of the pan.",
+      "Stir in heavy cream and fresh thyme sprigs. Season sauce with salt and pepper. Reduce heat to low. Simmer gently for 5 minutes.",
+      "While sauce simmers, peel potatoes. Slice potatoes thinly, about 2-3mm thick.",
+      "Grate Gruyere cheese.",
+      "Arrange a layer of sliced potatoes in the bottom of the skillet. Place seared chicken thighs over the potatoes. Top with another layer of potatoes.",
+      "Pour the sauce evenly over the potatoes and chicken.",
+      "Sprinkle grated Gruyere cheese generously over the top.",
+      "Bake for 45-55 minutes, or until potatoes are tender and the cheese is bubbly and golden brown. Chicken internal temperature must reach 75°C (167°F).",
+      "Remove from oven. Let rest for 10 minutes before serving.",
+      "Garnish with freshly chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 790,
+      "cholesterol_mg": 224.9,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 48,
+      "saturated_fat_g": 22.1,
+      "sodium_mg": 380.2,
+      "total_carbs_g": 40.6,
+      "total_fat_g": 48.5,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 37.8,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.1,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 63.9,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 18.4,
+      "protein": 96.1,
+      "saturated_fat": 110.3,
+      "sodium": 16.5,
+      "total_carbs": 14.7,
+      "total_fat": 62.2
+    },
+    "serving_size_g": 594.5,
+    "total_recipe_weight_g": 2378
+  },
+  {
+    "recipe_name": "Creamy Mincemeat and Mushroom Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_mincemeat_and_mushroom_rigatoni_20250624_105002_21bb158c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:50:03.270852000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mincemeat",
+      "mushroom",
+      "garlic",
+      "cream",
+      "cheese",
+      "mayonnaise"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Mincemeat and Mushroom Rigatoni is presented in a wide, shallow white porcelain bowl. The rigatoni pasta is generously coated in a rich, creamy, off-white sauce. Visible throughout are golden-brown chunks of pan-seared mincemeat and tender, sliced cremini mushrooms. The dish is garnished with a sprinkle of freshly grated Parmesan cheese and vibrant green chopped fresh parsley, providing a fresh contrast. The setting is a modern bistro: a simple light wooden table, a folded linen napkin beside the bowl, and a clear water glass. Natural, even lighting highlights the textures and warm tones of the dish. The background is softly blurred, maintaining focus on the food while suggesting a casual, inviting restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Mincemeat",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef mincemeat",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g, freshly grated"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions. Reserve 125 ml pasta water. Drain pasta.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Add mincemeat. Brown thoroughly, breaking it apart. Drain excess fat.",
+      "Add diced onion to skillet. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Sauté until mushrooms are tender and lightly browned, about 7-8 minutes.",
+      "Stir in tomato paste. Cook for 1 minute.",
+      "Pour in heavy cream. Bring to a gentle simmer.",
+      "Stir in half of the grated Parmesan cheese. Season with salt and pepper.",
+      "Add cooked pasta to the skillet. Toss to coat evenly. Add reserved pasta water as needed to achieve desired sauce consistency.",
+      "Serve immediately. Garnish with remaining Parmesan cheese and fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1063,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 58.5,
+      "saturated_fat_g": 24.9,
+      "sodium_mg": 513,
+      "total_carbs_g": 84.6,
+      "total_fat_g": 52.8,
+      "total_sugars_g": 9.2,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 256,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 14.1,
+      "saturated_fat_g": 6,
+      "sodium_mg": 123,
+      "total_carbs_g": 20.4,
+      "total_fat_g": 12.7,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 20,
+      "protein": 116.9,
+      "saturated_fat": 124.3,
+      "sodium": 22.3,
+      "total_carbs": 30.8,
+      "total_fat": 67.7
+    },
+    "serving_size_g": 415.75,
+    "total_recipe_weight_g": 1663
+  },
+  {
+    "recipe_name": "Pan-Seared Pork Tenderloin with Red Wine Reduction and Creamy Polenta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_pork_tenderloin_with_red_wine_reduction_and_creamy_polenta_20250624_104954_cbc71e1f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:49:55.335781000Z",
+    "selected_ingredients": [
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Pan-seared pork tenderloin, cut into thick, succulent medallions, is centered on a bed of creamy, pale yellow polenta. The pork exhibits a rich, golden-brown sear, its interior a tender blush pink. A generous pool of glossy, dark red wine reduction surrounds the base of the pork and polenta, catching the light. Fresh green thyme sprigs are artfully placed for a touch of vibrant contrast. The dish is presented on a clean, round white porcelain plate with moderate negative space. A folded grey cotton napkin and polished silver flatware are placed beside the plate on a light wooden table surface. Natural, even lighting illuminates the scene, creating a sophisticated yet approachable restaurant setting. The overall composition is balanced and professional, highlighting the quality of the ingredients and refined execution.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the remaining sauce."
+    ],
+    "hero_ingredient": "Pork Tenderloin",
+    "ingredients": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": "2 (approx. 400g each)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 large, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Dry Red Wine (e.g., Merlot or Pinot Noir)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Polenta (fine or medium grind)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Milk (full-fat)",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "60 g, grated"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat pork tenderloins dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear pork tenderloins until golden brown on all sides, about 2-3 minutes per side. Transfer skillet to preheated oven.",
+      "Roast pork for 12-15 minutes, or until internal temperature reaches 63°C. Remove from oven. Transfer pork to a cutting board. Tent with foil. Let rest for 10 minutes. Temperature will rise to 68-70°C.",
+      "While pork rests, make the sauce. Discard excess fat from skillet. Add 15g butter. Add diced shallots. Cook until softened, about 3 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the pan. Bring to a simmer. Reduce wine by half, about 5-7 minutes.",
+      "Add beef stock and 2 thyme sprigs. Simmer until sauce thickens and reduces by half, about 8-10 minutes.",
+      "Remove thyme sprigs. Whisk in remaining 45g cold butter, one piece at a time, until sauce is glossy and emulsified. Season with salt and pepper. Keep warm.",
+      "For the polenta, bring milk to a simmer in a medium saucepan. Slowly whisk in polenta, stirring constantly to prevent lumps.",
+      "Reduce heat to low. Cook, stirring frequently, for 15-20 minutes, or until polenta is creamy and tender. Add more milk or water if too thick.",
+      "Stir in grated Parmesan cheese and a knob of butter. Season with salt and pepper.",
+      "Slice rested pork into thick medallions or chunks, about 2-3 cm thick.",
+      "Spoon creamy polenta onto plates. Arrange pork medallions beside or on top of polenta. Spoon red wine reduction over pork and polenta. Garnish with fresh thyme sprigs."
+    ],
+    "notes": [
+      "Do not overcook the pork; a slightly pink interior is ideal for tenderness.",
+      "The red wine reduction can be made ahead and gently reheated."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Sauce Reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 892.14,
+      "cholesterol_mg": 216.71,
+      "dietary_fiber_g": 4.48,
+      "protein_g": 69.49,
+      "saturated_fat_g": 17.5,
+      "sodium_mg": 626.45,
+      "total_carbs_g": 56.58,
+      "total_fat_g": 37.15,
+      "total_sugars_g": 11.88,
+      "trans_fat_g": 0.76
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142.42,
+      "cholesterol_mg": 34.6,
+      "dietary_fiber_g": 0.72,
+      "protein_g": 11.09,
+      "saturated_fat_g": 2.79,
+      "sodium_mg": 100.01,
+      "total_carbs_g": 9.03,
+      "total_fat_g": 5.93,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.12
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.24,
+      "dietary_fiber": 16.01,
+      "protein": 138.98,
+      "saturated_fat": 87.49,
+      "sodium": 27.24,
+      "total_carbs": 20.57,
+      "total_fat": 47.63
+    },
+    "serving_size_g": 626.38,
+    "total_recipe_weight_g": 2505.5
+  },
+  {
+    "recipe_name": "Butter Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_butter_chicken_20250624_104947_27a147bc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:49:48.363230000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "yogurt"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of vibrant Butter Chicken is presented in a clean, shallow white porcelain bowl. Generous 3-4cm chunks of seared, tender chicken are nestled in a rich, creamy, and smooth orange-red tomato-yogurt gravy. The sauce shimmers with a glossy finish. A delicate swirl of fresh white cream adorns the surface, contrasting beautifully with the sauce's deep hue. The dish is garnished generously with bright green, freshly chopped coriander leaves, adding a pop of color and freshness. The chicken pieces maintain their shape, not sliced. The bowl is placed on a simple wooden table surface, accompanied by a small, separate bowl of fluffy white basmati rice and a piece of soft, torn naan bread. A clean, folded cotton napkin rests nearby. Natural, even lighting highlights the dish's inviting colors and textures, set against a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with fluffy Basmati rice.",
+      "Accompany with fresh naan bread or roti for scooping the gravy.",
+      "Offer a side of cooling raita (yogurt dip) or sliced red onion."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g, cut into 3-4cm chunks"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "150g"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "40g (20g for marinade, 20g for sauce)"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Kashmiri red chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Ghee or unsalted butter",
+        "quantity": "60g (30g for cooking, 30g for finishing)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (approx. 150g), finely chopped"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "30g, soaked in hot water for 15 minutes"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Kasoori Methi (dried fenugreek leaves)",
+        "quantity": "5g, crushed"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "5g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Combine chicken chunks with yogurt, 20g ginger-garlic paste, 2g turmeric powder, 5g Kashmiri red chili powder, and a pinch of salt. Mix well. Marinate for at least 30 minutes in the refrigerator.",
+      "Melt 30g ghee or butter in a large pot or deep pan over medium heat. Add chopped onion. Sauté until translucent, about 8-10 minutes.",
+      "Add remaining 20g ginger-garlic paste. Cook for 1 minute until fragrant. Add 3g turmeric powder, 5g Kashmiri red chili powder, cumin powder, and coriander powder. Sauté for 30 seconds until aromatic, adding a splash of water if spices stick.",
+      "Add crushed tomatoes and soaked cashews to the pot. Bring to a simmer. Cook for 10-15 minutes, stirring occasionally, until the sauce thickens slightly.",
+      "Remove the pot from heat. Allow to cool slightly. Carefully transfer the sauce mixture to a blender. Blend until completely smooth. Strain through a fine-mesh sieve back into the pot for a silkier texture, if desired.",
+      "In a separate pan, sear the marinated chicken chunks in a small amount of oil or ghee over medium-high heat until lightly browned on all sides. Do not overcrowd the pan; cook in batches if necessary. Chicken does not need to be cooked through at this stage.",
+      "Add the seared chicken chunks to the smooth tomato gravy in the pot. Add 150ml water or chicken stock. Bring to a gentle simmer. Cover and cook for 15-20 minutes, or until chicken is tender and cooked through (internal temperature 75°C).",
+      "Crush kasoori methi between your palms and add to the pot. Stir in garam masala. Add the remaining 30g unsalted butter and heavy cream. Stir until butter melts and cream is incorporated. Do not boil after adding cream.",
+      "Taste and adjust salt as needed. Garnish with fresh coriander leaves before serving."
+    ],
+    "notes": [
+      "For best flavor, marinate the chicken overnight.",
+      "Adjust the amount of Kashmiri red chili powder to control the spice level; it primarily provides color.",
+      "The gravy can be made ahead of time and stored in the refrigerator for up to 3 days."
+    ],
+    "traditional_techniques": [
+      "Yogurt marination",
+      "Spice blooming (bhunao)",
+      "Slow simmering gravy"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 608,
+      "cholesterol_mg": 219,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 34.5,
+      "saturated_fat_g": 20.4,
+      "sodium_mg": 641,
+      "total_carbs_g": 20.9,
+      "total_fat_g": 43.4,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 149,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 19,
+      "protein": 69,
+      "saturated_fat": 102,
+      "sodium": 28,
+      "total_carbs": 8,
+      "total_fat": 56
+    },
+    "serving_size_g": 431.25,
+    "total_recipe_weight_g": 1725
+  }
+]

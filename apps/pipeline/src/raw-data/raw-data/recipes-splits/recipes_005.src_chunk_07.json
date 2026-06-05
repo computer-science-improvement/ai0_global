@@ -1,0 +1,691 @@
+[
+  {
+    "recipe_name": "Savory Banana and Mushroom Korma",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_094125_e42701ab.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-08T09:41:26.308564000Z",
+    "selected_ingredients": [
+      "banana",
+      "mushroom",
+      "greek yogurt",
+      "kefir",
+      "soymilk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features a single portion of Savory Banana and Mushroom Korma served in a wide, shallow white porcelain bowl. The focal point is the large, quartered cremini mushrooms, seared to a deep brown, nestled alongside 2cm thick rounds of pale, firm unripe banana. The sauce is a rich, creamy yellow-gold, exhibiting a fluid, free-flowing consistency. Fresh cilantro sprigs provide a vibrant green contrast. The bowl is placed on a rustic oak table with a white cotton napkin and a silver spoon. A small side dish of steamed long-grain basmati rice and a single piece of charred naan bread accompany the bowl. The lighting is soft and natural, emphasizing the textures of the seared vegetables and the smooth sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Steamed basmati rice",
+      "Garlic naan",
+      "Mango pickle",
+      "Spoons and flatbread for scooping"
+    ],
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "400g"
+      },
+      {
+        "name": "Unripe green bananas",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "150g"
+      },
+      {
+        "name": "Kefir",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Soy milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Clean mushrooms and cut into large quarters.",
+      "Peel unripe bananas and slice into 2cm thick rounds.",
+      "Fine dice the onion.",
+      "Heat oil in a heavy-bottomed pan over medium heat.",
+      "Add cumin seeds and fry until they sizzle.",
+      "Add diced onions and sauté until golden brown.",
+      "Stir in ginger-garlic paste and cook for 1 minute.",
+      "Add ground coriander and turmeric powder.",
+      "Add mushrooms to the pan.",
+      "Sear mushrooms until browned and juices evaporate.",
+      "Pour in soy milk and add banana slices.",
+      "Simmer gently for 8 minutes until bananas are tender.",
+      "Whisk Greek yogurt and kefir together in a small bowl.",
+      "Remove pan from heat to prevent curdling.",
+      "Slowly stir in the yogurt and kefir mixture.",
+      "Add garam masala and salt.",
+      "Garnish with fresh cilantro leaves."
+    ],
+    "notes": [
+      "Use very green, unripe bananas for a starchy, savory texture.",
+      "Ensure the pan is off the heat before adding the yogurt and kefir to maintain a smooth sauce.",
+      "The kefir adds a traditional fermented tang similar to aged curd."
+    ],
+    "traditional_techniques": [
+      "Tempering spices",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 244,
+      "cholesterol_mg": 6,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 632,
+      "total_carbs_g": 30.2,
+      "total_fat_g": 10.3,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 83,
+      "cholesterol_mg": 2,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 3.8,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 215,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 2,
+      "dietary_fiber": 17,
+      "protein": 22,
+      "saturated_fat": 11,
+      "sodium": 28,
+      "total_carbs": 11,
+      "total_fat": 13
+    },
+    "serving_size_g": 294,
+    "total_recipe_weight_g": 1175
+  },
+  {
+    "recipe_name": "Beef and Mushroom Potato Croquettes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_091324_9d7a1764.jpg",
+    "dish_type": "snack",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-08T09:13:25.011718000Z",
+    "selected_ingredients": [
+      "beef",
+      "worcestershire sauce",
+      "tomato",
+      "onion",
+      "garlic",
+      "mushroom",
+      "mushroom",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Twelve golden-brown, hand-shaped cylindrical croquettes are arranged naturally on a weathered wooden serving board. Each croquette features a rough, crispy panko breadcrumb crust. One croquette is halved to show the interior: creamy white mashed potatoes mixed with small 5mm cubes of seared brown beef, softened red tomato pulp, and finely chopped sautéed mushrooms. The filling shows visible flecks of translucent diced onion and minced garlic. The croquettes are stacked informally in a central cluster. Beside the board sits a small, simple ceramic bowl containing a smooth tomato-based dipping sauce. The background is a dimly lit, homely kitchen with a dark oak table and a single neutral-toned cloth napkin. The lighting is warm and directional, highlighting the crunchy texture of the fried coating.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve as a shared appetizer on a wooden board",
+      "Pair with a cold lager or sparkling water",
+      "Provide a side of sharp mustard or savory tomato jam"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef (sirloin or flank)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Potatoes (floury)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Mushrooms (button)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Salt and pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Peel and boil potatoes in salted water until tender.",
+      "Drain and mash potatoes until smooth. Let cool.",
+      "Dice beef into 5mm small cubes.",
+      "Finely chop onion, garlic, and mushrooms.",
+      "Dice the tomato into small pieces.",
+      "Sauté onion and garlic in a pan with oil until soft.",
+      "Add mushrooms. Cook until liquid evaporates.",
+      "Add beef cubes. Brown on high heat.",
+      "Stir in diced tomato and Worcestershire sauce.",
+      "Simmer until tomato softens and liquid reduces.",
+      "Mix the beef and mushroom mixture into the mashed potatoes.",
+      "Season with salt and pepper. Chill for 20 minutes.",
+      "Shape mixture into 12 small cylinders.",
+      "Dredge each cylinder in flour. Dip in beaten egg.",
+      "Coat thoroughly in breadcrumbs.",
+      "Heat oil to 180°C in a deep pan.",
+      "Fry croquettes until deep golden brown and crispy.",
+      "Drain on paper towels. Serve hot."
+    ],
+    "notes": [
+      "Use Russet or Yukon Gold potatoes for the best mash consistency",
+      "Ensure the potato and beef mixture is cold before shaping to prevent falling apart",
+      "Do not overcrowd the pan when frying to maintain oil temperature"
+    ],
+    "traditional_techniques": [
+      "shallow frying",
+      "mashing",
+      "dicing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.8,
+      "calories": 641,
+      "cholesterol_mg": 145.5,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 34.9,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 579.3,
+      "total_carbs_g": 63.8,
+      "total_fat_g": 27.4,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 197.2,
+      "cholesterol_mg": 44.8,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 10.7,
+      "saturated_fat_g": 2,
+      "sodium_mg": 178.2,
+      "total_carbs_g": 19.6,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 21,
+      "protein": 70,
+      "saturated_fat": 33,
+      "sodium": 25,
+      "total_carbs": 23,
+      "total_fat": 35
+    },
+    "serving_size_g": 325,
+    "total_recipe_weight_g": 1300
+  },
+  {
+    "recipe_name": "Scallop and Asparagus Creamy Tomato Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_082657_cc07dc98.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-08T08:26:58.274958000Z",
+    "selected_ingredients": [
+      "tomato",
+      "spinach",
+      "cream",
+      "cheese",
+      "asparagus",
+      "scallop"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy fettuccine served on a rustic, off-white ceramic plate. The pasta is tossed in a light pink tomato-cream sauce, with vibrant green 4cm asparagus batons and dark green wilted spinach leaves distributed throughout. Small 1cm cubes of softened red tomato add pops of color. Four large, whole sea scallops with deep golden-brown seared crusts are placed naturally on top of the pasta mound. The plate sits on a dark walnut wood table next to a folded linen napkin and a heavy stainless steel fork. Warm, soft kitchen lighting highlights the glossy texture of the sauce and the fibrous detail of the asparagus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty ciabatta bread",
+      "Pair with a crisp Pinot Grigio",
+      "Present in a wide, shallow pasta bowl"
+    ],
+    "hero_ingredient": "Scallop",
+    "ingredients": [
+      {
+        "name": "large sea scallops",
+        "quantity": "500g"
+      },
+      {
+        "name": "fettuccine pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "asparagus",
+        "quantity": "250g"
+      },
+      {
+        "name": "baby spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "roma tomatoes",
+        "quantity": "2 large"
+      },
+      {
+        "name": "heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Boil a large pot of salted water. Cook fettuccine until al dente. Drain and reserve 60ml of pasta water.",
+      "Trim asparagus ends. Cut stalks into 4cm batons. Dice tomatoes into 1cm cubes. Mince the garlic.",
+      "Pat scallops dry with paper towels. Season with salt and pepper.",
+      "Heat olive oil in a large skillet over high heat. Sear scallops for 2 minutes per side until a golden-brown crust forms. Remove scallops from pan and set aside.",
+      "Reduce heat to medium. Add butter and garlic to the same pan. Sauté for 1 minute.",
+      "Add asparagus batons and diced tomatoes. Cook for 4 minutes until asparagus is tender-crisp.",
+      "Pour in heavy cream. Simmer for 2 minutes to thicken slightly.",
+      "Stir in spinach and grated parmesan cheese until spinach wilts.",
+      "Add cooked pasta and reserved water to the skillet. Toss to coat thoroughly.",
+      "Place whole seared scallops on top of the pasta. Serve immediately."
+    ],
+    "notes": [
+      "Ensure scallops are very dry before searing to achieve a proper crust.",
+      "Do not overcook the spinach; add it at the very end to maintain color.",
+      "Use freshly grated parmesan for the best sauce consistency."
+    ],
+    "traditional_techniques": [
+      "searing",
+      "emulsifying",
+      "al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 848.8,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 6,
+      "protein_g": 39.5,
+      "saturated_fat_g": 19,
+      "sodium_mg": 1050,
+      "total_carbs_g": 87.5,
+      "total_fat_g": 37.8,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161.7,
+      "cholesterol_mg": 26.7,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.5,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 200,
+      "total_carbs_g": 16.7,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.7,
+      "dietary_fiber": 21.4,
+      "protein": 79,
+      "saturated_fat": 95,
+      "sodium": 45.7,
+      "total_carbs": 31.8,
+      "total_fat": 48.5
+    },
+    "serving_size_g": 525,
+    "total_recipe_weight_g": 2100
+  },
+  {
+    "recipe_name": "Japanese Pork and Potato Stew (Nikujaga)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_073031_2fa0a4ae.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-08T07:30:31.588489000Z",
+    "selected_ingredients": [
+      "pork",
+      "carrot",
+      "potato",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Japanese Nikujaga served in a deep, textured ceramic stoneware bowl. The dish features large, 4cm rounded chunks of golden-brown potatoes and 2cm vibrant orange carrot chunks. Substantial 3cm pieces of braised pork shoulder sit prominently, glistening with a dark, savory soy-mirin glaze. Bright green broccoli florets are nestled between the root vegetables for color contrast. The sauce is reduced to a syrupy consistency, coating the ingredients without drowning them. The bowl sits on a dark wood table next to a pair of bamboo chopsticks resting on a ceramic holder. A small side of pickled ginger and a bowl of steamed white rice are visible in the soft-focus background. Natural, directional lighting highlights the textures of the tender meat and soft vegetables.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a bowl of steamed short-grain white rice",
+      "Accompany with miso soup",
+      "Provide seasonal tsukemono (Japanese pickles) on the side"
+    ],
+    "hero_ingredient": "Pork shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes (Yukon Gold or similar)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "200g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dashi stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Sake",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 3cm chunks.",
+      "Peel potatoes and cut into 4cm chunks. Round the sharp edges using a vegetable peeler.",
+      "Cut carrots into 2cm irregular chunks using the rangiri diagonal technique.",
+      "Slice onion into 2cm thick wedges.",
+      "Heat oil in a heavy-bottomed pot over medium heat.",
+      "Sear pork chunks until browned on all sides. Remove excess fat.",
+      "Add onions and sauté until translucent.",
+      "Stir in potatoes and carrots to coat with oil.",
+      "Add dashi, sake, mirin, sugar, and half of the soy sauce.",
+      "Place a parchment paper drop lid directly on the ingredients. Simmer 15 minutes.",
+      "Add remaining soy sauce. Continue simmering for 10 minutes until vegetables are tender.",
+      "Blanch broccoli florets in salted boiling water for 2 minutes. Drain immediately.",
+      "Remove the lid. Increase heat slightly to reduce the liquid to a glossy glaze.",
+      "Gently fold in the broccoli florets before serving."
+    ],
+    "notes": [
+      "Rounding the potato edges (mentori) prevents them from breaking during simmering.",
+      "Using a drop lid (otoshibuta) ensures even heat distribution and prevents fragile ingredients from moving too much."
+    ],
+    "traditional_techniques": [
+      "Mentori (rounding vegetable edges)",
+      "Otoshibuta (drop lid cooking)",
+      "Rangiri (diagonal vegetable cutting)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.8,
+      "calories": 617,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 33.4,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 1050,
+      "total_carbs_g": 46.3,
+      "total_fat_g": 30.5,
+      "total_sugars_g": 16,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.8,
+      "calories": 123.4,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.7,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 210,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 22,
+      "protein": 67,
+      "saturated_fat": 48,
+      "sodium": 46,
+      "total_carbs": 17,
+      "total_fat": 39
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Black Tea Poached Peaches with Coffee Mascarpone",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_071958_901599b3.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-08T07:19:59.357992000Z",
+    "selected_ingredients": [
+      "coffee",
+      "peach",
+      "black tea"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion served on a clean white porcelain plate in a modern bistro setting. Two whole, skinless poached peach halves sit at the center, glistening with a deep amber black tea reduction. The peaches show a soft, tender texture from poaching. A neat, professional quenelle of pale beige coffee-infused mascarpone is placed beside the fruit. The dark tea syrup pools naturally around the base of the peaches, creating a sharp contrast against the white plate. A light dusting of finely crushed dark coffee beans provides a textured garnish. The lighting is natural and even, highlighting the glossy syrup and the smooth cream. A cotton napkin and a silver dessert spoon rest beside the plate on a light oak table.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with a small glass of dessert wine",
+      "Pair with a crisp almond biscotti"
+    ],
+    "hero_ingredient": "Peach",
+    "ingredients": [
+      {
+        "name": "Yellow peaches, halved and pitted",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Loose leaf black tea (Assam or Earl Grey)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lemon peel",
+        "quantity": "1 strip"
+      },
+      {
+        "name": "Mascarpone cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Strong espresso, chilled",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Roasted coffee beans, finely crushed",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Combine water, sugar, and lemon peel in a saucepan.",
+      "Bring to a boil over medium heat.",
+      "Add black tea leaves.",
+      "Remove from heat and steep for 5 minutes.",
+      "Strain liquid into a clean pot.",
+      "Place peach halves in the tea liquid.",
+      "Simmer gently for 10 minutes until tender.",
+      "Remove peaches and set aside.",
+      "Boil the poaching liquid until reduced to a thick syrup.",
+      "Whisk mascarpone, espresso, and icing sugar until smooth.",
+      "Place two peach halves on each plate.",
+      "Drizzle with warm tea syrup.",
+      "Top with a spoonful of coffee mascarpone.",
+      "Garnish with crushed coffee beans."
+    ],
+    "notes": [
+      "Ensure the espresso is completely cold before mixing with mascarpone to prevent curdling.",
+      "Use firm but ripe peaches to maintain shape during poaching."
+    ],
+    "traditional_techniques": [
+      "poaching",
+      "reduction",
+      "tempering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 15,
+      "calories": 402.5,
+      "cholesterol_mg": 78.1,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 3.6,
+      "saturated_fat_g": 17.5,
+      "sodium_mg": 31.3,
+      "total_carbs_g": 31.5,
+      "total_fat_g": 29.1,
+      "total_sugars_g": 29.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 6.4,
+      "calories": 171.3,
+      "cholesterol_mg": 33.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 1.5,
+      "saturated_fat_g": 7.4,
+      "sodium_mg": 13.3,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 12.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26,
+      "dietary_fiber": 8.2,
+      "protein": 7.2,
+      "saturated_fat": 87.5,
+      "sodium": 1.4,
+      "total_carbs": 11.5,
+      "total_fat": 37.3
+    },
+    "serving_size_g": 235,
+    "total_recipe_weight_g": 940
+  }
+]

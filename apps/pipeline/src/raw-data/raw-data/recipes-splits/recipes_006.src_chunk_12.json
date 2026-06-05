@@ -1,0 +1,681 @@
+[
+  {
+    "recipe_name": "Creamy Sun-Dried Tomato and Bacon Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_105306_55c702cc.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2025-10-26T10:53:06.963701000Z",
+    "selected_ingredients": [
+      "pasta",
+      "parmesan cheese",
+      "spinach",
+      "bacon",
+      "mushroom",
+      "garlic",
+      "sun dried tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of creamy pasta is presented in a shallow white porcelain bowl. Long strands of pasta are gracefully twirled and piled high, forming the dish's focal point. Interspersed throughout the golden-hued pasta are irregular chunks of crispy, rendered bacon, varying shades of brown sautéed mushroom slices, and vibrant green wilted spinach leaves. Bright crimson sun-dried tomato strips provide pops of intense color. The creamy sauce lightly coats each strand, creating a glossy sheen. A generous dusting of finely grated Parmesan cheese covers the top, adding a pale, snowy texture. A sprig of fresh flat-leaf parsley is placed delicately on top. The dish is set on a simple wooden table, with a folded off-white linen napkin and a silver fork beside the bowl, under soft, natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread.",
+      "Pair with a simple green salad."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., fettuccine, rigatoni)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Streaky bacon",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh baby spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Sun-dried tomatoes (oil-packed)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley (for garnish)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil.",
+      "Cook pasta according to package directions until al dente.",
+      "Reserve 250 ml of pasta water before draining.",
+      "Cut bacon into small irregular chunks.",
+      "Slice mushrooms thinly.",
+      "Finely mince garlic cloves.",
+      "Drain sun-dried tomatoes and cut into thin strips.",
+      "Heat olive oil in a large pan over medium heat.",
+      "Add bacon chunks to the pan. Cook until crispy. Remove bacon with a slotted spoon. Set aside.",
+      "Leave rendered bacon fat in the pan.",
+      "Add sliced mushrooms to the pan. Sauté until golden brown and tender.",
+      "Add minced garlic to the pan. Cook for 1 minute until fragrant.",
+      "Stir in sun-dried tomato strips.",
+      "Pour in heavy cream. Bring to a gentle simmer.",
+      "Add cooked pasta to the pan. Toss to coat.",
+      "Add reserved pasta water gradually, if needed, to achieve desired sauce consistency.",
+      "Stir in baby spinach. Cook until wilted.",
+      "Return crispy bacon to the pan. Toss gently.",
+      "Grate half of the Parmesan cheese into the pasta. Stir until melted.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately. Garnish with remaining grated Parmesan and fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure pasta is cooked al dente for best texture.",
+      "Adjust cream and pasta water to achieve desired sauce consistency."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1030.1,
+      "cholesterol_mg": 137,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 45.4,
+      "saturated_fat_g": 22.8,
+      "sodium_mg": 1610,
+      "total_carbs_g": 87.4,
+      "total_fat_g": 55.1,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 280.5,
+      "cholesterol_mg": 37.4,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 12.4,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 438.5,
+      "total_carbs_g": 23.8,
+      "total_fat_g": 15,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46,
+      "dietary_fiber": 24,
+      "protein": 91,
+      "saturated_fat": 114,
+      "sodium": 70,
+      "total_carbs": 32,
+      "total_fat": 71
+    },
+    "serving_size_g": 367.3,
+    "total_recipe_weight_g": 1469
+  },
+  {
+    "recipe_name": "Baked Macaroni with Italian Sausage, Tomato, and Basil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_105240_6a6128c9.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2025-10-26T10:52:41.327934000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "basil",
+      "parmesan cheese",
+      "italian sausage",
+      "macaroni"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Baked Macaroni with Italian Sausage, Tomato, and Basil is presented in a rustic white ceramic gratin dish, placed on a simple wooden table surface. The dish features a golden-brown, bubbly crust of melted Parmesan cheese, with tender macaroni pasta peeking through. Chunks of seared Italian sausage, rich red crushed tomatoes, and vibrant green torn fresh basil leaves are visible throughout the dish. The macaroni is cooked al dente, coated in a savory, slightly thick tomato sauce. The composition is hearty and inviting, with a balanced arrangement of ingredients. The background is a modern bistro setting, subtly out of focus, with natural, even lighting. A crisp white cotton napkin is folded beside the dish. The scene evokes a casual yet refined Italian dining experience, with a focus on the dish's comforting textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the sauce.",
+      "A simple green salad with a vinaigrette dressing complements the richness of the pasta.",
+      "Pair with a glass of medium-bodied red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Macaroni pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Italian sausage, casings removed",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Fresh basil leaves, torn",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken or vegetable stock",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "2.5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease a 2-liter baking dish.",
+      "Cook macaroni according to package directions until al dente. Drain well.",
+      "Heat olive oil in a large skillet over medium-high heat. Add Italian sausage. Break it into chunks. Cook until browned and cooked through. Drain excess fat. Remove sausage from skillet; set aside.",
+      "Add diced onion to the same skillet. Cook until softened, about 5 minutes. Add minced garlic and red pepper flakes (if using). Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes and chicken or vegetable stock. Bring to a simmer. Reduce heat to low. Simmer for 10 minutes, allowing flavors to meld. Season with salt and black pepper.",
+      "Remove skillet from heat. Stir in half of the fresh basil and 50 g of the grated Parmesan cheese.",
+      "Add the cooked macaroni and browned Italian sausage to the sauce. Stir gently to combine.",
+      "Transfer the macaroni mixture to the prepared baking dish. Sprinkle remaining 100 g of Parmesan cheese evenly over the top.",
+      "Bake for 20-25 minutes, or until the sauce is bubbly and the cheese topping is golden brown and melted.",
+      "Remove from oven. Let stand for 5 minutes before serving. Garnish with remaining fresh basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 855,
+      "cholesterol_mg": 103,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 43.2,
+      "saturated_fat_g": 16.7,
+      "sodium_mg": 1537,
+      "total_carbs_g": 72.3,
+      "total_fat_g": 44,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.6,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 307,
+      "total_carbs_g": 14.4,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 20,
+      "protein": 86,
+      "saturated_fat": 84,
+      "sodium": 67,
+      "total_carbs": 26,
+      "total_fat": 56
+    },
+    "serving_size_g": 502,
+    "total_recipe_weight_g": 2006
+  },
+  {
+    "recipe_name": "Spaghetti al Pomodoro Fresco e Basilico",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_093817_693738ff.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2025-10-26T09:38:17.851812000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous, artful swirl of al dente spaghetti forms the base, glistening with a vibrant, rustic red pomodoro sauce. Whole roasted cherry tomatoes, some gently burst, are scattered over the pasta, offering pops of deeper red and a juicy texture. Fresh, hand-torn basil leaves provide bright green accents and aromatic freshness. A fine dusting of grated Parmigiano Reggiano lightly coats the dish, adding a subtle golden hue. The dish is presented in a clean, white porcelain bowl, centered on a simple wooden table. A classic silver fork rests beside the bowl, with a few strands of spaghetti elegantly twirled around its tines. Natural, even light illuminates the dish, highlighting its fresh ingredients and inviting textures. A simple folded cotton napkin completes the casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce.",
+      "Offer additional grated Parmigiano Reggiano at the table.",
+      "Pair with a light-bodied red wine like Chianti or a crisp white like Pinot Grigio."
+    ],
+    "hero_ingredient": "Spaghetti",
+    "ingredients": [
+      {
+        "name": "Spaghetti",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss whole cherry tomatoes with 30 ml olive oil, salt, and pepper on a baking sheet. Roast for 15-20 minutes, until softened and slightly burst.",
+      "Finely slice garlic cloves.",
+      "Heat remaining 70 ml olive oil in a large pan over medium heat. Add sliced garlic and red pepper flakes. Cook until fragrant, about 1 minute. Do not brown garlic.",
+      "Add roasted cherry tomatoes to the pan. Gently mash some tomatoes with a spoon to create a rustic sauce. Simmer for 5 minutes.",
+      "Bring a large pot of salted water to a rolling boil. Add spaghetti. Cook according to package directions until al dente.",
+      "Drain spaghetti, reserving 120 ml pasta water.",
+      "Add drained spaghetti to the tomato sauce in the pan. Add half of the reserved pasta water. Toss vigorously to emulsify the sauce, creating a creamy coating.",
+      "Add half of the fresh basil, torn into pieces. Add half of the grated Parmigiano Reggiano. Continue tossing until well combined. Add more pasta water if needed for desired consistency.",
+      "Season with salt and pepper to taste.",
+      "Serve immediately, garnished with remaining fresh torn basil and grated Parmigiano Reggiano."
+    ],
+    "notes": [
+      "Using high-quality extra virgin olive oil is essential for the authentic flavor.",
+      "Fresh basil is crucial; dried basil will not yield the same aromatic result."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecare"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 812,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 27.8,
+      "saturated_fat_g": 8.3,
+      "sodium_mg": 458,
+      "total_carbs_g": 101.8,
+      "total_fat_g": 32.7,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174,
+      "cholesterol_mg": 4.7,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 5.9,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 98,
+      "total_carbs_g": 21.8,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7,
+      "dietary_fiber": 22,
+      "protein": 56,
+      "saturated_fat": 42,
+      "sodium": 20,
+      "total_carbs": 37,
+      "total_fat": 42
+    },
+    "serving_size_g": 467,
+    "total_recipe_weight_g": 1867
+  },
+  {
+    "recipe_name": "Spaghetti al Pomodoro Fresco e Basilico",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_074109_6c0c72be.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2025-10-26T07:41:10.634321000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous, artful swirl of al dente spaghetti forms the base, glistening with a vibrant, rustic red pomodoro sauce. Whole roasted cherry tomatoes, some gently burst, are scattered over the pasta, offering pops of deeper red and a juicy texture. Fresh, hand-torn basil leaves provide bright green accents and aromatic freshness. A fine dusting of grated Parmigiano Reggiano lightly coats the dish, adding a subtle golden hue. The dish is presented in a clean, white porcelain bowl, centered on a simple wooden table. A classic silver fork rests beside the bowl, with a few strands of spaghetti elegantly twirled around its tines. Natural, even light illuminates the dish, highlighting its fresh ingredients and inviting textures. A simple folded cotton napkin completes the casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce.",
+      "Offer additional grated Parmigiano Reggiano at the table.",
+      "Pair with a light-bodied red wine like Chianti or a crisp white like Pinot Grigio."
+    ],
+    "hero_ingredient": "Spaghetti",
+    "ingredients": [
+      {
+        "name": "Spaghetti",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss whole cherry tomatoes with 30 ml olive oil, salt, and pepper on a baking sheet. Roast for 15-20 minutes, until softened and slightly burst.",
+      "Finely slice garlic cloves.",
+      "Heat remaining 70 ml olive oil in a large pan over medium heat. Add sliced garlic and red pepper flakes. Cook until fragrant, about 1 minute. Do not brown garlic.",
+      "Add roasted cherry tomatoes to the pan. Gently mash some tomatoes with a spoon to create a rustic sauce. Simmer for 5 minutes.",
+      "Bring a large pot of salted water to a rolling boil. Add spaghetti. Cook according to package directions until al dente.",
+      "Drain spaghetti, reserving 120 ml pasta water.",
+      "Add drained spaghetti to the tomato sauce in the pan. Add half of the reserved pasta water. Toss vigorously to emulsify the sauce, creating a creamy coating.",
+      "Add half of the fresh basil, torn into pieces. Add half of the grated Parmigiano Reggiano. Continue tossing until well combined. Add more pasta water if needed for desired consistency.",
+      "Season with salt and pepper to taste.",
+      "Serve immediately, garnished with remaining fresh torn basil and grated Parmigiano Reggiano."
+    ],
+    "notes": [
+      "Using high-quality extra virgin olive oil is essential for the authentic flavor.",
+      "Fresh basil is crucial; dried basil will not yield the same aromatic result."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecare"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 812,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 27.8,
+      "saturated_fat_g": 8.3,
+      "sodium_mg": 458,
+      "total_carbs_g": 101.8,
+      "total_fat_g": 32.7,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174,
+      "cholesterol_mg": 4.7,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 5.9,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 98,
+      "total_carbs_g": 21.8,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7,
+      "dietary_fiber": 22,
+      "protein": 56,
+      "saturated_fat": 42,
+      "sodium": 20,
+      "total_carbs": 37,
+      "total_fat": 42
+    },
+    "serving_size_g": 467,
+    "total_recipe_weight_g": 1867
+  },
+  {
+    "recipe_name": "Vegetable Cashew Korma",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251026_000123_08d10e99.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 22,
+    "timestamp": "2025-10-26T00:01:24.172026000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "onion",
+      "potato",
+      "cashew",
+      "bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian, Indian cuisine",
+    "visual_description": "A vibrant Vegetable Cashew Korma is presented in a pristine white ceramic bowl. The rich, creamy golden-orange gravy, infused with aromatic spices, envelops tender, bright green broccoli florets, vibrant green beans cut into 3cm pieces, and soft 2cm potato cubes. A swirl of cream subtly streaks the surface, and the dish is generously garnished with freshly chopped green coriander leaves, adding a burst of freshness and color. The textures are inviting: smooth, thick gravy contrasting with the distinct shapes of the vegetables. The bowl sits on a simple wooden table, alongside a small white plate holding a warm, puffed naan bread, and a traditional Indian metal spoon rests beside the bowl. Natural, even lighting highlights the dish's warmth and authentic appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with fresh naan bread, roti, or steamed basmati rice.",
+      "A side of cooling raita (yogurt dip) or a simple kachumber salad (chopped cucumber, tomato, onion salad) complements the rich curry."
+    ],
+    "hero_ingredient": "Cashews",
+    "ingredients": [
+      {
+        "name": "Broccoli",
+        "quantity": "300g"
+      },
+      {
+        "name": "Potato",
+        "quantity": "2 medium (about 300g)"
+      },
+      {
+        "name": "Green Beans",
+        "quantity": "150g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "2 medium (about 250g)"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "75g"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "20g"
+      },
+      {
+        "name": "Green Chili",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium (about 250g)"
+      },
+      {
+        "name": "Plain Yogurt",
+        "quantity": "50g"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Green Cardamom Pods",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Cinnamon Stick",
+        "quantity": "2cm piece"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Coriander Powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh Coriander Leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Blanch broccoli florets and green beans in boiling salted water for 2 minutes. Drain. Refresh in cold water. Set aside.",
+      "Heat oil in a large pot over medium heat. Add bay leaf, cardamom, cinnamon, and cloves. Sauté until fragrant, about 30 seconds.",
+      "Add finely chopped onion. Cook until golden brown, 8-10 minutes.",
+      "Add ginger-garlic paste and green chili. Sauté for 1 minute until raw smell disappears.",
+      "Add tomato puree. Cook, stirring occasionally, until the oil separates, 5-7 minutes.",
+      "Blend the soaked cashews with a little water to a smooth paste.",
+      "Add turmeric powder, coriander powder, and cumin powder to the pot. Cook for 1 minute, stirring constantly, adding a splash of water if needed.",
+      "Add diced potatoes and 200ml water. Bring to a simmer. Cover and cook until potatoes are half tender, 5-7 minutes.",
+      "Stir in the cashew paste and whisked yogurt. Cook for 2-3 minutes, stirring to prevent sticking.",
+      "Add blanched broccoli and green beans. Mix gently.",
+      "Stir in heavy cream and garam masala. Simmer for another 3-5 minutes, until vegetables are tender and gravy has thickened.",
+      "Season with salt to taste.",
+      "Garnish with fresh chopped coriander leaves before serving."
+    ],
+    "traditional_techniques": [
+      "Tempering whole spices (tadka)",
+      "Creating a smooth, rich gravy base from onions and cashews"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 374,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 11.6,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 536,
+      "total_carbs_g": 40.9,
+      "total_fat_g": 20.3,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 86,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 2.7,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 123,
+      "total_carbs_g": 9.4,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 6,
+      "dietary_fiber": 30,
+      "protein": 23,
+      "saturated_fat": 26,
+      "sodium": 23,
+      "total_carbs": 15,
+      "total_fat": 26
+    },
+    "serving_size_g": 434.5,
+    "total_recipe_weight_g": 1738
+  }
+]

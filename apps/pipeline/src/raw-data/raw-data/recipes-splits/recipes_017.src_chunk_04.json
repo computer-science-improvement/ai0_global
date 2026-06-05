@@ -1,0 +1,650 @@
+[
+  {
+    "recipe_name": "French Mustard Chicken with Roasted Garlic Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_french_mustard_chicken_with_roasted_garlic_potatoes_20250626_100507_17b94c7f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:05:08.273686000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "mustard",
+      "garlic",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of French Mustard Chicken is presented on a round, clean white porcelain dinner plate, showcasing a golden-brown, seared bone-in chicken thigh, its skin crisp. The chicken rests in a rich, creamy Dijon mustard sauce, glistening under natural, even lighting. Beside the chicken, a generous cluster of roasted potato chunks, their skins slightly browned and interiors tender, are intermingled with vibrant, blistered cherry tomato halves and soft, caramelized garlic slices. The arrangement is organic yet composed, with moderate negative space. A scattering of fresh, bright green chopped tarragon and parsley garnishes the dish, providing a pop of color and freshness. The plate sits on a simple, light-colored wooden table surface. A neatly folded white cotton napkin is placed to the side. The background hints at a modern bistro setting, clean and unfussy, allowing the dish to be the focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a fresh, crusty baguette to soak up the rich sauce.",
+      "Accompany with a simple green salad dressed with a light vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes (e.g., small new potatoes, fingerling)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Cherry tomatoes or small plum tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, medium"
+      },
+      {
+        "name": "Dry white wine (e.g., Sauvignon Blanc)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh tarragon",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large oven-safe pan or Dutch oven over medium-high heat. Sear chicken thighs skin-side down for 8-10 minutes until golden brown and crisp. Flip and sear for 2-3 minutes on the other side. Remove chicken from pan. Set aside.",
+      "Peel and thinly slice shallots. Mince 3 garlic cloves.",
+      "Add remaining 15 ml olive oil to the same pan. Sauté sliced shallots for 2-3 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Deglaze pan with white wine. Scrape up any browned bits from the bottom. Simmer for 2 minutes until wine slightly reduces.",
+      "Stir in Dijon mustard and chicken stock. Bring to a simmer. Return chicken thighs to the pan, skin-side up.",
+      "Cover pan. Transfer to preheated oven. Cook for 20 minutes.",
+      "While chicken cooks, prepare potatoes and tomatoes. Wash potatoes. Cut larger potatoes into 2-3 cm chunks. Halve cherry tomatoes. Slice remaining 3 garlic cloves.",
+      "Toss potatoes, tomatoes, and sliced garlic with a drizzle of olive oil, salt, and pepper on a baking tray. Roast in the oven for 25-30 minutes, or until potatoes are tender and golden. Tomatoes should be slightly burst.",
+      "Remove chicken from oven. Stir in heavy cream, chopped tarragon, and half of the chopped parsley into the pan sauce. Simmer gently on stovetop for 5 minutes until sauce slightly thickens. Ensure chicken reaches an internal temperature of 75°C.",
+      "To serve, place a chicken thigh on each plate. Spoon generous amount of mustard sauce over chicken. Arrange roasted garlic potatoes and tomatoes beside the chicken. Garnish with remaining fresh parsley."
+    ],
+    "notes": [
+      "Bone-in, skin-on chicken thighs provide the best flavor and moisture for this dish.",
+      "Adjust mustard quantity to your preferred level of tanginess."
+    ],
+    "traditional_techniques": [
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 736.9,
+      "cholesterol_mg": 201.2,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 44.2,
+      "saturated_fat_g": 13,
+      "sodium_mg": 1044.1,
+      "total_carbs_g": 37.4,
+      "total_fat_g": 43.7,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153.5,
+      "cholesterol_mg": 41.9,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.2,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 217.5,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 20,
+      "protein": 88,
+      "saturated_fat": 65,
+      "sodium": 45,
+      "total_carbs": 14,
+      "total_fat": 56
+    },
+    "serving_size_g": 480,
+    "total_recipe_weight_g": 1920
+  },
+  {
+    "recipe_name": "Creamy Bacon and Caramelized Onion Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_bacon_and_caramelized_onion_tagliatelle_20250626_100503_1d0acc80.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:05:04.195355000Z",
+    "selected_ingredients": [
+      "bacon",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, showcasing a generous portion of golden-hued tagliatelle. The pasta is coated in a rich, creamy sauce, subtly speckled with translucent, deeply caramelized onion strands. Scattered throughout are crisp, golden-brown chunks of pan-fried bacon. A vibrant sprinkle of fresh, finely chopped green parsley provides a contrasting pop of color on top. The dish has a natural, flowing arrangement, with the pasta forming a soft mound, allowing for moderate negative space on the plate. The textures are varied: smooth pasta, soft onions, and crunchy bacon. The overall presentation is inviting and professional, with a focus on the appealing colors and textures of the ingredients. A simple cotton napkin rests beside the plate. Natural, even lighting illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Bacon",
+    "ingredients": [
+      {
+        "name": "Bacon",
+        "quantity": "200g, diced"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Tagliatelle",
+        "quantity": "400g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g, freshly grated"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pan over medium heat. Add diced bacon. Cook until crispy.",
+      "Remove bacon with a slotted spoon. Set aside. Leave rendered fat in the pan.",
+      "Add thinly sliced onions to the pan with bacon fat. Cook over medium-low heat for 15-20 minutes, stirring occasionally, until deeply caramelized and soft.",
+      "Add minced garlic to the pan with onions. Cook for 1 minute until fragrant.",
+      "Deglaze the pan with broth, scraping up any browned bits.",
+      "Pour in heavy cream. Bring to a gentle simmer.",
+      "Cook tagliatelle according to package directions in salted boiling water until al dente. Reserve 120ml pasta water before draining.",
+      "Add cooked tagliatelle to the pan with the cream sauce. Add half of the crispy bacon and half of the grated Parmesan.",
+      "Toss well to coat pasta. Add reserved pasta water as needed to achieve desired creamy consistency.",
+      "Season with salt and black pepper.",
+      "Serve immediately. Garnish each portion with remaining crispy bacon, grated Parmesan, and fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 979,
+      "cholesterol_mg": 196.5,
+      "dietary_fiber_g": 4.47,
+      "protein_g": 44.99,
+      "saturated_fat_g": 25.06,
+      "sodium_mg": 1233.65,
+      "total_carbs_g": 77.19,
+      "total_fat_g": 54.11,
+      "total_sugars_g": 5.46,
+      "trans_fat_g": 0.95
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 301,
+      "cholesterol_mg": 60.47,
+      "dietary_fiber_g": 1.37,
+      "protein_g": 13.84,
+      "saturated_fat_g": 7.71,
+      "sodium_mg": 379.64,
+      "total_carbs_g": 23.75,
+      "total_fat_g": 16.65,
+      "total_sugars_g": 1.68,
+      "trans_fat_g": 0.29
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65.5,
+      "dietary_fiber": 16,
+      "protein": 90,
+      "saturated_fat": 125.3,
+      "sodium": 53.6,
+      "total_carbs": 28.1,
+      "total_fat": 69.4
+    },
+    "serving_size_g": 325,
+    "total_recipe_weight_g": 1300
+  },
+  {
+    "recipe_name": "Coconut Green Curry with Crispy Tofu, Kale, and Edamame",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coconut_green_curry_with_crispy_tofu%2C_kale%2C_and_edamame_20250626_100459_fec16857.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:05:00.198208000Z",
+    "selected_ingredients": [
+      "kale",
+      "coconut milk",
+      "ginger",
+      "chili",
+      "lime",
+      "edamame"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "The dish is presented in a deep, pristine white porcelain bowl, showcasing a vibrant, creamy green curry. Roughly chopped tender kale leaves and bright green shelled edamame are generously dispersed throughout the rich, aromatic sauce. Golden-brown, crispy 2cm tofu cubes are artfully arranged on top, providing textural contrast. The curry's color is a lush, inviting green, accented by the white of the coconut milk and the golden hue of the tofu. A scattering of thinly sliced fresh red chili and bright green cilantro leaves garnishes the dish. A small, separate white bowl of fluffy steamed jasmine rice sits beside it, with simple wooden chopsticks resting nearby. The composition is balanced, with moderate negative space, presented on a simple wooden table under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Southeast Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Steamed jasmine rice",
+      "Fresh lime wedges",
+      "Chopped cilantro"
+    ],
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Firm tofu",
+        "quantity": "400g block"
+      },
+      {
+        "name": "Kale",
+        "quantity": "200g"
+      },
+      {
+        "name": "Shelled edamame (frozen)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20g"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1 (or to taste)"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Green curry paste",
+        "quantity": "50g"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Maple syrup (or palm sugar)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "Small bunch (for garnish)"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Press tofu block for 30 minutes to remove excess water. Cut into 2cm cubes.",
+      "Heat 30ml neutral oil in a large pan or Dutch oven over medium-high heat. Add tofu cubes. Cook, turning occasionally, until golden and crispy on all sides. Remove tofu. Set aside.",
+      "Add remaining 15ml oil to the same pan. Add finely chopped shallots and minced garlic. Sauté for 2 minutes until softened.",
+      "Add grated ginger and thinly sliced red chili. Cook for 1 minute until fragrant.",
+      "Stir in green curry paste. Cook for 1 minute, stirring constantly, to release aromas.",
+      "Pour in coconut milk and 250ml water. Bring the mixture to a gentle simmer, stirring well to combine.",
+      "Add roughly chopped kale and shelled edamame. Cook for 3-5 minutes, or until kale is tender-crisp and edamame are heated through.",
+      "Stir in fresh lime juice and lime zest. Season with maple syrup and salt to taste, adjusting sweetness and saltiness as needed.",
+      "Gently fold in the crispy tofu cubes. Heat through for 1 minute.",
+      "Serve immediately in deep bowls, accompanied by steamed jasmine rice."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.4,
+      "calories": 755,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.2,
+      "protein_g": 21.7,
+      "saturated_fat_g": 44.1,
+      "sodium_mg": 926.3,
+      "total_carbs_g": 31,
+      "total_fat_g": 66.7,
+      "total_sugars_g": 14.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 161,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 4.6,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 198,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 14.3,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 40,
+      "protein": 43,
+      "saturated_fat": 220,
+      "sodium": 40,
+      "total_carbs": 11,
+      "total_fat": 86
+    },
+    "serving_size_g": 467.8,
+    "total_recipe_weight_g": 1871
+  },
+  {
+    "recipe_name": "Creamy Bacon and Caramelized Onion Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_bacon_and_caramelized_onion_pasta_20250626_100423_fb6090f2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:04:23.557043000Z",
+    "selected_ingredients": [
+      "bacon",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Creamy Bacon and Caramelized Onion Pasta is presented on a clean, round white porcelain dinner plate. The spaghetti is artfully intertwined, coated in a rich, glossy, light golden-brown cream sauce. Small, crispy, deep golden-brown diced bacon pieces are scattered throughout and on top of the pasta. Soft, tender strands of deep amber caramelized onion are visibly integrated within the dish. Fresh, bright green chopped parsley is sprinkled over the pasta, adding a vibrant color contrast. The dish has a balanced composition with moderate negative space, showcasing the texture of the pasta and the varied colors of its ingredients. The plate rests on a simple wooden table surface. A neatly folded white cotton napkin is placed beside the plate. The scene is illuminated by soft, even natural light, creating a warm and inviting bistro atmosphere. A silver fork is placed to the side of the plate. The background is softly blurred, suggestive of a modern casual restaurant setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Bacon",
+    "ingredients": [
+      {
+        "name": "Spaghetti or Fettuccine",
+        "quantity": "400g"
+      },
+      {
+        "name": "Streaky Bacon, diced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow Onions, thinly sliced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Parmesan Cheese, grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions until al dente. Drain, reserving 250ml of pasta water.",
+      "Heat olive oil in a large pan over medium heat. Add diced bacon. Cook until crispy. Remove bacon with a slotted spoon. Set aside. Leave rendered fat in the pan.",
+      "Add thinly sliced onions to the pan with bacon fat. Reduce heat to medium-low. Cook, stirring occasionally, for 30-40 minutes until deeply caramelized and soft.",
+      "Add minced garlic to the caramelized onions. Cook for 1 minute until fragrant.",
+      "Pour in heavy cream. Bring to a gentle simmer. Stir in grated Parmesan cheese until melted and smooth. Season with salt and black pepper.",
+      "Add cooked pasta to the sauce in the pan. Toss to coat evenly. Add reserved pasta water gradually, if needed, to achieve desired creamy consistency.",
+      "Stir in the crispy bacon pieces.",
+      "Serve immediately. Garnish with fresh chopped parsley and additional grated Parmesan cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 977,
+      "cholesterol_mg": 119,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 41.7,
+      "saturated_fat_g": 23.2,
+      "sodium_mg": 1199,
+      "total_carbs_g": 87.6,
+      "total_fat_g": 50.2,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 297,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 12.7,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 365,
+      "total_carbs_g": 26.6,
+      "total_fat_g": 15.3,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 18,
+      "protein": 83,
+      "saturated_fat": 116,
+      "sodium": 52,
+      "total_carbs": 32,
+      "total_fat": 64
+    },
+    "serving_size_g": 328.75,
+    "total_recipe_weight_g": 1315
+  },
+  {
+    "recipe_name": "French Braised Beef with Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_french_braised_beef_with_root_vegetables_20250626_100416_88877eef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:04:16.885476000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of French braised beef, presented on a clean white porcelain dinner plate, centrally placed on a simple wooden bistro table. The rich, dark brown beef chunks, deeply caramelized and fork-tender, are nestled amongst vibrant roasted root vegetables: thick-cut carrot rounds, medium potato cubes, and pearl onions, all coated in a glossy, dark red wine reduction. Fresh button mushrooms, halved and sautéed, are interspersed throughout. A sprinkle of freshly chopped flat-leaf parsley adds a bright green contrast. The arrangement is organic and inviting, with moderate negative space around the edges of the plate. A folded white cotton napkin and classic silver flatware are placed beside the plate. Natural, even lighting illuminates the dish from above, highlighting its rich textures and inviting warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette slices for dipping in the sauce.",
+      "Pair with a simple green salad dressed with a light vinaigrette."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef Chuck",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery Stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Button Mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Pat beef chuck dry. Cut into large 5cm chunks. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat.",
+      "Sear beef chunks on all sides until deeply browned. Remove beef from pot.",
+      "Add carrots cut into thick rounds, onions cut into wedges, and celery cut into thick slices to the pot. Sauté 8-10 minutes until softened and lightly browned.",
+      "Stir in minced garlic and tomato paste. Cook 2 minutes, stirring constantly.",
+      "Deglaze pot with red wine, scraping up all browned bits from the bottom. Reduce wine by half.",
+      "Return beef to the pot. Add beef stock, thyme sprigs, and bay leaf. Liquid should mostly cover the beef.",
+      "Bring mixture to a simmer. Cover the Dutch oven tightly.",
+      "Transfer Dutch oven to the preheated oven. Braise for 2.5-3 hours, or until beef is very tender.",
+      "Add potatoes cut into medium cubes and mushrooms halved to the pot. Continue braising for another 30-45 minutes, until vegetables are tender.",
+      "Remove thyme sprigs and bay leaf before serving.",
+      "Taste and adjust seasoning as needed.",
+      "Serve hot."
+    ],
+    "notes": [
+      "Ensure beef is fork-tender before serving for best results."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Mirepoix preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1025,
+      "cholesterol_mg": 225,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 69.6,
+      "saturated_fat_g": 18.1,
+      "sodium_mg": 501,
+      "total_carbs_g": 49.4,
+      "total_fat_g": 51,
+      "total_sugars_g": 9.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 62,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 27,
+      "protein": 139,
+      "saturated_fat": 91,
+      "sodium": 22,
+      "total_carbs": 18,
+      "total_fat": 65
+    },
+    "serving_size_g": 811.8,
+    "total_recipe_weight_g": 3247
+  }
+]

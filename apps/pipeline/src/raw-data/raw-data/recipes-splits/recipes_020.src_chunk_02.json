@@ -1,0 +1,648 @@
+[
+  {
+    "recipe_name": "Hearty Mexican Chicken and Black Bean Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_mexican_chicken_and_black_bean_soup_20250624_173418_088b0506.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:34:18.973249000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant and robust Mexican Chicken and Black Bean Soup is presented in a clean white porcelain bowl, positioned on a simple wooden table. The rich, savory broth is a deep reddish-brown, flecked with bright green cilantro. Shredded chicken pieces are visibly intertwined with whole, glossy black beans, golden corn kernels, and small, tender cubes of red bell pepper and onion, showcasing distinct textures. A generous sprinkle of fresh, vibrant green chopped cilantro rests on top, alongside a bright yellow lime wedge on the rim of the bowl. The soup maintains a fluid, inviting consistency. A cotton napkin is neatly folded beside the bowl. Natural, even lighting highlights the ingredients' colors and textures. The background is a soft, blurred restaurant setting, emphasizing the dish as the focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crispy tortilla strips.",
+      "Offer a dollop of Mexican crema or sour cream for garnish.",
+      "Accompany with sliced avocado."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Black beans, canned",
+        "quantity": "2 x 400 g cans, rinsed"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Diced tomatoes, canned",
+        "quantity": "1 x 400 g can, undrained"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Corn kernels, frozen or fresh",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "0.5 bunch, chopped"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, juiced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion and red bell pepper. Cook until softened, about 5 minutes.",
+      "Stir in minced garlic, chili powder, cumin, and oregano. Cook for 1 minute until fragrant.",
+      "Add chicken breasts to the pot. Sear lightly on all sides for 2-3 minutes.",
+      "Pour in chicken broth and diced tomatoes. Bring to a simmer.",
+      "Reduce heat to low, cover, and cook for 20-25 minutes. Ensure chicken reaches 75°C internal temperature.",
+      "Remove chicken from the pot. Shred chicken using two forks.",
+      "Add rinsed black beans and corn kernels to the soup. Simmer for 5 minutes.",
+      "Return shredded chicken to the pot. Stir in fresh lime juice.",
+      "Season soup with salt and pepper to taste.",
+      "Ladle soup into bowls. Garnish generously with fresh chopped cilantro."
+    ],
+    "notes": [
+      "Always ensure chicken is cooked to an internal temperature of 75°C (167°F) for food safety.",
+      "For extra heat, add a pinch of cayenne pepper or a diced jalapeño with the bell pepper."
+    ],
+    "traditional_techniques": [
+      "Mise en place",
+      "Layering flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 667,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 20.1,
+      "protein_g": 65.2,
+      "saturated_fat_g": 3,
+      "sodium_mg": 1922,
+      "total_carbs_g": 72.2,
+      "total_fat_g": 14.5,
+      "total_sugars_g": 10.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 69.1,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 6.7,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 199.1,
+      "total_carbs_g": 7.5,
+      "total_fat_g": 1.5,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 72,
+      "protein": 130,
+      "saturated_fat": 15,
+      "sodium": 84,
+      "total_carbs": 26,
+      "total_fat": 19
+    },
+    "serving_size_g": 965,
+    "total_recipe_weight_g": 3862
+  },
+  {
+    "recipe_name": "Spicy Chicken Enchiladas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_enchiladas_20250624_173405_c3af2352.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:34:06.048367000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tortilla",
+      "tomato",
+      "onion",
+      "hot sauce",
+      "bell pepper",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Two to three baked enchiladas are presented on a simple, round ceramic plate with a rustic, slightly irregular edge in a warm, earthy tone. The enchiladas are golden-brown from the melted, bubbly cheese, covering a rich, reddish-brown chili sauce. Shredded chicken filling is visible at the ends of some tortillas, along with small cubes of colorful bell peppers and onions. Fresh green cilantro leaves are scattered casually over the top. The plate sits on a well-used wooden dining table. A simple cloth napkin is casually placed beside the plate. Warm, soft light illuminates the scene, suggesting a cozy kitchen environment. A small, unglazed ceramic bowl containing extra hot sauce or salsa is subtly placed in the background, slightly out of focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Mexican rice and refried beans.",
+      "Offer additional hot sauce or salsa verde on the side.",
+      "Garnish with a dollop of sour cream or crumbled cotija cheese."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "12"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "15g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "10g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Shredded cheese (cheddar/Monterey Jack blend)",
+        "quantity": "200g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Dice onion into small cubes. Mince garlic. Dice bell peppers into small cubes.",
+      "Heat 15ml olive oil in a large skillet over medium heat. Add diced chicken breast. Cook until browned and internal temperature reaches 75°C. Remove chicken, shred, and set aside.",
+      "In the same skillet, add remaining 15ml olive oil. Add half of the diced onion, minced garlic, green bell pepper, and red bell pepper. Sauté until softened, about 5-7 minutes.",
+      "Stir in shredded chicken, 15ml hot sauce, 5g chili powder, 5g cumin, 2g oregano, 2g salt, and 1g black pepper. Mix well. This is the filling.",
+      "For the sauce, combine canned diced tomatoes, remaining half of diced onion, remaining minced garlic, remaining 15ml hot sauce, remaining 10g chili powder, remaining 5g cumin, remaining 3g oregano, remaining 3g salt, and remaining 1g black pepper in a blender. Add chicken broth. Blend until smooth.",
+      "Pour a thin layer of sauce into the bottom of a 23x33cm baking dish.",
+      "Warm tortillas slightly to make them pliable. Dip each tortilla briefly into the sauce. This helps prevent cracking.",
+      "Place about 60g of chicken filling down the center of each tortilla. Roll tightly. Place seam-side down in the baking dish.",
+      "Arrange all 12 rolled enchiladas in the dish. Pour remaining sauce evenly over the enchiladas.",
+      "Sprinkle shredded cheese over the top of the sauce.",
+      "Bake for 20-25 minutes, or until cheese is melted and bubbly and sauce is hot. Let rest 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F)."
+    ],
+    "traditional_techniques": [
+      "Sautéing aromatics for flavor base",
+      "Simmering sauce for depth",
+      "Rolling tortillas"
+    ]
+  },
+  {
+    "recipe_name": "Roasted Potato Galette with Fermented Tomato & Cashew Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_potato_galette_with_fermented_tomato_%26_cashew_cheese_20250624_173400_2d018a06.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:34:00.689708000Z",
+    "selected_ingredients": [
+      "potato",
+      "tomato",
+      "cheese",
+      "bacon",
+      "cayenne pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A rustic, free-form galette is presented centrally on a handcrafted, matte cream ceramic plate. It features a golden-brown, crisp whole wheat crust with natural pleats. The visible filling showcases layers of tender, roasted potato rounds with skins on, interspersed with vibrant, ruby-red fermented tomato slices. Creamy, off-white cultured cashew cheese peeks through. The dish is subtly dusted with dark, finely crumbled bacon, adding textural contrast. The composition is organic and unforced, highlighting natural textures and earthy colors. The plate rests on a light, reclaimed wood surface. An undyed linen napkin is folded neatly. Soft, natural light illuminates the scene, emphasizing the wholesome, sustainable aesthetic. A hint of green from a nearby plant is visible in the minimalist background. A single, generous slice is presented, showcasing its layered cross-section.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Raw Cashews",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Bacon",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Cayenne Pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic Clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Nutritional Yeast",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Probiotic Capsule (dairy-free)",
+        "quantity": "1"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Whole Wheat Flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cold Butter (or vegan butter)",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Ice Water",
+        "quantity": "60 ml"
+      }
+    ],
+    "instructions": [
+      "Day 1 (or earlier): Prepare Fermented Tomatoes. Wash and slice tomatoes into 1 cm thick rounds. Place in a clean glass jar. Dissolve 15 g salt in 500 ml filtered water to make brine. Pour brine over tomatoes, ensuring they are fully submerged. Add contents of 1 probiotic capsule. Seal jar loosely. Ferment at room temperature for 3-5 days until tangy, burping daily. Refrigerate once desired tang is achieved.",
+      "Day 1 (or earlier): Prepare Cultured Cashew Cheese. Soak cashews in hot water for 30 minutes, then drain. Blend soaked cashews with 120 ml fresh water, minced garlic, nutritional yeast, apple cider vinegar, salt, and contents of 1 probiotic capsule until smooth. Transfer to a clean jar. Cover loosely. Ferment at room temperature for 12-24 hours until tangy. Refrigerate.",
+      "Prepare Galette Dough: Combine flour and a pinch of salt. Cut cold butter into small cubes. Rub butter into flour until crumbly. Add ice water gradually, mixing until dough forms. Do not overmix. Form into a disc. Wrap and chill for 30 minutes.",
+      "Preheat oven to 200°C. Line a baking sheet with parchment paper.",
+      "Prepare Potatoes: Wash potatoes. Do not peel. Slice potatoes into 3 mm thick rounds. Toss with 15 ml olive oil, salt, black pepper, and fresh thyme leaves. Roast for 15-20 minutes until tender-crisp.",
+      "Assemble Galette: Roll out chilled dough on parchment paper into a 30 cm circle. Spread a thin layer of cultured cashew cheese over the dough, leaving a 4 cm border. Arrange roasted potato slices on top of the cheese. Drain fermented tomatoes. Arrange fermented tomato slices over potatoes. Sprinkle with cayenne pepper.",
+      "Fold the dough border over the filling, creating pleats. Brush exposed dough with remaining 15 ml olive oil. Bake for 30-35 minutes until crust is golden brown and filling is bubbly.",
+      "Prepare Bacon Dust: While galette bakes, finely chop bacon. Cook in a dry pan over medium heat until very crispy. Drain on paper towel. Crumble into fine dust.",
+      "Serve: Let galette rest for 5 minutes. Slice into portions. Sprinkle with bacon dust just before serving."
+    ],
+    "notes": [
+      "For enhanced sustainability, use potato peels for homemade vegetable stock.",
+      "Adjust fermentation time for tomatoes and cashews based on desired tanginess and ambient temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1017.6,
+      "cholesterol_mg": 79.69,
+      "dietary_fiber_g": 14.97,
+      "protein_g": 29.22,
+      "saturated_fat_g": 22.91,
+      "sodium_mg": 490.7,
+      "total_carbs_g": 98,
+      "total_fat_g": 61.43,
+      "total_sugars_g": 8.03,
+      "trans_fat_g": 1.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 249.9,
+      "cholesterol_mg": 19.58,
+      "dietary_fiber_g": 3.68,
+      "protein_g": 7.18,
+      "saturated_fat_g": 5.63,
+      "sodium_mg": 120.57,
+      "total_carbs_g": 24.08,
+      "total_fat_g": 15.09,
+      "total_sugars_g": 1.97,
+      "trans_fat_g": 0.25
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26.56,
+      "dietary_fiber": 53.46,
+      "protein": 58.44,
+      "saturated_fat": 114.55,
+      "sodium": 21.33,
+      "total_carbs": 35.64,
+      "total_fat": 78.76
+    },
+    "serving_size_g": 407,
+    "total_recipe_weight_g": 1628
+  },
+  {
+    "recipe_name": "Roasted Chicken and Potato Medley",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_and_potato_medley_20250624_173347_9cf4f843.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:33:48.327565000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of roasted chicken and potato medley is presented on an everyday, slightly off-white ceramic plate. Two bone-in, skin-on chicken thighs, deeply golden-brown and crispy, are nestled amongst chunky, rustic potato wedges. The potatoes are roasted to a tender interior with a crisp, golden exterior, showcasing their natural imperfections. Scattered among the chicken and potatoes are softened, caramelized onion slices and roasted garlic cloves. A few fresh sprigs of rosemary are casually placed on top, adding a touch of green. The dish is arranged naturally, components touching and slightly overlapping, reflecting a comforting, home-cooked meal. The plate sits on a well-worn wooden kitchen table, illuminated by warm, natural overhead light. A simple cloth napkin and standard metal cutlery are casually placed beside the plate. The overall scene is homely and inviting, without any pretense or overly styled elements, emphasizing hearty satisfaction.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "8 (approx. 1.2 kg)"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold or red potatoes)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1, sliced"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "15 ml (or 5 ml dried)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2.5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "Wash potatoes. Cut potatoes into 2-3 cm wedges or chunks. Slice onion into thick pieces.",
+      "In a large mixing bowl, combine potato wedges, onion slices, minced garlic, olive oil, rosemary sprigs, and thyme leaves. Season with salt and pepper. Toss to coat evenly.",
+      "Arrange chicken thighs and seasoned potato mixture in a single layer on a large baking sheet or roasting pan. Ensure chicken skin is facing up.",
+      "Roast for 40-50 minutes. Chicken skin should be golden and crispy. Potatoes should be tender and browned.",
+      "Check chicken internal temperature. It must reach 75°C (167°F).",
+      "Remove from oven. Let chicken rest for 5 minutes before serving.",
+      "Serve warm directly from the pan or on individual plates."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 963,
+      "cholesterol_mg": 327,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 56.5,
+      "saturated_fat_g": 14.3,
+      "sodium_mg": 626,
+      "total_carbs_g": 48.7,
+      "total_fat_g": 59.5,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 105,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 10,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 109,
+      "dietary_fiber": 24.3,
+      "protein": 113,
+      "saturated_fat": 71.4,
+      "sodium": 27.2,
+      "total_carbs": 17.7,
+      "total_fat": 76.3
+    },
+    "serving_size_g": 598,
+    "total_recipe_weight_g": 2392
+  },
+  {
+    "recipe_name": "Huevos con Pimientos Tacos",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_huevos_con_pimientos_tacos_20250624_173311_fa890050.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:33:11.590449000Z",
+    "selected_ingredients": [
+      "egg",
+      "bell pepper",
+      "onion",
+      "garlic",
+      "tortilla",
+      "gherkin"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Two vibrant Huevos con Pimientos Tacos are neatly arranged on a clean, round white porcelain plate, slightly overlapping. Each warm corn tortilla cradles soft-scrambled eggs, cooked to a creamy, fluffy texture. Interspersed are brightly colored, finely diced bell peppers – red and yellow – alongside tender, translucent diced onions and minced garlic, all sautéed until tender-crisp. A vibrant, chunky gherkin salsa, made with finely diced gherkins, fresh cilantro, and lime, is spooned artfully beside the tacos. Fresh cilantro sprigs scatter over the top, and a lime wedge rests nearby. The scene is set on a simple wooden table with natural, even lighting, featuring a folded cotton napkin, creating a professional yet inviting casual dining presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with extra lime wedges for squeezing.",
+      "Offer a side of your favorite salsa or hot sauce.",
+      "Pair with traditional Mexican rice or refried beans."
+    ],
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "8"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "8"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Small gherkins",
+        "quantity": "8"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Lime",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Finely dice red and yellow bell peppers. Finely dice onion. Mince garlic.",
+      "Heat 15 ml olive oil in a large skillet over medium heat. Add diced bell peppers and onion. Sauté 5-7 minutes until softened.",
+      "Add minced garlic, ground cumin, and chili powder. Cook 1 minute until fragrant.",
+      "Crack eggs into a bowl. Whisk lightly with a pinch of salt and pepper. Pour into the skillet with the vegetables.",
+      "Scramble eggs gently over medium-low heat until just set and creamy. Do not overcook. Remove from heat.",
+      "Finely dice gherkins. Roughly chop fresh cilantro. In a small bowl, combine diced gherkins and chopped cilantro. Squeeze juice from one lime over the mixture. Stir to combine. Season with a pinch of salt.",
+      "Warm corn tortillas individually in a dry skillet or microwave until pliable.",
+      "To assemble, place a warm tortilla on a plate. Spoon a generous portion of the egg and vegetable mixture onto the center. Fold or roll as desired.",
+      "Serve two tacos per person. Garnish each plate with a spoonful of gherkin salsa and a lime wedge."
+    ],
+    "traditional_techniques": [
+      "Warming tortillas"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 385.7,
+      "cholesterol_mg": 373,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 17.4,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 619.2,
+      "total_carbs_g": 37,
+      "total_fat_g": 20.4,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121.2,
+      "cholesterol_mg": 117.2,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 5.5,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 194.6,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 124,
+      "dietary_fiber": 22,
+      "protein": 35,
+      "saturated_fat": 24,
+      "sodium": 27,
+      "total_carbs": 13,
+      "total_fat": 26
+    },
+    "serving_size_g": 318.3,
+    "total_recipe_weight_g": 1273
+  }
+]

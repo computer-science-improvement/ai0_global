@@ -1,0 +1,565 @@
+[
+  {
+    "recipe_name": "Individual Cream Cheese Tartlets",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_individual_cream_cheese_tartlets_20250625_164120_d08871da.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:41:21.177410000Z",
+    "selected_ingredients": [
+      "cream cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, inviting Individual Cream Cheese Tartlet rests on a simple, slightly imperfect off-white ceramic plate. The tartlet features a golden-brown, slightly rustic shortcrust pastry shell with a visibly flaky texture. The creamy, pale ivory cream cheese filling is smooth and sits flush with the crust, showing a gentle, soft set. A handful of vibrant, plump fresh berries – a mix of deep red strawberries and dusky blue blueberries – are casually arranged on top of the filling, some slightly nestled into its surface. The overall plating is natural and unforced, typical of home baking. The plate is placed on a well-used wooden dining table, revealing its natural grain and slight imperfections. A casual, folded cloth napkin in a muted tone lies beside the plate. The scene is bathed in warm, soft lighting, suggesting a cozy kitchen or dining area. The background is minimally blurred, hinting at a lived-in family kitchen atmosphere without distracting from the tartlet. The focus is entirely on the comforting, homemade quality of the dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "cream cheese",
+    "ingredients": [
+      {
+        "name": "plain flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "cold unsalted butter, cubed",
+        "quantity": "100 g"
+      },
+      {
+        "name": "icing sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "cold water",
+        "quantity": "1-2 tablespoons"
+      },
+      {
+        "name": "full-fat cream cheese, softened",
+        "quantity": "250 g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "75 g"
+      },
+      {
+        "name": "large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "fresh berries (strawberries, blueberries)",
+        "quantity": "100 g"
+      }
+    ],
+    "instructions": [
+      "Sieve flour and icing sugar into a large bowl.",
+      "Add cold butter cubes. Rub butter into flour with fingertips until mixture resembles fine breadcrumbs.",
+      "Add egg yolk and 1 tablespoon of cold water. Mix until dough just comes together. Add more water if needed, 1 teaspoon at a time.",
+      "Form dough into a flat disc. Wrap in cling film. Refrigerate for 30 minutes.",
+      "Preheat oven to 180°C (350°F).",
+      "Lightly flour a surface. Roll out dough to 3 mm thickness.",
+      "Cut out four circles large enough to line 10 cm tartlet tins. Gently press dough into tins.",
+      "Prick base with a fork. Line with parchment paper and baking beans. Blind bake for 10 minutes.",
+      "Remove paper and beans. Bake for another 5 minutes, until light golden. Cool shells.",
+      "Reduce oven temperature to 160°C (325°F).",
+      "Beat softened cream cheese with granulated sugar until smooth and creamy.",
+      "Beat in the egg and vanilla extract until just combined. Do not overmix.",
+      "Pour cream cheese filling into cooled tartlet shells.",
+      "Bake for 15-20 minutes, or until filling is set but still slightly wobbly in the center.",
+      "Cool tartlets completely on a wire rack. Refrigerate for at least 1 hour before serving.",
+      "Top with fresh berries before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 31.24,
+      "calories": 740.8,
+      "cholesterol_mg": 212.75,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 11.61,
+      "saturated_fat_g": 27.3,
+      "sodium_mg": 222.17,
+      "total_carbs_g": 74.93,
+      "total_fat_g": 44.8,
+      "total_sugars_g": 35.92,
+      "trans_fat_g": 1.62
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 14.48,
+      "calories": 343.36,
+      "cholesterol_mg": 98.61,
+      "dietary_fiber_g": 0.88,
+      "protein_g": 5.38,
+      "saturated_fat_g": 12.65,
+      "sodium_mg": 103,
+      "total_carbs_g": 34.73,
+      "total_fat_g": 20.76,
+      "total_sugars_g": 16.65,
+      "trans_fat_g": 0.75
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70.92,
+      "dietary_fiber": 6.79,
+      "protein": 23.22,
+      "saturated_fat": 136.5,
+      "sodium": 9.66,
+      "total_carbs": 27.25,
+      "total_fat": 57.44
+    },
+    "serving_size_g": 215.75,
+    "total_recipe_weight_g": 863
+  },
+  {
+    "recipe_name": "No-Bake Sweet Cream Cheese Squares",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_no-bake_sweet_cream_cheese_squares_20250625_164054_fe1bb449.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:40:55.470510000Z",
+    "selected_ingredients": [
+      "cream cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Generous, rustic squares of a no-bake dessert are presented on a simple, slightly imperfect ceramic plate. Each square features a golden-brown, crumbly graham cracker base topped with a thick, creamy layer of off-white cream cheese filling. A light, uneven dusting of powdered sugar covers the top of the cream cheese, adding a soft, inviting texture. The squares are cut into substantial portions, not perfectly uniform, showcasing their homemade quality. They are arranged casually on the plate, with some pieces slightly overlapping, creating an unpretentious, homely feel. The setting is a well-used wooden dining table in a family kitchen, illuminated by warm, natural light. A casually placed, simple cloth napkin is nearby. The focus is entirely on the comforting, approachable dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "cream cheese",
+    "ingredients": [
+      {
+        "name": "Graham cracker crumbs",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Cream cheese, softened",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Line a 20x20 cm baking pan with parchment paper.",
+      "Combine graham cracker crumbs, melted butter, and granulated sugar in a bowl. Mix well.",
+      "Press crumb mixture firmly into the bottom of the prepared pan. Bake for 10 minutes. Remove and cool completely.",
+      "In a large bowl, beat softened cream cheese until smooth.",
+      "Add powdered sugar and vanilla extract. Beat until creamy and well combined.",
+      "Spread cream cheese mixture evenly over the cooled crust.",
+      "Cover the pan. Refrigerate for at least 4 hours, or until firm.",
+      "Lift the dessert from the pan using the parchment paper. Cut into 9 large squares. Serve chilled."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 62.5,
+      "calories": 962,
+      "cholesterol_mg": 166.3,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 10.5,
+      "saturated_fat_g": 37.4,
+      "sodium_mg": 562.8,
+      "total_carbs_g": 92,
+      "total_fat_g": 63.5,
+      "total_sugars_g": 67,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 26.2,
+      "calories": 403,
+      "cholesterol_mg": 69.6,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 4.4,
+      "saturated_fat_g": 15.7,
+      "sodium_mg": 235.7,
+      "total_carbs_g": 38.5,
+      "total_fat_g": 26.6,
+      "total_sugars_g": 28.1,
+      "trans_fat_g": 0.8
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.4,
+      "dietary_fiber": 5.4,
+      "protein": 21,
+      "saturated_fat": 186.9,
+      "sodium": 24.5,
+      "total_carbs": 33.5,
+      "total_fat": 81.4
+    },
+    "serving_size_g": 238.8,
+    "total_recipe_weight_g": 955
+  },
+  {
+    "recipe_name": "Classic New York Cheesecake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_new_york_cheesecake_20250625_164030_156a9157.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:40:30.570716000Z",
+    "selected_ingredients": [
+      "cream cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "Like cheesecake",
+    "visual_description": "A generous wedge of classic New York cheesecake is centrally placed on a round, unadorned white ceramic plate. The slice, approximately 3 cm thick, showcases a dense, creamy, pale ivory interior. Its golden-brown biscuit crust, about 0.5 cm thick, forms a sturdy base. The cheesecake's top surface is smooth, with a subtle golden hue from baking, and a natural, slight jiggle. The plate rests on a warm, well-worn light wooden dining table, suggesting a homely kitchen environment. A simple, casually folded white linen napkin is placed nearby. Soft, natural kitchen light illuminates the scene, highlighting the cheesecake's inviting texture. The background is minimal, hinting at a comfortable family dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve plain, or with fresh berries, fruit compote, or a simple chocolate sauce.",
+      "Common accompaniments include black coffee or tea."
+    ],
+    "hero_ingredient": "Cream Cheese",
+    "ingredients": [
+      {
+        "name": "Digestive biscuits",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Full-fat cream cheese, softened",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "2.5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Prepare a 15-18 cm springform pan. Wrap outside of pan with foil if using a water bath.",
+      "Crush biscuits finely. Mix with melted butter.",
+      "Press mixture evenly into bottom of springform pan.",
+      "Bake crust for 10 minutes. Remove and cool slightly.",
+      "Reduce oven temperature to 150°C.",
+      "In a large bowl, beat softened cream cheese until smooth.",
+      "Gradually add sugar. Beat until combined.",
+      "Beat in eggs one at a time. Mix until just combined. Do not overmix.",
+      "Stir in sour cream, vanilla extract, and lemon zest. Mix until smooth.",
+      "Pour filling over cooled crust.",
+      "Place springform pan in a larger roasting pan. Pour hot water into roasting pan until it reaches halfway up the side of the springform pan (water bath).",
+      "Bake for 50-60 minutes, or until edges are set but center still jiggles slightly.",
+      "Turn off oven. Leave cheesecake in oven with door ajar for 1 hour.",
+      "Remove from oven. Cool completely on a wire rack.",
+      "Chill in refrigerator for at least 4 hours, preferably overnight, before serving."
+    ],
+    "notes": [
+      "Using a water bath helps prevent cracks in the cheesecake and ensures even cooking."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 43.7,
+      "calories": 991.4,
+      "cholesterol_mg": 273.6,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 14.3,
+      "saturated_fat_g": 42.1,
+      "sodium_mg": 557.1,
+      "total_carbs_g": 69.9,
+      "total_fat_g": 73.6,
+      "total_sugars_g": 48.8,
+      "trans_fat_g": 2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 15.8,
+      "calories": 359.9,
+      "cholesterol_mg": 99.3,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 5.2,
+      "saturated_fat_g": 15.3,
+      "sodium_mg": 202.2,
+      "total_carbs_g": 25.4,
+      "total_fat_g": 26.7,
+      "total_sugars_g": 17.7,
+      "trans_fat_g": 0.7
+    },
+    "daily_value_percentages": {
+      "cholesterol": 91.2,
+      "dietary_fiber": 4.2,
+      "protein": 28.5,
+      "saturated_fat": 210.3,
+      "sodium": 24.2,
+      "total_carbs": 25.4,
+      "total_fat": 94.4
+    },
+    "serving_size_g": 275.5,
+    "total_recipe_weight_g": 1102
+  },
+  {
+    "recipe_name": "No-Bake Berry Cream Cheese Parfaits",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_no-bake_berry_cream_cheese_parfaits_20250625_164003_1d9b4f71.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:40:04.137095000Z",
+    "selected_ingredients": [
+      "cream cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single individual portion of a No-Bake Berry Cream Cheese Parfait is presented in a clear glass tumbler. Visible layers include light brown, coarse crushed biscuit crumbs, a creamy, off-white cream cheese mixture, and vibrant red and purple mixed berries. The layers are slightly uneven, conveying a homemade, natural aesthetic. Fresh berries are generously mounded on top, some spilling slightly over the rim. The glass sits on a well-used wooden dining table with visible grain and minor imperfections. A simple, folded cloth napkin in a neutral tone is casually placed beside the glass. The scene is illuminated by warm, cozy kitchen lighting, creating a relaxed family dining atmosphere with a lived-in feel. The focus is entirely on the dessert, showcasing its comforting, approachable appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Classic Dessert",
+    "hero_ingredient": "Cream Cheese",
+    "ingredients": [
+      {
+        "name": "Full-fat cream cheese, softened",
+        "quantity": "250g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "80g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Cold heavy cream (35% fat)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Mixed berries (fresh or thawed frozen)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Digestive biscuits or graham crackers",
+        "quantity": "150g"
+      }
+    ],
+    "instructions": [
+      "Crush biscuits: Place biscuits in a plastic bag. Crush with a rolling pin until fine crumbs form.",
+      "Whip cream cheese mixture: In a medium bowl, beat softened cream cheese until smooth. Add powdered sugar and vanilla extract. Beat until light and combined.",
+      "Whip heavy cream: In a separate, chilled bowl, whip cold heavy cream until stiff peaks form.",
+      "Combine mixtures: Gently fold whipped cream into the cream cheese mixture until just combined. Do not overmix.",
+      "Assemble parfaits: In four clear glasses or bowls, layer about 2 tablespoons of crushed biscuits at the bottom.",
+      "Add cream cheese mixture: Spoon a layer of the cream cheese mixture over the biscuits.",
+      "Add berries: Add a layer of mixed berries over the cream cheese mixture.",
+      "Repeat layers: Repeat biscuit, cream cheese, and berry layers. Finish with a final layer of berries on top.",
+      "Chill: Refrigerate parfaits for at least 2 hours before serving. This allows them to set and flavors to meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 25.6,
+      "calories": 684,
+      "cholesterol_mg": 118,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 7.9,
+      "saturated_fat_g": 27.8,
+      "sodium_mg": 362,
+      "total_carbs_g": 60,
+      "total_fat_g": 47.1,
+      "total_sugars_g": 37.5,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.3,
+      "calories": 302,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 3.5,
+      "saturated_fat_g": 12.3,
+      "sodium_mg": 160,
+      "total_carbs_g": 26.5,
+      "total_fat_g": 20.8,
+      "total_sugars_g": 16.6,
+      "trans_fat_g": 0.8
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 15,
+      "protein": 16,
+      "saturated_fat": 139,
+      "sodium": 16,
+      "total_carbs": 22,
+      "total_fat": 60
+    },
+    "serving_size_g": 226.3,
+    "total_recipe_weight_g": 905
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Breast, Shrimp & Goat Cheese Tortelloni, Basil Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_breast%2C_shrimp_%26_goat_cheese_tortelloni%2C_basil_cream_20250625_163935_e1a73354.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:39:36.182363000Z",
+    "selected_ingredients": [
+      {
+        "name": "chicken",
+        "comment": "saute"
+      },
+      {
+        "name": "goat cheese",
+        "comment": "sauce"
+      },
+      {
+        "name": "parmesan cheese",
+        "comment": "sauce/garnish"
+      },
+      {
+        "name": "basil",
+        "comment": "sauce/garnish"
+      },
+      {
+        "name": "shrimp",
+        "comment": "saute"
+      },
+      {
+        "name": "cream",
+        "comment": "sacue"
+      },
+      "pasta"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on an exquisite, pristine bone china plate, set upon a cool, veined white Carrara marble surface. Dramatic, focused lighting casts elegant shadows, highlighting the dish as the sole subject against an ultra-minimalist background. Abundant negative space surrounds the artfully composed elements. A single, perfectly pan-seared chicken breast, its golden-brown crust subtly glistening, rests slightly off-center. Adjacent to it, a cluster of three to four delicate, hand-shaped tortelloni, their pale pasta revealing a hint of the light pink shrimp and creamy goat cheese filling. A vibrant, velvety basil cream sauce forms an organic, flowing \"swoosh\" beneath and around the main components, its vivid green color providing a striking contrast. A single, irregular, golden-hued Parmesan crisp is artfully leaned against the chicken, adding a delicate textural counterpoint. A few precisely placed, tiny fresh basil microgreens are scattered for a final touch of fresh color and aroma. The plate is accompanied by a pristine white linen napkin, folded into a precise triangle, and elegant, traditional European flatware. The entire composition emphasizes sophisticated simplicity and refined culinary mastery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "\"00\" flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "raw shrimp, peeled, deveined",
+        "quantity": "200 g"
+      },
+      {
+        "name": "fresh goat cheese, crumbled",
+        "quantity": "100 g"
+      },
+      {
+        "name": "grated Parmesan cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "small shallot, finely minced",
+        "quantity": "2"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "heavy cream (35% fat)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "fresh basil leaves, packed",
+        "quantity": "50 g"
+      },
+      {
+        "name": "white pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "fresh basil microgreens",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare the Pasta Dough: On a clean surface, make a well with the flour. Crack eggs into the well, add a pinch of salt. Gradually mix flour into eggs with a fork until a shaggy dough forms. Knead dough for 8-10 minutes until smooth and elastic. Wrap in plastic film. Rest at room temperature for 30 minutes.",
+      "Prepare the Shrimp & Goat Cheese Filling: Finely mince the peeled shrimp. In a small pan, heat 5 ml olive oil over medium heat. Sauté one minced shallot until translucent, about 2 minutes. Add minced shrimp and cook for 1-2 minutes until just pink. Remove from heat. In a bowl, combine cooked shrimp, crumbled goat cheese, and 30 g grated Parmesan. Season with salt and pepper. Mix well. Chill for 15 minutes.",
+      "Form the Tortelloni: Roll pasta dough very thinly (setting 7 or 8 on a pasta machine). Cut into 5 cm squares. Place a small amount (about 5g) of filling in the center of each square. Fold diagonally to form a triangle. Press edges to seal. Bring two opposite points of the triangle together and pinch to form tortelloni. Place on a semolina-dusted tray.",
+      "Prepare the Basil Cream Sauce: In a small saucepan, melt butter over medium heat. Add the second minced shallot and cook until translucent, 2-3 minutes. Deglaze with white wine, reduce by half. Add heavy cream. Bring to a gentle simmer. Add fresh basil leaves. Simmer for 5 minutes, allowing basil to infuse. Remove from heat. Blend the sauce using an immersion blender or high-speed blender until very smooth and vibrant green. Pass the sauce through a fine-mesh sieve into a clean saucepan, pressing to extract all liquid. Stir in 30 g grated Parmesan. Season with salt and white pepper. Keep warm.",
+      "Make Parmesan Crisps: Preheat oven to 180°C. Line a baking sheet with parchment paper. Arrange small piles (approx. 10g each) of grated Parmesan, spaced apart. Bake for 5-7 minutes, or until golden and crisp. Let cool completely on the baking sheet.",
+      "Cook the Chicken: Preheat oven to 190°C. Pat chicken breasts dry. Season generously with salt and pepper. Heat 15 ml olive oil in an oven-safe sauté pan over medium-high heat until shimmering. Sear chicken breasts, presentation-side down, for 4-5 minutes until golden brown. Flip chicken. Transfer pan to preheated oven. Roast for 10-12 minutes, or until internal temperature reaches 75°C. Remove from oven, transfer chicken to a cutting board, and rest for 5 minutes.",
+      "Cook the Tortelloni: Bring a large pot of salted water to a rolling boil. Carefully add tortelloni. Cook for 3-4 minutes, or until al dente and they float to the surface. Gently remove with a slotted spoon.",
+      "Plate the Dish: Slice each rested chicken breast into 2-3 thick medallions. Spoon a generous 'swoosh' or pool of basil cream sauce slightly off-center on each plate. Arrange 3-4 cooked tortelloni artfully within or next to the sauce. Place chicken medallions beside the tortelloni. Lean one Parmesan crisp artfully against the chicken or tortelloni. Garnish precisely with a few fresh basil microgreens. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1017,
+      "cholesterol_mg": 452.6,
+      "dietary_fiber_g": 2,
+      "protein_g": 90.5,
+      "saturated_fat_g": 26.7,
+      "sodium_mg": 1133.1,
+      "total_carbs_g": 44.6,
+      "total_fat_g": 50,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 219,
+      "cholesterol_mg": 97.7,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 19.5,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 244.5,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 10.8,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 151,
+      "dietary_fiber": 7,
+      "protein": 181,
+      "saturated_fat": 134,
+      "sodium": 49,
+      "total_carbs": 16,
+      "total_fat": 64
+    },
+    "serving_size_g": 463.5,
+    "total_recipe_weight_g": 1853.8
+  }
+]

@@ -1,0 +1,711 @@
+[
+  {
+    "recipe_name": "Spicy Beef and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_beef_and_mushroom_risotto_20250701_143906_98b1574f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:39:06.563439000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "parmesan cheese",
+      "carrot",
+      "dried chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous portion of creamy, free-flowing risotto is presented on a clean white porcelain dinner plate. The risotto boasts a pale, inviting color, flecked with vibrant orange diced carrots and earthy brown sliced mushrooms. Nestled atop the creamy rice are several robust, seared beef chunks, their rich brown exteriors providing a textural contrast. A light sprinkle of bright green chopped fresh parsley and a dusting of grated Parmesan cheese complete the dish. The presentation is simple restaurant style, with balanced composition and moderate negative space. The plate rests on a simple wooden table surface, accompanied by standard flatware and a folded cotton napkin, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "A glass of robust red wine",
+      "A side of crusty Italian bread"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "400g, cut into 2-3 cm cubes"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g, sliced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "1 medium (approx. 100g), finely diced"
+      },
+      {
+        "name": "Dried red chili flakes",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g, freshly grated, plus extra for serving"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "1.2 litres, warm"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat 15ml olive oil in a large, heavy-bottomed pan over medium-high heat. Season beef cubes with salt and pepper. Sear beef until browned on all sides. Remove beef from pan and set aside.",
+      "Add remaining 15ml olive oil to the same pan. Reduce heat to medium. Add diced onion and carrots. Cook until softened, about 5 minutes.",
+      "Add minced garlic and dried chili flakes. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Stir constantly for 2 minutes until edges of rice grains become translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add one ladleful of warm beef broth to the rice. Stir continuously until broth is almost fully absorbed. Continue adding broth, one ladleful at a time, stirring frequently, allowing each addition to be absorbed before adding more. This process takes about 18-20 minutes.",
+      "After 10 minutes of adding broth, stir in the sliced mushrooms. Continue adding broth until rice is al dente.",
+      "Remove pan from heat. Stir in butter and grated Parmesan cheese. Stir vigorously for 1-2 minutes until risotto is creamy (mantecatura).",
+      "Return seared beef chunks to the risotto. Stir gently to combine and warm through.",
+      "Serve immediately. Garnish each portion with fresh chopped parsley and extra grated Parmesan."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 779,
+      "cholesterol_mg": 112,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 46.7,
+      "saturated_fat_g": 13.4,
+      "sodium_mg": 156,
+      "total_carbs_g": 74.5,
+      "total_fat_g": 30.3,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7,
+      "saturated_fat_g": 2,
+      "sodium_mg": 23,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.3,
+      "dietary_fiber": 14.9,
+      "protein": 93.5,
+      "saturated_fat": 67,
+      "sodium": 6.8,
+      "total_carbs": 27.1,
+      "total_fat": 38.9
+    },
+    "serving_size_g": 670,
+    "total_recipe_weight_g": 2679
+  },
+  {
+    "recipe_name": "Beef Kotlety with Buckwheat Kasha and Mushroom Gravy",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_kotlety_with_buckwheat_kasha_and_mushroom_gravy_20250701_143858_30910e32.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:38:59.282320000Z",
+    "selected_ingredients": [
+      "beef",
+      "buckwheat groat"
+    ],
+    "complexity": "simple",
+    "special_requests": "Russian cuisine, Low calories, high protein",
+    "visual_description": "A single, modest serving of Beef Kotlety with Buckwheat Kasha and Mushroom Gravy is presented on a simple, round ceramic plate with natural imperfections. A mound of fluffy, earthy brown buckwheat kasha sits on one side of the plate. Two golden-brown, pan-fried beef kotlety, round and plump, are nestled closely beside the kasha. A rich, dark brown mushroom gravy, studded with tender sliced mushrooms and flecked with bright green chopped dill and parsley, is generously spooned over the kotlety, pooling slightly onto the kasha. The scene is set on a well-used wooden dining table, illuminated by warm, cozy kitchen lighting. A simple, plain linen napkin is casually placed nearby. A small bowl of vibrant green pickled cucumbers sits to the side, completing the authentic, homely Russian comfort meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with pickled cucumbers (soleniya).",
+      "Accompany with kvass, a traditional fermented beverage."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Lean Ground Beef",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Breadcrumbs (or oat bran for lower calorie)",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Buckwheat Groats",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Water or Beef Broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Mushrooms (cremini or button)",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "All-purpose Flour (or cornstarch for gluten-free)",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Beef Broth for gravy",
+        "quantity": "250 ml"
+      }
+    ],
+    "instructions": [
+      "Finely dice half of the onion and mince the garlic.",
+      "In a large bowl, combine ground beef, diced onion, minced garlic, egg, breadcrumbs, salt, and pepper. Mix well until just combined.",
+      "Form the mixture into 8 equal oval-shaped patties (kotlety).",
+      "Heat 1 tablespoon of olive oil in a large non-stick pan over medium heat.",
+      "Add the kotlety to the pan. Cook for 5-7 minutes per side, until golden brown and cooked through. Remove kotlety from pan and set aside.",
+      "While kotlety cook, prepare the buckwheat. Rinse buckwheat groats under cold water.",
+      "In a medium saucepan, combine rinsed buckwheat and 500 ml water or broth. Bring to a boil, then reduce heat to low. Cover and simmer for 15-20 minutes, until water is absorbed and buckwheat is tender and fluffy. Season with a pinch of salt.",
+      "For the mushroom gravy, slice the remaining half onion thinly. Slice mushrooms.",
+      "In the same pan used for kotlety, add remaining 1 tablespoon olive oil. Add sliced onion and mushrooms. Sauté for 5-7 minutes until softened and browned.",
+      "Sprinkle flour over the mushrooms and onions. Stir for 1 minute.",
+      "Gradually whisk in 250 ml beef broth. Bring to a simmer, stirring constantly, until gravy thickens. Season with salt and pepper.",
+      "Stir in chopped fresh dill and parsley into the gravy.",
+      "Serve two beef kotlety per person alongside a generous portion of buckwheat kasha. Spoon mushroom gravy over the kotlety and kasha."
+    ],
+    "notes": [
+      "This recipe is designed to be low-calorie and high-protein, utilizing lean beef and nutrient-dense buckwheat.",
+      "Using oat bran instead of breadcrumbs in the kotlety can further reduce calories and increase fiber."
+    ],
+    "traditional_techniques": [
+      "Making kotlety (traditional Russian meat patties)",
+      "Preparing kasha (a staple grain dish)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 682,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 53.9,
+      "saturated_fat_g": 8.8,
+      "sodium_mg": 961,
+      "total_carbs_g": 60.9,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 10.5,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 187,
+      "total_carbs_g": 11.8,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 28,
+      "protein": 108,
+      "saturated_fat": 44,
+      "sodium": 42,
+      "total_carbs": 22,
+      "total_fat": 36
+    },
+    "serving_size_g": 514,
+    "total_recipe_weight_g": 2058
+  },
+  {
+    "recipe_name": "Slow-Cooked Beef Ragu with Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_ragu_with_tagliatelle_20250701_143851_4d1c013e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:38:51.834761000Z",
+    "selected_ingredients": [
+      "beef",
+      "worcestershire sauce",
+      "onion",
+      "tomato",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous, mounded portion of tagliatelle pasta, deeply coated in rich, reddish-brown beef ragu, is presented centrally on a clean, white porcelain dinner plate. The tender, shredded beef pieces are visibly intertwined with the golden-yellow pasta strands and the thick, savory tomato-based sauce. A few vibrant green fresh basil leaves are artfully scattered over the top, providing a pop of color and aromatic freshness. A light, delicate dusting of finely grated Parmesan cheese crowns the dish, adding a subtle texture and sharpness. The overall presentation is rustic yet refined, showcasing the hearty textures of the ragu and the al dente pasta. The beef is shredded, integrated into the sauce. Onion, carrots, and celery are finely diced (mirepoix) within the sauce. The plate rests on a simple wooden table surface, accompanied by a folded white cotton napkin to the left and standard silver flatware (fork and knife) to the right. Natural, even lighting highlights the inviting textures and rich colors of the dish, creating a warm, casual bistro atmosphere in the softly blurred background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with freshly grated Parmesan cheese at the table.",
+      "Offer crusty bread for dipping in the rich ragu sauce.",
+      "Accompany with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g (cut into 3-4 cm cubes)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves (minced)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (diced)"
+      },
+      {
+        "name": "Celery",
+        "quantity": "2 stalks (diced)"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g (for serving)"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400g"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season beef generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear beef cubes in batches until well browned on all sides. Do not overcrowd the pot. Remove beef from pot. Set aside.",
+      "Add diced onion, carrots, and celery to the pot. Sauté until softened, about 8 minutes, scraping up any browned bits.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Bring to a simmer. Reduce wine by half, about 5 minutes.",
+      "Return seared beef to the pot. Add crushed tomatoes, beef broth, and Worcestershire sauce. Stir well to combine.",
+      "Bring the sauce to a gentle simmer. Reduce heat to low. Cover the pot.",
+      "Cook for 2.5 to 3 hours, or until beef is very tender and easily shreds with a fork. Stir occasionally to prevent sticking.",
+      "Remove beef from the pot. Shred beef using two forks. Return shredded beef to the sauce.",
+      "Adjust seasoning with additional salt and pepper as needed.",
+      "Cook tagliatelle according to package directions until al dente.",
+      "Drain pasta. Add cooked pasta directly to the ragu sauce in the pot. Toss to coat evenly.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Soffritto (dicing onion, carrot, celery)",
+      "Slow Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.92,
+      "calories": 1116.8,
+      "cholesterol_mg": 185,
+      "dietary_fiber_g": 7.74,
+      "protein_g": 73.4,
+      "saturated_fat_g": 14.26,
+      "sodium_mg": 991.7,
+      "total_carbs_g": 98.96,
+      "total_fat_g": 40.23,
+      "total_sugars_g": 14.73,
+      "trans_fat_g": 1.34
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.11,
+      "calories": 135.4,
+      "cholesterol_mg": 22.4,
+      "dietary_fiber_g": 0.94,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1.73,
+      "sodium_mg": 120.2,
+      "total_carbs_g": 12,
+      "total_fat_g": 4.88,
+      "total_sugars_g": 1.79,
+      "trans_fat_g": 0.16
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.7,
+      "dietary_fiber": 27.6,
+      "protein": 146.8,
+      "saturated_fat": 71.3,
+      "sodium": 43.1,
+      "total_carbs": 36,
+      "total_fat": 51.6
+    },
+    "serving_size_g": 825,
+    "total_recipe_weight_g": 3300
+  },
+  {
+    "recipe_name": "Chicken and Ancho Chili Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_ancho_chili_rice_20250701_143829_4cc08f8a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:38:30.188343000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of Mexican Chicken and Ancho Chili Rice is centrally placed on a pristine white porcelain dinner plate. A golden-brown, seared bone-in chicken thigh, its skin visibly crispy, rests atop a generous bed of vibrant reddish-orange long-grain rice. The rice grains are distinct, fluffy, and infused with the rich color of ancho chilies. Scattered fresh green cilantro leaves provide a bright contrast. The chicken is presented whole, showcasing its tender, braised quality. The plate is well-proportioned, allowing for moderate negative space. The setting is a clean, simple wooden table with a folded cotton napkin beside the plate. A small traditional Mexican ceramic bowl holds lime wedges, and another contains a vibrant pico de gallo, both positioned as cultural accompaniments. Natural, even lighting highlights the dish, creating a warm, inviting scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping.",
+      "Offer fresh lime wedges for a squeeze of acidity.",
+      "Accompany with a side of pico de gallo or a simple salsa roja."
+    ],
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Dried ancho chilies",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4 large"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Fresh jalapeño",
+        "quantity": "1"
+      },
+      {
+        "name": "Cilantro, fresh",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano (Mexican)",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat. Sear chicken thighs skin-side down until golden brown and crispy, about 8-10 minutes. Flip and sear for 2-3 minutes. Remove chicken and set aside.",
+      "Toast ancho chilies in the same pot for 1-2 minutes until fragrant. Remove and soak in hot water for 15 minutes until softened. Discard stems and seeds.",
+      "While chilies soak, finely dice the white onion. Mince garlic cloves. Roughly chop Roma tomatoes. Slice jalapeño into thin rounds.",
+      "In a blender, combine soaked ancho chilies, minced garlic (half), chopped tomatoes, and a splash of chicken broth. Blend until smooth. Set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes. Add remaining minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in rice. Toast rice for 3-4 minutes until lightly golden. Add cumin and oregano. Stir well.",
+      "Pour in the blended chili mixture and remaining chicken broth. Bring to a simmer. Season with salt and pepper to taste.",
+      "Return seared chicken thighs to the pot, nestling them into the rice. Ensure chicken is partially submerged. Add jalapeño slices on top of chicken.",
+      "Cover the pot. Reduce heat to low. Simmer for 25-30 minutes, or until rice is tender and chicken reaches an internal temperature of 75°C (167°F).",
+      "Remove from heat. Let rest, covered, for 5 minutes.",
+      "Finely chop fresh cilantro. Garnish generously before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C (167°F) internal temperature for food safety.",
+      "For extra heat, add a serrano chili to the ancho chili blend.",
+      "Adjust liquid amount if using a different type of rice; some absorb more liquid than others."
+    ],
+    "traditional_techniques": [
+      "Sofrito base",
+      "Braiding"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 821,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 45.9,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 939,
+      "total_carbs_g": 71,
+      "total_fat_g": 39.4,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 168,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 16,
+      "protein": 92,
+      "saturated_fat": 49,
+      "sodium": 41,
+      "total_carbs": 26,
+      "total_fat": 51
+    },
+    "serving_size_g": 558.8,
+    "total_recipe_weight_g": 2235
+  },
+  {
+    "recipe_name": "Tuscan Chicken with Sautéed Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken_with_saut%C3%A9ed_vegetables_20250701_143747_36f4f7fa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:37:47.490537000Z",
+    "selected_ingredients": [
+      "chicken",
+      "broccoli",
+      "tomato",
+      "onion",
+      "garlic",
+      "basil",
+      "mushroom",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of pan-seared chicken chunks, golden-brown and tender, is centered on a clean white porcelain plate. Around the chicken, vibrant green broccoli florets are interspersed with bright red halved cherry tomatoes. Sautéed cremini mushroom slices and diced yellow onions are nestled among the vegetables, creating a natural, inviting mound. The dish is garnished with fresh green basil leaves and delicate thyme sprigs, adding aromatic freshness and a pop of color. The overall composition is balanced and appealing, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface, a white cotton napkin beside the plate, and natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to soak up the pan juices.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4 cm chunks. Season chicken generously with salt and pepper.",
+      "Wash broccoli. Cut into small florets. Halve cherry tomatoes. Dice onion. Mince garlic. Slice mushrooms.",
+      "Heat 15 ml olive oil in a large pan over medium-high heat. Add chicken chunks. Sear until golden brown on all sides. Cook to an internal temperature of 75°C. Remove chicken from pan. Set aside.",
+      "Add remaining 15 ml olive oil to the same pan. Add diced onion. Sauté 3-4 minutes until softened.",
+      "Add minced garlic and sliced mushrooms. Sauté 5-7 minutes until mushrooms are tender and browned.",
+      "Add broccoli florets and halved cherry tomatoes to the pan. Sauté 3-5 minutes until broccoli is crisp-tender.",
+      "Pour in white wine, if using. Scrape up any browned bits from the bottom of the pan. Let liquid reduce by half.",
+      "Add chicken broth and fresh thyme sprigs. Bring to a simmer. Return cooked chicken chunks to the pan.",
+      "Cook 2-3 minutes to heat through and combine flavors. Season with salt and pepper to taste.",
+      "Remove thyme sprigs. Stir in fresh basil leaves just before serving."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 410,
+      "cholesterol_mg": 165.3,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 34.5,
+      "saturated_fat_g": 5,
+      "sodium_mg": 752.9,
+      "total_carbs_g": 18.1,
+      "total_fat_g": 21.6,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85,
+      "cholesterol_mg": 34.2,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.1,
+      "saturated_fat_g": 1,
+      "sodium_mg": 155.7,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.1,
+      "dietary_fiber": 19,
+      "protein": 68.9,
+      "saturated_fat": 25.2,
+      "sodium": 32.7,
+      "total_carbs": 6.6,
+      "total_fat": 27.7
+    },
+    "serving_size_g": 483.5,
+    "total_recipe_weight_g": 1934
+  }
+]

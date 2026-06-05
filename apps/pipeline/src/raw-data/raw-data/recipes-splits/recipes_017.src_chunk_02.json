@@ -1,0 +1,700 @@
+[
+  {
+    "recipe_name": "Медленное Тушеное Мясное Рагу с Паппарделле",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_%D0%BC%D0%B5%D0%B4%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B5_%D1%82%D1%83%D1%88%D0%B5%D0%BD%D0%BE%D0%B5_%D0%BC%D1%8F%D1%81%D0%BD%D0%BE%D0%B5_%D1%80%D0%B0%D0%B3%D1%83_%D1%81_%D0%BF%D0%B0%D0%BF%D0%BF%D0%B0%D1%80%D0%B4%D0%B5%D0%BB%D0%BB%D0%B5_20250626_100815_9158d9be.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:08:16.130859000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "На русском языке",
+    "visual_description": "Одна порция насыщенного, деревенского Медленного Тушеного Мясного Рагу с Паппарделле подается на чистой белой фарфоровой тарелке. Широкие плоские макароны паппарделле щедро покрыты густым, кирпично-красным томатным рагу с говядиной. Видны крупные, неправильной формы куски нежной, разорванной говядины, демонстрирующие ее медленно приготовленную текстуру. Соус имеет глянцевый блеск, обволакивая пасту. Сверху блюдо посыпано ярко-зеленой свежей рубленой итальянской петрушкой и обильно присыпано мелко натертым бледно-желтым сыром пармезан, что добавляет ярких красок и текстуры. Тарелка хорошо сбалансирована с умеренным негативным пространством, подчеркивая уютный и сытный характер блюда. Обстановка включает простую деревянную поверхность стола с льняной салфеткой и вилкой рядом с тарелкой, все залито естественным, равномерным освещением на фоне ресторанного интерьера.",
+    "number_of_servings": 4,
+    "cuisine_type": "Итальянская",
+    "cultural_origin": "Итальянская",
+    "cultural_serving_suggestions": [
+      "Подавать немедленно, горячим.",
+      "Предложить дополнительный тертый пармезан на столе.",
+      "Подавать с хрустящим деревенским хлебом для макания в соус."
+    ],
+    "hero_ingredient": "Говяжья Лопатка",
+    "ingredients": [
+      {
+        "name": "Говяжья лопатка",
+        "quantity": "800 г (нарезанная кусками 4-5 см)"
+      },
+      {
+        "name": "Паппарделле",
+        "quantity": "400 г"
+      },
+      {
+        "name": "Консервированные помидоры (измельченные)",
+        "quantity": "800 г"
+      },
+      {
+        "name": "Лук репчатый",
+        "quantity": "1 средняя (мелко нарезанный кубиками)"
+      },
+      {
+        "name": "Морковь",
+        "quantity": "1 средняя (мелко нарезанная кубиками)"
+      },
+      {
+        "name": "Стебель сельдерея",
+        "quantity": "1 (мелко нарезанный кубиками)"
+      },
+      {
+        "name": "Чеснок",
+        "quantity": "3 зубчика (измельченные)"
+      },
+      {
+        "name": "Красное сухое вино",
+        "quantity": "200 мл"
+      },
+      {
+        "name": "Говяжий бульон",
+        "quantity": "250 мл"
+      },
+      {
+        "name": "Томатная паста",
+        "quantity": "30 г"
+      },
+      {
+        "name": "Оливковое масло",
+        "quantity": "30 мл"
+      },
+      {
+        "name": "Свежий розмарин",
+        "quantity": "1 веточка"
+      },
+      {
+        "name": "Свежий тимьян",
+        "quantity": "2 веточки"
+      },
+      {
+        "name": "Лавровый лист",
+        "quantity": "1"
+      },
+      {
+        "name": "Соль",
+        "quantity": "по вкусу"
+      },
+      {
+        "name": "Черный перец",
+        "quantity": "по вкусу"
+      },
+      {
+        "name": "Тертый пармезан",
+        "quantity": "для подачи"
+      },
+      {
+        "name": "Свежая петрушка",
+        "quantity": "для украшения (рубленая)"
+      }
+    ],
+    "instructions": [
+      "Обсушите куски говядины. Приправьте солью и перцем.",
+      "В большой чугунной кастрюле или голландской печи нагрейте оливковое масло на среднем огне. Обжарьте говядину до золотистой корочки со всех сторон. Выньте говядину из кастрюли.",
+      "Уменьшите огонь до среднего. Добавьте нарезанные лук, морковь и сельдерей. Готовьте 8-10 минут, пока овощи не станут мягкими.",
+      "Добавьте измельченный чеснок и томатную пасту. Готовьте 2 минуты, постоянно помешивая.",
+      "Влейте красное вино. Доведите до кипения. Готовьте 3-5 минут, соскребая приставшие кусочки со дна кастрюли.",
+      "Верните говядину в кастрюлю. Добавьте измельченные помидоры, говяжий бульон, розмарин, тимьян и лавровый лист.",
+      "Доведите до кипения. Уменьшите огонь до минимума. Накройте крышкой. Тушите 2,5-3 часа, пока говядина не станет очень мягкой и легко разваливающейся.",
+      "Выньте говядину из рагу. Разорвите мясо вилкой на крупные куски. Удалите веточки трав и лавровый лист из соуса.",
+      "Верните мясо в соус. Перемешайте. Проверьте приправы.",
+      "Отварите паппарделле согласно инструкции на упаковке до состояния \"аль денте\".",
+      "Слейте воду с пасты. Добавьте пасту прямо в рагу. Перемешайте, чтобы паста полностью покрылась соусом."
+    ],
+    "notes": [
+      "Рагу можно приготовить заранее и разогреть. Вкус станет только лучше.",
+      "Если соус слишком густой, добавьте немного воды от варки пасты."
+    ],
+    "traditional_techniques": [
+      "Софритто",
+      "Бразирование",
+      "Тушение"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 952,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 6.65,
+      "protein_g": 68.8,
+      "saturated_fat_g": 11.52,
+      "sodium_mg": 637.5,
+      "total_carbs_g": 87.39,
+      "total_fat_g": 33.47,
+      "total_sugars_g": 11.64,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 137,
+      "cholesterol_mg": 23.1,
+      "dietary_fiber_g": 0.96,
+      "protein_g": 9.93,
+      "saturated_fat_g": 1.66,
+      "sodium_mg": 92,
+      "total_carbs_g": 12.61,
+      "total_fat_g": 4.83,
+      "total_sugars_g": 1.68,
+      "trans_fat_g": 0.14
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.3,
+      "dietary_fiber": 23.8,
+      "protein": 137.6,
+      "saturated_fat": 57.6,
+      "sodium": 27.7,
+      "total_carbs": 31.8,
+      "total_fat": 42.9
+    },
+    "serving_size_g": 693,
+    "total_recipe_weight_g": 2772
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Mushroom and Pea Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_mushroom_and_pea_sauce_20250626_100741_b8c2416f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:07:42.140489000Z",
+    "selected_ingredients": [
+      "chicken",
+      "green pea",
+      "mushroom",
+      "coriander"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown pan-seared chicken breast, presented whole or as two thick diagonal slices, is centered on a clean white porcelain plate. A rich, light cream sauce generously coats the chicken and pools around it, showcasing earthy brown sliced cremini mushrooms and vibrant green peas. Fresh coriander sprigs garnish the dish, adding a pop of green. The plating is clean and professional, with moderate negative space. The setting features a simple wooden table, a white cotton napkin, and standard silver flatware. Natural, even lighting illuminates the dish, highlighting its textures and colors against a subtly blurred bistro-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "cremini mushrooms, sliced",
+        "quantity": "250g"
+      },
+      {
+        "name": "frozen green peas",
+        "quantity": "200g"
+      },
+      {
+        "name": "fresh coriander, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "small shallot, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "heavy cream (35% fat)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper on both sides.",
+      "Heat olive oil in a large pan over medium-high heat. Add chicken breasts. Sear for 4-5 minutes per side until golden brown. Internal temperature must reach 75°C. Remove chicken from pan. Set aside on a plate, cover loosely with foil.",
+      "Reduce heat to medium. Add butter to the same pan. Add diced shallot and cook for 2 minutes until softened. Add minced garlic and cook for 1 minute until fragrant.",
+      "Add sliced mushrooms to the pan. Sauté for 5-7 minutes until mushrooms release their liquid and turn golden.",
+      "Pour in chicken stock. Bring to a simmer. Scrape up any browned bits from the bottom of the pan. Reduce liquid by half, about 3-4 minutes.",
+      "Stir in heavy cream and frozen green peas. Bring to a gentle simmer. Cook for 2-3 minutes until sauce slightly thickens and peas are heated through.",
+      "Return chicken breasts to the pan with the sauce. Cook for 1-2 minutes, spooning sauce over chicken, ensuring chicken is heated through.",
+      "Stir in chopped fresh coriander. Taste and adjust seasoning if needed."
+    ],
+    "notes": [
+      "Serve immediately with a side of creamy mashed potatoes or steamed rice to absorb the delicious sauce."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 605,
+      "cholesterol_mg": 229,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 65.8,
+      "saturated_fat_g": 15,
+      "sodium_mg": 444,
+      "total_carbs_g": 14,
+      "total_fat_g": 30.7,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 15.1,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 102,
+      "total_carbs_g": 3.2,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 15,
+      "protein": 132,
+      "saturated_fat": 75,
+      "sodium": 19,
+      "total_carbs": 5,
+      "total_fat": 39
+    },
+    "serving_size_g": 436.5,
+    "total_recipe_weight_g": 1746
+  },
+  {
+    "recipe_name": "Estofado de Ternera con Tomate y Patatas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_estofado_de_ternera_con_tomate_y_patatas_20250626_100649_3bf29657.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:06:49.554509000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Estofado de Ternera con Tomate y Patatas is presented on a clean, round white porcelain plate. Large, irregular chunks of dark, rich braised beef, boasting a tender, fall-apart texture, are centrally arranged. Golden-brown roasted potato wedges, with slightly crisp exteriors and fluffy interiors, are artfully scattered around the beef. A generous, glossy, deep red tomato and paprika sauce pools around the beef and potatoes, adhering to their surfaces. The sauce is thick and rustic, with visible pieces of softened onion and fresh diced tomato. A vibrant sprinkle of finely chopped fresh parsley provides a contrasting pop of bright green. The plate rests on a simple, light wooden table surface, accompanied by a folded white cotton napkin and a fork. Natural, soft, even lighting illuminates the dish, creating a warm and inviting bistro atmosphere in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread (pan de pueblo) to soak up the rich sauce.",
+      "Pair with a glass of dry Spanish red wine, such as Rioja or Ribera del Duero."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800 g"
+      },
+      {
+        "name": "New potatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh ripe tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 4-5 cm chunks. Pat dry. Season beef generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot over medium-high heat. Sear beef chunks on all sides until well browned. Do this in batches to avoid overcrowding. Remove beef and set aside.",
+      "Dice the onion. Add onion to the pot. Sauté until softened, about 5 minutes.",
+      "Mince garlic. Add garlic to the pot. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Reduce wine by half, about 3 minutes.",
+      "Add crushed tomatoes, beef broth, smoked paprika, and bay leaf. Bring to a simmer.",
+      "Return seared beef to the pot. Ensure beef is mostly submerged in the liquid. Cover the pot. Reduce heat to low.",
+      "Simmer for 2.5 to 3 hours, or until beef is fork-tender. Stir occasionally.",
+      "Preheat oven to 200°C (390°F).",
+      "Cut new potatoes into wedges. Toss with a drizzle of olive oil, salt, and pepper on a baking sheet.",
+      "Roast potatoes for 25-30 minutes, turning halfway, until golden brown and tender.",
+      "Dice fresh ripe tomatoes. Stir into the braising liquid during the last 15 minutes of cooking.",
+      "Remove bay leaf. Taste the sauce and adjust seasoning as needed.",
+      "Chop fresh parsley. Garnish braised beef and potatoes with chopped parsley before serving."
+    ],
+    "notes": [
+      "For best flavor, braise the beef the day before and gently reheat. Flavors deepen overnight.",
+      "Adjust the consistency of the sauce by simmering longer for a thicker sauce, or adding a splash of broth for a thinner one."
+    ],
+    "traditional_techniques": [
+      "Braising (Estofado)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 812,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 8,
+      "protein_g": 59.2,
+      "saturated_fat_g": 13.1,
+      "sodium_mg": 1065,
+      "total_carbs_g": 43,
+      "total_fat_g": 38.5,
+      "total_sugars_g": 9.4,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 112,
+      "cholesterol_mg": 24.8,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 146.9,
+      "total_carbs_g": 5.9,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 28.4,
+      "protein": 118.4,
+      "saturated_fat": 65.4,
+      "sodium": 46.3,
+      "total_carbs": 15.6,
+      "total_fat": 49.3
+    },
+    "serving_size_g": 724.5,
+    "total_recipe_weight_g": 2898
+  },
+  {
+    "recipe_name": "Orecchiette with Italian Sausage and Broccoli Rabe",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orecchiette_with_italian_sausage_and_broccoli_rabe_20250626_100632_c6f19f0e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:06:32.672546000Z",
+    "selected_ingredients": [
+      "pasta",
+      "italian sausage",
+      "bell pepper",
+      "broccoli rabe",
+      "oregano",
+      "garlic",
+      "sun dried tomato",
+      "bread",
+      "mushroom",
+      "gnocchi",
+      "ricotta",
+      "artichoke"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a clean, white porcelain pasta bowl on a rustic wooden table. Orecchiette pasta shells are tossed with 3cm irregular chunks of seared Italian sausage and vibrant green broccoli rabe florets. Small wedges of red bell pepper and sliced cremini mushrooms provide color contrast. Julienned sun-dried tomatoes add flecks of deep crimson. The sauce is a light, translucent emulsion of olive oil and garlic, coating each ingredient with a gentle sheen. A dusting of coarse, golden-brown toasted breadcrumbs and fresh oregano leaves is concentrated in the center. The arrangement is natural and organic, showing balanced portions with visible negative space around the inner rim of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of Primitivo or Negroamaro wine",
+      "Provide extra virgin olive oil for drizzling at the table",
+      "Accompany with crusty sourdough bread"
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "500g"
+      },
+      {
+        "name": "Italian sausage, casings removed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Broccoli rabe, trimmed",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cremini mushrooms, sliced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Sun-dried tomatoes, julienned",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh oregano, chopped",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Sourdough bread, pulsed into crumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring 4 liters of heavily salted water to a boil.",
+      "Blanch broccoli rabe for 2 minutes until bright green. Remove and shock in ice water. Drain and chop into 5cm pieces.",
+      "Heat 20ml olive oil in a pan. Add breadcrumbs and half the oregano. Toast until golden and crisp. Set aside.",
+      "In a large skillet, heat 20ml olive oil over medium-high heat. Break sausage into 3cm chunks and sear until browned.",
+      "Add mushrooms and bell peppers to the skillet. Sauté for 6 minutes until softened.",
+      "Stir in garlic, sun-dried tomatoes, and chili flakes. Cook for 2 minutes.",
+      "Boil orecchiette in the same water used for broccoli rabe until al dente.",
+      "Reserve 150ml of pasta water. Drain pasta.",
+      "Add pasta and broccoli rabe to the skillet. Pour in reserved pasta water and remaining olive oil.",
+      "Toss vigorously over high heat for 1 minute to emulsify the sauce.",
+      "Season with salt and remaining oregano.",
+      "Divide into four bowls and top with toasted breadcrumbs."
+    ],
+    "notes": [
+      "Do not overcook the broccoli rabe during the blanching stage to maintain its snap",
+      "Use high-quality bronze-die pasta for better sauce adhesion"
+    ],
+    "traditional_techniques": [
+      "blanching",
+      "emulsifying",
+      "pangrattato preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1009,
+      "cholesterol_mg": 60,
+      "dietary_fiber_g": 9.2,
+      "protein_g": 36.9,
+      "saturated_fat_g": 11.1,
+      "sodium_mg": 1325,
+      "total_carbs_g": 123.1,
+      "total_fat_g": 41,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 183.5,
+      "cholesterol_mg": 10.9,
+      "dietary_fiber_g": 1.67,
+      "protein_g": 6.71,
+      "saturated_fat_g": 2.02,
+      "sodium_mg": 240.9,
+      "total_carbs_g": 22.38,
+      "total_fat_g": 7.45,
+      "total_sugars_g": 1.55,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20,
+      "dietary_fiber": 33,
+      "protein": 74,
+      "saturated_fat": 56,
+      "sodium": 58,
+      "total_carbs": 45,
+      "total_fat": 53
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Multicooker Mediterranean Chicken and Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_multicooker_mediterranean_chicken_and_pasta_20250626_100624_30af3ef0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:06:25.276077000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "garlic",
+      "rosemary",
+      "pine nut"
+    ],
+    "complexity": "simple",
+    "special_requests": "Mediterranean cuisine, Not junk-food, recipe for multicook",
+    "visual_description": "The dish is presented in a shallow, rustic ceramic bowl, deep blue or earthy green. A generous, homely portion of tender chicken chunks, cut into irregular 3cm pieces, is intertwined with al dente short pasta. The pasta is coated in a rich, reddish-orange tomato sauce, infused with aromatic rosemary and garlic. Vibrant green wilted spinach leaves are interspersed. A scattering of golden-brown toasted pine nuts rests on top, providing textural interest. The bowl sits on a well-used wooden dining table. A simple, textured linen napkin is casually placed beside it. A few fresh rosemary sprigs and extra toasted pine nuts are nearby. The lighting is warm and natural, highlighting the food's inviting textures and colors. A single, traditional metal fork rests on the napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread (e.g., ciabatta) for dipping in the sauce.",
+      "Offer a simple green salad with a lemon-oregano vinaigrette on the side.",
+      "Serve with a glass of dry white wine or still water."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs, leaves chopped"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Short pasta (e.g., penne, fusilli)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "Pine nuts",
+        "quantity": "50g, toasted"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks. Season with salt and pepper.",
+      "Set multicooker to \"Sauté\" mode. Add olive oil.",
+      "Brown chicken chunks for 3-4 minutes. Remove chicken.",
+      "Add minced garlic and chopped rosemary to the pot. Sauté for 1 minute until fragrant.",
+      "Pour in diced tomatoes and chicken broth. Scrape bottom of pot to deglaze.",
+      "Add pasta to the liquid. Stir to submerge.",
+      "Return chicken to the pot. Do not stir extensively after adding pasta.",
+      "Close multicooker lid. Set to \"Pressure Cook\" or \"Manual\" for 5 minutes on high pressure.",
+      "Once cooking finishes, perform a quick release of pressure.",
+      "Open lid. Stir in fresh spinach until wilted.",
+      "Stir in toasted pine nuts.",
+      "Taste and adjust seasoning. Serve immediately."
+    ],
+    "notes": [
+      "Adjust pasta cooking time based on your multicooker and pasta type. A general rule is half the box cooking time for al dente pressure cooking.",
+      "Ensure enough liquid to cover pasta for even cooking.",
+      "For an extra bright flavor, stir in a squeeze of fresh lemon juice at the end."
+    ],
+    "traditional_techniques": [
+      "Sautéing aromatics",
+      "One-pot cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 692,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 44.5,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 899,
+      "total_carbs_g": 65.6,
+      "total_fat_g": 29.5,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.9,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 160,
+      "total_carbs_g": 11.7,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 18.2,
+      "protein": 89,
+      "saturated_fat": 26,
+      "sodium": 39.1,
+      "total_carbs": 23.9,
+      "total_fat": 37.8
+    },
+    "serving_size_g": 561.5,
+    "total_recipe_weight_g": 2246
+  }
+]

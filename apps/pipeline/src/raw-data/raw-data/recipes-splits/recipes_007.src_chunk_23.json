@@ -1,0 +1,657 @@
+[
+  {
+    "recipe_name": "Vanilla Milk Sphere, Brown Butter Tuile, Vanilla Bean Espuma",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vanilla_milk_sphere%2C_brown_butter_tuile%2C_vanilla_bean_espuma_20250902_000141_9b915b13.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T00:01:41.625409000Z",
+    "selected_ingredients": [
+      {
+        "name": "milk"
+      },
+      {
+        "name": "butter"
+      },
+      {
+        "name": "vanilla"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single, pristine white vanilla milk sphere, perfectly smooth and glistening, anchors the minimalist composition on a cool white bone china plate. Beside it, a delicate, irregularly curved brown butter tuile, golden-amber and translucent, stands upright, adding a textural contrast. A light, airy cloud of vanilla bean espuma, speckled with tiny black vanilla seeds, nestles softly against the tuile. The arrangement is architectural yet organic, with abundant negative space. The plate rests on a premium grey veined marble surface, flanked by a folded white linen napkin and subtle, elegant silver dessert fork, all bathed in dramatic professional lighting with soft shadows. The background is ultra-minimalist, emphasizing the dish's sophisticated simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "hero_ingredient": "Vanilla",
+    "ingredients": [
+      {
+        "name": "Whole milk",
+        "quantity": "350 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Vanilla bean",
+        "quantity": "1.5, split and scraped"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "2 (approx. 4 g)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Egg white",
+        "quantity": "1 (approx. 30 g)"
+      },
+      {
+        "name": "Soy lecithin powder",
+        "quantity": "1 g"
+      }
+    ],
+    "instructions": [
+      "For the Vanilla Milk Spheres: Combine 200 ml whole milk, 50 ml heavy cream, 1 vanilla bean (scraped), and 30 g granulated sugar in a saucepan. Bring to a simmer. Add Arborio rice. Cook until rice is tender and creamy, about 15-20 minutes. Remove vanilla pod. Bloom gelatin sheets in cold water. Squeeze out excess water. Stir gelatin into warm rice mixture until dissolved. Pour into silicone sphere molds. Chill for at least 4 hours until set.",
+      "For the Brown Butter Tuiles: Melt 50 g unsalted butter in a small saucepan over medium heat. Cook until butter solids turn golden brown and fragrant. Strain through a fine-mesh sieve into a bowl; cool slightly. In a separate bowl, whisk 50 g powdered sugar, 30 g all-purpose flour, and 1 egg white until smooth. Whisk in the cooled brown butter. Spread thin layers of batter onto a silicone mat or parchment paper using an offset spatula. Bake at 160°C (325°F) for 5-7 minutes, until golden brown and crisp. Immediately shape over a rolling pin or curved surface for an elegant curve. Let cool.",
+      "For the Vanilla Bean Espuma: Combine 150 ml whole milk, 50 ml heavy cream, 0.5 vanilla bean (scraped), and 20 g granulated sugar in a saucepan. Bring to a simmer. Remove from heat. Steep for 10 minutes. Strain through a fine-mesh sieve. Let cool completely. Whisk in soy lecithin powder until dissolved and slightly frothy. Pour mixture into a 0.5-liter cream siphon. Charge with one N2O cartridge. Shake well. Keep chilled until serving.",
+      "To Assemble: Gently unmold one Vanilla Milk Sphere onto the center of a chilled plate. Carefully place one curved Brown Butter Tuile next to the sphere. Dispense a delicate cloud of Vanilla Bean Espuma beside the tuile. Serve immediately."
+    ],
+    "notes": [
+      "Ensure all components are thoroughly chilled or at the correct serving temperature for optimal texture and flavor contrast.",
+      "Use high-quality vanilla beans for the best aromatic profile."
+    ]
+  },
+  {
+    "recipe_name": "Poached Prune with Cherry Gel, Almond Sponge, and Almond Espuma",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poached_prune_with_cherry_gel%2C_almond_sponge%2C_and_almond_espuma_20250902_000054_d9655742.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T00:00:55.003411000Z",
+    "selected_ingredients": [
+      {
+        "name": "prune"
+      },
+      {
+        "name": "almond"
+      },
+      {
+        "name": "cherry"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A minimalist, artistic dessert presentation on a premium white German porcelain plate. Three perfectly poached, plump, dark ruby prunes are elegantly arranged in a slight curve. Beside them, two small, precise rectangular cuts of golden-brown almond sponge are stacked delicately, showcasing its airy texture. A pristine, ethereal cloud of ivory almond espuma floats gracefully on the plate, providing a soft contrast. A vibrant, deep red cherry fluid gel is artfully piped in a flowing, organic line, creating dynamic movement across the composition. Toasted almond flakes are scattered sparingly, adding a touch of golden crunch. A single, delicate edible viola flower provides a subtle pop of color. The plate, featuring abundant negative space, rests on a polished dark wood table, beside a precisely folded white linen napkin. Dramatic, focused lighting creates soft shadows, highlighting the textures and vibrant colors. The background is an ultra-minimalist, muted tone, allowing the dessert to command full attention.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Traditionally served after a meal, often with a small glass of digestif such as Kirschwasser or a sweet Riesling wine."
+    ],
+    "hero_ingredient": "Prune",
+    "ingredients": [
+      {
+        "name": "Dried prunes, pitted",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 strip"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "1"
+      },
+      {
+        "name": "Kirschwasser (optional)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Frozen cherries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated sugar (for gel)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Egg whites (approx. 3 large eggs)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar (for sponge)",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Almond milk",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Granulated sugar (for espuma)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Almond extract",
+        "quantity": "2 ml"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "2 (2g each)"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Toasted almond flakes",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Edible viola flowers (optional)",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "**For Poached Prunes:** Combine prunes, water, 50g sugar, lemon zest, cinnamon, and star anise in a saucepan. Bring to a simmer. Cook for 15-20 minutes until prunes are tender. Remove from heat. Stir in Kirschwasser, if using. Let cool in the liquid. Remove spices before serving.",
+      "**For Cherry Fluid Gel:** Thaw cherries. Blend cherries with 30g sugar until smooth. Strain through a fine-mesh sieve to remove solids. You should have approximately 150ml cherry purée. Heat 100ml of the purée in a small saucepan. Whisk in agar-agar. Bring to a boil and simmer for 1 minute, whisking constantly. Remove from heat. Stir in remaining cold cherry purée. Pour into a shallow dish. Chill until set (at least 1 hour). Once set, blend the firm gel until smooth and fluid. Transfer to a squeeze bottle.",
+      "**For Almond Sponge:** Preheat oven to 170°C. Line a small baking tray (approx. 20x20cm) with parchment paper. Whip egg whites with 70g sugar until stiff peaks form. Gently fold in almond flour and all-purpose flour. Fold in melted butter. Spread batter evenly on the prepared tray. Bake for 12-15 minutes, or until golden and springy. Let cool completely. Cut into small, precise rectangles or desired shapes (e.g., 4x2 cm).",
+      "**For Almond Espuma:** Soak gelatin sheets in cold water for 5 minutes. Gently heat almond milk with 20g sugar until sugar dissolves. Squeeze excess water from gelatin; stir into warm almond milk until dissolved. Stir in almond extract and heavy cream. Strain the mixture. Pour into a cream siphon. Charge with one N2O cartridge. Shake well. Chill for at least 2 hours.",
+      "**To Assemble:** Place 3-4 poached prunes artfully on each plate. Arrange 2-3 pieces of almond sponge beside the prunes. Dispense a cloud of almond espuma onto the plate. Create small dots or a flowing line of cherry fluid gel around the components. Garnish with toasted almond flakes and an edible viola flower, if desired. Serve immediately."
+    ],
+    "notes": [
+      "Ensure all components are properly chilled before assembly for optimal temperature contrast and stability.",
+      "The almond sponge can be made a day in advance and stored in an airtight container."
+    ],
+    "traditional_techniques": []
+  },
+  {
+    "recipe_name": "Panang Glazed Panela Cheese Steaks with Cherry-Espresso Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_panang_glazed_panela_cheese_steaks_with_cherry-espresso_rice_20250901_214928_f0b5cd7a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-01T21:49:28.684837000Z",
+    "selected_ingredients": [
+      "cherry",
+      "brown sugar",
+      "egg white",
+      "flour",
+      "panela cheese",
+      "panang curry paste",
+      "espresso"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Panang Glazed Panela Cheese Steaks with Cherry-Espresso Rice is presented on a simple, round ceramic plate, off-white with a subtle rustic rim. A natural mound of espresso-infused jasmine rice, subtly flecked with darker espresso grains, sits on one side of the plate. Next to the rice, a thick, rectangular panela cheese steak, pan-seared to a golden-brown, crispy exterior, rests. The cheese steak and a portion of the rice are generously drizzled with a rich, glossy, reddish-brown panang curry glaze. The glaze contains softened, bright red cherry halves, which add vibrant color and texture. A sprinkle of fresh, chopped green cilantro leaves garnishes the dish, providing a fresh contrast. The overall arrangement is casual and homely, filling the plate adequately without overcrowding. The scene is set on a well-used wooden dining table, with warm, cozy lighting, evoking a comfortable family kitchen atmosphere. A standard fork and knife are placed beside the plate, and a casually folded cloth napkin completes the relaxed setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Panela Cheese",
+    "ingredients": [
+      {
+        "name": "Panela cheese",
+        "quantity": "400g (cut into 4 thick rectangular 'steaks', approx 2 cm thick)"
+      },
+      {
+        "name": "Panang curry paste",
+        "quantity": "60g (approx 3 tablespoons)"
+      },
+      {
+        "name": "Cherries",
+        "quantity": "200g (fresh, pitted, halved)"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "30g (approx 2 tablespoons)"
+      },
+      {
+        "name": "Espresso",
+        "quantity": "120ml (4 shots, brewed; 60ml for glaze, 60ml for rice)"
+      },
+      {
+        "name": "Flour",
+        "quantity": "50g (all-purpose)"
+      },
+      {
+        "name": "Egg white",
+        "quantity": "1 (from a large egg)"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "250g (dry weight)"
+      },
+      {
+        "name": "Water",
+        "quantity": "400ml (for rice)"
+      },
+      {
+        "name": "Coconut oil or vegetable oil",
+        "quantity": "30ml (for frying)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g (to taste)"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "10g (for garnish, chopped)"
+      }
+    ],
+    "instructions": [
+      "Rinse jasmine rice. Combine rice, 400ml water, and 60ml brewed espresso in a saucepan. Add a pinch of salt. Bring to a boil. Reduce heat to low. Cover and simmer for 15 minutes. Remove from heat. Let stand, covered, for 10 minutes. Fluff with a fork.",
+      "Pat panela cheese steaks dry. Whisk egg white lightly in a shallow dish. Place flour in another shallow dish. Dip each cheese steak into egg white, then dredge in flour. Ensure even coating.",
+      "Heat coconut oil in a large non-stick pan over medium-high heat. Add coated cheese steaks. Sear for 3-4 minutes per side until golden brown and crispy. Remove from pan. Keep warm.",
+      "In the same pan, reduce heat to medium. Add panang curry paste. Cook for 1 minute, stirring. Add brown sugar, 60ml brewed espresso, and halved cherries. Stir well. Bring to a simmer. Cook for 3-5 minutes, stirring occasionally, until sauce thickens slightly and cherries soften.",
+      "Place a portion of espresso rice on each plate. Arrange one panela cheese steak next to the rice. Spoon panang cherry glaze generously over the cheese and rice. Garnish with fresh chopped cilantro. Serve immediately."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.3,
+      "calories": 717,
+      "cholesterol_mg": 89,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 25.2,
+      "saturated_fat_g": 22.1,
+      "sodium_mg": 1265,
+      "total_carbs_g": 79.1,
+      "total_fat_g": 33.8,
+      "total_sugars_g": 14.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.8,
+      "calories": 181,
+      "cholesterol_mg": 22.5,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.4,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 319.2,
+      "total_carbs_g": 20,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29.7,
+      "dietary_fiber": 9.6,
+      "protein": 50.4,
+      "saturated_fat": 110.4,
+      "sodium": 55,
+      "total_carbs": 28.8,
+      "total_fat": 43.4
+    },
+    "serving_size_g": 396.3,
+    "total_recipe_weight_g": 1585
+  },
+  {
+    "recipe_name": "Risotto di Pollo con Agrodolce di Carote",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_risotto_di_pollo_con_agrodolce_di_carote_20250901_214456_b3b302bf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-01T21:44:57.404766000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "onion",
+      "basil",
+      "rice",
+      "thyme",
+      "carrot",
+      "oil"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Italian cuisine",
+    "visual_description": "The dish is presented in a shallow, handcrafted ceramic bowl of a creamy beige hue, reflecting natural textures. A generous, fluid mound of creamy, pale yellow risotto, cooked \"all'onda,\" occupies the center, leaving ample white space. Scattered naturally atop the risotto are golden-brown seared chicken chunks, approximately 3 cm each, showcasing their rustic, irregular shapes. Vibrant orange, thinly sliced pickled carrots are sparingly placed, providing bursts of color and a subtle sheen. Fresh, torn basil leaves are artfully arranged, adding natural green contrast. The setting features a light, reclaimed wood table surface, with an undyed linen napkin in a natural beige tone subtly folded beside the bowl. Simple, elegant flatware rests beside the plate. Soft, natural light illuminates the scene, highlighting the dish's textures and colors against a clean, minimalist background with a hint of a green plant.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately as risotto waits for no one.",
+      "Offer extra grated Parmigiano Reggiano at the table.",
+      "Pair with a crisp, dry Italian white wine like Pinot Grigio."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken bones (from 4 chicken thighs/breasts)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion (peel and ends)",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Carrot (peel and ends)",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic (peels)",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Water",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "200 g"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken thighs (boneless, skinless)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium unit, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Chicken stock (homemade)",
+        "quantity": "1 litre, hot"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "80 g, grated"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "10 g, torn"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Combine chicken bones, onion peels, carrot peels, garlic peels, and 1.5 litres water in a large pot. Bring to a simmer. Cook for 1 hour. Strain stock, discard solids. Keep stock hot.",
+      "Wash and thinly slice carrots into rounds (1-2 mm thick). Combine vinegar, water, sugar, salt, and thyme in a small saucepan. Bring to a boil, then remove from heat. Add sliced carrots. Let cool to room temperature. Store in an airtight container.",
+      "Cut chicken thighs into 3 cm chunks. Season with salt and pepper. Heat 15 ml olive oil in a large pan over medium-high heat. Sear chicken chunks until golden brown on all sides and cooked through (internal temperature 75\b0C). Remove chicken from pan, set aside.",
+      "In the same pan, add remaining 15 ml olive oil and butter. Add diced onion. Cook until softened, about 5 minutes. Add minced garlic and fresh thyme leaves. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Stir constantly for 2 minutes until edges of rice grains are translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add hot chicken stock, one ladle at a time. Stir frequently. Wait for each ladle to be almost absorbed before adding the next. Continue for 18-20 minutes until rice is creamy and al dente.",
+      "Remove risotto from heat. Stir in grated Parmigiano Reggiano. Add back seared chicken chunks. Stir well.",
+      "Taste and adjust salt and pepper. Serve immediately in warm bowls. Garnish with fresh basil leaves and a few pickled carrot slices."
+    ],
+    "notes": [
+      "This recipe prioritizes using chicken bones and vegetable scraps for a flavorful homemade stock, reducing food waste.",
+      "The pickled carrots can be made ahead and stored, extending their shelf life and adding a bright, acidic counterpoint to the rich risotto.",
+      "Consider composting any remaining vegetable scraps."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Tostatura",
+      "Mantecatura",
+      "Cottura all'onda"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.5,
+      "calories": 839.64,
+      "cholesterol_mg": 155.93,
+      "dietary_fiber_g": 3.11,
+      "protein_g": 41.98,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 1500.63,
+      "total_carbs_g": 87.78,
+      "total_fat_g": 33.19,
+      "total_sugars_g": 16.92,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.08,
+      "calories": 139.94,
+      "cholesterol_mg": 25.99,
+      "dietary_fiber_g": 0.52,
+      "protein_g": 6.99,
+      "saturated_fat_g": 2.02,
+      "sodium_mg": 250.11,
+      "total_carbs_g": 14.63,
+      "total_fat_g": 5.53,
+      "total_sugars_g": 2.82,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.98,
+      "dietary_fiber": 11.11,
+      "protein": 83.96,
+      "saturated_fat": 60.5,
+      "sodium": 65.24,
+      "total_carbs": 31.92,
+      "total_fat": 42.55
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2400
+  },
+  {
+    "recipe_name": "Fermented Carrot and Brown Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_carrot_and_brown_rice_salad_20250901_210020_d1ebb3ff.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-01T21:00:20.752787000Z",
+    "selected_ingredients": [
+      "chicken",
+      "carrot",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "Individual portions are served on handcrafted, earth-toned ceramic plates. The salad is arranged naturally in a gentle mound, showcasing diverse textures and colors. Golden-brown cooked brown rice forms the base. Bright orange julienned fresh carrots and lighter, tangy grated fermented carrots are artfully interspersed. Deep green chopped parsley provides fresh contrast. Toasted pumpkin seeds are lightly sprinkled, adding textural highlights. The vinaigrette lightly coats all ingredients, integrating them without pooling. The plate rests on a light, reclaimed wood surface. An undyed linen napkin is placed beside it. Soft, diffused natural light illuminates the scene, highlighting organic textures. The background is minimalist, with a subtle potted plant. A modest individual portion allows ample negative space, emphasizing ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Carrots",
+        "quantity": "400g"
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "White Cabbage",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Pumpkin Seeds",
+        "quantity": "50g"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "90ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Wash carrots. Peel 200g carrots. Grate the 200g carrots.",
+      "Shred 150g white cabbage.",
+      "Combine grated carrots and shredded cabbage with 5g sea salt in a bowl. Massage until liquid releases.",
+      "Pack tightly into a clean jar. Ensure vegetables are submerged under their own liquid. If needed, top with a 2% brine (500ml water + 10g sea salt).",
+      "Seal jar loosely. Ferment at room temperature for 3-5 days. Burp daily. Refrigerate once desired tanginess is achieved.",
+      "Rinse 200g brown rice.",
+      "Combine rice with 400ml water in a saucepan. Bring to boil.",
+      "Reduce heat, cover, simmer for 35-40 minutes until water is absorbed and rice is tender.",
+      "Fluff with a fork. Let cool completely.",
+      "Peel remaining 200g carrots. Julienne the carrots.",
+      "Finely mince 4 cloves garlic.",
+      "Chop 30g fresh parsley.",
+      "In a small bowl, whisk together 90ml olive oil, 60ml apple cider vinegar, 15ml Dijon mustard, minced garlic, chopped parsley, salt, and pepper. Adjust seasoning.",
+      "In a large bowl, combine cooled brown rice, julienned fresh carrots, and desired amount of fermented carrots/cabbage (drain liquid first).",
+      "Add 50g pumpkin seeds.",
+      "Pour vinaigrette over the salad. Toss gently to combine."
+    ],
+    "notes": [
+      "The fermentation process can be started a week in advance.",
+      "Save carrot peels and rice cooking water for vegetable stock or compost.",
+      "Adjust the amount of fermented carrots based on desired tanginess."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 498,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 8.9,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 855,
+      "total_carbs_g": 54.2,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 2.5,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 243,
+      "total_carbs_g": 15.4,
+      "total_fat_g": 8,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 24,
+      "protein": 18,
+      "saturated_fat": 21,
+      "sodium": 37,
+      "total_carbs": 20,
+      "total_fat": 36
+    },
+    "serving_size_g": 351.5,
+    "total_recipe_weight_g": 1406
+  }
+]

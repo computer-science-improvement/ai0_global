@@ -1,0 +1,671 @@
+[
+  {
+    "recipe_name": "Braised Chicken with Mushrooms and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_mushrooms_and_potatoes_20250624_141614_78dcdf49.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:16:14.718867000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "mushroom",
+      "potato",
+      "beef stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, whole braised chicken thigh is positioned centrally on a clean white porcelain dinner plate. Surrounding it are generous quartered potato wedges and halved cremini mushrooms, all glistening with a rich, glossy brown braising sauce. The colors are warm: golden-brown chicken, deep earthy mushrooms, creamy yellow potatoes, and vibrant green fresh parsley garnish. Textures are inviting: tender chicken, soft potatoes, and succulent mushrooms. The setting is a modern bistro, featuring a light wooden table and a neatly folded cotton napkin beside the plate. Natural, even lighting highlights the dish. Traditional flatware is placed. The background is subtly blurred, suggesting a casual restaurant ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "cultural_origin": "European",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g-720g total)"
+      },
+      {
+        "name": "Small potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat.",
+      "Sear chicken thighs until golden brown on all sides. Remove chicken from pot.",
+      "Add diced onion to pot. Cook until softened, about 3 minutes.",
+      "Add minced garlic and chopped rosemary and thyme. Cook 1 minute until fragrant.",
+      "Add quartered potatoes and halved mushrooms to pot. Stir to combine.",
+      "Pour in beef stock. Bring to a simmer.",
+      "Return chicken thighs to pot. Ensure chicken is partially submerged.",
+      "Cover pot. Transfer to preheated oven at 180°C (350°F).",
+      "Braise for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Taste and adjust seasoning.",
+      "Serve hot. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 492,
+      "cholesterol_mg": 149,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 39.7,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 504,
+      "total_carbs_g": 33.3,
+      "total_fat_g": 21.5,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93.5,
+      "cholesterol_mg": 28.2,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.5,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 95.6,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 16,
+      "protein": 79,
+      "saturated_fat": 25,
+      "sodium": 22,
+      "total_carbs": 12,
+      "total_fat": 28
+    },
+    "serving_size_g": 527,
+    "total_recipe_weight_g": 2107
+  },
+  {
+    "recipe_name": "Creamy Cheesy Chicken and Potato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_cheesy_chicken_and_potato_bake_20250624_141604_04958809.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:16:04.622615000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of Creamy Cheesy Chicken and Potato Bake is casually scooped onto an everyday off-white ceramic plate, resting on a well-used wooden kitchen table. The dish presents a golden-brown, bubbly cheese crust on top, with slight crisp edges, giving way to tender, thinly sliced potatoes and succulent, diced chicken chunks suspended in a rich, creamy white sauce. Subtle flecks of fresh green parsley are visible throughout the bake. The components naturally overlap, creating a comforting, unpretentious mound. A simple silver fork rests beside the plate on a casually draped cloth napkin. Warm, inviting kitchen lighting illuminates the scene, capturing the comforting textures and colors of a truly home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty bread for dipping into the creamy sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Yukon Gold)",
+        "quantity": "900 g"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Onion, small",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Grease a 23x33 cm baking dish.",
+      "Dice chicken thighs into 2-3 cm chunks. Season with salt and pepper.",
+      "Heat vegetable oil in a large skillet over medium-high heat. Sear chicken chunks until golden brown on all sides. Do not cook through. Remove chicken and set aside.",
+      "Peel potatoes and thinly slice them (about 3 mm thick) using a mandoline or sharp knife.",
+      "In the same skillet, melt butter over medium heat. Add diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in flour and cook for 1 minute, stirring constantly, to form a roux.",
+      "Gradually whisk in milk and chicken broth. Bring to a simmer, stirring until sauce thickens.",
+      "Remove from heat. Stir in half of the grated cheddar cheese and fresh thyme. Season sauce with salt and pepper to taste.",
+      "Arrange half of the sliced potatoes in a single layer in the prepared baking dish.",
+      "Spread half of the seared chicken chunks evenly over the potatoes.",
+      "Pour half of the cheese sauce over the chicken and potatoes.",
+      "Repeat layers with remaining potatoes, chicken, and sauce.",
+      "Sprinkle remaining grated cheddar cheese evenly over the top.",
+      "Bake for 45-55 minutes, or until potatoes are tender and the top is golden brown and bubbly. Ensure chicken reaches an internal temperature of 75°C.",
+      "Let stand for 10 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "This dish reheats well. Store leftovers in an airtight container in the refrigerator for up to 3 days.",
+      "For extra flavor, add a pinch of nutmeg to the cheese sauce."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 895.83,
+      "cholesterol_mg": 271.63,
+      "dietary_fiber_g": 5.89,
+      "protein_g": 54.69,
+      "saturated_fat_g": 24.42,
+      "sodium_mg": 1299.93,
+      "total_carbs_g": 57.4,
+      "total_fat_g": 48.77,
+      "total_sugars_g": 9.4,
+      "trans_fat_g": 0.61
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.45,
+      "cholesterol_mg": 40.16,
+      "dietary_fiber_g": 0.87,
+      "protein_g": 8.09,
+      "saturated_fat_g": 3.61,
+      "sodium_mg": 192.19,
+      "total_carbs_g": 8.49,
+      "total_fat_g": 7.21,
+      "total_sugars_g": 1.39,
+      "trans_fat_g": 0.09
+    },
+    "daily_value_percentages": {
+      "cholesterol": 91,
+      "dietary_fiber": 21,
+      "protein": 109,
+      "saturated_fat": 122,
+      "sodium": 57,
+      "total_carbs": 21,
+      "total_fat": 63
+    },
+    "serving_size_g": 676.4,
+    "total_recipe_weight_g": 2705.5
+  },
+  {
+    "recipe_name": "Homestyle Beef & Parmesan Burgers with Cranberry Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_beef_%26_parmesan_burgers_with_cranberry_relish_20250624_141553_b8830151.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:15:53.459897000Z",
+    "selected_ingredients": [
+      "bread",
+      "beef",
+      "parmesan"
+    ],
+    "complexity": "simple",
+    "special_requests": "Make a burger with cranberry sauce",
+    "visual_description": "A single, generously portioned Homestyle Beef & Parmesan Burger is presented on a simple, round ceramic plate. It rests on a well-used wooden dining table, under warm kitchen lighting. The beef patty is thick, cooked to a rich brown, with melted, golden-brown parmesan cheese forming a crust. A vibrant dollop of ruby-red cranberry relish sits atop the cheese. Beneath the patty, a fresh green lettuce leaf and a bright red, thick-cut tomato slice are visible. The burger is enclosed by a lightly toasted, soft bun, showing a subtle golden hue. The arrangement is casual and natural, like a family meal. The scene is uncluttered, with a cloth napkin and a glass of water subtly visible, reinforcing a homely atmosphere. The focus is entirely on the hearty, comforting burger.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of classic potato chips or French fries.",
+      "Offer a simple green salad or coleslaw as an accompaniment."
+    ],
+    "hero_ingredient": "Ground Beef",
+    "ingredients": [
+      {
+        "name": "Ground Beef",
+        "quantity": "600g"
+      },
+      {
+        "name": "Burger Buns",
+        "quantity": "4"
+      },
+      {
+        "name": "Parmesan Cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Cranberry Sauce",
+        "quantity": "100g"
+      },
+      {
+        "name": "Large Egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Plain Breadcrumbs",
+        "quantity": "40g"
+      },
+      {
+        "name": "Small Onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic Cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lettuce Leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Tomato, sliced",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "In a large bowl, combine ground beef, egg, breadcrumbs, 30g grated parmesan, diced onion, minced garlic, salt, and black pepper. Mix thoroughly until just combined.",
+      "Divide the mixture into 4 equal portions. Form each portion into a round patty, approximately 2cm thick.",
+      "Heat olive oil in a large skillet over medium-high heat. Place patties in the skillet.",
+      "Cook patties for 4-5 minutes per side, or until cooked through.",
+      "During the last minute of cooking, sprinkle the remaining 30g parmesan cheese over each patty. Cover the skillet briefly to allow the cheese to melt.",
+      "While patties cook, lightly toast the burger buns.",
+      "Assemble the burgers: Place a cooked patty on the bottom half of each toasted bun. Top with a generous spoonful of cranberry sauce. Add lettuce and tomato slices.",
+      "Cover with the top half of the bun and serve immediately."
+    ],
+    "notes": [
+      "Adjust patty cooking time based on desired doneness. Ensure beef is cooked through."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 10.7,
+      "calories": 796,
+      "cholesterol_mg": 194,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 42.4,
+      "saturated_fat_g": 16.1,
+      "sodium_mg": 784,
+      "total_carbs_g": 61.4,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 15.3,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.9,
+      "calories": 214,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 1,
+      "protein_g": 11.4,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 211,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 11.4,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 13,
+      "protein": 85,
+      "saturated_fat": 81,
+      "sodium": 34,
+      "total_carbs": 22,
+      "total_fat": 54
+    },
+    "serving_size_g": 372.5,
+    "total_recipe_weight_g": 1490
+  },
+  {
+    "recipe_name": "Japanese Soy-Braised Chicken and Potato Donburi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_japanese_soy-braised_chicken_and_potato_donburi_20250624_141548_317c0430.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:15:48.608467000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion",
+      "garlic",
+      "rice",
+      "soy sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A deep, ceramic donburi bowl holds a generous bed of fluffy white Japanese short-grain rice. On top, rich, dark brown braised chicken thigh chunks are arranged with golden-brown potato wedges and tender, translucent thick-cut onion pieces. A glossy, dark amber braising liquid lightly coats the chicken and vegetables, pooling slightly at the base of the rice. The dish is garnished with a scattering of bright green, finely sliced spring onions. The presentation features clean lines and natural flow. The bowl sits on a simple wooden table, accompanied by a small white ceramic dish of pale pink pickled ginger, and a pair of dark wooden chopsticks. A neatly folded white cotton napkin completes the setting under soft, natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled ginger (gari)",
+      "Accompany with a simple clear soup or miso soup"
+    ],
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Boneless, Skinless Chicken Thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Japanese Short-Grain Rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sake (cooking)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Water or Dashi Stock",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Rinse rice thoroughly under cold water until water runs clear. Cook rice according to package directions. Set aside, covered.",
+      "Cut chicken thighs into 4 cm chunks. Pat dry.",
+      "Peel potatoes. Cut into thick 3-4 cm wedges.",
+      "Peel onion. Cut into thick wedges.",
+      "Peel garlic. Thinly slice.",
+      "Heat vegetable oil in a large pot or deep skillet over medium-high heat.",
+      "Add chicken chunks. Sear until lightly browned on all sides. Remove chicken from pot. Set aside.",
+      "Add onion and garlic to the same pot. Sauté for 2-3 minutes until fragrant.",
+      "Return chicken to the pot. Add potato wedges.",
+      "Pour in soy sauce, mirin, sake, sugar, and water or dashi stock. Bring to a simmer.",
+      "Reduce heat to medium-low. Cover and simmer for 20-25 minutes. Chicken should be cooked through. Potatoes should be tender.",
+      "Remove lid. Increase heat slightly. Simmer uncovered for 5-7 minutes. Sauce should reduce and slightly thicken.",
+      "Finely slice green onions for garnish.",
+      "Divide cooked rice among 4 deep donburi bowls. Spoon generous portions of braised chicken, potatoes, and onion over the rice. Drizzle with ample braising sauce. Garnish with sliced green onions. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Dashi stock will enhance the umami flavor; water is an acceptable substitute."
+    ],
+    "traditional_techniques": [
+      "Nimono (Japanese braising/simmering)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 504,
+      "cholesterol_mg": 164,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 37.7,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 1246,
+      "total_carbs_g": 76.2,
+      "total_fat_g": 18.2,
+      "total_sugars_g": 18.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 82,
+      "cholesterol_mg": 26.5,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.1,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 202,
+      "total_carbs_g": 12.4,
+      "total_fat_g": 3,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 15,
+      "protein": 75,
+      "saturated_fat": 21,
+      "sodium": 54,
+      "total_carbs": 28,
+      "total_fat": 23
+    },
+    "serving_size_g": 617,
+    "total_recipe_weight_g": 2467
+  },
+  {
+    "recipe_name": "Hearty Beef and Vegetable Rice Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_vegetable_rice_soup_20250624_141547_71810680.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:15:48.197013000Z",
+    "selected_ingredients": [
+      "beef",
+      "basil",
+      "broccoli",
+      "brown rice",
+      "corn"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of soup is presented in a clean white porcelain bowl, resting on a simple wooden table. The rich, clear amber broth holds substantial elements: tender, dark brown 2 cm beef cubes, vibrant green small broccoli florets, and bright yellow corn kernels, all interspersed with fluffy cooked brown rice. The ingredients are evenly distributed, creating a visually appealing texture. A generous sprinkle of fresh, torn green basil leaves floats on top, adding a pop of color and freshness. The bowl is centered with moderate negative space. Natural, even lighting highlights the soup's warmth and depth. A simple cotton napkin is folded beside the bowl. The background is minimal and unobtrusive, suggesting a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, diced",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Brown rice, uncooked",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Broccoli, small florets",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Corn kernels",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh basil, torn",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Carrots, diced",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Celery stalks, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cook brown rice according to package directions. Set aside.",
+      "Heat olive oil in a large pot over medium-high heat. Add diced beef. Sear until browned on all sides. Remove beef.",
+      "Add diced onion, carrots, and celery to the pot. Sauté 5-7 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Return seared beef to the pot. Add beef broth, diced tomatoes, bay leaf, and dried thyme. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer 60-90 minutes until beef is very tender.",
+      "Add broccoli florets and corn kernels. Cook 5-7 minutes until vegetables are tender-crisp.",
+      "Stir in cooked brown rice.",
+      "Season with salt and black pepper to taste.",
+      "Ladle soup into bowls. Garnish each serving with fresh basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 589.38,
+      "cholesterol_mg": 87.5,
+      "dietary_fiber_g": 8.37,
+      "protein_g": 37.68,
+      "saturated_fat_g": 9.97,
+      "sodium_mg": 1287.83,
+      "total_carbs_g": 56.2,
+      "total_fat_g": 24.79,
+      "total_sugars_g": 10.67,
+      "trans_fat_g": 0.75
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 67.88,
+      "cholesterol_mg": 10.08,
+      "dietary_fiber_g": 0.96,
+      "protein_g": 4.34,
+      "saturated_fat_g": 1.15,
+      "sodium_mg": 148.33,
+      "total_carbs_g": 6.47,
+      "total_fat_g": 2.85,
+      "total_sugars_g": 1.23,
+      "trans_fat_g": 0.09
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29.17,
+      "dietary_fiber": 29.89,
+      "protein": 75.36,
+      "saturated_fat": 49.85,
+      "sodium": 55.99,
+      "total_carbs": 20.44,
+      "total_fat": 31.78
+    },
+    "serving_size_g": 868.2,
+    "total_recipe_weight_g": 3472.8
+  }
+]

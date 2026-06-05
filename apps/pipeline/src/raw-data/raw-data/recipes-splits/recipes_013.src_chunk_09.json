@@ -1,0 +1,680 @@
+[
+  {
+    "recipe_name": "Creamy Rigatoni with Bacon, Mushroom, Artichoke & Sun-Dried Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_rigatoni_with_bacon%2C_mushroom%2C_artichoke_%26_sun-dried_tomato_20250701_145623_6e1a2139.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:56:24.440791000Z",
+    "selected_ingredients": [
+      "pasta",
+      "artichoke",
+      "sun dried tomato",
+      "bacon",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous, well-portioned mound of al dente rigatoni pasta sits centrally on a clean, round white porcelain dinner plate. The pasta is evenly coated in a creamy, off-white sauce, allowing the various ingredients to be clearly visible and well-integrated. Scattered throughout are crispy diced bacon pieces, thinly sliced sautéed earthy brown mushrooms, roughly chopped pale green artichoke hearts, and vibrant, deep red sun-dried tomato strips. A light sprinkle of freshly grated pale yellow Parmesan cheese and bright green chopped Italian parsley garnishes the top, adding fresh color and texture. The composition is professional yet approachable, with moderate negative space. The plate rests on a simple wooden table surface in a modern bistro setting. Standard silver flatware is placed beside the plate, and a folded cotton napkin lies nearby. Natural, even lighting highlights the dish's appealing textures and warm, rustic colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with extra grated Parmesan cheese on the side.",
+      "Accompanied by crusty artisan bread for dipping.",
+      "A simple green salad with vinaigrette."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Smoked bacon",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Artichoke hearts (canned or jarred, in water or oil)",
+        "quantity": "200 g drained"
+      },
+      {
+        "name": "Sun-dried tomatoes (oil-packed)",
+        "quantity": "80 g drained"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g plus more for serving"
+      },
+      {
+        "name": "Fresh Italian parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook rigatoni according to package directions until al dente. Reserve 250 ml of pasta cooking water. Drain pasta.",
+      "Dice bacon into small pieces. Heat a large skillet over medium heat. Add bacon and cook until crispy. Remove bacon with a slotted spoon and set aside. Keep 15 ml of rendered bacon fat in the skillet.",
+      "Thinly slice mushrooms. Add mushrooms to the skillet with bacon fat. Sauté over medium-high heat until golden brown and tender, about 5-7 minutes. Remove mushrooms and set aside.",
+      "Finely dice shallots and mince garlic. Add olive oil to the skillet if needed. Add shallots and cook until softened, about 3 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Add white wine to the skillet. Deglaze, scraping up any browned bits from the bottom. Simmer until wine is reduced by half.",
+      "Pour in chicken or vegetable broth and heavy cream. Bring to a gentle simmer. Cook for 5 minutes until sauce slightly thickens.",
+      "Roughly chop artichoke hearts. Thinly slice sun-dried tomatoes. Add artichokes, sun-dried tomatoes, cooked mushrooms, and cooked bacon to the sauce. Stir to combine.",
+      "Add cooked rigatoni to the skillet. Toss to coat evenly. Add half of the reserved pasta water, stirring to create a creamy sauce. Add more pasta water as needed to reach desired consistency.",
+      "Stir in grated Parmesan cheese. Season with salt and black pepper to taste. Cook for 1-2 minutes until heated through and sauce clings to the pasta.",
+      "Finely chop fresh Italian parsley. Garnish each serving with fresh parsley and extra Parmesan cheese."
+    ],
+    "traditional_techniques": [
+      "Al dente pasta cooking",
+      "Sautéing aromatics (soffritto base)",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1027,
+      "cholesterol_mg": 116,
+      "dietary_fiber_g": 9.2,
+      "protein_g": 46.7,
+      "saturated_fat_g": 20.6,
+      "sodium_mg": 1449,
+      "total_carbs_g": 94.8,
+      "total_fat_g": 48.5,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 215,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 9.8,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 303,
+      "total_carbs_g": 19.8,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 33,
+      "protein": 93,
+      "saturated_fat": 103,
+      "sodium": 63,
+      "total_carbs": 34,
+      "total_fat": 62
+    },
+    "serving_size_g": 478.5,
+    "total_recipe_weight_g": 1914
+  },
+  {
+    "recipe_name": "Roasted Butternut Squash and Sage Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_butternut_squash_and_sage_risotto_20250701_145620_97b13412.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:56:21.318719000Z",
+    "selected_ingredients": [
+      "squash"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single, generous portion of creamy, free-flowing Roasted Butternut Squash and Sage Risotto is presented on a wide, shallow white porcelain plate. The risotto forms an organic, unforced mound, exhibiting a rich golden-orange hue from the butternut squash, flecked with vibrant green specks of chopped sage and delicate white streaks of melted Parmesan. Tender, slightly caramelized 1.5 cm roasted butternut squash cubes are visibly integrated, with a few additional cubes and whole fresh sage leaves artfully placed on top as a garnish. A light drizzle of high-quality olive oil adds a subtle sheen. The plate sits on a simple wooden table surface in a modern bistro setting, accompanied by a neatly folded cotton napkin and traditional Italian flatware. Natural, even lighting highlights the dish, with a soft-focus background creating a casual yet refined atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately, as risotto texture is best enjoyed fresh.",
+      "Offer extra grated Parmesan cheese at the table for individual preference.",
+      "Pair with a crisp, dry Italian white wine such as Pinot Grigio or Vermentino.",
+      "Accompany with a simple green salad dressed with olive oil and lemon."
+    ],
+    "hero_ingredient": "Butternut Squash",
+    "ingredients": [
+      {
+        "name": "Butternut squash",
+        "quantity": "600 g (peeled, deseeded, 1.5 cm cubes)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.5 L (hot)"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium (finely diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves (minced)"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80 g (freshly grated)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g (cold, diced)"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "12-15 (some whole, some chopped)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss 600 g butternut squash cubes with 15 ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 20-25 minutes until tender and lightly caramelized. Set aside. Reserve a few roasted squash cubes for garnish.",
+      "Heat remaining 15 ml olive oil in a large, heavy-bottomed pot or Dutch oven over medium heat. Add finely diced onion. Cook until translucent, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add 320 g Arborio rice to the pot. Stir constantly for 2 minutes until the edges of the rice grains become translucent.",
+      "Pour in 120 ml white wine. Stir until the wine is completely absorbed by the rice.",
+      "Begin adding hot vegetable broth, one ladleful (about 120 ml) at a time. Stir continuously. Wait for each ladleful to be almost fully absorbed before adding the next. Continue this process for 18-20 minutes, or until the rice is al dente and creamy.",
+      "During the last 3-5 minutes of cooking, gently stir in most of the roasted butternut squash cubes and chopped fresh sage into the risotto.",
+      "Remove the pot from heat. Add 60 g cold, diced butter and 80 g grated Parmesan cheese. Stir vigorously for 1-2 minutes until the risotto is creamy and emulsified (mantecatura).",
+      "Taste and adjust seasoning with salt and black pepper as needed. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Mantecatura (creaming the risotto with butter and cheese off the heat)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 17.3,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 1457,
+      "total_carbs_g": 90.4,
+      "total_fat_g": 25.9,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 94.6,
+      "cholesterol_mg": 7,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 2.4,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 206,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 25,
+      "dietary_fiber": 18,
+      "protein": 35,
+      "saturated_fat": 63,
+      "sodium": 63,
+      "total_carbs": 33,
+      "total_fat": 33
+    },
+    "serving_size_g": 707,
+    "total_recipe_weight_g": 2828
+  },
+  {
+    "recipe_name": "Pollo alla Cacciatora",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_20250701_145557_6075229b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:55:57.755563000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented on a wide, matte white porcelain plate. Two whole, bone-in chicken thighs are stacked slightly in the center, featuring deeply browned, caramelized skin. A thick, rustic sauce covers the base of the plate, filled with visible small cubes of orange carrots, green celery, and translucent onions. Whole, dark purple kalamata olives are nestled within the vibrant red tomato sauce. A light dusting of bright green chopped parsley and a single fresh rosemary sprig garnish the top. Two thick batons of grilled sourdough bread lean against the side of the chicken. The lighting is natural and soft, emphasizing the glossy texture of the braised sauce and the crispness of the chicken skin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with toasted sourdough bread to soak up the sauce",
+      "Accompany with a glass of medium-bodied Italian red wine",
+      "Place on a bed of soft, buttery polenta"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine (Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide braising pan over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is deep golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add onion, carrot, and celery to the remaining fat.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in garlic, rosemary, and sage. Cook for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pan to deglaze.",
+      "Simmer wine for 3 minutes until reduced by half.",
+      "Add crushed tomatoes and stir to combine.",
+      "Place chicken thighs back into the sauce.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in olives and simmer uncovered for 5 minutes.",
+      "Remove rosemary sprigs before serving.",
+      "Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Always use a meat thermometer to ensure chicken reaches the safe internal temperature of 75°C",
+      "Browning the skin thoroughly at the start is essential for the final texture",
+      "The sauce should be thick and chunky, not watery"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1604,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 428,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 83,
+      "saturated_fat": 43,
+      "sodium": 70,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Sweet and Sour Tofu with Pineapple and Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_and_sour_tofu_with_pineapple_and_bell_peppers_20250701_145557_03a5d5da.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:55:57.558545000Z",
+    "selected_ingredients": [
+      "chicken stock",
+      "bell pepper",
+      "pineapple"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, showcasing a vibrant medley of Sweet and Sour Tofu. Golden-brown, crispy tofu cubes are generously coated in a glossy, amber-hued sauce. Bright red, yellow, and green bell pepper squares, cooked to a tender-crisp texture, intersperse with juicy pineapple chunks. The sauce glistens, reflecting the natural light, coating each ingredient evenly. A sprinkle of fresh, thinly sliced green onions provides a contrasting green pop, alongside a scattering of toasted white sesame seeds for texture and visual interest. The composition is balanced, with moderate negative space. The plate sits on a simple wooden surface, accompanied by a pair of elegant chopsticks and a small white rice bowl to the side, enhancing the authentic Asian dining experience. Natural, even lighting highlights the dish's appealing colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Served with steamed jasmine rice.",
+      "Traditionally eaten with chopsticks and a small rice bowl."
+    ],
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Firm tofu",
+        "quantity": "400g"
+      },
+      {
+        "name": "Bell peppers (red, green, yellow)",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "300g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "30g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Ginger, grated",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "10g"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Green onions, sliced",
+        "quantity": "2"
+      },
+      {
+        "name": "Sesame seeds",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Press tofu to remove excess water. Cut tofu into 2.5 cm cubes.",
+      "Cut bell peppers into 2.5 cm squares. Cut pineapple into 2.5 cm chunks.",
+      "In a bowl, whisk together vegetable stock, cornstarch, soy sauce, rice vinegar, brown sugar, and tomato paste. Set aside.",
+      "Heat vegetable oil in a large wok or skillet over medium-high heat. Add tofu cubes. Cook until golden brown and crispy on all sides. Remove tofu from wok.",
+      "Add grated ginger and minced garlic to the wok. Stir-fry for 30 seconds until fragrant.",
+      "Add bell pepper squares to the wok. Stir-fry for 2-3 minutes until slightly tender-crisp.",
+      "Return tofu to the wok. Add pineapple chunks.",
+      "Pour the sweet and sour sauce mixture over the ingredients. Bring to a simmer, stirring constantly, until sauce thickens.",
+      "Stir in sesame oil.",
+      "Serve hot. Garnish with sliced green onions and sesame seeds."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (wok cooking)",
+      "Balancing sweet, sour, and savory flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.3,
+      "calories": 295,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4,
+      "protein_g": 11.4,
+      "saturated_fat_g": 2,
+      "sodium_mg": 942.3,
+      "total_carbs_g": 35.3,
+      "total_fat_g": 14,
+      "total_sugars_g": 18.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.8,
+      "calories": 71,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1,
+      "protein_g": 2.8,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 228.1,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 14,
+      "protein": 23,
+      "saturated_fat": 10,
+      "sodium": 41,
+      "total_carbs": 13,
+      "total_fat": 18
+    },
+    "serving_size_g": 413.1,
+    "total_recipe_weight_g": 1652.2
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Roasted Beet Puree and Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_roasted_beet_puree_and_caramelized_onions_20250701_145534_d0195fc4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:55:35.144591000Z",
+    "selected_ingredients": [
+      "chicken",
+      "beet",
+      "onion",
+      "mustard",
+      "mayonnaise",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate. A single, golden-brown pan-seared chicken breast, cooked whole, sits prominently. Beside it, a vibrant, smooth pool of deep ruby-red roasted beet puree creates a striking color contrast. Glistening strands of sweet caramelized onions are draped delicately over a portion of the chicken. A light drizzle of creamy, pale yellow mustard-mayo sauce artfully trails across the plate, connecting the elements. The dish is garnished with a sprinkle of finely chopped fresh green chives, adding a pop of color and freshness. The composition is balanced, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface. Standard silver flatware is neatly placed beside the plate. A folded white cotton napkin rests nearby. Natural, even lighting highlights the textures and colors of the food. The background is softly blurred, maintaining focus on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Medium beets",
+        "quantity": "3 (approx. 500g)"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Chicken stock or water",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh chives or parsley",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and peel beets. Dice beets into 2 cm cubes.",
+      "Toss diced beets with 15ml olive oil, 2 minced garlic cloves, salt, and pepper.",
+      "Spread beets on a baking sheet. Roast for 25-30 minutes until tender.",
+      "While beets roast, thinly slice the large onion.",
+      "Heat 15ml olive oil in a pan over medium-low heat. Add sliced onions. Cook slowly for 25-30 minutes until deeply caramelized and soft. Stir occasionally.",
+      "Season chicken breasts with salt and pepper.",
+      "Heat remaining 15ml olive oil in a large skillet over medium-high heat.",
+      "Add chicken breasts to hot skillet. Sear for 6-8 minutes per side until golden brown and cooked through. Internal temperature must reach 75°C.",
+      "While chicken rests, transfer roasted beets and roasted garlic to a food processor. Add red wine vinegar and 60ml chicken stock or water. Blend until smooth puree. Season with salt and pepper.",
+      "In a small bowl, combine mayonnaise, Dijon mustard, and remaining 2 minced garlic cloves. Stir until well combined. Add a teaspoon of water if needed for desired consistency.",
+      "Plate: Spoon a generous portion of beet puree onto each plate. Place a seared chicken breast next to the puree. Arrange caramelized onions over or beside the chicken. Drizzle with mustard-mayo sauce. Garnish with fresh chopped chives or parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 578,
+      "cholesterol_mg": 159.3,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 59.4,
+      "saturated_fat_g": 5,
+      "sodium_mg": 428.1,
+      "total_carbs_g": 18.9,
+      "total_fat_g": 28.7,
+      "total_sugars_g": 10.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 135,
+      "cholesterol_mg": 37.2,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 13.9,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 100.1,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.1,
+      "dietary_fiber": 16.7,
+      "protein": 118.7,
+      "saturated_fat": 25.2,
+      "sodium": 18.6,
+      "total_carbs": 6.9,
+      "total_fat": 36.8
+    },
+    "serving_size_g": 427.8,
+    "total_recipe_weight_g": 1711
+  }
+]

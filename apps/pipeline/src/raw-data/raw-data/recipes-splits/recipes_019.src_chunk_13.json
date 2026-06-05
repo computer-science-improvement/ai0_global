@@ -1,0 +1,608 @@
+[
+  {
+    "recipe_name": "Homestyle Creamy Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_creamy_chicken_and_rice_20250625_082349_fa223817.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:23:49.753370000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "tomato",
+      "rice",
+      "garlic",
+      "carrot",
+      "cheese",
+      "mustard",
+      "coconut milk"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Homestyle Creamy Chicken and Rice is presented on a simple, slightly off-white ceramic plate with natural imperfections, placed on a well-used wooden dining table. Diced chicken pieces, approximately 2-3 cm, are cooked until golden and nestled among fluffy, creamy rice, enriched by diced carrots and tender pieces of tomato. The dish has a warm, inviting golden-orange hue from the tomato and coconut milk, with visible specks of green from a light parsley garnish. The texture is soft and comforting, with the rice absorbing the rich, savory sauce. A casual cloth napkin is loosely placed beside the plate. Warm, cozy light emanates from an overhead kitchen fixture, highlighting the dish's comforting appeal. The scene is uncluttered, focusing solely on the hearty, expertly prepared meal.",
+    "number_of_servings": 2,
+    "cuisine_type": "Homestyle",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Diced tomatoes (canned)",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "200 millilitres"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 millilitres"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 millilitres"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 millilitres"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 2-3 cm cubes. Dice onion and carrot into small cubes. Mince garlic.",
+      "Heat olive oil in a large pot or deep skillet over medium-high heat. Add diced chicken. Brown on all sides, about 5 minutes. Cook until internal temperature reaches 75°C. Remove chicken from pot and set aside.",
+      "Reduce heat to medium. Add diced onion and carrot to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in diced tomatoes and Dijon mustard. Cook for 2 minutes, stirring occasionally.",
+      "Add uncooked rice to the pot. Stir to coat the grains.",
+      "Pour in coconut milk and chicken broth. Bring mixture to a simmer.",
+      "Return browned chicken to the pot. Stir gently to combine.",
+      "Cover the pot, reduce heat to low. Simmer for 15-20 minutes, or until rice is tender and most liquid is absorbed.",
+      "Remove pot from heat. Stir in grated cheddar cheese until melted and creamy.",
+      "Season with salt and black pepper to taste. Let rest for 5 minutes before serving.",
+      "Garnish with fresh chopped parsley if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 957,
+      "cholesterol_mg": 162.3,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 50.3,
+      "saturated_fat_g": 30.3,
+      "sodium_mg": 472.7,
+      "total_carbs_g": 81,
+      "total_fat_g": 50.5,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 144.6,
+      "cholesterol_mg": 24.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.6,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 71.4,
+      "total_carbs_g": 12.2,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 23,
+      "protein": 101,
+      "saturated_fat": 152,
+      "sodium": 21,
+      "total_carbs": 29,
+      "total_fat": 65
+    },
+    "serving_size_g": 662,
+    "total_recipe_weight_g": 1324
+  },
+  {
+    "recipe_name": "Hearty Italian Sausage and Bean Ragù",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_italian_sausage_and_bean_rag%C3%B9_20250625_082348_626d0dcb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:23:48.477570000Z",
+    "selected_ingredients": [
+      "bean",
+      "tomato",
+      "sausage",
+      "parmesan cheese",
+      "onion",
+      "mushroom",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Hearty Italian Sausage and Bean Ragù is presented in a clean, white ceramic bowl, resting on a simple wooden table surface. The ragù is a rich, deep red from the crushed tomatoes, studded with substantial, rustic chunks of browned Italian sausage and tender, earthy sliced mushrooms. Whole or halved cannellini beans are visibly integrated, adding a creamy contrast. The dish is topped with a generous sprinkle of freshly grated pale yellow Parmesan cheese and vibrant green chopped parsley, offering fresh color and texture. The composition is natural and inviting, with moderate negative space on the plate. A folded white cotton napkin and standard silver flatware are placed beside the bowl. Natural, even light illuminates the scene, creating a professional yet approachable bistro atmosphere in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Pair with a simple green salad dressed with vinaigrette"
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Brown onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Remove sausage from casings. Break into 2-3 cm chunks.",
+      "Heat olive oil in a large pot over medium-high heat. Add sausage chunks. Brown on all sides, about 8 minutes. Remove sausage from pot; set aside.",
+      "Dice the onion. Slice mushrooms. Mince garlic.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add sliced mushrooms to the pot. Cook until browned, about 7 minutes.",
+      "Stir in minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Simmer until wine is mostly reduced, about 3 minutes.",
+      "Add crushed tomatoes and chicken stock. Bring to a simmer.",
+      "Return sausage chunks to the pot. Reduce heat to low. Simmer gently, uncovered, for 20 minutes.",
+      "Drain and rinse cannellini beans. Add beans to the pot. Stir well. Simmer for another 10 minutes.",
+      "Grate Parmesan cheese. Stir half of the grated Parmesan into the ragù. Season with salt and pepper to taste.",
+      "Chop fresh parsley. Ladle ragù into individual serving bowls. Garnish with remaining Parmesan and chopped parsley. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Fermented Bitter Melon & Wakame Dashi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_bitter_melon_%26_wakame_dashi_20250625_082333_e8807eef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:23:34.258518000Z",
+    "selected_ingredients": [
+      "bitter melon",
+      "kombu",
+      "dashi",
+      "wakame seaweed",
+      "chive"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single individual portion of clear, golden amber dashi soup is presented in a handcrafted ceramic bowl with a natural, earthy glaze (cream or beige tone). Thin, translucent slices of pale green fermented bitter melon are artfully arranged within the broth, showcasing their unique texture. Dark green, undulating ribbons of rehydrated wakame seaweed are naturally dispersed, adding organic form. A scattering of vibrant green, finely chopped chives rests delicately on the surface, providing a fresh contrast. The bowl is placed on a light, textured reclaimed wood surface. An undyed linen napkin in natural beige is subtly folded beside the bowl. The background is minimalist and clean, with soft, natural lighting highlighting the soup's simplicity and purity. A traditional Japanese wooden spoon rests beside the bowl, complementing the eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve as part of an 'ichiju-sansai' meal (one soup, three side dishes) alongside steamed rice and other small, seasonal dishes.",
+      "Enjoy with a simple wooden soup spoon or chopsticks."
+    ],
+    "hero_ingredient": "Bitter Melon",
+    "ingredients": [
+      {
+        "name": "Kombu (dried kelp)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Dried shiitake mushrooms",
+        "quantity": "4-5 (rehydrated)"
+      },
+      {
+        "name": "Bitter melon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Wakame seaweed (dried)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "White or light miso paste",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Salt (for fermentation brine)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Water (for fermentation brine)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Garlic (for fermentation)",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Ginger (for fermentation)",
+        "quantity": "1 small piece"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented bitter melon: Wash bitter melon. Slice thinly. Discard seeds and pith. Pack slices into a clean glass jar. Add peeled garlic cloves and ginger piece. Dissolve 10 g salt in 250 ml water to make brine. Pour brine over bitter melon, ensuring it is fully submerged. Seal jar loosely. Ferment at room temperature for 3-5 days. Refrigerate once desired tanginess is reached.",
+      "Prepare dashi broth: Combine kombu and 1.5 L water in a pot. Add rehydrated shiitake mushrooms. Let soak for 30 minutes. Heat gently over medium-low heat. Just before boiling, remove kombu. Simmer shiitake for 10 minutes. Strain broth through a fine-mesh sieve. Reserve shiitake for another use or compost.",
+      "Rehydrate wakame: Place dried wakame in a bowl. Cover with cold water. Let soak for 5-10 minutes until fully rehydrated. Drain well and gently squeeze out excess water. Roughly chop if pieces are too large.",
+      "Assemble soup: Gently warm the dashi broth over low heat. Do not boil. In a small bowl, dissolve miso paste with a ladleful of warm dashi broth. Stir until smooth. Add dissolved miso paste back into the main dashi pot. Stir well.",
+      "Add ingredients: Add rehydrated wakame and a desired amount of fermented bitter melon slices to the warm soup. Heat briefly, just until warmed through. Do not boil after adding miso.",
+      "Serve: Ladle soup into individual serving bowls. Garnish generously with freshly chopped chives."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by using kombu for dashi, and fermented bitter melon for preservation. The leftover shiitake from dashi can be chopped and used in other dishes or composted.",
+      "The bitterness of the melon mellows significantly with fermentation, adding a unique tangy note."
+    ],
+    "traditional_techniques": [
+      "Dashi preparation (Ichiban Dashi)",
+      "Tsukemono (Japanese pickling/fermentation technique, applied to bitter melon)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 63.9,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.183,
+      "protein_g": 3.449,
+      "saturated_fat_g": 0.248,
+      "sodium_mg": 1566.82,
+      "total_carbs_g": 11.656,
+      "total_fat_g": 1.236,
+      "total_sugars_g": 3.204,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 11.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 0.554,
+      "protein_g": 0.6,
+      "saturated_fat_g": 0.043,
+      "sodium_mg": 272.73,
+      "total_carbs_g": 2.029,
+      "total_fat_g": 0.215,
+      "total_sugars_g": 0.558,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 11.37,
+      "protein": 6.9,
+      "saturated_fat": 1.24,
+      "sodium": 68.12,
+      "total_carbs": 4.24,
+      "total_fat": 1.58
+    },
+    "serving_size_g": 574.5,
+    "total_recipe_weight_g": 2298
+  },
+  {
+    "recipe_name": "Pan-Seared Peaches with Honey-Lemon Butter Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_peaches_with_honey-lemon_butter_glaze_20250625_082324_f3fceb88.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:23:24.950426000Z",
+    "selected_ingredients": [
+      "peach",
+      "honey",
+      "butter",
+      "lemon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Peaches is elegantly presented on a clean, round white porcelain plate. Two peach halves, their cut-sides beautifully caramelized to a golden-amber hue, are arranged side-by-side, slightly overlapping. The skin on the back of the peaches retains its natural blush. A glossy, golden honey-lemon butter glaze is artfully spooned over the peaches, catching the light. Scattered around and over the peaches are roughly chopped, toasted pecans, providing a textural contrast and warm, earthy tones. The dish sits on a simple light wooden table, with a neatly folded white cotton napkin and a polished silver dessert fork and spoon placed beside the plate. Natural, soft light illuminates the dish, highlighting its warm colors and inviting textures. The background is minimally blurred, suggesting a relaxed modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Dessert",
+    "hero_ingredient": "Peach",
+    "ingredients": [
+      {
+        "name": "Peaches",
+        "quantity": "4 medium, ripe but firm"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Honey",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large (for 30ml juice, zest of half)"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Pecan halves",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Halve and pit each peach. Do not peel.",
+      "Preheat oven to 160°C. Spread pecan halves on a baking sheet. Toast 8-10 minutes until fragrant. Roughly chop. Set aside.",
+      "Melt 20g butter in a large non-stick skillet over medium-high heat. Add peach halves, cut-side down. Sprinkle with granulated sugar. Sear 3-4 minutes until golden and caramelized. Flip peaches. Cook 2-3 minutes until slightly tender. Remove peaches to a plate.",
+      "In the same skillet, add remaining 30g butter, honey, lemon juice, and water. Bring to a simmer, stirring constantly, until slightly thickened and syrupy, about 2-3 minutes. Remove from heat. Stir in lemon zest.",
+      "Arrange two peach halves per plate, cut-side up. Spoon warm honey-lemon butter glaze over peaches. Garnish with toasted chopped pecans. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 24.74,
+      "calories": 329.1,
+      "cholesterol_mg": 26.88,
+      "dietary_fiber_g": 3.47,
+      "protein_g": 2.77,
+      "saturated_fat_g": 7.23,
+      "sodium_mg": 2.44,
+      "total_carbs_g": 41.33,
+      "total_fat_g": 19.53,
+      "total_sugars_g": 38.03,
+      "trans_fat_g": 0.41
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.71,
+      "calories": 155.8,
+      "cholesterol_mg": 12.72,
+      "dietary_fiber_g": 1.64,
+      "protein_g": 1.31,
+      "saturated_fat_g": 3.42,
+      "sodium_mg": 1.16,
+      "total_carbs_g": 19.57,
+      "total_fat_g": 9.25,
+      "total_sugars_g": 18,
+      "trans_fat_g": 0.19
+    },
+    "daily_value_percentages": {
+      "cholesterol": 9,
+      "dietary_fiber": 12.4,
+      "protein": 5.5,
+      "saturated_fat": 36.1,
+      "sodium": 0.1,
+      "total_carbs": 15,
+      "total_fat": 25
+    },
+    "serving_size_g": 211.225,
+    "total_recipe_weight_g": 844.9
+  },
+  {
+    "recipe_name": "Tuscan Sausage and Mushroom Ragu with Creamy Polenta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_sausage_and_mushroom_ragu_with_creamy_polenta_20250625_082305_6c70e9ac.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:23:06.378118000Z",
+    "selected_ingredients": [
+      "bean",
+      "tomato",
+      "sausage",
+      "parmesan cheese",
+      "onion",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous mound of rich, dark red sausage and mushroom ragu is served atop a creamy, golden polenta base. The sausage appears as browned, irregular chunks, complemented by earthy brown mushroom slices. Bright green fresh basil leaves are torn and scattered over the ragu, providing a vibrant contrast. A light dusting of finely grated pale yellow Parmesan cheese melts gently into the warm dish. The single, refined portion is presented on a clean, round white porcelain dinner plate, with moderate negative space surrounding the central composition. The plate rests on a simple wooden table surface, accompanied by a folded cotton napkin and traditional silver flatware. Natural, even lighting illuminates the textures and colors of the dish, creating an inviting, authentic Italian bistro scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping",
+      "Pair with a robust red wine"
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cannellini beans, canned",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Crushed tomatoes, canned",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Chicken or vegetable stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Fine polenta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Remove sausage from casings. Break into rough 2-3 cm chunks.",
+      "Chop onion finely. Slice mushrooms thinly. Mince garlic.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add sausage chunks. Brown well on all sides. Remove sausage from pot, set aside. Leave rendered fat in pot.",
+      "Add chopped onion to pot. Sauté until softened, about 5 minutes.",
+      "Add sliced mushrooms. Cook until softened and browned, about 7-10 minutes.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "If using, pour in red wine. Deglaze pot, scraping up any browned bits.",
+      "Stir in crushed tomatoes and chicken stock. Return sausage to pot. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer for 45 minutes to 1 hour. Stir occasionally.",
+      "Drain and rinse cannellini beans. Add to ragu for the last 15 minutes of cooking.",
+      "While ragu simmers, prepare polenta. Bring 1 litre water to a boil in a separate saucepan. Season with salt.",
+      "Slowly whisk in polenta. Reduce heat to low. Cook, stirring frequently, until creamy and thick, about 20-25 minutes. Add more hot water if polenta becomes too stiff.",
+      "Stir butter and 50g grated Parmesan into cooked polenta. Season with salt and pepper.",
+      "Taste ragu, adjust seasoning as needed. Stir in half of the fresh basil, torn.",
+      "Spoon creamy polenta onto individual plates. Top with a generous portion of sausage and mushroom ragu. Ensure sausage chunks are visible.",
+      "Garnish with remaining fresh basil leaves, torn. Grate additional Parmesan cheese over each serving."
+    ],
+    "traditional_techniques": [
+      "Slow simmering",
+      "Creamy polenta preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 960,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 10.7,
+      "protein_g": 38,
+      "saturated_fat_g": 22.1,
+      "sodium_mg": 1816,
+      "total_carbs_g": 74.9,
+      "total_fat_g": 53.8,
+      "total_sugars_g": 9.6,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 100,
+      "cholesterol_mg": 12.5,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 189.4,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 38,
+      "protein": 76,
+      "saturated_fat": 111,
+      "sodium": 79,
+      "total_carbs": 27,
+      "total_fat": 69
+    },
+    "serving_size_g": 958.5,
+    "total_recipe_weight_g": 3834
+  }
+]

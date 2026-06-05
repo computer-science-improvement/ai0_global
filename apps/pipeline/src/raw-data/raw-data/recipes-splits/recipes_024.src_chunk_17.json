@@ -1,0 +1,674 @@
+[
+  {
+    "recipe_name": "Braised Pork and Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_pork_and_mushrooms_20250624_024100_dfd1b220.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:41:01.392905000Z",
+    "selected_ingredients": [
+      "pork",
+      "mushroom",
+      "milk"
+    ],
+    "complexity": "simple",
+    "special_requests": "中国菜 cuisine, 不用烤箱",
+    "visual_description": "A generous single portion of Braised Pork and Mushrooms is presented in a deep, simple white ceramic bowl, characteristic of everyday Chinese home dining. The pork, cut into robust 3cm chunks, is fork-tender and retains its natural browned exterior from searing, contrasting with the soft, pale interior. Thickly sliced button mushrooms are interspersed among the pork, their earthy brown caps peeking through. The dish is coated in a rich, opaque white sauce, naturally thickened to a silky consistency, which pools gently around the ingredients. The sauce has a subtle sheen, inviting warmth. A sprinkle of bright green chopped spring onion is scattered over the top, providing a fresh color contrast. The bowl is placed on a well-worn, light wooden kitchen table, slightly scuffed from family use. Beside it, a small, individual serving of fluffy white steamed rice sits in a traditional Chinese rice bowl. A pair of simple wooden chopsticks rests beside the rice bowl. The setting is casually arranged, illuminated by warm, natural kitchen lighting, suggesting a comforting family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed white rice.",
+      "Offer a side of blanched green vegetables like gai lan or bok choy."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "600g"
+      },
+      {
+        "name": "Fresh mushrooms (e.g., button or shiitake)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "30g"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken or pork broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Cold water (for slurry)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 3cm chunks.",
+      "Heat vegetable oil in a wok or large pot over medium-high heat.",
+      "Add pork chunks. Sear until browned on all sides. Remove pork.",
+      "Add minced garlic, ginger slices, and white parts of spring onions to the wok. Stir-fry until fragrant.",
+      "Return pork to the wok. Add Shaoxing wine and light soy sauce. Stir well.",
+      "Pour in chicken or pork broth. Bring to a simmer.",
+      "Reduce heat to low. Cover and braise for 45-60 minutes, or until pork is tender.",
+      "Add thickly sliced mushrooms to the pot. Cook for 10-15 minutes, until mushrooms are tender.",
+      "Stir the cornstarch slurry. Slowly pour into the simmering sauce, stirring constantly until sauce thickens to a milky, opaque consistency.",
+      "Season with white pepper and salt to taste.",
+      "Drizzle with sesame oil. Garnish with green parts of spring onions.",
+      "Ensure internal temperature of pork reaches 75°C (167°F)."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Velveting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 503,
+      "cholesterol_mg": 110,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 43,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 1072,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 31.3,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145.9,
+      "cholesterol_mg": 31.7,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 12.5,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 310.8,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36.7,
+      "dietary_fiber": 5,
+      "protein": 86,
+      "saturated_fat": 48.5,
+      "sodium": 46.6,
+      "total_carbs": 3.9,
+      "total_fat": 40.1
+    },
+    "serving_size_g": 345,
+    "total_recipe_weight_g": 1380
+  },
+  {
+    "recipe_name": "Garlic Tomato Noodles with Scrambled Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_tomato_noodles_with_scrambled_egg_20250624_024006_9f1047eb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:40:06.766300000Z",
+    "selected_ingredients": [
+      "egg",
+      "noodle",
+      "tomato",
+      "green onion",
+      "sesame oil",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Garlic Tomato Noodles are presented in a clean, white porcelain bowl, showcasing a vibrant medley of colors and textures. Steamed wheat noodles, coated in a light, glossy tomato-garlic sauce, form the base. Interspersed throughout are soft, golden scrambled egg pieces and bright red 1.5 cm diced tomato cubes, some slightly softened, others retaining a hint of firmness. Thinly sliced bright green green onion batons are scattered generously over the top, providing a fresh contrast. A subtle sheen of sesame oil glistens on the noodles. The dish has a natural, flowing arrangement, not overly geometric, with moderate negative space around the edges of the bowl. A pair of dark wooden chopsticks rests beside the bowl on a simple wooden table surface, with a folded cotton napkin. Natural, even lighting highlights the ingredients' fresh appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "East Asian",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with a small bowl of plain white rice on the side.",
+      "Offer a side of chili oil for those who prefer more heat.",
+      "Serve family-style with individual bowls for self-serving."
+    ],
+    "hero_ingredient": "Noodles",
+    "ingredients": [
+      {
+        "name": "Noodles",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "3 medium (approx. 450 g)"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "30 mL"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 mL"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 mL"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 mL"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Boil noodles according to package instructions until al dente. Drain. Rinse with cold water. Toss with 10 mL sesame oil to prevent sticking.",
+      "Whisk eggs with a pinch of salt and pepper. Heat 15 mL vegetable oil in a large wok or pan over medium-high heat. Pour in eggs. Scramble until just set but still moist. Remove from pan. Set aside.",
+      "Dice tomatoes into 1.5 cm cubes. Mince garlic. Chop green onions, separating white and green parts.",
+      "Add remaining 15 mL vegetable oil to the wok. Add minced garlic and white parts of green onions. Sauté for 30 seconds until fragrant.",
+      "Add diced tomatoes to the wok. Cook for 3-4 minutes, stirring occasionally, until tomatoes soften slightly and release juices.",
+      "Stir in soy sauce, rice vinegar, and sugar. Bring to a simmer.",
+      "Add drained noodles to the wok. Toss well to coat noodles evenly with sauce and tomato mixture. Cook for 2-3 minutes, allowing noodles to absorb flavors.",
+      "Return scrambled eggs to the wok. Gently fold into the noodles.",
+      "Remove from heat. Drizzle with remaining 20 mL sesame oil. Garnish with green parts of green onions. Serve immediately."
+    ],
+    "notes": [
+      "Adjust soy sauce and sugar to taste based on tomato sweetness.",
+      "For an extra layer of flavor, consider adding a dash of white pepper or a pinch of five-spice powder to the sauce.",
+      "Ensure noodles are not overcooked to maintain their texture."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (wok cooking)",
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 402.54,
+      "cholesterol_mg": 186.5,
+      "dietary_fiber_g": 3.76,
+      "protein_g": 13.94,
+      "saturated_fat_g": 3.96,
+      "sodium_mg": 1490.22,
+      "total_carbs_g": 40.16,
+      "total_fat_g": 20.58,
+      "total_sugars_g": 6.25,
+      "trans_fat_g": 0.02
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.36,
+      "calories": 117.1,
+      "cholesterol_mg": 54.25,
+      "dietary_fiber_g": 1.09,
+      "protein_g": 4.06,
+      "saturated_fat_g": 1.15,
+      "sodium_mg": 433.52,
+      "total_carbs_g": 11.68,
+      "total_fat_g": 5.99,
+      "total_sugars_g": 1.82,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.17,
+      "dietary_fiber": 13.43,
+      "protein": 27.89,
+      "saturated_fat": 19.79,
+      "sodium": 64.79,
+      "total_carbs": 14.6,
+      "total_fat": 26.38
+    },
+    "serving_size_g": 343.75,
+    "total_recipe_weight_g": 1375
+  },
+  {
+    "recipe_name": "Creamy Garlic Herb Chicken and Mushroom Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_garlic_herb_chicken_and_mushroom_pasta_20250624_023859_25e10ee3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:38:59.850566000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, single portion of creamy garlic herb chicken and mushroom pasta is presented on a simple, round, off-white ceramic plate with natural imperfections. The pasta, a mix of penne and fettuccine, is generously coated in a rich, velvety cream sauce. Tender, golden-brown chicken chunks are interspersed throughout the pasta, alongside earthy, sautéed mushroom slices. Fresh, vibrant green parsley is sprinkled over the top, adding a pop of color. A light dusting of finely grated Parmesan cheese provides a subtle white contrast. The dish is arranged naturally, with ingredients overlapping and touching, creating a comforting, inviting pile. The plate sits on a well-used wooden dining table. A casual, folded linen napkin and a fork rest beside the plate. Warm, natural light illuminates the scene, suggesting a cozy, lived-in kitchen environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty garlic bread.",
+      "A simple green salad with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cremini or button mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Pasta (e.g., fettuccine, penne)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 2.5 cm cubes. Slice mushrooms. Mince garlic. Dice onion.",
+      "Cook pasta according to package directions until al dente. Reserve 120ml pasta water. Drain pasta.",
+      "Heat olive oil in a large pan over medium-high heat. Add chicken cubes. Season with salt and pepper. Sear chicken until golden brown and cooked through. Remove chicken from pan.",
+      "Add butter to the pan. Add diced onion. Cook until softened, about 3-4 minutes.",
+      "Add sliced mushrooms. Cook until tender and browned, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth and heavy cream. Bring to a simmer.",
+      "Stir in grated Parmesan cheese. Simmer for 2-3 minutes until sauce slightly thickens.",
+      "Return cooked chicken to the pan. Add cooked pasta. Toss to coat. If sauce is too thick, add reserved pasta water gradually until desired consistency.",
+      "Stir in fresh chopped parsley. Taste and adjust seasoning. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1008,
+      "cholesterol_mg": 225,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 69.2,
+      "saturated_fat_g": 21,
+      "sodium_mg": 401,
+      "total_carbs_g": 84.4,
+      "total_fat_g": 42.8,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 212,
+      "cholesterol_mg": 47.3,
+      "dietary_fiber_g": 1,
+      "protein_g": 14.6,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 84.4,
+      "total_carbs_g": 17.8,
+      "total_fat_g": 9,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 16,
+      "protein": 138,
+      "saturated_fat": 105,
+      "sodium": 17,
+      "total_carbs": 31,
+      "total_fat": 55
+    },
+    "serving_size_g": 475,
+    "total_recipe_weight_g": 1901
+  },
+  {
+    "recipe_name": "Rustic Chicken and Potato Bake with Mozzarella and Basil Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_potato_bake_with_mozzarella_and_basil_rice_20250624_023737_8900eb6d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:37:38.043527000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "potato",
+      "cheese",
+      "rice",
+      "basil",
+      "corn",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of the Rustic Chicken and Potato Bake is presented on a clean white porcelain plate, showcasing a harmonious blend of textures and colors. Golden-brown seared chicken thigh pieces are nestled among tender, slightly caramelized potato chunks and vibrant, burst cherry tomatoes. Melted, bubbly mozzarella cheese generously drapes over the ingredients. A scoop of fluffy, green-flecked basil rice is neatly plated beside the baked components. Fresh basil leaves are scattered artfully over both the chicken bake and the rice, adding a pop of fresh green. The dish is set on a simple wooden table with natural, even lighting. A crisp white linen napkin and standard cutlery are placed beside the plate, completing a refined yet approachable bistro setting. A small, rustic bowl of grated Parmesan cheese is placed nearby for cultural authenticity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread for soaking up juices.",
+      "Offer a simple green salad dressed with olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Frozen or canned corn",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Pat chicken thighs dry. Season with salt, pepper, and 2g oregano.",
+      "Heat 15 ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken thighs 3-4 minutes per side until golden brown. Remove chicken from skillet. Set aside.",
+      "Cut potatoes into 2 cm chunks. Slice onion into thick wedges. Halve cherry tomatoes. Mince garlic.",
+      "Add remaining 15 ml olive oil to the skillet. Add potatoes and onion. Sauté 5 minutes until lightly softened. Add minced garlic and remaining 3g oregano. Sauté 1 minute until fragrant.",
+      "Return seared chicken to the skillet with potatoes and onion. Add cherry tomatoes and corn. Toss gently to combine. Season with salt and pepper.",
+      "Bake for 20 minutes. Internal temperature of chicken should reach 75°C.",
+      "While bake cooks, prepare basil rice. Rinse rice under cold water. In a medium saucepan, combine rice and chicken broth. Bring to a boil. Reduce heat to low, cover, and simmer 15-18 minutes until liquid is absorbed and rice is tender.",
+      "Chop fresh basil. Stir half of the chopped basil into the cooked rice. Keep warm.",
+      "Remove skillet from oven. Tear fresh mozzarella into pieces. Scatter mozzarella over the chicken and vegetables.",
+      "Return to oven for 5-7 minutes, or until mozzarella is melted and bubbly.",
+      "Serve baked chicken and vegetables immediately with a side of basil rice. Garnish with remaining fresh basil and grated Parmesan."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 916.2,
+      "cholesterol_mg": 185.6,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 57,
+      "saturated_fat_g": 14,
+      "sodium_mg": 1232.3,
+      "total_carbs_g": 88.5,
+      "total_fat_g": 36.1,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130.5,
+      "cholesterol_mg": 26.4,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 175.5,
+      "total_carbs_g": 12.6,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.9,
+      "dietary_fiber": 24.6,
+      "protein": 114,
+      "saturated_fat": 70,
+      "sodium": 53.6,
+      "total_carbs": 32.2,
+      "total_fat": 46.3
+    },
+    "serving_size_g": 702.25,
+    "total_recipe_weight_g": 2809
+  },
+  {
+    "recipe_name": "Spicy Home-Style Pork Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_home-style_pork_stir-fry_20250624_023737_666d69ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:37:37.789517000Z",
+    "selected_ingredients": [
+      "chili",
+      "pork"
+    ],
+    "complexity": "simple",
+    "special_requests": "中国菜 cuisine, 不用烤箱",
+    "visual_description": "A single, modest serving of Spicy Home-Style Pork Stir-fry is presented on a simple, round ceramic plate with a subtle blue-grey rim, placed on a well-used wooden dining table. The dish features natural, irregular thin slices of stir-fried pork belly, glistening with a dark, savory sauce. The pork is mixed with vibrant green chili pieces, some showing slight charring from the high heat cooking. Thinly sliced garlic and ginger are visible, adding texture and aroma. The components are casually arranged, overlapping slightly, filling the plate without overcrowding. Next to the main dish, a small, white ceramic rice bowl filled with fluffy steamed white rice sits. A pair of dark wooden chopsticks rests casually beside the rice bowl. A simple, casually folded beige cloth napkin is nearby. The scene is illuminated by warm, natural light, creating a cozy, lived-in atmosphere typical of a family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with hot steamed white rice.",
+      "Best enjoyed family-style, with multiple dishes shared among diners."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork belly or shoulder",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Green chilies (e.g., Anaheim or long green peppers)",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20 grams"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "0.25 teaspoon"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Slice pork belly or shoulder into thin, bite-sized pieces (about 0.5 cm thick).",
+      "In a bowl, marinate pork with 1 tablespoon light soy sauce, 0.5 tablespoon Shaoxing wine, white pepper, and cornstarch. Mix well. Set aside for 15 minutes.",
+      "Slice green chilies diagonally into 2 cm pieces.",
+      "Slice garlic and ginger thinly.",
+      "Heat a wok or large skillet over high heat until smoking. Add 1 tablespoon vegetable oil.",
+      "Add marinated pork to the wok. Stir-fry until browned and cooked through, about 3-4 minutes. Remove pork from wok and set aside.",
+      "Add remaining 1 tablespoon vegetable oil to the wok. Add sliced garlic and ginger. Stir-fry for 30 seconds until fragrant.",
+      "Add sliced green chilies to the wok. Stir-fry for 2-3 minutes until slightly softened but still crisp.",
+      "Return cooked pork to the wok.",
+      "Add remaining 1 tablespoon light soy sauce, dark soy sauce, 0.5 tablespoon Shaoxing wine, and sugar. Stir well to combine all ingredients.",
+      "Stir-fry for 1-2 minutes until everything is well coated and heated through. Taste and adjust salt if needed.",
+      "Serve immediately with steamed white rice."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Chao)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 754,
+      "cholesterol_mg": 116.3,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 13.7,
+      "saturated_fat_g": 25.3,
+      "sodium_mg": 1098,
+      "total_carbs_g": 8.7,
+      "total_fat_g": 73.7,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 343.2,
+      "cholesterol_mg": 52.9,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 6.3,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 499.8,
+      "total_carbs_g": 4,
+      "total_fat_g": 33.6,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.8,
+      "dietary_fiber": 4.4,
+      "protein": 27.5,
+      "saturated_fat": 126.7,
+      "sodium": 47.7,
+      "total_carbs": 3.2,
+      "total_fat": 94.5
+    },
+    "serving_size_g": 219.7,
+    "total_recipe_weight_g": 878.8
+  }
+]

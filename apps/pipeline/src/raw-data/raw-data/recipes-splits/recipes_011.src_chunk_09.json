@@ -1,0 +1,603 @@
+[
+  {
+    "recipe_name": "Zucchini, Halloumi & Chicken Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zucchini%2C_halloumi_%26_chicken_salad_20250706_232313_9009d3df.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T23:23:13.789610000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Zucchini, Halloumi & Chicken Salad is presented on a clean, round white porcelain dinner plate, set on a simple wooden table surface. Grilled zucchini ribbons form the base, topped with golden-brown grilled halloumi cubes and small, succulent chicken chunks. Halved vibrant red cherry tomatoes, crisp green diced cucumber, and thinly sliced purple red onion are artfully scattered throughout, creating a balanced color palette. Freshly chopped mint and parsley leaves provide bursts of green. A glistening lemon-herb dressing is lightly drizzled over the components, enhancing their natural sheen. The arrangement is organic and visually appealing, with moderate negative space. A neatly folded white cotton napkin rests beside the plate. Natural, even lighting illuminates the dish, highlighting its fresh textures and inviting colors in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm pita bread or crusty artisan bread for dipping.",
+      "Offer a small bowl of olives or hummus on the side."
+    ],
+    "hero_ingredient": "Zucchini",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Halloumi cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "0.5 medium"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "0.25 cup"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "0.25 cup"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breast dry. Season with salt and pepper. Grill chicken over medium-high heat for 6-8 minutes per side, or until internal temperature reaches 75°C. Let rest, then cut into 2 cm chunks.",
+      "Slice zucchinis lengthwise into 0.5 cm thick ribbons. Slice halloumi into 1 cm thick pieces. Brush both with 1 tablespoon olive oil. Grill zucchini ribbons until tender with grill marks, about 2-3 minutes per side. Grill halloumi until golden brown, about 2 minutes per side.",
+      "Halve cherry tomatoes. Dice cucumber into 1.5 cm cubes. Thinly slice red onion.",
+      "Roughly chop fresh mint and parsley.",
+      "For the dressing, whisk together 3 tablespoons olive oil, juice of 1 lemon, and dried oregano in a small bowl. Season with salt and pepper.",
+      "In a large bowl, combine grilled zucchini, grilled halloumi, chicken chunks, cherry tomatoes, cucumber, and red onion. Add chopped mint and parsley.",
+      "Pour dressing over the salad. Gently toss to combine all ingredients.",
+      "Serve immediately on individual plates."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust grilling times based on the thickness of zucchini and halloumi slices."
+    ],
+    "traditional_techniques": [
+      "Grilling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 458,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 32.1,
+      "saturated_fat_g": 12.5,
+      "sodium_mg": 687,
+      "total_carbs_g": 13.7,
+      "total_fat_g": 31.9,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 112,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.8,
+      "saturated_fat_g": 3,
+      "sodium_mg": 167,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 14,
+      "protein": 64,
+      "saturated_fat": 62,
+      "sodium": 30,
+      "total_carbs": 5,
+      "total_fat": 41
+    },
+    "serving_size_g": 411,
+    "total_recipe_weight_g": 1642
+  },
+  {
+    "recipe_name": "Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_20250706_231633_3c62e64d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T23:16:33.709085000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "high protein",
+    "visual_description": "A single portion of rustic chicken cacciatore served in a shallow, cream-colored ceramic bowl with minor surface imperfections. Two whole, bone-in chicken thighs are the centerpiece, their skin appearing dark golden and tender from braising. The chicken is partially submerged in a thick, chunky tomato sauce featuring visible pieces of softened translucent onions and whole black olives. A single fresh rosemary sprig is placed casually on top. The bowl sits on a weathered dark wood kitchen table. Beside the bowl is a thick piece of torn crusty bread. The scene is illuminated by warm, soft overhead kitchen lighting, creating a cozy, authentic Italian home-dining atmosphere. A simple linen napkin and a stainless steel fork are placed to the left of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough bread to soak up the tomato sauce",
+      "Pair with a side of simple polenta or rustic mashed potatoes",
+      "Traditional family-style dining involves placing the skillet in the center of the table"
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Heat olive oil in a large deep skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden brown.",
+      "Flip chicken and sear for 4 minutes. Remove chicken from skillet.",
+      "Add diced onion to the skillet. Sauté for 5 minutes until soft.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes, oregano, and the rosemary sprig.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Simmer on low heat for 30 minutes until chicken reaches 75°C internally.",
+      "Stir in the olives 5 minutes before serving."
+    ],
+    "notes": [
+      "Use bone-in thighs for maximum flavor and protein content",
+      "Ensure the sauce reduces until thick to concentrate the savory tomato profile",
+      "Always check the thickest part of the chicken for a safe internal temperature of 75°C"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1716,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 444.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 53,
+      "sodium": 75,
+      "total_carbs": 7,
+      "total_fat": 54
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1543
+  },
+  {
+    "recipe_name": "Fermented Apple & Cherry Crumble Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_apple_%26_cherry_crumble_cake_20250706_230052_9f7dd992.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T23:00:52.677437000Z",
+    "selected_ingredients": [
+      {
+        "name": "coconut"
+      },
+      {
+        "name": "almond"
+      },
+      {
+        "name": "maple syrup"
+      },
+      {
+        "name": "apple"
+      },
+      {
+        "name": "cherry"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "A single, generous slice of the Fermented Apple & Cherry Crumble Cake is presented on a handcrafted, matte cream ceramic plate. The cake features a rustic, golden-brown crumble topping, showcasing the texture of rolled oats, shredded coconut, and almond flour. Beneath, the cake's light, tender crumb reveals flecks of deep red from the chopped cherries and translucent, pale gold cubes of fermented apple. The cake's natural, understated color palette is derived from its wholesome ingredients. The slice is placed slightly off-center, allowing for ample negative space on the plate. In the soft-focused background, the remaining whole cake, still in its round pan or on a simple wooden cutting board, provides context. The setting features a light, textured reclaimed wood surface. An undyed linen napkin in a natural beige is subtly placed to the side. Soft, natural daylight illuminates the scene, highlighting the cake's textures and inviting appearance, creating a clean, unpretentious, and eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Sustainable Baking",
+    "hero_ingredient": "Fermented Apple",
+    "ingredients": [
+      {
+        "name": "Firm apples",
+        "quantity": "200g"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Non-iodized sea salt (for brine)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Coconut flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "5g"
+      },
+      {
+        "name": "Sea salt (for cake)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Melted coconut oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsweetened plant-based milk",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Dried cherries, roughly chopped",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fermented apples, drained",
+        "quantity": "150g"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "50g"
+      },
+      {
+        "name": "Almond flour (for crumble)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Shredded unsweetened coconut",
+        "quantity": "20g"
+      },
+      {
+        "name": "Maple syrup (for crumble)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Melted coconut oil (for crumble)",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Apples (2-3 days in advance): Dissolve 5g sea salt in 250ml water to make brine. Peel, core, and dice 200g firm apples into 1 cm cubes. Place diced apples in a clean jar. Pour brine over apples, ensuring they are fully submerged. Cover loosely or with an airlock. Ferment at room temperature for 2-3 days, or until desired tanginess is reached. Drain well before use.",
+      "Preheat Oven: Preheat oven to 175°C (350°F). Lightly grease and flour an 18cm round cake pan or line with parchment paper.",
+      "Make Crumble Topping: In a small bowl, combine 50g rolled oats, 30g almond flour, 20g shredded coconut, 30ml maple syrup, and 30ml melted coconut oil. Mix until crumbly. Set aside.",
+      "Combine Dry Cake Ingredients: In a large bowl, whisk together 100g almond flour, 50g coconut flour, 5g baking soda, and 2g sea salt.",
+      "Combine Wet Cake Ingredients: In a separate bowl, whisk together 120ml maple syrup, 60ml melted coconut oil, and 120ml plant-based milk.",
+      "Mix Batter: Pour wet ingredients into dry ingredients. Stir until just combined. Do not overmix.",
+      "Fold in Fruit: Gently fold in 150g drained fermented apples and 50g chopped dried cherries.",
+      "Assemble and Bake: Pour batter into the prepared cake pan. Spread evenly. Sprinkle crumble topping over the batter.",
+      "Bake: Bake for 30-35 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Cool: Let cake cool in the pan for 10 minutes, then transfer to a wire rack to cool completely."
+    ],
+    "notes": [
+      "Ensure apples are fully submerged in brine during fermentation to prevent mold. Adjust fermentation time based on desired tanginess and ambient temperature."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ]
+  },
+  {
+    "recipe_name": "Pollo Guisado con Patatas y Tomate",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_guisado_con_patatas_y_tomate_20250706_224256_21538e57.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T22:42:57.105412000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Pollo Guisado is presented on a clean white porcelain dinner plate, showcasing the rich, rustic Spanish stew. Two tender, braised chicken thighs, skin-on and whole, anchor the dish. The chicken has a deep, golden-brown hue from searing, now softened by the braising liquid. Surrounding are substantial, irregular chunks of fork-tender potatoes, absorbing the stew's flavors. Vibrant red diced bell pepper and softened diced onion are visible within the thick, reddish-brown tomato sauce, which has a slight sheen. Fresh chopped parsley is scattered over the top as a garnish, adding a pop of freshness. The composition is natural and abundant, reflecting a hearty, comforting meal. The plate rests on a simple wooden table, accompanied by a folded white cotton napkin and traditional silver flatware. Natural, even lighting highlights textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the sauce.",
+      "Offer a simple green salad dressed with olive oil and vinegar.",
+      "Pair with a glass of dry red wine, such as Rioja."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "8"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ripe tomatoes, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Medium potatoes, peeled, cut into 3cm chunks",
+        "quantity": "4"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Large red bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Saffron threads, steeped in 30ml warm water",
+        "quantity": "Pinch (0.1g)"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley, chopped for garnish",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy, about 6-8 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add diced onion and red bell pepper to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant, stirring constantly.",
+      "Pour in white wine. Scrape bottom of pot to deglaze. Cook until wine is reduced by half.",
+      "Add crushed tomatoes, diced fresh tomatoes, chicken broth, and bay leaves. Stir well. Bring to a simmer.",
+      "Return seared chicken thighs to the pot. Nestle them into the sauce.",
+      "Add potato chunks around the chicken. Pour in saffron liquid.",
+      "Cover pot. Reduce heat to low. Simmer for 45-60 minutes, or until chicken is very tender and cooked through (internal temperature 75°C/167°F) and potatoes are fork-tender.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Discard bay leaves before serving."
+    ],
+    "notes": [
+      "For best flavor, use bone-in, skin-on chicken thighs.",
+      "The stew can be made ahead and reheated; flavors often improve overnight."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Braising"
+    ]
+  },
+  {
+    "recipe_name": "Simple Quark Fritters",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_simple_quark_fritters_20250706_224035_d8270b85.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T22:40:35.557809000Z",
+    "selected_ingredients": [
+      "quark",
+      "egg",
+      "flour",
+      "sugar"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Simple Quark Fritters are presented warm on a rustic, round ceramic plate with a slight lip, showcasing 7-8 golden-brown spheres. Each fritter is generously dusted with fine white powdered sugar, creating a soft, inviting contrast against its crisp, slightly craggy exterior. The fritters are arranged naturally, some touching, others slightly apart, suggesting a comforting, homemade batch. The background features a well-used wooden dining table, hinting at a cozy family kitchen. A casually placed, light-colored cloth napkin peeks from behind the plate. Lighting is warm and natural, illuminating the fritters' inviting texture and creating a soft glow, emphasizing their homely appeal without any artificial adornments.",
+    "number_of_servings": 7,
+    "cuisine_type": "German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Serve warm, dusted with powdered sugar.",
+      "Can be accompanied by apple sauce or fruit compote."
+    ],
+    "hero_ingredient": "Quark",
+    "ingredients": [
+      {
+        "name": "Quark",
+        "quantity": "500g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "250g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vanilla sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "In a large bowl, combine quark, eggs, granulated sugar, and vanilla sugar. Mix well until smooth.",
+      "In a separate bowl, whisk together flour and baking powder.",
+      "Gradually add dry ingredients to the wet ingredients. Mix until a soft, sticky dough forms. Do not overmix.",
+      "Heat vegetable oil in a deep, heavy-bottomed pot to 170°C (340°F). Use a kitchen thermometer to monitor temperature.",
+      "Using two teaspoons, scoop small portions of dough and carefully drop them into the hot oil. Do not overcrowd the pot.",
+      "Fry fritters for 3-5 minutes, turning occasionally, until golden brown and cooked through. Ensure internal temperature reaches 75°C.",
+      "Remove fritters from oil with a slotted spoon. Transfer to a plate lined with paper towels to drain excess oil.",
+      "While still warm, place fritters in a bowl with powdered sugar. Toss gently to coat thoroughly.",
+      "Serve immediately on a serving platter."
+    ],
+    "notes": [
+      "Maintain consistent oil temperature for even cooking.",
+      "Do not overcrowd the pot; fry in batches if necessary."
+    ],
+    "traditional_techniques": [
+      "Deep frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 22.9,
+      "calories": 477,
+      "cholesterol_mg": 57,
+      "dietary_fiber_g": 1,
+      "protein_g": 13.2,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 190,
+      "total_carbs_g": 53.1,
+      "total_fat_g": 23.5,
+      "total_sugars_g": 26,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.7,
+      "calories": 285,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.9,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 114,
+      "total_carbs_g": 31.8,
+      "total_fat_g": 14.1,
+      "total_sugars_g": 15.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19,
+      "dietary_fiber": 4,
+      "protein": 26,
+      "saturated_fat": 11,
+      "sodium": 8,
+      "total_carbs": 19,
+      "total_fat": 30
+    },
+    "serving_size_g": 167,
+    "total_recipe_weight_g": 1170
+  }
+]

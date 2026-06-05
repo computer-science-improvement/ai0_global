@@ -1,0 +1,673 @@
+[
+  {
+    "recipe_name": "Pan-Seared Duck Breast, Caramelized Pineapple, Daikon Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_duck_breast%2C_caramelized_pineapple%2C_daikon_salad_20250701_150740_603134e6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:07:41.445395000Z",
+    "selected_ingredients": [
+      "pineapple",
+      "radish"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared duck breast, artfully arranged on a pristine white bone china plate. The duck, with its deeply golden, crisp skin and succulent pink interior, is sliced into thick, generous pieces, presented as whole chunks. Scattered around are glistening, caramelized pineapple cubes, their golden hue contrasting with the duck. Beside them, a delicate, airy mound of ultra-thin daikon radish rounds adds a crisp, translucent counterpoint. A few vibrant green microgreens are precisely placed for a pop of color and freshness. The composition is elegantly minimalist, with abundant negative space. The plate rests on a dark, polished wooden table, illuminated by dramatic, focused lighting, casting soft shadows. A perfectly folded white linen napkin is positioned nearby, completing the luxurious setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Duck Breast",
+    "ingredients": [
+      {
+        "name": "Duck Breasts, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Fresh Pineapple",
+        "quantity": "1 small (or 1/2 large)"
+      },
+      {
+        "name": "Daikon Radish",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "20g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Microgreens (e.g., chervil, pea shoots)",
+        "quantity": "Small handful for garnish"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Score duck breast skin in a crosshatch pattern. Do not cut into the flesh.",
+      "Season duck breasts generously with salt and pepper on both sides.",
+      "Place duck breasts, skin-side down, in a cold, oven-safe pan.",
+      "Render duck fat over medium-low heat for 10-12 minutes. Skin should be golden and crisp.",
+      "Flip duck breasts. Sear flesh side for 2-3 minutes.",
+      "Transfer pan to preheated oven. Roast for 6-8 minutes, until internal temperature reaches 60°C.",
+      "Remove duck from oven. Rest on a cutting board for 10 minutes.",
+      "While duck rests, cut pineapple into 1.5 cm cubes.",
+      "In a clean pan, melt butter over medium heat. Add pineapple cubes and sugar.",
+      "Cook, stirring occasionally, until pineapple is caramelized and lightly browned, about 5-7 minutes.",
+      "Peel daikon radish. Use a mandoline to slice daikon into very thin rounds.",
+      "In a small bowl, combine rice vinegar, olive oil, and a pinch of salt. Gently dress daikon slices.",
+      "Slice each rested duck breast into 2-3 thick pieces.",
+      "Arrange duck pieces off-center on each plate. Do not fan slices.",
+      "Artfully scatter caramelized pineapple cubes around the duck.",
+      "Neatly arrange a small, delicate pile of daikon radish slices beside the duck.",
+      "Garnish with microgreens."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 807,
+      "cholesterol_mg": 178.8,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 34.7,
+      "saturated_fat_g": 23.8,
+      "sodium_mg": 147.3,
+      "total_carbs_g": 16.7,
+      "total_fat_g": 67.9,
+      "total_sugars_g": 13.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 220,
+      "cholesterol_mg": 48.8,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 9.5,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 40.2,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 18.6,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.6,
+      "dietary_fiber": 8,
+      "protein": 69.3,
+      "saturated_fat": 119.2,
+      "sodium": 6.4,
+      "total_carbs": 6.1,
+      "total_fat": 87.1
+    },
+    "serving_size_g": 366,
+    "total_recipe_weight_g": 1464
+  },
+  {
+    "recipe_name": "Spanish Braised Beef and Chorizo Stew with Saffron Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_braised_beef_and_chorizo_stew_with_saffron_rice_20250701_150715_c6defd4b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:07:15.960791000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "chicken stock",
+      "corn",
+      "sausage",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Braised Beef and Chorizo Stew is presented on a clean, white round porcelain dinner plate, centered elegantly. On one side, a generous mound of vibrant golden saffron rice, fluffy and distinct, is carefully placed. Adjacent to it, the rich, deep reddish-brown stew with tender, succulent chunks of braised beef and thick slices of reddish-orange chorizo is spooned. Scattered within the stew are softened pieces of red and green bell peppers, along with bright yellow corn kernels, adding pops of color. The stew's sauce is thick and glossy, clinging to the ingredients. A sprinkle of fresh, finely chopped green parsley adorns both the stew and the rice, providing a fresh contrast. The overall presentation is organized yet naturally flowing, leaving moderate negative space on the plate. The setting is a modern bistro: a simple, dark wooden table surface with a natural texture. A clean white cotton napkin is folded neatly beside the plate. The scene is bathed in soft, even natural light, highlighting the food's texture and color. Traditional Spanish flatware (fork and knife) is placed appropriately.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the stew's rich sauce",
+      "Offer a simple green salad dressed with olive oil and sherry vinegar on the side",
+      "Pair with a robust Spanish red wine"
+    ],
+    "hero_ingredient": "Braised Beef and Chorizo",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Spanish chorizo",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large yellow onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "Pinch (about 0.1 g)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Corn kernels (fresh or frozen)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 3-4 cm chunks. Season beef generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large Dutch oven over medium-high heat. Sear beef chunks in batches until browned on all sides. Remove beef and set aside.",
+      "Slice chorizo into 1 cm thick rounds. Add to the same pot and cook until slightly crispy and fat is rendered. Remove chorizo and set aside.",
+      "Chop onion, red bell pepper, and green bell pepper. Add to the pot. Sauté until softened, about 5-7 minutes. Mince garlic. Add minced garlic and smoked paprika; cook for 1 minute until fragrant.",
+      "Pour in 50 ml chicken stock to deglaze the pot, scraping up any browned bits. Add diced tomatoes and bay leaf. Return beef to the pot.",
+      "Pour in remaining 700 ml chicken stock, ensuring beef is mostly submerged. Bring to a simmer. Reduce heat to low, cover, and braise for 2-2.5 hours, or until beef is fork-tender.",
+      "In the last 30 minutes of braising, add the cooked chorizo and corn kernels to the stew. Continue simmering uncovered to slightly reduce the sauce.",
+      "While stew braises, prepare saffron rice. Heat 15 ml olive oil in a separate pot. Add Arborio rice and toast for 2 minutes. In a small bowl, steep saffron threads in 250 ml hot chicken stock or water for 5 minutes. Add saffron liquid to the rice. Cook according to rice package directions until tender and liquid is absorbed.",
+      "Taste stew and adjust seasoning. Remove bay leaf.",
+      "Serve generous portions of the braised beef and chorizo stew alongside a mound of saffron rice. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best flavor, braise the stew a day ahead; flavors deepen overnight.",
+      "Adjust spice level of chorizo based on preference."
+    ],
+    "traditional_techniques": [
+      "Braising (Estofado)",
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1095.5,
+      "cholesterol_mg": 191,
+      "dietary_fiber_g": 6.62,
+      "protein_g": 59.64,
+      "saturated_fat_g": 23.74,
+      "sodium_mg": 1669.28,
+      "total_carbs_g": 67.81,
+      "total_fat_g": 65.09,
+      "total_sugars_g": 11.57,
+      "trans_fat_g": 2.47
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140.1,
+      "cholesterol_mg": 24.42,
+      "dietary_fiber_g": 0.85,
+      "protein_g": 7.63,
+      "saturated_fat_g": 3.04,
+      "sodium_mg": 213.47,
+      "total_carbs_g": 8.67,
+      "total_fat_g": 8.32,
+      "total_sugars_g": 1.48,
+      "trans_fat_g": 0.32
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.7,
+      "dietary_fiber": 23.6,
+      "protein": 119.3,
+      "saturated_fat": 118.7,
+      "sodium": 72.6,
+      "total_carbs": 24.7,
+      "total_fat": 83.4
+    },
+    "serving_size_g": 782.03,
+    "total_recipe_weight_g": 3128.1
+  },
+  {
+    "recipe_name": "Slow-Cooked Chicken with Fermented Chili-Garlic & Crispy Bean Cakes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_chicken_with_fermented_chili-garlic_%26_crispy_bean_cakes_20250701_150712_22fb31a2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:07:12.447766000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cashew",
+      "bean",
+      "chili",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of slow-cooked chicken and crispy bean cakes is presented on a natural, handcrafted ceramic plate in an earthy tone like cream or beige. The boneless chicken thigh, moist and tender, rests centrally, displaying its natural shape and a subtle golden-brown sear. Alongside it, two round, golden-crisp bean cakes, approximately 6cm in diameter, are neatly placed. A rich, deep reddish-brown sauce, derived from the fermented chili-garlic paste, is artfully spooned around the main components, creating a natural flow. The dish is garnished with a scattering of roughly chopped toasted cashews for texture and a few fresh, vibrant green flat-leaf parsley or cilantro leaves for a pop of color. A light dusting of fine lemon zest adds subtle brightness. The composition is clean and minimalistic, allowing each ingredient's natural beauty to shine. The plate sits on a light bamboo table surface, accompanied by an undyed linen napkin in natural beige. Soft, natural lighting illuminates the scene, and a clean, minimalist background with a subtle green plant enhances the eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Raw cashews",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cooked white beans (e.g., cannellini)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Bean cooking liquid or aquafaba",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh red chilies",
+        "quantity": "20g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Fresh flat-leaf parsley or cilantro",
+        "quantity": "15g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Chili-Garlic Paste: Finely chop red chilies and garlic cloves. Combine them in a clean jar. Mix white wine vinegar, water, and sugar to create a brine. Pour brine over chilies and garlic, ensuring they are submerged. Seal jar. Ferment at room temperature for 3-5 days. Refrigerate once fermented.",
+      "Prepare Chicken: Season chicken thighs with salt and pepper. Sear chicken in 15ml olive oil in an oven-safe pan until golden brown on both sides. Transfer pan to a preheated oven at 180°C. Roast for 15-20 minutes, or until internal temperature reaches 75°C.",
+      "Make Bean Cakes: Drain cooked white beans, reserving 100ml liquid. Mash beans coarsely. Mix mashed beans with cornstarch, reserved bean liquid, 2g salt, and 1g black pepper. Form into 8 round patties, approximately 6cm diameter and 1.5cm thick.",
+      "Cook Bean Cakes: Heat remaining 15ml olive oil in a non-stick pan over medium heat. Pan-fry bean cakes for 3-4 minutes per side until golden brown and crispy.",
+      "Prepare Cashew Crumble: Toast cashews in a dry pan over medium heat until lightly golden. Roughly chop toasted cashews.",
+      "Finish Sauce: Once chicken is cooked, remove from pan. Deglaze pan with 30ml of the fermented chili-garlic paste, scraping up any browned bits. Simmer briefly to thicken slightly.",
+      "Plate Dish: Place one slow-cooked chicken thigh on each handcrafted ceramic plate. Arrange two crispy bean cakes alongside the chicken. Spoon the warm chili-garlic sauce generously over and around the chicken and bean cakes. Garnish with scattered toasted cashew crumble, fresh parsley or cilantro leaves, and finely grated lemon zest. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 659,
+      "cholesterol_mg": 243,
+      "dietary_fiber_g": 9.87,
+      "protein_g": 51.99,
+      "saturated_fat_g": 7.15,
+      "sodium_mg": 632,
+      "total_carbs_g": 40.85,
+      "total_fat_g": 33.04,
+      "total_sugars_g": 3.01,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.12,
+      "calories": 156,
+      "cholesterol_mg": 58,
+      "dietary_fiber_g": 2.34,
+      "protein_g": 12.33,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 150,
+      "total_carbs_g": 9.69,
+      "total_fat_g": 7.84,
+      "total_sugars_g": 0.71,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81,
+      "dietary_fiber": 35,
+      "protein": 104,
+      "saturated_fat": 36,
+      "sodium": 27,
+      "total_carbs": 15,
+      "total_fat": 42
+    },
+    "serving_size_g": 421.65,
+    "total_recipe_weight_g": 1686.6
+  },
+  {
+    "recipe_name": "Pan-Seared Tuna with Asian Chickpea-Cucumber Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_tuna_with_asian_chickpea-cucumber_salsa_20250701_150627_9dc3695c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:06:27.782984000Z",
+    "selected_ingredients": [
+      "tuna",
+      "chickpea",
+      "cucumber",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A thick, pan-seared tuna steak anchors the clean white porcelain plate, presenting a beautiful golden-brown crust with a visible pink-red interior from a perfect medium-rare cook. The tuna is presented as a whole, unsliced chunk. Adjacent to the tuna, a vibrant mound of Asian chickpea-cucumber salsa creates a striking color contrast. The salsa features small-diced green cucumber, pale yellow chickpeas, and finely diced purple-red onion, all glistening lightly from the dressing. Fresh green cilantro sprigs or thinly sliced green onions are scattered over the salsa for a pop of freshness. The plate sits on a simple dark wooden table, accompanied by a set of clean chopsticks and a small ceramic soy dish, creating a modern bistro setting with an authentic Asian touch. Natural, even lighting highlights the textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed jasmine rice.",
+      "Offer a small dish of extra soy sauce or a light ponzu for dipping."
+    ],
+    "hero_ingredient": "Tuna",
+    "ingredients": [
+      {
+        "name": "Tuna steaks",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Canned chickpeas, drained and rinsed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cucumber, small-diced",
+        "quantity": "1 large (approx. 300g)"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "60g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Honey or sugar",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Vegetable oil for searing",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh cilantro or green onions, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare the salsa: In a medium bowl, combine the drained chickpeas, small-diced cucumber, and finely diced red onion.",
+      "Make the dressing: In a separate small bowl, whisk together soy sauce, rice vinegar, toasted sesame oil, grated ginger, minced garlic, and honey/sugar.",
+      "Pour the dressing over the salsa mixture. Stir gently to combine. Set aside to marinate for at least 10 minutes.",
+      "Season tuna steaks generously with salt and black pepper on all sides.",
+      "Heat vegetable oil in a large non-stick or cast-iron skillet over high heat until shimmering.",
+      "Carefully place tuna steaks in the hot skillet. Sear for 2-3 minutes per side for medium-rare, or longer for desired doneness. The exterior should be golden-brown.",
+      "Remove tuna from skillet. Let rest for 2 minutes.",
+      "Serve immediately. Place one seared tuna steak on each plate. Spoon a generous portion of the chickpea-cucumber salsa alongside the tuna. Garnish with fresh chopped cilantro or green onions."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 492,
+      "cholesterol_mg": 85,
+      "dietary_fiber_g": 9.3,
+      "protein_g": 53.2,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 193,
+      "total_carbs_g": 32.5,
+      "total_fat_g": 15.1,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 118,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 12.8,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 47,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 33,
+      "protein": 106,
+      "saturated_fat": 9,
+      "sodium": 8,
+      "total_carbs": 12,
+      "total_fat": 19
+    },
+    "serving_size_g": 415,
+    "total_recipe_weight_g": 1660
+  },
+  {
+    "recipe_name": "Fermented Chili Chicken with Braised White Beans & Cashew Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chili_chicken_with_braised_white_beans_%26_cashew_cream_20250701_150626_f5b31533.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:06:26.651570000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cashew",
+      "bean",
+      "chili",
+      "beer",
+      "hot sauce",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A handcrafted ceramic plate in an earthy cream tone holds a single, refined portion. Tender, braised white beans form a natural base. A perfectly seared chicken thigh, golden-brown and crisp, rests whole atop the beans. Velvety, off-white cashew cream is artfully drizzled over the chicken and beans, creating soft, flowing lines. Vibrant, deep red fermented chili paste is applied in delicate dollops, adding a pop of color. The composition is clean, with ample white space, emphasizing each ingredient's natural beauty. Subtle garnishes include a few delicate green herb leaves and a thin slice of red chili. The setting features a light bamboo surface, undyed linen napkin, and soft natural light, enhancing the dish's organic appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 x 180g boneless, skinless"
+      },
+      {
+        "name": "Dried white beans (cannellini or butter beans)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Raw cashews",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fermented chili paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Light lager or pale ale beer",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Small onion or shallot",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "5ml (optional)"
+      },
+      {
+        "name": "Fresh chili",
+        "quantity": "1 (optional, thinly sliced for garnish)"
+      },
+      {
+        "name": "Fresh herbs (e.g., parsley or cilantro leaves)",
+        "quantity": "Small handful (optional, for garnish)"
+      }
+    ],
+    "instructions": [
+      "Soak white beans in cold water overnight. Drain and rinse.",
+      "In a large pot, combine drained beans, finely diced onion/shallot, 2 minced garlic cloves, beer, and vegetable broth. Bring to a simmer.",
+      "Cook beans over low heat for 60-90 minutes, or until tender. Season with salt and pepper.",
+      "For cashew cream: Soak cashews in hot water for 30 minutes. Drain. Blend soaked cashews with 120ml fresh water and a pinch of salt until very smooth and creamy. Adjust water for desired consistency.",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear chicken thighs for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C/167°F).",
+      "Remove chicken from skillet. Rest for 5 minutes.",
+      "To plate: Spoon a generous portion of braised white beans onto the center of each plate.",
+      "Place one seared chicken thigh on top of the beans.",
+      "Drizzle cashew cream artfully over the chicken and beans.",
+      "Add small dollops or a thin drizzle of fermented chili paste. Optionally, add a dash of hot sauce for extra heat.",
+      "Garnish minimally with thinly sliced fresh chili and a few herb leaves, if desired."
+    ],
+    "notes": [
+      "Emphasizes fermentation for flavor depth and preservation.",
+      "Zero-waste approach includes using vegetable scraps for broth and minimizing food waste."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.13,
+      "calories": 831,
+      "cholesterol_mg": 169.2,
+      "dietary_fiber_g": 11.49,
+      "protein_g": 57.26,
+      "saturated_fat_g": 8.46,
+      "sodium_mg": 708.3,
+      "total_carbs_g": 58.8,
+      "total_fat_g": 40.83,
+      "total_sugars_g": 6.51,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.18,
+      "calories": 131,
+      "cholesterol_mg": 26.6,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 8.99,
+      "saturated_fat_g": 1.33,
+      "sodium_mg": 111.2,
+      "total_carbs_g": 9.23,
+      "total_fat_g": 6.41,
+      "total_sugars_g": 1.02,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.4,
+      "dietary_fiber": 41,
+      "protein": 114.5,
+      "saturated_fat": 42.3,
+      "sodium": 30.8,
+      "total_carbs": 21.4,
+      "total_fat": 52.4
+    },
+    "serving_size_g": 637,
+    "total_recipe_weight_g": 2548
+  }
+]

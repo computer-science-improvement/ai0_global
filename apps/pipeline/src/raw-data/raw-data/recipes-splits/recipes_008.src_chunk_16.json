@@ -1,0 +1,703 @@
+[
+  {
+    "recipe_name": "Pork Sausage & Potato Tortelloni, Heirloom Tomato Essence",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_sausage_%26_potato_tortelloni%2C_heirloom_tomato_essence_20250810_160207_53621c00.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T16:02:08.288885000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "pork",
+      "bread",
+      "onion",
+      "potato",
+      "sausage"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, impeccably formed golden-yellow tortelloni is positioned slightly off-center on a pristine, wide-rimmed bone china plate. Beneath and gently surrounding the tortelloni is a small, luminous pool of deep ruby-red heirloom tomato essence, clear and concentrated. A delicate, almost invisible dusting of light beige caramelized onion powder subtly enhances the plate's surface. Leaning artfully against the tortelloni is a single, irregularly shaped, crisp golden-brown bread tuile, providing architectural height and texture. Two to three tiny, vibrant green micro basil leaves are precisely placed for a sophisticated color contrast and aromatic finish. The composition is minimalist, with abundant negative space highlighting the dish's refined elegance. The setting is a premium white Carrara marble surface with a precisely folded pristine white linen napkin. Dramatic professional lighting casts subtle shadows, emphasizing the dish's textures and contours. The background is ultra-minimalist, ensuring maximum focus on the meticulously crafted starter.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Pork Sausage",
+    "ingredients": [
+      {
+        "name": "Tipo 00 flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large egg yolks",
+        "quantity": "4"
+      },
+      {
+        "name": "Whole large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "High-quality pork sausage meat (casings removed)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Yukon Gold potato",
+        "quantity": "100g"
+      },
+      {
+        "name": "Finely grated Parmigiano Reggiano",
+        "quantity": "30g"
+      },
+      {
+        "name": "Freshly grated nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Ripe heirloom tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Small shallot, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic clove, smashed",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "25ml"
+      },
+      {
+        "name": "Red onion, thinly sliced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Day-old baguette or sourdough bread, very thinly sliced",
+        "quantity": "50g"
+      },
+      {
+        "name": "Micro basil leaves",
+        "quantity": "8-12"
+      }
+    ],
+    "instructions": [
+      "Prepare Tomato Essence: Roughly chop heirloom tomatoes. Combine tomatoes, shallot, garlic, basil, 15ml olive oil, salt, pepper in a blender. Blend until smooth. Pour mixture into a fine-mesh sieve lined with cheesecloth. Let it drip slowly for 4-6 hours (or overnight) into a bowl without pressing. Gently transfer clear liquid to a small saucepan. Reduce over low heat until a concentrated essence forms. Skim any foam. Keep warm.",
+      "Prepare Caramelized Onion Powder: Melt butter in a pan over low heat. Add sliced red onion, sugar, and salt. Cook slowly, stirring occasionally, for 30-45 minutes until deeply caramelized and very soft. Do not burn. Spread caramelized onions thinly on a silicone mat or parchment paper. Dehydrate in a dehydrator at 60°C (140°F) for 6-8 hours, or in an oven at 90°C (195°F) with the door slightly ajar until completely brittle. Grind dehydrated onions into a fine powder using a spice grinder or mortar and pestle. Store in an airtight container.",
+      "Prepare Bread Tuile: Preheat oven to 160°C (325°F). Arrange very thinly sliced bread on a baking sheet. Drizzle with 10ml olive oil and sprinkle with salt. Bake for 8-12 minutes until golden brown and crisp. Watch carefully to prevent burning. Cool on a wire rack.",
+      "Prepare Tortelloni Filling: Boil potato until very tender. Drain and mash smoothly. In a separate pan, cook pork sausage meat over medium heat, breaking it up, until fully cooked (75°C / 167°F internal temperature). Drain excess fat. Combine cooked sausage, mashed potato, Parmigiano Reggiano, nutmeg, salt, and pepper. Mix well. Cool completely.",
+      "Prepare Pasta Dough: On a clean surface, mound flour. Create a well in the center. Add egg yolks, whole egg, and salt into the well. Gradually incorporate flour into eggs using a fork, then knead by hand for 10-15 minutes until smooth and elastic. Wrap dough tightly in plastic wrap. Rest at room temperature for 30 minutes.",
+      "Form Tortelloni: Divide pasta dough into portions. Roll each portion very thinly using a pasta machine or rolling pin. Cut dough into 6x6 cm squares. Place a small dollop of filling in the center of each square. Fold square diagonally to form a triangle. Press edges to seal. Bring two corners of the triangle together around your finger. Press firmly to seal, forming a tortelloni shape. Repeat for 16 tortelloni (4 per serving).",
+      "Cook Tortelloni & Plate: Bring a large pot of salted water to a gentle boil. Carefully drop tortelloni into boiling water. Cook for 3-5 minutes, or until al dente and floating. Using a slotted spoon, gently transfer 4 cooked tortelloni to each warm, wide-rimmed plate. Spoon a small, clear pool of warm heirloom tomato essence onto the plate, beside or slightly beneath the tortelloni. Dust lightly with caramelized onion powder. Place one crispy bread tuile leaning elegantly against the tortelloni. Garnish with 2-3 micro basil leaves. Drizzle with a few drops of high-quality extra virgin olive oil. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 584,
+      "cholesterol_mg": 285,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 22.5,
+      "saturated_fat_g": 8.3,
+      "sodium_mg": 476,
+      "total_carbs_g": 61.1,
+      "total_fat_g": 25.2,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 162,
+      "cholesterol_mg": 79,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 6.2,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 132,
+      "total_carbs_g": 16.9,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 95,
+      "dietary_fiber": 17,
+      "protein": 45,
+      "saturated_fat": 42,
+      "sodium": 21,
+      "total_carbs": 22,
+      "total_fat": 32
+    },
+    "serving_size_g": 361.5,
+    "total_recipe_weight_g": 1446
+  },
+  {
+    "recipe_name": "Mango and Coconut Mahalabia",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mango_and_coconut_mahalabia_20250810_160050_eefbc055.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T16:00:50.900583000Z",
+    "selected_ingredients": [
+      {
+        "name": "mango"
+      },
+      {
+        "name": "coconut"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "chocolate"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Lebanese",
+    "visual_description": "The Mango and Coconut Mahalabia is presented in a clear, elegant glass dessert bowl, showcasing its distinct layers. At the base, a creamy, off-white coconut mahalabia forms a smooth, firm foundation. Above it, a vibrant, sun-kissed orange layer of fresh mango puree provides a striking color contrast and a soft, yielding texture. Small, precise cubes of ripe mango are artfully arranged on top, adding a fresh, juicy bite and visual appeal. Dark chocolate shavings, irregularly shaped, are scattered across the mango, introducing a deep brown hue and a delicate crispness. A single, small fresh mint leaf rests on the side, offering a pop of green. The bowl is placed on a simple wooden surface, accompanied by a small, polished dessert spoon. Natural, soft light illuminates the dish, highlighting its fresh ingredients and refined presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Lebanese",
+    "cultural_origin": "Lebanese",
+    "cultural_serving_suggestions": [
+      "Serve chilled as a refreshing dessert after a meal.",
+      "Offer with strong Arabic coffee.",
+      "Sometimes garnished with crushed pistachios."
+    ],
+    "hero_ingredient": "Mango",
+    "ingredients": [
+      {
+        "name": "Full-fat milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Shredded unsweetened coconut",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Rose water",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Fresh ripe mango",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "4 small"
+      }
+    ],
+    "instructions": [
+      "Combine milk, cream, sugar, cornstarch, and shredded coconut in a saucepan. Whisk thoroughly until smooth.",
+      "Heat mixture over medium heat. Stir constantly. Bring to a gentle boil.",
+      "Continue stirring until mixture thickens to a pudding consistency. This takes 5-7 minutes.",
+      "Remove saucepan from heat. Stir in rose water.",
+      "Pour mahalabia evenly into four individual clear glass dessert bowls or ramekins.",
+      "Allow mahalabia to cool slightly at room temperature. Then, refrigerate for at least 2 hours to set completely.",
+      "Peel one ripe mango. Dice it into small, uniform cubes.",
+      "Peel the second ripe mango. Puree it until completely smooth using a blender or food processor.",
+      "To serve, spoon a layer of smooth mango puree over the set mahalabia in each bowl.",
+      "Top each dessert with the fresh mango cubes.",
+      "Shave dark chocolate generously over each dessert using a vegetable peeler or grater.",
+      "Garnish each with a fresh mint leaf before serving."
+    ],
+    "traditional_techniques": [
+      "Mahalabia preparation (slow cooking of milk pudding)",
+      "Use of rose water or orange blossom water as a traditional flavoring"
+    ]
+  },
+  {
+    "recipe_name": "Black Currant & Cocoa Butter Financiers, Vanilla Foie Gras Mousse",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_black_currant_%26_cocoa_butter_financiers%2C_vanilla_foie_gras_mousse_20250810_154201_cd8ddf20.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T15:42:02.368129000Z",
+    "selected_ingredients": [
+      "black currant",
+      "cocoa butter",
+      "vanilla",
+      "cinnamon"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish presents as an ultra-sophisticated, minimalist snack composition, arranged on a premium white Carrara marble slab. Two to three perfectly golden-brown, small financiers, each approximately 4 cm in diameter, are artfully placed with generous negative space. Each financier, with its slightly crisp exterior and tender, savory interior, is crowned with a light, airy swirl of ivory-hued Vanilla Foie Gras Mousse. The mousse, piped with precision, forms a delicate peak. A vibrant, deep purple-red black currant reduction is drizzled in an organic, flowing line across the plate, contrasting sharply with the white marble and adding a glossy sheen. One or two whole, plump, fresh black currants, with their deep, almost black hue, are strategically positioned beside each financier, providing a burst of natural color and form. A few delicate sprigs of bright green micro-cress are precisely placed for a subtle textural and color accent. The composition is clean, uncluttered, and highlights the luxurious ingredients with masterful restraint and architectural precision, emphasizing the natural beauty of each component. The lighting is dramatic, casting soft shadows that enhance depth and texture. The overall presentation is one of refined elegance and understated luxury, perfect for a Michelin-starred experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve as an amuse-bouche or elegant canapé.",
+      "Pair with a glass of Sauternes or a dry sparkling wine."
+    ],
+    "hero_ingredient": "Foie Gras",
+    "ingredients": [
+      {
+        "name": "Cocoa butter",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "100 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Freeze-dried black currant powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Raw foie gras (deveined)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Vanilla bean",
+        "quantity": "1/2 pod"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Cognac (optional)",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh or frozen black currants",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh black currants (for garnish)",
+        "quantity": "12-16 berries"
+      },
+      {
+        "name": "Micro-herbs (e.g., cress or chervil)",
+        "quantity": "small handful"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Melt cocoa butter gently. Set aside to cool slightly.",
+      "In a bowl, whisk egg whites until just frothy.",
+      "Sift together all-purpose flour, almond flour, icing sugar, salt, black currant powder, and cinnamon.",
+      "Fold dry ingredients into egg whites until just combined.",
+      "Slowly drizzle in melted cocoa butter, folding until smooth. Do not overmix.",
+      "Lightly grease a mini financier mold or mini muffin tin.",
+      "Fill each mold about two-thirds full.",
+      "Bake for 12-15 minutes, or until golden brown and firm to touch.",
+      "Cool financiers on a wire rack.",
+      "Cut foie gras into 1 cm cubes.",
+      "In a small saucepan, combine foie gras, heavy cream, vanilla bean seeds, salt, white pepper, and cognac (if using).",
+      "Cook over very low heat, stirring gently, until foie gras is just melted and creamy. Do not boil. This takes about 5-7 minutes.",
+      "Strain mixture through a fine-mesh sieve into a clean bowl, pressing on solids to extract all liquid. Discard vanilla pod.",
+      "Chill mixture over an ice bath, stirring occasionally, until cold and slightly thickened.",
+      "Whip the chilled mixture with a hand whisk or stand mixer on medium speed until light and airy. Do not over-whip.",
+      "Transfer mousse to a piping bag with a plain round tip. Chill until ready to use.",
+      "Combine black currants, sugar, red wine vinegar, and water in a small saucepan.",
+      "Bring to a simmer over medium heat.",
+      "Cook for 10-15 minutes, stirring occasionally, until currants burst and liquid reduces to a syrupy consistency.",
+      "Pass mixture through a fine-mesh sieve, pressing solids to extract all juice. Discard solids.",
+      "Return liquid to saucepan. Simmer gently for a few more minutes until it coats the back of a spoon.",
+      "Cool completely. The reduction will thicken further as it cools.",
+      "Arrange 2-3 financiers per serving on a premium marble or wooden sharing board, or individual plates.",
+      "Pipe a generous swirl of Vanilla Foie Gras Mousse onto the center of each financier.",
+      "Drizzle a small amount of Black Currant Reduction artistically around the financiers or on top of the mousse.",
+      "Place 1-2 fresh black currants beside or on top of each financier.",
+      "Garnish with a few micro-herbs.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure foie gras is fully deveined for the smoothest mousse.",
+      "The financier batter benefits from resting 30 minutes in the fridge before baking for better texture.",
+      "Adjust sweetness of black currant reduction based on berry tartness."
+    ],
+    "traditional_techniques": [
+      "Piping",
+      "Reduction",
+      "Baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 566,
+      "cholesterol_mg": 153,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 9.7,
+      "saturated_fat_g": 25,
+      "sodium_mg": 265,
+      "total_carbs_g": 21.5,
+      "total_fat_g": 49.2,
+      "total_sugars_g": 11.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3.2,
+      "calories": 363,
+      "cholesterol_mg": 98,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 6.2,
+      "saturated_fat_g": 16,
+      "sodium_mg": 170,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 31.6,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 12,
+      "protein": 19,
+      "saturated_fat": 125,
+      "sodium": 12,
+      "total_carbs": 8,
+      "total_fat": 63
+    },
+    "serving_size_g": 156,
+    "total_recipe_weight_g": 623
+  },
+  {
+    "recipe_name": "Red Lentil and Mushroom Ragu with Creamy Polenta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_red_lentil_and_mushroom_ragu_with_creamy_polenta_20250810_150332_c384b723.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T15:03:33.108419000Z",
+    "selected_ingredients": [
+      "basil",
+      "tomato",
+      "mushroom",
+      "cheese",
+      "red lentil",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, centered on a simple wooden table. A generous scoop of golden, creamy polenta forms the base, its smooth texture evident. Piled artfully atop the polenta is a rich, deep red-brown lentil and mushroom ragu. The ragu features tender, plump red lentils, along with thinly sliced, savory mushrooms and diced onions, creating a hearty, textured contrast. Fresh, vibrant green basil leaves are scattered over the ragu, providing a pop of color and freshness. A generous sprinkle of finely grated white Parmesan cheese completes the top. The composition is balanced, with moderate negative space around the food. A simple cotton napkin and classic silver flatware rest beside the plate. Natural, even lighting highlights the dish's warmth and inviting textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with extra grated Parmesan cheese.",
+      "Offer crusty Italian bread on the side for dipping."
+    ],
+    "hero_ingredient": "Red Lentil",
+    "ingredients": [
+      {
+        "name": "Red lentils",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Fine cornmeal (polenta)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Dice onion. Mince garlic. Thinly slice mushrooms.",
+      "Heat olive oil in a large pot over medium heat. Add diced onion. Cook 5 minutes until softened. This is the start of the soffritto.",
+      "Add sliced mushrooms. Increase heat slightly. Cook 8-10 minutes until browned and moisture evaporates.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in red lentils. Pour in red wine if using. Scrape pot bottom. Cook 1 minute.",
+      "Add crushed tomatoes and 750ml vegetable broth. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer 25-30 minutes. Stir occasionally. Lentils should be tender and ragu thickened. Season with salt and pepper.",
+      "Prepare creamy polenta. Bring remaining 750ml vegetable broth and milk to a simmer in a separate pot.",
+      "Slowly whisk in cornmeal. Whisk constantly to prevent lumps.",
+      "Reduce heat to low. Cook polenta, stirring frequently, for 20-25 minutes. Polenta should be creamy and smooth.",
+      "Stir in butter and 50g grated Parmesan into polenta. Season with salt.",
+      "To serve, spoon a generous portion of creamy polenta onto each plate.",
+      "Top polenta with hot lentil and mushroom ragu.",
+      "Garnish with fresh basil leaves and remaining grated Parmesan cheese."
+    ],
+    "traditional_techniques": [
+      "Soffritto preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 707.93,
+      "cholesterol_mg": 39.38,
+      "dietary_fiber_g": 16.27,
+      "protein_g": 31.65,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 1714.72,
+      "total_carbs_g": 89.2,
+      "total_fat_g": 23.39,
+      "total_sugars_g": 11.16,
+      "trans_fat_g": 0.29
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85.76,
+      "cholesterol_mg": 4.77,
+      "dietary_fiber_g": 1.97,
+      "protein_g": 3.83,
+      "saturated_fat_g": 1.22,
+      "sodium_mg": 207.71,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 2.83,
+      "total_sugars_g": 1.35,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13.1,
+      "dietary_fiber": 58.1,
+      "protein": 63.3,
+      "saturated_fat": 50.5,
+      "sodium": 74.6,
+      "total_carbs": 32.4,
+      "total_fat": 30
+    },
+    "serving_size_g": 825.5,
+    "total_recipe_weight_g": 3302
+  },
+  {
+    "recipe_name": "Mediterranean Stuffed Bell Peppers with Savory Lentil Filling",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_stuffed_bell_peppers_with_savory_lentil_filling_20250810_150128_8653f280.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T15:01:28.671271000Z",
+    "selected_ingredients": [
+      "basil",
+      "tomato",
+      "bell pepper",
+      "mushroom",
+      "cheese",
+      "red lentil",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant red bell pepper half, precisely cut lengthwise, sits centered on a clean white porcelain dinner plate. It is generously filled with a rich, savory mixture of earthy red lentils, finely diced sautéed mushrooms, and sweet diced tomatoes, all subtly seasoned with oregano. The top of the filling is crowned with a golden, bubbly crust of melted mozzarella and distinct white crumbles of feta cheese. The bell pepper itself is tender-crisp, holding its shape perfectly. Fresh, bright green basil leaves are scattered artfully over the melted cheese, providing a pop of color and freshness. The dish is presented with a moderate amount of negative space, allowing the vibrant colors of the pepper and the texture of the filling to be the focal point. The plate rests on a simple, light-colored wooden table surface, accompanied by a silver fork and knife and a neatly folded cotton napkin beside it. Natural, even lighting illuminates the dish, highlighting its warmth and inviting textures in a professional, approachable restaurant style.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple side salad of mixed greens with a lemon-oregano vinaigrette.",
+      "Offer crusty artisanal bread to sop up any remaining juices."
+    ],
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Bell peppers (red, yellow, or orange)",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Red lentils",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Button mushrooms, diced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Feta cheese, crumbled",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Mozzarella cheese, shredded (optional)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Halve bell peppers lengthwise. Remove seeds and membranes. Place cut-side up in a baking dish.",
+      "Rinse red lentils under cold water. Cook lentils in vegetable broth until tender (approx. 15-20 minutes). Drain excess liquid.",
+      "Heat olive oil in a large pan over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add diced mushrooms to the pan. Cook until mushrooms release liquid and brown, about 7-8 minutes.",
+      "Stir in minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Add diced tomatoes (undrained) to the pan. Bring to a simmer. Cook for 5 minutes.",
+      "Stir in cooked red lentils and chopped fresh basil. Mix well. Season with salt and pepper.",
+      "Spoon the lentil mixture generously into each bell pepper half.",
+      "Top each stuffed pepper with crumbled feta cheese and optional shredded mozzarella.",
+      "Add 100 ml water to the bottom of the baking dish.",
+      "Bake for 30-35 minutes, or until bell peppers are tender and cheese is golden and bubbly.",
+      "Garnish with fresh basil leaves before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 525,
+      "cholesterol_mg": 32.1,
+      "dietary_fiber_g": 14.6,
+      "protein_g": 24,
+      "saturated_fat_g": 7.4,
+      "sodium_mg": 894.2,
+      "total_carbs_g": 54.9,
+      "total_fat_g": 21.2,
+      "total_sugars_g": 15.8,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 79.4,
+      "cholesterol_mg": 4.9,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 3.6,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 135.3,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.1,
+      "dietary_fiber": 52.1,
+      "protein": 48,
+      "saturated_fat": 37,
+      "sodium": 38.9,
+      "total_carbs": 20,
+      "total_fat": 27.2
+    },
+    "serving_size_g": 661,
+    "total_recipe_weight_g": 2643
+  }
+]

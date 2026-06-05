@@ -1,0 +1,638 @@
+[
+  {
+    "recipe_name": "Chocolate Ricotta Cake with Blueberry Compote",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chocolate_ricotta_cake_with_blueberry_compote_20250902_143005_576b2209.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T14:30:05.870731000Z",
+    "selected_ingredients": [
+      "ricotta",
+      "chocolate",
+      "cocoa powder",
+      "blueberry"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous slice of rich, dark chocolate ricotta cake sits on a simple white ceramic plate. The cake has a moist, dense crumb, speckled with melted dark chocolate chips. A spoonful of vibrant, glossy blueberry compote, featuring whole and burst blueberries, is drizzled over the cake slice and pooled beside it. The compote's deep purple-blue color contrasts beautifully with the dark brown cake. The entire cake, a round 23 cm, is visible in the soft-focus background, resting on a plain wooden cake stand on a rustic wooden dining table. The setting is a cozy family kitchen, with warm ambient lighting. A simple cloth napkin and a standard dessert fork are casually placed next to the plate. The overall presentation is homely and inviting, focusing on comfort and natural appeal.",
+    "number_of_servings": 8,
+    "cuisine_type": "Italian American",
+    "cultural_origin": "Italian American",
+    "cultural_serving_suggestions": [
+      "Serve with a dusting of icing sugar.",
+      "Enjoy with a cup of espresso or strong coffee.",
+      "Perfect for family gatherings or Sunday dessert."
+    ],
+    "hero_ingredient": "Ricotta",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cocoa powder",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dark chocolate chips",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh or frozen blueberries",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Caster sugar (for compote)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 23 cm springform pan.",
+      "Whisk together flour, cocoa powder, baking powder, and salt in a bowl.",
+      "In a large bowl, cream softened butter and sugar until light and fluffy.",
+      "Beat in eggs one at a time. Mix well after each addition.",
+      "Add ricotta cheese and vanilla extract. Mix until just combined.",
+      "Gradually add dry ingredients to wet ingredients, alternating with milk. Begin and end with dry ingredients. Mix until just combined. Do not overmix.",
+      "Fold in chocolate chips.",
+      "Pour batter into the prepared springform pan.",
+      "Bake for 40-50 minutes, or until a skewer inserted into the center comes out clean.",
+      "Let cake cool in the pan for 10 minutes. Then invert onto a wire rack to cool completely.",
+      "To make the compote: Combine blueberries, sugar, lemon juice, and water in a small saucepan.",
+      "Bring to a simmer over medium heat. Cook for 8-10 minutes, stirring occasionally, until blueberries burst and sauce thickens slightly.",
+      "Remove from heat. Let cool slightly.",
+      "Serve cake slices with warm or cool blueberry compote."
+    ],
+    "notes": [
+      "Ensure ricotta is well-drained if it seems watery.",
+      "Do not overmix the batter to keep the cake tender.",
+      "Compote can be made ahead and stored in the refrigerator."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 36.88,
+      "calories": 561.42,
+      "cholesterol_mg": 127.48,
+      "dietary_fiber_g": 4.94,
+      "protein_g": 11.82,
+      "saturated_fat_g": 15.92,
+      "sodium_mg": 43.52,
+      "total_carbs_g": 73.88,
+      "total_fat_g": 26.75,
+      "total_sugars_g": 43.28,
+      "trans_fat_g": 0.74
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 17.69,
+      "calories": 269.26,
+      "cholesterol_mg": 61.14,
+      "dietary_fiber_g": 2.37,
+      "protein_g": 5.67,
+      "saturated_fat_g": 7.64,
+      "sodium_mg": 20.87,
+      "total_carbs_g": 35.44,
+      "total_fat_g": 12.83,
+      "total_sugars_g": 20.76,
+      "trans_fat_g": 0.35
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.49,
+      "dietary_fiber": 17.63,
+      "protein": 23.64,
+      "saturated_fat": 79.6,
+      "sodium": 1.89,
+      "total_carbs": 26.87,
+      "total_fat": 34.3
+    },
+    "serving_size_g": 208.5,
+    "total_recipe_weight_g": 1668
+  },
+  {
+    "recipe_name": "Blueberry Swirl Chocolate Ricotta Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_blueberry_swirl_chocolate_ricotta_cake_20250902_142248_bb33f567.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T14:22:49.472275000Z",
+    "selected_ingredients": [
+      "ricotta",
+      "chocolate",
+      "cocoa powder",
+      "blueberry"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, rustic slice of Blueberry Swirl Chocolate Ricotta Cake rests on a simple, slightly chipped off-white ceramic dessert plate. The cake slice presents a deep, inviting chocolate-brown hue, beautifully contrasted by scattered bursts of vibrant purple-blue blueberries, some whole, some slightly softened, creating a natural, organic swirl pattern within the crumb. The texture appears moist and tender, characteristic of a ricotta-infused cake. A very light, casual dusting of powdered sugar or cocoa powder subtly enhances its homemade appeal. The plate is positioned on a well-used wooden kitchen table, showing natural grain and minor imperfections. A simple silver fork and a casually placed, light-colored cloth napkin are beside the plate. In the softly blurred background, a glimpse of the whole cake, perhaps on a wooden cutting board, completes the warm, inviting, and homely scene, bathed in soft, natural light, suggesting a relaxed family dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Dark chocolate",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cocoa powder",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh blueberries",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 20 cm round cake tin or a standard loaf tin.",
+      "Melt dark chocolate in a heatproof bowl over simmering water or in a microwave. Set aside to cool slightly.",
+      "In a medium bowl, whisk together plain flour, cocoa powder, baking powder, and salt.",
+      "In a large bowl, beat eggs and granulated sugar until pale and fluffy.",
+      "Stir in ricotta cheese, melted butter, and vanilla extract into the egg mixture until well combined.",
+      "Gradually fold the dry ingredients into the wet ingredients until just combined. Do not overmix.",
+      "Fold in the melted chocolate until just marbled into the batter.",
+      "Gently fold in most of the blueberries, reserving a few for topping.",
+      "Pour the batter into the prepared tin. Scatter the remaining blueberries on top.",
+      "Bake for 30-35 minutes, or until a skewer inserted into the center comes out clean.",
+      "Let the cake cool in the tin for 10 minutes. Then transfer to a wire rack to cool completely."
+    ],
+    "notes": [
+      "For the best flavor, use high-quality ricotta cheese.",
+      "If using frozen blueberries, do not thaw them before adding to the batter to prevent the cake from becoming too wet.",
+      "This cake is delicious served warm or at room temperature. It pairs well with a scoop of vanilla ice cream or a dollop of whipped cream."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.49,
+      "calories": 802.5,
+      "cholesterol_mg": 179.6,
+      "dietary_fiber_g": 7.41,
+      "protein_g": 17.77,
+      "saturated_fat_g": 25.63,
+      "sodium_mg": 220.6,
+      "total_carbs_g": 87.91,
+      "total_fat_g": 43.06,
+      "total_sugars_g": 49.87,
+      "trans_fat_g": 1.14
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 14.2,
+      "calories": 304,
+      "cholesterol_mg": 68.04,
+      "dietary_fiber_g": 2.81,
+      "protein_g": 6.73,
+      "saturated_fat_g": 9.71,
+      "sodium_mg": 83.56,
+      "total_carbs_g": 33.3,
+      "total_fat_g": 16.31,
+      "total_sugars_g": 18.89,
+      "trans_fat_g": 0.43
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 26,
+      "protein": 36,
+      "saturated_fat": 128,
+      "sodium": 10,
+      "total_carbs": 32,
+      "total_fat": 55
+    },
+    "serving_size_g": 264,
+    "total_recipe_weight_g": 1056
+  },
+  {
+    "recipe_name": "Ricotta Chocolate and Blueberry Bundt Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ricotta_chocolate_and_blueberry_bundt_cake_20250902_142155_2032c8cd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T14:21:56.305155000Z",
+    "selected_ingredients": [
+      "ricotta",
+      "chocolate",
+      "cocoa powder",
+      "blueberry"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous slice of moist, dark chocolate ricotta Bundt cake is neatly plated on a simple, off-white ceramic dish with subtle imperfections. The cake's rich, tender crumb is visible, studded with melted chocolate chips and vibrant, deep purple blueberries. A light, even dusting of unsweetened cocoa powder adorns the top of the slice. The plate rests on a well-worn, warm wooden dining table, characteristic of a homely family kitchen. In the background, the remaining whole Bundt cake, also dusted with cocoa, is presented on a rustic wooden cake stand. A casually folded, light-colored linen napkin and a ceramic coffee mug complete the relaxed, lived-in atmosphere, bathed in warm, inviting kitchen light.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Ricotta",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "250g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "30g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "120g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "180g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Full-fat ricotta cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Dark chocolate chips",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh blueberries",
+        "quantity": "150g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 20cm (6-cup) Bundt pan.",
+      "Whisk together flour, cocoa powder, baking powder, baking soda, and salt in a medium bowl.",
+      "In a large bowl, cream softened butter and sugar until light and fluffy.",
+      "Beat in eggs one at a time. Mix well after each addition.",
+      "Stir in ricotta cheese and vanilla extract. Mix until just combined.",
+      "Gradually add dry ingredients to wet ingredients, alternating with milk. Begin and end with dry ingredients. Mix until just combined. Do not overmix.",
+      "Gently fold in chocolate chips and fresh blueberries.",
+      "Pour batter into the prepared Bundt pan. Smooth the top.",
+      "Bake for 45-55 minutes. A skewer inserted into the center should come out clean.",
+      "Cool in the pan for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Dust with cocoa powder or powdered sugar before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 55,
+      "calories": 951,
+      "cholesterol_mg": 194.1,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 21,
+      "saturated_fat_g": 27.9,
+      "sodium_mg": 232.1,
+      "total_carbs_g": 120.6,
+      "total_fat_g": 46.5,
+      "total_sugars_g": 64.4,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 16.9,
+      "calories": 292,
+      "cholesterol_mg": 59.6,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 6.4,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 71.3,
+      "total_carbs_g": 37,
+      "total_fat_g": 14.3,
+      "total_sugars_g": 19.8,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64.7,
+      "dietary_fiber": 25.4,
+      "protein": 41.9,
+      "saturated_fat": 139.5,
+      "sodium": 10.1,
+      "total_carbs": 43.8,
+      "total_fat": 59.6
+    },
+    "serving_size_g": 325.5,
+    "total_recipe_weight_g": 1302
+  },
+  {
+    "recipe_name": "Ricotta Chocolate Plum Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ricotta_chocolate_plum_cake_20250902_141954_df6d2cf5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T14:19:54.702853000Z",
+    "selected_ingredients": [
+      "ricotta",
+      "chocolate",
+      "cocoa powder",
+      "plum"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous slice of Ricotta Chocolate Plum Cake rests on an everyday ceramic plate. The cake displays a rich, dark brown crumb, punctuated by pockets of melted dark chocolate and vibrant, deep purple plum slices throughout. The top of the cake slice is adorned with a light, uneven dusting of white icing sugar. The texture is moist and tender. In the background, the remaining whole round cake sits on a simple wooden cooling rack, showcasing its rustic, home-baked appearance with exposed plum slices on its surface. The setting is a well-used wooden dining table in a family kitchen. Natural, warm light illuminates the scene. A plain, functional fork is placed beside the cake slice. The overall presentation is homely and inviting, emphasizing comfort and accessibility.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Plum",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cocoa powder",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Dark chocolate chips or chopped",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh plums, pitted and sliced",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Icing sugar, for dusting",
+        "quantity": "Optional"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 20 cm round cake tin.",
+      "Whisk together flour, cocoa powder, baking powder, and salt in a bowl. Set aside.",
+      "In a large bowl, cream softened butter and caster sugar until light and fluffy.",
+      "Beat in eggs one at a time. Mix in vanilla extract.",
+      "Fold in ricotta cheese until just combined.",
+      "Gradually add dry ingredients to the wet ingredients. Mix until just combined. Do not overmix.",
+      "Gently fold in dark chocolate chips.",
+      "Pour half of the batter into the prepared cake tin. Arrange half of the plum slices over the batter.",
+      "Pour remaining batter over the plums. Arrange remaining plum slices on top.",
+      "Bake for 45-55 minutes. A skewer inserted into the center should come out clean.",
+      "Cool cake in the tin for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Dust with icing sugar before serving, if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 50,
+      "calories": 902,
+      "cholesterol_mg": 190.4,
+      "dietary_fiber_g": 7.9,
+      "protein_g": 19.4,
+      "saturated_fat_g": 28.7,
+      "sodium_mg": 687.5,
+      "total_carbs_g": 110.1,
+      "total_fat_g": 48.2,
+      "total_sugars_g": 61.1,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 14.3,
+      "calories": 258,
+      "cholesterol_mg": 54.5,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 5.6,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 196.9,
+      "total_carbs_g": 31.5,
+      "total_fat_g": 13.8,
+      "total_sugars_g": 17.5,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 28,
+      "protein": 39,
+      "saturated_fat": 143,
+      "sodium": 30,
+      "total_carbs": 40,
+      "total_fat": 62
+    },
+    "serving_size_g": 349.25,
+    "total_recipe_weight_g": 1397
+  },
+  {
+    "recipe_name": "Chocolate Ricotta Cake with Fresh Strawberries",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chocolate_ricotta_cake_with_fresh_strawberries_20250902_140036_4bba30c7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T14:00:36.470574000Z",
+    "selected_ingredients": [
+      "ricotta",
+      "chocolate",
+      "strawberry",
+      "cocoa powder"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous slice of dark chocolate ricotta cake rests on a simple, slightly off-white ceramic plate. The cake is rich brown, with a moist crumb and visible melted chocolate specks. Its top is gently domed, hinting at its homemade nature. Vibrant red, halved fresh strawberries are casually scattered around the slice, their color contrasting beautifully. A light dusting of powdered sugar adds a delicate finish. In the soft-focused background, the remaining whole cake sits on a simple wooden stand. The plate and stand are positioned on a well-used, warm-toned wooden kitchen table. A casually folded linen napkin and a silver fork complete the homely setting. Soft, inviting kitchen light illuminates the scene, evoking a cozy family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "8 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dark chocolate chips or chopped dark chocolate",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh strawberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "for dusting (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 15 cm round cake pan.",
+      "In a large bowl, whisk flour, cocoa powder, sugar, baking powder, and salt.",
+      "In a separate bowl, whisk ricotta, eggs, oil, milk, and vanilla.",
+      "Pour wet ingredients into dry. Mix until just combined. Do not overmix.",
+      "Fold in chocolate chips.",
+      "Pour batter into prepared pan.",
+      "Bake for 35-45 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Cool in pan for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Wash and hull strawberries. Halve or quarter larger strawberries.",
+      "Slice cake. Top with fresh strawberries. Dust with powdered sugar if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 47.5,
+      "calories": 771.1,
+      "cholesterol_mg": 113.2,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 17.5,
+      "saturated_fat_g": 11.4,
+      "sodium_mg": 486.9,
+      "total_carbs_g": 92.4,
+      "total_fat_g": 35.5,
+      "total_sugars_g": 55.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 17.2,
+      "calories": 279,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 6.3,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 176.2,
+      "total_carbs_g": 33.4,
+      "total_fat_g": 12.8,
+      "total_sugars_g": 19.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 24,
+      "protein": 35,
+      "saturated_fat": 57,
+      "sodium": 21,
+      "total_carbs": 34,
+      "total_fat": 46
+    },
+    "serving_size_g": 276.4,
+    "total_recipe_weight_g": 1105.4
+  }
+]

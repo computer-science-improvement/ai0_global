@@ -1,0 +1,640 @@
+[
+  {
+    "recipe_name": "Pasta po-Domashnemu with Beef and Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_po-domashnemu_with_beef_and_vegetables_20250624_141516_68932128.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:15:17.096895000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "Russian cuisine",
+    "visual_description": "A modest single portion of hearty Russian-style pasta with ground beef and vegetables, served in a simple, deep ceramic bowl. The pasta, such as penne or macaroni, is coated in a rich, savory tomato-based sauce. The sauce features finely diced red and yellow bell peppers, tender crumbled ground beef, and soft diced onions, all simmered together. The colors are earthy: deep red from the tomato, vibrant green and yellow from the peppers, and rustic brown from the beef. A generous dollop of white, creamy smetana (sour cream) is placed off-center on top, melting slightly into the warm pasta. Freshly chopped bright green dill is scattered over the dish, adding a pop of color and freshness. The bowl sits on a well-used, light wooden kitchen table, reflecting warm, cozy lighting. A simple metal fork rests beside the bowl on a casually placed cloth napkin. The background is minimal, suggesting a lived-in family kitchen atmosphere, with soft focus on natural textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of smetana (sour cream) on top of each portion.",
+      "Garnish generously with fresh chopped dill."
+    ],
+    "hero_ingredient": "Ground Beef",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., penne, fusilli)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ground beef",
+        "quantity": "500g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Smetana (sour cream)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions. Drain and set aside.",
+      "Heat vegetable oil in a large skillet over medium-high heat.",
+      "Add diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "Add ground beef to the skillet. Break it apart with a spoon. Cook until browned, about 8-10 minutes.",
+      "Drain any excess fat from the skillet.",
+      "Add diced red and yellow bell peppers to the skillet. Cook for 5 minutes until slightly tender.",
+      "Stir in tomato paste. Cook for 2 minutes.",
+      "Pour in crushed tomatoes and beef broth. Add bay leaf. Season with salt and black pepper.",
+      "Bring the sauce to a simmer. Reduce heat to low. Cover and cook for 15-20 minutes, stirring occasionally, until vegetables are tender and flavors meld.",
+      "Remove bay leaf. Stir the cooked pasta into the sauce. Toss to combine.",
+      "Serve immediately. Garnish each portion with a dollop of smetana and a generous sprinkle of fresh chopped dill."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 901,
+      "cholesterol_mg": 122.1,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 43.6,
+      "saturated_fat_g": 14.9,
+      "sodium_mg": 191.1,
+      "total_carbs_g": 91.5,
+      "total_fat_g": 40.8,
+      "total_sugars_g": 12.3,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 162,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.9,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 34.4,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.7,
+      "dietary_fiber": 24.8,
+      "protein": 87.3,
+      "saturated_fat": 74.5,
+      "sodium": 8.3,
+      "total_carbs": 33.3,
+      "total_fat": 52.3
+    },
+    "serving_size_g": 555.8,
+    "total_recipe_weight_g": 2223
+  },
+  {
+    "recipe_name": "Earthy Paneer & Root Vegetable Medley with Fermented Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_earthy_paneer_%26_root_vegetable_medley_with_fermented_relish_20250624_141459_b9a10745.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:15:00.110534000Z",
+    "selected_ingredients": [
+      "paneer",
+      "potato",
+      "cauliflower",
+      "green pea"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a minimalist, light beige handcrafted ceramic plate, emphasizing negative space. Seared paneer chunks, golden-brown and firm, are placed centrally. Around them, tender roasted cauliflower florets and soft, unpeeled potato cubes are artfully arranged. Vibrant green peas are interspersed throughout. A small, inviting mound of pale yellow-green fermented relish, with visible diced cauliflower stems and pea pod pieces, sits beside the main components. The composition is organic and natural, celebrating the pure forms and textures of each ingredient. Fresh chopped dill or chives add a final green touch. The plate rests on a reclaimed wood surface, accompanied by a natural undyed linen napkin. Soft, diffused natural light illuminates the scene, highlighting textures. The background is clean and unobtrusive, with a hint of natural greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Paneer",
+    "ingredients": [
+      {
+        "name": "Paneer",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cauliflower",
+        "quantity": "1 medium head"
+      },
+      {
+        "name": "Green Peas (fresh or frozen)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Dill or Chives",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Filtered Water (for relish)",
+        "quantity": "250 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Relish: Wash and finely dice cauliflower stems and any tender inner leaves. If using fresh peas, reserve pea pods and finely dice them. Combine diced stems, leaves, and pea pods in a clean jar. Add 5g sea salt and filtered water to cover. Seal jar loosely. Let ferment at room temperature for 3-5 days, burping daily, until pleasantly tangy. Alternatively, for a quick pickle, combine diced vegetables with 100ml white vinegar, 100ml water, 10g salt, and 5g sugar. Bring to boil, pour over vegetables, cool, and refrigerate for at least 4 hours.",
+      "Prepare Vegetable Stock (Zero-Waste): Collect outer cauliflower leaves, potato peels, and any remaining pea pods. Place in a pot with 1 liter water. Simmer for 30 minutes. Strain and reserve stock for other uses.",
+      "Prepare Vegetables: Cut cauliflower florets into uniform, bite-sized pieces. Cut potatoes into 2 cm cubes. Do not peel potatoes if skins are clean.",
+      "Roast Cauliflower: Toss cauliflower florets with 15 ml olive oil, salt, and pepper. Spread on a baking tray. Roast at 200°C for 20-25 minutes, until tender and lightly caramelized. Turn halfway.",
+      "Cook Potatoes: Boil or steam potato cubes until tender, about 10-15 minutes. Drain well.",
+      "Sear Paneer: Cut paneer into 2 cm thick medallions or 3 cm cubes. Heat remaining 15 ml olive oil in a non-stick pan over medium-high heat. Sear paneer pieces for 2-3 minutes per side until golden brown and slightly crispy. Remove from pan.",
+      "Blanch Green Peas: If using fresh peas, blanch in boiling water for 1-2 minutes. If frozen, thaw or add to hot potatoes for the last minute of cooking.",
+      "Assemble Dish: Arrange roasted cauliflower, cooked potato cubes, seared paneer, and blanched green peas artfully on individual plates. Leave generous white space. Spoon a tablespoon of fermented relish beside the main components. Garnish with fresh dill or chives.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 520,
+      "cholesterol_mg": 70,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 25.4,
+      "saturated_fat_g": 16,
+      "sodium_mg": 64,
+      "total_carbs_g": 37.5,
+      "total_fat_g": 30.5,
+      "total_sugars_g": 9.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107,
+      "cholesterol_mg": 14,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 5.2,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 13,
+      "total_carbs_g": 7.7,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 27,
+      "protein": 51,
+      "saturated_fat": 80,
+      "sodium": 3,
+      "total_carbs": 14,
+      "total_fat": 39
+    },
+    "serving_size_g": 485.5,
+    "total_recipe_weight_g": 1942
+  },
+  {
+    "recipe_name": "Fermented Carrot and Potato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_carrot_and_potato_salad_20250624_141455_02d5a9f8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:14:55.892134000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken",
+      "cheese",
+      "bread",
+      "carrot"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A minimalist, naturally composed salad on a handcrafted ceramic plate in an earthy cream or beige tone. Diced, cool potatoes form the base, interspersed with vibrant, thinly sliced, fermented orange carrots. Small, tender pieces of shredded chicken are distributed throughout, not fanned. Crunchy golden sourdough croutons are scattered, adding texture. Crumbled white feta cheese provides contrasting color. The salad is lightly coated in a clear, herb-flecked dressing. Fresh green dill and parsley sprigs are naturally placed as a simple, edible garnish. The composition respects negative space, allowing each ingredient to be distinctly visible. The plate rests on a light-colored reclaimed wood or bamboo surface. An undyed linen napkin is casually placed beside it. Soft, natural light illuminates the scene, with a clean, blurred background featuring subtle greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Potato",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "150g"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Sourdough bread",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Non-chlorinated water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Thinly slice carrots. Pack tightly into a clean glass jar.",
+      "Dissolve 15g sea salt in 500ml non-chlorinated water to make brine. Pour brine over carrots, ensuring they are fully submerged.",
+      "Seal jar loosely. Ferment at room temperature for 3-5 days until slightly sour and bubbly. Refrigerate.",
+      "Dice potatoes into 1.5 cm cubes. Boil in salted water until tender, about 10-12 minutes. Drain well. Let cool completely.",
+      "Cook chicken breast to an internal temperature of 75°C. Shred or finely dice. Let cool.",
+      "Preheat oven to 180°C. Toss cubed sourdough bread with 30ml olive oil, salt, and pepper. Spread on a baking sheet. Bake 10-15 minutes until golden and crisp. Let cool.",
+      "In a small bowl, whisk together remaining 30ml olive oil, apple cider vinegar, Dijon mustard, chopped dill, and chopped parsley. Season with salt and pepper.",
+      "In a large bowl, combine cooled potatoes, fermented carrots (drained), shredded chicken, and croutons. Add crumbled feta cheese.",
+      "Pour dressing over salad. Gently toss to combine. Serve immediately."
+    ],
+    "notes": [
+      "This recipe utilizes fermentation for carrots and stale sourdough for croutons, promoting zero-waste and sustainable practices."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 515.5,
+      "cholesterol_mg": 54.1,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 24.2,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 2110.2,
+      "total_carbs_g": 56.3,
+      "total_fat_g": 21.6,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148.3,
+      "cholesterol_mg": 15.6,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 7,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 607.2,
+      "total_carbs_g": 16.2,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 23,
+      "protein": 48,
+      "saturated_fat": 31,
+      "sodium": 92,
+      "total_carbs": 20,
+      "total_fat": 28
+    },
+    "serving_size_g": 347.6,
+    "total_recipe_weight_g": 1390.2
+  },
+  {
+    "recipe_name": "Southwestern Seared Chicken with Roasted Peppers and Corn",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_southwestern_seared_chicken_with_roasted_peppers_and_corn_20250624_141450_3d7d2075.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:14:50.914890000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "corn"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Southwestern Seared Chicken with Roasted Peppers and Corn is presented on a clean white porcelain dinner plate. Golden-brown, seared chicken chunks, approximately 2-3 cm, are nestled among vibrant, tender-crisp roasted bell pepper dice (red, yellow, orange) and plump yellow corn kernels. The medley is mounded centrally, creating a balanced and inviting focal point. A generous scattering of fresh, bright green cilantro leaves provides a pop of color and freshness. A bright green lime wedge is placed beside the dish. The setting is a simple wooden table surface, with a neatly folded cotton napkin. A stack of warm corn tortillas and a small, rustic ceramic ramekin of vibrant red salsa are placed to the side. Natural, even lighting illuminates the dish, highlighting textures and colors professionally.",
+    "number_of_servings": 4,
+    "cuisine_type": "Southwestern",
+    "cultural_origin": "Southwestern American",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn or flour tortillas.",
+      "Accompany with a side of rice and black beans.",
+      "Offer a vibrant red salsa or a dollop of sour cream/crema."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Bell peppers (red, yellow, orange)",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Corn kernels (fresh or frozen)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2-3 cm chunks. Pat dry. Season chicken with chili powder, cumin, smoked paprika, oregano, salt, and black pepper.",
+      "Dice bell peppers and red onion into 2 cm pieces. Mince garlic.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Add seasoned chicken chunks to the hot skillet. Sear chicken for 4-6 minutes, turning occasionally, until golden-brown and cooked through to an internal temperature of 75°C. Remove chicken from skillet and set aside.",
+      "Add diced bell peppers and red onion to the same skillet. Sauté for 5-7 minutes until tender-crisp.",
+      "Add corn kernels and minced garlic to the skillet. Cook for 2-3 minutes, stirring constantly, until fragrant.",
+      "Return cooked chicken chunks to the skillet with the vegetables. Toss to combine thoroughly.",
+      "Squeeze fresh lime juice over the mixture. Stir in chopped fresh cilantro.",
+      "Serve immediately with desired accompaniments."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 420.1,
+      "cholesterol_mg": 127.5,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 51.2,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 169.9,
+      "total_carbs_g": 25.3,
+      "total_fat_g": 14,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102.2,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 12.4,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 41.3,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.5,
+      "dietary_fiber": 23.8,
+      "protein": 102.3,
+      "saturated_fat": 13.3,
+      "sodium": 7.4,
+      "total_carbs": 9.2,
+      "total_fat": 17.9
+    },
+    "serving_size_g": 411,
+    "total_recipe_weight_g": 1644
+  },
+  {
+    "recipe_name": "Sustainable Seafood Duo with Broccoli & Grains",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_seafood_duo_with_broccoli_%26_grains_20250624_141446_8c1d1110.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:14:47.001562000Z",
+    "selected_ingredients": [
+      "rice",
+      "cheese",
+      "basil",
+      "broccoli",
+      "mozzarella",
+      "pasta",
+      "shrimp",
+      "salmon"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single seared salmon fillet, skin side up and golden-crisp, is the central focus on a handcrafted, matte cream ceramic plate. The salmon is a thick, natural chunk. Beside it, a small, neat dome of white short-grain rice. A smooth, vibrant green sweep of fermented broccoli stem puree anchors the composition, extending subtly across the plate. Roasted broccoli florets, cut into irregular, natural bite-sized pieces with some charred edges, are thoughtfully placed around the salmon. Three to four plump, pink seared shrimp are nestled alongside the salmon, their natural curl adding organic shape. A small, restrained cluster of al dente orzo pasta is positioned deliberately near the roasted broccoli, providing a subtle textural contrast. A delicate drizzle of bright green basil oil outlines elements or adds a few strategic dots. A whisper of finely grated hard cheese dusts the salmon and shrimp. The arrangement is unforced, with ample negative space. Colors are natural: warm orange-pink, varied greens, pure white, and soft beige. The plate rests on a light, naturally textured reclaimed wood surface. A single, undyed linen napkin in a natural beige tone is casually folded beside the plate. The background is clean and softly blurred, with a hint of natural light creating gentle shadows. A subtle, out-of-focus green plant adds an organic touch in the distance. This is a single, refined individual serving, emphasizing quality over quantity, characteristic of sustainable fine dining.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets",
+        "quantity": "4 x 150g"
+      },
+      {
+        "name": "Medium Shrimp, peeled and deveined",
+        "quantity": "200g"
+      },
+      {
+        "name": "Broccoli heads",
+        "quantity": "2 large (florets and stems separated)"
+      },
+      {
+        "name": "Short-grain white rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Small pasta (e.g., Orzo or broken Vermicelli)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "50g"
+      },
+      {
+        "name": "Hard cheese (e.g., Parmesan or Pecorino)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "As needed"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water or vegetable broth",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "Wash broccoli. Cut florets from stems. Peel tough outer layer of stems. Slice stems into small coins.",
+      "Place sliced stems in a clean jar. Add 1 tsp salt. Cover with water. Add 1 tbsp white wine vinegar. Seal loosely. Ferment at room temperature 2-3 days until slightly tangy.",
+      "Preheat oven to 200°C. Cut florets into bite-sized pieces. Toss with 1 tbsp olive oil, salt, and pepper. Roast 15-20 minutes until tender-crisp and slightly charred.",
+      "Blanch basil leaves briefly in boiling water (10 seconds). Immediately transfer to ice bath. Squeeze dry. Blend blanched basil with 100ml olive oil until smooth. Season with salt. Strain through fine-mesh sieve for clear oil, if desired.",
+      "Rinse rice. Cook 200g rice with 400ml water according to package directions until tender. Keep warm.",
+      "Cook 100g small pasta according to package directions until al dente. Drain. Toss lightly with a tiny bit of olive oil to prevent sticking. Keep warm.",
+      "Drain fermented broccoli stems. Blend stems with 50ml water or vegetable broth until smooth. Add 50g fresh mozzarella. Blend again until creamy. Season with salt and pepper. Heat gently if needed.",
+      "Pat salmon fillets dry. Season with salt and pepper. Heat 1 tbsp olive oil in non-stick pan over medium-high heat. Sear salmon skin-side down 5-7 minutes until skin is crisp. Flip. Cook 3-5 minutes more until internal temperature reaches 75°C.",
+      "In the same pan, add 1 tsp olive oil. Sear shrimp 2 minutes per side until pink and cooked through. Season with salt.",
+      "Spoon a generous dollop of fermented broccoli stem puree onto each plate. Form a small mound of cooked rice beside the puree. Place a seared salmon fillet on the plate. Arrange a few roasted broccoli florets around the salmon. Place 3-4 seared shrimp near the salmon. Add a very small, neat portion of cooked pasta beside the rice or integrated with the broccoli florets. Drizzle basil oil sparingly around the dish. Grate a tiny amount of hard cheese over the salmon and shrimp for a final touch."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 847,
+      "cholesterol_mg": 177,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 60.2,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 888,
+      "total_carbs_g": 78.2,
+      "total_fat_g": 32.7,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 10.3,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 152,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 33,
+      "protein": 121,
+      "saturated_fat": 42,
+      "sodium": 39,
+      "total_carbs": 28,
+      "total_fat": 42
+    },
+    "serving_size_g": 584.8,
+    "total_recipe_weight_g": 2339
+  }
+]

@@ -1,0 +1,662 @@
+[
+  {
+    "recipe_name": "Potato & Parmesan Crémeux, Beer Caramel, Malt Foam",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_%26_parmesan_cr%C3%A9meux%2C_beer_caramel%2C_malt_foam_20250902_160112_16a4cf0a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T16:01:13.095128000Z",
+    "selected_ingredients": [
+      {
+        "name": "parmesan cheese"
+      },
+      {
+        "name": "beer"
+      },
+      {
+        "name": "potato"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single, elegantly composed dessert is presented on a pristine white bone china plate with a subtle, modern rim. At the plate's center, a perfectly formed, glossy quenelle of light beige Potato & Parmesan Crémeux sits with architectural precision, showcasing its silken texture. Around it, a rich, dark amber Beer Caramel is artfully drizzled in an organic, flowing pattern, contrasting with the plate's abundant negative space. Standing upright, one or two paper-thin, golden-brown Candied Potato Tuiles provide a delicate, crisp counterpoint, their irregular, natural shapes adding visual interest. A cloud of airy, off-white Malted Beer Foam rests gently beside the crémeux, offering a soft textural contrast. The composition is clean, minimalist, and intentional, highlighting the distinct elements. The setting features a polished light grey marble surface, a crisp white linen napkin, and subtle, dramatic lighting creating soft shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "This dessert is designed for a contemporary fine-dining experience, emphasizing individual presentation rather than traditional shared platters. It is served with modern, high-quality dessert flatware."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potato (starchy, e.g., Russet)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Double cream (48% fat)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese (finely grated)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Dark German Beer (e.g., Doppelbock)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Granulated sugar (for caramel)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Water (for caramel)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter (for caramel)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Potato (waxy, e.g., Yukon Gold)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Sugar syrup (1:1 sugar:water)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Unsalted butter (melted, for tuiles)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Light German Beer (e.g., Weizenbier)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Malt extract (liquid)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lecithin powder",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Granulated sugar (for foam)",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Peel and cube 200 g starchy potato. Boil until very tender. Drain thoroughly. Pass through a fine sieve or ricer.",
+      "In a saucepan, heat 150 ml cream until simmering. Remove from heat. Stir in 50 g grated Parmesan. Let infuse 10 minutes. Strain, pressing solids, to get Parmesan-infused cream.",
+      "Whisk 3 egg yolks and 30 g sugar until pale. Gradually whisk in warm Parmesan cream.",
+      "Return mixture to saucepan. Cook over low heat, stirring constantly, until thickened (coats the back of a spoon). Do not boil.",
+      "Remove from heat. Stir in 20 g butter and potato puree. Add a pinch of salt. Pass crémeux through a fine sieve. Chill completely, at least 4 hours.",
+      "In a saucepan, gently reduce 150 ml dark German beer by half over medium heat. Set aside.",
+      "In a separate heavy-bottomed saucepan, combine 100 g sugar and 30 ml water. Heat over medium-high heat without stirring until golden caramel forms.",
+      "Remove from heat. Carefully pour in warm reduced beer. Stir gently until smooth. Stir in 15 g butter and a pinch of salt. Let cool slightly.",
+      "Using a mandoline, slice 50 g waxy potato into paper-thin rounds (less than 1 mm).",
+      "Brush slices lightly with 10 g melted butter. Dip briefly in 50 ml sugar syrup.",
+      "Arrange in a single layer on parchment-lined baking sheets. Bake at 150°C for 10-15 minutes, or until golden and crisp. Watch carefully. Store in an airtight container.",
+      "In a tall container, combine 100 ml light German beer, 15 g malt extract, and 10 g sugar. Stir to dissolve sugar. Add 1 g lecithin powder.",
+      "Using an immersion blender, blend at the surface to create a stable foam.",
+      "Spoon a quenelle or a neat circle of chilled Potato & Parmesan Crémeux onto each plate.",
+      "Drizzle Beer Caramel artfully around the crémeux.",
+      "Gently place one or two Candied Potato Tuiles upright into the crémeux or beside it.",
+      "Spoon a delicate cloud of Malted Beer Foam next to the crémeux. Serve immediately."
+    ],
+    "notes": [
+      "Ensure all components are prepared and chilled before assembly. The crémeux benefits from an overnight chill for optimal setting. The beer caramel can be gently reheated if it becomes too thick. For the foam, use a light, effervescent German wheat beer (Weizenbier) for best results. The potato tuiles must be sliced paper-thin for maximum crispness."
+    ]
+  },
+  {
+    "recipe_name": "Sweet Baked Macaroni with Mascarpone and Candied Turkey Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_baked_macaroni_with_mascarpone_and_candied_turkey_crumble_20250902_152803_f36b9a07.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T15:28:04.318183000Z",
+    "selected_ingredients": [
+      "turkey",
+      "macaroni",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "Quick and easy dinner cuisine",
+    "visual_description": "A single portion of Sweet Baked Macaroni with Mascarpone sits centrally on a clean white porcelain dinner plate. The baked macaroni presents as a golden-brown square, approximately 8x8 cm and 3 cm high, with a slightly puffed, custardy texture. The top surface is gently caramelized and lightly dusted with powdered sugar. A small, artful sprinkle of finely diced, candied and spiced turkey crumble (1-2mm cubes) is placed on one corner, offering a textural contrast and a hint of warm spice. The plate rests on a simple wooden table surface, with a folded cotton napkin beside it. Natural, even lighting illuminates the dish, highlighting its warmth and refined presentation within a casual, modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Macaroni",
+    "ingredients": [
+      {
+        "name": "Macaroni",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Mascarpone cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Turkey breast",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "For dusting"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 170°C. Grease a small baking dish (approx. 20x15 cm) with butter.",
+      "Cook macaroni in salted water until al dente. Drain well.",
+      "In a bowl, whisk eggs and granulated sugar until combined.",
+      "Add milk, cream, vanilla extract, mascarpone, and a pinch of salt. Whisk until smooth.",
+      "Gently fold the cooked macaroni into the custard mixture.",
+      "Pour the mixture into the prepared baking dish.",
+      "Bake for 30-35 minutes, or until set and golden brown on top.",
+      "While macaroni bakes, prepare candied turkey crumble. Dice turkey breast into very small cubes (1-2 mm).",
+      "In a small non-stick pan over medium heat, combine diced turkey, brown sugar, cinnamon, and nutmeg. Sauté, stirring frequently, until turkey is caramelized, crisp, and fully cooked (internal temperature 75°C). Remove from heat.",
+      "Let baked macaroni cool slightly before serving. Cut into 4 equal portions.",
+      "Plate one portion on a clean white porcelain plate. Dust lightly with powdered sugar.",
+      "Sprinkle a small amount of candied turkey crumble over one corner of the macaroni portion."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 28.68,
+      "calories": 650.92,
+      "cholesterol_mg": 198.64,
+      "dietary_fiber_g": 1.87,
+      "protein_g": 16.32,
+      "saturated_fat_g": 19.93,
+      "sodium_mg": 196.53,
+      "total_carbs_g": 71.77,
+      "total_fat_g": 33.15,
+      "total_sugars_g": 35.48,
+      "trans_fat_g": 1.08
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.33,
+      "calories": 257.28,
+      "cholesterol_mg": 78.51,
+      "dietary_fiber_g": 0.74,
+      "protein_g": 6.45,
+      "saturated_fat_g": 7.88,
+      "sodium_mg": 77.68,
+      "total_carbs_g": 28.37,
+      "total_fat_g": 13.1,
+      "total_sugars_g": 14.02,
+      "trans_fat_g": 0.43
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.21,
+      "dietary_fiber": 6.68,
+      "protein": 32.64,
+      "saturated_fat": 99.65,
+      "sodium": 8.54,
+      "total_carbs": 26.1,
+      "total_fat": 42.5
+    },
+    "serving_size_g": 253,
+    "total_recipe_weight_g": 1012
+  },
+  {
+    "recipe_name": "Roasted Butternut Squash and Mushroom Risotto with White Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_butternut_squash_and_mushroom_risotto_with_white_beans_20250902_145331_417e8654.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T14:53:31.895230000Z",
+    "selected_ingredients": [
+      "squash",
+      "garlic",
+      "onion",
+      "mushroom",
+      "tomato",
+      "bell pepper",
+      "rice",
+      "basil",
+      "bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "The creamy risotto is presented in a shallow white porcelain bowl, free-flowing and inviting. Vibrant orange chunks of roasted butternut squash are visible, contrasting with the pale, creamy rice. Earthy brown sautéed cremini mushrooms and bright red diced bell peppers are evenly distributed. Halved cherry tomatoes add fresh pops of red. White cannellini beans provide visual texture. The dish is garnished with fresh green basil leaves, a delicate drizzle of high-quality olive oil, and a light sprinkle of black pepper. The bowl rests on a simple light wooden table. A folded cotton napkin and standard modern flatware (fork and spoon) are placed beside the plate. The background suggests a modern bistro setting, with natural, even lighting highlighting the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread.",
+      "A light green salad with a simple vinaigrette dressing."
+    ],
+    "hero_ingredient": "Butternut Squash",
+    "ingredients": [
+      {
+        "name": "Butternut Squash",
+        "quantity": "500 g, peeled, seeded, diced"
+      },
+      {
+        "name": "Arborio Rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "1.5 L, hot"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "200 g, sliced"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Canned Cannellini Beans",
+        "quantity": "400 g can, rinsed and drained"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200 g, halved"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "1/2 bunch, chopped, plus extra for garnish"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "120 ml (optional)"
+      },
+      {
+        "name": "Nutritional Yeast",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss half of the diced butternut squash with 15 ml olive oil, salt, and pepper. Roast for 20-25 minutes until tender and slightly caramelized. Set aside.",
+      "In a large pot, heat 30 ml olive oil over medium heat. Add diced onion. Sauté until softened, about 5-7 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms and remaining diced butternut squash to the pot. Sauté for 5-7 minutes until mushrooms are browned and squash is slightly tender.",
+      "Add Arborio rice. Stir constantly for 2 minutes until grains are translucent at the edges.",
+      "Pour in white wine (if using). Stir until completely absorbed.",
+      "Begin adding hot vegetable broth, one ladle at a time. Stir constantly until each ladleful is absorbed before adding the next. Continue for 18-20 minutes, until rice is creamy and al dente.",
+      "While risotto cooks, quickly sauté diced red bell pepper in a separate pan with 15 ml olive oil for 3-4 minutes until slightly tender-crisp.",
+      "Stir in the roasted butternut squash, sautéed bell pepper, rinsed cannellini beans, and cherry tomatoes into the risotto.",
+      "Remove from heat. Stir in nutritional yeast and chopped fresh basil. Season with salt and black pepper to taste.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "For extra creaminess, a small amount of plant-based cream can be stirred in at the end.",
+      "Ensure vegetable broth is flavorful for best results."
+    ],
+    "traditional_techniques": [
+      "Mantecatura (creaming the risotto)",
+      "Soffritto (aromatic base)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 684.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 12.7,
+      "protein_g": 22.4,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 1395.8,
+      "total_carbs_g": 111.8,
+      "total_fat_g": 15.8,
+      "total_sugars_g": 14.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 75.4,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 2.5,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 153.7,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 1.7,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 45.3,
+      "protein": 44.7,
+      "saturated_fat": 10.9,
+      "sodium": 60.7,
+      "total_carbs": 40.6,
+      "total_fat": 20.3
+    },
+    "serving_size_g": 908,
+    "total_recipe_weight_g": 3632
+  },
+  {
+    "recipe_name": "Ricotta Chocolate Chip Blueberry Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ricotta_chocolate_chip_blueberry_cake_20250902_143216_3139823f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T14:32:17.055442000Z",
+    "selected_ingredients": [
+      "ricotta",
+      "chocolate",
+      "cocoa powder",
+      "blueberry"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single slice of Ricotta Chocolate Chip Blueberry Cake rests on a simple, off-white ceramic plate. The cake has a golden-brown crust with a tender, moist crumb. Visible within the slice are pockets of melted chocolate chips and bursts of deep purple blueberries. The cake is casually dusted with a light layer of cocoa powder and icing sugar, creating a subtle two-tone effect. In the soft-focused background, the remaining whole cake sits on a wooden cake stand, placed on a well-used wooden dining table. The setting features a crumpled linen napkin and a ceramic mug, bathed in warm, cozy kitchen lighting, reflecting a lived-in, comfortable atmosphere.",
+    "number_of_servings": 8,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Ricotta",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "12 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Whole milk ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chocolate chips",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh blueberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cocoa powder, for dusting",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Icing sugar, for dusting",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Grease and flour a 23 cm round springform pan.",
+      "In a large bowl, whisk together flour, sugar, baking powder, and salt.",
+      "In a separate bowl, whisk ricotta, melted butter, eggs, vanilla extract, and milk until smooth.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Do not overmix.",
+      "Gently fold in chocolate chips and blueberries.",
+      "Pour batter into prepared pan. Spread evenly.",
+      "Bake for 50-60 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Let cake cool in the pan for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Dust cooled cake with cocoa powder and icing sugar before serving."
+    ],
+    "notes": [
+      "If using frozen blueberries, do not thaw them before adding to the batter to prevent bleeding."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 34.4,
+      "calories": 541,
+      "cholesterol_mg": 119,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 10.3,
+      "saturated_fat_g": 14.5,
+      "sodium_mg": 311,
+      "total_carbs_g": 71.4,
+      "total_fat_g": 24.3,
+      "total_sugars_g": 40,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19.2,
+      "calories": 302,
+      "cholesterol_mg": 66,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 5.8,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 174,
+      "total_carbs_g": 39.8,
+      "total_fat_g": 13.6,
+      "total_sugars_g": 22.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 10,
+      "protein": 21,
+      "saturated_fat": 73,
+      "sodium": 14,
+      "total_carbs": 26,
+      "total_fat": 31
+    },
+    "serving_size_g": 179.25,
+    "total_recipe_weight_g": 1434
+  },
+  {
+    "recipe_name": "Blueberry Ricotta Chocolate Chip Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_blueberry_ricotta_chocolate_chip_cake_20250902_143045_46bbe004.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T14:30:45.975560000Z",
+    "selected_ingredients": [
+      "ricotta",
+      "chocolate",
+      "cocoa powder",
+      "blueberry"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous slice of Blueberry Ricotta Chocolate Chip Cake rests on a simple, slightly imperfect cream-colored ceramic plate. The cake slice is golden-brown on the exterior with a moist, tender crumb visible, studded with dark pockets of melted chocolate chips and vibrant purple-blue blueberries. A thin, glossy cocoa glaze lightly drizzles over the top. The whole cake, a rustic bundt or round shape, sits on a wooden cake stand in the background. The setting is a well-used wooden dining table in a homely family kitchen, with warm, cozy lighting. A casually placed linen napkin and a simple fork complete the authentic, lived-in feel.",
+    "number_of_servings": 8,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with espresso or strong coffee.",
+      "Enjoy as a dessert for family gatherings or special occasions."
+    ],
+    "hero_ingredient": "Ricotta",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Whole milk ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Chocolate chips",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh or frozen blueberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cocoa powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Milk (for glaze)",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 23 cm bundt pan or a 23 cm round cake pan.",
+      "In a large bowl, whisk together flour, granulated sugar, baking powder, and salt.",
+      "In a separate bowl, whisk ricotta cheese, eggs, vegetable oil, and vanilla extract until smooth.",
+      "Pour the wet ingredients into the dry ingredients. Mix until just combined. Do not overmix.",
+      "Gently fold in the chocolate chips and blueberries.",
+      "Pour batter into the prepared pan. Smooth the top.",
+      "Bake for 50-60 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Let the cake cool in the pan for 15 minutes. Invert onto a wire rack to cool completely.",
+      "While the cake cools, prepare the glaze. In a small bowl, whisk powdered sugar, cocoa powder, and milk until smooth.",
+      "Once the cake is completely cool, drizzle the cocoa glaze over the top."
+    ],
+    "notes": [
+      "Do not overmix the batter; mix until just combined for a tender cake.",
+      "If using frozen blueberries, do not thaw them before adding to the batter to prevent discoloration.",
+      "Ensure the cake is completely cool before glazing to prevent the glaze from melting."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 45.9,
+      "calories": 606,
+      "cholesterol_mg": 86,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 11.5,
+      "saturated_fat_g": 8,
+      "sodium_mg": 128,
+      "total_carbs_g": 84.1,
+      "total_fat_g": 26.3,
+      "total_sugars_g": 51.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 23.1,
+      "calories": 305,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 5.8,
+      "saturated_fat_g": 4,
+      "sodium_mg": 65,
+      "total_carbs_g": 42.4,
+      "total_fat_g": 13.2,
+      "total_sugars_g": 26,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 12,
+      "protein": 23,
+      "saturated_fat": 40,
+      "sodium": 6,
+      "total_carbs": 31,
+      "total_fat": 34
+    },
+    "serving_size_g": 198.5,
+    "total_recipe_weight_g": 1588
+  }
+]

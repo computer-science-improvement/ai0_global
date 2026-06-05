@@ -1,0 +1,685 @@
+[
+  {
+    "recipe_name": "Aji de Seitan con Papas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_aji_de_seitan_con_papas_20250625_081613_1ae5d8cd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:16:13.734282000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of Aji de Seitan con Papas is presented on a clean, round white porcelain dinner plate. The creamy, golden-yellow seitan stew, rich with aji amarillo and tender shredded seitan, is generously spooned over a bed of soft, white boiled potato medallions. The potatoes, cut into uniform 1 cm thick slices, are arranged neatly beneath the stew. The dish is garnished with a vibrant green sprinkle of fresh chopped parsley, a halved hard-boiled egg with a bright yellow yolk, and two glossy, dark black olives. The composition is balanced, with moderate negative space allowing the dish to be the focal point. The plate sits on a simple wooden table, complemented by a neatly folded cotton napkin beside it. A small, white side bowl of fluffy white rice and a tiny dish of vibrant rocoto pepper sauce are placed nearby, completing the authentic Peruvian casual dining experience. The scene is illuminated by natural, even lighting, highlighting the dish's inviting textures and colors with a professional, restaurant-style aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "hero_ingredient": "Aji Amarillo",
+    "ingredients": [
+      {
+        "name": "Seitan",
+        "quantity": "400g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "60g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "White bread",
+        "quantity": "2 slices, crusts removed"
+      },
+      {
+        "name": "Evaporated milk",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Pecans or walnuts",
+        "quantity": "50g, toasted and finely ground"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Turmeric",
+        "quantity": "2g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Hard-boiled eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Black olives",
+        "quantity": "8"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Boil potatoes until tender. Peel and slice into 1 cm thick medallions. Set aside.",
+      "Soak bread slices in evaporated milk. Set aside.",
+      "Heat vegetable oil in a large pan over medium heat. Add diced red onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic, aji amarillo paste, turmeric, and cumin. Cook for 2 minutes, stirring constantly.",
+      "Add shredded seitan to the pan. Cook for 3-5 minutes, stirring to coat.",
+      "Transfer the soaked bread, milk, and ground nuts to a blender. Add 100ml of vegetable broth. Blend until very smooth.",
+      "Pour the blended sauce into the pan with the seitan. Add the remaining 100ml of vegetable broth.",
+      "Bring to a gentle simmer. Cook, stirring occasionally, until the sauce thickens to a creamy consistency, about 10-15 minutes.",
+      "Season with salt and black pepper to taste. Adjust consistency with more broth if needed.",
+      "To serve, arrange potato medallions on individual plates. Spoon a generous portion of the creamy Aji de Seitan over the potatoes.",
+      "Garnish each serving with half a hard-boiled egg, two black olives, and a sprinkle of fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 543,
+      "cholesterol_mg": 103,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 32.9,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 817,
+      "total_carbs_g": 51.4,
+      "total_fat_g": 24.6,
+      "total_sugars_g": 8.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 113,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.8,
+      "saturated_fat_g": 1,
+      "sodium_mg": 170,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 34.3,
+      "dietary_fiber": 25.4,
+      "protein": 65.8,
+      "saturated_fat": 23.5,
+      "sodium": 35.5,
+      "total_carbs": 18.7,
+      "total_fat": 31.5
+    },
+    "serving_size_g": 481.75,
+    "total_recipe_weight_g": 1927
+  },
+  {
+    "recipe_name": "Rustic Chicken and Potato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_potato_bake_20250625_081603_65b32ae3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:16:03.918462000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "в духовке",
+    "visual_description": "A single, generous portion of rustic oven-baked chicken and potatoes. Two bone-in, skin-on chicken thighs, roasted to a deep golden-brown with slightly crisped skin, are nestled amidst large, irregular chunks of tender, golden-edged potatoes and soft, caramelized onion wedges. The dish boasts warm, earthy tones from the roasted vegetables and savory chicken, accented by vibrant green flecks of freshly chopped dill and parsley. Components naturally overlap, filling an everyday, slightly imperfect ceramic plate, leaving comfortable negative space. The setting is a well-used wooden dining table under warm kitchen lighting. A simple, off-white linen napkin is casually placed, alongside a rustic metal fork. A small side bowl of tangy pickled cucumbers and a slice of dark rye bread complete the authentic Eastern European home meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled cucumbers (ogurtsy).",
+      "Offer slices of dark rye bread."
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "8 pieces (approx. 1.2 kg)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg, peeled and cut into thick rustic chunks"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large, cut into thick wedges"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Dried dill",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30 g, chopped, for garnish"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt, pepper, paprika, and dried dill.",
+      "In a large bowl, combine potato chunks and onion wedges. Drizzle with olive oil. Add minced garlic, salt, and pepper. Toss to coat evenly.",
+      "Arrange the seasoned potatoes and onions in a single layer in a large oven-safe baking dish.",
+      "Place chicken thighs on top of the vegetables.",
+      "Pour chicken broth around the chicken and vegetables.",
+      "Cover the baking dish tightly with aluminum foil.",
+      "Bake for 45 minutes.",
+      "Remove foil. Continue baking for another 25-35 minutes, or until chicken skin is golden brown and crispy, and chicken internal temperature reaches 75°C. Potatoes should be tender.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Garnish generously with fresh dill and parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1134.4,
+      "cholesterol_mg": 270,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 63,
+      "saturated_fat_g": 14.4,
+      "sodium_mg": 827,
+      "total_carbs_g": 59,
+      "total_fat_g": 59.3,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146.4,
+      "cholesterol_mg": 34.9,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 106.8,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 90,
+      "dietary_fiber": 31.8,
+      "protein": 126,
+      "saturated_fat": 72,
+      "sodium": 36,
+      "total_carbs": 21.5,
+      "total_fat": 76
+    },
+    "serving_size_g": 774.8,
+    "total_recipe_weight_g": 3099
+  },
+  {
+    "recipe_name": "Mediterranean Chicken with Peas and Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_chicken_with_peas_and_tomatoes_20250625_081531_d51d0c62.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:15:32.376226000Z",
+    "selected_ingredients": [
+      "onion",
+      "green pea",
+      "tomato",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Chicken with Peas and Tomatoes is presented on a clean, round white porcelain dinner plate. Golden-brown seared chicken thigh chunks are arranged centrally. Vibrant green peas and bright red halved cherry tomatoes are nestled around the chicken, creating a natural, inviting composition. The chicken has a visible, appealing crust. Fresh, finely chopped parsley and oregano are generously scattered over the entire dish, adding fresh green accents. A bright yellow lemon wedge sits on the plate's edge. The plate rests on a simple, light-colored wooden table. A folded white cotton napkin and classic European flatware are positioned beside the plate. Natural, soft, even lighting illuminates the dish, highlighting its textures and rich colors. The background is minimal, creating a focused, appealing restaurant-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty artisan bread to soak up the juices.",
+      "Accompany with a simple green salad dressed with olive oil and lemon.",
+      "Serve alongside a light rice pilaf."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Green peas (fresh or frozen)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Cut into 3-4 cm thick chunks. Season with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken chunks. Sear until golden brown on all sides. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in white wine, if using. Scrape up any browned bits from the bottom of the skillet. Reduce liquid by half.",
+      "Add chicken broth. Bring to a simmer. Return chicken chunks to the skillet.",
+      "Add halved cherry tomatoes. Cover. Simmer for 10-12 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Stir in green peas during the last 3 minutes of cooking.",
+      "Remove from heat. Stir in chopped fresh oregano and parsley. Squeeze fresh lemon juice over the dish. Adjust seasoning as needed.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust seasoning to your preference before serving."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 431.5,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 43,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 194.9,
+      "total_carbs_g": 17.7,
+      "total_fat_g": 22.7,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 97.1,
+      "cholesterol_mg": 40.5,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.7,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 43.8,
+      "total_carbs_g": 4,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 20,
+      "protein": 86,
+      "saturated_fat": 27,
+      "sodium": 8,
+      "total_carbs": 6,
+      "total_fat": 29
+    },
+    "serving_size_g": 444.4,
+    "total_recipe_weight_g": 1777.6
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken and Mushroom Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_and_mushroom_pasta_20250625_081500_6b59b751.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:15:00.743832000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken",
+      "mozzarella",
+      "tomato",
+      "mushroom",
+      "parmesan",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Pan-Seared Chicken and Mushroom Pasta is presented on a clean, classic round white porcelain dinner plate. The penne pasta is coated in a rich, creamy tomato sauce, vibrant reddish-orange, with substantial chunks of golden-brown pan-seared chicken breast and earthy, sautéed cremini mushroom slices interspersed throughout. Small, melted pockets of fresh white mozzarella cling to the pasta and chicken. The dish is topped with a scattering of freshly grated pale yellow Parmesan cheese and a few bright green, fresh basil leaves, adding a pop of color and freshness. The arrangement is natural and inviting, with moderate negative space around the edges of the plate. The chicken is presented in thick, irregular chunks, showcasing its tender texture. The table setting is a modern bistro style: a simple warm wooden table surface, a neatly folded white cotton napkin placed beside the plate, and traditional silver flatware. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, subtly blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread (pane) for dipping into the sauce.",
+      "Offer a simple green salad with a light vinaigrette as an accompaniment.",
+      "Provide extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "600g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g, sliced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Fresh mozzarella",
+        "quantity": "150g, torn into small pieces"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "a handful"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2.5ml (optional)"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Add penne pasta. Cook according to package directions until al dente. Drain pasta, reserving 125ml pasta water.",
+      "Pat chicken breasts dry. Season with salt and pepper. Heat 15ml olive oil in a large skillet over medium-high heat. Add chicken. Sear 4-5 minutes per side until golden brown. Internal temperature must reach 75°C. Remove chicken from skillet. Let rest 5 minutes. Cut chicken into 2.5cm thick chunks.",
+      "Add remaining 15ml olive oil to the skillet. Add diced onion. Sauté 3-4 minutes until softened. Add sliced mushrooms. Cook 5-7 minutes until mushrooms are browned and tender. Add minced garlic and red pepper flakes (if using). Cook 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a simmer. Reduce heat to medium-low. Simmer 10 minutes, stirring occasionally, until sauce slightly thickens.",
+      "Stir in heavy cream. Return cooked chicken chunks to the skillet. Simmer 2-3 minutes to heat chicken through and combine flavors.",
+      "Add cooked pasta to the skillet with the sauce and chicken. Toss to coat evenly. If sauce is too thick, add reserved pasta water 30ml at a time until desired consistency.",
+      "Stir in torn mozzarella and half of the grated Parmesan until mozzarella just begins to melt.",
+      "Serve immediately. Garnish each portion with fresh basil leaves and additional grated Parmesan."
+    ],
+    "notes": [
+      "For best flavor, use good quality canned crushed tomatoes.",
+      "Ensure chicken is fully cooked but not dry."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering",
+      "Cooking pasta al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 997.5,
+      "cholesterol_mg": 199.4,
+      "dietary_fiber_g": 6,
+      "protein_g": 78.7,
+      "saturated_fat_g": 16.5,
+      "sodium_mg": 978.6,
+      "total_carbs_g": 88.3,
+      "total_fat_g": 37.2,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 164.7,
+      "cholesterol_mg": 32.9,
+      "dietary_fiber_g": 1,
+      "protein_g": 13,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 161.6,
+      "total_carbs_g": 14.6,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 21,
+      "protein": 157,
+      "saturated_fat": 82,
+      "sodium": 43,
+      "total_carbs": 32,
+      "total_fat": 48
+    },
+    "serving_size_g": 605.7,
+    "total_recipe_weight_g": 2422.6
+  },
+  {
+    "recipe_name": "Thai Chili Garlic Shrimp with Jasmine Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_chili_garlic_shrimp_with_jasmine_rice_20250625_081432_5f9181b5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:14:32.787907000Z",
+    "selected_ingredients": [
+      "shrimp",
+      "chili",
+      "rice",
+      "bell pepper",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant single portion of Thai Chili Garlic Shrimp with Jasmine Rice is presented on a clean white porcelain dinner plate, placed on a simple wooden table. Fluffy white jasmine rice forms a neat mound on one side of the plate. Alongside, a generous portion of plump, perfectly cooked pink shrimp is arranged. The shrimp are whole and unsliced. Mixed among the shrimp are bright red and green bell pepper strips, crisp-tender from stir-frying, and small flecks of minced garlic and chili. Fresh, deep green Thai basil leaves are scattered throughout, adding a pop of color and aromatic freshness. The dish is glossy from the savory sauce, reflecting the natural, even light. A lime wedge rests beside the main dish, ready to be squeezed. A simple cotton napkin is folded neatly to the side. The background is a soft blur of a modern bistro setting, keeping focus on the authentic dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with a side of sliced cucumber or tomato to balance the spice.",
+      "Traditionally eaten with a fork and spoon, using the spoon to scoop rice and main dish.",
+      "Offer a small bowl of fish sauce with sliced chilies (Prik Nam Pla) for extra heat."
+    ],
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Large shrimp, peeled and deveined",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, medium"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1, medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Bird's eye chilies",
+        "quantity": "3-5 (adjust to taste)"
+      },
+      {
+        "name": "Fresh Thai basil leaves",
+        "quantity": "1 cup"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Rinse jasmine rice thoroughly. Cook rice according to package instructions. Set aside.",
+      "Pat shrimp dry with paper towels. Season lightly with salt and pepper.",
+      "Mince garlic cloves finely. Slice bird's eye chilies thinly.",
+      "Cut red and green bell peppers into 2 cm wide strips.",
+      "In a small bowl, whisk together fish sauce, soy sauce, and sugar. Set aside.",
+      "Heat vegetable oil in a large wok or deep skillet over high heat.",
+      "Add minced garlic and sliced chilies to the hot oil. Stir-fry for 30 seconds until fragrant.",
+      "Add bell pepper strips to the wok. Stir-fry for 2-3 minutes until crisp-tender.",
+      "Add shrimp to the wok. Stir-fry for 2-3 minutes until shrimp turn pink and opaque.",
+      "Pour the prepared sauce mixture over the shrimp and vegetables. Stir to coat evenly.",
+      "Remove wok from heat. Stir in fresh Thai basil leaves until just wilted.",
+      "Serve immediately with the cooked jasmine rice and lime wedges."
+    ],
+    "notes": [
+      "Adjust the number of bird's eye chilies to your preferred spice level.",
+      "Thai basil has a distinct anise-like flavor; use it if available for authenticity.",
+      "Do not overcook the shrimp; they cook quickly."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Pad)",
+      "Balancing sweet, sour, salty, and spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 481.1,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 2.35,
+      "protein_g": 29.97,
+      "saturated_fat_g": 1.47,
+      "sodium_mg": 1207.2,
+      "total_carbs_g": 68.42,
+      "total_fat_g": 8.74,
+      "total_sugars_g": 5.14,
+      "trans_fat_g": 0.04
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.56,
+      "calories": 108.6,
+      "cholesterol_mg": 42.9,
+      "dietary_fiber_g": 0.53,
+      "protein_g": 6.76,
+      "saturated_fat_g": 0.33,
+      "sodium_mg": 272.5,
+      "total_carbs_g": 15.44,
+      "total_fat_g": 1.97,
+      "total_sugars_g": 1.16,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 8,
+      "protein": 60,
+      "saturated_fat": 7,
+      "sodium": 52,
+      "total_carbs": 25,
+      "total_fat": 11
+    },
+    "serving_size_g": 443,
+    "total_recipe_weight_g": 1772
+  }
+]

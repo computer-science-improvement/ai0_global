@@ -1,0 +1,625 @@
+[
+  {
+    "recipe_name": "Seared Scallops, Amaranth Crisp, Saffron Velouté",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_scallops%2C_amaranth_crisp%2C_saffron_velout%C3%A9_20250713_174914_c6caa426.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T17:49:14.976312000Z",
+    "selected_ingredients": [
+      "amaranth flour"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single starter portion is presented on an exquisite, pristine white bone china plate, allowing for abundant negative space. A natural, organic pool of pale golden saffron velouté forms the base, its smooth texture gleaming under dramatic lighting. Four perfectly seared scallops, each boasting a deep golden-brown crust and a translucent, tender interior, are arranged artfully within the velouté, creating a harmonious, flowing composition. Two or three delicate, irregular shards of light golden-brown amaranth crisp lean gracefully against the scallops, adding a crucial textural contrast and subtle height. A single, vibrant sprig of micro-chervil, or a few bronze fennel fronds, is precisely placed as a minimal garnish, providing a pop of contrasting green against the warm tones. The plate rests on a polished grey veined Carrara marble surface. A pristine white linen napkin, folded into a precise triangle, and elegant silver flatware are positioned minimally beside the dish. The background is ultra-minimalist, ensuring the dish remains the absolute focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Scallops",
+    "ingredients": [
+      {
+        "name": "Large Diver Scallops",
+        "quantity": "16"
+      },
+      {
+        "name": "Amaranth Flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Light Fish Stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Saffron Threads",
+        "quantity": "0.1 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Micro-chervil or Bronze Fennel Fronds",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Saffron Velouté: Finely mince the shallot. In a small saucepan, melt 10 g butter over medium heat. Add shallot; sauté until translucent. Deglaze with white wine; reduce by half. Add fish stock and saffron threads. Simmer gently for 5 minutes. Stir in heavy cream. Reduce heat; simmer until slightly thickened. Strain through a fine-mesh sieve. Season with salt and white pepper. Keep warm.",
+      "Prepare Amaranth Crisps: In a small bowl, whisk amaranth flour with 60 ml water and a pinch of salt until a thin, smooth batter forms. Lightly grease a baking sheet with 5 g melted butter. Spread batter very thinly onto parchment paper on the baking sheet, creating an irregular, organic shape. Bake in a preheated oven at 160°C for 8-12 minutes, or until golden and crisp. Remove from oven. Let cool completely. Break into irregular, delicate shards.",
+      "Sear Scallops: Pat scallops thoroughly dry with paper towels. Season generously with fine sea salt. Heat olive oil in a large non-stick pan over high heat until shimmering and just smoking. Carefully place scallops into the hot pan, ensuring not to overcrowd. Sear for 1.5-2 minutes per side until a deep golden-brown crust forms and scallops are cooked through but still tender in the center. Do not overcook.",
+      "Plate Dish: Warm four bone china plates. Spoon a natural, flowing pool of saffron velouté onto one side of each plate. Arrange four seared scallops artfully within the velouté. Lean 1-2 amaranth crisps against the scallops for height and texture. Garnish precisely with a small sprig of micro-chervil or bronze fennel fronds. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 326,
+      "cholesterol_mg": 69,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 16.5,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 222,
+      "total_carbs_g": 14,
+      "total_fat_g": 21.6,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.2,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 97,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 4,
+      "protein": 33,
+      "saturated_fat": 48,
+      "sodium": 10,
+      "total_carbs": 5,
+      "total_fat": 28
+    },
+    "serving_size_g": 229.25,
+    "total_recipe_weight_g": 917
+  },
+  {
+    "recipe_name": "Asparagus, Sous-Vide Chicken, and Charred Romanesco Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_asparagus%2C_sous-vide_chicken%2C_and_charred_romanesco_salad_20250713_173236_ba7435a2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T17:32:37.095643000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The salad is presented on a round, matte bone china plate with generous negative space. Four to five vibrant green, charred asparagus spears form an organic, flowing base on one side. Two precisely cut, golden-crusted sous-vide chicken chunks are artfully placed among the asparagus. Small, intricately textured charred Romanesco florets are scattered with intention, showcasing their unique form. Bright red and orange confit heirloom cherry tomatoes burst with color, nestled throughout the vegetables. A delicate scattering of deep green micro arugula adds a fresh, peppery note. Golden toasted flaked almonds provide a subtle textural contrast. A light, glossy Tarragon-Champagne Vinaigrette is elegantly drizzled over the components, enhancing their natural sheen. The arrangement is sophisticated and minimalist, emphasizing the quality of each ingredient. The plate rests on a cool white Carrara marble surface. A crisp white linen napkin, folded into a precise triangle, lies beside the plate with elegant, minimalist flatware. Dramatic, directional lighting casts soft shadows, highlighting the textures and vibrant colors of the dish against a clean, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Asparagus",
+    "ingredients": [
+      {
+        "name": "Boneless, Skinless Chicken Breast",
+        "quantity": "2 (approx. 300-360g total)"
+      },
+      {
+        "name": "Green Asparagus Spears",
+        "quantity": "16-20 (approx. 400g)"
+      },
+      {
+        "name": "Romanesco Broccoli",
+        "quantity": "1 small head (approx. 300g)"
+      },
+      {
+        "name": "Heirloom Cherry Tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Micro Arugula",
+        "quantity": "50g"
+      },
+      {
+        "name": "Flaked Almonds",
+        "quantity": "30g"
+      },
+      {
+        "name": "Champagne Vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Fresh Tarragon",
+        "quantity": "10g, finely chopped"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small, finely minced"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic Clove",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Thyme Sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "For the Chicken: Season chicken breasts with salt and pepper. Seal in a vacuum bag. Sous-vide at 63°C for 90 minutes. Remove, pat dry. Sear chicken breasts in a hot pan with butter and a splash of olive oil until golden brown on all sides. Rest 5 minutes. Cut each breast into 2 precise chunks.",
+      "For the Asparagus: Trim woody ends of asparagus. Blanch in salted boiling water for 2 minutes. Immediately transfer to an ice bath. Pat dry. Lightly char asparagus spears on a hot grill pan or under a broiler until tender-crisp.",
+      "For the Romanesco: Break Romanesco into small, bite-sized florets. Blanch in salted boiling water for 3 minutes. Immediately transfer to an ice bath. Pat dry. Lightly char Romanesco florets on a hot grill pan until slightly tender and browned.",
+      "For the Confit Tomatoes: Preheat oven to 120°C. Place cherry tomatoes in a small oven-safe dish. Add thinly sliced garlic, thyme sprigs, and cover with extra virgin olive oil. Season lightly with salt. Confit in the oven for 45-60 minutes, until softened but still holding shape.",
+      "For the Tarragon-Champagne Vinaigrette: In a small bowl, whisk together Champagne vinegar, Dijon mustard, minced shallot, chopped tarragon, salt, and pepper. Slowly drizzle in 100ml of extra virgin olive oil while whisking constantly until emulsified. Taste and adjust seasoning.",
+      "To Assemble: Arrange 4-5 charred asparagus spears artfully on one side of each plate. Place 2 chicken chunks precisely among the asparagus. Scatter charred Romanesco florets and confit cherry tomatoes around the chicken and asparagus. Artistically scatter micro arugula. Lightly toast flaked almonds in a dry pan until golden; sprinkle over the salad. Drizzle the Tarragon-Champagne Vinaigrette generously over the entire composition. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 518,
+      "cholesterol_mg": 78.2,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 32.3,
+      "saturated_fat_g": 6.9,
+      "sodium_mg": 595,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 38,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124,
+      "cholesterol_mg": 18.8,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 142.9,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26,
+      "dietary_fiber": 23,
+      "protein": 65,
+      "saturated_fat": 35,
+      "sodium": 26,
+      "total_carbs": 5,
+      "total_fat": 49
+    },
+    "serving_size_g": 416.25,
+    "total_recipe_weight_g": 1665
+  },
+  {
+    "recipe_name": "Baked Sausage and Potato Macaroni Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_sausage_and_potato_macaroni_gratin_20250713_171348_a4fcd022.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T17:13:48.689212000Z",
+    "selected_ingredients": [
+      "potato",
+      "sausage",
+      "macaroni",
+      "cheese",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Baked Sausage and Potato Macaroni Gratin is presented in a deep, clean white ceramic gratin dish. The top crust is a rich, golden brown, showing a crisp texture from baked panko breadcrumbs and melted Gruyère cheese. Beneath the crust, creamy, tender elbow macaroni is visible, intertwined with rustic chunks of browned pork sausage and small, golden-edged diced potatoes. Flecks of fresh green chives are sprinkled generously over the top, adding a vibrant color contrast. The dish sits on a simple light wooden table surface, accompanied by a clean white porcelain dinner plate and standard silver flatware. A folded light grey cotton napkin is placed beside the plate. Natural, even light illuminates the scene, highlighting the comforting textures and warm colors of the dish. The background is softly blurred, suggesting a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Pork sausage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "250g"
+      },
+      {
+        "name": "Sharp cheddar cheese, grated",
+        "quantity": "200g"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10g"
+      },
+      {
+        "name": "Freshly grated nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "For cooking"
+      },
+      {
+        "name": "Fresh chives, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease four individual gratin dishes or one large gratin dish.",
+      "Cook macaroni according to package directions until al dente. Drain well. Set aside.",
+      "Remove sausage from casings. Crumble sausage into a large skillet over medium-high heat. Cook until browned and cooked through. Break up any large chunks. Drain excess fat. Remove sausage from skillet. Set aside.",
+      "Add a drizzle of olive oil to the same skillet. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Peel potatoes. Dice potatoes into small 1cm cubes. Add diced potatoes to the skillet. Cook, stirring occasionally, until tender-crisp and lightly browned, about 10-12 minutes.",
+      "While potatoes cook, prepare the cheese sauce. Melt butter in a separate saucepan over medium heat.",
+      "Whisk in flour to form a roux. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in milk until smooth. Bring to a simmer, whisking constantly, until sauce thickens, about 5-7 minutes.",
+      "Remove from heat. Stir in 200g grated cheddar cheese, Dijon mustard, nutmeg, salt, and pepper until cheese is melted and smooth.",
+      "In a large bowl, combine cooked macaroni, cooked sausage, cooked potatoes, and cheese sauce. Mix well.",
+      "Whisk the large egg in a small bowl. Stir the whisked egg into the macaroni mixture. This helps bind the gratin.",
+      "Divide the mixture evenly among the prepared gratin dishes or transfer to the large dish.",
+      "In a small bowl, combine panko breadcrumbs and 50g grated Gruyère cheese. Sprinkle this mixture evenly over the top of the gratin(s).",
+      "Bake for 20-25 minutes for individual dishes, or 30-35 minutes for a large dish, until golden brown and bubbly. If the top browns too quickly, loosely tent with foil.",
+      "Remove from oven. Let stand for 5 minutes before serving. Garnish with fresh chopped chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1258,
+      "cholesterol_mg": 237,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 53,
+      "saturated_fat_g": 33.5,
+      "sodium_mg": 1577,
+      "total_carbs_g": 103.1,
+      "total_fat_g": 70.7,
+      "total_sugars_g": 11.9,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 210,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.8,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 263,
+      "total_carbs_g": 17.2,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 79,
+      "dietary_fiber": 20,
+      "protein": 106,
+      "saturated_fat": 168,
+      "sodium": 69,
+      "total_carbs": 37,
+      "total_fat": 91
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2399
+  },
+  {
+    "recipe_name": "Lemon Herb Chicken Pasta with Spinach and Artichoke",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_chicken_pasta_with_spinach_and_artichoke_20250713_170556_d730a6d4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T17:05:57.502754000Z",
+    "selected_ingredients": [
+      "pasta",
+      "spinach",
+      "artichoke"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate. Al dente tagliatelle pasta is loosely twirled in the center, forming a natural mound. Succulent, pan-seared chicken breast chunks, golden-brown on the exterior and tender inside, are arranged artfully amongst the pasta. Vibrant, wilted spinach leaves and quartered artichoke hearts are interspersed, adding pops of green and textural contrast. A light, creamy lemon-herb sauce coats the ingredients, glistening subtly. The dish is garnished with finely grated Parmesan cheese and a scattering of fresh, chopped parsley, enhancing color and aroma. Moderate negative space surrounds the central composition. The setting features a simple wooden table, a folded white cotton napkin, and standard silver flatware, under natural, even lighting. A single refined restaurant portion is displayed.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the sauce.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Lemon Herb Chicken and Pasta",
+    "ingredients": [
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken breasts",
+        "quantity": "2 (approx. 200 g each)"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Canned artichoke hearts, quartered",
+        "quantity": "400 g, drained"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60 g, plus more for serving"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook tagliatelle pasta according to package directions until al dente. Drain, reserving 120 ml pasta water.",
+      "Cut chicken breasts into 2 cm thick medallions. Season generously with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Sear chicken medallions 4 minutes per side until golden brown and cooked through. Internal temperature must reach 75°C. Remove chicken from skillet. Rest chicken 5 minutes, then cut into 3 cm chunks.",
+      "Reduce heat to medium. Add minced garlic to the skillet. Sauté 1 minute until fragrant.",
+      "Add drained artichoke hearts and fresh spinach to the skillet. Sauté until spinach wilts, about 2-3 minutes.",
+      "Deglaze skillet with chicken broth and juice from half a lemon. Bring to a simmer. Cook 2 minutes.",
+      "Stir in heavy cream and 60 g grated Parmesan cheese. Heat gently until sauce thickens slightly.",
+      "Add cooked pasta and chicken chunks to the skillet. Toss to coat evenly with the sauce. Add reserved pasta water if needed for desired consistency.",
+      "Garnish with chopped fresh parsley and lemon zest from the remaining lemon half. Serve immediately with extra Parmesan."
+    ],
+    "notes": [
+      "Use fresh, quality ingredients for the best flavor.",
+      "Do not overcook the pasta; it should be al dente.",
+      "Adjust lemon juice and seasoning to personal taste."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 783.4,
+      "cholesterol_mg": 113.5,
+      "dietary_fiber_g": 10.4,
+      "protein_g": 55.8,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 870.9,
+      "total_carbs_g": 91.2,
+      "total_fat_g": 22.1,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.2,
+      "cholesterol_mg": 19.2,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 9.4,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 146.9,
+      "total_carbs_g": 15.4,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.8,
+      "dietary_fiber": 37.2,
+      "protein": 111.6,
+      "saturated_fat": 42.4,
+      "sodium": 37.9,
+      "total_carbs": 33.2,
+      "total_fat": 28.3
+    },
+    "serving_size_g": 592.5,
+    "total_recipe_weight_g": 2370
+  },
+  {
+    "recipe_name": "Fig and Goat Cheese Crostini with Honey-Mustard Drizzle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fig_and_goat_cheese_crostini_with_honey-mustard_drizzle_20250713_165535_64ae77df.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T16:55:36.244787000Z",
+    "selected_ingredients": [
+      "fig",
+      "salad green",
+      "mustard"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A comfortable, generous starter portion of Fig and Goat Cheese Crostini rests on a simple, round, off-white ceramic plate. Thin baguette slices are toasted to a golden crisp, forming the base. Each crostini is topped with creamy white goat cheese crumbles and vibrant purple-skinned fig wedges. A small, fresh mound of dark green arugula leaves, lightly tossed in dressing, sits casually beside or slightly overlaps the crostini. A glossy, golden honey-mustard drizzle artfully coats the figs and cheese. The dish is arranged naturally and asymmetrically, reflecting a homely, comfort-food style. The plate is placed on a well-used wooden dining table, illuminated by warm, cozy kitchen lighting, creating a relaxed family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Fig",
+    "ingredients": [
+      {
+        "name": "Baguette",
+        "quantity": "1 (250g) baguette"
+      },
+      {
+        "name": "Fresh figs",
+        "quantity": "8 medium"
+      },
+      {
+        "name": "Goat cheese (chèvre)",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Arugula",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Slice baguette into 1.5 cm thick rounds.",
+      "Arrange baguette slices on a baking sheet. Drizzle lightly with 15 ml olive oil. Bake 8-10 minutes until golden and crisp. Remove from oven. Let cool.",
+      "Wash and pat dry fresh figs. Cut each fig into 4-6 wedges.",
+      "Crumble goat cheese into small pieces.",
+      "In a small bowl, whisk together honey, Dijon mustard, remaining 45 ml olive oil, salt, and black pepper until well combined. This is your honey-mustard drizzle.",
+      "To assemble, place a generous amount of crumbled goat cheese on each toasted baguette slice. Arrange 2-3 fig wedges on top of the cheese.",
+      "Lightly toss arugula with a small amount of the honey-mustard drizzle. Place a small mound of dressed arugula next to or slightly on top of the crostini.",
+      "Drizzle the remaining honey-mustard mixture over the assembled crostini before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.6,
+      "calories": 525,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 15.9,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 493,
+      "total_carbs_g": 65.1,
+      "total_fat_g": 24.8,
+      "total_sugars_g": 27.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3.4,
+      "calories": 207,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 6.3,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 195,
+      "total_carbs_g": 25.7,
+      "total_fat_g": 9.8,
+      "total_sugars_g": 10.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 19,
+      "protein": 32,
+      "saturated_fat": 43,
+      "sodium": 21,
+      "total_carbs": 24,
+      "total_fat": 32
+    },
+    "serving_size_g": 253,
+    "total_recipe_weight_g": 1012
+  }
+]

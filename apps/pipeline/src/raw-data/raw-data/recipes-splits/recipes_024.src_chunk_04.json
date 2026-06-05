@@ -1,0 +1,654 @@
+[
+  {
+    "recipe_name": "Panang Dark Chocolate Tart with Coconut Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_panang_dark_chocolate_tart_with_coconut_cream_20250624_031554_68e89cd2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:15:55.436465000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "sugar",
+      "panang curry paste",
+      "coconut cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, pristine slice of Panang Dark Chocolate Tart rests elegantly on a round, pristine white porcelain plate. The tart features a crisp, golden-brown sweet pastry crust, holding a smooth, glossy dark chocolate ganache filling with a rich, deep brown hue. The ganache surface is perfectly smooth, reflecting light. A delicate quenelle of creamy, off-white coconut cream is placed beside the tart slice, offering a textural contrast. A small, vibrant green sprig of fresh mint and a scattering of finely toasted golden coconut flakes are precisely placed as garnish on the plate, adding color and aromatic freshness. The composition is balanced, with moderate negative space around the elements. The plate is centered on a simple, light-colored wooden table surface, suggesting a modern bistro setting. A neatly folded cotton napkin is placed to the side. Natural, soft, even lighting illuminates the dish, highlighting its textures and rich colors. The background is minimally blurred, hinting at a casual, contemporary restaurant atmosphere without distracting from the dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Dark chocolate",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter (cold, cubed)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa solids, chopped)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Full-fat coconut cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Panang curry paste",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "A few sprigs"
+      },
+      {
+        "name": "Toasted coconut flakes",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Combine flour, icing sugar, and salt in a bowl.",
+      "Cut cold butter into the flour mixture until crumbly.",
+      "Add egg yolk. Mix until dough forms. Do not overwork.",
+      "Flatten dough into a disc. Wrap in cling film. Chill 30 minutes.",
+      "Preheat oven to 180°C.",
+      "Roll dough to 3 mm thickness. Line a 20 cm tart tin. Trim edges.",
+      "Prick base with a fork. Line with baking paper. Fill with baking beans.",
+      "Bake 15 minutes. Remove beans and paper. Bake 5-7 more minutes until light golden.",
+      "Cool completely on a wire rack.",
+      "Chop dark chocolate finely. Place in a heatproof bowl.",
+      "In a saucepan, combine coconut cream, granulated sugar, and panang curry paste.",
+      "Heat gently until simmering and sugar dissolves. Whisk well to combine paste.",
+      "Pour hot coconut cream mixture over chopped chocolate. Let sit 2 minutes.",
+      "Whisk slowly from the center outwards until smooth and emulsified.",
+      "Add 30 g butter. Whisk until melted and glossy.",
+      "Pour ganache into the cooled tart shell.",
+      "Tap gently to release air bubbles.",
+      "Refrigerate 2-3 hours, or until set.",
+      "Carefully remove tart from tin. Slice with a hot, dry knife.",
+      "Garnish each slice with a fresh mint leaf and toasted coconut flakes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 44.47,
+      "calories": 1053.72,
+      "cholesterol_mg": 120.58,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 12.48,
+      "saturated_fat_g": 44.53,
+      "sodium_mg": 77.96,
+      "total_carbs_g": 100.59,
+      "total_fat_g": 68.41,
+      "total_sugars_g": 46.09,
+      "trans_fat_g": 1.04
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 18.56,
+      "calories": 440,
+      "cholesterol_mg": 50.34,
+      "dietary_fiber_g": 4.09,
+      "protein_g": 5.21,
+      "saturated_fat_g": 18.6,
+      "sodium_mg": 32.55,
+      "total_carbs_g": 41.99,
+      "total_fat_g": 28.56,
+      "total_sugars_g": 19.24,
+      "trans_fat_g": 0.43
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.2,
+      "dietary_fiber": 35,
+      "protein": 25,
+      "saturated_fat": 222.6,
+      "sodium": 3.4,
+      "total_carbs": 36.6,
+      "total_fat": 87.7
+    },
+    "serving_size_g": 239.5,
+    "total_recipe_weight_g": 958
+  },
+  {
+    "recipe_name": "Caldo de Pulpo y Patata (Galician Octopus and Potato Soup)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caldo_de_pulpo_y_patata_%28galician_octopus_and_potato_soup%29_20250624_031541_1541c897.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:15:41.979334000Z",
+    "selected_ingredients": [
+      "octopus",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A hearty, savory soup presented in a rustic white porcelain bowl centered on a simple wooden table. The soup, a rich reddish-orange hue from smoked paprika, contains tender, irregular chunks of cooked octopus and soft, cream-colored potato cubes. The surface of the soup is lightly rippled, suggesting its warmth. A generous drizzle of bright green extra virgin olive oil forms small pools and streaks on top, enhancing the visual appeal. Freshly chopped vibrant green parsley is scattered over the soup, providing a fresh contrast. The bowl sits on a clean, light-colored wooden table. Beside the bowl, a neatly folded white cotton napkin and a simple, traditional soup spoon are placed. The background is softly blurred, hinting at a casual bistro atmosphere. A slice of crusty bread is positioned next to the bowl. The lighting is natural and even, highlighting the textures and colors of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Galicia, Spain",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "A glass of dry white wine, such as Albariño."
+    ],
+    "hero_ingredient": "Octopus",
+    "ingredients": [
+      {
+        "name": "Octopus (raw)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Smoked Paprika (Pimentón de la Vera)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fish Broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Prepare octopus: Boil raw octopus in salted water for 45-60 minutes until very tender. Drain and cool. Cut octopus into 2-3 cm chunks.",
+      "Sauté aromatics: Heat 30 ml olive oil in a large pot over medium heat. Add diced onion. Cook until translucent, about 8-10 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add paprika and potatoes: Stir in smoked paprika. Cook for 30 seconds, stirring constantly. Add peeled 2 cm potato cubes. Stir to coat.",
+      "Simmer soup: Pour in fish broth. Bring to a simmer. Cook until potatoes are tender, about 15-20 minutes.",
+      "Combine and season: Add octopus chunks to the pot. Simmer for 5 minutes to heat through. Season with salt and freshly ground black pepper to taste.",
+      "Serve: Ladle soup into bowls. Drizzle with remaining 30 ml olive oil. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best flavor, use good quality Pimentón de la Vera.",
+      "If using fresh octopus, tenderize by freezing first or by adding a cork to the boiling water (a traditional but debated method)."
+    ],
+    "traditional_techniques": [
+      "Cocción del pulpo",
+      "Refrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 513.5,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 45,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 1449.7,
+      "total_carbs_g": 37.8,
+      "total_fat_g": 17.4,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 62.1,
+      "cholesterol_mg": 14.5,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 5.4,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 175.3,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 2.1,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 18.8,
+      "protein": 90,
+      "saturated_fat": 12.5,
+      "sodium": 63,
+      "total_carbs": 13.8,
+      "total_fat": 22.2
+    },
+    "serving_size_g": 827,
+    "total_recipe_weight_g": 3308
+  },
+  {
+    "recipe_name": "Chicken and Chorizo Paella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_chorizo_paella_20250624_031514_292df65d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:15:14.956202000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "An individual portion of Chicken and Chorizo Paella is presented on a clean white porcelain dinner plate. The rice, vibrant golden-yellow from saffron, forms a cohesive base with visible, distinct grains. Interspersed are tender, browned 3 cm chicken chunks and rich red 1 cm chorizo rounds. Diced red bell pepper and finely diced onion pieces add color and texture. Fresh green chopped parsley is sprinkled generously over the top, and a bright yellow lemon wedge rests at the plate's edge. The presentation is organized but natural. The background features a rustic wooden table, with simple, elegant flatware and a small ceramic bowl for discarded lemon rind, all under soft, natural lighting, creating an authentic Spanish bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve immediately, offering extra lemon wedges for squeezing.",
+      "Traditionally enjoyed communally from a large paella pan, but individual portions are common in restaurant settings.",
+      "Pair with a crisp Spanish white wine or sangria."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g, cut into 3 cm chunks"
+      },
+      {
+        "name": "Cured chorizo sausage",
+        "quantity": "200 g, sliced into 1 cm rounds"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium, diced into 1.5 cm pieces"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5 g, steeped in 60 ml hot water"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "800 ml, hot"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, cut into wedges"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large paella pan or wide, shallow pan over medium-high heat.",
+      "Sear chicken chunks until browned on all sides. Remove chicken from pan. Set aside.",
+      "Add chorizo to the pan. Cook until slightly crispy and fat is rendered. Remove chorizo. Set aside.",
+      "Add diced onion and red bell pepper to the pan. Sauté until softened, about 5-7 minutes.",
+      "Stir in minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Cook, stirring occasionally, for 5 minutes until sauce thickens.",
+      "Add rice to the pan. Stir to coat rice in the tomato mixture. Cook for 2 minutes.",
+      "Return chicken to the pan. Pour in hot chicken stock and saffron water. Stir gently once.",
+      "Bring to a simmer. Distribute ingredients evenly. Do not stir further.",
+      "Cook uncovered for 15-20 minutes, or until most liquid is absorbed and rice is al dente.",
+      "Reduce heat to low. Continue cooking for 5-7 minutes, listening for a crackling sound to form the socarrat.",
+      "Remove from heat. Arrange cooked chorizo on top of the paella.",
+      "Cover pan with foil or a lid. Let rest for 5-10 minutes.",
+      "Garnish with fresh chopped parsley and lemon wedges before serving."
+    ],
+    "notes": [],
+    "traditional_techniques": [
+      "Sofrito",
+      "Socarrat"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 847.4,
+      "cholesterol_mg": 183,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 50.2,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 2073.6,
+      "total_carbs_g": 73.6,
+      "total_fat_g": 38.8,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128.3,
+      "cholesterol_mg": 27.7,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 314,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 16,
+      "protein": 100,
+      "saturated_fat": 57,
+      "sodium": 90,
+      "total_carbs": 27,
+      "total_fat": 50
+    },
+    "serving_size_g": 660.4,
+    "total_recipe_weight_g": 2641.5
+  },
+  {
+    "recipe_name": "Hearty Beef and Bell Pepper Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_bell_pepper_rigatoni_20250624_031402_b3ebd22e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:14:02.813073000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta",
+      "garlic",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Hearty Beef and Bell Pepper Rigatoni is presented on a simple, off-white ceramic plate. Rigatoni pasta, al dente, is generously coated in a rich, rustic tomato ragu. Tender, browned beef chunks (2-3 cm cubes) are interspersed, along with soft, diced red and green bell peppers and translucent onion. The sauce boasts a deep red hue, with visible oregano. Components naturally overlap, filling the plate. Fresh, vibrant green chopped basil leaves provide a fresh contrast on top. A small pile of grated Parmesan cheese sits beside the dish. The plate rests on a well-used, warm wooden dining table, typical of a family kitchen. Soft, warm lighting illuminates the scene. A casual cloth napkin and a basic fork complete the unfussy, comforting home-cooked presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast, diced into 2-3 cm cubes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Season beef cubes with salt and pepper. Brown beef in batches until seared on all sides. Remove beef and set aside.",
+      "Add diced onion and bell peppers to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Return beef to the pot. Stir in crushed tomatoes, beef broth, and oregano.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for 1.5-2 hours, or until beef is very tender. Stir occasionally.",
+      "While ragu simmers, cook rigatoni according to package instructions until al dente. Drain well.",
+      "Taste ragu and adjust seasoning if needed.",
+      "Serve ragu over cooked rigatoni. Garnish with fresh basil and grated Parmesan cheese."
+    ],
+    "traditional_techniques": [
+      "Browning meat for depth of flavor",
+      "Slow simmering a ragu"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 837,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 9.3,
+      "protein_g": 47.7,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 394,
+      "total_carbs_g": 96.7,
+      "total_fat_g": 27.6,
+      "total_sugars_g": 14.3,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.1,
+      "cholesterol_mg": 14.5,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 58,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 33.2,
+      "protein": 95.4,
+      "saturated_fat": 48.5,
+      "sodium": 17.1,
+      "total_carbs": 35.2,
+      "total_fat": 35.4
+    },
+    "serving_size_g": 679.75,
+    "total_recipe_weight_g": 2719
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Medallions with Mushroom-Tomato Ragout",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_medallions_with_mushroom-tomato_ragout_20250624_031349_93d3b3a8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:13:50.093529000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "tomato",
+      "parmesan cheese",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Beef Medallions with Mushroom-Tomato Ragout is presented on a clean, round white porcelain dinner plate. Two thick, perfectly seared beef medallions, displaying a rich brown crust and a tender, rosy interior, are placed slightly off-center. They are left as whole pieces, not sliced. Beside the beef, a generous portion of rustic mushroom-tomato ragout is spooned, featuring thickly sliced, sautéed cremini mushrooms with a deep earthy brown hue, and vibrant halved cherry tomatoes that are slightly softened but retain their shape. Minced garlic bits are visible within the glossy, reduced sauce. The dish is garnished with bright green chopped fresh parsley scattered over the ragout and delicate, thin shavings of pale yellow Parmesan cheese draped over the beef and ragout, adding a touch of elegance. The overall composition is balanced and inviting, with moderate negative space. The plate rests on a simple light wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting illuminates the dish, highlighting its textures and colors against a softly blurred, casual bistro-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Beef Medallions",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "600g (cut into 8 medallions)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g, thickly sliced"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g, halved"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch, chopped"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, shaved"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef medallions dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add beef medallions. Sear 3-4 minutes per side for medium-rare, or until desired doneness (internal temperature 63°C).",
+      "Remove beef from skillet. Set aside. Keep warm.",
+      "Add butter to the same skillet. Add sliced mushrooms. Sauté 5-7 minutes until browned and tender.",
+      "Add minced garlic and halved cherry tomatoes to skillet. Sauté 2 minutes until fragrant and tomatoes slightly soften.",
+      "Pour in red wine (if using) and beef broth. Add thyme sprigs. Bring to a simmer.",
+      "Cook 3-5 minutes, scraping up any browned bits from bottom of skillet, until sauce slightly reduces.",
+      "Remove thyme sprigs. Season ragout with salt and pepper to taste.",
+      "To serve, place 2 beef medallions on each plate. Spoon generous amount of mushroom-tomato ragout beside or over beef.",
+      "Garnish with fresh parsley and parmesan shavings. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 586,
+      "cholesterol_mg": 132,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 47.5,
+      "saturated_fat_g": 16.2,
+      "sodium_mg": 428,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 39.4,
+      "total_sugars_g": 3,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 164,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 13.3,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 119,
+      "total_carbs_g": 1.9,
+      "total_fat_g": 11,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44,
+      "dietary_fiber": 6,
+      "protein": 95,
+      "saturated_fat": 81,
+      "sodium": 19,
+      "total_carbs": 2,
+      "total_fat": 51
+    },
+    "serving_size_g": 358,
+    "total_recipe_weight_g": 1431
+  }
+]

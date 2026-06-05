@@ -1,0 +1,737 @@
+[
+  {
+    "recipe_name": "Fermented Black Bean & Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_black_bean_%26_mushroom_risotto_20250624_104615_a7a0df7a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:16.190231000Z",
+    "selected_ingredients": [
+      "rice",
+      "bean"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single generous portion of creamy, flowing Fermented Black Bean & Mushroom Risotto is centered on a handcrafted, unglazed ceramic plate in an earthy cream tone. The risotto itself is a rich, warm beige, dotted with dark, glossy fermented black beans and varied shades of brown from the seared mushrooms. The mushrooms are presented in thick, natural slices and quartered pieces, integrated throughout the risotto, showcasing their rustic texture. Vibrant green wilted spinach leaves are gently folded in, providing pops of natural color and soft texture. The risotto has a fluid, natural consistency, spreading slightly on the plate, not constrained. A few irregular, golden-brown shards of crispy rice are artfully placed on top, adding a textural contrast and a subtle zero-waste nod. The plate sits on a light, textured bamboo surface. Adjacent are a simple, undyed linen napkin and a single, natural wooden spoon. Soft, diffused natural light illuminates the scene from the side, highlighting the dish's textures. The background is clean and minimalist, with a hint of blurred natural greenery, reinforcing the sustainable theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Black Beans",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Fermented black beans",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Mixed seasonal mushrooms",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.2 liters"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Nutritional yeast",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh seasonal greens",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Leftover cooked rice",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "50 ml"
+      }
+    ],
+    "instructions": [
+      "Heat 15 ml olive oil in a large pan over medium-high heat.",
+      "Add mushrooms. Sear until golden brown, 5-7 minutes. Season lightly with salt. Set aside.",
+      "Add remaining 15 ml olive oil to the same pan. Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic and coarsely chopped fermented black beans. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Stir constantly for 2 minutes until edges are translucent.",
+      "Pour in white wine, if using. Stir until fully absorbed.",
+      "Add one ladle of warm vegetable broth to the rice. Stir continuously until liquid is absorbed.",
+      "Continue adding broth, one ladle at a time, stirring constantly, until rice is creamy and al dente (18-20 minutes).",
+      "Remove from heat. Stir in seared mushrooms, nutritional yeast, and roughly chopped fresh greens. Stir until greens wilt.",
+      "Season with salt and pepper to taste. Ensure risotto is fluid.",
+      "Heat vegetable oil in a small pan over medium-high heat.",
+      "Add leftover cooked rice in a thin layer. Press down gently. Fry until golden brown and crispy on one side, 5-7 minutes.",
+      "Flip and crisp other side. Drain on paper towel. Break into irregular pieces."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 592,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 15.9,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 961,
+      "total_carbs_g": 85.6,
+      "total_fat_g": 19.8,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 90,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 2.4,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 147,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 3,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 25,
+      "protein": 32,
+      "saturated_fat": 11,
+      "sodium": 42,
+      "total_carbs": 31,
+      "total_fat": 25
+    },
+    "serving_size_g": 655.5,
+    "total_recipe_weight_g": 2622
+  },
+  {
+    "recipe_name": "Tuscan Roasted Chicken with Potatoes and Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_roasted_chicken_with_potatoes_and_tomatoes_20250624_104606_5a5729e6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:07.162525000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tuscan Roasted Chicken is presented on a clean, round white porcelain plate. A golden-brown, crispy-skinned chicken thigh, left whole, is the focal point, positioned slightly off-center. Around the chicken, a scattering of roasted small potato halves or quarters, their skins slightly blistered and interiors tender, display varying shades of golden-brown. Interspersed among the potatoes are vibrant, burst red cherry tomato halves, some caramelized at the edges. Several smashed garlic cloves, soft and sweet, are visible. Fresh green sprigs of rosemary and thyme are artfully placed for color and aroma. A light sheen of pan juices coats the elements, reflecting the natural light. The arrangement is organic and inviting, with moderate negative space. The plate rests on a simple, light-colored wooden table surface, suggesting a modern bistro setting. Beside the plate, a neatly folded light cotton napkin and standard silver flatware are arranged. The background is softly blurred, hinting at a casual restaurant atmosphere, with natural, even lighting illuminating the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up pan juices.",
+      "Accompany with a simple green salad dressed with olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 (approx. 200g each), bone-in, skin-on"
+      },
+      {
+        "name": "Small potatoes",
+        "quantity": "700g, halved or quartered"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300g, halved"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8, peeled and smashed"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dry white wine (or chicken broth)",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 30ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken skin-side down for 5-7 minutes until deeply golden and crisp. Flip and sear for 2 minutes.",
+      "Remove chicken from skillet. Set aside.",
+      "Add remaining 30ml olive oil to the skillet. Add potatoes, smashed garlic, rosemary, and thyme.",
+      "Season potatoes with salt and pepper. Toss to coat.",
+      "Roast potatoes in the oven for 20 minutes.",
+      "Remove skillet from oven. Stir potatoes. Nestle chicken thighs back into the skillet among the potatoes.",
+      "Add halved cherry tomatoes around chicken and potatoes.",
+      "Pour white wine (or chicken broth) into the skillet.",
+      "Return skillet to oven. Roast for another 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender and golden. Ensure chicken is cooked through.",
+      "Rest chicken 5 minutes before serving."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 583,
+      "cholesterol_mg": 132,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 31.1,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 628,
+      "total_carbs_g": 37,
+      "total_fat_g": 35.3,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 157,
+      "total_carbs_g": 9.2,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44,
+      "dietary_fiber": 18,
+      "protein": 62,
+      "saturated_fat": 39,
+      "sodium": 27,
+      "total_carbs": 13,
+      "total_fat": 45
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "White Bean & Sourdough Fritters with Fermented Radish Slaw",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_white_bean_%26_sourdough_fritters_with_fermented_radish_slaw_20250624_104605_94e182f2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:05.489742000Z",
+    "selected_ingredients": [
+      "bread",
+      "bacon"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a handcrafted ceramic plate with an organic, matte off-white finish, resting on a light reclaimed wood table. Three golden-brown, irregularly shaped White Bean & Sourdough Fritters are loosely stacked, showcasing their crispy exterior and rustic texture. Beside them, a small, dark, glossy dollop of Savory Bacon Jam gleams. A vibrant mound of Fermented Radish Slaw, composed of thinly sliced red radishes and finely shredded green cabbage, provides striking color contrast. The slaw is piled naturally. The entire plate is visible, with ample negative space. Garnish is minimal: delicate sprigs of fresh dill or fennel fronds are placed atop the slaw. The setting is clean, illuminated by soft, natural light, emphasizing the dish's natural ingredients and sustainable ethos. A simple, undyed linen napkin is folded beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "White Bean & Sourdough Fritters",
+    "ingredients": [
+      {
+        "name": "Cooked White Beans",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Day-Old Sourdough Bread",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Nutritional Yeast",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Flaxseed Meal",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Smoked Bacon (for Jam)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Red Onion (for Jam)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves (for Jam)",
+        "quantity": "2"
+      },
+      {
+        "name": "Strong Brewed Coffee",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Red Radishes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Green Cabbage",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Non-Chlorinated Water (for Slaw)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Sea Salt (for Slaw)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Dill or Fennel Fronds",
+        "quantity": "small handful"
+      }
+    ],
+    "instructions": [
+      "PREPARE FERMENTED RADISH SLAW (Start 3-5 days in advance): Thinly slice 200g radishes and 150g green cabbage using a mandoline or sharp knife. Combine 500ml non-chlorinated water and 10g sea salt to create brine. Submerge sliced vegetables in brine in a clean jar. Seal tightly. Ferment at room temperature for 3-5 days until desired tanginess. Refrigerate.",
+      "PREPARE SAVORY BACON JAM: Dice 100g smoked bacon into small chunks. Render bacon in a heavy-bottomed pan over medium heat until crispy. Remove bacon chunks, reserving rendered fat. Dice 1 medium red onion and 2 garlic cloves. Sauté red onion in reserved bacon fat until softened, about 5 minutes. Add garlic; cook 1 minute more. Deglaze pan with 120ml strong brewed coffee, scraping up browned bits. Add 30ml maple syrup and 15ml apple cider vinegar. Return crispy bacon to pan. Simmer on low heat for 20-25 minutes, stirring occasionally, until liquid reduces and mixture is thick and jam-like. Adjust seasoning. Set aside.",
+      "PREPARE FRITTER MIXTURE: Mash 400g cooked white beans in a large bowl. Process 150g day-old sourdough bread into coarse crumbs. Finely dice 1 small yellow onion and 2 garlic cloves. Sauté diced onion and garlic in 15ml olive oil until translucent. Add sautéed aromatics, sourdough crumbs, 30g nutritional yeast, 30g chopped fresh parsley, 5g salt, and 2g black pepper to mashed beans. In a small bowl, whisk 15g flaxseed meal with 45ml water; let sit 5 minutes to thicken. Add flax egg to bean mixture. Mix well to combine all ingredients.",
+      "FORM AND COOK FRITTERS: Divide mixture into 12 equal portions. Form each portion into a flattened patty, about 2 cm thick. Heat 45ml olive oil in a large non-stick skillet over medium heat. Cook fritters in batches for 4-5 minutes per side, until golden brown and crispy. Drain on paper towels.",
+      "PLATE AND SERVE: Arrange 3 fritters per plate. Place a dollop of savory bacon jam next to the fritters. Add a generous portion of pre-fermented radish slaw. Garnish with fresh dill or fennel fronds. Serve immediately."
+    ],
+    "notes": [
+      "This recipe prioritizes using day-old bread, minimizing food waste.",
+      "Rendered bacon fat is reused for cooking.",
+      "Consider composting vegetable scraps for a truly zero-waste approach."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.6,
+      "calories": 513.4,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 13.9,
+      "protein_g": 29.3,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 2127.8,
+      "total_carbs_g": 67.4,
+      "total_fat_g": 26.8,
+      "total_sugars_g": 13.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.7,
+      "calories": 111.4,
+      "cholesterol_mg": 6,
+      "dietary_fiber_g": 3,
+      "protein_g": 6.4,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 461.8,
+      "total_carbs_g": 14.6,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 9,
+      "dietary_fiber": 50,
+      "protein": 59,
+      "saturated_fat": 29,
+      "sodium": 93,
+      "total_carbs": 25,
+      "total_fat": 34
+    },
+    "serving_size_g": 461,
+    "total_recipe_weight_g": 1843
+  },
+  {
+    "recipe_name": "Pollo e Manzo al Pomodoro con Peperoni e Parmigiano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_e_manzo_al_pomodoro_con_peperoni_e_parmigiano_20250624_104604_5a375010.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:04.825652000Z",
+    "selected_ingredients": [
+      "beef",
+      "bell pepper",
+      "chicken",
+      "parmesan cheese",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous portion of the hearty Pollo e Manzo al Pomodoro is presented centrally on a clean white porcelain dinner plate. Irregularly cut 3-4cm chunks of tender braised beef and succulent chicken are nestled within a rich, glossy, deep red tomato sauce. Vibrant 2cm wide strips of softened red and yellow bell peppers, along with diced onion, are integrated throughout, adding color and texture. Freshly grated pale yellow Parmesan cheese melts gently over the top. A few fresh, roughly torn green basil leaves are artfully placed for a final color contrast. The composition is naturally arranged, not overcrowded, with moderate negative space. The dish sits on a simple light wooden table in a modern bistro setting, accompanied by a folded cotton napkin and classic silverware. Natural, even lighting highlights its rustic appeal against a softly blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Serve over soft polenta or al dente pasta",
+      "Accompany with a simple green salad"
+    ],
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "500g, cut into 3-4cm chunks"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500g, cut into 3-4cm chunks"
+      },
+      {
+        "name": "Large bell peppers (red, yellow, or orange)",
+        "quantity": "2, cut into 2cm strips"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "60g, grated"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "Small bunch, roughly chopped"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef and chicken dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear beef chunks until browned on all sides. Remove from pot.",
+      "Sear chicken chunks until browned on all sides. Remove from pot. Cook chicken to an internal temperature of 75°C (167°F).",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and bell pepper strips. Cook 3 minutes until fragrant.",
+      "Deglaze with red wine, if using. Scrape up browned bits from the bottom of the pot. Reduce liquid by half.",
+      "Stir in crushed tomatoes, chicken broth, and dried oregano. Bring to a simmer.",
+      "Return beef and chicken to the pot. Stir well to combine.",
+      "Cover pot. Reduce heat to low. Simmer for 1.5 hours, or until beef is tender. Stir occasionally.",
+      "Remove lid. Simmer uncovered for 15-20 minutes, or until sauce thickens slightly.",
+      "Stir in fresh basil.",
+      "Serve hot. Top each portion with grated Parmesan cheese."
+    ],
+    "notes": [
+      "This dish can be made a day in advance. Flavors deepen overnight."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 691,
+      "cholesterol_mg": 237,
+      "dietary_fiber_g": 6,
+      "protein_g": 60.3,
+      "saturated_fat_g": 12.4,
+      "sodium_mg": 1031,
+      "total_carbs_g": 25.5,
+      "total_fat_g": 37,
+      "total_sugars_g": 14.3,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 96,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.4,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 144,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 79,
+      "dietary_fiber": 21,
+      "protein": 121,
+      "saturated_fat": 62,
+      "sodium": 45,
+      "total_carbs": 9,
+      "total_fat": 47
+    },
+    "serving_size_g": 717,
+    "total_recipe_weight_g": 2868
+  },
+  {
+    "recipe_name": "Pork Schnitzel with Warm Dill Potato Salad and Braised Apple Cabbage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_schnitzel_with_warm_dill_potato_salad_and_braised_apple_cabbage_20250624_104603_8108f1ed.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:04.119256000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken",
+      "tomato",
+      "pork",
+      "bean",
+      "onion",
+      "potato",
+      "mustard",
+      "apple",
+      "rice",
+      "salad green",
+      "corn",
+      "bell pepper",
+      "flour",
+      "gherkin",
+      "coriander",
+      "green pea",
+      "milk",
+      "yeast",
+      "oil",
+      "green bean",
+      "cheese",
+      "cottage cheese",
+      "cucumber",
+      "dill",
+      "raisin",
+      "spinach",
+      "egg",
+      "honey",
+      "evaporated milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pork Schnitzel with Warm Dill Potato Salad and Braised Apple Cabbage is elegantly presented on a clean white porcelain dinner plate. The golden-brown, crispy pan-fried pork schnitzel, a thinly pounded whole piece, is the focal point. Beside it, a vibrant mound of warm dill potato salad showcases neatly sliced potatoes, finely diced red onion, and cucumber, brightened by fresh green dill. A rich, deep purple braised apple cabbage, with visible shredded cabbage and diced apple pieces, complements the other elements. The colors are balanced and natural: the golden schnitzel, the green and white potato salad, and the deep purple cabbage create an appealing contrast. The plate is moderately spaced, allowing each component to be clearly seen without overcrowding. The setting features a simple wooden table surface, with a fork and knife placed beside the plate on a folded cotton napkin, under natural, even lighting that highlights the textures and colors of the food. A fresh lemon wedge and chopped parsley garnish the schnitzel, adding a pop of color and freshness.",
+    "number_of_servings": 4,
+    "cuisine_type": "Central European",
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork loin",
+        "quantity": "600g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "0.5 medium"
+      },
+      {
+        "name": "Gherkins",
+        "quantity": "4 small"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "0.5 bunch"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "20g"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red cabbage",
+        "quantity": "0.5 medium head"
+      },
+      {
+        "name": "Apple",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Honey",
+        "quantity": "15g"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Braised Apple Cabbage: Shred red cabbage thinly. Dice yellow onion finely. Core and dice apple into small cubes. In a large pot, heat a small amount of oil. Sauté diced yellow onion until translucent. Add shredded red cabbage, diced apple, honey, white wine vinegar, and water. Stir well. Bring to a simmer, then reduce heat, cover, and cook for 30-40 minutes, or until cabbage is tender. Season with salt and pepper. Keep warm.",
+      "Prepare Warm Dill Potato Salad: Boil potatoes in salted water until fork-tender, about 15-20 minutes. Drain and let cool slightly. Peel potatoes and slice into 1 cm thick rounds. Dice red onion finely. Dice cucumber into small cubes. Slice gherkins into thin rounds. Chop fresh dill. In a bowl, whisk together Dijon mustard, olive oil, apple cider vinegar, salt, and pepper. Gently combine sliced potatoes, diced red onion, cucumber, gherkins, and chopped dill with the dressing. Mix until well coated. Serve warm.",
+      "Prepare Pork Schnitzel: Slice pork loin into 4 equal portions. Place each portion between two sheets of cling film. Pound each pork portion evenly until very thin, about 3-4 mm thick. Set up three shallow dishes for breading: one with flour, one with beaten eggs, and one with breadcrumbs. Season pork cutlets with salt and pepper. Dredge each cutlet in flour, shaking off excess. Dip into beaten egg, ensuring full coverage. Finally, coat generously with breadcrumbs, pressing gently to adhere. Heat vegetable oil in a large frying pan over medium-high heat until shimmering. Fry schnitzels in batches for 3-4 minutes per side, or until golden brown and cooked through. Ensure internal temperature reaches 75°C. Drain cooked schnitzels on a wire rack lined with paper towels. Season immediately with a pinch of salt.",
+      "Plate the dish: On each clean white porcelain dinner plate, arrange a portion of warm braised apple cabbage. Place a serving of warm dill potato salad beside the cabbage. Top with a crispy pork schnitzel. Garnish with a fresh lemon wedge and a sprinkle of chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.1,
+      "calories": 1017,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 11.8,
+      "protein_g": 56.4,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 1240,
+      "total_carbs_g": 114.4,
+      "total_fat_g": 37,
+      "total_sugars_g": 18.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 123,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6.8,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 150,
+      "total_carbs_g": 13.9,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.6,
+      "dietary_fiber": 42,
+      "protein": 112.9,
+      "saturated_fat": 28.9,
+      "sodium": 53.9,
+      "total_carbs": 41.6,
+      "total_fat": 47.5
+    },
+    "serving_size_g": 825,
+    "total_recipe_weight_g": 3300
+  }
+]

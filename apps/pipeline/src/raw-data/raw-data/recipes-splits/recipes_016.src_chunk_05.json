@@ -1,0 +1,677 @@
+[
+  {
+    "recipe_name": "Seared Beef with Kimchi-Pineapple Relish and Roasted Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_beef_with_kimchi-pineapple_relish_and_roasted_tomatoes_20250627_035914_127753a1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:59:14.925880000Z",
+    "selected_ingredients": [
+      "kimchi",
+      "pineapple",
+      "ginger",
+      "beef",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a minimalist, unglazed cream-colored ceramic plate, showcasing a single refined portion. In the center, several substantial, perfectly seared beef chunks, exhibiting a deep brown crust and hints of rosy interior, are arranged naturally. Alongside the beef, a vibrant mound of chunky kimchi-pineapple relish offers a contrast of bright red kimchi, golden pineapple cubes, and fine ginger strands, providing texture and color. Scattered around are tender, roasted cherry tomato halves, some with slightly caramelized edges, adding pops of red. A sprinkle of fresh green cilantro leaves provides a final, natural accent. The plate maintains ample negative space, highlighting each ingredient's purity. The scene is set on a light, textured reclaimed wood surface, illuminated by soft, natural daylight, with an undyed linen napkin and simple, dark metal cutlery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Kimchi",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Preheat oven to 200°C.",
+      "Place halved cherry tomatoes on a baking tray. Drizzle with 10ml olive oil, salt, and pepper. Roast for 15-20 minutes until softened and slightly charred.",
+      "While tomatoes roast, prepare the relish. In a bowl, combine chopped kimchi, diced pineapple, grated ginger, minced garlic, rice vinegar, and sesame oil. Mix well.",
+      "Heat 20ml olive oil in a large cast-iron skillet over high heat until shimmering.",
+      "Add beef chunks to the hot skillet. Do not overcrowd. Sear for 2-3 minutes per side until deeply browned and cooked to desired doneness.",
+      "Remove beef from skillet. Let rest for 5 minutes.",
+      "Arrange seared beef chunks on a clean, earth-toned ceramic plate.",
+      "Spoon the kimchi-pineapple relish alongside the beef.",
+      "Place roasted tomatoes artfully on the plate.",
+      "Garnish with fresh chopped cilantro. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 463,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 44.6,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 872,
+      "total_carbs_g": 12.9,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 12.9,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 253,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.5,
+      "dietary_fiber": 8.9,
+      "protein": 89.2,
+      "saturated_fat": 47,
+      "sodium": 37.9,
+      "total_carbs": 4.7,
+      "total_fat": 36.1
+    },
+    "serving_size_g": 345,
+    "total_recipe_weight_g": 1380.2
+  },
+  {
+    "recipe_name": "Creamy Mediterranean Pasta Snack",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_mediterranean_pasta_snack_20250627_035758_128c18ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:57:59.424702000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "garlic",
+      "cheese",
+      "bean",
+      "pasta",
+      "yogurt",
+      "oregano",
+      "cucumber"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, homestyle portion of Creamy Mediterranean Pasta Snack is presented in a large, rustic ceramic bowl on a well-worn wooden kitchen table. The small elbow macaroni is coated in a creamy, off-white yogurt dressing, creating a comforting look. Vibrant halved cherry tomatoes burst with red, contrasting with small diced cucumber cubes and finely minced red onion. White cannellini beans are interspersed. Crumbled feta cheese provides a visual pop of white. Ingredients are naturally mixed, gently overlapping, suggesting a casual family meal. A simple, casually folded beige linen napkin sits beside the bowl. Warm light from an overhead kitchen fixture illuminates the scene, highlighting natural colors and textures. The entire bowl is visible, with ample negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve as a side dish with grilled meats or fish.",
+      "Enjoy as a light main course for lunch.",
+      "Serve alongside warm pita bread for dipping.",
+      "Present in a large communal bowl for sharing among family and friends."
+    ],
+    "hero_ingredient": "Pasta & Fresh Vegetables",
+    "ingredients": [
+      {
+        "name": "Pasta (small shapes like ditalini or elbow macaroni)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "400 g (drained and rinsed)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 medium (about 200 g)"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small (about 100 g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Plain full-fat yogurt",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g (1 teaspoon)"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml (2 tablespoons)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions. Cook until al dente. Drain well. Rinse with cold water. Drain again.",
+      "While pasta cooks, prepare vegetables. Halve cherry tomatoes. Dice cucumber into small cubes. Mince red onion finely. Mince garlic.",
+      "In a large bowl, combine cooked pasta, drained beans, halved tomatoes, diced cucumber, and minced red onion.",
+      "In a separate small bowl, whisk together yogurt, minced garlic, oregano, olive oil, salt, and pepper.",
+      "Pour dressing over pasta mixture. Toss gently to coat all ingredients.",
+      "Crumble feta cheese over the salad. Toss lightly.",
+      "Serve immediately or chill for later."
+    ],
+    "notes": [
+      "For best flavor, let the salad chill for at least 30 minutes before serving.",
+      "Adjust oregano and garlic to personal preference.",
+      "Any small pasta shape can be used."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 571,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 11.2,
+      "protein_g": 23.6,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 538,
+      "total_carbs_g": 86,
+      "total_fat_g": 15.6,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 151,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 3,
+      "protein_g": 6.2,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 142,
+      "total_carbs_g": 22.7,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 40,
+      "protein": 47,
+      "saturated_fat": 31,
+      "sodium": 23,
+      "total_carbs": 31,
+      "total_fat": 20
+    },
+    "serving_size_g": 378.5,
+    "total_recipe_weight_g": 1514
+  },
+  {
+    "recipe_name": "Ginger Scallion Chicken with Cloud Ear Mushrooms and Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ginger_scallion_chicken_with_cloud_ear_mushrooms_and_tomato_20250627_035732_81e0e6fc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:57:33.026654000Z",
+    "selected_ingredients": [
+      "green onion",
+      "sesame oil",
+      "ginger",
+      "tomato",
+      "cloud ear mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Ginger Scallion Chicken with Cloud Ear Mushrooms and Tomato is presented on a round, clean white porcelain dinner plate, centrally mounded. Bite-sized chicken chunks, seared to a golden-brown, are interspersed with dark, tender sliced cloud ear mushrooms and vibrant red tomato wedges. Julienne ginger strands and diagonally sliced bright green scallion pieces are visible throughout, adding color and texture. A light, glossy sauce coats all ingredients, reflecting the natural light. The arrangement is organic and professional, showcasing the distinct shapes and colors of the ingredients. There is moderate negative space around the dish. Beside the main plate, a small white rice bowl holds fluffy steamed jasmine rice. A pair of dark wooden chopsticks rests on a small ceramic chopstick rest. The setting is a modern bistro, featuring a simple wooden table surface and natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with hot steamed jasmine rice.",
+      "Offer a small dish of chili oil or black vinegar for individual customization."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": "600g, boneless, skinless, cut into 3cm chunks"
+      },
+      {
+        "name": "Dried Cloud Ear Mushrooms",
+        "quantity": "20g, rehydrated and sliced"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium, cut into 8 wedges each"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "50g, peeled, julienned"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": "4 stalks, white parts minced, green parts cut into 5cm lengths diagonally"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "15ml, for finishing"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Light Soy Sauce (for marinade)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Shaoxing Wine (for marinade)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cornstarch (for marinade)",
+        "quantity": "10g"
+      },
+      {
+        "name": "White Pepper (for marinade)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Chicken Broth (for sauce)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Light Soy Sauce (for sauce)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dark Soy Sauce (for sauce)",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Sugar (for sauce)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cornstarch (for slurry)",
+        "quantity": "5g (mixed with 15ml water)"
+      }
+    ],
+    "instructions": [
+      "Rehydrate cloud ear mushrooms in warm water for 20 minutes. Drain, trim tough stems, slice into bite-sized pieces.",
+      "Cut chicken thighs into 3cm chunks. In a bowl, combine chicken with light soy sauce, Shaoxing wine, cornstarch, and white pepper. Mix well. Marinate for 15 minutes.",
+      "In a small bowl, whisk together chicken broth, light soy sauce, dark soy sauce, and sugar for the sauce. Set aside. Prepare cornstarch slurry.",
+      "Heat 15ml vegetable oil in a large wok or skillet over high heat until smoking. Add marinated chicken in a single layer. Sear for 2-3 minutes until browned. Flip and sear other side for 1-2 minutes. Remove chicken from wok.",
+      "Add remaining 15ml vegetable oil to wok. Add minced ginger, minced garlic, and white parts of green onions. Stir-fry for 30 seconds until fragrant.",
+      "Add sliced cloud ear mushrooms and tomato wedges to wok. Stir-fry for 2 minutes until tomatoes slightly soften.",
+      "Pour in prepared sauce mixture. Bring to a simmer.",
+      "Return seared chicken to the wok. Stir to coat.",
+      "Stir cornstarch slurry. Pour into simmering sauce, stirring constantly until sauce thickens to desired consistency.",
+      "Add green parts of green onions and sesame oil. Toss quickly.",
+      "Serve immediately.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Serves 4 people.",
+      "Complexity: Moderate culinary skill.",
+      "Cooking time: Approximately 30 minutes, plus marinating time."
+    ],
+    "traditional_techniques": [
+      "Stir-frying",
+      "Velveting",
+      "Aromatic infusion"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 364,
+      "cholesterol_mg": 138,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 31.8,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 1030.5,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 21.1,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0.06
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.46,
+      "calories": 116,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 0.66,
+      "protein_g": 10.15,
+      "saturated_fat_g": 1.42,
+      "sodium_mg": 328.4,
+      "total_carbs_g": 4.21,
+      "total_fat_g": 6.71,
+      "total_sugars_g": 1.19,
+      "trans_fat_g": 0.019
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46,
+      "dietary_fiber": 7.4,
+      "protein": 63.7,
+      "saturated_fat": 22.3,
+      "sodium": 44.8,
+      "total_carbs": 4.8,
+      "total_fat": 27
+    },
+    "serving_size_g": 313.8,
+    "total_recipe_weight_g": 1255.25
+  },
+  {
+    "recipe_name": "Layered Coconut Sago Petit Fours",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_layered_coconut_sago_petit_fours_20250627_035436_6e3c996f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:54:36.659353000Z",
+    "selected_ingredients": [
+      "coconut liqueur",
+      "creme de menthe",
+      "sago",
+      "icing sugar",
+      "huckleberry"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Six to nine uniform miniature squares of Layered Coconut Sago Petit Fours are arranged organically on a simple, round ceramic serving platter. Each petit four reveals distinct layers: a creamy white coconut sago base, topped with a vibrant purple huckleberry compote. A delicate, light green creme de menthe glaze is drizzled over each square, adding a subtle sheen and color contrast. The sago layer is smooth, while the huckleberry compote shows soft fruit texture. The squares are precisely cut, showcasing clean lines. The platter rests on a warm, well-used wooden dining table. A casually folded plain cloth napkin sits nearby. Soft, natural light from a kitchen window illuminates the scene, creating a homely and inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Serve chilled as a refreshing dessert.",
+      "Can be accompanied by a small glass of iced tea or coffee."
+    ],
+    "hero_ingredient": "Sago",
+    "ingredients": [
+      {
+        "name": "Small sago pearls",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Coconut liqueur",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh huckleberries",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Crème de Menthe",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Rinse sago pearls under cold water. Drain.",
+      "Bring 500 ml water to a boil in a saucepan. Add sago pearls.",
+      "Cook sago for 15-20 minutes, stirring occasionally, until translucent with a small white dot in the center. Drain well.",
+      "In a separate saucepan, combine coconut milk, 50 g granulated sugar, and coconut liqueur. Heat gently until sugar dissolves. Do not boil.",
+      "Stir cooked sago into the coconut milk mixture. Pour into a 20x20 cm square dish lined with baking paper. Smooth the top. Chill for 1 hour to set.",
+      "For the huckleberry layer, combine huckleberries, 25 g granulated sugar, cornstarch, and lime juice in a small saucepan.",
+      "Cook over medium heat, stirring, until the mixture thickens and berries burst, about 5-7 minutes. Mash lightly. Let cool completely.",
+      "Spread the cooled huckleberry mixture evenly over the set sago layer. Chill for another 2 hours, or until firm.",
+      "For the mint glaze, whisk icing sugar and crème de Menthe in a small bowl until smooth. Add a few drops of water if needed for drizzling consistency.",
+      "Remove the sago dessert from the dish. Cut into 6-9 uniform small squares. Drizzle each square with the mint glaze just before serving."
+    ],
+    "notes": [
+      "Ensure sago is cooked to translucence for best texture.",
+      "Chill layers thoroughly before adding the next and before cutting to ensure clean cuts."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 47.9,
+      "calories": 557,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 2.6,
+      "saturated_fat_g": 21.1,
+      "sodium_mg": 17.1,
+      "total_carbs_g": 83.5,
+      "total_fat_g": 23.9,
+      "total_sugars_g": 55.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.7,
+      "calories": 159,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1,
+      "protein_g": 0.8,
+      "saturated_fat_g": 6,
+      "sodium_mg": 4.9,
+      "total_carbs_g": 23.9,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 15.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 12,
+      "protein": 5,
+      "saturated_fat": 106,
+      "sodium": 1,
+      "total_carbs": 30,
+      "total_fat": 31
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Mexican Chicken and Tomato Rice with Crispy Tortilla",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mexican_chicken_and_tomato_rice_with_crispy_tortilla_20250627_035425_2b5d16cb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:54:25.524417000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "oregano",
+      "rice",
+      "corn tortilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant single serving of Mexican Chicken and Tomato Rice is presented on a clean white porcelain dinner plate. A generous mound of fluffy, red-orange rice forms the base. Nestled into the rice are golden-brown, seared chicken cubes, showing their slightly crisp exterior. Freshly chopped green cilantro is scattered over the rice, providing a bright color contrast. A few thin, golden-crisp corn tortilla strips are placed upright within the rice, adding height and texture. A bright green lime wedge rests beside the chicken on the plate's edge. The setting is a modern bistro, featuring a light wooden table surface and a neatly folded white cotton napkin. Natural, even lighting highlights the dish, with a subtly blurred background suggesting a casual restaurant ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with fresh lime wedges for squeezing",
+      "Offer a side of Mexican crema or sour cream",
+      "Serve with pickled red onions"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "White onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Dried Mexican oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "4"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime, cut into wedges",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm cubes. Season chicken with salt and pepper.",
+      "Heat 30 ml vegetable oil in a large pot or Dutch oven over medium-high heat. Sear chicken cubes until golden brown on all sides. Remove chicken from pot and set aside.",
+      "Reduce heat to medium. Add remaining 30 ml vegetable oil to the pot. Add diced onion and cook until softened, about 5 minutes. Add minced garlic, cumin, chili powder, and oregano. Cook for 1 minute until fragrant.",
+      "Add rice to the pot. Stir to coat rice with aromatics and spices. Cook for 2 minutes, toasting the rice slightly.",
+      "Stir in diced tomatoes and chicken broth. Bring to a simmer. Return seared chicken to the pot. Stir well.",
+      "Reduce heat to low. Cover the pot tightly. Cook for 20 minutes, or until liquid is absorbed and rice is tender. Do not lift lid during cooking. Check chicken internal temperature reaches 75°C (167°F).",
+      "While rice cooks, cut corn tortillas into 1 cm wide strips. Heat a thin layer of vegetable oil in a separate pan over medium-high heat. Fry tortilla strips until golden and crispy. Remove and drain on paper towels. Season lightly with salt.",
+      "Once rice is cooked, remove from heat. Let stand, covered, for 5 minutes. Fluff rice with a fork.",
+      "Serve individual portions of chicken and tomato rice on plates. Garnish with fresh chopped cilantro and crispy tortilla strips. Serve with lime wedges on the side."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Toasting rice"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 757,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 41.6,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 326,
+      "total_carbs_g": 81.5,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 144,
+      "cholesterol_mg": 26.9,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.9,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 62.1,
+      "total_carbs_g": 15.5,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 19,
+      "protein": 83,
+      "saturated_fat": 24,
+      "sodium": 14,
+      "total_carbs": 30,
+      "total_fat": 36
+    },
+    "serving_size_g": 525,
+    "total_recipe_weight_g": 2100
+  }
+]

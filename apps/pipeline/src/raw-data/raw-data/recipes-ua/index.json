@@ -1,0 +1,13 @@
+{
+  "source": "https://epicure.kaikaku.ai/api/gallery",
+  "generated_at": "2026-05-28T16:15:20.869Z",
+  "total_recipes": 10,
+  "file_count": 1,
+  "files": [
+    {
+      "name": "recipes_001.json",
+      "recipe_count": 10,
+      "size": "0.03 MB"
+    }
+  ]
+}

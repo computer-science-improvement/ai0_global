@@ -1,0 +1,597 @@
+[
+  {
+    "recipe_name": "Creamy Tomato Chicken Fettuccine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_chicken_fettuccine_20250624_104536_baa81741.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:45:36.714574000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Creamy Tomato Chicken Fettuccine is presented on a clean white porcelain dinner plate. The fettuccine is twirled into a neat mound, generously coated in a vibrant, creamy orange-red tomato sauce. Interspersed throughout the pasta are golden-brown, seared 2-3 cm chicken cubes, showcasing their tender interior and cooked exterior. A scattering of bright green, roughly torn fresh basil leaves provides a fresh counterpoint to the rich sauce. A light dusting of finely grated white Parmesan cheese rests atop the dish. The overall composition is balanced and inviting, with moderate negative space on the plate. The scene is set on a simple wooden table, with standard European flatware and a folded cotton napkin positioned beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, unobtrusive restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread.",
+      "Pair with a simple green salad with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600 g, boneless, skinless"
+      },
+      {
+        "name": "Fettuccine",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breasts into 2-3 cm cubes. Season with salt and pepper.",
+      "Bring a large pot of salted water to a boil. Add fettuccine. Cook according to package directions until al dente. Reserve 250 ml pasta water before draining.",
+      "While pasta cooks, heat olive oil in a large pan over medium-high heat. Add chicken cubes. Sear chicken until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C (167°F). Remove chicken from pan. Set aside.",
+      "Reduce heat to medium. Add finely diced onion to the same pan. Sauté until softened, about 3-4 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Bring to a simmer. Cook for 5 minutes, stirring occasionally, to thicken slightly.",
+      "Stir in heavy cream. Return chicken to the pan. Simmer for 2-3 minutes.",
+      "Add drained fettuccine to the pan with the sauce and chicken. Add half of the grated Parmesan. Toss to coat pasta evenly. If sauce is too thick, add reserved pasta water, a little at a time, until desired consistency is reached.",
+      "Toss in most of the fresh basil leaves, torn or roughly chopped.",
+      "Serve immediately. Garnish with remaining Parmesan and fresh basil."
+    ],
+    "notes": [
+      "Ensure chicken is fully cooked to an internal temperature of 75°C (167°F).",
+      "Adjust sauce consistency with reserved pasta water as needed."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Emulsifying sauce"
+    ]
+  },
+  {
+    "recipe_name": "Potato and Pickled Onion Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_and_pickled_onion_salad_20250624_104509_262b6887.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:45:10.366495000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "An individual portion of the Potato and Pickled Onion Salad is presented on a handcrafted, natural cream-colored ceramic plate with a slight organic rim, resting on a light-toned reclaimed wood surface. Diced roasted potatoes, with their rustic, golden-brown skins and creamy interiors, are scattered throughout. Small, irregular pieces of shredded chicken are nestled amongst the vegetables, providing a subtle protein element without dominating the plate. Vibrant green mixed salad greens form the base, interspersed with thin, translucent slices of bright pink pickled red onions and crisp, thinly sliced red radishes. Fresh green dill sprigs are gently placed as a natural garnish. A light, glistening dressing coats the ingredients, highlighting their natural textures. The composition is clean and minimalist, with ample negative space around the central mound of salad. The scene is illuminated by soft, natural light, creating gentle shadows. An undyed linen napkin in a natural beige tone is casually draped nearby, and a subtle green plant is visible in the clean, uncluttered background, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Baby Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Chicken Breast",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Mixed Salad Greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "6-8"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water (for pickling)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "White Vinegar (for pickling)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Granulated Sugar (for pickling)",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt (for pickling)",
+        "quantity": "1 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Thinly slice the red onion. Place in a heatproof jar.",
+      "In a small saucepan, combine water, white vinegar, sugar, and 1 teaspoon salt. Bring to a boil, stirring until sugar and salt dissolve. Pour hot pickling liquid over red onions. Let cool, then refrigerate for at least 30 minutes.",
+      "Preheat oven to 200°C. Wash and quarter the baby potatoes. Toss with 1 tablespoon olive oil, salt, and pepper. Spread on a baking tray. Roast for 20-25 minutes until tender and golden brown. Let cool.",
+      "Season chicken breast with salt and pepper. Cook in a pan over medium heat for 6-8 minutes per side, or until internal temperature reaches 75°C. Shred or dice the cooked chicken. Let cool.",
+      "In a small bowl, whisk together remaining 2 tablespoons olive oil, apple cider vinegar, Dijon mustard, salt, and pepper to make the dressing.",
+      "In a large bowl, combine mixed salad greens, diced roasted potatoes, shredded chicken, thinly sliced radishes, and chopped fresh dill.",
+      "Drain the pickled red onions and add to the salad. Pour dressing over the salad. Gently toss to combine. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 307,
+      "cholesterol_mg": 42.5,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 19,
+      "saturated_fat_g": 2,
+      "sodium_mg": 662.8,
+      "total_carbs_g": 30.3,
+      "total_fat_g": 12.3,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 105,
+      "cholesterol_mg": 14.6,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6.5,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 227.1,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14.2,
+      "dietary_fiber": 15,
+      "protein": 38.1,
+      "saturated_fat": 9.8,
+      "sodium": 28.8,
+      "total_carbs": 11,
+      "total_fat": 15.7
+    },
+    "serving_size_g": 291.9,
+    "total_recipe_weight_g": 1167.5
+  },
+  {
+    "recipe_name": "Buckwheat Risotto with Roasted Chicken and Fermented Tomato Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_buckwheat_risotto_with_roasted_chicken_and_fermented_tomato_relish_20250624_104508_14433d92.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:45:09.218182000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "chicken",
+      "onion",
+      "cheese",
+      "tomato",
+      "chicken stock",
+      "garlic",
+      "bacon",
+      "margarine",
+      "soy sauce"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single generous portion of creamy buckwheat risotto is centrally mounded on a round, handcrafted ceramic plate in a warm cream tone, leaving ample white space around the edges. The risotto, a rich earthy brown, is studded with tender, irregular chunks of roasted chicken, showcasing its natural golden-brown crust. Small, vibrant red pieces of fresh tomato are dispersed throughout, adding pops of color. A spoonful of bright, reddish-orange fermented tomato relish, with visible diced onion and garlic, rests atop the risotto, providing a contrasting texture and fresh acidity. Crispy, golden-brown bacon bits are scattered lightly over the top. The dish is garnished simply with fresh, finely chopped green parsley. The plate sits on a light, textured reclaimed wood surface. A natural undyed linen napkin is folded beside it. Soft, diffused natural light illuminates the scene, highlighting the organic textures and natural colors of the sustainable ingredients. The background is clean and minimalist, with a hint of green from a potted plant.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Buckwheat Groats",
+    "ingredients": [
+      {
+        "name": "Buckwheat Groats",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Chicken Thighs (boneless, skinless)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Bacon",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Margarine",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Tomato Relish: Dice 300g tomatoes, half onion, 2 cloves garlic. Mix with 5g salt. Place in a clean jar. Cover loosely. Let ferment at room temperature for 2-3 days until slightly bubbly and tangy. Stir daily. Refrigerate after desired tanginess.",
+      "Roast Chicken: Pat chicken thighs dry. Season with salt and pepper. In a bowl, toss chicken with 15ml soy sauce and 15ml olive oil. Roast at 200°C for 25-30 minutes, until internal temperature reaches 75°C. Let rest 5 minutes. Cut into 3-4 cm chunks.",
+      "Start Risotto: In a large pot, render diced bacon over medium heat until crispy. Remove bacon, reserve fat. Add 15g margarine and 15ml olive oil to the pot. Add remaining diced onion and sauté until translucent, about 5 minutes. Add remaining minced garlic, cook 1 minute until fragrant.",
+      "Cook Buckwheat: Add buckwheat groats to the pot. Toast for 2 minutes, stirring constantly. Pour in 100ml chicken stock. Stir until absorbed.",
+      "Build Risotto: Add remaining chicken stock, 150ml at a time. Stir frequently. Wait until stock is mostly absorbed before adding more. Continue until buckwheat is tender but still has a slight bite (al dente), about 20-25 minutes. You may not need all stock.",
+      "Finish Risotto: Stir in remaining 15g margarine and grated Parmesan cheese. Adjust seasoning with salt and pepper. The risotto should be creamy and free-flowing. Stir in 200g diced fresh tomatoes (from the remaining 500g).",
+      "Assemble: Gently fold roasted chicken chunks and crispy bacon into the buckwheat risotto.",
+      "Serve: Ladle risotto onto plates. Top each portion with a spoonful of fermented tomato relish. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Utilize chicken bones and vegetable scraps to make homemade chicken stock for a zero-waste approach.",
+      "The fermented tomato relish enhances flavor and extends shelf life. Any leftover relish can be used as a condiment for other dishes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 870,
+      "cholesterol_mg": 201,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 62.4,
+      "saturated_fat_g": 13,
+      "sodium_mg": 2628,
+      "total_carbs_g": 58.7,
+      "total_fat_g": 44.4,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 162.3,
+      "cholesterol_mg": 37.5,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 11.7,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 490.5,
+      "total_carbs_g": 11,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 32,
+      "protein": 125,
+      "saturated_fat": 65,
+      "sodium": 114,
+      "total_carbs": 21,
+      "total_fat": 57
+    },
+    "serving_size_g": 536,
+    "total_recipe_weight_g": 2143
+  },
+  {
+    "recipe_name": "Potato & Tomato Terrine with Fermented Cucumber Salsa Verde",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_%26_tomato_terrine_with_fermented_cucumber_salsa_verde_20250624_104503_0696cd5d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:45:03.975046000Z",
+    "selected_ingredients": [
+      "tomato",
+      "potato",
+      "cucumber"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A refined, rectangular slice of Potato & Tomato Terrine stands proudly centered on a handcrafted, matte cream ceramic plate. The terrine displays distinct, clean layers of thinly sliced, subtly roasted potatoes and vibrant red tomatoes, interspersed with a textured, earthy green lentil layer. Its edges are sharp, showcasing precise knife work. A small, vibrant green dollop of Fermented Cucumber Salsa Verde is artfully placed beside the terrine, adding a pop of fresh color and texture. The plate's natural, unglazed texture contrasts with the terrine's smooth surface. The overall composition emphasizes clean lines and natural ingredient beauty, with ample negative space. The setting features a light, textured stone surface, an undyed linen napkin, and soft, natural light illuminating the dish, with a subtle, blurred green plant in the background, reinforcing a sustainable aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Large firm potatoes",
+        "quantity": "1.2 kg"
+      },
+      {
+        "name": "Firm ripe tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "English cucumber",
+        "quantity": "1 large (approx. 400g)"
+      },
+      {
+        "name": "Green lentils",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Cucumber:",
+      "Slice half cucumber into thin rounds. Place in a clean jar. Add 10g salt and cover with filtered water. Add 15ml apple cider vinegar. Seal jar. Ferment at room temperature for 2-3 days, or quick pickle for 24 hours in refrigerator.",
+      "Prepare Lentil Layer:",
+      "Rinse lentils. Cook lentils in 500ml vegetable broth until tender, about 20 minutes. Drain any excess liquid. Mash lightly. Mince 2 garlic cloves. Finely chop 15g dill and 15g parsley. Stir into lentils with 15ml olive oil. Season with salt and pepper. Set aside.",
+      "Prepare Potatoes:",
+      "Wash potatoes thoroughly. Do not peel. Slice potatoes into 2mm thick rounds using a mandoline. Blanch potato slices in boiling salted water for 2 minutes. Drain well. Pat dry.",
+      "Prepare Tomatoes:",
+      "Wash tomatoes. Slice tomatoes into 3mm thick rounds.",
+      "Assemble Terrine:",
+      "Preheat oven to 180°C. Line a 25cm x 10cm loaf pan with parchment paper, leaving overhang on sides. Arrange a single layer of potato slices, slightly overlapping, on bottom of pan. Season lightly with salt and pepper. Add a layer of tomato slices. Spread half of the lentil mixture evenly over tomatoes. Repeat layers: potatoes, tomatoes, remaining lentil mixture, then finish with a final layer of potatoes.",
+      "Bake Terrine:",
+      "Cover terrine with parchment paper, then foil. Place a heavy object (like another loaf pan with cans) on top to press. Bake for 60 minutes. Remove foil and weight. Bake for another 20 minutes until potatoes are tender. Let cool completely in pan. Refrigerate for at least 4 hours, or preferably overnight, with weight still on top.",
+      "Prepare Salsa Verde:",
+      "Drain fermented cucumber. Mince remaining 2 garlic cloves. Roughly chop remaining 15g dill and 15g parsley. Combine fermented cucumber, garlic, dill, parsley, 45ml olive oil, and remaining 15ml apple cider vinegar in a food processor. Pulse until a coarse salsa forms. Season with salt and pepper.",
+      "Serve:",
+      "Remove terrine from pan using parchment paper overhang. Slice terrine into 2cm thick portions. Serve each portion with a generous spoonful of Fermented Cucumber Salsa Verde on the side."
+    ],
+    "notes": [
+      "This recipe embraces zero-waste by utilizing potato skins and minimizing food scraps.",
+      "The fermentation of cucumber adds depth of flavor and promotes gut health."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 598,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 26.5,
+      "protein_g": 22,
+      "saturated_fat_g": 2,
+      "sodium_mg": 652,
+      "total_carbs_g": 97.4,
+      "total_fat_g": 15.3,
+      "total_sugars_g": 10.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 66,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 2.4,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 72,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 1.7,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 95,
+      "protein": 44,
+      "saturated_fat": 10,
+      "sodium": 28,
+      "total_carbs": 35,
+      "total_fat": 20
+    },
+    "serving_size_g": 905,
+    "total_recipe_weight_g": 3620
+  },
+  {
+    "recipe_name": "Rigatoni with Roasted Cherry Tomatoes and Crispy Pancetta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rigatoni_with_roasted_cherry_tomatoes_and_crispy_pancetta_20250624_104456_7a7b7e28.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:56.493271000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Rigatoni with Roasted Cherry Tomatoes and Crispy Pancetta is presented on a clean white porcelain dinner plate, centrally mounded. The al dente rigatoni is coated in a rustic, vibrant sauce, showcasing burst and caramelized roasted cherry tomatoes. Diced, golden-brown crispy pancetta pieces are visibly distributed throughout the pasta. Fresh, torn green basil leaves are scattered over the top, providing a striking color contrast. A generous dusting of grated Pecorino Romano cheese covers the dish. The textures are a pleasing mix of tender pasta, soft tomatoes, and crunchy pancetta. The plate sits on a simple wooden table with a silver fork and a folded cotton napkin beside it. Natural, even lighting highlights the dish’s inviting colors and textures, creating a professional yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with additional grated Pecorino Romano or Parmigiano Reggiano at the table",
+      "Accompany with crusty Italian bread for dipping in the sauce",
+      "Pair with a simple green salad dressed with olive oil and vinegar"
+    ],
+    "hero_ingredient": "Roasted Cherry Tomatoes",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Pancetta, diced",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic, thinly sliced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh basil leaves, torn",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Pecorino Romano cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Place cherry tomatoes on a baking sheet. Drizzle with 15ml olive oil. Season with salt and pepper. Roast for 20-25 minutes, until tomatoes burst and caramelize.",
+      "While tomatoes roast, cook pancetta in a large skillet over medium heat. Cook until crispy. Remove pancetta with a slotted spoon. Reserve rendered fat in skillet.",
+      "Add remaining 15ml olive oil to skillet if needed. Add sliced garlic and chili flakes to skillet. Sauté for 1 minute until fragrant. Do not brown garlic.",
+      "Cook rigatoni according to package directions until al dente. Reserve 250ml pasta cooking water before draining.",
+      "Add roasted cherry tomatoes to the skillet with garlic and chili. Gently mash some tomatoes to create a rustic sauce.",
+      "Add drained rigatoni to the skillet. Add reserved pasta water gradually, tossing constantly to create a cohesive sauce that coats the pasta.",
+      "Stir in crispy pancetta and most of the torn basil. Toss to combine.",
+      "Serve immediately. Garnish each portion with fresh Pecorino Romano and remaining torn basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 734,
+      "cholesterol_mg": 53.8,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 29.8,
+      "saturated_fat_g": 11.4,
+      "sodium_mg": 1001.3,
+      "total_carbs_g": 82.3,
+      "total_fat_g": 30.8,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 240.3,
+      "cholesterol_mg": 17.6,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 9.7,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 327.8,
+      "total_carbs_g": 26.9,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.9,
+      "dietary_fiber": 18.6,
+      "protein": 59.6,
+      "saturated_fat": 57,
+      "sodium": 43.5,
+      "total_carbs": 29.9,
+      "total_fat": 39.5
+    },
+    "serving_size_g": 305.5,
+    "total_recipe_weight_g": 1222
+  }
+]

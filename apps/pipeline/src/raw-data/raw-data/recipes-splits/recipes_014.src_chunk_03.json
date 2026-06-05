@@ -1,0 +1,601 @@
+[
+  {
+    "recipe_name": "Spanish Roasted Chicken with Patatas and Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_roasted_chicken_with_patatas_and_peppers_20250630_060521_9834e455.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:05:22.389504000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "tomato",
+      "garlic",
+      "pepper",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Spanish Roasted Chicken with Patatas and Peppers is presented on a clean white porcelain dinner plate. A golden-brown, seared chicken thigh and a drumstick are the focal points, arranged naturally. Surrounding the chicken are substantial, irregular chunks of roasted Yukon Gold potatoes, their skins slightly crisped. Vibrant red and yellow bell pepper strips and sweet onion wedges are interspersed, their colors adding contrast. A rich, reddish-brown tomato and smoked paprika sauce lightly coats the chicken and vegetables, pooling slightly. Fresh, bright green chopped parsley is generously sprinkled over the dish. The composition is balanced with moderate negative space. The plate rests on a simple wooden table surface, accompanied by a folded cotton napkin and classic silver flatware. Natural, even lighting highlights the textures and warm colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty rustic bread for dipping into the flavorful sauce.",
+      "Accompany with a simple green salad dressed with olive oil and sherry vinegar.",
+      "Pair with a dry Spanish red wine, such as Rioja or Tempranillo."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs and drumsticks",
+        "quantity": "8 pieces (approx. 1.2 kg)"
+      },
+      {
+        "name": "Potatoes (Yukon Gold or similar)",
+        "quantity": "800 g, cut into 3 cm chunks"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, deseeded, cut into 2 cm strips"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1, deseeded, cut into 2 cm strips"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, cut into 2 cm wedges"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, thinly sliced"
+      },
+      {
+        "name": "Diced tomatoes (canned)",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón dulce)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped (for garnish)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken pieces dry. Season generously with salt and black pepper.",
+      "Heat 30 ml olive oil in a large, oven-safe skillet or Dutch oven over medium-high heat.",
+      "Sear chicken pieces skin-side down until golden brown, about 5-7 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from skillet. Set aside.",
+      "Add remaining 30 ml olive oil to the skillet. Add potatoes, bell peppers, and onion. Sauté for 8-10 minutes until vegetables begin to soften and brown slightly.",
+      "Add sliced garlic and smoked paprika to the skillet. Cook for 1 minute until fragrant.",
+      "Pour in diced tomatoes and chicken broth. Bring mixture to a simmer, scraping up any browned bits from the bottom.",
+      "Return seared chicken pieces to the skillet, nestling them among the vegetables and sauce. Ensure chicken is partially submerged.",
+      "Transfer skillet to the preheated oven. Roast for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender.",
+      "Remove from oven. Let rest 5 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to 75°C (167°F) for food safety.",
+      "Adjust smoked paprika quantity to desired smokiness.",
+      "For best results, use a heavy-bottomed oven-safe pan or Dutch oven."
+    ],
+    "traditional_techniques": [
+      "Sofrito base",
+      "Roasting (asado)",
+      "Simmering (guisado)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1023,
+      "cholesterol_mg": 291,
+      "dietary_fiber_g": 9.3,
+      "protein_g": 70.8,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 348.2,
+      "total_carbs_g": 53.2,
+      "total_fat_g": 56.7,
+      "total_sugars_g": 10.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124,
+      "cholesterol_mg": 35.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 42.4,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97,
+      "dietary_fiber": 33.1,
+      "protein": 141.6,
+      "saturated_fat": 67.7,
+      "sodium": 15.1,
+      "total_carbs": 19.3,
+      "total_fat": 72.7
+    },
+    "serving_size_g": 822,
+    "total_recipe_weight_g": 3288
+  },
+  {
+    "recipe_name": "Sweet Rice and Pea Pudding with Caramelized Onion-Corn Compote",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_rice_and_pea_pudding_with_caramelized_onion-corn_compote_20250630_060159_0e6c4292.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:02:00.229593000Z",
+    "selected_ingredients": [
+      {
+        "name": "dried pea"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "corn"
+      },
+      {
+        "name": "rice"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "The dessert is presented in a simple, deep ceramic bowl, placed on a well-used wooden dining table. A single generous serving of creamy, off-white rice pudding, studded with pale green mashed peas, fills the bowl. The pudding has a soft, flowing texture, appearing comforting and warm. Centered on top is a spoonful of glossy, amber-brown caramelized onion and bright yellow corn compote, creating a striking color contrast. The corn kernels are plump and visible within the rich, sweet onion base. The overall presentation is unpretentious and homely, emphasizing comfort. Natural, warm kitchen light illuminates the dish from the side, highlighting its inviting textures. A simple, folded cloth napkin and a standard dessert spoon rest beside the bowl on the rustic table surface, completing the casual, family kitchen scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Dessert",
+    "hero_ingredient": "Rice",
+    "ingredients": [
+      {
+        "name": "Dried green peas",
+        "quantity": "100g"
+      },
+      {
+        "name": "White rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Sweet corn",
+        "quantity": "150g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      }
+    ],
+    "instructions": [
+      "Rinse dried peas. Soak in cold water overnight, or quick-soak by boiling for 2 minutes, then soaking for 1 hour. Drain.",
+      "Place soaked peas in a saucepan. Cover with fresh water. Simmer until very tender, about 30-40 minutes. Drain well. Mash lightly with a fork. Set aside.",
+      "Rinse rice under cold water until clear. In a heavy-bottomed pot, combine rice, milk, granulated sugar, vanilla, and salt.",
+      "Bring to a gentle simmer over medium heat, stirring occasionally. Reduce heat to low. Cook, stirring frequently, until rice is tender and pudding is thick and creamy, about 25-30 minutes.",
+      "While pudding cooks, finely dice the onion.",
+      "In a small skillet, melt butter over low heat. Add diced onion. Cook slowly, stirring often, until very soft and deeply golden brown, about 15-20 minutes.",
+      "Add brown sugar and water to the caramelized onion. Cook, stirring, until sugar dissolves and mixture thickens into a glossy compote.",
+      "Stir sweet corn into the caramelized onion compote. Cook for 2-3 minutes until corn is heated through.",
+      "Stir the mashed cooked peas into the rice pudding.",
+      "Ladle warm rice and pea pudding into bowls. Top each serving with a spoonful of the warm caramelized onion-corn compote."
+    ]
+  },
+  {
+    "recipe_name": "Kue Wortel Rempah (Indonesian Spiced Carrot Cake)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_kue_wortel_rempah_%28indonesian_spiced_carrot_cake%29_20250630_060101_5b514e3f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:01:02.038401000Z",
+    "selected_ingredients": [
+      {
+        "name": "beef"
+      },
+      {
+        "name": "annatto"
+      },
+      {
+        "name": "cayenne pepper"
+      },
+      {
+        "name": "oil"
+      },
+      {
+        "name": "carrot"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Indonesian",
+    "visual_description": "A rustic, comforting Indonesian Spiced Carrot Cake (Kue Wortel Rempah) is presented on a well-used wooden dining table, characteristic of a homely family kitchen. A single, generous slice of the moist, golden-brown cake sits on a simple, off-white ceramic plate. The cake's crumb is visible, speckled with bright orange grated carrot. A thin, simple layer of creamy white cream cheese frosting tops the slice, with a light dusting of ground cinnamon. In the background, the rest of the unfrosted cake rests casually on a small wooden cutting board, hinting at its homemade nature. The setting includes a traditional Indonesian woven mat or batik cloth peeking from beneath the plate, alongside a modest, dark brown ceramic cup of kopi tubruk (Indonesian black coffee). Lighting is warm and cozy, from a kitchen fixture, casting soft shadows that enhance the lived-in atmosphere. The overall impression is one of simple, delicious comfort food, ready for family enjoyment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indonesian",
+    "cultural_origin": "Indonesian",
+    "cultural_serving_suggestions": [
+      "Serve with hot kopi tubruk (Indonesian black coffee) or teh manis (sweet tea).",
+      "Often enjoyed as an afternoon snack (kue sore)."
+    ],
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "2g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "3g"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "1g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Carrots, grated",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cream cheese, softened",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "50g"
+      },
+      {
+        "name": "Icing sugar, sifted",
+        "quantity": "150g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "2ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 15 cm round cake pan.",
+      "In a large bowl, whisk together flour, granulated sugar, baking powder, baking soda, cinnamon, nutmeg, and salt.",
+      "In a separate bowl, whisk eggs and vegetable oil until combined.",
+      "Add wet ingredients to dry ingredients. Mix until just combined. Do not overmix.",
+      "Fold in grated carrot.",
+      "Pour batter into prepared cake pan.",
+      "Bake for 25-30 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Cool cake in pan for 10 minutes, then transfer to a wire rack to cool completely.",
+      "For frosting: Beat cream cheese and butter until smooth.",
+      "Gradually add sifted icing sugar and vanilla extract. Beat until light and fluffy.",
+      "Frost cooled cake."
+    ],
+    "notes": [
+      "This recipe focuses on a sweet, comforting cake suitable for the 'Indonesian' context. The ingredients beef, annatto, and cayenne pepper are not compatible with a sweet cake and have been omitted to maintain a classic sweet flavor profile."
+    ]
+  },
+  {
+    "recipe_name": "Panang Chicken and Black Currant Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_panang_chicken_and_black_currant_curry_20250630_055619_8153f2b3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:56:19.700912000Z",
+    "selected_ingredients": [
+      "black currant",
+      "kudzu",
+      "panang curry paste"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Panang Chicken and Black Currant Curry is presented in a deep, clean white porcelain bowl. The rich, creamy curry has a warm reddish-orange hue, with visible, tender chicken chunks and plump, dark purple black currants interspersed throughout. The surface of the curry is glossy and inviting. A small, perfectly mounded portion of fluffy white jasmine rice is placed neatly beside the curry bowl on a simple white plate. The dish is garnished with vibrant green Thai basil leaves and a few thin, bright red slices of spur chili, providing a fresh contrast. The overall setting is a modern bistro style with a light wooden table surface and a clean cotton napkin placed beside the plate. Natural, even lighting highlights the dish's textures and colors, with a subtly blurred background suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice as the primary accompaniment.",
+      "Offer a side of nam pla prik (fish sauce with chilies) for those who prefer more spice.",
+      "Serve with a traditional Thai spoon and fork."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g, cut into 3 cm chunks"
+      },
+      {
+        "name": "Panang curry paste",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Fresh black currants",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Kudzu starch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "20 g, finely chopped"
+      },
+      {
+        "name": "Kaffir lime leaves",
+        "quantity": "4, bruised"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Red spur chilies",
+        "quantity": "2, thinly sliced diagonally, for garnish"
+      },
+      {
+        "name": "Fresh Thai basil leaves",
+        "quantity": "30 g, for garnish"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a large pot or wok over medium heat. Add panang curry paste. Sauté 2-3 minutes until fragrant and oil separates from the paste.",
+      "Add 200 ml of coconut milk to the paste. Stir well. Bring to a gentle simmer, cook 5 minutes until mixture thickens and oil glistens on top.",
+      "Add chicken chunks. Stir to coat chicken evenly with the curry paste mixture. Cook 5-7 minutes until chicken is seared on all sides.",
+      "Pour in remaining 600 ml coconut milk. Add bruised kaffir lime leaves. Bring to a gentle simmer. Cook 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Stir in fish sauce and palm sugar. Cook 2-3 minutes, allowing palm sugar to dissolve and flavors to meld.",
+      "In a small bowl, whisk kudzu starch with cold water to form a slurry. Slowly pour slurry into the simmering curry, stirring constantly. Cook 2 minutes until curry slightly thickens to desired consistency.",
+      "Gently fold in fresh black currants during the last minute of cooking. Do not overcook currants.",
+      "Remove from heat. Discard kaffir lime leaves. Taste and adjust seasoning if needed. The curry should be a balance of savory, sweet, and mildly spicy.",
+      "Serve immediately with steamed jasmine rice. Garnish each portion with fresh Thai basil leaves and sliced red spur chilies."
+    ],
+    "traditional_techniques": [
+      "Breaking the coconut milk (gohng gati)",
+      "Balancing the five fundamental flavors (sweet, sour, salty, spicy, umami)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.7,
+      "calories": 833.6,
+      "cholesterol_mg": 195,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 34.3,
+      "saturated_fat_g": 47,
+      "sodium_mg": 1385.8,
+      "total_carbs_g": 27.2,
+      "total_fat_g": 67.6,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 191.4,
+      "cholesterol_mg": 44.8,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 7.9,
+      "saturated_fat_g": 10.8,
+      "sodium_mg": 318.2,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 15.5,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 23.6,
+      "protein": 68.5,
+      "saturated_fat": 235,
+      "sodium": 60.3,
+      "total_carbs": 9.9,
+      "total_fat": 86.7
+    },
+    "serving_size_g": 435.5,
+    "total_recipe_weight_g": 1742
+  },
+  {
+    "recipe_name": "Thai Pineapple Chicken Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_pineapple_chicken_curry_20250630_055615_1b2aa2b9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:56:15.774289000Z",
+    "selected_ingredients": [
+      "pineapple"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Thai Pineapple Chicken Curry is presented in a deep, white ceramic bowl, showcasing its rich, creamy red-orange sauce. Generous chunks of golden pineapple and tender chicken cubes are prominent. Bright green basil leaves are scattered throughout, adding freshness. Crisp, deep green green beans and vibrant red bell pepper squares provide textural contrast and color. The curry's surface shimmers, indicating a luscious, well-emulsified coconut milk base. A small, separate white ceramic bowl of fluffy jasmine rice sits beside the curry bowl. A traditional Thai spoon rests on the side of the curry bowl. The setting is a modern bistro with a simple wooden table, a light cotton napkin, and soft, natural, even lighting from above, creating a warm and inviting atmosphere. The entire plate and surrounding elements are visible, with appropriate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with fragrant jasmine rice.",
+      "Offer extra fish sauce or chili flakes on the side for individual seasoning.",
+      "Use a traditional Thai-style spoon for eating."
+    ],
+    "hero_ingredient": "Pineapple",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Coconut milk",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Red curry paste",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Kaffir lime leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "240 g"
+      }
+    ],
+    "instructions": [
+      "Cook jasmine rice according to package directions. Keep warm.",
+      "Heat vegetable oil in a large pot or wok over medium heat.",
+      "Add red curry paste. Stir-fry for 1 minute until fragrant.",
+      "Pour in coconut milk. Stir well to combine with curry paste. Bring to a gentle simmer.",
+      "Add chicken cubes. Cook for 5-7 minutes, stirring occasionally, until chicken is cooked through (internal temperature 75°C).",
+      "Add pineapple chunks, red bell pepper, green beans, kaffir lime leaves, fish sauce, and palm sugar.",
+      "Simmer for another 5-7 minutes, until vegetables are tender-crisp.",
+      "Taste and adjust seasoning with more fish sauce or palm sugar if needed.",
+      "Stir in fresh basil leaves just before serving.",
+      "Serve hot with jasmine rice."
+    ],
+    "notes": [
+      "Adjust red curry paste quantity based on desired spice level.",
+      "Ensure chicken reaches 75°C internal temperature for food safety."
+    ],
+    "traditional_techniques": [
+      "Stir-frying curry paste to release aromatics.",
+      "Balancing the four fundamental Thai flavors: sweet, sour, salty, spicy."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.71,
+      "calories": 781.6,
+      "cholesterol_mg": 106.3,
+      "dietary_fiber_g": 5.63,
+      "protein_g": 48.33,
+      "saturated_fat_g": 22.55,
+      "sodium_mg": 2049.4,
+      "total_carbs_g": 73.04,
+      "total_fat_g": 33.38,
+      "total_sugars_g": 17.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.81,
+      "calories": 169.6,
+      "cholesterol_mg": 23.1,
+      "dietary_fiber_g": 1.22,
+      "protein_g": 10.48,
+      "saturated_fat_g": 4.89,
+      "sodium_mg": 444.7,
+      "total_carbs_g": 15.85,
+      "total_fat_g": 7.24,
+      "total_sugars_g": 3.77,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 20,
+      "protein": 97,
+      "saturated_fat": 113,
+      "sodium": 89,
+      "total_carbs": 27,
+      "total_fat": 43
+    },
+    "serving_size_g": 460.88,
+    "total_recipe_weight_g": 1843.5
+  }
+]

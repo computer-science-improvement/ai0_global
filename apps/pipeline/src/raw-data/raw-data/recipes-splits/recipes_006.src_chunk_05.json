@@ -1,0 +1,714 @@
+[
+  {
+    "recipe_name": "Braised Beef with Herb Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251031_181821_42d7ef9d.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 18,
+    "timestamp": "2025-10-31T18:18:22.371660000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A robust individual portion of Braised Beef with Herb Potatoes is presented in a clean, shallow white porcelain bowl. Thick, rustic chunks of fork-tender braised beef, rich dark brown with caramelized edges, are nestled amongst substantial 4cm chunks of golden-hued potatoes. The potatoes absorb the deep, glossy brown braising liquid, which coats all ingredients. Vibrant 2cm rounds of carrots and thick slices of celery add color and texture. A generous sprinkle of bright green chopped fresh parsley provides a fresh contrast. The dish is arranged naturally, allowing the ingredients to settle organically within the bowl, showcasing the tender textures. The entire plate is visible on a simple wooden table surface, accompanied by a folded cotton napkin and classic silver flatware. Natural, even lighting highlights the stew's hearty appearance and rich colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Bistro",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette for dipping in the sauce.",
+      "A simple green salad with vinaigrette can accompany the dish."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, trimmed, cut into 5cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Potatoes, peeled, cut into 4cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Onions, roughly chopped",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Carrots, peeled, cut into 2cm rounds",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks, cut into 2cm slices",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh rosemary sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped, for garnish",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper. Dredge beef lightly in flour, shaking off excess.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef in batches until well browned on all sides. Remove beef and set aside.",
+      "Add butter to the pot. Reduce heat to medium. Add onions, carrots, and celery. Sauté for 8-10 minutes until softened and lightly browned.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer. Cook until wine reduces by half, about 5 minutes.",
+      "Stir in beef broth, thyme, rosemary, and bay leaves. Return seared beef to the pot. Bring to a gentle simmer.",
+      "Cover the pot. Transfer to a preheated oven at 160°C. Braise for 2 hours.",
+      "Remove pot from oven. Add potato chunks. Stir gently. Return to oven. Continue braising for another 45-60 minutes, or until beef and potatoes are fork-tender.",
+      "Remove pot from oven. Discard thyme, rosemary, and bay leaves. Season with additional salt and pepper if needed.",
+      "Let the stew rest for 10 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "This dish can be prepared a day in advance. Flavors deepen overnight.",
+      "Skim any excess fat from the surface before reheating."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Mirepoix"
+    ]
+  },
+  {
+    "recipe_name": "Thai Basil Minced Chicken (Pad Krapow Gai)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251031_165248_655c9712.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-31T16:52:49.197268000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "minced chicken cuisine",
+    "visual_description": "A single serving of Thai Basil Minced Chicken (Pad Krapow Gai) is presented on a clean white porcelain dinner plate. The savory minced chicken, stir-fried with vibrant green holy basil, sliced red chilies, and aromatic garlic, forms a rustic mound on one side of a bed of fluffy white jasmine rice. The chicken exhibits a rich brown hue with flecks of green basil and red chili, showcasing a slightly glossy texture from the sauce. A perfectly fried sunny-side up egg with crisp, lacy edges and a bright orange-yellow, runny yolk rests atop the chicken. The plate maintains moderate negative space, allowing each component to breathe. Garnishes include a few fresh basil leaves and a thinly sliced red chili. The setting is a modern bistro: a simple wooden table, a folded cotton napkin beside the plate, and traditional Thai flatware (a fork and spoon) positioned for dining. A small ceramic bowl of Prik Nam Pla (chili fish sauce) sits nearby. Natural, even lighting highlights the dish's textures and colors against a soft, unobtrusive restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with a side of jasmine rice.",
+      "Traditionally topped with a fried egg (kai dao).",
+      "Offer Prik Nam Pla (fish sauce with sliced chilies and lime juice) as a condiment for extra spice."
+    ],
+    "hero_ingredient": "Minced Chicken",
+    "ingredients": [
+      {
+        "name": "Minced chicken",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Red bird's eye chilies, sliced",
+        "quantity": "4-6 (to taste)"
+      },
+      {
+        "name": "Holy basil leaves",
+        "quantity": "2 cups (packed)"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Jasmine rice, cooked",
+        "quantity": "for 4 servings"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4 large"
+      }
+    ],
+    "instructions": [
+      "Prepare sauce: Combine fish sauce, oyster sauce, dark soy sauce, and sugar in a small bowl. Stir until sugar dissolves.",
+      "Heat vegetable oil in a wok or large skillet over high heat until shimmering.",
+      "Add minced garlic and sliced chilies. Stir-fry for 30 seconds until fragrant.",
+      "Add minced chicken to the wok. Break up chicken with a spatula. Stir-fry until chicken is cooked through and lightly browned, approximately 5-7 minutes. Ensure internal temperature reaches 75°C.",
+      "Pour the prepared sauce over the chicken. Stir to coat evenly. Cook for 1 minute.",
+      "Add holy basil leaves. Stir quickly until basil wilts, about 30 seconds. Do not overcook basil.",
+      "Remove from heat immediately.",
+      "In a separate pan, fry the eggs sunny-side up until edges are crispy and yolk is still runny.",
+      "Serve Thai Basil Minced Chicken immediately over hot jasmine rice. Top each serving with a fried egg."
+    ],
+    "notes": [
+      "For authentic flavor, use holy basil (krapow). If unavailable, Thai basil can be substituted, but the flavor profile will be slightly different.",
+      "Adjust chili quantity to desired spice level."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Wok Hei)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.56,
+      "calories": 614,
+      "cholesterol_mg": 287,
+      "dietary_fiber_g": 1.32,
+      "protein_g": 38.78,
+      "saturated_fat_g": 5.45,
+      "sodium_mg": 1137,
+      "total_carbs_g": 61.89,
+      "total_fat_g": 22.03,
+      "total_sugars_g": 2.85,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.37,
+      "calories": 144,
+      "cholesterol_mg": 67,
+      "dietary_fiber_g": 0.31,
+      "protein_g": 9.1,
+      "saturated_fat_g": 1.28,
+      "sodium_mg": 267,
+      "total_carbs_g": 14.52,
+      "total_fat_g": 5.17,
+      "total_sugars_g": 0.67,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 96,
+      "dietary_fiber": 5,
+      "protein": 78,
+      "saturated_fat": 27,
+      "sodium": 49,
+      "total_carbs": 23,
+      "total_fat": 28
+    },
+    "serving_size_g": 426.25,
+    "total_recipe_weight_g": 1705
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251031_164741_c8a3d5e2.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2025-10-31T16:47:42.396857000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Serve the risotto on a flat white porcelain dinner plate. The consistency is fluid and spreads naturally across the plate, appearing free-flowing rather than molded. The rice grains are distinct, coated in a glossy, creamy sauce. Large 3cm chunks of golden-brown seared chicken thighs are distributed throughout the rice. Sliced cremini and shiitake mushrooms show deep caramelization and earthy brown tones. The dish features a pale golden hue. Finely minced flat-leaf parsley provides a vibrant green contrast. A light dusting of finely grated Parmesan cheese covers the surface. The arrangement is organic. Beside the plate sits a heavy silver spoon and a folded white cotton napkin on a light oak table. Natural side lighting highlights the creamy texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while the consistency remains fluid",
+      "Accompany with a crisp dry white wine such as Pinot Grigio",
+      "Provide extra grated Parmesan at the table"
+    ],
+    "hero_ingredient": "Mixed Mushrooms",
+    "ingredients": [
+      {
+        "name": "boneless skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "mixed mushrooms (cremini and shiitake)",
+        "quantity": "300g"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "fresh flat-leaf parsley",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks.",
+      "Dice onion into 5mm pieces.",
+      "Mince garlic cloves.",
+      "Slice mushrooms into 5mm thick pieces.",
+      "Heat 20ml olive oil in a wide pan over medium-high heat.",
+      "Sear chicken chunks until browned and internal temperature reaches 75°C.",
+      "Remove chicken from pan and set aside.",
+      "Add mushrooms to the same pan. Sauté until moisture evaporates and edges brown.",
+      "Remove mushrooms and set aside.",
+      "Melt 20g butter in the pan. Add onion and garlic.",
+      "Cook until softened but not browned.",
+      "Add rice. Stir 2 minutes to toast the grains until edges are translucent.",
+      "Pour in white wine. Stir until liquid is fully absorbed.",
+      "Add 200ml warm stock. Stir continuously until liquid is absorbed.",
+      "Repeat stock additions one ladle at a time, stirring constantly, until rice is tender but firm.",
+      "Return chicken and mushrooms to the pan.",
+      "Remove from heat.",
+      "Vigorously stir in remaining 30g butter and Parmesan cheese to create a creamy emulsion.",
+      "Season with salt and pepper. Fold in chopped parsley."
+    ],
+    "notes": [
+      "Keep the chicken stock at a low simmer in a separate pot to maintain cooking temperature.",
+      "Stirring constantly is essential to release rice starches for a creamy texture.",
+      "Ensure chicken reaches the safety temperature of 75°C during the initial searing phase."
+    ],
+    "traditional_techniques": [
+      "tostatura",
+      "mantecatura",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 875,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 52,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 1450,
+      "total_carbs_g": 91,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 203,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 12.06,
+      "saturated_fat_g": 3.06,
+      "sodium_mg": 336.2,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 7.77,
+      "total_sugars_g": 0.65,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 9,
+      "protein": 104,
+      "saturated_fat": 66,
+      "sodium": 63,
+      "total_carbs": 33,
+      "total_fat": 43
+    },
+    "serving_size_g": 431,
+    "total_recipe_weight_g": 1725
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs with Root Vegetable Puree",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251031_163028_1add1680.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 19,
+    "timestamp": "2025-10-31T16:30:28.610537000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of braised beef short ribs is elegantly presented on a clean white porcelain dinner plate. Two thick, dark brown braised beef short rib chunks, fork-tender and glistening with rich sauce, are positioned centrally. They rest atop a creamy, pale yellow root vegetable puree, artfully swirled on the plate. The puree provides a smooth textural contrast. A dark, glossy red wine reduction sauce is generously spooned over the beef, creating an appealing sheen. A sprinkle of fresh, vibrant green chopped parsley adds a pop of color and freshness. The plate maintains moderate negative space. The setting is a modern bistro: a simple wooden table, a folded cotton napkin beside the plate, and a hint of a restaurant background. Lighting is natural and even.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "Rustic European",
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Beef Short Ribs (bone-in)",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onions (diced)",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots (diced)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery Stalks (diced)",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic (minced)",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Potatoes (peeled, cubed)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Parsnips (peeled, cubed)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Heavy Cream (warm)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "White Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Season short ribs generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat.",
+      "Sear short ribs on all sides until deeply browned. Remove ribs and set aside.",
+      "Add diced onions, carrots, and celery to the Dutch oven. Sauté until softened, about 8-10 minutes.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Deglaze with red wine, scraping up any browned bits. Bring to a simmer and cook until reduced by half.",
+      "Return short ribs to the Dutch oven. Add beef broth, thyme, rosemary, and bay leaves.",
+      "Bring to a simmer. Cover the Dutch oven tightly.",
+      "Transfer to the preheated oven. Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "While ribs braise, prepare the puree. Place cubed potatoes and parsnips in a large pot. Cover with cold water. Add a pinch of salt.",
+      "Bring to a boil. Cook until very tender, about 15-20 minutes.",
+      "Drain vegetables thoroughly. Return to the hot pot.",
+      "Add butter and warm heavy cream. Mash until smooth and creamy. Season with salt and white pepper. Keep warm.",
+      "Once ribs are tender, carefully remove them from the Dutch oven. Set aside.",
+      "Strain the braising liquid through a fine-mesh sieve into a saucepan. Discard solids.",
+      "Skim excess fat from the liquid.",
+      "Bring the strained liquid to a simmer. Reduce until it thickens slightly into a sauce. Adjust seasoning.",
+      "To serve, place a generous portion of root vegetable puree on each plate.",
+      "Top with one or two braised short rib pieces.",
+      "Spoon reduced braising sauce over the ribs and puree.",
+      "Garnish with fresh chopped parsley or a small sprig of thyme."
+    ],
+    "notes": [
+      "Braising liquid can be made ahead and refrigerated. Fat will solidify for easy removal."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1352,
+      "cholesterol_mg": 327,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 56.8,
+      "saturated_fat_g": 44.6,
+      "sodium_mg": 847,
+      "total_carbs_g": 51,
+      "total_fat_g": 101.9,
+      "total_sugars_g": 14.6,
+      "trans_fat_g": 4.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 166,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 104,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 108.8,
+      "dietary_fiber": 30.4,
+      "protein": 113.7,
+      "saturated_fat": 223,
+      "sodium": 36.8,
+      "total_carbs": 18.5,
+      "total_fat": 130.6
+    },
+    "serving_size_g": 812.5,
+    "total_recipe_weight_g": 3250
+  },
+  {
+    "recipe_name": "Asian Stir-fried Noodles with Beef and Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251031_154756_df721615.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 19,
+    "timestamp": "2025-10-31T15:47:57.301380000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken",
+      "tomato",
+      "pasta",
+      "onion",
+      "corn",
+      "bean",
+      "swiss chard"
+    ],
+    "complexity": "standard",
+    "special_requests": "ASIAN cuisine",
+    "visual_description": "The dish is presented in a deep, clean white ceramic bowl, showcasing a vibrant medley of colors and textures. A generous portion of springy Asian wheat noodles forms the base. Tender, thinly sliced beef and robust chunks of chicken are distributed throughout, exhibiting a rich, dark brown sear. Crisp-tender green beans, bright yellow corn kernels, translucent onion strips, and vibrant green Swiss chard are interspersed, creating visual interest. Halved red cherry tomatoes add pops of fresh color. The entire dish is coated in a glossy, savory dark brown sauce, reflecting the wok's heat. It is garnished with thinly sliced fresh green scallions and a sprinkle of toasted white sesame seeds. A pair of dark wooden chopsticks rests beside the bowl on a simple wooden table, with a crisp white cotton napkin. Natural, even lighting highlights the dish's freshness and warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "East Asian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with chopsticks",
+      "Often served as a communal dish, but individual portions are common in restaurants"
+    ],
+    "hero_ingredient": "Beef and Chicken",
+    "ingredients": [
+      {
+        "name": "Beef flank steak",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Asian wheat noodles",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Sweet corn kernels",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Scallions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Sesame seeds",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Prepare beef and chicken. Slice beef thinly against the grain. Cut chicken into bite-sized chunks.",
+      "Marinate meat. In separate bowls, toss beef and chicken with 15 ml soy sauce and 7.5 g cornstarch each. Set aside for 15 minutes.",
+      "Prepare vegetables. Mince garlic. Grate ginger. Slice onion into thin strips. Roughly chop Swiss chard leaves, stems separated and cut into 2 cm pieces. Halve cherry tomatoes. Trim green beans.",
+      "Cook noodles. Boil Asian wheat noodles according to package directions. Drain. Rinse with cold water to prevent sticking. Toss with a drizzle of sesame oil.",
+      "Stir-fry beef. Heat 15 ml vegetable oil in a large wok or skillet over high heat. Add beef. Stir-fry until browned and cooked through. Remove beef. Internal temperature must reach 75°C (167°F).",
+      "Stir-fry chicken. Add remaining 15 ml vegetable oil to the wok. Add chicken. Stir-fry until cooked through. Remove chicken. Internal temperature must reach 75°C (167°F).",
+      "Sauté aromatics. Add minced garlic and grated ginger to the wok. Stir-fry for 30 seconds until fragrant.",
+      "Cook vegetables. Add onion, Swiss chard stems, and green beans. Stir-fry for 2-3 minutes until crisp-tender.",
+      "Add remaining vegetables. Add Swiss chard leaves, corn, and cherry tomatoes. Stir-fry for 1 minute until chard wilts slightly.",
+      "Make sauce. In a small bowl, combine remaining 30 ml soy sauce, oyster sauce, rice vinegar, and chili flakes (if using).",
+      "Combine ingredients. Return beef and chicken to the wok. Pour in sauce. Toss well to coat.",
+      "Add noodles. Add cooked noodles to the wok. Toss gently to combine all ingredients and heat through.",
+      "Serve. Garnish with thinly sliced scallions and toasted sesame seeds."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For best results, cook meat and vegetables in batches to avoid overcrowding the wok and ensure proper searing."
+    ],
+    "traditional_techniques": [
+      "Stir-frying",
+      "Velvetizing meat"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.71,
+      "calories": 629,
+      "cholesterol_mg": 147,
+      "dietary_fiber_g": 6.17,
+      "protein_g": 55.53,
+      "saturated_fat_g": 5.39,
+      "sodium_mg": 1640,
+      "total_carbs_g": 53.38,
+      "total_fat_g": 23.07,
+      "total_sugars_g": 9.98,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.31,
+      "calories": 115,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 1.13,
+      "protein_g": 10.18,
+      "saturated_fat_g": 0.99,
+      "sodium_mg": 301,
+      "total_carbs_g": 9.79,
+      "total_fat_g": 4.23,
+      "total_sugars_g": 1.83,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.1,
+      "dietary_fiber": 22,
+      "protein": 111.1,
+      "saturated_fat": 27,
+      "sodium": 71.3,
+      "total_carbs": 19.4,
+      "total_fat": 29.6
+    },
+    "serving_size_g": 545.25,
+    "total_recipe_weight_g": 2181
+  }
+]

@@ -1,0 +1,665 @@
+[
+  {
+    "recipe_name": "Classic Cherry Upside-Down Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_cherry_upside-down_cake_20250625_083018_4e4b1737.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:30:19.317819000Z",
+    "selected_ingredients": [
+      "cherry"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous slice of Cherry Upside-Down Cake rests on an everyday ceramic plate. The cake shows a golden-brown, tender crumb on the bottom. The top is covered with a glossy, rich caramelized layer featuring whole and halved dark red cooked cherries, their natural shapes visible. Some of the warm, amber caramel drips slightly down the sides of the cherries. The cake is moist and appears freshly baked. The plate is positioned casually on a well-used wooden dining table, suggesting a family kitchen setting. A simple, casually placed cloth napkin is nearby. Warm, cozy lighting from kitchen fixtures illuminates the scene, creating a lived-in, comfortable atmosphere. A portion of the whole cake, resting on a simple cake stand, is visible in the background, reinforcing the homely feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Classic",
+    "hero_ingredient": "Cherry",
+    "ingredients": [
+      {
+        "name": "Fresh cherries",
+        "quantity": "300 g, pitted"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "115 g, melted"
+      },
+      {
+        "name": "Light brown sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "for greasing pan"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease a 20 cm round cake pan with butter.",
+      "Pour 50 g of melted butter into the prepared pan. Sprinkle brown sugar evenly over the butter.",
+      "Arrange pitted cherries in a single layer over the brown sugar. Set aside.",
+      "In a medium bowl, whisk together flour, granulated sugar, baking powder, and salt.",
+      "In a separate bowl, whisk the egg, milk, remaining 65 g melted butter, and vanilla extract.",
+      "Pour the wet ingredients into the dry ingredients. Mix until just combined. Do not overmix.",
+      "Carefully spoon the cake batter over the cherries in the pan. Spread evenly.",
+      "Bake for 35-40 minutes, or until a toothpick inserted into the center comes out clean.",
+      "Let the cake cool in the pan for 10 minutes on a wire rack.",
+      "Place a serving plate upside down over the cake pan. Invert the cake onto the plate. Remove the pan.",
+      "Serve warm or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 49.4,
+      "calories": 634.6,
+      "cholesterol_mg": 115.1,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 7.5,
+      "saturated_fat_g": 16.5,
+      "sodium_mg": 367.8,
+      "total_carbs_g": 92.3,
+      "total_fat_g": 27.2,
+      "total_sugars_g": 61,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 20.7,
+      "calories": 265.7,
+      "cholesterol_mg": 48.2,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 3.1,
+      "saturated_fat_g": 6.9,
+      "sodium_mg": 153.9,
+      "total_carbs_g": 38.6,
+      "total_fat_g": 11.4,
+      "total_sugars_g": 25.5,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.4,
+      "dietary_fiber": 9.3,
+      "protein": 15,
+      "saturated_fat": 82.3,
+      "sodium": 16,
+      "total_carbs": 33.6,
+      "total_fat": 34.9
+    },
+    "serving_size_g": 238.9,
+    "total_recipe_weight_g": 955.6
+  },
+  {
+    "recipe_name": "Chicken and Ginger Scallion Fried Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_ginger_scallion_fried_rice_20250625_083006_87c05278.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:30:07.353077000Z",
+    "selected_ingredients": [
+      "green onion",
+      "rice",
+      "oil",
+      "soy sauce",
+      "ginger"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken and Ginger Scallion Fried Rice is mounded neatly in the center of a clean, round white porcelain plate. The rice is golden-brown, showing distinct grains, with some lightly crisped edges from frying. Diced chicken pieces are interspersed throughout, appearing fully cooked with a slight golden sear. Vibrant green peas and small, bright orange diced carrots add pops of color. Specks of fresh, thinly sliced green onion are visible. The dish is garnished with a sprinkle of additional fresh green onion slices and a subtle sheen from sesame oil. The plating is clean and balanced, with moderate negative space around the central mound. The setting is a modern bistro: a simple wooden table, a folded cotton napkin beside the plate, and a pair of dark chopsticks resting next to a small, empty white ceramic rice bowl. Natural, even lighting highlights the textures and colors, creating an inviting, authentic Chinese dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with chopsticks and individual ceramic rice bowls.",
+      "Offer a side of chili oil or a light clear broth."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Cooked long-grain rice (day-old, chilled)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken breast or thigh, diced into 1.5 cm cubes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large green onions, white and green parts separated, sliced",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh ginger, minced",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable or peanut oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Large eggs, lightly beaten",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Carrot, peeled and diced into 0.5 cm cubes",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat diced chicken dry. Season with a pinch of salt and 15 ml soy sauce.",
+      "Heat 15 ml vegetable oil in a large wok or skillet over high heat until shimmering.",
+      "Add chicken. Stir-fry for 3-4 minutes until cooked through and lightly golden. Remove chicken and set aside.",
+      "Add another 10 ml oil to the wok. Pour in beaten eggs. Scramble until just set. Break into small pieces. Remove eggs and set aside.",
+      "Add remaining 20 ml oil to the wok. Add minced ginger, minced garlic, and white parts of green onions. Stir-fry for 30 seconds until fragrant.",
+      "Add diced carrots. Stir-fry for 2 minutes until slightly tender-crisp.",
+      "Add the cold day-old rice to the wok. Break up any clumps with a spatula. Press rice against the hot surface to fry. Cook for 3-5 minutes, stirring occasionally, until rice is heated through and slightly crispy.",
+      "Return cooked chicken and scrambled eggs to the wok. Add frozen peas.",
+      "Pour remaining 45 ml soy sauce over the rice. Sprinkle with white pepper. Stir-fry for 1-2 minutes to combine all ingredients and evenly distribute seasonings.",
+      "Add the green parts of the green onions. Stir-fry for 30 seconds.",
+      "Remove from heat. Drizzle with toasted sesame oil. Toss to combine.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Using day-old, chilled rice is crucial for the best fried rice texture, preventing it from becoming mushy.",
+      "Cook at high heat to achieve a slightly smoky 'wok hei' flavor and prevent steaming."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Wok Hei)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.09,
+      "calories": 486.5,
+      "cholesterol_mg": 178.3,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 40.7,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 1249.2,
+      "total_carbs_g": 37.5,
+      "total_fat_g": 18.5,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.03,
+      "calories": 151.8,
+      "cholesterol_mg": 55.6,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 12.7,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 389.8,
+      "total_carbs_g": 11.7,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.4,
+      "dietary_fiber": 10.2,
+      "protein": 81.4,
+      "saturated_fat": 19.4,
+      "sodium": 54.3,
+      "total_carbs": 13.7,
+      "total_fat": 23.7
+    },
+    "serving_size_g": 320.5,
+    "total_recipe_weight_g": 1282
+  },
+  {
+    "recipe_name": "Filipino Chicken Adobo with Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_filipino_chicken_adobo_with_potatoes_20250625_083000_e3db57c3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:30:00.774998000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Filipino Chicken Adobo with Potatoes is presented on a clean, round white porcelain plate. The dish features several whole, tender braised chicken thighs, rich brown from the adobo sauce. Alongside are thick, rustic chunks of fork-tender potatoes, also imbued with the glossy, dark amber sauce. The sauce, thickened slightly, coats the chicken and potatoes, reflecting the light. A few whole black peppercorns are visible, adding texture. The plate is set on a simple wooden table, with a small mound of fluffy white steamed rice in a traditional rice bowl and a fresh green cotton napkin beside it. Natural, even lighting highlights the deep, savory colors of the dish. A small bowl of vibrant green pickled papaya (atchara) is placed to the side, providing a contrasting color and cultural element. The background is a subtly blurred modern bistro setting, suggesting a casual yet refined dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Filipino",
+    "cultural_origin": "Filipino",
+    "cultural_serving_suggestions": [
+      "Serve hot with steamed white rice.",
+      "Traditionally accompanied by a side of pickled green papaya (atchara) to balance the richness.",
+      "Often eaten family-style, with individual portions of rice."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Cane vinegar",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Water or chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden brown on all sides. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add sliced white onion to the pot. Sauté until softened, about 3 minutes.",
+      "Add minced garlic. Cook until fragrant, about 1 minute.",
+      "Pour in soy sauce, cane vinegar, water or chicken broth. Add bay leaves and black peppercorns.",
+      "Return seared chicken to the pot. Bring liquid to a simmer.",
+      "Cover pot. Reduce heat to low. Simmer for 20 minutes.",
+      "Add peeled and quartered potatoes to the pot. Stir gently.",
+      "Continue to simmer, covered, for another 20-25 minutes. Cook until chicken is tender and potatoes are fork-tender. Internal temperature of chicken should reach 75°C (167°F).",
+      "Remove bay leaves. Taste and adjust seasoning if needed. Serve hot."
+    ],
+    "notes": [
+      "Do not stir the adobo mixture immediately after adding the vinegar; allow it to simmer for a few minutes before stirring to let the sourness mellow.",
+      "The sauce should be savory with a distinct tang from the vinegar, balanced by the soy sauce."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Simmering",
+      "Balancing sour and savory flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 531.8,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 55.1,
+      "saturated_fat_g": 5,
+      "sodium_mg": 1848,
+      "total_carbs_g": 29.4,
+      "total_fat_g": 23.6,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110.1,
+      "cholesterol_mg": 38.9,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.4,
+      "saturated_fat_g": 1,
+      "sodium_mg": 382.4,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 11,
+      "protein": 110,
+      "saturated_fat": 25,
+      "sodium": 80,
+      "total_carbs": 11,
+      "total_fat": 30
+    },
+    "serving_size_g": 483,
+    "total_recipe_weight_g": 1932
+  },
+  {
+    "recipe_name": "Creamy Sausage and Ham Gratin with Feta and Herb Yogurt",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_sausage_and_ham_gratin_with_feta_and_herb_yogurt_20250625_082944_e5accb23.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:29:44.462376000Z",
+    "selected_ingredients": [
+      "sausage",
+      "yogurt",
+      "cheese",
+      "cream cheese",
+      "cottage cheese",
+      "egg",
+      "egg white",
+      "feta cheese",
+      "smoked turkey",
+      "smoked ham"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of the Creamy Sausage and Ham Gratin is presented in a clean, white oval gratin dish, or as a well-defined scoop on a simple round white porcelain dinner plate. The gratin boasts a rich, bubbly, golden-brown crust, indicating a perfectly baked, cheesy top layer. Visible through the melted cheese are crumbles of browned sausage and small, pink cubes of smoked ham, embedded within a creamy, pale yellow custard base. A distinct dollop of bright white, thick herb yogurt sits artfully on one side, lightly dusted with finely chopped fresh green chives and parsley. The overall composition is inviting and hearty, with a balance of warm golden tones and fresh green accents, offering a satisfying texture contrast. The dish is set on a light wooden table surface, accompanied by a folded light gray cotton napkin and simple silver flatware, under even, natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Pork sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Smoked ham",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cream cheese, softened",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Large egg white",
+        "quantity": "1"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Grated Gruyère or Cheddar cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Feta cheese, crumbled",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh chives, chopped",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Plain full-fat yogurt",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Lightly grease a 2.5-liter baking dish.",
+      "Remove sausage from casings. Crumble sausage into a large skillet. Cook over medium-high heat until browned. Drain excess fat. Transfer sausage to a large bowl.",
+      "Dice smoked ham into small cubes. Add to the skillet. Cook until lightly browned. Transfer ham to the bowl with sausage.",
+      "Add olive oil to the skillet. Add diced onion. Sauté until softened, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant. Add to the meat mixture.",
+      "In a separate bowl, whisk together softened cream cheese, cottage cheese, 2 large eggs, 1 egg white, and milk until smooth. Stir in grated Gruyère or Cheddar cheese, salt, and black pepper.",
+      "Pour the cheese and egg mixture over the meat and onion in the large bowl. Stir to combine thoroughly.",
+      "Pour the entire mixture into the prepared baking dish. Sprinkle crumbled feta cheese evenly over the top.",
+      "Bake for 30-35 minutes, or until the gratin is set, bubbly, and golden brown on top.",
+      "While the gratin bakes, combine plain yogurt with half of the chopped fresh parsley and chives. Season with a pinch of salt.",
+      "Remove gratin from oven. Let rest for 5 minutes before serving.",
+      "Serve individual portions of the gratin with a dollop of the herb yogurt on top or beside. Garnish with remaining fresh parsley and chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 878.4,
+      "cholesterol_mg": 307.59,
+      "dietary_fiber_g": 0.76,
+      "protein_g": 47.96,
+      "saturated_fat_g": 31.65,
+      "sodium_mg": 1371.44,
+      "total_carbs_g": 12.68,
+      "total_fat_g": 69.96,
+      "total_sugars_g": 9.65,
+      "trans_fat_g": 1.39
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 202.11,
+      "cholesterol_mg": 70.77,
+      "dietary_fiber_g": 0.18,
+      "protein_g": 11.04,
+      "saturated_fat_g": 7.28,
+      "sodium_mg": 315.56,
+      "total_carbs_g": 2.92,
+      "total_fat_g": 16.1,
+      "total_sugars_g": 2.22,
+      "trans_fat_g": 0.32
+    },
+    "daily_value_percentages": {
+      "cholesterol": 103,
+      "dietary_fiber": 3,
+      "protein": 96,
+      "saturated_fat": 158,
+      "sodium": 60,
+      "total_carbs": 5,
+      "total_fat": 90
+    },
+    "serving_size_g": 434.6,
+    "total_recipe_weight_g": 1738.4
+  },
+  {
+    "recipe_name": "Chicken Tikka Masala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_tikka_masala_20250625_082940_f9ca059d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:29:41.352595000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features large, charred chunks of succulent chicken submerged in a glossy, vibrant orange-red tomato gravy. The sauce has a thick, velvety texture with visible flecks of ground spices. The chicken chunks show dark, caramelized edges from the high-heat roasting. Plating is in a clean, white porcelain bowl set on a dark wooden table. A single portion is shown with a light swirl of heavy cream on top and a scattering of bright green chopped cilantro. To the side sits a stack of warm, charred garlic naan bread and a small bowl of steamed long-grain basmati rice. Lighting is natural and even, highlighting the rich colors and creamy consistency of the sauce while maintaining professional negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Northern Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm garlic naan or buttered roti",
+      "Accompany with steamed basmati rice",
+      "Side of mint-yogurt raita and kachumber salad",
+      "Serve in a traditional hammered copper karahi"
+    ],
+    "hero_ingredient": "Marinated chicken chunks",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless/skinless, 4cm chunks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Kashmiri chili powder",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Combine yogurt, 1 tbsp ginger-garlic paste, 1 tsp garam masala, 1/2 tsp turmeric, and 1 tsp chili powder.",
+      "Toss chicken chunks in marinade. Cover and refrigerate for 1 hour.",
+      "Preheat oven to 220°C. Place chicken on a wire rack over a baking sheet.",
+      "Roast chicken 15 minutes. Ensure internal temperature reaches 75°C. Set aside.",
+      "Heat oil in a large pan over medium heat. Sauté onions until golden brown.",
+      "Add remaining ginger-garlic paste. Cook 1 minute until fragrant.",
+      "Stir in remaining garam masala, turmeric, and chili powder. Toast for 30 seconds.",
+      "Pour in crushed tomatoes. Simmer 10 minutes until sauce thickens and oil separates.",
+      "Stir in butter and heavy cream. Season with salt.",
+      "Add roasted chicken chunks to the sauce. Simmer 2 minutes to combine flavors.",
+      "Garnish with fresh cilantro."
+    ],
+    "notes": [
+      "Kashmiri chili powder provides color without excessive heat.",
+      "Ensure the chicken is well-charred for authentic smoky flavor.",
+      "Let the sauce simmer until the oil separates to ensure spices are fully cooked."
+    ],
+    "traditional_techniques": [
+      "Yogurt marination",
+      "High-heat roasting",
+      "Spice tempering",
+      "Slow-simmered gravy"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 802,
+      "cholesterol_mg": 262.8,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 49.1,
+      "saturated_fat_g": 24.5,
+      "sodium_mg": 796.3,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 60,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0.58
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174.4,
+      "cholesterol_mg": 57.1,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.7,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 173.1,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 13,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 87.6,
+      "dietary_fiber": 12.5,
+      "protein": 98.2,
+      "saturated_fat": 122.5,
+      "sodium": 34.6,
+      "total_carbs": 6,
+      "total_fat": 76.9
+    },
+    "serving_size_g": 460,
+    "total_recipe_weight_g": 1839
+  }
+]

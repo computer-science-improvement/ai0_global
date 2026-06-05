@@ -1,0 +1,676 @@
+[
+  {
+    "recipe_name": "Murgh Aloo Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_murgh_aloo_curry_20250626_095357_a31267ac.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:53:57.514137000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "potato",
+      "onion",
+      "beef",
+      "chicken stock",
+      "rice",
+      "mushroom",
+      "cayenne pepper",
+      "carrot",
+      "garlic",
+      "tomato",
+      "coriander",
+      "ginger",
+      "oil",
+      "corn",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Murgh Aloo Curry served in a deep white porcelain bowl on a dark wood table. The dish features large, whole chunks of succulent chicken and 3cm cubes of softened potato coated in a rich, glossy reddish-brown gravy. Visible fragments of sautéed onion and tomato enrich the sauce texture. A vibrant garnish of roughly chopped fresh coriander is scattered across the top. Beside the bowl, a neat mound of fluffy, long-grain white Basmati rice is presented. The scene is lit with soft natural light, highlighting the steam and the oily sheen of the curry. A simple cotton napkin and a brass spoon complete the authentic casual dining setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "North Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of plain yogurt or raita",
+      "Accompany with lime wedges for acidity",
+      "Traditional Indian brass or copper serving spoons"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skinless",
+        "quantity": "800g"
+      },
+      {
+        "name": "Potatoes, peeled and 3cm cubed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onions, finely diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Ginger, minced",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Green chilies, slit lengthwise",
+        "quantity": "2"
+      },
+      {
+        "name": "Tomatoes, diced",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh coriander, chopped",
+        "quantity": "1 bunch"
+      }
+    ],
+    "instructions": [
+      "Wash rice until water runs clear. Soak for 20 minutes.",
+      "Heat oil in a heavy-based pot over medium heat.",
+      "Fry onions for 10 minutes until dark golden brown.",
+      "Add ginger, garlic, and chilies. Sauté for 2 minutes.",
+      "Add tomatoes and cayenne pepper. Cook until tomatoes soften and oil separates.",
+      "Add chicken chunks to the pot. Sear for 6 minutes.",
+      "Pour in chicken stock and add potato cubes.",
+      "Bring to a boil, then reduce heat to low.",
+      "Simmer covered for 25 minutes until potatoes are tender.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Boil rice in salted water for 10 minutes. Drain well.",
+      "Stir half the coriander into the curry.",
+      "Serve curry in a bowl with rice on the side. Garnish with remaining coriander."
+    ],
+    "notes": [
+      "The bhuna process of browning onions is essential for the deep gravy color.",
+      "Do not over-stir once potatoes are soft to prevent them from breaking."
+    ],
+    "traditional_techniques": [
+      "bhuna",
+      "tempering spices",
+      "slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 663.9,
+      "cholesterol_mg": 126,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 36.73,
+      "saturated_fat_g": 3.33,
+      "sodium_mg": 638.5,
+      "total_carbs_g": 85.7,
+      "total_fat_g": 19.35,
+      "total_sugars_g": 5.89,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110.65,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 0.88,
+      "protein_g": 6.12,
+      "saturated_fat_g": 0.56,
+      "sodium_mg": 106.42,
+      "total_carbs_g": 14.28,
+      "total_fat_g": 3.23,
+      "total_sugars_g": 0.98,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 18.9,
+      "protein": 73.5,
+      "saturated_fat": 16.7,
+      "sodium": 27.8,
+      "total_carbs": 31.2,
+      "total_fat": 24.8
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2400
+  },
+  {
+    "recipe_name": "Chicken Zrazy with Mushroom & Ricotta Filling",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_zrazy_with_mushroom_%26_ricotta_filling_20250626_095345_5e2c49f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:53:45.505257000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread",
+      "ricotta",
+      "macaroni",
+      "onion",
+      "mushroom",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "russ cuisine",
+    "visual_description": "A single portion of Chicken Zrazy is presented on a round, clean white porcelain dinner plate, set on a simple wooden table surface. Two golden-brown, pan-seared chicken zrazy, cylindrical and plump, are positioned slightly off-center. Their exterior is crisp with visible breadcrumb texture. Beside them, a mound of fluffy potato and macaroni kasha is neatly arranged, showing tender diced potatoes and cooked macaroni, lightly coated in butter. A generous dollop of white sour cream rests atop one zrazy, and fresh, vibrant green dill sprigs are scattered over the zrazy and kasha. A simple cotton napkin is folded neatly beside the plate. The background is softly blurred, hinting at a modern bistro setting with natural, even lighting. The entire plate is visible, showcasing a balanced and appealing composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Mushrooms (e.g., cremini)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Macaroni pasta",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "100 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth or water",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Sour cream (smetana)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Place between two sheets of cling film. Pound thin to 5 mm thickness.",
+      "Finely dice onion and mushrooms. Sauté onion in 1 tablespoon oil until translucent. Add mushrooms. Cook until tender and liquid evaporates.",
+      "Transfer sautéed mushrooms and onions to a bowl. Let cool slightly. Stir in ricotta cheese, 1/2 teaspoon salt, and 1/4 teaspoon pepper. Mix well.",
+      "Lay pounded chicken breasts flat. Place a portion of filling on one end of each chicken breast. Roll tightly into a cylindrical shape. Secure with toothpicks if needed.",
+      "Prepare dredging stations: Place flour on one plate, beaten eggs in a shallow bowl, and breadcrumbs on another plate.",
+      "Dredge each chicken zrazy: First in flour, shaking off excess. Then in egg, allowing excess to drip. Finally, coat thoroughly in breadcrumbs.",
+      "Heat 2 tablespoons oil in a large oven-safe skillet over medium-high heat. Add zrazy. Sear until golden brown on all sides. Do not overcrowd the pan; cook in batches if necessary.",
+      "Pour chicken broth into the skillet. Bring to a simmer. Cover skillet. Transfer to a preheated oven at 180°C (350°F). Bake for 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Meanwhile, prepare potato and macaroni kasha: Peel and dice potatoes into 1.5 cm cubes. Boil potatoes in salted water for 8 minutes. Add macaroni to the same pot. Cook for another 8-10 minutes, or until both are tender. Drain well.",
+      "Return drained potatoes and macaroni to the pot. Add butter. Stir gently until butter melts and coats the kasha. Season with salt and pepper.",
+      "Remove zrazy from oven. Let rest for 5 minutes. Remove toothpicks.",
+      "Finely chop fresh dill. Serve two zrazy per plate alongside a generous portion of potato and macaroni kasha. Garnish zrazy with a dollop of sour cream and a sprinkle of fresh dill."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1014,
+      "cholesterol_mg": 288,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 79.8,
+      "saturated_fat_g": 13.1,
+      "sodium_mg": 447,
+      "total_carbs_g": 82.6,
+      "total_fat_g": 39.5,
+      "total_sugars_g": 9.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 1,
+      "protein_g": 13,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 73,
+      "total_carbs_g": 13.5,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 96.1,
+      "dietary_fiber": 20.9,
+      "protein": 159.7,
+      "saturated_fat": 65.4,
+      "sodium": 19.4,
+      "total_carbs": 30,
+      "total_fat": 50.6
+    },
+    "serving_size_g": 612.5,
+    "total_recipe_weight_g": 2450
+  },
+  {
+    "recipe_name": "Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_20250626_095313_276aad24.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:53:13.431522000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "high protein",
+    "visual_description": "A single portion of rustic chicken cacciatore served in a shallow, cream-colored ceramic bowl with minor surface imperfections. Two whole, bone-in chicken thighs are the centerpiece, their skin appearing dark golden and tender from braising. The chicken is partially submerged in a thick, chunky tomato sauce featuring visible pieces of softened translucent onions and whole black olives. A single fresh rosemary sprig is placed casually on top. The bowl sits on a weathered dark wood kitchen table. Beside the bowl is a thick piece of torn crusty bread. The scene is illuminated by warm, soft overhead kitchen lighting, creating a cozy, authentic Italian home-dining atmosphere. A simple linen napkin and a stainless steel fork are placed to the left of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough bread to soak up the tomato sauce",
+      "Pair with a side of simple polenta or rustic mashed potatoes",
+      "Traditional family-style dining involves placing the skillet in the center of the table"
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Heat olive oil in a large deep skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden brown.",
+      "Flip chicken and sear for 4 minutes. Remove chicken from skillet.",
+      "Add diced onion to the skillet. Sauté for 5 minutes until soft.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes, oregano, and the rosemary sprig.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Simmer on low heat for 30 minutes until chicken reaches 75°C internally.",
+      "Stir in the olives 5 minutes before serving."
+    ],
+    "notes": [
+      "Use bone-in thighs for maximum flavor and protein content",
+      "Ensure the sauce reduces until thick to concentrate the savory tomato profile",
+      "Always check the thickest part of the chicken for a safe internal temperature of 75°C"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1716,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 444.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 53,
+      "sodium": 75,
+      "total_carbs": 7,
+      "total_fat": 54
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1543
+  },
+  {
+    "recipe_name": "Spaghetti Carbonara",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spaghetti_carbonara_20250626_095219_e24e0f78.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:52:19.925961000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Spaghetti Carbonara is artfully twirled into a neat mound on a clean white porcelain plate. The pasta, glistening with a rich, creamy, golden-yellow emulsion, forms the central focus. Scattered generously over the spaghetti are crispy, golden-brown cubes of rendered guanciale, adding textural contrast and deep savory notes. A generous dusting of finely grated Pecorino Romano cheese blankets parts of the dish, creating a delicate white layer. Freshly cracked black pepper provides dark speckles across the creamy surface. The dish is presented on a simple wooden table, with a classic silver fork and spoon placed beside it. Natural, even lighting highlights the pasta's sheen and the guanciale's crisp edges. The overall presentation is refined yet inviting, embodying a modern bistro style with authentic Italian simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and vinegar.",
+      "Enjoy with a glass of dry white wine or sparkling water.",
+      "Traditionally eaten with a fork, using a spoon to assist in twirling the pasta."
+    ],
+    "hero_ingredient": "Guanciale",
+    "ingredients": [
+      {
+        "name": "Spaghetti",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Guanciale",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Whole egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Pecorino Romano cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil.",
+      "Dice guanciale into 1 cm cubes.",
+      "Heat a large pan over medium heat. Add diced guanciale. Cook slowly until crispy and fat is rendered. Remove crispy guanciale. Leave rendered fat in pan.",
+      "Cook spaghetti in boiling water according to package directions until al dente. Reserve 250 ml pasta cooking water before draining.",
+      "While pasta cooks, whisk egg yolks, whole egg, and 80 g grated Pecorino Romano in a bowl. Add half of the freshly ground black pepper.",
+      "Drain spaghetti. Add hot spaghetti directly to the pan with rendered guanciale fat. Toss to coat.",
+      "Immediately add egg mixture to spaghetti. Stir quickly and vigorously.",
+      "Gradually add reserved hot pasta water, 30 ml at a time, while stirring constantly. Continue until a creamy, emulsified sauce forms.",
+      "Add crispy guanciale back to the pasta.",
+      "Serve immediately. Garnish with remaining grated Pecorino Romano and fresh black pepper."
+    ],
+    "traditional_techniques": [
+      "Emulsification",
+      "Rendering guanciale fat"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 778,
+      "cholesterol_mg": 291.2,
+      "dietary_fiber_g": 3.42,
+      "protein_g": 38.21,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 1158.7,
+      "total_carbs_g": 77.11,
+      "total_fat_g": 34.11,
+      "total_sugars_g": 3.04,
+      "trans_fat_g": 0.35
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 235.15,
+      "cholesterol_mg": 88,
+      "dietary_fiber_g": 1.03,
+      "protein_g": 11.55,
+      "saturated_fat_g": 4.11,
+      "sodium_mg": 350.2,
+      "total_carbs_g": 23.31,
+      "total_fat_g": 10.31,
+      "total_sugars_g": 0.92,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97.1,
+      "dietary_fiber": 12.2,
+      "protein": 76.4,
+      "saturated_fat": 68,
+      "sodium": 50.4,
+      "total_carbs": 28,
+      "total_fat": 43.7
+    },
+    "serving_size_g": 330.75,
+    "total_recipe_weight_g": 1323
+  },
+  {
+    "recipe_name": "Tofu and Vegetable Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tofu_and_vegetable_stir-fry_20250626_095154_6024538e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:51:54.733557000Z",
+    "selected_ingredients": [
+      "tofu",
+      "corn",
+      "green pea",
+      "onion",
+      "broccoli",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian, Asian cuisine",
+    "visual_description": "The dish is presented in a clean, white porcelain bowl, slightly deeper than a plate, showcasing a vibrant mix of colors and textures. Golden-brown, pan-fried tofu cubes are nestled among bright green broccoli florets, earthy sliced cremini mushrooms, sunny yellow corn kernels, and vivid green peas. Translucent slivers of onion are visible. Each ingredient is coated in a glossy, savory-umami sauce, appearing well-integrated but distinct. The vegetables retain a crisp-tender texture. The dish is garnished with thinly sliced green onions and a sprinkle of toasted sesame seeds, adding fresh color and aroma. The bowl rests on a simple light wooden table. Beside it, a set of dark chopsticks and a small white rice bowl containing steamed jasmine rice are neatly arranged. Natural, even lighting highlights the dish without harsh shadows. The scene is clean, professional, and inviting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian Stir-fry",
+    "cultural_origin": "East Asian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed jasmine rice.",
+      "Offer chili garlic sauce on the side for added spice."
+    ],
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Extra-firm tofu",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Frozen corn kernels",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Sesame seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "pinch"
+      }
+    ],
+    "instructions": [
+      "Press tofu for 30 minutes. Cut into 2 cm cubes.",
+      "Cut broccoli into small florets. Slice mushrooms thinly. Dice onion.",
+      "Mince garlic. Grate ginger.",
+      "In a small bowl, whisk together soy sauce, rice vinegar, sesame oil, cornstarch, water, and white pepper. Set aside.",
+      "Heat 15 ml vegetable oil in a large wok or skillet over medium-high heat.",
+      "Add tofu cubes. Pan-fry until golden brown and crispy on all sides. Remove tofu from wok. Set aside.",
+      "Add remaining 15 ml vegetable oil to the wok.",
+      "Add diced onion, minced garlic, and grated ginger. Stir-fry for 1 minute until fragrant.",
+      "Add broccoli florets and sliced mushrooms. Stir-fry for 3-4 minutes until vegetables are tender-crisp.",
+      "Add frozen corn and green peas. Stir-fry for 1 minute.",
+      "Return cooked tofu to the wok.",
+      "Stir the prepared sauce mixture. Pour over the tofu and vegetables.",
+      "Cook, stirring constantly, for 1-2 minutes until sauce thickens and coats all ingredients.",
+      "Remove from heat. Garnish with sliced green onions and sesame seeds."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 321.97,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.35,
+      "protein_g": 16.59,
+      "saturated_fat_g": 2.24,
+      "sodium_mg": 937.56,
+      "total_carbs_g": 28.88,
+      "total_fat_g": 15.56,
+      "total_sugars_g": 7.67,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 81.46,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.61,
+      "protein_g": 4.2,
+      "saturated_fat_g": 0.57,
+      "sodium_mg": 237.2,
+      "total_carbs_g": 7.31,
+      "total_fat_g": 3.94,
+      "total_sugars_g": 1.94,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 22.69,
+      "protein": 33.18,
+      "saturated_fat": 11.21,
+      "sodium": 40.76,
+      "total_carbs": 10.5,
+      "total_fat": 19.95
+    },
+    "serving_size_g": 395.25,
+    "total_recipe_weight_g": 1581
+  }
+]

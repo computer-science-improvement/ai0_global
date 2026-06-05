@@ -1,0 +1,518 @@
+[
+  {
+    "recipe_name": "Diabetic-Friendly Cottage Cheese & Berry Parfait",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_diabetic-friendly_cottage_cheese_%26_berry_parfait_20250903_081049_546f3026.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:10:50.354686000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "для диабетика",
+    "visual_description": "A single serving of the Diabetic-Friendly Cottage Cheese & Berry Parfait is presented in a clear, simple glass tumbler on a well-used wooden dining table. The parfait features distinct, natural layers: a creamy, smooth white cottage cheese mixture forms the base, followed by a vibrant layer of whole and slightly crushed mixed berries (strawberries, blueberries, raspberries). Another layer of the cottage cheese mixture sits atop, creating a visually appealing contrast. The top is garnished with a light scattering of golden-brown toasted almond flakes, providing a textural crunch. The berries are plump and retain their natural shapes and colors. The cottage cheese is softly mounded, not perfectly smooth, showing its homemade quality. A small, silver dessert spoon rests casually beside the glass on a simple ceramic plate. Warm, cozy lighting illuminates the scene, suggesting a relaxed family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "cottage cheese",
+    "ingredients": [
+      {
+        "name": "Low-fat cottage cheese",
+        "quantity": "500g"
+      },
+      {
+        "name": "Mixed berries (fresh or frozen, thawed)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Erythritol (or preferred sugar substitute)",
+        "quantity": "60g (adjust to taste)"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Toasted almond flakes",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Drain any excess liquid from the cottage cheese.",
+      "Combine cottage cheese, erythritol, and vanilla extract in a bowl.",
+      "Blend until smooth using an immersion blender or food processor.",
+      "Gently fold half of the mixed berries into the blended cottage cheese mixture.",
+      "Divide the remaining whole berries among 4 clear serving glasses or dessert bowls.",
+      "Spoon the cottage cheese mixture over the berries in each glass.",
+      "Top each parfait with toasted almond flakes.",
+      "Chill for at least 30 minutes before serving."
+    ],
+    "notes": [
+      "Adjust erythritol quantity based on desired sweetness and type of sugar substitute used.",
+      "Fresh berries are recommended for best texture and flavor.",
+      "Ensure cottage cheese is well-drained for a thicker parfait consistency."
+    ]
+  },
+  {
+    "recipe_name": "Lemon Cottage Cheese Mousse with Mixed Berry Coulis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_cottage_cheese_mousse_with_mixed_berry_coulis_20250903_081034_653898fc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:10:35.670772000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "для диабетика",
+    "visual_description": "A single portion of Lemon Cottage Cheese Mousse is presented on a clean white porcelain dessert plate in a clear glass ramekin. The mousse is a pale, creamy yellow, appearing light and airy, perfectly set. A vibrant, deep red mixed berry coulis is generously spooned over the top, cascading down the sides of the mousse. A single, fresh green mint sprig is placed elegantly on the coulis for garnish. The plate features moderate negative space, enhancing the dessert's clean aesthetic. The setting is a modern bistro, with a simple wooden table surface and a white cotton napkin beside the plate. Natural, even lighting highlights the dessert's textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Dessert",
+    "cultural_origin": "Modern",
+    "cultural_serving_suggestions": [
+      "Serve in small, individual portions to align with diabetic dietary recommendations.",
+      "Present with fresh, seasonal berries to enhance natural sweetness and visual appeal.",
+      "Offer unsweetened tea or coffee as an accompaniment."
+    ],
+    "hero_ingredient": "Cottage Cheese",
+    "ingredients": [
+      {
+        "name": "Full-fat cottage cheese",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Granulated sugar substitute (e.g., erythritol blend)",
+        "quantity": "75 g, or to taste"
+      },
+      {
+        "name": "Gelatin powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Mixed berries (fresh or frozen)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "4 sprigs"
+      }
+    ],
+    "instructions": [
+      "In a small bowl, sprinkle gelatin powder over cold water. Let it bloom for 5 minutes.",
+      "Place cottage cheese, 50g sugar substitute, lemon zest, and 30ml lemon juice into a blender. Blend until completely smooth and creamy. Scrape down sides as needed.",
+      "Heat remaining 30ml lemon juice gently in a small saucepan. Add bloomed gelatin. Stir until gelatin is fully dissolved. Do not boil.",
+      "Pour dissolved gelatin mixture into the blended cottage cheese. Blend again briefly to combine.",
+      "In a separate chilled bowl, whip heavy cream until soft peaks form.",
+      "Gently fold whipped cream into the cottage cheese mixture until just combined. Do not overmix.",
+      "Divide the mousse evenly into 4 individual serving glasses or ramekins. Chill for at least 4 hours, or until set.",
+      "For the coulis, combine mixed berries and remaining 25g sugar substitute in a small saucepan. Cook over medium heat for 5-7 minutes, stirring occasionally, until berries soften and release juices.",
+      "Press the berry mixture through a fine-mesh sieve to remove seeds. Chill the coulis.",
+      "To serve, spoon a generous amount of mixed berry coulis over each chilled mousse. Garnish each with a fresh mint sprig."
+    ],
+    "notes": [
+      "Adjust the amount of sugar substitute according to personal preference and the sweetness of the berries.",
+      "Ensure the cottage cheese is blended completely smooth for a refined mousse texture.",
+      "Gelatin must be fully dissolved but not boiled to maintain its setting properties."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 301,
+      "cholesterol_mg": 86,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 14.4,
+      "saturated_fat_g": 14.3,
+      "sodium_mg": 337,
+      "total_carbs_g": 11.8,
+      "total_fat_g": 22.7,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 111,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 5.3,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 124,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28.5,
+      "dietary_fiber": 11.8,
+      "protein": 28.8,
+      "saturated_fat": 71.3,
+      "sodium": 14.7,
+      "total_carbs": 4.3,
+      "total_fat": 29.1
+    },
+    "serving_size_g": 272.5,
+    "total_recipe_weight_g": 1090
+  },
+  {
+    "recipe_name": "Baked Lemon Cottage Cheese Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_lemon_cottage_cheese_pudding_20250903_081004_40d3108f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:10:04.680951000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "для диабетика",
+    "visual_description": "A modest square piece of Baked Lemon Cottage Cheese Pudding sits on a simple, round, off-white ceramic plate. The pudding has a lightly golden, slightly crinkled top and a creamy, pale yellow interior, showing the subtle texture of cottage cheese. A small cluster of vibrant red raspberries is artfully placed beside the pudding. The plate rests on a well-used, light-colored wooden dining table. A simple silver fork lies casually to the right. Warm, soft kitchen lighting illuminates the scene, creating a cozy and inviting atmosphere. A casually folded cloth napkin is visible in the background, adding to the homely feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "cottage cheese",
+    "ingredients": [
+      {
+        "name": "cottage cheese",
+        "quantity": "500 g"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "granulated erythritol",
+        "quantity": "60 g"
+      },
+      {
+        "name": "lemon zest",
+        "quantity": "from 1 medium lemon"
+      },
+      {
+        "name": "fresh lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "fresh raspberries",
+        "quantity": "100 g (for serving)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Lightly grease a 20x20 cm baking dish.",
+      "In a large bowl, combine cottage cheese, eggs, erythritol, lemon zest, lemon juice, vanilla extract, cornstarch, and salt.",
+      "Mix well until smooth. A hand blender can be used for a creamier texture, or a whisk for a slightly coarser texture.",
+      "Pour the mixture into the prepared baking dish.",
+      "Bake for 35-45 minutes. The pudding should be set and lightly golden on top.",
+      "Remove from oven. Let it cool completely in the dish.",
+      "Cut into 4 modest square pieces. Serve chilled, topped with fresh raspberries."
+    ],
+    "notes": [
+      "This recipe uses a sugar substitute and is suitable for a diabetic diet. Adjust sweetener to your preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 157,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 0.1,
+      "protein_g": 16.6,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 483,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 0,
+      "protein_g": 9.3,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 272,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 0,
+      "protein": 33,
+      "saturated_fat": 13,
+      "sodium": 21,
+      "total_carbs": 3,
+      "total_fat": 7
+    },
+    "serving_size_g": 178,
+    "total_recipe_weight_g": 711
+  },
+  {
+    "recipe_name": "Sugar-Free Cottage Cheese Mousse with Mixed Berry Compote",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sugar-free_cottage_cheese_mousse_with_mixed_berry_compote_20250903_080913_d5ac76b2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:09:14.317820000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "для диабетика",
+    "visual_description": "A smooth, pale ivory cottage cheese mousse fills a clear, stemmed dessert glass, showing its airy, cloud-like texture. A vibrant, deep ruby-red mixed berry compote, with visible berry pieces, is generously spooned over the top, creating a beautiful contrast. A single fresh mint sprig and a couple of whole, glistening red berries are carefully placed on the compote for garnish. The dessert glass sits on a clean white porcelain plate, offset by a neatly folded light grey cotton napkin. The background features a softly blurred modern bistro setting, with natural, even lighting highlighting the dessert's fresh appearance. The presentation is clean, elegant, and inviting, showcasing a single, perfectly portioned dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Cottage Cheese",
+    "ingredients": [
+      {
+        "name": "Low-fat cottage cheese",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Erythritol (granulated sugar substitute)",
+        "quantity": "50 g (divided)"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 1/2 lemon"
+      },
+      {
+        "name": "Gelatin powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cold water (for gelatin)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Mixed berries (fresh or frozen)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Water (for compote)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "a few, for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Gelatin: In a small bowl, sprinkle gelatin powder over 30 ml cold water. Let it bloom for 5 minutes. Gently heat (microwave briefly or over a double boiler) until dissolved. Do not boil. Let cool slightly.",
+      "Whip Cream: In a cold bowl, whip heavy cream until soft peaks form. Do not over-whip. Set aside.",
+      "Blend Cottage Cheese: In a food processor, combine cottage cheese, 30 g erythritol, vanilla extract, and lemon zest. Blend until completely smooth and creamy. Scrape down sides as needed.",
+      "Combine Mousse Base: Pour the slightly cooled dissolved gelatin into the blended cottage cheese mixture while the food processor is running on low. Blend for 10 seconds to combine.",
+      "Fold in Cream: Gently fold the whipped cream into the cottage cheese mixture using a spatula until just combined. Be careful not to deflate the mousse.",
+      "Chill Mousse: Divide the mousse among four clear individual serving glasses or ramekins (approximately 150 ml each). Chill in the refrigerator for at least 3-4 hours, or until set.",
+      "Prepare Berry Compote: In a small saucepan, combine mixed berries, 30 ml water, 20 g erythritol (or to taste), and lemon juice. Bring to a simmer over medium heat. Cook for 5-7 minutes, stirring occasionally, until berries soften and the sauce thickens slightly. Mash some of the berries with a fork if desired for a chunkier compote. Let cool completely.",
+      "Serve: Once the mousse is set and the compote is cool, spoon the mixed berry compote over each mousse. Garnish with a fresh mint leaf and a few whole berries if desired."
+    ],
+    "notes": [
+      "This dessert is designed to be sugar-free, making it suitable for diabetic diets. Adjust erythritol sweetness to personal preference. Ensure gelatin is fully dissolved but not boiled for best texture. For a lighter version, use low-fat cottage cheese and a lighter hand with cream, or substitute some cream with Greek yogurt (though texture will change slightly)."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 282,
+      "cholesterol_mg": 57,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 14.9,
+      "saturated_fat_g": 12.2,
+      "sodium_mg": 341,
+      "total_carbs_g": 13.5,
+      "total_fat_g": 19.4,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 138,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19,
+      "dietary_fiber": 13,
+      "protein": 30,
+      "saturated_fat": 61,
+      "sodium": 15,
+      "total_carbs": 5,
+      "total_fat": 25
+    },
+    "serving_size_g": 247,
+    "total_recipe_weight_g": 987
+  },
+  {
+    "recipe_name": "Baked Cottage Cheese Soufflé with Berry Coulis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_cottage_cheese_souffl%C3%A9_with_berry_coulis_20250903_080840_fb8d66c0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:08:40.684858000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "для диабетика",
+    "visual_description": "The baked cottage cheese soufflé is presented individually in a clean white porcelain ramekin, placed slightly off-center on a simple round white plate. The soufflé has a golden-brown, lightly cracked top, puffed high above the ramekin rim, indicating its airy, delicate texture. A vibrant, glossy pool of berry coulis, deep red-purple in color, rests beside the ramekin. A small, fresh sprig of bright green mint leaf is placed delicately on the coulis. The presentation is clean and elegant, highlighting the soufflé's light appearance and the coulis's rich color. The overall composition is balanced, professional, and inviting, with moderate negative space. The soufflé's soft, creamy interior contrasts with its crisp exterior.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Cottage Cheese",
+    "ingredients": [
+      {
+        "name": "Full-fat cottage cheese",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Large eggs, separated",
+        "quantity": "3"
+      },
+      {
+        "name": "Erythritol (or other heat-stable sugar substitute)",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 1 medium lemon"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Butter, for greasing",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Erythritol, for dusting ramekins",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Mixed berries (fresh or frozen)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Erythritol (for coulis)",
+        "quantity": "10-20 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Fresh mint sprig, for garnish",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease four 150ml ramekins with butter. Dust ramekins with 5g erythritol, tapping out excess.",
+      "In a bowl, combine cottage cheese, egg yolks, 60g erythritol, lemon zest, vanilla extract, and cornstarch. Mix until smooth.",
+      "In a separate clean bowl, whisk egg whites with a pinch of salt until stiff peaks form.",
+      "Gently fold one-third of the egg whites into the cottage cheese mixture to lighten it. Then carefully fold in the remaining egg whites until just combined. Do not overmix.",
+      "Divide the mixture evenly among the prepared ramekins. Place ramekins on a baking tray.",
+      "Bake for 20-25 minutes, or until golden brown and puffed. The center should be set but still slightly soft.",
+      "While soufflés bake, prepare the coulis. Combine berries, water, 10-20g erythritol, and lemon juice in a small saucepan.",
+      "Simmer gently for 5-7 minutes until berries soften and release juices.",
+      "Pass the berry mixture through a fine-mesh sieve to remove seeds, pressing down to extract all liquid. Discard solids.",
+      "Serve soufflés immediately, with a spoonful of warm berry coulis on the side. Garnish each plate with a fresh mint sprig."
+    ],
+    "notes": [
+      "Adjust sweetness to personal preference, especially for diabetic diets.",
+      "Serve immediately for the best puffed texture of the soufflé."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 237.14,
+      "cholesterol_mg": 162.56,
+      "dietary_fiber_g": 2.05,
+      "protein_g": 19.63,
+      "saturated_fat_g": 5.37,
+      "sodium_mg": 560.99,
+      "total_carbs_g": 16.23,
+      "total_fat_g": 10.62,
+      "total_sugars_g": 9.16,
+      "trans_fat_g": 0.04
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 104.24,
+      "cholesterol_mg": 71.45,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.63,
+      "saturated_fat_g": 2.36,
+      "sodium_mg": 246.59,
+      "total_carbs_g": 7.13,
+      "total_fat_g": 4.67,
+      "total_sugars_g": 4.03,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54.19,
+      "dietary_fiber": 7.32,
+      "protein": 39.26,
+      "saturated_fat": 26.85,
+      "sodium": 24.39,
+      "total_carbs": 5.9,
+      "total_fat": 13.62
+    },
+    "serving_size_g": 227.5,
+    "total_recipe_weight_g": 910
+  }
+]

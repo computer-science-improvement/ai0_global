@@ -1,0 +1,639 @@
+[
+  {
+    "recipe_name": "Roasted Chicken Thighs with Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_thighs_with_root_vegetables_20250624_171805_61eb85cc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:18:05.608477000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, roasted chicken thigh, skin-on and bone-in, rests centrally on a modest, round ceramic plate. The chicken skin is deeply golden and visibly crisp, showing slight char marks. Surrounding the chicken is an abundant, casual arrangement of roasted root vegetables: chunky, tender potatoes with slightly browned edges, vibrant orange carrot chunks, and soft, caramelized onion wedges. The vegetables are rustic-cut and naturally piled, displaying their varied textures and earthy tones. A scattering of fresh, chopped green parsley provides a functional, bright garnish over the dish. The plate is positioned on a warm, well-worn wooden dining table, with a simple, folded cloth napkin and standard flatware nearby. The scene is bathed in soft, inviting kitchen light, evoking a comforting, lived-in family atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 bone-in, skin-on"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g, cut into 2-3 cm chunks"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300g, peeled and cut into 2-3 cm chunks"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, cut into thick wedges"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dried rosemary",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with half of the salt and pepper.",
+      "In a large bowl, combine potato chunks, carrot chunks, and onion wedges.",
+      "Drizzle vegetables with olive oil. Add remaining salt, pepper, rosemary, thyme, and garlic powder. Toss to coat evenly.",
+      "Spread seasoned vegetables in a single layer on a large baking tray.",
+      "Place chicken thighs skin-side up on top of the vegetables on the same tray.",
+      "Roast for 35-45 minutes. Chicken skin should be crispy and golden. Vegetables should be tender and lightly caramelized.",
+      "Check internal temperature of chicken. It must reach 75°C.",
+      "Remove from oven. Let rest 5 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 658,
+      "cholesterol_mg": 157.5,
+      "dietary_fiber_g": 7.12,
+      "protein_g": 38.12,
+      "saturated_fat_g": 9.19,
+      "sodium_mg": 1156,
+      "total_carbs_g": 36.62,
+      "total_fat_g": 40.35,
+      "total_sugars_g": 6.55,
+      "trans_fat_g": 0.14
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153.04,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 1.66,
+      "protein_g": 8.86,
+      "saturated_fat_g": 2.14,
+      "sodium_mg": 268.8,
+      "total_carbs_g": 8.52,
+      "total_fat_g": 9.38,
+      "total_sugars_g": 1.52,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.5,
+      "dietary_fiber": 25.4,
+      "protein": 76.2,
+      "saturated_fat": 46,
+      "sodium": 50.3,
+      "total_carbs": 13.3,
+      "total_fat": 51.7
+    },
+    "serving_size_g": 430,
+    "total_recipe_weight_g": 1720
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_risotto_20250624_171740_c597ffea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:17:41.405363000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Serve the risotto on a flat white porcelain dinner plate. The consistency is fluid and spreads naturally across the plate, appearing free-flowing rather than molded. The rice grains are distinct, coated in a glossy, creamy sauce. Large 3cm chunks of golden-brown seared chicken thighs are distributed throughout the rice. Sliced cremini and shiitake mushrooms show deep caramelization and earthy brown tones. The dish features a pale golden hue. Finely minced flat-leaf parsley provides a vibrant green contrast. A light dusting of finely grated Parmesan cheese covers the surface. The arrangement is organic. Beside the plate sits a heavy silver spoon and a folded white cotton napkin on a light oak table. Natural side lighting highlights the creamy texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while the consistency remains fluid",
+      "Accompany with a crisp dry white wine such as Pinot Grigio",
+      "Provide extra grated Parmesan at the table"
+    ],
+    "hero_ingredient": "Mixed Mushrooms",
+    "ingredients": [
+      {
+        "name": "boneless skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "mixed mushrooms (cremini and shiitake)",
+        "quantity": "300g"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "fresh flat-leaf parsley",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks.",
+      "Dice onion into 5mm pieces.",
+      "Mince garlic cloves.",
+      "Slice mushrooms into 5mm thick pieces.",
+      "Heat 20ml olive oil in a wide pan over medium-high heat.",
+      "Sear chicken chunks until browned and internal temperature reaches 75°C.",
+      "Remove chicken from pan and set aside.",
+      "Add mushrooms to the same pan. Sauté until moisture evaporates and edges brown.",
+      "Remove mushrooms and set aside.",
+      "Melt 20g butter in the pan. Add onion and garlic.",
+      "Cook until softened but not browned.",
+      "Add rice. Stir 2 minutes to toast the grains until edges are translucent.",
+      "Pour in white wine. Stir until liquid is fully absorbed.",
+      "Add 200ml warm stock. Stir continuously until liquid is absorbed.",
+      "Repeat stock additions one ladle at a time, stirring constantly, until rice is tender but firm.",
+      "Return chicken and mushrooms to the pan.",
+      "Remove from heat.",
+      "Vigorously stir in remaining 30g butter and Parmesan cheese to create a creamy emulsion.",
+      "Season with salt and pepper. Fold in chopped parsley."
+    ],
+    "notes": [
+      "Keep the chicken stock at a low simmer in a separate pot to maintain cooking temperature.",
+      "Stirring constantly is essential to release rice starches for a creamy texture.",
+      "Ensure chicken reaches the safety temperature of 75°C during the initial searing phase."
+    ],
+    "traditional_techniques": [
+      "tostatura",
+      "mantecatura",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 875,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 52,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 1450,
+      "total_carbs_g": 91,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 203,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 12.06,
+      "saturated_fat_g": 3.06,
+      "sodium_mg": 336.2,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 7.77,
+      "total_sugars_g": 0.65,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 9,
+      "protein": 104,
+      "saturated_fat": 66,
+      "sodium": 63,
+      "total_carbs": 33,
+      "total_fat": 43
+    },
+    "serving_size_g": 431,
+    "total_recipe_weight_g": 1725
+  },
+  {
+    "recipe_name": "Spaghetti Carbonara",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spaghetti_carbonara_20250624_171725_99582a87.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:17:25.889903000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Spaghetti Carbonara is artfully twirled into a neat mound on a clean white porcelain plate. The pasta, glistening with a rich, creamy, golden-yellow emulsion, forms the central focus. Scattered generously over the spaghetti are crispy, golden-brown cubes of rendered guanciale, adding textural contrast and deep savory notes. A generous dusting of finely grated Pecorino Romano cheese blankets parts of the dish, creating a delicate white layer. Freshly cracked black pepper provides dark speckles across the creamy surface. The dish is presented on a simple wooden table, with a classic silver fork and spoon placed beside it. Natural, even lighting highlights the pasta's sheen and the guanciale's crisp edges. The overall presentation is refined yet inviting, embodying a modern bistro style with authentic Italian simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and vinegar.",
+      "Enjoy with a glass of dry white wine or sparkling water.",
+      "Traditionally eaten with a fork, using a spoon to assist in twirling the pasta."
+    ],
+    "hero_ingredient": "Guanciale",
+    "ingredients": [
+      {
+        "name": "Spaghetti",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Guanciale",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Whole egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Pecorino Romano cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil.",
+      "Dice guanciale into 1 cm cubes.",
+      "Heat a large pan over medium heat. Add diced guanciale. Cook slowly until crispy and fat is rendered. Remove crispy guanciale. Leave rendered fat in pan.",
+      "Cook spaghetti in boiling water according to package directions until al dente. Reserve 250 ml pasta cooking water before draining.",
+      "While pasta cooks, whisk egg yolks, whole egg, and 80 g grated Pecorino Romano in a bowl. Add half of the freshly ground black pepper.",
+      "Drain spaghetti. Add hot spaghetti directly to the pan with rendered guanciale fat. Toss to coat.",
+      "Immediately add egg mixture to spaghetti. Stir quickly and vigorously.",
+      "Gradually add reserved hot pasta water, 30 ml at a time, while stirring constantly. Continue until a creamy, emulsified sauce forms.",
+      "Add crispy guanciale back to the pasta.",
+      "Serve immediately. Garnish with remaining grated Pecorino Romano and fresh black pepper."
+    ],
+    "traditional_techniques": [
+      "Emulsification",
+      "Rendering guanciale fat"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 778,
+      "cholesterol_mg": 291.2,
+      "dietary_fiber_g": 3.42,
+      "protein_g": 38.21,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 1158.7,
+      "total_carbs_g": 77.11,
+      "total_fat_g": 34.11,
+      "total_sugars_g": 3.04,
+      "trans_fat_g": 0.35
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 235.15,
+      "cholesterol_mg": 88,
+      "dietary_fiber_g": 1.03,
+      "protein_g": 11.55,
+      "saturated_fat_g": 4.11,
+      "sodium_mg": 350.2,
+      "total_carbs_g": 23.31,
+      "total_fat_g": 10.31,
+      "total_sugars_g": 0.92,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97.1,
+      "dietary_fiber": 12.2,
+      "protein": 76.4,
+      "saturated_fat": 68,
+      "sodium": 50.4,
+      "total_carbs": 28,
+      "total_fat": 43.7
+    },
+    "serving_size_g": 330.75,
+    "total_recipe_weight_g": 1323
+  },
+  {
+    "recipe_name": "Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_20250624_171720_1c367f71.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:17:20.657647000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo presented on a clean white porcelain plate. Two whole, bone-in chicken thighs with deeply browned, crispy skin sit atop a bed of golden, saffron-stained rice. The rice grains are plump and distinct, interspersed with fine bits of softened onion and concentrated red tomato. The dish shows vibrant yellow and orange hues from the saffron and paprika. A generous sprinkle of bright green, finely chopped parsley is scattered over the top. A single lemon wedge is placed neatly on the side. The plate sits on a light oak wooden table with a folded white cotton napkin. Lighting is bright, natural, and even, highlighting the textures of the crispy skin and the moist rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Alioli (garlic mayonnaise)",
+      "Accompany with crusty bread and a glass of chilled white wine",
+      "Present in a traditional terracotta cazuela for family-style dining"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip and brown the other side. Remove chicken from pan.",
+      "Add onion to the same pan. Sauté until translucent.",
+      "Stir in garlic and grated tomato. Cook until liquid evaporates and mixture darkens.",
+      "Add smoked paprika and rice. Stir to coat rice in oil for 2 minutes.",
+      "Pour in white wine. Deglaze the pan. Simmer until wine reduces by half.",
+      "Add hot stock and saffron. Stir once to distribute.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer undisturbed over medium-low heat for 18-20 minutes.",
+      "Ensure chicken reaches internal temperature of 75°C.",
+      "Remove from heat. Cover with a clean cloth. Rest for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form on the bottom.",
+      "Use a wide pan to ensure even rice cooking."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice absorption method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1414,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 8.6,
+      "protein": 66.4,
+      "saturated_fat": 46.5,
+      "sodium": 61.5,
+      "total_carbs": 24.5,
+      "total_fat": 52.1
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Creamy Baked Chicken and Mushroom Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_baked_chicken_and_mushroom_rice_20250624_171701_6845377f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:17:01.514176000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Creamy Baked Chicken and Mushroom Rice is served on a simple, round, off-white ceramic plate with natural imperfections. Golden-brown seared chicken thighs, cut into thick chunks, are nestled among the creamy, fluffy long-grain rice. The rice is studded with tender, earthy brown cremini mushrooms and hints of softened onion. A light, creamy sauce coats the grains. The dish presents a warm palette of golden chicken, creamy white rice, and deep brown mushrooms, accented by vibrant green chopped fresh parsley scattered over the top. The components are naturally arranged, slightly overlapping, creating an inviting, comforting mound. The plate sits on a well-used light wooden dining table. A casually folded linen napkin and a standard stainless steel fork and knife are placed beside it. Warm, soft light from an overhead kitchen fixture illuminates the scene, enhancing the dish's inviting texture and color.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Served directly from the baking dish, family-style, or plated individually for a comforting home meal."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, Skinless Chicken Thighs",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "250g, sliced"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "60g, grated"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Season chicken thighs generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pan or Dutch oven over medium-high heat.",
+      "Sear chicken thighs 4-5 minutes per side until golden brown. Remove chicken from pan and set aside.",
+      "Add butter to the same pan. Reduce heat to medium.",
+      "Add diced onion. Sauté for 3 minutes until softened.",
+      "Add minced garlic and sliced mushrooms. Cook 5-7 minutes until mushrooms are tender and have released their liquid.",
+      "Stir in the long-grain white rice. Cook for 1 minute, stirring to coat the grains.",
+      "Pour in chicken broth. Bring the mixture to a simmer.",
+      "Return the seared chicken thighs to the pan, nestling them into the rice mixture.",
+      "Cover the pan tightly with a lid or foil.",
+      "Bake for 25-30 minutes, or until rice is tender and chicken reaches an internal temperature of 75°C.",
+      "Remove from oven. Stir in heavy cream and grated Parmesan cheese.",
+      "Let the dish rest, covered, for 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 817,
+      "cholesterol_mg": 236,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 43.8,
+      "saturated_fat_g": 16.6,
+      "sodium_mg": 1446,
+      "total_carbs_g": 68.2,
+      "total_fat_g": 38.4,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 143.1,
+      "cholesterol_mg": 41.4,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 7.7,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 253.4,
+      "total_carbs_g": 12,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 79,
+      "dietary_fiber": 9,
+      "protein": 88,
+      "saturated_fat": 83,
+      "sodium": 63,
+      "total_carbs": 25,
+      "total_fat": 49
+    },
+    "serving_size_g": 571,
+    "total_recipe_weight_g": 2283
+  }
+]

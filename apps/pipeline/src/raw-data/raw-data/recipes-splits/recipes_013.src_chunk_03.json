@@ -1,0 +1,626 @@
+[
+  {
+    "recipe_name": "Homestyle Stir-fried Pork and Shrimp with Green Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_stir-fried_pork_and_shrimp_with_green_beans_20250701_151334_e1084f24.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:13:35.016987000Z",
+    "selected_ingredients": [
+      "pork",
+      "shrimp"
+    ],
+    "complexity": "simple",
+    "special_requests": "chinese cuisine, minced pork and cut up shrimp mixed and seasoned with chinese ingredients",
+    "visual_description": "A modest, homely single portion of Homestyle Stir-fried Pork and Shrimp with Green Beans is presented on a simple, light-colored ceramic plate. To one side, a neat mound of fluffy white rice sits, ready to accompany the main dish. The stir-fry is casually spooned next to the rice, creating an inviting, natural arrangement. Minced pork, browned and savory, is mixed with tender, pinkish-orange diced shrimp. Vibrant green, crisp-tender green bean pieces, cut into 2-3 cm lengths, are interspersed throughout, adding a pop of color and texture. The ingredients are coated in a glossy, rich brown sauce, reflecting the warm, cozy lighting from overhead kitchen fixtures. The textures are varied: the tender pork, the firm shrimp, and the slight bite of the green beans. The plate sits on a well-used wooden dining table, with a simple ceramic rice bowl and a pair of traditional chopsticks nearby. A casually placed cloth napkin completes the lived-in, family kitchen atmosphere, with minimal background elements to keep the focus on the comforting food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with hot steamed white rice.",
+      "Can be accompanied by a simple clear soup or a light vegetable dish."
+    ],
+    "hero_ingredient": "Pork and Shrimp",
+    "ingredients": [
+      {
+        "name": "Minced pork",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Shrimp, peeled and deveined",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Green beans, trimmed",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Ginger, minced",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cooked white rice, for serving",
+        "quantity": "4 portions"
+      }
+    ],
+    "instructions": [
+      "Cut green beans into 2-3 cm pieces. Dice peeled shrimp into small pieces.",
+      "In a bowl, combine minced pork with 5 ml light soy sauce, 5 ml Shaoxing wine, 1.25 ml white pepper, and 5 g cornstarch. Mix well.",
+      "In a separate bowl, combine diced shrimp with 5 ml Shaoxing wine, 1.25 ml white pepper, and 5 g cornstarch. Mix well.",
+      "Bring a small pot of water to a boil. Add green beans. Blanch for 2 minutes. Drain immediately. Set aside.",
+      "Heat 15 ml vegetable oil in a large wok or frying pan over high heat until shimmering.",
+      "Add minced pork. Stir-fry for 3-4 minutes, breaking it apart, until browned and cooked through. Remove pork from wok. Set aside.",
+      "Add remaining 15 ml vegetable oil to the wok. Add minced garlic and ginger. Stir-fry for 30 seconds until fragrant.",
+      "Add diced shrimp to the wok. Stir-fry for 1-2 minutes until pink and nearly cooked. Do not overcook.",
+      "Return cooked pork and blanched green beans to the wok.",
+      "In a small bowl, whisk together remaining 20 ml light soy sauce, 5 ml dark soy sauce, 15 ml oyster sauce, and 60 ml water or chicken stock. Pour sauce over ingredients in the wok.",
+      "Stir-fry for 1-2 minutes, tossing to coat everything evenly. Sauce will thicken slightly.",
+      "Drizzle with sesame oil. Toss briefly. Serve immediately with steamed white rice."
+    ],
+    "notes": [
+      "Ensure wok is very hot before adding ingredients for proper stir-frying.",
+      "Do not overcook shrimp; they cook very quickly.",
+      "The green beans are blanched first to ensure even cooking and vibrant color."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.99,
+      "calories": 365,
+      "cholesterol_mg": 140.5,
+      "dietary_fiber_g": 2.01,
+      "protein_g": 29.17,
+      "saturated_fat_g": 5.95,
+      "sodium_mg": 842.3,
+      "total_carbs_g": 10.56,
+      "total_fat_g": 22.79,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.41,
+      "calories": 153.41,
+      "cholesterol_mg": 59.05,
+      "dietary_fiber_g": 0.84,
+      "protein_g": 12.26,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 354,
+      "total_carbs_g": 4.44,
+      "total_fat_g": 9.58,
+      "total_sugars_g": 1.34,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.83,
+      "dietary_fiber": 7.18,
+      "protein": 58.34,
+      "saturated_fat": 29.75,
+      "sodium": 36.62,
+      "total_carbs": 3.84,
+      "total_fat": 29.22
+    },
+    "serving_size_g": 237.93,
+    "total_recipe_weight_g": 951.7
+  },
+  {
+    "recipe_name": "Savory Chicken and Bean Fritters",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_chicken_and_bean_fritters_20250701_151323_cefd6e19.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:13:23.634088000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "rice",
+      "bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A collection of golden-brown Savory Chicken and Bean Fritters are casually arranged on a rustic, off-white ceramic sharing platter. The fritters are irregularly shaped, showcasing slightly crispy, uneven edges and a hearty, homely appearance. Some fritters are stacked loosely, others are scattered around the platter, indicating a relaxed, family-style serving. The interior of a few fritters, where visible, reveals a comforting mix of light shredded chicken, soft white rice grains, and dark, slightly mashed black beans, flecked with finely diced onion. The natural colors are warm and inviting, ranging from the deep golden exterior to the varied textures within. The platter rests on a well-used, light-colored wooden dining table, illuminated by warm, soft kitchen lighting. A casually folded, plain cloth napkin sits nearby. The background is minimal, suggesting a lived-in family kitchen atmosphere, highlighting the unpretentious, comforting nature of the snack. Portions are generous, inviting sharing.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Shredded Chicken",
+    "ingredients": [
+      {
+        "name": "Cooked chicken breast",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cooked white rice (day-old preferred)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Black beans (canned, rinsed, drained)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley (chopped)",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Shred cooked chicken breast into small pieces. Ensure no large chunks.",
+      "Finely dice the onion. Sauté in a pan with a small amount of oil until softened and translucent. Let cool.",
+      "In a large bowl, lightly mash the cooked black beans with a fork. Leave some texture.",
+      "Add shredded chicken, cooked rice, sautéed onion, egg, flour, garlic powder, smoked paprika, salt, and black pepper to the bowl with the beans.",
+      "Mix all ingredients thoroughly until well combined. The mixture should hold together.",
+      "Form the mixture into 12-16 small, flat fritters, about 5-6 cm in diameter and 1.5 cm thick.",
+      "Heat vegetable oil in a large non-stick pan over medium heat.",
+      "Place fritters in the hot pan, do not overcrowd. Cook in batches if necessary.",
+      "Fry for 4-5 minutes per side, until golden brown and crispy.",
+      "Ensure internal temperature of chicken reaches 75°C (167°F).",
+      "Transfer cooked fritters to a plate lined with paper towel to drain excess oil.",
+      "Serve warm, garnished with chopped fresh parsley if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 341.32,
+      "cholesterol_mg": 89.13,
+      "dietary_fiber_g": 4.77,
+      "protein_g": 23.7,
+      "saturated_fat_g": 1.58,
+      "sodium_mg": 435.67,
+      "total_carbs_g": 36.92,
+      "total_fat_g": 10.75,
+      "total_sugars_g": 1.65,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163,
+      "cholesterol_mg": 42.56,
+      "dietary_fiber_g": 2.28,
+      "protein_g": 11.32,
+      "saturated_fat_g": 0.75,
+      "sodium_mg": 208.06,
+      "total_carbs_g": 17.63,
+      "total_fat_g": 5.13,
+      "total_sugars_g": 0.79,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29.7,
+      "dietary_fiber": 17,
+      "protein": 47.4,
+      "saturated_fat": 7.9,
+      "sodium": 18.9,
+      "total_carbs": 13.4,
+      "total_fat": 13.8
+    },
+    "serving_size_g": 209.4,
+    "total_recipe_weight_g": 837.6
+  },
+  {
+    "recipe_name": "Beetroot Risotto with Toasted Walnuts and Goat Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beetroot_risotto_with_toasted_walnuts_and_goat_cheese_20250701_151312_c7889ca1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:13:12.612483000Z",
+    "selected_ingredients": [
+      "beet",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single generous portion of vibrant fuchsia-hued risotto, creamy and fluid, is artfully mounded on a round, clean white porcelain dinner plate. The risotto maintains a soft, natural flow, avoiding any rigid or molded shapes. Scattered over the surface are rough-chopped, golden-brown toasted walnuts, adding textural contrast. Crumbled white goat cheese pieces are nestled amidst the risotto, creating soft color variation. A sprinkle of bright green, finely chopped chives provides a fresh, aromatic finish. The plate has moderate negative space, allowing the risotto's rich color and texture to dominate. The beets are pureed for color and diced into small cubes for texture. Walnuts are roughly chopped. Chives are finely chopped. Goat cheese is crumbled. The plate rests on a simple, light-colored wooden table surface, suggesting a modern bistro. A neatly folded, crisp white cotton napkin is placed to the side. Natural, soft, even lighting illuminates the dish from above, highlighting its rich color and creamy sheen. The background is subtly blurred, featuring a hint of a casual restaurant atmosphere, keeping the focus entirely on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a main course.",
+      "Pair with a light side salad or crusty bread."
+    ],
+    "hero_ingredient": "Beet",
+    "ingredients": [
+      {
+        "name": "Medium beets",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Hot vegetable broth",
+        "quantity": "1.2 - 1.5 litres"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Goat cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash and trim beets. Drizzle with 15 ml olive oil. Wrap in foil. Roast for 45-60 minutes until tender. Let cool slightly.",
+      "Peel beets. Puree half the roasted beets with a splash of water until smooth. Dice the remaining half into small cubes. Set aside.",
+      "Heat 15 ml olive oil and butter in a large, heavy-bottomed pot or Dutch oven over medium heat.",
+      "Add finely diced shallots. Cook for 3-4 minutes until softened and translucent. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Stir constantly for 2-3 minutes until rice grains are translucent at the edges.",
+      "Pour in white wine. Stir until completely absorbed by the rice.",
+      "Add the beet puree to the rice. Stir until well combined and heated through.",
+      "Begin adding hot vegetable broth, one ladleful at a time. Stir continuously. Allow each ladleful to be almost fully absorbed before adding the next.",
+      "Continue adding broth and stirring for 18-20 minutes. The risotto should be creamy and the rice al dente.",
+      "Stir in the diced beets. Add grated Parmigiano Reggiano. If using butter, add remaining 15 g butter. Stir vigorously for 1 minute. This is 'mantecatura'.",
+      "Season with salt and black pepper to taste. The risotto should be fluid and creamy.",
+      "Meanwhile, toast walnuts in a dry pan over medium heat for 3-5 minutes until fragrant. Roughly chop.",
+      "Serve risotto immediately in warm bowls or plates. Garnish each serving with crumbled goat cheese, toasted walnuts, and finely chopped chives."
+    ],
+    "notes": [
+      "The key to creamy risotto is constant stirring and gradual addition of hot broth. Adjust broth quantity for desired consistency.",
+      "For a vegan option, substitute butter with olive oil and use a plant-based parmesan alternative and vegan 'goat' cheese."
+    ],
+    "traditional_techniques": [
+      "Mantecatura",
+      "Gradual liquid absorption"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 734.83,
+      "cholesterol_mg": 49.33,
+      "dietary_fiber_g": 5.94,
+      "protein_g": 22.59,
+      "saturated_fat_g": 12.61,
+      "sodium_mg": 1301.98,
+      "total_carbs_g": 85.89,
+      "total_fat_g": 32.52,
+      "total_sugars_g": 11.19,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133.61,
+      "cholesterol_mg": 8.97,
+      "dietary_fiber_g": 1.08,
+      "protein_g": 4.11,
+      "saturated_fat_g": 2.29,
+      "sodium_mg": 236.72,
+      "total_carbs_g": 15.62,
+      "total_fat_g": 5.91,
+      "total_sugars_g": 2.03,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.44,
+      "dietary_fiber": 21.21,
+      "protein": 45.18,
+      "saturated_fat": 63.07,
+      "sodium": 56.61,
+      "total_carbs": 31.23,
+      "total_fat": 41.69
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Chili-Sesame Fermented Bell Pepper Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chili-sesame_fermented_bell_pepper_salad_20250701_151253_b7bd8d54.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:12:54.244005000Z",
+    "selected_ingredients": [
+      "brown rice vinegar",
+      "toasted sesame oil",
+      "bell pepper",
+      "onion",
+      "chili"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A small, individual starter portion of vibrant fermented bell pepper and red onion salad. Diced red, yellow, and orange bell peppers are mixed with thinly sliced red onion. The vegetables retain a crisp-tender texture, glistening lightly with a chili-sesame dressing. A few very thin rounds of red chili are scattered on top. The salad is mounded artfully in the center of a handcrafted, matte cream-colored ceramic plate, leaving generous negative space. The plate rests on a light, textured bamboo surface. An undyed, natural beige linen napkin is subtly placed beside it. Soft, diffused natural light illuminates the scene, highlighting the fresh, clean colors and natural textures of the ingredients. The background is minimalist, with a hint of natural greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Fermented bell pepper",
+    "ingredients": [
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Orange bell pepper",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium (approx. 150g)"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1-2 (to taste)"
+      },
+      {
+        "name": "Non-chlorinated water",
+        "quantity": "1 liter"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "20g"
+      },
+      {
+        "name": "Brown rice vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Wash bell peppers and onion. Remove bell pepper cores.",
+      "Dice all bell peppers into 1cm cubes. Thinly slice red onion.",
+      "Combine diced bell peppers and sliced onion in a clean 1.5-liter glass jar.",
+      "Dissolve salt in non-chlorinated water to create a brine. Pour brine over vegetables in the jar. Ensure all vegetables are fully submerged. Use a fermentation weight if needed.",
+      "Cover jar loosely with a lid or airlock. Ferment at room temperature (20-24°C) for 3-5 days, or until desired tanginess is achieved. Burp jar daily if not using an airlock.",
+      "Once fermented, drain vegetables. Discard brine or reserve for other uses.",
+      "Thinly slice red chili into rounds.",
+      "In a bowl, combine fermented vegetables, brown rice vinegar, toasted sesame oil, and sliced chili. Toss gently to combine.",
+      "Serve immediately as a starter."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 90.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.43,
+      "protein_g": 1.96,
+      "saturated_fat_g": 0.55,
+      "sodium_mg": 1943.5,
+      "total_carbs_g": 13.07,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 8.46,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 44.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.66,
+      "protein_g": 0.95,
+      "saturated_fat_g": 0.27,
+      "sodium_mg": 943.4,
+      "total_carbs_g": 6.34,
+      "total_fat_g": 1.89,
+      "total_sugars_g": 4.11,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 12.2,
+      "protein": 3.9,
+      "saturated_fat": 2.7,
+      "sodium": 84.5,
+      "total_carbs": 4.8,
+      "total_fat": 5
+    },
+    "serving_size_g": 206,
+    "total_recipe_weight_g": 824
+  },
+  {
+    "recipe_name": "Coconut Sticky Rice with Mango",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coconut_sticky_rice_with_mango_20250701_151217_c9befe9e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:12:17.775173000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "chicken stock",
+      "thyme",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Coconut Sticky Rice with Mango is elegantly presented on a clean, round white porcelain plate. A generous, glossy scoop of creamy, pale ivory sticky rice is placed on one side of the plate. Beside it, bright yellow-orange mango flesh, cut into thick, uniform batons, is arranged in a slight curve. The vibrant colors contrast beautifully. A sprinkle of bright green lime zest is scattered over the mango and rice, alongside a few golden toasted coconut flakes, adding textural contrast. The dish is illuminated by natural, even lighting. The background features a simple wooden table surface and a folded cotton napkin, creating a clean, inviting, and authentic Thai dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve warm or at room temperature.",
+      "Traditionally eaten with a spoon.",
+      "Often served as a dessert or a sweet snack."
+    ],
+    "hero_ingredient": "Mango",
+    "ingredients": [
+      {
+        "name": "Glutinous Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Full-Fat Coconut Milk",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Ripe Mangoes",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 (for zest)"
+      },
+      {
+        "name": "Toasted Coconut Flakes",
+        "quantity": "20g (optional)"
+      }
+    ],
+    "instructions": [
+      "Rinse glutinous rice several times until water runs clear. Soak rice in cold water for at least 4 hours, or overnight.",
+      "Drain soaked rice completely. Place rice in a steamer basket lined with cheesecloth. Steam rice over boiling water for 20-25 minutes, until tender and translucent.",
+      "While rice steams, combine coconut milk, sugar, and salt in a saucepan. Heat over medium-low heat, stirring until sugar dissolves. Do not boil.",
+      "Once rice is cooked, transfer it to a large bowl. Pour warm coconut milk mixture over the rice. Stir gently to combine. Cover the bowl and let it sit for 15-20 minutes, allowing the rice to absorb the liquid.",
+      "Peel mangoes. Slice mango flesh into thick, even batons or wedges.",
+      "Zest the lime.",
+      "To serve, scoop warm sticky rice onto individual plates. Arrange mango slices neatly beside the rice. Garnish with fresh lime zest and toasted coconut flakes, if using."
+    ],
+    "notes": [
+      "Adjust sugar to your preference based on mango sweetness.",
+      "Ensure rice is thoroughly drained before steaming for best texture."
+    ],
+    "traditional_techniques": [
+      "Steaming"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 24.95,
+      "calories": 645.75,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.47,
+      "protein_g": 7.5,
+      "saturated_fat_g": 24.19,
+      "sodium_mg": 117.23,
+      "total_carbs_g": 97.84,
+      "total_fat_g": 27.98,
+      "total_sugars_g": 52.65,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 7.02,
+      "calories": 181.77,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.82,
+      "protein_g": 2.11,
+      "saturated_fat_g": 6.81,
+      "sodium_mg": 33,
+      "total_carbs_g": 27.54,
+      "total_fat_g": 7.87,
+      "total_sugars_g": 14.82,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 23.11,
+      "protein": 15,
+      "saturated_fat": 120.95,
+      "sodium": 5.1,
+      "total_carbs": 35.58,
+      "total_fat": 35.87
+    },
+    "serving_size_g": 355.25,
+    "total_recipe_weight_g": 1421
+  }
+]

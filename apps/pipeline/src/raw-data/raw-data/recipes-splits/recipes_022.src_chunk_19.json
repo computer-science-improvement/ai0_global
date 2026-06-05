@@ -1,0 +1,776 @@
+[
+  {
+    "recipe_name": "Pad Krapow Gai (Thai Holy Basil Chicken)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pad_krapow_gai_%28thai_holy_basil_chicken%29_20250624_121617_d105c573.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:16:18.266599000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "chili",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pad Krapow Gai is presented on a clean white porcelain plate on a simple wooden table. A generous mound of fluffy white jasmine rice forms the base. Adjacent, the stir-fried minced chicken is piled, a rich, glossy dark brown from the sauce, flecked with vibrant green wilted holy basil leaves and thin slices of red bird's eye chilies. The chicken is finely minced and slightly caramelized. A perfectly fried egg, with crispy, golden-brown edges and a glistening, runny yolk, rests atop the chicken. A small white ceramic bowl of prik nam pla sits beside. Chopsticks and a spoon are neatly placed on a cotton napkin. Natural, even lighting creates a clean, inviting restaurant-style atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice.",
+      "Top with a crispy fried egg (kai dao).",
+      "Offer prik nam pla (fish sauce with sliced chilies) on the side for extra spice."
+    ],
+    "hero_ingredient": "Minced Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken mince",
+        "quantity": "600g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "8 cloves"
+      },
+      {
+        "name": "Red bird's eye chilies",
+        "quantity": "6-8"
+      },
+      {
+        "name": "Holy Basil leaves",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "For 4 servings"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Extra red bird's eye chilies (for prik nam pla)",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Extra fish sauce (for prik nam pla)",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Prepare the sauce: Combine 45ml fish sauce, oyster sauce, dark soy sauce, and granulated sugar in a small bowl. Stir until sugar dissolves. Add 30ml water or chicken stock.",
+      "Mince garlic cloves. Thinly slice red bird's eye chilies. Roughly chop holy basil leaves.",
+      "Heat 30ml vegetable oil in a wok or large frying pan over high heat.",
+      "Add minced garlic and sliced chilies to the hot oil. Stir-fry for 15-20 seconds until fragrant.",
+      "Add chicken mince to the wok. Break it apart with a spatula. Stir-fry until chicken is cooked through and lightly browned, ensuring internal temperature reaches 75°C.",
+      "Pour the prepared sauce mixture over the chicken. Stir-fry for 1-2 minutes until the sauce thickens slightly and coats the chicken.",
+      "Remove the wok from heat. Add the holy basil leaves. Stir vigorously until the basil leaves wilt.",
+      "In a separate small pan, fry the 4 eggs individually until the whites are set and crispy at the edges, and the yolks are still runny.",
+      "Prepare prik nam pla: Thinly slice extra red bird's eye chilies. Place in a small bowl. Pour 30ml extra fish sauce over them.",
+      "Serve Pad Krapow Gai immediately over steamed jasmine rice. Top each serving with a fried egg. Offer prik nam pla on the side."
+    ],
+    "notes": [
+      "Authentic Pad Krapow uses Holy Basil, which has a distinct peppery, anise-like flavor. Thai Sweet Basil can be used as a substitute if Holy Basil is unavailable, though the flavor will be milder.",
+      "Adjust chili quantity to desired spice level."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Pad)",
+      "Balancing salty, sweet, sour, and spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5.5,
+      "calories": 643,
+      "cholesterol_mg": 314,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 44.8,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 4709,
+      "total_carbs_g": 53.9,
+      "total_fat_g": 27.3,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 128,
+      "cholesterol_mg": 63,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 939,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 105,
+      "dietary_fiber": 6,
+      "protein": 90,
+      "saturated_fat": 30,
+      "sodium": 205,
+      "total_carbs": 20,
+      "total_fat": 35
+    },
+    "serving_size_g": 501.5,
+    "total_recipe_weight_g": 2006
+  },
+  {
+    "recipe_name": "Orecchiette with Ricotta, Spinach, Artichoke, and Broccoli Rabe",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orecchiette_with_ricotta%2C_spinach%2C_artichoke%2C_and_broccoli_rabe_20250624_121602_3bab4e51.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:16:02.834492000Z",
+    "selected_ingredients": [
+      "pasta",
+      "spinach",
+      "artichoke",
+      "broccoli rabe",
+      "ricotta cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous mound of orecchiette pasta sits centrally on a clean, round white porcelain plate. The pasta is coated in a creamy, off-white ricotta sauce, interspersed with vibrant green blanched broccoli rabe florets and stems, wilted dark green spinach leaves, and tender quartered artichoke hearts. A light drizzle of golden olive oil glistens on top, with a generous sprinkle of freshly grated Parmigiano-Reggiano cheese. A few tiny red chili flakes provide subtle color contrast. The dish is presented in a natural, organic arrangement, showcasing varied textures and fresh colors. The setting is a modern bistro: a simple wooden table, a white cotton napkin, and classic Italian flatware beside the plate. Natural, even lighting illuminates the dish, with a minimal, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Pair with a simple green salad dressed with vinaigrette.",
+      "Enjoy with a glass of crisp Italian white wine, such as Pinot Grigio or Vermentino."
+    ],
+    "hero_ingredient": "Ricotta Cheese",
+    "ingredients": [
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh ricotta cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Canned or jarred artichoke hearts (in water, drained and quartered)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Broccoli rabe",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic cloves, thinly sliced",
+        "quantity": "3"
+      },
+      {
+        "name": "Red chili flakes (optional)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Lemon, zested and juiced",
+        "quantity": "1"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Trim tough ends from broccoli rabe. Blanch in a large pot of salted boiling water for 2-3 minutes until tender-crisp. Drain immediately and set aside.",
+      "Cook orecchiette pasta in the same pot of generously salted boiling water according to package directions until al dente. Reserve 250ml of pasta cooking water before draining.",
+      "While pasta cooks, heat 30ml olive oil in a large skillet over medium heat. Add sliced garlic and chili flakes (if using). Sauté for 1 minute until fragrant. Do not brown garlic.",
+      "Add blanched broccoli rabe and quartered artichoke hearts to the skillet. Sauté for 3-4 minutes, tossing to combine. Add fresh spinach and cook until just wilted.",
+      "In a large bowl, combine ricotta cheese, lemon zest, black pepper, and 30ml olive oil.",
+      "Add drained pasta to the bowl with the ricotta mixture. Add the sautéed vegetables. Pour in 125ml of reserved pasta water. Toss vigorously to combine, creating a creamy sauce. Add more pasta water, 30ml at a time, until desired consistency is reached.",
+      "Stir in grated Parmigiano-Reggiano cheese. Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately, with an extra drizzle of olive oil and more Parmigiano-Reggiano."
+    ],
+    "notes": [
+      "Use fresh, good quality ricotta for best flavor and texture.",
+      "Adjust chili flakes to your preferred level of spice.",
+      "Always reserve pasta water; it's essential for creating a smooth, emulsified sauce."
+    ],
+    "traditional_techniques": [
+      "Al dente pasta cooking",
+      "Emulsifying sauce with pasta water"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 692,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 27.9,
+      "saturated_fat_g": 7.6,
+      "sodium_mg": 924,
+      "total_carbs_g": 86.8,
+      "total_fat_g": 24.7,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 176,
+      "cholesterol_mg": 7.5,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 7.1,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 235,
+      "total_carbs_g": 22.1,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 33,
+      "protein": 56,
+      "saturated_fat": 38,
+      "sodium": 40,
+      "total_carbs": 32,
+      "total_fat": 32
+    },
+    "serving_size_g": 393,
+    "total_recipe_weight_g": 1572
+  },
+  {
+    "recipe_name": "Spicy Tomato Basil Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_tomato_basil_chicken_and_mushroom_risotto_20250624_121550_78fb9e04.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:15:50.887245000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "garlic",
+      "tomato",
+      "mushroom",
+      "basil",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy, vibrant Spicy Tomato Basil Chicken and Mushroom Risotto is presented on a round, clean white porcelain dinner plate. The risotto is fluid and free-flowing, creating a gentle mound in the center of the plate, not constrained in a ring. Visible are tender, golden-brown chicken chunks (approximately 2 cm cubes), earthy sliced mushrooms, and bright red tomato pieces, all enveloped in a rich, orange-hued creamy rice. Specks of vibrant green fresh basil leaves are generously mixed throughout, with a few larger torn basil leaves and thin red chili slices scattered on top as a fresh garnish. The texture is luscious and inviting, with the distinct grains of Arborio rice visible. The plate sits on a simple wooden table surface, accompanied by a silver fork and spoon placed to the right, and a folded cotton napkin to the left. Natural, even lighting highlights the dish's fresh ingredients and appealing texture. The background is a subtly blurred, casual restaurant setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with freshly grated Parmesan cheese on the side.",
+      "Pair with a light green salad dressed with vinaigrette.",
+      "Enjoy with a glass of dry white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Mushrooms (cremini or button)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat 15ml olive oil in a large pan over medium-high heat. Add chicken cubes (2 cm). Cook until golden brown and cooked through (internal temperature 75°C). Remove chicken, set aside.",
+      "Add remaining 15ml olive oil to the same pan. Add finely diced onion. Cook 5 minutes until softened.",
+      "Add minced garlic, sliced mushrooms, and thinly sliced chili. Cook 5-7 minutes until mushrooms are tender.",
+      "Add Arborio rice to the pan. Stir 2 minutes until grains are translucent at edges.",
+      "Pour in white wine. Stir until fully absorbed.",
+      "Add crushed tomatoes. Stir well.",
+      "Begin adding hot chicken stock, one ladle at a time. Stir constantly. Wait until each ladle is almost fully absorbed before adding the next.",
+      "Continue adding stock and stirring for 18-20 minutes, or until rice is creamy and al dente.",
+      "Remove from heat. Stir in cooked chicken, butter, and grated Parmesan cheese.",
+      "Stir in most of the fresh basil (torn/chopped). Season with salt and black pepper to taste.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Stirring constantly is key for creamy risotto.",
+      "Ensure chicken is cooked to 75°C (167°F).",
+      "Taste and adjust seasoning throughout cooking."
+    ],
+    "traditional_techniques": [
+      "Mise en place",
+      "Soffritto",
+      "Tostatura",
+      "Manteca"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 843.1,
+      "cholesterol_mg": 161.2,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 68.6,
+      "saturated_fat_g": 10.4,
+      "sodium_mg": 867,
+      "total_carbs_g": 77,
+      "total_fat_g": 25.6,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 98.3,
+      "cholesterol_mg": 18.8,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 8,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 101.1,
+      "total_carbs_g": 9,
+      "total_fat_g": 3,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 12,
+      "protein": 137,
+      "saturated_fat": 52,
+      "sodium": 38,
+      "total_carbs": 28,
+      "total_fat": 33
+    },
+    "serving_size_g": 857.8,
+    "total_recipe_weight_g": 3431
+  },
+  {
+    "recipe_name": "Mexican Beer-Braised Chicken with Cheesy Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mexican_beer-braised_chicken_with_cheesy_rice_20250624_121541_705811ba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:15:41.521213000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "tomato",
+      "bean",
+      "corn",
+      "onion",
+      "cheese",
+      "beer",
+      "green pea",
+      "chili",
+      "pickled jalapeno chilies",
+      "hot sauce",
+      "potato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A hearty Mexican Beer-Braised Chicken with Cheesy Rice is presented in a wide, shallow terracotta-colored bowl, occupying the center. Two golden-brown, bone-in chicken thighs, seared to a crisp exterior, rest atop a bed of vibrant, creamy rice. The rice is infused with diced tomatoes, black beans, bright yellow corn kernels, and tender green peas, all visibly integrated. Small, tender white potato cubes are interspersed throughout the rice. Melted Monterey Jack cheese forms a luscious, slightly stretchy coating over parts of the rice and chicken. A scattering of fresh, chopped cilantro adds a pop of verdant green. Slices of pickled jalapeño chilies are placed beside the chicken, offering a contrasting color and hint of tang. The dish exudes warmth and comfort, with a balanced composition and inviting textures. The bowl sits on a simple wooden table. A folded cotton napkin, a rustic fork, and a small ceramic dish of hot sauce are placed beside the bowl. Natural, even lighting highlights the rich colors and textures of the dish, creating an authentic and appealing presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping.",
+      "Offer lime wedges for a fresh squeeze.",
+      "Provide a side of fresh salsa or crema (Mexican sour cream)."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned black beans, rinsed and drained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Frozen corn kernels",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Monterey Jack cheese, shredded",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mexican lager beer",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh jalapeño, seeded and minced",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Pickled jalapeño slices, for garnish",
+        "quantity": "50g"
+      },
+      {
+        "name": "Hot sauce, for serving",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Medium potatoes, peeled and diced into 1.5 cm cubes",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped, for garnish",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, oven-safe Dutch oven or deep skillet over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 5-7 minutes until golden brown and crispy. Flip and sear other side for 3-4 minutes. Remove chicken from pot; set aside.",
+      "Reduce heat to medium. Add diced onion, minced jalapeño, and diced potatoes to the pot. Sauté for 5-7 minutes until onion softens.",
+      "Stir in minced garlic, cumin, and oregano. Cook for 1 minute until fragrant.",
+      "Pour in beer, scraping up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Stir in diced tomatoes and chicken broth. Bring to a boil, then reduce heat to low.",
+      "Return chicken thighs to the pot, nestling them into the liquid. Cover and simmer for 20 minutes.",
+      "Stir in rice, black beans, and corn kernels. Ensure rice is submerged. Cover and continue to simmer for 20-25 minutes, or until rice is tender and most liquid is absorbed. Internal chicken temperature should reach 75°C (167°F).",
+      "Stir in green peas and shredded Monterey Jack cheese. Cover for 2-3 minutes until cheese is melted and peas are heated through.",
+      "Remove from heat. Let rest for 5 minutes.",
+      "Serve hot, garnished with fresh cilantro and pickled jalapeño slices. Offer hot sauce on the side."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Sofrito base preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1240.25,
+      "cholesterol_mg": 213.75,
+      "dietary_fiber_g": 16.68,
+      "protein_g": 66.88,
+      "saturated_fat_g": 16.62,
+      "sodium_mg": 1022.41,
+      "total_carbs_g": 139.4,
+      "total_fat_g": 51.21,
+      "total_sugars_g": 9.39,
+      "trans_fat_g": 0.38
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124.42,
+      "cholesterol_mg": 21.44,
+      "dietary_fiber_g": 1.67,
+      "protein_g": 6.71,
+      "saturated_fat_g": 1.67,
+      "sodium_mg": 102.57,
+      "total_carbs_g": 13.99,
+      "total_fat_g": 5.14,
+      "total_sugars_g": 0.94,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 60,
+      "protein": 134,
+      "saturated_fat": 83,
+      "sodium": 44,
+      "total_carbs": 51,
+      "total_fat": 66
+    },
+    "serving_size_g": 996.75,
+    "total_recipe_weight_g": 3987
+  },
+  {
+    "recipe_name": "Creamy Chicken and Macaroni Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_macaroni_skillet_20250624_121540_17fbba6d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:15:41.317394000Z",
+    "selected_ingredients": [
+      "milk",
+      "bell pepper",
+      "carrot",
+      "mayonnaise",
+      "soy sauce",
+      "ketchup",
+      "hot sauce",
+      "oil",
+      "bread",
+      "chicken",
+      "cherry",
+      "onion",
+      "potato",
+      "apple",
+      "rice",
+      "flour",
+      "garlic",
+      "sugar",
+      "coffee",
+      "butter",
+      "noodle",
+      "cheese",
+      "macaroni",
+      "mustard"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Creamy Chicken and Macaroni Skillet is served on a round, simple cream-colored ceramic plate. The dish is mounded naturally in the center, showcasing tender, golden-brown chicken chunks alongside elbow macaroni coated in a rich, creamy, yellow-orange cheese sauce. Diced vegetables – vibrant green bell pepper, bright orange carrot, and translucent onion – are interspersed throughout, adding pops of color and texture. The sauce has a glossy sheen, clinging to the ingredients without being overly thick or dry. A light sprinkle of freshly ground black pepper garnishes the top. The plate rests on a well-used wooden dining table, with a casual cloth napkin and a metal fork placed to the side. The lighting is warm and inviting, typical of a cozy family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve directly from the skillet for a family-style meal.",
+      "Enjoy with a simple green salad on the side."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "250g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "150g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "5ml (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 3-4 cm chunks. Dice onion, bell pepper, and carrot into 1 cm cubes. Mince garlic.",
+      "Heat 15ml oil in a large skillet or Dutch oven over medium-high heat. Add chicken chunks.",
+      "Cook chicken for 5-7 minutes until browned on all sides. Ensure internal temperature reaches 75°C. Remove chicken and set aside.",
+      "Add remaining 15ml oil to the skillet. Add diced onion, bell pepper, and carrot. Sauté for 5-7 minutes until vegetables soften.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Push vegetables to one side. Add butter to the empty side of the skillet. Once melted, sprinkle in flour. Stir constantly for 1 minute to create a roux.",
+      "Gradually whisk in milk to the roux, stirring until smooth and thickened.",
+      "Stir in ketchup, mustard, soy sauce, and hot sauce (if using). Bring to a gentle simmer.",
+      "Add uncooked macaroni to the simmering sauce. Stir well. Cover and cook for 8-10 minutes, stirring occasionally, until macaroni is al dente.",
+      "Stir in grated cheddar cheese until melted and smooth. Season with salt and black pepper.",
+      "Return cooked chicken to the skillet. Stir to combine and heat through for 2-3 minutes.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "For extra richness, use full-fat milk.",
+      "Adjust hot sauce to your preferred spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.4,
+      "calories": 799,
+      "cholesterol_mg": 201,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 50.1,
+      "saturated_fat_g": 17.4,
+      "sodium_mg": 955,
+      "total_carbs_g": 71.5,
+      "total_fat_g": 37.6,
+      "total_sugars_g": 12.5,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 188,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 1,
+      "protein_g": 11.8,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 225,
+      "total_carbs_g": 16.8,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 15,
+      "protein": 100,
+      "saturated_fat": 87,
+      "sodium": 42,
+      "total_carbs": 26,
+      "total_fat": 48
+    },
+    "serving_size_g": 425,
+    "total_recipe_weight_g": 1700
+  }
+]

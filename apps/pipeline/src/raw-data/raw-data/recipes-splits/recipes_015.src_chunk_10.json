@@ -1,0 +1,654 @@
+[
+  {
+    "recipe_name": "Pollo alla Cacciatora",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_20250628_082714_f03aed77.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:27:15.037010000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented on a wide, matte white porcelain plate. Two whole, bone-in chicken thighs are stacked slightly in the center, featuring deeply browned, caramelized skin. A thick, rustic sauce covers the base of the plate, filled with visible small cubes of orange carrots, green celery, and translucent onions. Whole, dark purple kalamata olives are nestled within the vibrant red tomato sauce. A light dusting of bright green chopped parsley and a single fresh rosemary sprig garnish the top. Two thick batons of grilled sourdough bread lean against the side of the chicken. The lighting is natural and soft, emphasizing the glossy texture of the braised sauce and the crispness of the chicken skin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with toasted sourdough bread to soak up the sauce",
+      "Accompany with a glass of medium-bodied Italian red wine",
+      "Place on a bed of soft, buttery polenta"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine (Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide braising pan over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is deep golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add onion, carrot, and celery to the remaining fat.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in garlic, rosemary, and sage. Cook for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pan to deglaze.",
+      "Simmer wine for 3 minutes until reduced by half.",
+      "Add crushed tomatoes and stir to combine.",
+      "Place chicken thighs back into the sauce.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in olives and simmer uncovered for 5 minutes.",
+      "Remove rosemary sprigs before serving.",
+      "Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Always use a meat thermometer to ensure chicken reaches the safe internal temperature of 75°C",
+      "Browning the skin thoroughly at the start is essential for the final texture",
+      "The sauce should be thick and chunky, not watery"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1604,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 428,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 83,
+      "saturated_fat": 43,
+      "sodium": 70,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Mediterranean Stuffed Bell Peppers with Herbed Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_stuffed_bell_peppers_with_herbed_potatoes_20250628_082643_bd8542a6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:26:44.474461000Z",
+    "selected_ingredients": [
+      "pepper",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of Mediterranean Stuffed Bell Peppers is presented on a clean white porcelain dinner plate, centrally placed on a simple wooden table surface. Two halves of roasted red bell peppers, cut lengthwise, are filled generously with a creamy, textured herbed potato mixture. The pepper skins show slight charring, indicating proper roasting, and retain their vibrant red color. The potato filling is a warm golden-brown hue, flecked with green parsley and hints of red from smoked paprika. A light sprinkling of crumbled white feta cheese rests atop the filling. The dish is framed by moderate negative space on the plate. A folded light grey cotton napkin is placed to the left of the plate. Natural, even lighting illuminates the scene, highlighting the textures and colors of the dish. The background is subtly blurred, suggesting a casual bistro atmosphere. No distractions are present, focusing entirely on the inviting food.",
+    "number_of_servings": 3,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Red Bell Peppers",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "450 grams"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dried Thyme",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 ml chopped"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Feta Cheese",
+        "quantity": "50 grams crumbled (optional garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Wash bell peppers. Slice each pepper in half lengthwise. Remove seeds and membranes.",
+      "Peel potatoes. Cut into 2 cm cubes. Boil potatoes in salted water until tender, about 15 minutes. Drain well.",
+      "While potatoes boil, finely dice the onion. Mince the garlic.",
+      "Heat olive oil in a large skillet over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic, tomato paste, dried oregano, dried thyme, and smoked paprika to the skillet. Cook for 1 minute, stirring constantly.",
+      "Add the cooked potato cubes to the skillet. Mash potatoes lightly with a fork, mixing with the onion and spice mixture. Stir in chopped fresh parsley. Season with salt and black pepper.",
+      "Arrange bell pepper halves cut-side up in a baking dish. Fill each pepper half generously with the potato mixture.",
+      "Pour vegetable broth into the bottom of the baking dish.",
+      "Bake for 30-35 minutes, or until peppers are tender and slightly charred at the edges. If desired, sprinkle crumbled feta cheese over peppers during the last 5 minutes of baking.",
+      "Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 340,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 9.2,
+      "protein_g": 8.9,
+      "saturated_fat_g": 4,
+      "sodium_mg": 1007,
+      "total_carbs_g": 47.4,
+      "total_fat_g": 13.7,
+      "total_sugars_g": 12.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 71,
+      "cholesterol_mg": 3.1,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 1.9,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 210.6,
+      "total_carbs_g": 9.9,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 8,
+      "dietary_fiber": 33,
+      "protein": 18,
+      "saturated_fat": 20,
+      "sodium": 44,
+      "total_carbs": 17,
+      "total_fat": 18
+    },
+    "serving_size_g": 478.1,
+    "total_recipe_weight_g": 1434.4
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Potato Gratin and Garden Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_potato_gratin_and_garden_vegetables_20250628_082641_a2e22bf3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:26:42.430027000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "broccoli",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A pan-seared chicken breast, golden-brown and resting whole, forms the central focus on a pristine white porcelain dinner plate. Beside it, a neatly cut, rectangular portion of creamy potato gratin, its top a rich golden crust, reveals delicate, thinly sliced potato layers within. Bright green broccoli florets, tender-crisp from blanching, are artfully arranged, providing vibrant color. Scattered around the plate are several blistered, deep red cherry tomatoes, adding bursts of color and acidity. Fresh thyme sprigs serve as a simple, aromatic garnish. The plate sits on a rustic wooden table, accompanied by elegant silver flatware and a folded white cotton napkin. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Russet potatoes, peeled",
+        "quantity": "800g"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "150g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Nutmeg, grated",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Slice potatoes thinly (1-2mm) using a mandoline.",
+      "Rub a gratin dish with one crushed garlic clove. Butter the dish.",
+      "Layer potatoes, salt, pepper, and a pinch of nutmeg. Sprinkle grated cheese between layers.",
+      "Combine cream and milk. Pour over potatoes.",
+      "Bake gratin 40-50 minutes, until potatoes are tender and top is golden.",
+      "Bring a pot of salted water to a boil.",
+      "Blanch broccoli florets 2-3 minutes. Drain immediately. Set aside.",
+      "Heat a small pan with 15ml olive oil over medium-high heat.",
+      "Add cherry tomatoes. Cook 3-5 minutes, until skins blister and tomatoes soften slightly. Season with salt.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat remaining olive oil and butter in a large oven-safe pan over medium-high heat.",
+      "Add chicken. Sear 5-7 minutes per side, until golden brown.",
+      "Transfer pan to preheated oven (180°C) for 10-15 minutes, or until internal temperature reaches 75°C.",
+      "Rest chicken 5 minutes before serving.",
+      "Toss blanched broccoli with a knob of butter and pinch of salt just before plating."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1062.6,
+      "cholesterol_mg": 324.7,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 80.4,
+      "saturated_fat_g": 32.3,
+      "sodium_mg": 839.6,
+      "total_carbs_g": 49.4,
+      "total_fat_g": 60.7,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 2.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149.7,
+      "cholesterol_mg": 45.8,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.3,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 118.3,
+      "total_carbs_g": 7,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 108.2,
+      "dietary_fiber": 27.9,
+      "protein": 160.8,
+      "saturated_fat": 161.5,
+      "sodium": 36.5,
+      "total_carbs": 18,
+      "total_fat": 77.8
+    },
+    "serving_size_g": 709.8,
+    "total_recipe_weight_g": 2839.1
+  },
+  {
+    "recipe_name": "Italian Braised Chicken with Carrots and Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_braised_chicken_with_carrots_and_tomatoes_20250628_082525_2d2b7e2a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:25:25.940632000Z",
+    "selected_ingredients": [
+      "chicken",
+      "carrot",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Italian Braised Chicken is presented on a clean, round white porcelain dinner plate, centrally composed. A whole, bone-in, skin-on chicken thigh, with its skin golden-brown and slightly crisped, rests amidst a rich, rustic, reddish-brown tomato sauce. The sauce is thick and clings naturally to the chicken and vegetables. Thick slices of vibrant orange carrots, tender from braising, are nestled alongside the chicken within the sauce. The dish is garnished simply with a sprinkle of fresh, bright green chopped parsley, providing a fresh contrast. The overall presentation is professional yet approachable, with moderate negative space on the plate. The scene is set on a simple wooden table surface, accompanied by standard silver flatware and a folded cotton napkin beside the plate, all illuminated by natural, even lighting in a modern bistro-style background, subtly out of focus to highlight the food. A small piece of crusty bread is placed near the plate, ready for dipping.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Large carrots",
+        "quantity": "2 (approx. 300g), cut into 2 cm thick slices"
+      },
+      {
+        "name": "Can crushed tomatoes",
+        "quantity": "1 (800g)"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1 (approx. 200g), diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear chicken thighs skin-side down until deep golden brown and crispy, about 5-7 minutes. Flip and sear other side for 3 minutes. Remove chicken from the pot and set aside.",
+      "Add diced onion to the pot. Sauté, scraping up any browned bits from the bottom, until softened and translucent, about 5 minutes.",
+      "Add minced garlic and tomato paste to the pot. Cook for 1 minute, stirring constantly until fragrant.",
+      "Pour in white wine. Deglaze the pot, scraping up all browned bits from the bottom. Cook until wine is mostly evaporated, about 2 minutes.",
+      "Stir in crushed tomatoes, chicken stock, rosemary sprigs, and thyme sprigs. Bring the sauce to a gentle simmer.",
+      "Return seared chicken thighs to the pot. Nestle them into the sauce. Arrange carrot slices around the chicken.",
+      "Cover the pot and reduce heat to low. Simmer for 45-60 minutes, or until chicken reaches an internal temperature of 75°C and is very tender. Carrots should be tender but hold their shape.",
+      "Remove rosemary and thyme sprigs from the pot. Taste the sauce and adjust seasoning with salt and pepper as needed.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 569,
+      "cholesterol_mg": 169,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 34.8,
+      "saturated_fat_g": 8.4,
+      "sodium_mg": 282,
+      "total_carbs_g": 24.5,
+      "total_fat_g": 34.7,
+      "total_sugars_g": 12.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 5.7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 46,
+      "total_carbs_g": 4,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 21,
+      "protein": 70,
+      "saturated_fat": 42,
+      "sodium": 12,
+      "total_carbs": 9,
+      "total_fat": 45
+    },
+    "serving_size_g": 611.5,
+    "total_recipe_weight_g": 2446
+  },
+  {
+    "recipe_name": "Smoked Paprika Chicken with Roasted Potatoes and Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_paprika_chicken_with_roasted_potatoes_and_peppers_20250628_082518_ff422eeb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:25:18.645121000Z",
+    "selected_ingredients": [
+      "pepper",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Smoked Paprika Chicken with Roasted Potatoes and Peppers is presented on a round, clean white porcelain dinner plate. A golden-brown, crispy-skinned roasted chicken thigh is the focal point, positioned slightly off-center. Surrounding the chicken is a generous, rustic pile of deeply roasted potato wedges and vibrant bell pepper chunks. The potatoes show a slightly crisp exterior and tender interior, some with subtle charring. The bell peppers, in vivid red, yellow, and orange, are softened with hints of char, retaining their shape. A light sprinkle of freshly chopped green parsley provides a fresh color contrast. The dish sits on a simple, light-colored wooden table surface. A neatly folded white linen napkin and classic silver fork and knife are placed beside the plate. Natural, even lighting illuminates the textures and rich colors, creating an inviting, professional, yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad.",
+      "Offer crusty bread to sop up the flavorful pan juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skin-on",
+        "quantity": "4"
+      },
+      {
+        "name": "Small potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bell peppers (red, yellow, orange)",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh rosemary, chopped",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme, chopped",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash potatoes. Cut into 2-3 cm wedges. Deseed bell peppers. Cut into 3-4 cm chunks.",
+      "In a large bowl, toss potatoes and bell peppers with 30ml olive oil, half the smoked paprika, half the minced garlic, rosemary, thyme, 5g salt, and 2g black pepper.",
+      "Spread vegetables in a single layer on a large baking tray.",
+      "Roast vegetables for 20 minutes.",
+      "Pat chicken thighs dry. In a separate bowl, toss chicken with remaining 30ml olive oil, remaining smoked paprika, remaining minced garlic, 5g salt, and 3g black pepper.",
+      "Remove tray from oven. Push vegetables to one side. Place seasoned chicken thighs skin-side up on the empty space.",
+      "Return tray to oven. Roast for another 25-30 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are tender and golden.",
+      "Remove from oven. Let chicken rest for 5 minutes.",
+      "Garnish with fresh parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 688,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 9.5,
+      "protein_g": 39.5,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 1096,
+      "total_carbs_g": 48.1,
+      "total_fat_g": 37.6,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126.8,
+      "cholesterol_mg": 27.6,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 7.3,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 202,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 34,
+      "protein": 79,
+      "saturated_fat": 41,
+      "sodium": 48,
+      "total_carbs": 17,
+      "total_fat": 48
+    },
+    "serving_size_g": 543,
+    "total_recipe_weight_g": 2170
+  }
+]

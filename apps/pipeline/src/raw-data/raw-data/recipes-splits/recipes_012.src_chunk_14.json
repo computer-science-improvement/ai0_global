@@ -1,0 +1,685 @@
+[
+  {
+    "recipe_name": "Chicken and Basil Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_basil_risotto_20250702_211612_b6c1d012.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:16:13.153479000Z",
+    "selected_ingredients": [
+      "chicken stock",
+      "rice",
+      "garlic",
+      "onion",
+      "oil",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Chicken and Basil Risotto is presented on a clean, round white porcelain dinner plate. The risotto spreads naturally across the plate, its pale green hue speckled with vibrant green flecks of fresh basil. Tender, golden-brown seared chicken breast, cut into thick, irregular chunks, is nestled atop the risotto. A few whole fresh basil leaves are artfully placed as garnish, along with a delicate drizzle of high-quality olive oil and a light sprinkle of finely grated Parmesan cheese. The composition is balanced with moderate negative space, highlighting the dish. The setting features a simple wooden table surface in a modern bistro style. Standard silver flatware rests beside the plate. Natural, soft lighting illuminates the scene, creating an inviting, authentic Italian casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately, as risotto is best enjoyed fresh.",
+      "Offer a small side salad with a simple vinaigrette.",
+      "Pair with a glass of crisp Italian white wine."
+    ],
+    "hero_ingredient": "Arborio Rice",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat chicken stock in a saucepan. Keep it hot.",
+      "Dice onion finely. Mince garlic.",
+      "Cut chicken breast into 2-3 cm thick chunks. Season with salt and pepper.",
+      "Heat 15 ml olive oil in a large skillet over medium-high heat. Sear chicken chunks until golden brown on all sides and cooked through. Internal temperature must reach 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "Add remaining 15 ml olive oil to the same skillet. Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Add Arborio rice to the skillet. Toast rice for 2-3 minutes, stirring constantly, until edges are translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add one ladleful of hot chicken stock to the rice. Stir continuously until liquid is absorbed.",
+      "Continue adding stock, one ladleful at a time, stirring constantly. Wait for each addition to be absorbed before adding more. This process takes about 18-20 minutes.",
+      "The risotto should be creamy and al dente. Remove from heat.",
+      "Stir in butter and grated Parmesan cheese. This is 'mantecare'. Stir vigorously for 1 minute to create a creamy texture.",
+      "Roughly chop most of the fresh basil. Stir into the risotto.",
+      "Gently fold in the cooked chicken chunks.",
+      "Season with salt and pepper to taste."
+    ],
+    "notes": [
+      "Ensure chicken stock is hot before adding to rice; this maintains cooking temperature.",
+      "Stirring continuously is key for a creamy risotto texture."
+    ],
+    "traditional_techniques": [
+      "Mantecare"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 735.2,
+      "cholesterol_mg": 118.93,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 50.73,
+      "saturated_fat_g": 9.9,
+      "sodium_mg": 804.39,
+      "total_carbs_g": 71,
+      "total_fat_g": 24.76,
+      "total_sugars_g": 2.05,
+      "trans_fat_g": 0.46
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149,
+      "cholesterol_mg": 24.11,
+      "dietary_fiber_g": 0.34,
+      "protein_g": 10.28,
+      "saturated_fat_g": 2.01,
+      "sodium_mg": 163.08,
+      "total_carbs_g": 14.39,
+      "total_fat_g": 5.02,
+      "total_sugars_g": 0.41,
+      "trans_fat_g": 0.09
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.6,
+      "dietary_fiber": 6.1,
+      "protein": 101.5,
+      "saturated_fat": 49.5,
+      "sodium": 35,
+      "total_carbs": 25.8,
+      "total_fat": 31.7
+    },
+    "serving_size_g": 493.25,
+    "total_recipe_weight_g": 1973
+  },
+  {
+    "recipe_name": "Roasted Chicken with Quick-Fermented Root Vegetables and Oregano-Garlic Confit",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_with_quick-fermented_root_vegetables_and_oregano-garlic_confit_20250702_210605_4d473f55.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:06:05.620165000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "carrot",
+      "oregano"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, refined restaurant portion of a Roasted Chicken with Quick-Fermented Root Vegetables and Oregano-Garlic Confit is presented on a handcrafted, matte ceramic plate in an earthy cream tone. A generously sized, golden-brown roasted chicken thigh, skin crispy and glistening, sits as the centerpiece. Alongside, vibrant orange carrot rounds and pale yellow potato cubes, both quick-fermented, are naturally arranged, showcasing their distinct textures and colors. A light drizzle of glossy, golden garlic-oregano confit oil pools subtly on the plate. A few tender, confit garlic cloves are placed near the chicken, and a delicate sprig of fresh oregano or a scattering of finely chopped carrot greens adds a touch of natural green. The plate is clean with ample negative space. The setting features a light, reclaimed wood table surface. An undyed, natural beige linen napkin is folded simply beside the plate. Soft, natural light illuminates the dish, highlighting its textures and colors against a clean, minimalist background with subtle, blurred natural elements like green foliage, emphasizing a sustainable and organic aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 700 g total)"
+      },
+      {
+        "name": "Medium potatoes",
+        "quantity": "4 (approx. 600 g total)"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "4 (approx. 400 g total)"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "12"
+      },
+      {
+        "name": "Fresh oregano sprigs",
+        "quantity": "6"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water (for fermentation)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Non-iodized salt (for fermentation)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Carrot greens (optional garnish)",
+        "quantity": "From carrots"
+      }
+    ],
+    "instructions": [
+      "Prepare Quick-Fermented Root Vegetables (3-5 days in advance): Wash and scrub potatoes and carrots. Cut potatoes into 2 cm cubes. Cut carrots into 1 cm thick rounds. Combine 500 ml water and 15 g non-iodized salt to create brine. Pack vegetables tightly into a clean glass jar. Pour brine over vegetables, ensuring they are fully submerged. Seal jar loosely. Let ferment at room temperature for 3-5 days, tasting daily for desired tang. Once fermented, store in refrigerator.",
+      "Prepare Garlic-Oregano Confit: Place peeled garlic cloves and fresh oregano sprigs in a small saucepan. Cover completely with olive oil. Heat gently over low heat. Simmer for 20-30 minutes, until garlic is very tender. Do not brown garlic. Remove from heat. Let cool. Strain confit oil into a clean jar. Reserve garlic and oregano solids.",
+      "Preheat oven to 200°C (400°F).",
+      "Season Chicken: Pat chicken thighs dry. Season generously with sea salt and black pepper.",
+      "Roast Chicken: Place chicken thighs skin-side up on a baking tray. Roast for 30-35 minutes, or until internal temperature reaches 75°C (167°F) and skin is golden and crispy.",
+      "Warm Fermented Vegetables: Gently warm the quick-fermented root vegetables in a pan with a tablespoon of the confit oil. Do not overcook; they should remain slightly firm.",
+      "Assemble Dish: Place a roasted chicken thigh on each plate. Arrange a portion of the warmed fermented root vegetables alongside. Drizzle generously with the reserved garlic-oregano confit oil. Garnish with a few confit garlic cloves, fresh oregano leaves, or finely chopped carrot greens if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 900,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 25.6,
+      "saturated_fat_g": 12.3,
+      "sodium_mg": 1156,
+      "total_carbs_g": 39.3,
+      "total_fat_g": 73.1,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 182,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 5.2,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 234,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 14.8,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 24,
+      "protein": 51,
+      "saturated_fat": 62,
+      "sodium": 50,
+      "total_carbs": 14,
+      "total_fat": 94
+    },
+    "serving_size_g": 495,
+    "total_recipe_weight_g": 1978
+  },
+  {
+    "recipe_name": "Tuscan Chicken, Potato, and Tomato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken%2C_potato%2C_and_tomato_bake_20250702_210353_c7d4c2db.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:03:54.203640000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, showcasing a single generous portion. A golden-brown, crisply seared chicken thigh sits prominently, its skin glistening. Around it, rustic chunks of roasted potatoes are scattered, some edges deeply golden and slightly crisp, revealing a fluffy interior. Interspersed among the potatoes are vibrant, burst cherry tomatoes, their skins slightly charred and juices mingling with the pan liquids. Thick wedges of caramelized red onion add depth of color. Melted, bubbly mozzarella cheese forms an inviting, creamy blanket over parts of the chicken and vegetables, with some strands stretching invitingly. A sprinkling of fresh, bright green chopped parsley adds a contrasting pop of color and freshness. The overall composition is organic and inviting, with elements naturally arranged. The plate has appropriate negative space, allowing each component to be appreciated.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve directly from the skillet or transfer to individual plates.",
+      "Offer crusty artisan bread for soaking up pan juices.",
+      "Pair with a simple green salad dressed with olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes, medium, peeled and cut into 2.5 cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Mozzarella cheese, fresh, torn into pieces",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Red onion, medium, cut into thick wedges",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped, for garnish",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 30ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken thighs skin-side down for 8-10 minutes until golden and crispy. Flip and sear other side for 2-3 minutes. Remove chicken from skillet.",
+      "Add remaining 30ml olive oil to the skillet. Add potato chunks, red onion wedges, minced garlic, and rosemary sprigs. Season with salt and pepper.",
+      "Sauté potatoes and onions for 5-7 minutes until slightly softened and beginning to brown.",
+      "Deglaze skillet with white wine, scraping up browned bits. Simmer 1 minute.",
+      "Add chicken broth. Bring to a simmer.",
+      "Return chicken thighs to the skillet, nestling them among the potatoes and onions. Scatter cherry tomatoes around the chicken.",
+      "Transfer skillet to preheated oven. Bake for 25 minutes.",
+      "Remove skillet from oven. Scatter torn mozzarella over chicken and vegetables. Sprinkle with grated Parmesan.",
+      "Return to oven. Bake for another 10-15 minutes, or until chicken reaches 75°C internal temperature and mozzarella is melted and bubbly.",
+      "Let rest 5 minutes before serving. Garnish with fresh parsley."
+    ],
+    "notes": [
+      "Bone-in, skin-on chicken thighs provide best flavor and moisture.",
+      "Ensure potatoes are cut uniformly for even cooking.",
+      "Adjust baking time based on chicken thickness and oven calibration."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Deglazing",
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1028,
+      "cholesterol_mg": 231,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 62.5,
+      "saturated_fat_g": 20.5,
+      "sodium_mg": 704,
+      "total_carbs_g": 47.2,
+      "total_fat_g": 62.3,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.9,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 100,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 77,
+      "dietary_fiber": 24,
+      "protein": 125,
+      "saturated_fat": 103,
+      "sodium": 31,
+      "total_carbs": 17,
+      "total_fat": 80
+    },
+    "serving_size_g": 702.5,
+    "total_recipe_weight_g": 2810
+  },
+  {
+    "recipe_name": "Goat Cheese, White Port, and Pumpkin Seed Entremet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_goat_cheese%2C_white_port%2C_and_pumpkin_seed_entremet_20250702_210053_ed667360.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:00:54.311444000Z",
+    "selected_ingredients": [
+      {
+        "name": "goat cheese"
+      },
+      {
+        "name": "pumpkin seed"
+      },
+      {
+        "name": "white port"
+      },
+      {
+        "name": "chinese sweet bean paste"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": null,
+    "visual_description": "A single, perfectly formed mini entremet stands elegantly centered on a pristine white porcelain dessert plate. The entremet, approximately 7-8cm in diameter, boasts a flawless, glossy white chocolate mirror glaze, reflecting subtle light. Its clean, sharp edges reveal the precision of its construction. On the plate, beside the entremet, a minimalist scattering of three to four lightly toasted pumpkin seeds provides a subtle textural contrast and an earthy hue. A delicate, almost invisible, wisp of edible gold leaf is placed precisely on the entremet's surface, catching the light. The plate is largely empty, emphasizing abundant negative space and showcasing the entremet as a singular, artistic creation. The background is an ultra-minimalist, soft-focus setting of pristine white marble, with professional, dramatic lighting casting subtle, elegant shadows. A folded white linen napkin in a precise triangle rests subtly in the background. The scene exudes haute patisserie shop sophistication and extreme restraint.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Goat Cheese",
+    "ingredients": [
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "20g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "40g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Finely ground pumpkin seeds",
+        "quantity": "20g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Chinese sweet bean paste",
+        "quantity": "80g"
+      },
+      {
+        "name": "White port",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Gelatin sheets (gold strength)",
+        "quantity": "3.5g"
+      },
+      {
+        "name": "Soft goat cheese (chevre)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Heavy cream (cold)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "White chocolate (chopped)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50g"
+      },
+      {
+        "name": "Glucose syrup",
+        "quantity": "10g"
+      },
+      {
+        "name": "Neutral glaze (optional)",
+        "quantity": "5g"
+      },
+      {
+        "name": "White food coloring (optional)",
+        "quantity": "Few drops"
+      },
+      {
+        "name": "Toasted pumpkin seeds",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Edible gold leaf (optional)",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 170°C.",
+      "Melt butter in a small saucepan until light golden brown. Cool slightly.",
+      "Combine all-purpose flour, almond flour, powdered sugar, ground pumpkin seeds, and salt in a bowl.",
+      "Add egg whites. Mix until smooth.",
+      "Gradually whisk in cooled brown butter.",
+      "Spread batter thinly on a silicone mat or parchment-lined baking sheet.",
+      "Bake 10-12 minutes, until golden. Cool completely. Cut into four 6cm diameter discs.",
+      "Divide sweet bean paste into 4 equal portions. Form each portion into a flat disc, approximately 4cm in diameter and 0.5cm thick. Freeze until firm.",
+      "Bloom 2g gelatin sheets in cold water for 5 minutes.",
+      "Heat white port and 20g granulated sugar in a small saucepan until sugar dissolves. Do not boil.",
+      "Squeeze excess water from gelatin. Stir gelatin into warm port mixture until dissolved.",
+      "Pour gelee into 4 small silicone molds (e.g., 4-5cm diameter discs). Freeze until solid.",
+      "Bloom 1.5g gelatin sheets in cold water for 5 minutes.",
+      "Soften goat cheese in a large bowl.",
+      "Heat 50ml whole milk in a small saucepan until warm. Squeeze excess water from gelatin. Stir gelatin into warm milk until dissolved.",
+      "Pour milk-gelatin mixture into goat cheese. Whisk until smooth.",
+      "In a separate bowl, whip 50g cold heavy cream with 30g powdered sugar to soft peaks.",
+      "Gently fold whipped cream into the goat cheese mixture until fully combined.",
+      "Prepare four individual silicone entremet molds (e.g., round or square, 7-8cm diameter).",
+      "Pipe or spoon a layer of goat cheese mousse into the bottom of each mold.",
+      "Carefully place a frozen white port gelee disc on top of the mousse layer.",
+      "Add another layer of goat cheese mousse, covering the gelee.",
+      "Place a frozen sweet bean paste disc on top of the mousse.",
+      "Add a final thin layer of goat cheese mousse to cover the sweet bean paste.",
+      "Gently press a pumpkin seed financier disc onto the top of the mousse, creating the base of the entremet.",
+      "Freeze entremets for at least 6 hours, or preferably overnight, until completely solid.",
+      "Chop white chocolate. Place in a heatproof bowl.",
+      "Heat 50g heavy cream and glucose syrup in a small saucepan until simmering.",
+      "Pour hot cream mixture over chopped white chocolate. Let sit for 1 minute.",
+      "Stir gently from the center outwards until chocolate is melted and smooth. Add neutral glaze if using.",
+      "Use an immersion blender to emulsify the glaze until smooth and shiny. Avoid air bubbles.",
+      "If using, add a few drops of white food coloring for a brighter white.",
+      "Cool glaze to 30-32°C before use.",
+      "Unmold frozen entremets. Place them on a wire rack set over a tray.",
+      "Pour the cooled white chocolate glaze evenly over each frozen entremet, ensuring full coverage.",
+      "Let excess glaze drip off. Use a small offset spatula to clean the bottom edges.",
+      "Carefully transfer each glazed entremet to an individual serving plate.",
+      "Allow entremets to thaw in the refrigerator for 30-45 minutes before serving.",
+      "Garnish each entremet with a few toasted pumpkin seeds and a small piece of edible gold leaf."
+    ],
+    "traditional_techniques": [
+      "Advanced Patisserie Techniques"
+    ]
+  },
+  {
+    "recipe_name": "Tuscan Chicken with Cannellini Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken_with_cannellini_beans_20250702_205739_6e851511.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:57:40.145282000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tuscan Chicken with Cannellini Beans is presented on a clean, round white porcelain dinner plate. Two golden-brown seared chicken thigh pieces are nestled within a creamy bed of white cannellini beans. Vibrant red halved cherry tomatoes are scattered throughout the beans, providing distinct pops of color. The rich, herbaceous sauce lightly coats the chicken and beans. Fresh green elements from finely chopped parsley are generously sprinkled over the top. The chicken thighs are left whole. The plate rests on a light-colored, rustic wooden table surface. A neatly folded white linen napkin is placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and vibrant colors. The background is softly blurred, hinting at a casual bistro atmosphere, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Canned cannellini beans, rinsed and drained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "for garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden brown on both sides. Cook in batches if necessary. Remove chicken from skillet. Set aside.",
+      "Add diced red onion to the skillet. Sauté for 3-4 minutes until softened.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in white wine. Deglaze the skillet, scraping up any browned bits from the bottom.",
+      "Add chicken broth, halved cherry tomatoes, rosemary sprigs, and sage leaves to the skillet. Bring to a simmer.",
+      "Return seared chicken thighs to the skillet. Ensure chicken is partially submerged in liquid. Cover. Reduce heat to medium-low. Simmer for 15-20 minutes, or until internal temperature of chicken reaches 75°C (167°F).",
+      "Add rinsed cannellini beans to the skillet. Simmer uncovered for 5 minutes to heat through and allow flavors to meld.",
+      "Remove rosemary sprigs and sage leaves. Taste and adjust seasoning with salt and pepper.",
+      "Serve hot. Garnish with fresh chopped parsley and optional grated Parmesan cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 457,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 40,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 409,
+      "total_carbs_g": 25.8,
+      "total_fat_g": 19.7,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 9.3,
+      "saturated_fat_g": 1,
+      "sodium_mg": 95,
+      "total_carbs_g": 6,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 30,
+      "protein": 80,
+      "saturated_fat": 22,
+      "sodium": 18,
+      "total_carbs": 9,
+      "total_fat": 25
+    },
+    "serving_size_g": 430,
+    "total_recipe_weight_g": 1720
+  }
+]

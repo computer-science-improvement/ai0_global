@@ -1,0 +1,706 @@
+[
+  {
+    "recipe_name": "Chicken and Carrot Masala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251029_031805_49c157b3.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-10-29T03:18:06.254700000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "onion",
+      "garlic",
+      "oil",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Chicken and Carrot Masala is presented as a generous individual portion in a clean, white porcelain bowl. Tender 3cm chicken chunks and vibrant 1.5cm diced carrots are enveloped in a rich, reddish-brown, aromatic sauce, with the sauce pooling slightly at the base. Visible textures include the velvety sauce, soft chicken, and slightly yielding carrots. The dish is garnished with a liberal scattering of bright green, freshly chopped coriander leaves, providing a fresh contrast. The bowl sits on a light wooden table surface, accompanied by a small side bowl of fluffy, white basmati rice and a neatly folded piece of warm, golden naan bread. A silver fork and spoon are placed alongside. Natural, even lighting highlights the dish's warmth and depth of color. The entire plate is visible, showcasing a balanced and appealing composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with basmati rice and warm naan bread.",
+      "A side of raita (yogurt dip) or pickled onions is a traditional accompaniment."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2, slit lengthwise (adjust to taste)"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "2, peeled and diced (1.5 cm cubes)"
+      },
+      {
+        "name": "Chicken stock or water",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Plain full-fat yogurt",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm chunks. Season chicken with salt.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium heat.",
+      "Add cumin seeds. Cook until fragrant, about 30 seconds.",
+      "Add finely diced onions. Sauté until golden brown, about 8-10 minutes.",
+      "Stir in minced garlic, grated ginger, and green chilies. Cook for 2 minutes until aromatic.",
+      "Add ground turmeric, ground coriander, and ground cumin. Cook for 1 minute, stirring constantly.",
+      "Pour in crushed tomatoes. Bring to a simmer. Cook for 5 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Add chicken chunks to the pot. Sear for 3-4 minutes until lightly browned on all sides.",
+      "Stir in diced carrots and chicken stock. Bring to a boil, then reduce heat to low.",
+      "Cover and simmer for 20-25 minutes, or until chicken is cooked through and carrots are tender.",
+      "Stir in plain yogurt. Mix well. Do not boil after adding yogurt.",
+      "Stir in garam masala and half of the fresh chopped coriander.",
+      "Taste and adjust salt if needed. Serve hot, garnished with remaining fresh coriander."
+    ],
+    "notes": [
+      "Adjust the number of green chilies to control the spice level.",
+      "For deeper flavor, marinate the chicken in a little yogurt and turmeric for 30 minutes before cooking."
+    ],
+    "traditional_techniques": [
+      "Tempering spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 469,
+      "cholesterol_mg": 198.3,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 35.1,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 852.7,
+      "total_carbs_g": 26.5,
+      "total_fat_g": 23.7,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93,
+      "cholesterol_mg": 39.4,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 169.4,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 23,
+      "protein": 70,
+      "saturated_fat": 24,
+      "sodium": 37,
+      "total_carbs": 10,
+      "total_fat": 30
+    },
+    "serving_size_g": 503.5,
+    "total_recipe_weight_g": 2014
+  },
+  {
+    "recipe_name": "Creamy Sausage and Broccoli Pasta Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251028_180625_9e53e827.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2025-10-28T18:06:25.683284000Z",
+    "selected_ingredients": [
+      "broccoli"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Creamy Sausage and Broccoli Pasta Bake fills a rustic, shallow ceramic bowl. The al dente penne pasta, vibrant green broccoli florets, and browned, crumbled sausage chunks are naturally mixed within a creamy sauce. A golden-brown, bubbly crust of melted Parmesan cheese tops the dish. The broccoli florets are tender-crisp, and the sausage pieces are irregularly shaped and browned. The dish is garnished with a sprinkle of fresh chopped parsley for color. It is presented on a well-used wooden dining table, with a simple metal fork and spoon resting beside the bowl. A casually placed cloth napkin and warm, cozy kitchen lighting complete the homely, inviting scene, showcasing a satisfying home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Broccoli",
+    "ingredients": [
+      {
+        "name": "Broccoli florets",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Italian sausage (casings removed)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion (diced)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic (minced)",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Single cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Chicken or vegetable stock",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese (grated)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley (chopped, for garnish)",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cook penne pasta according to package directions until al dente. Drain well.",
+      "Heat olive oil in a large oven-safe pan or Dutch oven over medium heat.",
+      "Add sausage, breaking it apart with a spoon. Cook until browned. Remove sausage and set aside.",
+      "Add diced onion to the same pan. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in broccoli florets. Sauté for 3-4 minutes until slightly tender-crisp.",
+      "Pour in single cream and stock. Bring mixture to a gentle simmer.",
+      "Return cooked sausage to the pan. Add drained pasta and half of the grated Parmesan cheese.",
+      "Season with salt and black pepper. Stir to combine all ingredients.",
+      "Smooth the top of the mixture. Sprinkle remaining Parmesan cheese over the top.",
+      "Bake for 15-20 minutes, or until the sauce is bubbly and the cheese topping is golden brown.",
+      "Garnish with chopped fresh parsley. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 875,
+      "cholesterol_mg": 125,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 35.4,
+      "saturated_fat_g": 19.2,
+      "sodium_mg": 1007,
+      "total_carbs_g": 72.8,
+      "total_fat_g": 52.5,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 196,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.9,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 225,
+      "total_carbs_g": 16.3,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 23,
+      "protein": 71,
+      "saturated_fat": 96,
+      "sodium": 44,
+      "total_carbs": 26,
+      "total_fat": 67
+    },
+    "serving_size_g": 447,
+    "total_recipe_weight_g": 1787
+  },
+  {
+    "recipe_name": "Chicken Milanese with Lemon-Caper Butter Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251028_170605_ba62299d.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-10-28T17:06:05.903478000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown, crispy pan-fried chicken cutlet, approximately 1cm thick and irregularly shaped from pounding, rests centrally on a clean white porcelain dinner plate. The chicken is a warm, inviting golden hue, speckled with visible panko breadcrumbs and finely chopped green parsley. A glossy, pale yellow lemon-caper butter sauce is generously spooned over the chicken, pooling slightly at its base, showcasing small dark capers and flecks of lemon zest. Alongside the chicken, a vibrant mound of fresh arugula salad is casually arranged. The salad features deep green arugula leaves, halved bright red cherry tomatoes, and delicate, translucent slices of red onion. The plate has ample negative space, allowing each element to stand out. A simple cotton napkin, folded, is placed beside the plate on a light wooden table surface. The scene is illuminated by soft, natural, even lighting, creating a casual bistro atmosphere. No artistic effects are present.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple side of pasta or crusty Italian bread.",
+      "Pair with a crisp, dry white wine like Pinot Grigio."
+    ],
+    "hero_ingredient": "Chicken breast cutlets",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Finely grated Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh parsley, finely chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Large lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Capers, drained",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil (for frying)",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh arugula",
+        "quantity": "150g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Small red onion, very thinly sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Extra virgin olive oil (for dressing)",
+        "quantity": "60ml"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken: Slice each chicken breast horizontally into two thinner cutlets. Place between plastic wrap. Pound to an even 5mm thickness. Season both sides with salt and pepper.",
+      "Set up breading station: Place flour in a shallow dish. Whisk eggs in a second dish. Combine panko, Parmesan, and half of the chopped parsley in a third dish.",
+      "Bread chicken: Dredge each cutlet in flour, shaking off excess. Dip in egg. Press into panko mixture, ensuring full coverage.",
+      "Pan-fry chicken: Heat 2 tablespoons olive oil in a large non-stick pan over medium-high heat. Fry 2 cutlets at a time for 3-4 minutes per side. Cook until golden brown and internal temperature reaches 75°C. Add more oil as needed. Transfer cooked cutlets to a wire rack. Keep warm.",
+      "Make lemon-caper butter sauce: In a clean pan, melt butter over medium heat until it foams and turns light golden brown. Add lemon juice, lemon zest, and drained capers. Stir well. Season with salt and pepper.",
+      "Prepare salad: In a large bowl, combine arugula, halved cherry tomatoes, and thinly sliced red onion. Whisk white wine vinegar and extra virgin olive oil. Season with salt and pepper. Toss salad with dressing just before serving.",
+      "Plate: Place one chicken cutlet on each plate. Spoon lemon-caper butter sauce over the chicken. Serve with a side of dressed arugula salad. Garnish with remaining fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1072,
+      "cholesterol_mg": 320,
+      "dietary_fiber_g": 4,
+      "protein_g": 76.4,
+      "saturated_fat_g": 20,
+      "sodium_mg": 861,
+      "total_carbs_g": 57.5,
+      "total_fat_g": 58.3,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 215,
+      "cholesterol_mg": 64,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 15.4,
+      "saturated_fat_g": 4,
+      "sodium_mg": 173,
+      "total_carbs_g": 11.5,
+      "total_fat_g": 11.7,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 107,
+      "dietary_fiber": 14,
+      "protein": 153,
+      "saturated_fat": 100,
+      "sodium": 37,
+      "total_carbs": 21,
+      "total_fat": 75
+    },
+    "serving_size_g": 498,
+    "total_recipe_weight_g": 1992
+  },
+  {
+    "recipe_name": "Chocolate Crémeux, Whole Wheat Sable, Milk Foam, Cocoa Nibs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251028_163222_0f19c1f6.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 15,
+    "timestamp": "2025-10-28T16:32:22.898392000Z",
+    "selected_ingredients": [
+      "butter",
+      "cocoa powder",
+      "milk",
+      "whole wheat flour"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A modern, sophisticated dessert plated on a round, matte black designer plate. A free-form quenelle of rich, dark chocolate crémeux, intensely glossy and smooth, sits slightly off-center. Beside it, two to three irregularly shaped shards of golden-brown whole wheat sable, crisp and thin, are artfully positioned, creating height and texture contrast. A delicate, ethereal cloud of pristine white milk foam is gently placed, its airy texture a stark visual and tactile counterpoint to the dense crémeux. Scattered sparingly across the plate are dark, irregularly shaped cocoa nibs, adding a textural crunch and bitter note. The composition features abundant negative space, enhancing the architectural precision of each element. The plate rests on a polished dark wood table, with dramatic professional lighting casting soft shadows. A pristine white linen napkin, precisely folded, and minimalist modern cutlery complete the luxury Michelin setting. The overall presentation is elegant and refined, with intentional contrast in colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "cultural_origin": "French Modern",
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Dark chocolate (70% cocoa solids)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "4"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Unsalted butter (cold, cubed)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Whole wheat flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Whole milk (for foam)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream (for foam)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Granulated sugar (for foam)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Gelatin sheet",
+        "quantity": "1 (2g)"
+      },
+      {
+        "name": "Cocoa nibs",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Edible gold leaf",
+        "quantity": "Small amount (optional)"
+      }
+    ],
+    "instructions": [
+      "Chop dark chocolate. Set aside.",
+      "Heat heavy cream and 200 ml whole milk in a saucepan until simmering.",
+      "Whisk egg yolks and 40 g granulated sugar until pale.",
+      "Temper egg mixture with hot milk mixture. Slowly pour hot liquid into egg mixture while whisking.",
+      "Return mixture to saucepan. Cook over medium-low heat, stirring constantly with a spatula, until thickened (82-84°C). Do not boil.",
+      "Strain crémeux over chopped chocolate. Let stand 1 minute.",
+      "Whisk gently from center outwards until smooth and emulsified.",
+      "Pour into a shallow container. Cover surface with plastic wrap. Chill 4 hours minimum, or overnight.",
+      "Preheat oven to 160°C.",
+      "Combine whole wheat flour, powdered sugar, and salt in a bowl.",
+      "Add cold cubed butter. Rub butter into flour mixture until coarse crumbs form.",
+      "Press dough together to form a ball. Do not overmix.",
+      "Roll dough between two sheets of parchment paper to 3 mm thickness.",
+      "Cut into irregular shards or small rectangles.",
+      "Bake 12-15 minutes, or until golden brown. Cool completely on a wire rack.",
+      "Bloom gelatin sheet in cold water 5 minutes.",
+      "Heat 250 ml whole milk, 50 ml heavy cream, and 20 g granulated sugar in a saucepan until sugar dissolves and mixture is warm.",
+      "Squeeze excess water from gelatin. Stir bloomed gelatin into warm milk mixture until dissolved.",
+      "Strain mixture. Pour into a shallow dish. Chill until slightly set but still liquid (1-2 hours).",
+      "Just before serving, whisk the chilled milk mixture vigorously until light and airy foam forms. Use an immersion blender for best results.",
+      "Spoon a quenelle or smear of chocolate crémeux onto each plate.",
+      "Arrange 2-3 sable shards artfully next to crémeux.",
+      "Spoon a cloud of milk foam over or beside the crémeux.",
+      "Sprinkle cocoa nibs over the plate.",
+      "Add small pieces of edible gold leaf if desired. Serve immediately."
+    ],
+    "notes": [
+      "The milk foam must be made just before serving for best texture.",
+      "The crémeux can be prepared a day in advance."
+    ],
+    "traditional_techniques": [
+      "Emulsification",
+      "Tempering",
+      "Sablage",
+      "Quenelle shaping"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 27.5,
+      "calories": 1032,
+      "cholesterol_mg": 328.2,
+      "dietary_fiber_g": 10.7,
+      "protein_g": 18.2,
+      "saturated_fat_g": 45.3,
+      "sodium_mg": 97.9,
+      "total_carbs_g": 87.3,
+      "total_fat_g": 76.2,
+      "total_sugars_g": 47.3,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 8,
+      "calories": 302,
+      "cholesterol_mg": 95.9,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 5.3,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 28.6,
+      "total_carbs_g": 25.5,
+      "total_fat_g": 22.3,
+      "total_sugars_g": 13.8,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 109.4,
+      "dietary_fiber": 38.1,
+      "protein": 36.4,
+      "saturated_fat": 226.3,
+      "sodium": 4.3,
+      "total_carbs": 31.8,
+      "total_fat": 97.7
+    },
+    "serving_size_g": 342.3,
+    "total_recipe_weight_g": 1369
+  },
+  {
+    "recipe_name": "Thai Chili Bean Paste Chicken and Gai Lan Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251028_162829_5c71b58f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-28T16:28:29.948434000Z",
+    "selected_ingredients": [
+      "bean paste",
+      "thai chili",
+      "gai lan",
+      "coriander root"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white round porcelain plate, featuring a vibrant mound of stir-fried chicken and gai lan. Chicken pieces are golden-brown 2.5 cm cubes, nestled amongst crisp-tender gai lan stalks diagonally sliced and 5 cm leaf sections. The ingredients are coated in a rich, glossy brown sauce, flecked with bright red Thai chili. Fresh green coriander leaves are scattered over the top as a garnish, providing a fresh contrast. The composition is balanced and inviting, with moderate negative space. Alongside, a small white bowl of fluffy steamed jasmine rice and a pair of chopsticks complete the authentic Thai dining experience on a simple wooden table with natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice.",
+      "Can be part of a multi-dish Thai meal, eaten family-style."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thigh",
+        "quantity": "500g, cut into 2.5 cm cubes"
+      },
+      {
+        "name": "Gai lan (Chinese broccoli)",
+        "quantity": "400g, stalks sliced diagonally, leaves cut into 5 cm pieces"
+      },
+      {
+        "name": "Thai red chilies",
+        "quantity": "10-15, roughly chopped"
+      },
+      {
+        "name": "Coriander roots",
+        "quantity": "3, finely chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, peeled"
+      },
+      {
+        "name": "White peppercorns",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Fermented yellow bean paste (taw jiao)",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "1 teaspoon, finely chopped"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Pound coriander roots, garlic, and white peppercorns into a fine paste. Add chopped Thai chilies; pound until combined.",
+      "Heat 2 tablespoons vegetable oil in a wok over high heat. Add chicken. Stir-fry 4-5 minutes until cooked through and lightly browned. Remove chicken from wok.",
+      "Add remaining 1 tablespoon vegetable oil to wok. Add gai lan stalks. Stir-fry 2 minutes. Add gai lan leaves. Stir-fry 1 minute until crisp-tender. Remove gai lan from wok.",
+      "Add chili-garlic-coriander root paste to wok. Stir-fry 30 seconds until fragrant.",
+      "Add fermented yellow bean paste. Stir-fry 30 seconds.",
+      "Return chicken to wok. Add oyster sauce, fish sauce, palm sugar, and chicken stock. Stir well to coat.",
+      "Return gai lan to wok. Toss quickly to combine all ingredients and heat through.",
+      "Serve immediately with jasmine rice. Garnish with fresh coriander leaves."
+    ],
+    "traditional_techniques": [
+      "Pounding fresh aromatics into a paste (kreung gaeng)",
+      "High-heat wok stir-frying (Pad)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.2,
+      "calories": 357,
+      "cholesterol_mg": 136,
+      "dietary_fiber_g": 3,
+      "protein_g": 27.4,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 1297,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 22.6,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 123,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.4,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 446,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 11,
+      "protein": 55,
+      "saturated_fat": 23,
+      "sodium": 56,
+      "total_carbs": 4,
+      "total_fat": 29
+    },
+    "serving_size_g": 291.1,
+    "total_recipe_weight_g": 1164.2
+  }
+]

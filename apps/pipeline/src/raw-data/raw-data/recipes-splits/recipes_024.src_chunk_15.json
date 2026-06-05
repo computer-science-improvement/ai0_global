@@ -1,0 +1,692 @@
+[
+  {
+    "recipe_name": "Spicy Baked Chicken with Cheesy Garlic Breadcrumbs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_baked_chicken_with_cheesy_garlic_breadcrumbs_20250624_024842_1e32e0c0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:48:42.813166000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "basil",
+      "bread",
+      "garlic",
+      "parmesan cheese",
+      "hot sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of Spicy Baked Chicken with Cheesy Garlic Breadcrumbs rests on a rustic, off-white ceramic plate. Two generous, golden-brown baked chicken thighs, each topped with a thick, textured crust of crispy breadcrumbs, melted Parmesan, and flecks of green basil, are nestled in a vibrant reddish-orange tomato sauce. The chicken pieces are whole, un-sliced, with their natural contours. The sauce, visible around the chicken, contains finely diced onion and garlic. A few fresh basil leaves are casually torn and scattered over the dish as garnish. The plate, with its slightly irregular rim, sits on a warm-toned, well-used wooden dining table. A simple metal fork and knife are placed to the side. A crumpled, plain linen napkin and a small, slightly chipped ceramic bowl holding extra grated Parmesan complete the homely setting. Soft, warm light from kitchen fixtures illuminates the scene, highlighting the comforting textures and rich colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple side of steamed green beans or a light green salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "medium onion",
+        "quantity": "1 (approx. 150g), finely diced"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "stale bread",
+        "quantity": "150g, torn into pieces"
+      },
+      {
+        "name": "grated Parmesan cheese",
+        "quantity": "80g"
+      },
+      {
+        "name": "fresh basil leaves",
+        "quantity": "30g, roughly chopped, plus extra for garnish"
+      },
+      {
+        "name": "hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "5g (or to taste)"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "2g (or to taste)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Pulse stale bread in a food processor to make coarse breadcrumbs.",
+      "Heat olive oil in an oven-safe skillet or large pan over medium heat. Sauté diced onion until softened, about 5 minutes. Add minced garlic. Cook 1 minute more.",
+      "Stir in crushed tomatoes, hot sauce, and chicken stock. Bring to a simmer. Season with salt and pepper.",
+      "Place chicken thighs into the simmering sauce. Ensure chicken is mostly submerged.",
+      "In a bowl, combine breadcrumbs, grated Parmesan, and chopped basil.",
+      "Spoon the breadcrumb mixture evenly over each chicken thigh in the pan.",
+      "Transfer skillet to the preheated oven. Bake 25-30 minutes.",
+      "Check internal temperature of chicken. It must reach 75°C.",
+      "Remove from oven. Let rest 5 minutes. Serve hot."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety.",
+      "For best results, use day-old bread to make fresh breadcrumbs."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.5,
+      "calories": 578,
+      "cholesterol_mg": 223,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 50,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 1337,
+      "total_carbs_g": 28.4,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 136,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.7,
+      "saturated_fat_g": 2,
+      "sodium_mg": 314,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 11,
+      "protein": 100,
+      "saturated_fat": 42,
+      "sodium": 58,
+      "total_carbs": 10,
+      "total_fat": 36
+    },
+    "serving_size_g": 426.5,
+    "total_recipe_weight_g": 1706
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Medallions with Caramelized Onions and Garlic Herb Butter",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_medallions_with_caramelized_onions_and_garlic_herb_butter_20250624_024821_6628a869.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:48:21.968777000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Pan-Seared Beef Medallions with Caramelized Onions and Garlic Herb Butter is presented on a clean, round white porcelain plate. Two thick, seared beef medallions, displaying a rich, dark brown crust, are positioned slightly offset in the center of the plate. Adjacent to the beef, a generous portion of deeply golden-brown, glistening caramelized onions, thinly sliced, creates a soft, inviting mound. A glossy, rich brown pan sauce is drizzled artfully over the beef and around the onions. A small, vibrant green sprig of fresh thyme rests gently on top of one beef medallion. The overall composition is balanced with moderate negative space. The dish is set on a simple wooden table surface, accompanied by a folded white cotton napkin and standard silver flatware, under natural, even lighting, conveying a refined yet approachable casual dining atmosphere. The background is softly blurred, hinting at a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Large yellow onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef medallions dry. Season generously with salt and pepper on all sides. Cut beef into 4 thick medallions (approximately 150g each).",
+      "Heat olive oil in a large heavy-bottomed skillet over medium-high heat until shimmering.",
+      "Sear beef medallions for 3-4 minutes per side for medium-rare, or longer to desired doneness. Do not overcrowd the pan. Sear in batches if necessary.",
+      "Reduce heat to medium-low. Add 30g butter, 2 thyme sprigs, and 1 rosemary sprig to the skillet. Tilt the pan and spoon melted butter over beef for 1-2 minutes.",
+      "Remove beef from skillet. Place on a cutting board, tent with foil. Let rest for 10 minutes.",
+      "In the same skillet, add thinly sliced onions. Cook over medium-low heat, stirring occasionally, for 20-25 minutes until deeply caramelized and tender. Add a splash of water if onions stick.",
+      "Add minced garlic to onions. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pan. Simmer for 2 minutes.",
+      "Add beef broth. Bring to a simmer. Cook until sauce slightly reduces and thickens, about 5 minutes. Stir in remaining 30g butter and chopped parsley. Season sauce with salt and pepper to taste.",
+      "Plate beef medallions. Spoon caramelized onions next to or over beef. Drizzle with pan sauce. Garnish with a fresh thyme sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 553,
+      "cholesterol_mg": 158.25,
+      "dietary_fiber_g": 2.86,
+      "protein_g": 46.3,
+      "saturated_fat_g": 13.74,
+      "sodium_mg": 618.88,
+      "total_carbs_g": 16.24,
+      "total_fat_g": 32.5,
+      "total_sugars_g": 6.49,
+      "trans_fat_g": 1.11
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146.9,
+      "cholesterol_mg": 42.03,
+      "dietary_fiber_g": 0.76,
+      "protein_g": 12.3,
+      "saturated_fat_g": 3.65,
+      "sodium_mg": 164.38,
+      "total_carbs_g": 4.31,
+      "total_fat_g": 8.63,
+      "total_sugars_g": 1.72,
+      "trans_fat_g": 0.29
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.8,
+      "dietary_fiber": 10.2,
+      "protein": 92.6,
+      "saturated_fat": 68.7,
+      "sodium": 26.9,
+      "total_carbs": 5.9,
+      "total_fat": 41.7
+    },
+    "serving_size_g": 376.5,
+    "total_recipe_weight_g": 1506
+  },
+  {
+    "recipe_name": "Spicy Potato and Tomato Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_potato_and_tomato_curry_20250624_024611_e5616958.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:46:11.625398000Z",
+    "selected_ingredients": [
+      "potato",
+      "tomato",
+      "onion",
+      "garlic",
+      "cayenne pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Spicy Potato and Tomato Curry is presented in a deep, white ceramic bowl. The curry showcases medium 2cm potato cubes and softened tomato pieces, coated in a rich, reddish-orange sauce. The surface shimmers slightly, indicating a well-cooked, flavorful base. A generous scattering of bright green, freshly chopped coriander leaves provides a striking color contrast and fresh texture. The dish is centrally placed on a simple wooden table, suggesting a modern bistro setting. Beside the bowl, a small portion of fluffy Basmati rice is neatly arranged, accompanied by a folded white cotton napkin. The scene is illuminated by soft, natural, even lighting, creating a clean, inviting atmosphere. The plating is professional and approachable, with moderate negative space, highlighting the dish as the main subject.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with freshly cooked Basmati rice.",
+      "Serve with warm naan bread or roti for scooping the curry."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "800g, peeled and diced into 2cm cubes"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "400g, diced or crushed"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, finely chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "1.5 tsp (adjust to taste)"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Vegetable oil or Ghee",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Water or vegetable broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "30g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat oil or ghee in a large pot over medium heat.",
+      "Add cumin seeds. Cook until they splutter, about 30 seconds.",
+      "Add chopped onions. Sauté until golden brown, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in diced tomatoes, cayenne pepper, turmeric powder, coriander powder, and salt. Cook for 8-10 minutes, stirring occasionally, until tomatoes break down and oil separates from the mixture.",
+      "Add diced potatoes. Stir to coat them thoroughly with the spice mixture.",
+      "Pour in water or vegetable broth. Bring to a simmer.",
+      "Reduce heat to low. Cover and cook for 15-20 minutes, or until potatoes are tender.",
+      "Stir in garam masala. Cook for 2 minutes uncovered.",
+      "Taste and adjust seasoning if needed. The curry should have a medium-thick consistency.",
+      "Garnish generously with fresh chopped coriander before serving."
+    ],
+    "notes": [
+      "Adjust cayenne pepper to your preferred spice level.",
+      "For a richer flavor, use ghee instead of vegetable oil."
+    ],
+    "traditional_techniques": [
+      "Tempering spices (Tadka)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 271.2,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 6.2,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 24.9,
+      "total_carbs_g": 46.8,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 61.9,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 1.4,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 5.7,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 1.8,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 27,
+      "protein": 12,
+      "saturated_fat": 3,
+      "sodium": 1,
+      "total_carbs": 17,
+      "total_fat": 10
+    },
+    "serving_size_g": 438.3,
+    "total_recipe_weight_g": 1753
+  },
+  {
+    "recipe_name": "Pork Carnitas with Arroz Rojo and Esquites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_carnitas_with_arroz_rojo_and_esquites_20250624_024524_68415b90.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:45:24.773541000Z",
+    "selected_ingredients": [
+      "corn",
+      "rice",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pork Carnitas is presented on a clean white porcelain dinner plate. The savory, golden-brown, crispy pork chunks are piled centrally. Beside the pork is a portion of vibrant red Arroz Rojo, fluffy and speckled with tomato. Adjacent to the rice, a mound of Esquites, featuring charred corn kernels mixed with creamy mayonnaise and crumbled Cotija cheese, adds a contrasting texture and color. A fresh lime wedge rests on the side. The plate is set on a simple wooden table. A neatly folded cotton napkin is placed beside the plate. The background is a softly blurred modern bistro setting. Natural, even lighting highlights the textures and colors of the ingredients, emphasizing the authentic Mexican flavors. The entire plate is visible, showcasing a balanced and appealing composition with appropriate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for making tacos.",
+      "Offer various salsas (salsa verde, pico de gallo) on the side.",
+      "Provide extra lime wedges and chopped cilantro for garnish."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Lard or vegetable oil",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Orange, halved",
+        "quantity": "1"
+      },
+      {
+        "name": "White onion, quartered",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Tomato, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Fresh corn kernels (from 3-4 cobs)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Cotija cheese, crumbled",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Lime, cut into wedges",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Small corn tortillas",
+        "quantity": "12"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 5 cm chunks. Pat dry.",
+      "Place pork chunks in a large heavy-bottomed pot or Dutch oven. Add lard, orange halves, onion, garlic, bay leaves, and salt.",
+      "Pour in water. Bring to a simmer over medium-high heat.",
+      "Reduce heat to low. Cover and simmer for 2-3 hours. Pork should be very tender.",
+      "Remove lid. Increase heat to medium-high. Cook until liquid evaporates and pork begins to crisp and brown in the rendered lard. Stir occasionally. Cook until internal temperature reaches 63°C.",
+      "Remove pork from lard. Shred or chop into smaller pieces. Set aside.",
+      "For Arroz Rojo: Rinse rice under cold water until clear. Drain well.",
+      "Heat a splash of oil in a saucepan over medium heat. Add rice. Cook, stirring, until lightly toasted, about 5 minutes.",
+      "Add diced tomato. Cook for 2 minutes.",
+      "Pour in chicken broth. Bring to a boil. Reduce heat to low. Cover and simmer for 15-20 minutes, until liquid is absorbed and rice is tender.",
+      "Remove from heat. Let stand, covered, for 5 minutes. Fluff with a fork.",
+      "For Esquites: Heat a pan over medium-high heat. Add corn kernels. Cook, stirring frequently, until lightly charred, about 5-7 minutes.",
+      "Remove corn from heat. Transfer to a bowl. Stir in mayonnaise, half of the Cotija cheese, chili powder, and half of the cilantro. Mix well.",
+      "Warm tortillas on a griddle or in a microwave.",
+      "Serve crispy pork carnitas with a side of Arroz Rojo and Esquites. Garnish with remaining Cotija cheese, cilantro, and lime wedges."
+    ],
+    "notes": [
+      "Ensure pork reaches an internal temperature of 63°C (145°F) for safe consumption, then allow to rest for 3 minutes."
+    ],
+    "traditional_techniques": [
+      "Confit (cooking in fat)",
+      "Sofrito (for rice base)",
+      "Dry-roasting (for corn char)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 2157,
+      "cholesterol_mg": 368.2,
+      "dietary_fiber_g": 9.3,
+      "protein_g": 104.9,
+      "saturated_fat_g": 50.8,
+      "sodium_mg": 2543.9,
+      "total_carbs_g": 129.8,
+      "total_fat_g": 136.5,
+      "total_sugars_g": 12.2,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 253.7,
+      "cholesterol_mg": 43.3,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 12.3,
+      "saturated_fat_g": 6,
+      "sodium_mg": 299.3,
+      "total_carbs_g": 15.3,
+      "total_fat_g": 16.1,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 123,
+      "dietary_fiber": 33,
+      "protein": 210,
+      "saturated_fat": 254,
+      "sodium": 111,
+      "total_carbs": 47,
+      "total_fat": 175
+    },
+    "serving_size_g": 850,
+    "total_recipe_weight_g": 3400
+  },
+  {
+    "recipe_name": "Slow-Cooked Lamb Ragu with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_lamb_ragu_with_pappardelle_20250624_024413_25c124ab.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:44:13.978217000Z",
+    "selected_ingredients": [
+      "lamb",
+      "tomato",
+      "mushroom",
+      "rosemary",
+      "onion",
+      "garlic",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous portion of golden pappardelle pasta is gently coiled on a pristine white porcelain dinner plate, forming an inviting mound. The pasta is richly coated in a deep reddish-brown lamb ragu, showcasing tender, pulled lamb chunks and dark, sautéed mushroom slices. The ragu's texture is thick and rustic, clinging to the wide pasta ribbons. Bright green specks of fresh, chopped rosemary and parsley are scattered over the dish, adding a vibrant contrast. A fine dusting of grated Parmesan cheese lightly crowns the top. The lamb is presented as robust, shredded pieces integrated into the sauce. The plate sits on a simple wooden table, accompanied by a clean white cotton napkin and classic flatware. Natural, even light illuminates the dish, emphasizing its warm colors and inviting textures. The entire plate is visible, with ample negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping",
+      "A glass of robust red wine"
+    ],
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Lamb shoulder",
+        "quantity": "600g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Brown mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Season lamb cubes with salt and pepper. Dice lamb into 2-3 cm cubes.",
+      "Heat olive oil in a large heavy-bottomed pot over medium-high heat.",
+      "Sear lamb in batches until browned on all sides. Remove lamb and set aside.",
+      "Add diced onion to the pot. Sauté until softened, 5-7 minutes.",
+      "Add minced garlic and chopped rosemary. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms. Sauté until softened and lightly browned, about 5 minutes.",
+      "Deglaze pot with red wine, scraping up browned bits. Reduce by half.",
+      "Return seared lamb to the pot. Add crushed tomatoes and beef broth.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for 2-3 hours until lamb is very tender. Stir occasionally.",
+      "Remove lamb from pot. Shred lamb using two forks. Return shredded lamb to the sauce.",
+      "Taste and adjust seasoning as needed.",
+      "Cook pappardelle according to package instructions in salted boiling water until al dente.",
+      "Drain pasta, reserving some pasta water.",
+      "Add cooked pasta directly to the ragu. Toss to combine, adding a splash of reserved pasta water if needed.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1207.6,
+      "cholesterol_mg": 222,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 68.9,
+      "saturated_fat_g": 25.9,
+      "sodium_mg": 1360.5,
+      "total_carbs_g": 86.9,
+      "total_fat_g": 62.9,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.5,
+      "cholesterol_mg": 28.4,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.8,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 173.9,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 8,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 19.1,
+      "protein": 137.8,
+      "saturated_fat": 129.4,
+      "sodium": 59.2,
+      "total_carbs": 31.6,
+      "total_fat": 80.6
+    },
+    "serving_size_g": 781.6,
+    "total_recipe_weight_g": 3126.5
+  }
+]

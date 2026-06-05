@@ -1,0 +1,641 @@
+[
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_risotto_20250703_015344_11b8c333.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T01:53:44.599713000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "oil",
+      "cheese",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy, free-flowing risotto is presented on a clean white porcelain dinner plate. The risotto is a warm, pale yellow hue, studded with tender, golden-brown seared chicken cubes (2cm) and sautéed earthy brown mushroom slices. Finely diced onion pieces are visible throughout the creamy rice. A vibrant sprinkle of fresh green chopped parsley garnishes the top, alongside delicate shavings of Parmesan cheese. The dish has a natural, organic arrangement, showcasing its rich texture. The plate is set on a simple wooden table, with classic silver Italian flatware (fork and spoon) placed beside it, and a folded cotton napkin. Natural, even lighting highlights the dish, with a softly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread.",
+      "Pair with a light Italian white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 2cm cubes. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large pot or deep pan over medium-high heat.",
+      "Sear chicken cubes until golden brown and cooked through (internal temperature 75°C). Remove chicken and set aside.",
+      "Add remaining 15ml olive oil and 15g butter to the same pot.",
+      "Sauté finely diced onion until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook until mushrooms are tender and browned, about 5-7 minutes.",
+      "Stir in Arborio rice. Toast rice for 2 minutes, ensuring all grains are coated.",
+      "Pour in white wine. Stir constantly until wine is fully absorbed.",
+      "Add one ladleful (about 250ml) of hot chicken broth. Stir continuously until liquid is absorbed.",
+      "Continue adding broth, one ladleful at a time. Stir constantly and wait for each addition to be absorbed before adding the next. This process takes about 20-25 minutes.",
+      "When rice is creamy and al dente, stir in cooked chicken.",
+      "Remove from heat. Stir in remaining 15g butter and grated Parmesan cheese.",
+      "Season with salt and pepper to taste.",
+      "Serve immediately. Garnish with fresh chopped parsley and extra shaved Parmesan."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 842,
+      "cholesterol_mg": 165.63,
+      "dietary_fiber_g": 2.07,
+      "protein_g": 67.21,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 1448.25,
+      "total_carbs_g": 74.15,
+      "total_fat_g": 28.07,
+      "total_sugars_g": 2.72,
+      "trans_fat_g": 0.43
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 27.95,
+      "dietary_fiber_g": 0.35,
+      "protein_g": 11.34,
+      "saturated_fat_g": 1.94,
+      "sodium_mg": 244.43,
+      "total_carbs_g": 12.51,
+      "total_fat_g": 4.74,
+      "total_sugars_g": 0.46,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.21,
+      "dietary_fiber": 7.39,
+      "protein": 134.42,
+      "saturated_fat": 57.5,
+      "sodium": 62.97,
+      "total_carbs": 26.96,
+      "total_fat": 35.99
+    },
+    "serving_size_g": 592.5,
+    "total_recipe_weight_g": 2370
+  },
+  {
+    "recipe_name": "Chicken and Coriander Masala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_coriander_masala_20250703_012814_54b78009.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T01:28:14.705268000Z",
+    "selected_ingredients": [
+      "chicken",
+      "coriander",
+      "ginger",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Chicken and Coriander Masala is presented in a deep white porcelain bowl, showcasing rich, reddish-brown chicken chunks generously coated in a thick, aromatic, subtly textured gravy. The chicken pieces, cut into 4 cm chunks, are tender and retain their shape. The sauce is flecked with finely diced onions and vibrant green specks of fresh coriander. A generous sprinkle of bright green fresh coriander leaves garnishes the top, adding a burst of color and freshness. The bowl is placed on a simple wooden table. Beside it, a small, perfectly mounded portion of fluffy white basmati rice sits in a smaller white bowl, and a piece of warm, slightly blistered naan bread is folded neatly. The setting is a modern bistro style with natural, even lighting, creating a warm and inviting atmosphere. The entire plate is visible, with moderate negative space, highlighting the dish as the centerpiece.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm naan bread or roti",
+      "Serve with fluffy basmati rice",
+      "Offer a side of cooling raita (yogurt dip) or pickled vegetables (achar)"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g, cut into 4 cm chunks"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "1/2 bunch, chopped (divided)"
+      },
+      {
+        "name": "Canned chopped tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "1/2 tsp (optional)"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "100 ml"
+      }
+    ],
+    "instructions": [
+      "Heat oil in a large pot or Dutch oven over medium heat.",
+      "Add sliced onions. Sauté until deeply golden brown and caramelized, about 10-15 minutes.",
+      "Add grated ginger and minced garlic. Sauté for 1 minute until fragrant.",
+      "Stir in turmeric, cumin, ground coriander, and red chili powder (if using). Cook for 30 seconds, stirring constantly.",
+      "Add chicken chunks. Sear chicken on all sides until lightly browned.",
+      "Pour in chopped tomatoes and water or chicken stock. Bring to a simmer.",
+      "Reduce heat to low. Cover and cook for 20-25 minutes, or until chicken is cooked through (internal temperature 75°C). Stir occasionally.",
+      "Stir in yogurt and garam masala. Cook for 5 minutes, uncovered, until sauce thickens slightly.",
+      "Stir in most of the fresh chopped coriander. Season with salt to taste.",
+      "Serve hot, garnished with remaining fresh coriander."
+    ],
+    "notes": [
+      "For a richer curry, brown chicken well before adding other ingredients.",
+      "Adjust chili powder to your preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Tempering spices (bhunao)",
+      "Slow cooking to develop flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 393.1,
+      "cholesterol_mg": 205.8,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 31.4,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 546.6,
+      "total_carbs_g": 15.3,
+      "total_fat_g": 24.3,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99.5,
+      "cholesterol_mg": 52.1,
+      "dietary_fiber_g": 1,
+      "protein_g": 8,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 138.3,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 14,
+      "protein": 63,
+      "saturated_fat": 28,
+      "sodium": 24,
+      "total_carbs": 6,
+      "total_fat": 31
+    },
+    "serving_size_g": 395.3,
+    "total_recipe_weight_g": 1581
+  },
+  {
+    "recipe_name": "Pesce alla Puttanesca",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pesce_alla_puttanesca_20250703_012521_5b00ceb9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T01:25:22.053374000Z",
+    "selected_ingredients": [
+      "tomato",
+      "garlic",
+      "fish",
+      "chili",
+      "olive",
+      "caper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "An individual portion of Pesce alla Puttanesca is presented in a wide, shallow white porcelain bowl. A thick, flaky white fish fillet, such as cod or snapper, is gently poached and nestled in a vibrant, rustic red tomato sauce. The sauce is rich and fluid, generously studded with dark, whole Kalamata olives and bright green capers. Small flecks of red chili flakes are visible throughout the sauce, adding a subtle visual warmth. The dish is garnished with a generous scattering of roughly chopped fresh flat-leaf parsley, providing a contrasting pop of green and a fresh aroma. The overall composition is natural and inviting, with moderate negative space. The bowl sits on a simple light wooden table. A folded white cotton napkin and a piece of crusty artisan bread are placed beside the bowl, completing a casual yet refined Italian dining experience under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "White Fish",
+    "ingredients": [
+      {
+        "name": "White fish fillets (e.g., cod, snapper, halibut)",
+        "quantity": "4 x 180g fillets"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "80g"
+      },
+      {
+        "name": "Capers, rinsed",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat fish fillets dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, deep pan or pot over medium heat.",
+      "Add minced garlic and red chili flakes. Sauté for 1 minute until fragrant. Do not brown garlic.",
+      "Pour in crushed tomatoes. Bring to a gentle simmer.",
+      "Add pitted olives and rinsed capers to the sauce. Stir well.",
+      "Reduce heat to low. Gently place fish fillets into the simmering sauce. Ensure fish is mostly submerged.",
+      "Cover the pan. Cook for 8-12 minutes, or until fish is opaque and flakes easily with a fork. Cooking time depends on fish thickness.",
+      "Remove pan from heat. Gently transfer each fish fillet and a generous portion of sauce to individual plates or shallow bowls.",
+      "Garnish generously with fresh, roughly chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 372.8,
+      "cholesterol_mg": 77.4,
+      "dietary_fiber_g": 3.973,
+      "protein_g": 35.115,
+      "saturated_fat_g": 2.779,
+      "sodium_mg": 656.1,
+      "total_carbs_g": 14.363,
+      "total_fat_g": 20.266,
+      "total_sugars_g": 5.976,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85.7,
+      "cholesterol_mg": 17.8,
+      "dietary_fiber_g": 0.913,
+      "protein_g": 8.072,
+      "saturated_fat_g": 0.639,
+      "sodium_mg": 150.8,
+      "total_carbs_g": 3.302,
+      "total_fat_g": 4.659,
+      "total_sugars_g": 1.374,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.7,
+      "dietary_fiber": 14.2,
+      "protein": 70.2,
+      "saturated_fat": 13.9,
+      "sodium": 28.5,
+      "total_carbs": 5.2,
+      "total_fat": 26
+    },
+    "serving_size_g": 435,
+    "total_recipe_weight_g": 1740
+  },
+  {
+    "recipe_name": "Pan-Seared Swordfish with Cherry Tomato and Chili Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_swordfish_with_cherry_tomato_and_chili_sauce_20250703_012432_cfed04cc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T01:24:33.072317000Z",
+    "selected_ingredients": [
+      "tomato",
+      "garlic",
+      "fish",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, thick pan-seared swordfish steak, golden-brown and slightly caramelized, rests centrally on a clean, round white porcelain dinner plate. The swordfish is presented as a whole piece, not sliced. It is generously covered with a vibrant, rustic sauce of burst and whole cherry tomatoes, appearing glossy and bright red. Thin slices of garlic and flecks of red chili are visible within the sauce, along with dark green capers. A generous scattering of fresh, bright green chopped flat-leaf parsley provides a fresh contrast. The dish exhibits a natural, organic arrangement with the sauce pooling slightly around the fish. The plate sits on a simple light wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, unobtrusive restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to absorb the flavorful sauce.",
+      "Pair with a simple green salad dressed with olive oil and lemon.",
+      "Enjoy with a glass of dry white wine, such as Vermentino or Pinot Grigio."
+    ],
+    "hero_ingredient": "Swordfish",
+    "ingredients": [
+      {
+        "name": "Swordfish steaks",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, thinly sliced"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5g, or 1 fresh red chili, thinly sliced"
+      },
+      {
+        "name": "Capers",
+        "quantity": "30g, drained"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat swordfish steaks dry. Season generously with salt and pepper.",
+      "Heat 30ml olive oil in a large non-stick pan over medium-high heat.",
+      "Sear swordfish steaks for 3-4 minutes per side until cooked through and flaky. Remove from pan. Set aside.",
+      "Reduce heat to medium. Add remaining 30ml olive oil to the same pan.",
+      "Add sliced garlic and chili flakes (or fresh chili). Sauté for 1 minute until fragrant. Do not brown garlic.",
+      "Add cherry tomatoes to the pan. Cook for 5-7 minutes, pressing gently to burst some tomatoes.",
+      "Stir in capers and white wine. Bring to a simmer. Cook for 2-3 minutes until wine slightly reduces.",
+      "Return swordfish to the pan. Spoon sauce over fish. Heat gently for 1 minute.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 396,
+      "cholesterol_mg": 88,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 38.3,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 343,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 22.1,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.5,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 94,
+      "total_carbs_g": 2.3,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 9,
+      "protein": 77,
+      "saturated_fat": 20,
+      "sodium": 15,
+      "total_carbs": 3,
+      "total_fat": 28
+    },
+    "serving_size_g": 363.75,
+    "total_recipe_weight_g": 1455
+  },
+  {
+    "recipe_name": "Tomato, Cucumber, and Feta Salad with Grilled Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato%2C_cucumber%2C_and_feta_salad_with_grilled_chicken_20250703_011801_e852dd29.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T01:18:02.340564000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "basil",
+      "oregano",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "mediterranean cuisine",
+    "visual_description": "The salad is presented on a clean white porcelain dinner plate, mounded centrally with natural, organic arrangement. Vibrant red diced tomatoes, bright green diced cucumbers, thinly sliced purple red onion, dark Kalamata olives, and creamy white crumbled feta cheese create a rich color palette. Small, golden-brown diced chicken pieces are interspersed throughout the vegetables, showing their seared exterior. Fresh green basil and oregano leaves are scattered generously over the top, adding a final pop of color and texture. A light sheen of olive oil vinaigrette coats the ingredients. The setting is a simple wooden table with a white cotton napkin and standard flatware, embodying a modern bistro aesthetic. The lighting is natural and even, highlighting the fresh ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm pita bread or crusty artisanal bread for dipping into the flavorful dressing.",
+      "Often accompanied by additional olives or a small bowl of hummus."
+    ],
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breast dry. Dice into 2 cm cubes. Season with 1 clove minced garlic, 5 ml olive oil, 5 g chopped fresh oregano, salt, and pepper.",
+      "Heat a pan over medium-high heat. Cook chicken cubes for 6-8 minutes, turning occasionally, until golden brown and internal temperature reaches 75°C. Set aside to cool slightly.",
+      "Dice tomatoes and cucumber into 1.5 cm cubes. Thinly slice red onion. Halve Kalamata olives.",
+      "Crumble feta cheese into small pieces.",
+      "For the dressing, whisk together remaining olive oil, red wine vinegar, 1 clove minced garlic, salt, and pepper in a small bowl.",
+      "In a large serving bowl, combine diced tomatoes, cucumber, red onion, Kalamata olives, and crumbled feta. Add the cooled grilled chicken cubes.",
+      "Pour dressing over the salad. Gently toss to combine all ingredients.",
+      "Roughly chop fresh basil and remaining fresh oregano. Sprinkle over the salad just before serving."
+    ],
+    "traditional_techniques": [
+      "Grilling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 543,
+      "cholesterol_mg": 118.4,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 39.6,
+      "saturated_fat_g": 9.9,
+      "sodium_mg": 893.4,
+      "total_carbs_g": 17.2,
+      "total_fat_g": 36.2,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 26.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.7,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 197.4,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 8,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.5,
+      "dietary_fiber": 16.1,
+      "protein": 79.2,
+      "saturated_fat": 49.5,
+      "sodium": 38.8,
+      "total_carbs": 6.3,
+      "total_fat": 46.4
+    },
+    "serving_size_g": 452.7,
+    "total_recipe_weight_g": 1810.6
+  }
+]

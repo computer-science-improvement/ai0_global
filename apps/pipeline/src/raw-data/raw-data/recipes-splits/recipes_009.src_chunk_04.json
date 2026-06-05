@@ -1,0 +1,638 @@
+[
+  {
+    "recipe_name": "Lemon Cherry Streusel Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_cherry_streusel_cake_20250724_094841_59dcc70e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T09:48:42.226321000Z",
+    "selected_ingredients": [
+      "lemon",
+      "cherry",
+      "sugar",
+      "egg white",
+      "flour",
+      "butter",
+      "cinnamon",
+      "milk"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous slice of golden-brown Lemon Cherry Streusel Cake is centrally placed on a simple, off-white ceramic plate. The cake slice reveals visible, tender baked cherries and specks of lemon zest within its moist crumb. The top of the slice features a rustic, golden streusel topping, showing its crumbly texture. A casual drizzle of white lemon glaze cascades over the streusel. In the slightly blurred background, the remaining whole 20cm round cake rests on a well-worn wooden cutting board. The scene is set on a warm, inviting wooden kitchen table, illuminated by soft, natural light, with a casually folded linen napkin beside the plate, evoking a homely, comforting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve warm or at room temperature.",
+      "Pairs well with a cup of coffee or a glass of cold milk.",
+      "Enjoy as a simple dessert or a comforting snack."
+    ],
+    "hero_ingredient": "Cherries",
+    "ingredients": [
+      {
+        "name": "Unsalted Butter",
+        "quantity": "115g, softened"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "180g"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh Cherries",
+        "quantity": "200g, pitted and halved"
+      },
+      {
+        "name": "All-Purpose Flour (for streusel)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Granulated Sugar (for streusel)",
+        "quantity": "40g"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cold Unsalted Butter (for streusel)",
+        "quantity": "40g, diced"
+      },
+      {
+        "name": "Powdered Sugar (for glaze)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Lemon Juice (for glaze)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Egg White (for glaze)",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 20cm round cake pan.",
+      "For the streusel: Combine 50g flour, 40g sugar, and cinnamon in a bowl. Cut in 40g cold butter until crumbly. Set aside.",
+      "For the cake: Cream 115g softened butter and 150g granulated sugar in a large bowl until light and fluffy.",
+      "Beat in eggs one at a time. Mix in vanilla extract.",
+      "In a separate bowl, whisk together 180g flour, baking powder, and salt.",
+      "Gradually add dry ingredients to wet ingredients, alternating with milk. Begin and end with dry ingredients. Mix until just combined.",
+      "Fold in halved cherries gently.",
+      "Pour batter into the prepared cake pan. Sprinkle streusel mixture evenly over the top.",
+      "Bake for 30-35 minutes, or until a toothpick inserted into the center comes out clean.",
+      "Let cake cool in the pan for 10 minutes. Then invert onto a wire rack to cool completely.",
+      "For the glaze: Whisk powdered sugar, lemon juice, and egg white until smooth. Adjust consistency with more sugar or juice if needed.",
+      "Drizzle glaze over the cooled cake before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 71.5,
+      "calories": 869.6,
+      "cholesterol_mg": 178.5,
+      "dietary_fiber_g": 3.28,
+      "protein_g": 11.9,
+      "saturated_fat_g": 21.42,
+      "sodium_mg": 266.8,
+      "total_carbs_g": 130.5,
+      "total_fat_g": 35.78,
+      "total_sugars_g": 78,
+      "trans_fat_g": 1.32
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 24.6,
+      "calories": 298.8,
+      "cholesterol_mg": 61.3,
+      "dietary_fiber_g": 1.13,
+      "protein_g": 4.09,
+      "saturated_fat_g": 7.36,
+      "sodium_mg": 91.7,
+      "total_carbs_g": 44.8,
+      "total_fat_g": 12.3,
+      "total_sugars_g": 26.8,
+      "trans_fat_g": 0.45
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.5,
+      "dietary_fiber": 11.7,
+      "protein": 23.8,
+      "saturated_fat": 107.1,
+      "sodium": 11.6,
+      "total_carbs": 47.4,
+      "total_fat": 45.9
+    },
+    "serving_size_g": 291,
+    "total_recipe_weight_g": 1164
+  },
+  {
+    "recipe_name": "Smoked Tofu and Lentil Patties",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_tofu_and_lentil_patties_20250724_092932_053b44b8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T09:29:33.438527000Z",
+    "selected_ingredients": [
+      "lentil",
+      "smoked tofu"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Golden-brown Smoked Tofu and Lentil Patties are casually arranged on a simple, well-used ceramic plate. The patties, round and about 1.5 cm thick, display a slightly crispy, pan-fried exterior with visible flecks of green parsley and darker lentil pieces within their soft, inviting interior. A few patties are stacked loosely, while others are spread out, showing their comforting texture. The plate rests on a warm, rustic wooden dining table, suggesting a relaxed, homely kitchen setting. Natural, soft light illuminates the scene, highlighting the inviting textures. A simple, folded cloth napkin is casually placed beside the plate. The overall presentation is unpretentious and focuses on the hearty appeal of the homemade snack.",
+    "number_of_servings": 4,
+    "cuisine_type": "Homestyle",
+    "hero_ingredient": "Smoked Tofu",
+    "ingredients": [
+      {
+        "name": "Brown lentils",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Smoked tofu",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      }
+    ],
+    "instructions": [
+      "Rinse lentils. Place lentils in a pot with 500 ml water. Bring to a boil, then reduce heat. Simmer for 20-25 minutes until tender. Drain thoroughly. Set aside.",
+      "Peel and finely dice the yellow onion. Mince the garlic cloves.",
+      "Heat 15 ml vegetable oil in a pan over medium heat. Add diced onion. Sauté until translucent, about 5 minutes. Add minced garlic. Cook for 1 minute more until fragrant. Remove from heat.",
+      "Crumble smoked tofu into a large mixing bowl using your hands or a fork.",
+      "Add cooked lentils, sautéed onion and garlic, breadcrumbs, and egg to the bowl with the tofu. Finely chop the fresh parsley and add it.",
+      "Season with salt and black pepper. Mix all ingredients thoroughly until well combined. The mixture should hold together.",
+      "Divide the mixture into 12-16 equal portions. Form each portion into a small, flat patty, about 1.5 cm thick.",
+      "Heat the remaining 45 ml vegetable oil in a large non-stick skillet over medium heat. Add patties in batches, do not overcrowd the pan.",
+      "Cook patties for 4-5 minutes per side, until golden brown and crispy. Ensure they are heated through. Repeat with remaining patties.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 515.4,
+      "cholesterol_mg": 46.6,
+      "dietary_fiber_g": 8.12,
+      "protein_g": 26.25,
+      "saturated_fat_g": 3.89,
+      "sodium_mg": 657.6,
+      "total_carbs_g": 51.93,
+      "total_fat_g": 23.45,
+      "total_sugars_g": 3.75,
+      "trans_fat_g": 0.06
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148,
+      "cholesterol_mg": 13.4,
+      "dietary_fiber_g": 2.33,
+      "protein_g": 7.54,
+      "saturated_fat_g": 1.12,
+      "sodium_mg": 188.8,
+      "total_carbs_g": 14.91,
+      "total_fat_g": 6.73,
+      "total_sugars_g": 1.08,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15.5,
+      "dietary_fiber": 29,
+      "protein": 52.5,
+      "saturated_fat": 19.4,
+      "sodium": 28.6,
+      "total_carbs": 18.9,
+      "total_fat": 30.1
+    },
+    "serving_size_g": 348.25,
+    "total_recipe_weight_g": 1393
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Tomato-Garlic Confit and Crispy Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_tomato-garlic_confit_and_crispy_potatoes_20250724_085318_39c774ff.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T08:53:18.583687000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared chicken breast rests centrally on a pristine round white porcelain plate. The chicken, golden-brown from searing, is presented whole. Beside it, a generous cluster of vibrant red cherry tomato and golden garlic confit provides a contrasting color and soft texture. Around the chicken and confit, several crispy, thick-cut golden-brown potato wedges are artfully arranged, some slightly overlapping. A delicate drizzle of the glossy pan sauce lightly coats a portion of the chicken and spills slightly onto the plate. The dish is garnished with a few fresh green parsley leaves and a small sprig of thyme, adding a touch of freshness. The overall composition is balanced, with moderate negative space. The setting is a modern bistro: the plate sits on a simple light wooden table, with a neatly folded white cotton napkin beside it. Natural, even lighting highlights the textures and colors of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Maris Piper or Russet potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "1 head (approx. 10-12 cloves)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Red wine vinegar or fresh lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "20g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash potatoes. Cut into thick-cut wedges. In a large bowl, toss potato wedges with 30ml olive oil, salt, pepper, and 3 crushed garlic cloves. Spread in a single layer on a baking tray. Roast for 30-35 minutes, or until golden and tender.",
+      "While potatoes roast, prepare tomato-garlic confit. In a small saucepan, combine cherry tomatoes, 7-9 peeled garlic cloves, and 120ml olive oil. Heat gently over low heat. Simmer for 20-25 minutes, until tomatoes are soft and slightly burst, and garlic is tender. Do not brown.",
+      "Pat chicken breasts dry with paper towels. Season generously with salt and black pepper.",
+      "Heat a large oven-safe frying pan over medium-high heat. Add 15ml olive oil. Once hot, place chicken breasts in pan. Sear for 5-7 minutes per side, until golden brown and an internal temperature of 75°C (167°F) is reached.",
+      "Remove chicken from pan and set aside to rest on a cutting board, tented with foil.",
+      "Return pan to medium heat. Deglaze with red wine vinegar or lemon juice, scraping up any browned bits. Add chicken stock and bring to a simmer. Reduce by half, about 5-7 minutes, until slightly thickened. Stir in butter until melted and glossy. Season sauce with salt and pepper to taste.",
+      "To plate, place a chicken breast on each plate. Spoon a generous portion of tomato-garlic confit next to the chicken. Arrange crispy potato wedges around the chicken and confit. Drizzle pan sauce over chicken and around the plate. Garnish with chopped fresh parsley and a small thyme sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 823,
+      "cholesterol_mg": 178,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 64.2,
+      "saturated_fat_g": 10.6,
+      "sodium_mg": 809,
+      "total_carbs_g": 33.5,
+      "total_fat_g": 47.8,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 187,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1,
+      "protein_g": 14.6,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 184,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 10.9,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 16,
+      "protein": 128,
+      "saturated_fat": 53,
+      "sodium": 35,
+      "total_carbs": 12,
+      "total_fat": 61
+    },
+    "serving_size_g": 440,
+    "total_recipe_weight_g": 1760
+  },
+  {
+    "recipe_name": "Herb-Roasted Chicken Thighs with Garlic Confit Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_herb-roasted_chicken_thighs_with_garlic_confit_potatoes_20250724_084614_f7ec54a6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T08:46:14.576307000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, perfectly roasted bone-in, skin-on chicken thigh, its skin a rich, crisp golden-brown, rests as the centerpiece on a clean white porcelain plate. Beside it, a generous, organically piled portion of rustic 2-3 cm golden-yellow potato chunks, their exteriors lightly crisped, revealing fluffy interiors. Nestled among the potatoes are several soft, whole garlic confit cloves and a few vibrant green rosemary sprigs, their leaves slightly charred from roasting. A glossy, deep amber rosemary jus pools subtly around the base of the chicken and potatoes, adding a touch of richness. The composition is balanced with moderate negative space. The dish is presented on a simple light wooden table, accompanied by a folded cream linen napkin and classic silver fork and knife, under soft, natural lighting, evoking a refined bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette",
+      "Accompany with fresh, crusty baguette"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx 200g each)"
+      },
+      {
+        "name": "Desiree potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 whole head (for confit), plus 2 cloves minced"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100ml for confit, 30ml for roasting"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Prepare garlic confit: Peel all garlic cloves from the head. Place whole cloves in a small saucepan. Cover completely with 100ml olive oil. Simmer gently over very low heat for 30-40 minutes until cloves are very soft. Do not brown. Remove garlic cloves from oil; reserve the oil.",
+      "Prepare potatoes: Wash and scrub potatoes. Cut into 2-3 cm rustic chunks. Place in a pot of cold salted water. Bring to a boil. Cook for 5-7 minutes until slightly tender but still firm. Drain well.",
+      "Season potatoes: Toss drained potato chunks on a baking tray with 2 tablespoons of the reserved garlic confit oil, salt, and pepper.",
+      "Prepare chicken: Pat chicken thighs thoroughly dry with paper towels. Season generously with salt, black pepper, and minced garlic.",
+      "Sear chicken: Heat 1 tablespoon olive oil in a large oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear for 8-10 minutes until skin is deeply golden brown and crispy. Flip chicken.",
+      "Roast chicken and potatoes: Arrange par-boiled potato chunks around the chicken in the skillet. Scatter the confit garlic cloves, fresh rosemary sprigs, and fresh thyme sprigs over the potatoes. Transfer skillet to the preheated oven. Roast for 20-25 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are golden and crispy.",
+      "Make jus: Remove chicken and potatoes from the skillet. Keep them warm. Place the skillet on the stovetop over medium heat. Deglaze the pan with chicken stock, scraping up all browned bits from the bottom. Simmer for 3-5 minutes until the liquid slightly reduces. Whisk in the unsalted butter until melted and glossy. Season the jus with salt and pepper to taste.",
+      "Serve: Place one roasted chicken thigh and a generous portion of crispy garlic confit potatoes on each of four plates. Drizzle the rosemary jus over and around the dish. Garnish with a small fresh rosemary sprig."
+    ],
+    "traditional_techniques": [
+      "Confit",
+      "Pan-searing",
+      "Roasting",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 885,
+      "cholesterol_mg": 196,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 42.6,
+      "saturated_fat_g": 16.1,
+      "sodium_mg": 203,
+      "total_carbs_g": 30.3,
+      "total_fat_g": 66.3,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 236,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 11.3,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 54,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 17.7,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 13,
+      "protein": 85,
+      "saturated_fat": 81,
+      "sodium": 9,
+      "total_carbs": 11,
+      "total_fat": 85
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Braised Chicken with Tomatoes, Mushrooms, and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_tomatoes%2C_mushrooms%2C_and_potatoes_20250724_084521_acd6f8fd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T08:45:22.077811000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of rustic Italian-style Braised Chicken is presented on a clean, round white porcelain dinner plate. Two golden-brown, seared chicken thighs are nestled amidst a rich, thick tomato and mushroom sauce. The sauce is a deep, vibrant red, studded with quartered cremini mushrooms and tender, rustic potato wedges. The potatoes are soft and slightly absorbed the sauce's color. A scattering of fresh green basil leaves provides a bright contrast. The dish has a natural, flowing arrangement, not overly manicured, showcasing the hearty textures. It sits on a simple wooden table surface, accompanied by a folded cotton napkin and classic silver flatware. Natural, even lighting highlights the dish's warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the rich sauce",
+      "Pair with a simple green salad dressed with vinaigrette"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Potatoes, medium",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Button mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down for 5-7 minutes until deeply golden and crispy. Flip and sear for 2-3 minutes on the other side. Remove chicken from pot and set aside.",
+      "Reduce heat to medium. Add chopped onion to the pot and cook for 5 minutes until softened. Add minced garlic and cook for 1 minute until fragrant.",
+      "Add quartered mushrooms and cook for 5-7 minutes until they release their liquid and begin to brown.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is mostly evaporated.",
+      "Add crushed tomatoes, chicken broth, and dried oregano. Stir to combine.",
+      "Cut potatoes into 3-4 cm rustic wedges or chunks. Add potatoes to the pot.",
+      "Return seared chicken thighs to the pot, nestling them into the sauce. Ensure chicken is partially submerged.",
+      "Bring the sauce to a gentle simmer. Cover the pot and transfer to a preheated oven at 180°C (350°F).",
+      "Braise for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender.",
+      "Remove from oven. Taste and adjust seasoning with salt and pepper as needed.",
+      "Garnish with fresh basil leaves before serving."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 648,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 5,
+      "protein_g": 48.5,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 468,
+      "total_carbs_g": 30.7,
+      "total_fat_g": 37.9,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.3,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 90,
+      "total_carbs_g": 5.9,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 18,
+      "protein": 97,
+      "saturated_fat": 47,
+      "sodium": 20,
+      "total_carbs": 11,
+      "total_fat": 49
+    },
+    "serving_size_g": 522,
+    "total_recipe_weight_g": 2087
+  }
+]

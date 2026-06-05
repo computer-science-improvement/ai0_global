@@ -1,0 +1,543 @@
+[
+  {
+    "recipe_name": "Rustic Black Currant Cake (No Added Sugar)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_black_currant_cake_%28no_added_sugar%29_20250630_063153_064c635e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:31:54.057237000Z",
+    "selected_ingredients": [
+      "black currant"
+    ],
+    "complexity": "simple",
+    "special_requests": "без добавления сахара",
+    "visual_description": "A single, generous wedge of the Rustic Black Currant Cake sits on a simple, cream-colored ceramic plate. The cake slice reveals a moist, light beige crumb studded generously with whole, deep purple black currants. The crust is a warm, golden-brown, showing a slightly rustic, uneven texture. In the background, the remaining whole round cake rests on a plain wooden cutting board, its golden top dotted with more currants. A small, unadorned bowl of plain white yogurt is placed beside the slice. The setting is a well-used wooden kitchen table, bathed in soft, natural light, with a casual linen napkin folded nearby. The overall presentation is homely and comforting, emphasizing natural ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve warm or at room temperature.",
+      "Traditionally served with a dollop of plain sour cream or yogurt.",
+      "Enjoy with a cup of black tea."
+    ],
+    "hero_ingredient": "Black Currant",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Very ripe bananas, mashed",
+        "quantity": "150g"
+      },
+      {
+        "name": "Plain yogurt or kefir",
+        "quantity": "100g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh or frozen black currants",
+        "quantity": "200g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour an 18-20cm round cake tin.",
+      "In a large bowl, whisk together flour, baking powder, and salt.",
+      "In a separate bowl, whisk eggs, mashed bananas, yogurt, vegetable oil, and vanilla extract until well combined.",
+      "Pour wet ingredients into dry ingredients. Mix gently with a spatula until just combined. Do not overmix.",
+      "Gently fold in black currants.",
+      "Pour batter into prepared cake tin. Smooth the top.",
+      "Bake for 35-45 minutes, or until a wooden skewer inserted into the center comes out clean. The cake should be golden brown.",
+      "Let cake cool in the tin for 10 minutes before transferring to a wire rack to cool completely.",
+      "Serve a slice with a dollop of plain yogurt or sour cream if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 424,
+      "cholesterol_mg": 97,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 10.3,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 504,
+      "total_carbs_g": 56.6,
+      "total_fat_g": 18.2,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 203,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 4.9,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 241,
+      "total_carbs_g": 27,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32,
+      "dietary_fiber": 16,
+      "protein": 21,
+      "saturated_fat": 13,
+      "sodium": 22,
+      "total_carbs": 21,
+      "total_fat": 23
+    },
+    "serving_size_g": 209.3,
+    "total_recipe_weight_g": 837
+  },
+  {
+    "recipe_name": "Slow-Roasted Lamb Shoulder with Confit Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-roasted_lamb_shoulder_with_confit_onions_20250630_063152_fa460a46.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:31:52.659909000Z",
+    "selected_ingredients": [
+      "lamb",
+      "onion",
+      "thyme",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of slow-roasted lamb shoulder is presented on a clean, round white porcelain dinner plate, set upon a simple light wooden table surface. The lamb, deeply browned and tender from hours of roasting, is served in two large, rustic chunks, showcasing its succulent, fall-apart texture. Alongside the lamb are several soft, translucent wedges of caramelized onion, their natural form preserved, and a few whole, golden-brown confit garlic cloves. A rich, glossy, dark brown reduction sauce, made from the lamb's braising liquid, pools elegantly at the base of the lamb and onions. Fresh sprigs of vibrant green thyme are scattered over the lamb and sauce, providing a fresh aromatic garnish. A folded light grey cotton napkin is placed to the left of the plate. The scene is illuminated by natural, even lighting, highlighting the dish's comforting, rustic appeal and rich colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the sauce.",
+      "Pair with a simple green salad with vinaigrette.",
+      "Serve alongside roasted potatoes or creamy polenta."
+    ],
+    "hero_ingredient": "Lamb Shoulder",
+    "ingredients": [
+      {
+        "name": "Lamb shoulder",
+        "quantity": "1.2-1.5 kg"
+      },
+      {
+        "name": "Onions",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 whole head"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "6-8 sprigs"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken or beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "freshly ground, to taste"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Pat lamb shoulder dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear lamb on all sides until deeply browned. Remove lamb from pot.",
+      "Slice onions into thick wedges. Add to the pot. Sauté until softened and lightly caramelized, about 10-12 minutes.",
+      "Add whole peeled garlic cloves and thyme sprigs to the pot. Cook for 2 minutes until fragrant.",
+      "Deglaze with red wine, scraping up any browned bits. Reduce by half.",
+      "Pour in stock. Bring to a simmer.",
+      "Return lamb shoulder to the pot. Ensure liquid covers about halfway up the lamb. Add rosemary and bay leaves.",
+      "Cover tightly with lid or foil. Transfer to preheated oven.",
+      "Roast for 3-4 hours, or until lamb is fork-tender and easily pulls apart.",
+      "Remove lamb from pot. Tent with foil. Rest for 15 minutes.",
+      "Skim excess fat from cooking liquid. Reduce sauce on stovetop over medium-high heat until slightly thickened and flavorful. Season if needed.",
+      "Serve lamb in large chunks with confit onions and reduced sauce."
+    ],
+    "traditional_techniques": [
+      "Slow Roasting",
+      "Braising",
+      "Confit"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1145,
+      "cholesterol_mg": 198,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 49.6,
+      "saturated_fat_g": 33.3,
+      "sodium_mg": 668,
+      "total_carbs_g": 27.7,
+      "total_fat_g": 86.4,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 2.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 257,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 11.2,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 150,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 19.4,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 15,
+      "protein": 99,
+      "saturated_fat": 167,
+      "sodium": 29,
+      "total_carbs": 10,
+      "total_fat": 111
+    },
+    "serving_size_g": 445,
+    "total_recipe_weight_g": 1780
+  },
+  {
+    "recipe_name": "Black Currant and Date Celebration Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_black_currant_and_date_celebration_cake_20250630_063113_1b121514.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:31:14.133868000Z",
+    "selected_ingredients": [
+      "black currant"
+    ],
+    "complexity": "simple",
+    "special_requests": "без добавления сахара",
+    "visual_description": "A generous, rustic slice of Black Currant and Date Celebration Cake rests slightly off-center on a round, matte off-white ceramic plate. The cake's crumb is light golden-brown, showcasing visible dark purple black currants and lighter brown, finely chopped date pieces. The texture appears moist and tender. A few fresh, plump black currants are scattered casually near the base of the cake slice for a natural garnish. In the soft-focused background, the remaining whole cake sits on a simple wooden cake stand. The setting is a well-used, light-colored wooden dining table. A slightly crumpled off-white linen napkin and a plain silver fork are casually placed beside the plate. Warm, natural light illuminates the scene, creating soft shadows and a cozy, homely atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Black Currant",
+    "ingredients": [
+      {
+        "name": "Black Currants",
+        "quantity": "200g"
+      },
+      {
+        "name": "Pitted Dates",
+        "quantity": "150g"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Milk",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a small 15cm round cake tin.",
+      "Finely chop pitted dates. If dates are dry, soak in hot water for 10 minutes. Drain well before chopping.",
+      "In a large bowl, whisk together plain flour, baking powder, and salt.",
+      "In a separate bowl, whisk eggs, milk, vegetable oil, and vanilla extract until combined.",
+      "Pour wet ingredients into dry ingredients. Mix gently with a spatula until just combined. Do not overmix.",
+      "Fold in chopped dates and black currants. Distribute evenly.",
+      "Pour batter into the prepared cake tin. Smooth the top.",
+      "Bake for 30-35 minutes. A skewer inserted into the center should come out clean.",
+      "Cool cake in the tin for 10 minutes. Invert onto a wire rack. Cool completely before slicing."
+    ],
+    "notes": [
+      "This cake is naturally sweetened primarily by dates, offering a milder sweetness compared to cakes made with refined sugar. The tartness of black currants balances the natural sweetness.",
+      "For best results, use soft, moist dates like Medjool."
+    ]
+  },
+  {
+    "recipe_name": "Fermented Black Currant Sourdough Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_black_currant_sourdough_cake_20250630_063044_1be88f74.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:30:44.865995000Z",
+    "selected_ingredients": [
+      "black currant"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "без добавления сахара",
+    "visual_description": "A single generous slice of Fermented Black Currant Sourdough Cake is presented on a round, unglazed ceramic plate in a warm cream tone. The cake exhibits a rustic, dense crumb, speckled with deep purple bursts of fermented black currants. Its natural, golden-brown crust is slightly uneven, showcasing a wholesome, unprocessed aesthetic. A few fresh, plump black currants are artfully scattered alongside the slice. The whole cake, round and unadorned, sits on a light, reclaimed wooden board in the background. The setting features a light bamboo table surface, an undyed linen napkin in natural beige, and soft, diffused natural lighting. The overall composition is clean, minimalist, and highlights the cake's organic textures and natural colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern Sustainable",
+    "cultural_serving_suggestions": [
+      "Serve with unsweetened plant-based yogurt or a light fruit compote.",
+      "Enjoy as a wholesome breakfast or a light dessert."
+    ],
+    "hero_ingredient": "Fermented Black Currants",
+    "ingredients": [
+      {
+        "name": "Whole wheat flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Oat flour (ground from rolled oats)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Sourdough discard (active or unfed)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fermented black currants (pureed, see notes)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsweetened apple sauce",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Plant-based milk (e.g., oat or almond)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Lemon zest (from 1 organic lemon)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh black currants (for garnish)",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 20 cm round cake tin.",
+      "In a large bowl, combine whole wheat flour, oat flour, baking soda, and sea salt. Whisk well.",
+      "In a separate bowl, whisk together sourdough discard, pureed fermented black currants, apple sauce, plant-based milk, olive oil, and lemon zest.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Do not overmix.",
+      "Pour batter into the prepared cake tin. Smooth the top.",
+      "Bake for 45-55 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Remove cake from oven. Let cool in the tin for 10 minutes.",
+      "Transfer cake to a wire rack. Cool completely before slicing."
+    ],
+    "notes": [
+      "To prepare fermented black currants: Combine 250g fresh black currants (lightly bruised) with 50ml water in a clean jar. Cover loosely and let ferment at room temperature for 3-5 days, or until desired tanginess and slight fizziness develop. Strain and puree the currants. The liquid can be reserved for drinks.",
+      "This recipe prioritizes natural sweetness from fruits and the complex flavors developed through fermentation. Adjust sweetness by varying the ripeness of fruits.",
+      "Sourdough discard activity will impact rise; an active starter yields a slightly lighter crumb. Unfed discard works well for a denser, rustic cake.",
+      "For oat flour, simply grind rolled oats in a food processor or blender until a fine flour forms."
+    ],
+    "traditional_techniques": [
+      "Sourdough Fermentation",
+      "Fruit Preservation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 524.4,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 12.3,
+      "protein_g": 14.2,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 562.8,
+      "total_carbs_g": 82.6,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 205.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 5.6,
+      "saturated_fat_g": 1,
+      "sodium_mg": 220.7,
+      "total_carbs_g": 32.4,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 44,
+      "protein": 28,
+      "saturated_fat": 13,
+      "sodium": 24,
+      "total_carbs": 30,
+      "total_fat": 23
+    },
+    "serving_size_g": 255,
+    "total_recipe_weight_g": 1020
+  },
+  {
+    "recipe_name": "Lemon Herb Roasted Chicken and Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_roasted_chicken_and_broccoli_20250630_062754_3c46b18c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:27:54.843401000Z",
+    "selected_ingredients": [
+      "chicken",
+      "broccoli"
+    ],
+    "complexity": "simple",
+    "special_requests": "gluten free, no onion and no garlic.",
+    "visual_description": "A single, generous portion of Lemon Herb Roasted Chicken and Broccoli is presented on a simple, round ceramic plate with natural imperfections. A whole, golden-brown roasted chicken thigh, its skin slightly crispy, rests centrally. Alongside it, vibrant green broccoli florets, some with lightly charred edges, are naturally arranged. Thin, translucent lemon slices are nestled among the chicken and broccoli. A light sheen of pan juices coats the components. The scene is set on a well-used wooden dining table, suggesting a cozy family kitchen. Warm, natural lighting from kitchen fixtures illuminates the dish. A casually placed cloth napkin and simple flatware complete the homely, comforting presentation. The entire plate is visible, showcasing the inviting textures and natural colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "500g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dried rosemary",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt, pepper, rosemary, thyme, and smoked paprika.",
+      "In a large bowl, toss broccoli florets with 15ml olive oil, salt, and pepper.",
+      "Arrange chicken thighs skin-side up on a large baking sheet. Scatter broccoli florets around the chicken.",
+      "Slice half of the lemon into thin rounds. Place lemon slices on and around the chicken.",
+      "Roast for 30-35 minutes. Chicken internal temperature must reach 75°C. Broccoli should be tender-crisp with slightly charred edges.",
+      "Remove from oven. Squeeze juice from the remaining lemon half over the chicken and broccoli.",
+      "Let rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "This recipe is gluten-free and contains no onion or garlic."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 534.4,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 46.8,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 193.4,
+      "total_carbs_g": 10.5,
+      "total_fat_g": 34.8,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 159.2,
+      "cholesterol_mg": 53.6,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 14,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 57.6,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 16.7,
+      "protein": 93.7,
+      "saturated_fat": 42.5,
+      "sodium": 8.4,
+      "total_carbs": 3.8,
+      "total_fat": 44.7
+    },
+    "serving_size_g": 335.65,
+    "total_recipe_weight_g": 1342.6
+  }
+]

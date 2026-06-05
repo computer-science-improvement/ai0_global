@@ -1,0 +1,549 @@
+[
+  {
+    "recipe_name": "Pork Tenderloin, Confit Tomato, Pork Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_tenderloin%2C_confit_tomato%2C_pork_jus_20250706_164842_44b6a914.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:48:42.638773000Z",
+    "selected_ingredients": [
+      "pork",
+      "tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single, refined serving of pan-seared pork tenderloin is presented with artistic precision on a large, pristine white bone china plate with abundant negative space. The pork, cut into thick, tender chunks, reveals a perfectly cooked, slightly pink interior and a beautiful golden-brown sear. Alongside, a vibrant cluster of slow-roasted cherry tomato confit, their skins slightly shriveled and glistening with olive oil, adds a pop of rich red color and soft texture. A glossy, dark amber pork jus is artfully spooned beneath and around the pork, creating a sophisticated base. The dish is minimally garnished with a few small, fresh basil leaves, providing a subtle contrast of bright green. The composition is natural and organic, avoiding geometric shapes, emphasizing elegant simplicity. The setting features a luxurious white Carrara marble surface, traditional silver flatware, and a precisely folded white linen napkin. Dramatic, professional lighting casts soft shadows, enhancing the dish's architectural elegance against an ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "hero_ingredient": "Pork Tenderloin",
+    "ingredients": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Veal Stock",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "Small handful"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Freshly ground, to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 140°C (285°F).",
+      "For the Tomato Confit: Halve cherry tomatoes. Place in a small oven-safe dish. Add 2 crushed garlic cloves and 2 thyme sprigs. Drizzle generously with 30 ml olive oil. Season lightly with salt. Roast for 45-60 minutes, until softened and slightly shriveled. Set aside.",
+      "For the Pork Jus: Finely dice shallot. In a small saucepan, melt 10g butter over medium heat. Add shallot and remaining 2 crushed garlic cloves. Sauté until softened, about 3 minutes.",
+      "Deglaze pan with red wine. Reduce by half, scraping up any browned bits. Add veal stock and remaining 2 thyme sprigs. Bring to a simmer. Reduce heat to low. Simmer gently for 20-30 minutes, or until liquid has reduced by half and thickened to a rich consistency. Strain through a fine-mesh sieve. Discard solids. Keep jus warm.",
+      "For the Pork Tenderloin: Pat pork tenderloin dry with paper towels. Season generously with sea salt and black pepper.",
+      "Heat 20 ml olive oil in an oven-safe, heavy-bottomed skillet over medium-high heat. Once hot, sear pork tenderloin on all sides until deeply golden brown, about 2-3 minutes per side.",
+      "Transfer skillet to preheated oven. Roast for 10-15 minutes, or until internal temperature reaches 63°C (145°F) for medium-rare. Rest pork on a cutting board for 5-7 minutes. This allows juices to redistribute.",
+      "Slice pork tenderloin into thick, even medallions or chunks. Do not fan out.",
+      "To Plate: Spoon a small pool of warm pork jus onto one side of each plate. Arrange 3-4 pork medallions or chunks artfully on the jus. Place a cluster of confit cherry tomatoes next to the pork.",
+      "Garnish with a few fresh basil leaves or a drizzle of basil oil. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 399,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 34.2,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 389,
+      "total_carbs_g": 9.4,
+      "total_fat_g": 22.1,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 100,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 98,
+      "total_carbs_g": 2.4,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 6,
+      "protein": 68,
+      "saturated_fat": 34,
+      "sodium": 17,
+      "total_carbs": 3,
+      "total_fat": 28
+    },
+    "serving_size_g": 397,
+    "total_recipe_weight_g": 1588
+  },
+  {
+    "recipe_name": "Pork Medallions with Roasted Cherry Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pork_medallions_with_roasted_cherry_tomatoes_20250706_164506_4204a1ce.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:45:07.012224000Z",
+    "selected_ingredients": [
+      "pork",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single portion of golden-brown seared pork medallions, each approximately 2 cm thick, are neatly arranged on a round, clean white porcelain plate. The pork pieces are whole, showcasing their tender, juicy interior. Vibrant red, glossy roasted cherry tomatoes, some slightly burst, are scattered artfully around and over the pork, creating a rustic yet refined contrast. A light drizzle of the pan sauce, enriched with garlic and a touch of red wine vinegar, adds a subtle sheen. Fresh green basil leaves, torn or small whole leaves, are delicately placed as a garnish, providing a pop of color and freshness. The textures are a mix of crisp-seared pork and soft, yielding tomatoes. The plate is positioned on a simple wooden table, with a folded white cotton napkin and a silver fork placed beside it. Natural, even lighting highlights the dish, with a softly blurred bistro-style background, ensuring the food remains the focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to soak up the flavorful pan juices.",
+      "Pair with a light-bodied Italian red wine like Chianti or Valpolicella."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork tenderloin",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, whole"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Slice pork into 2.5 cm medallions. Pat pork dry.",
+      "Season pork with salt and pepper.",
+      "Heat 30 ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear pork medallions 2-3 minutes per side until golden. Do not overcrowd pan. Work in batches if needed.",
+      "Remove pork. Set aside.",
+      "Add cherry tomatoes and garlic to skillet. Drizzle with remaining olive oil. Season with salt.",
+      "Roast 15-20 minutes until tomatoes burst and soften.",
+      "While tomatoes roast, deglaze skillet on stovetop with red wine vinegar. Scrape pan bottom.",
+      "Return pork to skillet with roasted tomatoes. Toss gently to coat.",
+      "Ensure pork internal temperature reaches 75°C.",
+      "Garnish with fresh basil before serving."
+    ],
+    "notes": [
+      "Ensure pork reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 325,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 33.2,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 133,
+      "total_carbs_g": 6,
+      "total_fat_g": 18.6,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107,
+      "cholesterol_mg": 32.5,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 10.9,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 43.7,
+      "total_carbs_g": 2,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 6,
+      "protein": 66,
+      "saturated_fat": 18,
+      "sodium": 6,
+      "total_carbs": 2,
+      "total_fat": 24
+    },
+    "serving_size_g": 304.3,
+    "total_recipe_weight_g": 1217.2
+  },
+  {
+    "recipe_name": "Spicy Chicken and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_potato_stew_20250706_164053_09c2ab64.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:40:53.951634000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "potato",
+      "garlic",
+      "green pea",
+      "basil"
+    ],
+    "complexity": "simple",
+    "special_requests": "spicy",
+    "visual_description": "A rustic, single serving of hearty Spicy Chicken and Potato Stew is presented in a deep, everyday ceramic bowl with a slightly irregular rim. The stew features generous, irregularly cut chunks of seared chicken, tender, rustic cubes of potato, and vibrant green peas, all coated in a rich, reddish-brown, thick tomato-based sauce. The chicken pieces are visibly browned from searing, adding depth and texture. The potatoes appear soft, having absorbed the stew's savory, spicy flavors. Fresh, roughly chopped basil leaves are scattered casually over the top, providing a bright green contrast. The stew fills the bowl adequately, showing a comforting, natural portion. The bowl rests on a well-used light wooden kitchen table, which shows subtle signs of age. A simple, silver-colored fork and a casually folded, beige cloth napkin are placed to the side. The lighting is warm and natural, emanating from an unseen kitchen window, casting soft shadows that enhance the homely atmosphere. The background is minimally blurred, suggesting a lived-in kitchen environment with perhaps a hint of a spice rack or a simple ceramic mug.",
+    "number_of_servings": 4,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Latin American",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping the stew.",
+      "Offer a side of simple white rice to soak up the sauce.",
+      "Provide a small bowl of a fresh lime wedge and chopped cilantro for garnish."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs (boneless, skinless)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes (e.g., Maris Piper or Russet)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Green Peas (frozen)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chili Powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Cut chicken thighs into 3-4 cm chunks. Add chicken to pot. Sear until browned on all sides. Remove chicken from pot.",
+      "Peel and cut potatoes into 3 cm chunks. Dice onion. Mince garlic.",
+      "Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic, chili powder, and smoked paprika. Cook for 1 minute until fragrant.",
+      "Return chicken to the pot. Add potato chunks, diced tomatoes, and chicken broth. Season with salt and black pepper.",
+      "Bring to a boil, then reduce heat to low. Cover and simmer for 20-25 minutes, or until potatoes are tender and chicken reaches an internal temperature of 75°C.",
+      "Stir in green peas. Cook for 3-5 minutes, until heated through.",
+      "Roughly chop fresh basil. Remove from heat. Stir in fresh basil. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 507.6,
+      "cholesterol_mg": 143.5,
+      "dietary_fiber_g": 8.39,
+      "protein_g": 39.73,
+      "saturated_fat_g": 4.65,
+      "sodium_mg": 751.2,
+      "total_carbs_g": 41.16,
+      "total_fat_g": 21.24,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 81.3,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.34,
+      "protein_g": 6.36,
+      "saturated_fat_g": 0.74,
+      "sodium_mg": 120.2,
+      "total_carbs_g": 6.59,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 1.33,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47.8,
+      "dietary_fiber": 29.9,
+      "protein": 79.5,
+      "saturated_fat": 23.3,
+      "sodium": 32.7,
+      "total_carbs": 15,
+      "total_fat": 27.2
+    },
+    "serving_size_g": 624.75,
+    "total_recipe_weight_g": 2499
+  },
+  {
+    "recipe_name": "Sweet Red Date & Coconut Cream Salad with Crispy Pork",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_red_date_%26_coconut_cream_salad_with_crispy_pork_20250706_160050_54326dd0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:00:51.248397000Z",
+    "selected_ingredients": [
+      {
+        "name": "pork"
+      },
+      {
+        "name": "coriander"
+      },
+      {
+        "name": "sugar"
+      },
+      {
+        "name": "coconut cream"
+      },
+      {
+        "name": "red date"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": null,
+    "visual_description": "A homely ceramic bowl, slightly imperfect, holds a generous portion of the chilled, creamy white coconut and red date salad. The mixture is fluid, not stiff, with soft, plump, roughly chopped red dates (approximately 1-2 cm pieces) suspended throughout, offering a warm, reddish-brown contrast against the pale cream. A scattering of golden-brown, crispy candied pork bits, irregular in shape and size (around 0.5-1 cm), are casually sprinkled over the top, adding a textural crunch. Fresh, vibrant green coriander leaves, roughly chopped, are strewn across the surface, providing a fresh aromatic lift. The bowl sits on a well-used wooden dining table, alongside a simple spoon. Warm, soft kitchen lighting casts gentle shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Southeast Asian",
+    "hero_ingredient": "Red date",
+    "ingredients": [
+      {
+        "name": "Pork belly",
+        "quantity": "150g"
+      },
+      {
+        "name": "Red dates",
+        "quantity": "200g"
+      },
+      {
+        "name": "Coconut cream",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "1 small bunch"
+      }
+    ],
+    "instructions": [
+      "Dice pork belly into 0.5 cm cubes.",
+      "Heat a dry pan over medium heat. Add pork belly cubes.",
+      "Cook pork until fat renders and cubes are crispy and golden brown. Drain excess fat.",
+      "Add 20g sugar to the pan with crispy pork. Stir until sugar caramelizes and coats pork. Set aside to cool.",
+      "In a saucepan, combine coconut cream and remaining 80g sugar. Heat gently, stirring until sugar dissolves. Do not boil.",
+      "Add chopped red dates to the warm coconut cream mixture. Simmer for 5 minutes until dates soften slightly.",
+      "Remove from heat. Pour mixture into a serving bowl.",
+      "Chill in refrigerator for at least 2 hours until thoroughly cold.",
+      "Ladle chilled salad into individual serving bowls.",
+      "Garnish generously with crispy candied pork and chopped fresh coriander."
+    ]
+  },
+  {
+    "recipe_name": "Seared Crab Medallion, Spicy Chocolate Gastrique, Preserved Lemon Puree",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_crab_medallion%2C_spicy_chocolate_gastrique%2C_preserved_lemon_puree_20250706_153931_9c6f0b0e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T15:39:32.507704000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "hot sauce",
+      "crab",
+      "lemon"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, perfectly seared golden-brown crab medallion is elegantly positioned on a pristine white modern designer plate, slightly off-center. Its crust is crisp, contrasting with the tender flaked crab interior. Adjacent to the medallion, a rich, glossy smear of dark chocolate gastrique, deep mahogany in color, adds a bold, artistic stroke. Opposite, a small, bright yellow quenelle of smooth preserved lemon puree provides a vibrant counterpoint. The composition features abundant negative space, highlighting the precision and restraint of each element. A few delicate microgreens or finely snipped chives are meticulously placed atop the medallion for a subtle pop of green. The dish rests on a premium grey veined marble surface, illuminated by dramatic professional lighting, casting soft shadows and emphasizing the luxurious textures. A crisply folded white linen napkin sits beside the plate, completing the ultra-minimalist, sophisticated presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Fresh lump crab meat",
+        "quantity": "200g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "30g"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "15g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh chives, finely minced",
+        "quantity": "5g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dark chocolate (70% cacao or higher), finely chopped",
+        "quantity": "50g"
+      },
+      {
+        "name": "Shallot, finely minced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Unsalted butter, cold, cut into small cubes",
+        "quantity": "15g"
+      },
+      {
+        "name": "Preserved lemon",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Lemon juice, fresh",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Microgreens or small chive segments",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Preserved Lemon Puree: Rinse preserved lemon rind. Discard pulp. Roughly chop rind. Combine rind, fresh lemon juice, and 15ml water in a small saucepan. Simmer gently 5 minutes until very tender. Transfer to high-speed blender. Add 5ml extra virgin olive oil. Blend until perfectly smooth. Set aside.",
+      "Prepare Spicy Dark Chocolate Gastrique: In a small saucepan, sauté minced shallot and garlic in a tiny bit of oil until softened. Add red wine vinegar, 30ml water, sugar, and hot sauce. Bring to a simmer. Reduce liquid by half. Remove from heat. Stir in chopped dark chocolate until melted and smooth. Whisk in cold butter cubes one at a time until emulsified and glossy. Season with a pinch of salt. Keep warm.",
+      "Prepare Crab Medallions: Gently pick through crab meat to remove any shell. In a bowl, combine crab meat, panko, egg yolk, mayonnaise, Dijon mustard, chives, and lemon zest. Season with salt and pepper. Gently mix until just combined. Do not overmix.",
+      "Form Medallions: Divide mixture into 4 equal portions. Gently form each portion into a compact, thick medallion, approximately 5cm diameter and 1.5cm thick.",
+      "Sear Medallions: Heat 15g butter and 15ml olive oil in a non-stick pan over medium-high heat. Once hot, carefully place crab medallions in pan. Sear 3-4 minutes per side until golden brown and heated through.",
+      "Plate: Place one seared crab medallion slightly off-center on each plate. Create a small, elegant smear or quenelle of spicy dark chocolate gastrique next to the medallion. Add a tiny dot or smear of preserved lemon puree on the other side. Garnish with a few microgreens or small chive segments. Serve immediately."
+    ]
+  }
+]

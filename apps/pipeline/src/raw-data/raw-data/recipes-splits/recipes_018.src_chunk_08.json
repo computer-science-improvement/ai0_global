@@ -1,0 +1,598 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken Supreme, Verjus-Mustard Jus, Saffron Potato Purée",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_supreme%2C_verjus-mustard_jus%2C_saffron_potato_pur%C3%A9e_20250625_163236_29625d10.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:32:37.068105000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mustard",
+      "vinegar"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken supreme, presented whole with its golden-crisp skin facing upwards, rests precisely atop a creamy, pale yellow saffron potato purée. The purée is artfully swept across the pristine white, circular designer plate, leaving abundant negative space. A glossy, amber verjus-mustard jus is elegantly spooned around the chicken, creating an inviting pool. Delicate strands of golden-brown crispy leek are delicately piled on the chicken, adding a textural contrast and subtle height. A few vibrant green chervil sprigs or microgreens provide a fresh, precise accent. The setting features a premium grey-veined marble surface, a pristine white linen napkin folded into a precise triangle, and elegant, modern cutlery. Dramatic professional lighting casts soft, intentional shadows, highlighting the dish's refined textures and sophisticated color palette. The background is ultra-minimalist, ensuring the dish remains the sole focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Supreme",
+    "ingredients": [
+      {
+        "name": "Chicken supreme (skin-on, bone-in wingette attached)",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "80g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely minced"
+      },
+      {
+        "name": "Verjus",
+        "quantity": "80ml"
+      },
+      {
+        "name": "High-quality chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Leek",
+        "quantity": "1 small, white part only"
+      },
+      {
+        "name": "Fresh chervil or microgreens",
+        "quantity": "small sprigs for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Pat chicken supremes dry with paper towels. Season generously with salt and pepper.",
+      "For the saffron potato purée: Peel and dice potatoes into 2cm cubes. Place in a saucepan, cover with cold salted water. Bring to a boil, then reduce heat and simmer until very tender (15-20 minutes).",
+      "While potatoes cook, gently warm milk and saffron in a small saucepan. Do not boil.",
+      "Drain potatoes thoroughly. Pass through a ricer or mash well. Gradually whisk in warm saffron milk and 50g butter until smooth and creamy. Season with salt. Keep warm.",
+      "For the crispy leek: Thinly slice the white part of the leek into fine julienne strips. Heat a small amount of olive oil in a pan over medium-high heat. Fry leek until golden and crispy. Drain on paper towels. Season lightly with salt.",
+      "For the chicken: Heat remaining olive oil in an oven-safe skillet over medium-high heat. Place chicken supremes skin-side down. Sear for 8-10 minutes until skin is deeply golden and crispy. Do not move chicken during this time.",
+      "Flip chicken supremes. Transfer skillet to the preheated oven. Roast for 10-15 minutes, or until internal temperature reaches 75°C.",
+      "Remove chicken from oven. Transfer to a cutting board. Rest for 5 minutes, tented loosely with foil.",
+      "For the verjus-mustard jus: Discard excess fat from the skillet, leaving about 15ml. Add minced shallots to the skillet. Sauté over medium heat until softened (2-3 minutes).",
+      "Deglaze skillet with verjus. Scrape up any browned bits. Reduce by half.",
+      "Pour in chicken stock. Bring to a simmer and reduce by one-third. Whisk in Dijon mustard.",
+      "Remove skillet from heat. Whisk in remaining 30g cold butter, one piece at a time, until jus is glossy and emulsified. Season with salt and pepper.",
+      "To plate: Spoon a generous dollop or sweep of saffron potato purée onto the center of each plate. Place one chicken supreme on top of the purée. Artfully spoon the verjus-mustard jus around the chicken. Garnish with a small pile of crispy leek on the chicken and a sprig of fresh chervil or microgreens."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 842,
+      "cholesterol_mg": 235,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 49.3,
+      "saturated_fat_g": 20.7,
+      "sodium_mg": 958.5,
+      "total_carbs_g": 35,
+      "total_fat_g": 56.2,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 159.8,
+      "cholesterol_mg": 44.6,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 9.4,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 181.9,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 10.7,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78.3,
+      "dietary_fiber": 14.6,
+      "protein": 98.7,
+      "saturated_fat": 103.3,
+      "sodium": 41.7,
+      "total_carbs": 12.7,
+      "total_fat": 72.1
+    },
+    "serving_size_g": 527,
+    "total_recipe_weight_g": 2108
+  },
+  {
+    "recipe_name": "Mediterranean Stuffed Mushrooms with Olive-Feta Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_stuffed_mushrooms_with_olive-feta_rice_20250625_163233_02a37604.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:32:34.162413000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "olive oil",
+      "olive",
+      "feta cheese",
+      "rice",
+      "lemon",
+      "parsley"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "Four large Mediterranean stuffed mushrooms are arranged naturally on a handcrafted cream-beige ceramic plate, showcasing an organic, slightly asymmetrical composition. Each mushroom cap is a rich earthy brown, generously filled with a vibrant mixture of white rice, dark chopped Kalamata olives, creamy crumbled feta, and bright green chopped parsley. The filling has a slight golden hue from baking and a sheen from olive oil. Diced mushroom stems are integrated, demonstrating zero-waste. Fresh parsley leaves and a lemon wedge provide natural garnish and color. The plate rests on a light, textured reclaimed wood surface, with an undyed linen napkin visible. Soft, natural light illuminates the scene. The background is clean, minimalist, with a subtle green plant enhancing the eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve warm or at room temperature as part of a shared mezze or antipasti platter.",
+      "Accompany with crusty bread for dipping in any residual juices."
+    ],
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Large mushrooms",
+        "quantity": "8 (e.g., Portobello or large Cremini)"
+      },
+      {
+        "name": "Cooked rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "60 g, pitted and chopped"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100 g, crumbled"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped (leaves and tender stems)"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, zest and juice"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml, plus extra for drizzling"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Small onion or shallot",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Line a baking tray.",
+      "Clean mushrooms. Gently remove stems. Dice mushroom stems finely.",
+      "Heat olive oil in a pan over medium heat. Add diced onion and mushroom stems. Sauté 5-7 minutes until softened.",
+      "Add minced garlic. Sauté 1 minute until fragrant.",
+      "Remove pan from heat. In a bowl, combine sautéed mixture with cooked rice, chopped olives, crumbled feta, chopped parsley, and lemon zest. Mix well.",
+      "Season filling with salt and black pepper. Taste and adjust.",
+      "Place mushroom caps on the baking tray. Generously spoon filling into each mushroom cap.",
+      "Drizzle stuffed mushrooms with extra olive oil.",
+      "Bake 20-25 minutes, or until mushrooms are tender and filling is heated through and lightly golden.",
+      "Squeeze fresh lemon juice over baked mushrooms before serving."
+    ],
+    "notes": [
+      "This recipe utilizes mushroom stems and leftover rice for a zero-waste approach.",
+      "Adjust seasoning to your preference. A pinch of red pepper flakes can add a subtle kick."
+    ]
+  },
+  {
+    "recipe_name": "Shepherd's Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_shepherd%27s_pie_20250625_163214_d3449693.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:32:15.536566000Z",
+    "selected_ingredients": [
+      "mincemeat"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A deep, oval ceramic baking dish, filled with golden-brown Shepherd's Pie. The mashed potato topping is textured with fork tines, some peaks are slightly crisped and golden. Visible patches of the rich, dark meat and vegetable filling peek through the sides. Diced carrots and peas are discernible within the savory lamb mincemeat gravy. The overall impression is hearty and comforting. A single, generous portion is scooped directly from the baking dish onto a simple, round ceramic plate with a slight rim. The edges of the potato crust are slightly uneven, indicating a home-cooked feel. The plate rests on a well-used, warm-toned wooden dining table. A simple, folded off-white linen napkin is casually placed to the side. A basic fork is next to the plate. Lighting is warm and inviting, typical of a cozy kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad on the side",
+      "Serve with crusty bread for soaking up any extra gravy"
+    ],
+    "hero_ingredient": "Lamb Mincemeat",
+    "ingredients": [
+      {
+        "name": "Lamb mincemeat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Beef or lamb stock",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Peel potatoes. Cut into large chunks. Place in a large pot. Cover with cold salted water. Bring to a boil. Cook until very tender, about 15-20 minutes.",
+      "While potatoes cook, heat vegetable oil in a large oven-safe casserole dish or deep frying pan over medium-high heat. Add lamb mincemeat. Brown thoroughly, breaking up clumps. Cook until no pink remains. Drain excess fat.",
+      "Add diced onion and diced carrots to the pan with the mincemeat. Cook, stirring occasionally, for 5-7 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in plain flour. Cook for 1 minute, stirring constantly. Add tomato paste, Worcestershire sauce, and stock. Stir well. Bring mixture to a simmer. Reduce heat to low. Cook for 10-15 minutes, stirring occasionally, until sauce thickens.",
+      "Stir in frozen peas. Season the meat mixture with salt and black pepper.",
+      "Drain cooked potatoes. Return to the pot. Add butter and milk. Mash until smooth. Season mashed potatoes with salt and black pepper.",
+      "Spoon the meat mixture evenly into the oven-safe dish. Top with mashed potatoes. Spread evenly with a spoon or spatula. Create peaks and ridges on the potato topping using a fork.",
+      "Bake for 25-30 minutes, or until the potato topping is golden brown and the filling is bubbling. Let stand for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 727,
+      "cholesterol_mg": 130,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 39.7,
+      "saturated_fat_g": 16,
+      "sodium_mg": 314,
+      "total_carbs_g": 67.2,
+      "total_fat_g": 35.1,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 112,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.1,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 48,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 35,
+      "protein": 79,
+      "saturated_fat": 80,
+      "sodium": 14,
+      "total_carbs": 24,
+      "total_fat": 45
+    },
+    "serving_size_g": 650,
+    "total_recipe_weight_g": 2600
+  },
+  {
+    "recipe_name": "Chicken Rillette with Fermented Garlic & Sourdough",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_rillette_with_fermented_garlic_%26_sourdough_20250625_163135_826e669c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:31:36.112838000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "bread"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single starter portion of Chicken Rillette is elegantly presented on a handcrafted ceramic plate in a natural cream or beige tone. The plate rests on a light bamboo or reclaimed wood table surface. A thick, irregular slice of golden-brown sourdough toast serves as the base. A rustic mound of light golden-brown chicken rillette, showcasing its shredded texture, is spooned onto the toast. A few soft, amber-colored fermented garlic cloves are nestled on top of the rillette, adding visual interest. A small, vibrant cluster of quick-pickled seasonal vegetables, such as thinly sliced pink radish and translucent orange carrot, is artfully arranged beside the rillette, providing a fresh contrast in color and texture. A tiny sprig of fresh thyme or a few microgreens provide a subtle green accent. The composition is minimalistic, emphasizing clean lines and natural textures. Ample negative space surrounds the dish, highlighting its pure beauty. An undyed linen napkin in natural beige is folded neatly beside the plate. The scene is illuminated by soft, natural lighting, creating a clean, inviting aesthetic with a minimalist background that may include subtle natural elements or plants.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Fermented garlic cloves",
+        "quantity": "10-12 cloves"
+      },
+      {
+        "name": "Sourdough bread",
+        "quantity": "4 thick slices"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "In a heavy-bottomed pot or Dutch oven, render chicken skin over medium heat until crispy. Remove crispy skin. Reserve for garnish or discard. Keep rendered fat in pot.",
+      "Sear chicken thighs in rendered fat until golden brown on all sides. Remove chicken from pot.",
+      "Add fermented garlic cloves to the pot. Sauté gently for 1 minute until fragrant.",
+      "Return chicken thighs to the pot. Add bay leaf, thyme sprigs, and chicken stock.",
+      "Bring liquid to a gentle simmer. Cover the pot. Reduce heat to low. Cook for 1.5 to 2 hours, or until chicken is extremely tender and easily falls off the bone.",
+      "Carefully remove chicken from the pot. Discard bones and bay leaf. Shred chicken meat using two forks. Set aside.",
+      "Increase heat under the pot. Reduce cooking liquid until slightly thickened, about 5-7 minutes. Remove thyme sprigs.",
+      "Combine shredded chicken with reduced cooking liquid and a portion of the reserved rendered chicken fat (start with 2-3 tablespoons, add more if needed) in a bowl. Mix until moist and spreadable. Adjust seasoning with salt and pepper.",
+      "Toast sourdough slices until golden and crisp.",
+      "Spoon chicken rillette generously onto each toasted sourdough slice. Top with a few extra fermented garlic cloves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 599,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 43.6,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 585,
+      "total_carbs_g": 33.7,
+      "total_fat_g": 31.3,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 282,
+      "cholesterol_mg": 88,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 20.5,
+      "saturated_fat_g": 4,
+      "sodium_mg": 275,
+      "total_carbs_g": 15.9,
+      "total_fat_g": 14.7,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 6,
+      "protein": 87,
+      "saturated_fat": 43,
+      "sodium": 25,
+      "total_carbs": 12,
+      "total_fat": 40
+    },
+    "serving_size_g": 213,
+    "total_recipe_weight_g": 850
+  },
+  {
+    "recipe_name": "Beef & Bone Marrow Boudin Blanc, Parsnip Purée, Red Wine Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_%26_bone_marrow_boudin_blanc%2C_parsnip_pur%C3%A9e%2C_red_wine_jus_20250625_163108_e33e7e16.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:31:09.441002000Z",
+    "selected_ingredients": [
+      {
+        "name": "mincemeat",
+        "comment": "beef mincemeat"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single portion of an ultra-sophisticated main course is presented on a pristine, large white bone china plate, allowing for abundant negative space. Two to three perfectly seared, golden-brown beef and bone marrow boudin blanc medallions are positioned naturally. Adjacent to them, a velvety, pale ivory parsnip purée is artfully swooshed or dolloped. A rich, glossy ruby-red red wine jus is meticulously drizzled around the components, creating elegant lines. The dish is subtly garnished with a sparse scattering of vibrant, finely minced chives. The textures are varied: a delicate crust on the boudin contrasting with its smooth interior, a silken purée, and a viscous jus. The color palette is refined with golden browns, creamy whites, deep reds, and hints of green. The plate rests on a premium grey-veined marble surface, illuminated by dramatic, professional lighting that casts subtle shadows, enhancing depth. A precisely folded white linen napkin and elegant, minimalist flatware complete the luxurious, uncluttered Michelin-starred setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Beef Mincemeat",
+    "ingredients": [
+      {
+        "name": "High-quality beef mincemeat (80/20 lean/fat)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Fresh bone marrow",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Large egg white",
+        "quantity": "1"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, small"
+      },
+      {
+        "name": "Cognac or good brandy",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Roasted beef bones or high-quality beef stock",
+        "quantity": "500 g bones or 750 ml stock"
+      },
+      {
+        "name": "Dry red wine (e.g., Cabernet Sauvignon)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5-6"
+      },
+      {
+        "name": "Chives, finely minced",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground white pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly grated nutmeg",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Prepare Red Wine Jus: Roast beef bones until deeply browned. Transfer to a pot. Add sliced shallot, crushed garlic, thyme, bay leaf, peppercorns. Deglaze roasting pan with red wine; add to pot. Cover with water or beef stock. Simmer gently for 4-6 hours, skimming impurities. Strain liquid through a fine-mesh sieve. Reduce strained liquid over medium heat until syrupy and concentrated. Season with salt. Finish with a knob of butter before serving for gloss.",
+      "Prepare Parsnip Purée: Peel parsnips. Cut into 2 cm chunks. Place in a saucepan, cover with milk and water (50/50). Add a pinch of salt. Bring to a boil, then simmer until very tender. Drain liquid, reserving a little. Transfer parsnips to a high-speed blender with 20g butter. Blend until perfectly smooth and creamy. Add a splash of reserved cooking liquid if needed. Pass purée through a fine-mesh chinois for ultimate smoothness. Season with salt.",
+      "Prepare Beef & Bone Marrow Boudin Blanc: Score bone marrow. Poach gently in simmering water for 2-3 minutes until softened. Scoop out marrow; chill. Finely dice 1 shallot. Sauté in 10g butter until translucent. Deglaze with Cognac; reduce completely. Cool. In a food processor, combine beef mincemeat, chilled bone marrow, sautéed shallot, egg white, heavy cream, salt, white pepper, and nutmeg. Process until a very smooth, emulsified paste forms. Do not overmix to avoid toughness.",
+      "Form and Cook Boudin Blanc: Lay out plastic wrap. Spoon the boudin mixture onto the plastic wrap. Form into four uniform logs, approximately 3 cm in diameter and 10 cm long. Roll tightly, twisting ends to create compact cylinders. Poach boudin logs gently in simmering water (not boiling) for 15-20 minutes, or until internal temperature reaches 65°C. Transfer to an ice bath to chill completely. Remove plastic wrap.",
+      "Sear and Serve: Heat remaining butter in a non-stick pan over medium-high heat. Slice chilled boudin logs into 2-3 thick medallions each. Sear medallions for 2-3 minutes per side until golden brown and a slight crust forms. Reheat parsnip purée and red wine jus gently.",
+      "Plate: Create a swoosh or artistic dollop of parsnip purée on one side of a pristine white plate. Place 2-3 seared boudin medallions artfully next to the purée. Drizzle a generous amount of the rich red wine jus around the elements. Garnish minimally with finely minced chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 961.5,
+      "cholesterol_mg": 203.5,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 40.1,
+      "saturated_fat_g": 35.5,
+      "sodium_mg": 731.8,
+      "total_carbs_g": 25.3,
+      "total_fat_g": 71.7,
+      "total_sugars_g": 13.7,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174.8,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.3,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 133.1,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 13,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 19,
+      "protein": 80,
+      "saturated_fat": 177,
+      "sodium": 32,
+      "total_carbs": 9,
+      "total_fat": 92
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  }
+]

@@ -1,0 +1,756 @@
+[
+  {
+    "recipe_name": "Spicy Sausage and Cheddar Polenta with Roasted Tomato-Chili Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_sausage_and_cheddar_polenta_with_roasted_tomato-chili_sauce_20250624_025357_66112505.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:53:58.338898000Z",
+    "selected_ingredients": [
+      "cheddar",
+      "tomato",
+      "chili",
+      "sausage",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "Fusion cuisine",
+    "visual_description": "A single portion is presented on a clean white porcelain dinner plate, resting on a simple wooden table. A generous mound of creamy, golden-yellow cheddar polenta forms the base. On top, substantial, irregular chunks of browned sausage are piled, showcasing their savory texture. A vibrant, rustic roasted tomato-chili sauce is artfully spooned over the sausage and polenta, its deep red hue contrasting sharply with the polenta's warmth. The sauce retains a slight texture from the roasted vegetables. A scattering of bright green, freshly chopped parsley provides a final, fresh pop of color. The plating is organized yet natural, allowing for moderate negative space. The setting includes a white cotton napkin placed beside the plate and traditional flatware. Natural, even lighting illuminates the dish, highlighting its textures and appealing colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with warm, crusty bread for dipping.",
+      "Accompany with a simple green side salad with a light vinaigrette."
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Quick-cooking polenta",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Sharp cheddar cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Halve tomatoes. Deseed and roughly chop chilies. Smash 2 garlic cloves.",
+      "Toss halved tomatoes, chopped chilies, and smashed garlic with 15ml olive oil, salt, and pepper on a baking sheet.",
+      "Roast for 20-25 minutes until softened and slightly charred.",
+      "Transfer roasted vegetables to a blender. Blend until smooth. Set aside.",
+      "Heat 15ml olive oil in a large pan over medium-high heat.",
+      "Remove sausage casings. Add sausage meat to the pan. Break up with a spoon.",
+      "Cook until browned and cooked through, about 8-10 minutes. Drain excess fat. Set sausage aside.",
+      "Bring chicken stock to a simmer in a medium saucepan over medium heat.",
+      "Finely dice the onion. Mince the remaining 2 garlic cloves.",
+      "In a separate pot, sauté diced onion and minced garlic until softened, about 3-4 minutes.",
+      "Gradually whisk polenta into the simmering stock while stirring constantly.",
+      "Reduce heat to low. Cook, stirring frequently, for 5-7 minutes until polenta thickens and is creamy.",
+      "Remove polenta from heat. Stir in grated cheddar cheese until melted and smooth. Season with salt and pepper.",
+      "Ladle creamy polenta onto each plate. Top with cooked sausage chunks.",
+      "Spoon roasted tomato-chili sauce over sausage and polenta.",
+      "Sprinkle fresh chopped parsley over each serving."
+    ],
+    "notes": [
+      "Adjust chili quantity based on desired spice level.",
+      "Ensure polenta is creamy; add a splash more stock if it becomes too stiff."
+    ],
+    "traditional_techniques": [
+      "Slow simmering for polenta",
+      "Roasting vegetables for depth of flavor"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 734,
+      "cholesterol_mg": 100,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 34.2,
+      "saturated_fat_g": 17.5,
+      "sodium_mg": 1521,
+      "total_carbs_g": 51.4,
+      "total_fat_g": 44.9,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 5.6,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 251,
+      "total_carbs_g": 8.5,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 15,
+      "protein": 68,
+      "saturated_fat": 87,
+      "sodium": 66,
+      "total_carbs": 19,
+      "total_fat": 58
+    },
+    "serving_size_g": 606,
+    "total_recipe_weight_g": 2423
+  },
+  {
+    "recipe_name": "Steamed Salmon with Fermented Black Bean and Beer Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_steamed_salmon_with_fermented_black_bean_and_beer_sauce_20250624_025313_2f822831.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:53:13.905560000Z",
+    "selected_ingredients": [
+      "salmon",
+      "chili",
+      "beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "Cantonese cuisine",
+    "visual_description": "A single pan-steamed salmon fillet rests centrally on a clean, round white porcelain plate. The salmon, cooked to a delicate pinkish-orange, is generously draped with a glossy, dark brown fermented black bean and beer sauce. The sauce clings to the fish, showcasing small pieces of chopped black beans and vibrant red chili flecks. A sprinkle of bright green, finely chopped scallions and a few thin strands of julienned fresh ginger are scattered over the top, adding contrasting color and texture. A small sprig of fresh cilantro provides a final verdant touch. The plate sits on a simple light wooden table. Beside it, a small white ceramic bowl of fluffy steamed white rice and a pair of dark wooden chopsticks rest on a folded white cotton napkin. Natural, soft light illuminates the dish from above, highlighting its fresh, appealing colors. The background is a subtly blurred, modern bistro setting, keeping focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Cantonese",
+    "cultural_origin": "Cantonese",
+    "cultural_serving_suggestions": [
+      "Served with steamed white rice.",
+      "A side of blanched seasonal Chinese greens (e.g., gai lan)."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Fermented black beans (douchi)",
+        "quantity": "2 tablespoons, rinsed and roughly chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "2 cm piece, peeled and minced, plus extra for julienne garnish"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "1-2, deseeded and thinly sliced (plus extra for garnish, optional)"
+      },
+      {
+        "name": "Light beer (lager)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Neutral cooking oil (e.g., vegetable or canola)",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Green onions (scallions)",
+        "quantity": "3-4 stalks, thinly sliced for garnish"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "Small bunch, for garnish"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "50 ml (for sauce consistency)"
+      }
+    ],
+    "instructions": [
+      "Rinse and pat dry salmon fillets. Set aside.",
+      "Rinse and roughly chop fermented black beans. Mince garlic and ginger. Thinly slice red chilies.",
+      "Heat neutral oil in a small saucepan over medium heat. Sauté minced garlic, ginger, and sliced chilies until fragrant, about 1 minute.",
+      "Add chopped fermented black beans. Sauté for another minute.",
+      "Pour in light beer, light soy sauce, and sugar. Bring to a simmer. Add 50 ml water or chicken stock. Cook for 3-5 minutes until sauce slightly thickens and alcohol cooks off. Stir in sesame oil. Set aside.",
+      "Place salmon fillets on a heatproof plate suitable for steaming. Ensure salmon internal temperature reaches 75°C (167°F).",
+      "Steam salmon over boiling water in a steamer basket for 8-12 minutes, or until cooked through. Cooking time depends on salmon thickness.",
+      "Carefully transfer steamed salmon to individual serving plates.",
+      "Spoon generous amount of the black bean and beer sauce over each salmon fillet.",
+      "Garnish with fresh julienned ginger, thinly sliced red chilies, and finely chopped green onions. Add fresh cilantro sprigs. Serve immediately."
+    ],
+    "notes": [
+      "Use a light lager for the beer to complement the delicate salmon and avoid overpowering the black bean sauce.",
+      "Adjust the amount of fresh red chilies to your preferred level of heat."
+    ],
+    "traditional_techniques": [
+      "Steaming (Zheng)",
+      "Fermented black bean preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 478.4,
+      "cholesterol_mg": 104.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 41.1,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 707.4,
+      "total_carbs_g": 5.9,
+      "total_fat_g": 29.5,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 163.8,
+      "cholesterol_mg": 35.8,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 14.1,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 242.2,
+      "total_carbs_g": 2,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 3,
+      "protein": 82,
+      "saturated_fat": 32,
+      "sodium": 31,
+      "total_carbs": 2,
+      "total_fat": 38
+    },
+    "serving_size_g": 292.1,
+    "total_recipe_weight_g": 1168.5
+  },
+  {
+    "recipe_name": "Lamb Ragu with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lamb_ragu_with_pappardelle_20250624_025154_72671f64.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:51:55.326998000Z",
+    "selected_ingredients": [
+      "lamb",
+      "garlic",
+      "tomato",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous portion of Lamb Ragu with Pappardelle is served on a clean white porcelain dinner plate. Wide, al dente pappardelle ribbons are thoroughly coated in a deep, rich red-brown tomato and lamb ragu. Large, tender, shredded chunks of slow-braised lamb are visibly nestled throughout the sauce. The dish is topped with a generous mound of freshly grated pale yellow Parmigiano-Reggiano cheese, with a small sprig of fresh green basil providing a vibrant color contrast. The overall presentation is hearty and rustic, yet refined, showcasing the rich textures and deep colors of the slow-cooked sauce and tender lamb. The plate is placed on a simple wooden table, accompanied by traditional Italian flatware and a folded cotton napkin, creating an inviting and authentic casual dining scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmigiano-Reggiano cheese.",
+      "Offer crusty Italian bread for dipping in the rich sauce."
+    ],
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Boneless lamb shoulder",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium carrot",
+        "quantity": "1"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh rosemary sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese, for serving",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh basil or parsley, for garnish",
+        "quantity": "Small sprig"
+      }
+    ],
+    "instructions": [
+      "Cut lamb shoulder into 3-4 cm chunks. Pat dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat.",
+      "Sear lamb chunks in batches until well browned on all sides. Remove lamb from pot. Set aside.",
+      "Add diced onion, carrot, and celery (soffritto) to the pot. Cook 8-10 minutes until softened.",
+      "Add minced garlic, chopped rosemary, thyme, and bay leaf. Cook 1 minute until fragrant.",
+      "Deglaze the pot with red wine. Scrape up any browned bits from the bottom. Reduce wine by half.",
+      "Return seared lamb to the pot. Add crushed tomatoes. Stir well to combine.",
+      "Bring the ragu to a gentle simmer. Reduce heat to low. Cover the pot.",
+      "Simmer for 2.5-3 hours, or until the lamb is very tender and easily shreddable with a fork. Stir occasionally. Add a splash of water or broth if sauce becomes too thick.",
+      "Remove bay leaf. Use two forks to shred the lamb directly in the pot. Stir shredded lamb into the sauce.",
+      "Cook pappardelle in a large pot of salted boiling water according to package directions until al dente.",
+      "Drain pasta. Add pasta directly to the ragu. Toss to coat thoroughly.",
+      "Serve immediately. Garnish each portion with freshly grated Parmigiano-Reggiano and a small sprig of fresh basil or parsley."
+    ],
+    "notes": [
+      "For a richer flavor, brown the lamb thoroughly before adding other ingredients.",
+      "Adjust the consistency of the ragu by adding a little water or broth if it becomes too thick during simmering."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow Braise (Ragu)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1171.4,
+      "cholesterol_mg": 191.3,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 70.7,
+      "saturated_fat_g": 20.5,
+      "sodium_mg": 1267.7,
+      "total_carbs_g": 90.6,
+      "total_fat_g": 54.4,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 187,
+      "cholesterol_mg": 30.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 11.3,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 202.4,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 22,
+      "protein": 141,
+      "saturated_fat": 103,
+      "sodium": 55,
+      "total_carbs": 33,
+      "total_fat": 70
+    },
+    "serving_size_g": 626.3,
+    "total_recipe_weight_g": 2505.1
+  },
+  {
+    "recipe_name": "Fermented Lentil Bharwan Shimla Mirch",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_lentil_bharwan_shimla_mirch_20250624_025143_0a52ce88.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:51:44.379474000Z",
+    "selected_ingredients": [
+      "bell pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian, Indian cuisine",
+    "visual_description": "A single vibrant stuffed bell pepper, such as a bright red one, stands upright as the centerpiece on a handcrafted, unglazed ceramic plate in a natural cream or beige tone. The pepper is whole, with its top gently placed back on, suggesting a lid. The skin shows a slight char from cooking, indicating tenderness. A small, organic swirl of the earthy-toned bell pepper core chutney is placed to the side, maintaining ample white space on the plate. The filling, visible from the top, is a rustic mix of lentils and finely diced vegetables, showcasing natural colors and textures. The plate rests on a light, reclaimed wooden surface. A natural, undyed linen napkin is folded simply beside the plate. Soft, natural light illuminates the scene from the side, highlighting textures. The background is minimalist, possibly with a blurred natural plant element, creating an uncluttered, eco-conscious setup.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with plain, fluffy basmati rice or millet.",
+      "Offer a simple cucumber raita (yogurt dip) on the side."
+    ],
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Bell Peppers",
+        "quantity": "4 medium, mixed colors"
+      },
+      {
+        "name": "Moong Dal",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mixed Vegetables (diced)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Onion (chopped)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Green Chili (minced)",
+        "quantity": "1"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Coriander Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "3g"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "3g"
+      },
+      {
+        "name": "Red Chili Powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Asafoetida",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Fresh Coriander (chopped)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Tomato (roughly chopped)",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic (for chutney)",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Ginger (for chutney)",
+        "quantity": "5g piece"
+      },
+      {
+        "name": "Cumin Seeds (for chutney)",
+        "quantity": "3g"
+      },
+      {
+        "name": "Tamarind Paste (optional)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Water or Vegetable Stock",
+        "quantity": "100ml"
+      }
+    ],
+    "instructions": [
+      "Soak moong dal for 4-6 hours. Drain. Leave in a warm place for 12-24 hours to lightly ferment. It should develop a slight tang. Rinse lightly before use.",
+      "Wash bell peppers. Carefully cut off tops (stems attached) and set aside. Remove and reserve cores and seeds for chutney. Clean inside of peppers.",
+      "Heat 15ml oil in a pan. Add chopped onion. Sauté until translucent. Add ginger-garlic paste and minced green chili. Sauté 1 minute. Add finely diced mixed vegetables. Cook 3-5 minutes until slightly tender.",
+      "Add all powdered spices: cumin, coriander, turmeric, red chili, garam masala, asafoetida. Sauté 1 minute until fragrant. Add lightly fermented moong dal. Mix well.",
+      "Cook the dal mixture for 5-7 minutes, stirring occasionally, until partially cooked and relatively dry. Stir in fresh coriander and salt. Let cool slightly.",
+      "Carefully fill each bell pepper with the dal-vegetable mixture. Do not overstuff. Place the reserved bell pepper tops back on.",
+      "Heat 15ml oil in a wide, heavy-bottomed pan or Dutch oven. Carefully place stuffed bell peppers in the pan. Add 100ml water or vegetable stock to the bottom of the pan.",
+      "Cover and cook on low heat for 20-25 minutes. Bell peppers should be tender but hold shape. Dal should be fully cooked. Turn occasionally for even cooking.",
+      "While peppers cook, make chutney. Heat 5ml oil in a small pan. Add cumin seeds. Once they splutter, add bell pepper cores, stems, seeds, chopped tomato, garlic, ginger, and green chili (if using). Sauté 5-7 minutes until softened.",
+      "Let chutney mixture cool. Transfer to a blender. Add salt and tamarind paste (if using). Blend to a smooth paste, adding minimal water if needed.",
+      "Carefully transfer one stuffed bell pepper to each plate. Serve with a small dollop or swirl of the bell pepper core chutney on the side."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing bell pepper cores and stems for a flavorful chutney.",
+      "Light fermentation of moong dal adds a subtle tang and enhances digestibility.",
+      "Adjust spice levels to personal preference."
+    ],
+    "traditional_techniques": [
+      "Slow cooking",
+      "Spice tempering (for chutney)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 292,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 12.2,
+      "protein_g": 12.8,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 518,
+      "total_carbs_g": 43.2,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 87,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 3.8,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 155,
+      "total_carbs_g": 12.9,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 44,
+      "protein": 26,
+      "saturated_fat": 6,
+      "sodium": 23,
+      "total_carbs": 16,
+      "total_fat": 11
+    },
+    "serving_size_g": 334,
+    "total_recipe_weight_g": 1335
+  },
+  {
+    "recipe_name": "Mediterranean Roasted Chicken with Lemon-Mustard Potatoes and Saffron Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_roasted_chicken_with_lemon-mustard_potatoes_and_saffron_rice_20250624_025140_54adb680.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:51:40.603110000Z",
+    "selected_ingredients": [
+      "potato",
+      "rice",
+      "garlic",
+      "chicken",
+      "mustard",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single roasted chicken thigh, deeply golden-brown with crispy skin, rests on a pristine round white porcelain plate. Beside it, a small mound of fluffy saffron-infused Basmati rice, its pale yellow hue contrasting with the vibrant roasted vegetables. Two thick-cut potato wedges, their skins slightly blistered, and a few caramelized red onion wedges and halved cherry tomatoes are artfully arranged near the chicken, showcasing their rich, roasted textures. A light drizzle of pan juices glazes the chicken and vegetables. The dish is garnished with a small sprig of fresh green parsley, adding a pop of color. The plate is centered on a light wooden table surface, accompanied by a simple white linen napkin and polished silver cutlery. Natural, soft light illuminates the scene, creating an inviting, casual bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the flavorful pan juices.",
+      "A simple green salad with a lemon vinaigrette complements the richness."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Small potatoes",
+        "quantity": "500g, quartered"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large, cut into 8 wedges"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g, halved"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, smashed"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, zested and juiced"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "pinch (approx. 0.1g)"
+      },
+      {
+        "name": "Hot water",
+        "quantity": "20ml (for saffron)"
+      },
+      {
+        "name": "Water",
+        "quantity": "400ml (for rice)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "In a large bowl, combine chicken thighs, quartered potatoes, red onion wedges, halved cherry tomatoes, and smashed garlic.",
+      "In a small bowl, whisk together Dijon mustard, 45ml olive oil, lemon zest, lemon juice, dried oregano, salt, and pepper.",
+      "Pour mustard mixture over chicken and vegetables. Toss to coat evenly.",
+      "Arrange chicken and vegetables in a single layer on a large baking tray.",
+      "Roast for 30 minutes.",
+      "Pour chicken broth over ingredients on the tray. Continue roasting for another 20-25 minutes, or until chicken reaches an internal temperature of 75°C and vegetables are tender.",
+      "While chicken roasts, prepare saffron rice. Steep saffron threads in hot water for 10 minutes.",
+      "In a medium saucepan, add remaining 15ml olive oil. Add rice and stir for 1 minute.",
+      "Pour in 400ml water and saffron liquid. Add a pinch of salt.",
+      "Bring to a boil, then reduce heat to low. Cover and simmer for 15 minutes, or until water is absorbed.",
+      "Remove from heat. Let stand covered for 5 minutes. Fluff with a fork.",
+      "To serve, plate one chicken thigh, a portion of roasted vegetables, and a scoop of saffron rice.",
+      "Drizzle with pan juices. Garnish with fresh parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C (167°F) internal temperature for food safety."
+    ],
+    "traditional_techniques": [
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 891,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 7,
+      "protein_g": 45.5,
+      "saturated_fat_g": 10.3,
+      "sodium_mg": 310,
+      "total_carbs_g": 76.6,
+      "total_fat_g": 42.8,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.1,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 49,
+      "total_carbs_g": 12,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 25,
+      "protein": 91,
+      "saturated_fat": 52,
+      "sodium": 13,
+      "total_carbs": 28,
+      "total_fat": 55
+    },
+    "serving_size_g": 637.5,
+    "total_recipe_weight_g": 2550
+  }
+]

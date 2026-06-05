@@ -1,0 +1,658 @@
+[
+  {
+    "recipe_name": "Pollo Asado con Arroz Rojo y Pico de Gallo Fresco",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_asado_con_arroz_rojo_y_pico_de_gallo_fresco_20250627_042156_6f88ff9f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:21:56.763963000Z",
+    "selected_ingredients": [
+      "tomato",
+      "chili",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, inviting individual portion of Pollo Asado con Arroz Rojo is presented on a clean, round white porcelain plate. The rich, orange-red Mexican rice is mounded neatly in the center, its grains separate and fluffy, flecked with finely diced tomato and subtle green chili. Generous chunks of golden-brown, seared chicken thighs, moist and tender, are arranged artfully on top of the rice. A fresh, bright pico de gallo, featuring small, uniform cubes of ripe red tomato, crisp white onion, and finely minced serrano chili, is spooned generously over the chicken. Bright green cilantro leaves are scattered across the dish. A vibrant lime wedge rests beside the rice. The setting is a simple wooden table, with a neatly folded cotton napkin beside the plate. The scene is illuminated by soft, natural light, highlighting the dish's inviting textures and colors against a minimal, blurred background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas on the side.",
+      "Offer extra lime wedges for squeezing."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "600g (400g for sauce, 200g for pico de gallo)"
+      },
+      {
+        "name": "Jalapeño chili",
+        "quantity": "1 (for sauce)"
+      },
+      {
+        "name": "Serrano chilies",
+        "quantity": "1-2 (for pico de gallo, to taste)"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 medium (half for sauce, half for pico de gallo)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Limes",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried Mexican oregano",
+        "quantity": "3g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt, pepper, cumin, and oregano.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Sear chicken thighs 4-5 minutes per side until golden brown. Internal temperature must reach 75°C. Remove chicken, set aside to rest. Once rested, cut into 3-4 cm chunks.",
+      "For the rice sauce, blend 400g Roma tomatoes, half the onion, 4 garlic cloves, and 1 jalapeño with 100ml chicken broth until smooth.",
+      "In a medium pot, heat remaining 15ml olive oil over medium heat. Add 300g rice. Toast rice, stirring constantly, until lightly golden, about 3-5 minutes.",
+      "Pour blended tomato sauce into the pot with rice. Stir well. Add remaining 600ml chicken broth. Bring to a boil.",
+      "Reduce heat to low. Cover tightly. Simmer for 18-20 minutes, or until liquid is absorbed and rice is tender. Do not lift lid during cooking. Remove from heat. Let stand covered for 5 minutes. Fluff with a fork.",
+      "For the pico de gallo, finely dice 200g Roma tomatoes, remaining half onion, and 1-2 serrano chilies. Roughly chop half the cilantro. Combine all in a bowl. Squeeze juice from one lime over mixture. Season with salt to taste. Stir gently.",
+      "To serve, mound fluffy red rice onto individual plates. Arrange seared chicken chunks over the rice. Spoon generous amounts of pico de gallo over chicken and rice. Garnish with fresh cilantro leaves and a lime wedge. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Toasting rice for texture and flavor",
+      "Blending fresh vegetables for sauce base"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 646.8,
+      "cholesterol_mg": 204.3,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 38.1,
+      "saturated_fat_g": 5,
+      "sodium_mg": 726.3,
+      "total_carbs_g": 74,
+      "total_fat_g": 21,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 97.5,
+      "cholesterol_mg": 30.8,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 5.7,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 109.5,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.1,
+      "dietary_fiber": 15.8,
+      "protein": 76.1,
+      "saturated_fat": 25.2,
+      "sodium": 31.6,
+      "total_carbs": 26.9,
+      "total_fat": 26.9
+    },
+    "serving_size_g": 663.5,
+    "total_recipe_weight_g": 2654
+  },
+  {
+    "recipe_name": "Hearty Rice and Bean Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_rice_and_bean_pilaf_20250627_042021_d60b2505.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:20:21.905499000Z",
+    "selected_ingredients": [
+      "carrot",
+      "cauliflower",
+      "onion",
+      "rice",
+      "bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of the pilaf is served in a sturdy, everyday ceramic bowl. The pilaf is mounded naturally, showcasing fluffy rice, vibrant orange 1.5 cm diced carrots, creamy white cauliflower florets, and dark beans. Roasted vegetables are interspersed throughout, some peeking out with slightly browned edges. A sprinkle of fresh, bright green chopped parsley adds a pop of color. The components are mixed but distinguishable, creating a comforting, textural appearance. The bowl sits directly on a well-used, warm-toned wooden dining table, showing natural grain. Beside the bowl, a simple linen napkin is casually folded. A basic metal fork is placed alongside. Warm, inviting lighting from an unseen kitchen source casts soft shadows, hinting at a cozy, lived-in family kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Cooking",
+    "hero_ingredient": "Roasted Vegetables",
+    "ingredients": [
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cauliflower",
+        "quantity": "1 small head"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Kidney Beans",
+        "quantity": "400g can, drained and rinsed"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "for garnish, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut carrots into 1.5 cm dice. Break cauliflower into small florets.",
+      "Toss carrots and cauliflower with 15ml olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast for 20-25 minutes until tender and slightly caramelized.",
+      "While vegetables roast, heat remaining 15ml olive oil in a large pot or Dutch oven over medium heat.",
+      "Add diced onion. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic, smoked paprika, and cumin. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes.",
+      "Add rice. Stir to coat grains, about 2 minutes.",
+      "Pour in vegetable broth. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 15 minutes, or until liquid is absorbed and rice is tender. Do not lift lid.",
+      "Remove from heat. Let stand, covered, for 5 minutes.",
+      "Gently stir in drained and rinsed beans and roasted vegetables.",
+      "Fluff with a fork. Taste and adjust seasoning.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 504,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 13.5,
+      "protein_g": 14.9,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 807,
+      "total_carbs_g": 94,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 98,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 2.9,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 157,
+      "total_carbs_g": 18.3,
+      "total_fat_g": 1.6,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 48,
+      "protein": 30,
+      "saturated_fat": 6,
+      "sodium": 35,
+      "total_carbs": 31,
+      "total_fat": 13
+    },
+    "serving_size_g": 513,
+    "total_recipe_weight_g": 2053
+  },
+  {
+    "recipe_name": "Ginger Scallion Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ginger_scallion_chicken_20250627_041947_bf8486dd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:19:47.461485000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "Asian cuisine",
+    "visual_description": "A single, modest portion of Ginger Scallion Chicken on a simple, round ceramic plate. Golden-brown chicken pieces, cut into irregular 3cm chunks, are coated in a glossy, light brown sauce. Abundant julienned ginger and chopped white scallion pieces are visible, intertwined with the chicken. Bright green scallion tops are scattered generously over the top as a fresh garnish. The dish is presented on a well-used wooden dining table. A small, white rice bowl filled with fluffy steamed white rice sits next to the chicken plate. Simple wooden chopsticks rest beside the rice. The setting is a cozy, lived-in family kitchen, with warm, soft lighting, creating a comforting, inviting atmosphere. The overall presentation is casual and homely, focusing on the hearty nature of the meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Cantonese",
+    "cultural_origin": "Cantonese",
+    "cultural_serving_suggestions": [
+      "Served family-style with steamed white rice",
+      "Accompanied by other simple stir-fried vegetable dishes or clear soups"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "40g"
+      },
+      {
+        "name": "Spring onions (scallions)",
+        "quantity": "6-8"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "0.25 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Chicken broth or water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks. Separate white and green parts of spring onions; chop both.",
+      "In a bowl, combine chicken with 1 tbsp soy sauce, 1 tsp Shaoxing wine, 0.5 tsp sesame oil, cornstarch, sugar, and white pepper. Mix well. Marinate 15 minutes.",
+      "Heat 1 tbsp vegetable oil in a large wok or pan over medium-high heat. Add julienned ginger and chopped white spring onion parts. Sauté 1 minute until fragrant.",
+      "Push aromatics to one side. Add remaining 1 tbsp vegetable oil. Add marinated chicken in a single layer. Sear chicken 3-4 minutes per side until golden. Stir-fry until cooked through, 7-9 minutes total. Ensure internal temperature reaches 75°C (167°F).",
+      "Pour in chicken broth and remaining 1 tbsp soy sauce. Bring to a simmer. Cook 2-3 minutes until sauce slightly thickens.",
+      "Stir in remaining 0.5 tsp sesame oil. Taste and adjust salt if needed.",
+      "Transfer chicken and sauce to a serving dish. Garnish with chopped green spring onion parts. Serve hot with steamed rice."
+    ],
+    "notes": [
+      "This dish is a classic Cantonese home-cooking staple, known for its comforting flavors and simple preparation."
+    ],
+    "traditional_techniques": [
+      "Marinating",
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 349,
+      "cholesterol_mg": 166,
+      "dietary_fiber_g": 0.96,
+      "protein_g": 31.6,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 664,
+      "total_carbs_g": 5.53,
+      "total_fat_g": 20.84,
+      "total_sugars_g": 1.48,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.22,
+      "calories": 151,
+      "cholesterol_mg": 71,
+      "dietary_fiber_g": 0.41,
+      "protein_g": 13.65,
+      "saturated_fat_g": 1.81,
+      "sodium_mg": 287,
+      "total_carbs_g": 2.39,
+      "total_fat_g": 9,
+      "total_sugars_g": 0.64,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 3,
+      "protein": 63,
+      "saturated_fat": 21,
+      "sodium": 29,
+      "total_carbs": 2,
+      "total_fat": 27
+    },
+    "serving_size_g": 231.5,
+    "total_recipe_weight_g": 926
+  },
+  {
+    "recipe_name": "Asparagus, Seared Chicken, and Wild Rice Salad with Lemon-Thyme Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_asparagus%2C_seared_chicken%2C_and_wild_rice_salad_with_lemon-thyme_vinaigrette_20250627_041939_473c938b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:19:39.741159000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "thyme"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a pristine white bone china plate with an elegant rim. An organic, flowing composition features a small, artful mound of dark wild rice. Vibrant green asparagus pieces, cut diagonally, are elegantly interspersed with pale, precisely cut 1.5 cm chicken cubes. A light drizzle of golden lemon-thyme vinaigrette glistens over the components. Abundant negative space emphasizes the dish's minimalist elegance. Delicate fresh thyme sprigs and bright green microgreens are placed with precision, adding freshness and color. The plate rests on a luxurious white Carrara marble surface. A pristine white linen napkin, precisely folded, is to the side. Dramatic professional lighting casts subtle shadows, enhancing depth. The ultra-minimalist background emphasizes the dish, complemented by traditional silver flatware.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Asparagus",
+    "ingredients": [
+      {
+        "name": "Chicken breast, skinless, boneless",
+        "quantity": "200g"
+      },
+      {
+        "name": "Wild rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Green asparagus spears",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Microgreens or chervil",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Rinse 150g wild rice. Combine with 750ml water and a pinch of salt in a saucepan. Bring to a boil. Reduce heat to low, cover, and simmer for 40-45 minutes until tender and grains burst. Drain excess water. Spread rice on a baking sheet to cool completely.",
+      "Snap off woody ends from 400g asparagus. Blanch in boiling salted water for 2-3 minutes until bright green and tender-crisp. Immediately transfer to an ice bath to stop cooking. Drain well and pat dry. Cut asparagus into 3 cm diagonal pieces.",
+      "Pat dry 200g chicken breast. Season with salt and pepper. Heat 5ml olive oil in a non-stick pan over medium-high heat. Sear chicken breast for 4-5 minutes per side until golden brown and internal temperature reaches 75°C. Let rest for 5 minutes. Cut chicken into small, uniform 1.5 cm cubes.",
+      "Finely mince 1 small shallot. In a small bowl, whisk together 60ml extra virgin olive oil, 15ml white wine vinegar, 5ml Dijon mustard, juice of half a lemon, and leaves from 2 sprigs of fresh thyme. Season with salt and pepper to taste.",
+      "In a large bowl, gently combine the cooled wild rice, blanched asparagus pieces, and cubed chicken. Drizzle with the lemon-thyme vinaigrette. Toss gently to coat.",
+      "Divide salad among four individual plates. Arrange components artfully and minimally. Garnish each plate with a few fresh thyme sprigs and a sprinkle of microgreens or chervil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 271.6,
+      "cholesterol_mg": 42.5,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 19.5,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 55,
+      "total_carbs_g": 14.1,
+      "total_fat_g": 15.9,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120.1,
+      "cholesterol_mg": 18.8,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 24.4,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14,
+      "dietary_fiber": 11,
+      "protein": 39,
+      "saturated_fat": 13,
+      "sodium": 2,
+      "total_carbs": 5,
+      "total_fat": 20
+    },
+    "serving_size_g": 226.3,
+    "total_recipe_weight_g": 905
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Mushroom Thyme Sauce and Rice Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_mushroom_thyme_sauce_and_rice_pilaf_20250627_041857_ebb770b0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:18:58.389752000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared chicken with mushroom thyme sauce and rice pilaf is centrally plated on a clean white porcelain dinner plate. The golden-brown chicken breast is cut into two thick, juicy medallions, resting beside a neat, slightly loose mound of fluffy white rice pilaf, visibly flecked with green thyme leaves. A rich, creamy mushroom-thyme sauce, with tender, earthy mushroom slices, is generously spooned over the chicken and partially around the rice. The colors are warm and inviting: golden chicken, creamy off-white sauce, and pale, vibrant green thyme. A small, fresh thyme sprig is elegantly placed atop the chicken, and finely chopped fresh parsley sprinkles the sauce. The plate is positioned on a simple light wooden table surface, with silver flatware (fork and knife) and a neatly folded white cotton napkin beside it. Natural, even lighting highlights the textures and colors of the dish, creating a professional yet approachable bistro aesthetic with moderate negative space on the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a fresh green salad with a simple vinaigrette.",
+      "Offer crusty baguette slices for dipping into the sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "8-10"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Dry white wine (e.g., Sauvignon Blanc)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts 4-5 minutes per side until golden brown. Remove chicken. Set aside.",
+      "Slice mushrooms. Finely dice half the onion. Mince garlic.",
+      "In the same skillet, add remaining 15 ml olive oil and butter. Add sliced mushrooms. Sauté until browned and tender, about 5-7 minutes.",
+      "Add diced onion and minced garlic to skillet. Sauté 2-3 minutes until fragrant.",
+      "Deglaze skillet with white wine. Scrape up browned bits. Reduce liquid slightly.",
+      "Stir in heavy cream and 2 sprigs of thyme. Bring to a gentle simmer. Season sauce with salt and pepper. Reduce heat to low.",
+      "Return chicken to the skillet with sauce. Cover. Simmer 8-10 minutes, or until chicken reaches internal temperature of 75°C (167°F). Remove chicken from sauce. Rest 5 minutes.",
+      "For rice pilaf: Finely dice remaining half onion. Heat 15 ml olive oil in a medium saucepan over medium heat.",
+      "Add diced onion to saucepan. Sauté until translucent, 3-4 minutes.",
+      "Add rice to saucepan. Stir 1 minute to lightly toast grains.",
+      "Pour in chicken broth. Add 6-8 sprigs of thyme. Bring to a boil.",
+      "Reduce heat to low. Cover tightly. Simmer 15 minutes, or until liquid is absorbed and rice is tender.",
+      "Remove from heat. Let stand 5 minutes, covered. Fluff with a fork. Remove thyme sprigs.",
+      "Slice chicken breasts into 2-3 thick medallions each. Spoon rice onto plates. Arrange chicken beside rice. Ladle mushroom-thyme sauce over chicken and around rice.",
+      "Garnish with fresh parsley and a small fresh thyme sprig."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Allow chicken to rest briefly after cooking to retain juices."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing",
+      "Pilaf Method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 825.77,
+      "cholesterol_mg": 218.31,
+      "dietary_fiber_g": 2.52,
+      "protein_g": 68.93,
+      "saturated_fat_g": 13.83,
+      "sodium_mg": 833.76,
+      "total_carbs_g": 59.7,
+      "total_fat_g": 31.51,
+      "total_sugars_g": 4.52,
+      "trans_fat_g": 0.62
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113.67,
+      "cholesterol_mg": 30.05,
+      "dietary_fiber_g": 0.35,
+      "protein_g": 9.49,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 114.78,
+      "total_carbs_g": 8.22,
+      "total_fat_g": 4.34,
+      "total_sugars_g": 0.62,
+      "trans_fat_g": 0.08
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.8,
+      "dietary_fiber": 9,
+      "protein": 137.8,
+      "saturated_fat": 69.1,
+      "sodium": 36.3,
+      "total_carbs": 21.7,
+      "total_fat": 40.4
+    },
+    "serving_size_g": 726.4,
+    "total_recipe_weight_g": 2905.6
+  }
+]

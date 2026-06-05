@@ -12,6 +12,13 @@ export interface RecipeRow {
   title_uk:        string | null;
   ingredients_uk:  string | null;
   instructions_uk: string | null;
+  telegraph_url:   string | null;
+  telegraph_path:  string | null;
+  kcal:            string | null;  // pg NUMERIC → string
+  protein_g:       string | null;
+  fat_g:           string | null;
+  carbs_g:         string | null;
+  serving_size_g:  string | null;
 }
 
 export interface RecipeTranslation {
@@ -25,18 +32,23 @@ export class RecipesRepository {
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
   /**
-   * Next recipe to post: not yet posted to Telegram, and not a "skip" sentinel
-   * (empty title_uk). Oldest-first for deterministic ordering. A NULL title_uk
-   * means "not translated yet" -> the strategy translates it; a non-empty
-   * title_uk means "already translated" -> reuse it.
+   * Next recipe to post: not yet posted to Telegram, not a "skip" sentinel
+   * (empty title_uk), and HAS per-serving nutrition (kcal IS NOT NULL) so every
+   * post carries the БЖВ block. ~91% of recipes have nutrition, so this is
+   * plenty of inventory. Oldest-first for deterministic ordering. A NULL
+   * title_uk means "not translated yet" -> the strategy translates it; a
+   * non-empty title_uk means "already translated" -> reuse it.
    */
   async getNext(): Promise<RecipeRow | null> {
     const { rows } = await this.pool.query<RecipeRow>(
       `SELECT id, title, image_url, category, ingredients, instructions,
-              title_uk, ingredients_uk, instructions_uk
+              title_uk, ingredients_uk, instructions_uk,
+              telegraph_url, telegraph_path,
+              kcal, protein_g, fat_g, carbs_g, serving_size_g
        FROM recipes
        WHERE NOT (posted ? 'TELEGRAM')
          AND title_uk IS DISTINCT FROM ''
+         AND kcal IS NOT NULL
        ORDER BY created_at
        LIMIT 1`,
     );
@@ -50,6 +62,14 @@ export class RecipesRepository {
        SET title_uk = $2, ingredients_uk = $3, instructions_uk = $4, translated_at = now()
        WHERE id = $1`,
       [id, t.titleUk, t.ingredientsUk, t.instructionsUk],
+    );
+  }
+
+  /** Cache the Telegraph page so it's only created once per recipe. */
+  async saveTelegraph(id: string, page: { url: string; path: string }): Promise<void> {
+    await this.pool.query(
+      `UPDATE recipes SET telegraph_url = $2, telegraph_path = $3 WHERE id = $1`,
+      [id, page.url, page.path],
     );
   }
 

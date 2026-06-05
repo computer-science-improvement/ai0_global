@@ -1,0 +1,680 @@
+[
+  {
+    "recipe_name": "Smoky Chipotle Pork Medallions with Black Bean Puree",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoky_chipotle_pork_medallions_with_black_bean_puree_20250625_161124_42ed06a7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:11:24.856858000Z",
+    "selected_ingredients": [
+      "pork",
+      "hot sauce",
+      "bean",
+      "cayenne pepper",
+      "chipotle chile"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, centrally composed with thoughtful negative space. Two to three thick-cut, pan-seared pork medallions, exhibiting a deep golden-brown crust with tender interiors, are nestled beside a generous quenelle of rich, dark black bean puree. The puree is smooth and creamy, its deep, almost black hue providing a striking contrast to the pork. A vibrant green sprig of fresh cilantro rests gracefully atop the pork, adding a pop of color and freshness. A bright lime wedge is placed on the side of the plate. The composition is clean and organized, yet feels organic and approachable. The lighting is natural and even, highlighting the textures and colors of the food. The setting is a modern bistro with a simple light wooden table surface and a folded cotton napkin beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping the puree.",
+      "Offer a side of simple avocado slices or a fresh jicama salad."
+    ],
+    "hero_ingredient": "Pork Loin",
+    "ingredients": [
+      {
+        "name": "Pork Loin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Canned Black Beans",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chipotle Chiles in Adobo",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Adobo Sauce (from can)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cayenne Pepper",
+        "quantity": "2.5ml"
+      },
+      {
+        "name": "Hot Sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Trim pork loin. Slice into 2.5 cm thick medallions. Season pork generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large pan over medium-high heat. Sear pork medallions 3-4 minutes per side until golden brown. Cook to an internal temperature of 63°C (145°F). Transfer pork to a plate. Tent with foil. Let rest 3 minutes.",
+      "Add remaining 15ml olive oil to the same pan. Add diced onion. Sauté 3 minutes until softened. Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in drained black beans, chopped chipotle chiles, adobo sauce, cayenne pepper, and chicken stock. Bring to a simmer. Cook 5 minutes, stirring occasionally.",
+      "Transfer bean mixture to a food processor or blender. Add hot sauce, lime juice, and chopped cilantro. Blend until smooth and creamy. Add a splash more stock if too thick. Season with salt to taste.",
+      "Spoon black bean puree onto serving plates. Arrange 2-3 pork medallions beside the puree. Garnish with fresh cilantro sprigs."
+    ],
+    "traditional_techniques": [
+      "Searing meat",
+      "Preparing a legume purée"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 337,
+      "cholesterol_mg": 87,
+      "dietary_fiber_g": 8.4,
+      "protein_g": 36.8,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 1158.3,
+      "total_carbs_g": 22.2,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 89,
+      "cholesterol_mg": 22.9,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 9.7,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 304.8,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 29.9,
+      "protein": 73.6,
+      "saturated_fat": 12.4,
+      "sodium": 50.4,
+      "total_carbs": 8.1,
+      "total_fat": 15.1
+    },
+    "serving_size_g": 380,
+    "total_recipe_weight_g": 1520
+  },
+  {
+    "recipe_name": "Classic Beef Ragu with Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_beef_ragu_with_tagliatelle_20250625_161051_61e70643.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:10:51.992171000Z",
+    "selected_ingredients": [
+      "mincemeat",
+      "olive oil",
+      "tomato",
+      "pasta",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous serving of Classic Beef Ragu with Tagliatelle is presented in a deep, rustic ceramic bowl. The broad, golden tagliatelle ribbons are coated in a rich, dark red-brown beef ragu. The sauce features finely broken, tender beef mincemeat and soft, diced vegetables (onion, carrot, celery) from the long simmer. The pasta is al dente, naturally intertwined with the hearty sauce. A generous, uneven sprinkle of freshly grated Parmigiano Reggiano cheese tops the dish, some melting gently into the warm ragu. The overall plating is natural and abundant, filling the bowl without overcrowding. The bowl sits on a well-worn wooden dining table. Simple, everyday flatware and a casually folded linen napkin are placed alongside. Warm, inviting light illuminates the scene, evoking a comfortable, lived-in Italian family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Offer extra grated Parmigiano Reggiano at the table",
+      "Pair with a simple, robust red wine"
+    ],
+    "hero_ingredient": "Beef Mincemeat",
+    "ingredients": [
+      {
+        "name": "Beef Mincemeat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Tagliatelle Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery Stalk, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium heat.",
+      "Add diced onion, carrot, and celery. Cook until softened, about 8-10 minutes. Do not brown.",
+      "Increase heat to medium-high. Add beef mincemeat. Break it apart with a spoon. Cook until browned, about 5-7 minutes. Drain excess fat.",
+      "Stir in tomato paste. Cook for 1 minute.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine evaporates, about 3 minutes.",
+      "Add crushed tomatoes and beef stock. Stir well.",
+      "Bring to a simmer. Reduce heat to low. Cover and simmer for at least 1.5 hours, or up to 3 hours, stirring occasionally. The longer, the better.",
+      "Season ragu with salt and black pepper to taste.",
+      "Cook tagliatelle according to package instructions in salted boiling water until al dente.",
+      "Drain pasta. Add directly to the ragu pot. Toss to coat the pasta thoroughly with the sauce.",
+      "Serve immediately. Garnish with grated Parmigiano Reggiano."
+    ],
+    "notes": [
+      "The ragu's flavor deepens significantly with longer simmering times.",
+      "This ragu freezes well for future meals."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 919,
+      "cholesterol_mg": 104,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 56.9,
+      "saturated_fat_g": 13.7,
+      "sodium_mg": 1057,
+      "total_carbs_g": 89.1,
+      "total_fat_g": 37.2,
+      "total_sugars_g": 11.6,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131,
+      "cholesterol_mg": 14.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 151,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 26,
+      "protein": 114,
+      "saturated_fat": 69,
+      "sodium": 46,
+      "total_carbs": 32,
+      "total_fat": 48
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2800
+  },
+  {
+    "recipe_name": "Classic Beef Bolognese with Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_beef_bolognese_with_rigatoni_20250625_161023_f4e71e0b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:10:23.856123000Z",
+    "selected_ingredients": [
+      "mincemeat",
+      "pasta",
+      "tomato",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Classic Beef Bolognese with Rigatoni is presented on a clean, white porcelain dinner plate, centrally placed on a simple wooden table. The rigatoni pasta is generously coated in a rich, deep red Bolognese sauce, with visible small, browned chunks of minced beef interspersed throughout. The sauce has a glossy, thick texture, clinging well to the ridged pasta. Fresh, vibrant green basil leaves are artfully scattered over the top, providing a striking color contrast. A generous dusting of finely grated white Parmesan cheese completes the dish. The plating is organized yet natural, allowing the sauce and pasta to appear inviting and abundant without overcrowding. The scene is bathed in soft, natural, even lighting, highlighting the food's colors and textures. Beside the plate, a neatly folded cotton napkin and traditional silver flatware are arranged. The background is minimal, suggesting a modern bistro setting with a casual atmosphere, keeping the focus entirely on the authentic Italian main course.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmesan cheese on the side.",
+      "Offer crusty Italian bread for dipping in the sauce.",
+      "Pair with a glass of dry red wine."
+    ],
+    "hero_ingredient": "Minced Beef",
+    "ingredients": [
+      {
+        "name": "Minced beef",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "15 g, leaves"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g, grated (for serving)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add minced beef. Cook, breaking it up with a spoon, until browned. Drain excess fat. Remove beef from pot.",
+      "Add diced onion, carrot, and celery to the pot. Sauté for 8-10 minutes until softened, stirring occasionally. This is the soffritto.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly, until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine mostly evaporates, about 3-4 minutes.",
+      "Return browned beef to the pot. Add crushed tomatoes and beef broth. Stir well.",
+      "Bring sauce to a simmer. Reduce heat to low. Cover and cook for at least 1.5 hours, or up to 3 hours, stirring occasionally. The longer it simmers, the richer the flavor.",
+      "Season sauce with salt and black pepper to taste.",
+      "About 15 minutes before serving, cook rigatoni according to package directions in salted boiling water until al dente.",
+      "Drain pasta. Add cooked pasta directly to the Bolognese sauce. Stir to combine thoroughly.",
+      "Serve hot, garnished with fresh basil leaves and grated Parmesan cheese."
+    ],
+    "notes": [
+      "For a deeper flavor, simmer the Bolognese sauce for a longer duration, up to 3 hours, adding more broth or water if it becomes too thick.",
+      "Ensure the soffritto vegetables are properly softened before adding other ingredients to build a strong flavor base."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow Simmering"
+    ]
+  },
+  {
+    "recipe_name": "Classic Bolognese with Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_bolognese_with_tagliatelle_20250625_160952_6c5c84ae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:09:53.239871000Z",
+    "selected_ingredients": [
+      "onion",
+      "garlic",
+      "basil",
+      "carrot",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Classic Bolognese with Tagliatelle is presented on a clean white porcelain dinner plate. The golden tagliatelle pasta is neatly coiled, forming a refined, natural mound. It is generously coated with a rich, deep red-brown Bolognese sauce, showcasing chunky pieces of slow-cooked beef and pork ragu. Scattered over the pasta are vibrant green fresh basil leaves and a light dusting of finely grated Parmigiano-Reggiano cheese. A few crispy diced pancetta pieces are visible. The dish has a balanced composition with moderate negative space. The setting features a simple light wooden table surface, with a silver fork and a folded white cotton napkin placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, blurred restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Beef and Pork Ragu",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ground pork",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Pancetta, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Fresh basil leaves, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Parmigiano-Reggiano, for serving",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large heavy-bottomed pot over medium heat.",
+      "Add diced pancetta. Cook until crispy. Remove pancetta, set aside. Leave rendered fat in pot.",
+      "Add ground beef and pork to the pot. Brown thoroughly, breaking up meat with a spoon. Drain excess fat.",
+      "Add diced onion, carrot, and celery (soffritto) to the pot. Cook until softened, about 8-10 minutes.",
+      "Stir in minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is mostly evaporated.",
+      "Stir in crushed tomatoes, beef broth, milk, salt, and pepper. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer for at least 2 hours, or up to 4 hours, stirring occasionally. The longer it simmers, the richer the flavor.",
+      "Cook tagliatelle according to package directions until al dente.",
+      "Drain pasta. Add pasta directly to the Bolognese sauce. Toss to coat well.",
+      "Stir in chopped fresh basil and most of the cooked pancetta.",
+      "Serve immediately. Garnish each portion with remaining crispy pancetta and freshly grated Parmigiano-Reggiano."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1083,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 49.2,
+      "saturated_fat_g": 17.4,
+      "sodium_mg": 1040,
+      "total_carbs_g": 94.5,
+      "total_fat_g": 50.8,
+      "total_sugars_g": 14.3,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141,
+      "cholesterol_mg": 20.7,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 135.4,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 27,
+      "protein": 98,
+      "saturated_fat": 87,
+      "sodium": 45,
+      "total_carbs": 34,
+      "total_fat": 65
+    },
+    "serving_size_g": 767.5,
+    "total_recipe_weight_g": 3070
+  },
+  {
+    "recipe_name": "Fermented Tomato Orzo with Pickled Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_orzo_with_pickled_bell_peppers_20250625_160755_05f785e8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:07:55.858809000Z",
+    "selected_ingredients": [
+      "pasta",
+      "bell pepper",
+      "cream",
+      "tuna",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian",
+    "visual_description": "A small, elegant starter portion is presented centrally on a round, handcrafted ceramic plate in a natural cream tone, allowing ample negative space. The orzo, cooked to al dente, is folded into a rich, vibrant red-orange fermented-style tomato sauce, creating a cohesive yet textured base. Artfully arranged atop the orzo are thin, glossy batons of quick pickled red and yellow bell peppers, their bright colors providing crisp visual contrast and subtle tang. A delicate drizzle of single cream subtly swirls into the sauce. The dish is garnished with a few small, fresh basil leaves, their deep green providing a final natural touch. The setting features a light, textured reclaimed wood surface. A simple, undyed linen napkin is folded neatly. Soft, natural light illuminates the scene, highlighting textures and colors. The background is clean and minimalist, with a hint of natural greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Fermented Tomato",
+    "ingredients": [
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "White wine vinegar (for pickling)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Water (for pickling)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Sugar (for pickling)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Salt (for pickling)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Orzo pasta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil (for orzo)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Single cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fresh basil leaves or chives",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Quick Pickled Bell Peppers: In a small saucepan, combine 120 ml white wine vinegar, 120 ml water, 1 tbsp sugar, 1 tsp salt, 5 black peppercorns, and 1 bay leaf. Bring to a boil, stirring until sugar and salt dissolve. Remove from heat. Slice red and yellow bell peppers into thin batons. Add bell pepper batons to a heatproof jar. Pour hot pickling liquid over bell peppers, ensuring full submersion. Let cool to room temperature. Refrigerate for at least 30 minutes.",
+      "Prepare Fermented-Style Tomato Sauce: Heat 2 tbsp olive oil in a saucepan over medium heat. Add diced red onion and sauté until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant. Add chopped tomatoes, vegetable stock, 1 tbsp white wine vinegar, and 1/2 tsp sugar. Bring to a simmer. Reduce heat to low, cover, and cook for 20-25 minutes, stirring occasionally, until tomatoes break down. Season with salt and pepper.",
+      "Cook Orzo: Bring a pot of salted water to a boil. Add orzo and cook according to package directions until al dente, typically 8-10 minutes. Drain well. Toss cooked orzo with 1 tbsp olive oil to prevent sticking.",
+      "Combine and Finish: Add the cooked orzo to the tomato sauce. Stir gently to combine. Gradually stir in the single cream until well incorporated and heated through. Taste and adjust seasoning if needed.",
+      "Plate and Serve: Divide the orzo mixture among four small starter plates or bowls. Arrange a few quick pickled bell pepper batons artfully on top of each serving. Garnish with fresh basil leaves or finely chopped chives. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.5,
+      "calories": 385,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 9.4,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 1232,
+      "total_carbs_g": 52.9,
+      "total_fat_g": 13.9,
+      "total_sugars_g": 13.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 85,
+      "cholesterol_mg": 2,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 2.1,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 271,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 3,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 2.7,
+      "dietary_fiber": 20,
+      "protein": 18.8,
+      "saturated_fat": 16,
+      "sodium": 53.6,
+      "total_carbs": 19.2,
+      "total_fat": 17.8
+    },
+    "serving_size_g": 455,
+    "total_recipe_weight_g": 1820
+  }
+]

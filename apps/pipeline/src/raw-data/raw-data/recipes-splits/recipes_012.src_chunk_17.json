@@ -1,0 +1,606 @@
+[
+  {
+    "recipe_name": "Creamy Chicken and Bacon Macaroni Bake with Roasted Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_bacon_macaroni_bake_with_roasted_tomatoes_20250702_195307_372eda0f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:53:07.638983000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "potato",
+      "pasta",
+      "noodle",
+      "rice",
+      "macaroni",
+      "tomato",
+      "cheddar",
+      "bacon",
+      "breadcrumbs",
+      "mozzarella",
+      "parmesan"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Creamy Chicken and Bacon Macaroni Bake is presented in a white oval gratin dish, centrally placed on a light wooden table. The dish boasts a golden-brown, crispy panko breadcrumb topping, with melted cheese bubbling around the edges. Scattered on top are vibrant, slightly blistered roasted cherry tomato halves, adding pops of red. Beneath, the creamy macaroni and cheese reveals tender 2 cm seared chicken cubes and crisp crumbled bacon pieces. The sauce is smooth and luxurious. Plating is clean and organized, with moderate negative space. A folded light grey cotton napkin and modern cutlery (fork and knife) rest beside the dish. Natural, even lighting creates soft shadows. The background is softly blurred, suggesting a refined, casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Modern",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a fresh green salad with a light vinaigrette.",
+      "Offer crusty bread on the side for dipping."
+    ],
+    "hero_ingredient": "Chicken and Cheese",
+    "ingredients": [
+      {
+        "name": "Macaroni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Mature cheddar cheese, grated",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Mozzarella cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Potato, peeled and boiled until tender",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve cherry tomatoes. Toss with 15 ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 15-20 minutes until slightly collapsed and caramelized. Set aside.",
+      "Cook macaroni according to package directions until al dente. Drain well. Set aside.",
+      "Dice chicken breast into 2 cm cubes. Season with salt and pepper. Heat 15 ml olive oil in a large pan over medium-high heat. Sear chicken cubes 3-4 minutes until golden and cooked through. Internal temperature must reach 75°C. Remove chicken from pan. Set aside.",
+      "Dice bacon into small pieces. Cook bacon in the same pan over medium heat until crispy. Remove bacon with a slotted spoon. Reserve 15 ml bacon fat in the pan. Crumble bacon. Set aside.",
+      "Melt butter in the pan with bacon fat over medium heat. Whisk in flour to form a roux. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in milk until smooth. Bring to a simmer, stirring, until sauce thickens.",
+      "Mash boiled potato until smooth. Stir mashed potato into the milk mixture until fully incorporated and smooth.",
+      "Reduce heat to low. Stir in cheddar, mozzarella, and half of the parmesan until melted and smooth. Season cheese sauce with salt and pepper. Do not boil.",
+      "Add cooked macaroni, seared chicken, and two-thirds of the crumbled bacon to the cheese sauce. Stir to combine.",
+      "Divide macaroni mixture into four individual oven-safe gratin dishes or a single large baking dish. Arrange roasted tomatoes over the top. Sprinkle remaining parmesan and remaining crumbled bacon over tomatoes.",
+      "Toss panko breadcrumbs with a drizzle of olive oil or a small amount of melted butter. Sprinkle evenly over the dishes.",
+      "Bake for 20-25 minutes, or until topping is golden brown and sauce is bubbly. Let rest 5 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety.",
+      "Adjust seasoning of the cheese sauce to your preference before combining with pasta."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1540,
+      "cholesterol_mg": 278,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 95.7,
+      "saturated_fat_g": 36.8,
+      "sodium_mg": 2000,
+      "total_carbs_g": 120,
+      "total_fat_g": 72.5,
+      "total_sugars_g": 13.4,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 218,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 13.6,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 283,
+      "total_carbs_g": 17,
+      "total_fat_g": 10.3,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 93,
+      "dietary_fiber": 20,
+      "protein": 191,
+      "saturated_fat": 184,
+      "sodium": 87,
+      "total_carbs": 44,
+      "total_fat": 93
+    },
+    "serving_size_g": 705.8,
+    "total_recipe_weight_g": 2823
+  },
+  {
+    "recipe_name": "Roasted Chicken Thighs with Kohlrabi and Parsley Gremolata",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_thighs_with_kohlrabi_and_parsley_gremolata_20250702_194942_7d0747df.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:49:43.007655000Z",
+    "selected_ingredients": [
+      "kohlrabi",
+      "black pepper",
+      "white wine vinegar",
+      "parsley"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of roasted chicken thighs and kohlrabi is presented on a simple, round ceramic plate set on a well-used wooden dining table. The chicken thighs, cooked to a deep golden-brown, are arranged as whole pieces, skin-side up, showcasing their crispy texture. Beside them, thick chunks of roasted kohlrabi, tender and slightly caramelized, display their pale green hue. The dish is generously sprinkled with a vibrant green parsley gremolata, adding specks of fresh color and texture. A subtle sheen of pan juices coats the bottom of the plate. The setting includes basic flatware and a casually folded cloth napkin, bathed in warm, cozy kitchen lighting, reflecting a lived-in family atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Kohlrabi",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Peel kohlrabi. Cut into 2 cm thick wedges.",
+      "Toss kohlrabi wedges with 30 ml olive oil, salt, and black pepper on a large baking sheet.",
+      "Place chicken thighs, skin-side up, on the same baking sheet with the kohlrabi.",
+      "Roast for 30-35 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and kohlrabi is tender and lightly browned.",
+      "While chicken roasts, prepare gremolata. Finely chop parsley and garlic.",
+      "In a small bowl, combine chopped parsley, garlic, lemon zest, white wine vinegar, and remaining 30 ml olive oil. Stir well.",
+      "Remove chicken and kohlrabi from oven. Let chicken rest for 5 minutes.",
+      "Serve roasted chicken thighs and kohlrabi. Spoon gremolata generously over the dish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 597,
+      "cholesterol_mg": 184,
+      "dietary_fiber_g": 6,
+      "protein_g": 41.1,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 218,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 43.5,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 10.6,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 56,
+      "total_carbs_g": 3,
+      "total_fat_g": 11.2,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 21,
+      "protein": 82,
+      "saturated_fat": 51,
+      "sodium": 9,
+      "total_carbs": 4,
+      "total_fat": 56
+    },
+    "serving_size_g": 386.8,
+    "total_recipe_weight_g": 1547.2
+  },
+  {
+    "recipe_name": "Sausage and Ricotta Stuffed Manicotti",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sausage_and_ricotta_stuffed_manicotti_20250702_194837_0de877d1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:48:37.762042000Z",
+    "selected_ingredients": [
+      "sausage",
+      "ricotta",
+      "sun dried tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Sausage and Ricotta Stuffed Manicotti is presented on a pristine white porcelain dinner plate. Three manicotti shells, generously filled and baked, rest centrally on a bed of vibrant red marinara sauce. The pasta shells are golden-brown at the edges, indicating perfect doneness. A melted, bubbly layer of golden-brown mozzarella and grated Parmigiano-Reggiano cheese tops the manicotti, showing slight charring in spots for texture. The rich red marinara sauce pools around the shells, showcasing its smooth consistency. Fresh, bright green basil leaves are scattered over the dish as a garnish, providing a pop of color and freshness. The setting is a modern bistro, with the plate placed on a simple wooden table surface. A folded white cotton napkin lies to the left of the plate. A standard silver fork and knife are positioned to the right. In the background, a subtle, blurred restaurant ambiance suggests a casual dining environment, with natural, even lighting illuminating the dish, highlighting its textures and inviting colors. The entire plate is visible, with moderate negative space, emphasizing the comforting, classic Italian presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with warm garlic bread for dipping in the sauce.",
+      "Accompany with a simple green salad dressed with a vinaigrette."
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausage, casings removed",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ricotta cheese, whole milk",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil, drained and finely chopped",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Manicotti pasta shells",
+        "quantity": "12 shells"
+      },
+      {
+        "name": "Marinara sauce",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh mozzarella cheese, shredded",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh basil leaves, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook manicotti shells according to package directions until al dente. Drain and set aside.",
+      "Heat olive oil in a large skillet over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add Italian sausage to the skillet. Break it apart with a spoon. Cook until browned and cooked through. Drain excess fat.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Remove skillet from heat. Let sausage mixture cool slightly.",
+      "In a large bowl, combine cooked sausage mixture, ricotta cheese, chopped sun-dried tomatoes, half of the grated Parmigiano-Reggiano, and half of the chopped fresh basil. Season with salt and pepper. Mix well.",
+      "Spread 250 ml of marinara sauce in the bottom of a 23x33 cm baking dish.",
+      "Carefully fill each manicotti shell with the ricotta-sausage mixture. Use a spoon or piping bag. Arrange filled shells in a single layer in the baking dish.",
+      "Pour remaining marinara sauce evenly over the filled manicotti shells.",
+      "Sprinkle shredded fresh mozzarella and remaining Parmigiano-Reggiano over the top.",
+      "Cover the baking dish loosely with aluminum foil.",
+      "Bake for 20 minutes.",
+      "Remove foil. Continue baking for 10-15 minutes, until cheese is melted and bubbly and edges are lightly browned.",
+      "Let rest for 5 minutes before serving.",
+      "Garnish with remaining fresh basil."
+    ],
+    "traditional_techniques": [
+      "Al dente cooking of pasta",
+      "Layering of flavors in sauce and filling"
+    ]
+  },
+  {
+    "recipe_name": "Coconut Creamed Kohlrabi with Spiced Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coconut_creamed_kohlrabi_with_spiced_chicken_20250702_194517_48d07526.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:45:17.677248000Z",
+    "selected_ingredients": [
+      "kohlrabi",
+      "coconut cream",
+      "black pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a well-used, deep ceramic bowl, placed on a simple wooden kitchen table. Modest portions of tender chicken chunks are nestled among soft, creamy white kohlrabi cubes, bathed in a rich, off-white coconut cream sauce. The chicken is seared to a light golden-brown, offering a visual contrast. Diced kohlrabi retains its shape, showcasing its tender texture. A sprinkle of vibrant green chopped cilantro rests on top, adding a fresh pop of color. The sauce has a slight sheen, indicating its creamy consistency. The setting includes a casually placed cloth napkin and simple, everyday flatware. Warm, natural kitchen light illuminates the scene, emphasizing the comforting and homemade appeal of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Kohlrabi",
+        "quantity": "2 medium (about 500g total)"
+      },
+      {
+        "name": "Coconut cream",
+        "quantity": "400ml can"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2.5cm piece"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "2 tbsp, chopped"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks. Season with 0.5 tsp salt and 0.25 tsp black pepper.",
+      "Peel kohlrabi. Dice into 1.5cm cubes.",
+      "Heat olive oil in a large pot or deep skillet over medium-high heat. Add chicken. Sear until golden brown on all sides. Remove chicken from pot. Set aside.",
+      "Add chopped onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and grated ginger. Cook 1 minute until fragrant.",
+      "Stir in turmeric powder and cumin powder. Cook 30 seconds.",
+      "Return chicken to the pot. Add diced kohlrabi. Stir to combine.",
+      "Pour in coconut cream. Add remaining 0.5 tsp salt and 0.25 tsp black pepper. Bring to a simmer.",
+      "Reduce heat to low. Cover. Cook 15-20 minutes, or until chicken reaches 75°C (167°F) internal temperature and kohlrabi is tender. Stir occasionally.",
+      "Taste and adjust seasoning.",
+      "Serve hot, garnished with fresh cilantro."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 595,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 36,
+      "saturated_fat_g": 25.3,
+      "sodium_mg": 734,
+      "total_carbs_g": 18.4,
+      "total_fat_g": 43.3,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 8.4,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 172,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 27,
+      "protein": 72,
+      "saturated_fat": 126,
+      "sodium": 32,
+      "total_carbs": 7,
+      "total_fat": 55
+    },
+    "serving_size_g": 427.2,
+    "total_recipe_weight_g": 1708.6
+  },
+  {
+    "recipe_name": "Five-Spice Glazed Duck Breast with Roasted Fennel and Blood Orange",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_five-spice_glazed_duck_breast_with_roasted_fennel_and_blood_orange_20250702_194330_84b85e8b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T19:43:30.854653000Z",
+    "selected_ingredients": [
+      "blood orange",
+      "chinese five spice",
+      "fennel"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Five-Spice Glazed Duck Breast is centrally plated on a clean white porcelain dinner plate. The duck breast, pan-seared to a crisp, golden-brown skin, is sliced into thick medallions, revealing a tender, rosy pink interior. The medallions are arranged slightly overlapping, not fanned. Alongside, roasted fennel wedges, tender with lightly caramelized edges, are artfully placed. Bright blood orange segments are interspersed, adding vibrant color. A glossy five-spice blood orange glaze is generously drizzled over the duck and fennel. Fresh coriander leaves are scattered as garnish. The plate rests on a simple, light wooden table. A folded cotton napkin sits to the side. Natural, even lighting illuminates the modern bistro scene with a subtly blurred background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Chinese-inspired",
+    "hero_ingredient": "Duck Breast",
+    "ingredients": [
+      {
+        "name": "Duck breasts",
+        "quantity": "2 (approx. 350-400 g each)"
+      },
+      {
+        "name": "Fennel bulbs",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Blood oranges",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Chinese five-spice powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Honey",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh coriander, for garnish",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Prepare fennel: Trim fennel bulbs. Cut each into 6-8 wedges. Toss with 15 ml olive oil, 2 g salt, and 1 g black pepper. Spread on a baking tray. Roast for 25-30 minutes until tender and lightly caramelized.",
+      "Prepare blood orange segments: Segment two blood oranges, reserving juice. Set segments aside for garnish.",
+      "Make glaze: In a small saucepan, combine juice from segmented blood oranges, juice from the third blood orange, Chinese five-spice powder, honey, soy sauce, rice vinegar, grated ginger, and minced garlic. Bring to a simmer over medium heat. Cook for 10-15 minutes, stirring occasionally, until the glaze thickens enough to coat the back of a spoon.",
+      "Prepare duck: Pat duck breasts very dry with paper towels. Score the skin in a crosshatch pattern, being careful not to cut into the meat. Season duck breasts liberally with remaining 3 g salt and 1 g black pepper.",
+      "Sear duck: Heat a large oven-safe skillet over medium-high heat. Add duck breasts, skin-side down, to the cold pan. Cook for 8-10 minutes until the skin is deeply golden brown and crispy. Pour off excess fat as it renders.",
+      "Finish duck in oven: Flip duck breasts. Transfer skillet to preheated oven. Cook for 6-8 minutes for medium-rare (internal temperature 65°C). Cook longer for desired doneness.",
+      "Rest duck: Remove duck from oven. Transfer to a cutting board. Rest for 5-10 minutes before slicing.",
+      "Assemble dish: Slice each duck breast into thick medallions. Arrange duck medallions and roasted fennel wedges on individual plates. Place blood orange segments around the duck and fennel. Drizzle generously with the warm five-spice blood orange glaze. Garnish with fresh coriander leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.62,
+      "calories": 676,
+      "cholesterol_mg": 116.81,
+      "dietary_fiber_g": 9.72,
+      "protein_g": 27.56,
+      "saturated_fat_g": 13.96,
+      "sodium_mg": 1570.64,
+      "total_carbs_g": 41.5,
+      "total_fat_g": 44.71,
+      "total_sugars_g": 29.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.69,
+      "calories": 133,
+      "cholesterol_mg": 22.91,
+      "dietary_fiber_g": 1.91,
+      "protein_g": 5.41,
+      "saturated_fat_g": 2.74,
+      "sodium_mg": 308.05,
+      "total_carbs_g": 8.14,
+      "total_fat_g": 8.77,
+      "total_sugars_g": 5.84,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 35,
+      "protein": 55,
+      "saturated_fat": 70,
+      "sodium": 68,
+      "total_carbs": 15,
+      "total_fat": 57
+    },
+    "serving_size_g": 509.9,
+    "total_recipe_weight_g": 2039.5
+  }
+]

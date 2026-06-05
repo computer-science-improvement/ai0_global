@@ -1,0 +1,642 @@
+[
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Penne",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_penne_20250624_104903_7152eb21.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:49:03.675317000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, homely portion of Creamy Chicken and Mushroom Penne is presented on a simple, off-white ceramic plate. The penne pasta is al dente, coated in a rich, creamy sauce. Interspersed throughout are golden-brown, seared chicken chunks and earthy, sautéed mushroom slices. Diced onion and minced garlic are subtly integrated into the sauce. A sprinkle of fresh, vibrant green chopped parsley adds a pop of color and freshness on top. The dish is arranged casually, with components naturally overlapping, filling the plate without overcrowding. The plate rests on a well-used wooden dining table, illuminated by warm, cozy kitchen lighting. A simple metal fork and a casually placed cloth napkin complete the inviting, family-style setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Comfort",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Pasta water",
+        "quantity": "100ml, reserved"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2.5 cm chunks. Season chicken with salt and pepper.",
+      "Heat olive oil in a large pan over medium-high heat. Add chicken chunks. Sear until golden brown on all sides and cooked through, about 6-8 minutes. Ensure internal temperature reaches 75°C. Remove chicken from pan.",
+      "Add sliced mushrooms to the same pan. Cook until softened and browned, about 5 minutes.",
+      "Add diced onion and minced garlic to the pan. Sauté until onion is translucent, about 3-4 minutes.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the pan.",
+      "Stir in heavy cream. Reduce heat to low. Simmer gently for 5 minutes, allowing sauce to thicken slightly.",
+      "Meanwhile, cook penne pasta according to package directions until al dente. Drain pasta, reserving 100ml pasta water.",
+      "Add cooked chicken and drained pasta to the sauce. Toss to combine. If sauce is too thick, add a little reserved pasta water.",
+      "Stir in grated Parmesan cheese and half of the fresh parsley. Taste and adjust seasoning.",
+      "Serve immediately. Garnish with remaining fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 769.13,
+      "cholesterol_mg": 156.13,
+      "dietary_fiber_g": 5.84,
+      "protein_g": 52.47,
+      "saturated_fat_g": 16.06,
+      "sodium_mg": 391.22,
+      "total_carbs_g": 73.73,
+      "total_fat_g": 34.12,
+      "total_sugars_g": 9.65,
+      "trans_fat_g": 0.85
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178.04,
+      "cholesterol_mg": 36.14,
+      "dietary_fiber_g": 1.35,
+      "protein_g": 12.15,
+      "saturated_fat_g": 3.72,
+      "sodium_mg": 90.56,
+      "total_carbs_g": 17.07,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 2.24,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 20.8,
+      "protein": 105,
+      "saturated_fat": 80.3,
+      "sodium": 17,
+      "total_carbs": 26.8,
+      "total_fat": 43.7
+    },
+    "serving_size_g": 432,
+    "total_recipe_weight_g": 1728
+  },
+  {
+    "recipe_name": "Rustic Italian Chicken and Rice Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_italian_chicken_and_rice_soup_20250624_104901_afc378bc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:49:02.074901000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "chili",
+      "onion",
+      "oregano",
+      "olive"
+    ],
+    "complexity": "simple",
+    "special_requests": "italian cuisine",
+    "visual_description": "A single portion of hearty Italian Chicken and Rice Soup is presented in a simple, deep ceramic bowl, likely an off-white or earthy tone, resting on a well-worn wooden kitchen table. The soup boasts a rich, reddish-orange broth, thickened slightly by the Arborio rice, with visible tender chunks of cooked chicken. Diced yellow onion, small pieces of red chili, and dark, briny black olives are interspersed throughout, alongside plump, soft rice grains. A generous sprinkle of fresh, vibrant green chopped flat-leaf parsley crowns the center, with a subtle sheen from a drizzle of extra virgin olive oil. The bowl is surrounded by a thick slice of rustic, crusty Italian bread, perfect for dipping. Simple flatware and a casual cloth napkin complete the homely, inviting scene under warm, natural kitchen lighting, emphasizing comfort and rustic charm.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve hot with a generous grating of fresh Parmesan cheese.",
+      "Accompany with crusty Italian bread (pane casereccio) for dipping.",
+      "A simple green salad with a vinaigrette dressing can complement the meal."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Red chili (peperoncino)",
+        "quantity": "1 (or 1 tsp chili flakes)"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Pitted black olives (Gaeta or Kalamata)",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Crushed tomatoes (passata)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 2 cm chunks. Season with salt and pepper.",
+      "Finely dice the onion. Mince garlic. Thinly slice red chili.",
+      "Heat olive oil in a large pot or Dutch oven over medium heat.",
+      "Add diced onion, minced garlic, and sliced chili. Sauté for 5-7 minutes until onion softens and becomes translucent. This is the soffritto base.",
+      "Add chicken chunks to the pot. Cook, stirring occasionally, until lightly browned on all sides, about 5-7 minutes. Ensure chicken reaches an internal temperature of 75°C (167°F) later in cooking.",
+      "Stir in crushed tomatoes and dried oregano. Bring to a simmer.",
+      "Pour in chicken broth. Bring the soup to a boil, then reduce heat to low. Cover and simmer for 15 minutes.",
+      "Add Arborio rice to the soup. Stir well. Continue to simmer, uncovered, for 15-20 minutes, stirring occasionally, until rice is tender and soup has slightly thickened.",
+      "Roughly chop the pitted black olives. Stir them into the soup during the last 5 minutes of cooking.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Chop fresh parsley for garnish."
+    ],
+    "notes": [
+      "For a richer flavor, use homemade chicken broth.",
+      "Adjust chili quantity to your preferred spice level. For a milder soup, omit chili.",
+      "If the soup becomes too thick, add a little more hot broth or water to reach desired consistency."
+    ],
+    "traditional_techniques": [
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 544.6,
+      "cholesterol_mg": 168.8,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 34.8,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 1373.3,
+      "total_carbs_g": 53.7,
+      "total_fat_g": 21.1,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 71.2,
+      "cholesterol_mg": 22.1,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 4.6,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 179.6,
+      "total_carbs_g": 7,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 14,
+      "protein": 70,
+      "saturated_fat": 23,
+      "sodium": 60,
+      "total_carbs": 20,
+      "total_fat": 27
+    },
+    "serving_size_g": 764.5,
+    "total_recipe_weight_g": 3058
+  },
+  {
+    "recipe_name": "Green Bean & Mushroom Chinese Cold Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_green_bean_%26_mushroom_chinese_cold_salad_20250624_104843_4a7168ab.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:48:43.682100000Z",
+    "selected_ingredients": [
+      "bean",
+      "salad green",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "chinese cuisine",
+    "visual_description": "A hearty individual portion of Chinese cold salad rests in a simple, everyday ceramic bowl on a well-used wooden kitchen table. Shredded crisp romaine lettuce forms the base, topped generously with bright green, tender-crisp blanched green bean pieces and earthy, thinly sliced sautéed cremini mushrooms. The components are casually arranged, overlapping naturally, with a glistening, dark brown savory dressing coating them. A sprinkle of toasted sesame seeds adds a light textural contrast and visual warmth. The bowl is surrounded by a pair of wooden chopsticks and a small, plain soy sauce dish. Warm, cozy lighting from kitchen fixtures illuminates the scene, creating a lived-in, unpretentious family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed white rice.",
+      "Enjoy as part of a multi-dish family meal.",
+      "Use chopsticks for eating."
+    ],
+    "hero_ingredient": "Green Bean",
+    "ingredients": [
+      {
+        "name": "Green beans, ends trimmed, cut into 4 cm pieces",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cremini mushrooms, thinly sliced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Romaine lettuce, shredded",
+        "quantity": "1 head"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Toasted sesame seeds, for garnish",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Blanch green bean pieces in boiling water for 2-3 minutes. Drain. Plunge into ice water. Drain well.",
+      "Heat a wok or large pan over medium-high heat. Add a little cooking oil.",
+      "Add sliced mushrooms. Sauté until tender and lightly browned, about 5-7 minutes. Remove from heat.",
+      "In a small bowl, whisk together minced garlic, grated ginger, soy sauce, rice vinegar, sesame oil, sugar, and white pepper for the dressing.",
+      "In a large mixing bowl, combine shredded romaine lettuce, blanched green bean pieces, and sautéed mushrooms.",
+      "Pour dressing over the salad ingredients. Toss gently to coat everything evenly.",
+      "Transfer salad to serving bowls. Garnish with toasted sesame seeds. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Blanching",
+      "Sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 120,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 5.9,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 552,
+      "total_carbs_g": 15.9,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 46,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 2.2,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 212,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 1.7,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 20,
+      "protein": 12,
+      "saturated_fat": 4,
+      "sodium": 24,
+      "total_carbs": 6,
+      "total_fat": 6
+    },
+    "serving_size_g": 260,
+    "total_recipe_weight_g": 1041
+  },
+  {
+    "recipe_name": "Hearty Rustic Chicken and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_rustic_chicken_and_potato_stew_20250624_104843_e5a91da6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:48:43.650635000Z",
+    "selected_ingredients": [
+      "potato",
+      "onion",
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of hearty rustic chicken and potato stew is presented in a deep, earthy-toned ceramic bowl. Golden-brown seared chicken thighs, skin-on, are nestled among large, irregular chunks of tender cooked potato. The stew features a rich, thick, red-orange tomato-based sauce. Roughly chopped onions are visible within the sauce. A sprinkle of vibrant green, roughly chopped fresh parsley garnishes the top, adding a pop of color. The components are naturally arranged, slightly overlapping. The bowl sits on a well-used, warm-toned wooden dining table. A simple metal spoon rests beside the bowl. A casually folded, light-colored cloth napkin is nearby. Warm, inviting kitchen lighting illuminates the scene, evoking a cozy family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Large potatoes",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Large yellow onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Place chicken thighs, skin-side down, in the hot oil. Sear 5-7 minutes until skin is golden brown and crispy. Flip chicken. Sear another 5 minutes. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add chopped onion to the pot. Cook 5-7 minutes until softened and translucent, scraping up any browned bits from the bottom.",
+      "Add minced garlic to the pot. Cook 1 minute until fragrant.",
+      "Stir in diced tomatoes, chicken broth, and dried thyme. Bring the liquid to a gentle simmer.",
+      "Peel potatoes. Cut into large, irregular chunks (approximately 3-4 cm). Add potato chunks to the pot.",
+      "Return seared chicken thighs to the pot, nestling them among the potatoes and liquid.",
+      "Cover the pot. Reduce heat to low. Simmer 30-40 minutes. Chicken is cooked through when internal temperature reaches 75°C. Potatoes should be fork-tender.",
+      "Taste the stew. Adjust seasoning with additional salt and pepper as needed.",
+      "Roughly chop fresh parsley for garnish.",
+      "Ladle hot stew into individual bowls. Garnish each serving with fresh parsley."
+    ],
+    "notes": [
+      "Serve this stew with crusty bread for dipping into the flavorful sauce."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 645,
+      "cholesterol_mg": 186,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 40,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 499,
+      "total_carbs_g": 36.3,
+      "total_fat_g": 38.5,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 6.7,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 83,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 20,
+      "protein": 80,
+      "saturated_fat": 49,
+      "sodium": 22,
+      "total_carbs": 13,
+      "total_fat": 49
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2400
+  },
+  {
+    "recipe_name": "Hearty Chicken and Vegetable Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_vegetable_rice_20250624_104842_4dc4d634.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:48:42.737943000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "bell pepper",
+      "oil",
+      "tomato",
+      "carrot",
+      "mushroom",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of hearty chicken and vegetable rice is presented in a deep, rustic ceramic bowl with natural imperfections. The golden-brown seared chicken chunks are nestled among fluffy, tender long-grain rice. Diced carrots, bell peppers, onions, and sliced mushrooms are visibly integrated, offering a medley of natural colors including vibrant orange, soft green, and earthy browns. The dish has a comforting, slightly irregular texture, reflecting its home-cooked nature. A sprinkle of freshly chopped green parsley adds a bright, fresh contrast on top. The bowl sits on a well-used wooden dining table, revealing its natural grain. A simple fork rests casually beside the bowl. Warm, cozy lighting from overhead kitchen fixtures illuminates the scene, creating a lived-in, inviting atmosphere typical of a family kitchen table. The background is minimal, allowing the focus to remain on the appetizing, homely dish. The entire bowl is visible, showing its modest yet satisfying portion.",
+    "number_of_servings": 1,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "150g"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "80g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "50g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "50g"
+      },
+      {
+        "name": "Bell pepper (any color)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "50g"
+      },
+      {
+        "name": "Diced tomato (canned or fresh)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "1g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2-3 cm chunks. Season chicken with half of the salt and pepper.",
+      "Dice onion, carrot, and bell pepper into small 0.5-1 cm cubes. Slice mushrooms. Mince garlic.",
+      "Heat olive oil in a medium saucepan over medium-high heat.",
+      "Add chicken chunks. Sear until golden brown on all sides. Internal temperature must reach 75°C. Remove chicken from pan and set aside.",
+      "Add diced onion, carrot, bell pepper, and sliced mushrooms to the same pan. Sauté for 5-7 minutes until vegetables soften.",
+      "Add minced garlic, diced tomato, and dried thyme. Cook for 1 minute until fragrant.",
+      "Stir in long-grain rice. Cook for 2 minutes, stirring constantly, until rice is lightly toasted.",
+      "Pour in chicken broth. Add remaining salt and pepper. Bring mixture to a boil.",
+      "Return seared chicken to the pan, nestling it into the rice and vegetables. Reduce heat to low. Cover tightly.",
+      "Simmer for 15-20 minutes, or until all liquid is absorbed and rice is tender. Do not lift lid during cooking.",
+      "Remove pan from heat. Let it rest, covered, for 5 minutes.",
+      "Fluff rice gently with a fork. Chop fresh parsley.",
+      "Serve immediately in a bowl, garnished with fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 764,
+      "cholesterol_mg": 128,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 58.2,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 1141,
+      "total_carbs_g": 80.3,
+      "total_fat_g": 22,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.2,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 162,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 3.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 22,
+      "protein": 116,
+      "saturated_fat": 20,
+      "sodium": 50,
+      "total_carbs": 29,
+      "total_fat": 28
+    },
+    "serving_size_g": 705,
+    "total_recipe_weight_g": 705
+  }
+]

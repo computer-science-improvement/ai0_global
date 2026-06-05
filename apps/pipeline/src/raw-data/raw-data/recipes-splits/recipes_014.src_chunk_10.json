@@ -1,0 +1,559 @@
+[
+  {
+    "recipe_name": "Crispy Potato and Celery Patties",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_potato_and_celery_patties_20250630_050132_61303141.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:01:32.928068000Z",
+    "selected_ingredients": [
+      {
+        "name": "celery"
+      },
+      {
+        "name": "potato"
+      },
+      {
+        "name": "breadcrumbs"
+      },
+      {
+        "name": "onion"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A casual, homely presentation of golden-brown Crispy Potato and Celery Patties. Four to five irregularly shaped, pan-fried patties are arranged naturally on a simple, round, off-white ceramic plate with a slightly rustic edge. Each patty exhibits a crunchy, golden-brown crust and a soft, fluffy interior. Finely chopped fresh green parsley is sprinkled over the patties, adding a pop of natural color. The plate sits on a well-used wooden dining table, showing subtle grain and natural imperfections. A loosely folded, light-colored cloth napkin or paper towel is casually placed next to the plate. The scene is illuminated by warm, cozy kitchen lighting, creating a relaxed family dining atmosphere. The background is minimal, suggesting a lived-in kitchen environment, keeping the focus entirely on the comforting food. The entire plate is visible, with adequate negative space around the food, emphasizing its unpretentious, homemade appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Homestyle",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "3"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Cut into large chunks. Boil in salted water until very tender, about 15-20 minutes.",
+      "Drain potatoes well. Mash thoroughly until smooth. Set aside to cool slightly.",
+      "Finely dice celery into small cubes. Finely dice onion into small cubes.",
+      "Heat a small pan over medium heat. Add a splash of oil. Sauté diced celery and onion until softened, about 5 minutes. Let cool.",
+      "In a large bowl, combine mashed potatoes, sautéed celery and onion, plain flour, and egg. Mix well to combine.",
+      "Season the mixture generously with salt and black pepper.",
+      "Place breadcrumbs on a shallow plate.",
+      "Take spoonfuls of the potato mixture. Form into flat, round patties, about 6-7 cm in diameter and 1.5 cm thick. You should get 8-10 patties.",
+      "Coat each patty thoroughly in breadcrumbs, pressing gently to adhere.",
+      "Heat vegetable oil in a large frying pan over medium-high heat.",
+      "Carefully place patties in the hot oil. Do not overcrowd the pan; cook in batches if necessary.",
+      "Fry patties for 3-4 minutes per side, or until golden brown and crispy.",
+      "Remove patties from pan. Place on a wire rack lined with paper towels to drain excess oil.",
+      "Finely chop fresh parsley.",
+      "Serve warm, garnished with chopped parsley."
+    ]
+  },
+  {
+    "recipe_name": "Brodo di Pollo al Limone e Noci",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_brodo_di_pollo_al_limone_e_noci_20250630_050048_31ea627b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:00:49.175958000Z",
+    "selected_ingredients": [
+      {
+        "name": "walnut"
+      },
+      {
+        "name": "lemon"
+      },
+      {
+        "name": "chicken"
+      },
+      {
+        "name": "garlic"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Italian",
+    "visual_description": "The Brodo di Pollo al Limone e Noci is presented in a handcrafted, unglazed ceramic bowl, in a natural cream or beige tone, highlighting its rustic Italian elegance. The clear, golden-hued chicken broth fills the bowl, leaving ample negative space around the rim. Floating gracefully on the surface are roughly chopped, lightly toasted walnut pieces, their rich brown color contrasting with the broth. Thin, translucent rounds of fresh lemon, with their bright yellow rind, are carefully placed, adding a vibrant pop of color and freshness. A few small, vibrant green fresh parsley leaves are scattered naturally on top, offering a final touch of color and aroma. A delicate drizzle of golden extra virgin olive oil glistens on the broth's surface. The bowl rests on a light, reclaimed wood table surface, revealing its natural grain. Beside the bowl, an undyed linen napkin in a natural beige is loosely folded. A simple, traditional Italian soup spoon made of polished wood or a classic metal is placed to the side. The background is clean and minimalist, with soft, diffused natural light illuminating the scene, possibly with a hint of green from a distant plant, suggesting an eco-conscious and serene setting. The entire plate is visible, showcasing a single, elegant portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a small side of toasted artisan bread (Pane Toscano) for dipping."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken carcass or bones",
+        "quantity": "from 1 whole chicken (approx. 1 kg)"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "3 litres"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, roughly chopped (including skin)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2, roughly chopped (including peels)"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, roughly chopped (including leaves)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-5, smashed (including skins)"
+      },
+      {
+        "name": "Fresh parsley sprigs",
+        "quantity": "2 (optional)"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1 (optional)"
+      },
+      {
+        "name": "Whole black peppercorns",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "150g, roughly chopped"
+      },
+      {
+        "name": "Lemons",
+        "quantity": "2 (1 for zest/juice, 1 for garnish)"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Brine from lacto-fermented vegetables",
+        "quantity": "1-2 tbsp (optional)"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken broth: Place chicken bones/carcass in a large pot. Add 3 litres cold water, chopped onion, carrots, celery, smashed garlic, parsley, bay leaf, and peppercorns. Bring to a gentle boil. Reduce heat to low. Simmer for 2-3 hours, skimming any foam. If using chicken pieces with meat, ensure internal temperature reaches 75°C. Remove chicken meat, shred, and set aside (optional, if desired in soup).",
+      "Strain the broth through a fine-mesh sieve. Discard solids.",
+      "Return clear broth to a clean pot. Bring to a simmer.",
+      "Toast walnuts: Lightly toast chopped walnuts in a dry pan over medium heat for 3-5 minutes until fragrant. Set aside.",
+      "Finish soup: Grate zest from one lemon into the simmering broth. Squeeze juice from the same lemon into the broth. Add salt to taste.",
+      "Optional Fermented Element: Stir in 1-2 tablespoons of brine from existing lacto-fermented vegetables (e.g., sauerkraut, pickled lemons) for a subtle tangy note.",
+      "Serve: Ladle hot broth into individual bowls. Garnish each serving with toasted walnuts, a thin slice of fresh lemon, and a few fresh parsley leaves. Drizzle with a little extra virgin olive oil."
+    ],
+    "notes": [
+      "This recipe embraces zero-waste principles by utilizing chicken bones and vegetable scraps for a flavorful broth.",
+      "The optional addition of fermented vegetable brine adds depth and a subtle tang, enhancing the broth's complexity while repurposing existing ferments. It's a light, nourishing soup perfect for seasonal eating."
+    ],
+    "traditional_techniques": [
+      "Brodo (traditional Italian broth making)"
+    ]
+  },
+  {
+    "recipe_name": "Creamy Carrot and Ginger Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_carrot_and_ginger_soup_20250630_045734_a031bd46.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:57:34.803730000Z",
+    "selected_ingredients": [
+      "carrot"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of warm, creamy carrot and ginger soup is presented in a deep, rustic ceramic bowl. The soup, a vibrant, natural orange hue, fills the bowl, showcasing its smooth, velvety texture. A very light swirl of cream is visible on the surface, with a small sprinkle of finely chopped fresh chives for a hint of green contrast. The bowl sits on a well-used wooden dining table, revealing its natural grain and minor imperfections. Beside the bowl, a simple metal spoon rests on a plain, casually folded cloth napkin. The scene is illuminated by warm, soft lighting, typical of a cozy kitchen. The background is minimal, suggesting a comfortable family dining area, with focus entirely on the comforting soup.",
+    "number_of_servings": 5,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Carrots",
+        "quantity": "1 kg, peeled and roughly chopped into 2 cm chunks"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Add chopped carrots to the pot. Stir well.",
+      "Pour in vegetable broth. Bring to a boil.",
+      "Reduce heat to low. Simmer, covered, for 20-25 minutes, or until carrots are very tender.",
+      "Remove pot from heat.",
+      "Carefully blend the soup until smooth using an immersion blender or transfer to a regular blender in batches.",
+      "Return blended soup to the pot. Stir in heavy cream.",
+      "Season with salt and black pepper to taste. Heat gently if needed, do not boil after adding cream.",
+      "Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 243,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 3.6,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 1049,
+      "total_carbs_g": 26.7,
+      "total_fat_g": 15,
+      "total_sugars_g": 12.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 42,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 0.6,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 183,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 8,
+      "dietary_fiber": 23,
+      "protein": 7,
+      "saturated_fat": 32,
+      "sodium": 46,
+      "total_carbs": 10,
+      "total_fat": 19
+    },
+    "serving_size_g": 574.5,
+    "total_recipe_weight_g": 2872.6
+  },
+  {
+    "recipe_name": "Coffee-Cocoa Rubbed Portobello Steaks with Cherry Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coffee-cocoa_rubbed_portobello_steaks_with_cherry_reduction_20250630_044629_4f8a878b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:46:30.328073000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "cherry",
+      "coffee"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate set on a simple wooden table. A single, whole, deeply seared Portobello mushroom \"steak\" anchors the center of the plate, its dark, crusted surface visible. The mushroom retains its natural shape, showcasing its robust form. A rich, glossy, dark red cherry reduction is artfully drizzled over and around the mushroom, forming a small pool. The reduction has a slight textural quality from the cherries. A few fresh green thyme sprigs are delicately placed on top of the mushroom, providing a vibrant color contrast. The overall presentation is clean, professional, and inviting, with moderate negative space. Standard metal flatware is neatly placed beside the plate on a folded cotton napkin. Natural, even lighting illuminates the dish from above, highlighting the textures and colors without harsh shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Portobello mushroom",
+    "ingredients": [
+      {
+        "name": "Portobello mushrooms",
+        "quantity": "4 large, stems removed"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Finely ground coffee or espresso powder",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.25 teaspoon"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons, divided"
+      },
+      {
+        "name": "Fresh or frozen pitted cherries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small, finely minced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "1 tablespoon (optional)"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare the cherry reduction. In a small saucepan, combine cherries, balsamic vinegar, vegetable broth, minced shallot, and minced garlic. Bring to a simmer over medium heat. Cook for 15-20 minutes, stirring occasionally, until cherries soften and liquid reduces by half and thickens slightly. Mash cherries lightly with a fork. Stir in maple syrup if using. Keep warm.",
+      "Prepare the coffee-cocoa rub. In a small bowl, combine cocoa powder, ground coffee, smoked paprika, cumin, salt, and black pepper. Mix well.",
+      "Prepare the mushrooms. Gently wipe Portobello mushrooms clean with a damp cloth. Brush both sides of each mushroom cap with 1 tablespoon of olive oil.",
+      "Apply the rub. Generously sprinkle the coffee-cocoa rub over both sides of each mushroom cap. Gently press the rub to adhere.",
+      "Sear the mushrooms. Heat the remaining 1 tablespoon of olive oil in a large skillet over medium-high heat. Place mushroom caps gill-side down in the hot skillet. Sear for 5-7 minutes until deeply browned and a crust forms.",
+      "Finish cooking. Flip mushrooms. Reduce heat to medium. Cook for another 5-7 minutes until tender.",
+      "Plate and serve. Place one mushroom steak on each plate. Drizzle generously with warm cherry reduction. Garnish with a fresh thyme sprig. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.4,
+      "calories": 161,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4,
+      "protein_g": 4.1,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 328,
+      "total_carbs_g": 22,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 15.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.5,
+      "calories": 74,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 1.9,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 150,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 14,
+      "protein": 8,
+      "saturated_fat": 6,
+      "sodium": 14,
+      "total_carbs": 8,
+      "total_fat": 10
+    },
+    "serving_size_g": 218.25,
+    "total_recipe_weight_g": 873
+  },
+  {
+    "recipe_name": "Chicken Parmesan with Roasted Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_parmesan_with_roasted_tomatoes_20250630_044515_9c2ba055.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:45:16.008056000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "basil",
+      "mozzarella",
+      "parmesan cheese",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown, pan-fried chicken cutlet, topped with a rich red tomato sauce and generously melted, bubbly mozzarella and grated Parmesan, rests centrally on a clean white porcelain dinner plate. The chicken, approximately 1.5 cm thick, maintains its full, natural shape, showcasing its crispy breaded exterior. Beside it, several vibrant red roasted cherry tomato halves are artfully scattered, some slightly collapsed from roasting, adding a juicy texture contrast. Fresh green basil leaves, torn into rustic pieces, are thoughtfully placed over the chicken and around the plate, providing a fragrant and colorful garnish. The plate features moderate negative space, presenting a refined yet approachable restaurant portion. The scene is set on a simple light wooden table surface with natural, even lighting, accompanied by standard silver flatware and a folded white cotton napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple side of spaghetti aglio e olio or a fresh green salad with a light vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Mozzarella cheese, fresh",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Eggs, large",
+        "quantity": "2"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100ml, plus 2 tbsp"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve cherry tomatoes. Toss with 2 tbsp olive oil, salt, and pepper. Roast 15-20 minutes until slightly softened and blistered. Set aside.",
+      "Mince 2 garlic cloves. Heat 1 tbsp olive oil in a small saucepan over medium heat. Add minced garlic. Sauté 30 seconds until fragrant. Add crushed tomatoes. Season with salt and pepper. Simmer 15 minutes, stirring occasionally. Remove from heat. Stir in 2 tbsp chopped fresh basil.",
+      "Slice chicken breasts horizontally to create 8 thinner cutlets. Place each cutlet between two sheets of cling film. Pound gently to an even 1.5 cm thickness.",
+      "Set up a breading station: one shallow dish with flour, one with beaten eggs, and one with panko breadcrumbs mixed with 2 tbsp grated Parmesan, 1 minced garlic clove, salt, and pepper.",
+      "Dredge each chicken cutlet in flour, shaking off excess. Dip in egg, letting excess drip off. Coat thoroughly in breadcrumbs, pressing gently to adhere.",
+      "Heat 100ml olive oil in a large oven-safe skillet over medium-high heat. Fry chicken cutlets in batches, 3-4 minutes per side, until golden brown and cooked through to 75°C internal temperature. Do not overcrowd the pan. Drain on a wire rack.",
+      "Pour a thin layer of tomato sauce onto the bottom of the skillet or an oven-safe baking dish. Arrange fried chicken cutlets over the sauce. Top each cutlet with a generous spoonful of tomato sauce. Place torn pieces of fresh mozzarella over the sauce on each cutlet.",
+      "Bake 10-12 minutes, or until mozzarella is melted and bubbly. Sprinkle with remaining grated Parmesan.",
+      "Serve immediately. Garnish with roasted cherry tomatoes and fresh basil leaves."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For best results, use good quality fresh mozzarella and ripe tomatoes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1004,
+      "cholesterol_mg": 285,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 84.2,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 1006,
+      "total_carbs_g": 49.3,
+      "total_fat_g": 52.4,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 200,
+      "cholesterol_mg": 57,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 16.8,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 200,
+      "total_carbs_g": 9.8,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 95,
+      "dietary_fiber": 13,
+      "protein": 168,
+      "saturated_fat": 74,
+      "sodium": 44,
+      "total_carbs": 18,
+      "total_fat": 67
+    },
+    "serving_size_g": 502,
+    "total_recipe_weight_g": 2009
+  }
+]

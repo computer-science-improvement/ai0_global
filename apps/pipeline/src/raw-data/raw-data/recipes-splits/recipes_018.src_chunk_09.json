@@ -1,0 +1,606 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken Breast with Parsnip Puree and Thyme Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_breast_with_parsnip_puree_and_thyme_jus_20250625_163040_06e05db6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:30:41.426973000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, elegant portion of pan-seared chicken breast is the focal point on a pristine, subtly patterned bone china plate. The chicken, with its crispy, golden-brown skin, is placed whole, allowing its natural form to shine. Beside it, a smooth, creamy parsnip puree forms a delicate, organic swoosh, its off-white hue contrasting subtly with the chicken. A rich, glossy thyme jus is artfully drizzled around the main components, creating fluid, dark brown accents on the white plate. A tiny, vibrant green fresh thyme sprig garnishes the dish precisely. The arrangement features abundant negative space. The plate rests on a premium white Carrara marble surface, accompanied by a precisely folded white linen napkin. Dramatic professional lighting casts soft shadows, enhancing the refined, minimalist presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken breasts",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "500g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Parsnip Puree: Peel parsnips. Cut into 2cm rounds. Place in a saucepan. Cover with cold salted water. Bring to a boil. Reduce heat. Simmer until very tender, about 15-20 minutes. Drain well. Return parsnips to the pan. Add 30g butter and cream. Mash until smooth. Season with salt and pepper. Keep warm.",
+      "Prepare Thyme Jus: Finely chop shallot. In a small saucepan, heat 10ml olive oil. Add shallot. Sauté until softened, about 2 minutes. Add chicken stock and 2 thyme sprigs. Bring to a simmer. Reduce heat. Simmer gently until reduced by half and slightly thickened, about 15-20 minutes. Strain through a fine-mesh sieve. Discard solids. Season with salt and pepper. Keep warm.",
+      "Cook Chicken: Pat chicken breasts dry. Season skin and flesh generously with salt and pepper. Heat remaining 20ml olive oil in a large oven-safe skillet over medium-high heat. Place chicken skin-side down in the hot skillet. Sear for 6-8 minutes until skin is deeply golden brown and crispy. Flip chicken. Add remaining 20g butter and 2 fresh thyme sprigs to the skillet. Baste chicken with melted butter. Transfer skillet to a preheated oven at 180°C (350°F). Roast for 10-12 minutes, or until internal temperature reaches 75°C (167°F). Remove from oven. Rest chicken on a cutting board for 5 minutes.",
+      "Plate: Spoon a generous quenelle or swoosh of parsnip puree onto the center of each plate. Place one whole, rested pan-seared chicken breast beside the puree. Drizzle the thyme jus artfully around the chicken and puree. Garnish with a small fresh thyme sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 800,
+      "cholesterol_mg": 241.1,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 55.2,
+      "saturated_fat_g": 21.1,
+      "sodium_mg": 547.5,
+      "total_carbs_g": 26.2,
+      "total_fat_g": 55.1,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 200,
+      "cholesterol_mg": 60.3,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 13.8,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 136.9,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 13.8,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80,
+      "dietary_fiber": 23,
+      "protein": 110,
+      "saturated_fat": 106,
+      "sodium": 24,
+      "total_carbs": 10,
+      "total_fat": 71
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Poached Chicken Quenelles with Saffron Nage and English Pea Coulis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poached_chicken_quenelles_with_saffron_nage_and_english_pea_coulis_20250625_162956_2790a1c3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:29:57.261389000Z",
+    "selected_ingredients": [
+      {
+        "name": "mincemeat",
+        "comment": "chicken mincemeat"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, refined serving is presented on a wide-rimmed, matte off-white bone china plate. Two perfectly smooth, pale ivory poached chicken quenelles, shaped like elongated ovals, rest delicately in a shallow pool of clear, golden saffron nage. The quenelles appear light and cloud-like, with a soft, uniform texture. Adjacent to the quenelles, a small, precise dot of vibrant green English pea coulis adds a pop of contrasting color. A single, delicate chervil sprig is placed artfully on one quenelle. The composition emphasizes abundant negative space, highlighting the precision and purity of each element. The plate is positioned on a polished dark wood surface, complemented by a pristine white linen napkin folded into a precise triangle. Dramatic, directional lighting casts soft shadows, enhancing the dish's sculptural quality. The background is ultra-minimalist, drawing full attention to the sophisticated culinary creation.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with traditional French cutlery"
+    ],
+    "hero_ingredient": "Chicken Mincemeat",
+    "ingredients": [
+      {
+        "name": "Chicken mincemeat",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Full-fat cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Egg white",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Shallots, finely minced",
+        "quantity": "2"
+      },
+      {
+        "name": "White wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.1 g"
+      },
+      {
+        "name": "Fresh or frozen English peas",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Chill chicken mincemeat, cream, and egg white thoroughly. Combine chicken mincemeat, chilled cream, and egg white in a food processor. Process until very smooth and emulsified. Season with salt and white pepper. Pass mixture through a fine-mesh sieve for ultimate smoothness. Chill for 30 minutes.",
+      "For the saffron nage, melt 20g butter in a saucepan. Add minced shallots and cook until translucent. Deglaze with white wine. Reduce by half. Add chicken stock and saffron threads. Simmer gently for 15 minutes. Strain the nage through a fine-mesh sieve. Keep warm.",
+      "For the pea coulis, blanch English peas in boiling salted water for 2 minutes. Immediately transfer to an ice bath to stop cooking and preserve color. Drain well. Blend peas with fresh mint leaves and 30ml of the saffron nage until very smooth. Pass through a fine-mesh sieve. Season with salt. Keep warm.",
+      "Bring a large pot of lightly salted water to a gentle simmer. Using two large spoons, form oval-shaped quenelles from the chicken mixture. Gently slide quenelles into simmering water. Poach for 8-10 minutes, or until internal temperature reaches 75°C (167°F). Remove quenelles with a slotted spoon. Drain well.",
+      "To plate, spoon a small pool of saffron nage onto the center of each plate. Place two poached chicken quenelles artfully in the nage. Create a small, precise dot or swipe of pea coulis beside the quenelles. Garnish with a single delicate chervil sprig. Serve immediately."
+    ],
+    "notes": [
+      "Ensure all chicken mixture ingredients are very cold for best emulsification and texture.",
+      "Do not boil the quenelles; maintain a gentle simmer to prevent breaking and ensure even cooking."
+    ],
+    "traditional_techniques": [
+      "Quenelle formation",
+      "Nage preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 473,
+      "cholesterol_mg": 138,
+      "dietary_fiber_g": 4,
+      "protein_g": 26.1,
+      "saturated_fat_g": 17.3,
+      "sodium_mg": 310,
+      "total_carbs_g": 15.5,
+      "total_fat_g": 32.5,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119,
+      "cholesterol_mg": 34.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.6,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 78,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46,
+      "dietary_fiber": 14,
+      "protein": 52,
+      "saturated_fat": 87,
+      "sodium": 13,
+      "total_carbs": 6,
+      "total_fat": 42
+    },
+    "serving_size_g": 397,
+    "total_recipe_weight_g": 1588.1
+  },
+  {
+    "recipe_name": "Mushroom and Feta Rice Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom_and_feta_rice_pilaf_20250625_162918_600d77fa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:29:18.844981000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "olive oil",
+      "olive",
+      "feta cheese",
+      "rice",
+      "lemon",
+      "parsley"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Mushroom and Feta Rice Pilaf is casually mounded on an everyday, off-white ceramic plate with subtle imperfections. The pilaf features fluffy white rice, interspersed with tender, earthy sliced mushrooms and glistening whole Kalamata olives. Crumbs of creamy white feta cheese are generously scattered over the top, melting slightly into the warm rice. Fresh, vibrant green chopped parsley is sprinkled over the dish, adding a pop of color and freshness. The arrangement is natural and organic, with components touching and overlapping slightly, reflecting a comforting home-cooked meal. The plate rests on a well-used wooden dining table. A simple metal fork and a casually folded linen napkin are placed beside the plate. Warm, soft lighting from kitchen fixtures illuminates the scene, creating a cozy, lived-in atmosphere typical of a family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "Accompany with a simple Greek salad.",
+      "Serve family-style from a large communal bowl."
+    ],
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Mushrooms",
+        "quantity": "500g, sliced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "100g, pitted"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "150g, crumbled"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, zest and juice"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet or pot over medium heat.",
+      "Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add sliced mushrooms. Cook until tender and browned, about 8-10 minutes.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add rice to the skillet. Stir to coat rice grains with oil and mushroom juices. Toast for 2 minutes.",
+      "Pour in vegetable broth. Bring to a simmer. Reduce heat to low, cover, and cook for 15-20 minutes. Or until rice is tender and liquid is absorbed. If needed, add a splash of water.",
+      "Remove from heat. Stir in pitted Kalamata olives, crumbled feta cheese, lemon zest, lemon juice, and chopped fresh parsley.",
+      "Fluff the pilaf gently with a fork.",
+      "Season with salt and black pepper to taste. Serve warm."
+    ],
+    "notes": [
+      "Adjust broth quantity based on rice type for desired consistency.",
+      "Taste and adjust seasoning before serving."
+    ]
+  },
+  {
+    "recipe_name": "Mexican Chicken and Rice Bowl with Roasted Corn & Tomato Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mexican_chicken_and_rice_bowl_with_roasted_corn_%26_tomato_salsa_20250625_162912_51737f6c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:29:12.557865000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bean",
+      "rice",
+      "corn",
+      "green pea",
+      "mayonnaise"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Mexican Chicken and Rice Bowl is presented in a wide, shallow, off-white ceramic bowl, centered on a light wooden table. The base is a fluffy mound of white long-grain rice. Generous, golden-brown seared chicken chunks are nestled on one side of the rice. Adjacent to the chicken, a colorful roasted corn and cherry tomato salsa, with slightly charred corn kernels and burst tomatoes, creates a textural contrast. Black beans and bright green peas are distinctively placed on the other side, adding depth and color. A generous drizzle of creamy lime-cilantro crema elegantly zigzags over the chicken and salsa. Fresh cilantro leaves are scattered as a garnish, and a lime wedge sits on the rim of the bowl. The overall composition is balanced, showcasing distinct ingredients with natural, organic placement. A simple linen napkin and a fork are positioned beside the bowl, with soft, natural light illuminating the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn or flour tortillas on the side",
+      "Offer extra lime wedges for squeezing"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Corn kernels (fresh or frozen)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Black beans (canned)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Green peas (fresh or frozen)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cilantro, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "100g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      }
+    ],
+    "instructions": [
+      "Rinse rice under cold water. Combine rice and 500ml water in a pot. Bring to boil, then reduce heat to low, cover, and simmer for 15 minutes. Remove from heat, let stand 5 minutes, then fluff with a fork.",
+      "Preheat oven to 200°C. On a baking sheet, toss halved cherry tomatoes and corn kernels with 15ml olive oil, salt, and pepper. Roast for 15-20 minutes, until corn is slightly charred and tomatoes are tender.",
+      "Heat remaining 15ml olive oil in a large skillet over medium-high heat. Cut chicken into 3cm chunks. Season chicken chunks with salt, pepper, chili powder, cumin, and smoked paprika. Add chicken to skillet. Sear chicken until golden brown on all sides and cooked through, about 8-10 minutes. Ensure internal temperature reaches 75°C.",
+      "Add diced onion and minced garlic to the skillet with the chicken. Cook for 3-4 minutes until softened.",
+      "Add rinsed black beans, green peas, and chicken broth to the skillet. Bring to a simmer. Cook for 5 minutes until heated through and liquid slightly reduces.",
+      "In a small bowl, combine mayonnaise, juice and zest from the lime, and chopped cilantro. Stir well to make the crema.",
+      "Divide cooked rice among 4 bowls. Top rice with chicken and bean mixture. Spoon roasted corn and tomato salsa over the dish. Drizzle generously with lime-cilantro crema. Garnish with fresh cilantro."
+    ],
+    "notes": [
+      "Adjust chili powder to desired spice level",
+      "Fresh corn can be cut from the cob or use good quality frozen corn"
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Roasting",
+      "Layering flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 868.1,
+      "cholesterol_mg": 161,
+      "dietary_fiber_g": 16.1,
+      "protein_g": 48.1,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 1150,
+      "total_carbs_g": 99.8,
+      "total_fat_g": 42.2,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.1,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 6.8,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 163,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.5,
+      "dietary_fiber": 57.6,
+      "protein": 96.3,
+      "saturated_fat": 42.6,
+      "sodium": 50,
+      "total_carbs": 36.3,
+      "total_fat": 54.1
+    },
+    "serving_size_g": 705.5,
+    "total_recipe_weight_g": 2822
+  },
+  {
+    "recipe_name": "Braised Beef & Mushroom Bites with Pickled Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_%26_mushroom_bites_with_pickled_vegetables_20250625_162743_1883ceb9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:27:44.070209000Z",
+    "selected_ingredients": [
+      {
+        "name": "celery"
+      },
+      {
+        "name": "carrot"
+      },
+      {
+        "name": "beef"
+      },
+      {
+        "name": "mushroom"
+      },
+      {
+        "name": "onion"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "An elegant serving platter of natural stone or reclaimed wood holds 8-12 perfectly spaced canapés. Each bite begins with a delicate, pale green celery crisp, thinly sliced into small rounds or short batons, showcasing its natural texture. Topped centrally is a rich, dark brown mound of finely shredded, slow-braised beef, intermingled with diced sautéed mushrooms. The beef is tender, yet holds its form, creating an inviting, savory focal point. A small cluster of vibrant, julienned pickled carrots and translucent, pale pink pickled onions adds a bright pop of color and a contrasting tangy crunch. A scattering of finely chopped fresh parsley or chives provides a final verdant touch. The presentation is clean and minimalistic, allowing each ingredient's natural beauty to shine. The platter rests on a light bamboo table surface, complemented by an undyed linen napkin and soft natural light, with a clean, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "300g"
+      },
+      {
+        "name": "Mixed mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Red wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or chives",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "For pickled vegetables: Julienne half onion and one carrot into thin strips. In a small saucepan, combine vinegar, sugar, 100ml water, and a pinch of salt. Bring to a simmer, stirring until sugar dissolves. Pour hot brine over julienned vegetables in a heatproof jar. Let cool completely, then refrigerate for at least 1 hour.",
+      "For braised beef: Dice remaining half onion, one carrot, and one celery stalk into 1cm pieces. Cut beef chuck into 2cm cubes. Season beef cubes generously with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a heavy-bottomed pot over medium-high heat. Sear beef cubes in batches until deeply browned on all sides. Remove beef and set aside.",
+      "Add remaining 1 tablespoon olive oil to the pot. Add diced onion, carrot, and celery. Sauté for 5-7 minutes until softened. Add minced garlic, cook for 1 minute until fragrant.",
+      "Return seared beef to the pot. Pour in red wine and scrape up any browned bits from the bottom. Add beef broth, thyme sprigs, and bay leaf. Bring to a gentle simmer. Cover the pot, reduce heat to low, and braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Remove beef from the pot. Shred finely using two forks. Strain the braising liquid through a fine-mesh sieve, discarding solids. Return strained liquid to the pot and reduce over medium-high heat until about 100ml of concentrated sauce remains. This may take 10-15 minutes.",
+      "Dice mixed mushrooms into small pieces. In a separate pan, sauté mushrooms in a little olive oil over medium-high heat until browned and tender. Season with salt and pepper.",
+      "Combine shredded beef, sautéed mushrooms, and reduced braising liquid. Mix well. Taste and adjust seasoning.",
+      "For celery crisps: Thinly slice the remaining celery stalk crosswise into small rounds or short batons. Toss with a drizzle of olive oil and a pinch of salt. Arrange in a single layer on a baking sheet. Bake at 180°C (350°F) for 10-15 minutes, or until crisp and lightly golden. Watch carefully to prevent burning.",
+      "To assemble canapés: Place a celery crisp on a serving platter. Top with a small spoonful of the braised beef and mushroom mixture. Garnish with a few strands of pickled carrot and onion. Finish with a sprinkle of finely chopped fresh parsley or chives. Serve immediately."
+    ],
+    "notes": [
+      "This recipe emphasizes sustainable practices by utilizing tougher cuts of beef for braising, incorporating quick-pickled vegetables for preservation, and creating a zero-waste base from celery stalks. Prioritize locally sourced ingredients."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Pickling"
+    ]
+  }
+]

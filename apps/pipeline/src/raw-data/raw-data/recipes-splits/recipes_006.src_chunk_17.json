@@ -1,0 +1,700 @@
+[
+  {
+    "recipe_name": "Spicy Beef and Mushroom Cottage Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251023_200618_561f3230.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2025-10-23T20:06:19.288943000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "garlic",
+      "onion",
+      "potato",
+      "hot sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spicy Beef and Mushroom Cottage Pie is presented in a white ceramic ramekin, approximately 15 cm in diameter. The top layer of creamy mashed potato is golden-brown with lightly crisped peaks, showing subtle texture from a fork or piping. The rich, dark brown beef and mushroom filling is visible around the edges of the ramekin, hinting at its savory depth. A scattering of vibrant green fresh parsley garnishes the potato topping. The ramekin sits centered on a clean white porcelain dinner plate, against a minimalist wooden table surface. Standard silver flatware is placed beside the plate, with a folded cotton napkin. The scene is illuminated by soft, natural, even lighting, creating a warm, inviting atmosphere typical of a modern bistro. The background is slightly blurred, focusing solely on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "cultural_origin": "British-inspired",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty bread for dipping."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Minced beef",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Potatoes (floury, e.g., Russet or Maris Piper)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30-45 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Milk (full-fat)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Heat olive oil in a large oven-safe pan or Dutch oven over medium-high heat. Brown minced beef. Break up clumps. Drain excess fat.",
+      "Add diced onions to the pan. Cook until softened, about 5-7 minutes.",
+      "Stir in minced garlic and sliced mushrooms. Cook for 5 minutes until mushrooms soften.",
+      "Stir in flour and tomato paste. Cook for 1 minute.",
+      "Gradually pour in beef stock, stirring constantly. Bring to a simmer.",
+      "Add hot sauce and 5 g chopped thyme. Season with salt and pepper. Simmer gently for 10 minutes, allowing sauce to thicken. Stir in 10 g chopped parsley.",
+      "Meanwhile, boil cubed potatoes in salted water until very tender, about 15-20 minutes. Drain well.",
+      "Mash potatoes with 50 g butter and warmed milk until smooth. Season with salt and pepper.",
+      "Transfer beef mixture to four individual oven-safe ramekins (approx. 15 cm diameter) or a single large oven-safe dish.",
+      "Top beef mixture evenly with mashed potatoes. Use a fork to create ridges or pipe decoratively.",
+      "Bake for 25-30 minutes, until filling is bubbly and potato topping is golden brown.",
+      "Let stand 5 minutes before serving. Garnish with remaining 5 g chopped parsley."
+    ],
+    "notes": [
+      "Adjust hot sauce quantity to personal preference for spice level.",
+      "For extra richness, a splash of cream can be added to the mashed potatoes."
+    ],
+    "traditional_techniques": [
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 858,
+      "cholesterol_mg": 168.33,
+      "dietary_fiber_g": 7.83,
+      "protein_g": 35.88,
+      "saturated_fat_g": 21.06,
+      "sodium_mg": 959.49,
+      "total_carbs_g": 61.42,
+      "total_fat_g": 51.23,
+      "total_sugars_g": 7.65,
+      "trans_fat_g": 1.86
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161,
+      "cholesterol_mg": 31.61,
+      "dietary_fiber_g": 1.47,
+      "protein_g": 6.74,
+      "saturated_fat_g": 3.95,
+      "sodium_mg": 180.19,
+      "total_carbs_g": 11.53,
+      "total_fat_g": 9.62,
+      "total_sugars_g": 1.44,
+      "trans_fat_g": 0.35
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.11,
+      "dietary_fiber": 27.96,
+      "protein": 71.76,
+      "saturated_fat": 105.3,
+      "sodium": 41.72,
+      "total_carbs": 22.33,
+      "total_fat": 65.68
+    },
+    "serving_size_g": 532.5,
+    "total_recipe_weight_g": 2130
+  },
+  {
+    "recipe_name": "Spicy Gochujang Chicken and Bean Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251023_163656_56bdef00.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-10-23T16:36:57.570368000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean",
+      "corn",
+      "onion",
+      "gochujang",
+      "miso paste",
+      "chili",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Spicy Gochujang Chicken and Bean Stew is presented in a rustic, deep ceramic bowl with a rich, glossy reddish-brown broth. Tender, chunky pieces of chicken, roughly 3-4 cm, are nestled among the vibrant red crushed tomatoes, creamy white cannellini beans, and bright yellow corn kernels. Diced onions are visible, lending texture. A few thin slices of green chili peek through the surface, indicating a gentle heat. The stew has a comforting, hearty consistency, not overly thick but substantial. It is garnished simply with freshly sliced green onions, adding a touch of verdant contrast. The bowl sits on a well-used wooden dining table, accompanied by a small, shallow ceramic side dish holding a serving of fluffy white rice, a pair of dark wood chopsticks, and a simple cloth napkin. Warm, cozy lighting illuminates the dish, highlighting its inviting colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with steamed white rice.",
+      "Offer various banchan (small side dishes) like kimchi or pickled radishes.",
+      "Serve in traditional Korean earthenware bowls (Ttukbaegi)."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "600g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Miso paste (fermented soybean paste)",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned cannellini beans, drained and rinsed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Corn (frozen or canned, drained)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Green chili (e.g., serrano or jalapeño), thinly sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1/4 teaspoon"
+      },
+      {
+        "name": "Green onions, sliced (for garnish)",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat.",
+      "Season chicken chunks with salt and pepper. Add chicken to the pot. Sear until browned on all sides. Remove chicken and set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Stir in gochujang and miso paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in crushed tomatoes, chicken broth, and soy sauce. Bring to a simmer.",
+      "Return seared chicken to the pot. Add drained beans and corn. Stir well.",
+      "Add sliced green chili. Reduce heat to low, cover, and simmer for 20-25 minutes.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Stir in sesame oil. Taste and adjust seasoning as needed.",
+      "Ladle into bowls. Garnish with sliced green onions. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.6,
+      "calories": 498,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 38,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 1556,
+      "total_carbs_g": 39.6,
+      "total_fat_g": 20.5,
+      "total_sugars_g": 11.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 86,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6.5,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 267,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 29,
+      "protein": 76,
+      "saturated_fat": 25,
+      "sodium": 68,
+      "total_carbs": 14,
+      "total_fat": 26
+    },
+    "serving_size_g": 583,
+    "total_recipe_weight_g": 2331
+  },
+  {
+    "recipe_name": "Apple & Fennel Salad with Apple Scrap Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251023_150753_83bc97cd.jpg",
+    "dish_type": "salad",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-23T15:07:53.681648000Z",
+    "selected_ingredients": [
+      "apple"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The salad is artfully arranged on a round, handcrafted ceramic plate in a warm, natural beige tone, allowing ample negative space. Crisp, uniformly diced green apples and thinly shaved white fennel are the primary components, forming a vibrant base. Interspersed are delicate, translucent slivers of quickly pickled red onion, adding a subtle pink hue and tangy contrast. The ingredients are loosely tossed to highlight their distinct textures and shapes. A light vinaigrette subtly coats the surfaces, giving a fresh sheen. Fresh dill sprigs and feathery fennel fronds are scattered organically over the top, contributing bright green accents. A few golden-brown, curled apple peel crisps are strategically placed, offering a textural crunch and embodying the zero-waste ethos. The setting features a light, textured bamboo table surface, an undyed linen napkin, and soft, diffused natural lighting from the side, creating a clean, inviting scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Apples, firm, savory variety",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Fennel Bulb, with fronds",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1/2 small"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black Pepper, freshly ground",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      }
+    ],
+    "instructions": [
+      "Thinly slice red onion.",
+      "In a small saucepan, combine 100 ml water, 30 ml apple cider vinegar, 5 g sugar, and 2 g sea salt. Bring to a simmer.",
+      "Add sliced red onion to the saucepan. Remove from heat. Let cool to quick pickle.",
+      "Peel apples, reserving peels. Slice peels into thin strips. Toss with a pinch of salt. Bake at 150°C for 15-20 minutes until crisp. Set aside.",
+      "Core apples. Cut apples into 1 cm dice.",
+      "Trim fennel bulb. Reserve fronds. Halve bulb, remove core. Thinly slice fennel crosswise.",
+      "In a small bowl, whisk together 60 ml olive oil, 30 ml apple cider vinegar, 5 ml Dijon mustard, remaining 3 g sea salt, and remaining 2 g black pepper.",
+      "In a large bowl, combine diced apples, sliced fennel, and drained pickled red onion.",
+      "Pour vinaigrette over salad. Toss gently to coat.",
+      "Garnish with fresh dill and reserved fennel fronds. Top with apple peel crisps."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 262,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.85,
+      "protein_g": 2.06,
+      "saturated_fat_g": 1.99,
+      "sodium_mg": 120,
+      "total_carbs_g": 35.2,
+      "total_fat_g": 14.38,
+      "total_sugars_g": 24.57,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.36,
+      "calories": 76,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.28,
+      "protein_g": 0.6,
+      "saturated_fat_g": 0.58,
+      "sodium_mg": 34.67,
+      "total_carbs_g": 10.2,
+      "total_fat_g": 4.17,
+      "total_sugars_g": 7.12,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 28,
+      "protein": 4,
+      "saturated_fat": 10,
+      "sodium": 5,
+      "total_carbs": 13,
+      "total_fat": 18
+    },
+    "serving_size_g": 345.3,
+    "total_recipe_weight_g": 1381
+  },
+  {
+    "recipe_name": "Shakshuka with Feta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251023_135119_37eaed6a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2025-10-23T13:51:19.937915000Z",
+    "selected_ingredients": [
+      "cheese",
+      "tomato",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A vibrant Shakshuka dish is presented in a rustic, shallow ceramic bowl. The base is a rich, simmering red tomato and bell pepper sauce, thick and aromatic. Nestled within the sauce are two perfectly cooked eggs, their whites set firm and bright, contrasting with the soft, slightly runny golden yolks. Over the eggs and sauce, generous crumbles of creamy white feta cheese are scattered, adding visual contrast and texture. A vibrant sprinkle of finely chopped fresh parsley and cilantro creates a fresh green garnish. The dish exhibits natural, organic composition, with elements intentionally arranged for balance. The bowl rests on a clean white porcelain underplate on a simple wooden table. A side of warm, torn pita bread is placed beside it. Natural, even lighting highlights the dish's warmth and color. The scene is uncluttered, focusing entirely on the inviting main course.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm pita bread or crusty artisanal bread for dipping.",
+      "Offer a side of olives or a simple green salad."
+    ],
+    "hero_ingredient": "Eggs",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Chili flakes",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "2 x 400g cans"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Water or vegetable broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "8"
+      },
+      {
+        "name": "Feta cheese, crumbled",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large oven-safe skillet over medium heat.",
+      "Add diced onion and red bell pepper. Sauté until softened, about 8 minutes.",
+      "Stir in minced garlic, ground cumin, smoked paprika, and chili flakes. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes, tomato paste, and water or vegetable broth. Stir well.",
+      "Bring sauce to a simmer. Reduce heat to low. Cook for 15 minutes, stirring occasionally, until sauce thickens slightly. Season with salt and pepper.",
+      "Create 8 small indentations in the sauce. Carefully crack one egg into each indentation.",
+      "Cover skillet. Cook for 8-12 minutes, or until egg whites are set and yolks are still runny.",
+      "Remove from heat. Crumble feta cheese over the eggs and sauce.",
+      "Garnish generously with fresh chopped parsley and cilantro.",
+      "Serve immediately, directly from the skillet or in individual portions."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 490,
+      "cholesterol_mg": 444,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 23.1,
+      "saturated_fat_g": 11.6,
+      "sodium_mg": 896,
+      "total_carbs_g": 23.3,
+      "total_fat_g": 34.7,
+      "total_sugars_g": 13.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 95,
+      "cholesterol_mg": 86,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 4.5,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 174,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 147.9,
+      "dietary_fiber": 19.7,
+      "protein": 46.2,
+      "saturated_fat": 57.9,
+      "sodium": 39,
+      "total_carbs": 8.5,
+      "total_fat": 44.4
+    },
+    "serving_size_g": 515,
+    "total_recipe_weight_g": 2059
+  },
+  {
+    "recipe_name": "Thai Salmon and Ginger Coconut Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251023_132900_824426c1.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2025-10-23T13:29:00.778549000Z",
+    "selected_ingredients": [
+      "ginger",
+      "salmon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a deep, clean white porcelain bowl. The vibrant orange-red coconut curry fills the bowl, showcasing its creamy, fluid consistency. Large, tender chunks of poached salmon, exhibiting a pale pink interior and flaky texture, are nestled within the curry. Diced red and green bell peppers, along with whole bright green snap peas, provide bursts of color and crisp-tender texture. Thin slivers of fresh ginger are visible throughout the sauce. The curry is garnished generously with fresh green cilantro leaves and torn Thai basil, adding aromatic freshness. A small white porcelain bowl of perfectly cooked jasmine rice sits beside the main curry bowl. A lime wedge is placed on the rim of the curry bowl. The setting is a modern bistro with a simple wooden table, a light grey cotton napkin beside the plate, and natural, even lighting from above. Chopsticks are placed neatly beside the rice bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with a separate small bowl of jasmine rice.",
+      "Offer a side of Prik Nam Pla (fish sauce with sliced chilies and lime juice) for added spice.",
+      "Serve family-style with multiple dishes for a traditional Thai dining experience."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin on or off",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Red curry paste",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fresh ginger, peeled and thinly sliced",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Shallots, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Snap peas, trimmed",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lime, juiced and zested",
+        "quantity": "1"
+      },
+      {
+        "name": "Palm sugar (or brown sugar)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "1/4 cup"
+      },
+      {
+        "name": "Fresh Thai basil leaves, torn",
+        "quantity": "1/4 cup"
+      },
+      {
+        "name": "Jasmine rice, uncooked",
+        "quantity": "2 cups"
+      }
+    ],
+    "instructions": [
+      "Cook jasmine rice according to package directions. Keep warm.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium heat.",
+      "Add minced shallots, garlic, and half of the sliced ginger. Sauté 2-3 minutes until fragrant.",
+      "Stir in red curry paste. Cook 1 minute, stirring constantly, until aromatic.",
+      "Pour in coconut milk. Bring to a gentle simmer. Stir well to combine curry paste.",
+      "Add diced red and green bell peppers, fish sauce, lime juice, lime zest, and palm sugar. Simmer 5 minutes.",
+      "Add snap peas and remaining sliced ginger to the curry.",
+      "Gently place salmon fillets into the simmering curry. Ensure salmon is mostly submerged.",
+      "Poach salmon 8-10 minutes, or until internal temperature reaches 75°C. Do not overcook.",
+      "Remove salmon from pot. Gently break into large chunks.",
+      "Stir chopped cilantro and torn Thai basil into the curry sauce.",
+      "Divide jasmine rice into separate serving bowls. Ladle curry with salmon chunks and vegetables over or beside rice. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Balancing the four fundamental Thai flavors: sweet, sour, salty, and spicy.",
+      "Building a fragrant curry base by sautéing aromatics and curry paste."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 1317,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 52.8,
+      "saturated_fat_g": 48.8,
+      "sodium_mg": 1431,
+      "total_carbs_g": 103.3,
+      "total_fat_g": 78,
+      "total_sugars_g": 16.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 156,
+      "cholesterol_mg": 14,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.3,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 170,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 33,
+      "protein": 106,
+      "saturated_fat": 244,
+      "sodium": 62,
+      "total_carbs": 38,
+      "total_fat": 100
+    },
+    "serving_size_g": 842,
+    "total_recipe_weight_g": 3367
+  }
+]

@@ -1,0 +1,651 @@
+[
+  {
+    "recipe_name": "Apfel-Aprikosen Türmchen mit Rosinenweinreduktion und Quarkcreme",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_apfel-aprikosen_t%C3%BCrmchen_mit_rosinenweinreduktion_und_quarkcreme_20250903_160059_dfc01c2d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T16:01:00.314439000Z",
+    "selected_ingredients": [
+      {
+        "name": "apricot"
+      },
+      {
+        "name": "raisin"
+      },
+      {
+        "name": "apple"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single rectangular block of Apfel-Aprikosen Türmchen is precisely plated on a large, round, matte white ceramic plate. The terrine, cut to 1.5 cm thick, reveals distinct, alternating layers of pale yellow apple and vibrant orange apricot, thinly sliced and maintaining their shape. A perfect quenelle of pristine white Quarkcreme rests beside the terrine, its soft texture contrasting with the firm fruit. A glossy, dark amber Rosinenweinreduktion is artfully drizzled and dotted across the plate, creating organic lines and pools of rich color. A scattering of golden-brown Hazelnut Praline Crumb provides a textural counterpoint over the cream and lightly around the terrine. The composition is elegant and minimalist, with abundant negative space. The plate is positioned on a polished dark wood table. A crisp white linen napkin, folded into a precise triangle, is placed to the side, along with a high-quality silver fork. Dramatic professional lighting casts soft shadows, enhancing depth and texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Serve with a small glass of German dessert wine, such as Riesling Spätlese.",
+      "Enjoy as a sophisticated finale to a multi-course German meal."
+    ],
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Apples",
+        "quantity": "2 large firm"
+      },
+      {
+        "name": "Apricots",
+        "quantity": "8 fresh"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "Juice of 1/2 lemon"
+      },
+      {
+        "name": "Vanilla Bean",
+        "quantity": "1, split and scraped"
+      },
+      {
+        "name": "Golden Raisins",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Sweet White Wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Cinnamon",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Full-Fat Quark",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Icing Sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Vanilla Bean",
+        "quantity": "1/2, split and scraped"
+      },
+      {
+        "name": "Hazelnuts",
+        "quantity": "50 g, toasted and skinned"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "10 ml"
+      }
+    ],
+    "instructions": [
+      "Thinly slice apples and apricots, 2 mm thick.",
+      "Gently poach slices in a syrup of 100 ml water, 50 g sugar, lemon juice, and 1 vanilla bean until tender but firm. Do not overcook.",
+      "Drain fruit. Arrange alternating slices of apple and apricot tightly in a small rectangular mold. Chill under pressure for at least 4 hours.",
+      "Combine raisins, sweet white wine, 50 ml water, 20 g sugar, and cinnamon in a saucepan.",
+      "Simmer gently until liquid reduces to a syrupy consistency. Strain, pressing solids. Keep warm.",
+      "Whip heavy cream to soft peaks.",
+      "Whisk Quark with icing sugar and vanilla seeds until smooth.",
+      "Gently fold whipped cream into the Quark mixture. Chill.",
+      "Make a dry caramel with 30 g sugar and 10 ml water until golden. Add toasted hazelnuts.",
+      "Pour onto parchment paper. Let cool completely.",
+      "Crush praline into a coarse crumb.",
+      "Slice the compressed apple-apricot terrine into 1.5 cm thick rectangular portions.",
+      "Place one terrine portion slightly off-center on each plate.",
+      "Spoon a quenelle of Quark cream next to the terrine.",
+      "Drizzle raisin wine reduction artfully around the plate.",
+      "Sprinkle hazelnut praline crumb over the Quark cream and lightly around the terrine."
+    ]
+  },
+  {
+    "recipe_name": "Thai Green Curry with Chicken and Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_green_curry_with_chicken_and_vegetables_20250903_150005_427abdf3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T15:00:06.005204000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "carrot",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "Thai cuisine",
+    "visual_description": "A modest, individual portion of vibrant Thai Green Curry is presented in a deep, everyday ceramic bowl with a subtle, earthy glaze. Chunks of tender chicken, bright green broccoli florets, and thin carrot rounds are nestled in a rich, creamy green curry sauce. The surface shimmers with a natural oil separation, indicating proper cooking. Fresh Thai basil leaves are gently stirred in, their dark green contrasting with the lighter curry. A few thinly sliced red chilies are scattered on top as a functional garnish, adding a pop of color. The bowl sits on a well-worn wooden dining table, beside a small, white rice bowl filled with fluffy jasmine rice. A simple metal spoon and fork are placed alongside, with a folded cloth napkin. Warm, inviting light illuminates the scene, suggesting a relaxed family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice.",
+      "Offer additional fish sauce, chili flakes, or sugar on the side for individual seasoning.",
+      "Traditionally eaten with a spoon and fork, using the spoon to scoop rice and curry."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thigh",
+        "quantity": "500g, cut into 3cm chunks"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "300g, cut into florets"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, peeled and sliced into 0.5cm thick rounds"
+      },
+      {
+        "name": "Green Curry Paste",
+        "quantity": "80g"
+      },
+      {
+        "name": "Coconut Milk",
+        "quantity": "800ml, full-fat"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Palm Sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Kaffir Lime Leaves",
+        "quantity": "4-6, torn"
+      },
+      {
+        "name": "Thai Basil Leaves",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red Chili",
+        "quantity": "1, thinly sliced (for garnish, optional)"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Jasmine Rice",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Heat oil in a large pot or wok over medium heat. Add green curry paste. Stir-fry for 2-3 minutes until fragrant.",
+      "Pour in 200ml of coconut milk. Bring to a simmer, stirring constantly, until oil separates and a green sheen appears.",
+      "Add chicken chunks. Cook for 5-7 minutes, stirring, until chicken is no longer pink on the outside.",
+      "Add remaining 600ml coconut milk, fish sauce, palm sugar, and kaffir lime leaves. Bring to a gentle simmer.",
+      "Add carrots. Cook for 5 minutes.",
+      "Add broccoli florets. Continue to simmer for 5-7 minutes, or until chicken is cooked through (internal temperature 75°C) and vegetables are tender-crisp.",
+      "Stir in Thai basil leaves. Cook for 1 minute until wilted.",
+      "Taste and adjust seasoning if needed.",
+      "Serve immediately with steamed jasmine rice."
+    ],
+    "notes": [
+      "For a spicier curry, add more green curry paste or fresh bird's eye chilies.",
+      "Ensure coconut milk is full-fat for best flavor and texture."
+    ],
+    "traditional_techniques": [
+      "Cracking the coconut cream",
+      "Balancing the four flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 784,
+      "cholesterol_mg": 118,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 32,
+      "saturated_fat_g": 45.9,
+      "sodium_mg": 2340,
+      "total_carbs_g": 26.4,
+      "total_fat_g": 64.9,
+      "total_sugars_g": 15,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 163,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 6.6,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 485,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 13.5,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 29,
+      "protein": 64,
+      "saturated_fat": 230,
+      "sodium": 102,
+      "total_carbs": 10,
+      "total_fat": 83
+    },
+    "serving_size_g": 482,
+    "total_recipe_weight_g": 1929
+  },
+  {
+    "recipe_name": "Olive Oil Brioche, Whipped Ricotta, Confit Tomato, Basil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_olive_oil_brioche%2C_whipped_ricotta%2C_confit_tomato%2C_basil_20250903_143607_efff1861.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T14:36:08.236524000Z",
+    "selected_ingredients": [
+      "yeast",
+      "flour",
+      "sugar",
+      "milk",
+      "olive oil"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish is a study in sophisticated simplicity, presented on an expensive bone china plate resting on a polished white Carrara marble surface. A single, perfectly golden-brown olive oil brioche bun, 8 cm in diameter, is the focal point, sliced open. Inside, a cloud of airy, white whipped ricotta cheese is nestled. Artfully placed on the ricotta are 3-4 jewel-toned confit cherry tomato halves, gently shriveled and glistening with olive oil. A vibrant, emerald-green basil essence is drizzled sparingly in an organic shape around the brioche. Abundant negative space surrounds the components, highlighting their precise arrangement and premium quality under dramatic professional lighting with subtle shadows. A pristine white linen napkin, folded precisely, completes the elegant setting.",
+    "number_of_servings": 2,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Modern Italian",
+    "cultural_serving_suggestions": [
+      "Serve as a delicate starter or amuse-bouche.",
+      "Pair with a light, crisp Italian white wine, such as Vermentino or Pinot Grigio."
+    ],
+    "hero_ingredient": "Olive Oil Brioche",
+    "ingredients": [
+      {
+        "name": "Strong bread flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Instant yeast",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Premium extra virgin olive oil",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh ricotta cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "20 ml"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Premium extra virgin olive oil (for confit)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1, thinly sliced"
+      },
+      {
+        "name": "Fresh thyme sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Ice water",
+        "quantity": "10 ml"
+      }
+    ],
+    "instructions": [
+      "Combine flour, yeast, sugar, and 3g salt in a stand mixer bowl. Mix briefly.",
+      "Add milk and 40ml olive oil. Knead with a dough hook on medium-low speed for 8-10 minutes. Dough should be smooth and elastic.",
+      "Transfer dough to a lightly oiled bowl. Cover. Let rise at room temperature for 1-1.5 hours, until doubled.",
+      "Gently punch down dough. Form into two small, round brioche buns (approx. 60-70g each).",
+      "Place buns on a parchment-lined baking tray. Cover loosely. Let rise for 30-45 minutes.",
+      "Preheat oven to 180°C. Brush buns with egg yolk wash (egg yolk mixed with a tiny splash of water).",
+      "Bake for 15-20 minutes, until golden brown. Cool on a wire rack.",
+      "Preheat oven to 130°C. Halve cherry tomatoes. Place in a small oven-safe dish.",
+      "Add 50ml olive oil, sliced garlic, and thyme sprig. Season with a pinch of salt.",
+      "Bake for 45-60 minutes, until tomatoes are soft and slightly shriveled. Remove thyme and garlic.",
+      "Combine ricotta cheese, heavy cream, a pinch of salt, and pepper in a small bowl.",
+      "Whip gently until light and fluffy. Do not overmix.",
+      "Blanch basil leaves in boiling water for 10 seconds. Immediately transfer to an ice bath.",
+      "Drain well and squeeze out excess water. Combine blanched basil, neutral oil, ice water, and a pinch of salt in a high-speed blender.",
+      "Blend until completely smooth and vibrant green. Pass through a fine-mesh sieve for clear oil. Discard solids.",
+      "Slice each brioche bun horizontally, almost through, creating a pocket.",
+      "Gently open brioche. Spoon whipped ricotta into the center.",
+      "Arrange 3-4 confit cherry tomato halves artfully on top of the ricotta.",
+      "Drizzle a small amount of basil essence around the brioche on the plate. Serve immediately."
+    ],
+    "notes": [
+      "Ensure ricotta is fresh and high-quality for best texture.",
+      "Do not over-knead the brioche dough; it should be soft but elastic.",
+      "The basil essence can be made ahead and stored in the refrigerator."
+    ],
+    "traditional_techniques": [
+      "Dough proving",
+      "Confit technique",
+      "Blanching and shocking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 1034,
+      "cholesterol_mg": 139,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 19.7,
+      "saturated_fat_g": 16.1,
+      "sodium_mg": 706,
+      "total_carbs_g": 64.5,
+      "total_fat_g": 80.7,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 326,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.2,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 223,
+      "total_carbs_g": 20.4,
+      "total_fat_g": 25.5,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46,
+      "dietary_fiber": 12,
+      "protein": 39,
+      "saturated_fat": 81,
+      "sodium": 31,
+      "total_carbs": 23,
+      "total_fat": 103
+    },
+    "serving_size_g": 316.8,
+    "total_recipe_weight_g": 633.5
+  },
+  {
+    "recipe_name": "Herb & Olive Oil Focaccia with Whipped Goat Cheese and Confit Cherry Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_herb_%26_olive_oil_focaccia_with_whipped_goat_cheese_and_confit_cherry_tomatoes_20250903_143520_77d6f333.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T14:35:20.692526000Z",
+    "selected_ingredients": [
+      "yeast",
+      "flour",
+      "sugar",
+      "milk",
+      "olive oil"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian",
+    "visual_description": "A perfectly golden-brown, small rectangular piece of Herb & Olive Oil Focaccia, approximately 6x4 cm, sits off-center on a pristine matte white bone china plate. Its irregular, airy texture and slightly blistered crust are visible. Beside it, a single, elegantly sculpted quenelle of bright white Whipped Goat Cheese rests. Three glistening Confit Cherry Tomatoes, some halved to reveal their vibrant red interior, are artfully scattered near the cheese, their rich oil catching the light. A single, tiny sprig of fresh thyme or micro-basil leaf is meticulously placed atop the focaccia. A very fine drizzle of vibrant green extra virgin olive oil creates a subtle sheen across the dish. The composition is minimalist, with vast negative space, emphasizing the pristine quality of each component. The plate is set on a polished grey marble surface, accompanied by a single, slender silver fork, and a crisp white linen napkin folded precisely. Dramatic, soft overhead lighting casts gentle shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "hero_ingredient": "Olive Oil",
+    "ingredients": [
+      {
+        "name": "Strong Bread Flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Instant Dry Yeast",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Warm Milk (full fat)",
+        "quantity": "170 ml"
+      },
+      {
+        "name": "Caster Sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "60 ml, plus more for drizzling"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "5 g, plus more for sprinkling"
+      },
+      {
+        "name": "Fresh Rosemary or Thyme, chopped",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Soft Goat Cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon Zest",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Black Pepper, freshly ground",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic Cloves, thinly sliced",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Warm milk to 38°C. Dissolve sugar and yeast in warm milk. Let stand 5 minutes until foamy.",
+      "In a large bowl, combine flour, 5g sea salt, and chopped herbs. Pour in yeast mixture and 30ml olive oil. Mix until a shaggy dough forms.",
+      "Turn dough onto a lightly floured surface. Knead for 8-10 minutes until smooth and elastic.",
+      "Place dough in a lightly oiled bowl. Cover with cling film. Proof in a warm place for 1 hour, or until doubled in size.",
+      "Preheat oven to 200°C (180°C fan). Line a small baking tray (approx. 20x15 cm) with parchment paper. Drizzle with 15ml olive oil.",
+      "Gently press dough into the prepared tray. Use fingertips to create dimples across the surface. Drizzle with remaining 15ml olive oil. Sprinkle with flaky sea salt.",
+      "Proof for another 20-30 minutes.",
+      "Bake focaccia for 20-25 minutes, or until golden brown and cooked through. Cool slightly on a wire rack.",
+      "While focaccia bakes, prepare confit tomatoes. In a small oven-safe dish, combine cherry tomatoes, sliced garlic, 30ml olive oil, a pinch of sea salt, and black pepper.",
+      "Roast tomatoes in the preheated oven for 20-25 minutes, until softened and slightly burst. Set aside.",
+      "For whipped goat cheese, combine soft goat cheese, heavy cream, and lemon zest in a small bowl. Whip with a fork or small whisk until light and fluffy. Season with a pinch of black pepper.",
+      "Cut focaccia into 4 small, precise rectangles or squares (approx. 6x4 cm each).",
+      "Plate one focaccia piece per serving. Place a delicate quenelle of whipped goat cheese beside it. Artfully arrange 3-4 confit cherry tomatoes around the cheese. Drizzle a tiny amount of the tomato confit oil over the dish. Garnish with a single micro-herb leaf (e.g., thyme or basil). Serve immediately."
+    ],
+    "notes": [
+      "For best results, use high-quality extra virgin olive oil for both the focaccia and the confit tomatoes.",
+      "The focaccia can be prepared a few hours in advance and gently warmed before serving.",
+      "The confit tomatoes can be made a day ahead and stored in an airtight container in the refrigerator."
+    ]
+  },
+  {
+    "recipe_name": "Roasted Cherry Tomato and Rosemary Focaccia",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_cherry_tomato_and_rosemary_focaccia_20250903_143446_0e13f3b6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T14:34:47.166199000Z",
+    "selected_ingredients": [
+      "yeast",
+      "flour",
+      "sugar",
+      "milk",
+      "olive oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A rustic, golden-brown focaccia occupies the center of a simple, light-colored ceramic plate. The focaccia is cut into generous, irregular squares, revealing a soft, airy interior texture with visible air pockets. The crust is crisp and unevenly golden, dotted with vibrant red, burst cherry tomatoes that have caramelized slightly, and dark green rosemary leaves. The surface is glistening with a light sheen of olive oil, and flaky sea salt crystals are visible. The arrangement is natural, with some tomatoes slightly sunken into the dough. The plate sits on a well-used wooden kitchen table. A small, white ceramic bowl of extra virgin olive oil for dipping is beside the focaccia. A linen napkin is casually folded nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with additional high-quality extra virgin olive oil for dipping.",
+      "Accompanied by a simple green salad with a vinaigrette.",
+      "Enjoyed with a glass of Italian red wine."
+    ],
+    "hero_ingredient": "Cherry Tomatoes",
+    "ingredients": [
+      {
+        "name": "Strong bread flour",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Instant dry yeast",
+        "quantity": "7 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Warm milk",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Warm water",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Flaky sea salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "In a large bowl, combine warm milk, warm water, sugar, and yeast. Stir and let sit 5 minutes until foamy.",
+      "Add flour, 60 ml olive oil, and fine sea salt to the yeast mixture. Mix with a spoon or stand mixer until a shaggy dough forms.",
+      "Turn dough onto a lightly floured surface. Knead 8-10 minutes until smooth and elastic.",
+      "Lightly oil a clean bowl. Place dough in bowl, turn to coat. Cover with plastic wrap. Let rise in a warm place for 1.5-2 hours, or until doubled in size.",
+      "Preheat oven to 220°C (425°F). Generously oil a 25x35 cm baking tray or similar size.",
+      "Gently transfer dough to the oiled tray. Press and stretch dough to fill the tray. Do not punch down too hard.",
+      "Using your fingertips, create deep indentations all over the dough surface.",
+      "Scatter halved cherry tomatoes and rosemary leaves over the dough. Drizzle with 30 ml extra virgin olive oil. Sprinkle with flaky sea salt.",
+      "Cover tray loosely with plastic wrap or a clean cloth. Let rise again for 20-30 minutes.",
+      "Bake for 20-25 minutes, or until golden brown and cooked through.",
+      "Remove from oven. Drizzle with a little more extra virgin olive oil while warm.",
+      "Let cool slightly before slicing into squares or wedges and serving."
+    ],
+    "notes": [
+      "The dough can be prepared the day before and slow-proofed in the refrigerator overnight for enhanced flavor. Bring to room temperature before shaping.",
+      "Adjust baking time based on oven. Focaccia should sound hollow when tapped on the bottom."
+    ],
+    "traditional_techniques": [
+      "Impastare (Kneading)",
+      "Lievitazione (Proofing)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 684,
+      "cholesterol_mg": 3,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 18.8,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 1477,
+      "total_carbs_g": 102.4,
+      "total_fat_g": 22.9,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 275,
+      "cholesterol_mg": 1,
+      "dietary_fiber_g": 2,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 594,
+      "total_carbs_g": 41.2,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 2,
+      "dietary_fiber": 17,
+      "protein": 38,
+      "saturated_fat": 18,
+      "sodium": 64,
+      "total_carbs": 37,
+      "total_fat": 29
+    },
+    "serving_size_g": 249,
+    "total_recipe_weight_g": 995
+  }
+]

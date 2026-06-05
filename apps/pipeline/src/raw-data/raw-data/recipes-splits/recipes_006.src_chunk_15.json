@@ -1,0 +1,735 @@
+[
+  {
+    "recipe_name": "Pollo alla Cacciatora",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251024_153945_2422785e.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-24T15:39:46.383880000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented on a wide, matte white porcelain plate. Two whole, bone-in chicken thighs are stacked slightly in the center, featuring deeply browned, caramelized skin. A thick, rustic sauce covers the base of the plate, filled with visible small cubes of orange carrots, green celery, and translucent onions. Whole, dark purple kalamata olives are nestled within the vibrant red tomato sauce. A light dusting of bright green chopped parsley and a single fresh rosemary sprig garnish the top. Two thick batons of grilled sourdough bread lean against the side of the chicken. The lighting is natural and soft, emphasizing the glossy texture of the braised sauce and the crispness of the chicken skin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with toasted sourdough bread to soak up the sauce",
+      "Accompany with a glass of medium-bodied Italian red wine",
+      "Place on a bed of soft, buttery polenta"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine (Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide braising pan over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is deep golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add onion, carrot, and celery to the remaining fat.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in garlic, rosemary, and sage. Cook for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pan to deglaze.",
+      "Simmer wine for 3 minutes until reduced by half.",
+      "Add crushed tomatoes and stir to combine.",
+      "Place chicken thighs back into the sauce.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in olives and simmer uncovered for 5 minutes.",
+      "Remove rosemary sprigs before serving.",
+      "Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Always use a meat thermometer to ensure chicken reaches the safe internal temperature of 75°C",
+      "Browning the skin thoroughly at the start is essential for the final texture",
+      "The sauce should be thick and chunky, not watery"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1604,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 428,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 83,
+      "saturated_fat": 43,
+      "sodium": 70,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Potato Gnocchi with Sautéed Mushrooms and Garlic Cream Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251024_144339_8135d3f5.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2025-10-24T14:43:40.539601000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mushroom",
+      "potato",
+      "garlic",
+      "cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined serving of Potato Gnocchi with Sautéed Mushrooms and Garlic Cream Sauce is presented on a clean, round white porcelain dinner plate. The small, pillowy potato gnocchi, lightly golden from a quick pan-fry, are tossed in a luscious, pale ivory garlic cream sauce. Tender, earthy brown sliced and quartered mixed wild mushrooms are artfully arranged among the gnocchi, providing visual contrast and texture. A sprinkle of vibrant green chopped fresh parsley garnishes the top, along with a light dusting of freshly grated Parmesan cheese. The dish is arranged organically in the center of the plate, leaving ample negative space. The setting is a modern bistro, featuring a simple wooden table surface, with traditional Italian flatware (fork and spoon) placed beside the plate on a clean cotton napkin. Natural, even lighting illuminates the dish, highlighting its rich colors and textures against a subtly blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Potato gnocchi",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Mixed wild mushrooms (such as cremini, shiitake, oyster)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Clean mushrooms. Slice larger mushrooms. Quarter smaller ones. Mince garlic.",
+      "Heat olive oil and butter in a large pan over medium-high heat.",
+      "Add mushrooms to the pan. Sauté until golden brown and tender, about 5-7 minutes. Season with salt and pepper. Remove mushrooms from pan; set aside.",
+      "Add minced garlic to the same pan. Sauté for 1 minute until fragrant.",
+      "Pour in heavy cream. Bring to a gentle simmer. Cook for 2-3 minutes, stirring occasionally, until slightly thickened.",
+      "Stir in 60 g of grated Parmesan cheese. Season sauce with salt and pepper to taste.",
+      "Bring a large pot of salted water to a boil.",
+      "Add gnocchi to boiling water. Cook according to package directions, typically 2-3 minutes, until they float to the surface.",
+      "Drain gnocchi. Add directly to the cream sauce. Toss gently to coat.",
+      "Return sautéed mushrooms to the pan with gnocchi and sauce. Stir to combine.",
+      "Serve immediately. Garnish with fresh chopped parsley and remaining grated Parmesan."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 634,
+      "cholesterol_mg": 119,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 17.4,
+      "saturated_fat_g": 22.9,
+      "sodium_mg": 1294,
+      "total_carbs_g": 48.9,
+      "total_fat_g": 42.2,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 190,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 5.2,
+      "saturated_fat_g": 6.9,
+      "sodium_mg": 387,
+      "total_carbs_g": 14.6,
+      "total_fat_g": 12.6,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 19,
+      "protein": 35,
+      "saturated_fat": 115,
+      "sodium": 56,
+      "total_carbs": 18,
+      "total_fat": 54
+    },
+    "serving_size_g": 334.5,
+    "total_recipe_weight_g": 1338
+  },
+  {
+    "recipe_name": "Torta di Ricotta e Mele (Italian Ricotta Apple Cake)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251024_133342_318ad4f6.jpg",
+    "dish_type": "cake",
+    "flavor_profile": "sweet",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-24T13:33:43.290295000Z",
+    "selected_ingredients": [
+      "ricotta cheese",
+      "apple"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, elegantly cut slice of 'Torta di Ricotta e Mele' is presented on a simple, off-white ceramic plate with a slightly rustic edge. The cake slice showcases a moist, tender crumb with visible, tender baked apple cubes (1 cm) distributed throughout. The top of the cake slice has a light golden-brown crust, gently dusted with a fine layer of white powdered sugar. The interior reveals a creamy, pale yellow hue from the ricotta and eggs. In the background, slightly out of focus, the remaining whole round cake rests on a rustic wooden cake stand, also dusted with powdered sugar. The setting is a homely family kitchen, featuring a well-used wooden dining table. A simple, folded linen napkin in a neutral tone is casually placed next to the plate. Lighting is warm and cozy, emanating from kitchen fixtures, highlighting the cake's inviting texture and natural colors. The overall presentation is unpretentious, emphasizing the cake's comforting, homestyle appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve warm or at room temperature.",
+      "Dust with powdered sugar.",
+      "Can be accompanied by a scoop of vanilla gelato or a dollop of fresh whipped cream.",
+      "Serve with a small cup of espresso."
+    ],
+    "hero_ingredient": "Ricotta cheese, Apple",
+    "ingredients": [
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Apples",
+        "quantity": "2 medium (about 300 g), peeled, cored, diced into 1 cm cubes"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 1 small lemon"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "10 g (for greasing pan)"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "15 g (for dusting)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease an 18-20 cm round springform pan with butter. Dust with a little flour, tapping out excess.",
+      "Peel, core, and dice apples into 1 cm cubes. Set aside.",
+      "In a medium bowl, whisk together flour, baking powder, and salt.",
+      "In a large bowl, combine ricotta, granulated sugar, eggs, lemon zest, and vanilla extract. Whisk until smooth.",
+      "Gradually add dry ingredients to the wet ingredients. Mix until just combined. Do not overmix.",
+      "Gently fold in the diced apples.",
+      "Pour batter into the prepared springform pan. Smooth the top.",
+      "Bake for 40-45 minutes. Or until a wooden skewer inserted into the center comes out clean.",
+      "Let the cake cool in the pan on a wire rack for 10 minutes. Then remove from the pan. Transfer to the wire rack to cool completely.",
+      "Before serving, dust generously with powdered sugar."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 33.8,
+      "calories": 454,
+      "cholesterol_mg": 118,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 14.3,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 547,
+      "total_carbs_g": 78.6,
+      "total_fat_g": 10.2,
+      "total_sugars_g": 46.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.9,
+      "calories": 186.8,
+      "cholesterol_mg": 48.6,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 5.9,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 225,
+      "total_carbs_g": 32.3,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 19.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.3,
+      "dietary_fiber": 10,
+      "protein": 28.6,
+      "saturated_fat": 27.5,
+      "sodium": 23.8,
+      "total_carbs": 28.6,
+      "total_fat": 13.1
+    },
+    "serving_size_g": 243,
+    "total_recipe_weight_g": 972
+  },
+  {
+    "recipe_name": "Pistachio-Cherry-Peach Entremet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251024_105232_6a2163ec.jpg",
+    "dish_type": "cake",
+    "flavor_profile": "sweet",
+    "ingredients_count": 30,
+    "timestamp": "2025-10-24T10:52:32.634521000Z",
+    "selected_ingredients": [
+      "pistachio",
+      "cherry",
+      "vanilla",
+      "peach",
+      "milk",
+      "coconut",
+      "lemon",
+      "cream cheese",
+      "pineapple",
+      "apple"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, precisely cut slice of the Pistachio-Cherry-Peach Entremet is elegantly presented on an elegant porcelain dessert plate with a subtle gold rim, resting on a pristine white marble surface. The entremet slice reveals its distinct, vibrant layers: a pale green pistachio dacquoise base, topped by a rich, creamy vanilla bean crémeux, followed by a light peach and cream cheese mousse, and a vivid, ruby-red cherry gélee insert. The entire slice is enrobed in a flawlessly smooth, glossy, pale lemon-green white chocolate glaze. Garnishes include a scattering of finely chopped, toasted pistachios at the base, two fresh, ruby-red cherries with stems intact, and a delicate, paper-thin, fanned peach slice placed artfully alongside. The composition features abundant negative space, highlighting the entremet's architectural precision and contrasting textures. Dramatic professional lighting casts soft shadows, enhancing the depth and luxurious appeal of the dessert. A crisp white linen napkin, folded into a precise triangle, sits adjacent, completing the haute patisserie shop aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "hero_ingredient": "Pistachio",
+    "ingredients": [
+      {
+        "name": "Ground pistachios",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "2"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Cherry puree",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar (for gélee)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon juice (for gélee)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Gelatin sheets (for gélee)",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Milk (for crémeux)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Cream 35% fat (for crémeux)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Vanilla bean",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "2"
+      },
+      {
+        "name": "Granulated sugar (for crémeux)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Gelatin sheets (for crémeux)",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Peach puree",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cream cheese, softened",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Granulated sugar (for mousse)",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Lemon juice (for mousse)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Gelatin sheets (for mousse)",
+        "quantity": "4 g"
+      },
+      {
+        "name": "Cream 35% fat, cold (for mousse)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "White chocolate",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Milk (for glaze)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Glucose syrup",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Gelatin sheets (for glaze)",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Lemon juice (for glaze)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Green food coloring (optional)",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Toasted pistachios, chopped (for garnish)",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Fresh cherries (for garnish)",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Fresh peach, thinly sliced (for garnish)",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 170°C. Line a baking tray with parchment. Draw a 12cm circle on the parchment.",
+      "Whisk egg whites with 20g granulated sugar to stiff peaks.",
+      "Fold in ground pistachios, almond flour, and icing sugar. Spread batter evenly within the circle.",
+      "Bake 15-18 minutes until lightly golden. Cool completely. Trim if necessary to a 12cm disc.",
+      "Bloom 2g gelatin sheets in cold water.",
+      "Heat cherry puree, 30g granulated sugar, and 5g lemon juice until sugar dissolves. Do not boil.",
+      "Squeeze excess water from gelatin. Stir into warm cherry mixture.",
+      "Pour into a 10cm diameter ring mold lined with cling film. Freeze until firm, at least 2 hours.",
+      "Bloom 2g gelatin sheets in cold water.",
+      "Heat 100ml milk, 100ml cream, and scraped vanilla bean to a simmer. Remove vanilla bean.",
+      "Whisk egg yolks and 30g granulated sugar until pale.",
+      "Temper egg mixture with hot milk mixture. Return to saucepan.",
+      "Cook over medium-low heat, stirring constantly, until thickened (82-84°C). Do not boil.",
+      "Squeeze excess water from gelatin. Stir into hot crémeux. Pour into a shallow dish. Cover surface with cling film. Chill until set, at least 3 hours.",
+      "Bloom 4g gelatin sheets in cold water.",
+      "Gently warm peach puree, 40g granulated sugar, and 10g lemon juice. Do not boil.",
+      "Squeeze excess water from gelatin. Stir into warm peach mixture. Let cool to room temperature.",
+      "Whisk softened cream cheese until smooth. Gradually incorporate cooled peach mixture.",
+      "Fold in whipped 150ml cream gently until combined.",
+      "Line a 12cm diameter entremet ring with acetate strip. Place on a flat tray.",
+      "Pour half of the peach & cream cheese mousse into the ring.",
+      "Carefully place the frozen cherry gélee insert on top, centered. Press gently.",
+      "Pour remaining peach & cream cheese mousse over the gélee.",
+      "Spoon or pipe the set vanilla bean crémeux over the mousse. Smooth top.",
+      "Place the pistachio dacquoise on top, pressing gently to secure.",
+      "Freeze overnight until completely solid, at least 6 hours.",
+      "Bloom 3g gelatin sheets in cold water.",
+      "Chop white chocolate. Place in a heatproof bowl.",
+      "Heat 50ml milk and glucose syrup to a simmer. Pour hot liquid over white chocolate. Let sit 1 minute.",
+      "Stir until smooth and emulsified.",
+      "Squeeze excess water from gelatin. Stir into glaze. Add 5g lemon juice and optional green food coloring. Blend with an immersion blender, avoiding air bubbles. Pass through a fine-mesh sieve. Let cool to 35-38°C for glazing.",
+      "Remove frozen entremet from ring and acetate. Place on a wire rack over a tray.",
+      "Pour glaze evenly over the frozen entremet. Ensure full coverage. Allow excess glaze to drip.",
+      "Carefully transfer entremet to a serving plate. Thaw in refrigerator for 4-6 hours before serving.",
+      "Garnish with toasted chopped pistachios, fresh cherries, and delicate peach slices."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 60.6,
+      "calories": 752,
+      "cholesterol_mg": 177.7,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 14.1,
+      "saturated_fat_g": 22.7,
+      "sodium_mg": 133.6,
+      "total_carbs_g": 79.8,
+      "total_fat_g": 44.1,
+      "total_sugars_g": 74.4,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 20.7,
+      "calories": 257,
+      "cholesterol_mg": 60.7,
+      "dietary_fiber_g": 1,
+      "protein_g": 4.8,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 45.6,
+      "total_carbs_g": 27.2,
+      "total_fat_g": 15.1,
+      "total_sugars_g": 25.4,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 11,
+      "protein": 28,
+      "saturated_fat": 114,
+      "sodium": 6,
+      "total_carbs": 29,
+      "total_fat": 57
+    },
+    "serving_size_g": 293,
+    "total_recipe_weight_g": 1171.9
+  },
+  {
+    "recipe_name": "Fermented Peach & Cherry Coconut Parfait",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251024_104544_eefbb3af.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-24T10:45:44.789031000Z",
+    "selected_ingredients": [
+      "pistachio",
+      "cherry",
+      "vanilla",
+      "peach",
+      "milk",
+      "coconut",
+      "lemon",
+      "cream cheese",
+      "pineapple",
+      "apple"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "Parfaits are in clear glass tumblers. Layers are visible: a creamy, off-white coconut-cream cheese base, followed by vibrant fermented peach wedges and halved cherries. Toasted, roughly chopped pistachios sprinkle each layer and the top. Fruit pieces are naturally arranged. A small fresh mint leaf garnishes the top. Colors are natural: creamy white, pinks, reds, and muted greens. Textures contrast smooth cream, soft fruit, and crunchy pistachios. The parfaits sit on a light reclaimed wood or stone surface. Background is minimalist with soft, natural lighting. An undyed linen napkin in natural beige rests beside each. Single individual portions are presented elegantly.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Fermented Peaches and Cherries",
+    "ingredients": [
+      {
+        "name": "Peaches",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cherries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Cream cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 lemon"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Pistachios",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Wash peaches and cherries. Slice peaches into 1 cm thick wedges. Halve and pit cherries.",
+      "Combine filtered water and salt in a clean jar. Stir until salt dissolves to create a 1% brine.",
+      "Add sliced peaches and halved cherries to the jar. Ensure fruit is fully submerged in the brine. Use a fermentation weight if necessary.",
+      "Seal the jar with an airlock lid or a regular lid, burping daily.",
+      "Ferment at room temperature (20-24°C) for 3-5 days. Taste daily for desired tanginess.",
+      "Once fermented, store fruit and brine in the refrigerator.",
+      "In a medium bowl, combine full-fat coconut milk, cream cheese, vanilla extract, lemon zest, and maple syrup.",
+      "Whisk until smooth and creamy. Adjust sweetness if needed.",
+      "Chill in the refrigerator for at least 1 hour to firm up.",
+      "Lightly toast pistachios in a dry pan over medium heat for 2-3 minutes until fragrant. Let cool, then roughly chop.",
+      "In four individual serving glasses or bowls, layer the ingredients.",
+      "Start with a spoonful of the coconut cream cheese base.",
+      "Add a layer of fermented peaches and cherries.",
+      "Sprinkle with chopped pistachios.",
+      "Repeat layers until glasses are filled. End with pistachios on top.",
+      "Garnish each parfait with a fresh mint leaf.",
+      "Serve immediately or chill until ready to serve."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.1,
+      "calories": 587,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 9.1,
+      "saturated_fat_g": 32.3,
+      "sodium_mg": 659,
+      "total_carbs_g": 40,
+      "total_fat_g": 46.8,
+      "total_sugars_g": 31.3,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.8,
+      "calories": 135,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 2.1,
+      "saturated_fat_g": 7.4,
+      "sodium_mg": 151,
+      "total_carbs_g": 9.2,
+      "total_fat_g": 10.7,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17,
+      "dietary_fiber": 21,
+      "protein": 18,
+      "saturated_fat": 162,
+      "sodium": 29,
+      "total_carbs": 15,
+      "total_fat": 60
+    },
+    "serving_size_g": 436,
+    "total_recipe_weight_g": 1745
+  }
+]

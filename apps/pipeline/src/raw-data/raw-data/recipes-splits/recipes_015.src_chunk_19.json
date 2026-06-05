@@ -1,0 +1,613 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Dijon Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_dijon_sauce_20250628_071713_d86c30ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:17:14.200012000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Pan-seared chicken breast, golden-brown and succulent, rests centrally on a clean white porcelain dinner plate. The chicken is presented as a whole piece, showcasing its perfectly seared crust. A rich, creamy Dijon sauce, glistening with a pale yellow hue, is elegantly spooned around the base of the chicken, creating a delicate pool. A sprinkle of finely chopped fresh chives or parsley provides a vibrant green contrast and a fresh aroma. The dish is garnished simply, allowing the quality of the ingredients to shine. The setting is a modern bistro: a simple light wooden table surface, with a folded white cotton napkin placed beside the plate. Natural, even light illuminates the dish, highlighting its textures and colors, with a soft, blurred background maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Shallot, finely minced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine (e.g., Sauvignon Blanc)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "45 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken breasts. Sear 5-7 minutes per side until golden brown and internal temperature reaches 75°C. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add butter to the same skillet. Add minced shallot. Sauté 2-3 minutes until softened.",
+      "Add minced garlic. Sauté 1 minute until fragrant.",
+      "Deglaze skillet with white wine. Scrape up any browned bits from the bottom. Simmer 2 minutes until liquid reduces slightly.",
+      "Stir in chicken stock and Dijon mustard. Bring to a simmer. Cook 5-7 minutes until sauce thickens slightly.",
+      "Stir in heavy cream. Simmer 2-3 minutes. Do not boil vigorously.",
+      "Return chicken breasts to the skillet. Spoon sauce over chicken. Heat through 1-2 minutes.",
+      "Remove from heat. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 564.73,
+      "cholesterol_mg": 208.8,
+      "dietary_fiber_g": 0.86,
+      "protein_g": 62.15,
+      "saturated_fat_g": 11.84,
+      "sodium_mg": 352.34,
+      "total_carbs_g": 5.26,
+      "total_fat_g": 28.89,
+      "total_sugars_g": 2.44,
+      "trans_fat_g": 0.57
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161.7,
+      "cholesterol_mg": 59.78,
+      "dietary_fiber_g": 0.25,
+      "protein_g": 17.8,
+      "saturated_fat_g": 3.39,
+      "sodium_mg": 100.88,
+      "total_carbs_g": 1.51,
+      "total_fat_g": 8.27,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.16
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69.6,
+      "dietary_fiber": 3.07,
+      "protein": 124.3,
+      "saturated_fat": 59.2,
+      "sodium": 15.32,
+      "total_carbs": 1.91,
+      "total_fat": 37.04
+    },
+    "serving_size_g": 349.25,
+    "total_recipe_weight_g": 1397
+  },
+  {
+    "recipe_name": "Lamb Biryani",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lamb_biryani_20250628_071656_b66d7cc6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:16:56.928297000Z",
+    "selected_ingredients": [
+      "lamb",
+      "onion",
+      "chili",
+      "tomato",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of fragrant Lamb Biryani is centrally plated on a round white porcelain dish. The fluffy, long-grain basmati rice, exhibiting shades of saffron yellow and pristine white, is lightly mounded, revealing tender chunks of slow-cooked lamb underneath. The lamb pieces are rich, dark brown, and subtly sauced. Scattered over the top are crispy, golden-brown fried onions (birista) and vibrant green chopped cilantro and mint leaves. A lime wedge rests beside the biryani. The dish is presented on a simple wooden table, with a neatly folded cotton napkin and a small katori bowl of cooling raita to the side. Natural, even lighting highlights the steam rising gently, emphasizing the dish's warmth and aromatic appeal. The overall composition is clean, balanced, and inviting, showcasing the distinct layers and textures of this classic Indian dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of cooling raita (yogurt dip with cucumber and mint).",
+      "Offer a small bowl of spicy salan (peanut-sesame-tamarind gravy) for added richness.",
+      "Provide sliced red onions and lime wedges for freshness."
+    ],
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Lamb shoulder, boneless",
+        "quantity": "700 g, cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "3 large, thinly sliced"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium, roughly chopped"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2-3, slit lengthwise"
+      },
+      {
+        "name": "Garlic paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Ginger paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Biryani masala",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "1/2 cup, chopped"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1/2 cup, chopped"
+      },
+      {
+        "name": "Ghee or vegetable oil",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Saffron strands",
+        "quantity": "1/4 teaspoon, soaked in 2 tablespoons warm milk"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "Wash basmati rice. Soak in cold water for 30 minutes. Drain well.",
+      "Marinate lamb chunks: Combine lamb with yogurt, ginger paste, garlic paste, 1 tablespoon biryani masala, turmeric, red chili powder, cumin powder, coriander powder, and salt. Mix well. Refrigerate for at least 2 hours, or overnight.",
+      "Heat ghee or oil in a heavy-bottomed pot or Dutch oven over medium heat. Add thinly sliced onions. Fry until deep golden brown and crispy. Remove half the fried onions and set aside for garnish.",
+      "Add marinated lamb to the pot with remaining onions. Sear lamb chunks on all sides until lightly browned. This takes about 5-7 minutes.",
+      "Add chopped tomatoes and green chilies. Cook for 5 minutes until tomatoes soften. Add remaining 1 tablespoon biryani masala and garam masala. Stir well. Add 100 ml water. Cover and simmer for 30-40 minutes, or until lamb is nearly tender. Stir occasionally.",
+      "While lamb cooks, bring a large pot of salted water to a rolling boil. Add drained basmati rice. Cook until 70% done (al dente, with a slight bite). This takes about 5-7 minutes. Drain immediately.",
+      "Layer the biryani: Spread half of the par-cooked rice over the lamb curry in the pot. Sprinkle half of the chopped mint and cilantro. Add the remaining par-cooked rice. Top with the remaining mint and cilantro.",
+      "Pour the saffron milk evenly over the rice. Gently spread the reserved fried onions on top.",
+      "Cover the pot tightly with a lid, or seal with dough. Cook on low heat (dum cooking) for 20-25 minutes. This allows flavors to meld and rice to fully cook.",
+      "Turn off heat. Let biryani rest, covered, for 10 minutes before serving. Gently fluff with a fork."
+    ],
+    "notes": [
+      "For best results, use good quality aged Basmati rice.",
+      "Ensure the pot is sealed tightly during dum cooking to trap steam and flavors."
+    ],
+    "traditional_techniques": [
+      "Marination",
+      "Dum Cooking",
+      "Layering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1106.8,
+      "cholesterol_mg": 214.72,
+      "dietary_fiber_g": 6.77,
+      "protein_g": 50.04,
+      "saturated_fat_g": 25.29,
+      "sodium_mg": 750.21,
+      "total_carbs_g": 100.56,
+      "total_fat_g": 54.43,
+      "total_sugars_g": 9.25,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 26.77,
+      "dietary_fiber_g": 0.84,
+      "protein_g": 6.24,
+      "saturated_fat_g": 3.15,
+      "sodium_mg": 93.54,
+      "total_carbs_g": 12.54,
+      "total_fat_g": 6.79,
+      "total_sugars_g": 1.15,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72,
+      "dietary_fiber": 24,
+      "protein": 100,
+      "saturated_fat": 126,
+      "sodium": 33,
+      "total_carbs": 37,
+      "total_fat": 70
+    },
+    "serving_size_g": 802,
+    "total_recipe_weight_g": 3208
+  },
+  {
+    "recipe_name": "Creamy Chicken and Broccoli Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_broccoli_risotto_20250628_071222_d9f81bd5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:12:22.975605000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "mayonnaise",
+      "onion",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of creamy Chicken and Broccoli Risotto is presented in a clean, white porcelain bowl. The risotto, a pale, creamy yellow, flows naturally within the bowl. Diced, golden-seared chicken pieces (2 cm cubes) are visibly integrated, alongside vibrant green, tender-crisp broccoli florets and flecks of deep amber caramelized onion. A small, elegant swirl of bright white lemon-herb mayonnaise rests on top, providing a contrasting color and texture. The dish is garnished with a sprinkle of finely chopped fresh parsley and a dusting of grated Parmesan. The setting is a modern bistro, with the bowl placed on a simple wooden table surface, accompanied by a fork and a crisp cotton napkin, under natural, even lighting. The background is subtly blurred, maintaining focus on the dish while suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 2 cm cubes. Season with salt and pepper.",
+      "Heat 15 ml olive oil in a large pot or Dutch oven over medium-high heat. Sear chicken cubes until golden brown and cooked through. Ensure internal temperature reaches 75°C (167°F). Remove chicken from pot; set aside.",
+      "Finely dice the onion. Add remaining 15 ml olive oil to the pot. Add diced onion and cook over medium-low heat for 10-15 minutes until deeply caramelized and soft. Stir occasionally.",
+      "Mince garlic. Add minced garlic to the pot with onions. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Stir for 2 minutes to toast rice kernels.",
+      "Pour in white wine. Stir until wine is fully absorbed.",
+      "Heat chicken broth in a separate saucepan; keep it simmering.",
+      "Begin adding hot broth to the rice, one ladleful at a time. Stir continuously. Wait until each ladleful is almost fully absorbed before adding the next. This process takes 20-25 minutes.",
+      "While risotto cooks, steam or blanch broccoli florets until tender-crisp. Drain well.",
+      "When risotto is creamy and rice is al dente, stir in cooked chicken and broccoli florets.",
+      "Remove pot from heat. Stir in butter and half of the Parmesan cheese. Stir vigorously for 1-2 minutes until creamy and fluid. Adjust seasoning with salt and pepper.",
+      "Finely chop fresh parsley. Grate lemon zest. In a small bowl, combine mayonnaise with half of the chopped parsley and lemon zest. Mix well.",
+      "Serve risotto immediately in shallow bowls. Garnish each serving with a small dollop or swirl of lemon-herb mayonnaise, remaining Parmesan cheese, and a sprinkle of fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Risotto method",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.4,
+      "calories": 868,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 54.6,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 898,
+      "total_carbs_g": 79.5,
+      "total_fat_g": 36.1,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 16.8,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 6.8,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 111.4,
+      "total_carbs_g": 9.9,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45.1,
+      "dietary_fiber": 16.8,
+      "protein": 109.2,
+      "saturated_fat": 57.6,
+      "sodium": 39,
+      "total_carbs": 28.9,
+      "total_fat": 46.2
+    },
+    "serving_size_g": 805.5,
+    "total_recipe_weight_g": 3222
+  },
+  {
+    "recipe_name": "Fermented Peach Compote with Green Tea Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_peach_compote_with_green_tea_cream_20250628_070211_93cb0f1d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:02:12.363563000Z",
+    "selected_ingredients": [
+      {
+        "name": "green tea"
+      },
+      {
+        "name": "honey"
+      },
+      {
+        "name": "cinnamon"
+      },
+      {
+        "name": "peach"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "butter"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "The dish is presented in individual clear glass bowls or handcrafted ceramic bowls in earthy cream or beige tones, showcasing its natural beauty. Fermented peach cubes, approximately 1.5 cm, form the base, their natural color deepened by fermentation. A generous, smooth dollop of pale green tea cashew cream is elegantly placed beside the peaches, offering a soft color contrast. A delicate, golden-brown drizzle of cinnamon honey cascades over both elements, adding a subtle sheen. A light scattering of golden-brown, toasted oat crumble provides a textural counterpoint. A single vibrant green mint leaf or a delicate curl of lemon zest serves as a natural, minimal garnish. The overall composition is clean and uncrowded, with ample negative space. The bowls rest on a light reclaimed wood or natural bamboo table surface. The setting includes an undyed linen napkin in natural beige. Soft, natural light illuminates the scene, highlighting the organic textures and colors. The background is minimalist and unobtrusive, perhaps with a blurred potted herb plant, ensuring the focus remains entirely on the sustainable snack.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Peach",
+    "ingredients": [
+      {
+        "name": "Ripe Peaches",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Non-iodized Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Loose Leaf Green Tea",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cashew Cream (or plant-based cream alternative)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Honey (local and raw if possible)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vegan Butter",
+        "quantity": "20g"
+      },
+      {
+        "name": "Rolled Oats",
+        "quantity": "30g"
+      },
+      {
+        "name": "Lemon Zest",
+        "quantity": "from 1 lemon"
+      },
+      {
+        "name": "Fresh Mint (for garnish, optional)",
+        "quantity": "4 sprigs"
+      }
+    ],
+    "instructions": [
+      "Wash peaches thoroughly. Cut peaches into 1.5 cm cubes. Reserve peach pits and skins for later use.",
+      "Dissolve salt in 500ml water to create a brine.",
+      "Place peach cubes into a clean glass jar. Pour brine over peaches, ensuring all pieces are fully submerged. Use a fermentation weight if available.",
+      "Cover the jar with an airlock lid or a loose-fitting lid. Ferment at room temperature (20-24°C) for 3-5 days. Taste daily until desired tartness is achieved.",
+      "Once fermented, transfer the peaches and brine to the refrigerator.",
+      "Heat 50ml water to 80°C. Steep green tea leaves for 3 minutes. Strain and discard tea leaves.",
+      "Combine the green tea infusion with the cashew cream. Mix well. Chill the green tea cream thoroughly.",
+      "Gently warm honey with ground cinnamon in a small saucepan until well combined. Do not boil. Set aside.",
+      "For zero-waste crumble: Simmer reserved peach pits and skins in 100ml water for 10 minutes. Strain the liquid and discard solids. This peach-infused water can be added to the crumble or discarded.",
+      "Melt vegan butter in a dry pan over medium heat. Add rolled oats and a pinch of cinnamon. Toast, stirring constantly, until golden brown and crisp.",
+      "Spoon fermented peach compote into individual serving bowls.",
+      "Dollop a generous portion of green tea cashew cream alongside the peaches.",
+      "Drizzle cinnamon honey over both the peaches and cream.",
+      "Sprinkle the toasted oat crumble over each serving. Garnish with a fresh mint sprig and a curl of lemon zest."
+    ]
+  },
+  {
+    "recipe_name": "Pea & Thyme Financiers with Onion-Bay Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pea_%26_thyme_financiers_with_onion-bay_glaze_20250628_070101_026da55e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:01:02.351429000Z",
+    "selected_ingredients": [
+      {
+        "name": "dried pea"
+      },
+      {
+        "name": "beef"
+      },
+      {
+        "name": "bay leaf"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "thyme"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "Six perfectly uniform, small rectangular financiers are elegantly arranged on a natural, light-colored stone platter, leaving ample negative space. Each financier boasts a golden-brown crust, subtly speckled with finely chopped green thyme. A thin, amber-hued glaze, derived from caramelized onion and infused with bay leaf, delicately coats the top surface, creating a subtle sheen. The interior, visible from a clean cross-section on one piece, reveals a pale green tint from the dried peas, indicating a moist, tender crumb. The composition is clean and minimalist, highlighting the delicate form and natural colors of the financiers. The platter rests on a light bamboo surface, with an undyed linen napkin in a natural beige tone placed beside it. Soft, natural light illuminates the scene, enhancing the textures without harsh shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Dried Pea",
+    "ingredients": [
+      {
+        "name": "Dried green peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Beef tallow",
+        "quantity": "100g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tbsp, finely chopped"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dried bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Grind dried peas into fine flour using a high-speed blender. Sift pea flour.",
+      "Gently melt beef tallow over low heat. Skim any impurities. Let cool slightly.",
+      "In a bowl, lightly whisk egg whites. Sift in powdered sugar and pea flour. Add all-purpose flour, chopped thyme, and a pinch of salt. Mix until just combined.",
+      "Slowly pour in the cooled melted tallow, whisking continuously until smooth. Do not overmix.",
+      "Pour batter into greased miniature financier molds. Fill 3/4 full. Bake at 180°C (350°F) for 12-15 minutes, or until golden brown. A skewer inserted should come out clean. Let financiers cool completely.",
+      "Thinly slice onion. Cook in a small saucepan over very low heat with a tiny bit of tallow until deeply caramelized and very soft, about 30-40 minutes. Add a splash of water if sticking.",
+      "Add bay leaves, 50ml water, and maple syrup to the caramelized onion. Simmer for 5 minutes. Remove bay leaves.",
+      "Blend mixture until very smooth. Strain through a fine-mesh sieve for a clear glaze.",
+      "Once financiers are cool, dip the top of each into the warm onion-bay glaze. Let excess drip off. Place on a wire rack to set.",
+      "Arrange 6-9 financiers on a serving platter for presentation."
+    ],
+    "notes": [
+      "This recipe creatively reinterprets traditional financier with sustainable ingredients. The use of pea flour adds a unique, subtle earthy note, while beef tallow provides richness. The caramelized onion glaze offers a surprising sweet-savory balance, making these petit fours distinctly modern and eco-conscious."
+    ]
+  }
+]

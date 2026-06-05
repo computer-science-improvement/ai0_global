@@ -1,0 +1,656 @@
+[
+  {
+    "recipe_name": "Banana Oat Bars",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_062626_19bcb354.jpg",
+    "dish_type": "snack",
+    "flavor_profile": "sweet",
+    "ingredients_count": 8,
+    "timestamp": "2025-10-22T06:26:27.148123000Z",
+    "selected_ingredients": [
+      "butter",
+      "oats",
+      "banana"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The baked banana oat bars are presented on a rustic wooden board, arranged casually in a single layer. Each bar is a generous rectangle, approximately 4cm x 8cm, with a golden-brown, slightly textured top from the baked oats. The edges are lightly caramelized, showing a subtle chewiness. The interior is a soft, moist, pale golden hue, speckled with visible oat flakes and tiny flecks of mashed banana. A few bars are stacked slightly, creating a natural, inviting pile. The board sits on a simple kitchen table, with a casually folded linen napkin to the side. Warm, diffused lighting highlights the comforting textures and colors of the snack.",
+    "number_of_servings": 4,
+    "cuisine_type": "Homestyle",
+    "hero_ingredient": "Banana",
+    "ingredients": [
+      {
+        "name": "Ripe bananas",
+        "quantity": "2 medium (approximately 200g)"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "200g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g, melted"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "2.5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Line a 20cm x 20cm baking tin with parchment paper.",
+      "Mash bananas in a large bowl.",
+      "Add melted butter, brown sugar, milk, and vanilla extract. Mix well.",
+      "Stir in rolled oats, baking powder, and salt. Mix until combined.",
+      "Pour mixture into the prepared tin. Spread evenly.",
+      "Bake for 20-25 minutes. Bars should be golden brown and set.",
+      "Cool completely in the tin. Slice into bars."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.2,
+      "calories": 407,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 9.6,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 109,
+      "total_carbs_g": 57.5,
+      "total_fat_g": 16.3,
+      "total_sugars_g": 19,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 8.1,
+      "calories": 272,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 6.4,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 73,
+      "total_carbs_g": 38.4,
+      "total_fat_g": 10.9,
+      "total_sugars_g": 12.7,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 11,
+      "dietary_fiber": 24,
+      "protein": 19,
+      "saturated_fat": 44,
+      "sodium": 5,
+      "total_carbs": 21,
+      "total_fat": 21
+    },
+    "serving_size_g": 149.6,
+    "total_recipe_weight_g": 598.5
+  },
+  {
+    "recipe_name": "Pork Loin Stuffed with Cheddar, Mushroom, and Onion, with Roasted Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251021_174607_17c292a0.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2025-10-21T17:46:07.756686000Z",
+    "selected_ingredients": [
+      "pork",
+      "mushroom",
+      "cheddar",
+      "onion",
+      "cheese",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of stuffed pork loin is presented on a clean white porcelain plate, resting on a simple wooden table. The pork loin, sliced into thick, juicy medallions, reveals a vibrant filling of caramelized mushrooms, onions, and melted cheddar cheese. The exterior of the pork is a rich, golden-brown from searing and roasting. Alongside the pork, a generous mound of roasted broccoli florets displays tender-crisp textures and slight charring, maintaining a vibrant green hue. A light, savory pan sauce is drizzled artistically over the pork and plate. The arrangement is balanced and organic, with moderate negative space. A cotton napkin and standard flatware complete the modern bistro setting under even natural light. The entire plate is visible, showcasing professional plating and appealing colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Pork Loin",
+    "ingredients": [
+      {
+        "name": "Pork loin",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Butterfly the pork loin. Pound it to an even thickness of about 2 cm. Season both sides with salt and pepper.",
+      "Dice the onion and mushrooms into small pieces. Grate the cheddar cheese. Mince the garlic.",
+      "Heat butter and 15 ml olive oil in a large skillet over medium heat. Sauté diced onion until softened, about 5 minutes.",
+      "Add mushrooms and minced garlic to the skillet. Cook until mushrooms release their liquid and brown, about 7-10 minutes. Stir in fresh thyme. Season with salt and pepper. Remove from heat and let cool slightly.",
+      "Spread the mushroom-onion mixture evenly over the butterflied pork loin. Sprinkle grated cheddar cheese over the mixture.",
+      "Roll the pork loin tightly. Secure it with butcher's twine at 2-3 cm intervals.",
+      "Heat the remaining 15 ml olive oil in an oven-safe skillet over medium-high heat. Sear the stuffed pork loin on all sides until golden brown, about 2-3 minutes per side.",
+      "Transfer the skillet with the pork loin to the preheated oven. Roast for 25-35 minutes, or until the internal temperature reaches 63°C (145°F). Remove from oven and let rest for 10 minutes.",
+      "While pork roasts, cut broccoli into medium florets. Toss with a drizzle of olive oil, salt, and pepper.",
+      "Spread broccoli florets on a baking sheet. Roast in the same oven for 15-20 minutes, until tender-crisp and slightly charred.",
+      "After pork rests, remove twine. Deglaze the pan with chicken broth over medium heat, scraping up any browned bits. Reduce slightly to create a light pan sauce.",
+      "Slice the pork loin into thick medallions. Arrange 2-3 medallions on a plate with a generous portion of roasted broccoli. Drizzle with pan sauce. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 678,
+      "cholesterol_mg": 230,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 75,
+      "saturated_fat_g": 15.7,
+      "sodium_mg": 516,
+      "total_carbs_g": 17.1,
+      "total_fat_g": 36.8,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 13.2,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 91,
+      "total_carbs_g": 3,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 77,
+      "dietary_fiber": 18,
+      "protein": 150,
+      "saturated_fat": 79,
+      "sodium": 22,
+      "total_carbs": 6,
+      "total_fat": 47
+    },
+    "serving_size_g": 570,
+    "total_recipe_weight_g": 2278
+  },
+  {
+    "recipe_name": "Galettes Complètes au Poulet et Champignons",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251021_133842_bf1f481a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-10-21T13:38:42.769334000Z",
+    "selected_ingredients": [
+      "flour",
+      "egg",
+      "milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features a golden-brown, crisp-edged buckwheat galette, folded neatly into a square with a rich, savory filling visible at its center. The galette's surface exhibits subtle lacy patterns from cooking. Inside, tender, pan-seared chicken cubes (2 cm) are nestled amongst sautéed, earthy brown mushroom slices and finely diced, translucent onions, all bound in a creamy, off-white crème fraîche sauce. Melted, bubbly Gruyère cheese, golden and slightly caramelized, tops the filling, adding a glossy texture. A sprinkle of vibrant green, freshly chopped parsley provides a fresh contrast. The galette sits on a clean white porcelain dinner plate, surrounded by moderate negative space. The plating is organized and professional. On the simple wooden table, a single galette is presented, accompanied by traditional French flatware, a folded cotton napkin, and a small glass of water, all under soft, natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a vinaigrette.",
+      "Traditionally enjoyed with a glass of dry hard cider (cidre brut).",
+      "Can be eaten with a knife and fork."
+    ],
+    "hero_ingredient": "Buckwheat Galette",
+    "ingredients": [
+      {
+        "name": "Buckwheat flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Milk (full-fat)",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Melted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Mushrooms (Cremini/Button)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Gruyère cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Crème fraîche",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "In a large bowl, whisk buckwheat flour and salt. In a separate bowl, whisk egg, milk, and water. Gradually add wet ingredients to dry, whisking until smooth. Stir in melted butter (15g). Cover and refrigerate batter for at least 1 hour.",
+      "Dice chicken breast into 2 cm cubes. Slice mushrooms. Finely dice onion. Mince garlic.",
+      "Heat 15 g butter and olive oil in a large pan over medium-high heat. Add diced chicken. Cook until golden brown and cooked through (internal temperature 75°C), about 5-7 minutes. Remove chicken and set aside.",
+      "Add remaining 15 g butter to the pan. Sauté diced onion until softened, about 3 minutes. Add sliced mushrooms and cook until tender and browned, about 5-7 minutes. Add minced garlic and cook for 1 minute more.",
+      "If using, deglaze with white wine, scraping up any browned bits. Cook until liquid is reduced. Stir in crème fraîche. Return cooked chicken to the pan. Season with salt and pepper. Stir in half of the chopped parsley. Keep warm.",
+      "Heat a non-stick crêpe pan or flat griddle over medium heat. Lightly grease with butter. Pour a ladleful of batter onto the pan. Quickly swirl to coat the bottom evenly. Cook for 2-3 minutes until edges are crisp and golden. Flip and cook for 1-2 minutes on the second side. Repeat with remaining batter (should yield 8-10 galettes).",
+      "Grate Gruyère cheese. Place one cooked galette on a clean surface. Spoon a portion of the chicken and mushroom filling onto the center. Sprinkle with grated Gruyère.",
+      "Fold the edges of the galette inwards to create a square or rectangular shape, leaving the center filling exposed.",
+      "Briefly return assembled galettes to the warm pan, cheese side up, until cheese is melted and bubbly.",
+      "Transfer to plates. Garnish with remaining fresh parsley. Serve immediately."
+    ],
+    "notes": [
+      "Allowing the batter to rest is crucial for tender galettes.",
+      "Buckwheat flour gives the galettes a distinct nutty flavor and dark color, traditional for savory galettes from Brittany.",
+      "Ensure the pan is hot enough before pouring batter to achieve crisp edges."
+    ],
+    "traditional_techniques": [
+      "Mise en place",
+      "Sauter",
+      "Déglacer"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 741,
+      "cholesterol_mg": 218.1,
+      "dietary_fiber_g": 6,
+      "protein_g": 54.2,
+      "saturated_fat_g": 19.9,
+      "sodium_mg": 786.3,
+      "total_carbs_g": 47.5,
+      "total_fat_g": 38.2,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168,
+      "cholesterol_mg": 49.4,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 12.3,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 178,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.7,
+      "dietary_fiber": 21.3,
+      "protein": 108.4,
+      "saturated_fat": 99.4,
+      "sodium": 34.2,
+      "total_carbs": 17.3,
+      "total_fat": 49
+    },
+    "serving_size_g": 441.7,
+    "total_recipe_weight_g": 1766.8
+  },
+  {
+    "recipe_name": "Chestnut and Basil Risotto with Seared Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251021_133632_d01eab0a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2025-10-21T13:36:32.790184000Z",
+    "selected_ingredients": [
+      "chestnut",
+      "onion",
+      "garlic",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of creamy risotto flows gently onto a clean white porcelain dinner plate, maintaining an 'all'onda' (wavy) consistency. The risotto, a pale ivory color, is studded with golden-brown roasted chestnut pieces and flecks of vibrant green basil. Arranged artfully atop the risotto are several rich, earthy brown seared wild mushrooms, some sliced, some whole, showcasing their varied textures. A light drizzle of olive oil glistens on the surface. Fresh, whole basil leaves are scattered over the dish, providing a pop of color and freshness. The plate sits on a simple wooden table, accompanied by a folded cotton napkin and standard European flatware. The background is a subtly blurred modern bistro setting with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a primo piatto or main course.",
+      "Offer additional grated Parmigiano Reggiano at the table."
+    ],
+    "hero_ingredient": "Chestnuts",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Roasted chestnuts, peeled",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Wild mushrooms (e.g., cremini, shiitake)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh basil leaves, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Hot vegetable broth",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare chestnuts: If not pre-cooked, roast fresh chestnuts, then peel and roughly chop. Set aside.",
+      "Clean mushrooms and slice into uniform pieces. Set aside.",
+      "Heat 15 ml olive oil in a large, heavy-bottomed pan over medium heat. Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic to the pan. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Toast for 2 minutes, stirring constantly, until edges are translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Begin adding hot broth, one ladleful at a time. Stir frequently, allowing each addition to be almost fully absorbed before adding the next.",
+      "After 10 minutes of cooking, add the chopped chestnuts to the risotto.",
+      "Continue adding broth and stirring for another 8-10 minutes, until the rice is al dente and the risotto is creamy.",
+      "While risotto cooks, heat remaining 15 ml olive oil in a separate pan over medium-high heat. Add sliced mushrooms. Sear until golden brown and tender, about 5-7 minutes. Season with salt and pepper. Set aside.",
+      "Remove risotto from heat. Stir in butter and grated Parmigiano Reggiano. Season with salt and pepper to taste. Stir in most of the chopped fresh basil.",
+      "Let risotto rest for 2 minutes. The consistency should be fluid ('all'onda').",
+      "Serve immediately, topping each portion with seared mushrooms and a sprinkle of fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecatura",
+      "All'onda"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 721,
+      "cholesterol_mg": 49.9,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 20,
+      "saturated_fat_g": 12.5,
+      "sodium_mg": 634.5,
+      "total_carbs_g": 97.9,
+      "total_fat_g": 26.8,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117.6,
+      "cholesterol_mg": 8.1,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 3.3,
+      "saturated_fat_g": 2,
+      "sodium_mg": 103.5,
+      "total_carbs_g": 16,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.6,
+      "dietary_fiber": 23.6,
+      "protein": 40,
+      "saturated_fat": 62.5,
+      "sodium": 27.6,
+      "total_carbs": 35.6,
+      "total_fat": 34.4
+    },
+    "serving_size_g": 613.25,
+    "total_recipe_weight_g": 2453
+  },
+  {
+    "recipe_name": "Smoked Paprika Pasta with Caramelized Apple and Coffee-Kissed Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251020_200115_c403acd7.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-10-20T20:01:15.978718000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "onion",
+      "apple",
+      "cherry",
+      "garlic",
+      "coffee",
+      "oil",
+      "butter",
+      "black pepper",
+      "egg",
+      "evaporated milk",
+      "paprika"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Smoked Paprika Pasta is presented in a clean white porcelain bowl, centered on a light wooden table surface. The pasta, likely rigatoni, is coated in a rich, velvety reddish-brown sauce. Visible within the sauce are tender, golden caramelized onion slices and soft, slightly translucent apple half-moons. Dark red, plump pitted cherries are interspersed, adding vibrant color contrast. A sprinkle of bright green chopped fresh parsley garnishes the top, providing a fresh accent. The arrangement is organic and flowing, showcasing the sauce's texture and ingredients. A cotton napkin is folded neatly beside the bowl. Natural, even lighting highlights the dish's warmth and depth. The setting is a modern bistro, uncluttered, with minimal background elements to keep the focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., rigatoni or penne)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Apple (e.g., Gala or Fuji)",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Pitted cherries (fresh or frozen)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Strong brewed coffee or espresso",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Evaporated milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions. Reserve 120ml pasta water. Drain pasta.",
+      "While pasta cooks, thinly slice onions. Thinly slice apple into half-moon shapes.",
+      "Heat olive oil and butter in a large pan over medium heat. Add sliced onions and apple.",
+      "Sauté until onions are translucent and apples are tender and slightly caramelized, about 10-12 minutes.",
+      "Minced garlic. Add minced garlic and smoked paprika to the pan. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and coffee. Bring to a simmer. Cook for 10 minutes, stirring occasionally.",
+      "Add pitted cherries to the sauce. Continue to simmer for 5 minutes.",
+      "In a small bowl, whisk evaporated milk with egg yolk and black pepper.",
+      "Remove sauce from heat. Gradually whisk in the milk-egg mixture. Stir well.",
+      "Add cooked pasta to the sauce. Toss to coat evenly. Add reserved pasta water as needed to reach desired consistency.",
+      "Season with salt to taste. Serve immediately, garnished with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 672,
+      "cholesterol_mg": 72.6,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 19.4,
+      "saturated_fat_g": 6.9,
+      "sodium_mg": 51.3,
+      "total_carbs_g": 105.9,
+      "total_fat_g": 18.6,
+      "total_sugars_g": 22.8,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102,
+      "cholesterol_mg": 11.1,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 3,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 7.8,
+      "total_carbs_g": 16.2,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 24,
+      "dietary_fiber": 35,
+      "protein": 39,
+      "saturated_fat": 34,
+      "sodium": 2,
+      "total_carbs": 39,
+      "total_fat": 24
+    },
+    "serving_size_g": 655.5,
+    "total_recipe_weight_g": 2622
+  }
+]

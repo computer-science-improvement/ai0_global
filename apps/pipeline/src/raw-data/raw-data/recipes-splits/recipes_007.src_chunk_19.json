@@ -1,0 +1,767 @@
+[
+  {
+    "recipe_name": "Apple & Oat Streusel Cake with Brown Butter Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_apple_%26_oat_streusel_cake_with_brown_butter_glaze_20250902_092620_5ae08a4d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T09:26:20.490516000Z",
+    "selected_ingredients": [
+      "apple",
+      "flour",
+      "egg",
+      "brown sugar",
+      "butter",
+      "oats"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegantly cut wedge slice of the Apple & Oat Streusel Cake rests on a pristine round white porcelain dessert plate. The cake slice reveals a moist, golden-brown crumb speckled with diced apple pieces. A generous, slightly irregular drizzle of light brown butter glaze cascades over the top, highlighting the textured, golden oat streusel. The streusel, a mix of rolled oats and flour, forms a crisp, crumbly layer on the cake's surface. A small, vibrant sprig of fresh mint is carefully placed beside the cake slice for a touch of color. In the soft-focused background, the remainder of the whole, round cake sits on a simple white cake stand, showcasing its complete form and the full streusel topping. The setting is a modern bistro: the plate is centered on a light wooden table surface, with a folded natural cotton napkin positioned to the side. Natural, soft, even lighting illuminates the scene, creating gentle shadows and emphasizing the cake's inviting textures and warm colors. The presentation is clean, professional, and inviting, with moderate negative space to focus on the dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Light brown sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "80g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Apples, peeled, cored, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "50g"
+      },
+      {
+        "name": "Plain flour (for streusel)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Light brown sugar (for streusel)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter, cold, cubed",
+        "quantity": "30g"
+      },
+      {
+        "name": "Ground cinnamon (for streusel)",
+        "quantity": "1g"
+      },
+      {
+        "name": "Unsalted butter (for glaze)",
+        "quantity": "40g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "80g"
+      },
+      {
+        "name": "Milk (for glaze)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt (for glaze)",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180\b0C. Grease and flour a 20cm round cake tin.",
+      "For the streusel: Combine 50g rolled oats, 30g plain flour, 30g light brown sugar, and 1g ground cinnamon in a bowl. Cut in 30g cold unsalted butter until crumbly. Refrigerate.",
+      "For the cake: Cream 80g softened unsalted butter and 100g light brown sugar until light and fluffy. Beat in 2 large eggs, one at a time. Add 5ml vanilla extract.",
+      "In a separate bowl, whisk 150g plain flour, 5g baking powder, 2g ground cinnamon, and a pinch of salt.",
+      "Gradually add dry ingredients to wet ingredients, alternating with 60ml milk. Mix until just combined. Do not overmix.",
+      "Fold in 2 diced apples.",
+      "Pour batter into prepared tin. Sprinkle streusel evenly over the top.",
+      "Bake for 35-40 minutes, or until a skewer inserted into the center comes out clean.",
+      "Cool in the tin for 10 minutes, then invert onto a wire rack to cool completely.",
+      "For the brown butter glaze: Melt 40g unsalted butter in a small saucepan over medium heat. Cook until butter turns golden brown and smells nutty. Remove from heat.",
+      "Whisk in 80g icing sugar, 15ml milk, and a pinch of salt until smooth.",
+      "Drizzle glaze over the cooled cake."
+    ],
+    "notes": [
+      "Do not overmix cake batter to ensure a tender crumb.",
+      "Adjust baking time based on oven variations."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 51.4,
+      "calories": 777,
+      "cholesterol_mg": 176,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 11.1,
+      "saturated_fat_g": 20.7,
+      "sodium_mg": 285,
+      "total_carbs_g": 107.2,
+      "total_fat_g": 35.3,
+      "total_sugars_g": 60.7,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19,
+      "calories": 287,
+      "cholesterol_mg": 65,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 4.1,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 106,
+      "total_carbs_g": 39.7,
+      "total_fat_g": 13,
+      "total_sugars_g": 22.5,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 15,
+      "protein": 22,
+      "saturated_fat": 104,
+      "sodium": 12,
+      "total_carbs": 39,
+      "total_fat": 45
+    },
+    "serving_size_g": 270,
+    "total_recipe_weight_g": 1081
+  },
+  {
+    "recipe_name": "Caramelized Apple Upside-Down Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_apple_upside-down_cake_20250902_092526_b5eea1f9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T09:25:26.703658000Z",
+    "selected_ingredients": [
+      "apple",
+      "flour",
+      "egg",
+      "brown sugar",
+      "butter"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single slice of Caramelized Apple Upside-Down Cake is presented on a clean white porcelain plate. The top of the cake slice features a golden-brown, glossy layer of caramelized apple wedges, arranged in an elegant, overlapping pattern. The apples are translucent and shimmering with amber caramel. Beneath the apples, the cake layer is a light golden hue, exhibiting a fine, moist crumb. A small, glistening pool of amber caramel collects at the base of the cake slice on the plate. The slice is cleanly cut, showing the distinct layers. The plating is professional yet approachable, with moderate negative space. The full cake, still on its cake stand, is visible in the softly blurred background. The setting is a modern bistro, featuring a simple wooden table surface and a folded cotton napkin beside the plate. Natural, even lighting highlights the cake's textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Light brown sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Honeycrisp apples",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Lightly grease a 20 cm round cake pan.",
+      "For the caramel layer: Melt 50 g butter and 100 g light brown sugar in a small saucepan over medium heat. Stir until sugar dissolves and mixture bubbles. Pour into the prepared cake pan, spreading evenly.",
+      "Prepare apples: Peel, core, and slice apples into 5 mm thick wedges. Arrange apple slices decoratively over the caramel layer in the pan.",
+      "For the cake batter: In a medium bowl, whisk together flour, baking powder, and salt. Set aside.",
+      "In a large bowl, cream remaining 50 g butter and 50 g granulated sugar with an electric mixer until light and fluffy.",
+      "Beat in eggs one at a time, incorporating each fully before adding the next. Mix in vanilla extract.",
+      "Gradually add dry ingredients to wet ingredients, alternating with milk, beginning and ending with dry ingredients. Mix until just combined. Do not overmix.",
+      "Pour batter evenly over the apples in the cake pan. Gently smooth the top.",
+      "Bake for 35-40 minutes, or until a wooden skewer inserted into the center of the cake comes out clean.",
+      "Cool cake in the pan on a wire rack for 10 minutes. Place a serving plate upside down over the cake pan. Carefully invert the cake onto the plate. Remove the pan. Serve warm or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 48.6,
+      "calories": 606,
+      "cholesterol_mg": 149,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 8,
+      "saturated_fat_g": 14.1,
+      "sodium_mg": 380,
+      "total_carbs_g": 91.7,
+      "total_fat_g": 23.9,
+      "total_sugars_g": 59.3,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19.7,
+      "calories": 246,
+      "cholesterol_mg": 60,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 3.2,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 154,
+      "total_carbs_g": 37.2,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 24,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.5,
+      "dietary_fiber": 11.4,
+      "protein": 15.9,
+      "saturated_fat": 70.3,
+      "sodium": 16.5,
+      "total_carbs": 33.3,
+      "total_fat": 30.7
+    },
+    "serving_size_g": 246.5,
+    "total_recipe_weight_g": 986
+  },
+  {
+    "recipe_name": "Hearty Beef and Vegetable Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_vegetable_soup_20250902_091535_a455e1b0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T09:15:35.913679000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of hearty beef and vegetable soup is presented in a deep, rustic off-white ceramic bowl with an irregular rim. The soup is a rich, savory brown, filled with substantial chunks of seared beef chuck (2.5 cm cubes) and tender, vibrantly colored vegetables. Visually prominent are 1 cm rounds of carrots, 1 cm pieces of celery, and 2 cm potato cubes, all retaining their distinct forms and textures. A scattering of fresh, finely chopped parsley provides a bright green contrast on top. The bowl sits on a warm, well-worn wooden dining table, accompanied by a simple silver soup spoon and a casually draped linen napkin. Soft, warm kitchen lighting illuminates the scene, highlighting the comforting textures and subtle steam. The background hints at a homely, lived-in kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Served with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck, diced into 2.5 cm cubes",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrots, peeled and sliced into 1 cm rounds",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks, sliced into 1 cm pieces",
+        "quantity": "2"
+      },
+      {
+        "name": "Potatoes, peeled and diced into 2 cm cubes",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove beef and set aside.",
+      "Add onion, carrots, and celery to the pot. Sauté until softened, about 5-7 minutes.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Return beef to the pot. Add beef broth, diced tomatoes, bay leaf, and dried thyme.",
+      "Bring to a boil, then reduce heat to low. Cover and simmer for 1.5 hours, or until beef is tender.",
+      "Add diced potatoes to the pot. Continue to simmer, uncovered, for another 20-25 minutes, or until potatoes are tender.",
+      "Remove bay leaf. Taste and adjust seasoning as needed.",
+      "Ladle soup into bowls. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For a richer flavor, brown the beef thoroughly before adding liquids. Adjust vegetable cooking time based on desired tenderness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 562,
+      "cholesterol_mg": 114,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 37,
+      "saturated_fat_g": 11.9,
+      "sodium_mg": 1805,
+      "total_carbs_g": 25.5,
+      "total_fat_g": 35.4,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 5.6,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 273,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 16,
+      "protein": 74,
+      "saturated_fat": 60,
+      "sodium": 78,
+      "total_carbs": 9,
+      "total_fat": 45
+    },
+    "serving_size_g": 662,
+    "total_recipe_weight_g": 2646
+  },
+  {
+    "recipe_name": "Chicken Roulade, Chipotle Potato Puree, Mole Verde Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_roulade%2C_chipotle_potato_puree%2C_mole_verde_jus_20250902_090947_add91f79.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T09:09:48.226853000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Мексиканская cuisine",
+    "visual_description": "The dish is presented on a minimalist, round bone china plate with a matte white finish. Abundant negative space surrounds an organic, flowing composition. Two thick, seared chicken roulade medallions, revealing a vibrant poblano-cheese filling in cross-section, are placed off-center. Adjacent, a graceful swoosh of creamy, pale orange chipotle potato puree provides smooth contrast. A rich, emerald green mole verde jus is artfully drizzled around, creating abstract patterns. A single, delicate, golden-brown crispy potato tuile stands upright, adding architectural texture. Tiny sprigs of fresh micro cilantro are precisely placed atop the chicken, offering a final vibrant touch. The setting features a premium grey-veined marble surface, a pristine white linen napkin folded into a precise triangle, and elegant, modern flatware. Dramatic professional lighting highlights textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican Modern",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a small, artisanal tortilla on the side, if desired.",
+      "Offer a chilled mezcal or tequila cocktail as an aperitif."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "poblano pepper, roasted, peeled, deseeded, finely diced",
+        "quantity": "100g"
+      },
+      {
+        "name": "Oaxaca cheese, shredded",
+        "quantity": "50g"
+      },
+      {
+        "name": "fresh cilantro, finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "5g"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "for searing"
+      },
+      {
+        "name": "Yukon Gold potatoes, peeled, cut into 2cm cubes",
+        "quantity": "500g"
+      },
+      {
+        "name": "whole milk",
+        "quantity": "120ml"
+      },
+      {
+        "name": "unsalted butter, cold, cubed",
+        "quantity": "60g"
+      },
+      {
+        "name": "chipotle peppers in adobo, finely minced",
+        "quantity": "1-2"
+      },
+      {
+        "name": "tomatillos, husked, rinsed",
+        "quantity": "200g"
+      },
+      {
+        "name": "white onion, roughly chopped",
+        "quantity": "100g"
+      },
+      {
+        "name": "garlic, peeled",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "pumpkin seeds (pepitas)",
+        "quantity": "50g"
+      },
+      {
+        "name": "sesame seeds",
+        "quantity": "50g"
+      },
+      {
+        "name": "fresh cilantro",
+        "quantity": "10g"
+      },
+      {
+        "name": "fresh parsley",
+        "quantity": "10g"
+      },
+      {
+        "name": "epazote (optional)",
+        "quantity": "5g"
+      },
+      {
+        "name": "green serrano peppers, deseeded",
+        "quantity": "2"
+      },
+      {
+        "name": "high-quality chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "20g"
+      },
+      {
+        "name": "large potato, very thinly sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "Micro cilantro",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Butterfly each chicken breast. Pound gently to an even 0.5cm thickness. Season lightly with salt and pepper.",
+      "In a small bowl, combine diced poblano, Oaxaca cheese, chopped cilantro, minced garlic, and smoked paprika. Mix well.",
+      "Divide the filling evenly among the chicken breasts. Spread filling over one half of each breast, leaving a small border.",
+      "Roll each chicken breast tightly into a cylinder. Secure with kitchen twine.",
+      "Heat olive oil in an oven-safe pan over medium-high heat. Sear roulades on all sides until golden brown.",
+      "Transfer pan to preheated oven. Roast for 15-20 minutes, or until internal temperature reaches 75°C (167°F).",
+      "Remove from oven. Rest roulades for 10 minutes before slicing.",
+      "Place potato cubes in a pot. Cover with cold salted water. Bring to a boil. Cook until very tender, about 15-20 minutes.",
+      "Drain potatoes thoroughly. Return to the hot pot over low heat for 1 minute to dry excess moisture.",
+      "Pass potatoes through a ricer or fine-mesh sieve into a clean bowl for a very smooth texture.",
+      "Gently heat milk and minced chipotle in a small saucepan. Do not boil.",
+      "Gradually whisk warm milk mixture into riced potatoes. Add cold butter cubes, whisking until fully incorporated and smooth.",
+      "Season with salt to taste. Keep warm.",
+      "Roast tomatillos, white onion, and garlic on a baking sheet at 200°C for 15-20 minutes until softened and lightly charred.",
+      "In a dry pan, toast pumpkin seeds and sesame seeds over medium heat until fragrant and lightly browned.",
+      "Combine roasted vegetables, toasted seeds, cilantro, parsley, epazote (if using), and serrano peppers in a blender. Add 100ml chicken stock. Blend until very smooth.",
+      "Strain the mixture through a fine-mesh sieve, pressing firmly to extract all liquid. Discard solids.",
+      "In a small saucepan, bring the strained liquid to a gentle simmer. Reduce heat to low.",
+      "Whisk in remaining chicken stock. Continue to simmer gently, reducing until the jus coats the back of a spoon lightly.",
+      "Whisk in butter until emulsified. Season with salt to taste. Keep warm.",
+      "Preheat oven to 160°C. Line a baking sheet with parchment paper.",
+      "Arrange very thinly sliced potato rounds in a single layer on the parchment paper.",
+      "Bake for 10-15 minutes, or until crisp and golden brown. Watch carefully to prevent burning.",
+      "Remove from oven. Season lightly with salt. Let cool completely.",
+      "Remove twine from chicken roulades. Slice each roulade into two thick medallions.",
+      "Spoon a swoosh of chipotle potato puree onto each plate.",
+      "Carefully place two chicken roulade medallions next to the puree.",
+      "Drizzle the mole verde jus artfully around the chicken and puree.",
+      "Place a crispy potato tuile delicately on or near the chicken.",
+      "Garnish with a few micro cilantro sprigs. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to 75°C (167°F) for safety.",
+      "The key to the mole verde jus is straining for a silky smooth, refined texture.",
+      "For the potato puree, passing through a ricer or fine sieve is crucial for Michelin-level smoothness."
+    ],
+    "traditional_techniques": [
+      "Roasting",
+      "Toasting Seeds",
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 870,
+      "cholesterol_mg": 216,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 75.2,
+      "saturated_fat_g": 17,
+      "sodium_mg": 422,
+      "total_carbs_g": 44.4,
+      "total_fat_g": 44.7,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 12.5,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 70,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.1,
+      "dietary_fiber": 31.1,
+      "protein": 150.5,
+      "saturated_fat": 85.2,
+      "sodium": 18.4,
+      "total_carbs": 16.1,
+      "total_fat": 57.3
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2400
+  },
+  {
+    "recipe_name": "Hearty Beef and Pineapple Stew with Chili and Dark Chocolate",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_pineapple_stew_with_chili_and_dark_chocolate_20250902_090547_1069d939.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T09:05:47.540915000Z",
+    "selected_ingredients": [
+      "beef",
+      "chili",
+      "pineapple",
+      "dark chocolate",
+      "salmon",
+      "red wine",
+      "mint",
+      "rice",
+      "fennel",
+      "peppermint"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is presented on an earthy, rustic ceramic bowl with a slightly irregular rim, placed on a well-used wooden dining table. The hearty beef and pineapple stew fills the bowl, showcasing generous chunks of dark-brown braised beef, 3cm cubes, interspersed with golden pineapple pieces, 2cm chunks. The rich, dark-red sauce is thick and glossy, clinging to the ingredients. Visible flecks of red chili and crushed fennel seeds add texture and color. A generous sprinkle of bright green, roughly chopped fresh mint leaves provides a vibrant contrast on top. Next to the stew, a smaller matching ceramic bowl holds a modest portion of fluffy white long-grain rice. The table features simple, heavy-gauge silverware, a folded linen napkin, and a warm, inviting glow from kitchen lighting. The overall presentation is comforting and unpretentious, reflecting a home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "Rustic",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "2"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Canned chopped tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fennel seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "White long-grain rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Water",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Peppermint sprig",
+        "quantity": "1 small"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot over medium-high heat. Sear beef in batches until browned on all sides. Remove beef and set aside.",
+      "Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic, deseeded and finely chopped red chili, and crushed fennel seeds. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes.",
+      "Deglaze the pot with red wine, scraping up any browned bits. Bring to a simmer and cook for 2 minutes.",
+      "Return seared beef to the pot. Add canned chopped tomatoes and beef stock. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer for 1.5 to 2 hours, or until beef is very tender.",
+      "Add 2cm chunks of cored pineapple and finely chopped dark chocolate to the stew. Stir until chocolate is melted and incorporated.",
+      "Simmer uncovered for another 15-20 minutes, allowing the sauce to thicken slightly and pineapple to soften.",
+      "While stew simmers, prepare rice. Rinse rice under cold water. Combine rice, water, and 1 small sprig of peppermint in a saucepan. Bring to a boil, then reduce heat to low, cover, and simmer for 15 minutes. Remove from heat. Remove peppermint sprig. Let stand, covered, for 5 minutes. Fluff with a fork.",
+      "Taste stew and adjust seasoning.",
+      "Serve stew hot over fluffed rice. Garnish generously with roughly chopped fresh mint."
+    ],
+    "notes": [
+      "For extra heat, do not deseed the chilies.",
+      "Leftover stew tastes even better the next day.",
+      "Adjust chocolate quantity to your preference; it adds depth, not sweetness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.13,
+      "calories": 832.3,
+      "cholesterol_mg": 132.23,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 53.13,
+      "saturated_fat_g": 7.27,
+      "sodium_mg": 1325.31,
+      "total_carbs_g": 96,
+      "total_fat_g": 22.58,
+      "total_sugars_g": 21.45,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.12,
+      "calories": 91.3,
+      "cholesterol_mg": 14.5,
+      "dietary_fiber_g": 0.75,
+      "protein_g": 5.83,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 145.36,
+      "total_carbs_g": 10.53,
+      "total_fat_g": 2.48,
+      "total_sugars_g": 2.35,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44.1,
+      "dietary_fiber": 24.3,
+      "protein": 106.3,
+      "saturated_fat": 36.4,
+      "sodium": 57.6,
+      "total_carbs": 34.9,
+      "total_fat": 28.9
+    },
+    "serving_size_g": 911.75,
+    "total_recipe_weight_g": 3647
+  }
+]

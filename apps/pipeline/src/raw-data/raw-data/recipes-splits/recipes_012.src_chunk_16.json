@@ -1,0 +1,611 @@
+[
+  {
+    "recipe_name": "Hearty Pork and Potato Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_pork_and_potato_skillet_20250702_201503_d89cfcee.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:15:04.136787000Z",
+    "selected_ingredients": [
+      "pork",
+      "pasta",
+      "rice",
+      "potato",
+      "garlic",
+      "ketchup"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hearty Pork and Potato Skillet fills an everyday, slightly chipped ceramic bowl, resting on a well-worn wooden dining table. Tender, browned pork chunks (cubes, not sliced) are nestled among soft, cubed potatoes and plump elbow macaroni, all coated in a rich, reddish-brown, savory ketchup-based sauce. The sauce clings naturally to the ingredients, showcasing its comforting, hearty texture. Colors are earthy and warm: deep brown pork, creamy white potatoes, golden pasta, and the reddish hue of the sauce. The components are arranged casually, overlapping slightly, as if served directly from the cooking pot at a family meal. The scene is illuminated by warm, inviting kitchen lighting, casting soft shadows. A simple, folded cloth napkin and a standard fork are casually placed beside the bowl. The background is a natural, lived-in kitchen environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American Comfort",
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "600 grams, cut into 2-3 cm cubes"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium (about 500 grams), peeled and cut into 2 cm cubes"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken or beef broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "250 ml (plus more as needed)"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 teaspoon (or to taste)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 teaspoon (or to taste)"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon (optional)"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1 (optional)"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a large, deep skillet or Dutch oven over medium-high heat.",
+      "Add pork cubes. Sear pork on all sides until deeply browned. Remove pork from skillet and set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Sauté for 5-7 minutes until softened and translucent.",
+      "Add minced garlic and dried oregano (if using). Sauté for 1 minute until fragrant.",
+      "Stir in ketchup, broth, water, salt, black pepper, and bay leaf (if using). Bring the mixture to a simmer, scraping up any browned bits from the bottom of the skillet.",
+      "Return seared pork cubes and diced potatoes to the skillet. Stir to combine.",
+      "Cover the skillet. Reduce heat to low and simmer for 25-30 minutes, or until pork is tender and potatoes are cooked through. Pork should reach an internal temperature of 75°C (167°F).",
+      "Stir in elbow macaroni. Ensure pasta is mostly submerged in liquid. Add a little more water if necessary.",
+      "Continue to simmer, uncovered, for 10-12 minutes, stirring occasionally, until pasta is al dente and sauce has thickened to your desired consistency.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper as needed.",
+      "Ladle immediately into bowls and serve."
+    ]
+  },
+  {
+    "recipe_name": "Pollo al Carbon con Arroz Rojo y Pimientos Asados",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_al_carbon_con_arroz_rojo_y_pimientos_asados_20250702_201120_8d65478e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:11:20.602718000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "onion",
+      "garlic",
+      "cheese",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "Mexican cuisine",
+    "visual_description": "A vibrant Pollo al Carbon dish rests on a clean white porcelain dinner plate, centered on a simple wooden table. A generous mound of fluffy, red-orange Mexican rice occupies one side. Alongside, golden-brown, seared chicken pieces, cut into substantial 2 cm thick strips, are artfully arranged, showcasing their slightly charred edges. Scattered around the chicken are tender, slightly caramelized strips of roasted red and yellow bell peppers and red onion, adding bursts of color. The dish is finished with a sprinkle of bright white crumbled queso fresco over the chicken and vegetables, and a scattering of fresh, vibrant green cilantro leaves. A bright green lime wedge sits beside the chicken. The setting features a natural, even lighting, with a neatly folded cotton napkin beside the plate. The background is a soft, casual restaurant blur, highlighting the food as the main subject. The overall presentation is clean, professional, and inviting.",
+    "number_of_servings": 2,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for wrapping the chicken and rice.",
+      "Offer a small side dish of fresh salsa roja or pico de gallo.",
+      "Provide extra lime wedges for squeezing over the dish."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Queso fresco",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Slice into 2 cm thick strips. In a bowl, combine 15 ml olive oil, 2 g chili powder, 1.5 g cumin, 1.5 g smoked paprika, 1 g oregano, salt, and pepper. Add chicken. Toss to coat. Marinate 20 minutes.",
+      "Preheat oven to 200°C. Slice red and yellow bell peppers into 2 cm wide strips. Slice red onion into 1 cm thick wedges. Mince 1 clove garlic. In a bowl, toss peppers and onion with 10 ml olive oil, salt, and pepper. Spread on a baking sheet. Roast 15-20 minutes, until tender with charred edges. Set aside.",
+      "Mince remaining garlic clove. Rinse rice under cold water until water runs clear. Heat 5 ml olive oil in a medium saucepan over medium heat. Add rice. Cook 3 minutes, stirring, until lightly toasted. Add minced garlic. Cook 1 minute more.",
+      "Stir in tomato paste, remaining chili powder, cumin, smoked paprika, and oregano. Cook 1 minute. Pour in chicken broth. Bring to a boil. Reduce heat to low. Cover. Simmer 18 minutes, or until liquid is absorbed and rice is tender. Fluff with a fork.",
+      "Heat a large skillet over medium-high heat. Add remaining 5 ml olive oil. Add marinated chicken. Sear 4-5 minutes per side, until internal temperature reaches 75°C and chicken is golden brown with some charring. Cook in batches if needed to avoid overcrowding.",
+      "Chop fresh cilantro. Crumble queso fresco. Squeeze half lime over cooked chicken. Plate a generous mound of red rice. Arrange seared chicken strips alongside. Scatter roasted bell pepper and onion strips over and around the chicken. Garnish with crumbled queso fresco, fresh cilantro, and a lime wedge."
+    ],
+    "traditional_techniques": [
+      "Marinating meat for flavor infusion (Adobado style)",
+      "Preparing Arroz Rojo (Mexican Red Rice) using the absorption method",
+      "Searing 'al carbon' style for charring and flavor development"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 832,
+      "cholesterol_mg": 147.5,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 62.4,
+      "saturated_fat_g": 7.3,
+      "sodium_mg": 361.3,
+      "total_carbs_g": 80.3,
+      "total_fat_g": 27.4,
+      "total_sugars_g": 11.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120.5,
+      "cholesterol_mg": 21.4,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 52.3,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 4,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.2,
+      "dietary_fiber": 29.5,
+      "protein": 124.9,
+      "saturated_fat": 36.6,
+      "sodium": 15.7,
+      "total_carbs": 29.2,
+      "total_fat": 35.2
+    },
+    "serving_size_g": 690.5,
+    "total_recipe_weight_g": 1381
+  },
+  {
+    "recipe_name": "Seared Salmon, Clear Tomato Essence, Smoked Tofu Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_salmon%2C_clear_tomato_essence%2C_smoked_tofu_crisp_20250702_200254_31878922.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:02:55.452971000Z",
+    "selected_ingredients": [
+      "tomato",
+      "salmon",
+      "smoked tofu"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, perfectly seared salmon block, approximately 6cm x 4cm x 2.5cm, rests slightly off-center on a pristine, oversized bone china plate. Its skin, a deep golden-brown and impeccably crisp, contrasts with the pale pink, flaky interior. Adjacent to the salmon, a small, clear pool of translucent, pale amber tomato essence shimmers, its delicate liquid texture inviting. Leaning against the salmon is an irregularly shaped, paper-thin smoked tofu crisp, its light beige hue and brittle texture providing a subtle visual counterpoint. A few precise dots of vibrant emerald-green basil oil are artfully placed around the main elements, adding a pop of color and freshness. The expansive white porcelain plate provides abundant negative space, emphasizing the minimalist and architectural composition. The scene is illuminated by dramatic professional lighting, casting soft shadows that enhance depth. The plate is set on a premium white Carrara marble surface, accompanied by a precisely folded white linen napkin and elegant modern flatware, embodying sophisticated simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin-on",
+        "quantity": "4 pieces, 180g each"
+      },
+      {
+        "name": "Ripe red tomatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Smoked tofu",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed oil)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "pinch (optional)"
+      },
+      {
+        "name": "Egg white",
+        "quantity": "1 (optional, for clarification)"
+      }
+    ],
+    "instructions": [
+      "Roughly chop tomatoes. Blend tomatoes until smooth.",
+      "Pass blended tomato through a fine-mesh sieve or cheesecloth-lined chinois to extract juice. Discard solids.",
+      "Gently heat tomato juice in a saucepan with a pinch of salt and sugar (if using). Do not boil.",
+      "Whisk 1 egg white (optional, for extra clarity) into the warm juice. Continue heating gently until solids coagulate and rise.",
+      "Carefully ladle the clear essence through a coffee filter or clean cheesecloth into a clean bowl. This process can take time.",
+      "Season the clear essence with salt and pepper. Keep warm or gently reheat before serving.",
+      "Slice smoked tofu into paper-thin sheets using a mandoline.",
+      "Arrange tofu slices in a single layer on a baking tray lined with parchment paper.",
+      "Bake at 120°C for 20-30 minutes, or until completely dry and crispy. Watch carefully to prevent burning.",
+      "Store in an airtight container.",
+      "Blanch basil leaves in boiling water for 10 seconds. Immediately transfer to an ice bath to cool.",
+      "Squeeze excess water from basil.",
+      "Blend blanched basil with neutral oil until very smooth and vibrant green.",
+      "Pass the oil through a fine-mesh sieve or coffee filter to remove solids. Discard solids.",
+      "Store in a small squeeze bottle or container.",
+      "Pat salmon fillets very dry with paper towels. Score the skin lightly if desired.",
+      "Season salmon generously with salt and pepper on both sides.",
+      "Heat olive oil in a non-stick pan over medium-high heat.",
+      "Place salmon skin-side down in the hot pan. Press gently with a spatula to ensure full skin contact.",
+      "Sear for 5-7 minutes until skin is golden brown and very crispy.",
+      "Flip salmon. Cook for another 2-4 minutes, or until desired doneness (internal temperature 50-52°C for medium-rare).",
+      "Remove salmon from pan and let rest for 2 minutes.",
+      "Place one seared salmon fillet slightly off-center on each large, clean plate.",
+      "Pour a small, clear pool of warm tomato essence next to the salmon, or artfully drizzle a few lines.",
+      "Gently lean one or two smoked tofu crisps against the salmon.",
+      "Dot the plate with small drops of vibrant basil oil around the salmon and essence.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Achieving a truly clear tomato essence requires patience and careful clarification.",
+      "Tofu crisps can be made ahead and stored. Ensure they are fully dried to remain crisp.",
+      "Precision in cooking salmon is key for optimal texture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 735.5,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 43,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 630.8,
+      "total_carbs_g": 14,
+      "total_fat_g": 56.1,
+      "total_sugars_g": 8.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 143.4,
+      "cholesterol_mg": 19.3,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 8.4,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 123,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 10.9,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 6,
+      "protein": 86,
+      "saturated_fat": 45,
+      "sodium": 27,
+      "total_carbs": 5,
+      "total_fat": 72
+    },
+    "serving_size_g": 512.9,
+    "total_recipe_weight_g": 2051.6
+  },
+  {
+    "recipe_name": "Green Papaya Salad with Fermented Chili Lime Dressing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_green_papaya_salad_with_fermented_chili_lime_dressing_20250702_200110_f7d6066e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:01:11.317124000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Thay cuisine",
+    "visual_description": "The vibrant Green Papaya Salad is presented on a matte, handcrafted ceramic plate in a natural off-white tone. Shredded green papaya forms the central mound, interspersed with julienned carrots and thinly sliced snake beans, creating a dynamic interplay of fresh textures and natural greens and oranges. Halved cherry tomatoes add pops of red throughout the salad. The fermented chili lime dressing is visibly integrated, coating the ingredients, with flecks of red chili and green herbs. A generous scattering of roasted peanuts adds an earthy, crunchy texture. Fresh mint and cilantro leaves are strategically placed as natural, unfussy garnishes. The setting is a light, natural wood surface. A small, undyed linen napkin rests beside the plate. Soft, natural daylight illuminates the scene, highlighting the ingredients' pure colors and textures against a clean, minimalist background with a subtle, blurred hint of greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with sticky rice (khao niao) on the side.",
+      "Traditionally eaten with hands, scooping with sticky rice."
+    ],
+    "hero_ingredient": "Green Papaya",
+    "ingredients": [
+      {
+        "name": "Green papaya",
+        "quantity": "1 medium (about 500g), peeled and shredded"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "1 medium, julienned"
+      },
+      {
+        "name": "Snake beans",
+        "quantity": "100g, thinly sliced (or green beans)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "150g, halved"
+      },
+      {
+        "name": "Roasted peanuts",
+        "quantity": "50g, unsalted, crushed"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Bird's eye chilies",
+        "quantity": "2-4, or to taste"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "30g, finely chopped"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vegan fermented fish sauce",
+        "quantity": "45ml (or fermented soy sauce)"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Fresh cilantro leaves",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Prepare vegetables. Peel and shred green papaya and julienne carrots. Slice snake beans thinly. Halve cherry tomatoes.",
+      "Make dressing paste. In a large mortar and pestle, pound garlic cloves and bird's eye chilies until coarse. Add chopped palm sugar. Pound until smooth paste forms.",
+      "Add liquids to paste. Pour in fresh lime juice and vegan fermented fish sauce. Stir to combine.",
+      "Combine salad ingredients. Add sliced snake beans and halved cherry tomatoes to the mortar. Lightly bruise them with the pestle. Add shredded papaya and julienned carrots to the mortar.",
+      "Toss the salad. Pour the dressing over the vegetables. Gently toss and bruise ingredients in the mortar using the pestle and a spoon, ensuring everything is coated.",
+      "Serve immediately. Transfer salad to serving plates. Garnish with crushed roasted peanuts, fresh mint leaves, and fresh cilantro leaves."
+    ],
+    "notes": [
+      "Use firm, unripe green papaya for the best texture. Avoid ripe papaya.",
+      "Adjust chili quantity to your preferred spice level.",
+      "For zero-waste, compost papaya peels or use them to infuse water for a mild, refreshing drink."
+    ],
+    "traditional_techniques": [
+      "Pounding ingredients in a mortar and pestle (krok)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.3,
+      "calories": 186.2,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5,
+      "protein_g": 5.4,
+      "saturated_fat_g": 1,
+      "sodium_mg": 697.6,
+      "total_carbs_g": 30.7,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 20.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.8,
+      "calories": 72.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 2.1,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 270.9,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 18,
+      "protein": 11,
+      "saturated_fat": 5,
+      "sodium": 30,
+      "total_carbs": 11,
+      "total_fat": 9
+    },
+    "serving_size_g": 257.5,
+    "total_recipe_weight_g": 1030
+  },
+  {
+    "recipe_name": "Candied Salmon & Apple-Almond Crumble Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_candied_salmon_%26_apple-almond_crumble_bites_20250702_200056_66529de1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:00:56.868789000Z",
+    "selected_ingredients": [
+      {
+        "name": "fish"
+      },
+      {
+        "name": "lemon"
+      },
+      {
+        "name": "sugar"
+      },
+      {
+        "name": "almond"
+      },
+      {
+        "name": "apple"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "The dish presents as an array of elegant, bite-sized square portions arranged on a clean, white porcelain rectangular platter. Each square bite, approximately 4.5 cm by 4.5 cm, showcases a golden-brown, crisp almond crumble topping with visible coarse crumbs. Beneath the crumble, a layer of lightly cooked, diced apple, retaining its pale, slightly translucent appearance, peeks through. Nestled within the apple and crumble are small, tender cubes of candied salmon, their light orange hue providing a subtle color contrast. The overall palette is warm and inviting, dominated by golden browns, pale yellows, and soft oranges. The presentation is organized yet inviting, with moderate negative space on the platter. A simple cotton napkin is folded beside the platter on a light wooden table surface, under natural, even lighting, evoking a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Candied Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillet, skinless, boneless",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Ground almonds (almond flour)",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Cold unsalted butter, diced",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Firm apple (e.g., Honeycrisp), peeled, cored, diced small",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1/2 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 120°C.",
+      "Cut salmon into 1 cm small cubes.",
+      "In a small saucepan, combine 50g granulated sugar, 50ml water, and 15ml lemon juice. Bring to a simmer, stirring until sugar dissolves.",
+      "Add salmon cubes to the syrup. Simmer gently for 5 minutes.",
+      "Carefully remove salmon cubes from syrup using a slotted spoon. Place them in a single layer on a parchment-lined baking tray.",
+      "Bake for 20-25 minutes, or until salmon is firm and slightly translucent. Let cool completely.",
+      "In a bowl, combine flour, ground almonds, brown sugar, and a pinch of salt.",
+      "Add diced cold butter. Use fingertips to rub butter into dry ingredients until mixture resembles coarse crumbs. Do not overmix.",
+      "Chill crumble mixture for 15 minutes.",
+      "In a small saucepan, combine diced apple, 20g granulated sugar, and lemon zest.",
+      "Cook over medium-low heat for 5-7 minutes, stirring occasionally, until apple softens slightly but retains its shape. Let cool.",
+      "Preheat oven to 180°C.",
+      "Lightly grease and flour an 18x18 cm square baking dish.",
+      "Spread cooled apple filling evenly on the bottom of the dish.",
+      "Evenly scatter the candied salmon pieces over the apple layer.",
+      "Sprinkle the almond crumble mixture generously over the salmon and apple layers.",
+      "Bake for 25-30 minutes, or until the crumble topping is golden brown and crisp.",
+      "Let cool in the dish for 15 minutes before cutting into 16 small square bites."
+    ]
+  }
+]

@@ -1,0 +1,650 @@
+[
+  {
+    "recipe_name": "Creamy Tomato and Mozzarella Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_and_mozzarella_chicken_pasta_20250626_092245_7461b23c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:22:46.244035000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "pasta",
+      "mozzarella",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Creamy Tomato and Mozzarella Chicken Pasta is presented on a round, clean white porcelain dinner plate. Penne pasta, cooked al dente, is gently mounded and tossed with a vibrant, creamy tomato sauce. Succulent 3 cm pan-seared chicken breast chunks are nestled within and around the pasta, their golden-brown crust contrasting with the rich sauce. Melted, glistening mozzarella cheese strands are interwoven throughout the dish. Diced onion and minced garlic are subtly visible within the sauce. The dish is garnished with fresh, vibrant green basil leaves, providing a pop of color. The plate rests on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting illuminates the dish, highlighting its textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread for dipping in the sauce.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Fresh mozzarella cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Cook penne pasta according to package directions until al dente. Drain, reserve 120 ml pasta water. Set aside.",
+      "Cut chicken breasts into 3 cm chunks. Season chicken generously with salt and black pepper.",
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat. Add chicken chunks. Sear chicken for 4-5 minutes until golden brown on all sides and cooked through. Internal temperature must reach 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Sauté for 3-4 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in canned diced tomatoes and heavy cream. Bring to a gentle simmer. Cook for 5-7 minutes, stirring occasionally, until sauce slightly thickens.",
+      "Return cooked chicken to the skillet with the sauce. Add cooked pasta. Toss to combine. If sauce is too thick, add reserved pasta water, 30 ml at a time, until desired consistency.",
+      "Tear fresh mozzarella into small pieces. Stir mozzarella into the pasta mixture until melted and creamy. Taste and adjust seasoning.",
+      "Serve immediately. Garnish with fresh basil leaves and grated Parmesan cheese."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "The reserved pasta water helps emulsify the sauce and adjust its consistency."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Developing a soffritto base",
+      "Cooking pasta al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1092,
+      "cholesterol_mg": 248,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 78.1,
+      "saturated_fat_g": 24.5,
+      "sodium_mg": 675,
+      "total_carbs_g": 86.5,
+      "total_fat_g": 46.3,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 177.7,
+      "cholesterol_mg": 40.3,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 12.7,
+      "saturated_fat_g": 4,
+      "sodium_mg": 109.9,
+      "total_carbs_g": 14.1,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 83,
+      "dietary_fiber": 19,
+      "protein": 156,
+      "saturated_fat": 123,
+      "sodium": 29,
+      "total_carbs": 31,
+      "total_fat": 59
+    },
+    "serving_size_g": 614.5,
+    "total_recipe_weight_g": 2458
+  },
+  {
+    "recipe_name": "Mediterranean Herb-Roasted Chicken with Crispy Potatoes and Asparagus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_herb-roasted_chicken_with_crispy_potatoes_and_asparagus_20250626_092118_77ec8200.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:21:18.780665000Z",
+    "selected_ingredients": [
+      "chicken",
+      "asparagus",
+      "garlic",
+      "tomato",
+      "onion",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Mediterranean Herb-Roasted Chicken is presented on a clean, round white porcelain dinner plate. A golden-brown, crispy-skinned roasted chicken thigh is the centerpiece, positioned slightly off-center. Around the chicken, a rustic yet organized arrangement of crispy golden potato wedges, vibrant green asparagus spears, and glistening red blistered cherry tomatoes is artfully placed. Thick wedges of roasted red onion are interspersed, adding depth. All ingredients retain their distinct shapes from being roasted: whole chicken thigh, potato wedges, whole asparagus spears, whole tomatoes, and thick onion wedges. A light drizzle of pan juices or olive oil coats the elements. The dish is garnished simply with a few fresh sprigs of rosemary and thyme, and a bright yellow lemon wedge rests beside the chicken. The plate sits on a simple wooden table surface, with a folded cotton napkin and standard flatware positioned beside it. Natural, even lighting highlights the textures and colors, creating an inviting, professional yet approachable casual dining scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "Baby potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6-8, smashed"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium, cut into thick wedges"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs, roughly chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "2 sprigs, roughly chopped"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lemon wedges",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F). Line a large baking tray with parchment paper.",
+      "Wash and halve or quarter baby potatoes into uniform wedges. In a large bowl, toss potatoes with 30ml olive oil, half the smashed garlic, chopped rosemary, salt, and pepper. Spread potatoes in a single layer on the prepared baking tray.",
+      "Roast potatoes for 20 minutes.",
+      "While potatoes roast, pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "After 20 minutes, remove tray from oven. Push potatoes to one side. Place chicken thighs, skin-side up, on the empty side of the tray. Return to oven and roast for another 20 minutes.",
+      "Trim woody ends from asparagus spears. In the same bowl, toss asparagus, cherry tomatoes, red onion wedges, remaining smashed garlic, 30ml olive oil, chopped thyme, salt, and pepper.",
+      "Remove tray from oven again. Arrange seasoned asparagus, tomatoes, and onion around the chicken and potatoes. Ensure chicken internal temperature reaches 75°C (167°F).",
+      "Return tray to oven and roast for a final 15-20 minutes, or until chicken skin is crispy, vegetables are tender-crisp, and potatoes are golden.",
+      "Remove tray from oven. Let chicken rest on the tray for 5 minutes before serving.",
+      "Serve immediately with fresh lemon wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 825.2,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 47.5,
+      "saturated_fat_g": 10.9,
+      "sodium_mg": 160.2,
+      "total_carbs_g": 54.5,
+      "total_fat_g": 48.7,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.8,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 25.8,
+      "total_carbs_g": 8.8,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 28,
+      "protein": 94.9,
+      "saturated_fat": 54.5,
+      "sodium": 7,
+      "total_carbs": 19.8,
+      "total_fat": 62.4
+    },
+    "serving_size_g": 621,
+    "total_recipe_weight_g": 2485
+  },
+  {
+    "recipe_name": "Korean Gochujang Glazed Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_korean_gochujang_glazed_chicken_20250626_092024_2457e99f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:20:25.023015000Z",
+    "selected_ingredients": [
+      "chicken",
+      "hot sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Korean Gochujang Glazed Chicken is presented on a clean, round white porcelain plate. Thick chunks of boneless chicken thigh, deeply caramelized with a glossy, vibrant red-orange gochujang glaze, are artfully arranged. The chicken exhibits subtle charring from searing. Bright green roasted broccoli florets and vivid red bell pepper strips add contrasting color and texture, tender-crisp. The dish is garnished with toasted white sesame seeds and finely sliced green onion. The composition is balanced with appropriate negative space. The plate rests on a simple light wooden table. A ceramic rice bowl with fluffy white rice sits beside it, accompanied by elegant chopsticks and a folded cotton napkin. Natural, even light illuminates the scene, with a soft, blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed white rice",
+      "Accompany with various banchan (small side dishes) like kimchi or pickled radish"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red bell pepper, cut into strips",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Green onions, thinly sliced",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White rice",
+        "quantity": "240 g (uncooked)"
+      }
+    ],
+    "instructions": [
+      "Cook white rice according to package directions. Keep warm.",
+      "Cut chicken thighs into 3-4 cm thick chunks. Pat dry with paper towels.",
+      "In a medium bowl, combine gochujang, soy sauce, honey, rice vinegar, sesame oil, minced garlic, and grated ginger. Whisk well to create the glaze.",
+      "Add chicken chunks to 2/3 of the glaze. Toss to coat thoroughly. Marinate chicken for at least 30 minutes at room temperature, or up to 2 hours in the refrigerator.",
+      "Preheat oven to 200°C (390°F).",
+      "Toss broccoli florets and red bell pepper strips with 15 ml vegetable oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast vegetables for 15-20 minutes, or until tender-crisp and slightly charred.",
+      "Heat 15 ml vegetable oil in a large oven-safe skillet over medium-high heat.",
+      "Sear marinated chicken chunks in a single layer for 3-4 minutes per side, until browned. Do not overcrowd the pan; cook in batches if necessary.",
+      "Transfer skillet to the preheated oven. Bake for 10-12 minutes, or until internal temperature of chicken reaches 75°C (167°F).",
+      "Remove chicken from oven. Add remaining 1/3 of the glaze to the skillet. Toss chicken to coat evenly in the hot glaze.",
+      "Serve chicken and roasted vegetables immediately with warm white rice.",
+      "Garnish with toasted sesame seeds and thinly sliced green onions."
+    ],
+    "notes": [
+      "Adjust the amount of gochujang to control the spice level.",
+      "For extra richness, use bone-in, skin-on chicken thighs and adjust cooking time."
+    ],
+    "traditional_techniques": [
+      "Marinating",
+      "Glazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 10.9,
+      "calories": 627,
+      "cholesterol_mg": 195,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 38.3,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 1459,
+      "total_carbs_g": 72.5,
+      "total_fat_g": 21.4,
+      "total_sugars_g": 15.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.1,
+      "calories": 123,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.5,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 287,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 16,
+      "protein": 77,
+      "saturated_fat": 24,
+      "sodium": 63,
+      "total_carbs": 26,
+      "total_fat": 27
+    },
+    "serving_size_g": 508.5,
+    "total_recipe_weight_g": 2034
+  },
+  {
+    "recipe_name": "Mediterranean Roasted Chicken with Lemon and Herbs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_roasted_chicken_with_lemon_and_herbs_20250626_091955_b9565b12.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:19:55.589208000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Roasted Chicken is presented on a clean, round white porcelain dinner plate. Two golden-brown, crispy-skinned chicken thighs are the centerpiece, nestled among vibrant roasted vegetables. Small new potatoes, halved and roasted to a tender, slightly crisp exterior, are scattered around. Burst cherry tomatoes add pops of bright red. Red onion wedges, caramelized at the edges, and whole smashed garlic cloves are interspersed. Fresh rosemary and thyme sprigs are casually placed, contributing deep green color and aromatic appeal. Thin lemon slices, slightly charred, rest atop the chicken. The dish exhibits natural textures and rich, warm colors. The plate sits on a simple light wooden table surface, accompanied by a folded cotton napkin and standard flatware, under soft, natural lighting, evoking a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "8 pieces (approx. 1.2 kg)"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a large baking tray with parchment paper.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "Halve small new potatoes. Quarter red onion into wedges. Smash garlic cloves.",
+      "Slice one lemon into thin rounds. Juice the second lemon.",
+      "On the baking tray, combine chicken, potatoes, red onion, garlic, cherry tomatoes, and Kalamata olives.",
+      "Drizzle with olive oil. Add fresh rosemary and thyme sprigs. Toss to coat evenly.",
+      "Arrange ingredients in a single layer. Distribute lemon slices over the chicken and vegetables.",
+      "Roast for 45-55 minutes, or until chicken skin is golden and crispy, and internal temperature reaches 75°C (167°F).",
+      "Stir vegetables halfway through roasting for even browning.",
+      "Remove from oven. Drizzle with fresh lemon juice. Let rest for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1046,
+      "cholesterol_mg": 282,
+      "dietary_fiber_g": 8.21,
+      "protein_g": 80.63,
+      "saturated_fat_g": 17.46,
+      "sodium_mg": 1524,
+      "total_carbs_g": 45.86,
+      "total_fat_g": 73.63,
+      "total_sugars_g": 7.72,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 1.19,
+      "protein_g": 11.7,
+      "saturated_fat_g": 2.53,
+      "sodium_mg": 221,
+      "total_carbs_g": 6.65,
+      "total_fat_g": 10.69,
+      "total_sugars_g": 1.12,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 94,
+      "dietary_fiber": 29.32,
+      "protein": 161.26,
+      "saturated_fat": 87.3,
+      "sodium": 66.24,
+      "total_carbs": 16.68,
+      "total_fat": 94.4
+    },
+    "serving_size_g": 689.05,
+    "total_recipe_weight_g": 2756.2
+  },
+  {
+    "recipe_name": "Seared King Oyster Mushroom, Smoked Potato Puree, Caramelized Onion, Parmesan Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_king_oyster_mushroom%2C_smoked_potato_puree%2C_caramelized_onion%2C_parmesan_crisp_20250626_091943_b970106d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:19:44.191641000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "potato",
+      "onion",
+      "garlic",
+      "cheese"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single seared King Oyster mushroom \"scallop\" anchors the plate, its deeply golden, caramelized surface and crosshatch scoring visible. It rests elegantly on a sweeping, fluid smear of pale, creamy smoked potato puree, curving organically across the pristine white bone china plate. Adjacent to the mushroom, an artfully placed dollop of glistening, dark caramelized onion jam provides a rich counterpoint. A delicate, golden Parmesan crisp stands upright, adding architectural height and texture. Precisely placed microgreens offer a final touch of vibrant green. Drizzles of emerald chive oil form abstract lines around the elements, enhancing visual flow. Abundant negative space highlights the dish's sophisticated simplicity. The setting features a premium grey-veined marble surface, a pristine white linen napkin folded precisely, and elegant, minimalist flatware. Dramatic professional lighting casts soft shadows, enhancing depth and texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "King Oyster Mushroom",
+    "ingredients": [
+      {
+        "name": "King Oyster Mushrooms",
+        "quantity": "8 medium (approx. 400g)"
+      },
+      {
+        "name": "Russet Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yellow Onions",
+        "quantity": "2 large (approx. 400g)"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "80g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "White Sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Balsamic Vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Smoking Wood Chips (apple or cherry)",
+        "quantity": "1 handful (optional)"
+      }
+    ],
+    "instructions": [
+      "For the Smoked Potato Puree: Peel and cut potatoes into 2cm cubes. Place in a pot of cold salted water. Bring to a boil, then reduce heat and simmer until very tender, about 15-20 minutes. Drain well. Pass hot potatoes through a fine-mesh sieve or potato ricer into a bowl. In a separate saucepan, warm heavy cream and 50g butter until butter is melted. Gradually whisk warm cream mixture into riced potatoes until smooth and creamy. Season with salt.",
+      "Smoking Option: If smoking, place hot potato puree in a heatproof bowl. Create a small foil packet with wood chips. Ignite chips with a torch until smoldering. Place packet in a larger pot or container. Place potato puree bowl next to it. Cover tightly with lid or foil. Let smoke for 10-15 minutes. Remove and stir.",
+      "For the Caramelized Onion: Peel and thinly slice onions. Mince 2 garlic cloves. In a heavy-bottomed pan, melt 30g butter with 15ml olive oil over medium-low heat. Add sliced onions. Cook slowly, stirring occasionally, for 25-30 minutes until deeply golden brown and very soft. Add minced garlic, sugar, and balsamic vinegar. Cook for another 5-7 minutes until onions are sticky and jam-like. Season with salt and pepper. Set aside.",
+      "For the Parmesan Crisps: Preheat oven to 180°C. Line a baking sheet with parchment paper. Grate Parmesan cheese finely. Spoon 4 small mounds (approx. 20g each) of grated Parmesan onto the parchment, leaving space between them. Flatten slightly. Bake for 5-7 minutes until golden brown and crispy. Let cool on the sheet, then carefully peel off.",
+      "For the Chive Oil: Blanch chives in boiling water for 10 seconds. Immediately transfer to an ice bath. Drain well and squeeze out excess water. Blend blanched chives with 45ml olive oil and 1 minced garlic clove until smooth and vibrant green. Pass through a fine-mesh sieve or cheesecloth for a clear oil. Season with salt.",
+      "For the Seared King Oyster Mushrooms: Wipe mushrooms clean. Cut each mushroom into 2-3 thick \"scallop\" rounds (approx. 2.5cm thick). Score one side of each \"scallop\" in a crosshatch pattern. Heat a large skillet over medium-high heat. Add 20g butter and 15ml olive oil. Once hot, add mushroom \"scallops,\" scored side down. Sear for 3-4 minutes until deeply golden brown and caramelized. Flip and sear on the other side for 2-3 minutes until tender. Season with salt and pepper.",
+      "To Serve: Plate a sweeping, fluid smear of smoked potato puree. Place a seared mushroom \"scallop\" on top. Add a small dollop of caramelized onion jam next to the mushroom. Lean a Parmesan crisp against the mushroom. Garnish with microgreens or chive segments. Drizzle chive oil around the plate."
+    ],
+    "notes": [
+      "Ensure all components are prepared just before plating for optimal temperature and texture.",
+      "The smoking step for the potato puree is optional but adds significant depth of flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.75,
+      "calories": 727.31,
+      "cholesterol_mg": 112.8,
+      "dietary_fiber_g": 7.79,
+      "protein_g": 16.98,
+      "saturated_fat_g": 27.05,
+      "sodium_mg": 354.5,
+      "total_carbs_g": 47.68,
+      "total_fat_g": 53.81,
+      "total_sugars_g": 12.61,
+      "trans_fat_g": 1.43
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 156,
+      "cholesterol_mg": 24.19,
+      "dietary_fiber_g": 1.67,
+      "protein_g": 3.64,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 76.03,
+      "total_carbs_g": 10.23,
+      "total_fat_g": 11.54,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.31
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.6,
+      "dietary_fiber": 27.8,
+      "protein": 34,
+      "saturated_fat": 135.3,
+      "sodium": 15.4,
+      "total_carbs": 17.3,
+      "total_fat": 69
+    },
+    "serving_size_g": 466.25,
+    "total_recipe_weight_g": 1865
+  }
+]

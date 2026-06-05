@@ -1,0 +1,681 @@
+[
+  {
+    "recipe_name": "Mushroom and Dark Chocolate Ragù with Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251029_130812_c4652446.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-29T13:08:13.155843000Z",
+    "selected_ingredients": [
+      "garlic",
+      "dark chocolate",
+      "rice",
+      "onion",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A deep white porcelain bowl holds a generous individual portion of Mushroom and Dark Chocolate Ragù with Rice. The ragù, a rich, glossy dark brown with hints of deep red from the tomatoes, is spooned over a bed of fluffy white Arborio rice. Thick chunks of seared cremini and shiitake mushrooms are prominent, along with finely diced tomatoes and caramelized onion. The sauce has a smooth yet hearty texture, clinging to the rice. A vibrant sprinkle of freshly chopped flat-leaf parsley provides a fresh green contrast. The dish is presented on a simple wooden table, accompanied by a silver fork and spoon and a beige cotton napkin. Natural, even lighting highlights the dish's inviting textures and colors, with a minimalist restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Mixed mushrooms (cremini, shiitake)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa or higher)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.1 litres"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse Arborio rice under cold water. Cook rice in 600 ml vegetable broth according to package directions until tender; set aside.",
+      "Clean mushrooms. Slice or quarter mushrooms into thick chunks. Dice the onion. Mince the garlic.",
+      "Heat olive oil in a large pot or deep pan over medium-high heat.",
+      "Add diced onion. Sauté until softened and translucent, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add mushroom chunks to the pot. Sear until browned and their liquid has evaporated, about 7-10 minutes.",
+      "If using, pour in red wine. Scrape up any browned bits from the bottom of the pan. Reduce by half.",
+      "Stir in crushed tomatoes, remaining 500 ml vegetable broth, bay leaf, and thyme sprigs. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer for 20 minutes, allowing flavors to meld.",
+      "Remove bay leaf and thyme sprigs. Stir in the finely chopped dark chocolate until completely melted and the ragù is glossy.",
+      "Season the ragù with salt and black pepper to taste.",
+      "Chop fresh parsley for garnish.",
+      "Serve a generous portion of mushroom and dark chocolate ragù over a bed of the cooked Arborio rice. Garnish with fresh parsley."
+    ],
+    "notes": [
+      "The dark chocolate adds a rich, savory depth to the ragù, rather than sweetness, enhancing the umami of the mushrooms and tomatoes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 535.25,
+      "cholesterol_mg": 0.38,
+      "dietary_fiber_g": 6.62,
+      "protein_g": 12.12,
+      "saturated_fat_g": 4.24,
+      "sodium_mg": 1196.49,
+      "total_carbs_g": 84.9,
+      "total_fat_g": 13.35,
+      "total_sugars_g": 12.32,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.36,
+      "calories": 77.93,
+      "cholesterol_mg": 0.05,
+      "dietary_fiber_g": 0.96,
+      "protein_g": 1.76,
+      "saturated_fat_g": 0.62,
+      "sodium_mg": 174.22,
+      "total_carbs_g": 12.36,
+      "total_fat_g": 1.94,
+      "total_sugars_g": 1.79,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0.13,
+      "dietary_fiber": 23.63,
+      "protein": 24.24,
+      "saturated_fat": 21.21,
+      "sodium": 51.99,
+      "total_carbs": 30.87,
+      "total_fat": 17.12
+    },
+    "serving_size_g": 686.75,
+    "total_recipe_weight_g": 2747
+  },
+  {
+    "recipe_name": "Braised Beef and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251029_105537_864228aa.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2025-10-29T10:55:38.525864000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Braised Beef and Potato Stew is presented in a clean, deep white porcelain bowl, centered on a simple light wooden table. The stew features large, irregularly shaped chunks of rich, dark brown braised beef, showcasing its tender, fall-apart texture. Interspersed are golden-yellow, rustic chunks of potato and vibrant orange, thick-cut carrot rounds, all suspended in a glistening, savory dark brown broth. A generous sprinkle of bright green chopped fresh parsley provides a vibrant contrast on top. The entire plate is visible. A simple set of silver flatware (fork and spoon) rests beside the bowl on a folded neutral-toned cotton napkin. Natural, even lighting highlights the stew's textures and colors. The background is a soft, blurred restaurant-style setting, maintaining focus on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette slices for dipping.",
+      "Accompanied by a simple green salad with vinaigrette."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh rosemary sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 4-5 cm chunks. Pat dry. Season beef generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot over medium-high heat. Sear beef chunks in batches until deeply browned on all sides. Remove beef from pot. Set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Sauté until softened, about 5-7 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Deglaze the pot with red wine. Scrape up any browned bits from the bottom. Simmer until wine reduces by half.",
+      "Return seared beef to the pot. Sprinkle plain flour over beef. Stir to coat.",
+      "Pour in beef broth. Add thyme, rosemary, and bay leaf. Bring to a simmer. Cover the pot. Reduce heat to low.",
+      "Braise for 1.5 hours, or until beef is fork-tender. Check liquid level occasionally. Add more broth if needed.",
+      "Peel potatoes and carrots. Cut potatoes into 3 cm chunks. Cut carrots into 2 cm thick rounds.",
+      "Add potatoes and carrots to the pot. Stir gently. Continue to simmer, covered, for another 20-30 minutes, or until vegetables are tender.",
+      "Remove bay leaf, thyme, and rosemary sprigs. Taste and adjust seasoning with salt and pepper.",
+      "Chop fresh parsley. Ladle stew into bowls. Garnish with chopped parsley. Serve hot."
+    ],
+    "notes": [
+      "For best flavor, braise the stew a day in advance and reheat slowly. Flavors deepen overnight.",
+      "Ensure beef is very well browned before braising for maximum flavor development."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 811,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 57.4,
+      "saturated_fat_g": 13.4,
+      "sodium_mg": 1426,
+      "total_carbs_g": 44.9,
+      "total_fat_g": 38.3,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 201,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 20,
+      "protein": 115,
+      "saturated_fat": 67,
+      "sodium": 62,
+      "total_carbs": 16,
+      "total_fat": 49
+    },
+    "serving_size_g": 710.9,
+    "total_recipe_weight_g": 2843.6
+  },
+  {
+    "recipe_name": "Pork Carnitas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251029_095357_9dead50f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2025-10-29T09:53:58.485912000Z",
+    "selected_ingredients": [
+      "pork"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A rustic, vibrant plate featuring golden-brown, crispy-edged shredded pork carnitas. The pork is piled generously in the center of a simple, earthy ceramic plate, showcasing its varied textures from tender interior to crunchy exterior. Specks of caramelized richness and dark, savory crust are visible. Beside the pork, a small stack of warm, soft corn tortillas, a vibrant red salsa in a small molcajete, and a few bright green lime wedges complete the presentation. The setting is a warm, lived-in wooden kitchen table, with a simple, slightly imperfect ceramic plate. The lighting is soft and inviting, as if from a kitchen window. The overall impression is one of authentic Mexican comfort food, ready to be enjoyed.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas.",
+      "Offer various salsas (salsa verde, pico de gallo).",
+      "Provide chopped white onion and cilantro as toppings.",
+      "Serve with lime wedges for squeezing."
+    ],
+    "hero_ingredient": "Pork shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1.5 kg, cut into 4-5 cm chunks"
+      },
+      {
+        "name": "Lard or vegetable oil",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1, halved"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1, quartered"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, smashed"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      }
+    ],
+    "instructions": [
+      "Place pork chunks in a heavy-bottomed pot or Dutch oven.",
+      "Add lard or oil, orange halves, onion quarters, smashed garlic, bay leaves, cumin, oregano, and salt.",
+      "Pour in water. Ensure liquid mostly covers pork.",
+      "Bring to a simmer over medium-high heat.",
+      "Reduce heat to low. Cover and cook for 2-3 hours. Pork should be very tender.",
+      "Remove lid. Increase heat to medium-high.",
+      "Cook, stirring occasionally, until liquid evaporates and pork begins to fry in its own fat.",
+      "Continue cooking until pork is golden brown and crispy on all sides. This takes 20-30 minutes.",
+      "Remove pork from pot. Discard orange, onion, garlic, and bay leaves.",
+      "Shred pork using two forks. Serve immediately."
+    ],
+    "notes": [
+      "Carnitas are best made in a heavy pot that retains heat well.",
+      "The long, slow cooking in fat makes the pork incredibly tender."
+    ],
+    "traditional_techniques": [
+      "Confit-style cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1352,
+      "cholesterol_mg": 316,
+      "dietary_fiber_g": 2,
+      "protein_g": 75.4,
+      "saturated_fat_g": 42,
+      "sodium_mg": 1671,
+      "total_carbs_g": 8.7,
+      "total_fat_g": 111.9,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 385,
+      "cholesterol_mg": 90,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 21.5,
+      "saturated_fat_g": 12,
+      "sodium_mg": 475,
+      "total_carbs_g": 2.5,
+      "total_fat_g": 31.8,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 105.3,
+      "dietary_fiber": 7,
+      "protein": 150.8,
+      "saturated_fat": 210,
+      "sodium": 72.7,
+      "total_carbs": 3.2,
+      "total_fat": 143.4
+    },
+    "serving_size_g": 351.5,
+    "total_recipe_weight_g": 1406
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Passion Fruit Butter Sauce and Ricotta Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251029_081314_b8e26a8b.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-29T08:13:15.589947000Z",
+    "selected_ingredients": [
+      "chicken",
+      "passion fruit",
+      "ricotta",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate. At the center, a generous mound of creamy ricotta rice forms the base, its natural off-white color speckled with vibrant green flecks of fresh chives and parsley. Resting atop the rice are thick, golden-brown pan-seared chicken breast chunks, exhibiting a perfectly caramelized crust. A glistening, pale yellow passion fruit butter sauce is artfully drizzled over the chicken and pooled gently around the rice, adding a bright, glossy sheen. The sauce's subtle texture is visible. The plate is garnished with a sprinkle of fresh, finely chopped chives, providing a final touch of color and freshness. The overall composition is balanced and inviting, with moderate negative space. The chicken is cut into clean, thick chunks, not sliced thinly.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Fresh passion fruits",
+        "quantity": "6-8 medium (for approx. 100-120ml pulp)"
+      },
+      {
+        "name": "Ricotta cheese, full-fat",
+        "quantity": "250g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Shallots, finely minced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Unsalted butter, cold and cubed",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh chives, finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh parsley, finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry with paper towels. Season generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe pan over medium-high heat.",
+      "Sear chicken breasts for 3-4 minutes per side until golden brown.",
+      "Transfer the pan to a preheated oven at 180°C. Cook for 10-12 minutes, or until the internal temperature reaches 75°C.",
+      "Remove chicken from the pan. Place on a cutting board and tent loosely with foil. Let rest.",
+      "For the passion fruit sauce: In the same pan, add 15g of butter. Sauté half of the minced shallots until softened, about 2 minutes.",
+      "If using, deglaze the pan with white wine. Scrape up any browned bits. Reduce the wine by half.",
+      "Add passion fruit pulp and 100ml of chicken stock to the pan. Bring to a simmer.",
+      "Remove the pan from heat. Whisk in the remaining 45g of cold butter, one cube at a time, until the sauce is emulsified and slightly thickened. Season with salt and pepper. Keep warm.",
+      "For the ricotta rice: In a separate saucepan, melt 15g of butter over medium heat. Sauté the remaining half of the minced shallots and minced garlic until fragrant, about 1 minute.",
+      "Add arborio rice to the saucepan. Stir for 1 minute until the grains are translucent.",
+      "Add 100ml of chicken stock. Stir until completely absorbed by the rice.",
+      "Continue adding the remaining chicken stock, 100ml at a time, stirring frequently. Allow each addition to be absorbed before adding more. Cook for 18-20 minutes, or until the rice is creamy and al dente.",
+      "Remove the rice from heat. Stir in the ricotta cheese, half of the chopped chives, and half of the chopped parsley. Season with salt and pepper.",
+      "Slice the rested chicken breasts into thick chunks or medallions.",
+      "To plate: Spoon a generous portion of creamy ricotta rice onto each dinner plate. Arrange the chicken chunks on top of the rice.",
+      "Drizzle the passion fruit butter sauce over the chicken and around the plate. Garnish with the remaining fresh chives and parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 935,
+      "cholesterol_mg": 226,
+      "dietary_fiber_g": 4.62,
+      "protein_g": 75.46,
+      "saturated_fat_g": 15.76,
+      "sodium_mg": 1777,
+      "total_carbs_g": 73.11,
+      "total_fat_g": 35.01,
+      "total_sugars_g": 7.01,
+      "trans_fat_g": 0.76
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 0.81,
+      "protein_g": 13.16,
+      "saturated_fat_g": 2.75,
+      "sodium_mg": 310,
+      "total_carbs_g": 12.75,
+      "total_fat_g": 6.11,
+      "total_sugars_g": 1.22,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75.2,
+      "dietary_fiber": 16.5,
+      "protein": 150.9,
+      "saturated_fat": 78.8,
+      "sodium": 77.3,
+      "total_carbs": 26.6,
+      "total_fat": 44.9
+    },
+    "serving_size_g": 573,
+    "total_recipe_weight_g": 2293
+  },
+  {
+    "recipe_name": "Creamy Turkey and Cheddar Potato Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251029_080733_a1683cbb.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-10-29T08:07:33.859413000Z",
+    "selected_ingredients": [
+      "potato",
+      "turkey",
+      "cheese",
+      "cheddar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous square portion of the creamy Turkey and Cheddar Potato Gratin sits centered on a clean white porcelain dinner plate. The gratin features distinct, tender layers of thinly sliced potatoes, savory seasoned ground turkey, and a rich, golden-brown cheddar cheese crust. The top crust is bubbly and slightly crisp, with melted cheese showing delightful browning. Below, the layers reveal the soft, cooked potato slices, interspersed with the lightly browned turkey mixture and creamy béchamel. A sprinkle of vibrant fresh chopped parsley adorns the top, providing a pop of green against the golden hues. The plate rests on a simple wooden table, accompanied by standard silver flatware and a folded cotton napkin. Natural, even light illuminates the dish, highlighting its comforting textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Ground Turkey",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cheddar Cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chicken or Turkey Stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "1/4 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Lightly butter a 20x30 cm baking dish.",
+      "Heat olive oil in a large pan over medium heat. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and ground turkey. Cook, breaking up turkey, until browned and cooked through. Drain any excess fat.",
+      "Stir in chicken or turkey stock, chopped thyme, salt, and pepper. Simmer for 5 minutes. Remove from heat.",
+      "In a separate saucepan, melt butter over medium heat. Stir in flour to form a roux. Cook for 1 minute.",
+      "Gradually whisk in warm milk until sauce is smooth and thickened. Season with salt, pepper, and nutmeg.",
+      "Arrange a single layer of thinly sliced potatoes in the prepared baking dish.",
+      "Spoon half of the turkey mixture over the potatoes.",
+      "Sprinkle with one-third of the grated cheddar cheese.",
+      "Pour one-third of the béchamel sauce over the cheese.",
+      "Repeat layers: potatoes, remaining turkey mixture, another one-third of cheddar, and another one-third of béchamel.",
+      "Top with a final layer of potatoes. Pour remaining béchamel sauce evenly over the top.",
+      "Sprinkle with remaining cheddar cheese.",
+      "Cover the dish with foil. Bake for 45 minutes.",
+      "Remove foil. Bake for another 20-25 minutes, or until potatoes are tender and top is golden brown and bubbly.",
+      "Let gratin rest for 10 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 915.2,
+      "cholesterol_mg": 180.88,
+      "dietary_fiber_g": 6.53,
+      "protein_g": 50.51,
+      "saturated_fat_g": 22.13,
+      "sodium_mg": 5429.26,
+      "total_carbs_g": 67.21,
+      "total_fat_g": 43.26,
+      "total_sugars_g": 12.28,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133.36,
+      "cholesterol_mg": 26.36,
+      "dietary_fiber_g": 0.95,
+      "protein_g": 7.36,
+      "saturated_fat_g": 3.22,
+      "sodium_mg": 791.15,
+      "total_carbs_g": 9.79,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 1.79,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.29,
+      "dietary_fiber": 23.32,
+      "protein": 101.02,
+      "saturated_fat": 110.65,
+      "sodium": 236.05,
+      "total_carbs": 24.44,
+      "total_fat": 55.46
+    },
+    "serving_size_g": 686.25,
+    "total_recipe_weight_g": 2745
+  }
+]

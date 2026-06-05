@@ -1,0 +1,687 @@
+[
+  {
+    "recipe_name": "Roasted Bell Pepper and Farro Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_bell_pepper_and_farro_salad_20250628_084423_ed23ba00.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:44:24.056705000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "almond",
+      "wheat",
+      "paprika",
+      "lemon"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian, italian cuisine",
+    "visual_description": "A vibrant Roasted Bell Pepper and Farro Salad is presented on a clean white porcelain dinner plate, set on a simple light wooden table. The salad forms a neat mound, showcasing a harmonious blend of textures and colors. Cooked farro and buckwheat grains provide a neutral base, studded with bright red and yellow diced roasted bell peppers, glossy halved cherry tomatoes, and crisp diced cucumber. Thinly sliced red onion adds a subtle purple accent. Scattered over the top are slivered toasted almonds, providing a light, crunchy contrast. Freshly chopped parsley and basil leaves are generously sprinkled, adding pops of green and an aromatic finish. A light drizzle of the lemon-herb vinaigrette glistens over the ingredients, unifying the composition. The plate sits beside a cotton napkin and standard flatware, with a simple water glass in the background, creating a casual yet refined bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty ciabatta or focaccia bread.",
+      "Pair with a light, crisp Italian white wine like Pinot Grigio or Vermentino.",
+      "Offer a small bowl of high-quality extra virgin olive oil for dipping bread."
+    ],
+    "hero_ingredient": "Roasted Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Farro",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Buckwheat Groats",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "0.5 small"
+      },
+      {
+        "name": "Blanched Almonds",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "20 g, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large (for juice and zest)"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Chili Flakes (Peperoncino)",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Dice bell peppers into 2 cm cubes. Toss with 15 ml olive oil, salt, and pepper. Roast on a baking tray for 20-25 minutes until tender and slightly charred. Let cool.",
+      "Rinse farro. Cook farro in 750 ml salted boiling water for 25-30 minutes until al dente. Drain well.",
+      "Rinse buckwheat groats. Cook buckwheat in 500 ml salted boiling water for 10-12 minutes until tender. Drain well.",
+      "While grains cook, toast almonds in a dry pan over medium heat for 3-5 minutes until lightly golden and fragrant. Watch carefully to prevent burning. Let cool.",
+      "Halve cherry tomatoes. Dice cucumber into 1 cm pieces. Thinly slice red onion.",
+      "For the dressing, whisk together remaining 65 ml olive oil, red wine vinegar, lemon juice, lemon zest, minced garlic, chili flakes, salt, and black pepper in a large bowl.",
+      "Add cooked farro, buckwheat, roasted bell peppers, cherry tomatoes, cucumber, red onion, chopped parsley, and chopped basil to the bowl with the dressing. Toss gently to combine.",
+      "Fold in toasted almonds. Taste and adjust seasoning.",
+      "Serve at room temperature."
+    ],
+    "notes": [
+      "This salad can be prepared in advance and stored in the refrigerator for up to 2 days. Bring to room temperature before serving for best flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 523.88,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.82,
+      "protein_g": 13.17,
+      "saturated_fat_g": 3.68,
+      "sodium_mg": 500.04,
+      "total_carbs_g": 58.24,
+      "total_fat_g": 28.63,
+      "total_sugars_g": 7.57,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 137,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.83,
+      "protein_g": 3.44,
+      "saturated_fat_g": 0.96,
+      "sodium_mg": 130.73,
+      "total_carbs_g": 15.22,
+      "total_fat_g": 7.48,
+      "total_sugars_g": 1.98,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 38.64,
+      "protein": 26.34,
+      "saturated_fat": 18.4,
+      "sodium": 21.74,
+      "total_carbs": 21.18,
+      "total_fat": 36.7
+    },
+    "serving_size_g": 382.5,
+    "total_recipe_weight_g": 1530
+  },
+  {
+    "recipe_name": "Ukrainian Savory Grain Fritters with Prune & Hemp Yogurt",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ukrainian_savory_grain_fritters_with_prune_%26_hemp_yogurt_20250628_084318_89e625c1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:43:18.603896000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "hemp seed",
+      "rye flake",
+      "barley",
+      "prune",
+      "yeast",
+      "yogurt"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian, Ukrainian cuisine",
+    "visual_description": "The Ukrainian Savory Grain Fritters are presented as a comforting array of 8-12 golden-brown, rustic rounds, each approximately 4cm in diameter. They exhibit a subtly irregular, homely shape, showcasing the visible textures of cooked buckwheat groats and rye flakes within their golden, pan-fried crust. A creamy, off-white dollop of prune and hemp yogurt mixture sits atop each fritter, revealing small, dark purple pieces of chopped prune and lighter, toasted hemp seeds, adding a textural contrast. The fritters are arranged organically on a simple, well-used wooden serving board, leaving adequate negative space. Fresh, vibrant green dill sprigs are casually placed among the fritters, providing a pop of color and a fresh aroma. The setting is a warm, cozy family kitchen table, illuminated by soft, natural light, with a casually draped linen napkin nearby, emphasizing the approachable, home-cooked nature of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Ukrainian",
+    "cultural_origin": "Ukrainian",
+    "cultural_serving_suggestions": [
+      "Serve warm as an appetizer or light snack.",
+      "Offer with additional fresh dill on the side.",
+      "Accompany with a traditional Ukrainian beverage like Uzvar (dried fruit compote) or Kvass."
+    ],
+    "hero_ingredient": "Buckwheat Groats",
+    "ingredients": [
+      {
+        "name": "Buckwheat Groats",
+        "quantity": "100g"
+      },
+      {
+        "name": "Pearl Barley",
+        "quantity": "50g"
+      },
+      {
+        "name": "Rye Flakes",
+        "quantity": "50g"
+      },
+      {
+        "name": "Active Dry Yeast",
+        "quantity": "5g"
+      },
+      {
+        "name": "Warm Water (for yeast)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Plain Yogurt",
+        "quantity": "150g"
+      },
+      {
+        "name": "Dried Prunes",
+        "quantity": "50g"
+      },
+      {
+        "name": "Hemp Seeds",
+        "quantity": "30g"
+      },
+      {
+        "name": "Small Onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Rinse buckwheat groats and pearl barley. Cook each separately in salted water until tender. Drain well. Cool completely.",
+      "In a small bowl, dissolve yeast in warm water. Let stand 5 minutes until foamy.",
+      "Finely dice the onion. Mince garlic cloves.",
+      "In a large bowl, combine cooked buckwheat, cooked barley, rye flakes, diced onion, minced garlic, all-purpose flour, 100g plain yogurt, activated yeast, 3g salt, and 1g black pepper. Mix thoroughly to form a thick batter.",
+      "Heat 25ml vegetable oil in a large non-stick pan over medium heat.",
+      "Drop spoonfuls of batter into the hot oil to form small, round fritters, about 4cm in diameter. Do not overcrowd the pan.",
+      "Cook fritters 3-4 minutes per side until golden brown and cooked through. Remove and place on a wire rack lined with paper towels to drain excess oil. Repeat with remaining batter, adding more oil as needed.",
+      "Finely chop dried prunes. Lightly toast hemp seeds in a dry pan until fragrant.",
+      "In a separate bowl, combine remaining 50g plain yogurt, chopped prunes, toasted hemp seeds, chopped fresh dill, 2g salt, and 1g black pepper. Mix well.",
+      "To serve, arrange fritters on a platter. Top each fritter with a small dollop of the prune and hemp yogurt mixture. Garnish with fresh dill sprigs."
+    ],
+    "notes": [
+      "Ensure buckwheat and barley are fully cooled before mixing into the batter to prevent overcooking the yeast.",
+      "Adjust salt and pepper to taste in both fritters and yogurt topping."
+    ],
+    "traditional_techniques": [
+      "Cooking of whole grains (buckwheat, barley) to a tender, yet distinct texture.",
+      "Pan-frying small fritters (similar to oladky or draniki preparation)."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 434,
+      "cholesterol_mg": 5,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 12.3,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 516,
+      "total_carbs_g": 60,
+      "total_fat_g": 17.9,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 238,
+      "cholesterol_mg": 3,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 6.8,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 283,
+      "total_carbs_g": 32.9,
+      "total_fat_g": 9.8,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 2,
+      "dietary_fiber": 31,
+      "protein": 25,
+      "saturated_fat": 11,
+      "sodium": 22,
+      "total_carbs": 22,
+      "total_fat": 23
+    },
+    "serving_size_g": 182,
+    "total_recipe_weight_g": 729
+  },
+  {
+    "recipe_name": "Russian Savory Buckwheat & Barley Patties (Gretchnevye Kotlety)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_russian_savory_buckwheat_%26_barley_patties_%28gretchnevye_kotlety%29_20250628_083847_cd448f09.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:38:47.762667000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "hemp seed",
+      "rye flake",
+      "barley",
+      "prune",
+      "yeast"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian, Russian cuisine",
+    "visual_description": "The Russian Savory Buckwheat & Barley Patties are presented on a simple, round ceramic plate, typical of a homely kitchen. Eight golden-brown, pan-fried patties, roughly 7-8 cm in diameter and 2 cm thick, are arranged in a casual, slightly overlapping manner. The patties have a visibly crispy exterior, revealing specks of darker buckwheat, lighter barley, and finely diced onion and prunes within. Small, light brown hemp seeds are visible throughout the patty mixture, and a light sprinkle adorns the top. A generous dollop of creamy white sour cream rests beside the patties, with a light sprinkle of vibrant green, finely chopped fresh dill and a few hemp seeds over both the patties and the sour cream. The background features a warm-toned wooden dining table, with a casually draped linen napkin. The lighting is soft and inviting, suggesting a cozy, lived-in family kitchen atmosphere. The overall presentation is unpretentious and comforting, inviting immediate enjoyment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of smetana (sour cream) or kefir.",
+      "Garnish generously with fresh dill.",
+      "Can be accompanied by pickled vegetables."
+    ],
+    "hero_ingredient": "Buckwheat Groats",
+    "ingredients": [
+      {
+        "name": "Buckwheat groats",
+        "quantity": "200g"
+      },
+      {
+        "name": "Pearl barley",
+        "quantity": "50g"
+      },
+      {
+        "name": "Rye flakes",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dried prunes",
+        "quantity": "50g"
+      },
+      {
+        "name": "Nutritional yeast",
+        "quantity": "20g"
+      },
+      {
+        "name": "Hemp seeds",
+        "quantity": "30g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "for frying"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water or vegetable broth",
+        "quantity": "for cooking grains"
+      }
+    ],
+    "instructions": [
+      "Rinse buckwheat groats. Combine 200g buckwheat with 400ml water or vegetable broth in a pot. Bring to a boil. Reduce heat. Simmer until liquid is absorbed, about 15 minutes.",
+      "Rinse pearl barley. Combine 50g barley with 150ml water or vegetable broth in a separate pot. Bring to a boil. Reduce heat. Simmer until tender, about 25-30 minutes.",
+      "Dice the medium onion. Mince the 2 garlic cloves.",
+      "Heat a pan with a little vegetable oil over medium heat. Add diced onion. Sauté until softened, 5-7 minutes. Add minced garlic. Sauté 1 minute more. Remove from heat.",
+      "Finely chop the 50g dried prunes.",
+      "In a large bowl, combine cooked buckwheat, cooked barley, sautéed onion and garlic, chopped prunes, 30g rye flakes, 30g hemp seeds, 30g chopped fresh dill, and 20g nutritional yeast. Season with salt and black pepper to taste. Mix thoroughly until well combined.",
+      "Form the mixture into 8-10 round, flat patties, each approximately 7-8 cm in diameter and 2 cm thick.",
+      "Heat vegetable oil in a large non-stick pan over medium heat. Place patties in the hot oil. Fry for 4-5 minutes per side, until golden brown and crispy.",
+      "Serve hot."
+    ],
+    "traditional_techniques": [
+      "Kasha cooking (traditional method for preparing buckwheat porridge)",
+      "Pan-frying kotlety (patties)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 444,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.2,
+      "protein_g": 14.9,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 11,
+      "total_carbs_g": 64.7,
+      "total_fat_g": 11,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 5.7,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 4,
+      "total_carbs_g": 24.7,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 40,
+      "protein": 30,
+      "saturated_fat": 7,
+      "sodium": 0,
+      "total_carbs": 24,
+      "total_fat": 14
+    },
+    "serving_size_g": 261.5,
+    "total_recipe_weight_g": 1046
+  },
+  {
+    "recipe_name": "Buckwheat and Prune Grain Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_buckwheat_and_prune_grain_salad_20250628_083802_36085795.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:38:03.300943000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "hemp seed",
+      "rye flake",
+      "barley",
+      "prune"
+    ],
+    "complexity": "simple",
+    "special_requests": "plant-based, Russian cuisine",
+    "visual_description": "A hearty, rustic Buckwheat and Prune Grain Salad fills a simple, round ceramic plate, typical of home kitchenware. Cooked buckwheat, pearl barley, and rye flakes create an earthy base, interspersed with vibrant colors. Small, diced prunes mingle with diced fresh green cucumber and thinly sliced red radishes, adding contrasting textures. Finely chopped green onions and fresh dill are generously mixed throughout, contributing verdant freshness. The ingredients are casually mounded, forming a natural, unpretentious pile. A light sheen of sunflower oil dressing coats components, highlighting their natural appearance. The entire plate rests on a well-used wooden dining table, with a casually folded linen napkin nearby. Warm, inviting light from a kitchen fixture enhances the comfort-focused, lived-in atmosphere. Hemp seeds are sprinkled on top for a subtle garnish and crunch.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve alongside a simple broth-based soup like borscht or shchi.",
+      "Offer with dark rye bread.",
+      "Enjoy as a standalone lunch or light dinner."
+    ],
+    "hero_ingredient": "Buckwheat",
+    "ingredients": [
+      {
+        "name": "Buckwheat groats",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Pearl barley",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Rye flakes",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Dried prunes",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh cucumber",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Hemp seeds",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Sunflower oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Rinse buckwheat groats and pearl barley separately under cold water.",
+      "Cook buckwheat: Combine buckwheat with 300 ml water in a saucepan. Bring to a boil, reduce heat, cover, and simmer for 15 minutes until water is absorbed. Fluff with a fork. Let cool.",
+      "Cook barley: Combine barley with 400 ml water in a saucepan. Bring to a boil, reduce heat, cover, and simmer for 25-30 minutes until tender. Drain excess water. Let cool.",
+      "Cook rye flakes: Combine rye flakes with 150 ml water in a small saucepan. Bring to a boil, reduce heat, cover, and simmer for 5 minutes. Let cool.",
+      "Dice prunes into small pieces.",
+      "Dice cucumber into small cubes.",
+      "Slice radishes thinly or quarter them if small.",
+      "Chop green onions and fresh dill finely.",
+      "In a large bowl, combine cooled buckwheat, barley, rye flakes, diced prunes, diced cucumber, sliced radishes, chopped green onions, and chopped dill.",
+      "For the dressing: In a small bowl, whisk together sunflower oil, apple cider vinegar, salt, and black pepper.",
+      "Pour dressing over the salad ingredients. Toss gently to combine.",
+      "Serve immediately or chill before serving. Garnish with hemp seeds."
+    ],
+    "notes": [
+      "This salad can be prepared in advance and stored in the refrigerator for up to 2 days.",
+      "Adjust the amount of dressing to your preference.",
+      "For extra protein, add cooked lentils or chickpeas."
+    ],
+    "traditional_techniques": [
+      "Cooking grains until tender (rassypchataya kasha)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 506.23,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 13.33,
+      "protein_g": 12.93,
+      "saturated_fat_g": 2.17,
+      "sodium_mg": 510.13,
+      "total_carbs_g": 76.84,
+      "total_fat_g": 19.69,
+      "total_sugars_g": 12.14,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 214.96,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5.66,
+      "protein_g": 5.49,
+      "saturated_fat_g": 0.92,
+      "sodium_mg": 216.61,
+      "total_carbs_g": 32.63,
+      "total_fat_g": 8.36,
+      "total_sugars_g": 5.16,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 47.61,
+      "protein": 25.87,
+      "saturated_fat": 10.87,
+      "sodium": 22.18,
+      "total_carbs": 27.94,
+      "total_fat": 25.24
+    },
+    "serving_size_g": 235.5,
+    "total_recipe_weight_g": 942
+  },
+  {
+    "recipe_name": "One-Pan Roasted Chicken and Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_one-pan_roasted_chicken_and_root_vegetables_20250628_083802_1a8104ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:38:02.848316000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single golden-brown roasted chicken thigh is the centerpiece, resting on a rustic, off-white ceramic dinner plate. It is surrounded by substantial chunks of roasted red potatoes, thick-cut carrot batons, and tender red onion wedges. The chicken skin is crisp and deeply caramelized, revealing succulent meat. Vegetables show tender interiors and slightly charred edges. Scattered fresh rosemary sprigs and a generous grind of black pepper act as functional garnishes. The dish sits on a well-worn wooden kitchen table, bathed in warm, natural light from a nearby window. A simple linen napkin and basic metal fork rest beside the plate. The scene is unpretentious and inviting, reflecting a genuine, homely meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve directly from the sheet pan for a family-style meal",
+      "Pair with a simple green salad"
+    ],
+    "hero_ingredient": "Roasted Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800 g)"
+      },
+      {
+        "name": "Red potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dried rosemary",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Wash and scrub potatoes. Cut into 3 cm chunks. Peel carrots. Cut into 3 cm batons. Peel red onion. Cut into thick wedges. Smash garlic cloves.",
+      "Place chicken thighs, potato chunks, carrot batons, onion wedges, and smashed garlic on a large sheet pan.",
+      "Drizzle with olive oil. Sprinkle with dried rosemary, dried thyme, salt, and black pepper. Toss well to coat all ingredients.",
+      "Arrange ingredients in a single layer on the sheet pan, ensuring chicken skin is facing up.",
+      "Roast for 35-45 minutes. Chicken internal temperature must reach 75°C (167°F). Vegetables should be tender and lightly caramelized.",
+      "Remove from oven. Let rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For extra crispiness, broil for the last 2-3 minutes, watching carefully."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 709,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 43.7,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 720,
+      "total_carbs_g": 34.2,
+      "total_fat_g": 45.3,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.8,
+      "cholesterol_mg": 41.1,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 157.2,
+      "total_carbs_g": 7.5,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 20,
+      "protein": 87,
+      "saturated_fat": 53,
+      "sodium": 31,
+      "total_carbs": 12,
+      "total_fat": 58
+    },
+    "serving_size_g": 458,
+    "total_recipe_weight_g": 1832
+  }
+]

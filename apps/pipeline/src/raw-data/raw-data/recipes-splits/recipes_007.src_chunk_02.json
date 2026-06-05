@@ -1,0 +1,712 @@
+[
+  {
+    "recipe_name": "Miniature Milk Focaccia with Whipped Goat Cheese and Tomato Confit",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_miniature_milk_focaccia_with_whipped_goat_cheese_and_tomato_confit_20250903_143345_bb6e6b08.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T14:33:46.297848000Z",
+    "selected_ingredients": [
+      "yeast",
+      "flour",
+      "sugar",
+      "milk",
+      "olive oil"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian",
+    "visual_description": "A Michelin-starred presentation of Miniature Milk Focaccia. The dish features a few delicate, golden-brown focaccia squares, each approximately 5x5 cm, with a deeply dimpled, airy texture. They are arranged organically across a white Carrara marble surface or a modern designer plate, allowing for abundant negative space. Each focaccia square is topped with a generous, artfully piped dollop of creamy, white whipped goat cheese, creating a soft, cloud-like contrast. Nestled beside the goat cheese are two vibrant, deep red confit cherry tomatoes, their skins slightly wrinkled from roasting, glistening with olive oil. A single, perfectly crisp, pale green fried sage leaf is delicately placed atop each composition, adding a textural and aromatic accent. A light drizzle of golden extra virgin olive oil pools subtly around the components, and a few flakes of sea salt catch the light. The overall composition is minimalist, elegant, and flowing, emphasizing the natural beauty of the ingredients with sophisticated color harmony. The scene is lit with dramatic professional lighting, casting soft shadows, against an ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "cultural_serving_suggestions": [
+      "Serve on a communal sharing platter for a sophisticated, interactive snack experience."
+    ],
+    "hero_ingredient": "Focaccia",
+    "ingredients": [
+      {
+        "name": "Strong Bread Flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Warm Milk (37°C)",
+        "quantity": "175 ml"
+      },
+      {
+        "name": "Instant Dry Yeast",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "30 ml (plus extra for drizzling and pan)"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Extra Virgin Olive Oil (for confit)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Soft Goat Cheese (chèvre)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon Zest",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh Sage Leaves",
+        "quantity": "8-10"
+      },
+      {
+        "name": "Flaky Sea Salt",
+        "quantity": "For finishing"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 120°C. In a small oven-safe dish, combine cherry tomatoes, 100 ml olive oil, sliced garlic, thyme, a pinch of salt, and a pinch of pepper. Roast for 60-75 minutes until tomatoes are tender and slightly shriveled. Cool to room temperature.",
+      "In a large bowl, whisk together warm milk, yeast, and sugar. Let stand 5 minutes until foamy. Add flour and 5 g salt. Mix with a spoon until a shaggy dough forms.",
+      "Pour 15 ml olive oil over the dough. Turn dough onto a lightly oiled surface. Knead for 8-10 minutes until smooth and elastic.",
+      "Place dough in a lightly oiled bowl. Turn to coat. Cover with cling film. Let rise in a warm place for 1.5-2 hours, or until doubled in size.",
+      "Gently deflate dough. Lightly oil a 20x20 cm baking tray. Press dough evenly into the tray. Drizzle with 15 ml olive oil. Dimple the surface deeply with fingertips.",
+      "Cover tray with cling film. Let rise for 30-45 minutes, or until visibly puffy.",
+      "Preheat oven to 200°C. Bake focaccia for 18-22 minutes, until golden brown and cooked through. Cool on a wire rack.",
+      "In a small bowl, combine goat cheese, cream, lemon zest, a pinch of salt, and a pinch of pepper. Whip with an electric mixer or whisk until light and fluffy.",
+      "Heat 2-3 tablespoons of olive oil in a small pan over medium heat. Fry sage leaves for 15-30 seconds until crisp. Drain on paper towel.",
+      "Cut cooled focaccia into 16 small squares (approx. 5x5 cm). Top each square with a dollop of whipped goat cheese. Arrange 1-2 confit cherry tomatoes on each. Garnish with a crispy sage leaf. Drizzle with high-quality extra virgin olive oil and sprinkle with flaky sea salt."
+    ],
+    "notes": [
+      "This dish highlights precision in baking and ingredient preparation. The focaccia is designed for a light, airy crumb.",
+      "The confit process deepens the tomato flavor significantly.",
+      "Whipping the goat cheese creates a luxurious, smooth texture and ensures a refined mouthfeel."
+    ],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 723,
+      "cholesterol_mg": 53.03,
+      "dietary_fiber_g": 2.56,
+      "protein_g": 18.82,
+      "saturated_fat_g": 15.26,
+      "sodium_mg": 746.18,
+      "total_carbs_g": 55.55,
+      "total_fat_g": 48.84,
+      "total_sugars_g": 6.33,
+      "trans_fat_g": 0.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.52,
+      "calories": 300,
+      "cholesterol_mg": 22.03,
+      "dietary_fiber_g": 1.06,
+      "protein_g": 7.82,
+      "saturated_fat_g": 6.34,
+      "sodium_mg": 309.94,
+      "total_carbs_g": 23.07,
+      "total_fat_g": 20.28,
+      "total_sugars_g": 2.63,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.68,
+      "dietary_fiber": 9.14,
+      "protein": 37.64,
+      "saturated_fat": 76.3,
+      "sodium": 32.44,
+      "total_carbs": 20.2,
+      "total_fat": 62.62
+    },
+    "serving_size_g": 240.75,
+    "total_recipe_weight_g": 963
+  },
+  {
+    "recipe_name": "Beer-Braised Pork Shoulder with Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_pork_shoulder_with_tomatoes_20250903_143129_5daf6b32.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T14:31:30.481622000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "tomato",
+      "beer",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of beer-braised pork shoulder is served in a deep, rustic ceramic bowl. Thick chunks of tender, dark brown pork are nestled in a rich, glossy, reddish-brown sauce. Visible pieces of diced tomato and softened onion are interspersed throughout the sauce. A sprinkle of fresh chopped parsley adds a hint of green. The dish is presented on a well-used wooden dining table. A simple, off-white ceramic plate with a slight chip sits next to the bowl. A plain linen napkin is casually folded. Warm, inviting kitchen lighting illuminates the scene. The overall presentation is homely and comforting, emphasizing natural textures and colors. No elegant arrangements, just hearty food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with creamy mashed potatoes or crusty bread to soak up the rich sauce."
+    ],
+    "hero_ingredient": "Pork shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1 kg, cut into 4 cm cubes"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Dark beer (lager or ale)",
+        "quantity": "350 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Chicken or beef stock",
+        "quantity": "250 ml (optional, as needed)"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 ml, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat pork cubes dry with paper towels. Season generously with salt and pepper. Dredge pork lightly in flour, shaking off excess.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear pork in batches until well browned on all sides. Do not overcrowd the pot. Remove seared pork and set aside.",
+      "Reduce heat to medium. Add diced onions to the pot. Cook, stirring occasionally, until softened and translucent, about 5-7 minutes. Add minced garlic and dried thyme. Cook for 1 minute until fragrant.",
+      "Pour in the beer. Scrape up any browned bits from the bottom of the pot with a wooden spoon. Bring to a simmer.",
+      "Return seared pork to the pot. Add diced tomatoes. If the liquid does not mostly cover the pork, add chicken or beef stock as needed.",
+      "Bring the mixture to a gentle simmer. Reduce heat to low. Cover the pot tightly.",
+      "Braise for 2 to 2.5 hours, or until the pork is fork-tender. Stir occasionally to prevent sticking.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "For deeper flavor, braise the pork a day ahead. Refrigerate overnight. Reheat gently on the stovetop; the flavors will meld beautifully."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 898,
+      "cholesterol_mg": 215,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 75.4,
+      "saturated_fat_g": 19.4,
+      "sodium_mg": 741,
+      "total_carbs_g": 28.5,
+      "total_fat_g": 58.5,
+      "total_sugars_g": 9.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 12.9,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 127,
+      "total_carbs_g": 4.9,
+      "total_fat_g": 10,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71.7,
+      "dietary_fiber": 16.2,
+      "protein": 150.7,
+      "saturated_fat": 96.9,
+      "sodium": 32.2,
+      "total_carbs": 10.4,
+      "total_fat": 75
+    },
+    "serving_size_g": 585,
+    "total_recipe_weight_g": 2340
+  },
+  {
+    "recipe_name": "Bulgarian Chicken and Bell Pepper Gyuvech",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bulgarian_chicken_and_bell_pepper_gyuvech_20250903_135049_15d9c263.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T13:50:50.366710000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "bulgarian cuisine",
+    "visual_description": "A single serving of Bulgarian Chicken and Bell Pepper Gyuvech is presented on a clean, rustic white ceramic plate. The dish features generous, tender chunks of golden-brown seared chicken, nestled amidst vibrant, thick-cut bell pepper strips (red, yellow, green) and rich, tomato-based sauce. The chicken chunks are substantial, not sliced. The sauce is thick and glossy, clinging to the ingredients. A scattering of fresh, bright green chopped parsley provides a fresh contrast. Optional crumbled white feta cheese (sirene) adds a textural and color accent. The plate is moderately filled, allowing for some negative space. The setting is a modern bistro: a simple wooden table surface, with a cotton napkin placed to the side. Natural, even lighting highlights the dish's warmth and texture. A small, traditional Bulgarian ceramic bowl of fresh bread is placed nearby, enhancing the cultural context.",
+    "number_of_servings": 4,
+    "cuisine_type": "Bulgarian",
+    "cultural_origin": "Bulgarian",
+    "cultural_serving_suggestions": [
+      "Serve hot with fresh, crusty bread for dipping into the rich sauce.",
+      "Traditionally accompanied by a Shopska Salata (fresh cucumber, tomato, onion, and bell pepper salad topped with grated sirene cheese).",
+      "Often paired with a glass of Bulgarian red wine or rakia."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Diced tomatoes, canned",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Savory (Chubritsa)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Feta cheese (Sirene), crumbled (optional)",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Cut chicken thighs into 3-4 cm chunks. Season with salt and black pepper.",
+      "Cut bell peppers into thick strips. Roughly chop the onion. Mince the garlic.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Add chicken chunks. Sear until golden brown on all sides. Remove chicken and set aside.",
+      "Add onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and bell peppers. Sauté for another 5-7 minutes until slightly softened.",
+      "Stir in paprika and savory. Cook for 1 minute until fragrant.",
+      "Return chicken to the pot. Add diced tomatoes and chicken broth. Stir well.",
+      "Bring to a simmer. Cover the pot. Transfer to the preheated oven.",
+      "Bake for 45-60 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is tender.",
+      "Remove from oven. Stir in fresh parsley.",
+      "Serve hot. Garnish with additional fresh parsley and crumbled feta cheese, if desired."
+    ],
+    "notes": [
+      "Using boneless, skinless chicken thighs ensures the meat stays tender and flavorful during the slow cooking process.",
+      "Good quality sweet paprika is essential for authentic Bulgarian flavor and color.",
+      "Chubritsa (savory) is a key Bulgarian herb; do not omit it for authentic taste."
+    ],
+    "traditional_techniques": [
+      "Slow stewing",
+      "Baking in a clay pot (gyuvech)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 529,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 47.8,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 1216,
+      "total_carbs_g": 21.9,
+      "total_fat_g": 27.6,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 90,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 207,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 23,
+      "protein": 96,
+      "saturated_fat": 39,
+      "sodium": 53,
+      "total_carbs": 8,
+      "total_fat": 35
+    },
+    "serving_size_g": 588.5,
+    "total_recipe_weight_g": 2354
+  },
+  {
+    "recipe_name": "Seared Pork Loin with Lemon-Garlic Potato Emulsion, Tomato Confit, and Chili Walnut Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_pork_loin_with_lemon-garlic_potato_emulsion%2C_tomato_confit%2C_and_chili_walnut_crumble_20250903_130347_bb56eeb4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T13:03:48.180390000Z",
+    "selected_ingredients": [
+      "potato",
+      "pork",
+      "tomato",
+      "chili pepper flake",
+      "lime",
+      "walnut"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Greek  professional cuisine  design mane cuisine",
+    "visual_description": "A seared pork loin medallion, golden-brown with a delicate crust, rests elegantly on a pristine white bone china plate. Beside it, a luxurious, silken lemon-garlic potato emulsion forms a graceful, organic swoosh. Glistening, burst confit cherry tomatoes, in vibrant shades of red, are artfully scattered, catching the light. A precise sprinkling of earthy chili walnut crumble adds textural contrast and visual depth. A rich, glossy jus encircles the composition, enhancing the negative space. A single, small sprig of fresh oregano provides a refined pop of green. The presentation is architectural yet organic, showcasing a masterful balance of color, texture, and sophisticated simplicity on a premium grey veined marble surface, with dramatic professional lighting creating subtle shadows.",
+    "number_of_servings": 2,
+    "cuisine_type": "Modern Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of crisp, dry Assyrtiko white wine from Santorini.",
+      "Offer a small, simple green salad dressed with extra virgin olive oil and lemon."
+    ],
+    "hero_ingredient": "Pork Loin",
+    "ingredients": [
+      {
+        "name": "Pork Loin",
+        "quantity": "350 g"
+      },
+      {
+        "name": "Potatoes, floury",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic Clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Chili Flakes",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh Oregano",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Season pork loin generously with salt and pepper.",
+      "Heat 15 ml olive oil in an oven-safe pan over medium-high heat. Sear pork loin on all sides until golden brown. Transfer pan to oven. Roast for 10-12 minutes, until internal temperature reaches 63°C. Remove, rest on a cutting board, tented, for 5 minutes.",
+      "For Tomato Confit: Toss cherry tomatoes with 20 ml olive oil, a pinch of salt, and a small sprig of oregano. Roast in a separate small dish at 160°C for 20-25 minutes until softened and slightly burst.",
+      "For Lemon-Garlic Potato Emulsion: Peel and dice potatoes into 2 cm cubes. Boil in salted water until very tender. Drain thoroughly. Pass potatoes through a ricer or fine mesh sieve into a clean saucepan. Crush garlic clove and infuse in warm milk for 5 minutes; discard garlic. Add butter and warm infused milk to potatoes. Whisk vigorously until smooth and emulsified. Season with salt, pepper, and 5 ml lime juice.",
+      "For Chili Walnut Crumble: Toast walnuts lightly in a dry pan. Roughly chop. Mix with chili flakes, 5 ml lime zest, and a pinch of salt.",
+      "For Jus: Deglaze the pork searing pan with chicken stock. Bring to a simmer, reduce by half. Strain through a fine-mesh sieve. Adjust seasoning.",
+      "Slice rested pork loin into two medallions. Plate each medallion alongside a swoosh of potato emulsion. Arrange confit tomatoes artfully. Sprinkle chili walnut crumble over the dish. Drizzle jus around the plate. Garnish with a small fresh oregano leaf."
+    ],
+    "notes": [
+      "Ensure pork is perfectly cooked to maintain tenderness and juiciness. The resting period is crucial.",
+      "Achieve a truly smooth potato emulsion by passing potatoes through a fine sieve or ricer while hot.",
+      "Use high-quality extra virgin olive oil for authentic Greek flavor."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Confit",
+      "Reduction",
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 833.9,
+      "cholesterol_mg": 143.3,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 48.7,
+      "saturated_fat_g": 16.1,
+      "sodium_mg": 659.4,
+      "total_carbs_g": 25.3,
+      "total_fat_g": 62,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170.5,
+      "cholesterol_mg": 29.3,
+      "dietary_fiber_g": 1,
+      "protein_g": 10,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 134.9,
+      "total_carbs_g": 5.2,
+      "total_fat_g": 12.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47.8,
+      "dietary_fiber": 17.1,
+      "protein": 97.4,
+      "saturated_fat": 80.4,
+      "sodium": 28.7,
+      "total_carbs": 9.2,
+      "total_fat": 79.4
+    },
+    "serving_size_g": 489,
+    "total_recipe_weight_g": 978
+  },
+  {
+    "recipe_name": "Braised Pork Shoulder with Lemon-Tomato Sauce and Toasted Walnuts, served with Creamy Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_pork_shoulder_with_lemon-tomato_sauce_and_toasted_walnuts%2C_served_with_creamy_potatoes_20250903_130209_23f541a2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T13:02:10.427030000Z",
+    "selected_ingredients": [
+      "potato",
+      "pork",
+      "tomato",
+      "chili pepper flake",
+      "lime",
+      "walnut"
+    ],
+    "complexity": "standard",
+    "special_requests": "Greek  professional cuisine cuisine",
+    "visual_description": "A single portion of Greek braised pork shoulder on a clean white porcelain plate. Large, tender braised pork chunks, deep reddish-brown from slow cooking in tomato sauce, are nestled atop a generous mound of smooth, creamy mashed potatoes. The rich, vibrant red lemon-tomato sauce is spooned generously over the pork and potatoes. A scattering of golden, roughly chopped toasted walnuts provides textural contrast and visual appeal. Fresh, bright green chopped parsley is sprinkled over the dish for a pop of color. The arrangement is natural and inviting, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table, a cotton napkin, and a fork and knife. Natural, even lighting highlights the dish's textures and colors. The entire plate is visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Greek bread (psomi) to soak up the delicious sauce.",
+      "A simple green salad dressed with olive oil and lemon is a traditional accompaniment."
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, boneless",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Potatoes, starchy",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Lemon, juiced and zested",
+        "quantity": "1"
+      },
+      {
+        "name": "Chili pepper flakes",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Walnuts, chopped",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Milk, warm",
+        "quantity": "120 ml"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 5 cm chunks. Season generously with salt and pepper.",
+      "Heat 30 ml olive oil in a large Dutch oven over medium-high heat. Sear pork chunks on all sides until deeply browned. Remove pork and set aside.",
+      "Add remaining 30 ml olive oil to the Dutch oven. Add diced onion and sauté until softened, about 5 minutes.",
+      "Add minced garlic and chili pepper flakes. Cook for 1 minute until fragrant.",
+      "Deglaze with white wine, scraping up any browned bits from the bottom. Reduce by half.",
+      "Stir in crushed tomatoes, chicken broth, and lemon zest. Return pork to the Dutch oven. Bring to a simmer.",
+      "Cover and braise in a preheated oven at 160°C (325°F) for 2.5 to 3 hours, or until pork is very tender.",
+      "While pork braises, peel and cut potatoes into 2-3 cm chunks. Boil in salted water until very tender.",
+      "Drain potatoes. Mash with butter and warm milk until smooth and creamy. Season with salt and pepper. Keep warm.",
+      "Toast chopped walnuts in a dry pan over medium heat for 3-4 minutes, until fragrant. Set aside.",
+      "Remove pork from oven. Stir in fresh lemon juice and chopped parsley into the sauce. Taste and adjust seasoning.",
+      "Serve braised pork chunks and sauce over a bed of creamy mashed potatoes. Garnish with toasted walnuts."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Mashing potatoes"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1216,
+      "cholesterol_mg": 230,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 60.5,
+      "saturated_fat_g": 29.9,
+      "sodium_mg": 1093,
+      "total_carbs_g": 54.3,
+      "total_fat_g": 82.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.3,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 132,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 10,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76.8,
+      "dietary_fiber": 27.8,
+      "protein": 121.1,
+      "saturated_fat": 149.3,
+      "sodium": 47.5,
+      "total_carbs": 19.8,
+      "total_fat": 105.5
+    },
+    "serving_size_g": 825,
+    "total_recipe_weight_g": 3300
+  }
+]

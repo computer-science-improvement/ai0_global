@@ -1,0 +1,642 @@
+[
+  {
+    "recipe_name": "Lemon Herb Roasted Chicken and Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_roasted_chicken_and_vegetables_20250630_020039_9c64367c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:00:39.698591000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Lemon Herb Roasted Chicken and Vegetables is presented on a round, rustic ceramic plate. A whole, golden-brown roasted chicken thigh forms the centerpiece, surrounded by generous, irregular chunks of roasted potatoes with crisped edges and tender, caramelized carrot rounds. Soft onion wedges and wilted lemon slices are casually interspersed. Lightly browned rosemary and thyme sprigs are scattered as functional garnish. The arrangement is casual, abundant, and unpretentious, reflecting homely American comfort food. Colors are earthy: golden chicken, deep yellow potatoes, vibrant orange carrots, muted greens. The plate sits on a well-worn, light wooden table, with a simple off-white napkin nearby. Warm, inviting light from a kitchen window casts soft shadows. The background is minimal, focusing on the hearty, straightforward dish. Standard flatware completes the unadorned family meal setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Served directly from the roasting pan.",
+      "Often accompanied by a simple green salad or crusty bread."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 (bone-in, skin-on)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and pat dry chicken thighs. Season generously with salt and pepper.",
+      "Peel potatoes and cut into 3 cm chunks. Peel carrots and cut into 2 cm thick rounds. Peel onion and cut into 2 cm wedges.",
+      "In a large roasting pan, combine potatoes, carrots, and onion. Drizzle with 30 ml olive oil. Season with salt and pepper. Toss to coat.",
+      "Add chicken thighs to the roasting pan, nestled among the vegetables.",
+      "Finely chop rosemary and thyme leaves. Mince garlic cloves.",
+      "In a small bowl, combine chopped herbs, minced garlic, 30 ml olive oil, and juice from half a lemon. Mix well.",
+      "Pour herb mixture over chicken and vegetables. Toss gently to distribute.",
+      "Slice remaining lemon half into thin rounds. Arrange lemon slices over chicken and vegetables.",
+      "Roast for 45-55 minutes, or until chicken internal temperature reaches 75°C and vegetables are tender and lightly browned.",
+      "Remove from oven. Let rest 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken is cooked through to 75°C for food safety.",
+      "Vegetables can be varied based on preference, e.g., parsnips, sweet potatoes, or bell peppers."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 467,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 38.5,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 662,
+      "total_carbs_g": 36.7,
+      "total_fat_g": 17.5,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101.8,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 8.4,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 144,
+      "total_carbs_g": 8,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 27,
+      "protein": 77,
+      "saturated_fat": 18,
+      "sodium": 29,
+      "total_carbs": 13,
+      "total_fat": 22
+    },
+    "serving_size_g": 458.5,
+    "total_recipe_weight_g": 1834
+  },
+  {
+    "recipe_name": "Hearty Beef and Mushroom Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_mushroom_stew_20250630_015014_c1287bb6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T01:50:15.247273000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of hearty beef and mushroom stew sits on an everyday ceramic plate, placed on a well-used wooden dining table. The stew is rich and thick, filling the plate with natural, comforting portions. Tender, browned beef chunks, approximately 4 cm, are nestled among roughly chopped orange carrot rounds and soft potato chunks, about 3 cm. Earthy sliced mushrooms and tender diced onions are visible throughout the dark, savory gravy. A light scattering of vibrant green chopped fresh parsley adds a fresh contrast. The components touch and slightly overlap, creating a homely, casual arrangement. The scene is lit with warm, cozy kitchen lighting, highlighting the stew's comforting textures and natural colors. Standard flatware and a casually placed cloth napkin are nearby, completing the relaxed family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 4 cm chunks",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cremini mushrooms, sliced",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, peeled and cut into 2 cm thick rounds",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes, peeled and cut into 3 cm chunks",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper. Toss with plain flour until lightly coated.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Do not overcrowd the pot. Remove beef and set aside.",
+      "Add diced onion and carrots to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook for 5-7 minutes until mushrooms are browned and tender.",
+      "Stir in tomato paste. Cook for 1 minute.",
+      "Pour in red wine, if using, scraping up any browned bits from the bottom of the pot. Cook until liquid is reduced by half.",
+      "Return beef to the pot. Add beef broth, fresh thyme sprigs, and bay leaf. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer for 1.5 to 2 hours, or until beef is very tender.",
+      "Add potato chunks to the stew. Continue to simmer, uncovered, for another 20-30 minutes, or until potatoes are tender and the gravy has thickened to desired consistency.",
+      "Remove bay leaf and thyme sprigs. Taste and adjust seasoning with salt and pepper.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "Browning the beef well in batches is key for deep flavor.",
+      "The stew can be made ahead and reheated; flavors often improve the next day."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 664.8,
+      "cholesterol_mg": 117,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 43.7,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 1076,
+      "total_carbs_g": 36,
+      "total_fat_g": 36.8,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 112.1,
+      "cholesterol_mg": 19.7,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 181.5,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 20,
+      "protein": 87,
+      "saturated_fat": 63,
+      "sodium": 47,
+      "total_carbs": 13,
+      "total_fat": 47
+    },
+    "serving_size_g": 592.9,
+    "total_recipe_weight_g": 2371.5
+  },
+  {
+    "recipe_name": "Crispy Pork Schnitzel with Strawberry-Cucumber Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_pork_schnitzel_with_strawberry-cucumber_salad_20250630_014634_ad99987d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T01:46:34.971426000Z",
+    "selected_ingredients": [
+      "pork",
+      "salad green",
+      "strawberry",
+      "milk",
+      "onion",
+      "sugar",
+      "mayonnaise",
+      "cucumber",
+      "dill",
+      "egg",
+      "green onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown, crispy pork schnitzel rests on a clean white porcelain dinner plate, occupying the center-left. The schnitzel is a whole, irregular oval shape, showcasing its craggy, textured breading. Beside it, on the right, a vibrant mound of fresh salad is neatly arranged. This salad features bright red strawberry quarters and thin, translucent cucumber half-moons, interspersed with verdant mixed greens. A creamy, pale green dill dressing is lightly drizzled over the salad, with small pools visible. The plate is moderately filled, allowing for ample negative space around the edges. The setting is a modern bistro, with a simple light wooden table surface. A neatly folded cotton napkin in a neutral tone is placed to the left. Natural, even lighting illuminates the dish, highlighting its fresh colors and crisp textures against a softly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with a fresh lemon wedge for squeezing over the schnitzel."
+    ],
+    "hero_ingredient": "Crispy Pork Schnitzel",
+    "ingredients": [
+      {
+        "name": "Pork loin cutlets",
+        "quantity": "4 x 150g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Milk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "200g"
+      },
+      {
+        "name": "Strawberries",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "15g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Prepare pork. Place each pork cutlet between two sheets of plastic wrap. Pound to 0.5 cm thickness using a meat mallet. Season both sides with salt and pepper.",
+      "Set up breading station. Place flour in a shallow dish. Whisk 60 ml milk and eggs in a second shallow dish. Place panko breadcrumbs in a third shallow dish.",
+      "Dredge pork. Lightly coat each pork cutlet in flour, shaking off excess. Dip in egg mixture, letting excess drip off. Press firmly into panko breadcrumbs to coat completely.",
+      "Fry schnitzel. Heat vegetable oil in a large, heavy-bottomed skillet over medium-high heat to 170°C. Fry schnitzel, 1-2 pieces at a time, for 3-4 minutes per side, until golden brown and cooked through. Transfer to a wire rack lined with paper towels to drain.",
+      "Prepare salad. In a large bowl, combine mixed salad greens, hulled and quartered strawberries, and thinly sliced cucumber.",
+      "Make dressing. In a small bowl, whisk together mayonnaise, 60 ml milk, finely chopped fresh dill, thinly sliced green onions, very finely minced red onion, granulated sugar, salt, and pepper until smooth.",
+      "Assemble dish. Place a crispy pork schnitzel on each plate. Serve with a generous portion of strawberry-cucumber salad dressed with creamy dill dressing."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.9,
+      "calories": 940,
+      "cholesterol_mg": 217,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 50.6,
+      "saturated_fat_g": 8.8,
+      "sodium_mg": 1038,
+      "total_carbs_g": 74.8,
+      "total_fat_g": 48.6,
+      "total_sugars_g": 13.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 162.1,
+      "cholesterol_mg": 37.4,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.7,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 179.1,
+      "total_carbs_g": 12.9,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72,
+      "dietary_fiber": 20,
+      "protein": 101,
+      "saturated_fat": 44,
+      "sodium": 45,
+      "total_carbs": 27,
+      "total_fat": 62
+    },
+    "serving_size_g": 580,
+    "total_recipe_weight_g": 2319
+  },
+  {
+    "recipe_name": "Grilled Garlic Butter Shrimp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_grilled_garlic_butter_shrimp_20250630_014520_97564ccf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T01:45:20.928815000Z",
+    "selected_ingredients": [
+      "shrimp"
+    ],
+    "complexity": "simple",
+    "special_requests": "Grilled",
+    "visual_description": "A single portion of grilled garlic butter shrimp is presented on an everyday ceramic plate with natural imperfections. The shrimp are whole, plump, and curled into natural shapes, displaying a vibrant pink hue with subtle char marks from grilling. They are arranged casually, overlapping slightly, filling the plate adequately without overcrowding. Freshly chopped green parsley is scattered over the shrimp, providing a pop of color and freshness. Two lemon wedges are placed alongside the shrimp for a functional garnish. The plate rests on a well-used wooden dining table, illuminated by warm, natural kitchen lighting, creating a cozy, lived-in atmosphere. A simple cloth napkin is casually placed nearby. The scene is uncluttered, focusing on the hearty, home-style dish.",
+    "number_of_servings": 48,
+    "cuisine_type": "American",
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Large shrimp, peeled, deveined, tail-on",
+        "quantity": "8.4 kg"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "20 cloves"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "3 large bunches"
+      },
+      {
+        "name": "Lemons, juiced",
+        "quantity": "5 large"
+      },
+      {
+        "name": "Lemons, cut into wedges",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat shrimp dry with paper towels. Place shrimp in a large bowl.",
+      "Melt butter in a small saucepan over low heat.",
+      "Add minced garlic to melted butter. Stir for 1 minute. Do not brown.",
+      "Pour butter-garlic mixture over shrimp. Add half of the chopped parsley.",
+      "Add lemon juice, salt, and black pepper. Toss to coat shrimp evenly.",
+      "Marinate shrimp for 15-20 minutes at room temperature.",
+      "Preheat a grill or grill pan to medium-high heat.",
+      "Brush grill grates with olive oil to prevent sticking.",
+      "Place shrimp directly on the hot grill. Do not overcrowd the grill.",
+      "Grill shrimp for 2-3 minutes per side. Shrimp should turn pink and opaque.",
+      "Remove grilled shrimp from heat. Transfer to a large serving platter.",
+      "Garnish with remaining fresh chopped parsley and lemon wedges. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 244.5,
+      "cholesterol_mg": 304.2,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 35.8,
+      "saturated_fat_g": 6,
+      "sodium_mg": 211.9,
+      "total_carbs_g": 1.3,
+      "total_fat_g": 11.9,
+      "total_sugars_g": 0.2,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124.1,
+      "cholesterol_mg": 154.4,
+      "dietary_fiber_g": 0.1,
+      "protein_g": 18.2,
+      "saturated_fat_g": 3,
+      "sodium_mg": 107.6,
+      "total_carbs_g": 0.7,
+      "total_fat_g": 6,
+      "total_sugars_g": 0.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 101,
+      "dietary_fiber": 1,
+      "protein": 72,
+      "saturated_fat": 30,
+      "sodium": 9,
+      "total_carbs": 0,
+      "total_fat": 15
+    },
+    "serving_size_g": 197,
+    "total_recipe_weight_g": 9456.5
+  },
+  {
+    "recipe_name": "Seared Pork Chops with Strawberry-Onion Compote and Creamy Cucumber-Dill Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_pork_chops_with_strawberry-onion_compote_and_creamy_cucumber-dill_salad_20250630_013217_16a48a91.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T01:32:17.849725000Z",
+    "selected_ingredients": [
+      "pork",
+      "salad green",
+      "strawberry",
+      "milk",
+      "onion",
+      "sugar",
+      "mayonnaise",
+      "cucumber",
+      "dill",
+      "egg",
+      "green onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, centered against a simple wooden table surface. A vibrant bed of fresh, mixed salad greens forms the base. A perfectly seared bone-in pork chop, boasting a rich golden-brown crust, rests upon the greens. The chop is presented whole, showcasing its robust form. Draped partially over the pork chop is a glossy, reddish-brown strawberry-onion compote, its thick, slightly chunky texture visible. Beside the pork, a distinct scoop of creamy cucumber-dill salad provides a refreshing contrast. Thinly sliced cucumber rounds are discernible within the pale green, mayonnaise-based dressing, flecked with bright green dill and small pieces of chopped hard-boiled egg. A small sprig of fresh dill garnishes the salad, adding a final touch of freshness. The overall presentation is clean, balanced, and professional, with natural, even lighting highlighting the food's appealing colors and textures. A silver fork and knife are placed beside the plate on a white cotton napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Pork Chops",
+    "ingredients": [
+      {
+        "name": "Bone-in Pork Chops",
+        "quantity": "4 (approx. 250g each, 2.5-3 cm thick)"
+      },
+      {
+        "name": "Fresh Strawberries",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "English Cucumber",
+        "quantity": "1 large (approx. 300g)"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": "3 stalks"
+      },
+      {
+        "name": "Mixed Salad Greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Hard boil eggs: Place eggs in a saucepan. Cover with cold water by 2.5 cm. Bring to a rolling boil. Turn off heat. Cover. Let stand 10-12 minutes. Drain. Cool in ice water. Peel and finely chop.",
+      "Prepare strawberry-onion compote: Thinly slice the red onion. Hull and quarter the strawberries. Heat 15 ml olive oil in a saucepan over medium heat. Add sliced red onion. Sauté 8-10 minutes until softened and translucent. Add quartered strawberries and sugar. Stir well. Reduce heat to low. Simmer 15-20 minutes, stirring occasionally, until strawberries break down and mixture thickens to a jam-like consistency. Season with a pinch of salt. Set aside.",
+      "Prepare creamy cucumber-dill salad: Thinly slice the English cucumber into rounds. Finely chop fresh dill. Thinly slice green onions. In a medium bowl, whisk together mayonnaise, milk, salt, and black pepper until smooth. Add sliced cucumber, chopped dill, chopped green onions, and chopped hard-boiled eggs to the dressing. Gently fold to combine. Chill until serving.",
+      "Cook pork chops: Pat pork chops dry with paper towels. Season generously with salt and black pepper on both sides. Heat remaining 15 ml olive oil in a large oven-safe skillet over medium-high heat until shimmering. Carefully place pork chops in the hot skillet. Sear 4-5 minutes per side until deeply golden brown and a crust forms. For chops 2.5-3 cm thick, transfer skillet to a preheated oven at 190°C (375°F). Roast 8-12 minutes, or until internal temperature reaches 63°C (145°F). Remove from oven. Let pork chops rest on a cutting board 5 minutes before serving.",
+      "Plate the dish: Arrange a bed of mixed salad greens on each of four white round plates. Place one seared pork chop on top of the greens. Spoon a generous portion of the warm strawberry-onion compote over a part of the pork chop. Place a scoop of the creamy cucumber-dill salad beside the pork chop. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.7,
+      "calories": 979.6,
+      "cholesterol_mg": 282,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 68.9,
+      "saturated_fat_g": 18.1,
+      "sodium_mg": 394.9,
+      "total_carbs_g": 24,
+      "total_fat_g": 70.5,
+      "total_sugars_g": 15.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.3,
+      "calories": 169,
+      "cholesterol_mg": 48.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.9,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 68.1,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 94,
+      "dietary_fiber": 15,
+      "protein": 138,
+      "saturated_fat": 91,
+      "sodium": 17,
+      "total_carbs": 9,
+      "total_fat": 90
+    },
+    "serving_size_g": 580,
+    "total_recipe_weight_g": 2319
+  }
+]

@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Orecchiette with Sun-Dried Tomato Pesto and Roasted Zucchini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251102_081853_91ebc585.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2025-11-02T08:18:54.249110000Z",
+    "selected_ingredients": [
+      "pasta",
+      "sun dried tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Orecchiette pasta is tossed with a vibrant, rustic red sun-dried tomato pesto and tender, slightly caramelized roasted zucchini. The dish is arranged in a modest, artful mound on a clean white porcelain plate, allowing for moderate negative space. The colors are a rich red from the pesto, subtle yellow-green from the pasta, and golden-brown edges of the roasted zucchini, complemented by fresh green basil. Textures include the smooth, creamy pesto coating the al dente pasta, soft zucchini pieces (cut into 1 cm thick half-moon slices), and a fine dusting of grated Parmesan. Garnished with a few small fresh basil leaves. The setting is a simple wooden table with a white cotton napkin. A traditional Italian ceramic bread basket with crusty bread is subtly visible in the background, out of focus. Natural, even lighting highlights the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread for dipping into the sauce.",
+      "Pair with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Sun-Dried Tomatoes",
+    "ingredients": [
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil, drained",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "60g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Pine nuts, toasted",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Zucchini, medium",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil (for roasting)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "0.5 tsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut zucchini into 1 cm thick half-moon slices. Toss with 15ml olive oil, salt, and pepper.",
+      "Spread zucchini on a baking sheet. Roast for 15-20 minutes until tender and slightly caramelized.",
+      "Bring a large pot of salted water to a boil. Cook orecchiette according to package directions until al dente. Reserve 125ml pasta water.",
+      "While pasta cooks, prepare pesto. Combine drained sun-dried tomatoes, basil, grated Parmesan, toasted pine nuts, minced garlic, and 100ml olive oil in a food processor.",
+      "Process until smooth. Season with salt, pepper, and red pepper flakes if using.",
+      "Drain pasta. Return to the pot. Add sun-dried tomato pesto and roasted zucchini.",
+      "Add reserved pasta water gradually, tossing until sauce coats pasta well and achieves a creamy consistency.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Using sun-dried tomatoes packed in oil provides a richer flavor profile.",
+      "Toasting pine nuts before blending enhances their nutty flavor in the pesto."
+    ],
+    "traditional_techniques": [
+      "Pesto preparation",
+      "Cooking pasta al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 784,
+      "cholesterol_mg": 13,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 22.5,
+      "saturated_fat_g": 7.4,
+      "sodium_mg": 605,
+      "total_carbs_g": 87,
+      "total_fat_g": 41.9,
+      "total_sugars_g": 10.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 217,
+      "cholesterol_mg": 3,
+      "dietary_fiber_g": 2,
+      "protein_g": 6.2,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 168,
+      "total_carbs_g": 24.1,
+      "total_fat_g": 11.6,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4.2,
+      "dietary_fiber": 26,
+      "protein": 44.9,
+      "saturated_fat": 37.1,
+      "sodium": 26.3,
+      "total_carbs": 31.7,
+      "total_fat": 53.8
+    },
+    "serving_size_g": 361,
+    "total_recipe_weight_g": 1443
+  },
+  {
+    "recipe_name": "Creamy Roasted Red Pepper and Sun-Dried Tomato Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251102_081511_c6f31d73.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-11-02T08:15:12.063048000Z",
+    "selected_ingredients": [
+      "sun dried tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, creamy roasted red pepper and sun-dried tomato soup is presented in a clean, matte white porcelain bowl. The soup exhibits a rich, inviting orange-red hue with a smooth, velvety texture. A delicate swirl of heavy cream or a drizzle of golden olive oil graces the center. Finely julienned fresh basil leaves are scattered thoughtfully on top, adding a pop of verdant green and aromatic freshness. The bowl sits on a simple wooden table surface, accompanied by a folded white cotton napkin and standard restaurant flatware. The lighting is natural and even, highlighting the soup's warm color and inviting steam. The overall presentation is professional yet approachable, with moderate negative space, focusing entirely on the elegant single portion of soup.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty artisanal bread or focaccia for dipping."
+    ],
+    "hero_ingredient": "sun dried tomato",
+    "ingredients": [
+      {
+        "name": "Red bell peppers",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil, drained",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves, julienned",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve the red bell peppers. Remove seeds and stems. Place cut-side down on a baking tray.",
+      "Roast peppers for 25-30 minutes. Skins should be blistered and slightly charred. Transfer to a bowl. Cover tightly with cling film for 10 minutes. This steams the peppers, making them easier to peel.",
+      "Peel the roasted peppers. Discard skins.",
+      "In a large pot, heat olive oil over medium heat. Add diced onion. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and tomato paste. Cook for 1 minute, stirring constantly, until fragrant.",
+      "Stir in drained sun-dried tomatoes and peeled roasted red peppers. Pour in vegetable broth. Bring to a simmer.",
+      "Reduce heat. Simmer for 15 minutes, allowing flavors to meld.",
+      "Carefully transfer the soup to a blender. Blend until completely smooth. Alternatively, use an immersion blender directly in the pot.",
+      "Return soup to the pot if using a standard blender. Stir in heavy cream. Heat gently, do not boil.",
+      "Season with salt and black pepper to taste.",
+      "Ladle hot soup into individual bowls. Garnish with julienned fresh basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 325,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 7.8,
+      "saturated_fat_g": 8.4,
+      "sodium_mg": 823,
+      "total_carbs_g": 24.7,
+      "total_fat_g": 21.4,
+      "total_sugars_g": 15.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 65,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 1.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 166,
+      "total_carbs_g": 5,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14,
+      "dietary_fiber": 20,
+      "protein": 16,
+      "saturated_fat": 42,
+      "sodium": 36,
+      "total_carbs": 9,
+      "total_fat": 27
+    },
+    "serving_size_g": 496.5,
+    "total_recipe_weight_g": 1986
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Breast, Sun-Dried Tomato Mascarpone Jus, Asparagus Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251102_080925_e8f4d8e9.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-11-02T08:09:26.445493000Z",
+    "selected_ingredients": [
+      "sun dried tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "Plated on an elegant, large round bone china plate with a subtle grey rim. The vibrant green asparagus risotto forms a fluid, organic base, not a perfect circle, but a natural mound. Perfectly pan-seared chicken breast, cut into two or three thick, succulent chunks, rests atop the risotto, displaying a golden-brown crust. A rich, glossy sun-dried tomato mascarpone jus, deep orange-red with flecks of dark red tomato and green basil, pools artfully around the chicken and risotto, creating a flowing composition. Two blanched asparagus tips, bright green and precisely placed, offer a vertical element. A single small, fresh basil leaf provides a final pop of green. Abundant negative space surrounds the dish. The scene is set on a light grey marble surface, with a pristine white linen napkin folded precisely. Dramatic professional lighting casts soft shadows, highlighting textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of crisp Italian white wine, such as Vermentino or Pinot Grigio.",
+      "Offer a basket of crusty artisan bread to sop up the flavorful jus.",
+      "Finish the meal with a classic Italian espresso."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil",
+        "quantity": "60 g, drained and chopped"
+      },
+      {
+        "name": "Mascarpone cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1 L"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely minced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "250 g, trimmed"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese",
+        "quantity": "50 g, grated"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "15 g, chopped, plus small leaves for garnish"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat 15 ml olive oil in a large skillet over medium-high heat. Sear chicken breasts for 4-5 minutes per side until golden brown and internal temperature reaches 75°C (167°F). Remove chicken. Rest on a cutting board.",
+      "In a separate saucepan, heat chicken stock to a gentle simmer. Keep warm.",
+      "In a medium pot, melt 15 g butter with 15 ml olive oil over medium heat. Sauté one finely minced shallot until translucent, about 2 minutes. Add Arborio rice. Stir for 2 minutes until rice grains are translucent at the edges.",
+      "Deglaze rice with 50 ml white wine. Cook until wine is fully absorbed.",
+      "Add simmering stock, one ladle (approx. 125 ml) at a time, stirring constantly. Wait for liquid to be almost fully absorbed before adding the next ladle. Continue until rice is creamy and al dente, about 18-20 minutes.",
+      "Blanch asparagus spears in boiling salted water for 2-3 minutes until tender-crisp. Immediately transfer to an ice bath to stop cooking. Drain well. Cut asparagus into 1 cm pieces. Reserve 8 small tips for garnish.",
+      "Stir chopped asparagus, grated Parmigiano-Reggiano, and remaining 15 g butter into the risotto. Season with salt and pepper. Keep warm.",
+      "In the skillet used for chicken, add the remaining minced shallot and minced garlic. Sauté for 1 minute. Add chopped sun-dried tomatoes. Sauté for 2 minutes.",
+      "Deglaze skillet with remaining 100 ml white wine. Cook until wine is almost evaporated. Add 100 ml chicken stock. Simmer until slightly reduced, about 3 minutes.",
+      "Stir in mascarpone cheese until smooth. Season the jus with salt and pepper. Stir in chopped fresh basil just before serving.",
+      "To plate, ladle asparagus risotto onto each plate, forming a fluid, organic mound. Slice each rested chicken breast into 2-3 thick, diagonal pieces. Arrange chicken pieces artfully on top of the risotto.",
+      "Spoon the sun-dried tomato mascarpone jus around the chicken and risotto. Garnish each plate with two reserved blanched asparagus tips and one small fresh basil leaf."
+    ],
+    "notes": [
+      "Ensure chicken is fully cooked to an internal temperature of 75°C (167°F) for food safety.",
+      "The risotto should maintain a creamy, free-flowing consistency, not stiff or dry."
+    ],
+    "traditional_techniques": [
+      "Mantecare (finishing risotto with butter and cheese for creaminess)",
+      "Soffritto (base of aromatics for sauce and risotto)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 911,
+      "cholesterol_mg": 195.4,
+      "dietary_fiber_g": 4,
+      "protein_g": 74.3,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 1248.4,
+      "total_carbs_g": 74,
+      "total_fat_g": 32.8,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132,
+      "cholesterol_mg": 28.3,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 10.8,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 181.1,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 14,
+      "protein": 149,
+      "saturated_fat": 66,
+      "sodium": 54,
+      "total_carbs": 27,
+      "total_fat": 42
+    },
+    "serving_size_g": 689.5,
+    "total_recipe_weight_g": 2758
+  },
+  {
+    "recipe_name": "Sun-dried Tomato & White Bean Patties with Fermented Red Cabbage Slaw",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251102_080232_659641f9.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-11-02T08:02:33.140517000Z",
+    "selected_ingredients": [
+      "sun dried tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, substantial Sun-dried Tomato & White Bean Patty, approximately 10 cm in diameter and 2 cm thick, occupies the center of a handcrafted, cream-colored ceramic plate. The patty boasts a deep golden-brown, slightly crisp exterior with visible flecks of red sun-dried tomato and green parsley. Its texture appears firm yet inviting. Alongside, a generous mound of vibrant, shredded red cabbage slaw is piled high, showing off julienned orange carrot strips and a glossy, slightly pickled sheen. The slaw's colors range from deep purple to bright pink, offering a striking contrast. A small sprig of fresh parsley or basil rests gently atop the patty. The plate is set on a light, textured reclaimed wood surface. A simple, undyed linen napkin in beige is folded beside the plate. Soft, natural light illuminates the dish from the side, enhancing its earthy tones and inviting textures. The background is minimalist, perhaps with a subtle green plant element, maintaining focus on the food. The entire plate is visible, showcasing a balanced and appealing individual portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_serving_suggestions": [
+      "Serve on a whole grain bun or lettuce wraps for a lighter option.",
+      "Accompanied by a simple side salad of seasonal greens.",
+      "Offer a homemade hot sauce for an extra kick."
+    ],
+    "hero_ingredient": "Sun-dried tomatoes",
+    "ingredients": [
+      {
+        "name": "Sun-dried tomatoes, oil-packed",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Cannellini beans, cooked",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "80 grams"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 grams"
+      },
+      {
+        "name": "Red cabbage",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "60 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Slaw: In a large bowl, combine shredded red cabbage and julienned carrot.",
+      "Add apple cider vinegar, Dijon mustard, water, and a pinch of salt. Mix well.",
+      "Press mixture down to submerge in liquid. Cover and let sit at room temperature for at least 2 hours, or refrigerate overnight for deeper fermentation.",
+      "Prepare Patties: Drain sun-dried tomatoes, reserving 15 ml of the oil. Roughly chop tomatoes.",
+      "In a food processor, combine drained cannellini beans, chopped sun-dried tomatoes, rolled oats, diced red onion, minced garlic, chopped parsley, lemon zest, lemon juice, reserved sun-dried tomato oil, salt, and pepper.",
+      "Pulse until mixture is well combined but still has some texture. Do not over-process into a paste.",
+      "Form Patties: Divide mixture into 4 equal portions. Shape each into a thick, round patty, about 2 cm thick.",
+      "Cook Patties: Heat 15 ml olive oil in a large skillet over medium heat.",
+      "Cook patties for 5-7 minutes per side, until golden brown and crispy.",
+      "Serve: Place one patty on each plate. Top with a generous portion of the fermented red cabbage slaw."
+    ],
+    "notes": [
+      "This recipe utilizes fermentation for enhanced flavor and gut health.",
+      "Embrace zero-waste by using vegetable scraps for broth or composting.",
+      "Adjust seasoning to taste. The slaw can be made a day ahead for deeper flavor."
+    ],
+    "traditional_techniques": [
+      "Fermentation (for the slaw)"
+    ]
+  },
+  {
+    "recipe_name": "Refined Chicken and Napa Cabbage Consommé with Delicate Noodle Parcels",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251102_075832_a5145064.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 25,
+    "timestamp": "2025-11-02T07:58:33.301392000Z",
+    "selected_ingredients": [
+      "chinese napa cabbage",
+      "noodle",
+      "pak choi",
+      "carrot"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A refined, deep white bone china bowl cradles a shimmering, golden consommé, forming an elegant liquid canvas. Two delicate napa cabbage parcels, their pale green leaves subtly translucent, are artfully positioned within the broth, revealing hints of their savory filling. Beside them, a small, organic cluster of vibrant green pak choi leaves adds a burst of fresh color and texture. Fine julienned carrot strands, a bright orange, are interwoven with a few pristine white rice vermicelli noodles, creating a subtle visual interplay. A precise drizzle of bright green chive oil forms an abstract swirl on the consommé’s surface, while a whisper of micro cilantro provides a final, verdant touch. The presentation emphasizes abundant negative space, highlighting each element's precise placement and sophisticated color harmony. The entire bowl is centered on a polished grey marble surface, accompanied by a pristine white linen napkin folded into a sharp triangle and elegant East Asian ceramic spoon, under dramatic, focused lighting with soft shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "East Asian",
+    "cultural_origin": "East Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a traditional ceramic spoon for the consommé and parcels.",
+      "Offer small side dishes of pickled vegetables or a light soy-ginger dipping sauce for a more interactive dining experience."
+    ],
+    "hero_ingredient": "Napa Cabbage",
+    "ingredients": [
+      {
+        "name": "Chicken bones",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Chicken mince (lean, for clarification)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Carrot (for consommé)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Leek (for consommé)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Celery (for consommé)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Ginger (for consommé)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Kombu",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "3"
+      },
+      {
+        "name": "Water",
+        "quantity": "3 litres"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White peppercorns",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Napa cabbage leaves (large)",
+        "quantity": "8"
+      },
+      {
+        "name": "Chicken breast mince (for parcels)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water chestnuts",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Ginger (for parcels)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "White pepper (for parcels)",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Pak choi (small heads)",
+        "quantity": "4"
+      },
+      {
+        "name": "Carrot (for garnish)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fine rice vermicelli noodles",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Chive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Micro cilantro or shiso sprouts",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken Stock: Roast chicken bones at 200°C for 30 minutes. Place roasted bones in a large pot. Add 3 litres of water, 30g sliced ginger, and 5g white peppercorns. Bring to a boil, then reduce heat and simmer for 2 hours. Skim any impurities. Strain the stock and chill completely. Once cold, remove all fat from the surface.",
+      "Clarify Consommé: Combine the cold, defatted chicken stock with 200g lean chicken mince, 3 egg whites, 100g diced carrot, 100g diced leek, 100g diced celery, and 10g kombu in a large pot. Stir continuously over medium heat until a 'raft' of solids forms on the surface. Stop stirring. Reduce heat to low. Gently simmer for 1 hour without disturbing the raft. Carefully ladle the clear consommé through a fine-mesh sieve lined with cheesecloth. Season with salt.",
+      "Prepare Napa Cabbage Parcels: Finely dice 50g water chestnuts. Finely slice 2 spring onions. Grate 10g ginger. In a bowl, combine 200g chicken breast mince, diced water chestnuts, sliced spring onions, grated ginger, 15ml soy sauce, 5ml sesame oil, and a pinch of white pepper. Mix well.",
+      "Assemble Parcels: Blanch 8 large napa cabbage leaves in boiling water for 1-2 minutes until pliable. Immediately transfer to an ice bath. Drain and pat dry. Place a spoonful of chicken filling at the base of each cabbage leaf. Fold in the sides, then roll tightly to form small parcels. Steam the parcels for 8-10 minutes, ensuring chicken is cooked through (internal temperature 75°C).",
+      "Prepare Garnishes: Separate 4 small pak choi heads into individual leaves. Finely julienne 1 medium carrot. Blanch pak choi leaves and carrot julienne in boiling water for 30 seconds. Immediately transfer to an ice bath. Drain well. Cook 50g fine rice vermicelli noodles according to package directions. Drain and rinse.",
+      "Plate the Dish: Warm 4 deep serving bowls. Place 2 delicate napa cabbage parcels in each bowl. Arrange a small cluster of blanched pak choi leaves, a few strands of carrot julienne, and a small portion of vermicelli noodles beside the parcels. Carefully pour the hot, clear consommé around the components. Drizzle 15ml chive oil over the soup. Garnish with micro cilantro or shiso sprouts and a sprinkle of toasted sesame seeds. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Consommé clarification"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 288.7,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 27.3,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 1249.9,
+      "total_carbs_g": 19.4,
+      "total_fat_g": 11.3,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 31.6,
+      "cholesterol_mg": 4.3,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 3,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 136.6,
+      "total_carbs_g": 2.1,
+      "total_fat_g": 1.2,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13,
+      "dietary_fiber": 10,
+      "protein": 55,
+      "saturated_fat": 11,
+      "sodium": 54,
+      "total_carbs": 7,
+      "total_fat": 14
+    },
+    "serving_size_g": 915,
+    "total_recipe_weight_g": 3660
+  }
+]

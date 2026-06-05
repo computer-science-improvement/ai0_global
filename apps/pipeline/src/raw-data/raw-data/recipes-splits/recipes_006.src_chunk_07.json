@@ -1,0 +1,643 @@
+[
+  {
+    "recipe_name": "Kohlrabi, Broccoli, and Carrot Gratin with Alpine Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251030_133201_4c8c4ca4.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-30T13:32:02.204731000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "kohlrabi",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian, German cuisine",
+    "visual_description": "A hearty Kohlrabi, Broccoli, and Carrot Gratin is presented centrally in a rustic ceramic baking dish on a simple wooden table. The gratin boasts a rich golden-brown, bubbly crust of melted Alpine cheese, with subtle caramelized patches. Beneath the crust, vibrant green broccoli florets, pale kohlrabi rounds, and bright orange carrot slices are visible, suspended in a creamy white béchamel sauce. Kohlrabi and carrots are thinly sliced into neat rounds, while broccoli is in small, uniform florets. A generous sprinkle of fresh, finely chopped green parsley adds a contrasting color. A white porcelain side plate is set beside the gratin, accompanied by traditional German flatware on a simple cotton napkin. Natural, even lighting illuminates the scene, highlighting the dish's comforting textures and warm colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Serve directly from the baking dish, accompanied by a side of crusty Roggenbrot (rye bread).",
+      "Pair with a simple, fresh green salad dressed with a light vinaigrette.",
+      "Enjoy with a glass of dry German Riesling or a crisp lager."
+    ],
+    "hero_ingredient": "Kohlrabi",
+    "ingredients": [
+      {
+        "name": "Kohlrabi",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Alpine cheese (e.g., Emmental, Bergkäse), grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Lightly grease a medium gratin dish.",
+      "Peel kohlrabi and carrots. Slice both into thin rounds or discs, approximately 3mm thick.",
+      "Cut broccoli into small, uniform florets.",
+      "Bring a large pot of salted water to a boil. Blanch broccoli florets for 2 minutes. Remove with a slotted spoon and set aside.",
+      "Add kohlrabi slices to the boiling water. Blanch for 3-4 minutes until slightly tender. Remove and set aside.",
+      "Add carrot slices to the boiling water. Blanch for 2-3 minutes until tender-crisp. Remove and set aside.",
+      "Melt butter in a saucepan over medium heat.",
+      "Stir in flour to create a roux. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in milk until smooth. Cook until the sauce thickens, stirring frequently.",
+      "Season the béchamel sauce with salt, pepper, and nutmeg.",
+      "Arrange half of the blanched kohlrabi, broccoli, and carrot in the prepared gratin dish.",
+      "Pour half of the béchamel sauce evenly over the vegetables.",
+      "Sprinkle with half of the grated Alpine cheese.",
+      "Repeat layers with remaining vegetables, sauce, and cheese.",
+      "Bake for 25-30 minutes, or until the top is golden brown and bubbly.",
+      "Remove from oven. Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "For an extra layer of flavor, sauté one finely diced onion in butter before making the roux.",
+      "Any firm, meltable cheese like Gruyère or Appenzeller can be used as a substitute for Alpine cheese."
+    ],
+    "traditional_techniques": [
+      "Making a béchamel-based gratin sauce",
+      "Layering ingredients for a baked dish"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 453,
+      "cholesterol_mg": 78,
+      "dietary_fiber_g": 10,
+      "protein_g": 22.8,
+      "saturated_fat_g": 16.2,
+      "sodium_mg": 761,
+      "total_carbs_g": 36.7,
+      "total_fat_g": 26.8,
+      "total_sugars_g": 13.6,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 91,
+      "cholesterol_mg": 16,
+      "dietary_fiber_g": 2,
+      "protein_g": 4.6,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 152,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26,
+      "dietary_fiber": 35.7,
+      "protein": 45.6,
+      "saturated_fat": 81,
+      "sodium": 33.1,
+      "total_carbs": 13.3,
+      "total_fat": 34.4
+    },
+    "serving_size_g": 500.3,
+    "total_recipe_weight_g": 2001
+  },
+  {
+    "recipe_name": "Creamy Turkey and Bell Pepper Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251030_130153_c5f7dc3f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-30T13:01:54.367036000Z",
+    "selected_ingredients": [
+      "turkey",
+      "onion",
+      "tomato",
+      "bell pepper",
+      "garlic",
+      "oregano",
+      "cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty single portion of creamy turkey and bell pepper skillet is mounded naturally in a shallow, off-white ceramic bowl. The browned ground turkey chunks are visibly textured, interspersed with small diced red and green bell peppers and tender diced onions. These components are coated in a rich, reddish-orange, visibly creamy tomato-based sauce. The vibrant colors of the bell peppers contrast with the deeper hues of the turkey and sauce, creating an appetizing visual. A scattering of fresh, bright green chopped parsley garnishes the top, adding a pop of freshness and texture. The dish is presented on a worn wooden dining table, with a simple metal fork resting beside the bowl, and a casually folded linen napkin nearby. Warm, inviting kitchen lighting illuminates the scene, emphasizing the comforting nature of the meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Ground turkey",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Bell peppers, diced (e.g., red and green)",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Add ground turkey. Break apart with a spoon. Cook until browned. Drain excess fat.",
+      "Add diced onion and bell peppers to the skillet. Cook for 5-7 minutes until softened.",
+      "Stir in minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Pour in diced tomatoes with their juice. Bring to a simmer.",
+      "Reduce heat to medium-low. Simmer for 10-15 minutes. Allow sauce to thicken slightly.",
+      "Stir in heavy cream. Heat through gently. Do not boil vigorously.",
+      "Season with salt and black pepper to taste.",
+      "Remove from heat. Garnish with fresh chopped parsley before serving."
+    ]
+  },
+  {
+    "recipe_name": "Mediterranean Stuffed Courgettes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251030_065729_af744bc7.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-30T06:57:29.791025000Z",
+    "selected_ingredients": [
+      "courgette",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving features two golden-brown stuffed courgette halves, presented on a clean white porcelain dinner plate. The courgettes are baked to a tender, slightly caramelized state, with their vibrant green skin providing a strong color contrast. The savory filling, textured with finely diced courgette flesh, breadcrumbs, and herbs, is visible, golden and slightly crisp on top. A light sheen of olive oil glistens on the surface. The dish is garnished with a few fresh parsley sprigs, adding a touch of vibrant green. The plate rests on a simple wooden table in a modern bistro setting, with a cotton napkin placed neatly beside it, under natural, even lighting. The background is minimal, focusing on the refined, approachable presentation of the dish. The onion, garlic, and courgette flesh are finely diced, showcasing precise knife work.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crisp green salad dressed with a lemon-herb vinaigrette.",
+      "Offer crusty artisanal bread to accompany the meal."
+    ],
+    "hero_ingredient": "Courgette",
+    "ingredients": [
+      {
+        "name": "Medium courgettes",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Wash courgettes. Halve them lengthwise.",
+      "Scoop out the flesh, leaving a 1 cm border. Keep the flesh.",
+      "Finely dice the scooped courgette flesh.",
+      "Heat 30ml olive oil in a large pan over medium heat.",
+      "Add diced red onion. Sauté 5 minutes until softened.",
+      "Add minced garlic and diced courgette flesh. Cook 8-10 minutes until tender and moisture evaporates.",
+      "Remove from heat. Transfer to a bowl.",
+      "Stir in Panko breadcrumbs, grated Parmesan, chopped parsley, and dried oregano.",
+      "Season with salt and pepper. Mix well.",
+      "Arrange hollowed courgette halves in a baking dish.",
+      "Divide the filling evenly among the courgette halves. Press gently.",
+      "Pour vegetable stock into the bottom of the baking dish.",
+      "Drizzle remaining 30ml olive oil over the stuffed courgettes.",
+      "Bake 25-30 minutes. Courgettes should be tender and filling golden brown.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "For added flavor, a small amount of crumbled feta cheese can be mixed into the filling."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 328.6,
+      "cholesterol_mg": 11.13,
+      "dietary_fiber_g": 4.23,
+      "protein_g": 10.87,
+      "saturated_fat_g": 4.48,
+      "sodium_mg": 397.8,
+      "total_carbs_g": 31.29,
+      "total_fat_g": 18.77,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0.06
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101,
+      "cholesterol_mg": 3.42,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 3.34,
+      "saturated_fat_g": 1.38,
+      "sodium_mg": 122.21,
+      "total_carbs_g": 9.61,
+      "total_fat_g": 5.77,
+      "total_sugars_g": 2.46,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 3.7,
+      "dietary_fiber": 15.1,
+      "protein": 21.7,
+      "saturated_fat": 22.4,
+      "sodium": 17.3,
+      "total_carbs": 11.4,
+      "total_fat": 24.1
+    },
+    "serving_size_g": 325.5,
+    "total_recipe_weight_g": 1302
+  },
+  {
+    "recipe_name": "Spiced Lamb Stuffed Courgette Boats",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251030_065601_57d1ecc1.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 20,
+    "timestamp": "2025-10-30T06:56:02.642475000Z",
+    "selected_ingredients": [
+      "courgette"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Two halves of oven-baked courgette boats are presented on a clean white porcelain dinner plate, slightly overlapping. Each courgette, halved lengthwise and scooped, is generously filled with a savory mixture of spiced ground lamb, finely diced onion, minced garlic, and par-cooked rice, all baked in a rich tomato sauce. The courgettes are tender, with a slight char on the edges, and the lamb filling is a deep reddish-brown. A vibrant red, slightly chunky tomato sauce pools gently around the boats. The dish is garnished with a scattering of golden-brown toasted pine nuts and a fresh sprinkle of finely chopped parsley and mint, adding contrasting colors and textures. A swirl of creamy garlic-mint yogurt sauce is drizzled artistically beside the courgettes. The setting is a modern bistro, featuring a simple wooden table surface under natural, even lighting. A cotton napkin and traditional flatware are neatly placed.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm pita bread or crusty rustic bread for dipping in the sauce.",
+      "Offer a side of simple green salad with a lemon-oregano vinaigrette."
+    ],
+    "hero_ingredient": "Courgette",
+    "ingredients": [
+      {
+        "name": "Courgettes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Ground lamb",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Lamb or beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Short-grain white rice",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Cinnamon",
+        "quantity": "1/4 tsp"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pine nuts",
+        "quantity": "2 tbsp, toasted"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Cook rice according to package directions until par-cooked. Set aside.",
+      "Halve courgettes lengthwise. Scoop out flesh, leaving a 1 cm border. Chop scooped courgette flesh finely. Season courgette shells with salt and pepper.",
+      "Heat 1 tbsp olive oil in a large pan over medium heat. Add diced onion. Sauté until softened, about 5 minutes. Add minced garlic. Cook for 1 minute.",
+      "Add ground lamb to the pan. Cook, breaking up with a spoon, until browned. Drain excess fat.",
+      "Stir in tomato paste, cumin, coriander, paprika, and cinnamon. Cook for 1 minute until fragrant.",
+      "Remove from heat. Mix in chopped courgette flesh, par-cooked rice, chopped parsley, and chopped mint. Season with salt and pepper.",
+      "Stuff the courgette shells generously with the lamb mixture.",
+      "Pour canned diced tomatoes and broth into an oven-safe baking dish. Season sauce with salt and pepper. Arrange stuffed courgettes in the dish.",
+      "Bake for 30-35 minutes, or until courgettes are tender and filling is heated through.",
+      "While baking, prepare yogurt sauce: Combine Greek yogurt, lemon juice, and a pinch of salt. Stir well.",
+      "Remove from oven. Garnish with toasted pine nuts and fresh herbs. Serve with a drizzle of yogurt sauce."
+    ],
+    "notes": [
+      "For extra flavor, roast the scooped-out courgette flesh before mixing into the filling."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 658.92,
+      "cholesterol_mg": 113.75,
+      "dietary_fiber_g": 5.52,
+      "protein_g": 36.83,
+      "saturated_fat_g": 15.22,
+      "sodium_mg": 683.25,
+      "total_carbs_g": 41.61,
+      "total_fat_g": 40.47,
+      "total_sugars_g": 12.11,
+      "trans_fat_g": 1.08
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119.8,
+      "cholesterol_mg": 20.68,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.7,
+      "saturated_fat_g": 2.77,
+      "sodium_mg": 124.23,
+      "total_carbs_g": 7.57,
+      "total_fat_g": 7.36,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.92,
+      "dietary_fiber": 19.71,
+      "protein": 73.66,
+      "saturated_fat": 76.1,
+      "sodium": 29.71,
+      "total_carbs": 15.13,
+      "total_fat": 51.88
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Risotto ai Tre Ortaggi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251030_062051_6580b920.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-30T06:20:52.366237000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "kohlrabi",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The risotto is presented in a warm, shallow white porcelain bowl, exhibiting a creamy, fluid consistency. The Arborio rice grains are plump and glistening, coated in a rich, pale yellow sauce. Scattered throughout the risotto are vibrant green blanched broccoli florets, contrasting with the soft orange 0.5 cm carrot cubes and the lighter, slightly firmer 1 cm kohlrabi cubes. A generous sprinkle of freshly grated Parmesan cheese lightly dusts the surface, alongside bright green chopped parsley. The overall color palette is inviting, with natural greens, oranges, and creamy whites. The bowl sits on a simple wooden table, accompanied by a traditional silver fork and spoon, and a folded cotton napkin. Natural, even lighting highlights the textures and colors of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately after preparation.",
+      "Offer extra grated Parmesan cheese at the table.",
+      "Pair with a light white wine like Pinot Grigio."
+    ],
+    "hero_ingredient": "Kohlrabi",
+    "ingredients": [
+      {
+        "name": "Broccoli",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Kohlrabi",
+        "quantity": "2 medium (approx. 400 g)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (approx. 200 g)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.2 liters"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 small (approx. 80 g), finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80 g, freshly grated"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare vegetables: Cut broccoli into small florets. Peel kohlrabi and carrots. Dice kohlrabi into 1 cm cubes. Dice carrots into 0.5 cm cubes.",
+      "Blanch broccoli: Bring a pot of salted water to a boil. Blanch broccoli florets for 2 minutes. Drain immediately. Plunge into ice water to stop cooking. Drain well. Set aside.",
+      "Sauté aromatics: In a large, heavy-bottomed pot, heat olive oil and 20 g butter over medium heat. Add diced onion. Sauté until translucent, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Toast rice: Add Arborio rice to the pot. Stir constantly for 2-3 minutes until grains are translucent at edges.",
+      "Deglaze: Pour in white wine. Stir until completely absorbed by the rice.",
+      "Add broth: Add diced kohlrabi and carrots to the rice. Begin adding hot vegetable broth, one ladleful at a time. Stir frequently. Wait until each ladleful is almost fully absorbed before adding the next. This process takes about 18-20 minutes.",
+      "Check doneness: Taste rice for al dente texture. It should be tender with a slight bite in the center. The risotto should be creamy and fluid.",
+      "Finish risotto: Remove pot from heat. Stir in remaining 40 g butter and 80 g grated Parmesan cheese. Add blanched broccoli florets. Stir gently to combine.",
+      "Season: Season with salt and black pepper to taste.",
+      "Serve: Ladle risotto into warm bowls. Garnish with fresh chopped parsley and extra grated Parmesan."
+    ],
+    "notes": [
+      "Ensure the broth is always hot to maintain a consistent cooking temperature for the rice.",
+      "Stirring is crucial for releasing starch from the rice, creating the creamy texture.",
+      "The risotto should be \"all'onda\" (wavy), meaning it should flow gently when the bowl is tilted."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Tostatura",
+      "Sfumatura",
+      "Mantecaura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 674,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 19,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 1320,
+      "total_carbs_g": 87.2,
+      "total_fat_g": 25.8,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93,
+      "cholesterol_mg": 7,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 2.6,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 183,
+      "total_carbs_g": 12.1,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.7,
+      "dietary_fiber": 34.8,
+      "protein": 38.1,
+      "saturated_fat": 63.2,
+      "sodium": 57.4,
+      "total_carbs": 31.7,
+      "total_fat": 33
+    },
+    "serving_size_g": 722,
+    "total_recipe_weight_g": 2888
+  }
+]

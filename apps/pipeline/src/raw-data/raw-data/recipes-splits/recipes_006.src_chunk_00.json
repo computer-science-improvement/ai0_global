@@ -1,0 +1,678 @@
+[
+  {
+    "recipe_name": "Korean Black Bean Beef Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251103_144203_6fe60f3c.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 17,
+    "timestamp": "2025-11-03T14:42:04.663114000Z",
+    "selected_ingredients": [
+      "black bean paste",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Korean Black Bean Beef Soup is presented in a deep, clean white ceramic bowl, showcasing its rich, dark reddish-brown hue. Tender, braised beef cubes, approximately 2-3 cm, are visibly nestled among diced potatoes and zucchini, both cut into 1.5 cm cubes, and roughly chopped tender white cabbage. The surface is adorned with a vibrant swirl of golden sesame oil, a scattering of thinly sliced bright green onions, and a sprinkle of toasted white sesame seeds, providing a striking contrast against the dark soup. The bowl sits on a simple wooden table surface, characteristic of a modern bistro setting. Beside the soup bowl, a small white rice bowl filled with steamed white rice and a pair of traditional metal chopsticks are placed. A small dish of bright red kimchi or yellow pickled radish serves as a culturally authentic accompaniment, completing the inviting and balanced composition. Natural, even lighting illuminates the dish, highlighting its textures and deep colors. The entire plate is visible, with moderate negative space, creating a professional yet approachable arrangement.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve hot with a side of steamed white rice.",
+      "Accompany with various banchan (small side dishes) such as kimchi, pickled radish, or seasoned bean sprouts.",
+      "Enjoy with a spoon for the soup and chopsticks for solids."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or brisket",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Korean black bean paste (Chunjang)",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "White cabbage",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "1.2 L"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cornstarch (optional)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Water (for cornstarch slurry)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 2-3 cm cubes. Pat dry. Season lightly with salt and pepper.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat. Brown beef cubes on all sides. Remove beef and set aside.",
+      "Dice onion into 1 cm pieces. Mince garlic and ginger.",
+      "Add onion to the pot. Sauté until softened, about 5 minutes. Add minced garlic and ginger. Cook for 1 minute until fragrant.",
+      "Stir in Korean black bean paste. Cook for 2-3 minutes, stirring constantly, to toast the paste.",
+      "Return browned beef to the pot. Add beef broth, soy sauce, and sugar. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 1.5 to 2 hours, or until beef is tender.",
+      "While soup simmers, peel and dice potatoes into 1.5 cm cubes. Dice zucchini into 1.5 cm cubes. Roughly chop white cabbage.",
+      "After beef is tender, add potatoes and cabbage to the pot. Simmer for 10 minutes.",
+      "Add zucchini to the pot. Continue to simmer for 5-7 minutes, until vegetables are tender.",
+      "If desired, mix cornstarch with water to create a slurry. Stir into the soup to slightly thicken. Cook for 1 minute.",
+      "Stir in sesame oil. Taste and adjust seasoning as needed.",
+      "Slice green onions thinly for garnish.",
+      "Ladle hot soup into bowls. Garnish with green onions and toasted sesame seeds. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Browning meat for depth of flavor",
+      "Layering fermented black bean paste (Chunjang) for umami",
+      "Balancing sweet, savory, and aromatic elements"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.1,
+      "calories": 539,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 43.4,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 1537.8,
+      "total_carbs_g": 41.1,
+      "total_fat_g": 22.6,
+      "total_sugars_g": 11.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 72,
+      "cholesterol_mg": 14,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 5.8,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 205,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 23,
+      "protein": 87,
+      "saturated_fat": 27,
+      "sodium": 67,
+      "total_carbs": 15,
+      "total_fat": 29
+    },
+    "serving_size_g": 750,
+    "total_recipe_weight_g": 3000
+  },
+  {
+    "recipe_name": "Cheesy Baked Chicken with Caramelized Apple and Onion, Tomato-Yogurt Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251103_143447_3e8218bc.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2025-11-03T14:34:47.928818000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "tomato",
+      "mayonnaise",
+      "onion",
+      "apple",
+      "yogurt"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single baked chicken breast, golden-brown from melted Gruyère, rests centrally on a clean white porcelain plate. The chicken is presented whole. Beneath and slightly around the chicken, a bed of deeply caramelized, thinly sliced onions and apples provides a rich, earthy base with warm amber and soft red tones. The cheese topping shows a crisp edge. Alongside, a vibrant, creamy tomato-yogurt sauce, flecked with finely diced bright red tomato pieces, adds a fresh, tangy contrast. A sprinkle of fresh green chopped parsley brightens the dish. The plate is set on a simple wooden table, with a folded cotton napkin and standard silverware beside it, under natural, even lighting. The background is a subtly blurred modern bistro setting, emphasizing the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium (approx. 300g total)"
+      },
+      {
+        "name": "Apples, firm-sweet variety",
+        "quantity": "2 medium (approx. 300g total)"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "150g"
+      },
+      {
+        "name": "Tomatoes, ripe",
+        "quantity": "2 medium (approx. 300g total)"
+      },
+      {
+        "name": "Plain Greek yogurt",
+        "quantity": "200g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme leaves, chopped",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley or chives, chopped",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Pat chicken breasts dry. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken breasts 2-3 minutes per side until golden. Remove chicken.",
+      "Add remaining 15ml olive oil to the skillet. Add thinly sliced onions. Cook over medium heat, stirring occasionally, for 10-12 minutes until softened and lightly caramelized.",
+      "Add thinly sliced apples and chopped thyme to the skillet. Cook for 5-7 minutes until apples are slightly tender. Season with salt and pepper.",
+      "Return seared chicken breasts to the skillet, nestling them into the onion-apple mixture. Top each chicken breast with an even layer of grated Gruyère cheese.",
+      "Bake for 15-20 minutes, or until internal temperature of chicken reaches 75°C and cheese is melted and bubbly.",
+      "While chicken bakes, prepare the sauce. Finely dice tomatoes. In a bowl, combine diced tomatoes, Greek yogurt, mayonnaise, salt, and pepper. Mix well.",
+      "Serve baked chicken hot, topped with the caramelized apple and onion, and a side of the tomato-yogurt sauce. Garnish with fresh chopped parsley or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 744,
+      "cholesterol_mg": 217,
+      "dietary_fiber_g": 4,
+      "protein_g": 76.9,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 373,
+      "total_carbs_g": 22.5,
+      "total_fat_g": 37.9,
+      "total_sugars_g": 14.9,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 14.6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 71,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72,
+      "dietary_fiber": 14,
+      "protein": 154,
+      "saturated_fat": 66,
+      "sodium": 16,
+      "total_carbs": 8,
+      "total_fat": 49
+    },
+    "serving_size_g": 525.5,
+    "total_recipe_weight_g": 2102
+  },
+  {
+    "recipe_name": "Cheesy Rice and Vegetable Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251103_134957_db57338c.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-11-03T13:49:58.243202000Z",
+    "selected_ingredients": [
+      "rice",
+      "potato",
+      "bell pepper",
+      "mushroom",
+      "onion",
+      "bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "suitable for picky children",
+    "visual_description": "A generous single portion of Cheesy Rice and Vegetable Bake is presented in an everyday ceramic bowl with a rustic edge, on a well-used wooden dining table. The bake features fluffy, tender white rice interwoven with chunky diced potatoes, vibrant red and green diced bell pepper, earthy sliced mushrooms, and dark beans. Ingredients are naturally mixed, forming an inviting, slightly uneven mound. A golden-brown crust of melted cheddar cheese covers the top, showing occasional browned spots. The dish has a warm color palette of reds, greens, and browns. Fresh green parsley leaves are scattered over. The bowl sits on a simple woven placemat. A fork rests on a casually folded cloth napkin. A soft blur of a homely kitchen, with warm light, creates a relaxed family meal atmosphere.",
+    "number_of_servings": 8,
+    "cuisine_type": "American Home",
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Long-grain white rice",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Bell peppers (mixed colors)",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Mushrooms (cremini or button)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Canned black beans or kidney beans, rinsed and drained",
+        "quantity": "2 cans (400g each)"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Cheddar cheese, shredded (optional)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh parsley, chopped (for garnish)",
+        "quantity": "20g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Heat 60ml olive oil in a large oven-safe pot or Dutch oven.",
+      "Add 2 diced onions. Sauté until softened, about 5 minutes.",
+      "Add 4 minced garlic cloves. Sauté for 1 minute until fragrant.",
+      "Stir in 3 diced bell peppers and 500g sliced mushrooms. Cook 5-7 minutes until slightly softened.",
+      "Add 1kg diced potatoes, 500g rice, 5g dried oregano, 10g salt, and 2g black pepper. Stir well.",
+      "Pour in 1 litre vegetable broth and 400g crushed tomatoes. Bring to a simmer.",
+      "Stir in 2 cans (400g each) rinsed and drained beans.",
+      "Cover the pot. Transfer to preheated oven.",
+      "Bake for 30 minutes.",
+      "Remove lid. Stir gently. Sprinkle 200g shredded cheddar cheese over top if desired.",
+      "Bake uncovered for 15-20 minutes. Rice should be tender and liquid absorbed.",
+      "Let stand 5 minutes before serving. Garnish with fresh parsley if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 632,
+      "cholesterol_mg": 26.25,
+      "dietary_fiber_g": 11.98,
+      "protein_g": 22.26,
+      "saturated_fat_g": 6.44,
+      "sodium_mg": 1226.01,
+      "total_carbs_g": 86.67,
+      "total_fat_g": 16.36,
+      "total_sugars_g": 7.57,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99,
+      "cholesterol_mg": 4.12,
+      "dietary_fiber_g": 1.88,
+      "protein_g": 3.5,
+      "saturated_fat_g": 1.01,
+      "sodium_mg": 192.61,
+      "total_carbs_g": 13.62,
+      "total_fat_g": 2.57,
+      "total_sugars_g": 1.19,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 8.75,
+      "dietary_fiber": 42.79,
+      "protein": 44.52,
+      "saturated_fat": 32.2,
+      "sodium": 53.3,
+      "total_carbs": 31.52,
+      "total_fat": 20.97
+    },
+    "serving_size_g": 636.5,
+    "total_recipe_weight_g": 5092
+  },
+  {
+    "recipe_name": "Savory Stuffed Bell Peppers with Rice, Potato, and Mushroom",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251103_123543_89a31cfd.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-11-03T12:35:44.317440000Z",
+    "selected_ingredients": [
+      "rice",
+      "potato",
+      "bell pepper",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single roasted bell pepper half, vibrant red or yellow, is presented on an everyday ceramic plate. The pepper is tender, slightly softened, with a subtle char on its edges, holding its shape well. It is generously mounded with a savory, rustic filling. The filling shows a medley of textures: fluffy white rice, small tender potato cubes, and earthy diced mushrooms, all coated in a rich, reddish tomato sauce. A layer of melted, golden-brown cheese forms a comforting crust over the top of the filling. A light scattering of vibrant green chopped fresh parsley adds a pop of color. The plate is set on a well-used wooden dining table, with a casually placed cloth napkin nearby. Warm, cozy kitchen lighting illuminates the dish, highlighting its comforting appeal. The entire plate is visible, showcasing a modest, home-style portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Cooking",
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Bell peppers",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Cooked rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Shredded cheese (cheddar or mozzarella)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Halve bell peppers lengthwise. Remove seeds and membranes. Set aside.",
+      "Peel potatoes. Dice potatoes into 1 cm cubes. Boil until tender, about 10 minutes. Drain well.",
+      "Dice mushrooms. Dice onion finely. Mince garlic.",
+      "Heat olive oil in a large pan over medium heat. Sauté onion until softened, about 5 minutes.",
+      "Add mushrooms and garlic. Cook until mushrooms release their liquid and brown, about 7-8 minutes.",
+      "Stir in diced tomatoes, oregano, salt, and pepper. Simmer for 5 minutes.",
+      "Remove from heat. Gently fold in cooked rice and boiled potato cubes. Mix well.",
+      "Arrange bell pepper halves in a baking dish. Spoon the rice and vegetable filling into each pepper half. Fill generously.",
+      "Pour vegetable broth into the bottom of the baking dish around the peppers.",
+      "Bake for 30 minutes, or until peppers are tender. An internal temperature of 75°C (167°F) should be reached if any meat was included; for vegetables, cook until tender.",
+      "Remove from oven. Sprinkle shredded cheese over each stuffed pepper. Return to oven for 10-15 minutes, until cheese is melted and golden.",
+      "Chop fresh parsley. Garnish stuffed peppers with fresh parsley before serving."
+    ],
+    "notes": [
+      "Any color of bell pepper can be used; a mix of colors adds visual appeal.",
+      "The filling can be prepared ahead of time and refrigerated for up to 2 days."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 412,
+      "cholesterol_mg": 26.3,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 14.2,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 685.8,
+      "total_carbs_g": 53.1,
+      "total_fat_g": 16.6,
+      "total_sugars_g": 13.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 72,
+      "cholesterol_mg": 4.6,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 2.5,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 119.3,
+      "total_carbs_g": 9.2,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 8.8,
+      "dietary_fiber": 31.7,
+      "protein": 28.4,
+      "saturated_fat": 32.3,
+      "sodium": 29.8,
+      "total_carbs": 19.3,
+      "total_fat": 21.3
+    },
+    "serving_size_g": 575,
+    "total_recipe_weight_g": 2300
+  },
+  {
+    "recipe_name": "Dark Chocolate Cornmeal Cakes with Blackberry Wine Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251103_120044_24edfd08.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 14,
+    "timestamp": "2025-11-03T12:00:45.342061000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "flour",
+      "blackberry wine",
+      "cornmeal"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "The dessert features a rich, dark chocolate cornmeal cake, individually baked, presented on a clean white porcelain plate. The cake is round, approximately 7-8 cm in diameter and 4-5 cm high, with a slightly domed top. A glossy, deep purple-red blackberry wine glaze cascades elegantly over the cake's surface and down its sides, creating natural rivulets. Beside the cake, a small cluster of 3-4 plump, fresh blackberries provides a contrasting burst of deep purple-black color and natural texture. A vibrant green sprig of fresh mint is carefully placed among the berries, offering a fresh accent. The presentation is balanced, with moderate negative space. Colors are natural: dark brown from chocolate, deep jewel-toned glaze, vibrant berries and mint. The setting is a modern bistro with a simple wooden table surface, natural, even lighting, and a plain cotton napkin beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Dark chocolate (vegan, 70% cacao or higher)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fine cornmeal",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Plant-based milk (e.g., almond or soy)",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Blackberry wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh blackberries (for garnish)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh mint leaves (for garnish)",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour four individual ramekins or small cake molds.",
+      "Melt 100 g dark chocolate. Use a double boiler or microwave. Set aside to cool slightly.",
+      "In a large bowl, whisk together flour, cornmeal, sugar, cocoa powder, baking powder, and salt.",
+      "In a separate bowl, combine plant-based milk, vegetable oil, and vanilla extract. Add melted chocolate. Mix well.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Do not overmix.",
+      "Divide batter evenly among prepared ramekins.",
+      "Bake for 20-25 minutes, or until a skewer inserted into the center comes out with moist crumbs.",
+      "Cool cakes in ramekins for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Pour blackberry wine into a small saucepan. Bring to a simmer over medium heat.",
+      "Reduce wine by half, about 5-7 minutes. It should be slightly syrupy.",
+      "Remove from heat. Let cool slightly.",
+      "In a bowl, whisk powdered sugar with 2-3 tablespoons of the reduced blackberry wine until smooth. Add more reduction slowly if needed for desired consistency.",
+      "Place one cooled chocolate cornmeal cake on each plate.",
+      "Pour a generous spoonful of blackberry wine glaze over the top of each cake, allowing it to drizzle down the sides.",
+      "Arrange a few fresh blackberries beside the cake.",
+      "Garnish with a small sprig of fresh mint."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 82.5,
+      "calories": 977,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.48,
+      "protein_g": 10.87,
+      "saturated_fat_g": 14.55,
+      "sodium_mg": 637,
+      "total_carbs_g": 138.76,
+      "total_fat_g": 42.18,
+      "total_sugars_g": 86.71,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 26.16,
+      "calories": 309.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.64,
+      "protein_g": 3.44,
+      "saturated_fat_g": 4.61,
+      "sodium_mg": 202,
+      "total_carbs_g": 44,
+      "total_fat_g": 13.37,
+      "total_sugars_g": 27.49,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 40.99,
+      "protein": 21.73,
+      "saturated_fat": 72.74,
+      "sodium": 27.7,
+      "total_carbs": 50.46,
+      "total_fat": 54.07
+    },
+    "serving_size_g": 315.4,
+    "total_recipe_weight_g": 1261.6
+  }
+]

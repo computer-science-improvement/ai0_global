@@ -1,0 +1,680 @@
+[
+  {
+    "recipe_name": "Beer-Braised Pork Shoulder with Spicy Chili Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_pork_shoulder_with_spicy_chili_glaze_20250624_172735_a5fe159f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:27:35.768385000Z",
+    "selected_ingredients": [
+      "pork",
+      "beer",
+      "chili",
+      "pickled jalapeno chilies"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous portion of tender, dark brown shredded pork is mounded centrally on a clean, round white porcelain plate. A rich, glossy deep reddish-brown chili glaze cascades over the pork, pooling slightly at its base. The pork rests upon a creamy, golden yellow bed of polenta. A vibrant green and orange gremolata, made from finely chopped pickled jalapeños, fresh cilantro, and bright lime zest, is sprinkled atop the pork, offering a sharp visual and flavor contrast. The dish is presented on a simple wooden table surface with a white cotton napkin beside the plate. Natural, even lighting illuminates the dish, highlighting its comforting textures and warm colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of creamy polenta or mashed potatoes.",
+      "Accompany with a simple green salad or coleslaw."
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Boneless pork shoulder",
+        "quantity": "1.2 kg, cut into 2-3 large chunks"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g, undrained"
+      },
+      {
+        "name": "Lager beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Chicken or beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "20 ml"
+      },
+      {
+        "name": "Pickled jalapeño slices",
+        "quantity": "50 g, finely chopped"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g, finely chopped"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, zest only"
+      }
+    ],
+    "instructions": [
+      "Season pork chunks generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat. Sear pork chunks on all sides until deeply browned. Remove pork from pot.",
+      "Add diced onion, carrots, and celery to the pot. Sauté 8-10 minutes until softened and lightly browned.",
+      "Add minced garlic, chili powder, smoked paprika, ground cumin, and dried oregano. Cook 1 minute, stirring constantly, until fragrant.",
+      "Pour in beer, scraping up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Stir in diced tomatoes and chicken broth. Bring to a boil.",
+      "Return seared pork to the pot. Liquid should mostly cover pork. Add more broth or water if needed.",
+      "Cover pot tightly. Transfer to a preheated oven at 150°C (300°F). Braise 3-4 hours, or until pork is fork-tender and easily shredded.",
+      "Remove pork from pot. Transfer to a large bowl. Shred pork using two forks. Discard any excess fat.",
+      "Strain braising liquid into a saucepan. Discard solids. Skim off any fat from the liquid.",
+      "Bring strained liquid to a simmer over medium heat. Reduce by half, about 10-15 minutes, until slightly thickened.",
+      "Whisk cornstarch with cold water to create a slurry. Whisk slurry into the simmering liquid. Cook 1-2 minutes, stirring, until glaze thickens to desired consistency. Season with salt and pepper.",
+      "For gremolata: Combine finely chopped pickled jalapeños, chopped fresh cilantro, and lime zest in a small bowl.",
+      "To serve: Place a generous portion of creamy polenta (or mashed potatoes) on each plate. Top with shredded pork. Spoon a generous amount of spicy chili glaze over the pork. Sprinkle with jalapeño gremolata."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 637,
+      "cholesterol_mg": 186,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 69.7,
+      "saturated_fat_g": 7.9,
+      "sodium_mg": 789,
+      "total_carbs_g": 24.9,
+      "total_fat_g": 25,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 84.5,
+      "cholesterol_mg": 24.7,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.2,
+      "saturated_fat_g": 1,
+      "sodium_mg": 104.7,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 23,
+      "protein": 139,
+      "saturated_fat": 40,
+      "sodium": 34,
+      "total_carbs": 9,
+      "total_fat": 32
+    },
+    "serving_size_g": 753.4,
+    "total_recipe_weight_g": 3013.4
+  },
+  {
+    "recipe_name": "Classic Spanish Tortilla with Slow-Cooked Tomato and Manchego",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_spanish_tortilla_with_slow-cooked_tomato_and_manchego_20250624_172703_299e23db.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:27:03.625399000Z",
+    "selected_ingredients": [
+      "onion",
+      "potato",
+      "tomato",
+      "cheese",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A thick, golden-brown wedge of classic Spanish tortilla is centrally placed on a clean, round white porcelain plate. Its perfectly seared exterior showcases a slight crispness. The cut interior reveals tender, thinly sliced potatoes and soft onions suspended in a creamy, pale yellow egg matrix. Beside the tortilla, a vibrant dollop of deep red slow-cooked tomato confit rests, its texture rich and jam-like. Shavings of pale yellow Manchego cheese are scattered over the tortilla and confit. A sprinkle of bright green chopped fresh parsley adds a final touch. The plate sits on a simple wooden table surface, with a folded white cotton napkin beside it. Natural, even lighting highlights the dish's textures and colors against a soft, unobtrusive background, creating a professional yet inviting casual dining atmosphere. The entire plate is visible, with moderate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve at room temperature or slightly warm.",
+      "Accompanied by crusty bread for dipping.",
+      "Often served as part of a tapas spread."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 medium (approx. 300 g)"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "8"
+      },
+      {
+        "name": "Ripe plum tomatoes",
+        "quantity": "4 (approx. 400 g)"
+      },
+      {
+        "name": "Manchego cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "250 ml, plus more for confit"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch for garnish"
+      }
+    ],
+    "instructions": [
+      "Peel and thinly slice potatoes into 3 mm rounds. Thinly slice one onion into half-moons.",
+      "Heat 250 ml olive oil in a 24 cm non-stick pan over medium-low heat. Add sliced potatoes and onion. Cook slowly for 20-25 minutes. Potatoes and onions must be very tender, not browned. Stir occasionally.",
+      "While potatoes cook, prepare tomato confit. Dice remaining onion and tomatoes into small cubes. Mince garlic.",
+      "Heat 2 tablespoons olive oil in a separate small saucepan over medium-low heat. Add diced onion and garlic. Cook until softened, about 5 minutes.",
+      "Add diced tomatoes to the saucepan. Season with salt and pepper. Cook for 15-20 minutes, stirring occasionally, until tomatoes break down into a thick, jam-like consistency. Remove from heat.",
+      "Once potatoes and onion are tender, remove from pan using a slotted spoon. Drain well. Transfer potato-onion mixture to a large bowl.",
+      "In a separate bowl, whisk eggs. Season generously with salt and pepper.",
+      "Add whisked eggs to the potato-onion mixture. Gently fold to combine. Let sit for 5 minutes for flavors to meld.",
+      "Wipe the 24 cm non-stick pan clean. Add 1 tablespoon of olive oil to the pan. Heat over medium heat.",
+      "Pour egg and potato mixture into the hot pan. Spread evenly. Cook for 5-7 minutes without disturbing, until edges set and bottom is golden brown.",
+      "Place a large plate over the pan. Invert the pan to flip the tortilla onto the plate. Carefully slide the tortilla back into the pan, uncooked side down.",
+      "Cook for another 4-6 minutes, or until the center is set but still slightly moist. The tortilla should be golden brown on both sides.",
+      "Slide the cooked tortilla onto a clean cutting board or serving platter. Let rest for 5 minutes.",
+      "Grate or shave Manchego cheese. Chop fresh parsley.",
+      "Cut the tortilla into 4 thick wedges. Serve each wedge with a dollop of slow-cooked tomato confit. Garnish with grated Manchego and fresh parsley."
+    ],
+    "notes": [
+      "The key to a good tortilla is slow-cooking the potatoes and onions until very tender, almost confit-like.",
+      "Do not overcook the tortilla; it should remain slightly moist in the center."
+    ],
+    "traditional_techniques": [
+      "Confitar (slow-cooking in oil)",
+      "Flipping the tortilla (dar la vuelta a la tortilla)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1050.3,
+      "cholesterol_mg": 399.3,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 24.3,
+      "saturated_fat_g": 18.7,
+      "sodium_mg": 294.1,
+      "total_carbs_g": 43.5,
+      "total_fat_g": 88.3,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 192.7,
+      "cholesterol_mg": 73.2,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 4.5,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 54,
+      "total_carbs_g": 8,
+      "total_fat_g": 16.2,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 133,
+      "dietary_fiber": 23,
+      "protein": 49,
+      "saturated_fat": 94,
+      "sodium": 13,
+      "total_carbs": 16,
+      "total_fat": 113
+    },
+    "serving_size_g": 545.1,
+    "total_recipe_weight_g": 2180.5
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Apple-Tomato-Chocolate Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_apple-tomato-chocolate_jus_20250624_172657_7c8293fb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:26:58.174671000Z",
+    "selected_ingredients": [
+      "tomato",
+      "apple",
+      "mustard",
+      "chicken stock",
+      "chocolate",
+      "salad green"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-brown pan-seared chicken breast, cooked whole, rests centrally on a clean white porcelain dinner plate. The chicken exhibits a perfectly seared crust and tender interior. A rich, glossy apple-tomato-chocolate jus, deep reddish-brown in color, is elegantly spooned over and around the chicken, pooling invitingly on the plate. The sauce contains small, softened pieces of diced tomato and apple, adding subtle texture. Beside the chicken, a vibrant mound of crisp mixed salad greens, lightly dressed, provides a contrasting fresh green hue. The overall composition is balanced and inviting, with moderate negative space. The dish is presented on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin, under natural, even lighting that highlights the food's colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium, diced (approx. 200g)"
+      },
+      {
+        "name": "Green apple",
+        "quantity": "1 medium, peeled, cored, diced (approx. 150g)"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa or higher)",
+        "quantity": "20g, finely chopped"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "100g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large, finely minced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g (cold, for finishing sauce)"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "5ml (for salad dressing)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add chicken breasts.",
+      "Sear chicken for 5-7 minutes per side until golden brown and cooked through. Internal temperature must reach 75°C. Remove chicken from skillet and set aside to rest.",
+      "Reduce heat to medium. Add remaining 15ml olive oil to the same skillet. Add minced shallot and sauté for 2 minutes until softened.",
+      "Add minced garlic and diced apple. Cook for 3-4 minutes until apple softens slightly.",
+      "Stir in diced tomatoes and fresh thyme sprigs. Cook for 5 minutes, stirring occasionally, until tomatoes break down.",
+      "Pour in chicken stock. Bring to a simmer, scraping up any browned bits from the bottom of the skillet.",
+      "Stir in Dijon mustard. Continue to simmer for 5-7 minutes until sauce slightly thickens.",
+      "Remove thyme sprigs. Reduce heat to low. Stir in finely chopped dark chocolate until melted and fully incorporated.",
+      "Remove skillet from heat. Whisk in cold butter until sauce is glossy. Taste and adjust seasoning if needed.",
+      "In a separate bowl, toss salad greens with a drizzle of olive oil, a splash of red wine vinegar, salt, and pepper.",
+      "To serve, place one chicken breast on each plate. Spoon a generous amount of the apple-tomato-chocolate jus over and around the chicken. Serve with a portion of mixed salad greens alongside."
+    ]
+  },
+  {
+    "recipe_name": "Spiced Chicken with Crispy Lavash and Garlic Yogurt",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_chicken_with_crispy_lavash_and_garlic_yogurt_20250624_172644_ab827f35.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:26:44.662223000Z",
+    "selected_ingredients": [
+      "chicken",
+      "lavash bread",
+      "pita"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of golden-brown pan-seared chicken chunks, seasoned with Middle Eastern spices, is centrally arranged on a clean white porcelain plate. The chicken is tender with a slight char. Beside it, a vibrant salad of diced cucumber, tomato, and thinly sliced red onion, mixed with fresh parsley and mint, adds color and freshness. A swirl of creamy garlic yogurt sauce and a drizzle of tahini sauce are artfully placed on the plate, complementing the chicken. Crispy, irregular shards of baked lavash bread are tucked around the chicken, providing textural contrast. Warm, fluffy pita bread wedges are neatly folded and placed to the side. The dish is presented on a simple wooden table, with a cotton napkin and modern cutlery, under natural, even lighting, evoking a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Middle Eastern",
+    "cultural_origin": "Middle Eastern",
+    "cultural_serving_suggestions": [
+      "Serve with additional fresh herbs like cilantro or dill.",
+      "Offer a side of pickled turnips or cucumbers for an authentic touch.",
+      "Traditionally eaten by tearing pita bread and scooping up the chicken and salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Lavash bread",
+        "quantity": "1 large sheet"
+      },
+      {
+        "name": "Pita bread",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Tahini",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "2g"
+      },
+      {
+        "name": "Cayenne pepper (optional)",
+        "quantity": "1g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "15g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks. In a bowl, combine chicken with 30ml olive oil, cumin, coriander, paprika, turmeric, cayenne pepper, 3g salt, and 1g black pepper. Mix well. Marinate for at least 30 minutes, or up to 4 hours in the refrigerator.",
+      "Preheat oven to 180°C. Cut lavash bread into irregular shards. Place on a baking sheet. Drizzle with 15ml olive oil and sprinkle with a pinch of salt. Bake for 5-7 minutes until golden and crispy. Set aside.",
+      "Prepare garlic yogurt sauce: Finely mince 2 garlic cloves. In a small bowl, combine Greek yogurt, minced garlic, juice from half a lemon, and a pinch of salt. Mix well. Refrigerate until serving.",
+      "Prepare tahini sauce: In a small bowl, whisk tahini, juice from remaining half lemon, 1 minced garlic clove, and 30ml cold water. Add more water if needed to reach a pourable consistency. Season with a pinch of salt. Refrigerate.",
+      "Dice cucumber and tomatoes. Thinly slice the red onion. Roughly chop fresh parsley and mint. In a bowl, combine diced cucumber, tomato, red onion, parsley, and mint. Dress with 15ml olive oil, remaining salt, and black pepper. Toss gently.",
+      "Heat a large frying pan or cast-iron skillet over medium-high heat. Add marinated chicken chunks. Sear for 5-7 minutes, turning occasionally, until chicken is cooked through and golden brown. Ensure internal temperature reaches 75°C.",
+      "Warm pita bread in a dry pan or microwave for 30 seconds per side until soft and pliable. Cut into wedges.",
+      "To plate, arrange seared chicken chunks on a white porcelain plate. Place a portion of the fresh salad next to the chicken. Drizzle garlic yogurt sauce and tahini sauce over and around the chicken and salad. Tuck crispy lavash shards around the chicken. Arrange warm pita wedges on the side. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust spice levels in the marinade to your preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 770,
+      "cholesterol_mg": 144,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 46.5,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 1162,
+      "total_carbs_g": 71.7,
+      "total_fat_g": 34.5,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153.5,
+      "cholesterol_mg": 28.6,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 9.3,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 231.8,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 48,
+      "dietary_fiber": 31,
+      "protein": 93,
+      "saturated_fat": 32,
+      "sodium": 51,
+      "total_carbs": 26,
+      "total_fat": 44
+    },
+    "serving_size_g": 501.3,
+    "total_recipe_weight_g": 2005
+  },
+  {
+    "recipe_name": "Tomatillo Avocado Salad with Crispy Tortilla",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomatillo_avocado_salad_with_crispy_tortilla_20250624_172643_1b978217.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:26:43.453275000Z",
+    "selected_ingredients": [
+      "avocado",
+      "tomatillo",
+      "beer",
+      "epazote",
+      "corn tortilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Tomatillo Avocado Salad is presented on a clean, round white porcelain dinner plate, centrally mounded with vibrant colors and textures. Diced roasted tomatillos, their green hues deepened, are interspersed with bright yellow roasted corn kernels and creamy avocado chunks. Thinly sliced red onion provides a sharp color contrast. Finely chopped fresh cilantro is scattered throughout. Golden-brown, crispy corn tortilla strips, cut into thin batons, are artfully arranged on top, adding height and crunch. A light, glistening beer-epazote vinaigrette coats the ingredients, enhancing their natural colors. The entire plate is visible, with moderate negative space. The setting features a simple wooden table surface, a white cotton napkin beside the plate, and a small basket of warm corn tortillas placed nearby, hinting at a casual Mexican bistro with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Served with additional warm corn tortillas on the side."
+    ],
+    "hero_ingredient": "Tomatillo",
+    "ingredients": [
+      {
+        "name": "Tomatillos",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Avocados",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Corn kernels",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "4-6"
+      },
+      {
+        "name": "Beer (light lager)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh epazote",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Husk tomatillos. Place on a baking sheet. Roast for 15-20 minutes until soft and lightly charred. Cool, then dice.",
+      "If using fresh corn, remove kernels from cobs. Place corn kernels on a baking sheet. Roast or grill until tender and slightly charred. Cool.",
+      "Cut corn tortillas into thin strips. Fry in shallow oil until golden and crispy, or bake at 180°C until crisp. Drain on paper towels. Season with salt.",
+      "For the dressing, pour beer into a small saucepan. Bring to a simmer. Reduce by half. Mince fresh epazote leaves. In a bowl, whisk reduced beer, minced epazote, lime juice, olive oil, salt, and black pepper.",
+      "In a large bowl, combine diced roasted tomatillos, roasted corn kernels, diced avocados, and thinly sliced red onion. Add chopped fresh cilantro.",
+      "Pour the dressing over the salad ingredients. Toss gently to coat all components evenly.",
+      "Divide the Tomatillo Avocado Salad among four individual serving plates. Top each portion generously with the crispy corn tortilla strips. Serve immediately."
+    ],
+    "notes": [
+      "For added heat, finely mince a jalapeño or serrano pepper and add to the dressing."
+    ],
+    "traditional_techniques": [
+      "Roasting vegetables",
+      "Frying tortillas"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 479,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 13.3,
+      "protein_g": 8.2,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 62.6,
+      "total_carbs_g": 48.9,
+      "total_fat_g": 31.2,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 2,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 15.5,
+      "total_carbs_g": 12.1,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 47.6,
+      "protein": 16.3,
+      "saturated_fat": 22.1,
+      "sodium": 2.7,
+      "total_carbs": 17.8,
+      "total_fat": 40.1
+    },
+    "serving_size_g": 403.75,
+    "total_recipe_weight_g": 1615
+  }
+]

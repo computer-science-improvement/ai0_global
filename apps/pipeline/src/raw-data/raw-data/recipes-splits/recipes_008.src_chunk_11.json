@@ -1,0 +1,660 @@
+[
+  {
+    "recipe_name": "Fermented Grape & Almond Financiers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_grape_%26_almond_financiers_20250811_080100_37035490.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T08:01:01.452435000Z",
+    "selected_ingredients": [
+      {
+        "name": "grape"
+      },
+      {
+        "name": "lemon"
+      },
+      {
+        "name": "almond"
+      },
+      {
+        "name": "vanilla"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "Six to nine miniature, golden-brown financiers are arranged with consistent, deliberate spacing on a smooth, matte white ceramic rectangular platter. Each financier, approximately 5 cm long, has a delicate, slightly crisp exterior and a tender, moist crumb. A subtle, translucent lemon-vanilla glaze lightly coats the top, allowing the rich, toasted almond color of the financier to show through. Nestled on the surface of each financier are a few deep purple or pale green fermented grape halves, their slightly wrinkled skins and soft pulp adding a contrasting texture and a hint of natural color variation. The arrangement is clean and uncluttered, emphasizing negative space. The platter rests on a light, reclaimed wood table surface. Soft, diffused natural light illuminates the scene from the side, highlighting the financiers' gentle sheen and the subtle textures of the grapes and glaze. A simple, undyed linen napkin in a natural beige tone is casually folded to one side, maintaining the minimalist, eco-conscious aesthetic. No excessive garnishes; the natural beauty of the ingredients is the focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Fermented Grapes",
+    "ingredients": [
+      {
+        "name": "Seedless Grapes (red or green)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Lemon juice (for fermentation)",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Blanched almond flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "4 (approx. 120 g)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Icing sugar (for glaze)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Lemon juice (for glaze)",
+        "quantity": "20 ml"
+      },
+      {
+        "name": "Vanilla extract (for glaze)",
+        "quantity": "2 ml"
+      }
+    ],
+    "instructions": [
+      "Wash grapes. Lightly crush some grapes. Combine grapes, water, sugar, lemon juice in clean jar.",
+      "Cover jar loosely with lid or cloth. Let ferment at room temperature for 2-3 days until slightly fizzy and tangy.",
+      "Strain liquid from fermented grapes. Reserve grape pieces.",
+      "Melt butter in saucepan over medium heat. Cook until foamy, butter solids turn golden brown. Strain through fine-mesh sieve. Let cool slightly.",
+      "In a bowl, whisk almond flour, icing sugar, and all-purpose flour.",
+      "Add egg whites, cooled brown butter, and vanilla extract to dry ingredients. Mix until just combined. Do not overmix.",
+      "Lightly grease mini financier molds or mini muffin tins. Fill molds 2/3 full with batter.",
+      "Place a few reserved fermented grape halves on top of each financier.",
+      "Bake in a preheated oven at 180°C for 12-15 minutes, or until golden brown and a toothpick inserted comes out clean.",
+      "Let financiers cool in molds for a few minutes. Transfer to a wire rack to cool completely.",
+      "For the glaze, whisk icing sugar, lemon juice, and vanilla extract until smooth.",
+      "Drizzle or lightly brush glaze over cooled financiers."
+    ],
+    "notes": [
+      "Ensure grapes are well-washed before fermentation to prevent unwanted mold.",
+      "The fermented grape liquid can be saved and used in beverages or other desserts."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ]
+  },
+  {
+    "recipe_name": "Rustic Chicken and Vegetable Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_vegetable_bake_20250811_075614_622b87bc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T07:56:14.778506000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bean",
+      "potato",
+      "onion",
+      "bell pepper",
+      "garlic",
+      "oil",
+      "cheese",
+      "dill"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of Rustic Chicken and Vegetable Bake is presented on a round, earthy-toned ceramic plate. Golden-brown roasted chicken chunks are nestled among tender, cubed potatoes with slightly crispy edges. Soft, caramelized red onion wedges and vibrant bell pepper strips add color. Burst cherry tomatoes and creamy cannellini beans are interspersed. A melted layer of golden cheddar cheese lightly blankets the top. Fresh, chopped dill is generously sprinkled. The plating is natural and abundant, reflecting a hearty home-cooked meal. The plate sits on a well-used, light-colored wooden dining table. A simple, folded cloth napkin is casually placed nearby. Warm, cozy lighting illuminates the scene, highlighting the textures and rich colors. The background suggests a lived-in family kitchen. Chicken is in whole chunks.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Bell peppers (mixed colors)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cannellini beans (canned)",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Cheddar cheese (shredded)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Cut chicken thighs into 3 cm chunks. Dice potatoes into 2 cm cubes. Cut red onion into thick wedges. Slice bell peppers into 2 cm strips. Halve cherry tomatoes. Drain and rinse cannellini beans.",
+      "Mince garlic cloves.",
+      "In a large bowl, combine chicken, potatoes, onion, bell peppers, cherry tomatoes, and cannellini beans.",
+      "Add olive oil, smoked paprika, dried oregano, salt, and black pepper. Toss to coat all ingredients evenly.",
+      "Pour ingredients into a large baking dish or oven-safe pan. Spread in a single layer.",
+      "Pour chicken broth over the mixture.",
+      "Bake for 30 minutes. Stir gently.",
+      "Continue baking for another 15-20 minutes, until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender and golden.",
+      "Remove from oven. Sprinkle shredded cheddar cheese evenly over the bake.",
+      "Return to oven for 5-7 minutes, until cheese is melted and bubbly.",
+      "Chop fresh dill. Sprinkle generously over the finished bake before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 656.4,
+      "cholesterol_mg": 228.8,
+      "dietary_fiber_g": 11.3,
+      "protein_g": 47.9,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 495.2,
+      "total_carbs_g": 52.7,
+      "total_fat_g": 28.4,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107.4,
+      "cholesterol_mg": 37.4,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 80.9,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76.3,
+      "dietary_fiber": 40.4,
+      "protein": 95.9,
+      "saturated_fat": 48.4,
+      "sodium": 21.5,
+      "total_carbs": 19.2,
+      "total_fat": 36.4
+    },
+    "serving_size_g": 611.25,
+    "total_recipe_weight_g": 2445
+  },
+  {
+    "recipe_name": "Creamy Smoked Provolone Pasta with Sun-Dried Tomato and Spinach",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_smoked_provolone_pasta_with_sun-dried_tomato_and_spinach_20250811_074018_939c3ff5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T07:40:18.782988000Z",
+    "selected_ingredients": [
+      "pasta",
+      "smoked provolone cheese",
+      "sun dried tomato",
+      "spinach"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Smoked Provolone Pasta is presented on a clean, round white porcelain dinner plate. The rigatoni noodles are coated in a rich, creamy, off-white sauce, interspersed with vibrant green wilted spinach and deep red, roughly chopped sun-dried tomato pieces. The dish has a natural, slightly free-flowing mound, showcasing the creamy texture. Fresh green basil leaves are scattered on top. A light dusting of finely grated Parmigiano Reggiano adds a delicate finish. The plate sits on a simple light wooden table. A silver fork and a folded light grey cotton napkin are placed beside the plate. Natural, even lighting illuminates the scene, highlighting the dish's inviting colors and textures. The background is minimally blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the sauce.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar.",
+      "Enjoy with a glass of dry white wine or sparkling water."
+    ],
+    "hero_ingredient": "Smoked Provolone",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Smoked provolone cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Sun-dried tomatoes in oil",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Parmigiano Reggiano (for serving)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Grate smoked provolone cheese. Set aside.",
+      "Drain sun-dried tomatoes. Roughly chop. Set aside.",
+      "Finely mince garlic. Finely dice shallot.",
+      "Cook rigatoni according to package directions until al dente. Reserve 250 ml pasta cooking water. Drain pasta.",
+      "Heat olive oil in a large skillet over medium heat.",
+      "Add minced garlic and diced shallot. Sauté 2-3 minutes until fragrant and softened.",
+      "Add chopped sun-dried tomatoes to the skillet. Cook 1 minute.",
+      "Pour in white wine if using. Simmer until reduced by half. If not using wine, add 50 ml reserved pasta water or vegetable broth.",
+      "Add fresh spinach to the skillet. Cook until just wilted.",
+      "Add cooked rigatoni to the skillet. Toss to combine.",
+      "Reduce heat to low. Gradually add grated smoked provolone, stirring constantly. Add reserved pasta water or vegetable broth, 50 ml at a time, until a creamy sauce forms and coats the pasta. The sauce should be fluid, not dry.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately. Garnish with fresh basil leaves and grated Parmigiano Reggiano."
+    ],
+    "notes": [
+      "Adjust the amount of pasta water/broth to achieve desired sauce consistency. The sauce should be creamy and coat the pasta well, not be too thick or runny.",
+      "For best results, use good quality, oil-packed sun-dried tomatoes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 737,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 11.4,
+      "sodium_mg": 786,
+      "total_carbs_g": 88.8,
+      "total_fat_g": 27.3,
+      "total_sugars_g": 9.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 265.1,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 11.6,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 283,
+      "total_carbs_g": 31.9,
+      "total_fat_g": 9.8,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15,
+      "dietary_fiber": 24,
+      "protein": 64,
+      "saturated_fat": 57,
+      "sodium": 34,
+      "total_carbs": 32,
+      "total_fat": 35
+    },
+    "serving_size_g": 278,
+    "total_recipe_weight_g": 1112
+  },
+  {
+    "recipe_name": "Cabbage and Carrot Fermented Slaw",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cabbage_and_carrot_fermented_slaw_20250811_070921_0f247b76.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T07:09:21.679611000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A minimalistic, natural presentation of a vibrant, crunchy salad. Finely shredded pale green fermented cabbage and bright orange julienned carrots are artfully arranged in a handcrafted ceramic bowl with earth tones. Thin slices of ruby red onion are interspersed throughout. Toasted golden pumpkin seeds and dark sunflower seeds are generously scattered over the top, adding contrasting texture and color. A light, glistening dressing coats the vegetables, reflecting soft natural light. The bowl sits on a light, textured bamboo table surface. An undyed linen napkin in natural beige is subtly placed to the side. The background is clean and minimalist, with hints of green foliage from a nearby plant, enhancing the eco-conscious aesthetic. The entire plate is visible, showcasing an individual portion with ample negative space. Ingredients are naturally arranged, emphasizing their inherent beauty and fresh appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Cabbage",
+    "ingredients": [
+      {
+        "name": "White Cabbage",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "15g"
+      },
+      {
+        "name": "Toasted Pumpkin Seeds",
+        "quantity": "50g"
+      },
+      {
+        "name": "Toasted Sunflower Seeds",
+        "quantity": "50g"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Fermented Cabbage Brine",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Shred cabbage finely. Julienne carrots. Thinly slice red onion.",
+      "In a large bowl, combine cabbage, carrots, onion, and sea salt. Massage vigorously for 5-10 minutes until vegetables release liquid and soften.",
+      "Pack the salted vegetables tightly into a clean glass jar. Press down to submerge vegetables under their liquid. If needed, add a small weight to keep them submerged. Seal jar loosely to allow gas escape.",
+      "Let ferment at room temperature (18-22°C) for 3-5 days. Burp daily. Taste after 3 days; continue fermenting until desired tanginess is reached.",
+      "Once fermented, move jar to refrigerator. It will keep for several weeks.",
+      "In a small bowl, whisk together apple cider vinegar, olive oil, Dijon mustard, maple syrup, and 30ml of the fermented cabbage brine. Season with black pepper.",
+      "In a large serving bowl, combine desired amount of fermented slaw with toasted pumpkin and sunflower seeds.",
+      "Pour dressing over salad. Toss gently to combine. Serve immediately."
+    ],
+    "notes": [
+      "This recipe utilizes fermentation for preservation and enhanced flavor, promoting a zero-waste approach by using seasonal vegetables and their natural brine in the dressing. Adjust fermentation time to personal preference for tanginess."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.23,
+      "calories": 386.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 8.29,
+      "saturated_fat_g": 4.19,
+      "sodium_mg": 1606.9,
+      "total_carbs_g": 21.77,
+      "total_fat_g": 31.66,
+      "total_sugars_g": 10.37,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 139.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.49,
+      "protein_g": 3,
+      "saturated_fat_g": 1.51,
+      "sodium_mg": 580.5,
+      "total_carbs_g": 7.86,
+      "total_fat_g": 11.44,
+      "total_sugars_g": 3.74,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 25,
+      "protein": 17,
+      "saturated_fat": 21,
+      "sodium": 70,
+      "total_carbs": 8,
+      "total_fat": 41
+    },
+    "serving_size_g": 276.84,
+    "total_recipe_weight_g": 1107.35
+  },
+  {
+    "recipe_name": "Southwestern Chicken and Rice Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_southwestern_chicken_and_rice_skillet_20250811_055618_5141aac6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T05:56:18.977853000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "bell pepper",
+      "chili",
+      "pickled jalapeno chilies",
+      "basil",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Southwestern Chicken and Rice Skillet is presented on a clean white porcelain dinner plate, set on a simple wooden table. The dish features tender, seared chicken chunks nestled among fluffy, golden-orange rice, generously mixed with tender, vibrant red and green bell pepper strips and small diced onions. Sliced pickled jalapenos and fresh green chili rings are scattered throughout, adding sharp color and texture. A sprinkle of fresh chopped basil and oregano leaves provides bright green contrast. The entire dish is lightly garnished with a few fresh cilantro sprigs and a lime wedge on the side. The presentation is organized yet naturally flowing, with moderate negative space. Natural, even lighting highlights the varied textures and rich colors. A cotton napkin is folded neatly beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Southwestern",
+    "cultural_origin": "Southwestern",
+    "cultural_serving_suggestions": [
+      "Serve with warm flour or corn tortillas on the side.",
+      "Offer a dollop of sour cream or crema.",
+      "Provide fresh salsa or pico de gallo."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Mixed bell peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh chili (e.g., serrano)",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Pickled jalapeno chilies, sliced",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh oregano, chopped",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 (for wedges)"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "10 g (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Cut into 3 cm chunks. Season chicken with salt, pepper, cumin, smoked paprika, and chili powder.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken chunks. Sear until browned on all sides, about 5 minutes. Remove chicken from skillet. Ensure internal temperature reaches 75°C (167°F) during final cooking.",
+      "Add diced onion and red and green bell pepper strips to the same skillet. Cook, stirring occasionally, until softened, about 5-7 minutes. Add minced garlic and thinly sliced fresh chili. Cook for 1 minute until fragrant.",
+      "Stir in uncooked rice, diced tomatoes (with liquid), and chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the skillet.",
+      "Return seared chicken chunks and sliced pickled jalapeno chilies to the skillet. Stir gently to combine. Cover the skillet. Reduce heat to low.",
+      "Simmer for 20-25 minutes, or until rice is tender and most liquid is absorbed. Do not stir excessively during simmering.",
+      "Remove from heat. Stir in chopped fresh basil and oregano. Taste and adjust seasoning as needed.",
+      "Let the skillet rest, covered, for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 626,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 38.4,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 1057.5,
+      "total_carbs_g": 70,
+      "total_fat_g": 20.9,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 103.4,
+      "cholesterol_mg": 22.3,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.3,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 174.7,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 27,
+      "protein": 77,
+      "saturated_fat": 22,
+      "sodium": 46,
+      "total_carbs": 25,
+      "total_fat": 27
+    },
+    "serving_size_g": 605.5,
+    "total_recipe_weight_g": 2422
+  }
+]

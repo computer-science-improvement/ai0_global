@@ -1,0 +1,680 @@
+[
+  {
+    "recipe_name": "Filipino Chicken Adobo with Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_filipino_chicken_adobo_with_potatoes_20250624_141427_56cd44dd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:14:27.875412000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Filipino Chicken Adobo with Potatoes is presented on a clean, round white porcelain plate. The dish features several whole, tender braised chicken thighs, rich brown from the adobo sauce. Alongside are thick, rustic chunks of fork-tender potatoes, also imbued with the glossy, dark amber sauce. The sauce, thickened slightly, coats the chicken and potatoes, reflecting the light. A few whole black peppercorns are visible, adding texture. The plate is set on a simple wooden table, with a small mound of fluffy white steamed rice in a traditional rice bowl and a fresh green cotton napkin beside it. Natural, even lighting highlights the deep, savory colors of the dish. A small bowl of vibrant green pickled papaya (atchara) is placed to the side, providing a contrasting color and cultural element. The background is a subtly blurred modern bistro setting, suggesting a casual yet refined dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Filipino",
+    "cultural_origin": "Filipino",
+    "cultural_serving_suggestions": [
+      "Serve hot with steamed white rice.",
+      "Traditionally accompanied by a side of pickled green papaya (atchara) to balance the richness.",
+      "Often eaten family-style, with individual portions of rice."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Cane vinegar",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Water or chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden brown on all sides. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add sliced white onion to the pot. Sauté until softened, about 3 minutes.",
+      "Add minced garlic. Cook until fragrant, about 1 minute.",
+      "Pour in soy sauce, cane vinegar, water or chicken broth. Add bay leaves and black peppercorns.",
+      "Return seared chicken to the pot. Bring liquid to a simmer.",
+      "Cover pot. Reduce heat to low. Simmer for 20 minutes.",
+      "Add peeled and quartered potatoes to the pot. Stir gently.",
+      "Continue to simmer, covered, for another 20-25 minutes. Cook until chicken is tender and potatoes are fork-tender. Internal temperature of chicken should reach 75°C (167°F).",
+      "Remove bay leaves. Taste and adjust seasoning if needed. Serve hot."
+    ],
+    "notes": [
+      "Do not stir the adobo mixture immediately after adding the vinegar; allow it to simmer for a few minutes before stirring to let the sourness mellow.",
+      "The sauce should be savory with a distinct tang from the vinegar, balanced by the soy sauce."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Simmering",
+      "Balancing sour and savory flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 531.8,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 55.1,
+      "saturated_fat_g": 5,
+      "sodium_mg": 1848,
+      "total_carbs_g": 29.4,
+      "total_fat_g": 23.6,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110.1,
+      "cholesterol_mg": 38.9,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.4,
+      "saturated_fat_g": 1,
+      "sodium_mg": 382.4,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 11,
+      "protein": 110,
+      "saturated_fat": 25,
+      "sodium": 80,
+      "total_carbs": 11,
+      "total_fat": 30
+    },
+    "serving_size_g": 483,
+    "total_recipe_weight_g": 1932
+  },
+  {
+    "recipe_name": "Fermented Carrot and Potato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_carrot_and_potato_salad_20250624_141421_9940e413.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:14:22.145760000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken",
+      "cheese",
+      "bread",
+      "carrot"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A minimalist, naturally composed salad on a handcrafted ceramic plate in an earthy cream or beige tone. Diced, cool potatoes form the base, interspersed with vibrant, thinly sliced, fermented orange carrots. Small, tender pieces of shredded chicken are distributed throughout, not fanned. Crunchy golden sourdough croutons are scattered, adding texture. Crumbled white feta cheese provides contrasting color. The salad is lightly coated in a clear, herb-flecked dressing. Fresh green dill and parsley sprigs are naturally placed as a simple, edible garnish. The composition respects negative space, allowing each ingredient to be distinctly visible. The plate rests on a light-colored reclaimed wood or bamboo surface. An undyed linen napkin is casually placed beside it. Soft, natural light illuminates the scene, with a clean, blurred background featuring subtle greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Potato",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "150g"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Sourdough bread",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Non-chlorinated water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Thinly slice carrots. Pack tightly into a clean glass jar.",
+      "Dissolve 15g sea salt in 500ml non-chlorinated water to make brine. Pour brine over carrots, ensuring they are fully submerged.",
+      "Seal jar loosely. Ferment at room temperature for 3-5 days until slightly sour and bubbly. Refrigerate.",
+      "Dice potatoes into 1.5 cm cubes. Boil in salted water until tender, about 10-12 minutes. Drain well. Let cool completely.",
+      "Cook chicken breast to an internal temperature of 75°C. Shred or finely dice. Let cool.",
+      "Preheat oven to 180°C. Toss cubed sourdough bread with 30ml olive oil, salt, and pepper. Spread on a baking sheet. Bake 10-15 minutes until golden and crisp. Let cool.",
+      "In a small bowl, whisk together remaining 30ml olive oil, apple cider vinegar, Dijon mustard, chopped dill, and chopped parsley. Season with salt and pepper.",
+      "In a large bowl, combine cooled potatoes, fermented carrots (drained), shredded chicken, and croutons. Add crumbled feta cheese.",
+      "Pour dressing over salad. Gently toss to combine. Serve immediately."
+    ],
+    "notes": [
+      "This recipe utilizes fermentation for carrots and stale sourdough for croutons, promoting zero-waste and sustainable practices."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 515.5,
+      "cholesterol_mg": 54.1,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 24.2,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 2110.2,
+      "total_carbs_g": 56.3,
+      "total_fat_g": 21.6,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148.3,
+      "cholesterol_mg": 15.6,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 7,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 607.2,
+      "total_carbs_g": 16.2,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 23,
+      "protein": 48,
+      "saturated_fat": 31,
+      "sodium": 92,
+      "total_carbs": 20,
+      "total_fat": 28
+    },
+    "serving_size_g": 347.6,
+    "total_recipe_weight_g": 1390.2
+  },
+  {
+    "recipe_name": "Hearty Beef and Bean Stew with Melted Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_bean_stew_with_melted_cheese_20250624_141416_66fd2892.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:14:17.345949000Z",
+    "selected_ingredients": [
+      "beef stock",
+      "american cheese",
+      "bean",
+      "worcestershire sauce",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A deep, rustic ceramic bowl holds a generous portion of hearty beef and bean stew. The stew is rich, thick, and a deep reddish-brown, with visible chunks of tender, braised beef (3 cm cubes) and plump, dark red kidney beans. The surface of the stew is covered with several slices of golden-yellow American cheese, melted and slightly draped over the edges, showing a creamy, glossy texture. A few small bubbles of hot stew peek through the cheese. A sprinkle of bright green, freshly chopped parsley garnishes the center, providing a fresh color contrast. The bowl sits on a simple, dark wooden table surface. Beside the bowl, a folded natural linen napkin and a sturdy, dark metal spoon are placed. The scene is lit with soft, even natural light from the side, creating gentle shadows and highlighting the comforting textures of the dish. The background is minimally blurred, suggesting a casual bistro setting. The entire plate is visible, showcasing a single, ample serving with appropriate negative space around the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Crusty bread",
+      "Cornbread"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 3 cm cubes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, large, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned kidney beans, rinsed and drained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2 g"
+      },
+      {
+        "name": "American cheese slices",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Brown beef in batches until seared on all sides. Remove beef and set aside.",
+      "Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic, chili powder, cumin, and smoked paprika. Cook for 1 minute until fragrant.",
+      "Pour in beef stock and Worcestershire sauce. Scrape up any browned bits from the bottom of the pot.",
+      "Return beef to the pot. Add diced tomatoes and kidney beans.",
+      "Bring to a simmer. Reduce heat to low. Cover and cook for 1.5 to 2 hours, or until beef is very tender. Stir occasionally.",
+      "Taste and adjust seasoning as needed.",
+      "Ladle hot stew into individual serving bowls.",
+      "Arrange American cheese slices over the top of each bowl of stew. The heat will melt the cheese.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.2,
+      "calories": 878,
+      "cholesterol_mg": 163,
+      "dietary_fiber_g": 11.6,
+      "protein_g": 65.9,
+      "saturated_fat_g": 20,
+      "sodium_mg": 2405,
+      "total_carbs_g": 43.1,
+      "total_fat_g": 49,
+      "total_sugars_g": 9.4,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 126,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 346,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 41,
+      "protein": 132,
+      "saturated_fat": 100,
+      "sodium": 105,
+      "total_carbs": 16,
+      "total_fat": 63
+    },
+    "serving_size_g": 694.25,
+    "total_recipe_weight_g": 2777
+  },
+  {
+    "recipe_name": "Italian Sausage and Mushroom Risotto with Crispy Potato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_sausage_and_mushroom_risotto_with_crispy_potato_20250624_141413_071f5267.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:14:14.027138000Z",
+    "selected_ingredients": [
+      "potato",
+      "rice",
+      "sausage",
+      "chili",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy, fluid Italian Sausage and Mushroom Risotto fills a shallow, warm white porcelain bowl. The risotto flows naturally. Glistening Arborio rice, coated in a rich, pale golden sauce, integrates irregular chunks of browned Italian sausage, dark brown sautéed mushroom slices, and tender potato cubes. Golden-brown, crispy potato cubes are scattered artfully on top for textural contrast. Freshly chopped vibrant green parsley adds a pop of color. The dish offers a blend of creamy, tender, chewy, and crispy textures. The bowl rests on a light wooden table, accompanied by a folded off-white cotton napkin and silver flatware. Natural, even lighting highlights the dish against a softly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread to scoop up the creamy risotto.",
+      "Offer additional grated Parmesan cheese at the table.",
+      "Pair with a dry white wine like Pinot Grigio or Vermentino."
+    ],
+    "hero_ingredient": "Arborio Rice",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Italian sausage",
+        "quantity": "400g, casings removed"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium (approx. 300g), peeled"
+      },
+      {
+        "name": "Mushrooms (cremini or button)",
+        "quantity": "250g, sliced"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1 small, finely chopped (or 1 tsp chili flakes)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Hot chicken or vegetable stock",
+        "quantity": "1.2-1.5 litres"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g, freshly grated"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "20g, chopped, for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare potatoes: Cut potatoes into small cubes (approx. 1 cm). Pat dry. Heat 15ml olive oil in a large pan over medium-high heat. Add potato cubes. Cook until golden brown and crispy on all sides, about 10-12 minutes. Season with salt. Remove and set aside on paper towels.",
+      "Cook sausage: In the same pan, crumble Italian sausage. Cook over medium heat, breaking up with a spoon, until browned and cooked through. Drain excess fat. Remove sausage and set aside.",
+      "Sauté aromatics: Add remaining 15ml olive oil to the pan. Add diced onion. Cook until softened, about 5 minutes. Add minced garlic and chopped chili (or chili flakes). Cook for 1 minute until fragrant.",
+      "Add mushrooms: Add sliced mushrooms to the pan. Cook until mushrooms release their liquid and brown, about 5-7 minutes.",
+      "Toast rice: Add Arborio rice to the pan. Stir for 1-2 minutes until edges of grains are translucent.",
+      "Deglaze: Pour in white wine. Stir until completely absorbed.",
+      "Cook risotto: Add hot stock, one ladleful at a time, stirring constantly. Wait until each ladleful is almost completely absorbed before adding the next. Continue for 18-20 minutes, or until rice is creamy and al dente.",
+      "Finish risotto: Stir in cooked sausage, half of the crispy potatoes, grated Parmesan cheese, and butter. Stir vigorously for 1 minute to create a creamy texture. Season with salt and pepper to taste. Risotto should be fluid, not stiff.",
+      "Serve: Ladle risotto onto warm plates. Garnish with remaining crispy potato cubes and fresh chopped parsley."
+    ],
+    "notes": [
+      "For best results, use good quality Arborio rice and fresh stock.",
+      "The consistency of risotto should be \"all'onda\" (wavy), flowing slightly on the plate."
+    ],
+    "traditional_techniques": [
+      "Mantecatura",
+      "Tostatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 990,
+      "cholesterol_mg": 107.3,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 36.6,
+      "saturated_fat_g": 18.4,
+      "sodium_mg": 2589,
+      "total_carbs_g": 85.5,
+      "total_fat_g": 46.4,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 172.2,
+      "cholesterol_mg": 18.7,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.4,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 450,
+      "total_carbs_g": 14.9,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.8,
+      "dietary_fiber": 13.4,
+      "protein": 73.3,
+      "saturated_fat": 92,
+      "sodium": 112.6,
+      "total_carbs": 31.1,
+      "total_fat": 59.5
+    },
+    "serving_size_g": 575,
+    "total_recipe_weight_g": 2300
+  },
+  {
+    "recipe_name": "Steak au Poivre with Cognac Cream Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_steak_au_poivre_with_cognac_cream_sauce_20250624_141411_12bb810f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:14:12.092439000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Steak au Poivre is presented on a clean, round white porcelain dinner plate. Two thick, seared beef medallions, cooked medium-rare, are centrally placed. The beef boasts a dark, peppery crust, contrasting with its rich brown exterior. A creamy, pale-brown cognac sauce is generously spooned over the beef, pooling slightly. Beside the beef, a neat pile of golden-brown roasted potato wedges is arranged, their crispy exteriors and soft interiors visible. The potatoes are lightly seasoned, showing a subtle reddish hue. A sprinkle of bright green chopped fresh parsley provides vibrant contrast. The plate rests on a simple wooden table with classic silver flatware and a folded cotton napkin. Natural, even lighting highlights the dish's textures and colors against a blurred bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Bistro",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Traditionally served with Pommes Frites (French fries)",
+      "A simple green salad is a common accompaniment"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "20g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 (finely minced)"
+      },
+      {
+        "name": "Cognac",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g (chopped)"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Wash and cut potatoes into wedges. Toss with 15ml olive oil, paprika, garlic powder, and salt.",
+      "Spread potatoes on a baking tray. Roast in oven at 200°C for 30-35 minutes, or until golden and crispy.",
+      "Pat beef medallions dry. Crush black peppercorns coarsely. Press peppercorns onto both sides of each beef medallion. Season with salt.",
+      "Heat 15ml olive oil in a heavy-bottomed skillet over medium-high heat. Add beef. Sear 3-4 minutes per side for medium-rare, or to desired doneness.",
+      "Remove beef from skillet. Place on a cutting board. Tent with foil. Let rest 5-10 minutes.",
+      "Reduce heat to medium. Add butter to skillet. Add minced shallots. Sauté 2 minutes until softened.",
+      "Carefully add cognac. Cook until alcohol evaporates, about 1 minute.",
+      "Add beef stock and heavy cream. Bring to a simmer. Cook 3-5 minutes, stirring, until sauce slightly thickens.",
+      "Stir in Dijon mustard. Season with salt to taste.",
+      "Plate beef medallions. Spoon cognac cream sauce over beef. Serve with roasted potato wedges. Garnish with fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Deglazing",
+      "Flambéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 651.8,
+      "cholesterol_mg": 151.1,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 39,
+      "saturated_fat_g": 14.9,
+      "sodium_mg": 214,
+      "total_carbs_g": 45.7,
+      "total_fat_g": 32.6,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.3,
+      "cholesterol_mg": 30.7,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.9,
+      "saturated_fat_g": 3,
+      "sodium_mg": 43.4,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50.4,
+      "dietary_fiber": 25.5,
+      "protein": 77.9,
+      "saturated_fat": 74.5,
+      "sodium": 9.3,
+      "total_carbs": 16.6,
+      "total_fat": 41.8
+    },
+    "serving_size_g": 492.8,
+    "total_recipe_weight_g": 1971
+  }
+]

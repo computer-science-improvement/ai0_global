@@ -1,0 +1,585 @@
+[
+  {
+    "recipe_name": "Pan-Seared Cod with Fermented Cabbage and Celeriac Puree",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_cod_with_fermented_cabbage_and_celeriac_puree_20250811_143822_34129284.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T14:38:22.947336000Z",
+    "selected_ingredients": [
+      "fish"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single seared cod fillet rests on a smooth, creamy circle of pale ivory celeriac puree, slightly off-center on a minimalist, handcrafted ceramic plate in a natural beige tone. The cod skin is golden and visibly crispy, contrasting with the flaky white flesh. Adjacent to the cod, a small, vibrant mound of finely shredded fermented cabbage and carrot adds a pop of natural green and orange. A few fresh dill sprigs are artfully placed on the cod. The plate has ample white space, emphasizing the clean lines and natural textures of the ingredients. The setting is on a light reclaimed wood table, with an undyed linen napkin. Soft, natural light illuminates the scene from the side, highlighting the dish's organic beauty and simplicity. The overall presentation is uncluttered, focusing purely on the fresh, wholesome ingredients and their eco-conscious preparation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Cod",
+    "ingredients": [
+      {
+        "name": "Cod fillets, skin on",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Celeriac",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potato",
+        "quantity": "200g"
+      },
+      {
+        "name": "Green Cabbage",
+        "quantity": "300g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Water",
+        "quantity": "as needed for brine"
+      }
+    ],
+    "instructions": [
+      "For Fermented Cabbage: Finely shred 300g green cabbage and 100g carrot. Combine with 2% sea salt by weight of vegetables. Massage until liquid releases. Pack tightly into a clean jar. Ensure vegetables are submerged in their own brine. Seal loosely. Ferment at room temperature for 3-5 days. Refrigerate once desired tanginess is reached.",
+      "For Celeriac Puree: Peel 500g celeriac and 200g potato. Cut into 2cm cubes. Boil in lightly salted water until very tender. Drain well. Mash or pass through a food mill. Add 40g unsalted butter and a splash of warm milk or plant-based milk. Season with salt and pepper. Blend until smooth and creamy. Keep warm.",
+      "For Cod: Pat cod fillets dry. Score the skin lightly. Season skin side with salt. Heat 30ml olive oil in a non-stick pan over medium-high heat. Place cod skin-side down. Press gently with a spatula for 30 seconds for even contact. Cook for 4-6 minutes until skin is crispy and golden. Flip. Add 10g unsalted butter to the pan. Baste fish with butter. Cook for another 2-3 minutes, or until cooked through and internal temperature reaches 63°C (145°F).",
+      "To Serve: Spoon celeriac puree onto the center of each plate, creating a smooth circle. Place a seared cod fillet on top of the puree. Arrange a small portion of fermented cabbage next to the cod. Garnish with fresh dill sprigs and a lemon wedge."
+    ],
+    "notes": [
+      "Utilize celeriac and cabbage trimmings for vegetable stock.",
+      "Fish bones can be used for a light fish broth."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 417,
+      "cholesterol_mg": 104,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 36.2,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 742,
+      "total_carbs_g": 27,
+      "total_fat_g": 18.7,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 165,
+      "total_carbs_g": 6,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 21,
+      "protein": 72,
+      "saturated_fat": 39,
+      "sodium": 32,
+      "total_carbs": 10,
+      "total_fat": 24
+    },
+    "serving_size_g": 450.5,
+    "total_recipe_weight_g": 1802
+  },
+  {
+    "recipe_name": "Stuffed Chicken with Roasted Asparagus and Red Pepper Coulis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_stuffed_chicken_with_roasted_asparagus_and_red_pepper_coulis_20250811_142408_9b9f7946.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T14:24:09.119490000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Stuffed Chicken with Roasted Asparagus and Red Pepper Coulis is presented on a clean, round white porcelain dinner plate. Two thick, diagonal pieces of the golden-brown seared chicken breast are arranged slightly overlapping, showcasing the vibrant green and white spinach and feta stuffing. A generous, smooth pool of bright red pepper coulis sits beneath and beside the chicken, creating a striking color contrast. Neatly arranged to the side are several slender, bright green roasted asparagus spears, retaining a slight char from cooking. The plating is organized and balanced, leaving moderate negative space on the plate. The dish is set on a simple light wooden table surface. A neatly folded white cotton napkin is placed beside the plate with standard silver flatware. Natural, even lighting illuminates the scene, highlighting the textures and fresh colors of the ingredients, creating a professional yet approachable restaurant-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Feta cheese, crumbled",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "30g"
+      },
+      {
+        "name": "Large red bell peppers",
+        "quantity": "2"
+      },
+      {
+        "name": "Small onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Fresh asparagus spears",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve red bell peppers, remove seeds. Place cut-side down on a baking tray. Roast for 20-25 minutes until skin is blistered and charred. Transfer to a bowl, cover with cling film. Let steam for 10 minutes. Peel skins, discard.",
+      "While peppers roast, sauté spinach in a pan with 15ml olive oil until wilted. Squeeze out excess water. In a bowl, combine spinach, crumbled feta, 2 minced garlic cloves, and Panko breadcrumbs. Season with salt and pepper. Mix well.",
+      "Butterfly each chicken breast carefully, cutting horizontally almost all the way through to create a pocket. Season chicken inside and out with salt and pepper.",
+      "Divide spinach mixture evenly among chicken breasts. Fill each pocket. Secure openings with toothpicks if needed.",
+      "Heat 30ml olive oil in a large oven-safe skillet over medium-high heat. Sear stuffed chicken breasts for 3-4 minutes per side until golden brown. Transfer skillet to preheated oven.",
+      "Bake chicken for 15-20 minutes, or until internal temperature reaches 75°C.",
+      "For the coulis, heat 15ml olive oil and butter in a saucepan over medium heat. Add diced onion and 1 minced garlic clove. Cook until softened, about 5 minutes. Add roasted, peeled red peppers and vegetable stock. Bring to a simmer. Cook for 5 minutes.",
+      "Carefully transfer coulis mixture to a blender. Blend until very smooth. Season with salt and pepper. Keep warm.",
+      "Toss asparagus spears with 15ml olive oil, salt, and pepper. Roast on a separate baking tray for 8-10 minutes until tender-crisp.",
+      "Remove chicken from oven. Let rest 5 minutes. Remove toothpicks. Slice each chicken breast diagonally into two thick pieces.",
+      "To plate, spoon a generous pool of red pepper coulis onto each plate. Arrange two thick diagonal pieces of stuffed chicken over the coulis. Place roasted asparagus spears neatly beside the chicken. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 636.1,
+      "cholesterol_mg": 191.8,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 68.8,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 572.4,
+      "total_carbs_g": 23.8,
+      "total_fat_g": 28.5,
+      "total_sugars_g": 8.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110.9,
+      "cholesterol_mg": 33.4,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 12,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 99.8,
+      "total_carbs_g": 4.2,
+      "total_fat_g": 5,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.9,
+      "dietary_fiber": 23.9,
+      "protein": 137.6,
+      "saturated_fat": 47.9,
+      "sodium": 24.9,
+      "total_carbs": 8.7,
+      "total_fat": 36.5
+    },
+    "serving_size_g": 573.75,
+    "total_recipe_weight_g": 2295
+  },
+  {
+    "recipe_name": "Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_20250811_142212_3f6585fa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T14:22:12.936407000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo presented on a clean white porcelain plate. Two whole, bone-in chicken thighs with deeply browned, crispy skin sit atop a bed of golden, saffron-stained rice. The rice grains are plump and distinct, interspersed with fine bits of softened onion and concentrated red tomato. The dish shows vibrant yellow and orange hues from the saffron and paprika. A generous sprinkle of bright green, finely chopped parsley is scattered over the top. A single lemon wedge is placed neatly on the side. The plate sits on a light oak wooden table with a folded white cotton napkin. Lighting is bright, natural, and even, highlighting the textures of the crispy skin and the moist rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Alioli (garlic mayonnaise)",
+      "Accompany with crusty bread and a glass of chilled white wine",
+      "Present in a traditional terracotta cazuela for family-style dining"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip and brown the other side. Remove chicken from pan.",
+      "Add onion to the same pan. Sauté until translucent.",
+      "Stir in garlic and grated tomato. Cook until liquid evaporates and mixture darkens.",
+      "Add smoked paprika and rice. Stir to coat rice in oil for 2 minutes.",
+      "Pour in white wine. Deglaze the pan. Simmer until wine reduces by half.",
+      "Add hot stock and saffron. Stir once to distribute.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer undisturbed over medium-low heat for 18-20 minutes.",
+      "Ensure chicken reaches internal temperature of 75°C.",
+      "Remove from heat. Cover with a clean cloth. Rest for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form on the bottom.",
+      "Use a wide pan to ensure even rice cooking."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice absorption method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1414,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 8.6,
+      "protein": 66.4,
+      "saturated_fat": 46.5,
+      "sodium": 61.5,
+      "total_carbs": 24.5,
+      "total_fat": 52.1
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Fermented Citrus Mint Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_citrus_mint_salad_20250811_120057_2e7289c1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T12:00:57.475366000Z",
+    "selected_ingredients": [
+      {
+        "name": "grapefruit"
+      },
+      {
+        "name": "mint"
+      },
+      {
+        "name": "honey"
+      },
+      {
+        "name": "lime"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "The Fermented Citrus Mint Salad is presented on a round, handcrafted ceramic plate in a natural cream hue, resting on a light, reclaimed wood surface. Bright pink grapefruit segments, gently fermented, are arranged organically across the plate, allowing for generous negative space. Each segment, cleanly cut and free of pith, showcases its vibrant color and juicy texture. Fresh, whole mint leaves are artfully scattered among the grapefruit, providing a contrasting pop of deep green. A light, golden honey-lime drizzle glistens over the fruit. The composition is clean and unfussy, emphasizing the natural beauty and fresh quality of each ingredient. An undyed linen napkin in a natural beige tone is placed to the side. Soft, natural light illuminates the scene, highlighting the textures and colors with a clean, minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Grapefruit",
+    "ingredients": [
+      {
+        "name": "Grapefruit",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "1/2 cup"
+      },
+      {
+        "name": "Honey",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "2 (juice of 2, zest of 1)"
+      },
+      {
+        "name": "Water",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Non-iodized salt",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Segment grapefruits. Remove all white pith and seeds. Place segments in a clean glass jar.",
+      "Prepare brine: Dissolve salt in water. Stir until fully dissolved.",
+      "Pour brine over grapefruit segments in the jar. Ensure segments are fully submerged. Use a weight if necessary to keep them under liquid.",
+      "Cover jar loosely. Let ferment at room temperature (20-24°C) for 24-48 hours. Small bubbles may appear.",
+      "After fermentation, refrigerate grapefruit in brine. It can be stored for up to 1 week.",
+      "For serving, drain desired amount of fermented grapefruit segments.",
+      "In a small bowl, whisk together honey, fresh lime juice, and lime zest to create the dressing.",
+      "Combine drained grapefruit segments with fresh mint leaves in a mixing bowl.",
+      "Drizzle honey-lime dressing over the fruit and mint. Toss gently to coat.",
+      "Serve immediately in individual portions."
+    ]
+  },
+  {
+    "recipe_name": "Chicken Tikka Masala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_tikka_masala_20250811_115116_4fc45170.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T11:51:17.357189000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features large, charred chunks of succulent chicken submerged in a glossy, vibrant orange-red tomato gravy. The sauce has a thick, velvety texture with visible flecks of ground spices. The chicken chunks show dark, caramelized edges from the high-heat roasting. Plating is in a clean, white porcelain bowl set on a dark wooden table. A single portion is shown with a light swirl of heavy cream on top and a scattering of bright green chopped cilantro. To the side sits a stack of warm, charred garlic naan bread and a small bowl of steamed long-grain basmati rice. Lighting is natural and even, highlighting the rich colors and creamy consistency of the sauce while maintaining professional negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Northern Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm garlic naan or buttered roti",
+      "Accompany with steamed basmati rice",
+      "Side of mint-yogurt raita and kachumber salad",
+      "Serve in a traditional hammered copper karahi"
+    ],
+    "hero_ingredient": "Marinated chicken chunks",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless/skinless, 4cm chunks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Kashmiri chili powder",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Combine yogurt, 1 tbsp ginger-garlic paste, 1 tsp garam masala, 1/2 tsp turmeric, and 1 tsp chili powder.",
+      "Toss chicken chunks in marinade. Cover and refrigerate for 1 hour.",
+      "Preheat oven to 220°C. Place chicken on a wire rack over a baking sheet.",
+      "Roast chicken 15 minutes. Ensure internal temperature reaches 75°C. Set aside.",
+      "Heat oil in a large pan over medium heat. Sauté onions until golden brown.",
+      "Add remaining ginger-garlic paste. Cook 1 minute until fragrant.",
+      "Stir in remaining garam masala, turmeric, and chili powder. Toast for 30 seconds.",
+      "Pour in crushed tomatoes. Simmer 10 minutes until sauce thickens and oil separates.",
+      "Stir in butter and heavy cream. Season with salt.",
+      "Add roasted chicken chunks to the sauce. Simmer 2 minutes to combine flavors.",
+      "Garnish with fresh cilantro."
+    ],
+    "notes": [
+      "Kashmiri chili powder provides color without excessive heat.",
+      "Ensure the chicken is well-charred for authentic smoky flavor.",
+      "Let the sauce simmer until the oil separates to ensure spices are fully cooked."
+    ],
+    "traditional_techniques": [
+      "Yogurt marination",
+      "High-heat roasting",
+      "Spice tempering",
+      "Slow-simmered gravy"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 802,
+      "cholesterol_mg": 262.8,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 49.1,
+      "saturated_fat_g": 24.5,
+      "sodium_mg": 796.3,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 60,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0.58
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174.4,
+      "cholesterol_mg": 57.1,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.7,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 173.1,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 13,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 87.6,
+      "dietary_fiber": 12.5,
+      "protein": 98.2,
+      "saturated_fat": 122.5,
+      "sodium": 34.6,
+      "total_carbs": 6,
+      "total_fat": 76.9
+    },
+    "serving_size_g": 460,
+    "total_recipe_weight_g": 1839
+  }
+]

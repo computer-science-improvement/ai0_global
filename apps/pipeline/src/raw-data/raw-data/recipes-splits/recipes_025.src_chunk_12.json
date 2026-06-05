@@ -1,0 +1,637 @@
+[
+  {
+    "recipe_name": "Chicken and Sausage Rigatoni with Tomato Ragù",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_sausage_rigatoni_with_tomato_rag%C3%B9_20250623_133715_e2aa9ed3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:37:15.893073000Z",
+    "selected_ingredients": [
+      "tomato",
+      "sausage",
+      "parmesan cheese",
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous single portion of Rigatoni with Chicken and Sausage Ragù is presented on a clean, round white porcelain dinner plate. The pasta is coated in a rich, deep red tomato ragù, showcasing crumbled brown sausage throughout. Large, irregular chunks of golden-brown seared chicken are nestled atop the pasta. Vibrant green torn fresh basil leaves are scattered over the dish, contrasting with the deep red sauce. A generous dusting of finely grated, pale yellow Parmigiano-Reggiano cheese covers the top, adding a textured finish. The dish exhibits a balance of colors and textures, with moderate negative space on the plate. The setting features a simple, natural wooden table surface and a folded white cotton napkin placed beside the plate, all under natural, even lighting in a casual bistro style.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Italian sausage, casings removed",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g, halved"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese",
+        "quantity": "100 g, grated"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30 g, torn"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper. Heat 15 ml olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until deeply golden brown on both sides, about 4-5 minutes per side. Remove chicken from pot. Set aside. Cook to internal temperature of 75°C (167°F).",
+      "Add crumbled sausage to the same pot. Cook, breaking up with a spoon, until browned and cooked through, about 6-8 minutes. Drain excess fat.",
+      "Add remaining 15 ml olive oil, diced onion, and minced garlic to the pot. Sauté until softened, about 5 minutes.",
+      "Deglaze the pot with red wine. Scrape up any browned bits from the bottom. Simmer until wine is mostly evaporated, about 3 minutes.",
+      "Stir in crushed tomatoes, chicken stock, and halved cherry tomatoes. Bring to a simmer. Return seared chicken thighs to the pot.",
+      "Reduce heat to low. Cover and simmer for 45 minutes, stirring occasionally. Uncover and continue to simmer for 15 minutes, or until sauce thickens. Remove chicken.",
+      "Shred or cut chicken into large, irregular chunks. Return chicken chunks to the sauce. Stir gently.",
+      "Meanwhile, cook rigatoni according to package directions until al dente. Drain pasta, reserving 120 ml pasta water.",
+      "Add cooked rigatoni to the ragù. Add half of the grated Parmigiano-Reggiano and half of the fresh basil. Toss to combine. Add reserved pasta water if sauce is too thick.",
+      "Serve immediately. Garnish each portion with remaining grated Parmigiano-Reggiano and fresh basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1191.8,
+      "cholesterol_mg": 288.3,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 70.3,
+      "saturated_fat_g": 17.5,
+      "sodium_mg": 1828,
+      "total_carbs_g": 95,
+      "total_fat_g": 55.9,
+      "total_sugars_g": 12.1,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149.8,
+      "cholesterol_mg": 36.2,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.8,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 229.8,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 96,
+      "dietary_fiber": 26,
+      "protein": 141,
+      "saturated_fat": 88,
+      "sodium": 79,
+      "total_carbs": 35,
+      "total_fat": 72
+    },
+    "serving_size_g": 795.5,
+    "total_recipe_weight_g": 3182
+  },
+  {
+    "recipe_name": "Honey Curry Brie Stuffed Chicken with Oat Crust",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_honey_curry_brie_stuffed_chicken_with_oat_crust_20250623_133506_177d550d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:35:07.815261000Z",
+    "selected_ingredients": [
+      "brie",
+      "honey",
+      "oat",
+      "curry"
+    ],
+    "complexity": "simple",
+    "special_requests": "kids friendly",
+    "visual_description": "A single golden-brown, oat-crusted chicken breast, seared and baked, rests on a simple, round ceramic plate. The chicken is plump, showing the slight bulge of melted brie inside. The oat crust is visibly crispy and textured. A hint of creamy, melted brie might gently ooze from an edge. The overall color palette is warm, with the rich golden hue of the chicken contrasting with the deep green of freshly chopped parsley sprinkled over the top. The chicken is presented as a whole piece. The plate sits on a well-used wooden dining table, perhaps with subtle scuff marks, under warm, inviting kitchen lighting. A standard fork and knife are casually placed beside the plate. The background is minimal, suggesting a lived-in family kitchen atmosphere. The portion is modest and homely, perfectly suited for a comforting meal.",
+    "number_of_servings": 3,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "3 (approx. 180-200g each)"
+      },
+      {
+        "name": "Brie cheese",
+        "quantity": "120g"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "60g"
+      },
+      {
+        "name": "Mild curry powder",
+        "quantity": "1.5 tablespoons"
+      },
+      {
+        "name": "Honey",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "1 tablespoon, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Butterfly each chicken breast. Create a pocket.",
+      "Divide brie into three equal portions. Place one portion inside each chicken pocket.",
+      "Close chicken. Secure with toothpicks if needed.",
+      "In a shallow dish, combine curry powder and honey. Mix well.",
+      "Place rolled oats in another shallow dish.",
+      "Dip each stuffed chicken breast into the honey-curry mixture. Coat evenly.",
+      "Roll coated chicken in oats. Press oats firmly to adhere.",
+      "Heat olive oil in an oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 3 minutes per side. Brown evenly.",
+      "Transfer skillet to preheated oven.",
+      "Bake for 15-20 minutes, or until internal temperature reaches 75°C.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Garnish with chopped fresh parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 11.5,
+      "calories": 658.4,
+      "cholesterol_mg": 201.5,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 71.1,
+      "saturated_fat_g": 10.3,
+      "sodium_mg": 403.2,
+      "total_carbs_g": 27,
+      "total_fat_g": 28.8,
+      "total_sugars_g": 12,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4.2,
+      "calories": 238.1,
+      "cholesterol_mg": 72.9,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 25.7,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 145.8,
+      "total_carbs_g": 9.8,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.2,
+      "dietary_fiber": 11.8,
+      "protein": 142.2,
+      "saturated_fat": 51.5,
+      "sodium": 17.5,
+      "total_carbs": 9.8,
+      "total_fat": 36.9
+    },
+    "serving_size_g": 276.5,
+    "total_recipe_weight_g": 829.5
+  },
+  {
+    "recipe_name": "Homestyle Butter Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_butter_chicken_20250623_133307_a812a213.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:33:07.718001000Z",
+    "selected_ingredients": [
+      "curry"
+    ],
+    "complexity": "simple",
+    "special_requests": "Indian cuisine, kids friendly",
+    "visual_description": "A generous, single serving of Homestyle Butter Chicken is presented in a deep, round, white ceramic bowl, showcasing its rich, creamy orange-red hue. Tender, cubed chicken pieces, roughly 3-4 cm in size, are visibly coated in the luscious, slightly glossy gravy. A modest sprinkle of fresh, vibrant green chopped coriander leaves garnishes the top, adding a pop of natural color. The bowl rests on a warm, well-used wooden dining table. Beside the curry, a small, white ceramic bowl holds a portion of fluffy basmati rice. A warm, soft piece of naan bread is casually draped over a simple white cloth napkin nearby. The setting is a cozy, lived-in family kitchen, illuminated by warm, inviting light from above, creating a homely and comforting atmosphere.",
+    "number_of_servings": 3,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with freshly made naan bread for dipping.",
+      "Accompany with plain basmati rice.",
+      "Offer a side of simple sliced red onion or a wedge of lime."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Kashmiri chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Kasuri Methi (dried fenugreek leaves)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh coriander, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "150 g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks.",
+      "In a bowl, combine chicken, yogurt, 10 g ginger-garlic paste, Kashmiri chili powder, turmeric powder, 2 g garam masala, and salt. Mix well. Marinate for at least 30 minutes, or up to 2 hours in the refrigerator.",
+      "Heat 15 ml vegetable oil in a large pan over medium-high heat. Add marinated chicken in a single layer. Sear chicken chunks until lightly browned on all sides. Do not overcrowd the pan; cook in batches if necessary. Remove chicken from the pan and set aside. Ensure internal temperature reaches 75°C (167°F).",
+      "Reduce heat to medium. Add remaining 15 ml vegetable oil and 20 g butter to the same pan. Add chopped onion. Cook until softened and translucent, about 5-7 minutes.",
+      "Add remaining 10 g ginger-garlic paste. Cook for 1 minute until fragrant.",
+      "Stir in ground cumin, ground coriander, and remaining 3 g garam masala. Cook for 30 seconds until fragrant.",
+      "Pour in crushed tomatoes and sugar. Bring to a simmer. Cook for 10-12 minutes, stirring occasionally, until the sauce thickens and oil separates slightly.",
+      "Carefully transfer the sauce to a blender. Blend until smooth. Alternatively, use an immersion blender directly in the pan.",
+      "Return the smooth sauce to the pan. Add the cooked chicken chunks. Stir to combine.",
+      "Add remaining 30 g butter and heavy cream. Stir until butter melts and cream is fully incorporated.",
+      "Crush Kasuri Methi between your palms and add to the curry. Simmer for 5-7 minutes, allowing flavors to meld and chicken to finish cooking through.",
+      "Taste and adjust salt if needed. Garnish with fresh chopped coriander before serving.",
+      "Cook basmati rice according to package instructions while the curry simmers."
+    ],
+    "notes": [
+      "For a milder, kid-friendly version, reduce the Kashmiri chili powder or omit it entirely.",
+      "Marinating the chicken longer enhances flavor and tenderness.",
+      "Blending the sauce creates a smoother, restaurant-style gravy."
+    ],
+    "traditional_techniques": [
+      "Marination",
+      "Layering of spices",
+      "Slow simmering for flavor development"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.67,
+      "calories": 875,
+      "cholesterol_mg": 310.5,
+      "dietary_fiber_g": 5.71,
+      "protein_g": 42.93,
+      "saturated_fat_g": 22.46,
+      "sodium_mg": 1133.5,
+      "total_carbs_g": 60.1,
+      "total_fat_g": 51.28,
+      "total_sugars_g": 10.24,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.32,
+      "calories": 167.4,
+      "cholesterol_mg": 59.4,
+      "dietary_fiber_g": 1.09,
+      "protein_g": 8.22,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 216.9,
+      "total_carbs_g": 11.5,
+      "total_fat_g": 9.81,
+      "total_sugars_g": 1.96,
+      "trans_fat_g": 0.19
+    },
+    "daily_value_percentages": {
+      "cholesterol": 103.49,
+      "dietary_fiber": 20.39,
+      "protein": 85.86,
+      "saturated_fat": 112.3,
+      "sodium": 49.28,
+      "total_carbs": 21.85,
+      "total_fat": 65.74
+    },
+    "serving_size_g": 522.53,
+    "total_recipe_weight_g": 1567.6
+  },
+  {
+    "recipe_name": "Pan-Seared Beef with Cheesy Garlic Potatoes and Mushroom Ragout",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_with_cheesy_garlic_potatoes_and_mushroom_ragout_20250623_133258_8da085d8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:32:58.604343000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "mushroom",
+      "potato",
+      "garlic",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared beef medallions rests on a clean white porcelain dinner plate. The beef, with a rich golden-brown crust and a tender, rosy interior, is presented as whole, thick pieces. Alongside, golden-roasted potato wedges, seasoned with fresh rosemary and thyme, are lightly coated in melted Gruyère cheese, offering a crispy exterior and fluffy interior. A cluster of earthy sautéed mixed mushrooms, some thinly sliced, others quartered, is nestled beside the beef. A small mound of glistening, deep amber caramelized onions adds a sweet counterpoint. The dish is garnished with a sprinkle of fresh chopped parsley and a small sprig of rosemary. Colors are warm browns, golden yellows, and vibrant greens. The plating is clean and balanced, with moderate negative space. The plate is set on a simple light wooden table, accompanied by a folded white cotton napkin, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef Sirloin or Ribeye",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Russet or Yukon Gold Potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Mixed Mushrooms (Cremini, Shiitake)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Large Yellow Onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Gruyère or Aged Cheddar Cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh Rosemary Sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Beef Broth or Red Wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley (for garnish)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash and cut potatoes into 2-3 cm rustic wedges. Place in a large bowl.",
+      "Toss potatoes with 30 ml olive oil, 1 sprig rosemary, 1 sprig thyme, salt, and pepper. Spread in a single layer on a baking sheet. Roast for 30-35 minutes, or until golden and tender.",
+      "While potatoes roast, thinly slice the yellow onion. Heat 15 ml olive oil and 15 g butter in a large pan over medium-low heat. Add onions. Cook slowly for 20-25 minutes, stirring occasionally, until deeply caramelized and glossy. Remove from pan and set aside.",
+      "Cut beef into 4 thick medallions. Pat dry with paper towels. Season generously with salt and black pepper.",
+      "Heat remaining 15 ml olive oil and 15 g butter in the same pan over medium-high heat until shimmering. Sear beef medallions for 3-4 minutes per side for medium-rare, or longer to desired doneness. Remove beef from pan and rest on a cutting board, covered loosely with foil.",
+      "Slice mushrooms. Add mushrooms to the hot pan. Sauté for 5-7 minutes until browned. Mince 4 garlic cloves. Add minced garlic to mushrooms and cook for 1 minute until fragrant.",
+      "Pour beef broth or red wine into the pan. Scrape up any browned bits from the bottom. Simmer for 2-3 minutes until liquid slightly reduces. Season mushroom ragout with salt and pepper. Remove from heat.",
+      "Grate Gruyère cheese. Once potatoes are roasted, remove from oven. Sprinkle cheese over the hot potatoes. Return to oven for 2-3 minutes until cheese is melted and bubbly. Mince remaining 2 garlic cloves and finely chop fresh parsley.",
+      "To plate, arrange cheesy garlic potatoes on one side of a white dinner plate. Place a beef medallion next to the potatoes. Spoon mushroom ragout and caramelized onions beside the beef. Garnish with fresh chopped parsley and a small sprig of fresh rosemary or thyme."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 819,
+      "cholesterol_mg": 149,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 52.3,
+      "saturated_fat_g": 19.9,
+      "sodium_mg": 769,
+      "total_carbs_g": 45.7,
+      "total_fat_g": 51.3,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145.2,
+      "cholesterol_mg": 26.4,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9.3,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 136.4,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.7,
+      "dietary_fiber": 26.4,
+      "protein": 104.6,
+      "saturated_fat": 99.5,
+      "sodium": 33.4,
+      "total_carbs": 16.6,
+      "total_fat": 65.7
+    },
+    "serving_size_g": 563.8,
+    "total_recipe_weight_g": 2255
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Breast with Roasted Bell Peppers and Lemon-Thyme Aioli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_breast_with_roasted_bell_peppers_and_lemon-thyme_aioli_20250623_133039_f336b288.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:30:39.776034000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "thyme",
+      "mayonnaise"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast is centrally placed on a clean, round white porcelain plate. The chicken is golden-brown with a visible herb crust, presented as a whole, succulent piece. Beside the chicken, a vibrant medley of roasted bell pepper strips in red, yellow, and orange hues are artfully arranged, showcasing their soft, slightly charred edges. A generous dollop of creamy, pale yellow lemon-thyme aioli sits elegantly on the plate, complementing the main components. A fresh sprig of thyme rests atop the chicken or beside the aioli, adding a touch of green. A bright lemon wedge is placed to the side. The dish maintains moderate negative space, offering a refined, balanced composition. The setting features a simple wooden table surface, a white cotton napkin folded neatly beside the plate, and standard restaurant-style cutlery. Natural, even lighting highlights the dish’s textures and colors against a soft, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Bell peppers (red, yellow, orange)",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "8-10"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Wash bell peppers. Cut into 2 cm wide strips. Remove seeds and membranes.",
+      "Peel 2 garlic cloves. Slice thinly.",
+      "Toss bell pepper strips with 2 tablespoons olive oil, sliced garlic, 2 sprigs of thyme, salt, and pepper on a baking sheet.",
+      "Roast bell peppers for 20-25 minutes, or until tender and slightly charred. Set aside.",
+      "For the lemon-thyme aioli: Mince remaining garlic clove. In a small bowl, combine mayonnaise, minced garlic, zest of half a lemon, 1 tablespoon lemon juice, and leaves from 4 sprigs of thyme. Season with salt and pepper. Mix well. Adjust lemon juice to taste.",
+      "Pat chicken breasts dry. Season generously with salt, pepper, and leaves from 2 sprigs of thyme.",
+      "Heat remaining olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 4-5 minutes per side until golden brown. Ensure internal temperature reaches 75°C (167°F).",
+      "Remove chicken from skillet. Let rest for 5 minutes.",
+      "To plate, place one pan-seared chicken breast on each plate. Arrange roasted bell pepper strips beside the chicken. Spoon a generous dollop of lemon-thyme aioli next to the chicken. Garnish with a fresh thyme sprig and a lemon wedge."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 670,
+      "cholesterol_mg": 173,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 60.8,
+      "saturated_fat_g": 7.2,
+      "sodium_mg": 815,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 41.7,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 180,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 16.4,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 219,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 11.2,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 11,
+      "protein": 122,
+      "saturated_fat": 36,
+      "sodium": 35,
+      "total_carbs": 4,
+      "total_fat": 53
+    },
+    "serving_size_g": 371.5,
+    "total_recipe_weight_g": 1486
+  }
+]

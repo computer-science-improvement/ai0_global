@@ -1,0 +1,589 @@
+[
+  {
+    "recipe_name": "Hearty Beef and Mustard Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_mustard_stew_20250630_020424_36d59824.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:04:24.951654000Z",
+    "selected_ingredients": [
+      "beef",
+      "mustard",
+      "rice",
+      "corn",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hearty Beef and Mustard Stew is presented in a deep, rustic ceramic bowl, resting on a well-used wooden dining table. The stew features tender, dark brown beef chunks, approximately 3-4 cm, nestled within a rich, savory, deep amber gravy. Diced, softened yellow onions are visible, along with vibrant yellow corn kernels. The stew is ladled over a bed of fluffy, white long-grain rice, which peeks out from beneath. A scattering of fresh, bright green chopped parsley garnishes the top. The overall composition is natural and unpretentious, reflecting a home-cooked meal. Lighting is warm and inviting, typical of a cozy kitchen. A simple, sturdy fork and a casually placed cloth napkin are beside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or stewing beef",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 millilitres"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Canned or frozen corn kernels",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 millilitres"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 grams"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 3-4 cm thick chunks. Pat beef dry with paper towels. Season beef generously with salt, pepper, and smoked paprika.",
+      "Heat vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef chunks in batches until deeply browned on all sides. Do not overcrowd the pot. Remove seared beef and set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook, stirring frequently, until softened and translucent, about 5-7 minutes.",
+      "Stir in Dijon mustard. Cook for 1 minute, scraping up any browned bits from the bottom of the pot.",
+      "Return seared beef to the pot. Pour in beef broth. Bring to a simmer.",
+      "Reduce heat to low. Cover the pot. Simmer for 2 to 2.5 hours, or until beef is fork-tender. Stir occasionally.",
+      "While stew simmers, cook rice according to package directions. Typically, combine 300 grams rice with 600 millilitres water in a pot. Bring to boil, then reduce heat to low, cover, and simmer for 15-18 minutes until water is absorbed.",
+      "Five minutes before stew is ready, add corn kernels to the stew. Stir and heat through.",
+      "Taste stew and adjust seasoning if needed. Garnish with fresh chopped parsley.",
+      "Serve hot stew ladled generously over cooked rice."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 924,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 58.5,
+      "saturated_fat_g": 15,
+      "sodium_mg": 1283,
+      "total_carbs_g": 77.6,
+      "total_fat_g": 42.8,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 9.8,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 215,
+      "total_carbs_g": 13,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 15,
+      "protein": 117,
+      "saturated_fat": 74.9,
+      "sodium": 55.8,
+      "total_carbs": 28.2,
+      "total_fat": 54.9
+    },
+    "serving_size_g": 595.5,
+    "total_recipe_weight_g": 2382
+  },
+  {
+    "recipe_name": "Tomato and Pasta Garden Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato_and_pasta_garden_salad_20250630_020251_3344300a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:02:52.146771000Z",
+    "selected_ingredients": [
+      "tomato",
+      "pasta",
+      "salad green",
+      "bell pepper",
+      "almond"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A vibrant, generously portioned pasta salad features spiral fusilli pasta tossed with bright red halved cherry tomatoes, crisp diced green and yellow bell peppers, and fresh mixed salad greens. Golden toasted sliced almonds are scattered throughout, adding a textural contrast. A light vinaigrette visibly coats the ingredients, adding a subtle sheen. The salad is presented in a large, simple ceramic serving bowl, placed on a well-used wooden kitchen table. Portions are natural and abundant, with ingredients casually overlapping. Soft, warm light from an overhead kitchen fixture illuminates the scene, highlighting the fresh colors. A plain white ceramic plate and a wooden serving spoon are beside the bowl, ready for a family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Fusilli pasta",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Mixed bell peppers (red, yellow, green)",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Sliced almonds",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook fusilli pasta according to package directions. Drain pasta. Rinse with cold water until cool. Drain very well.",
+      "Halve cherry tomatoes.",
+      "Dice bell peppers into 1 cm pieces.",
+      "Toast sliced almonds in a dry pan over medium heat for 3-5 minutes. Stir constantly until golden. Remove from heat and cool completely.",
+      "Whisk olive oil, red wine vinegar, Dijon mustard, minced garlic, dried oregano, salt, and black pepper in a small bowl to make the dressing.",
+      "Combine cooled pasta, halved cherry tomatoes, diced bell peppers, and mixed salad greens in a large mixing bowl.",
+      "Pour dressing over the salad ingredients. Toss gently to ensure all components are coated.",
+      "Stir in the cooled toasted almonds.",
+      "Chill salad in the refrigerator for at least 30 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 463.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 12.7,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 14.4,
+      "total_carbs_g": 57.7,
+      "total_fat_g": 21.5,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 3.3,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 3.8,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 22.7,
+      "protein": 25.5,
+      "saturated_fat": 13.3,
+      "sodium": 0.6,
+      "total_carbs": 21,
+      "total_fat": 27.6
+    },
+    "serving_size_g": 382.25,
+    "total_recipe_weight_g": 1529
+  },
+  {
+    "recipe_name": "Fermented Squash & Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_squash_%26_mushroom_risotto_20250630_020211_44079aa0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:02:11.651486000Z",
+    "selected_ingredients": [
+      "lemon",
+      "squash",
+      "onion",
+      "green pea",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The Fermented Squash & Mushroom Risotto is presented as a generous, flowing mound on a handcrafted, matte cream ceramic plate. Creamy Arborio rice provides an earthy base. Tender, golden-orange chunks of lacto-fermented butternut squash and sautéed cremini mushroom slices are scattered throughout, adding varied textures. Vibrant green peas are folded in, contributing bursts of color and freshness. A bright green pea-lemon gremolata, made from minced parsley, lemon zest, and raw garlic, is scattered over the top, alongside golden-brown toasted butternut squash seeds for crunch. The plate rests on a light reclaimed wood surface, accompanied by an undyed linen napkin. Soft natural light illuminates the dish's organic beauty against a clean, minimalist background with subtle greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Fermented Butternut Squash",
+    "ingredients": [
+      {
+        "name": "Lacto-fermented butternut squash",
+        "quantity": "300g, cut into 2 cm cubes"
+      },
+      {
+        "name": "Mixed mushrooms (cremini, oyster)",
+        "quantity": "250g, sliced thickly or torn"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (approx 200g), finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Green peas",
+        "quantity": "150g (fresh or frozen)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "1.2 litres, warm"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large, zest and juice"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Nutritional yeast",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30g, finely chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Butternut squash seeds",
+        "quantity": "from 1 squash, toasted (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium heat.",
+      "Add diced onion. Cook until translucent, about 5 minutes.",
+      "Add minced garlic and finely chopped mushroom stems (if using). Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes until grains are slightly translucent at the edges.",
+      "Pour in 120 ml of warm vegetable stock. Stir until liquid is absorbed.",
+      "Continue adding warm stock, 120 ml at a time, stirring frequently. Allow each addition to be absorbed before adding more. This process takes about 18-20 minutes.",
+      "While risotto cooks, in a separate pan, sauté sliced mushrooms with a splash of olive oil until tender and lightly browned. Set aside.",
+      "When risotto is creamy and rice is al dente, stir in the lacto-fermented butternut squash cubes and sautéed mushrooms.",
+      "Add green peas, lemon juice, and nutritional yeast. Stir until well combined and peas are heated through, about 2 minutes.",
+      "Season with salt and black pepper to taste. Remove from heat.",
+      "For the gremolata, combine finely chopped parsley, lemon zest, and a pinch of minced raw garlic.",
+      "Serve risotto immediately in shallow bowls. Garnish each serving with a sprinkle of gremolata and toasted butternut squash seeds."
+    ],
+    "notes": [
+      "Ensure lacto-fermented butternut squash is prepared several days in advance for best flavor.",
+      "For zero-waste, reserve onion skins, garlic skins, and mushroom trimmings to make vegetable stock."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 523,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 16.8,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 811,
+      "total_carbs_g": 93.7,
+      "total_fat_g": 9.8,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 79,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 2.5,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 122,
+      "total_carbs_g": 14.1,
+      "total_fat_g": 1.5,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 31,
+      "protein": 34,
+      "saturated_fat": 7,
+      "sodium": 35,
+      "total_carbs": 34,
+      "total_fat": 13
+    },
+    "serving_size_g": 662.9,
+    "total_recipe_weight_g": 2651.6
+  },
+  {
+    "recipe_name": "Ginger Tofu Tartlets with Chili-Caramel Drizzle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ginger_tofu_tartlets_with_chili-caramel_drizzle_20250630_020202_0cbf94d0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:02:03.386637000Z",
+    "selected_ingredients": [
+      {
+        "name": "tofu"
+      },
+      {
+        "name": "chinese rice wine"
+      },
+      {
+        "name": "sweet chili sauce"
+      },
+      {
+        "name": "ginger"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": null,
+    "visual_description": "Small, round, golden-brown tartlets are presented on a rustic, well-used wooden dining table. Each tartlet, about 10 cm in diameter, holds a pale, creamy ginger tofu custard filling. Its surface is smooth with subtle specks of grated ginger. A delicate, glossy drizzle of amber-colored chili-caramel trails across the top, adding a surprising visual contrast. The tartlets are arranged naturally on a simple, earthy-toned ceramic plate with minor imperfections, reflecting a homely setting. A casually placed cloth napkin and everyday flatware complete the lived-in, unpretentious presentation. The entire plate is visible, bathed in warm, natural light, showcasing natural portions and a comforting aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian Fusion",
+    "cultural_origin": "Asian Fusion",
+    "cultural_serving_suggestions": [
+      "Served as individual desserts, perhaps alongside a light tea."
+    ],
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "plain flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "cold unsalted butter, diced",
+        "quantity": "100g"
+      },
+      {
+        "name": "caster sugar",
+        "quantity": "50g (for crust), 100g (for custard), 50g (for caramel)"
+      },
+      {
+        "name": "large egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "cold water",
+        "quantity": "15ml (for crust), 30ml (for caramel)"
+      },
+      {
+        "name": "silken tofu, well-drained",
+        "quantity": "300g"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "fresh ginger, grated",
+        "quantity": "10g"
+      },
+      {
+        "name": "Chinese rice wine (Shaoxing wine)",
+        "quantity": "5ml (optional)"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "sweet chili sauce",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Combine flour, 100g butter, and 50g sugar in a bowl. Rub with fingertips until crumbly. Add egg yolk and 15ml cold water. Mix until dough forms. Do not overmix. Wrap and chill for 30 minutes.",
+      "Preheat oven to 180°C (350°F). Roll out dough on a lightly floured surface. Cut circles to fit 4 x 10cm tartlet molds. Press dough into molds. Prick bottoms with a fork.",
+      "Line tartlet shells with parchment paper and baking beans. Bake blind for 15 minutes. Remove paper and beans. Bake for another 5-7 minutes, until light golden. Cool on a wire rack.",
+      "In a blender, combine silken tofu, 100g sugar, 2 eggs, grated ginger, rice wine (if using), and vanilla extract. Blend until completely smooth.",
+      "Pour custard mixture into the pre-baked tartlet shells.",
+      "Bake tartlets for 20-25 minutes, or until the custard is just set with a slight wobble in the center. Cool completely in molds, then carefully remove.",
+      "In a small saucepan, combine sweet chili sauce, 50g sugar, and 30ml water. Bring to a simmer over medium heat, stirring until sugar dissolves. Reduce heat to low and simmer gently for 5-7 minutes, until thickened to a syrupy consistency. Cool slightly.",
+      "Drizzle the sweet chili caramel over each cooled tartlet just before serving."
+    ],
+    "notes": [
+      "The sweet chili sauce is transformed into a chili-caramel drizzle to integrate its unique flavor profile into a sweet dessert, balancing its typical savory notes with added sweetness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 52.6,
+      "calories": 685.8,
+      "cholesterol_mg": 195.8,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 15.4,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 138.7,
+      "total_carbs_g": 94.1,
+      "total_fat_g": 28.3,
+      "total_sugars_g": 53.9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 20.8,
+      "calories": 270.8,
+      "cholesterol_mg": 77.3,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.1,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 54.8,
+      "total_carbs_g": 37.1,
+      "total_fat_g": 11.2,
+      "total_sugars_g": 21.3,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65.3,
+      "dietary_fiber": 5.9,
+      "protein": 30.9,
+      "saturated_fat": 74,
+      "sodium": 6,
+      "total_carbs": 34.2,
+      "total_fat": 36.3
+    },
+    "serving_size_g": 253.3,
+    "total_recipe_weight_g": 1013
+  },
+  {
+    "recipe_name": "Maple-Cinnamon Poached Pears with Coconut-Mandarin Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_maple-cinnamon_poached_pears_with_coconut-mandarin_cream_20250630_020050_6f3665c3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:00:50.801459000Z",
+    "selected_ingredients": [
+      {
+        "name": "mandarin"
+      },
+      {
+        "name": "coconut"
+      },
+      {
+        "name": "dark chocolate"
+      },
+      {
+        "name": "cinnamon"
+      },
+      {
+        "name": "pear"
+      },
+      {
+        "name": "maple syrup"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "vegan",
+    "visual_description": "The dish presents elegant, golden-brown poached pear halves, each standing upright on a clean white porcelain plate. The pears are smooth and unblemished, showcasing the gentle poaching technique. Beside each pear, a generous dollop of light, airy coconut-mandarin cream is artfully spooned, its creamy white color speckled with fine orange mandarin zest. Dark chocolate shavings are delicately scattered over both the pear and the cream, providing a contrasting deep brown hue and a delicate texture. The arrangement is balanced, with moderate negative space on the plate, highlighting the natural forms and appealing colors of the ingredients. The scene is set on a simple wooden table, with natural, even lighting casting soft shadows, creating a refined yet approachable atmosphere. The entire plate is visible, showcasing a single, perfectly portioned dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Vegan",
+    "hero_ingredient": "Pear",
+    "ingredients": [
+      {
+        "name": "Pears",
+        "quantity": "4 medium, firm (e.g., Bosc or Anjou)"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Cinnamon Sticks",
+        "quantity": "2"
+      },
+      {
+        "name": "Full-Fat Coconut Cream",
+        "quantity": "2 cans (400ml each), chilled overnight"
+      },
+      {
+        "name": "Mandarins",
+        "quantity": "2, zest and juice"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dark Chocolate (70% or higher)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Peel pears. Halve lengthwise. Carefully remove core.",
+      "In a saucepan, combine maple syrup, water, and cinnamon sticks. Bring to a simmer.",
+      "Add pear halves to simmering liquid. Ensure pears are mostly submerged. Add more water if needed.",
+      "Gently poach pears for 15-20 minutes. Pears should be tender but hold their shape. Do not overcook.",
+      "Remove pears from liquid. Let cool completely. Chill in refrigerator.",
+      "Scoop thick coconut cream from chilled cans. Discard liquid. Place cream in a cold bowl.",
+      "Add mandarin zest, mandarin juice, ground cinnamon, vanilla extract, and a pinch of salt to coconut cream.",
+      "Whip cream mixture with an electric mixer until light and fluffy. Do not overmix.",
+      "On each plate, place one chilled pear half. Spoon coconut-mandarin cream beside the pear.",
+      "Using a vegetable peeler, shave dark chocolate directly over pears and cream. Serve immediately."
+    ]
+  }
+]

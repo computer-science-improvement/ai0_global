@@ -1,0 +1,583 @@
+[
+  {
+    "recipe_name": "Stuffed Portobello Mushrooms with Kale and Feta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_stuffed_portobello_mushrooms_with_kale_and_feta_20250706_150321_c47b78d8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T15:03:22.030175000Z",
+    "selected_ingredients": [
+      "kale"
+    ],
+    "complexity": "standard",
+    "special_requests": "Vegiterian",
+    "visual_description": "A single, generously stuffed Portobello mushroom takes center stage on a clean white porcelain dinner plate. The mushroom cap is roasted to a tender, dark brown hue, with its edges slightly curled. The mound of vibrant green kale and white feta stuffing is piled high within the cap, lightly golden and crisp on top from baking. Visible textures include wilted kale leaves, soft crumbled feta, and light brown Panko breadcrumbs. The stuffing shows finely diced onion and garlic. A light drizzle of golden olive oil glistens over the top. Fresh, bright green chopped parsley is scattered as a garnish, adding a pop of color. The plate rests on a simple wooden table surface with a folded cotton napkin and standard flatware to the side, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple side salad with lemon vinaigrette.",
+      "Serve with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Kale",
+    "ingredients": [
+      {
+        "name": "Portobello mushroom caps",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Kale",
+        "quantity": "200g, stems removed, finely chopped"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100g, crumbled"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml, plus extra for drizzling"
+      },
+      {
+        "name": "Vegetable broth or dry white wine",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "pinch (optional)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Clean mushroom caps. Gently scrape out black gills using a spoon. Discard gills.",
+      "Heat 30ml olive oil in a large pan over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes (if using). Cook for 1 minute until fragrant.",
+      "Add finely chopped kale to the pan. Cook, stirring, until kale wilts completely, about 5-7 minutes.",
+      "Remove pan from heat. Stir in crumbled feta cheese and Panko breadcrumbs. Season with salt and pepper.",
+      "Place mushroom caps on a baking sheet. Divide kale mixture evenly among the four mushroom caps. Mound the stuffing.",
+      "Pour 15ml of vegetable broth or wine into the bottom of each mushroom cap.",
+      "Bake for 20-25 minutes, or until mushrooms are tender and stuffing is golden.",
+      "Remove from oven. Drizzle with extra olive oil. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "This dish can be prepared ahead of time and baked just before serving.",
+      "For a vegan option, omit feta cheese and use a plant-based alternative or nutritional yeast for cheesy flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 225,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 9.5,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 400,
+      "total_carbs_g": 19.5,
+      "total_fat_g": 13,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 94,
+      "cholesterol_mg": 9,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 4,
+      "saturated_fat_g": 2,
+      "sodium_mg": 167,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7,
+      "dietary_fiber": 15,
+      "protein": 19,
+      "saturated_fat": 24,
+      "sodium": 17,
+      "total_carbs": 7,
+      "total_fat": 17
+    },
+    "serving_size_g": 240,
+    "total_recipe_weight_g": 958
+  },
+  {
+    "recipe_name": "Seared Tuna with Herbed Brown Rice, Pickled Red Onion, and Crispy Black Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_tuna_with_herbed_brown_rice%2C_pickled_red_onion%2C_and_crispy_black_beans_20250706_150048_8609282a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T15:00:49.005474000Z",
+    "selected_ingredients": [
+      "tuna",
+      "onion",
+      "bean",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single starter portion is elegantly presented on a pristine white round plate. A compact, neat mound of fluffy, light brown herbed brown rice sits slightly off-center. Beside the rice, three thick, perfectly seared tuna medallions display a beautiful golden-brown crust contrasting with a vibrant pink interior. A small, vibrant pile of thinly sliced, magenta pickled red onions provides a bright pop of color. Dark, glossy crispy black beans are scattered thoughtfully around the plate. The dish is garnished with a fresh lime wedge and a delicate sprig of green cilantro. The setting features a simple wooden table, a clean white porcelain plate, and a crisp cotton napkin, all under natural, even lighting for a modern bistro feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Tuna",
+    "ingredients": [
+      {
+        "name": "Fresh tuna loin",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Canned black beans",
+        "quantity": "1 can (400g)"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh cilantro or parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Rinse brown rice thoroughly. Cook rice according to package directions. Use 400 ml water for 200 g rice. Set aside.",
+      "For pickled onions: Thinly slice red onion into very thin rings. In a small saucepan, combine white wine vinegar, sugar, and 120 ml water. Bring to a simmer. Stir until sugar dissolves. Pour hot liquid over sliced onions in a heatproof bowl. Let sit for at least 30 minutes. Drain before serving.",
+      "For crispy black beans: Drain and rinse black beans well. Pat dry thoroughly with paper towels. Toss beans with 15 ml olive oil, garlic powder, smoked paprika, salt, and pepper. Spread in a single layer on a baking sheet. Roast in a preheated oven at 200°C for 20-25 minutes, or until crispy. Stir halfway through.",
+      "Season tuna loin with salt and black pepper. Heat remaining 15 ml olive oil in a non-stick skillet over medium-high heat until shimmering. Sear tuna for 1-2 minutes per side for rare to medium-rare, or longer for desired doneness. Tuna should have a golden crust outside and be pink inside. Remove from pan. Rest tuna for 5 minutes.",
+      "Chop fresh cilantro or parsley. Fluff cooked brown rice with a fork. Stir in chopped herbs and juice from half a lime. Season rice with salt to taste.",
+      "Slice rested tuna into thick medallions, approximately 2 cm thick. Do not fan out slices.",
+      "To plate: Place a portion of herbed brown rice slightly off-center on each white plate. Arrange tuna medallions neatly beside the rice. Add a small mound of drained pickled red onions. Scatter crispy black beans around the plate. Garnish with a fresh lime wedge and a small sprig of cilantro or parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure black beans are very dry before roasting for optimal crispiness.",
+      "Adjust tuna cooking time to your preferred doneness; rare to medium-rare is recommended for best texture in this dish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 493.2,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 8.8,
+      "protein_g": 33.6,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 677.3,
+      "total_carbs_g": 67,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 10.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.6,
+      "calories": 104.3,
+      "cholesterol_mg": 9.5,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 7.1,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 143.2,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 2.1,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15,
+      "dietary_fiber": 31,
+      "protein": 67,
+      "saturated_fat": 8,
+      "sodium": 29,
+      "total_carbs": 24,
+      "total_fat": 12
+    },
+    "serving_size_g": 473,
+    "total_recipe_weight_g": 1892
+  },
+  {
+    "recipe_name": "Classic Chocolate Petit Fours",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_chocolate_petit_fours_20250706_150045_c25ceca9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T15:00:46.014051000Z",
+    "selected_ingredients": [
+      {
+        "name": "cocoa powder"
+      },
+      {
+        "name": "butter"
+      },
+      {
+        "name": "flour"
+      },
+      {
+        "name": "vanilla"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": null,
+    "visual_description": "Six to nine perfectly uniform miniature chocolate petit fours are arranged casually on a classic white French porcelain rectangular serving platter. Each petit four is a small, dense square, approximately 3cm by 3cm, with a rich, dark brown color from the cocoa. They are coated with a thin, glossy dark chocolate ganache, creating a smooth, reflective surface. A light dusting of cocoa powder or confectioners' sugar is subtly applied to some pieces, adding a delicate contrast. The arrangement is natural and inviting, with pieces gently touching or slightly overlapping, showcasing their uniform size and refined finish. The platter rests on a warm, well-used wooden dining table, illuminated by cozy, natural kitchen lighting that highlights the deep chocolate tones. A simple, folded linen napkin is casually placed nearby, completing the homely yet elegant presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Served as mignardises with coffee or tea after a meal.",
+      "Traditionally part of an assortment of small sweet bites."
+    ],
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Unsalted Butter",
+        "quantity": "115 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "65 g"
+      },
+      {
+        "name": "Unsweetened Cocoa Powder",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Dark Chocolate (at least 60% cocoa), finely chopped (for ganache)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Heavy Cream (for ganache)",
+        "quantity": "100 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C (350°F). Grease and flour an 20x20 cm square baking pan. Line with parchment paper, leaving an overhang.",
+      "Melt butter in a medium saucepan over low heat. Remove from heat.",
+      "Whisk in sugar until combined.",
+      "Add eggs one at a time, whisking well after each addition. Stir in vanilla extract.",
+      "In a separate bowl, whisk together flour, cocoa powder, salt, and baking powder.",
+      "Gradually add dry ingredients to wet ingredients. Mix until just combined. Do not overmix.",
+      "Pour batter into prepared pan. Spread evenly.",
+      "Bake for 20-25 minutes. A toothpick inserted into the center should come out with moist crumbs, not wet batter.",
+      "Cool brownie completely in pan on a wire rack.",
+      "Once cool, lift brownie from pan using parchment paper overhang. Transfer to a cutting board.",
+      "Prepare Ganache: Heat heavy cream in a small saucepan until simmering. Remove from heat.",
+      "Place chopped dark chocolate in a heatproof bowl. Pour hot cream over chocolate. Let stand for 5 minutes.",
+      "Stir gently until chocolate is melted and mixture is smooth and glossy.",
+      "Let ganache cool slightly until it thickens to a pourable consistency.",
+      "Trim edges of cooled brownie. Cut into small, uniform 3cm x 3cm squares. Aim for 9 pieces.",
+      "Place a wire rack over a baking sheet. Arrange brownie squares on rack.",
+      "Pour or spread ganache over each square, ensuring full coverage. Let excess drip off.",
+      "Allow ganache to set at room temperature or in the refrigerator for 15-20 minutes.",
+      "Optionally, dust lightly with cocoa powder or confectioners' sugar before serving."
+    ],
+    "traditional_techniques": [
+      "Precision cutting for uniform size and shape"
+    ]
+  },
+  {
+    "recipe_name": "Creamy Beetroot Pasta with Toasted Walnuts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_beetroot_pasta_with_toasted_walnuts_20250706_144811_b111d35b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T14:48:12.137034000Z",
+    "selected_ingredients": [
+      "beet",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A single, generous portion of Creamy Beetroot Pasta is presented in a simple, deep ceramic bowl with a slightly irregular edge, resting on a well-worn wooden dining table. The pasta, likely fusilli or penne, is coated in a vibrant, smooth pink-red beet sauce, appearing rich and comforting. Small, distinct 1cm beet cubes are visibly interspersed throughout the pasta, adding textural contrast. A scattering of roughly chopped, golden-brown toasted walnuts and fresh green chopped parsley or dill adorns the top, providing color and crunch. The pasta is naturally twirled, not meticulously arranged, reflecting a homely, casual presentation. A simple silver fork rests beside the bowl on the table. The scene is bathed in warm, soft lighting, evoking a cozy kitchen atmosphere, with minimal background elements to keep the focus on the inviting dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Vegetarian",
+    "hero_ingredient": "Beet",
+    "ingredients": [
+      {
+        "name": "Beetroots",
+        "quantity": "4 medium (about 500g)"
+      },
+      {
+        "name": "Pasta (e.g., fusilli, penne)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Cream cheese or vegan alternative",
+        "quantity": "100g"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "50g, roughly chopped"
+      },
+      {
+        "name": "Fresh parsley or dill",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Parmesan cheese or nutritional yeast",
+        "quantity": "optional, for serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash and trim beetroots. Wrap each in foil. Roast for 45-60 minutes until tender. Let cool slightly. Peel beets. Roughly chop half the beets into 1cm cubes. Set aside. Roughly chop remaining beets.",
+      "Bring a large pot of salted water to a boil. Cook pasta according to package directions until al dente. Drain, reserving 120ml of pasta water.",
+      "While pasta cooks, heat olive oil in a large skillet over medium heat. Add finely chopped onion. Cook for 5-7 minutes until softened and translucent.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Add the roughly chopped beets (not the cubes) to the skillet. Pour in vegetable broth. Bring to a simmer. Cook for 5 minutes.",
+      "Transfer beet mixture to a blender. Add cream cheese. Blend until smooth and creamy. If too thick, add a little reserved pasta water.",
+      "Return the beet sauce to the skillet. Add the reserved 1cm beet cubes. Gently heat through.",
+      "Add cooked pasta to the skillet with the sauce. Toss to coat evenly. If needed, add more reserved pasta water to reach desired consistency.",
+      "In a small dry pan, toast walnuts over medium heat for 3-5 minutes until fragrant. Watch carefully to prevent burning.",
+      "Season pasta with salt and black pepper to taste. Stir in half of the chopped fresh parsley or dill.",
+      "Serve immediately in individual bowls. Garnish each serving with toasted walnuts and remaining fresh herbs. Offer Parmesan cheese or nutritional yeast on the side."
+    ],
+    "notes": [
+      "For a richer flavor, you can roast the beets with a sprig of fresh rosemary or thyme.",
+      "Adjust the amount of cream cheese or broth to achieve your preferred sauce consistency.",
+      "This dish is best served immediately, but leftovers can be gently reheated with a splash of water or broth."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 671,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 19.1,
+      "saturated_fat_g": 7.3,
+      "sodium_mg": 226,
+      "total_carbs_g": 93.1,
+      "total_fat_g": 25.5,
+      "total_sugars_g": 13.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 195,
+      "cholesterol_mg": 7,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 5.6,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 66,
+      "total_carbs_g": 27.1,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13,
+      "dietary_fiber": 30,
+      "protein": 38,
+      "saturated_fat": 37,
+      "sodium": 10,
+      "total_carbs": 34,
+      "total_fat": 33
+    },
+    "serving_size_g": 344,
+    "total_recipe_weight_g": 1374
+  },
+  {
+    "recipe_name": "Grilled Halloumi with Mango Banana Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_grilled_halloumi_with_mango_banana_salsa_20250706_143351_32183e36.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T14:33:51.704501000Z",
+    "selected_ingredients": [
+      "mango",
+      "banana"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate. Three golden-brown, thick slices of grilled halloumi cheese are arranged neatly on one side of the plate. The halloumi has a slightly crisp exterior and a soft, warm interior. Beside the halloumi, a vibrant, mounded portion of fresh mango banana salsa is spooned. The salsa features diced 1 cm cubes of bright orange mango, creamy yellow banana, finely diced red onion, and flecks of green cilantro. The overall color palette is warm and inviting, with golden, orange, yellow, and green tones. A small sprig of fresh cilantro rests on top of the salsa, and a bright green lime wedge is placed beside the halloumi for a burst of freshness and color. The plate is positioned on a simple light wooden table surface. A folded white cotton napkin and standard silver flatware (fork and knife) are placed beside the plate. Natural, even lighting illuminates the dish from above, creating subtle shadows and highlighting the fresh textures. The background is minimally blurred, suggesting a casual restaurant atmosphere. The entire plate is visible, showcasing a perfectly portioned individual starter.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "hero_ingredient": "Halloumi Cheese",
+    "ingredients": [
+      {
+        "name": "Halloumi cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Ripe mango",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Firm banana",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Jalapeño",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Prepare salsa ingredients. Dice mango into 1 cm cubes. Dice banana into 1 cm cubes. Finely dice red onion. Finely dice jalapeño, remove seeds for less heat. Coarsely chop cilantro.",
+      "Combine salsa. In a medium bowl, combine diced mango, banana, red onion, jalapeño, and chopped cilantro.",
+      "Dress salsa. Squeeze juice from half a lime over the salsa. Drizzle with olive oil. Season with salt and black pepper. Gently fold to combine. Taste and adjust seasoning.",
+      "Prepare halloumi. Slice halloumi into 1 cm thick rectangular pieces.",
+      "Cook halloumi. Heat a non-stick pan or grill pan over medium-high heat. Add halloumi slices. Cook for 2-3 minutes per side until golden brown and slightly crisp.",
+      "Plate the dish. Arrange 2-3 pieces of grilled halloumi on each of four individual white plates. Spoon a generous portion of mango banana salsa next to or on top of the halloumi.",
+      "Garnish. Garnish with a fresh cilantro sprig and a lime wedge on the side of each plate."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 318,
+      "cholesterol_mg": 58,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 15.2,
+      "saturated_fat_g": 11.2,
+      "sodium_mg": 1021,
+      "total_carbs_g": 23.4,
+      "total_fat_g": 20.2,
+      "total_sugars_g": 14.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.4,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 500,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19,
+      "dietary_fiber": 10,
+      "protein": 30,
+      "saturated_fat": 56,
+      "sodium": 44,
+      "total_carbs": 8,
+      "total_fat": 26
+    },
+    "serving_size_g": 204.4,
+    "total_recipe_weight_g": 817.7
+  }
+]

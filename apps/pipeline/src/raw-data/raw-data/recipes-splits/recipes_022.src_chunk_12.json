@@ -1,0 +1,677 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Mushroom and Thyme Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_mushroom_and_thyme_sauce_20250624_122010_d76545ba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:10.900680000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast, its golden-brown, crispy skin glistening, rests centrally on a clean white porcelain dinner plate. A rich, creamy mushroom and thyme sauce, studded with earthy-toned sliced mushrooms, pools generously beside and slightly over the chicken. A neat, fluffy mound of herbed brown rice, flecked with bright green chopped parsley, sits adjacent to the chicken. The composition is balanced and inviting, showcasing natural ingredient colors and inviting textures. A fresh thyme sprig garnishes the chicken, adding a vibrant green accent. The plate is set on a simple wooden table, with standard silverware and a folded cotton napkin beside it, under natural, even lighting in a modern bistro-style background, highlighting the dish as the main subject.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Mixed mushrooms (e.g., cremini, shiitake, oyster), cleaned and sliced",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse brown rice thoroughly. Cook rice according to package directions. Typically, combine 250g rice with 500ml water in a saucepan. Bring to a boil, then reduce heat to low, cover, and simmer for 40-45 minutes until water is absorbed and rice is tender. Fluff with a fork. Stir in half of the chopped parsley.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat. Place chicken breasts skin-side down. Sear for 6-8 minutes until skin is golden brown and crispy. Flip chicken. Sear for 2-3 minutes on the second side.",
+      "Transfer skillet to a preheated oven at 180°C (350°F). Bake for 10-15 minutes, or until internal temperature reaches 75°C (167°F). Remove chicken from skillet; set aside on a plate, tented with foil.",
+      "Return skillet to stovetop over medium heat. Add butter. Add sliced mushrooms. Sauté for 5-7 minutes until softened and browned. Add shallots and garlic. Cook for 2-3 minutes until fragrant.",
+      "Deglaze skillet with white wine, scraping up any browned bits. Cook until liquid is almost evaporated. Add chicken stock and 2 thyme sprigs. Bring to a simmer. Reduce heat and cook for 5 minutes.",
+      "Stir in heavy cream. Simmer for 3-5 minutes until sauce slightly thickens. Season with salt and pepper to taste. Remove thyme sprigs.",
+      "To serve, place a portion of herbed brown rice on each plate. Arrange one chicken breast next to the rice. Spoon generous amounts of creamy mushroom sauce over and around the chicken. Garnish with remaining fresh parsley and a fresh thyme sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 938.2,
+      "cholesterol_mg": 234.6,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 55.1,
+      "saturated_fat_g": 19.8,
+      "sodium_mg": 897.4,
+      "total_carbs_g": 56.5,
+      "total_fat_g": 50.6,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 186.5,
+      "cholesterol_mg": 46.6,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 11,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 178.4,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78.2,
+      "dietary_fiber": 14,
+      "protein": 110.2,
+      "saturated_fat": 99,
+      "sodium": 39,
+      "total_carbs": 20.6,
+      "total_fat": 64.9
+    },
+    "serving_size_g": 503,
+    "total_recipe_weight_g": 2012
+  },
+  {
+    "recipe_name": "Carrot Couscous Salad with Quick-Pickled Chickpeas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_carrot_couscous_salad_with_quick-pickled_chickpeas_20250624_122008_ef9deac1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:08.872733000Z",
+    "selected_ingredients": [
+      "couscous"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "Couscous salad arranged naturally on a handcrafted ceramic plate in an earthy tone (cream or beige). Small, uniformly diced carrots, cucumber, and red bell pepper are visible throughout the fluffy couscous. Quick-pickled chickpeas add pops of pale yellow. A vibrant green drizzle of carrot top pesto is artfully swirled on top, with flecks of fresh herbs. The presentation is clean and unfussy, highlighting the natural colors and textures. The plate rests on a light, textured bamboo or reclaimed wood table surface. An undyed linen napkin in natural beige is folded neatly beside it. Soft, diffused natural light illuminates the dish. The background is minimalist, with a subtle hint of green from a nearby plant. An individual serving, with ingredients thoughtfully distributed to showcase variety and freshness.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Couscous",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable broth or water",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Carrots, diced small (tops reserved)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cucumber, diced small",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Red bell pepper, diced small",
+        "quantity": "1"
+      },
+      {
+        "name": "Cooked chickpeas, rinsed and drained",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Water (for pickling brine)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Apple cider vinegar (for pickling brine)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt (for pickling brine)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Sugar (optional, for pickling brine)",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Carrot tops (from 2 carrots), washed and dried",
+        "quantity": "approx. 30g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Olive oil (for pesto)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Lemon juice (for pesto)",
+        "quantity": "Juice of 1/2 lemon"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Place couscous in a bowl. Bring broth or water to a boil. Pour over couscous. Cover and let sit for 5-7 minutes until liquid is absorbed. Fluff with a fork.",
+      "For quick-pickled chickpeas: In a small pot, combine 120ml water, apple cider vinegar, 1 tsp salt, and optional sugar. Bring to a simmer until salt dissolves. Pour hot brine over rinsed chickpeas in a heatproof jar. Let cool to room temperature, then refrigerate for at least 30 minutes.",
+      "For carrot top pesto: In a food processor, combine carrot tops, parsley, minced garlic, 50ml olive oil, and lemon juice. Pulse until a coarse pesto forms. Season with salt and pepper. Add a splash more olive oil if too thick.",
+      "Dice carrots, cucumber, and red bell pepper into small, uniform pieces.",
+      "In a large bowl, combine fluffed couscous, diced carrots, cucumber, and red bell pepper. Add quick-pickled chickpeas, draining most of the brine.",
+      "Spoon a generous amount of carrot top pesto over the salad. Toss gently to combine. Taste and adjust seasoning. Serve immediately or chill."
+    ],
+    "notes": [
+      "For deeper fermentation, combine cooked chickpeas with a 2% brine (20g salt per 1 liter water) and ferment at room temperature for 3-5 days.",
+      "Any leftover pesto can be stored in the fridge or frozen in ice cube trays for future use.",
+      "Adjust vegetables based on seasonal availability: blanched green beans, roasted sweet potato cubes, or chopped kale are good additions."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 423,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 9.4,
+      "protein_g": 12.8,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 629,
+      "total_carbs_g": 62.6,
+      "total_fat_g": 13.6,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 120,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 3.6,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 179,
+      "total_carbs_g": 17.8,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 34,
+      "protein": 26,
+      "saturated_fat": 9,
+      "sodium": 27,
+      "total_carbs": 23,
+      "total_fat": 17
+    },
+    "serving_size_g": 352,
+    "total_recipe_weight_g": 1407
+  },
+  {
+    "recipe_name": "Sustainable Umami Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_umami_noodle_soup_20250624_122004_6b1031c2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:05.439873000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of Sustainable Umami Noodle Soup is presented in a handcrafted, natural ceramic bowl with an organic, matte finish in cream or beige. The rich, clear amber broth forms the base. Visible are tender chunks of slow-cooked beef, generous portions of shredded chicken, and al dente whole wheat fusilli. Thinly sliced leek rounds and earthy mushroom slices are naturally scattered within the broth. The dish is garnished simply with a few vibrant green parsley leaves and a delicate, thinly sliced radish. The composition is clean and minimalistic, allowing each ingredient to stand out. The bowl sits on a light, reclaimed wood table surface, accompanied by an undyed linen napkin in natural beige. Soft, diffused natural light illuminates the scene, with a hint of green from a background plant, maintaining an eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Fusion",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef bones or marrow bones",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Chicken carcass or wings",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Beef chuck or short rib",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Whole wheat fusilli or penne pasta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fermented tomato paste or puree",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Onion peels, carrot tops, celery ends, mushroom stems (vegetable scraps)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Leek (white and green parts), thinly sliced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Mushrooms, sliced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh ginger, sliced",
+        "quantity": "3 cm"
+      },
+      {
+        "name": "Water",
+        "quantity": "3 L"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or dill, for garnish",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Crispy kale stems or radish slices, for garnish",
+        "quantity": "optional"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Roast beef bones and chicken carcass on a baking sheet for 30 minutes until browned.",
+      "Transfer roasted bones and carcass to a large stock pot. Add vegetable scraps, crushed garlic, and ginger. Cover with 3 L cold water.",
+      "Bring to a boil, then reduce heat to low. Simmer gently for 4-6 hours. Skim any foam. Strain broth through a fine-mesh sieve. Discard solids.",
+      "Season the strained broth with salt and pepper. Add beef chuck to the broth. Simmer for 1.5-2 hours, or until very tender. Remove beef, let cool slightly, then shred or cut into 2-3 cm chunks. Set aside.",
+      "Add chicken thighs to the simmering broth. Poach for 15-20 minutes, or until internal temperature reaches 75°C. Remove chicken, let cool, then shred. Set aside.",
+      "In a separate pot, cook whole wheat fusilli according to package directions until al dente. Drain and set aside.",
+      "Return broth to a simmer. Stir in fermented tomato paste. Add sliced leek and mushrooms. Cook for 5 minutes until vegetables are tender-crisp.",
+      "To serve, divide cooked pasta among four bowls. Ladle hot broth with leeks and mushrooms over pasta. Arrange shredded beef and chicken chunks on top.",
+      "Garnish each bowl with fresh parsley or dill, and crispy kale stems or radish slices if using. Serve immediately."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing vegetable scraps and bones for a flavorful broth.",
+      "Fermented tomato paste adds depth of flavor and aligns with sustainable food practices."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Slow Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 620,
+      "cholesterol_mg": 149,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 52.7,
+      "saturated_fat_g": 9,
+      "sodium_mg": 969,
+      "total_carbs_g": 45.5,
+      "total_fat_g": 25.1,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 62,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 5.3,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 97,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 2.5,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 20,
+      "protein": 105,
+      "saturated_fat": 45,
+      "sodium": 42,
+      "total_carbs": 17,
+      "total_fat": 32
+    },
+    "serving_size_g": 1000,
+    "total_recipe_weight_g": 4000
+  },
+  {
+    "recipe_name": "Baked Chicken, Potato, and Bell Pepper Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_chicken%2C_potato%2C_and_bell_pepper_rice_20250624_122000_ee4bade2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:01.484843000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "chili",
+      "parmesan cheese",
+      "bell pepper",
+      "basil",
+      "beer",
+      "rice",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Baked Chicken, Potato, and Bell Pepper Rice is presented on a clean white porcelain dinner plate. A golden-brown, seared chicken thigh, with crispy skin, is positioned prominently on top of a generous bed of vibrant, moist rice. The rice is studded with diced red and green bell peppers, soft pieces of red onion, small tender cubes of potato, and hints of red from the crushed tomatoes, creating a rich mosaic of colors and textures. Freshly chopped green basil leaves are scattered over the dish, providing a pop of fresh color and aromatic contrast. A light dusting of finely grated Parmesan cheese adds a delicate white layer on top. The dish has a natural, flowing arrangement, avoiding rigid shapes. The background features a simple wooden table surface, a neatly folded white cotton napkin, and a subtle, casual restaurant ambiance with natural, even lighting. The entire plate is visible, with moderate negative space around the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh red chili",
+        "quantity": "1, finely minced (seeds removed for less heat)"
+      },
+      {
+        "name": "Light lager beer",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large handful, roughly chopped"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, freshly grated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Potato",
+        "quantity": "1 medium (approx. 200g), peeled and diced into 1cm cubes"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Season chicken thighs generously with salt and pepper.",
+      "Heat olive oil in a large, oven-safe skillet over medium-high heat. Sear chicken thighs skin-side down for 5-7 minutes until skin is golden and crispy. Flip and sear for another 3 minutes. Remove chicken and set aside.",
+      "Add diced red onion, red bell pepper, green bell pepper, and minced chili to the skillet. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic, Arborio rice, and diced potato to the skillet. Stir for 2 minutes until rice is translucent.",
+      "Pour in the beer. Scrape up any browned bits from the bottom of the skillet. Cook until beer is almost fully absorbed.",
+      "Stir in crushed tomatoes and chicken broth. Bring mixture to a simmer.",
+      "Return seared chicken thighs to the skillet, nestling them into the rice mixture. Ensure chicken is partially submerged.",
+      "Cover the skillet tightly with a lid or foil. Transfer to the preheated oven. Bake for 25 minutes.",
+      "Remove from oven. Stir the rice and potato gently. If needed, add a splash more broth if mixture seems too dry. Sprinkle half of the fresh basil and half of the grated Parmesan over the dish.",
+      "Return to oven, uncovered, and bake for another 10-15 minutes, or until chicken is cooked through (internal temperature 75°C), rice is tender, and potatoes are soft. Liquid should be mostly absorbed but dish should still be moist.",
+      "Let rest for 5 minutes before serving. Garnish with remaining fresh basil and grated Parmesan."
+    ],
+    "notes": [
+      "The provided ingredients (chicken, tomato, onion, chili, parmesan, bell pepper, basil, beer, rice, potato) are savory and not suitable for a sweet cake. This recipe has been designed as a savory baked chicken and rice dish to best utilize the given ingredients while adhering to the 'casual dining' and 'simple restaurant style' presentation requirements."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 999.8,
+      "cholesterol_mg": 191.3,
+      "dietary_fiber_g": 5.65,
+      "protein_g": 50.37,
+      "saturated_fat_g": 11.87,
+      "sodium_mg": 927.3,
+      "total_carbs_g": 85.46,
+      "total_fat_g": 42.39,
+      "total_sugars_g": 7.99,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.4,
+      "cholesterol_mg": 23.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.22,
+      "saturated_fat_g": 1.47,
+      "sodium_mg": 114.4,
+      "total_carbs_g": 10.54,
+      "total_fat_g": 5.23,
+      "total_sugars_g": 0.99,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.75,
+      "dietary_fiber": 20.16,
+      "protein": 100.75,
+      "saturated_fat": 59.37,
+      "sodium": 40.32,
+      "total_carbs": 31.08,
+      "total_fat": 54.35
+    },
+    "serving_size_g": 810.5,
+    "total_recipe_weight_g": 3242
+  },
+  {
+    "recipe_name": "Brined Pork Loin with Tomato-Onion Confit and Quick Pickled Red Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_brined_pork_loin_with_tomato-onion_confit_and_quick_pickled_red_onions_20250624_121952_e22ebcba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:19:52.801727000Z",
+    "selected_ingredients": [
+      "pork",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, thick-cut piece of seared pork loin, displaying a golden-brown crust and a tender, slightly pink interior, is placed off-center on a round, cream-colored handcrafted ceramic plate. Beside the pork, a generous mound of slow-roasted tomato and onion confit showcases rich, ruby-red tomato halves and soft, golden-brown caramelized onion slices. A vibrant scattering of thinly sliced, pale pink quick pickled red onions adds a contrasting pop of color and texture. Roasted root vegetables, such as golden parsnip wedges and deep orange carrot chunks, are artfully arranged to one side, showing their natural char. The dish is subtly garnished with a few fresh parsley leaves. The plate sits on a light, reclaimed wood table surface. An undyed linen napkin in a natural beige tone is folded neatly beside the plate. Soft, natural light illuminates the scene, and the background is clean and minimalist.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Brined Pork Loin",
+    "ingredients": [
+      {
+        "name": "Pork Loin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Brown Onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Red Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Peppercorns",
+        "quantity": "10"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Seasonal Root Vegetables",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Brine (for pork)",
+        "quantity": "2 litres water, 100g salt"
+      }
+    ],
+    "instructions": [
+      "Prepare brine: Dissolve 100g salt in 2 litres cold water. Submerge pork loin in brine. Refrigerate for 2-4 hours.",
+      "Prepare quick pickled red onions: Thinly slice red onions. In a small saucepan, combine apple cider vinegar, 100ml water, sugar, peppercorns, and bay leaf. Bring to a simmer. Pour hot liquid over sliced red onions in a heatproof jar. Let cool. Refrigerate until ready to serve.",
+      "Prepare tomato-onion confit: Preheat oven to 160°C. Halve cherry tomatoes. Thinly slice brown onions. Mince garlic. In a roasting dish, combine tomatoes, brown onions, minced garlic, 50ml olive oil, and thyme sprigs. Season with salt and pepper. Roast for 45-60 minutes, or until vegetables are very tender and slightly caramelized.",
+      "Prepare roasted root vegetables: Peel and chop root vegetables into 2cm chunks. Toss with 30ml olive oil, salt, and pepper. Spread on a baking tray. Roast in oven with confit for 30-40 minutes, or until tender and lightly browned.",
+      "Cook pork: Remove pork from brine. Pat dry thoroughly with paper towels. Discard brine. Heat remaining 20ml olive oil in an oven-safe skillet over medium-high heat. Sear pork loin on all sides until golden brown, about 2-3 minutes per side. Transfer skillet to preheated oven. Roast for 15-20 minutes, or until internal temperature reaches 63°C. Remove from oven, transfer pork to a cutting board. Rest for 10 minutes.",
+      "Assemble: Slice pork loin into 2cm thick pieces. Arrange pork on individual plates. Spoon generous portions of tomato-onion confit alongside. Add roasted root vegetables. Garnish with quick pickled red onions and fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 643,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 46.9,
+      "saturated_fat_g": 7,
+      "sodium_mg": 740,
+      "total_carbs_g": 41.5,
+      "total_fat_g": 34.1,
+      "total_sugars_g": 18.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 101,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.4,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 117,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.5,
+      "dietary_fiber": 25.3,
+      "protein": 93.7,
+      "saturated_fat": 34.9,
+      "sodium": 32.2,
+      "total_carbs": 15.1,
+      "total_fat": 43.7
+    },
+    "serving_size_g": 633.3,
+    "total_recipe_weight_g": 2533
+  }
+]

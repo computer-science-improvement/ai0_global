@@ -1,0 +1,671 @@
+[
+  {
+    "recipe_name": "Chicken Shoyu Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_shoyu_noodle_soup_20250713_100710_5d92a39f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T10:07:11.092769000Z",
+    "selected_ingredients": [
+      "egg",
+      "noodle",
+      "soy sauce",
+      "chicken",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken Shoyu Noodle Soup is presented in a deep, matte black ceramic ramen bowl. The clear, amber-hued broth serves as the base. Neatly arranged ramen noodles are submerged, topped with tender, thinly sliced chicken pieces. Two halves of a soft-boiled egg, revealing a vibrant golden, slightly runny yolk, are carefully placed on the side. The soup is garnished with a generous scattering of bright green scallion rounds and a delicate drizzle of sesame oil, creating a subtle sheen. The composition is balanced and inviting, with moderate negative space. The bowl sits on a simple, light-colored wooden table, accompanied by a pair of elegant wooden chopsticks and a large white ceramic soup spoon. A simple folded white cotton napkin rests beside the bowl. Natural, even lighting highlights the textures and colors of the dish, set against a blurred, casual bistro background.",
+    "number_of_servings": 3,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a small side dish of shichimi togarashi (Japanese seven-spice blend) for diners to add heat.",
+      "Offer a small dish of finely sliced pickled ginger as an optional palate cleanser.",
+      "Serve hot, allowing diners to slurp noodles and broth directly from the bowl."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Dried ramen noodles",
+        "quantity": "270g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece, thinly sliced"
+      },
+      {
+        "name": "Low sodium chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "75ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "3 stalks, thinly sliced"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a pot of water to a boil. Add chicken breast. Cook for 15-20 minutes until internal temperature reaches 75°C. Remove chicken. Let cool slightly. Shred or thinly slice chicken. Set aside.",
+      "In a separate pot, bring water to a rolling boil for eggs. Gently lower eggs into boiling water. Cook for 6-7 minutes for soft-boiled. Immediately transfer to an ice bath. Peel eggs carefully. Halve each egg lengthwise.",
+      "In a large pot, combine chicken broth, minced garlic, and sliced ginger. Bring to a simmer over medium heat. Simmer for 10 minutes.",
+      "Strain the broth to remove garlic and ginger. Return clear broth to the pot.",
+      "Stir in soy sauce and mirin. Taste and adjust seasoning with salt if needed. Keep warm.",
+      "Cook ramen noodles according to package instructions in a separate pot of boiling water. Drain well.",
+      "Divide cooked noodles evenly among 3 deep soup bowls.",
+      "Arrange shredded or sliced chicken over the noodles in each bowl.",
+      "Carefully ladle hot broth over noodles and chicken.",
+      "Place two egg halves on top of the chicken and noodles in each bowl.",
+      "Drizzle each bowl with sesame oil. Garnish generously with sliced green onions. Serve immediately."
+    ],
+    "notes": [
+      "Achieving the perfect soft-boiled egg is key to this dish. Adjust cooking time based on egg size and desired yolk consistency.",
+      "The broth can be prepared in advance for quicker assembly.",
+      "For richer flavor, use chicken thighs instead of breast."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 703,
+      "cholesterol_mg": 271.5,
+      "dietary_fiber_g": 3.37,
+      "protein_g": 50.01,
+      "saturated_fat_g": 6.69,
+      "sodium_mg": 3333.94,
+      "total_carbs_g": 71.18,
+      "total_fat_g": 21.6,
+      "total_sugars_g": 8.41,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88,
+      "cholesterol_mg": 33.82,
+      "dietary_fiber_g": 0.42,
+      "protein_g": 6.23,
+      "saturated_fat_g": 0.83,
+      "sodium_mg": 415.36,
+      "total_carbs_g": 8.87,
+      "total_fat_g": 2.69,
+      "total_sugars_g": 1.05,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 90.5,
+      "dietary_fiber": 12.02,
+      "protein": 100.01,
+      "saturated_fat": 33.43,
+      "sodium": 144.95,
+      "total_carbs": 25.88,
+      "total_fat": 27.69
+    },
+    "serving_size_g": 802.67,
+    "total_recipe_weight_g": 2408
+  },
+  {
+    "recipe_name": "Homely Chicken & Egg Ramen",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homely_chicken_%26_egg_ramen_20250713_100004_c4c230a2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T10:00:04.893568000Z",
+    "selected_ingredients": [
+      "ramen noodle",
+      "soy sauce",
+      "mustard",
+      "mayonnaise",
+      "chicken",
+      "carrot",
+      "egg"
+    ],
+    "complexity": "simple",
+    "special_requests": "non-alcohol, have a chicken fillet, don't have cabbage",
+    "visual_description": "A single generous portion of Homely Chicken & Egg Ramen is presented in a deep, wide ceramic bowl, evoking a sense of warmth and comfort. The golden-brown, subtly creamy broth forms the inviting base, with a hearty tangle of cooked ramen noodles submerged. Tender, irregular chunks of shredded chicken are scattered generously over the noodles. Bright orange, thinly sliced carrot rounds are interspersed, adding a pop of color and gentle crunch. One perfectly soft-boiled egg, halved lengthwise, rests prominently on the noodles, its vibrant yellow yolk peeking out. A small, rustic dollop of Dijon mustard is placed on the bowl's rim, ready to be mixed in. The dish is finished with a sprinkle of thinly sliced green onions, adding a fresh, verdant touch. It sits on a well-worn wooden kitchen table, bathed in warm, inviting light. Simple, everyday chopsticks rest casually alongside the bowl, completing the homely, authentic scene.",
+    "number_of_servings": 3,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with chopsticks",
+      "Use deep ceramic ramen bowls"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken fillet",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ramen noodles",
+        "quantity": "3 packs (without seasoning)"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken: Place chicken fillet in a saucepan. Cover with water. Bring to a simmer. Cook 15-20 minutes, or until internal temperature reaches 75°C. Remove chicken. Shred into irregular chunks using two forks. Set aside.",
+      "Cook Eggs: While chicken cooks, bring a separate small pot of water to a boil. Gently lower eggs into boiling water. Cook 6-7 minutes for soft-boiled. Transfer to an ice bath. Peel carefully. Halve lengthwise.",
+      "Make Broth: In a large pot, heat sesame oil over medium heat. Add minced garlic and grated ginger. Sauté 1 minute until fragrant. Pour in chicken broth and soy sauce. Bring to a simmer. Whisk in mayonnaise until fully combined and broth is slightly creamy. Add thinly sliced carrot rounds. Simmer 5-7 minutes until carrots are tender-crisp.",
+      "Cook Noodles: In a separate pot, cook ramen noodles according to package directions. Drain well.",
+      "Assemble Soup: Divide cooked noodles among 3 deep ceramic bowls. Ladle hot broth and carrots over noodles. Arrange shredded chicken chunks on top. Place 2 egg halves per bowl.",
+      "Garnish and Serve: Sprinkle generously with thinly sliced green onions. Add a small dollop of Dijon mustard to the side of the bowl if desired. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 797,
+      "cholesterol_mg": 281,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 54.5,
+      "saturated_fat_g": 12.2,
+      "sodium_mg": 681,
+      "total_carbs_g": 56.9,
+      "total_fat_g": 35.6,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 98,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 6.7,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 84,
+      "total_carbs_g": 7,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 93.6,
+      "dietary_fiber": 14,
+      "protein": 109,
+      "saturated_fat": 60.8,
+      "sodium": 29.6,
+      "total_carbs": 20.7,
+      "total_fat": 45.7
+    },
+    "serving_size_g": 810.9,
+    "total_recipe_weight_g": 2432.6
+  },
+  {
+    "recipe_name": "Creamy Chicken & Egg Ramen Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_%26_egg_ramen_stir-fry_20250713_095804_f2df72db.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T09:58:04.468656000Z",
+    "selected_ingredients": [
+      "ramen noodle",
+      "soy sauce",
+      "mustard",
+      "mayonnaise",
+      "chicken",
+      "carrot",
+      "egg"
+    ],
+    "complexity": "simple",
+    "special_requests": "non-alcohol, have a chicken fillet, don't have cabbage",
+    "visual_description": "A single modest portion of the stir-fry is served in a deep, rustic ceramic bowl. The noodles are loosely piled, intertwined with golden-brown chicken chunks, vibrant orange julienned carrots, and soft yellow scrambled egg pieces. A scattering of bright green chopped spring onions adds a pop of color on top. The components are naturally mixed and slightly overlapping, reflecting a comforting, home-style meal. No strict arrangement, just a generous scoop. The bowl rests on a well-used, slightly worn light wooden dining table. Beside the bowl, a pair of simple wooden chopsticks are casually placed on a small, plain ceramic rest. A folded, light-colored cloth napkin is tucked under the bowl. The background is softly blurred, showing hints of a warm, inviting kitchen environment. Warm, soft, natural light illuminates the dish from the side, enhancing the textures and creating subtle shadows. Chicken is cut into bite-sized chunks. Carrots are julienned into thin strips. Eggs are scrambled into soft, irregular pieces.",
+    "number_of_servings": 3,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled ginger.",
+      "Offer a small bowl of chili oil for those who prefer extra heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken fillet",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ramen noodles",
+        "quantity": "3 blocks (approx. 85g each)"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "10g"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "5ml"
+      }
+    ],
+    "instructions": [
+      "Prepare ingredients: Cut chicken into 2cm chunks. Julienne carrot into thin strips. Mince garlic. Grate ginger.",
+      "Cook ramen: Boil 1.5 litres of water in a pot. Add ramen noodles. Cook for 3 minutes until al dente. Drain well.",
+      "Cook chicken: Heat 15ml vegetable oil in a large wok or pan over medium-high heat. Add chicken chunks. Sear for 5-7 minutes until golden brown and internal temperature reaches 75°C. Remove chicken from pan. Set aside.",
+      "Cook eggs: Add remaining 5ml oil to the same pan. Beat eggs in a small bowl. Pour in beaten eggs. Scramble until just set. Remove eggs from pan. Set aside.",
+      "Stir-fry vegetables: Add remaining 10ml vegetable oil to the pan. Add minced garlic and grated ginger. Sauté for 30 seconds until fragrant. Add julienned carrot. Stir-fry for 3-4 minutes until tender-crisp.",
+      "Make sauce: In a small bowl, whisk together soy sauce, mayonnaise, and mustard.",
+      "Combine: Return cooked ramen, chicken, and scrambled egg to the pan with carrots. Pour in the sauce. Toss well to coat all ingredients evenly.",
+      "Finish: Stir-fry briefly for 1 minute until heated through. Drizzle with sesame oil if desired.",
+      "Serve: Transfer to individual bowls. Garnish with chopped spring onions."
+    ],
+    "notes": [
+      "This dish is best served immediately.",
+      "Adjust mustard quantity to your preferred level of tanginess."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 902,
+      "cholesterol_mg": 279,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 48.8,
+      "saturated_fat_g": 13.9,
+      "sodium_mg": 2162,
+      "total_carbs_g": 57.4,
+      "total_fat_g": 50.7,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 276.1,
+      "cholesterol_mg": 85.5,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 14.9,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 661.7,
+      "total_carbs_g": 17.6,
+      "total_fat_g": 15.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 93,
+      "dietary_fiber": 14,
+      "protein": 98,
+      "saturated_fat": 70,
+      "sodium": 94,
+      "total_carbs": 21,
+      "total_fat": 65
+    },
+    "serving_size_g": 327,
+    "total_recipe_weight_g": 980
+  },
+  {
+    "recipe_name": "Mediterranean Braised Chicken with Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_braised_chicken_with_root_vegetables_20250713_095404_509bc130.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T09:54:05.309928000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "carrot",
+      "onion",
+      "garlic",
+      "tomato",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "European cuisine, non-alcohol, have a chicken fillet, don't have cabbage",
+    "visual_description": "A single braised chicken fillet is centrally placed on a clean white porcelain dinner plate. Rustic large chunks of fork-tender potatoes and thick slices of vibrant orange carrots are artfully arranged around the chicken. The chicken and vegetables are generously coated in a rich, rustic red tomato and oregano sauce, with visible pieces of caramelized onion and minced garlic. The chicken boasts a golden-brown exterior from initial searing, contrasting with its tender interior. Vegetables retain their shape and bright color. A fresh sprig of oregano rests atop the chicken, with a slight drizzle of golden olive oil enhancing the sheen. The composition is balanced and inviting, with moderate negative space. The setting features a simple wooden table, a folded white cotton napkin beside the plate, and natural, even lighting from the side, creating a warm bistro ambiance.",
+    "number_of_servings": 3,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty artisan bread to soak up the rich sauce."
+    ],
+    "hero_ingredient": "Chicken fillet",
+    "ingredients": [
+      {
+        "name": "Chicken fillets",
+        "quantity": "3 (approx. 180g each)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g, rustic large chunks"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "250g, thick slices"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, roughly chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh oregano sprig",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Season chicken fillets with salt and pepper. Sear chicken 3-4 minutes per side until golden brown. Remove chicken from pot and set aside.",
+      "Add chopped onion to the pot. Sauté for 5 minutes until softened.",
+      "Add minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Add bay leaf. Bring to a simmer.",
+      "Return chicken fillets to the pot. Add potato chunks and carrot slices around the chicken.",
+      "Cover the pot and reduce heat to low. Simmer for 30-40 minutes, or until chicken is cooked through (internal temperature 75°C) and vegetables are fork-tender.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve hot, garnished with a fresh oregano sprig."
+    ],
+    "notes": [
+      "Ensure chicken is cooked through to an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 705.5,
+      "cholesterol_mg": 170,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 44.9,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 806.6,
+      "total_carbs_g": 43.3,
+      "total_fat_g": 40.2,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 98.1,
+      "cholesterol_mg": 23.6,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.2,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 112.1,
+      "total_carbs_g": 6,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 26,
+      "protein": 90,
+      "saturated_fat": 51,
+      "sodium": 35,
+      "total_carbs": 16,
+      "total_fat": 52
+    },
+    "serving_size_g": 719.5,
+    "total_recipe_weight_g": 2878
+  },
+  {
+    "recipe_name": "Baked Chicken and Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_chicken_and_root_vegetables_20250713_095333_5bf86a00.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T09:53:33.912648000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "carrot",
+      "onion",
+      "garlic",
+      "tomato",
+      "oregano"
+    ],
+    "complexity": "simple",
+    "special_requests": "European cuisine, non-alcohol, have a chicken fillet, don't have cabbage",
+    "visual_description": "A rustic, comforting baked chicken and root vegetables. A single generous portion rests on a simple, round, off-white ceramic plate on a well-worn, warm-toned wooden dining table. Chicken chunks are nestled among roasted potato chunks, carrot rounds, and onion quarters. The chicken is golden-brown, with tender white meat. Potatoes are soft, browned at edges. Carrots are vibrant orange. Onions are caramelized. Roasted tomatoes create a rich sauce coating ingredients. Fresh, chopped parsley adds color. Warm kitchen light creates soft shadows. A simple glass of water and a casually folded cloth napkin complete the homely kitchen scene.",
+    "number_of_servings": 3,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve directly from the baking dish onto individual plates.",
+      "Best served with crusty bread for dipping in the savory sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken fillets",
+        "quantity": "300g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "450g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "250g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and peel potatoes and carrots. Cut potatoes into 3 cm chunks. Cut carrots into 2 cm thick rounds.",
+      "Peel and quarter the onion. Peel and mince garlic cloves.",
+      "Pat chicken fillets dry. Cut each fillet into 2-3 large chunks.",
+      "In a large roasting dish, combine potato chunks, carrot rounds, onion quarters, minced garlic, diced tomatoes, dried oregano, olive oil, salt, and pepper. Mix well to coat all vegetables.",
+      "Nestle chicken chunks among the vegetables. Pour chicken broth into the dish.",
+      "Bake for 35-40 minutes.",
+      "Check chicken internal temperature. It should reach 75°C.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 445,
+      "cholesterol_mg": 85,
+      "dietary_fiber_g": 7.9,
+      "protein_g": 37.3,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 842.5,
+      "total_carbs_g": 44.6,
+      "total_fat_g": 13.5,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 77.7,
+      "cholesterol_mg": 14.8,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6.5,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 147.1,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 28,
+      "protein": 75,
+      "saturated_fat": 12,
+      "sodium": 37,
+      "total_carbs": 16,
+      "total_fat": 17
+    },
+    "serving_size_g": 572.7,
+    "total_recipe_weight_g": 1718
+  }
+]

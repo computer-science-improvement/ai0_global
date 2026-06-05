@@ -1,0 +1,635 @@
+[
+  {
+    "recipe_name": "Hearty Beef and Beer Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_beer_bake_20250701_144626_81b4a181.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:46:26.991244000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot",
+      "worcestershire sauce",
+      "garlic",
+      "swiss chard",
+      "beer",
+      "corn",
+      "asadero cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A deep, rustic ceramic baking dish is filled with a hearty beef and vegetable bake, showcased on a well-used wooden dining table. The dark brown, tender beef chunks are generously distributed, nestled among vibrant orange diced carrots and plump golden corn kernels. Dark green swiss chard leaves are interspersed throughout, adding a natural pop of color. The top is covered with a thick, bubbly layer of melted, golden-brown asadero cheese, with some areas crisped to perfection. An individual portion is spooned onto a simple, off-white ceramic plate, allowing the components to touch naturally. The plate is adorned with generous chunks of beef, colorful vegetables, and melted cheese. A basic fork and knife are placed beside the plate. The setting is a cozy, lived-in family kitchen with warm, inviting lighting from kitchen fixtures, creating a relaxed, homely atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve directly from the baking dish at the family table",
+      "Accompany with crusty bread for dipping in the rich sauce",
+      "Pair with a simple side salad"
+    ],
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef stewing chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dark beer (stout or ale)",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "1 large bunch, stems removed and chopped, leaves chopped"
+      },
+      {
+        "name": "Corn kernels",
+        "quantity": "200g (fresh or frozen)"
+      },
+      {
+        "name": "Asadero cheese",
+        "quantity": "150g, shredded"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Pat beef chunks dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear beef until deeply browned on all sides. Remove beef from pot and set aside.",
+      "Add diced carrots to the pot. Sauté for 5 minutes, stirring occasionally.",
+      "Add minced garlic to the pot. Sauté for 1 minute until fragrant.",
+      "Stir in plain flour. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in the beer and Worcestershire sauce until smooth. Bring the mixture to a gentle simmer.",
+      "Return the seared beef chunks to the pot. Add the chopped swiss chard stems. Stir to combine.",
+      "Cover the pot and bake in the preheated oven for 1.5 hours.",
+      "Remove pot from oven. Stir in the chopped swiss chard leaves and corn kernels.",
+      "Evenly sprinkle the shredded asadero cheese over the top of the bake.",
+      "Return the uncovered pot to the oven. Bake for an additional 20-30 minutes, or until the cheese is bubbly, melted, and golden brown.",
+      "Remove from oven. Let the bake rest for 10 minutes before serving."
+    ],
+    "notes": [
+      "This dish is excellent for meal preparation and reheats well.",
+      "Other root vegetables like potatoes or parsnips can be added.",
+      "Ensure beef reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Baking"
+    ]
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Breast, Buckwheat Kasha, Cranberry-Horseradish Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_breast%2C_buckwheat_kasha%2C_cranberry-horseradish_jus_20250701_144616_87c4c5c4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:46:16.588823000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Russian cuisine, Low calories, high protein",
+    "visual_description": "A single pan-seared chicken breast, golden-brown with a delicate crust, rests beside a beautifully composed mound of earthy buckwheat kasha. The kasha, creamy yet with distinct grains, is subtly flecked with fresh green dill. A vibrant, deep red cranberry-horseradish jus forms a precise, flowing pool around the base of the chicken and kasha, adding a striking color contrast. A few delicate sprigs of fresh dill are precisely placed atop the chicken and kasha, providing a final touch of verdant freshness. The dish is presented on a pristine white modern designer plate, positioned on a premium grey veined marble surface, with abundant negative space. Dramatic professional lighting creates soft shadows, enhancing depth. A crisp white linen napkin, folded into a precise triangle, sits elegantly to the side, completing the ultra-minimalist, sophisticated presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken Breasts",
+        "quantity": "4 (approx. 180-200g each), skinless, boneless"
+      },
+      {
+        "name": "Buckwheat Groats",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "700ml, low sodium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh Cranberries",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh Horseradish",
+        "quantity": "20g, grated"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 teaspoon (optional)"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "1 small bunch, finely chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Freshly ground, to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare the Cranberry-Horseradish Jus: Combine cranberries, grated horseradish, red wine vinegar, and sugar (if using) in a small saucepan. Add 50ml chicken broth. Simmer over medium heat for 10-12 minutes until cranberries soften and burst. Mash lightly. Strain through a fine-mesh sieve, pressing solids to extract all liquid. Discard solids. Set jus aside.",
+      "Prepare the Buckwheat Kasha: Heat 1 tablespoon olive oil in a saucepan over medium heat. Sauté diced onion until translucent, about 3-4 minutes. Add minced garlic; cook 1 minute until fragrant. Add buckwheat groats; toast for 2 minutes. Pour in remaining chicken broth. Bring to a boil, then reduce heat to low. Cover and simmer for 15-20 minutes, or until liquid is absorbed and buckwheat is tender. Stir in half of the chopped fresh dill. Season with salt and pepper. Keep warm.",
+      "Sear the Chicken Breasts: Pat chicken breasts dry. Season generously with salt and pepper. Heat 1 tablespoon olive oil in a large non-stick pan over medium-high heat. Place chicken breasts in the hot pan. Sear for 5-7 minutes per side until golden brown and internal temperature reaches 75°C (167°F). Remove from pan and let rest for 5 minutes.",
+      "Plate the Dish: Place a generous mound of buckwheat kasha slightly off-center on each plate. Position one whole pan-seared chicken breast beside the kasha. Drizzle a delicate pool of the vibrant cranberry-horseradish jus around the base of the kasha and chicken. Garnish with remaining fresh dill sprigs. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 590.9,
+      "cholesterol_mg": 161.5,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 68.5,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 319.9,
+      "total_carbs_g": 43.6,
+      "total_fat_g": 15.8,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 122.3,
+      "cholesterol_mg": 33.4,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 14.2,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 66.2,
+      "total_carbs_g": 9,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 23,
+      "protein": 137,
+      "saturated_fat": 17,
+      "sodium": 14,
+      "total_carbs": 16,
+      "total_fat": 20
+    },
+    "serving_size_g": 483,
+    "total_recipe_weight_g": 1932
+  },
+  {
+    "recipe_name": "Tuscan Chicken with Roasted Squash and Cannellini Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken_with_roasted_squash_and_cannellini_beans_20250701_144550_765aeb87.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:45:50.616815000Z",
+    "selected_ingredients": [
+      "onion",
+      "chicken",
+      "tomato",
+      "bean",
+      "squash",
+      "oregano",
+      "parmesan",
+      "olive"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tuscan Chicken is presented on a clean, round white porcelain plate. A substantial, golden-brown seared chicken thigh rests centrally, partially submerged in a rich, rustic tomato-olive sauce. The sauce, vibrant red with visible dark Kalamata olives and tender cannellini beans, forms a bed for the chicken. Alongside, roasted butternut squash chunks, approximately 2-3 cm cubes, display caramelized edges and a warm orange hue. The dish is garnished with a generous sprinkle of freshly grated Parmesan cheese and a scattering of vibrant green, chopped fresh parsley. The composition is balanced and inviting, with moderate negative space. The setting features a simple wooden table, natural, even lighting, and traditional Italian flatware placed beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce",
+      "Pair with a simple green salad dressed with olive oil and balsamic vinegar",
+      "Serve with a light-bodied red wine, such as Chianti"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Onion, medium",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "10g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "60g"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "400g, drained and rinsed"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "500g, peeled and cut into 2-3 cm cubes"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, freshly grated"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large oven-safe pan or Dutch oven over medium-high heat. Sear chicken thighs 4-5 minutes per side until golden brown. Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add remaining 15ml olive oil to the pan. Add diced onion and sauté 5-7 minutes until softened. Add minced garlic and cook 1 minute until fragrant.",
+      "Stir in diced tomatoes, dried oregano, and chicken broth. Bring the sauce to a gentle simmer.",
+      "Return seared chicken thighs to the pan, nestling them into the sauce. Cover the pan. Simmer for 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Meanwhile, preheat oven to 200°C (400°F). Toss butternut squash cubes with 15ml olive oil, salt, and pepper on a baking sheet. Roast for 20-25 minutes, or until tender and lightly caramelized.",
+      "Once chicken is cooked, stir drained cannellini beans and pitted Kalamata olives into the sauce. Cook for 5 minutes to heat beans through.",
+      "Serve chicken with the tomato-bean sauce and roasted butternut squash. Garnish each serving with freshly grated Parmesan cheese and chopped fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 623,
+      "cholesterol_mg": 152,
+      "dietary_fiber_g": 12.9,
+      "protein_g": 54.8,
+      "saturated_fat_g": 6.9,
+      "sodium_mg": 1076,
+      "total_carbs_g": 48.6,
+      "total_fat_g": 26.7,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 9.5,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 187,
+      "total_carbs_g": 8.4,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 46,
+      "protein": 110,
+      "saturated_fat": 35,
+      "sodium": 47,
+      "total_carbs": 18,
+      "total_fat": 34
+    },
+    "serving_size_g": 576.5,
+    "total_recipe_weight_g": 2306
+  },
+  {
+    "recipe_name": "Pan-Seared Shrimp with Apple-Mustard Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_shrimp_with_apple-mustard_glaze_20250701_144547_d7f357e4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:45:48.070634000Z",
+    "selected_ingredients": [
+      "apple",
+      "mustard",
+      "breadcrumbs",
+      "shrimp"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Shrimp with Apple-Mustard Glaze is elegantly presented on a clean, round white porcelain dinner plate. The plump, golden-seared shrimp, left whole with tails on, are arranged naturally over a generous pool of the glossy, rich golden-brown apple-mustard glaze. Small, tender diced apple pieces are visible within the sauce, adding texture and color. A generous scattering of golden, crispy herb breadcrumbs coats the top of the shrimp and surrounding glaze, providing a contrasting texture. The dish showcases warm golden-browns, hints of vibrant green from fresh herbs, and the pristine white of the plate. The composition is balanced with moderate negative space. The plate rests on a simple light wooden table surface, accompanied by a folded white cotton napkin and standard silver flatware, creating a refined yet approachable modern bistro setting with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Large shrimp, peeled, deveined, tail on",
+        "quantity": "600g"
+      },
+      {
+        "name": "Medium apples (e.g., Honeycrisp, Granny Smith), diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "60g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil, divided",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Large shallot, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare shrimp: Peel, devein 600g large shrimp. Leave tails on. Pat dry. Season with salt, pepper.",
+      "Make herb breadcrumbs: Melt 15g butter in small pan, medium heat. Add 100g panko. Toast until golden. Remove. Stir in 15g chopped parsley, pinch salt. Set aside.",
+      "Prepare glaze ingredients: Dice 1 shallot, mince 2 garlic cloves. Dice 2 medium apples into 1cm cubes.",
+      "Make apple-mustard glaze: Heat 15ml olive oil in saucepan, medium heat. Sauté shallot, garlic 2 minutes.",
+      "Add diced apples. Sauté 3 minutes.",
+      "Deglaze with 30ml apple cider vinegar. Cook until evaporated.",
+      "Stir in 150ml chicken stock, 60g Dijon mustard, 15ml honey. Simmer.",
+      "Reduce heat to low. Simmer 8-10 minutes. Stir until sauce thickens. Keep warm.",
+      "Cook shrimp: Heat 30ml olive oil in large skillet, medium-high heat.",
+      "Add seasoned shrimp in single layer. Cook 2-3 minutes per side. Shrimp are pink and opaque when done.",
+      "Squeeze fresh lemon juice over cooked shrimp.",
+      "Plate: Spoon glaze onto plate. Arrange shrimp over glaze. Sprinkle with herb breadcrumbs."
+    ],
+    "notes": [
+      "Use firm, tart-sweet apples like Honeycrisp or Granny Smith for best flavor and texture in the glaze."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 427,
+      "cholesterol_mg": 236,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 35.6,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 541,
+      "total_carbs_g": 40.9,
+      "total_fat_g": 15.8,
+      "total_sugars_g": 16.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 108,
+      "cholesterol_mg": 59.7,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 137.1,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 4,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 79,
+      "dietary_fiber": 16,
+      "protein": 71,
+      "saturated_fat": 18,
+      "sodium": 24,
+      "total_carbs": 15,
+      "total_fat": 20
+    },
+    "serving_size_g": 395.1,
+    "total_recipe_weight_g": 1580.5
+  },
+  {
+    "recipe_name": "Roasted Chicken and Butternut Squash Baked Pasta with Artichoke",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_and_butternut_squash_baked_pasta_with_artichoke_20250701_144537_7c28680e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:45:38.286905000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "garlic",
+      "butter",
+      "cottage cheese",
+      "squash",
+      "cheddar",
+      "artichoke"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous scoop of baked pasta is centered on a clean white porcelain dinner plate. The dish presents a comforting visual with golden-brown melted cheddar cheese forming a bubbly, slightly crisp crust on top. Beneath, tender penne pasta is visibly coated in a creamy, rich cheese sauce, interspersed with succulent, diced chicken pieces and soft, caramelized chunks of roasted butternut squash. Quartered artichoke hearts add a subtle green hue and texture. The overall color palette is warm, with golden browns, creamy whites, and earthy oranges. A sprinkle of fresh, vibrant green chopped parsley garnishes the top, adding a pop of color and freshness. The plate rests on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin, creating a modern bistro setting with natural, even lighting that highlights the food's inviting textures and colors. The background is minimal and unobtrusive, focusing entirely on the plated dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a vinaigrette.",
+      "Offer crusty bread for dipping into the cheesy sauce."
+    ],
+    "hero_ingredient": "Roasted Chicken and Butternut Squash",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Sharp cheddar cheese, shredded",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Canned artichoke hearts, drained and quartered",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Lightly grease a 23x33 cm baking dish.",
+      "Peel and deseed butternut squash. Cut into 2 cm cubes. Toss with 15 ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 20-25 minutes, or until tender and slightly caramelized.",
+      "Dice chicken breasts into 2 cm cubes. Season with salt and pepper. Heat remaining 15 ml olive oil in a large skillet over medium-high heat. Add chicken. Sear until cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C. Set aside.",
+      "Cook penne pasta according to package directions until al dente. Drain well.",
+      "Melt butter in a large saucepan over medium heat. Add minced garlic. Sauté for 1 minute until fragrant. Stir in flour. Cook for 1 minute, stirring constantly, to create a roux.",
+      "Gradually whisk in milk until the sauce is smooth and thickened. Reduce heat to low. Stir in 150 g shredded cheddar cheese and all cottage cheese until melted and smooth. Season sauce with salt and pepper to taste.",
+      "In a large bowl, combine cooked pasta, cooked chicken, roasted squash, and quartered artichoke hearts. Pour the cheese sauce over the mixture. Stir gently to combine.",
+      "Transfer the mixture to the prepared baking dish. Sprinkle remaining 50 g shredded cheddar cheese evenly over the top.",
+      "Bake for 20-25 minutes, or until the top is golden brown and the sauce is bubbly.",
+      "Let stand for 5 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Butternut squash can be roasted ahead of time to save preparation time.",
+      "Adjust cheese types to personal preference; Gruyere or mozzarella can also be used."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1075.25,
+      "cholesterol_mg": 201.75,
+      "dietary_fiber_g": 8.8,
+      "protein_g": 75.83,
+      "saturated_fat_g": 22.25,
+      "sodium_mg": 5966,
+      "total_carbs_g": 99.15,
+      "total_fat_g": 44.68,
+      "total_sugars_g": 15.08,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119.55,
+      "cholesterol_mg": 22.43,
+      "dietary_fiber_g": 0.98,
+      "protein_g": 8.43,
+      "saturated_fat_g": 2.47,
+      "sodium_mg": 663.33,
+      "total_carbs_g": 11.02,
+      "total_fat_g": 4.97,
+      "total_sugars_g": 1.68,
+      "trans_fat_g": 0.12
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.25,
+      "dietary_fiber": 31.43,
+      "protein": 151.66,
+      "saturated_fat": 111.25,
+      "sodium": 259.39,
+      "total_carbs": 36.05,
+      "total_fat": 57.28
+    },
+    "serving_size_g": 899.4,
+    "total_recipe_weight_g": 3597.6
+  }
+]

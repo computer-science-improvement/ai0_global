@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Mustard and Onion Braised Chicken with Melted Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260510_071949_3f655db3.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-10T07:19:50.177815000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mustard",
+      "cheese",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of two whole, golden-brown bone-in chicken thighs sits nestled in a thick, creamy mustard sauce. The sauce is studded with soft, translucent yellow onion half-moons. A layer of melted, bubbly Gruyère cheese blankets the chicken, with small sprigs of fresh thyme scattered on top. The dish is served in a shallow, rustic ceramic plate with a slightly uneven rim. Beside the chicken, a small mound of boiled baby potatoes provides balance. The background shows a weathered wooden table, a linen napkin, and a simple fork. Natural, warm lighting highlights the glossy sauce and the rich texture of the melted cheese. No meat is sliced; pieces remain whole and hearty.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Rustic",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crusty baguette to soak up the mustard cream sauce",
+      "Accompany with steamed green beans or boiled baby potatoes",
+      "Present in a traditional cast iron skillet or earthenware dish"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in and skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Yellow onions, thinly sliced into half-moons",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Wholegrain mustard",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs generously with salt and black pepper.",
+      "Heat oil in a large heavy-bottomed skillet over medium-high heat.",
+      "Place chicken skin-side down in the skillet.",
+      "Sear until skin is golden and crisp, about 6 minutes.",
+      "Flip chicken and sear for 2 minutes. Remove from pan and set aside.",
+      "Drain excess fat, leaving 1 tablespoon in the pan. Add butter.",
+      "Add sliced onions to the pan. Cook over medium-low heat until soft and translucent.",
+      "Stir in Dijon mustard and wholegrain mustard to coat onions.",
+      "Pour in chicken stock. Scrape the bottom of the pan to release browned bits.",
+      "Return chicken to the pan, skin-side up.",
+      "Simmer covered for 15-20 minutes until chicken reaches an internal temperature of 75°C.",
+      "Stir in heavy cream around the chicken pieces.",
+      "Top each chicken thigh with grated Gruyère cheese.",
+      "Cover with a lid for 2 minutes until the cheese is fully melted and bubbly."
+    ],
+    "notes": [
+      "Use a meat thermometer to ensure the thickest part of the thigh reaches 75°C.",
+      "Gruyère can be substituted with Comté or Emmental for similar melting properties.",
+      "Do not boil the sauce rapidly after adding cream to prevent curdling."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Sweating onions",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 905,
+      "cholesterol_mg": 290.9,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 59.1,
+      "saturated_fat_g": 25.3,
+      "sodium_mg": 1345.3,
+      "total_carbs_g": 12.9,
+      "total_fat_g": 68.6,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 227,
+      "cholesterol_mg": 72.7,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 14.8,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 336.3,
+      "total_carbs_g": 3.2,
+      "total_fat_g": 17.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 97,
+      "dietary_fiber": 9.6,
+      "protein": 118.2,
+      "saturated_fat": 126.5,
+      "sodium": 58.5,
+      "total_carbs": 4.7,
+      "total_fat": 87.9
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Gnocchi di Patate with Brown Butter and Sage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260509_144302_3d65c4f3.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 8,
+    "timestamp": "2026-05-09T14:43:02.948700000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Plated in a wide, shallow white porcelain pasta bowl, the gnocchi appear as small, ridged cushions with a light golden-brown sear. They are tossed in a glossy, translucent brown butter sauce flecked with toasted sage leaves. A dusting of finely grated Parmigiano-Reggiano covers the top. The sage leaves are whole and crisp, scattered naturally across the dish. The background features a simple wooden table with a folded linen napkin and a small bowl of extra cheese. Lighting is soft and natural, highlighting the delicate texture of the dough. The composition shows the entire plate with ample negative space. The arrangement is organic and uncrowded, emphasizing the rustic elegance of the handmade pasta.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp white wine like Gavi or Vermentino.",
+      "Provide extra Parmigiano-Reggiano in a small side bowl.",
+      "Follow with a simple green salad to balance the richness."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Starchy potatoes (Russet or Yukon Gold)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "15 leaves"
+      },
+      {
+        "name": "Parmigiano-Reggiano",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Boil whole unpeeled potatoes in salted water until tender.",
+      "Drain potatoes immediately.",
+      "Peel potatoes while still hot.",
+      "Pass potatoes through a ricer onto a clean work surface.",
+      "Spread potatoes out to let steam escape for 5 minutes.",
+      "Lightly beat the egg in a small bowl.",
+      "Create a well in the center of the potatoes.",
+      "Add flour, egg, and salt to the well.",
+      "Incorporate ingredients by hand.",
+      "Knead gently until a soft dough forms.",
+      "Do not overwork the dough.",
+      "Divide dough into four equal pieces.",
+      "Roll each piece into a long rope 2 cm thick.",
+      "Cut ropes into 2 cm nuggets.",
+      "Roll nuggets over a gnocchi board to create ridges.",
+      "Bring a large pot of salted water to a boil.",
+      "Melt butter in a large skillet over medium heat.",
+      "Cook butter until it turns golden brown and smells nutty.",
+      "Add sage leaves to the butter.",
+      "Fry sage leaves until crisp.",
+      "Drop gnocchi into the boiling water.",
+      "Remove gnocchi with a slotted spoon once they float.",
+      "Transfer gnocchi directly into the butter sauce.",
+      "Add 30 ml of pasta water to the skillet.",
+      "Toss gently to emulsify the sauce.",
+      "Serve immediately with grated cheese."
+    ],
+    "notes": [
+      "Use starchy potatoes like Russet or Yukon Gold for the best texture.",
+      "Do not over-knead the dough to avoid toughness.",
+      "Ensure potatoes are still warm when ricing to prevent lumps."
+    ],
+    "traditional_techniques": [
+      "potato ricing",
+      "making pasta dough",
+      "emulsifying sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 671.5,
+      "cholesterol_mg": 108.8,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 17.9,
+      "saturated_fat_g": 15.4,
+      "sodium_mg": 721.9,
+      "total_carbs_g": 93.1,
+      "total_fat_g": 25.7,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 191.9,
+      "cholesterol_mg": 31.1,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 5.1,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 206.2,
+      "total_carbs_g": 26.6,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36.3,
+      "dietary_fiber": 31.2,
+      "protein": 35.8,
+      "saturated_fat": 77,
+      "sodium": 31.4,
+      "total_carbs": 31,
+      "total_fat": 39.5
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Sichuan Stir-Fried Pork with Bamboo and Wood Ear Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260509_140853_34111904.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-09T14:08:53.738422000Z",
+    "selected_ingredients": [
+      "bamboo shoot",
+      "wood ear mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a shallow, wide white porcelain bowl. The pork is cut into uniform small batons, seared to a golden brown and glazed in a glossy, vibrant red-orange sauce. Pale cream-colored bamboo shoots are cut into matching matchsticks, providing a sharp contrast to the silky, crinkled black wood ear mushroom strips. The ingredients are tossed together in a natural, mounded arrangement that shows the glistening oil and flecks of fermented chili. Freshly chopped bright green scallion rings are scattered over the top. The bowl sits on a dark wood table next to a small bowl of steamed jasmine rice and a pair of dark wood chopsticks on a ceramic rest.",
+    "number_of_servings": 4,
+    "cuisine_type": "Sichuan Chinese",
+    "cultural_origin": "Sichuan, China",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice",
+      "Pair with a light vegetable broth",
+      "Use chopsticks for authentic dining"
+    ],
+    "hero_ingredient": "Bamboo shoots",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, cut into small batons",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh bamboo shoots, cut into matchsticks",
+        "quantity": "250g"
+      },
+      {
+        "name": "Dried wood ear mushrooms, rehydrated and sliced",
+        "quantity": "30g"
+      },
+      {
+        "name": "Sichuan chili bean paste (Doubanjiang)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Chinkiang black vinegar",
+        "quantity": "20ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ginger, minced",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "15g"
+      },
+      {
+        "name": "Green onions, white and green parts separated",
+        "quantity": "3 stalks"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Shaoxing rice wine",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Mix pork with 5ml soy sauce, 5ml rice wine, and 5g cornstarch. Marinate for 15 minutes.",
+      "Whisk remaining soy sauce, vinegar, sugar, and remaining cornstarch in a small bowl.",
+      "Heat 30ml oil in a wok over high heat until smoking.",
+      "Add pork batons. Stir-fry for 2 minutes until opaque. Remove pork and set aside.",
+      "Add remaining oil to the wok. Lower heat to medium.",
+      "Stir-fry chili bean paste for 30 seconds until oil turns red.",
+      "Add ginger, garlic, and scallion whites. Stir-fry for 20 seconds.",
+      "Increase heat to high. Add bamboo shoots and wood ear mushrooms. Toss for 2 minutes.",
+      "Return pork to the wok. Pour in the sauce mixture.",
+      "Toss rapidly for 1 minute until sauce thickens and coats all ingredients evenly.",
+      "Stir in scallion greens. Serve immediately."
+    ],
+    "notes": [
+      "Ensure wood ear mushrooms are fully rehydrated and hard stems removed.",
+      "Blanch fresh bamboo shoots in boiling water for 3 minutes before stir-frying to remove bitterness.",
+      "Adjust chili bean paste quantity for desired spice level."
+    ],
+    "traditional_techniques": [
+      "Wok hei",
+      "Velveting meat",
+      "Layering aromatics"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 412.7,
+      "cholesterol_mg": 80,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 22.5,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 927.5,
+      "total_carbs_g": 17.9,
+      "total_fat_g": 28.6,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.3,
+      "calories": 214.9,
+      "cholesterol_mg": 41.7,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 11.7,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 483.1,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 14.9,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26.7,
+      "dietary_fiber": 25.4,
+      "protein": 45,
+      "saturated_fat": 37.5,
+      "sodium": 40.3,
+      "total_carbs": 6.5,
+      "total_fat": 36.7
+    },
+    "serving_size_g": 192,
+    "total_recipe_weight_g": 768
+  },
+  {
+    "recipe_name": "Poulet à la Crème et Champignons",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260509_102436_af6ea264.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-09T10:24:37.815887000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "cheese",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "French cuisine",
+    "visual_description": "A classic French bistro presentation featuring two whole, golden-brown seared chicken thighs placed centrally on a wide, white porcelain plate. The chicken skin is crisp and mahogany-toned. A rich, ivory-colored cream sauce pools around the meat, filled with chunky, earthy-brown quartered mushrooms and visible flecks of melted Gruyère. The sauce has a glossy, fluid consistency. Bright green chopped parsley is scattered over the dish for contrast. The plate sits on a rustic dark oak table next to a folded white linen napkin and a side of crusty baguette slices. Natural side-lighting highlights the textures of the crispy skin and the velvety sauce. The entire plate is visible with balanced negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette to soak up the cream sauce",
+      "Pair with a glass of chilled dry white Burgundy or Chardonnay",
+      "Accompany with steamed green beans or buttered haricots verts"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, skin-on, boneless",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Cremini mushrooms, quartered",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Gruyère cheese, finely grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Dry white wine (Chardonnay)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry with paper towels. Season both sides with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Place chicken skin-side down.",
+      "Sear chicken for 6 minutes until skin is golden and crisp. Flip and cook 2 minutes. Remove chicken from pan.",
+      "Add butter to the same pan. Add quartered mushrooms. Sauté for 5 minutes until browned.",
+      "Stir in diced shallots and minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in white wine to deglaze the pan. Scrape bottom with a wooden spoon. Reduce liquid by half.",
+      "Stir in heavy cream and thyme sprigs. Bring to a gentle simmer.",
+      "Return chicken to the pan, skin-side up. Simmer for 8-10 minutes.",
+      "Verify chicken internal temperature reaches 75°C using a meat thermometer.",
+      "Whisk in the grated Gruyère cheese until melted and the sauce is glossy.",
+      "Remove thyme sprigs. Garnish with chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure the pan is not overcrowded when searing chicken to achieve maximum crispness",
+      "Use a high-quality Gruyère for the best melting properties and nutty flavor profile",
+      "Do not let the sauce boil vigorously after adding the cream to prevent splitting"
+    ],
+    "traditional_techniques": [
+      "mise en place",
+      "déglacer",
+      "monter au beurre",
+      "sauter"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1066,
+      "cholesterol_mg": 369.8,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 65.3,
+      "saturated_fat_g": 35.4,
+      "sodium_mg": 1008.8,
+      "total_carbs_g": 9.9,
+      "total_fat_g": 83.8,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 261.3,
+      "cholesterol_mg": 90.6,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 16,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 247.3,
+      "total_carbs_g": 2.4,
+      "total_fat_g": 20.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 123.3,
+      "dietary_fiber": 2.5,
+      "protein": 130.6,
+      "saturated_fat": 177,
+      "sodium": 43.9,
+      "total_carbs": 3.6,
+      "total_fat": 107.4
+    },
+    "serving_size_g": 408,
+    "total_recipe_weight_g": 1632
+  },
+  {
+    "recipe_name": "Pork and Mushroom Guisado with Parmesan",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260509_092416_351ed186.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-09T09:24:17.454567000Z",
+    "selected_ingredients": [
+      "pork",
+      "mushroom",
+      "oil",
+      "parmesan cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "Mexican cuisine",
+    "visual_description": "A single portion of Pork and Mushroom Guisado served on a traditional rustic brown clay plate. The dish features thick, 3cm cubes of seared pork shoulder with a deep golden-brown crust. Large, tender slices of sautéed cremini mushrooms are nestled between the meat chunks. A light, savory sauce coats the ingredients. Finely grated white parmesan cheese is sprinkled over the top, partially melting into the warm pork. Fresh cilantro leaves provide a green accent. The plate sits on a weathered wooden kitchen table. In the background, a small basket holds warm, folded corn tortillas wrapped in a colorful cloth. A single lime wedge sits on the plate edge. Warm, natural kitchen lighting creates soft shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas kept in a cloth-lined basket",
+      "Provide fresh lime wedges for acidity",
+      "Pair with a side of Mexican red rice (Arroz Rojo)"
+    ],
+    "hero_ingredient": "Pork shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, cut into 3cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cremini mushrooms, thick sliced",
+        "quantity": "400g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmesan cheese, finely grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "White onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dried Mexican oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat pork cubes dry with paper towels.",
+      "Season pork with salt and pepper.",
+      "Heat oil in a heavy pot over medium-high heat.",
+      "Sear pork cubes in batches until browned on all sides. Remove pork.",
+      "Add mushrooms to the same pot. Sauté until liquid evaporates and they brown.",
+      "Stir in onion and garlic. Cook for 3 minutes until softened.",
+      "Return pork and any juices to the pot.",
+      "Add chicken stock and oregano. Bring to a simmer.",
+      "Cover and reduce heat to low. Simmer for 45 minutes until pork is tender.",
+      "Remove lid. Simmer 5 minutes to thicken the sauce.",
+      "Stir in 30g of parmesan cheese until melted.",
+      "Garnish with cilantro and remaining parmesan."
+    ],
+    "notes": [
+      "Ensure the pot is not overcrowded when searing pork to achieve a proper crust.",
+      "Mexican oregano has a citrusy profile that complements the earthy mushrooms.",
+      "Substitute pork shoulder with pork loin for a leaner option, but reduce simmering time."
+    ],
+    "traditional_techniques": [
+      "sellado",
+      "guisado"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 668.1,
+      "cholesterol_mg": 185.2,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 49,
+      "saturated_fat_g": 16.1,
+      "sodium_mg": 800.1,
+      "total_carbs_g": 9,
+      "total_fat_g": 46.9,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 199.9,
+      "cholesterol_mg": 55.4,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 14.7,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 239.4,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 14,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.7,
+      "dietary_fiber": 3.9,
+      "protein": 98,
+      "saturated_fat": 80.5,
+      "sodium": 34.8,
+      "total_carbs": 3.3,
+      "total_fat": 60.1
+    },
+    "serving_size_g": 334.2,
+    "total_recipe_weight_g": 1336.8
+  }
+]

@@ -1,0 +1,605 @@
+[
+  {
+    "recipe_name": "Ukrainian Potato & Bean Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ukrainian_potato_%26_bean_bites_20250628_085312_8596aea9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:53:12.997761000Z",
+    "selected_ingredients": [
+      "avocado",
+      "onion",
+      "bean",
+      "potato",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian, Ukrainian cuisine",
+    "visual_description": "The Ukrainian Potato & Bean Bites are presented on a rustic, well-used wooden serving board, reminiscent of a family kitchen table. Small, round potato pancakes, about 5 cm in diameter, are golden-brown and slightly crispy at the edges. Each \"deruny\" base is topped with a creamy, pale green dollop of white bean and avocado spread, its smooth texture contrasting with the grated potato base. A small sprig of vibrant green fresh dill rests casually on top of each canapé, providing a pop of color. The arrangement is natural and slightly asymmetrical, with 10-12 pieces casually placed on the board, some touching, some with small gaps, showcasing their homely appeal. The background is minimal, hinting at a cozy kitchen setting with warm, inviting light. Everyday ceramic plates and a folded linen napkin are subtly visible nearby, reinforcing the comfort food aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Ukrainian",
+    "cultural_origin": "Ukrainian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of sour cream (smetana) for dipping.",
+      "Present on a traditional wooden serving board or a simple ceramic plate common in Ukrainian homes.",
+      "Serve alongside other small Ukrainian appetizers like pickled vegetables."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "onion",
+        "quantity": "1 small (approx. 80g)"
+      },
+      {
+        "name": "garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "plain flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "salt",
+        "quantity": "7g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "3g"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "cannellini beans (or other white beans), rinsed and drained",
+        "quantity": "400g can"
+      },
+      {
+        "name": "avocado, ripe",
+        "quantity": "1 small"
+      },
+      {
+        "name": "lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "fresh dill, chopped",
+        "quantity": "5g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Grate potatoes and onion finely. Squeeze out excess liquid using a clean kitchen towel.",
+      "Combine grated potato and onion with 2 minced garlic cloves, flour, egg, 5g salt, and 2g black pepper in a large bowl. Mix well.",
+      "Heat vegetable oil in a large non-stick pan over medium heat.",
+      "Drop tablespoonfuls of potato mixture into the hot oil, flattening slightly to form small, round patties (about 4-5 cm diameter).",
+      "Cook for 3-4 minutes per side, until golden brown and cooked through.",
+      "Remove potato bites and place on a wire rack lined with paper towels to drain excess oil.",
+      "In a food processor, combine drained white beans, avocado, 1 minced garlic clove, lemon juice, 5g chopped dill, olive oil, 2g salt, and 1g black pepper.",
+      "Process until smooth and creamy. Taste and adjust seasoning if needed.",
+      "Place cooled potato bites on a serving platter.",
+      "Spoon or pipe a generous dollop of white bean and avocado topping onto each potato bite.",
+      "Garnish with a small sprig of fresh dill. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Grating potatoes and squeezing out liquid for \"deruny\" (potato pancakes)",
+      "Frying small patties until golden and crisp"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 488.3,
+      "cholesterol_mg": 46.6,
+      "dietary_fiber_g": 11.9,
+      "protein_g": 14.9,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 718.7,
+      "total_carbs_g": 56.2,
+      "total_fat_g": 24.2,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152.7,
+      "cholesterol_mg": 14.6,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 4.7,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 224.8,
+      "total_carbs_g": 17.6,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15.5,
+      "dietary_fiber": 42.5,
+      "protein": 29.8,
+      "saturated_fat": 19.4,
+      "sodium": 31.2,
+      "total_carbs": 20.4,
+      "total_fat": 31
+    },
+    "serving_size_g": 319.7,
+    "total_recipe_weight_g": 1278.6
+  },
+  {
+    "recipe_name": "Chilled Avocado-Chipotle Velouté with Cotija Espuma",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chilled_avocado-chipotle_velout%C3%A9_with_cotija_espuma_20250628_085159_ce627cd0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:52:00.320858000Z",
+    "selected_ingredients": [
+      "avocado",
+      "chipotle chile",
+      "epazote",
+      "chili",
+      "cotija cheese"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian, delicious cuisine",
+    "visual_description": "A single portion of chilled avocado-chipotle velouté is presented in a wide, shallow, modern bone china bowl with a matte white finish. The velouté, a vibrant, pale avocado green, forms a smooth, flowing pool at the base of the bowl, its surface pristine and reflective. Centrally placed on the velouté is a delicate, airy cloud of pure white cotija espuma, rising softly with an ethereal texture. Around the espuma, a few precise droplets of brilliant emerald green epazote oil are strategically placed, creating a subtle, artistic contrast. A single, tiny, vibrant green micro cilantro leaf or a fine, red chili thread rests delicately on the espuma, serving as the sole, precise garnish. The ample negative space of the bowl emphasizes the minimalism and elegance of the composition. The bowl rests on a polished white Carrara marble surface. A pristine, crisply folded white linen napkin is positioned to the side. Dramatic, professional lighting casts soft shadows, highlighting the textures and colors. The background is ultra-minimalist, showcasing only the dish and refined table elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "hero_ingredient": "Avocado",
+    "ingredients": [
+      {
+        "name": "Ripe Hass avocados",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Chipotle in adobo sauce",
+        "quantity": "1 small chile"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh epazote leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Cotija cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Micro cilantro or a single chili thread",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Epazote Oil: Blanch epazote leaves briefly. Immediately transfer to ice water. Squeeze dry. Blend blanched epazote with neutral oil until smooth. Strain through a fine-mesh sieve or cheesecloth. Chill the oil.",
+      "Prepare Avocado-Chipotle Velouté: Halve avocados, remove pits, scoop flesh into a blender. Add vegetable stock, chipotle chile (remove seeds for less heat), lime juice, salt, and pepper. Blend until perfectly smooth and creamy. Pass the velouté through a fine-mesh sieve for an ultra-silky texture. Adjust seasoning. Chill thoroughly for at least 2 hours.",
+      "Prepare Cotija Espuma: In a small saucepan, combine cotija cheese, whole milk, and heavy cream. Heat gently until cheese melts and mixture is warm. Do not boil. Strain the mixture through a fine-mesh sieve to remove any solids. Pour the strained liquid into a culinary siphon. Charge with one N2O cartridge. Shake well. Keep warm in a bain-marie or at room temperature until serving.",
+      "Assemble and Serve: Pour the chilled avocado-chipotle velouté into the center of each chilled serving bowl. Dispense a cloud of cotija espuma onto the center of the velouté. Drizzle a few drops of epazote oil artfully around the espuma. Garnish with a single, delicate micro cilantro leaf or a fine chili thread. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 579,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 9.6,
+      "protein_g": 10.1,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 1152,
+      "total_carbs_g": 16.8,
+      "total_fat_g": 55.3,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154,
+      "cholesterol_mg": 10.4,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 2.7,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 305.9,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 14.7,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20,
+      "dietary_fiber": 34,
+      "protein": 20,
+      "saturated_fat": 63,
+      "sodium": 50,
+      "total_carbs": 6,
+      "total_fat": 71
+    },
+    "serving_size_g": 376.6,
+    "total_recipe_weight_g": 1506.5
+  },
+  {
+    "recipe_name": "Potato & Pea Terrine with Aged Cheddar Mousse",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_%26_pea_terrine_with_aged_cheddar_mousse_20250628_085131_a1a9684d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:51:32.192693000Z",
+    "selected_ingredients": [
+      "potato",
+      "cheddar",
+      "onion",
+      "green pea",
+      "cream",
+      "pasta",
+      "oregano"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish, a study in refined minimalism, rests on an elegant bone china plate upon a polished grey-veined Carrara marble surface, lit by dramatic professional lighting. Two or three precisely cut, firm rectangular blocks of golden-brown potato terrine are arranged off-center. Its delicate, compressed potato layers reveal subtle onion and oregano. Adjacent, a vibrant, emerald-green pea puree forms an organic, smooth curve. Small, airy quenelles of pale yellow aged cheddar mousse are artfully placed. Two or three irregular, golden-brown crispy pasta shards stand vertically, providing sharp texture. A verdant, clear oregano oil is thoughtfully drizzled around components, creating an artistic, connecting pattern. A single, delicate sprig of fresh oregano or microgreen rests atop the terrine, adding a final fresh accent. Abundant negative space emphasizes deliberate placement and perfect execution, embodying sophisticated simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Waxy potatoes (e.g., Yukon Gold), peeled",
+        "quantity": "500 g"
+      },
+      {
+        "name": "White onion, finely sliced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Fresh oregano leaves, finely chopped",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Aged sharp cheddar cheese, grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Cayenne pepper (optional)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Lasagna sheets or other flat pasta, broken into irregular pieces",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Vegetable oil for frying",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fresh oregano leaves (for oil)",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Slice potatoes very thinly (1-2 mm thick). Layer potato slices, finely sliced onion, chopped oregano, salt, and pepper in a small, parchment-lined terrine mold or loaf pan (approx. 15x8 cm). Pour vegetable stock and olive oil over layers. Cover with foil. Bake at 160°C for 60-75 minutes, until potatoes are very tender. Place a weighted object on top to press while cooling. Chill completely for at least 4 hours, or overnight.",
+      "Bring a small pot of vegetable stock or water to a boil. Add green peas and blanch for 2 minutes. Drain immediately. Transfer peas to a high-speed blender with butter and a splash of stock. Blend until very smooth. Pass through a fine-mesh sieve for an ultra-silky texture. Season with salt. Keep warm.",
+      "Gently heat 100 ml heavy cream in a small saucepan. Add grated cheddar and stir until melted and smooth. Do not boil. Cool slightly. Whip remaining 50 ml heavy cream to soft peaks. Fold cooled cheese mixture into whipped cream. Season with salt and cayenne if desired. Transfer to a piping bag or small bowl.",
+      "Heat vegetable oil in a small pot to 170°C. Fry pasta pieces in batches until golden brown and crisp. Remove with a slotted spoon and drain on paper towels. Season lightly with sea salt.",
+      "Combine extra virgin olive oil and fresh oregano leaves in a small blender. Blend until smooth. Strain through a fine-mesh sieve or cheesecloth for a clear, vibrant oil.",
+      "Unmold the chilled potato terrine. Carefully slice into 1.5-2 cm thick rectangles or squares. Place one or two potato terrine pieces off-center on each plate. Artistically spoon or pipe pea puree alongside the terrine. Add small dollops or quenelles of aged cheddar mousse. Arrange 2-3 crispy pasta shards vertically or diagonally. Drizzle oregano oil around the plate, connecting elements. Garnish with a tiny sprig of fresh oregano or a microgreen."
+    ]
+  },
+  {
+    "recipe_name": "Roasted Poblano and Avocado Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_poblano_and_avocado_salad_20250628_085102_57259479.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:51:03.055014000Z",
+    "selected_ingredients": [
+      "avocado",
+      "tomatillo",
+      "cumin",
+      "cotija cheese",
+      "poblano chile"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian, very tasty cuisine",
+    "visual_description": "The Roasted Poblano and Avocado Salad is presented with sophisticated artistry on a modern designer white plate, featuring ample negative space. Diced roasted poblano, with its smoky green, is artfully arranged in a natural, flowing composition. Cubes of vibrant green avocado are nestled amongst the poblano. A silky, pale green tomatillo-cumin emulsion pools elegantly around the components. Two delicate, crisp cotija tuiles stand upright, adding height and a salty crunch. A few small, fresh cilantro leaves provide a final touch. The entire plate is visible, showcasing the thoughtful arrangement. The setting features a premium grey veined marble surface, a pristine white linen napkin, and a sleek silver fork. Dramatic professional lighting casts soft shadows against an ultra-minimalist background, honoring contemporary Mexican cuisine.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a small side of warm, freshly made corn tortillas.",
+      "Offer a very small, elegant bowl of salsa macha for optional added depth."
+    ],
+    "hero_ingredient": "Poblano",
+    "ingredients": [
+      {
+        "name": "Poblano chiles",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Avocados",
+        "quantity": "2 large, ripe but firm"
+      },
+      {
+        "name": "Tomatillos",
+        "quantity": "200g"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "60ml (from 2 limes)"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "75ml (60ml for dressing, 15ml for roasting)"
+      },
+      {
+        "name": "Cotija cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh cilantro leaves",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Roast poblano chiles: Char chiles over an open flame or under a broiler until skin blackens. Place in a sealed bag for 10 minutes. Peel, deseed, and remove stems. Cut chiles into 1 cm dice.",
+      "Prepare tomatillo emulsion: Blanch tomatillos in boiling water for 2 minutes. Drain. Blend tomatillos with lime juice, 5g ground cumin, 60ml olive oil, and a pinch of salt. Emulsify until very smooth. Pass the emulsion through a fine-mesh sieve for a refined texture.",
+      "Prepare cotija tuiles: Grate cotija cheese. Form thin 5 cm rounds on a parchment-lined baking sheet. Bake at 180°C for 5-7 minutes, or until golden and crisp. Cool completely on the sheet.",
+      "Prepare avocado: Cut avocados into clean 1.5 cm cubes. Season lightly with sea salt.",
+      "Assemble the salad: Artfully arrange the diced roasted poblano on each plate in a natural, flowing composition. Place avocado cubes precisely among the poblano. Drizzle the tomatillo emulsion around and over the components. Place 1-2 crisp cotija tuiles upright on each plate. Garnish with a few small, fresh cilantro leaves. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Tatemar (charring chiles)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 474,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 12.4,
+      "protein_g": 11.5,
+      "saturated_fat_g": 9,
+      "sodium_mg": 466,
+      "total_carbs_g": 24.6,
+      "total_fat_g": 40.3,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121,
+      "cholesterol_mg": 5.8,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 2.9,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 119,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 10.3,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7.5,
+      "dietary_fiber": 44.3,
+      "protein": 23,
+      "saturated_fat": 45.2,
+      "sodium": 20.3,
+      "total_carbs": 9,
+      "total_fat": 51.6
+    },
+    "serving_size_g": 391,
+    "total_recipe_weight_g": 1564
+  },
+  {
+    "recipe_name": "Potato Terrine with Pea Emulsion and Aged Cheddar Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_terrine_with_pea_emulsion_and_aged_cheddar_crisp_20250628_085056_53a89e36.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:50:56.617937000Z",
+    "selected_ingredients": [
+      "potato",
+      "cheddar",
+      "onion",
+      "green pea",
+      "cream",
+      "pasta",
+      "oregano"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish is presented on a pristine white Carrara marble surface, atop a modern, subtly patterned bone china plate. Dramatic professional lighting casts soft shadows, emphasizing the architectural precision and abundant negative space. The central feature is a composition of a few precisely cut 2x2cm cubes of compressed potato terrine, showcasing a dense, uniform texture. Adjacent to the terrine, a delicate, flowing 'swoosh' of vibrant green pea emulsion provides a soft, velvety contrast. Elegant, irregularly shaped golden-brown aged cheddar crisps are artfully placed, offering a textural counterpoint. A few translucent slivers of ruby-red pickled red onion are sparingly scattered for color and acidity. A small, artful cluster of tiny oregano pasta pearls adds a subtle textural element. The entire composition is minimalist, with each component intentionally positioned to create a sophisticated, organic arrangement. A few delicate microgreens or chervil sprigs serve as the sole, precise garnish. A crisp white linen napkin, folded into a precise triangle, rests beside the plate, completing the ultra-sophisticated, restrained presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Desiree potatoes, peeled",
+        "quantity": "600g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh or frozen green peas",
+        "quantity": "200g"
+      },
+      {
+        "name": "Double cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "10g"
+      },
+      {
+        "name": "Aged cheddar cheese, finely grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Small red onion, thinly sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "25ml"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Orzo pasta",
+        "quantity": "80g"
+      },
+      {
+        "name": "Unsalted butter (for pasta)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh oregano leaves, finely chopped",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Microgreens or delicate herb sprigs (e.g., chervil, dill)",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare the Potato Terrine: Dice potatoes into 5mm cubes. Place in a saucepan, cover with cold salted water, and bring to a boil. Cook until just tender, about 8-10 minutes. Drain well. Return potatoes to the pan, add 50g butter and vegetable stock. Season with salt and pepper. Gently mash until mostly smooth but with some texture remaining. Press the potato mixture firmly into a lined rectangular mould (approx. 15x8cm). Chill for at least 4 hours, preferably overnight, until very firm.",
+      "Prepare the Pea Emulsion: Blanch green peas in boiling salted water for 2 minutes. Immediately transfer to an ice bath. Drain well. Blend peas, double cream, and mint leaves until very smooth. Pass the mixture through a fine-mesh sieve to achieve a velvety emulsion. Season with salt. Keep chilled.",
+      "Prepare the Aged Cheddar Crisps: Preheat oven to 180°C (350°F). Line a baking sheet with parchment paper. Arrange small mounds (approx. 5g each) of grated cheddar on the parchment, spaced apart. Bake for 5-7 minutes, or until golden brown and crisp. Remove from oven and let cool completely on the parchment. They will crisp up as they cool.",
+      "Prepare the Pickled Red Onion: In a small saucepan, combine white wine vinegar, water, sugar, and a pinch of salt. Bring to a simmer, stirring until sugar and salt dissolve. Remove from heat and add thinly sliced red onion. Let steep for at least 30 minutes. Drain before serving.",
+      "Prepare the Oregano Pasta Pearls: Cook orzo pasta according to package directions in salted water until al dente. Drain well. In a small pan, melt 15g butter. Add chopped fresh oregano and stir for 30 seconds. Toss the cooked orzo with the oregano butter. Season with salt. Keep warm.",
+      "Assemble the Dish: Carefully unmould the chilled potato terrine. Cut into precise 2x2cm cubes or elegant rectangular batons. On each plate, create a delicate 'swoosh' or an artistic dollop of the pea emulsion. Arrange 2-3 pieces of potato terrine artfully on or next to the pea emulsion, allowing for generous negative space. Place 1-2 aged cheddar crisps elegantly beside the terrine. Scatter a few drained pickled red onion slivers sparingly. Place a small, artful cluster of oregano pasta pearls. Garnish with a few microgreens or delicate herb sprigs. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 510,
+      "cholesterol_mg": 82.3,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 12.5,
+      "saturated_fat_g": 16.9,
+      "sodium_mg": 157.3,
+      "total_carbs_g": 54,
+      "total_fat_g": 27.1,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 152.2,
+      "cholesterol_mg": 24.6,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 3.7,
+      "saturated_fat_g": 5,
+      "sodium_mg": 47,
+      "total_carbs_g": 16.1,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27,
+      "dietary_fiber": 27,
+      "protein": 25,
+      "saturated_fat": 84,
+      "sodium": 7,
+      "total_carbs": 20,
+      "total_fat": 35
+    },
+    "serving_size_g": 335,
+    "total_recipe_weight_g": 1340
+  }
+]

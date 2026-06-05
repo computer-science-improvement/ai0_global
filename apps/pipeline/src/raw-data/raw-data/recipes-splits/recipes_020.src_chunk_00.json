@@ -1,0 +1,726 @@
+[
+  {
+    "recipe_name": "Hearty Buckwheat Kasha with Chicken and Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_buckwheat_kasha_with_chicken_and_roasted_vegetables_20250624_173632_c749cd31.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:36:32.843825000Z",
+    "selected_ingredients": [
+      "buckwheat groat"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty portion of Buckwheat Kasha with chicken and roasted vegetables is served on a rustic, off-white ceramic plate with natural imperfections. The golden-brown buckwheat groats form the base, mixed loosely with tender, light brown chicken chunks and vibrant orange carrot and creamy parsnip cubes. The roasted vegetables exhibit slightly caramelized edges, contrasting with the soft, earthy texture of the kasha. Freshly chopped green dill is sprinkled generously over the top, adding a pop of color. The dish is arranged casually, with components naturally overlapping, reflecting a comforting, home-cooked meal. The plate sits on a well-used wooden dining table, alongside a simple metal fork and a small, white side bowl containing a dollop of sour cream. Warm, cozy light illuminates the scene from above, highlighting the wholesome appeal of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of sour cream or plain yogurt.",
+      "Accompany with pickled cucumbers or other fermented vegetables.",
+      "Offer with slices of dark rye bread."
+    ],
+    "hero_ingredient": "Buckwheat Groats",
+    "ingredients": [
+      {
+        "name": "Buckwheat Groats",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chicken Thighs (boneless, skinless)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash buckwheat groats under cold water. Drain well.",
+      "Cut chicken thighs into 2-3 cm chunks. Season with salt and pepper.",
+      "Peel and cut carrots and parsnips into 2 cm cubes.",
+      "Peel and finely chop onion. Mince garlic.",
+      "Toss cubed carrots and parsnips with 15 ml olive oil, salt, and pepper on a baking sheet. Roast for 20-25 minutes until tender and lightly browned.",
+      "While vegetables roast, heat remaining 15 ml olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add chicken chunks. Sear until browned on all sides. Remove chicken from pot.",
+      "Add chopped onion to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in washed buckwheat groats. Toast for 2-3 minutes, stirring constantly.",
+      "Pour in chicken broth. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 15-20 minutes, or until liquid is absorbed and buckwheat is tender. Do not stir frequently.",
+      "Stir seared chicken and roasted vegetables into the buckwheat. Cook covered for another 5 minutes to heat through. Ensure chicken reaches 75°C internal temperature.",
+      "Finely chop fresh dill.",
+      "Remove pot from heat. Stir in chopped dill. Taste and adjust seasoning."
+    ],
+    "notes": [
+      "Toasting the buckwheat groats before adding liquid enhances their nutty flavor.",
+      "Do not overcook the buckwheat; it should be tender but not mushy."
+    ],
+    "traditional_techniques": [
+      "Kasha preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 675,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 14,
+      "protein_g": 46.4,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 861.2,
+      "total_carbs_g": 80.9,
+      "total_fat_g": 18.8,
+      "total_sugars_g": 16.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109,
+      "cholesterol_mg": 22.8,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 7.5,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 139.1,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 3,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 50,
+      "protein": 93,
+      "saturated_fat": 21,
+      "sodium": 37,
+      "total_carbs": 29,
+      "total_fat": 24
+    },
+    "serving_size_g": 619.2,
+    "total_recipe_weight_g": 2476.6
+  },
+  {
+    "recipe_name": "Spanish Chicken and Rice with Chorizo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_rice_with_chorizo_20250624_173605_e58a6dc0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:36:06.365194000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion",
+      "tomato",
+      "cheese",
+      "rice",
+      "pasta",
+      "mushroom",
+      "corn",
+      "tortilla",
+      "mayonnaise",
+      "noodle",
+      "basil",
+      "bean",
+      "eggplant",
+      "pimento pepper",
+      "sausage",
+      "mustard",
+      "barley",
+      "garlic",
+      "broccoli",
+      "rosemary",
+      "lemon",
+      "pork stock",
+      "carrot",
+      "breadcrumbs",
+      "salad green",
+      "beef",
+      "pork",
+      "bread",
+      "apple",
+      "chicken stock",
+      "bell pepper",
+      "beef stock",
+      "orange",
+      "crab",
+      "sugar",
+      "coffee",
+      "bacon",
+      "shrimp",
+      "tuna",
+      "milk",
+      "yogurt",
+      "ham",
+      "oil",
+      "butter",
+      "parsley",
+      "lime",
+      "cocoa powder",
+      "cranberry",
+      "cream cheese",
+      "oat",
+      "corn tortilla",
+      "cottage cheese",
+      "cucumber",
+      "black pepper",
+      "egg",
+      "cabbage",
+      "paprika",
+      "milk chocolate",
+      "banana",
+      "caramel",
+      "coca cola",
+      "egg noodle",
+      "ketchup",
+      "fish",
+      "sour cream",
+      "sweet potato",
+      "tea",
+      "green tea",
+      "vinegar",
+      "avocado",
+      "apple cider",
+      "smoked paprika",
+      "soy milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic Spanish Chicken and Rice with Chorizo dish is presented in a shallow, wide white porcelain bowl, showcasing vibrant colors and textures. Tender, golden-brown chicken chunks are nestled amongst plump, al dente short-grain rice. Slices of crisped, ruby-red chorizo are scattered throughout. Diced red bell peppers and onions add depth. The rice, infused with smoked paprika and saffron, appears moist and cohesive. A light sheen of olive oil hints at savory depths. The dish is garnished with fresh chopped green parsley. A lemon wedge sits on the rim. The bowl is centered on a simple wooden table, with a folded white cotton napkin and rustic ceramic tapas bowl nearby. Natural, even lighting highlights the dish's warmth. The entire plate is visible, with moderate negative space, creating a professional yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the sauce.",
+      "Offer additional lemon wedges for individual preference.",
+      "Serve in individual shallow cazuelas (earthenware dishes) for an authentic touch."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless skinless",
+        "quantity": "600g"
+      },
+      {
+        "name": "Chorizo sausage",
+        "quantity": "200g"
+      },
+      {
+        "name": "Short-grain rice (e.g., Arborio or Bomba)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "Pinch (optional)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon, cut into wedges",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Prepare ingredients. Dice chicken into 2-3 cm pieces. Slice chorizo into rounds. Dice onion and bell pepper. Mince garlic.",
+      "Heat olive oil in a large pan or Dutch oven over medium-high heat.",
+      "Add chorizo. Cook until crisp. Remove chorizo, set aside. Leave rendered fat in pan.",
+      "Add chicken to pan. Season with salt and pepper. Sear until golden brown on all sides. Remove chicken, set aside.",
+      "Reduce heat to medium. Add onion and bell pepper to pan. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic and smoked paprika. Cook 1 minute until fragrant.",
+      "Stir in rice. Cook 2-3 minutes, stirring constantly, until rice grains are translucent at edges.",
+      "Pour in diced tomatoes and chicken stock. Add saffron if using. Bring to a simmer.",
+      "Return chicken and chorizo to the pan. Stir gently.",
+      "Cover and reduce heat to low. Cook 20-25 minutes, or until rice is tender and most liquid absorbed. Stir occasionally to prevent sticking.",
+      "Remove from heat. Let stand covered for 5 minutes.",
+      "Garnish with fresh parsley. Serve with lemon wedges."
+    ],
+    "notes": [
+      "For best results, use a short-grain rice variety like Arborio or Bomba to achieve a creamy, moist consistency similar to a risotto, but with distinct grains."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 887,
+      "cholesterol_mg": 193,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 55.6,
+      "saturated_fat_g": 11.7,
+      "sodium_mg": 1205,
+      "total_carbs_g": 75.2,
+      "total_fat_g": 41,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 137.4,
+      "cholesterol_mg": 29.9,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 186.6,
+      "total_carbs_g": 11.7,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 18,
+      "protein": 111,
+      "saturated_fat": 59,
+      "sodium": 52,
+      "total_carbs": 27,
+      "total_fat": 53
+    },
+    "serving_size_g": 645.5,
+    "total_recipe_weight_g": 2582
+  },
+  {
+    "recipe_name": "Bell Pepper, Ricotta, and Roasted Chicken Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bell_pepper%2C_ricotta%2C_and_roasted_chicken_salad_20250624_173550_a30ae9ac.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:35:51.271336000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "bell pepper",
+      "oregano",
+      "ricotta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A homely, substantial salad presented on an everyday ceramic plate on a well-used wooden dining table. The base is a bed of fresh, vibrant mixed salad greens. Tender, roasted bell pepper cubes in varied hues of red, yellow, and orange are scattered throughout, mingling with small, golden-brown roasted chicken chunks. Creamy white dollops of fresh ricotta cheese are artfully placed over the salad, contrasting with the greens and peppers. Shavings of pale yellow Parmesan cheese are scattered on top, along with flecks of green oregano. The dressing lightly coats all components, adding a subtle sheen. The plate is adequately filled but not overcrowded, allowing natural negative space. Simple flatware rests beside the plate, and a casually placed cloth napkin completes the relaxed, lived-in kitchen atmosphere under warm, cozy lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty focaccia bread for dipping in any remaining dressing.",
+      "A simple glass of still or sparkling water is common."
+    ],
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Bell Peppers",
+        "quantity": "3 large (mixed colors: red, yellow, orange), diced into 2cm cubes"
+      },
+      {
+        "name": "Chicken Breast",
+        "quantity": "250g, cut into 2cm cubes"
+      },
+      {
+        "name": "Ricotta Cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50g, shaved or grated"
+      },
+      {
+        "name": "Fresh Oregano",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Mixed Salad Greens",
+        "quantity": "150g (e.g., arugula, baby spinach)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss diced bell peppers with 1 tablespoon olive oil, salt, and pepper on a baking tray. Roast for 15-20 minutes until tender-crisp.",
+      "On a separate baking tray, toss chicken cubes with 1 tablespoon olive oil, salt, pepper, and 1 teaspoon chopped oregano. Roast for 15-20 minutes until cooked through (internal temperature 75°C).",
+      "While vegetables and chicken roast, prepare dressing. In a small bowl, whisk together remaining olive oil, red wine vinegar, minced garlic, remaining chopped oregano, salt, and pepper.",
+      "In a large bowl, combine roasted bell peppers, roasted chicken, and mixed salad greens.",
+      "Pour dressing over salad. Gently toss to coat.",
+      "Divide salad among 4 plates.",
+      "Dollop ricotta cheese evenly over each serving.",
+      "Garnish with shaved or grated Parmesan cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 405,
+      "cholesterol_mg": 79,
+      "dietary_fiber_g": 4,
+      "protein_g": 32.6,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 575,
+      "total_carbs_g": 14.8,
+      "total_fat_g": 24,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.9,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 175,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26.4,
+      "dietary_fiber": 14.4,
+      "protein": 65.2,
+      "saturated_fat": 37.5,
+      "sodium": 25,
+      "total_carbs": 5.4,
+      "total_fat": 30.8
+    },
+    "serving_size_g": 328.8,
+    "total_recipe_weight_g": 1315.3
+  },
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_risotto_20250624_173544_8f347caa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:35:44.868197000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "oil",
+      "cheese",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy, free-flowing risotto is presented on a clean white porcelain dinner plate. The risotto is a warm, pale yellow hue, studded with tender, golden-brown seared chicken cubes (2cm) and sautéed earthy brown mushroom slices. Finely diced onion pieces are visible throughout the creamy rice. A vibrant sprinkle of fresh green chopped parsley garnishes the top, alongside delicate shavings of Parmesan cheese. The dish has a natural, organic arrangement, showcasing its rich texture. The plate is set on a simple wooden table, with classic silver Italian flatware (fork and spoon) placed beside it, and a folded cotton napkin. Natural, even lighting highlights the dish, with a softly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread.",
+      "Pair with a light Italian white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 2cm cubes. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large pot or deep pan over medium-high heat.",
+      "Sear chicken cubes until golden brown and cooked through (internal temperature 75°C). Remove chicken and set aside.",
+      "Add remaining 15ml olive oil and 15g butter to the same pot.",
+      "Sauté finely diced onion until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook until mushrooms are tender and browned, about 5-7 minutes.",
+      "Stir in Arborio rice. Toast rice for 2 minutes, ensuring all grains are coated.",
+      "Pour in white wine. Stir constantly until wine is fully absorbed.",
+      "Add one ladleful (about 250ml) of hot chicken broth. Stir continuously until liquid is absorbed.",
+      "Continue adding broth, one ladleful at a time. Stir constantly and wait for each addition to be absorbed before adding the next. This process takes about 20-25 minutes.",
+      "When rice is creamy and al dente, stir in cooked chicken.",
+      "Remove from heat. Stir in remaining 15g butter and grated Parmesan cheese.",
+      "Season with salt and pepper to taste.",
+      "Serve immediately. Garnish with fresh chopped parsley and extra shaved Parmesan."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 842,
+      "cholesterol_mg": 165.63,
+      "dietary_fiber_g": 2.07,
+      "protein_g": 67.21,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 1448.25,
+      "total_carbs_g": 74.15,
+      "total_fat_g": 28.07,
+      "total_sugars_g": 2.72,
+      "trans_fat_g": 0.43
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 27.95,
+      "dietary_fiber_g": 0.35,
+      "protein_g": 11.34,
+      "saturated_fat_g": 1.94,
+      "sodium_mg": 244.43,
+      "total_carbs_g": 12.51,
+      "total_fat_g": 4.74,
+      "total_sugars_g": 0.46,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.21,
+      "dietary_fiber": 7.39,
+      "protein": 134.42,
+      "saturated_fat": 57.5,
+      "sodium": 62.97,
+      "total_carbs": 26.96,
+      "total_fat": 35.99
+    },
+    "serving_size_g": 592.5,
+    "total_recipe_weight_g": 2370
+  },
+  {
+    "recipe_name": "Roasted Garlic & Herb Pork Loin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_garlic_%26_herb_pork_loin_20250624_173536_722a72be.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:35:36.619288000Z",
+    "selected_ingredients": [
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of roasted pork loin medallions is arranged on a clean white round porcelain plate. The pork, sliced into 2 cm thick pieces, displays a golden-brown herb crust and moist interior. Alongside, roasted baby potato halves, thick-cut carrot chunks, and tender onion wedges are neatly arranged. Soft, roasted garlic cloves are interspersed among the vegetables. A light drizzle of pan juices coats the meat and vegetables. Colors are rich golden-brown on the pork, vibrant orange carrots, and caramelized edges on onions. Textures are a crispy crust on the pork and yielding roasted vegetables. A small fresh rosemary sprig garnishes the dish. The plate rests on a light wooden surface with a folded grey cotton napkin and standard silver flatware, creating a casual bistro setting with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Pork Loin",
+    "ingredients": [
+      {
+        "name": "Pork Loin",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 whole heads"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Baby Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "250ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Peel garlic cloves from one head. Mince garlic. Chop rosemary and thyme finely.",
+      "Combine minced garlic, rosemary, thyme, Dijon mustard, 30ml olive oil, salt, and pepper in a bowl. Mix well to form a paste.",
+      "Pat pork loin dry. Rub the herb-garlic paste all over the pork loin.",
+      "Halve the second garlic head horizontally.",
+      "Cut baby potatoes in half. Cut carrots into 2-3 cm chunks. Cut onion into large wedges.",
+      "Toss potatoes, carrots, onion, and halved garlic head with remaining 30ml olive oil, salt, and pepper on a large baking tray.",
+      "Place the seasoned pork loin in the center of the baking tray, nestled among the vegetables.",
+      "Roast for 30 minutes.",
+      "Pour chicken broth into the tray.",
+      "Continue roasting for another 20-30 minutes, or until internal temperature of pork reaches 70°C.",
+      "Remove pork from oven. Tent with foil. Let rest 10 minutes.",
+      "Slice pork into 2 cm thick medallions.",
+      "Serve pork with roasted vegetables."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 575.86,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 7.57,
+      "protein_g": 49.95,
+      "saturated_fat_g": 4.67,
+      "sodium_mg": 1443.71,
+      "total_carbs_g": 50.53,
+      "total_fat_g": 22.02,
+      "total_sugars_g": 7.25,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 97.9,
+      "cholesterol_mg": 20.41,
+      "dietary_fiber_g": 1.29,
+      "protein_g": 8.49,
+      "saturated_fat_g": 0.79,
+      "sodium_mg": 245.44,
+      "total_carbs_g": 8.59,
+      "total_fat_g": 3.74,
+      "total_sugars_g": 1.23,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 27,
+      "protein": 99.9,
+      "saturated_fat": 23.4,
+      "sodium": 62.8,
+      "total_carbs": 18.4,
+      "total_fat": 28.2
+    },
+    "serving_size_g": 588.23,
+    "total_recipe_weight_g": 2352.9
+  }
+]

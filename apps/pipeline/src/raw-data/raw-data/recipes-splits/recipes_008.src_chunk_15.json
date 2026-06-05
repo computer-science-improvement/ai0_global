@@ -1,0 +1,623 @@
+[
+  {
+    "recipe_name": "Pasta Puttanesca",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_puttanesca_20250810_173150_7af452ba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T17:31:51.293050000Z",
+    "selected_ingredients": [
+      "pasta",
+      "olive"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a rustic white ceramic plate, placed on a well-worn wooden dining table. A generous portion of spaghetti, coated in a rich, dark red sauce, forms a natural mound in the center. The pasta is intertwined with plump, glossy black olives and bright green capers. Small, finely minced anchovy pieces are visible, blending into the sauce. Fresh, vibrant green parsley, roughly chopped, is scattered over the top, providing a pop of color and freshness. The sauce has a rustic texture, with visible crushed tomato pieces. The overall color palette is deep red, black, and green, evoking warmth and heartiness. The setting includes a simple, folded checkered cloth napkin and a traditional Italian fork on the table. Warm, inviting light from an overhead kitchen fixture illuminates the scene, creating a cozy family meal atmosphere. A crusty slice of ciabatta bread rests casually beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Pair with a simple green salad dressed with olive oil and red wine vinegar.",
+      "Enjoy with a glass of robust red wine, such as Chianti or Montepulciano."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Spaghetti",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Capers, drained",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Dried chili flakes",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Anchovy fillets in oil, drained (optional)",
+        "quantity": "6"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cook spaghetti in a large pot of salted boiling water according to package directions until al dente. Drain pasta. Reserve 125 ml of pasta cooking water.",
+      "While pasta cooks, heat olive oil in a large pan or skillet over medium heat.",
+      "Add garlic, thinly sliced, and chili flakes. Cook 1 minute until fragrant. Do not brown garlic.",
+      "Add anchovy fillets to the pan. Cook, stirring, until anchovies dissolve into the oil.",
+      "Stir in the crushed tomatoes, black olives, and capers. Bring to a gentle simmer.",
+      "Reduce heat to low. Simmer sauce for 10 minutes, allowing flavors to meld. Stir occasionally.",
+      "Stir in the reserved pasta water to thin the sauce to desired consistency.",
+      "Add the cooked spaghetti directly to the sauce in the pan. Toss well to coat all pasta evenly.",
+      "Season with salt and black pepper to taste. Garnish generously with fresh, roughly chopped parsley.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "This classic Italian dish is known for its bold, savory flavor profile.",
+      "The anchovies are crucial for depth of flavor, they dissolve into the sauce and do not make it taste 'fishy'.",
+      "Adjust chili flakes to your preferred level of spice."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for sautéing aromatics)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 603,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 17.2,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 969,
+      "total_carbs_g": 87.8,
+      "total_fat_g": 20.6,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160,
+      "cholesterol_mg": 1,
+      "dietary_fiber_g": 2,
+      "protein_g": 4.6,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 258,
+      "total_carbs_g": 23.4,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 1.3,
+      "dietary_fiber": 27.5,
+      "protein": 34.4,
+      "saturated_fat": 14.6,
+      "sodium": 42.1,
+      "total_carbs": 31.9,
+      "total_fat": 26.3
+    },
+    "serving_size_g": 376.05,
+    "total_recipe_weight_g": 1504.2
+  },
+  {
+    "recipe_name": "Seared Beef Medallions with Garlic Mushroom Sauce, Confit Tomatoes, and Potato Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_beef_medallions_with_garlic_mushroom_sauce%2C_confit_tomatoes%2C_and_potato_gratin_20250810_172815_67d89a7f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T17:28:16.024568000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "mushroom",
+      "garlic",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Seared Beef Medallions with Garlic Mushroom Sauce, Confit Tomatoes, and Potato Gratin is presented on a clean, white porcelain dinner plate. A neat, golden-brown square of Potato Gratin with crisp edges is positioned on one side of the plate. Beside it, a perfectly seared, tender beef medallion, showcasing its rich brown crust, rests as a whole piece. A luscious, creamy garlic mushroom sauce, deep brown in color, is elegantly spooned over the beef and around the plate, pooling slightly. Vibrant red confit cherry tomatoes, softened and slightly shriveled, are scattered artfully around the dish, alongside a few whole roasted garlic cloves from the confit. Fresh green chopped parsley is sprinkled over the beef and sauce for a pop of color and freshness. The textures are varied: the crispy top of the gratin, the tender beef, the smooth sauce, and the soft tomatoes. The composition is balanced with appropriate negative space. The setting is a modern bistro with a simple light wooden table surface, a cotton napkin folded beside the plate, and standard European flatware. Natural, even lighting highlights the food's colors and textures against a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "French-inspired",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of full-bodied red wine, such as a Cabernet Sauvignon or Merlot."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Potatoes (Russet or similar)",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "For Potato Gratin: Peel potatoes. Slice potatoes very thinly, about 2 mm thick. Mince 2 garlic cloves. In a large bowl, combine sliced potatoes, minced garlic, 200 ml heavy cream, salt, and pepper. Mix well. Layer potatoes tightly in an oven-safe gratin dish. Pour remaining cream over potatoes. Sprinkle with Parmesan cheese. Bake for 45-55 minutes, or until potatoes are tender and top is golden brown.",
+      "For Confit Tomatoes: Halve cherry tomatoes. Peel 2 garlic cloves, leave whole. In a small oven-safe dish, combine halved cherry tomatoes, whole garlic cloves, 30 ml olive oil, 2 thyme sprigs, salt, and pepper. Bake for 25-30 minutes, or until tomatoes are soft and slightly shriveled.",
+      "For Beef Medallions: Cut beef into four equal medallions, about 2.5 cm thick. Pat beef dry with paper towels. Season generously with salt and pepper on all sides. Heat 15 ml olive oil in a large oven-safe skillet over medium-high heat until shimmering. Sear beef medallions for 3-4 minutes per side for medium-rare, or to desired doneness. Transfer skillet to preheated oven and cook for 5-7 minutes if needed, or remove to rest. Remove beef from skillet and rest on a cutting board, tented with foil.",
+      "For Garlic Mushroom Sauce: In the same skillet, add remaining 15 ml olive oil and butter. Add sliced mushrooms and cook over medium-high heat until browned, about 5-7 minutes. Mince remaining 2 garlic cloves and chop shallot. Add minced garlic and chopped shallot to skillet. Cook for 2-3 minutes until fragrant. Deglaze skillet with beef broth, scraping up browned bits. Add remaining 100 ml heavy cream, 2 thyme sprigs, and rosemary sprigs. Bring to a simmer. Reduce heat and cook for 5-7 minutes, until sauce thickens slightly. Remove thyme and rosemary sprigs. Season sauce with salt and pepper to taste.",
+      "To Serve: Cut gratin into 4 portions. Place one gratin portion on each plate. Place a seared beef medallion next to the gratin. Spoon a generous amount of garlic mushroom sauce over and around the beef. Arrange confit tomatoes around the dish. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best gratin results, slice potatoes uniformly thin using a mandoline.",
+      "Allow beef to rest adequately after searing to ensure juiciness."
+    ],
+    "traditional_techniques": [
+      "Gratin",
+      "Confit",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1043,
+      "cholesterol_mg": 222,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 56.7,
+      "saturated_fat_g": 32.9,
+      "sodium_mg": 526,
+      "total_carbs_g": 53.5,
+      "total_fat_g": 68.2,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160.2,
+      "cholesterol_mg": 34.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.7,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 80.8,
+      "total_carbs_g": 8.2,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 24,
+      "protein": 113,
+      "saturated_fat": 165,
+      "sodium": 23,
+      "total_carbs": 19,
+      "total_fat": 87
+    },
+    "serving_size_g": 650.75,
+    "total_recipe_weight_g": 2603
+  },
+  {
+    "recipe_name": "Maple Glazed Sausage Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_maple_glazed_sausage_bites_20250810_172323_c80b4e85.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T17:23:24.083375000Z",
+    "selected_ingredients": [
+      "sausage"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A cozy, inviting scene of Maple Glazed Sausage Bites served on a rustic, well-used wooden dining table. A generous portion of golden-brown sausage rounds, about 2 cm in diameter, are piled casually on a simple, off-white ceramic serving plate with natural imperfections. Each bite-sized sausage piece is uniformly cooked, showing a slightly crinkled, savory exterior, glistening with a sticky, amber maple glaze. The glaze pools slightly at the bottom of the pile, reflecting the warm kitchen light. A scattering of bright green, roughly chopped fresh parsley adds a pop of color and freshness over the dark, rich sausage. The background is softly blurred, revealing a warm, lived-in family kitchen atmosphere with a casually draped, cream-colored cloth napkin to the side. The overall presentation is unpretentious, comforting, and perfect for casual home snacking.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Pork Sausage",
+    "ingredients": [
+      {
+        "name": "Pork sausage (mild)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Fresh parsley (for garnish)",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Line a baking tray with parchment paper.",
+      "Remove sausage from casings. Roll into small balls, about 2 cm in diameter.",
+      "Arrange sausage balls on the prepared baking tray. Ensure space between them.",
+      "Bake for 15-20 minutes. Sausage should be browned and cooked through. Internal temperature must reach 75°C.",
+      "While sausage bakes, prepare the glaze. Combine maple syrup, brown sugar, Dijon mustard, apple cider vinegar, black pepper, and red pepper flakes in a small saucepan.",
+      "Bring glaze to a simmer over medium heat. Cook for 5 minutes, stirring, until slightly thickened.",
+      "Remove cooked sausage from oven. Drain any excess fat.",
+      "Transfer hot sausage balls to a large bowl. Pour glaze over sausage.",
+      "Toss gently to coat all sausage balls evenly.",
+      "Serve warm. Garnish with roughly chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 25,
+      "calories": 519,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 21,
+      "saturated_fat_g": 13.4,
+      "sodium_mg": 923,
+      "total_carbs_g": 25.9,
+      "total_fat_g": 37.3,
+      "total_sugars_g": 25.1,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 15.1,
+      "calories": 312,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 12.6,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 556,
+      "total_carbs_g": 15.6,
+      "total_fat_g": 22.5,
+      "total_sugars_g": 15.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 1,
+      "protein": 42,
+      "saturated_fat": 67,
+      "sodium": 40,
+      "total_carbs": 9,
+      "total_fat": 48
+    },
+    "serving_size_g": 166,
+    "total_recipe_weight_g": 664.1
+  },
+  {
+    "recipe_name": "Roasted Tomato Risotto with Pan-Seared Scallops",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_tomato_risotto_with_pan-seared_scallops_20250810_172135_148ac79e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T17:21:36.335771000Z",
+    "selected_ingredients": [
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy, vibrant orange-red roasted tomato risotto is presented in a shallow, clean white porcelain bowl. The risotto is fluid and spreads naturally within the bowl, showcasing its rich texture. Three large, golden-brown pan-seared scallops, perfectly seared with a crisp crust, are artfully placed on top of the risotto. They are whole, plump, and their natural shape is preserved. Scattered around the scallops and on the risotto are several fresh, bright green basil leaves, providing a pop of contrasting color and freshness. The overall composition is balanced, professional, and inviting, with moderate negative space around the dish. The bowl rests on a simple, light-colored wooden table surface, suggesting a modern bistro setting. A neatly folded white cotton napkin is placed to the left of the bowl, and a silver fork is positioned to the right. The scene is illuminated by natural, even lighting, creating soft shadows and highlighting the food's appealing textures and colors. The background is subtly blurred, hinting at a casual restaurant atmosphere without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Scallops",
+    "ingredients": [
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.2 L"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Large sea scallops",
+        "quantity": "12"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large handful"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve cherry tomatoes. Smash garlic cloves. Toss tomatoes and garlic with 30 ml olive oil, salt, and pepper on a baking sheet. Roast for 20 minutes, until softened and slightly caramelized. Remove from oven.",
+      "Heat remaining 30 ml olive oil in a large, heavy-bottomed pot or Dutch oven over medium heat. Add finely diced shallot. Cook until translucent, about 3 minutes. Do not brown.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes, toasting the grains. Do not brown.",
+      "Pour in white wine. Stir until completely absorbed, scraping up any browned bits from the bottom of the pot.",
+      "Add roasted tomatoes and garlic to the rice. Stir to combine. Begin adding warm vegetable broth, one ladleful at a time. Stir continuously. Wait until each ladleful is almost fully absorbed before adding the next.",
+      "Continue adding broth and stirring for 20-25 minutes. The rice should be creamy and al dente. It should still have a slight bite.",
+      "Remove risotto from heat. Stir in Parmesan cheese and unsalted butter. Season with salt and pepper to taste. The risotto should be fluid and creamy.",
+      "Pat scallops dry with paper towels. Season with salt and pepper. Heat a heavy-bottomed pan over high heat until very hot. Add a small amount of olive oil.",
+      "Place scallops in the hot pan. Sear for 2-3 minutes per side, until deeply golden brown and cooked through. Do not overcrowd the pan; cook in batches if necessary.",
+      "Serve risotto immediately in shallow bowls. Arrange 3 seared scallops on top of each serving. Garnish with fresh basil leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 743.2,
+      "cholesterol_mg": 79.8,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 28.6,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 1262.9,
+      "total_carbs_g": 81.4,
+      "total_fat_g": 33.4,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 104.7,
+      "cholesterol_mg": 11.2,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 4,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 177.9,
+      "total_carbs_g": 11.5,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27,
+      "dietary_fiber": 14,
+      "protein": 57,
+      "saturated_fat": 68,
+      "sodium": 55,
+      "total_carbs": 30,
+      "total_fat": 43
+    },
+    "serving_size_g": 710.1,
+    "total_recipe_weight_g": 2840.2
+  },
+  {
+    "recipe_name": "Beer-Braised Chicken with Mushrooms and Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_chicken_with_mushrooms_and_onions_20250810_163504_86dd2db7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T16:35:04.722230000Z",
+    "selected_ingredients": [
+      "chicken",
+      "beer",
+      "garlic",
+      "onion",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A seared golden-brown chicken thigh, rich and tender from braising, is the centerpiece, resting on a bed of sautéed quartered cremini mushrooms and caramelized, roughly chopped yellow onions. The chicken skin retains a slight crispness. A glistening, dark amber beer-infused sauce generously coats the ingredients, pooling invitingly at the base of the chicken. The dish is garnished with a vibrant sprinkle of fresh chopped parsley, providing a pop of green against the earthy tones. Presented on a clean white porcelain dinner plate, it is set on a simple light wooden table. A folded white cotton napkin is placed beside the plate, with a slice of crusty artisan bread ready for dipping. Natural, even lighting highlights the textures and deep, savory colors, creating an inviting, professional bistro-style presentation with moderate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (about 800 g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g, quartered"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Amber ale or lager beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped, for garnish"
+      },
+      {
+        "name": "Crusty artisan bread",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear chicken skin-side down until golden brown and crispy, about 5-7 minutes. Flip and sear other side for 2-3 minutes. Remove chicken and set aside.",
+      "Reduce heat to medium. Add butter to the pot. Add chopped onion and cook until softened and translucent, about 5 minutes.",
+      "Add minced garlic and quartered mushrooms. Cook until mushrooms are browned and tender, about 7-10 minutes.",
+      "Sprinkle flour over the vegetables. Cook, stirring constantly, for 1 minute.",
+      "Gradually pour in the beer, scraping up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Pour in chicken broth and add thyme sprigs. Return chicken to the pot, skin-side up.",
+      "Bring liquid to a gentle simmer. Cover the pot. Transfer to a preheated oven at 180°C (350°F).",
+      "Braise for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is very tender.",
+      "Remove chicken from the pot. Discard thyme sprigs. Skim any excess fat from the sauce. Adjust seasoning if needed.",
+      "Serve chicken with the mushroom and onion sauce. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 606,
+      "cholesterol_mg": 196.1,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 41.19,
+      "saturated_fat_g": 11.16,
+      "sodium_mg": 847,
+      "total_carbs_g": 14.59,
+      "total_fat_g": 40.38,
+      "total_sugars_g": 3.81,
+      "trans_fat_g": 0.12
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126.3,
+      "cholesterol_mg": 40.85,
+      "dietary_fiber_g": 0.56,
+      "protein_g": 8.58,
+      "saturated_fat_g": 2.32,
+      "sodium_mg": 176.46,
+      "total_carbs_g": 3.04,
+      "total_fat_g": 8.41,
+      "total_sugars_g": 0.79,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 10,
+      "protein": 82,
+      "saturated_fat": 56,
+      "sodium": 37,
+      "total_carbs": 5,
+      "total_fat": 52
+    },
+    "serving_size_g": 480,
+    "total_recipe_weight_g": 1920
+  }
+]

@@ -1,0 +1,650 @@
+[
+  {
+    "recipe_name": "Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_20250624_023032_09e513aa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:30:33.253833000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "high protein",
+    "visual_description": "A single portion of rustic chicken cacciatore served in a shallow, cream-colored ceramic bowl with minor surface imperfections. Two whole, bone-in chicken thighs are the centerpiece, their skin appearing dark golden and tender from braising. The chicken is partially submerged in a thick, chunky tomato sauce featuring visible pieces of softened translucent onions and whole black olives. A single fresh rosemary sprig is placed casually on top. The bowl sits on a weathered dark wood kitchen table. Beside the bowl is a thick piece of torn crusty bread. The scene is illuminated by warm, soft overhead kitchen lighting, creating a cozy, authentic Italian home-dining atmosphere. A simple linen napkin and a stainless steel fork are placed to the left of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough bread to soak up the tomato sauce",
+      "Pair with a side of simple polenta or rustic mashed potatoes",
+      "Traditional family-style dining involves placing the skillet in the center of the table"
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Heat olive oil in a large deep skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden brown.",
+      "Flip chicken and sear for 4 minutes. Remove chicken from skillet.",
+      "Add diced onion to the skillet. Sauté for 5 minutes until soft.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes, oregano, and the rosemary sprig.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Simmer on low heat for 30 minutes until chicken reaches 75°C internally.",
+      "Stir in the olives 5 minutes before serving."
+    ],
+    "notes": [
+      "Use bone-in thighs for maximum flavor and protein content",
+      "Ensure the sauce reduces until thick to concentrate the savory tomato profile",
+      "Always check the thickest part of the chicken for a safe internal temperature of 75°C"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1716,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 444.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 53,
+      "sodium": 75,
+      "total_carbs": 7,
+      "total_fat": 54
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1543
+  },
+  {
+    "recipe_name": "Classic Apple Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_apple_crumble_20250624_023003_2ebe5575.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:30:03.507367000Z",
+    "selected_ingredients": [
+      "apple"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of classic apple crumble served in a shallow, cream-colored ceramic bowl with subtle rim imperfections. The topping is a rugged, golden-brown crust featuring coarse flour crumbs and toasted rolled oats. Soft, 2cm chunks of stewed Granny Smith apples are visible beneath the topping, with thick, caramelized amber juices bubbling slightly at the dish's edges. A single, generous pour of thick, pale yellow vanilla custard pools naturally on one side, partially melting into the warm crumble. The bowl sits on a dark, weathered oak table beside a folded linen napkin and a tarnished silver spoon. Soft, warm kitchen light emphasizes the crunchy textures and steam rising from the fruit.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve warm with hot vanilla custard",
+      "Accompany with a dollop of clotted cream",
+      "Pair with a scoop of vanilla bean ice cream"
+    ],
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Granny Smith apples",
+        "quantity": "800g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cold unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "50g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Peel, core, and cut apples into 2cm chunks.",
+      "Toss apples with 50g sugar, cinnamon, and lemon juice in a bowl.",
+      "Transfer apple mixture to a 20cm baking dish.",
+      "Cut cold butter into small cubes.",
+      "Rub butter into flour using fingertips until mixture resembles coarse breadcrumbs.",
+      "Stir in remaining 100g sugar and rolled oats.",
+      "Spread crumble topping evenly over the apples.",
+      "Bake for 35 to 40 minutes until the top is golden brown and fruit is bubbling.",
+      "Remove from oven and rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Use cold butter to ensure a crisp, crumbly texture.",
+      "Do not overwork the dough or it will become tough.",
+      "Granny Smith apples provide the best tart balance to the sweet topping."
+    ],
+    "traditional_techniques": [
+      "rubbing-in method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.5,
+      "calories": 677.4,
+      "cholesterol_mg": 53.75,
+      "dietary_fiber_g": 7.83,
+      "protein_g": 7.85,
+      "saturated_fat_g": 13.05,
+      "sodium_mg": 6,
+      "total_carbs_g": 112.1,
+      "total_fat_g": 21.95,
+      "total_sugars_g": 58.3,
+      "trans_fat_g": 0.81
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 12.65,
+      "calories": 228.5,
+      "cholesterol_mg": 18.13,
+      "dietary_fiber_g": 2.64,
+      "protein_g": 2.65,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 2.02,
+      "total_carbs_g": 37.81,
+      "total_fat_g": 7.41,
+      "total_sugars_g": 19.67,
+      "trans_fat_g": 0.27
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.9,
+      "dietary_fiber": 31.3,
+      "protein": 15.7,
+      "saturated_fat": 65.3,
+      "sodium": 0.25,
+      "total_carbs": 37.4,
+      "total_fat": 33.8
+    },
+    "serving_size_g": 296.45,
+    "total_recipe_weight_g": 1185.8
+  },
+  {
+    "recipe_name": "Beetroot Risotto with Goat Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beetroot_risotto_with_goat_cheese_20250624_023000_a459057b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:30:01.235432000Z",
+    "selected_ingredients": [
+      "beet"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant beetroot risotto is plated centrally on a clean, round white ceramic dinner plate. The risotto presents as a free-flowing, creamy mound, its natural deep pink-purple hue emanating from the incorporated roasted and pureed beetroots. Small, soft beetroot cubes are visible within the creamy rice, offering textural variation. Crumbled white goat cheese is generously scattered over the risotto's surface, creating a stark, appealing contrast. Toasted, roughly chopped walnuts are sprinkled around the goat cheese, providing a golden-brown crunch. Fresh green thyme leaves are delicately placed for a final touch of color and aroma. The plate features ample negative space, highlighting the dish. It rests on a light wooden table, accompanied by a folded white cotton napkin and standard silver flatware. Soft, natural light illuminates the scene, with a subtly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "Italian",
+    "hero_ingredient": "Beetroot",
+    "ingredients": [
+      {
+        "name": "Beetroot",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "1.2-1.5 litres"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g"
+      },
+      {
+        "name": "Goat cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme or dill",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash and trim beetroots. Wrap in foil. Roast for 45-60 minutes until tender. Let cool.",
+      "Peel roasted beetroots. Cut 3/4 of the roasted beets into small cubes. Mash or puree the remaining 1/4.",
+      "Heat olive oil in a large, heavy-bottomed pan over medium heat. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Stir for 2 minutes until translucent at the edges.",
+      "Pour in white wine. Stir constantly until liquid is fully absorbed.",
+      "Add a ladleful of warm vegetable stock. Stir continuously until absorbed. Continue adding stock, one ladleful at a time, stirring until each addition is absorbed before adding more. This takes about 18-20 minutes.",
+      "When rice is al dente, remove from heat. Stir in cubed roasted beetroot and beetroot puree.",
+      "Add cold butter and grated Parmesan. Stir vigorously to emulsify, creating a creamy texture. Season with salt and pepper.",
+      "Ladle risotto onto warm plates. Garnish with crumbled goat cheese, toasted walnuts, and fresh thyme or dill leaves. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Mantecatura",
+      "Soffritto",
+      "Tostatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 805.4,
+      "cholesterol_mg": 72.9,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 22.7,
+      "saturated_fat_g": 18.2,
+      "sodium_mg": 517.3,
+      "total_carbs_g": 82.7,
+      "total_fat_g": 40.9,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160.4,
+      "cholesterol_mg": 14.5,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 4.5,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 103,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 24.3,
+      "dietary_fiber": 21,
+      "protein": 45.4,
+      "saturated_fat": 91.2,
+      "sodium": 22.5,
+      "total_carbs": 30.1,
+      "total_fat": 52.5
+    },
+    "serving_size_g": 502.2,
+    "total_recipe_weight_g": 2008.6
+  },
+  {
+    "recipe_name": "Braised Chicken with Roasted Tomatoes and Garlic",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_roasted_tomatoes_and_garlic_20250624_022945_4ccc2076.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:29:45.464802000Z",
+    "selected_ingredients": [
+      "tomato",
+      "garlic",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single golden-brown, pan-seared chicken thigh is the centerpiece on a round white porcelain plate. Its skin is crispy and glistening. Nestled around the chicken are vibrant, burst cherry tomatoes and tender, golden-brown roasted garlic cloves. A rich, deep amber braising sauce pools elegantly around the ingredients. Fresh, bright green basil leaves, roughly torn, are scattered generously over the dish. Fine shavings of white Parmesan cheese are delicately placed on top. The chicken is presented as a whole piece. The tomatoes are whole or halved, and garlic cloves are whole. The plate rests on a simple, light-colored wooden table surface, accompanied by a folded neutral-toned cotton napkin and classic silver flatware. A small, rustic bowl of extra Parmesan shavings sits subtly in the background. The scene is illuminated by soft, natural, even lighting, creating a warm and inviting casual dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Serve with a simple green salad dressed with vinaigrette",
+      "Pair with a medium-bodied Italian red wine like Chianti"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, Skin-on Chicken Thighs",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, sliced"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "30g, roughly torn"
+      },
+      {
+        "name": "Fresh Oregano",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": "5g (optional)"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50g, shaved, for serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pan over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden and crispy. About 8-10 minutes.",
+      "Flip chicken. Sear other side 2-3 minutes. Remove chicken from pan.",
+      "Add diced onion to the pan. Sauté until softened, about 5 minutes.",
+      "Add sliced garlic and red pepper flakes. Cook 1 minute until fragrant. Do not brown garlic.",
+      "Deglaze with white wine, scraping up browned bits. Reduce by half.",
+      "Add chicken broth and cherry tomatoes. Bring to a simmer.",
+      "Return chicken thighs to the pan, skin-side up. Nestle them into the sauce.",
+      "Transfer pan to preheated oven. Braise 25-30 minutes, until chicken reaches 75°C internal temperature.",
+      "Remove from oven. Stir in fresh basil and oregano.",
+      "Rest chicken 5 minutes before serving."
+    ],
+    "notes": [
+      "Bone-in, skin-on chicken thighs ensure maximum flavor and moisture.",
+      "Adjust red pepper flakes to desired heat level."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 617,
+      "cholesterol_mg": 189,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 44,
+      "saturated_fat_g": 11.1,
+      "sodium_mg": 431,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 40.8,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 122.5,
+      "cholesterol_mg": 37.4,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.7,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 85.5,
+      "total_carbs_g": 3,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 15,
+      "protein": 88,
+      "saturated_fat": 55.5,
+      "sodium": 18.7,
+      "total_carbs": 5.5,
+      "total_fat": 52.3
+    },
+    "serving_size_g": 503.75,
+    "total_recipe_weight_g": 2015
+  },
+  {
+    "recipe_name": "Rigatoni al Forno con Pomodoro, Basilico e Formaggio Svizzero",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rigatoni_al_forno_con_pomodoro%2C_basilico_e_formaggio_svizzero_20250624_022942_ae0a8625.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:29:42.728297000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "basil",
+      "swiss cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "italian cuisine",
+    "visual_description": "A robust single portion of Rigatoni al Forno is presented in a deep white ceramic bowl, showcasing its rustic elegance. The ridged rigatoni, coated in a vibrant, rich red tomato sauce, is piled generously in the center. Scattered throughout are dark green, irregularly torn fresh basil leaves, offering pops of color and aromatic freshness. A thick, bubbly layer of golden-brown, melted Swiss cheese crowns the pasta, with some areas slightly caramelized, indicating a delightful crispness. The cheese forms irregular, molten patches over the pasta, revealing glimpses of the red sauce beneath. The dish is placed on a simple, light-colored wooden table. A neatly folded white cotton napkin and a traditional fork are positioned to the side. Natural, soft lighting illuminates the dish, highlighting its textures and inviting warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread for dipping in the sauce.",
+      "Offer a simple green salad with a vinaigrette.",
+      "Pair with a glass of dry red wine, such as Chianti or Montepulciano."
+    ],
+    "hero_ingredient": "Rigatoni pasta",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ripe plum tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Swiss cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2g"
+      },
+      {
+        "name": "Parmigiano Reggiano (for serving)",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "Prepare the tomato sauce: Heat olive oil in a large pot over medium heat.",
+      "Add diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes (if using); cook for 1 minute until fragrant.",
+      "Add tomato paste and cook for 2 minutes, stirring constantly.",
+      "Crush plum tomatoes and add to the pot. Stir in vegetable broth.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for 20-25 minutes, stirring occasionally, until sauce thickens.",
+      "Season with salt and pepper.",
+      "While sauce simmers, cook rigatoni according to package directions until al dente.",
+      "Drain pasta, reserving 100ml of pasta water.",
+      "Preheat oven to 190°C.",
+      "Add cooked rigatoni to the tomato sauce. Stir in half of the fresh basil, torn, and half of the grated Swiss cheese.",
+      "If sauce is too thick, add a little reserved pasta water.",
+      "Transfer the pasta mixture to a large oven-safe baking dish.",
+      "Top evenly with the remaining grated Swiss cheese.",
+      "Bake for 20-25 minutes, or until cheese is bubbly and golden brown.",
+      "Garnish with remaining fresh basil leaves before serving."
+    ],
+    "notes": [
+      "For a richer flavor, use San Marzano tomatoes.",
+      "Adjust the amount of red pepper flakes to your spice preference."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente cooking",
+      "Baking al forno"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 722,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 34.2,
+      "saturated_fat_g": 13,
+      "sodium_mg": 702.8,
+      "total_carbs_g": 85.5,
+      "total_fat_g": 27.4,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146.5,
+      "cholesterol_mg": 11.2,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 6.9,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 142.6,
+      "total_carbs_g": 17.3,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 24,
+      "protein": 68,
+      "saturated_fat": 65,
+      "sodium": 31,
+      "total_carbs": 31,
+      "total_fat": 35
+    },
+    "serving_size_g": 493,
+    "total_recipe_weight_g": 1972
+  }
+]

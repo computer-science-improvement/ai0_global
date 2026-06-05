@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Slow-Cooked Pork Ragu with Pappardelle and Garlic Bread",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_pork_ragu_with_pappardelle_and_garlic_bread_20250902_194629_ac8ad05d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T19:46:29.547698000Z",
+    "selected_ingredients": [
+      "onion",
+      "pork",
+      "tomato",
+      "pasta",
+      "bread"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of pappardelle pasta is presented in a rustic, shallow ceramic bowl with an off-white glaze. The wide, flat pasta strands are thoroughly coated in a rich, dark red pork ragu, creating a natural, slightly mounded shape in the center of the bowl. Irregularly shredded chunks of tender pork are visible throughout the sauce, along with hints of slow-cooked tomato and onion. A light sprinkle of vibrant green, freshly chopped parsley adds a fresh contrast. A golden-brown slice of garlic bread, showing its toasted edges and specks of green herbs, leans casually against the rim of the bowl. The bowl sits on a well-worn wooden dining table. A simple, cream-colored linen napkin is casually folded beside the bowl, holding a classic silver fork. Warm, soft kitchen lighting illuminates the scene, creating a homely, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with freshly grated Pecorino Romano or Parmesan cheese.",
+      "Offer a simple green salad dressed with olive oil and vinegar on the side.",
+      "Pair with a robust red wine, such as Chianti or Sangiovese.",
+      "Provide extra crusty bread for dipping in the rich sauce."
+    ],
+    "hero_ingredient": "Pork shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Crusty bread or baguette",
+        "quantity": "1 loaf"
+      },
+      {
+        "name": "Butter",
+        "quantity": "60 g, softened"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Parmesan or Pecorino Romano cheese",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 5-6 cm chunks. Season generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear pork chunks on all sides until deeply browned. Remove pork and set aside.",
+      "Reduce heat to medium. Add diced onion, carrot, and celery to the pot. Cook for 8-10 minutes until softened, stirring occasionally. This is the soffritto.",
+      "Stir in minced garlic and tomato paste. Cook for 2 minutes, stirring constantly until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and cook for 5 minutes, allowing alcohol to evaporate.",
+      "Return seared pork to the pot. Add crushed tomatoes, broth, bay leaf, and dried oregano. Stir to combine.",
+      "Bring the ragu to a gentle simmer. Reduce heat to low, cover the pot, and cook for 2.5-3 hours, or until pork is fork-tender. Stir occasionally.",
+      "Remove pork from the pot. Shred pork using two forks. Discard bay leaf. Return shredded pork to the sauce. Stir well. Taste and adjust seasoning.",
+      "Preheat oven to 180°C (350°F). Slice bread lengthwise. Mix softened butter with half of the chopped parsley and a pinch of salt. Spread butter mixture on bread slices.",
+      "Bake garlic bread for 8-10 minutes, or until golden brown and toasted.",
+      "Cook pappardelle pasta according to package directions until al dente. Drain, reserving some pasta water.",
+      "Add cooked pasta to the ragu. Toss to coat. Add a splash of reserved pasta water if needed for desired consistency.",
+      "Serve immediately, garnished with remaining fresh parsley and grated cheese. Serve with garlic bread."
+    ],
+    "notes": [
+      "For a deeper flavor, allow the ragu to rest overnight in the refrigerator and gently reheat before serving.",
+      "If the sauce becomes too thick, thin it with a little reserved pasta water or broth."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1230,
+      "cholesterol_mg": 207,
+      "dietary_fiber_g": 9.4,
+      "protein_g": 74,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 1745,
+      "total_carbs_g": 131,
+      "total_fat_g": 38.1,
+      "total_sugars_g": 14.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 199,
+      "total_carbs_g": 15,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 34,
+      "protein": 148,
+      "saturated_fat": 74,
+      "sodium": 76,
+      "total_carbs": 48,
+      "total_fat": 49
+    },
+    "serving_size_g": 875,
+    "total_recipe_weight_g": 3500
+  },
+  {
+    "recipe_name": "Cream of Hake and Citrus Soup with Honey-Glazed Cranberries",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cream_of_hake_and_citrus_soup_with_honey-glazed_cranberries_20250902_165108_6e07aee8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T16:51:08.710684000Z",
+    "selected_ingredients": [
+      "orange",
+      "honey",
+      "cranberry",
+      "lemon",
+      "butter",
+      "hake",
+      "cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The soup is presented in a clean white porcelain bowl. The creamy soup base has a pale, inviting hue, hinting at the richness of cream and the brightness of citrus. Smooth and velvety in texture, it forms a pristine canvas. Three to four seared hake chunks, with a lightly golden crust, are nestled within the soup. Their natural, irregular shapes provide organic visual interest. A small cluster of honey-glazed cranberries, their deep ruby-red color contrasting with the soup, is placed atop the hake, some slightly burst revealing their juicy interior. A sprinkle of finely chopped fresh green dill or chives adds a final touch of vibrant color and freshness, artfully arranged over the cranberries and around the hake. The presentation is professional yet approachable, with moderate negative space. The bowl sits on a simple wooden table, accompanied by a folded cotton napkin and standard flatware, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Hake",
+    "ingredients": [
+      {
+        "name": "Hake fillets",
+        "quantity": "600g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery",
+        "quantity": "1 stalk"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fish stock",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Orange zest",
+        "quantity": "from 1 orange"
+      },
+      {
+        "name": "Orange juice",
+        "quantity": "from 1/2 orange"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 1/2 lemon"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "from 1/4 lemon"
+      },
+      {
+        "name": "Fresh cranberries",
+        "quantity": "50g"
+      },
+      {
+        "name": "Honey",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh dill or chives",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Dice onion and celery. Mince garlic.",
+      "In a large saucepan, melt 25g butter over medium heat. Add diced onion and celery. Sauté until softened, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in fish stock. Bring to a simmer. Reduce heat. Simmer for 10 minutes to allow flavors to meld.",
+      "Cut hake fillets into 2-3 cm chunks. Season lightly with salt and pepper.",
+      "Heat 15ml olive oil in a separate pan over medium-high heat. Sear hake chunks for 2-3 minutes per side until cooked through. Set aside.",
+      "Carefully transfer the soup base (vegetables and stock) to a blender. Blend until very smooth. Pass through a fine-mesh sieve into a clean saucepan. Discard solids.",
+      "Return strained soup to low heat. Stir in heavy cream, orange zest, orange juice, lemon zest, and lemon juice. Heat gently without boiling. Season with salt and pepper to taste.",
+      "In a small saucepan, combine fresh cranberries and honey. Cook over low heat for 3-5 minutes until cranberries just begin to soften and burst.",
+      "Ladle hot soup into bowls. Gently place seared hake chunks into each bowl. Spoon a small amount of honey-glazed cranberries over the hake. Garnish with fresh dill or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 482,
+      "cholesterol_mg": 181,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 30.7,
+      "saturated_fat_g": 18.7,
+      "sodium_mg": 1223,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 34,
+      "total_sugars_g": 9.6,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 99,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 6.3,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 252,
+      "total_carbs_g": 2.9,
+      "total_fat_g": 7,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 4,
+      "protein": 61,
+      "saturated_fat": 93,
+      "sodium": 53,
+      "total_carbs": 5,
+      "total_fat": 44
+    },
+    "serving_size_g": 484.5,
+    "total_recipe_weight_g": 1938
+  },
+  {
+    "recipe_name": "Orange Honey Mousse, Cranberry Coulis, Lemon Tuile",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orange_honey_mousse%2C_cranberry_coulis%2C_lemon_tuile_20250902_164935_5a4f0b6f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T16:49:35.575770000Z",
+    "selected_ingredients": [
+      "orange",
+      "honey",
+      "cranberry",
+      "lemon",
+      "butter",
+      "hake",
+      "cream"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "desert cuisine",
+    "visual_description": "A single portion of delicate Orange Honey Mousse, perfectly unmolded, rests as an elegant dome or rectangle, its pale apricot hue soft and inviting. Adjacent, a vibrant ruby-red pool of Cranberry Coulis forms an organic, flowing shape, offering a striking color contrast. A single, crisp Lemon Tuile, shaped into a gentle curve, stands upright, adding architectural height and a golden-yellow accent. The mousse presents a smooth, ethereal texture, while the coulis is glossy and fluid. A singular, precisely cut, thin sliver of candied orange peel or a couple of vibrant fresh cranberries provides a final, bright garnish. The composition is clean, with abundant negative space on an expensive bone china plate, set against a premium white Carrara marble surface. A pristine white linen napkin, folded into a precise triangle, and elegant, minimalist dessert flatware complete the ultra-sophisticated, dramatically lit scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Orange",
+    "ingredients": [
+      {
+        "name": "Fresh orange juice",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Orange zest",
+        "quantity": "1 orange"
+      },
+      {
+        "name": "Honey",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "2 (approx 4g total)"
+      },
+      {
+        "name": "Heavy cream (cold)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh cranberries",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Unsalted butter (melted)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Egg white",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "0.5 lemon"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Candied orange peel or fresh cranberries (for garnish)",
+        "quantity": "few pieces"
+      }
+    ],
+    "instructions": [
+      "Prepare Cranberry Coulis: Combine cranberries, 30g granulated sugar, water, and lemon juice in a small saucepan. Simmer 10-15 minutes until cranberries burst and sauce thickens slightly. Pass through a fine-mesh sieve. Chill until cold.",
+      "Prepare Lemon Tuiles: Preheat oven to 160°C. Whisk melted butter, powdered sugar, egg white, and 0.5 lemon zest until smooth. Fold in all-purpose flour. Spread very thin circles (about 7-8 cm diameter) on a silicone mat or parchment-lined baking sheet. Bake 5-7 minutes until edges are golden. Immediately remove from oven; if desired, gently drape over a rolling pin or cylinder to shape while warm. Let cool completely to crisp.",
+      "Prepare Orange Honey Mousse: Bloom gelatin sheets in a bowl of cold water for 5 minutes. In a separate bowl, whisk 70g granulated sugar and egg yolks until pale and thick. In a saucepan, heat orange juice, 1 orange zest, and honey until simmering. Gradually temper the hot orange mixture into the egg yolk mixture, whisking constantly. Return the mixture to the saucepan. Cook gently over low heat, stirring continuously, until the mixture thickens and coats the back of a spoon. Do not boil. Remove from heat. Squeeze excess water from bloomed gelatin and stir into the hot mixture until dissolved. Strain the mixture through a fine-mesh sieve into a clean bowl. Let cool to room temperature, stirring occasionally to prevent a skin from forming. In a separate cold bowl, whip heavy cream to soft peaks. Gently fold the cooled orange base into the whipped cream until just combined. Pour the mousse into individual silicone molds or serving glasses. Chill for at least 4 hours, or preferably overnight, until fully set.",
+      "Assemble and Plate: Carefully unmold the Orange Honey Mousse onto the center of each chilled dessert plate. Spoon an organic pool of cold Cranberry Coulis next to or partially around the mousse. Stand a crisp Lemon Tuile upright on the plate. Garnish each serving with a small, precisely cut sliver of candied orange peel or a couple of vibrant fresh cranberries for color and texture contrast. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 50.3,
+      "calories": 571,
+      "cholesterol_mg": 248,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 6.6,
+      "saturated_fat_g": 19.6,
+      "sodium_mg": 45,
+      "total_carbs_g": 66.4,
+      "total_fat_g": 32.4,
+      "total_sugars_g": 56.6,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 20.8,
+      "calories": 236,
+      "cholesterol_mg": 103,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 2.7,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 18.7,
+      "total_carbs_g": 27.5,
+      "total_fat_g": 13.4,
+      "total_sugars_g": 23.4,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 83,
+      "dietary_fiber": 8,
+      "protein": 13,
+      "saturated_fat": 98,
+      "sodium": 2,
+      "total_carbs": 24,
+      "total_fat": 42
+    },
+    "serving_size_g": 241.5,
+    "total_recipe_weight_g": 966
+  },
+  {
+    "recipe_name": "Pan-Seared Hake with Orange-Cranberry Butter Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_hake_with_orange-cranberry_butter_sauce_20250902_164807_5936e4c6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T16:48:07.782902000Z",
+    "selected_ingredients": [
+      "orange",
+      "honey",
+      "cranberry",
+      "lemon",
+      "butter",
+      "hake"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features a single pan-seared hake fillet, golden-brown and flaky, resting on a clean white porcelain plate. The skin, if present, is visibly crisp. A vibrant orange-cranberry butter sauce pools elegantly around and over the hake. The sauce has a glossy sheen, with burst cranberries providing pockets of deep red and a textured appearance. Finely chopped fresh parsley, a vivid green, is scattered sparingly over the fish and sauce, adding a fresh contrast. The hake is presented as a whole piece. The plate has moderate negative space. The setting is a modern bistro, with a simple wooden table, a folded cotton napkin, and standard flatware. Natural, even lighting illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Hake",
+    "ingredients": [
+      {
+        "name": "Hake fillets",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cranberries",
+        "quantity": "100g"
+      },
+      {
+        "name": "Honey",
+        "quantity": "30g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Dry white wine or vegetable broth",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat hake fillets dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large non-stick pan over medium-high heat.",
+      "Place hake fillets skin-side down (if applicable). Sear for 4-5 minutes until skin is crisp and golden.",
+      "Flip fillets. Cook for another 3-4 minutes until cooked through. Remove hake from pan. Keep warm.",
+      "Reduce heat to medium. Add diced shallot to the same pan. Sauté for 2 minutes until softened.",
+      "Deglaze pan with white wine or broth. Scrape up any browned bits. Cook for 1 minute until slightly reduced.",
+      "Add orange juice, orange zest, cranberries, and honey to the pan. Simmer for 5-7 minutes, until cranberries soften and sauce slightly thickens. Gently crush some cranberries.",
+      "Remove pan from heat. Whisk in cold butter, one cube at a time, until fully incorporated and sauce is emulsified and glossy.",
+      "Stir in lemon juice. Taste and adjust seasoning.",
+      "Plate hake fillets. Spoon orange-cranberry butter sauce over each fillet.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.2,
+      "calories": 386,
+      "cholesterol_mg": 122,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 32.2,
+      "saturated_fat_g": 9,
+      "sodium_mg": 328,
+      "total_carbs_g": 18.7,
+      "total_fat_g": 21.4,
+      "total_sugars_g": 13.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.3,
+      "calories": 143,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.9,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 122,
+      "total_carbs_g": 6.9,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 11,
+      "protein": 64,
+      "saturated_fat": 45,
+      "sodium": 14,
+      "total_carbs": 7,
+      "total_fat": 27
+    },
+    "serving_size_g": 270,
+    "total_recipe_weight_g": 1080
+  },
+  {
+    "recipe_name": "Buttermilk Mousse, Poppy Seed Crumble, Anise Gel, Plum",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_buttermilk_mousse%2C_poppy_seed_crumble%2C_anise_gel%2C_plum_20250902_160203_b073a407.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T16:02:03.719311000Z",
+    "selected_ingredients": [
+      {
+        "name": "buttermilk"
+      },
+      {
+        "name": "anise"
+      },
+      {
+        "name": "poppy seed"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single portion of 'Buttermilk Mousse, Poppy Seed Crumble, Anise Gel, Plum' is presented on a round, white bone china plate. The plate's expansive white space emphasizes the minimalist composition. A pristine, spherical quenelle of creamy white buttermilk mousse anchors the dish, slightly off-center. Around the mousse, a few precisely cut, deep purple plum wedges are arranged organically, their natural sheen catching the light. Small, translucent amber dots of anise gel are strategically placed, adding a jewel-like quality and subtle color contrast. A delicate scattering of dark, crisp poppy seed crumble provides texture and visual interest, primarily concentrated near the mousse. The overall presentation is clean, elegant, and modern, with sophisticated color harmony and intentional negative space. The dish rests on a premium grey veined marble surface, accompanied by a single, polished silver dessert fork placed to the right, and a crisp white linen napkin folded into a precise triangle. Professional, dramatic lighting casts soft shadows, enhancing depth and highlighting the dish's architectural precision.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Buttermilk",
+    "ingredients": [
+      {
+        "name": "Buttermilk",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Granulated sugar (for mousse)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "2 (approx. 4g)"
+      },
+      {
+        "name": "Vanilla bean",
+        "quantity": "1/2"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Unsalted butter (cold, diced)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Granulated sugar (for crumble)",
+        "quantity": "25 g"
+      },
+      {
+        "name": "Poppy seeds",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Water (for gel)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Granulated sugar (for gel)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Star anise pods",
+        "quantity": "3"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Fresh plums",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Granulated sugar (for plums)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "For the Poppy Seed Crumble: Preheat oven to 160°C. Combine flour, cold butter, sugar, poppy seeds, and salt in a bowl. Rub ingredients with fingertips until coarse crumbs form. Spread on a baking sheet. Bake for 12-15 minutes until golden brown and crisp. Cool completely.",
+      "For the Anise Gel: Bloom gelatin sheets in cold water for 5 minutes. Combine water, sugar, and star anise pods in a small saucepan. Bring to a simmer. Remove from heat. Let steep for 15 minutes. Strain out star anise. Reheat liquid gently. Squeeze excess water from gelatin. Stir gelatin into warm liquid until dissolved. Pour into a shallow container. Chill until set, about 2 hours. Cut into small cubes or blend into a smooth gel.",
+      "For the Plums: Halve plums. Remove pits. Cut each plum half into 3-4 thin wedges. Gently toss plum wedges with sugar and lemon juice. Set aside to macerate slightly.",
+      "For the Buttermilk Mousse: Bloom gelatin sheets in cold water for 5 minutes. In a small saucepan, gently warm 50 ml buttermilk with 50g sugar and vanilla bean seeds until sugar dissolves. Do not boil. Squeeze excess water from gelatin. Stir gelatin into warm buttermilk mixture until dissolved. Remove from heat. Stir in remaining 150 ml cold buttermilk. Chill until mixture begins to thicken slightly, about 30-40 minutes.",
+      "Whip heavy cream to soft peaks. Gently fold chilled buttermilk mixture into whipped cream until just combined. Pour mousse into small serving molds or a larger container. Chill for at least 4 hours, or overnight, until fully set.",
+      "To Assemble: Release mousse from molds, or spoon quenelles onto plates. Arrange 3-4 plum wedges artfully around the mousse. Place small dots or a delicate line of anise gel. Sprinkle poppy seed crumble sparingly for texture. Serve immediately."
+    ],
+    "notes": [
+      "For a smoother anise gel, blend the set gel in a high-speed blender until completely smooth before plating."
+    ],
+    "traditional_techniques": []
+  }
+]

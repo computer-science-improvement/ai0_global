@@ -1,0 +1,653 @@
+[
+  {
+    "recipe_name": "Hearty Beef and Potato Lentil Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_potato_lentil_stew_20250703_002418_8f642bc4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T00:24:18.609431000Z",
+    "selected_ingredients": [
+      "lentil",
+      "onion",
+      "chicken stock",
+      "oil",
+      "tomato",
+      "cayenne pepper",
+      "potato",
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of hearty beef and potato lentil stew is presented in an everyday ceramic bowl, deep and slightly irregular, resting on a well-used wooden dining table. The stew is rich with tender, rustic chunks of braised beef, soft brown lentils, and diced potatoes, all suspended in a thick, savory tomato-based broth. Diced onions are visible, adding depth. The colors are earthy browns, deep reds from the tomato, and the light yellow of potatoes, with a scattering of fresh green chopped parsley on top. The textures are comforting and varied: the melt-in-your-mouth beef contrasts with the creamy lentils and tender potato cubes. The stew fills the bowl naturally, its components touching and overlapping in a casual, home-style arrangement. A simple metal spoon rests beside the bowl on a casually placed cloth napkin. Warm, natural light illuminates the scene, suggesting a cozy family kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, diced into 2.5 cm chunks",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Brown or green lentils, rinsed",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onions, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes, peeled and diced into 2 cm cubes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Diced tomatoes, canned",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1 L"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add beef chunks. Sear until browned on all sides. Remove beef from pot.",
+      "Add diced onions to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic and cayenne pepper. Cook for 1 minute until fragrant.",
+      "Return beef to the pot. Add rinsed lentils, diced potatoes, diced tomatoes, chicken stock, dried thyme, and bay leaf.",
+      "Bring the stew to a boil. Reduce heat to low.",
+      "Cover and simmer for 1.5 to 2 hours. Stew is ready when beef is very tender and lentils are soft.",
+      "Remove bay leaf.",
+      "Season with salt and black pepper to taste.",
+      "Ladle hot stew into bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 754.1,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 19.9,
+      "protein_g": 57.5,
+      "saturated_fat_g": 10.3,
+      "sodium_mg": 1113.7,
+      "total_carbs_g": 58.9,
+      "total_fat_g": 30.8,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 105.5,
+      "cholesterol_mg": 16.8,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 8,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 155.8,
+      "total_carbs_g": 8.2,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 71,
+      "protein": 115,
+      "saturated_fat": 52,
+      "sodium": 48,
+      "total_carbs": 21,
+      "total_fat": 39
+    },
+    "serving_size_g": 714.8,
+    "total_recipe_weight_g": 2859.1
+  },
+  {
+    "recipe_name": "Seared Chicken Breast with Creamy Madras Cabbage and Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_breast_with_creamy_madras_cabbage_and_tomato_20250703_002331_62993a07.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T00:23:31.558724000Z",
+    "selected_ingredients": [
+      "cabbage",
+      "madras curry powder",
+      "cream",
+      "soy sauce",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Seared Chicken Breast with Creamy Madras Cabbage and Tomato is presented on a clean white porcelain dinner plate, set on a simple wooden table. The seared chicken breast, displaying a golden-brown crust, is either served whole or sliced into thick medallions, placed atop or alongside a generous mound of the creamy cabbage. The braised cabbage, coarsely shredded, retains a vibrant green hue, coated in a rich, orange-red madras curry and tomato sauce. The sauce is smooth, clinging to the cabbage, showcasing its creamy texture. Fresh, bright green coriander leaves are scattered over the dish as a garnish, providing a color contrast. The arrangement is professional yet approachable, with moderate negative space. Standard flatware and a folded cotton napkin complete the modern bistro setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Steamed basmati rice",
+      "Warm naan bread"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "4 x 180g pieces"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "1 medium head (approx. 800g)"
+      },
+      {
+        "name": "Madras curry powder",
+        "quantity": "20g"
+      },
+      {
+        "name": "Double cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Canned chopped tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20g, grated"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "small bunch, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken: Pat chicken breasts dry. Season with salt and pepper.",
+      "Sear chicken: Heat 15ml oil in a large pan over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown. Internal temperature should reach 75°C. Remove chicken. Set aside.",
+      "Sauté aromatics: Add remaining oil to the pan. Add diced onion. Sauté 5 minutes until softened. Add minced garlic and grated ginger. Sauté 1 minute until fragrant.",
+      "Add spices and tomato: Stir in madras curry powder. Cook 1 minute, stirring constantly. Add chopped tomatoes and chicken stock. Bring to a simmer.",
+      "Braise cabbage: Add coarsely shredded cabbage to the pan. Stir to combine. Cover. Simmer 15-20 minutes until cabbage is tender.",
+      "Finish sauce: Stir in double cream and soy sauce. Simmer 5 minutes until sauce slightly thickens. Season with salt and pepper.",
+      "Serve: Slice chicken breasts into thick medallions or serve whole. Plate creamy madras cabbage. Place chicken on top or beside the cabbage. Garnish with fresh coriander."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 648,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 8.8,
+      "protein_g": 63.1,
+      "saturated_fat_g": 14.5,
+      "sodium_mg": 1066,
+      "total_carbs_g": 23.4,
+      "total_fat_g": 32.3,
+      "total_sugars_g": 14.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99.9,
+      "cholesterol_mg": 33.6,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 9.7,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 164.2,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 5,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 31,
+      "protein": 126,
+      "saturated_fat": 73,
+      "sodium": 46,
+      "total_carbs": 9,
+      "total_fat": 41
+    },
+    "serving_size_g": 648.5,
+    "total_recipe_weight_g": 2594
+  },
+  {
+    "recipe_name": "Lentil Potato Stew with Pickled Onion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lentil_potato_stew_with_pickled_onion_20250703_002159_32cac47f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T00:21:59.676356000Z",
+    "selected_ingredients": [
+      "lentil",
+      "onion",
+      "chicken stock",
+      "oil",
+      "tomato",
+      "cayenne pepper",
+      "potato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty lentil and potato stew is presented in a handcrafted, unglazed ceramic bowl with a natural, earthy tone. The stew is rich and fluid, showcasing the tender, distinct brown lentils and soft 2cm potato cubes. A vibrant pop of color comes from a generous spoonful of bright pink pickled onion slices, artfully placed atop the stew. The dish has a rustic, comforting appearance with visible textures of the ingredients. The bowl rests on a light-colored reclaimed wood table, subtly textured. A folded undyed linen napkin in a neutral beige lies beside the bowl. Soft, natural light illuminates the scene, creating a clean, minimalist background that emphasizes the pure, wholesome nature of the sustainable ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Sustainable",
+    "hero_ingredient": "Lentils",
+    "ingredients": [
+      {
+        "name": "Brown or Green Lentils (dry)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cayenne Pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "White Vinegar",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "For pickled onions: Thinly slice one large onion. In a small saucepan, combine white vinegar, water, sugar, and 5g salt. Heat until sugar and salt dissolve. Pour hot liquid over sliced onion in a heatproof jar. Set aside to cool and pickle while preparing the stew.",
+      "Dice the remaining large onion. Cut potatoes into 2cm cubes.",
+      "Heat olive oil in a large pot or Dutch oven over medium heat. Add diced onion. Sauté until softened, about 5-7 minutes.",
+      "Stir in cayenne pepper. Cook for 1 minute until fragrant.",
+      "Add dry lentils, potato cubes, crushed tomatoes, chicken stock, bay leaf, salt, and black pepper to the pot. Stir well.",
+      "Bring the mixture to a boil. Reduce heat to low, cover, and simmer for 25-30 minutes, or until lentils and potatoes are tender. Stir occasionally to prevent sticking.",
+      "Remove the bay leaf before serving.",
+      "Serve the hot lentil and potato stew in bowls. Top each serving with a generous spoonful of the prepared pickled onions."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 465,
+      "cholesterol_mg": 2.5,
+      "dietary_fiber_g": 16.9,
+      "protein_g": 21.4,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 941.8,
+      "total_carbs_g": 76.5,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 12.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 67.6,
+      "cholesterol_mg": 0.4,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 3.1,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 136.8,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 1.3,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 1,
+      "dietary_fiber": 60,
+      "protein": 43,
+      "saturated_fat": 7,
+      "sodium": 41,
+      "total_carbs": 28,
+      "total_fat": 11
+    },
+    "serving_size_g": 688.4,
+    "total_recipe_weight_g": 2753.5
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Medallions with Cheesy Corn and Pepper Hash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_medallions_with_cheesy_corn_and_pepper_hash_20250703_001128_9f595731.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T00:11:28.460812000Z",
+    "selected_ingredients": [
+      "beef",
+      "corn",
+      "cheddar",
+      "orange",
+      "bell pepper",
+      "american cheese",
+      "carrot",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Two thick, golden-brown pan-seared beef medallions are presented on a clean white porcelain plate. They rest beside a generous mound of vibrant cheesy corn and pepper hash. The hash showcases bright yellow corn kernels, small diced red bell pepper, and finely diced carrot, all coated in a creamy, subtly orange-tinted cheese sauce. A sprinkle of fresh green chopped chives adds a pop of color. The dish is arranged with moderate negative space, highlighting the ingredients' quality. The setting is a modern bistro: a simple wooden table, a crisp white cotton napkin beside the plate, and standard silver flatware. Natural, even lighting illuminates the dish, creating an inviting, professional presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef Sirloin Medallions",
+        "quantity": "600g"
+      },
+      {
+        "name": "Corn Kernels",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cheddar Cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "American Cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Onion",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat beef medallions dry. Season generously with salt and black pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Sear beef medallions 3-4 minutes per side for medium-rare. Adjust time for desired doneness. Remove beef, rest on a cutting board.",
+      "Dice bell pepper, carrot, and onion into small, uniform pieces.",
+      "Mince garlic.",
+      "In the same skillet, add remaining 15ml olive oil and butter. Add diced onion, carrot, and bell pepper. Sauté 5-7 minutes until softened.",
+      "Add minced garlic and corn kernels. Cook 3 minutes, stirring occasionally.",
+      "Grate cheddar and American cheese. Zest the orange.",
+      "Reduce heat to low. Stir in milk, shredded cheddar, and American cheese into the vegetable mixture. Stir until cheeses melt and form a creamy sauce. Stir in orange zest.",
+      "Check seasoning for hash; add salt and pepper if needed.",
+      "Slice beef medallions if desired, or serve whole. Plate hash beside beef medallions. Garnish with chopped fresh chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 737.05,
+      "cholesterol_mg": 165.86,
+      "dietary_fiber_g": 5.37,
+      "protein_g": 58.1,
+      "saturated_fat_g": 19.88,
+      "sodium_mg": 497.26,
+      "total_carbs_g": 29.86,
+      "total_fat_g": 45.98,
+      "total_sugars_g": 11.91,
+      "trans_fat_g": 1.07
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 167.04,
+      "cholesterol_mg": 37.59,
+      "dietary_fiber_g": 1.22,
+      "protein_g": 13.17,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 112.69,
+      "total_carbs_g": 6.77,
+      "total_fat_g": 10.42,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.24
+    },
+    "daily_value_percentages": {
+      "cholesterol": 82.93,
+      "dietary_fiber": 19.18,
+      "protein": 116.2,
+      "saturated_fat": 99.4,
+      "sodium": 21.62,
+      "total_carbs": 10.86,
+      "total_fat": 58.95
+    },
+    "serving_size_g": 441.25,
+    "total_recipe_weight_g": 1765
+  },
+  {
+    "recipe_name": "Mini Chicken Parmesan Pasta Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mini_chicken_parmesan_pasta_bites_20250703_000947_126fed03.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T00:09:48.296796000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "parmesan",
+      "mozzarella",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Eight to twelve golden-brown Mini Chicken Parmesan Pasta Bites are artfully arranged on a rustic wooden serving board. Each bite is a compact, round patty, approximately 4 cm in diameter, formed from finely diced chicken and small pasta pieces, baked to a firm, slightly crisp exterior. The top of each patty is adorned with a vibrant red dollop of tomato passata, partially covered by melted, bubbly white mozzarella cheese. A light dusting of finely grated parmesan and a fresh, small green basil leaf provide a contrasting garnish. The patties are spaced naturally, allowing each to stand out. The wooden board rests on a well-used wooden kitchen table, subtly reflecting warm, cozy kitchen lighting. A casually placed, light-colored linen napkin sits nearby, adding to the homely, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve warm.",
+      "Offer alongside a simple green salad for a light meal.",
+      "Serve as part of a larger antipasti spread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "250g"
+      },
+      {
+        "name": "Small pasta (e.g., orzo or ditalini)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves minced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g grated, plus extra for garnish"
+      },
+      {
+        "name": "Mozzarella cheese",
+        "quantity": "100g cut into small cubes"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Tomato passata",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "A few, for garnish"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Line a baking tray with parchment paper.",
+      "Cook pasta according to package directions until al dente. Drain well.",
+      "Dice chicken breast into small 5mm cubes.",
+      "In a large bowl, combine diced chicken, cooked pasta, minced garlic, 50g grated parmesan, breadcrumbs, and egg. Season with salt and pepper. Mix well.",
+      "Form the mixture into 8-12 small, flattened patties, about 3-4 cm in diameter and 1 cm thick.",
+      "Place patties on the prepared baking tray. Drizzle lightly with olive oil.",
+      "Bake for 15-20 minutes, or until chicken is cooked through and internal temperature reaches 75°C. Patties should be golden brown.",
+      "Remove from oven. Top each patty with a small spoonful of tomato passata and a piece of mozzarella cheese.",
+      "Return to oven for 5-7 minutes, or until mozzarella is melted and bubbly.",
+      "Garnish with a sprinkle of fresh parmesan and a small basil leaf. Serve immediately on a platter."
+    ],
+    "notes": [
+      "These bites can be prepared ahead and reheated.",
+      "Ensure chicken is diced very small for even cooking and texture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 413.52,
+      "cholesterol_mg": 130.63,
+      "dietary_fiber_g": 1.12,
+      "protein_g": 34.91,
+      "saturated_fat_g": 7.82,
+      "sodium_mg": 986.01,
+      "total_carbs_g": 21.85,
+      "total_fat_g": 20.06,
+      "total_sugars_g": 2.07,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 239.72,
+      "cholesterol_mg": 75.72,
+      "dietary_fiber_g": 0.65,
+      "protein_g": 20.24,
+      "saturated_fat_g": 4.53,
+      "sodium_mg": 571.6,
+      "total_carbs_g": 12.66,
+      "total_fat_g": 11.63,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43.54,
+      "dietary_fiber": 4,
+      "protein": 69.82,
+      "saturated_fat": 39.1,
+      "sodium": 42.87,
+      "total_carbs": 7.95,
+      "total_fat": 25.72
+    },
+    "serving_size_g": 172.5,
+    "total_recipe_weight_g": 690
+  }
+]

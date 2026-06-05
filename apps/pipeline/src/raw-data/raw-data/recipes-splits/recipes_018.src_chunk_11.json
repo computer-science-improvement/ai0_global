@@ -1,0 +1,719 @@
+[
+  {
+    "recipe_name": "Smoked Paprika Chicken with Braised Tomatoes and White Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_paprika_chicken_with_braised_tomatoes_and_white_beans_20250625_162040_1e83e6e9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:20:41.149098000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bean",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Smoked Paprika Chicken is presented on a clean white porcelain dinner plate. A creamy mound of golden-yellow smashed potatoes forms a bed. A succulent, whole braised chicken thigh, with its crispy, deep golden-brown skin, rests atop or beside the potatoes. A rich, reddish-brown sauce, studded with tender white cannellini beans and chunks of braised tomato, is spooned liberally over the chicken and potatoes, creating a vibrant, rustic appeal. The dish is garnished with a scattering of bright green, freshly chopped flat-leaf parsley, adding a pop of color and freshness. The textures are varied: the tender chicken, the creamy potatoes, and the slightly chunky sauce. The plate is positioned on a simple wooden table surface, accompanied by standard flatware and a folded cotton napkin. Natural, even lighting highlights the dish, with a softly blurred, casual bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the rich sauce",
+      "Pair with a simple green salad dressed with olive oil and vinegar"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes, Yukon Gold or similar",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned cannellini beans, rinsed and drained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, oven-safe pan or Dutch oven over medium-high heat. Sear chicken thighs skin-side down for 8-10 minutes until skin is deeply golden and crispy. Flip and sear for 2 minutes. Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add diced onion to the pan. Sauté for 5-7 minutes until softened and translucent. Add minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Stir in diced tomatoes, chicken broth, and rinsed cannellini beans. Bring the sauce to a gentle simmer. Scrape up any browned bits from the bottom of the pan.",
+      "Return seared chicken thighs to the pan, nestling them into the sauce. Cover the pan. Transfer to a preheated oven at 180°C (350°F). Braise for 25-30 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is very tender.",
+      "While chicken braises, peel and cut potatoes into large chunks. Place potatoes in a large pot. Cover with cold salted water. Bring to a boil. Cook for 15-20 minutes until very tender. Drain well.",
+      "Return drained potatoes to the hot pot. Mash them thoroughly with a fork or potato masher. Stir in a splash of olive oil or a knob of butter (optional) and season with salt and pepper to taste until creamy and smooth.",
+      "Remove chicken from oven. Ladle a generous portion of smashed potatoes onto each plate. Place one braised chicken thigh on top or beside the potatoes. Spoon the rich tomato and bean sauce generously over the chicken and potatoes.",
+      "Garnish with freshly chopped flat-leaf parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust smoked paprika to your preference for a milder or bolder flavor."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 799,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 12.8,
+      "protein_g": 50.7,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 468.7,
+      "total_carbs_g": 60.7,
+      "total_fat_g": 39.3,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 7.5,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 69.8,
+      "total_carbs_g": 9,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 46,
+      "protein": 101,
+      "saturated_fat": 47,
+      "sodium": 20,
+      "total_carbs": 22,
+      "total_fat": 50
+    },
+    "serving_size_g": 671.8,
+    "total_recipe_weight_g": 2687
+  },
+  {
+    "recipe_name": "Clear Chicken Consommé with Fermented Rice & Seasonal Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_clear_chicken_consomm%C3%A9_with_fermented_rice_%26_seasonal_vegetables_20250625_161833_c92f7fef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:18:33.552971000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single starter portion of Clear Chicken Consommé is presented in a shallow, wide-rimmed, handcrafted ceramic bowl with an organic, unglazed off-white finish. The consommé is perfectly clear and golden, reflecting natural light. At the bottom, a small, elegant scattering of distinct elements is visible: small diced white chicken pieces, individual grains of cooked white rice, and vibrant, precisely small-diced fermented vegetables—orange carrots and translucent daikon radish. A delicate cluster of fresh, bright green pea shoots rests gently on the surface, providing a natural, unfussy garnish. The composition is clean and minimalist, with ample negative space around the central dish. The bowl sits on a light-colored, reclaimed wood table surface, accompanied by an undyed linen napkin in a natural beige tone. Soft, diffused natural light illuminates the scene, highlighting the pure textures and colors of the ingredients. A subtle, out-of-focus green plant element is visible in the background, reinforcing the eco-conscious setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Consommé",
+    "ingredients": [
+      {
+        "name": "Chicken bones",
+        "quantity": "500 g (from 1 whole chicken or equivalent)"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cooked white rice",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fermented carrots",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fermented daikon radish",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh pea shoots or microgreens",
+        "quantity": "Small handful for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Roast chicken bones on a baking tray for 30 minutes until golden brown. This adds depth.",
+      "Transfer roasted bones to a large pot. Add roughly chopped onion, carrot, and celery. Add 1.5 L cold water.",
+      "Bring to a gentle simmer. Skim any foam. Reduce heat to low. Simmer for 2 hours. Do not boil vigorously.",
+      "Strain broth through a fine-mesh sieve lined with cheesecloth. Discard solids. Cool broth completely.",
+      "For clarification: In a bowl, whisk egg whites until frothy. Gently stir egg whites into the cooled broth.",
+      "Heat broth slowly over medium-low heat. Do not stir once it starts to form a 'raft' of egg whites. The raft traps impurities.",
+      "Simmer gently for 20-30 minutes, allowing the consommé to clarify. A small hole will form in the raft; ladle consommé through it.",
+      "Carefully ladle clear consommé through a fine-mesh sieve lined with fresh cheesecloth. Season consommé with salt and pepper. Keep warm.",
+      "Poach chicken breast in lightly salted water until internal temperature reaches 75°C. This takes about 10-12 minutes. Cool and then dice into small 5 mm cubes.",
+      "Finely dice fermented carrots and daikon radish into 3 mm cubes.",
+      "To serve: Ladle hot consommé into individual bowls. Add a small spoonful of cooked white rice. Add a few small diced chicken pieces. Add a small amount of diced fermented vegetables.",
+      "Garnish each bowl with a few fresh pea shoots or microgreens."
+    ],
+    "notes": [
+      "This recipe utilizes chicken bones for a rich, flavorful broth, promoting zero-waste cooking.",
+      "Fermented vegetables introduce a tangy counterpoint and showcase sustainable preservation techniques.",
+      "The minimalist approach emphasizes the inherent beauty and flavor of each natural ingredient."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 129.4,
+      "cholesterol_mg": 41.3,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 18.3,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 469,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 34.3,
+      "cholesterol_mg": 10.9,
+      "dietary_fiber_g": 0.1,
+      "protein_g": 4.9,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 124.2,
+      "total_carbs_g": 1.5,
+      "total_fat_g": 1,
+      "total_sugars_g": 0.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14,
+      "dietary_fiber": 1,
+      "protein": 37,
+      "saturated_fat": 7,
+      "sodium": 20,
+      "total_carbs": 2,
+      "total_fat": 5
+    },
+    "serving_size_g": 377.5,
+    "total_recipe_weight_g": 1510
+  },
+  {
+    "recipe_name": "Crispy Chicken Cutlet with Cabbage Fritter and Strawberry BBQ Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_chicken_cutlet_with_cabbage_fritter_and_strawberry_bbq_glaze_20250625_161717_25220442.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:17:18.122923000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread",
+      "onion",
+      "potato",
+      "garlic",
+      "sugar",
+      "lemon",
+      "strawberry",
+      "milk",
+      "oil",
+      "butter",
+      "carrot",
+      "egg",
+      "cabbage",
+      "ketchup",
+      "flour",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined portion is presented on a clean, round white porcelain dinner plate, set on a simple light wooden table surface. The centerpiece is a golden-brown, crispy chicken cutlet, presented whole and unsliced. Beside it, a round, savory cabbage fritter with visible shreds of green cabbage, orange carrot, and white potato shows a delicate pan-fried crust. A vibrant, glossy reddish-brown strawberry BBQ glaze is artfully drizzled over the chicken and around the plate, creating appealing lines without overwhelming the dish. A bright yellow lemon wedge sits beside the chicken. A sprinkle of fresh green chopped parsley or chives adds a final touch of color and freshness. The scene is well-lit with natural, even lighting, and a folded cotton napkin rests beside the plate, all against a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "hero_ingredient": "Chicken Cutlet",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Potato",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fresh strawberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500 ml (for frying)"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley or chives",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Prepare the Strawberry BBQ Glaze: Halve strawberries. Mince 1 garlic clove. Combine strawberries, ketchup, sugar, chili flakes, minced garlic, and juice from half lemon in a saucepan. Bring to a simmer over medium heat. Cook 10-12 minutes, stirring occasionally, until strawberries soften and sauce thickens. Remove from heat. Blend until smooth. Keep warm.",
+      "Prepare Cabbage Fritters: Shred cabbage, carrot, and potato. Finely dice remaining onion and 1 garlic clove. In a large bowl, whisk 1 egg with milk. Add shredded cabbage, carrot, potato, diced onion, diced garlic, and 50g flour. Mix well. Season with salt and pepper.",
+      "Heat 2 cm of vegetable oil in a large non-stick pan over medium-high heat. Drop spoonfuls of fritter mixture into hot oil to form 4 round fritters. Cook 4-5 minutes per side until golden brown and cooked through. Drain on paper towels. Keep warm.",
+      "Prepare Chicken Cutlets: Pound each chicken breast to 1.5 cm thickness. Season both sides with salt and pepper. Set up a breading station: one plate with remaining flour, one shallow dish with remaining whisked egg, and one plate with panko breadcrumbs.",
+      "Dredge each chicken cutlet first in flour, shaking off excess. Dip in egg, letting excess drip off. Finally, coat generously in panko breadcrumbs, pressing gently to adhere.",
+      "Heat 2 cm fresh vegetable oil in a large pan over medium-high heat. Add chicken cutlets, do not overcrowd. Fry 4-5 minutes per side until golden brown and internal temperature reaches 75°C. Drain on paper towels.",
+      "Plate immediately: Place one cabbage fritter on each plate. Place one crispy chicken cutlet next to the fritter. Drizzle generous amount of Strawberry BBQ Glaze over chicken and around the plate. Garnish with a fresh lemon wedge and finely chopped parsley or chives. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 13.9,
+      "calories": 863.2,
+      "cholesterol_mg": 118,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 70.9,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 991.3,
+      "total_carbs_g": 84.6,
+      "total_fat_g": 25.8,
+      "total_sugars_g": 22.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.5,
+      "calories": 157.3,
+      "cholesterol_mg": 21.5,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 12.9,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 180.5,
+      "total_carbs_g": 15.4,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 26.4,
+      "protein": 141.8,
+      "saturated_fat": 33.4,
+      "sodium": 43.1,
+      "total_carbs": 30.8,
+      "total_fat": 33.1
+    },
+    "serving_size_g": 548.9,
+    "total_recipe_weight_g": 2195.5
+  },
+  {
+    "recipe_name": "Roasted Carrot and Herb Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_carrot_and_herb_rice_salad_20250625_161551_a0a36a45.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:15:52.242831000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "tomato",
+      "chili",
+      "onion",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Roasted Carrot and Herb Rice Salad is presented on a clean, white porcelain dinner plate, centrally placed on a simple light wooden table surface. The salad forms a vibrant, appealing mound, showcasing a harmonious blend of colors and textures. Fluffy white basmati rice forms the base, interspersed with golden-orange roasted carrot rounds, their edges slightly caramelized. Bright red halved cherry tomatoes and crisp green cucumber cubes add pops of color. Finely diced red onion and a hint of minced green chili are visible throughout, offering subtle contrast. Fresh green chopped parsley and mint are generously mixed in, providing verdant freshness and an aromatic garnish. The salad is lightly coated with a glistening lemon-herb vinaigrette, reflecting natural, even lighting. A cotton napkin is neatly folded beside the plate. The overall presentation is clean, professional, and inviting, with moderate negative space emphasizing the fresh ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm pita bread",
+      "Can be part of a mezze platter with hummus and olives"
+    ],
+    "hero_ingredient": "Carrot",
+    "ingredients": [
+      {
+        "name": "Carrots",
+        "quantity": "400 g, peeled"
+      },
+      {
+        "name": "Basmati Rice",
+        "quantity": "200 g, uncooked"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 small (approx. 100 g)"
+      },
+      {
+        "name": "Green Chili",
+        "quantity": "1, deseeded and minced"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Canned Chickpeas",
+        "quantity": "400 g can, drained and rinsed"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Fresh Mint",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large, for juice"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut carrots into 1 cm thick rounds. Toss with 15 ml olive oil, salt, and pepper.",
+      "Spread carrots on a baking tray. Roast for 20-25 minutes until tender and slightly caramelized. Let cool.",
+      "Rinse rice thoroughly. Cook rice according to package directions. Fluff with a fork. Let cool completely.",
+      "While rice cools, prepare vegetables. Halve cherry tomatoes. Dice red onion finely. Mince green chili. Dice cucumber into 1 cm cubes.",
+      "For the dressing, whisk together remaining 65 ml olive oil, lemon juice, minced garlic, and ground cumin in a small bowl. Season with salt and pepper.",
+      "In a large bowl, combine cooled rice, roasted carrots, halved cherry tomatoes, diced red onion, minced green chili, diced cucumber, and drained chickpeas.",
+      "Add chopped parsley and mint. Pour dressing over salad.",
+      "Toss gently to combine all ingredients. Serve immediately or chill."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 528.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.9,
+      "protein_g": 11.8,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 98.3,
+      "total_carbs_g": 76.8,
+      "total_fat_g": 21.3,
+      "total_sugars_g": 11.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 3.1,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 26.1,
+      "total_carbs_g": 20.4,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 38.9,
+      "protein": 23.6,
+      "saturated_fat": 14.2,
+      "sodium": 4.3,
+      "total_carbs": 27.9,
+      "total_fat": 27.3
+    },
+    "serving_size_g": 376.2,
+    "total_recipe_weight_g": 1504.6
+  },
+  {
+    "recipe_name": "Spiced Chocolate Bean Cake with Dark Beer Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_chocolate_bean_cake_with_dark_beer_glaze_20250625_161519_11ddaf44.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:15:20.128973000Z",
+    "selected_ingredients": [
+      "beef",
+      "grains of paradise",
+      "kefalotiri cheese",
+      "tomato",
+      "dark beer",
+      "kidney bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "texmex cuisine",
+    "visual_description": "A single square slice of rich, dark chocolate bean cake rests centrally on a clean white porcelain plate. The cake has a deep, fudgy brown color and a slightly moist, dense texture. A glossy, dark amber dark beer glaze is generously drizzled over the top and cascades down the sides of the cake. Beside the cake, a vibrant, reddish-orange dollop of spiced tomato-lime compote offers a bright contrast. Scattered around and on top of the cake are small, irregular pieces of golden-brown, glistening beef and grains of paradise crumble, providing a crunchy texture. A delicate, pale golden Kefalotiri crisp stands upright, leaning against the cake, adding a refined, salty element. The plate is surrounded by moderate negative space on a simple wooden table surface, with a neatly folded cotton napkin beside it. Natural, even lighting highlights the textures and colors, creating a professional yet approachable presentation. The beef is presented as small, crisp crumbles, not sliced.",
+    "number_of_servings": 4,
+    "cuisine_type": "TexMex",
+    "cultural_origin": "TexMex",
+    "cultural_serving_suggestions": [
+      "Serve with a small shot of Anejo Tequila or Mezcal on the side for an authentic after-dinner experience.",
+      "Pair with a rich, dark roasted coffee or a Mexican hot chocolate."
+    ],
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Canned kidney beans, rinsed and drained",
+        "quantity": "200 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Brown sugar, packed",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Dark beer (e.g., stout or porter)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef sirloin or tenderloin, finely minced",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Grains of paradise, freshly ground",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Kefalotiri cheese",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Ripe tomatoes, small diced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Lime, juiced",
+        "quantity": "1"
+      },
+      {
+        "name": "Pinch of cayenne pepper (optional)",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour an 20 cm square baking pan.",
+      "For the Beef & Grains of Paradise Crumble: Heat a small pan over medium heat. Add finely minced beef. Render fat and crisp beef until very dry and crumbly. Drain excess fat. Return beef to pan. Add 15g granulated sugar and 1.5g ground grains of paradise. Cook, stirring, until sugar melts and coats beef, forming a crisp, sweet crumble. Spread on parchment paper to cool. Break into small pieces.",
+      "For the Dark Beer Glaze: In a small saucepan, combine dark beer and 30g granulated sugar. Bring to a simmer over medium heat. Reduce until thickened to a syrupy consistency, about 10-15 minutes. Set aside.",
+      "For the Spiced Tomato-Lime Compote: In a small saucepan, combine diced tomatoes, 30g granulated sugar, lime juice, and a pinch of cayenne pepper (if using). Bring to a simmer. Cook, stirring occasionally, until tomatoes soften and mixture thickens to a jam-like consistency, about 10 minutes. Set aside.",
+      "For the Kefalotiri Crisps: Grate Kefalotiri cheese finely. Arrange small, thin mounds of grated cheese on a parchment-lined baking sheet. Bake for 5-7 minutes, or until golden brown and crispy. Let cool completely. Break into irregular shards.",
+      "For the Chocolate Bean Cake: In a food processor, blend rinsed kidney beans and 30 ml water until very smooth. Set aside.",
+      "In a large bowl, whisk together flour, cocoa powder, remaining 75g granulated sugar, brown sugar, baking powder, baking soda, salt, and remaining 1.5g ground grains of paradise.",
+      "In a separate bowl, whisk together eggs, melted butter, vanilla extract, and pureed kidney beans.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Do not overmix.",
+      "Pour batter into the prepared baking pan. Bake for 25-30 minutes, or until a wooden skewer inserted into the center comes out with moist crumbs.",
+      "Let cake cool in pan for 10 minutes. Invert onto a wire rack to cool completely.",
+      "To serve: Cut cake into 4 equal portions. Place one slice on each serving plate. Drizzle generously with Dark Beer Glaze. Add a spoonful of Spiced Tomato-Lime Compote beside the cake. Sprinkle Beef & Grains of Paradise Crumble over the cake and plate. Garnish with a Kefalotiri Crisp standing upright."
+    ],
+    "notes": [
+      "Ensure kidney beans are blended completely smooth for the best cake texture.",
+      "The beef crumble provides a surprising savory-sweet crunch; ensure it's very finely minced and well-crisped before candying."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 49.6,
+      "calories": 600,
+      "cholesterol_mg": 143,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 19,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 311,
+      "total_carbs_g": 93.3,
+      "total_fat_g": 21.2,
+      "total_sugars_g": 51.7,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 14.7,
+      "calories": 177,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 5.6,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 92,
+      "total_carbs_g": 27.6,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 15.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47.6,
+      "dietary_fiber": 34.6,
+      "protein": 37.9,
+      "saturated_fat": 59.2,
+      "sodium": 13.5,
+      "total_carbs": 33.9,
+      "total_fat": 27.2
+    },
+    "serving_size_g": 338.3,
+    "total_recipe_weight_g": 1353
+  }
+]

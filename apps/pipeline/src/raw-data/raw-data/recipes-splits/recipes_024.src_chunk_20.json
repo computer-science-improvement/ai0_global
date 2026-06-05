@@ -1,0 +1,716 @@
+[
+  {
+    "recipe_name": "Broccoli and Tomato Frittata",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_broccoli_and_tomato_frittata_20250624_023250_fa18c25e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:32:51.081132000Z",
+    "selected_ingredients": [
+      "egg",
+      "broccoli",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Broccoli and Tomato Frittata is presented as a generous, rustic wedge on a simple, round, off-white ceramic plate. The frittata, with a golden-brown top from baking, reveals a dense, fluffy interior studded with vibrant green broccoli florets and bright red halved cherry tomatoes. Thinly sliced, tender, lightly caramelized onions are interspersed throughout the egg base. The broccoli florets are tender-crisp, and the tomatoes retain their shape, adding pops of color. A scattering of fresh chopped parsley garnishes the top, adding a touch of fresh green. The plate sits on a well-used, light wooden dining table. A simple linen napkin, folded casually, rests beside the plate. The scene is bathed in warm, natural kitchen light, suggesting a relaxed family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty Italian bread on the side."
+    ],
+    "hero_ingredient": "Eggs",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": "8 large"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Heat olive oil in a 25cm oven-safe, non-stick skillet over medium heat.",
+      "Add thinly sliced onion. Cook 8-10 minutes until softened and lightly caramelized.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Add broccoli florets. Sauté 5-7 minutes until tender-crisp.",
+      "Stir in halved cherry tomatoes. Cook 2 minutes. Spread vegetables evenly in the skillet.",
+      "In a large bowl, whisk eggs, milk, salt, and pepper until well combined.",
+      "Stir in grated Parmesan cheese into the egg mixture.",
+      "Pour egg mixture over vegetables in the skillet. Ensure vegetables are evenly distributed.",
+      "Cook on stovetop for 3-5 minutes until edges set.",
+      "Transfer skillet to preheated oven. Bake 15-20 minutes until frittata is puffed and set in the center.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Garnish with chopped fresh parsley. Serve directly from the skillet or slide onto a cutting board."
+    ],
+    "notes": [
+      "For extra richness, use cream instead of milk.",
+      "Adjust salt and pepper to personal taste.",
+      "This frittata is also delicious served at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 354,
+      "cholesterol_mg": 385.6,
+      "dietary_fiber_g": 4.98,
+      "protein_g": 22.61,
+      "saturated_fat_g": 7.07,
+      "sodium_mg": 867.9,
+      "total_carbs_g": 18.24,
+      "total_fat_g": 22.17,
+      "total_sugars_g": 7.32,
+      "trans_fat_g": 0.02
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 95,
+      "cholesterol_mg": 103.7,
+      "dietary_fiber_g": 1.34,
+      "protein_g": 6.08,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 233.5,
+      "total_carbs_g": 4.91,
+      "total_fat_g": 5.96,
+      "total_sugars_g": 1.97,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 129,
+      "dietary_fiber": 18,
+      "protein": 45,
+      "saturated_fat": 35,
+      "sodium": 38,
+      "total_carbs": 7,
+      "total_fat": 28
+    },
+    "serving_size_g": 371.75,
+    "total_recipe_weight_g": 1487
+  },
+  {
+    "recipe_name": "Tomato Egg Fried Rice with Crispy Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato_egg_fried_rice_with_crispy_noodles_20250624_023232_40e3dc94.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:32:32.685519000Z",
+    "selected_ingredients": [
+      "egg",
+      "noodle",
+      "tomato",
+      "green onion",
+      "sesame oil",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of vibrant Tomato Egg Fried Rice is presented on a clean, round white porcelain plate. The rice, cooked to a fluffy texture, boasts a light orange-red hue from the infused tomato sauce. Irregular, tender pieces of scrambled egg are evenly distributed throughout the rice, along with soft, diced tomato chunks. Thinly sliced bright green spring onions are generously scattered over the top, providing a fresh contrast. A scattering of golden-brown, crispy fried thin egg noodles adds a crucial textural crunch. The dish is centrally mounded, showcasing a balanced composition of colors and textures. The setting is a modern bistro, featuring a simple wooden table and a cotton napkin. Chopsticks rest beside the plate, and a small, traditional soy sauce dish sits nearby, enhancing the authentic Chinese dining experience. Natural, even lighting illuminates the dish, highlighting its appealing warmth and freshness.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with chopsticks.",
+      "Offer a small dish of light soy sauce or chili oil on the side for dipping."
+    ],
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Cooked cold jasmine rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Thin egg noodles (or rice vermicelli)",
+        "quantity": "100g dry"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Chicken broth or water",
+        "quantity": "60ml"
+      }
+    ],
+    "instructions": [
+      "Prepare noodles: Break thin egg noodles into 5 cm pieces. Heat 30ml vegetable oil in a wok or large pan over medium-high heat. Fry noodles in batches until golden and crispy. Remove. Drain on paper towels.",
+      "Prepare eggs: Whisk 4 eggs with a pinch of salt. Heat 15ml vegetable oil in the same pan over medium heat. Pour in eggs. Scramble quickly until just set but still moist. Transfer to a bowl.",
+      "Prepare ingredients: Dice 3 tomatoes into 1.5 cm cubes. Mince 4 cloves garlic. Slice 4 green onions, separating white and green parts.",
+      "Cook tomato sauce: Add 15ml vegetable oil to the pan. Add minced garlic and white parts of green onions. Sauté 30 seconds until fragrant. Add diced tomatoes, 5g sugar, 5g salt, and 60ml chicken broth. Cook 5-7 minutes, stirring, until tomatoes soften and sauce thickens slightly.",
+      "Cook fried rice: Push tomato sauce to one side of the pan or transfer out. Add 400g cold cooked rice to the empty side. Break up rice with a spatula. Stir-fry 3 minutes. Pour 30ml light soy sauce and 2g white pepper over rice. Mix well with rice.",
+      "Combine: Add scrambled eggs and tomato sauce back into the rice. Stir-fry 2-3 minutes to combine everything thoroughly and heat through.",
+      "Finish: Stir in green parts of green onions. Remove from heat.",
+      "Serve: Serve immediately, garnished with crispy fried noodles."
+    ],
+    "notes": [
+      "Using day-old cooked rice is essential for the best fried rice texture, preventing stickiness.",
+      "Adjust the amount of sugar and salt in the tomato sauce to balance the acidity of the tomatoes to your preference."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 491.8,
+      "cholesterol_mg": 202,
+      "dietary_fiber_g": 2.89,
+      "protein_g": 14.57,
+      "saturated_fat_g": 4.86,
+      "sodium_mg": 787.5,
+      "total_carbs_g": 54.21,
+      "total_fat_g": 24.07,
+      "total_sugars_g": 5.41,
+      "trans_fat_g": 0.06
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.38,
+      "calories": 149.2,
+      "cholesterol_mg": 61.3,
+      "dietary_fiber_g": 0.88,
+      "protein_g": 4.42,
+      "saturated_fat_g": 1.47,
+      "sodium_mg": 238.9,
+      "total_carbs_g": 16.44,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1.64,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.3,
+      "dietary_fiber": 10.3,
+      "protein": 29.1,
+      "saturated_fat": 24.3,
+      "sodium": 34.2,
+      "total_carbs": 19.7,
+      "total_fat": 30.9
+    },
+    "serving_size_g": 329.7,
+    "total_recipe_weight_g": 1318.8
+  },
+  {
+    "recipe_name": "Homestyle Macaroni Bake with Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_macaroni_bake_with_roasted_vegetables_20250624_023133_79aa4eb7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:31:33.551005000Z",
+    "selected_ingredients": [
+      "pasta",
+      "onion",
+      "cheese",
+      "tomato",
+      "bell pepper",
+      "macaroni"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty baked macaroni and cheese is presented in a deep, rustic ceramic bowl on a well-used wooden dining table. The macaroni bake has a golden-brown, bubbly cheese crust on top, indicating its comforting warmth. Beneath the crust, creamy macaroni pasta is visible, generously coated in a rich, orange-yellow cheese sauce. Interspersed throughout are soft, roasted chunks of red bell pepper and halved Roma tomatoes, adding bursts of color – deep red and vibrant orange – and a tender texture contrast. Small, translucent pieces of diced onion are subtly blended into the sauce. The dish is informally plated, allowing the macaroni and vegetables to naturally pile in the bowl. A simple fork rests beside the bowl on a casually placed cloth napkin. Warm, natural light illuminates the scene, suggesting a cozy, lived-in family kitchen atmosphere. The focus is entirely on the inviting, wholesome appearance of the comfort food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad.",
+      "Serve with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Macaroni Pasta",
+    "ingredients": [
+      {
+        "name": "Macaroni pasta",
+        "quantity": "300g"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "3"
+      },
+      {
+        "name": "Sharp cheddar cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Dice the onion. Chop the bell pepper into 2cm pieces. Halve the Roma tomatoes.",
+      "On a baking sheet, toss chopped bell pepper, halved tomatoes, and diced onion with olive oil, salt, and black pepper. Roast for 20 minutes, or until vegetables are tender.",
+      "While vegetables roast, cook macaroni according to package directions until al dente. Drain well.",
+      "In a large saucepan, melt butter over medium heat. Whisk in flour. Cook for 1 minute, stirring constantly, to form a roux.",
+      "Gradually whisk in milk, a little at a time, ensuring no lumps. Continue whisking until sauce thickens.",
+      "Remove saucepan from heat. Stir in shredded cheddar and mozzarella cheese until completely melted and smooth. Season cheese sauce with salt and black pepper.",
+      "Combine cooked macaroni, cheese sauce, and roasted vegetables in a large mixing bowl. Mix thoroughly to combine all ingredients.",
+      "Pour the mixture into a 2-liter baking dish.",
+      "Bake for 25-30 minutes, or until the top is golden brown and bubbly. An internal temperature check is not required for this dish.",
+      "Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 821,
+      "cholesterol_mg": 101,
+      "dietary_fiber_g": 5,
+      "protein_g": 32.4,
+      "saturated_fat_g": 21.7,
+      "sodium_mg": 456,
+      "total_carbs_g": 81.7,
+      "total_fat_g": 38.7,
+      "total_sugars_g": 13.3,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 192,
+      "cholesterol_mg": 23.6,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.6,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 106.7,
+      "total_carbs_g": 19.1,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33.7,
+      "dietary_fiber": 17.9,
+      "protein": 64.8,
+      "saturated_fat": 108.5,
+      "sodium": 19.8,
+      "total_carbs": 29.7,
+      "total_fat": 49.6
+    },
+    "serving_size_g": 427.25,
+    "total_recipe_weight_g": 1709
+  },
+  {
+    "recipe_name": "Pollo Asado con Patatas y Cebolla",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_asado_con_patatas_y_cebolla_20250624_023127_274c841b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:31:27.839199000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo Asado con Patatas y Cebolla is presented on a clean, round white porcelain dinner plate. A golden-brown, crispy-skinned chicken thigh, whole and unsliced, is the focal point. Tender, roasted potato wedges, their skins slightly blistered, are arranged around it. Thick slices of caramelized red onion are interspersed. A rich, glossy pan sauce pools subtly at the base. The dish is garnished with vibrant green, freshly chopped parsley and a bright yellow lemon wedge. Colors are warm and earthy: deep golden chicken, amber potatoes, reddish-purple onions, brightened by green parsley and yellow lemon. The setting is a modern bistro, featuring a simple wooden table surface, a grey cotton napkin, and a plain background. Natural, even lighting highlights textures. A traditional rustic ceramic serving bowl, if used for other portions, could be subtly blurred in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread (e.g., pan de pueblo) to sop up the flavorful pan juices.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar.",
+      "Pair with a glass of dry Spanish red wine, such as Tempranillo."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Smoked paprika (dulce)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Cut potatoes into 2cm thick wedges. Cut red onion into 1.5cm thick slices. Mince garlic.",
+      "Heat 30ml olive oil in a large oven-safe pan over medium-high heat.",
+      "Sear chicken thighs skin-side down for 6-8 minutes until golden brown and crispy. Flip and sear for 2 minutes. Remove chicken from pan.",
+      "Add remaining 30ml olive oil to the pan. Add potato wedges and red onion slices. Sauté for 5-7 minutes until lightly browned.",
+      "Add minced garlic and smoked paprika to the pan. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits.",
+      "Return chicken thighs to the pan, nestling them among the potatoes and onions.",
+      "Transfer pan to the preheated oven. Roast for 25-30 minutes, or until chicken internal temperature reaches 75°C and potatoes are tender.",
+      "Remove from oven. Squeeze fresh lemon juice over the dish.",
+      "Garnish generously with freshly chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust paprika quantity to preference; sweet (dulce) paprika is traditional for this dish."
+    ],
+    "traditional_techniques": [
+      "Searing (sellado) to develop a crispy skin on the chicken.",
+      "Roasting (asado) in the oven for even cooking and flavor development."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 733,
+      "cholesterol_mg": 181,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 44.5,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 832,
+      "total_carbs_g": 40.4,
+      "total_fat_g": 45.3,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 164,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 10,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 186,
+      "total_carbs_g": 9,
+      "total_fat_g": 10.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.2,
+      "dietary_fiber": 25.2,
+      "protein": 89.1,
+      "saturated_fat": 51.2,
+      "sodium": 36.2,
+      "total_carbs": 14.7,
+      "total_fat": 58.1
+    },
+    "serving_size_g": 446,
+    "total_recipe_weight_g": 1785
+  },
+  {
+    "recipe_name": "Beetroot Kofta Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beetroot_kofta_curry_20250624_023040_957f487b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:30:40.905844000Z",
+    "selected_ingredients": [
+      "beet"
+    ],
+    "complexity": "standard",
+    "special_requests": "Indian cuisine",
+    "visual_description": "A single individual portion of Beetroot Kofta Curry is presented on a clean, round white porcelain dinner plate. Three to four spherical koftas, with a golden-brown exterior peeking through, are nestled in a generous pool of deep reddish-maroon gravy. The gravy is smooth, velvety, and glossy, indicating a rich, creamy texture. A delicate swirl of fresh cream adorns the top of the gravy, contrasting with the vibrant color. Finely chopped fresh coriander leaves are sprinkled over the dish, adding a pop of green. The overall composition is balanced and inviting, with moderate negative space. The setting features a simple light wooden table surface. Beside the main plate, a small katori (bowl) holds a portion of fluffy steamed basmati rice. A neatly folded plain white cotton napkin and polished stainless steel Indian flatware (spoon and fork) are placed beside the plate. The background is a blurred, warm-toned restaurant-style setting, maintaining a casual yet refined atmosphere with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with steamed Basmati rice",
+      "Serve with warm Naan bread or Roti",
+      "Accompanied by a side of Raita (yogurt dip)",
+      "Serve with a small portion of Indian pickle"
+    ],
+    "hero_ingredient": "Beetroot",
+    "ingredients": [
+      {
+        "name": "Beetroots",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "100g"
+      },
+      {
+        "name": "Ginger-Garlic Paste (for Kofta)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Green Chillies",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Coriander Powder (for Kofta)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cumin Powder (for Kofta)",
+        "quantity": "2.5g"
+      },
+      {
+        "name": "Garam Masala (for Kofta)",
+        "quantity": "2.5g"
+      },
+      {
+        "name": "Red Chili Powder (for Kofta)",
+        "quantity": "2.5g"
+      },
+      {
+        "name": "Besan (Chickpea Flour)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt (for Kofta)",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Oil (for deep frying)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Onions",
+        "quantity": "250g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ginger-Garlic Paste (for Gravy)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "30g"
+      },
+      {
+        "name": "Coriander Powder (for Gravy)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cumin Powder (for Gravy)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "2.5g"
+      },
+      {
+        "name": "Red Chili Powder (for Gravy)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garam Masala (for Gravy)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Kasuri Methi (Dried Fenugreek Leaves)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh Cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Salt (for Gravy)",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Oil (for gravy)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "200-300ml"
+      },
+      {
+        "name": "Fresh Coriander Leaves",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Boil beetroots and potatoes until tender. Peel beetroots, grate. Mash potatoes.",
+      "In a large bowl, combine grated beetroot, mashed potato, grated paneer, 15g ginger-garlic paste, chopped green chillies, 5g coriander powder, 2.5g cumin powder, 2.5g garam masala, 2.5g red chili powder, 30g besan, and salt. Mix well to form a firm dough.",
+      "Divide mixture into 12-16 equal portions. Roll each portion into a smooth ball.",
+      "Heat 500ml oil in a deep pan to 175°C. Deep fry koftas in batches until golden brown and cooked through. Drain on paper towels. Set aside.",
+      "Soak cashews in warm water for 15 minutes, then blend to a smooth paste with a little water.",
+      "Heat 30ml oil in a heavy-bottomed pan. Add finely chopped onions. Sauté until light golden.",
+      "Add 30g ginger-garlic paste. Sauté 1 minute until aromatic.",
+      "Add tomato puree. Cook, stirring, until oil separates (about 8-10 minutes).",
+      "Add 10g coriander powder, 5g cumin powder, 2.5g turmeric powder, 5g red chili powder, and salt. Sauté for 2-3 minutes until spices are fragrant.",
+      "Add cashew paste. Cook 2 minutes, stirring constantly.",
+      "Add 200-300ml water, bring to a simmer. Cook 5 minutes.",
+      "Stir in 5g garam masala and crushed Kasuri Methi. Add 30ml fresh cream. Simmer 2 minutes.",
+      "Gently add fried koftas to the simmering gravy. Simmer for 2-3 minutes to allow koftas to absorb some gravy. Do not overcook after adding koftas.",
+      "Garnish with fresh coriander leaves and a swirl of fresh cream. Serve hot."
+    ],
+    "traditional_techniques": [
+      "Masala preparation",
+      "Tempering spices",
+      "Deep frying koftas",
+      "Slow simmering gravy"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 741,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 14.5,
+      "saturated_fat_g": 12.4,
+      "sodium_mg": 4958,
+      "total_carbs_g": 41.2,
+      "total_fat_g": 49.7,
+      "total_sugars_g": 16.6,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148,
+      "cholesterol_mg": 6,
+      "dietary_fiber_g": 2,
+      "protein_g": 2.9,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 992,
+      "total_carbs_g": 8.2,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 9,
+      "dietary_fiber": 35,
+      "protein": 29,
+      "saturated_fat": 62,
+      "sodium": 216,
+      "total_carbs": 15,
+      "total_fat": 64
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  }
+]

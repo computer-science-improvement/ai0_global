@@ -1,0 +1,673 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Chocolate-Orange-Coconut Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_chocolate-orange-coconut_sauce_20250624_121353_77f8c523.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:54.036073000Z",
+    "selected_ingredients": [
+      "chicken",
+      "dark chocolate",
+      "almond",
+      "strawberry",
+      "orange",
+      "pineapple",
+      "vanilla",
+      "cocoa powder",
+      "white chocolate",
+      "beer",
+      "cream cheese",
+      "coconut milk",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast, golden-brown and whole, rests centrally on a clean white porcelain plate. A rich, dark brown chocolate-orange-coconut sauce generously covers the chicken. Toasted slivered almonds are scattered over the dish, providing a light brown, crunchy texture. Beside the chicken, a vibrant mound of small-diced fresh strawberries and pineapple adds contrasting red and yellow colors and juicy texture. A subtle, thin drizzle of melted white chocolate may artfully cross the plate for a delicate creamy accent. The plating is balanced and professional, with moderate negative space. The dish is presented on a simple wooden table with standard silver flatware and a cotton napkin, under natural, even lighting in a modern bistro setting. The background is minimal, highlighting the refined dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa or higher)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "15g"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1 large (zest and juice)"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Dark lager or amber ale beer",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "2ml"
+      },
+      {
+        "name": "Blanched slivered almonds",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh strawberries",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "100g"
+      },
+      {
+        "name": "White chocolate",
+        "quantity": "10g (for optional drizzle)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100ml (if needed)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 15ml olive oil in a large oven-safe pan over medium-high heat.",
+      "Sear chicken breasts 4-5 minutes per side until golden brown. Internal temperature must reach 75°C. Remove chicken from pan. Set aside.",
+      "Add remaining 15ml olive oil to the pan. Add diced onion. Sauté 5 minutes until softened.",
+      "Deglaze pan with beer. Scrape up any browned bits. Reduce by half.",
+      "Stir in cocoa powder. Whisk until smooth. Add orange juice, orange zest, coconut milk, and vanilla extract. Bring to a simmer.",
+      "Add dark chocolate. Stir until melted and sauce is smooth. If sauce is too thick, add chicken stock until desired consistency.",
+      "Return chicken to the pan. Simmer gently in the sauce for 5-7 minutes, or until chicken is cooked through (75°C internal temperature).",
+      "While chicken simmers, toast slivered almonds in a dry pan over medium heat for 3-4 minutes until golden. Set aside.",
+      "Small dice fresh strawberries and pineapple. Mix gently.",
+      "For optional white chocolate drizzle: Melt white chocolate in a heatproof bowl over a simmering pot of water, or in a microwave in short bursts. Stir until smooth.",
+      "Plate chicken. Spoon generous amount of sauce over chicken. Garnish with toasted almonds. Place a small mound of diced strawberry and pineapple mix beside the chicken. Drizzle lightly with melted white chocolate if using."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4,
+      "calories": 674.3,
+      "cholesterol_mg": 162.5,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 64.4,
+      "saturated_fat_g": 15.1,
+      "sodium_mg": 435.3,
+      "total_carbs_g": 26.3,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 14.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 154.5,
+      "cholesterol_mg": 37.2,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 14.7,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 99.7,
+      "total_carbs_g": 6,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 25,
+      "protein": 129,
+      "saturated_fat": 75,
+      "sodium": 19,
+      "total_carbs": 10,
+      "total_fat": 43
+    },
+    "serving_size_g": 436.5,
+    "total_recipe_weight_g": 1746
+  },
+  {
+    "recipe_name": "Rustic Chicken and Tomato Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_tomato_rigatoni_20250624_121352_d429b0ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:52.919697000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Rustic Chicken and Tomato Rigatoni is presented in a deep, clean white porcelain bowl, centrally placed on a simple wooden table. The rigatoni pasta is coated in a rich, chunky red tomato sauce. Tender, golden-brown chicken thighs, cut into thick, irregular chunks, are nestled among the pasta, showcasing their rustic texture. Bright red burst cherry tomatoes are visible throughout the sauce. The dish is garnished with vibrant green fresh basil leaves, loosely torn and scattered over the top, alongside a generous dusting of finely grated white Parmesan cheese. The composition is balanced, allowing for moderate negative space around the edges of the bowl. A neatly folded cotton napkin rests beside the plate. The scene is illuminated by natural, even lighting, creating a warm, inviting ambiance. A traditional Italian bread roll and a wine glass are subtly blurred in the background, adding to the casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce.",
+      "Pair with a dry red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1/2 cup"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large, deep skillet or Dutch oven over medium-high heat.",
+      "Sear chicken thighs for 4-5 minutes per side until deeply golden brown. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Cook for 5-7 minutes until softened and translucent.",
+      "Add minced garlic, dried oregano, and red pepper flakes. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a simmer.",
+      "Return seared chicken thighs to the skillet. Nestled them into the sauce.",
+      "Add whole cherry tomatoes to the sauce. Cover and simmer for 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "While chicken simmers, cook rigatoni according to package directions until al dente. Drain pasta, reserving 125 ml of pasta water.",
+      "Remove chicken from sauce. Roughly chop chicken into thick chunks. Return chopped chicken to the sauce.",
+      "Add cooked rigatoni to the sauce with the chicken. Toss to combine. If sauce is too thick, add reserved pasta water until desired consistency.",
+      "Stir in half of the fresh basil leaves. Taste and adjust seasoning.",
+      "Serve hot, garnished with remaining fresh basil and grated Parmesan cheese."
+    ],
+    "notes": [
+      "Using bone-in, skin-on chicken thighs can add more flavor, but increase cooking time and remove skin before chopping for serving."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 815.3,
+      "cholesterol_mg": 152.1,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 52.7,
+      "saturated_fat_g": 7.2,
+      "sodium_mg": 412.9,
+      "total_carbs_g": 92.9,
+      "total_fat_g": 25.5,
+      "total_sugars_g": 11.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129.6,
+      "cholesterol_mg": 24.2,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.4,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 65.6,
+      "total_carbs_g": 14.8,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50.7,
+      "dietary_fiber": 27.9,
+      "protein": 105.3,
+      "saturated_fat": 35.8,
+      "sodium": 18,
+      "total_carbs": 33.8,
+      "total_fat": 32.7
+    },
+    "serving_size_g": 629,
+    "total_recipe_weight_g": 2516
+  },
+  {
+    "recipe_name": "Homestyle Chicken and Potato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_chicken_and_potato_bake_20250624_121347_23c02245.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:47.778185000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bread",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous individual portion of Homestyle Chicken and Potato Bake is presented on a simple, off-white ceramic dinner plate. A golden-brown, crusted roasted chicken thigh sits centrally. Roasted potato wedges, with crisped skins and fluffy interiors, are arranged beside it. Halved, burst cherry tomatoes are scattered throughout, adding vibrant red color. A light dusting of golden-brown breadcrumbs adheres to the chicken and vegetables. The dish has a natural, unarranged look, as if served directly from the baking tray, with components casually touching. The warm color palette features golden browns, deep reds, and green herbs. The plate rests on a well-used wooden dining table, illuminated by warm, soft kitchen lighting. A folded cloth napkin and everyday flatware complete the homely scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 boneless, skinless (approx. 600g total)"
+      },
+      {
+        "name": "Small potatoes",
+        "quantity": "800g, scrubbed and quartered"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400g, halved"
+      },
+      {
+        "name": "Stale bread",
+        "quantity": "100g, torn into pieces"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 tablespoon, chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tablespoon, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Grated Parmesan cheese (optional)",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "In a large bowl, toss potato quarters with 30ml olive oil, 0.5 teaspoon salt, 0.25 teaspoon pepper, 0.5 tablespoon rosemary, and 0.5 tablespoon thyme.",
+      "Spread potatoes in a single layer on a large baking tray. Roast for 20 minutes.",
+      "While potatoes roast, pat chicken thighs dry. Season chicken with remaining 0.5 teaspoon salt, 0.25 teaspoon pepper, 0.5 tablespoon rosemary, and 0.5 tablespoon thyme.",
+      "In a food processor, combine stale bread, minced garlic, remaining 30ml olive oil, and optional Parmesan cheese. Pulse until coarse breadcrumbs form.",
+      "Remove baking tray from oven. Add chicken thighs and halved cherry tomatoes to the tray with the potatoes.",
+      "Sprinkle breadcrumbs evenly over the chicken, potatoes, and tomatoes.",
+      "Return tray to oven. Bake for another 25-30 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender.",
+      "Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.8,
+      "calories": 654.1,
+      "cholesterol_mg": 141.6,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 46.6,
+      "saturated_fat_g": 7,
+      "sodium_mg": 852.3,
+      "total_carbs_g": 54,
+      "total_fat_g": 29.8,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 126.4,
+      "cholesterol_mg": 27.3,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 164.7,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 24,
+      "protein": 93,
+      "saturated_fat": 35,
+      "sodium": 37,
+      "total_carbs": 20,
+      "total_fat": 38
+    },
+    "serving_size_g": 517.6,
+    "total_recipe_weight_g": 2070.2
+  },
+  {
+    "recipe_name": "Spanish-Style Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish-style_chicken_and_rice_20250624_121346_bc487bcc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:47.345794000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish-Style Chicken and Rice is presented on a clean white porcelain dinner plate. The saffron-infused golden bomba rice forms a slightly mounded base, interspersed with vibrant red and green diced bell peppers and bright green peas. Substantial, golden-brown seared chicken chunks are nestled atop and within the rice. A generous sprinkle of fresh, chopped parsley provides a fresh green contrast. The plating is clean and inviting, with moderate negative space. The plate rests on a simple wooden table, accompanied by a silver fork and knife on a white cotton napkin. Natural, even lighting illuminates the dish in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Bomba rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (approx. 150 g)"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium (approx. 180 g)"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 medium (approx. 180 g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "200 g (drained weight)"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón dulce)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.1 g"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Season with salt and pepper. Cut chicken thighs into 4 cm chunks.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion and bell peppers to the pot. Sauté for 8-10 minutes until softened.",
+      "Add minced garlic, smoked paprika, and diced tomatoes. Cook for 2 minutes, stirring constantly.",
+      "Pour in white wine. Scrape the bottom of the pot to deglaze. Cook until wine is almost evaporated.",
+      "Stir in the bomba rice. Cook for 2 minutes, stirring to coat the grains.",
+      "Add chicken broth and saffron (steeped in 30 ml warm broth). Bring to a simmer.",
+      "Return seared chicken chunks to the pot. Stir gently.",
+      "Reduce heat to low, cover the pot, and cook for 18-20 minutes, or until rice is tender and liquid is absorbed. Do not stir during cooking.",
+      "Remove from heat. Stir in frozen peas. Cover and let rest for 5 minutes.",
+      "Fluff the rice gently with a fork. Check seasoning and adjust.",
+      "Serve immediately, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best results, use good quality smoked paprika and authentic saffron threads."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 674.26,
+      "cholesterol_mg": 202.5,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 41.84,
+      "saturated_fat_g": 4.56,
+      "sodium_mg": 1449.63,
+      "total_carbs_g": 74.04,
+      "total_fat_g": 20.86,
+      "total_sugars_g": 6.98,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106.73,
+      "cholesterol_mg": 32.05,
+      "dietary_fiber_g": 0.68,
+      "protein_g": 6.62,
+      "saturated_fat_g": 0.72,
+      "sodium_mg": 229.46,
+      "total_carbs_g": 11.72,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.5,
+      "dietary_fiber": 15.36,
+      "protein": 83.68,
+      "saturated_fat": 22.8,
+      "sodium": 63.03,
+      "total_carbs": 26.92,
+      "total_fat": 26.74
+    },
+    "serving_size_g": 631.75,
+    "total_recipe_weight_g": 2527
+  },
+  {
+    "recipe_name": "Creamy Mushroom and Cheese Risotto with Crispy Potato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_mushroom_and_cheese_risotto_with_crispy_potato_20250624_121346_e4ebe250.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:47.108822000Z",
+    "selected_ingredients": [
+      "potato",
+      "rice",
+      "mushroom",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy, pale golden risotto is naturally spread on a clean white porcelain dinner plate, showcasing its fluid, unforced texture. Visible flecks of deeply browned, thinly sliced mushrooms are integrated throughout the risotto, adding earthy tones. Centered atop the risotto is a small, artfully placed mound of uniformly diced (5mm cubes) golden-brown crispy potato, providing a striking textural contrast. A vibrant sprinkle of finely chopped fresh parsley adorns the dish, adding a pop of bright green. The plating is clean and professional, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface and a white cotton napkin placed beside the plate. Natural, even lighting illuminates the dish, highlighting its inviting colors and textures, with a minimal, unobtrusive background.",
+    "number_of_servings": 1,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "90 g"
+      },
+      {
+        "name": "Mixed mushrooms (e.g., cremini, shiitake)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Small potato",
+        "quantity": "1"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable broth, warm",
+        "quantity": "450 ml"
+      },
+      {
+        "name": "Small shallot",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Dice potato into 5mm cubes. Thinly slice mushrooms. Finely mince shallot and garlic. Warm vegetable broth in a separate pot.",
+      "Heat 1 tbsp olive oil in a small non-stick pan over medium-high heat. Add potato cubes. Cook 8-10 minutes, stirring occasionally, until golden brown and crispy. Season with a pinch of salt. Remove and set aside on paper towel.",
+      "In a medium saucepan, melt 5g butter with a drizzle of olive oil over medium heat. Add minced shallot. Sauté 2-3 minutes until translucent. Add minced garlic. Cook 1 minute until fragrant.",
+      "Add sliced mushrooms to the saucepan. Cook 5-7 minutes, stirring, until softened and browned.",
+      "Add Arborio rice to the saucepan. Stir 1 minute until the rice edges are translucent.",
+      "If using, pour in white wine. Stir until completely absorbed.",
+      "Add one ladle of warm vegetable broth to the rice. Stir constantly until absorbed. Continue adding broth, one ladle at a time, stirring until each addition is absorbed before adding the next.",
+      "Cook risotto for 18-20 minutes total, or until rice is creamy and al dente. It should still be slightly fluid.",
+      "Remove saucepan from heat. Stir in remaining 10g butter and grated Parmesan cheese. Season with salt and black pepper to taste. Stir vigorously to create a creamy texture (mantecare).",
+      "Ladle the creamy risotto onto a warm white porcelain dinner plate. Top with the crispy potato cubes. Garnish generously with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 927,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 27.7,
+      "saturated_fat_g": 15.1,
+      "sodium_mg": 1421,
+      "total_carbs_g": 117,
+      "total_fat_g": 35.9,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 87.8,
+      "cholesterol_mg": 5.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 2.6,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 134.7,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19.7,
+      "dietary_fiber": 26.1,
+      "protein": 55.4,
+      "saturated_fat": 75.5,
+      "sodium": 61.8,
+      "total_carbs": 42.5,
+      "total_fat": 46
+    },
+    "serving_size_g": 1055.5,
+    "total_recipe_weight_g": 1055.5
+  }
+]

@@ -1,0 +1,640 @@
+[
+  {
+    "recipe_name": "Sichuan Braised Duck with Dried Chilies",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sichuan_braised_duck_with_dried_chilies_20250723_210256_478e6238.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T21:02:57.467632000Z",
+    "selected_ingredients": [
+      "duck",
+      "dried chili"
+    ],
+    "complexity": "simple",
+    "special_requests": "Asian cuisine",
+    "visual_description": "A single, generous portion of Sichuan Braised Duck rests on a simple, round ceramic plate with a slight rim. Two tender duck leg quarters, their skin a deep reddish-brown from braising, are nestled together. The rich, glossy dark brown sauce coats the duck and pools around it, flecked with bright red dried Sichuan chilies and segments of vibrant green spring onion. Visible aromatics like star anise pods and ginger slices are scattered within the sauce. The duck meat appears succulent, almost falling off the bone. The dish is presented on a well-used wooden dining table, alongside a small bowl of fluffy white steamed rice and a pair of traditional wooden chopsticks. The setting is warm and inviting, illuminated by soft, natural kitchen light, evoking a comforting family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed white rice.",
+      "Offer a side of blanched green vegetables (e.g., bok choy) dressed with a little soy sauce and sesame oil.",
+      "Serve in individual portions with chopsticks and a ceramic soup spoon for the sauce."
+    ],
+    "hero_ingredient": "Duck",
+    "ingredients": [
+      {
+        "name": "Duck leg quarters",
+        "quantity": "4 (approx. 200-250g each)"
+      },
+      {
+        "name": "Dried Sichuan chilies",
+        "quantity": "20-30g"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "50g, sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, smashed"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "3 stalks, cut into 5cm lengths"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Rock sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "3 pods"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (5cm piece)"
+      },
+      {
+        "name": "Sichuan peppercorns",
+        "quantity": "5g"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "750ml - 1 litre"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      }
+    ],
+    "instructions": [
+      "Place duck leg quarters in a large pot. Cover with cold water. Bring to a boil. Skim off impurities. Boil for 5 minutes. Drain duck. Rinse under cold water. Pat dry.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat. Add duck skin-side down. Sear until golden brown and fat renders, about 5-7 minutes. Flip and sear other side briefly. Remove duck.",
+      "Add sliced ginger, smashed garlic, dried Sichuan chilies, star anise, cinnamon stick, and Sichuan peppercorns to the pot. Stir-fry until fragrant, about 1-2 minutes.",
+      "Return duck to the pot. Add Shaoxing wine, light soy sauce, dark soy sauce, and rock sugar. Stir to coat duck.",
+      "Pour in water or chicken stock until duck is mostly submerged. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 1.5 to 2 hours, or until duck is very tender.",
+      "Remove cover. Increase heat to medium. Add spring onion lengths. Simmer for 10-15 minutes, allowing sauce to thicken slightly. Taste and adjust salt if needed.",
+      "Drizzle with sesame oil before serving."
+    ],
+    "traditional_techniques": [
+      "Blanching (Chao Shui)",
+      "Hongshao (Red Braising)",
+      "Stir-frying aromatics"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.9,
+      "calories": 943.4,
+      "cholesterol_mg": 202.5,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 48.3,
+      "saturated_fat_g": 23.4,
+      "sodium_mg": 2035.6,
+      "total_carbs_g": 17.1,
+      "total_fat_g": 74.2,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 181.9,
+      "cholesterol_mg": 39.1,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 9.3,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 392.6,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 14.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.5,
+      "dietary_fiber": 12.7,
+      "protein": 96.7,
+      "saturated_fat": 116.9,
+      "sodium": 88.5,
+      "total_carbs": 6.2,
+      "total_fat": 95.2
+    },
+    "serving_size_g": 518.5,
+    "total_recipe_weight_g": 2074
+  },
+  {
+    "recipe_name": "Pasta with Seared Beef Chunks and Broccoli Rabe",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_with_seared_beef_chunks_and_broccoli_rabe_20250723_205927_2bb24553.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T20:59:27.969845000Z",
+    "selected_ingredients": [
+      "pasta",
+      "broccoli rabe",
+      "beef"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty, single portion of pasta, seared beef chunks, and vibrant green broccoli rabe is served in a deep, rustic off-white ceramic bowl. The orecchiette pasta is coated lightly with a savory sauce. Irregularly cut, well-browned beef chunks are nestled among the pasta and tender broccoli rabe florets and stems. A scattering of red chili flakes adds small pops of color. The dish has a natural, unarranged appearance, as if just served from the stove. The bowl sits on a warm, well-used wooden kitchen table. A simple linen napkin is folded casually beside the bowl. Soft, inviting light from above illuminates the food, emphasizing its comforting textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with warm, crusty Italian bread for dipping.",
+      "Offer a simple green salad dressed with olive oil and red wine vinegar.",
+      "Serve with extra grated Parmesan cheese on the side."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "beef chuck",
+        "quantity": "600g"
+      },
+      {
+        "name": "orecchiette pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "broccoli rabe",
+        "quantity": "500g"
+      },
+      {
+        "name": "garlic",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "dried chili flakes",
+        "quantity": "5ml"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "beef broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil.",
+      "Add trimmed broccoli rabe to boiling water. Blanch for 2 minutes. Remove with tongs. Drain well.",
+      "Add orecchiette to the same boiling water. Cook according to package directions until al dente. Reserve 250ml pasta water before draining. Drain pasta.",
+      "While pasta cooks, heat 30ml olive oil in a large skillet over medium-high heat.",
+      "Season beef chunks with salt and pepper. Add beef to hot skillet. Sear until well-browned on all sides. Do not overcrowd the pan; cook in batches if necessary. Remove beef from skillet.",
+      "Reduce heat to medium. Add remaining 15ml olive oil to the skillet. Add sliced garlic and chili flakes. Sauté for 1 minute until fragrant. Do not brown garlic.",
+      "Add blanched broccoli rabe to the skillet. Sauté for 3 minutes.",
+      "Return seared beef chunks to the skillet.",
+      "Add cooked orecchiette to the skillet. Pour in reserved pasta water (or beef broth). Toss all ingredients to combine.",
+      "Simmer for 2 minutes, allowing sauce to thicken slightly. Season with additional salt and pepper if needed.",
+      "Serve immediately. Top with grated Parmesan cheese."
+    ],
+    "notes": [
+      "Blanching broccoli rabe removes some bitterness and ensures even cooking.",
+      "Sear beef in batches to achieve a good crust.",
+      "Reserved pasta water helps create a silky sauce that clings to the pasta."
+    ],
+    "traditional_techniques": [
+      "Sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 803,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 6.84,
+      "protein_g": 51.3,
+      "saturated_fat_g": 9.02,
+      "sodium_mg": 294.91,
+      "total_carbs_g": 80.78,
+      "total_fat_g": 30.63,
+      "total_sugars_g": 4.27,
+      "trans_fat_g": 0.75
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 177,
+      "cholesterol_mg": 23.19,
+      "dietary_fiber_g": 1.51,
+      "protein_g": 11.33,
+      "saturated_fat_g": 1.99,
+      "sodium_mg": 65.11,
+      "total_carbs_g": 17.84,
+      "total_fat_g": 6.76,
+      "total_sugars_g": 0.94,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 24.4,
+      "protein": 102.6,
+      "saturated_fat": 45.1,
+      "sodium": 12.8,
+      "total_carbs": 29.4,
+      "total_fat": 39.3
+    },
+    "serving_size_g": 452.88,
+    "total_recipe_weight_g": 1811.5
+  },
+  {
+    "recipe_name": "Spanish Garlic Potato and Chorizo Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_garlic_potato_and_chorizo_stew_20250723_205555_9214a077.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T20:55:56.036750000Z",
+    "selected_ingredients": [
+      "potato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a shallow white ceramic bowl, showcasing its rustic yet refined character. Hearty 2cm potato cubes, tender and slightly softened from simmering, are interspersed with vibrant crimson 1cm slices of pan-seared chorizo, their edges subtly crisped. Diced red bell pepper and onion pieces add pops of orange-red, creating a warm color palette against the rich, reddish-brown tomato-based broth. A subtle sheen of rendered chorizo oil and olive oil glistens on the surface. The stew's texture is comforting and robust, with chunky elements. A generous sprinkle of fresh, finely chopped green parsley contrasts sharply, providing a fresh, aromatic finish. The bowl is centered on a simple wooden table, accompanied by a folded white cotton napkin and a standard set of silver flatware. Natural, even light illuminates the dish from above, highlighting its inviting warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "Offer a simple green salad as an accompaniment."
+    ],
+    "hero_ingredient": "Chorizo",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "600g, peeled, cut into 2cm cubes"
+      },
+      {
+        "name": "Chorizo",
+        "quantity": "250g, semi-cured, sliced into 1cm thick rounds"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, thinly sliced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced (1.5cm cubes)"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1, diced (1.5cm cubes)"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Smoked Paprika (Pimentón de la Vera)",
+        "quantity": "1.5 teaspoons"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "2 tablespoons, chopped for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium heat.",
+      "Add sliced chorizo. Cook until crispy and fat is rendered, about 5-7 minutes. Remove chorizo with a slotted spoon. Set aside.",
+      "Add diced onion and red bell pepper to the pot with chorizo fat. Sauté until softened, about 8-10 minutes.",
+      "Add thinly sliced garlic and smoked paprika. Cook for 1 minute until fragrant. Do not burn garlic.",
+      "Stir in 2cm potato cubes and canned diced tomatoes. Mix well.",
+      "Pour in chicken broth and add bay leaf. Bring to a simmer.",
+      "Reduce heat to low, cover, and cook for 20-25 minutes, or until potatoes are tender. Stir occasionally.",
+      "Return cooked chorizo slices to the pot. Simmer uncovered for 5 minutes to allow flavors to meld.",
+      "Season with salt and black pepper to taste.",
+      "Remove bay leaf before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "The quality of smoked paprika significantly impacts flavor. Use Pimentón de la Vera for authentic taste."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 525,
+      "cholesterol_mg": 56,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 20.5,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1283,
+      "total_carbs_g": 38.4,
+      "total_fat_g": 32.3,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 4.5,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 279,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19,
+      "dietary_fiber": 23,
+      "protein": 41,
+      "saturated_fat": 53,
+      "sodium": 56,
+      "total_carbs": 14,
+      "total_fat": 41
+    },
+    "serving_size_g": 460,
+    "total_recipe_weight_g": 1840
+  },
+  {
+    "recipe_name": "Pan-Seared Pork Loin with Creamy Dijon Sauce, Roasted Potatoes, and Cabbage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_pork_loin_with_creamy_dijon_sauce%2C_roasted_potatoes%2C_and_cabbage_20250723_201322_30fe0c3b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T20:13:23.556324000Z",
+    "selected_ingredients": [
+      "pork",
+      "mustard",
+      "cabbage",
+      "potato",
+      "cheese",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A clean white porcelain dinner plate holds a refined individual portion. Two thick, golden-brown pan-seared pork medallions are placed prominently, exhibiting a beautiful crust and tender, juicy interior. Beside the pork, a thoughtful arrangement of roasted potato wedges, their skins crisped and interiors tender, along with caramelized roasted green cabbage wedges. Scattered amongst the vegetables are vibrant, glossy roasted cherry tomato halves, adding a pop of red. A rich, creamy Dijon sauce is generously spooned over the pork and artfully drizzled onto the plate, its pale yellow hue contrasting with the other elements. A sprinkle of fresh, bright green chopped parsley provides a final touch of color and freshness. The overall presentation is balanced and inviting, with moderate negative space. The dish sits on a simple wooden table surface with a cotton napkin placed beside it, under natural, even lighting. Traditional flatware is neatly arranged.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve immediately."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork Loin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Green Cabbage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Gruyere Cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Prepare vegetables: Cut potatoes into wedges or halves. Cut cabbage into 4-6 wedges. Halve cherry tomatoes.",
+      "Toss potatoes and cabbage with 30ml olive oil, salt, and pepper on a baking sheet. Roast for 25-30 minutes, or until tender and slightly caramelized. Add cherry tomatoes to the baking sheet for the last 10 minutes of roasting.",
+      "Season pork loin pieces generously with salt and pepper.",
+      "Heat remaining 30ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear pork loin pieces for 4-5 minutes per side until golden brown.",
+      "Transfer skillet with pork to the preheated oven. Roast for 10-15 minutes, or until internal temperature reaches 68-70°C. Remove pork from oven, transfer to a cutting board, tent with foil. Let rest for 5-10 minutes (temperature will rise to 75°C).",
+      "While pork rests, make the sauce: Return skillet to medium heat. Add butter. Sauté minced shallot for 2 minutes until softened. Add minced garlic, cook 30 seconds until fragrant.",
+      "Deglaze skillet with chicken stock, scraping up any browned bits. Bring to a simmer.",
+      "Stir in Dijon mustard and heavy cream. Simmer for 3-5 minutes, stirring occasionally, until sauce thickens slightly. Season with salt and pepper to taste.",
+      "Optional: If using cheese, sprinkle shredded Gruyere over the roasted potatoes and cabbage during the last 5 minutes of roasting, or just after removing from oven to melt slightly.",
+      "Slice pork loin into thick medallions or serve as whole pieces.",
+      "Plate: Arrange roasted potatoes, cabbage, and cherry tomatoes on plates. Place pork medallions/chunks beside vegetables. Spoon generous amount of creamy Dijon sauce over pork. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 700,
+      "cholesterol_mg": 172,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 45.8,
+      "saturated_fat_g": 18.1,
+      "sodium_mg": 385,
+      "total_carbs_g": 35,
+      "total_fat_g": 44.1,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.3,
+      "cholesterol_mg": 30.3,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.1,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 67.8,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 24,
+      "protein": 92,
+      "saturated_fat": 91,
+      "sodium": 17,
+      "total_carbs": 13,
+      "total_fat": 57
+    },
+    "serving_size_g": 567.8,
+    "total_recipe_weight_g": 2271
+  },
+  {
+    "recipe_name": "Hazelnut & Coconut Entremet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hazelnut_%26_coconut_entremet_20250723_200044_71e9da5e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T20:00:45.549870000Z",
+    "selected_ingredients": [
+      {
+        "name": "hazelnut"
+      },
+      {
+        "name": "coconut vinegar"
+      },
+      {
+        "name": "brown sugar"
+      },
+      {
+        "name": "cinnamon"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Vietnamese",
+    "visual_description": "A single, impeccably cut slice of Hazelnut & Coconut Entremet stands tall on a pristine white porcelain dessert plate with a subtle gold rim. The slice reveals distinct, precise layers: a thin, golden-brown Hazelnut Dacquoise base; a clear, shimmering, almost translucent Coconut Vinegar Gelee; and a creamy, pale caramel-toned Brown Sugar Mousse. The entire entremet is enveloped in a glossy, reflective Cinnamon Mirror Glaze, a warm, inviting amber hue. The glaze is perfectly smooth, highlighting the architectural precision of the dessert. A few perfectly toasted, whole hazelnuts are artfully placed on the plate next to the slice, providing a textural contrast. Abundant negative space surrounds the dessert, emphasizing its minimalist elegance. The lighting is dramatic, casting soft shadows that enhance depth and texture. The background is a clean, white marble surface, reinforcing the haute patisserie setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Pastry",
+    "hero_ingredient": "Hazelnut",
+    "ingredients": [
+      {
+        "name": "Egg whites",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Hazelnut flour",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "6 g"
+      },
+      {
+        "name": "Coconut vinegar",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "20 ml"
+      },
+      {
+        "name": "Brown sugar (light)",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "White chocolate",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (small)"
+      },
+      {
+        "name": "Glucose syrup",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Condensed milk",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Toasted hazelnuts",
+        "quantity": "20 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Hazelnut Dacquoise: Preheat oven to 170°C. Sift hazelnut flour and powdered sugar. Whip egg whites with granulated sugar to stiff peaks. Gently fold in dry ingredients. Pipe a 16 cm disc onto parchment paper. Bake 15-18 minutes until golden. Cool completely.",
+      "Prepare Coconut Vinegar Gelee: Bloom 3g gelatin sheets in cold water. Heat coconut vinegar and 20ml water until warm. Squeeze excess water from gelatin. Dissolve gelatin in warm vinegar mixture. Pour into a 14 cm silicone disc mold. Freeze until firm, about 1 hour.",
+      "Prepare Brown Sugar Mousse: Bloom remaining 3g gelatin sheets in cold water. In a saucepan, whisk egg yolks with brown sugar. Gradually add 50ml heavy cream. Cook over low heat, stirring constantly, until thickened (Nappe consistency, 82°C). Squeeze excess water from gelatin. Stir gelatin into warm custard until dissolved. Cool custard to 25°C. Whip remaining 250ml heavy cream to soft peaks. Gently fold cream into cooled custard.",
+      "Assemble Entremet: Place the cooled dacquoise disc in an 18 cm entremet ring lined with acetate. Pour half of the brown sugar mousse over the dacquoise. Gently place the frozen coconut vinegar gelee disc on top of the mousse. Cover with remaining brown sugar mousse. Smooth the top. Freeze for at least 6 hours, preferably overnight, until completely solid.",
+      "Prepare Cinnamon Mirror Glaze: Bloom white chocolate and 1g gelatin sheet in cold water. Heat glucose syrup, condensed milk, 50ml water, and cinnamon stick in a saucepan. Bring to a simmer. Remove cinnamon stick. Pour hot mixture over white chocolate and bloomed gelatin. Stir until smooth. Emulsify with an immersion blender, avoiding air bubbles. Strain glaze. Cool to 35°C for optimal pouring.",
+      "Glaze and Finish: Remove frozen entremet from ring and acetate. Place on a wire rack over a baking sheet. Pour warm glaze evenly over the entire entremet. Let excess drip. Carefully transfer entremet to a serving plate. Garnish with a few toasted hazelnuts. Refrigerate for at least 2 hours to thaw and set glaze."
+    ]
+  }
+]

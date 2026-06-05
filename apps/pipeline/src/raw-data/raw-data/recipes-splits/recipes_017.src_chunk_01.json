@@ -1,0 +1,687 @@
+[
+  {
+    "recipe_name": "Berenjena Confitada con Piloncillo y Crema de Azahar",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_berenjena_confitada_con_piloncillo_y_crema_de_azahar_20250626_101305_861d9035.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:13:06.101325000Z",
+    "selected_ingredients": [
+      "eggplant"
+    ],
+    "complexity": "standard",
+    "special_requests": "mexican cuisine",
+    "visual_description": "A single portion of Berenjena Confitada con Piloncillo y Crema de Azahar is elegantly presented on a clean, round white porcelain dessert plate. A small, artfully mounded cluster of glistening, deep amber-brown confited eggplant cubes (approx. 2cm) forms the centerpiece, their surfaces reflecting the syrup's richness. Beside the eggplant, a soft, off-white swirl of delicate orange blossom crema provides a creamy contrast. A single, golden-brown, crisp tortilla shard stands vertically, adding height and a textural counterpoint. Two fresh, vibrant green mint leaves are strategically placed to introduce a pop of color and freshness. The arrangement is balanced and professional, with ample negative space around the elements. The plate rests on a smooth, light wooden table surface, suggesting a modern bistro setting. A simple, neatly folded white cotton napkin is positioned beside the plate. Natural, even lighting from the side creates soft, appealing shadows, highlighting the dish's textures and colors. The background is minimally blurred, maintaining focus on the food while implying a refined but approachable restaurant environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve alongside a small glass of chilled Café de Olla.",
+      "Offer a small scoop of vanilla bean ice cream as an alternative to the crema."
+    ],
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Medium globe eggplant",
+        "quantity": "1 (approx. 400g)"
+      },
+      {
+        "name": "Piloncillo (dark brown sugar cone)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (7cm long)"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Orange peel",
+        "quantity": "1 strip (from half an orange)"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Orange blossom water",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "4-6 small"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Peel eggplant completely. Cut into 2 cm cubes. Place in a colander. Sprinkle with a pinch of salt. Let sit for 30 minutes to drain excess moisture. Rinse well. Pat dry with paper towels.",
+      "Break piloncillo into smaller pieces. In a saucepan, combine piloncillo, water, cinnamon stick, star anise, and orange peel. Bring to a simmer over medium heat. Stir until piloncillo dissolves completely. Reduce heat to low.",
+      "Add eggplant cubes to the piloncillo syrup. Ensure eggplant is submerged. If not, add a little more water. Simmer gently for 45-60 minutes. Cook until eggplant is very tender and translucent, absorbing the syrup's color and flavor. Remove from heat. Let eggplant cool in the syrup.",
+      "For the crema, chill a mixing bowl and whisk attachment. Pour heavy cream into the cold bowl. Add powdered sugar and orange blossom water. Whip on medium-high speed until soft peaks form. Do not over-whip.",
+      "Preheat oven to 160°C (325°F). Cut each corn tortilla into two or three triangular or rectangular shards. Place on a baking sheet. Bake for 8-10 minutes. Cook until crisp and lightly golden. Watch carefully to prevent burning.",
+      "To serve, gently lift confited eggplant pieces from the syrup. Arrange a small, mounded cluster of eggplant on each of four white dessert plates. Place a dollop or swirl of orange blossom crema beside the eggplant. Insert one crisp tortilla shard vertically into the eggplant or crema for height. Garnish with one or two fresh mint leaves."
+    ],
+    "notes": [
+      "This dessert offers a unique sweet application for eggplant, transforming it into a tender, aromatic confection through traditional Mexican candying techniques.",
+      "Ensure eggplant is thoroughly drained and patted dry after salting to prevent bitterness and allow better syrup absorption."
+    ],
+    "traditional_techniques": [
+      "Enmielado (candying in piloncillo syrup)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 56.1,
+      "calories": 444,
+      "cholesterol_mg": 65,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 2.9,
+      "saturated_fat_g": 11.6,
+      "sodium_mg": 154,
+      "total_carbs_g": 70.4,
+      "total_fat_g": 18.7,
+      "total_sugars_g": 61.5,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 15.1,
+      "calories": 119,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 0.8,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 41,
+      "total_carbs_g": 18.9,
+      "total_fat_g": 5,
+      "total_sugars_g": 16.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 22,
+      "dietary_fiber": 15,
+      "protein": 6,
+      "saturated_fat": 58,
+      "sodium": 7,
+      "total_carbs": 26,
+      "total_fat": 24
+    },
+    "serving_size_g": 373,
+    "total_recipe_weight_g": 1492
+  },
+  {
+    "recipe_name": "Creamy Chicken and Vegetable Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_vegetable_risotto_20250626_101215_74d45c93.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:12:15.659835000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "cottage cheese",
+      "broccoli",
+      "bell pepper",
+      "mozzarella",
+      "rice",
+      "onion",
+      "pasta",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a single, generous portion of creamy, free-flowing risotto, served in a clean white porcelain bowl. The risotto, a pale, inviting beige, is studded with vibrant green broccoli florets and bright red bell pepper cubes, contrasting beautifully against the creamy rice. Succulent, golden-brown chicken chunks are interspersed throughout the risotto, showcasing their seared exterior. Fresh basil leaves are gently mixed in and scattered over the top, providing a pop of fresh green. The texture is smooth and velvety, indicating the creamy consistency. The bowl sits on a simple light wooden table surface, accompanied by a folded cotton napkin and standard flatware. Natural, even lighting highlights the dish's warmth and freshness, with a softly blurred bistro-style background creating a casual yet refined atmosphere. The overall presentation is inviting and approachable, with moderate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with freshly grated Parmesan cheese.",
+      "A side of crusty bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mozzarella",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large, deep pan or Dutch oven over medium heat.",
+      "Add diced chicken. Cook until browned and cooked through, about 6-8 minutes. Internal temperature should reach 75°C. Remove chicken from pan and set aside.",
+      "Add diced onion to the same pan. Sauté until translucent, about 5 minutes. Add minced garlic and diced bell pepper. Cook for another 3-4 minutes until softened.",
+      "Add Arborio rice to the pan. Stir for 2 minutes until rice grains are coated and slightly translucent at the edges.",
+      "Pour in white wine. Stir constantly until liquid is absorbed.",
+      "Begin adding warm chicken broth, one ladleful at a time. Stir continuously. Allow each ladleful to be almost fully absorbed before adding the next. This process will take about 20-25 minutes.",
+      "After about 10 minutes of adding broth, add broccoli florets to the risotto. Continue adding broth and stirring.",
+      "When risotto is creamy and rice is al dente, stir in cottage cheese and shredded mozzarella. Stir until cheeses are melted and incorporated.",
+      "Stir in cooked chicken and chopped fresh basil. Season with salt and black pepper to taste.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Risotto method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 869.3,
+      "cholesterol_mg": 153.9,
+      "dietary_fiber_g": 5.09,
+      "protein_g": 79.79,
+      "saturated_fat_g": 8.5,
+      "sodium_mg": 2323.3,
+      "total_carbs_g": 83.15,
+      "total_fat_g": 22.4,
+      "total_sugars_g": 7.32,
+      "trans_fat_g": 0.24
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113.2,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 0.66,
+      "protein_g": 10.39,
+      "saturated_fat_g": 1.11,
+      "sodium_mg": 302.5,
+      "total_carbs_g": 10.83,
+      "total_fat_g": 2.92,
+      "total_sugars_g": 0.95,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.29,
+      "dietary_fiber": 18.18,
+      "protein": 159.57,
+      "saturated_fat": 42.52,
+      "sodium": 101.01,
+      "total_carbs": 30.24,
+      "total_fat": 28.72
+    },
+    "serving_size_g": 768,
+    "total_recipe_weight_g": 3072
+  },
+  {
+    "recipe_name": "Berenjenas Rellenas con Frijoles y Elote",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_berenjenas_rellenas_con_frijoles_y_elote_20250626_101156_4b7da3b9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:11:57.410339000Z",
+    "selected_ingredients": [
+      "eggplant"
+    ],
+    "complexity": "standard",
+    "special_requests": "mexican cuisine",
+    "visual_description": "Two roasted eggplant halves, deeply caramelized, are centered on a round white ceramic plate. Each eggplant is generously filled with a vibrant mixture of dark black beans, bright yellow corn kernels, and diced red bell pepper. The filling is topped with a layer of lightly melted, crusted queso fresco, showing golden-brown spots. A generous sprinkle of fresh, bright green chopped cilantro covers the cheese. Beside the eggplant, a fresh lime wedge adds a pop of green. The overall presentation is rustic yet refined, showcasing natural textures and colors. The plate rests on a simple wooden table. A folded cotton napkin and a few corn tortillas are placed nearby, honoring traditional Mexican serving.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping.",
+      "Offer a side of authentic salsa roja or salsa verde.",
+      "Provide Mexican crema or sour cream for drizzling."
+    ],
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Large eggplants",
+        "quantity": "2 (about 700g total)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "White onion, diced",
+        "quantity": "1 medium (about 150g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves (about 10g)"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 (about 150g)"
+      },
+      {
+        "name": "Cooked black beans, rinsed and drained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Corn kernels (fresh or frozen)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large tomato, diced",
+        "quantity": "1 (about 180g)"
+      },
+      {
+        "name": "Chipotle in adobo, minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried Mexican oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Crumbled queso fresco or cotija cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Limes, cut into wedges",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Halve eggplants lengthwise. Scoop out flesh, leaving a 1 cm border. Chop scooped eggplant flesh into small cubes.",
+      "Brush eggplant shells with 5 ml olive oil. Season with salt and pepper. Place cut-side up on a baking sheet. Roast for 15 minutes, until slightly tender.",
+      "Heat remaining 10 ml olive oil in a large pan over medium heat. Add diced onion and bell pepper. Sauté 5 minutes until softened.",
+      "Add minced garlic and chopped eggplant flesh to the pan. Cook 7-8 minutes, stirring occasionally, until eggplant is tender.",
+      "Stir in black beans, corn kernels, diced tomato, minced chipotle, cumin, and Mexican oregano. Cook 5 minutes, allowing flavors to meld. Season with salt and pepper.",
+      "Remove roasted eggplant shells from oven. Spoon the bean and corn filling generously into each eggplant shell.",
+      "Top each stuffed eggplant half with crumbled queso fresco.",
+      "Return stuffed eggplants to the oven. Bake 15-20 minutes, until cheese is melted and lightly golden.",
+      "Garnish generously with fresh chopped cilantro. Serve immediately with lime wedges."
+    ],
+    "traditional_techniques": [
+      "Roasting vegetables for smoky flavor and texture.",
+      "Sofrito base for the filling, building flavor layers."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 366.14,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 18.76,
+      "protein_g": 18.61,
+      "saturated_fat_g": 4.24,
+      "sodium_mg": 120.55,
+      "total_carbs_g": 53.87,
+      "total_fat_g": 11.02,
+      "total_sugars_g": 13.41,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 76.36,
+      "cholesterol_mg": 4.17,
+      "dietary_fiber_g": 3.91,
+      "protein_g": 3.88,
+      "saturated_fat_g": 0.88,
+      "sodium_mg": 25.14,
+      "total_carbs_g": 11.23,
+      "total_fat_g": 2.3,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 6.67,
+      "dietary_fiber": 67,
+      "protein": 37.22,
+      "saturated_fat": 21.2,
+      "sodium": 5.24,
+      "total_carbs": 19.59,
+      "total_fat": 14.13
+    },
+    "serving_size_g": 479.5,
+    "total_recipe_weight_g": 1918
+  },
+  {
+    "recipe_name": "Spanish Roasted Chicken with Paprika Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_roasted_chicken_with_paprika_potatoes_20250626_101005_03635d14.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:10:05.855863000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, rustic white ceramic plate, showcasing a single generous portion. A golden-brown, crisply roasted chicken thigh, its skin slightly puckered and glistening, anchors the composition. Alongside the chicken are irregularly shaped, roasted potato chunks, their surfaces golden with hints of paprika, some edges slightly crisped. Interspersed among the potatoes are soft, deeply caramelized onion strands, their rich amber color providing a warm contrast. A scattering of vibrant green, freshly chopped flat-leaf parsley is sprinkled over the chicken and potatoes, adding a burst of color and freshness. The chicken is presented as a whole piece. The arrangement is natural and inviting, with moderate negative space on the plate. The background features a simple, light wooden table surface, a plain cotton napkin, and a sturdy, traditional fork and knife. Lighting is even and natural, enhancing the warmth of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the pan juices.",
+      "Serve with a simple green salad dressed with olive oil and vinegar.",
+      "Serve with a glass of dry Spanish white wine or a light red."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800g-1kg total)"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold or Russet), medium",
+        "quantity": "600g"
+      },
+      {
+        "name": "Onions, large",
+        "quantity": "2 (approx. 300g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Smoked paprika (dulce or picante)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry white wine (optional, for deglazing)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Peel potatoes. Cut into 2-3 cm chunks.",
+      "Peel onions. Halve, then slice thinly.",
+      "Peel and finely mince garlic.",
+      "Heat 30ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken thighs skin-side down for 6-8 minutes until golden brown and crispy. Flip chicken. Sear for 2-3 minutes on the other side. Remove chicken from skillet.",
+      "Add remaining 30ml olive oil to the skillet. Add sliced onions. Sauté over medium heat for 10-12 minutes until softened and caramelized.",
+      "Add minced garlic and smoked paprika to onions. Sauté for 1 minute until fragrant.",
+      "Deglaze skillet with white wine, if using. Scrape up any browned bits. Reduce by half.",
+      "Add chicken broth to the skillet. Bring to a simmer.",
+      "Add potato chunks to the skillet with the onion mixture. Stir to coat.",
+      "Nestle seared chicken thighs among the potatoes and onions in the skillet, skin-side up.",
+      "Transfer skillet to preheated oven. Roast for 25-30 minutes, or until chicken internal temperature reaches 75°C and potatoes are tender.",
+      "Remove from oven. Rest for 5 minutes.",
+      "Garnish with fresh chopped parsley. Serve directly from the skillet or transfer to serving plates."
+    ],
+    "notes": [
+      "Adjust paprika quantity to personal preference for smokiness or heat.",
+      "Bone-in, skin-on chicken thighs provide best flavor and moisture.",
+      "Ensure potatoes are cut uniformly for even cooking."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 812,
+      "cholesterol_mg": 207,
+      "dietary_fiber_g": 6,
+      "protein_g": 50.4,
+      "saturated_fat_g": 11,
+      "sodium_mg": 278,
+      "total_carbs_g": 43.7,
+      "total_fat_g": 46.7,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 169,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 10.5,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 58,
+      "total_carbs_g": 9.1,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 21,
+      "protein": 101,
+      "saturated_fat": 55,
+      "sodium": 12,
+      "total_carbs": 16,
+      "total_fat": 60
+    },
+    "serving_size_g": 480,
+    "total_recipe_weight_g": 1920
+  },
+  {
+    "recipe_name": "Italian Savory Egg and Cheese Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_savory_egg_and_cheese_bake_20250626_100818_2733067d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:08:19.385666000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "tomato",
+      "bread",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, rustic slice of Italian Savory Egg and Cheese Bake is presented on a simple, round, off-white ceramic plate. The dish showcases distinct layers: golden-brown cubed bread, creamy baked egg, vibrant red sliced tomatoes, and melted, bubbling mozzarella cheese, interspersed with tender, diced sautéed onion. The top is lightly browned and slightly puffed from baking, with fresh green basil leaves scattered casually over it. The slice reveals a soft, cohesive interior contrasting with subtly crisp edges. The plate rests on a warm, well-worn wooden kitchen table, beside a casually folded, red and white checkered cloth napkin. A fork with a slightly worn wooden handle is placed beside the plate. Natural, warm light illuminates the scene, highlighting the comforting textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and red wine vinegar",
+      "Offer alongside a basket of crusty Italian bread"
+    ],
+    "hero_ingredient": "Baked Eggs",
+    "ingredients": [
+      {
+        "name": "Stale rustic bread",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "6"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Ripe plum tomatoes, sliced",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh basil leaves, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease a 20x30 cm baking dish with butter.",
+      "Cut stale rustic bread into 2-3 cm cubes. Set aside.",
+      "Heat olive oil in a large skillet over medium heat. Add diced onion. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic to the skillet. Sauté for 1 minute until fragrant. Remove from heat.",
+      "In a large bowl, whisk eggs, milk, salt, and black pepper until well combined.",
+      "Layer half of the cubed bread in the prepared baking dish.",
+      "Distribute half of the sautéed onion and garlic mixture over the bread.",
+      "Arrange half of the sliced tomatoes over the onion layer.",
+      "Sprinkle half of the shredded mozzarella and half of the grated Parmesan cheese over the tomatoes.",
+      "Repeat the layers with the remaining bread, onion-garlic mixture, tomatoes, and cheeses.",
+      "Pour the egg and milk mixture evenly over the layers, ensuring all bread is moistened. Gently press down with a spatula if needed.",
+      "Bake for 35-45 minutes, or until the top is golden brown and the egg mixture is set. A knife inserted into the center should come out clean.",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Garnish with fresh chopped basil before serving."
+    ],
+    "notes": [
+      "Using stale bread is crucial for this dish; it absorbs the egg mixture better without becoming soggy."
+    ],
+    "traditional_techniques": [
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 749,
+      "cholesterol_mg": 340.5,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 38.7,
+      "saturated_fat_g": 15.5,
+      "sodium_mg": 1214.4,
+      "total_carbs_g": 66.2,
+      "total_fat_g": 37.9,
+      "total_sugars_g": 14.4,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.2,
+      "cholesterol_mg": 70.1,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 249.9,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 114,
+      "dietary_fiber": 16,
+      "protein": 77,
+      "saturated_fat": 78,
+      "sodium": 53,
+      "total_carbs": 24,
+      "total_fat": 49
+    },
+    "serving_size_g": 486,
+    "total_recipe_weight_g": 1943
+  }
+]

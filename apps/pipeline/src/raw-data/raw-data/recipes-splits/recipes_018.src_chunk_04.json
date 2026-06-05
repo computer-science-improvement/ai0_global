@@ -1,0 +1,588 @@
+[
+  {
+    "recipe_name": "Rigatoni with Roasted Tomatoes, Mushrooms, and Artichokes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rigatoni_with_roasted_tomatoes%2C_mushrooms%2C_and_artichokes_20250625_164847_72c5ed03.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:48:48.445581000Z",
+    "selected_ingredients": [
+      "pasta",
+      "artichoke",
+      "mushroom",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Rigatoni with Roasted Tomatoes, Mushrooms, and Artichokes is presented on a clean, round white porcelain dinner plate. The al dente rigatoni pasta is coated in a vibrant, savory sauce. Roasted cherry tomatoes, some burst open, display rich red hues with subtle charred edges. Thinly sliced, golden-brown sautéed mushrooms are interspersed throughout, alongside tender, pale green quartered artichoke hearts. Finely diced caramelized onions are visible, adding depth. Fresh green basil leaves and a generous dusting of grated Parmesan cheese provide a contrasting pop of color on top. The dish exhibits a moderate negative space, offering a professional yet approachable presentation. The setting features a simple wooden table surface, a white cotton napkin placed beside the plate, and traditional silver flatware, all illuminated by soft, natural, even lighting from the side, creating a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread (Pane di Casa) for dipping in the sauce.",
+      "Accompany with a simple green salad dressed with olive oil and red wine vinegar.",
+      "Pair with a light-bodied Italian white wine, such as Pinot Grigio or Vermentino."
+    ],
+    "hero_ingredient": "Artichoke Hearts",
+    "ingredients": [
+      {
+        "name": "Rigatoni Pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh Cremini Mushrooms",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned Artichoke Hearts (drained)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": "5 g (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve the cherry tomatoes. Toss with 15 ml olive oil, salt, and pepper on a baking sheet. Roast for 20 minutes, until softened and slightly caramelized. Set aside.",
+      "Bring a large pot of salted water to a boil. Add rigatoni pasta. Cook according to package directions until al dente. Drain, reserving 120 ml pasta water.",
+      "While pasta cooks, prepare vegetables. Dice the yellow onion. Thinly slice the cremini mushrooms. Quarter the drained artichoke hearts. Mince garlic cloves.",
+      "Heat remaining 30 ml olive oil in a large skillet over medium heat. Add diced onion. Cook for 5-7 minutes until softened and translucent. Add minced garlic and optional red pepper flakes. Cook for 1 minute until fragrant.",
+      "Add sliced mushrooms to the skillet. Increase heat to medium-high. Sauté mushrooms for 7-10 minutes until deeply browned and their liquid has evaporated.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the skillet. Reduce wine by half, about 2-3 minutes.",
+      "Stir in vegetable broth and quartered artichoke hearts. Bring to a simmer. Cook for 3 minutes.",
+      "Add roasted cherry tomatoes and cooked rigatoni to the skillet. Toss to combine. If sauce is too thick, add reserved pasta water, 30 ml at a time, until desired consistency is reached.",
+      "Roughly chop fresh basil and parsley. Stir most of the herbs into the pasta. Season with salt and black pepper to taste.",
+      "Serve immediately. Garnish each portion with fresh grated Parmesan cheese and remaining chopped herbs."
+    ],
+    "notes": [
+      "Using fresh, quality ingredients significantly enhances the flavor of this dish.",
+      "Adjust the amount of red pepper flakes based on your preferred level of spice.",
+      "Reserved pasta water is key for adjusting sauce consistency and helping it cling to the pasta."
+    ],
+    "traditional_techniques": [
+      "Soffritto (aromatic base for the sauce)",
+      "Al dente (cooking pasta to a firm, chewy texture)"
+    ]
+  },
+  {
+    "recipe_name": "Creamy Chicken and Caramelized Onion Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_caramelized_onion_pasta_20250625_164428_23ffd103.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:44:28.657189000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of creamy pasta fills a rustic, off-white ceramic bowl, placed on a well-worn wooden dining table. Diced, pan-seared chicken pieces, golden-brown and irregular in shape, are nestled among the pasta. Thinly sliced, deeply caramelized onions, rich amber in color, are interwoven throughout the creamy, off-white pasta, creating a comforting texture contrast. A sprinkle of grated Parmesan cheese and fresh chopped parsley adds specks of white and vibrant green on top. The dish is presented as if just served for a family meal, with a fork resting beside the bowl. Warm, soft light from a kitchen fixture illuminates the scene, highlighting the inviting textures and colors of the home-cooked meal. The background shows subtle hints of a lived-in kitchen atmosphere, with a casual cloth napkin nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian American",
+    "cultural_origin": "Italian American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad with vinaigrette.",
+      "Accompany with warm garlic bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Pasta (e.g., penne, rigatoni)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large yellow onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breasts into 2 cm cubes. Season with salt and pepper.",
+      "Bring a large pot of salted water to a boil. Cook pasta according to package directions until al dente. Drain, reserving 125 ml pasta water.",
+      "While pasta cooks, heat olive oil in a large skillet over medium-high heat. Add diced chicken. Sear until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet and set aside.",
+      "Slice onions thinly. Add sliced onions to the same skillet. Reduce heat to medium-low. Cook, stirring occasionally, for 15-20 minutes until deeply caramelized and soft. Mince garlic. Add minced garlic to the skillet with onions. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the skillet. Stir in heavy cream. Bring to a gentle simmer.",
+      "Add cooked pasta and seared chicken back to the skillet with the sauce. Add grated Parmesan cheese. Toss to combine. If sauce is too thick, add a little reserved pasta water until desired consistency.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve immediately. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 991.4,
+      "cholesterol_mg": 204,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 62.6,
+      "saturated_fat_g": 20.3,
+      "sodium_mg": 981.8,
+      "total_carbs_g": 90.5,
+      "total_fat_g": 41.3,
+      "total_sugars_g": 10.4,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 173.9,
+      "cholesterol_mg": 35.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 11,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 172.3,
+      "total_carbs_g": 15.9,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 19.6,
+      "protein": 125.2,
+      "saturated_fat": 101.5,
+      "sodium": 42.7,
+      "total_carbs": 32.9,
+      "total_fat": 53
+    },
+    "serving_size_g": 570,
+    "total_recipe_weight_g": 2280
+  },
+  {
+    "recipe_name": "Creamy Chicken Fricassee",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_fricassee_20250625_164322_14ac407f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:43:23.190246000Z",
+    "selected_ingredients": [
+      "chicken",
+      "flour"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Creamy Chicken Fricassee is plated as a comforting, rustic single portion on a round, off-white ceramic plate with a slightly uneven rim. This everyday French dish rests on a well-used wooden dining table, illuminated by warm kitchen lighting. Two plump, golden-brown chicken thighs, cooked until tender, are centrally placed. Their skin is slightly crisp. They are partially nestled in a rich, creamy, pale-yellow sauce that pools generously. Whole, softened pearl onions and quartered, earthy brown mushrooms are scattered within the sauce. A sprinkle of fresh chopped parsley adds bright green flecks. A simple fork, knife, and a torn piece of crusty baguette accompany the plate, completing a natural, unpretentious homely French family meal scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette slices for dipping in the sauce.",
+      "Accompany with simple steamed potatoes or buttered noodles.",
+      "Enjoy with a glass of dry white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Button mushrooms, quartered",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Pearl onions, peeled",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Double cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Lightly dredge chicken thighs in flour. Shake off excess.",
+      "Heat olive oil and butter in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Brown chicken thighs skin-side down for 5-7 minutes until golden. Flip and brown other side for 3-4 minutes. Remove chicken. Set aside.",
+      "Add pearl onions and mushrooms to the pot. Sauté for 5-7 minutes until softened and lightly browned.",
+      "Deglaze the pot with white wine. Scrape up any browned bits from the bottom. Simmer for 2 minutes.",
+      "Pour in chicken stock. Add thyme sprigs and bay leaf. Bring to a simmer.",
+      "Return chicken thighs to the pot. Ensure chicken is mostly submerged.",
+      "Reduce heat to low. Cover and simmer for 25-30 minutes, or until chicken internal temperature reaches 75°C (167°F).",
+      "Remove chicken from the pot. Discard thyme sprigs and bay leaf.",
+      "Stir in double cream. Simmer sauce gently for 5 minutes, stirring occasionally, until slightly thickened. Do not boil vigorously.",
+      "Return chicken to the sauce. Simmer for 2-3 minutes to heat through.",
+      "Taste and adjust seasoning.",
+      "Serve hot, garnished with fresh parsley."
+    ],
+    "notes": [
+      "Ensure chicken is cooked through to 75°C (167°F) for food safety.",
+      "The sauce will thicken more as it cools."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 788,
+      "cholesterol_mg": 256,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 48.2,
+      "saturated_fat_g": 21.4,
+      "sodium_mg": 523,
+      "total_carbs_g": 17.8,
+      "total_fat_g": 54.1,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 157,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 9.6,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 104,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 10.8,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85,
+      "dietary_fiber": 6,
+      "protein": 96,
+      "saturated_fat": 107,
+      "sodium": 23,
+      "total_carbs": 6,
+      "total_fat": 69
+    },
+    "serving_size_g": 501,
+    "total_recipe_weight_g": 2003
+  },
+  {
+    "recipe_name": "Braised Beef Ragu with Saffron Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_ragu_with_saffron_risotto_20250625_164305_64edd417.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:43:06.215627000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous ladle of creamy, golden saffron risotto forms the base, naturally spreading on a clean white porcelain dinner plate. Large, tender chunks of rich, dark brown braised beef ragu are carefully spooned over the risotto, allowing some deep red sauce to pool. A sprinkle of bright green, finely chopped fresh parsley provides vibrant contrast. The warm yellow of the risotto, deep reddish-brown of the beef, and fresh green of the parsley create a balanced, appealing palette. The smooth, fluid creaminess of the risotto contrasts with the tender, shreddable beef chunks. The plate rests on a simple, light-colored wooden table. A neatly folded white cotton napkin is beside it. Natural, even lighting highlights the dish. A single, refined restaurant-sized portion is presented. The beef is in natural braised chunks, not sliced or fanned. A simple fork and spoon are beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Crusty bread for dipping into the ragu",
+      "A glass of robust red wine"
+    ],
+    "hero_ingredient": "Beef Shin",
+    "ingredients": [
+      {
+        "name": "Beef shin",
+        "quantity": "800g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Passata (strained tomatoes)",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "80g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef and set aside.",
+      "Add diced onion, carrots, and celery to the pot. Sauté until softened, about 8-10 minutes. Add minced garlic and cook for 1 minute more until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the pot bottom. Cook until wine is mostly evaporated, about 3-5 minutes.",
+      "Return seared beef to the pot. Add passata and bay leaves. Pour in beef stock. Bring to a simmer.",
+      "Reduce heat to low. Cover the pot and braise for 2.5-3 hours, or until beef is very tender and easily shreddable with a fork.",
+      "Remove beef from ragu. Shred beef into large pieces using two forks. Discard bay leaves. Return shredded beef to the sauce. Keep warm.",
+      "For the risotto: In a separate pot, bring remaining beef stock to a gentle simmer. Soak saffron threads in 50ml warm water.",
+      "In a wide, heavy-bottomed pan, melt 30g butter with a splash of olive oil over medium heat. Add Arborio rice. Toast rice for 1-2 minutes until edges are translucent.",
+      "Add soaked saffron threads with their water to the rice. Stir.",
+      "Begin adding simmering stock, one ladleful at a time, stirring constantly. Wait until each ladleful is almost absorbed before adding the next.",
+      "Continue stirring and adding stock for 18-20 minutes, or until rice is creamy and al dente.",
+      "Remove risotto from heat. Stir in remaining 30g butter and grated Parmesan cheese vigorously. This is 'mantecatura'. The risotto should be fluid and creamy. Season with salt and pepper to taste.",
+      "Ladle a portion of creamy saffron risotto onto each plate.",
+      "Spoon generous chunks of braised beef ragu over the risotto.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For richer flavor, braise the beef a day ahead. The ragu improves with time.",
+      "Ensure beef stock for risotto is hot to maintain cooking temperature.",
+      "The risotto should be stirred almost constantly for creaminess."
+    ],
+    "traditional_techniques": [
+      "Slow braising",
+      "Risotto mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1108.32,
+      "cholesterol_mg": 210.05,
+      "dietary_fiber_g": 4.57,
+      "protein_g": 75.26,
+      "saturated_fat_g": 22.29,
+      "sodium_mg": 1205.66,
+      "total_carbs_g": 82.69,
+      "total_fat_g": 49.72,
+      "total_sugars_g": 8.15,
+      "trans_fat_g": 1.65
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139.92,
+      "cholesterol_mg": 26.52,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2.81,
+      "sodium_mg": 152.19,
+      "total_carbs_g": 10.44,
+      "total_fat_g": 6.28,
+      "total_sugars_g": 1.03,
+      "trans_fat_g": 0.21
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 16.3,
+      "protein": 150.5,
+      "saturated_fat": 111.5,
+      "sodium": 52.4,
+      "total_carbs": 30.1,
+      "total_fat": 63.7
+    },
+    "serving_size_g": 792.13,
+    "total_recipe_weight_g": 3168.5
+  },
+  {
+    "recipe_name": "Lemon Cream Cheese Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_cream_cheese_bites_20250625_164149_5be47a25.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:41:49.602271000Z",
+    "selected_ingredients": [
+      "cream cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Eight perfectly uniform square Lemon Cream Cheese Bites are arranged neatly on a simple, elegant white ceramic serving platter. Each bite features a crisp, golden-brown biscuit crust base, topped with a smooth, creamy, pale yellow cream cheese filling. The top of each bite is lightly garnished with finely grated bright yellow lemon zest, adding a pop of color and fresh aroma. The texture contrast between the firm crust and the soft, rich filling is evident. The platter is placed on a well-used wooden dining table in a homely family kitchen setting. A casually placed, folded cloth napkin in a neutral tone rests beside the platter. Warm, cozy lighting from kitchen fixtures illuminates the scene, highlighting the natural colors and inviting textures of the dessert. The background is minimal, focusing on the comfort and simplicity of the home environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Cream cheese",
+    "ingredients": [
+      {
+        "name": "Digestive biscuits",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Cream cheese, softened",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "Zest of 1 lemon"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Line a 20x20 cm baking tin with baking paper, leaving an overhang on two sides.",
+      "Crush digestive biscuits into fine crumbs. Mix crumbs with melted butter until combined.",
+      "Press biscuit mixture evenly into the bottom of the prepared tin. Chill for 10 minutes.",
+      "In a large bowl, beat softened cream cheese and granulated sugar until smooth and creamy.",
+      "Beat in the egg, lemon juice, lemon zest, and vanilla extract until just combined. Do not overmix.",
+      "Pour cream cheese mixture over the chilled biscuit crust. Smooth the top with a spatula.",
+      "Bake for 25-30 minutes, or until the edges are set and the center is slightly wobbly. Do not overbake.",
+      "Turn off the oven. Leave the tin in the oven with the door slightly ajar for 15 minutes. This prevents cracking.",
+      "Remove from oven. Let cool completely on a wire rack. Chill in the refrigerator for at least 2 hours, or preferably overnight.",
+      "Use the baking paper overhang to lift the cheesecake out of the tin. Cut into 8 uniform square bites. Serve chilled."
+    ]
+  }
+]

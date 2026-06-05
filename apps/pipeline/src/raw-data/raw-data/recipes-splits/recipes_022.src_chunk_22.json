@@ -1,0 +1,622 @@
+[
+  {
+    "recipe_name": "Crispy Potato & Smoked Cheddar Croquettes with Bacon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_potato_%26_smoked_cheddar_croquettes_with_bacon_20250624_121421_e3a1b4a3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:14:22.360765000Z",
+    "selected_ingredients": [
+      "potato",
+      "bacon",
+      "cheddar",
+      "bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving features three golden-brown croquettes, approximately 7 cm long, arranged in a slight curve on a pristine white porcelain plate. Each croquette displays a visibly crispy Panko crust. Finely chopped fresh chives, vibrant green, are sprinkled over the croquettes. Adjacent, a small, elegant dollop of light, creamy chive aioli sits. The plate rests on a simple, light-toned wooden table, bathed in natural, even light highlighting the croquettes' golden hue and crispy texture. A neatly folded cotton napkin and standard silver flatware accompany the plate, creating a refined yet approachable modern bistro setting. The background is softly blurred, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Russet potatoes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "smoked streaky bacon",
+        "quantity": "150 g"
+      },
+      {
+        "name": "smoked cheddar cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "fresh chives",
+        "quantity": "30 g"
+      },
+      {
+        "name": "all-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150 g"
+      },
+      {
+        "name": "neutral oil for deep frying",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Place potato chunks in a large pot. Cover with cold salted water. Bring to a boil. Cook until very tender, about 15-20 minutes. Drain well. Return potatoes to the hot pot. Mash thoroughly until smooth, removing any lumps. Set aside to cool slightly.",
+      "While potatoes cook, render diced bacon in a large frying pan over medium heat until crispy. Remove bacon with a slotted spoon. Drain excess fat on paper towels.",
+      "In a large bowl, combine mashed potatoes, crispy bacon, grated smoked cheddar, and chopped chives. Mix gently until just combined. Season with salt and pepper.",
+      "Divide the mixture into 12 equal portions. Shape each portion into a cylindrical croquette, about 6-7 cm long and 2.5 cm thick.",
+      "Set up a breading station: one shallow dish with flour, one with beaten eggs, and one with Panko breadcrumbs.",
+      "Dredge each croquette in flour, shaking off excess. Dip in beaten egg, allowing excess to drip off. Roll in Panko breadcrumbs, pressing gently to ensure full coverage.",
+      "Heat oil in a deep pot or Dutch oven to 175°C. Fry croquettes in batches of 3-4, turning occasionally, until golden brown and crispy, about 3-4 minutes per batch.",
+      "Remove croquettes with a slotted spoon. Place on a wire rack lined with paper towels to drain excess oil.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "For best results, chill the formed croquettes for 30 minutes before frying to help them hold their shape."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1005,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 34.7,
+      "saturated_fat_g": 15.4,
+      "sodium_mg": 1067,
+      "total_carbs_g": 69.5,
+      "total_fat_g": 65.3,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 281,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9.7,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 299,
+      "total_carbs_g": 19.4,
+      "total_fat_g": 18.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.9,
+      "dietary_fiber": 19.6,
+      "protein": 69.4,
+      "saturated_fat": 77,
+      "sodium": 46.4,
+      "total_carbs": 25.3,
+      "total_fat": 83.7
+    },
+    "serving_size_g": 357.5,
+    "total_recipe_weight_g": 1430
+  },
+  {
+    "recipe_name": "Spanish Garlic Chicken with Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_garlic_chicken_with_roasted_vegetables_20250624_121416_6fbb5b32.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:14:17.064826000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "potato",
+      "carrot",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic yet refined presentation of Spanish Garlic Chicken. A single, golden-brown, crispy-skinned chicken thigh is placed prominently on a clean white porcelain plate. Around the chicken, roasted potato wedges, substantial carrot chunks, and tender onion wedges are artfully arranged, some showing caramelized edges. Whole, softened garlic cloves are visible amongst the vegetables. The dish is unified by a rich, savory pan sauce, subtly red from smoked paprika, coating the ingredients. A generous sprinkle of vibrant green, finely chopped fresh parsley garnishes the chicken and vegetables, adding a pop of color. The composition is balanced with moderate negative space, showcasing the appealing textures and natural color palette of the ingredients. The entire plate is visible, placed on a simple wooden table, with a neatly folded white cotton napkin and classic flatware beside it, reflecting a casual bistro setting with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the flavorful pan sauce.",
+      "Pair with a light Spanish white wine like Albariño or Verdejo.",
+      "Offer a simple green salad dressed with olive oil and sherry vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 large (approx. 800g)"
+      },
+      {
+        "name": "Potatoes, medium",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrots, large",
+        "quantity": "2"
+      },
+      {
+        "name": "Onion, large",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "10-12"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Peel potatoes and cut into 2 cm wedges. Peel carrots and cut into 3 cm thick chunks. Peel onion and cut into large wedges. Smash and peel garlic cloves, leave whole.",
+      "Heat 30 ml olive oil in a large oven-safe skillet or Dutch oven over medium-high heat. Sear chicken thighs skin-side down for 5-7 minutes until deeply golden and crispy. Flip and sear other side for 3 minutes. Remove chicken from skillet; set aside.",
+      "Add remaining 30 ml olive oil to the skillet. Add potatoes, carrots, onion, and whole garlic cloves. Sauté for 8-10 minutes until vegetables begin to soften and lightly brown.",
+      "Stir in smoked paprika. Cook for 1 minute until fragrant.",
+      "Deglaze skillet with white wine, scraping up any browned bits. Cook for 2 minutes until liquid reduces slightly.",
+      "Pour in chicken broth. Bring to a simmer. Return chicken thighs to the skillet, nestling them among the vegetables. Ensure chicken is skin-side up.",
+      "Transfer skillet to the preheated oven. Roast for 25-30 minutes, or until chicken reaches an internal temperature of 75°C and vegetables are tender.",
+      "Remove from oven. Rest for 5 minutes. Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "For extra flavor, marinate chicken in olive oil, garlic, and paprika for at least 30 minutes before cooking.",
+      "Adjust garlic quantity to personal preference; Spanish cuisine often uses garlic generously."
+    ],
+    "traditional_techniques": [
+      "Sofrito (slowly cooking aromatics, though here simplified)",
+      "Using Pimentón de la Vera (smoked paprika) for authentic flavor"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 759,
+      "cholesterol_mg": 190,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 49.7,
+      "saturated_fat_g": 11,
+      "sodium_mg": 271,
+      "total_carbs_g": 38.9,
+      "total_fat_g": 48.3,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 144.6,
+      "cholesterol_mg": 36.2,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 51.5,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 22,
+      "protein": 99,
+      "saturated_fat": 55,
+      "sodium": 12,
+      "total_carbs": 14,
+      "total_fat": 62
+    },
+    "serving_size_g": 525,
+    "total_recipe_weight_g": 2100
+  },
+  {
+    "recipe_name": "Arroz con Cerdo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_cerdo_20250624_121410_2d7f0959.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:14:11.255201000Z",
+    "selected_ingredients": [
+      "pork",
+      "garlic",
+      "rice",
+      "onion",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "Puerto Rican cuisine",
+    "visual_description": "The dish features a vibrant, orange-hued rice known as Arroz con Cerdo, served on a clean white porcelain plate. Large, golden-brown seared pork chunks are distributed throughout the fluffy medium-grain rice. Visible pieces of translucent diced onions, minced garlic, green olives, and small capers add textural variety. The rice is garnished with fresh, bright green chopped cilantro. A side of thick-cut fried sweet plantains rests beside the rice. The setting is a modern bistro with a light wood table and a neutral cotton napkin. Lighting is natural and even, highlighting the moist texture of the meat and individual grains. The entire plate is visible, showing a balanced restaurant portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Puerto Rican",
+    "cultural_origin": "Puerto Rico",
+    "cultural_serving_suggestions": [
+      "Serve with fried sweet plantains (amarillos)",
+      "Accompany with thick slices of fresh avocado",
+      "Serve with a side of crispy tostones"
+    ],
+    "hero_ingredient": "Pork shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, cut into 3cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Medium-grain rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomato sauce",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sazón with achiote",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Green olives, pitted",
+        "quantity": "50g"
+      },
+      {
+        "name": "Capers",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season pork chunks with salt, pepper, and oregano.",
+      "Heat olive oil in a heavy-bottomed pot over medium-high heat.",
+      "Brown pork chunks on all sides until golden. Remove pork from pot.",
+      "Sauté diced onion and minced garlic in the same pot until translucent.",
+      "Stir in tomato sauce, sazón, green olives, and capers.",
+      "Return pork to the pot. Add rice and stir to coat grains.",
+      "Pour in water. Bring the mixture to a boil.",
+      "Reduce heat to low. Cover the pot with a tight-fitting lid.",
+      "Simmer for 20 minutes until rice is tender and liquid is absorbed.",
+      "Fluff rice gently with a fork. Rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Use a caldero for the most authentic rice texture.",
+      "Do not stir the rice while simmering to allow a crust (pegao) to form at the bottom.",
+      "Ensure pork reaches an internal temperature of 75°C."
+    ],
+    "traditional_techniques": [
+      "Sufreír",
+      "Pegao"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 906,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 43,
+      "saturated_fat_g": 14,
+      "sodium_mg": 1675,
+      "total_carbs_g": 84.5,
+      "total_fat_g": 44,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 201.3,
+      "cholesterol_mg": 33.3,
+      "dietary_fiber_g": 0.78,
+      "protein_g": 9.56,
+      "saturated_fat_g": 3.11,
+      "sodium_mg": 372.2,
+      "total_carbs_g": 18.78,
+      "total_fat_g": 9.78,
+      "total_sugars_g": 0.44,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 13,
+      "protein": 86,
+      "saturated_fat": 70,
+      "sodium": 73,
+      "total_carbs": 31,
+      "total_fat": 56
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Simple Roast Chicken with Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_simple_roast_chicken_with_root_vegetables_20250624_121401_7f3ff1ec.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:14:02.005121000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single roast chicken leg quarter is centrally placed on a rustic, round ceramic plate with a slightly uneven rim. Surrounding the chicken are generously portioned, golden-brown roasted potato chunks, caramelized carrot chunks, and tender red onion wedges. The chicken skin is visibly crisp and golden. Roasted rosemary and thyme sprigs are nestled among the vegetables, adding subtle green accents. The plate is set on a well-used wooden dining table. A simple white cloth napkin and a standard fork and knife are casually placed beside the plate. Warm, natural light illuminates the scene, suggesting a cozy family kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken leg quarters",
+        "quantity": "4 (approx. 1.5 kg total)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken leg quarters dry with paper towels. Season generously with salt and pepper.",
+      "Cut potatoes into 3 cm chunks. Peel carrots and cut into 3 cm chunks. Cut red onion into 8 wedges. Smash garlic cloves.",
+      "In a large roasting pan, combine potato chunks, carrot chunks, and onion wedges.",
+      "Add smashed garlic, rosemary, and thyme sprigs to vegetables.",
+      "Drizzle vegetables with olive oil. Toss to coat evenly.",
+      "Arrange vegetables in a single layer in the pan. Place chicken leg quarters on top of vegetables.",
+      "Roast for 45-60 minutes. Cook until internal temperature of chicken reaches 75°C. Chicken skin should be golden brown and crispy.",
+      "Remove from oven. Rest chicken 5 minutes before serving."
+    ],
+    "notes": [
+      "Adjust roasting time based on chicken size and oven. Always ensure chicken is fully cooked to 75°C internal temperature for food safety."
+    ],
+    "traditional_techniques": [
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1085,
+      "cholesterol_mg": 356,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 82.8,
+      "saturated_fat_g": 17,
+      "sodium_mg": 1315,
+      "total_carbs_g": 39.1,
+      "total_fat_g": 66.8,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160.7,
+      "cholesterol_mg": 52.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 12.3,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 194.7,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 119,
+      "dietary_fiber": 25,
+      "protein": 166,
+      "saturated_fat": 85,
+      "sodium": 57,
+      "total_carbs": 14,
+      "total_fat": 86
+    },
+    "serving_size_g": 675.05,
+    "total_recipe_weight_g": 2700.2
+  },
+  {
+    "recipe_name": "Rustic Chicken and Rice Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_rice_pilaf_20250624_121357_fb19f9ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:13:57.710906000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Rustic Chicken and Rice Pilaf is presented on a round, off-white ceramic plate. A whole, crispy-skinned, golden-brown chicken thigh rests slightly off-center on a bed of fluffy, tender long-grain rice. The rice is visibly separated, infused with savory broth, and contains small, softened pieces of caramelized onion and tiny flecks of minced garlic. A casual sprinkling of bright green chopped fresh parsley adds a pop of color over the chicken and rice. The chicken thigh is cooked whole, not sliced or fanned. The plate sits on a well-used, warm-toned wooden dining table. Beside the plate, a standard metal fork and knife are casually placed, alongside a simple ceramic water glass. A crumpled, natural linen napkin is loosely arranged nearby. The background is softly blurred, hinting at a cozy, lived-in kitchen with warm, inviting ambient lighting, creating an overall impression of comforting, unpretentious home cooking.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Comfort",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (bone-in, skin-on)",
+        "quantity": "4 pieces (approx. 800g)"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, deep pan or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down first, until golden brown and crispy, about 6-8 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pan.",
+      "Reduce heat to medium. Add roughly chopped onion to the pan. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic and paprika to the pan. Cook for 1 minute until fragrant.",
+      "Stir in uncooked rice. Cook for 2-3 minutes, stirring constantly, until rice is lightly toasted.",
+      "Pour in chicken broth. Bring to a simmer. Add dried thyme.",
+      "Return chicken thighs to the pan, nestling them into the rice. Ensure chicken is partially submerged.",
+      "Cover the pan tightly. Reduce heat to low. Cook for 20-25 minutes, or until rice is tender and liquid is absorbed. Chicken internal temperature should reach 75°C.",
+      "Remove from heat. Let stand, covered, for 5-10 minutes.",
+      "Fluff rice with a fork. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 671,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 49,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 819,
+      "total_carbs_g": 29.8,
+      "total_fat_g": 38.2,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125,
+      "cholesterol_mg": 33.6,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 9.1,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 152.7,
+      "total_carbs_g": 5.6,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 8,
+      "protein": 98,
+      "saturated_fat": 48,
+      "sodium": 36,
+      "total_carbs": 11,
+      "total_fat": 49
+    },
+    "serving_size_g": 536.5,
+    "total_recipe_weight_g": 2146
+  }
+]

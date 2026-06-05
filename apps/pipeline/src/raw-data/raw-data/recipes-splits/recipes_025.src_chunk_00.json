@@ -1,0 +1,700 @@
+[
+  {
+    "recipe_name": "Hearty Beef and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_potato_stew_20250623_143408_34c70c04.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:34:09.531908000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "tomato",
+      "onion",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty, rustic beef and potato stew is presented in a deep, earthenware bowl on a well-used wooden dining table. The stew features generous chunks of tender, dark brown beef, nestled among soft, golden-yellow potato cubes, vibrant orange carrot rounds, and earthy brown quartered mushrooms. A rich, thick reddish-brown gravy coats all ingredients, with visible flecks of dried herbs. A light scattering of fresh green chopped parsley brightens the top. The stew has a comforting, slightly irregular texture, reflecting home cooking. The bowl sits on a simple ceramic plate. A linen napkin and a sturdy spoon are casually placed beside it. Warm, natural light illuminates the scene, creating a cozy, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread."
+    ],
+    "hero_ingredient": "Beef chunks",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove beef from pot.",
+      "Add chopped onion and carrots to the pot. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic and dried thyme. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste and flour. Cook for 2 minutes, stirring constantly.",
+      "Gradually stir in beef broth, scraping up any browned bits from the bottom.",
+      "Add diced tomatoes and bay leaf. Bring to a simmer.",
+      "Return seared beef to the pot. Cover and reduce heat to low.",
+      "Simmer for 1.5 hours, stirring occasionally.",
+      "Add potato cubes and quartered mushrooms. Continue to simmer, covered, for another 30-40 minutes, or until beef and potatoes are tender.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper.",
+      "Ladle stew into bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 495,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 42.6,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 307,
+      "total_carbs_g": 43.2,
+      "total_fat_g": 17,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 85,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.3,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 53,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 24,
+      "protein": 85,
+      "saturated_fat": 24,
+      "sodium": 13,
+      "total_carbs": 16,
+      "total_fat": 22
+    },
+    "serving_size_g": 582,
+    "total_recipe_weight_g": 2328
+  },
+  {
+    "recipe_name": "Braised Beef Cheeks with Cocoa-Chile Sauce and Apple Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_cheeks_with_cocoa-chile_sauce_and_apple_salsa_20250623_143322_67c41246.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:33:23.271213000Z",
+    "selected_ingredients": [
+      "chocolate",
+      "beef",
+      "apple"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of rich, dark cocoa-chile braised beef cheeks is centrally plated on a pristine white ceramic dinner plate. Two substantial, irregular chunks of fork-tender beef, each about 5-7 cm, are nestled in a pool of glossy, deep mahogany-brown sauce. The sauce clings to the beef, showcasing its velvety texture. A vibrant, fresh apple salsa, composed of small, crisp green apple cubes, finely diced red onion, and bright green cilantro, is spooned beside the beef, providing a striking contrast in color and texture. The salsa is about 5 cm in diameter. A warm, lightly toasted corn tortilla is folded and placed on the side of the plate. The setting features a simple wooden table surface, a light grey linen napkin folded neatly, and natural, even overhead lighting creating soft shadows. The overall presentation is clean, inviting, and authentically Mexican, highlighting the rich colors and textures of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas",
+      "Accompany with Mexican rice or refried beans"
+    ],
+    "hero_ingredient": "Beef Cheeks",
+    "ingredients": [
+      {
+        "name": "Beef Cheeks",
+        "quantity": "1 kg (trimmed)"
+      },
+      {
+        "name": "Dark Chocolate (70-85% cocoa, unsweetened)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Ancho Chiles",
+        "quantity": "3 dried"
+      },
+      {
+        "name": "Pasilla Chiles",
+        "quantity": "2 dried"
+      },
+      {
+        "name": "Roma Tomatoes",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "White Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Orange Juice",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Cinnamon Stick",
+        "quantity": "1 (5 cm)"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "3 whole"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Granny Smith Apple",
+        "quantity": "1 large (diced small)"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "0.5 small (finely diced)"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "30 g (chopped)"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 (juiced)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C (325°F).",
+      "Toast dried Ancho and Pasilla chiles in a dry pan until fragrant. Remove stems and seeds. Rehydrate in hot water for 20 minutes.",
+      "Sear beef cheeks in olive oil in a Dutch oven until browned on all sides. Remove beef.",
+      "Add diced white onion to the Dutch oven. Sauté until softened. Add minced garlic. Cook 1 minute.",
+      "Add diced Roma tomatoes. Cook 5 minutes.",
+      "Drain rehydrated chiles. Blend chiles with tomatoes, onion, garlic, beef broth, orange juice, apple cider vinegar, cumin, oregano, cinnamon stick, and cloves until smooth. Strain the sauce for a finer consistency if desired.",
+      "Pour sauce back into the Dutch oven. Add bay leaf. Bring to a simmer.",
+      "Return seared beef cheeks to the sauce. Ensure beef is mostly submerged.",
+      "Cover and braise in the preheated oven for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Remove beef. Skim fat from sauce. Discard bay leaf, cinnamon stick, and cloves.",
+      "Stir in dark chocolate until melted and sauce is glossy. Season sauce with salt and pepper.",
+      "While beef braises, prepare apple salsa. Combine diced apple, finely diced red onion, chopped cilantro, and lime juice. Season with a pinch of salt.",
+      "Shred or cut braised beef into large chunks. Return beef to sauce.",
+      "Serve braised beef and sauce with fresh apple salsa."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Toasting and rehydrating dried chiles",
+      "Preparing a mole-inspired sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 897.5,
+      "cholesterol_mg": 225,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 72.2,
+      "saturated_fat_g": 19.6,
+      "sodium_mg": 1050.3,
+      "total_carbs_g": 35.1,
+      "total_fat_g": 51.7,
+      "total_sugars_g": 17.1,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149.6,
+      "cholesterol_mg": 37.5,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 12,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 175,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 29.3,
+      "protein": 144.4,
+      "saturated_fat": 98,
+      "sodium": 45.7,
+      "total_carbs": 12.8,
+      "total_fat": 66.3
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2400
+  },
+  {
+    "recipe_name": "Mediterranean Roasted Chicken with Potatoes, Tomatoes, and Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_roasted_chicken_with_potatoes%2C_tomatoes%2C_and_mushrooms_20250623_143138_3491499b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:31:39.067220000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken",
+      "garlic",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Roasted Chicken is presented on a clean, round white porcelain dinner plate. A golden-brown, crispy-skinned chicken thigh is the focal point, positioned slightly off-center. Around the chicken, a colorful medley of roasted vegetables is arranged naturally. Halved new potatoes show tender, slightly caramelized edges. Halved cherry tomatoes are soft and slightly blistered, displaying vibrant red hues. Quartered cremini mushrooms are earthy brown, with a meaty texture. Smashed garlic cloves are scattered among the vegetables, adding visual interest. The dish boasts warm, inviting colors of golden chicken, red tomatoes, and earthy browns. A sprinkle of fresh green chopped parsley garnishes the chicken and vegetables, adding a pop of freshness. The plate sits on a simple, light-colored wooden table surface. A neatly folded white cotton napkin and standard silver flatware are placed beside the plate. Natural, even lighting highlights the textures and colors of the food. The background is minimally blurred, suggesting a casual bistro atmosphere, allowing the dish to be the primary focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 large (approx. 200-250g each)"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "800g, halved"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400g, halved"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g, quartered"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6, smashed and peeled"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5ml, or to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2.5ml, or to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped for garnish"
+      },
+      {
+        "name": "Chicken broth (optional)",
+        "quantity": "125ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "In a large bowl, combine halved potatoes, halved cherry tomatoes, quartered mushrooms, and smashed garlic cloves. Drizzle with 30ml olive oil, oregano, thyme, salt, and pepper. Toss to coat.",
+      "Arrange chicken thighs skin-side up on a large baking sheet. Scatter the seasoned vegetables around the chicken.",
+      "Drizzle remaining 30ml olive oil over chicken and vegetables.",
+      "Roast for 30 minutes. Flip vegetables and stir them around the pan.",
+      "Continue roasting for another 20-25 minutes, or until chicken skin is golden brown and crispy. Ensure chicken reaches an internal temperature of 75°C.",
+      "If using, pour chicken broth over the vegetables during the last 10 minutes of cooking for added moisture and flavor.",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 825,
+      "cholesterol_mg": 212,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 51.5,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 237,
+      "total_carbs_g": 49,
+      "total_fat_g": 48.6,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.8,
+      "cholesterol_mg": 31.7,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 35.5,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 22,
+      "protein": 103,
+      "saturated_fat": 56,
+      "sodium": 10,
+      "total_carbs": 18,
+      "total_fat": 62
+    },
+    "serving_size_g": 666.5,
+    "total_recipe_weight_g": 2666
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Medallions with Scotch Cream Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_medallions_with_scotch_cream_sauce_20250623_143125_cf12e56b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:31:26.260034000Z",
+    "selected_ingredients": [
+      "angostura bitters",
+      "scotch whisky",
+      "dry vermouth",
+      "cream",
+      "lemon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared beef medallions is elegantly centered on a clean white porcelain dinner plate. The beef, with a rich golden-brown sear, is presented as two thick, juicy chunks. A smooth, creamy, light tan scotch whisky sauce generously pools around the beef and slightly over it. Alongside the beef are golden-brown roasted potato wedges, their edges slightly crisp. Bright green, tender-crisp green beans are neatly arranged next to the potatoes. A small pile of vibrant chopped fresh parsley garnishes the beef, adding a pop of green. A fresh lemon wedge sits beside the beef. The plate is placed on a simple wooden table, suggesting a modern bistro setting. Natural, even lighting illuminates the dish, highlighting its textures and inviting colors. A folded white cotton napkin and classic flatware are subtly placed beside the plate, completing the professional yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef Tenderloin Medallions",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Scotch Whisky",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dry Vermouth",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Angostura Bitters",
+        "quantity": "5 dashes"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Green Beans",
+        "quantity": "200 grams"
+      }
+    ],
+    "instructions": [
+      "Pat beef medallions dry. Season generously with salt and pepper.",
+      "Preheat oven to 200°C (390°F).",
+      "Cut potatoes into 2 cm wedges. Toss with olive oil, salt, and pepper. Roast 25-30 minutes until tender and golden.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear beef medallions 3-4 minutes per side for medium-rare. Adjust time for desired doneness.",
+      "Remove beef from skillet. Set aside on a plate. Cover loosely with foil.",
+      "Reduce heat to medium. Add chopped shallots to the skillet. Sauté 2 minutes until softened.",
+      "Add minced garlic. Sauté 1 minute until fragrant.",
+      "Deglaze skillet with dry vermouth. Scrape up browned bits. Cook 1 minute until reduced by half.",
+      "Add Scotch whisky. Carefully ignite if desired, or cook 1 minute until alcohol evaporates.",
+      "Pour in beef broth. Bring to a simmer. Reduce by half.",
+      "Stir in heavy cream. Simmer gently 3-5 minutes until sauce thickens slightly.",
+      "Remove from heat. Stir in butter, lemon juice from half a lemon, and angostura bitters. Season with salt and pepper.",
+      "Blanch green beans in boiling salted water for 3 minutes. Drain well.",
+      "Serve beef medallions with sauce. Arrange roasted potato wedges and green beans on the plate.",
+      "Garnish with fresh chopped parsley and a lemon wedge."
+    ],
+    "notes": [
+      "Ensure beef reaches an internal temperature of at least 63°C (145°F) for medium-rare, or higher for desired doneness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 605,
+      "cholesterol_mg": 161,
+      "dietary_fiber_g": 4.81,
+      "protein_g": 38.35,
+      "saturated_fat_g": 17.61,
+      "sodium_mg": 675.1,
+      "total_carbs_g": 28.35,
+      "total_fat_g": 33.85,
+      "total_sugars_g": 5.91,
+      "trans_fat_g": 1.22
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.6,
+      "cholesterol_mg": 35.3,
+      "dietary_fiber_g": 1.05,
+      "protein_g": 8.41,
+      "saturated_fat_g": 3.86,
+      "sodium_mg": 148,
+      "total_carbs_g": 6.21,
+      "total_fat_g": 7.42,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.27
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.7,
+      "dietary_fiber": 17.2,
+      "protein": 76.7,
+      "saturated_fat": 88,
+      "sodium": 29.4,
+      "total_carbs": 10.3,
+      "total_fat": 43.4
+    },
+    "serving_size_g": 456.25,
+    "total_recipe_weight_g": 1825
+  },
+  {
+    "recipe_name": "Corned Beef and Emmentaler Melt",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_corned_beef_and_emmentaler_melt_20250623_142823_7a63a7e5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:28:24.148464000Z",
+    "selected_ingredients": [
+      "bread",
+      "emmenthaler cheese",
+      "corned beef",
+      "mayonnaise",
+      "pickled jalapeno chilies"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of a Corned Beef and Emmentaler Melt is presented on a clean white porcelain dinner plate. The sandwich is cut diagonally in half, with the two halves slightly offset to reveal the interior. The sourdough bread is golden-brown and crispy, showing distinct grill marks from being pan-fried in butter. Warm, thinly sliced corned beef is visible, nestled within layers of gooey, melted Emmentaler cheese that slightly oozes from the sides. A generous drizzle of pale yellow, creamy jalapeño aioli cascades over the sandwich halves. A few vibrant green rounds of pickled jalapeño are placed artfully beside the sandwich. The plating is clean and professional, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface and a neatly folded cotton napkin beside the plate. Natural, even lighting illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Served with a crisp dill pickle spear",
+      "A side of potato chips"
+    ],
+    "hero_ingredient": "Corned Beef",
+    "ingredients": [
+      {
+        "name": "Sourdough or rye bread",
+        "quantity": "8 slices"
+      },
+      {
+        "name": "Cooked corned beef, thinly sliced",
+        "quantity": "400g"
+      },
+      {
+        "name": "Emmentaler cheese, thinly sliced or grated",
+        "quantity": "200g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "40g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120g"
+      },
+      {
+        "name": "Pickled jalapeño slices, finely minced",
+        "quantity": "20g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare the jalapeño aioli: In a small bowl, combine mayonnaise, minced pickled jalapeños, minced garlic, and Dijon mustard. Stir well. Season with salt and black pepper. Set aside.",
+      "Assemble sandwiches: Spread a thin layer of aioli on one side of each bread slice.",
+      "Layer corned beef and Emmentaler cheese evenly on four bread slices, aioli-side up. Top with remaining bread slices, aioli-side down.",
+      "Spread softened butter generously on the outside of each sandwich.",
+      "Heat a large non-stick skillet or griddle over medium heat.",
+      "Place sandwiches in the hot skillet. Cook for 4-5 minutes per side, or until bread is golden brown and cheese is melted and bubbly. Press gently with a spatula during cooking.",
+      "Remove from skillet. Cut each sandwich diagonally in half.",
+      "Serve immediately with extra jalapeño slices or a small side of aioli for dipping."
+    ],
+    "notes": [
+      "For best results, use high-quality corned beef and a sturdy bread that can hold up to grilling."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 878,
+      "cholesterol_mg": 149.1,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 41.3,
+      "saturated_fat_g": 26.6,
+      "sodium_mg": 1774.1,
+      "total_carbs_g": 33.4,
+      "total_fat_g": 65.2,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 335,
+      "cholesterol_mg": 56.8,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 15.7,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 675.8,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 24.9,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.7
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.7,
+      "dietary_fiber": 6.6,
+      "protein": 82.6,
+      "saturated_fat": 133.2,
+      "sodium": 77.1,
+      "total_carbs": 12.1,
+      "total_fat": 83.6
+    },
+    "serving_size_g": 262.5,
+    "total_recipe_weight_g": 1050
+  }
+]

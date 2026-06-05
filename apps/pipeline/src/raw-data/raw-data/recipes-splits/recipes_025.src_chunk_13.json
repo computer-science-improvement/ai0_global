@@ -1,0 +1,636 @@
+[
+  {
+    "recipe_name": "Creamy Sausage and Squash Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_sausage_and_squash_pasta_20250623_132903_17b3ce36.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:29:04.360816000Z",
+    "selected_ingredients": [
+      "squash",
+      "chicken sausage",
+      "mascarpone cheese",
+      "sun dried tomato",
+      "oregano",
+      "parsley"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Creamy Sausage and Squash Pasta is presented in a simple, everyday ceramic bowl with a slightly irregular rim, resting on a well-used, warm-toned wooden dining table. The pasta, likely rigatoni or orecchiette, is coated in a creamy, pale orange sauce from the mascarpone and sun-dried tomatoes. Visible throughout the pasta are hearty, browned chunks of chicken sausage and soft, roasted 2 cm butternut squash cubes, some showing subtle caramelization. Thinly sliced sun-dried tomato pieces add bursts of deeper red. The dish is casually mounded, allowing some components to naturally overlap. A scattering of freshly chopped vibrant green parsley and oregano adds a fresh aromatic touch and color contrast. A simple, silver fork rests casually beside the bowl. The scene is lit with warm, inviting light from above, typical of a cozy kitchen, creating a comforting and homely atmosphere with minimal background elements beyond the table surface and perhaps a soft, blurred hint of a kitchen towel or napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken Sausage",
+    "ingredients": [
+      {
+        "name": "Butternut Squash",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Chicken Sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Mascarpone Cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Oil-Packed Sun Dried Tomatoes",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh Oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Short Pasta (e.g., Rigatoni)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Peel butternut squash. Dice squash into 2 cm cubes. Toss squash with 15 ml olive oil, salt, and pepper. Roast on a baking sheet for 20-25 minutes until tender and lightly caramelized. Remove from oven.",
+      "While squash roasts, bring a large pot of salted water to a boil for pasta.",
+      "Remove casing from chicken sausage. Crumble sausage into a large skillet or Dutch oven. Cook over medium-high heat, breaking up chunks, until browned and cooked through. Ensure internal temperature reaches 75°C (167°F). Drain excess fat. Set sausage aside.",
+      "Add remaining 15 ml olive oil to the same skillet. Dice onion. Add diced onion to skillet. Sauté for 5 minutes until softened. Mince garlic. Add minced garlic to skillet. Cook for 1 minute until fragrant.",
+      "Thinly slice sun dried tomatoes. Add cooked sausage, roasted squash, and sliced sun dried tomatoes to the skillet with onion and garlic. Pour in chicken broth. Bring to a simmer. Reduce heat to low. Simmer for 5 minutes.",
+      "Cook pasta according to package directions until al dente. Reserve 125 ml pasta cooking water before draining.",
+      "Chop fresh oregano and parsley. Stir mascarpone cheese into the skillet sauce until melted and smooth. Stir in chopped oregano and half of the chopped parsley. Season with salt and pepper to taste.",
+      "Add drained pasta to the skillet with the sauce. Toss to combine. If sauce is too thick, add reserved pasta water a little at a time until desired consistency is reached. Serve immediately, garnished with remaining fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 940,
+      "cholesterol_mg": 125,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 36.1,
+      "saturated_fat_g": 17,
+      "sodium_mg": 982,
+      "total_carbs_g": 107.9,
+      "total_fat_g": 43.1,
+      "total_sugars_g": 13.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 180,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 6.9,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 188,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41.7,
+      "dietary_fiber": 32.5,
+      "protein": 72.2,
+      "saturated_fat": 85,
+      "sodium": 42.7,
+      "total_carbs": 39.2,
+      "total_fat": 55.3
+    },
+    "serving_size_g": 523,
+    "total_recipe_weight_g": 2093
+  },
+  {
+    "recipe_name": "Eggplant Caprese Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_eggplant_caprese_salad_20250623_132701_cd8fe6f6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:27:01.795726000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "mozzarella",
+      "tomato",
+      "eggplant"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A comforting Eggplant Caprese Salad is presented in an everyday ceramic bowl on a well-used wooden dining table. Diced roasted eggplant, lightly browned and tender, forms the base. Vibrant halved cherry tomatoes and creamy small mozzarella balls are casually mixed throughout. A simple balsamic vinaigrette coats all ingredients, creating a natural sheen. Fresh green basil leaves are torn and scattered on top, adding a pop of color and fresh aroma. The arrangement is natural and unpretentious, as if served for a family meal. A casual cloth napkin and simple flatware rest beside the bowl. Warm, cozy kitchen lighting illuminates the dish, highlighting its homely appeal and inviting textures. The scene reflects a relaxed, lived-in family kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the dressing."
+    ],
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Eggplant",
+        "quantity": "2 medium (approx. 600g)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh mozzarella (bocconcini or diced)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Dice eggplant into 2 cm cubes. Toss with 30ml olive oil, salt, and pepper.",
+      "Spread eggplant on a baking sheet. Roast for 20-25 minutes, until tender and lightly browned. Stir halfway. Let cool slightly.",
+      "Halve cherry tomatoes. Drain mozzarella if using fresh balls; if using a larger block, dice into similar size as eggplant cubes.",
+      "For the dressing, mince garlic. Whisk remaining 30ml olive oil, balsamic vinegar, minced garlic, a pinch of salt, and pepper in a small bowl.",
+      "In a large bowl, combine cooled roasted eggplant, halved tomatoes, and mozzarella.",
+      "Pour dressing over the salad. Gently toss to combine.",
+      "Tear fresh basil leaves and sprinkle over the salad just before serving."
+    ],
+    "notes": [
+      "This salad is best served at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 375,
+      "cholesterol_mg": 49.4,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 16.5,
+      "saturated_fat_g": 10.7,
+      "sodium_mg": 401.7,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109,
+      "cholesterol_mg": 14.4,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 4.8,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 117.2,
+      "total_carbs_g": 5.1,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.5,
+      "dietary_fiber": 20.9,
+      "protein": 33,
+      "saturated_fat": 53.4,
+      "sodium": 17.5,
+      "total_carbs": 6.3,
+      "total_fat": 36
+    },
+    "serving_size_g": 342.8,
+    "total_recipe_weight_g": 1371
+  },
+  {
+    "recipe_name": "Chicken and Vegetable Paella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_vegetable_paella_20250623_132625_28b48149.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:26:25.894283000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Chicken and Vegetable Paella is presented on a pristine white porcelain dinner plate, showcasing a vibrant saffron-yellow Bomba rice base. Golden-brown, seared chicken chunks are nestled among the distinct rice grains. Bright red bell pepper strips, green bell pepper chunks, and sweet green peas are interspersed throughout, adding pops of color. The rice has an inviting al dente texture, with hints of a crispy socarrat visible at the bottom. A fresh lemon wedge rests neatly on the plate's edge, alongside a sprig of fresh flat-leaf parsley for garnish. The setting features a simple wooden table surface, a folded cotton napkin, and standard flatware, all under natural, even lighting, evoking a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly from the paella pan at the table for a communal experience.",
+      "Accompany with crusty bread for soaking up juices.",
+      "Offer additional lemon wedges for squeezing over the paella."
+    ],
+    "hero_ingredient": "Saffron-infused Rice",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Bomba rice",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks. Season with salt and pepper.",
+      "Dice onion and bell peppers into 1.5 cm pieces. Mince garlic. Grate tomatoes or finely dice.",
+      "Heat olive oil in a large paella pan or wide, shallow pan over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken from pan. Set aside.",
+      "Add onion and bell peppers to the pan. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and grated tomatoes. Cook for 5 minutes, stirring occasionally, until liquid reduces.",
+      "Stir in smoked paprika. Cook for 1 minute until fragrant.",
+      "Add Bomba rice to the pan. Stir well to coat rice with the sofrito. Toast rice for 2 minutes.",
+      "Warm chicken broth. Add saffron threads to the warm broth. Pour broth into the pan with rice.",
+      "Return seared chicken to the pan. Distribute evenly. Do not stir the rice after this point.",
+      "Bring liquid to a boil, then reduce heat to medium-low. Simmer uncovered for 15-18 minutes, or until most liquid is absorbed and rice is almost cooked.",
+      "Add green peas. Continue cooking without stirring until all liquid is absorbed and a crust (socarrat) forms on the bottom, about 5-7 more minutes. Do not burn.",
+      "Remove pan from heat. Cover with foil or a clean kitchen towel. Let rest for 5-10 minutes.",
+      "Check chicken temperature. Ensure it reaches 75°C (167°F) before serving.",
+      "Garnish with fresh parsley and lemon wedges before serving."
+    ],
+    "traditional_techniques": [
+      "Sofrito preparation",
+      "Saffron infusion",
+      "Socarrat formation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 731.91,
+      "cholesterol_mg": 210.38,
+      "dietary_fiber_g": 5.96,
+      "protein_g": 42.14,
+      "saturated_fat_g": 5.77,
+      "sodium_mg": 210.82,
+      "total_carbs_g": 76.53,
+      "total_fat_g": 27.46,
+      "total_sugars_g": 8.15,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109.57,
+      "cholesterol_mg": 31.5,
+      "dietary_fiber_g": 0.89,
+      "protein_g": 6.31,
+      "saturated_fat_g": 0.86,
+      "sodium_mg": 31.56,
+      "total_carbs_g": 11.46,
+      "total_fat_g": 4.11,
+      "total_sugars_g": 1.22,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70.13,
+      "dietary_fiber": 21.29,
+      "protein": 84.28,
+      "saturated_fat": 28.85,
+      "sodium": 9.17,
+      "total_carbs": 27.83,
+      "total_fat": 35.21
+    },
+    "serving_size_g": 668,
+    "total_recipe_weight_g": 2672
+  },
+  {
+    "recipe_name": "Mediterranean Chicken Skillet with Peppers and Olives",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_chicken_skillet_with_peppers_and_olives_20250623_132559_57855f16.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:26:00.015596000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "olive",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Chicken Skillet is presented on a modest, round, off-white ceramic plate. Large, irregularly cut, golden-brown chicken chunks are nestled among vibrant red and yellow bell pepper strips, translucent red onion wedges, and whole deep purple Kalamata olives. Bright red cherry tomatoes burst with juices, coating the ingredients in a savory, light sauce. The arrangement is natural and asymmetrical, with components slightly overlapping, reflecting a homely, comforting meal. A sprinkle of fresh green chopped parsley adds a final touch of color and freshness. The plate sits on a well-used, rustic wooden dining table, illuminated by warm, cozy kitchen light. A simple metal fork rests beside the plate, and a casually folded cloth napkin is nearby. The background shows a hint of a lived-in kitchen, suggesting a relaxed family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty rustic bread to soak up the flavorful sauce.",
+      "Accompany with a simple green salad dressed with olive oil and lemon."
+    ],
+    "hero_ingredient": "chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "pitted Kalamata olives",
+        "quantity": "100 g"
+      },
+      {
+        "name": "cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "chicken broth",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "fresh parsley",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into large 4-5 cm chunks. Season generously with salt and black pepper.",
+      "Heat 2 tablespoons of olive oil in a large, deep skillet over medium-high heat.",
+      "Add chicken chunks to the hot skillet. Sear until golden brown on all sides, about 3-4 minutes. Do not cook through. Remove chicken from skillet and set aside.",
+      "Cut bell peppers into thick 2-3 cm strips. Cut red onion into rustic wedges. Smash and finely mince garlic cloves.",
+      "Add remaining 1 tablespoon of olive oil to the same skillet. Add bell pepper strips and onion wedges. Sauté for 5-7 minutes until slightly softened.",
+      "Add minced garlic, whole cherry tomatoes, pitted Kalamata olives, and dried oregano to the skillet. Stir and cook for 2 minutes until fragrant.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the skillet.",
+      "Return seared chicken chunks to the skillet. Ensure chicken is submerged in the liquid. Cover the skillet and reduce heat to medium-low.",
+      "Simmer for 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and vegetables are tender-crisp.",
+      "Uncover and increase heat to medium-high for 2-3 minutes to slightly reduce the sauce, if desired. Adjust salt and pepper to taste.",
+      "Finely chop fresh parsley. Sprinkle over the dish before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 432,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 448,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 27.2,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 96.1,
+      "cholesterol_mg": 36.7,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.4,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 99.6,
+      "total_carbs_g": 3.2,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 16,
+      "protein": 66,
+      "saturated_fat": 28,
+      "sodium": 19,
+      "total_carbs": 5,
+      "total_fat": 35
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Caramelized Onions and Crispy Tortilla Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_caramelized_onions_and_crispy_tortilla_salad_20250623_132554_6fc46ae9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:25:55.097008000Z",
+    "selected_ingredients": [
+      "salad green",
+      "onion",
+      "mustard",
+      "tortilla",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, centrally placed on a simple wooden table surface. A single pan-seared chicken breast, golden-brown with a glistening mustard-honey glaze, is the focal point. The chicken is a whole piece, showcasing its succulent texture. Beside it, a generous portion of deeply caramelized red onions, rich amber in color and tender, is neatly arranged. Beneath the chicken and onions lies a vibrant bed of mixed salad greens, lightly tossed in a clear vinaigrette, showcasing various shades of green and subtle freshness. Scattered around the plate are thin, golden-brown crispy corn tortilla strips, providing a textural contrast and a warm, inviting hue. The composition is balanced with moderate negative space, allowing each component to stand out. Natural, even lighting highlights the textures and colors. A folded cotton napkin is placed beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Bistro",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken Breast",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "2 large, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml, plus extra for cooking"
+      },
+      {
+        "name": "Mixed Salad Greens",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Corn Tortillas",
+        "quantity": "4, cut into thin strips"
+      },
+      {
+        "name": "White Wine Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and pepper.",
+      "In a small bowl, whisk together Dijon mustard, honey, 30 ml olive oil, and half of the minced garlic. Set aside.",
+      "Heat 15 ml olive oil in a large skillet over medium-low heat. Add thinly sliced red onions. Cook slowly, stirring occasionally, for 25-30 minutes until deeply caramelized and tender. Remove from skillet.",
+      "While onions cook, heat 15 ml olive oil in another skillet over medium-high heat. Add tortilla strips in a single layer. Fry until golden and crispy, about 2-3 minutes per side. Drain on paper towels. Season lightly with salt.",
+      "In the skillet used for onions, add 15 ml olive oil and heat over medium-high heat. Add chicken breasts. Sear for 5-7 minutes per side, until internal temperature reaches 75°C (167°F).",
+      "During the last 2 minutes of cooking, brush chicken generously with the mustard-honey glaze. Allow glaze to caramelize slightly.",
+      "In a large bowl, whisk together remaining 15 ml olive oil, white wine vinegar, remaining minced garlic, salt, and pepper to make a vinaigrette. Add mixed salad greens and toss gently to coat.",
+      "To plate, create a bed of dressed salad greens on each plate. Place one pan-seared chicken breast on top. Spoon caramelized onions next to the chicken. Arrange crispy tortilla strips around the dish for texture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.6,
+      "calories": 642,
+      "cholesterol_mg": 153,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 60.1,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 346,
+      "total_carbs_g": 33.2,
+      "total_fat_g": 29.5,
+      "total_sugars_g": 14,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.1,
+      "calories": 156,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 14.6,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 84,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 16,
+      "protein": 120,
+      "saturated_fat": 25,
+      "sodium": 15,
+      "total_carbs": 12,
+      "total_fat": 38
+    },
+    "serving_size_g": 411.7,
+    "total_recipe_weight_g": 1646.8
+  }
+]

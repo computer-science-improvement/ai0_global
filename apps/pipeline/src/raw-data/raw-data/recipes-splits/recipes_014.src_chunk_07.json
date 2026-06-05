@@ -1,0 +1,611 @@
+[
+  {
+    "recipe_name": "Homely Blueberry Banana Oat Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homely_blueberry_banana_oat_cake_20250630_052914_1d736120.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:29:14.518736000Z",
+    "selected_ingredients": [
+      "blueberry"
+    ],
+    "complexity": "simple",
+    "special_requests": "без добавления сахара",
+    "visual_description": "A thick, rustic slice of golden-brown Blueberry Banana Oat Cake sits casually on a cream-colored ceramic plate. The cake's crumb is moist and speckled with visible oat flecks, generously dotted with plump, burst blueberries that create pockets of deep purple and blue. The top crust is a soft, warm golden-brown. In the background, the remaining portion of the whole cake rests on a simple wooden cooling rack, showcasing its homely, round shape and lightly browned surface. The scene is set on a well-used, natural wooden dining table, illuminated by soft, warm light from a kitchen window. A casually draped linen napkin, perhaps in a muted blue or cream, completes the relaxed, lived-in family kitchen atmosphere. No elaborate garnishes, just the natural beauty of the cake.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Blueberry",
+    "ingredients": [
+      {
+        "name": "Very ripe bananas",
+        "quantity": "2 large (approx. 250g peeled)"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Oat flour (from rolled oats)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Milk (any kind)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh or frozen blueberries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Olive oil or melted unsalted butter",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Lightly grease and flour an 18cm round cake tin.",
+      "In a large bowl, mash the very ripe bananas until smooth.",
+      "Whisk in the eggs, milk, vanilla extract, and olive oil (or melted butter) until well combined.",
+      "In a separate medium bowl, combine the oat flour, baking powder, ground cinnamon, and salt.",
+      "Add the dry ingredients to the wet ingredients. Mix gently with a spatula until just combined. Do not overmix.",
+      "Gently fold in the blueberries. If using frozen, do not thaw them.",
+      "Pour the batter into the prepared cake tin. Spread evenly.",
+      "Bake for 30-35 minutes, or until a wooden skewer inserted into the center of the cake comes out clean.",
+      "Let the cake cool in the tin for 10 minutes. Then, carefully transfer it to a wire rack to cool completely before slicing."
+    ],
+    "notes": [
+      "Ensure bananas are very ripe (with brown spots) for maximum natural sweetness and moisture, as no sugar is added to this recipe.",
+      "To make oat flour, simply blend rolled oats in a food processor or blender until a fine flour consistency is achieved."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 345.4,
+      "cholesterol_mg": 95.8,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 11.3,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 237.9,
+      "total_carbs_g": 47.9,
+      "total_fat_g": 13.3,
+      "total_sugars_g": 14.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 162,
+      "cholesterol_mg": 44.9,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 5.3,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 111.5,
+      "total_carbs_g": 22.5,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32,
+      "dietary_fiber": 24,
+      "protein": 23,
+      "saturated_fat": 14,
+      "sodium": 10,
+      "total_carbs": 17,
+      "total_fat": 17
+    },
+    "serving_size_g": 213.3,
+    "total_recipe_weight_g": 853
+  },
+  {
+    "recipe_name": "Sourdough Blueberry Cake with Berry Shrub",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sourdough_blueberry_cake_with_berry_shrub_20250630_052845_0e2ab976.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:28:45.966930000Z",
+    "selected_ingredients": [
+      "blueberry"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "без добавления сахара",
+    "visual_description": "A single, generous slice of Sourdough Blueberry Cake is presented on a handcrafted, matte cream-colored ceramic plate. The cake has a rustic, golden-brown crust, revealing a moist, tender crumb speckled with vibrant, plump blueberries that burst with natural color. The cake’s texture is wholesome and subtly uneven, reflecting its whole wheat and sourdough base. A delicate, translucent drizzle of the deep ruby-red berry shrub cascades gracefully over the top and down the side of the slice, adding a touch of natural sheen. The plate is sparsely adorned, allowing the cake's natural beauty to dominate. The setting features a light, textured reclaimed wood surface. A simple, undyed linen napkin in a natural beige tone rests subtly beside the plate. Soft, diffused natural light illuminates the scene, highlighting the cake's textures and colors against a clean, minimalist background with a hint of organic greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Blueberry",
+    "ingredients": [
+      {
+        "name": "Sourdough discard",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Whole wheat flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Ripe bananas, mashed",
+        "quantity": "200 g (about 2 medium)"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Fresh or frozen blueberries",
+        "quantity": "250 g"
+      },
+      {
+        "name": "For the Berry Shrub",
+        "quantity": ""
+      },
+      {
+        "name": "Blueberry skins and pulp (from 250g blueberries)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "50 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 20 cm round cake pan.",
+      "Prepare the berry shrub: Combine blueberry skins/pulp, water, and apple cider vinegar in a small saucepan. Bring to a simmer. Cook for 5 minutes. Strain through a fine-mesh sieve, pressing solids. Reserve liquid. Discard solids or compost.",
+      "In a large bowl, whisk together whole wheat flour, baking powder, baking soda, and cinnamon.",
+      "In a separate bowl, combine sourdough discard, mashed bananas, eggs, olive oil, and vanilla extract. Mix until well combined.",
+      "Pour the wet ingredients into the dry ingredients. Mix gently until just combined. Do not overmix.",
+      "Gently fold in the fresh or frozen blueberries.",
+      "Pour batter into the prepared cake pan. Spread evenly.",
+      "Bake for 30-35 minutes, or until a wooden skewer inserted into the center comes out clean. Monitor carefully.",
+      "Remove cake from oven. Let cool in the pan for 10 minutes before transferring to a wire rack to cool completely.",
+      "Serve a single slice of cooled cake. Drizzle generously with the prepared berry shrub."
+    ]
+  },
+  {
+    "recipe_name": "Fermented Blueberry Oat Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_blueberry_oat_cake_20250630_052803_6b8969e9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:28:04.211885000Z",
+    "selected_ingredients": [
+      "blueberry"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "без добавления сахара",
+    "visual_description": "A single slice of Fermented Blueberry Oat Cake rests on an unglazed, handcrafted ceramic plate in a warm cream tone. The cake slice reveals a dense, moist crumb, generously speckled with deep purple-blue blueberries, some burst, some whole. Its rustic, golden-brown crust is slightly uneven, hinting at its natural ingredients. A few fresh, unadorned blueberries are scattered beside the slice, with a subtle sprig of fresh mint. The plate sits on a light, textured reclaimed wood surface. An undyed linen napkin in natural beige is folded neatly to the side. Soft, diffused natural light illuminates the scene, creating gentle shadows. The background is clean and minimalist, with a hint of green from a distant plant, emphasizing the cake's pure, unpretentious beauty.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern Sustainable Cuisine",
+    "cultural_serving_suggestions": [
+      "Serve with a simple compote made from overripe berries",
+      "Pair with a spoonful of plain unsweetened plant-based yogurt"
+    ],
+    "hero_ingredient": "Blueberry",
+    "ingredients": [
+      {
+        "name": "Blueberries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Oat flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Whole wheat flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Sourdough discard (100% hydration)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Date puree (from pitted Medjool dates)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Plant-based milk",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cinnamon",
+        "quantity": "2g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 1 medium lemon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 20cm round cake tin.",
+      "If not pre-made, blend pitted dates with a splash of hot water until smooth to create date puree.",
+      "In a large bowl, whisk sourdough discard, date puree, olive oil, plant milk, and vanilla extract until combined.",
+      "In a separate bowl, combine oat flour, whole wheat flour, baking soda, cinnamon, and salt.",
+      "Add dry ingredients to wet ingredients. Mix until just combined. Do not overmix.",
+      "Gently fold in blueberries and lemon zest.",
+      "Pour batter into the prepared tin. Smooth the top.",
+      "Bake for 40-50 minutes. Cake is done when a skewer inserted into the center comes out clean.",
+      "Cool in the tin for 10 minutes. Transfer to a wire rack to cool completely."
+    ],
+    "notes": [
+      "Use very ripe dates for maximum natural sweetness.",
+      "Adjust sweetness by adding more date puree if desired, or a ripe mashed banana.",
+      "Store at room temperature in an airtight container for up to 3 days, or refrigerate for up to 5 days.",
+      "This recipe uses sourdough discard for natural leavening and subtle tang, contributing to fermentation.",
+      "Embrace seasonal, local blueberries for best flavor and sustainability."
+    ],
+    "traditional_techniques": [
+      "Natural Leavening (Sourdough Discard)",
+      "Zero-Waste Baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 618,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.3,
+      "protein_g": 11.6,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 580,
+      "total_carbs_g": 93.6,
+      "total_fat_g": 24.1,
+      "total_sugars_g": 31.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 255.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 4.8,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 239.3,
+      "total_carbs_g": 38.6,
+      "total_fat_g": 10,
+      "total_sugars_g": 13,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 40,
+      "protein": 23,
+      "saturated_fat": 17,
+      "sodium": 25,
+      "total_carbs": 34,
+      "total_fat": 31
+    },
+    "serving_size_g": 242.3,
+    "total_recipe_weight_g": 969
+  },
+  {
+    "recipe_name": "Moroccan Chicken Tagine with Carrots and Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_moroccan_chicken_tagine_with_carrots_and_tomatoes_20250630_052743_86021848.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:27:43.842725000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Moroccan Chicken Tagine is presented in a wide, shallow white porcelain bowl. Two braised chicken pieces, a drumstick and a thigh, are nestled in a rich, aromatic tomato-based sauce. The sauce is a deep reddish-brown, thick and glossy, studded with tender, bright orange 3 cm carrot chunks and softened diced tomato. The chicken is fall-off-the-bone tender with a slightly caramelized exterior. A vibrant sprinkle of fresh, chopped cilantro covers the dish, providing a fresh green contrast. A few thin strips of preserved lemon rind are artfully placed on top. The bowl sits on a simple light wooden table surface. Beside the bowl is a small, traditional Moroccan patterned serving spoon and a small side bowl of fluffy, white couscous. A folded natural cotton napkin rests nearby. The scene is illuminated by natural, even lighting, creating a warm, inviting restaurant atmosphere in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Moroccan",
+    "cultural_origin": "Moroccan",
+    "cultural_serving_suggestions": [
+      "Serve with fluffy couscous to soak up the rich sauce.",
+      "Offer crusty bread on the side for dipping.",
+      "Traditionally eaten by hand, scooping with bread or a spoon."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs and drumsticks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "3 medium, peeled and cut into 3 cm chunks"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Preserved lemon",
+        "quantity": "1/2, pulp removed, rind thinly sliced"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large tagine or heavy-bottomed pot over medium-high heat. Sear chicken pieces until golden brown on all sides. Remove chicken from pot. Set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Stir in cumin, coriander, paprika, turmeric, and cinnamon stick. Cook for 1 minute, stirring constantly.",
+      "Return chicken to the pot. Add crushed tomatoes, carrot chunks, and chicken broth.",
+      "Bring to a simmer. Cover the pot. Reduce heat to low.",
+      "Braise for 45-60 minutes, or until chicken is tender and cooked to 75°C (167°F) internal temperature. Carrots should be tender.",
+      "Stir in preserved lemon slices during the last 10 minutes of cooking.",
+      "Taste and adjust seasoning if needed. Remove cinnamon stick.",
+      "Garnish with fresh chopped cilantro before serving."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Slow cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 481,
+      "cholesterol_mg": 178,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 40.5,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 1252,
+      "total_carbs_g": 21.6,
+      "total_fat_g": 27.5,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 92,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 240,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 89,
+      "dietary_fiber": 23,
+      "protein": 81,
+      "saturated_fat": 32,
+      "sodium": 54,
+      "total_carbs": 8,
+      "total_fat": 35
+    },
+    "serving_size_g": 521.7,
+    "total_recipe_weight_g": 2086.6
+  },
+  {
+    "recipe_name": "Fermented Cherry Crumble with Almond Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_cherry_crumble_with_almond_cream_20250630_052731_d2b75389.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:27:31.636689000Z",
+    "selected_ingredients": [
+      "cherry",
+      "flour",
+      "semolina",
+      "almond"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a handcrafted, unglazed ceramic bowl, resting on a light reclaimed wood surface. Soft, diffused natural light illuminates the scene. A pristine pool of smooth Almond Cream forms the base, its surface gently reflective. A generous dollop of Fermented Cherry Compote is placed off-center, its deep ruby-red and maroon hues contrasting with the pale cream. Cherries are plump and whole. A rustic scattering of golden-brown Almond Semolina Crumble tops the compote, providing textural contrast with its irregular, crisp pieces. A single small green mint leaf or delicate edible flower adds a subtle pop of natural color. Ample negative space surrounds the bowl, highlighting the dish's simplicity and organic elegance. The composition is clean, minimalistic, and unforced, emphasizing natural beauty and sustainable ethos.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Cherry",
+    "ingredients": [
+      {
+        "name": "fresh cherries, pitted",
+        "quantity": "300 g"
+      },
+      {
+        "name": "maple syrup",
+        "quantity": "50 g"
+      },
+      {
+        "name": "filtered water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "plain flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "fine semolina",
+        "quantity": "50 g"
+      },
+      {
+        "name": "ground almonds (or reserved toasted almond pulp)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "maple syrup or coconut sugar",
+        "quantity": "40 g"
+      },
+      {
+        "name": "cold coconut oil or vegan butter, diced",
+        "quantity": "40 g"
+      },
+      {
+        "name": "raw almonds",
+        "quantity": "100 g"
+      },
+      {
+        "name": "filtered water (for almond milk)",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "maple syrup (for almond cream)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "small edible flowers or fresh mint leaves",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Cherry Compote: Combine pitted cherries, 50 g maple syrup, 50 ml filtered water, and pinch of salt in a clean glass jar. Stir well. Loosely cover jar. Ferment at room temperature (20-24°C) for 3-5 days, or until desired tanginess. Stir daily. Refrigerate after fermentation.",
+      "Make Almond Cream: Soak almonds in water overnight. Drain and rinse. Blend soaked almonds with 750 ml fresh filtered water until creamy. Strain through a nut milk bag or fine mesh sieve, squeezing out all liquid. Reserve the almond pulp. Stir 30 g maple syrup, vanilla extract, and pinch of salt into the almond milk. Chill thoroughly.",
+      "Prepare Almond Semolina Crumble: In a bowl, combine plain flour, fine semolina, ground almonds (or reserved toasted almond pulp), 40 g maple syrup, and salt. Add cold coconut oil (or vegan butter) in small pieces. Rub ingredients together with fingertips until a coarse, crumbly mixture forms.",
+      "Bake Crumble: Spread crumble mixture evenly on a baking sheet. Bake at 170°C (fan 150°C) for 15-20 minutes, or until golden brown and crisp. Let cool completely.",
+      "Assemble: Spoon chilled almond cream into four shallow bowls. Top each with a generous portion of fermented cherry compote. Sprinkle baked almond semolina crumble over the compote. Garnish with a few small edible flowers or fresh mint leaves. Serve immediately."
+    ],
+    "notes": [
+      "Adjust fermentation time for cherries based on desired tanginess.",
+      "The toasted almond pulp, if used in crumble, adds texture and utilizes a common by-product, reducing waste.",
+      "For a firmer cream, ensure thorough chilling before serving."
+    ],
+    "traditional_techniques": [
+      "Fermentation (natural food preservation)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 18,
+      "calories": 520.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7,
+      "protein_g": 11.7,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 1.4,
+      "total_carbs_g": 58.8,
+      "total_fat_g": 29.2,
+      "total_sugars_g": 29.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4.5,
+      "calories": 129.4,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 2.9,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 0.3,
+      "total_carbs_g": 14.6,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 25,
+      "protein": 23.4,
+      "saturated_fat": 48.5,
+      "sodium": 0.1,
+      "total_carbs": 21.4,
+      "total_fat": 37.4
+    },
+    "serving_size_g": 402.5,
+    "total_recipe_weight_g": 1610
+  }
+]

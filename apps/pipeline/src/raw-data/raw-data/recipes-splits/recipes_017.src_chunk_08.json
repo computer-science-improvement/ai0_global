@@ -1,0 +1,619 @@
+[
+  {
+    "recipe_name": "Kale and Pan-Fried Tofu Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_kale_and_pan-fried_tofu_salad_20250626_095534_770e9206.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:55:35.368417000Z",
+    "selected_ingredients": [
+      "tofu",
+      "soy sauce",
+      "kale",
+      "onion",
+      "miso paste"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "The Kale and Pan-Fried Tofu Salad is presented in a deep, rustic ceramic bowl, showcasing a generous, natural portion. Vibrant, dark green chopped kale forms the base, lightly coated with a savory, glossy miso-soy dressing. Interspersed throughout are golden-brown, crispy pan-fried tofu cubes, their irregular edges adding texture. Thinly sliced red onion rings are scattered, providing a subtle pop of purple. The dressing pools slightly at the bottom, indicating its presence. The overall arrangement is casual and inviting, as if served at a family dinner. The bowl rests on a well-worn wooden dining table. A simple, dark blue cloth napkin is casually placed beside it. Traditional Japanese chopsticks rest on the rim of the bowl, and a small, plain white rice bowl sits nearby, suggesting a complete meal. Warm, soft light from an overhead kitchen fixture illuminates the scene, creating a cozy, homely atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve alongside steamed white rice.",
+      "Offer a small bowl of clear dashi soup.",
+      "Pair with other small dishes (kobachi) for a traditional Japanese meal.",
+      "Eat with chopsticks."
+    ],
+    "hero_ingredient": "Kale",
+    "ingredients": [
+      {
+        "name": "Firm tofu",
+        "quantity": "400g block"
+      },
+      {
+        "name": "Fresh kale",
+        "quantity": "300g, tough stems removed, finely chopped"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium, thinly sliced"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "White miso paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "10g, grated"
+      },
+      {
+        "name": "Water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml, for frying"
+      }
+    ],
+    "instructions": [
+      "Press tofu. Wrap tofu block in paper towels. Place a heavy object on top. Press for 20 minutes.",
+      "Cut pressed tofu into 2 cm cubes.",
+      "Heat vegetable oil in a large non-stick pan over medium-high heat.",
+      "Add tofu cubes. Pan-fry until golden brown and crispy on all sides. This takes 8-10 minutes.",
+      "Remove tofu from pan. Drain on paper towels. Set aside.",
+      "In a large bowl, combine finely chopped kale and thinly sliced red onion.",
+      "In a small bowl, whisk together soy sauce, miso paste, rice vinegar, sesame oil, grated ginger, and water to make the dressing.",
+      "Pour dressing over kale and onion. Massage kale gently with hands for 2-3 minutes. This softens the kale.",
+      "Add pan-fried tofu cubes to the bowl. Toss gently to combine all ingredients.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Pressing tofu is crucial for crispy results.",
+      "Massaging kale tenderizes it and helps absorb the dressing."
+    ],
+    "traditional_techniques": [
+      "Pan-frying (Yaki)",
+      "Dressing preparation (similar to Aemono style)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 235,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 12.7,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 1174,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 16.1,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 4.8,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 441,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 16,
+      "protein": 26,
+      "saturated_fat": 11,
+      "sodium": 51,
+      "total_carbs": 4,
+      "total_fat": 21
+    },
+    "serving_size_g": 266.5,
+    "total_recipe_weight_g": 1066
+  },
+  {
+    "recipe_name": "Rustic Chicken and Tomato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_tomato_stew_20250626_095515_e7c861cd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:55:16.146036000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown seared bone-in, skin-on chicken thigh rests in a deep, rustic ceramic bowl. The chicken is partially submerged in a rich, reddish-brown tomato stew, which features softened diced onion and visible crushed tomato pieces. The sauce has a hearty, slightly chunky texture, pooling naturally around the chicken. A light scattering of fresh, roughly chopped green parsley garnishes the top, adding a pop of color. The plate is positioned on a well-worn, light wooden dining table. Beside the bowl, a simple, slightly imperfect ceramic side plate holds a thick slice of crusty, artisanal bread. A plain, casually draped linen napkin and standard, well-used flatware complete the homely setting. Warm, soft ambient lighting illuminates the scene, highlighting the comforting textures and natural colors of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "bone-in, skin-on chicken thighs",
+        "quantity": "4"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "dried basil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 6-8 minutes until golden brown and crispy.",
+      "Flip chicken. Sear for 2-3 minutes. Remove chicken from pot.",
+      "Add diced onion to pot. Cook for 5-7 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the pot.",
+      "Stir in crushed tomatoes, oregano, and basil. Bring to a simmer.",
+      "Return chicken thighs to the pot, skin-side up.",
+      "Reduce heat to low. Cover pot. Simmer for 25-30 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Taste and adjust seasoning if needed.",
+      "Serve hot, garnished with fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 381.4,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 4,
+      "protein_g": 34.9,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 186,
+      "total_carbs_g": 12.5,
+      "total_fat_g": 19.6,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 78.4,
+      "cholesterol_mg": 35.8,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.2,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 38.2,
+      "total_carbs_g": 2.6,
+      "total_fat_g": 4,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 14.3,
+      "protein": 69.8,
+      "saturated_fat": 21.4,
+      "sodium": 8.1,
+      "total_carbs": 4.6,
+      "total_fat": 25.1
+    },
+    "serving_size_g": 486.5,
+    "total_recipe_weight_g": 1946
+  },
+  {
+    "recipe_name": "Hearty Chicken and Tomato Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_tomato_soup_20250626_095454_a8bdc67e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:54:54.526002000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of hearty chicken and tomato soup is presented in a deep, rustic ceramic bowl with a slightly chipped rim, resting on a well-worn wooden kitchen table. Large, irregular chunks of tender, cooked chicken are visible amidst a rich, reddish-orange broth, intermingled with soft, diced tomatoes. The soup has a comforting, slightly thick consistency. A scattering of vibrant green, roughly chopped fresh basil leaves floats on top, providing a fresh contrast. The light is warm and natural, as if from a kitchen window, highlighting the steam gently rising from the bowl. A simple metal soup spoon is placed casually beside the bowl. The background is minimal, suggesting a homely, lived-in kitchen environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Soup",
+    "hero_ingredient": "Chicken and Tomatoes",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (boneless, skinless)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "small bunch, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Cut chicken into 2 cm chunks. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add chicken chunks. Sear until lightly browned on all sides. Do not overcrowd the pot. Cook in batches if necessary. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Pour in diced tomatoes with their juice and chicken broth. Bring to a simmer.",
+      "Return seared chicken chunks to the pot.",
+      "Reduce heat to low. Cover and simmer for 20-25 minutes, or until chicken is cooked through to 75°C (167°F) and tender.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Ladle soup into bowls. Garnish with fresh chopped basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 353.8,
+      "cholesterol_mg": 121.3,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 37.7,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 490.1,
+      "total_carbs_g": 15.2,
+      "total_fat_g": 18.1,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 46.5,
+      "cholesterol_mg": 15.9,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 5,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 64.5,
+      "total_carbs_g": 2,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.4,
+      "dietary_fiber": 11.8,
+      "protein": 75.4,
+      "saturated_fat": 20.5,
+      "sodium": 21.3,
+      "total_carbs": 5.5,
+      "total_fat": 23.2
+    },
+    "serving_size_g": 760.5,
+    "total_recipe_weight_g": 3042
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Medallions with Red Wine Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_medallions_with_red_wine_jus_20250626_095438_0e7e21bf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:54:38.699185000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared beef medallions is elegantly presented on a clean, round white porcelain plate, centered on a simple wooden table. Two to three thick, rich brown beef medallions, seared to a perfect crust, rest slightly overlapping. Their interiors hint at a tender, rosy pink. Beside the beef, a generous, creamy quenelle of smooth, light beige potato and parsnip puree provides a soft textural contrast. A glossy, deep ruby-red red wine jus is artfully drizzled over the beef and lightly pooled on the plate, adding a rich sheen. A delicate sprig of fresh thyme, with its tiny green leaves, is placed on the beef as a garnish. The composition is clean and balanced, with moderate negative space. A simple white cotton napkin is folded neatly beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and vibrant colors. The background is minimal, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Beef Tenderloin",
+    "ingredients": [
+      {
+        "name": "Beef tenderloin",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Potatoes (floury)",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 millilitres"
+      },
+      {
+        "name": "Red wine (dry)",
+        "quantity": "250 millilitres"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "300 millilitres"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 millilitres"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef tenderloin dry. Season generously with salt and pepper. Cut into 4 cm thick medallions.",
+      "Peel and chop potatoes and parsnips into 2 cm chunks. Place in a pot. Cover with cold salted water. Bring to a boil. Cook until very tender, about 15-20 minutes.",
+      "While vegetables cook, prepare the jus. Finely dice shallots and mince garlic. Heat 15 ml olive oil in a small saucepan over medium heat.",
+      "Add shallots and garlic to saucepan. Sauté until softened, about 3 minutes. Deglaze with red wine. Bring to a simmer. Reduce by half.",
+      "Add beef stock and 1 thyme sprig to saucepan. Simmer gently. Reduce by half again until slightly thickened. Strain the jus through a fine-mesh sieve. Discard solids. Keep warm.",
+      "Drain cooked potatoes and parsnips thoroughly. Return to the hot pot. Add 50 grams butter and heavy cream. Mash or pass through a ricer until smooth. Season with salt and pepper. Keep warm.",
+      "Heat remaining 15 ml olive oil in a heavy-bottomed pan over medium-high heat. Add beef medallions. Sear 3-4 minutes per side for medium-rare, or until desired doneness is reached. Ensure internal temperature reaches 63°C (145°F) for medium-rare.",
+      "Remove beef from pan. Let rest 5 minutes. This ensures tender, juicy meat.",
+      "To plate, spoon a generous dollop of potato and parsnip puree onto each plate. Arrange 2-3 beef medallions beside the puree. Drizzle red wine jus over the beef. Garnish with a small fresh thyme sprig. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 826.3,
+      "cholesterol_mg": 187,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 44.2,
+      "saturated_fat_g": 23.7,
+      "sodium_mg": 682,
+      "total_carbs_g": 34.1,
+      "total_fat_g": 45.4,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 158.6,
+      "cholesterol_mg": 35.8,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 130.8,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.3,
+      "dietary_fiber": 19.6,
+      "protein": 88.4,
+      "saturated_fat": 118.5,
+      "sodium": 29.7,
+      "total_carbs": 12.4,
+      "total_fat": 58.2
+    },
+    "serving_size_g": 521,
+    "total_recipe_weight_g": 2084
+  },
+  {
+    "recipe_name": "Fermented Mushroom & Chicken Sourdough Toast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_mushroom_%26_chicken_sourdough_toast_20250626_095426_3dc7c0a7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:54:27.353855000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread",
+      "ricotta",
+      "macaroni",
+      "onion",
+      "mushroom",
+      "potato",
+      "pasta",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "russ cuisine",
+    "visual_description": "Four individual sourdough toasts are arranged on a light, handcrafted ceramic platter. The golden, rustic sourdough bases are visible. Each toast is generously spread with creamy white ricotta. Irregularly shaped, earthy brown fermented mushroom slices are layered over the ricotta, some overlapping naturally. Shredded, pale chicken is scattered on top. Bright pink pickled onion slivers provide a vibrant pop of color and texture, contrasting with the green of fresh dill sprigs garnishing each toast. The composition is clean and minimalistic, with ample white space on the platter. The setting features a light, reclaimed wood surface and an undyed linen napkin in natural beige. Soft, natural light illuminates the scene, with a subtle, out-of-focus natural element in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve as individual open-faced toasts.",
+      "Offer a small side of smetana (sour cream) for an authentic touch."
+    ],
+    "hero_ingredient": "Fermented Mushrooms",
+    "ingredients": [
+      {
+        "name": "Sourdough Bread",
+        "quantity": "1 small loaf (approx. 400g)"
+      },
+      {
+        "name": "Mixed Mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium (approx. 200g)"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Cooked Chicken",
+        "quantity": "200g"
+      },
+      {
+        "name": "Ricotta Cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Filtered Water",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black Peppercorns",
+        "quantity": "A few"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "A few sprigs"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "A drizzle"
+      }
+    ],
+    "instructions": [
+      "Clean mushrooms. Slice thinly.",
+      "Combine 300g sliced mushrooms with 6g sea salt in a clean jar.",
+      "Add 200ml non-chlorinated water. Ensure mushrooms are fully submerged.",
+      "Seal jar loosely. Ferment at room temperature for 3-5 days. Burp daily to release gas.",
+      "Refrigerate fermented mushrooms once desired tanginess is achieved.",
+      "Thinly slice 2 medium onions.",
+      "In a separate jar, combine sliced onions, 120ml apple cider vinegar, 120ml hot water, 5g salt, 5g sugar, and a few black peppercorns.",
+      "Seal jar. Refrigerate pickled onions for at least 1 hour. Best when marinated overnight.",
+      "If not using leftover cooked chicken, poach or pan-fry chicken breast until internal temperature reaches 75°C. Shred or finely dice chicken.",
+      "Slice sourdough bread into 1.5 cm thick pieces.",
+      "Toast bread slices until golden brown and crisp.",
+      "Spread a generous layer of ricotta cheese on each toasted bread slice.",
+      "Top evenly with fermented mushrooms.",
+      "Scatter shredded chicken over mushrooms.",
+      "Garnish with pickled onion slivers and fresh dill sprigs.",
+      "Serve immediately as a savory snack."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing fermentation and pickling techniques for extended shelf life.",
+      "Consider composting any unusable vegetable scraps."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 462,
+      "cholesterol_mg": 54,
+      "dietary_fiber_g": 4.2,
+      "protein_g": 32.8,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 1059,
+      "total_carbs_g": 60.5,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 114,
+      "cholesterol_mg": 13,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.1,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 261,
+      "total_carbs_g": 14.9,
+      "total_fat_g": 2.1,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 15,
+      "protein": 66,
+      "saturated_fat": 15,
+      "sodium": 46,
+      "total_carbs": 22,
+      "total_fat": 11
+    },
+    "serving_size_g": 405.5,
+    "total_recipe_weight_g": 1622
+  }
+]

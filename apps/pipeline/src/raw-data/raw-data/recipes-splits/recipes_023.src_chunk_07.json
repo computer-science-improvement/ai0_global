@@ -1,0 +1,685 @@
+[
+  {
+    "recipe_name": "Chicken and Mushroom Pasta with San Marzano Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_pasta_with_san_marzano_tomatoes_20250624_105041_8a76e43e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:50:41.733887000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "onion",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of Chicken and Mushroom Pasta is presented on a clean, round white porcelain dinner plate. The al dente rigatoni pasta is thoroughly coated in a rich, rustic San Marzano tomato sauce, showcasing its vibrant red hue. Irregularly cut, pan-seared chicken chunks, golden-brown on the exterior, are nestled among the pasta. Sliced cremini mushrooms, sautéed to a tender, caramelized finish, are interspersed throughout the dish, adding earthy tones. The overall composition is balanced and inviting, with moderate negative space. Fresh green basil leaves are scattered on top, providing a pop of color and freshness. A generous grating of white Parmesan cheese lightly dusts the dish. The plate rests on a simple wooden table surface with a neutral cotton napkin and a silver fork beside it, under natural, even lighting, evoking a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmesan cheese.",
+      "Serve with a side of crusty Italian bread.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Crushed San Marzano tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm chunks. Season chicken with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Sear chicken chunks until golden brown on all sides. Remove chicken from skillet. Set aside.",
+      "Dice onion. Thinly slice mushrooms. Mince garlic.",
+      "Add onion to the same skillet. Sauté until softened, about 5 minutes.",
+      "Add mushrooms and minced garlic. Sauté until mushrooms are browned and tender.",
+      "Pour in chicken stock. Scrape up any browned bits from the bottom of the skillet.",
+      "Add crushed San Marzano tomatoes. Bring to a simmer. Reduce heat to low.",
+      "Return seared chicken chunks to the sauce. Simmer for 15-20 minutes, or until chicken is cooked through (internal temperature 75°C).",
+      "While sauce simmers, cook rigatoni according to package directions until al dente.",
+      "Drain pasta. Add cooked pasta directly to the sauce. Toss to coat evenly.",
+      "Serve immediately. Garnish with grated Parmesan cheese and fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Cooking pasta al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 773,
+      "cholesterol_mg": 153.4,
+      "dietary_fiber_g": 7.24,
+      "protein_g": 47.74,
+      "saturated_fat_g": 7.35,
+      "sodium_mg": 774.2,
+      "total_carbs_g": 79.26,
+      "total_fat_g": 26.21,
+      "total_sugars_g": 12.33,
+      "trans_fat_g": 0.27
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125,
+      "cholesterol_mg": 24.7,
+      "dietary_fiber_g": 1.17,
+      "protein_g": 7.69,
+      "saturated_fat_g": 1.19,
+      "sodium_mg": 124.8,
+      "total_carbs_g": 12.77,
+      "total_fat_g": 4.22,
+      "total_sugars_g": 1.99,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.1,
+      "dietary_fiber": 25.9,
+      "protein": 95.5,
+      "saturated_fat": 36.8,
+      "sodium": 33.7,
+      "total_carbs": 28.8,
+      "total_fat": 33.6
+    },
+    "serving_size_g": 620.5,
+    "total_recipe_weight_g": 2482
+  },
+  {
+    "recipe_name": "Roasted Chicken with Fermented Garlic Potato Puree and Quick-Pickled Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_with_fermented_garlic_potato_puree_and_quick-pickled_onions_20250624_105039_0649b2cb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:50:39.997906000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single roasted chicken thigh, golden-brown and crispy-skinned, rests atop a generous, creamy mound of pale ivory fermented garlic potato puree. The chicken is presented whole, showcasing its natural form. Beside it, a scattering of vibrant pink quick-pickled red onion rings provides a sharp color contrast. A delicate sprinkle of fresh, bright green finely chopped parsley garnishes the dish. The plating is minimalistic, with ample white space on a handcrafted, matte cream ceramic plate. The background features a light, natural wood table surface, an undyed linen napkin, and soft, diffused natural light, emphasizing the dish's organic and sustainable essence.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Starchy potatoes (e.g., Russet)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fermented garlic paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Thinly slice the red onion into rings. In a small saucepan, combine white wine vinegar, 100ml water, sugar, and a pinch of salt. Bring to a simmer, stirring until sugar dissolves. Pour hot liquid over sliced onions in a heatproof jar. Let cool to room temperature. Refrigerate until ready to serve.",
+      "Peel and cut potatoes into 2cm cubes. Place in a large pot, cover with cold salted water. Bring to a boil, then reduce heat and simmer until very tender, about 15-20 minutes. Drain well.",
+      "Return drained potatoes to the pot. Add butter, fermented garlic paste, and a pinch of salt and pepper. Mash until smooth and creamy. Adjust seasoning.",
+      "Preheat oven to 200°C. Pat chicken thighs dry. Season generously with salt and black pepper. Heat 15ml olive oil in an oven-safe skillet over medium-high heat. Place chicken skin-side down. Sear for 6-8 minutes until skin is golden brown and crispy. Flip chicken.",
+      "Add 4 smashed but unpeeled garlic cloves to the skillet with the chicken. Transfer skillet to preheated oven. Roast for 15-20 minutes, or until internal temperature reaches 75°C. Let chicken rest 5 minutes before serving.",
+      "Place a generous portion of fermented garlic potato puree on each plate. Top with one roasted chicken thigh. Arrange a few quick-pickled onion rings beside the chicken. Garnish with fresh finely chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.75,
+      "calories": 734.33,
+      "cholesterol_mg": 190.73,
+      "dietary_fiber_g": 4.56,
+      "protein_g": 42.58,
+      "saturated_fat_g": 12.19,
+      "sodium_mg": 686.21,
+      "total_carbs_g": 51.48,
+      "total_fat_g": 39.74,
+      "total_sugars_g": 7.85,
+      "trans_fat_g": 0.42
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.78,
+      "calories": 151.91,
+      "cholesterol_mg": 39.46,
+      "dietary_fiber_g": 0.94,
+      "protein_g": 8.81,
+      "saturated_fat_g": 2.52,
+      "sodium_mg": 141.96,
+      "total_carbs_g": 10.65,
+      "total_fat_g": 8.22,
+      "total_sugars_g": 1.62,
+      "trans_fat_g": 0.09
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.58,
+      "dietary_fiber": 16.29,
+      "protein": 85.16,
+      "saturated_fat": 60.95,
+      "sodium": 29.84,
+      "total_carbs": 18.72,
+      "total_fat": 50.95
+    },
+    "serving_size_g": 483.4,
+    "total_recipe_weight_g": 1933.6
+  },
+  {
+    "recipe_name": "Quiche Lorraine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_quiche_lorraine_20250624_105039_e0789c5a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:50:39.902194000Z",
+    "selected_ingredients": [
+      "egg",
+      "milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A thick wedge of Quiche Lorraine sits centered on a clean white porcelain plate. The crust is a pale golden-brown, flaky pâte brisée with sharp, crimped edges. The custard filling is a soft, pale yellow with a slightly browned, gratinated top surface. Thick chunks of sautéed smoked bacon and melted Gruyère cheese are visible within the creamy cross-section. A small, vibrant green salad of frisée and chives is placed neatly to the side. The setting is a modern French bistro with a dark oak table and a folded white cotton napkin. Natural side lighting highlights the silky custard texture and the crisp, layered pastry. The plate shows moderate negative space for a professional finish.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed in vinaigrette",
+      "Pair with a dry Alsatian white wine",
+      "Serve at room temperature or slightly warm"
+    ],
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "250g"
+      },
+      {
+        "name": "Unsalted butter, chilled and cubed",
+        "quantity": "125g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "5"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Smoked bacon, cut into 1cm chunks",
+        "quantity": "200g"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "150g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "7g"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "2g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Combine flour and salt in a bowl.",
+      "Rub butter into flour until it reaches a sandy texture.",
+      "Add 1 egg yolk and cold water.",
+      "Mix until dough forms.",
+      "Wrap and chill for 30 minutes.",
+      "Roll dough to 3mm thickness.",
+      "Line a 22cm tart tin with the dough.",
+      "Prick the base with a fork.",
+      "Blind bake at 180°C with weights for 15 minutes.",
+      "Remove weights and bake 5 more minutes.",
+      "Sauté bacon chunks in a pan until crisp.",
+      "Drain bacon on paper towels.",
+      "Whisk 4 eggs with milk and cream.",
+      "Season with nutmeg and pepper.",
+      "Spread bacon and cheese across the pastry base.",
+      "Pour egg mixture over the fillings.",
+      "Bake at 170°C for 30 minutes until just set.",
+      "Rest for 10 minutes before cutting into wedges."
+    ],
+    "notes": [
+      "Ensure the butter is very cold for a flaky crust",
+      "Do not over-whisk the eggs to avoid excessive air bubbles in the custard"
+    ],
+    "traditional_techniques": [
+      "blind baking",
+      "custard preparation",
+      "pâte brisée"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1114,
+      "cholesterol_mg": 448.8,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 34.2,
+      "saturated_fat_g": 44.8,
+      "sodium_mg": 1791.3,
+      "total_carbs_g": 53.2,
+      "total_fat_g": 84.9,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 368.9,
+      "cholesterol_mg": 148.6,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 11.3,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 593.1,
+      "total_carbs_g": 17.6,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 150,
+      "dietary_fiber": 6,
+      "protein": 68,
+      "saturated_fat": 224,
+      "sodium": 78,
+      "total_carbs": 19,
+      "total_fat": 109
+    },
+    "serving_size_g": 302,
+    "total_recipe_weight_g": 1208
+  },
+  {
+    "recipe_name": "Spicy Chicken and Potato Tacos",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_potato_tacos_20250624_105037_d3e182ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:50:37.779640000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "hot sauce",
+      "tortilla"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, inviting portion of three vibrant Spicy Chicken and Potato Tacos rests on a rustic, off-white ceramic plate. The corn tortillas are lightly toasted, revealing their natural texture. Each taco is generously filled with a rich, savory mixture of shredded chicken and tender, diced Yukon Gold potatoes. The filling shows warm, earthy tones with hints of red from the hot sauce and bright green flecks of fresh cilantro. The chicken is visibly shredded, and the potatoes maintain some distinct chunks for textural variety. A vibrant lime wedge is placed beside the tacos, ready to be squeezed. The plate sits on a well-used wooden dining table, illuminated by warm, soft kitchen light. A simple, casually folded cloth napkin is nearby. The overall scene evokes a comfortable, authentic Mexican home kitchen setting, with natural imperfections on the plate adding to its charm.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with extra hot sauce on the side",
+      "Offer a bowl of fresh salsa or pico de gallo",
+      "Serve with a side of refried beans or Mexican rice"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Yukon Gold potatoes, diced",
+        "quantity": "400g"
+      },
+      {
+        "name": "Your favorite hot sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Small corn tortillas",
+        "quantity": "12"
+      },
+      {
+        "name": "Medium yellow onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Limes, cut into wedges",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 2 cm cubes.",
+      "Heat oil in a large skillet over medium-high heat. Add chicken. Sear until lightly browned, about 5 minutes. Remove chicken. Set aside.",
+      "Add diced onion to the skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic, ground cumin, and chili powder. Cook for 1 minute until fragrant.",
+      "Return chicken to the skillet. Add diced potatoes, chicken broth, hot sauce, salt, and black pepper.",
+      "Bring to a simmer. Reduce heat to low. Cover and cook for 20-25 minutes. Cook until chicken is cooked through and potatoes are tender. Internal temperature of chicken must reach 75°C (167°F).",
+      "Remove chicken from skillet. Shred chicken using two forks. Return shredded chicken to the skillet. Gently mash some potatoes with a fork for a creamier texture, leaving some chunks.",
+      "Stir in half of the chopped cilantro.",
+      "Warm corn tortillas in a dry skillet or microwave until pliable.",
+      "Fill each warm tortilla with the chicken and potato mixture. Garnish with remaining fresh cilantro and a lime wedge."
+    ],
+    "notes": [
+      "For a spicier kick, increase the amount of hot sauce.",
+      "Chicken thighs are recommended for their tenderness and flavor, but chicken breast can be used."
+    ],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 546.6,
+      "cholesterol_mg": 132.5,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 31.4,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 956.5,
+      "total_carbs_g": 59.1,
+      "total_fat_g": 21.4,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125.7,
+      "cholesterol_mg": 30.5,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 7.2,
+      "saturated_fat_g": 1,
+      "sodium_mg": 220,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44.2,
+      "dietary_fiber": 27.5,
+      "protein": 62.8,
+      "saturated_fat": 21,
+      "sodium": 41.6,
+      "total_carbs": 21.5,
+      "total_fat": 27.4
+    },
+    "serving_size_g": 435,
+    "total_recipe_weight_g": 1739
+  },
+  {
+    "recipe_name": "Russian Chicken and Potato Zharkoye",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_russian_chicken_and_potato_zharkoye_20250624_105025_56f1b070.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:50:26.099851000Z",
+    "selected_ingredients": [
+      "tomato",
+      "chicken",
+      "mushroom",
+      "mixed spice",
+      "cheese",
+      "onion",
+      "bread",
+      "garlic",
+      "pasta",
+      "bell pepper",
+      "rice",
+      "potato",
+      "carrot"
+    ],
+    "complexity": "simple",
+    "special_requests": "russian cuisine",
+    "visual_description": "A comforting single serving of Russian Chicken and Potato Zharkoye is presented in a deep, rustic ceramic bowl, set on a well-worn wooden kitchen table. Hearty chunks of braised chicken thighs are nestled amongst large, tender potato wedges, thick-cut carrot rounds, soft onion pieces, vibrant red bell pepper chunks, and whole browned mushrooms. The ingredients are bathed in a rich, savory, reddish-brown tomato-based sauce, creating a cohesive, natural pile. A generous dollop of creamy white sour cream rests on top, alongside a sprinkle of fresh green chopped dill. The scene is lit with warm, inviting kitchen light, emphasizing the textures and natural colors of the homely dish. A thick slice of dark rye bread rests casually beside the bowl, with a simple fork and spoon nearby, completing the authentic, cozy family kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve hot with a dollop of sour cream (smetana).",
+      "Accompany with slices of dark rye bread for dipping in the sauce.",
+      "Enjoy as a hearty, comforting main course."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Bell pepper",
+        "quantity": "1 red"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Diced tomatoes (canned)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Dried dill",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh dill or parsley",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Sour cream (smetana)",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Rye bread",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt, pepper, and paprika.",
+      "Heat oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear chicken thighs until golden brown on all sides. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add chopped onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic, diced carrots, and diced bell pepper. Cook for 5-7 minutes, stirring occasionally.",
+      "Add quartered mushrooms. Cook until slightly browned, about 5 minutes.",
+      "Return chicken thighs to the pot. Add diced tomatoes, chicken broth, and dried dill. Stir well.",
+      "Add large chunks of potatoes around the chicken. Ensure chicken is mostly submerged.",
+      "Bring liquid to a simmer. Cover the pot tightly.",
+      "Transfer pot to a preheated oven at 180°C (350°F). Bake for 60-75 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender.",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Taste and adjust seasoning if needed. Garnish with fresh dill or parsley."
+    ],
+    "notes": [
+      "Bone-in, skin-on chicken thighs add the most flavor to this stew.",
+      "Ensure potatoes are cut into large, rustic chunks so they don't disintegrate during cooking."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Stewing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 668.8,
+      "cholesterol_mg": 184,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 48.9,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 546.3,
+      "total_carbs_g": 39.2,
+      "total_fat_g": 35.9,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99.6,
+      "cholesterol_mg": 27.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.3,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 81.4,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 26,
+      "protein": 98,
+      "saturated_fat": 43,
+      "sodium": 24,
+      "total_carbs": 14,
+      "total_fat": 46
+    },
+    "serving_size_g": 671.4,
+    "total_recipe_weight_g": 2685.5
+  }
+]

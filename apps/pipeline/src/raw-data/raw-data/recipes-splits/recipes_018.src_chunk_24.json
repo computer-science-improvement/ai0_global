@@ -1,0 +1,619 @@
+[
+  {
+    "recipe_name": "Creamy Lemon-Dill Chicken & Macaroni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_lemon-dill_chicken_%26_macaroni_20250625_152906_ad03d8e8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:29:07.264646000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "sugar",
+      "lemon",
+      "mushroom",
+      "oil",
+      "parsley",
+      "cucumber",
+      "dill",
+      "macaroni",
+      "carrot",
+      "bay leaf"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Lemon-Dill Chicken & Macaroni is presented in a clean, white porcelain pasta bowl. Diced, golden-brown chicken pieces are nestled among tender elbow macaroni, thinly sliced sautéed mushrooms, and vibrant small-diced carrots. The dish is coated in a glossy, pale yellow cream sauce, with fresh green flecks of chopped dill and parsley visible. The macaroni is cooked al dente, and the chicken is moist. The composition is naturally mounded in the center, leaving moderate negative space around the bowl's rim. A light sprinkle of fresh parsley garnishes the top, alongside a thin lemon wedge placed on the bowl's edge. The setting is a modern bistro, featuring a simple light wooden table surface, a folded white cotton napkin, and a silver fork beside the bowl. Natural, even lighting highlights the dish's comforting textures and appealing colors. The background subtly suggests a casual restaurant ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion, medium",
+        "quantity": "1"
+      },
+      {
+        "name": "Carrot, large",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Mushrooms, sliced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh dill, chopped",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Cucumber, medium",
+        "quantity": "1/2"
+      }
+    ],
+    "instructions": [
+      "Cook macaroni according to package directions until al dente. Drain well. Set aside.",
+      "Dice chicken breast into 2-3 cm cubes. Season with salt and pepper.",
+      "Heat olive oil in a large pan or Dutch oven over medium-high heat. Add chicken cubes. Sear until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C. Remove chicken from pan. Set aside.",
+      "Dice onion and carrot into small, 0.5 cm pieces. Mince garlic.",
+      "Add onion and carrot to the same pan. Sauté for 5 minutes until softened. Add minced garlic and sliced mushrooms. Cook for another 5-7 minutes until mushrooms are tender and browned.",
+      "Pour in chicken stock. Add bay leaf. Bring to a simmer. Reduce heat to medium-low. Simmer for 10 minutes to allow flavors to meld.",
+      "Stir in heavy cream and lemon zest. Return cooked chicken to the pan. Cook for 2-3 minutes, stirring, until sauce slightly thickens.",
+      "Add cooked macaroni to the pan. Stir to combine, ensuring macaroni is coated in sauce.",
+      "Remove bay leaf. Stir in fresh chopped dill and parsley. Squeeze in lemon juice. Add a pinch of sugar. Season with salt and black pepper to taste.",
+      "For the side: thinly slice cucumber. Toss with a tiny drizzle of oil, pinch of salt, and a few dill sprigs if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 776,
+      "cholesterol_mg": 166.25,
+      "dietary_fiber_g": 4.94,
+      "protein_g": 61.78,
+      "saturated_fat_g": 11.47,
+      "sodium_mg": 1008.44,
+      "total_carbs_g": 69.14,
+      "total_fat_g": 27.39,
+      "total_sugars_g": 7.67,
+      "trans_fat_g": 0.38
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.18,
+      "calories": 111,
+      "cholesterol_mg": 23.81,
+      "dietary_fiber_g": 0.71,
+      "protein_g": 8.85,
+      "saturated_fat_g": 1.64,
+      "sodium_mg": 144.49,
+      "total_carbs_g": 9.9,
+      "total_fat_g": 3.92,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.42,
+      "dietary_fiber": 17.64,
+      "protein": 123.56,
+      "saturated_fat": 57.35,
+      "sodium": 43.85,
+      "total_carbs": 25.14,
+      "total_fat": 35.12
+    },
+    "serving_size_g": 698.25,
+    "total_recipe_weight_g": 2793
+  },
+  {
+    "recipe_name": "Heirloom Tomato Salad with Poached Spot Prawns and Basil Emulsion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_heirloom_tomato_salad_with_poached_spot_prawns_and_basil_emulsion_20250625_152709_b389a76a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:27:09.949268000Z",
+    "selected_ingredients": [
+      "shrimp",
+      "basil",
+      "tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on an exquisite bone china plate with a subtle, modern pattern, centered on a luxurious white Carrara marble surface. The plating is a study in sophisticated minimalism, featuring abundant negative space. Three to four plump, pinkish-orange poached spot prawns are artfully arranged, not fanned, among thin, irregular slices of compressed heirloom tomatoes in vibrant red, yellow, and green hues. A vibrant, glossy basil emulsion forms a delicate swoosh or precisely placed dots, adding a striking verdant contrast. A crystal-clear, golden-hued tomato consommé is gently poured around the base of the components, creating a subtle pool of liquid. The entire composition is accented by a few delicate micro basil leaves and a sprinkle of flaky sea salt. Lighting is dramatic and professional, casting elegant shadows that enhance the dish's architectural precision. A pristine white linen napkin, folded into a precise triangle, sits beside the plate. The background is ultra-minimalist and uncluttered, emphasizing the refined simplicity of the presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Heirloom Tomato",
+    "ingredients": [
+      {
+        "name": "Spot Prawns",
+        "quantity": "16 large (approx. 400g total)"
+      },
+      {
+        "name": "Heirloom Tomatoes",
+        "quantity": "400g (mixed colors, firm)"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Neutral Oil (Grapeseed/Canola)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Ice Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Flaky Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White Wine Vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ripe Tomatoes (for Consommé)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "White Wine",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "200ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Tomato Consommé: Roughly chop 500g ripe tomatoes. Combine with chopped shallot, smashed garlic, and basil stems in a pot. Add white wine and vegetable stock. Simmer gently for 20 minutes. Do not boil. Strain through a fine-mesh sieve lined with cheesecloth. Do not press solids. Chill consommé completely. Season with salt.",
+      "Prepare Compressed Heirloom Tomatoes: Slice heirloom tomatoes 5mm thick. Whisk white wine vinegar, sugar, and a pinch of salt. Arrange tomato slices in a single layer in a vacuum seal bag. Pour liquid over. Vacuum seal. Chill for 30 minutes.",
+      "Prepare Basil Emulsion: Blanch 50g basil leaves for 10 seconds in boiling water. Immediately shock in ice water. Drain well. Squeeze excess water. Blend blanched basil with 150ml neutral oil until smooth. Pass through a fine-mesh sieve, pressing to extract maximum oil. Discard solids. Add 50ml ice water to the basil oil. Blend with an immersion blender until emulsified and vibrant green. Season with salt and lemon juice.",
+      "Prepare Poached Spot Prawns: Bring a pot of salted water to a gentle simmer. Add spot prawns. Poach for 1-2 minutes until just cooked through and pink. Do not overcook. Immediately transfer to an ice bath to stop cooking. Peel prawns. Pat dry.",
+      "Assemble the Dish: Arrange 3-4 poached prawns artistically on each plate, leaving ample negative space. Place a few compressed heirloom tomato slices around the prawns. Spoon small dots or a delicate swoosh of basil emulsion onto the plate. Gently pour a small amount of chilled tomato consommé around the base of the ingredients. Garnish with micro basil or small basil leaves. Finish with a few flakes of sea salt."
+    ]
+  },
+  {
+    "recipe_name": "Smoked Sausage & Crawfish with Fermented Radish & Cucumber",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_sausage_%26_crawfish_with_fermented_radish_%26_cucumber_20250625_152707_757ff371.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:27:08.057948000Z",
+    "selected_ingredients": [
+      "annatto",
+      "smoked sausage",
+      "crawfish"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single small starter portion is presented on a handcrafted ceramic plate in a creamy beige tone. The minimalist plating highlights each ingredient. At the base, thinly sliced fermented radish rounds and small cucumber cubes form an organic bed. On top, 4-5 plump, light orange poached crawfish tails are carefully placed beside a few small, crispy, golden-brown diced smoked sausage pieces (5mm cubes). The arrangement is natural, with ample white space. A generous drizzle of bright orange-red annatto-infused olive oil adds color and sheen. A single delicate sprig of fresh dill garnishes the dish. The plate rests on a light, textured reclaimed wood surface. An undyed linen napkin in natural beige is loosely draped. Soft natural light illuminates the dish. The background is clean and minimalist, with a subtle hint of greenery from a potted plant.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Crawfish",
+    "ingredients": [
+      {
+        "name": "Crawfish tails",
+        "quantity": "200g"
+      },
+      {
+        "name": "Smoked sausage",
+        "quantity": "100g"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "150g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "150g"
+      },
+      {
+        "name": "Annatto seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Fresh dill or chervil",
+        "quantity": "a few sprigs"
+      }
+    ],
+    "instructions": [
+      "Wash radishes and cucumber. Thinly slice radishes into rounds. Cut cucumber into small cubes.",
+      "Combine 100ml water, 5g sea salt in a jar. Stir to dissolve.",
+      "Add sliced radishes and cucumber cubes to the jar. Ensure vegetables are submerged.",
+      "Seal jar. Ferment at room temperature for 24-48 hours until slightly tangy.",
+      "Refrigerate once desired tanginess is achieved.",
+      "Gently crush annatto seeds.",
+      "Heat 50ml olive oil in a small saucepan over low heat. Add crushed annatto seeds and a smashed garlic clove.",
+      "Infuse for 10-15 minutes until oil is vibrant orange-red. Do not burn.",
+      "Strain oil through a fine sieve, discard solids. Let cool.",
+      "Dice smoked sausage into small, uniform cubes (approx. 5mm).",
+      "Heat a dry pan over medium heat. Add sausage cubes.",
+      "Cook until crispy and browned, about 5-7 minutes. Drain excess fat.",
+      "If using fresh crawfish, poach gently in lightly salted water for 2-3 minutes until cooked through. Drain and cool.",
+      "If using pre-cooked, ensure they are thawed and patted dry.",
+      "Drain fermented radish and cucumber. Reserve a small amount of brine if desired for seasoning.",
+      "Arrange fermented vegetables as a base on each plate.",
+      "Place crawfish tails and crispy smoked sausage cubes artfully on top of the vegetables.",
+      "Drizzle generously with annatto oil.",
+      "Garnish with a small sprig of fresh dill or chervil."
+    ],
+    "notes": [
+      "This recipe highlights preservation through lacto-fermentation, reducing food waste and enhancing flavor naturally."
+    ],
+    "traditional_techniques": [
+      "Lacto-fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 234.3,
+      "cholesterol_mg": 77.5,
+      "dietary_fiber_g": 1.55,
+      "protein_g": 13.05,
+      "saturated_fat_g": 4.03,
+      "sodium_mg": 805.75,
+      "total_carbs_g": 4.9,
+      "total_fat_g": 18.78,
+      "total_sugars_g": 1.48,
+      "trans_fat_g": 0.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.3,
+      "cholesterol_mg": 40.79,
+      "dietary_fiber_g": 0.82,
+      "protein_g": 6.87,
+      "saturated_fat_g": 2.12,
+      "sodium_mg": 424.08,
+      "total_carbs_g": 2.58,
+      "total_fat_g": 9.88,
+      "total_sugars_g": 0.78,
+      "trans_fat_g": 0.07
+    },
+    "daily_value_percentages": {
+      "cholesterol": 25.8,
+      "dietary_fiber": 5.5,
+      "protein": 26.1,
+      "saturated_fat": 20.1,
+      "sodium": 35,
+      "total_carbs": 1.8,
+      "total_fat": 24.1
+    },
+    "serving_size_g": 190,
+    "total_recipe_weight_g": 760
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_risotto_20250625_152653_92a456ac.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:26:54.351379000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Serve the risotto on a flat white porcelain dinner plate. The consistency is fluid and spreads naturally across the plate, appearing free-flowing rather than molded. The rice grains are distinct, coated in a glossy, creamy sauce. Large 3cm chunks of golden-brown seared chicken thighs are distributed throughout the rice. Sliced cremini and shiitake mushrooms show deep caramelization and earthy brown tones. The dish features a pale golden hue. Finely minced flat-leaf parsley provides a vibrant green contrast. A light dusting of finely grated Parmesan cheese covers the surface. The arrangement is organic. Beside the plate sits a heavy silver spoon and a folded white cotton napkin on a light oak table. Natural side lighting highlights the creamy texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while the consistency remains fluid",
+      "Accompany with a crisp dry white wine such as Pinot Grigio",
+      "Provide extra grated Parmesan at the table"
+    ],
+    "hero_ingredient": "Mixed Mushrooms",
+    "ingredients": [
+      {
+        "name": "boneless skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "mixed mushrooms (cremini and shiitake)",
+        "quantity": "300g"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "fresh flat-leaf parsley",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks.",
+      "Dice onion into 5mm pieces.",
+      "Mince garlic cloves.",
+      "Slice mushrooms into 5mm thick pieces.",
+      "Heat 20ml olive oil in a wide pan over medium-high heat.",
+      "Sear chicken chunks until browned and internal temperature reaches 75°C.",
+      "Remove chicken from pan and set aside.",
+      "Add mushrooms to the same pan. Sauté until moisture evaporates and edges brown.",
+      "Remove mushrooms and set aside.",
+      "Melt 20g butter in the pan. Add onion and garlic.",
+      "Cook until softened but not browned.",
+      "Add rice. Stir 2 minutes to toast the grains until edges are translucent.",
+      "Pour in white wine. Stir until liquid is fully absorbed.",
+      "Add 200ml warm stock. Stir continuously until liquid is absorbed.",
+      "Repeat stock additions one ladle at a time, stirring constantly, until rice is tender but firm.",
+      "Return chicken and mushrooms to the pan.",
+      "Remove from heat.",
+      "Vigorously stir in remaining 30g butter and Parmesan cheese to create a creamy emulsion.",
+      "Season with salt and pepper. Fold in chopped parsley."
+    ],
+    "notes": [
+      "Keep the chicken stock at a low simmer in a separate pot to maintain cooking temperature.",
+      "Stirring constantly is essential to release rice starches for a creamy texture.",
+      "Ensure chicken reaches the safety temperature of 75°C during the initial searing phase."
+    ],
+    "traditional_techniques": [
+      "tostatura",
+      "mantecatura",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 875,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 52,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 1450,
+      "total_carbs_g": 91,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 203,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 12.06,
+      "saturated_fat_g": 3.06,
+      "sodium_mg": 336.2,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 7.77,
+      "total_sugars_g": 0.65,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 9,
+      "protein": 104,
+      "saturated_fat": 66,
+      "sodium": 63,
+      "total_carbs": 33,
+      "total_fat": 43
+    },
+    "serving_size_g": 431,
+    "total_recipe_weight_g": 1725
+  },
+  {
+    "recipe_name": "Heirloom Tomato and Seared Prawn Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_heirloom_tomato_and_seared_prawn_salad_20250625_152636_349bad6b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:26:37.589327000Z",
+    "selected_ingredients": [
+      "shrimp",
+      "basil",
+      "tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a minimalist, elegant white bone china plate set against a polished grey veined marble surface. The composition is organic and flowing, showcasing vibrant red, orange, and yellow heirloom tomato wedges arranged with intentional asymmetry. Three perfectly seared prawns, their surfaces kissed with a delicate char, are nestled among the tomatoes. A few whole, glistening confit cherry tomatoes and thinly sliced garlic cloves add depth and sweetness. A verdant, vibrant basil emulsion is artfully drizzled over the components, creating a sophisticated contrast. The textures range from the succulent prawns and tender tomatoes to the smooth emulsion. Abundant negative space highlights the dish's architectural precision. A pristine white linen napkin, folded precisely, and modern designer flatware accompany the plate, under dramatic professional lighting with subtle shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Heirloom Tomato",
+    "ingredients": [
+      {
+        "name": "Large heirloom tomatoes",
+        "quantity": "2 (approx. 600g total)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large raw prawns (peeled, deveined)",
+        "quantity": "12 (approx. 200g total)"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, thinly sliced"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ice water",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Flaky sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Micro basil",
+        "quantity": "For garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 120°C. Place cherry tomatoes and sliced garlic in a small oven-safe dish. Cover with 50ml extra virgin olive oil. Season with a pinch of salt. Bake for 45-60 minutes, until tomatoes are soft but retain shape. Let cool slightly in oil.",
+      "Blanch 40g basil leaves in boiling water for 10 seconds. Immediately transfer to an ice bath. Squeeze out excess water. Blend blanched basil with remaining 50ml extra virgin olive oil, white wine vinegar, Dijon mustard, and ice water until smooth and emulsified. Season with salt and pepper. Pass through a fine-mesh sieve for a very smooth emulsion.",
+      "Wash heirloom tomatoes. Cut into irregular wedges and chunks. Season lightly with flaky sea salt and black pepper.",
+      "Pat prawns dry. Heat a heavy-bottomed pan over medium-high heat. Add a splash of confit tomato oil. Sear prawns for 1-2 minutes per side, until pink and opaque. Do not overcrowd the pan. Season with salt.",
+      "Arrange heirloom tomato wedges artistically on four plates, leaving ample negative space. Place 3 seared prawns among the tomatoes on each plate. Arrange a few confit cherry tomatoes and garlic slices around the prawns and heirloom tomatoes. Drizzle basil emulsion generously over the salad elements. Garnish with fresh micro basil or small whole basil leaves. Serve immediately."
+    ],
+    "notes": [
+      "For a truly refined emulsion, use a very high-speed blender and pass through a super bag or fine chinois.",
+      "Ensure prawns are not overcooked; they should remain tender and juicy.",
+      "The confit oil can be reserved for other uses."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 289,
+      "cholesterol_mg": 81,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 12.5,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 85.1,
+      "total_carbs_g": 8.8,
+      "total_fat_g": 23.9,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 103,
+      "cholesterol_mg": 28.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 4.5,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 30.4,
+      "total_carbs_g": 3.2,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 26.8,
+      "dietary_fiber": 9.6,
+      "protein": 25,
+      "saturated_fat": 16.5,
+      "sodium": 3.7,
+      "total_carbs": 3.2,
+      "total_fat": 30.6
+    },
+    "serving_size_g": 279.5,
+    "total_recipe_weight_g": 1118
+  }
+]

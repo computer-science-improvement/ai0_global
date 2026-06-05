@@ -1,0 +1,642 @@
+[
+  {
+    "recipe_name": "Tofu and Kimchi Salad with Wakame",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tofu_and_kimchi_salad_with_wakame_20250707_030045_45b7ed13.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T03:00:46.322516000Z",
+    "selected_ingredients": [
+      {
+        "name": "tofu"
+      },
+      {
+        "name": "wakame seaweed"
+      },
+      {
+        "name": "shiso"
+      },
+      {
+        "name": "kimchi"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "The Tofu and Kimchi Salad with Wakame is presented on a clean white porcelain dinner plate, set on a simple wooden table. Pan-fried tofu cubes, golden and slightly crisp, are artfully arranged among vibrant green chopped wakame seaweed. Bright red-orange chopped kimchi provides a striking contrast. Julienne strips of fresh cucumber and grated carrot add crisp texture and color variation. Thin, delicate julienned shiso leaves are scattered over the top as a fragrant garnish. A light drizzle of dressing coats the ingredients, enhancing their natural sheen. Toasted sesame seeds are sprinkled across the dish, adding a final textural element. The composition is balanced and appealing, with moderate negative space. Chopsticks rest beside the plate, emphasizing the East Asian influence. Natural, even lighting illuminates the dish, highlighting its fresh, diverse components and inviting textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "East Asian",
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Firm Tofu",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Dried Wakame Seaweed",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Kimchi",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh Shiso Leaves",
+        "quantity": "12"
+      },
+      {
+        "name": "English Cucumber",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Toasted Sesame Seeds",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Toasted Sesame Oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "1 tsp, grated"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Drain and press tofu for 30 minutes. Cut tofu into 2 cm cubes.",
+      "Heat vegetable oil in a large non-stick pan over medium-high heat. Add tofu cubes. Pan-fry until golden brown and crispy on all sides. Remove and set aside.",
+      "Rehydrate dried wakame in cold water for 10 minutes. Drain well. Squeeze out excess water. Chop wakame into 2-3 cm pieces.",
+      "Roughly chop kimchi.",
+      "Julienne shiso leaves.",
+      "Julienne cucumber. Grate carrot.",
+      "For the dressing, combine soy sauce, rice vinegar, toasted sesame oil, sugar, minced garlic, and grated ginger in a small bowl. Whisk until sugar dissolves.",
+      "In a large mixing bowl, combine pan-fried tofu, rehydrated wakame, chopped kimchi, julienned cucumber, and grated carrot.",
+      "Pour dressing over the salad ingredients. Toss gently to combine.",
+      "Divide the salad among four plates. Garnish with julienned shiso leaves and toasted sesame seeds. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Roasted Orchard Fruits with Fermented Honey & Oat Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_orchard_fruits_with_fermented_honey_%26_oat_crumble_20250707_025607_22094c68.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T02:56:07.474618000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean",
+      "chili",
+      "onion",
+      "sausage"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of roasted apple and pear wedges, cut into 2 cm pieces, is arranged organically on a matte cream-colored ceramic plate. The natural skin of the fruit is visible, with subtle caramelization on the edges. A generous, glistening stream of amber fermented honey flows over the fruit. Golden-brown toasted oat crumble is scattered artfully over and around the fruit, adding texture. Delicate strands of bright yellow lemon zest are placed on top. The plate rests on a light reclaimed wood surface. An undyed natural beige linen napkin is subtly placed to the side. The background is clean and minimalist, with soft, diffused natural light illuminating the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Orchard Fruits",
+    "ingredients": [
+      {
+        "name": "Apples",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Pears",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Fermented Honey",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Rolled Oats",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Cold Butter",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Cinnamon",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (for zest)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Wash and core apples and pears. Cut into 2 cm wedges.",
+      "Place fruit on a baking tray. Roast 15-20 minutes, until tender.",
+      "Combine oats, brown sugar, cinnamon, salt in a bowl.",
+      "Cut cold butter into small cubes. Rub into oat mixture to form crumbs.",
+      "Spread oat crumble on a separate tray. Bake 8-10 minutes, until golden.",
+      "Arrange roasted fruit on a plate.",
+      "Drizzle with fermented honey.",
+      "Sprinkle toasted oat crumble over fruit.",
+      "Grate lemon zest over the dish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 22.1,
+      "calories": 265,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 2.9,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 55,
+      "total_carbs_g": 56.5,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 40.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 10,
+      "calories": 120,
+      "cholesterol_mg": 4.9,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 1.3,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 24.8,
+      "total_carbs_g": 25.6,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 18.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 23,
+      "protein": 6,
+      "saturated_fat": 14,
+      "sodium": 2,
+      "total_carbs": 21,
+      "total_fat": 7
+    },
+    "serving_size_g": 220.6,
+    "total_recipe_weight_g": 882.5
+  },
+  {
+    "recipe_name": "Chicken and Sausage White Bean Cassoulet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_sausage_white_bean_cassoulet_20250707_024923_80d9762a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T02:49:23.869836000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean",
+      "chili",
+      "onion",
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of Chicken and Sausage White Bean Cassoulet is presented in a deep, rustic white ceramic cocotte or small cast-iron pot, highlighting its rich, hearty nature. The stew features tender, golden-brown chicken thighs nestled amongst creamy white cannellini beans, thick rounds of savory browned pork sausage, and vibrant diced red bell pepper. The chicken skin is crisp and inviting. The stew's liquid is a deep, reddish-brown, infused with tomato and herbs, providing a comforting, cohesive base. A light, golden-brown crust of baked breadcrumbs tops the cassoulet, adding a textural contrast. Fresh green thyme leaves are lightly scattered as a garnish. The cocotte sits on a simple wooden table surface, accompanied by a clean white porcelain side plate with a thick slice of crusty French bread. A folded white cotton napkin and traditional silver flatware are neatly arranged beside the plate. The scene is illuminated by natural, even lighting, creating a warm and inviting atmosphere. The background is a subtly blurred, casual restaurant setting, allowing the dish to remain the focal point while enhancing its bistro-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Pork sausage (e.g., Toulouse or mild Italian)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Dried cannellini beans",
+        "quantity": "250g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Diced tomatoes (canned)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Dry breadcrumbs",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "Rinse dried cannellini beans. Soak in cold water overnight. Drain before use. (Alternatively, use 2 x 400g cans of drained cannellini beans, rinsed).",
+      "Preheat oven to 160°C.",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large oven-safe Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs skin-side down for 8-10 minutes until skin is golden and crispy. Flip and sear for 2 minutes. Remove chicken and set aside.",
+      "Slice pork sausage into 2 cm thick rounds. Add to the pot and brown on all sides, about 5-7 minutes. Remove sausage and set aside.",
+      "Dice onion and red bell pepper into 1 cm pieces. Mince garlic.",
+      "Add onion and red bell pepper to the pot. Sauté for 5-7 minutes until softened. Add minced garlic and cook for 1 minute until fragrant.",
+      "Pour in diced tomatoes and chicken stock. Scrape up any browned bits from the bottom of the pot.",
+      "Add drained soaked beans (or canned beans), thyme sprigs, and bay leaves to the pot. Stir well.",
+      "Return browned chicken thighs and sausage rounds to the pot, nestling them into the bean mixture.",
+      "Bring to a gentle simmer. Cover the pot with a lid.",
+      "Transfer the pot to the preheated oven. Bake for 1.5 to 2 hours, or until chicken is very tender and beans are creamy.",
+      "Remove from oven. Carefully remove thyme sprigs and bay leaves. Taste and adjust seasoning with salt and pepper.",
+      "Sprinkle breadcrumbs evenly over the top of the cassoulet. Return to the oven, uncovered, for 15-20 minutes, or until breadcrumbs are golden brown and crispy.",
+      "Check internal temperature of chicken, ensuring it reaches 75°C (167°F).",
+      "Let rest for 10 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1013.4,
+      "cholesterol_mg": 250,
+      "dietary_fiber_g": 12.96,
+      "protein_g": 68.37,
+      "saturated_fat_g": 15.23,
+      "sodium_mg": 783.24,
+      "total_carbs_g": 60.96,
+      "total_fat_g": 55.18,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 135.1,
+      "cholesterol_mg": 33.33,
+      "dietary_fiber_g": 1.73,
+      "protein_g": 9.12,
+      "saturated_fat_g": 2.03,
+      "sodium_mg": 104.43,
+      "total_carbs_g": 8.13,
+      "total_fat_g": 7.36,
+      "total_sugars_g": 1.15,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 83.3,
+      "dietary_fiber": 46.3,
+      "protein": 136.7,
+      "saturated_fat": 76.1,
+      "sodium": 34.1,
+      "total_carbs": 22.2,
+      "total_fat": 70.7
+    },
+    "serving_size_g": 750,
+    "total_recipe_weight_g": 3000
+  },
+  {
+    "recipe_name": "Poulet Basquaise (Basque Chicken)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poulet_basquaise_%28basque_chicken%29_20250707_023829_e0a9292f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T02:38:30.010592000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, centrally placed on a simple wooden table surface. A single portion of rich Poulet Basquaise features two golden-brown seared chicken thigh pieces, nestled amongst a vibrant medley of stewed vegetables. Thick strips of red, yellow, and green bell peppers are gently softened, mixed with translucent sliced yellow onions and diced tomatoes, all coated in a glossy, savory sauce. A light sprinkle of fresh, chopped flat-leaf parsley garnishes the chicken and vegetables, adding a pop of verdant green. The composition is balanced and inviting, with moderate negative space. Natural, even lighting illuminates the dish, highlighting its warm colors and appealing textures. A folded white cotton napkin rests beside the plate, completing the modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French Basque",
+    "cultural_serving_suggestions": [
+      "Serve hot with crusty baguette to soak up the sauce.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Espelette pepper (or pinch of cayenne)",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden-brown on all sides. Remove chicken and set aside.",
+      "Reduce heat to medium. Add sliced yellow onion to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add bell peppers, cut into thick strips, and minced garlic. Cook for 8-10 minutes, stirring occasionally, until vegetables begin to soften.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is mostly reduced, about 2 minutes.",
+      "Stir in diced tomatoes, chicken stock, dried thyme, and bay leaf. Add Espelette pepper. Bring to a simmer.",
+      "Return seared chicken thighs to the pot, nestling them into the sauce and vegetables. Ensure chicken is partially submerged.",
+      "Reduce heat to low. Cover and simmer for 25-30 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is very tender.",
+      "Remove chicken from pot. Discard bay leaf. Adjust seasoning with salt and pepper if needed.",
+      "Rest chicken for a few minutes. Serve chicken pieces with the rich vegetable sauce. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Espelette pepper is a traditional Basque chili, offering a mild heat and fruity flavor. If unavailable, a pinch of cayenne pepper can be substituted.",
+      "This dish can be made ahead; flavors often improve the next day."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 444,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 4.75,
+      "protein_g": 41.29,
+      "saturated_fat_g": 4.46,
+      "sodium_mg": 507,
+      "total_carbs_g": 19.7,
+      "total_fat_g": 19.78,
+      "total_sugars_g": 10.29,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 80,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.86,
+      "protein_g": 7.47,
+      "saturated_fat_g": 0.81,
+      "sodium_mg": 92,
+      "total_carbs_g": 3.57,
+      "total_fat_g": 3.58,
+      "total_sugars_g": 1.86,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 17,
+      "protein": 83,
+      "saturated_fat": 22,
+      "sodium": 22,
+      "total_carbs": 7,
+      "total_fat": 25
+    },
+    "serving_size_g": 552.65,
+    "total_recipe_weight_g": 2210.6
+  },
+  {
+    "recipe_name": "Braised Beef and Potato Gratin with Gruyère Crust",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_and_potato_gratin_with_gruy%C3%A8re_crust_20250707_023435_b595e082.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T02:34:35.434492000Z",
+    "selected_ingredients": [
+      "potato",
+      "cheese",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A square portion of the golden-brown Braised Beef and Potato Gratin is presented on a clean white porcelain dinner plate, centrally placed. The gratin features a beautifully crisp, bubbly, and melted Gruyère cheese crust, showcasing its rich golden-brown hue with slightly darker, caramelized edges. Beneath the crust, layers of thinly sliced, creamy potatoes are visible, interspersed with generous chunks of tender, dark brown braised beef. The potato slices maintain their form but appear soft and yielding. A few strands of shredded beef might peek out from the sides, hinting at the savory filling. The dish is garnished simply with a small sprig of fresh thyme or a sprinkle of bright green chopped parsley, offering a fresh color contrast. The plate sits on a simple wooden table surface, suggesting a modern bistro setting. Standard silver flatware is placed neatly beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and inviting warmth. The overall composition is professional yet approachable, with moderate negative space on the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a light vinaigrette.",
+      "Offer crusty bread on the side for dipping into any remaining rich sauce."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Potatoes (Russet or similar)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Gruyère cheese, shredded",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Onion, large, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Carrots, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Nutmeg, freshly grated",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Season beef chuck roast generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef on all sides until deeply browned. Remove beef and set aside.",
+      "Add diced onion, carrots, and minced garlic to the pot. Sauté until softened, about 5-7 minutes.",
+      "Deglaze the pot with red wine, scraping up any browned bits. Reduce by half.",
+      "Return beef to the pot. Add beef stock, thyme sprigs, and bay leaves. Bring to a simmer. Cover and transfer to the preheated oven. Braise for 2.5-3 hours, or until beef is fork-tender.",
+      "Remove beef from pot. Strain braising liquid, discarding solids. Shred beef using two forks. Set aside.",
+      "Increase oven temperature to 190°C.",
+      "Peel potatoes and slice thinly, about 2-3 mm thick. Rinse sliced potatoes in cold water to remove excess starch. Pat dry thoroughly.",
+      "In a medium saucepan, combine heavy cream, whole milk, nutmeg, salt, and pepper. Heat gently until just simmering. Do not boil.",
+      "Lightly grease a 23x33 cm baking dish. Arrange a single layer of potato slices on the bottom. Top with a layer of shredded beef. Sprinkle with a portion of Gruyère cheese. Repeat layers until ingredients are used, ending with a potato layer.",
+      "Pour the warm cream mixture evenly over the gratin, ensuring liquid seeps between layers. Press down gently.",
+      "Sprinkle remaining Gruyère and Parmesan cheese over the top.",
+      "Bake for 45-60 minutes, or until potatoes are tender and the top is golden brown and bubbly. If browning too quickly, cover loosely with foil.",
+      "Let the gratin rest for 10-15 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Gratin"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1407.8,
+      "cholesterol_mg": 328.5,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 82.8,
+      "saturated_fat_g": 42.5,
+      "sodium_mg": 1648.8,
+      "total_carbs_g": 60.6,
+      "total_fat_g": 86.7,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 2.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 143.6,
+      "cholesterol_mg": 33.5,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.4,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 168.2,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 110,
+      "dietary_fiber": 26,
+      "protein": 166,
+      "saturated_fat": 213,
+      "sodium": 72,
+      "total_carbs": 20,
+      "total_fat": 133
+    },
+    "serving_size_g": 981,
+    "total_recipe_weight_g": 3922
+  }
+]

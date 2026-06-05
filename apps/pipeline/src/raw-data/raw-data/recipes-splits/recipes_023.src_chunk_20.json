@@ -1,0 +1,680 @@
+[
+  {
+    "recipe_name": "Sweet and Savory Pork and Chicken Stir-Fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_and_savory_pork_and_chicken_stir-fry_20250624_104444_30bd64ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:45.253898000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "lamb",
+      "chicken stock",
+      "mustard",
+      "bean",
+      "pork",
+      "pineapple",
+      "mushroom",
+      "coriander"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Sweet and Savory Pork and Chicken Stir-Fry is presented centrally on a clean, white porcelain dinner plate. The dish features an organized, yet natural mound of golden-brown seared chicken and pork cubes, intermingled with vibrant red and yellow bell pepper batons, succulent pineapple chunks, sliced cremini mushrooms, and bright green beans. Each ingredient retains its distinct shape and texture. A glossy, amber-hued sauce lightly coats the components, pooling slightly at the base. Freshly chopped green coriander is scattered over the top, adding a pop of color. The setting is a modern bistro, with a simple wooden table surface and a cotton napkin positioned beside the plate. A small white rice bowl and chopsticks rest to the side, ready for serving. Natural, even lighting highlights the dish’s inviting colors and textures, with a clean, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian Fusion",
+    "cultural_origin": "Asian Fusion",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed jasmine rice.",
+      "Use chopsticks for an authentic dining experience."
+    ],
+    "hero_ingredient": "Pineapple",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Pork loin",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken and pork into 2.5 cm cubes. Season with salt and pepper.",
+      "Cut bell peppers into 2 cm batons. Cut pineapple into 2.5 cm chunks. Slice mushrooms. Trim green beans.",
+      "Mince ginger and garlic.",
+      "In a small bowl, whisk together chicken stock, Dijon mustard, soy sauce, and cornstarch. Set aside.",
+      "Heat 15 ml vegetable oil in a large wok or skillet over high heat.",
+      "Add pork cubes. Sear until browned on all sides, about 4-5 minutes. Remove from wok. Set aside.",
+      "Add remaining 15 ml vegetable oil to the wok.",
+      "Add chicken cubes. Sear until browned and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C. Remove from wok. Set aside.",
+      "Add bell peppers, mushrooms, ginger, and garlic to the wok. Stir-fry for 3 minutes until fragrant and vegetables are crisp-tender.",
+      "Add green beans and pineapple chunks to the wok. Stir-fry for 2 minutes.",
+      "Return cooked chicken and pork to the wok.",
+      "Stir the prepared sauce mixture. Pour into the wok. Bring to a simmer, stirring constantly, until sauce thickens, about 1-2 minutes.",
+      "Taste and adjust seasoning if needed.",
+      "Chop fresh coriander. Stir half into the stir-fry. Garnish with remaining coriander."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 477.68,
+      "cholesterol_mg": 147,
+      "dietary_fiber_g": 4.34,
+      "protein_g": 61.26,
+      "saturated_fat_g": 3.49,
+      "sodium_mg": 463.53,
+      "total_carbs_g": 22.59,
+      "total_fat_g": 16.84,
+      "total_sugars_g": 11.49,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 90.64,
+      "cholesterol_mg": 27.9,
+      "dietary_fiber_g": 0.82,
+      "protein_g": 11.62,
+      "saturated_fat_g": 0.66,
+      "sodium_mg": 87.96,
+      "total_carbs_g": 4.29,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 2.18,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 15.5,
+      "protein": 122.52,
+      "saturated_fat": 17.45,
+      "sodium": 20.15,
+      "total_carbs": 8.21,
+      "total_fat": 21.59
+    },
+    "serving_size_g": 527,
+    "total_recipe_weight_g": 2108
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Roasted Corn & Bell Pepper Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_roasted_corn_%26_bell_pepper_relish_20250624_104437_4c91438d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:38.065754000Z",
+    "selected_ingredients": [
+      "corn",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast, with a golden-brown crust, rests on a clean white porcelain dinner plate. The chicken is a whole, plump piece, positioned slightly off-center. Alongside it, a vibrant mound of roasted corn and bell pepper relish is spooned. The relish features bright yellow corn kernels, interspersed with small, diced pieces of red and yellow bell peppers and finely minced red onion, offering a colorful medley. A scattering of fresh, green cilantro leaves garnishes the relish. A fresh lime wedge sits beside the chicken. The dish exhibits natural, appealing colors and varied textures: the crispy exterior of the chicken against its tender interior, and the slightly charred corn kernels contrasting with the crisp-tender bell peppers. The plate is presented on a simple wooden table surface, with a cotton napkin and standard flatware, under natural, even lighting, creating a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 pieces (approx. 180-200g each)"
+      },
+      {
+        "name": "Fresh corn cobs",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml, plus more for chicken"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt, pepper, and smoked paprika on both sides.",
+      "Prepare corn: Brush cobs lightly with olive oil. Grill or roast cobs until slightly charred and tender. Cut kernels off cobs.",
+      "Prepare relish vegetables: Dice red and yellow bell peppers into small cubes. Finely dice red onion. Mince garlic.",
+      "Sear chicken: Heat 15ml olive oil in a large oven-safe skillet over medium-high heat. Add chicken breasts. Sear for 5-7 minutes per side until golden brown and internal temperature reaches 75°C. Remove chicken from skillet. Let rest on a cutting board.",
+      "Make relish: In the same skillet, add remaining 15ml olive oil. Add diced bell peppers, red onion, and minced garlic. Sauté for 5-7 minutes until vegetables are tender-crisp.",
+      "Combine relish: Add roasted corn kernels to the skillet. Stir well. Cook for 2 minutes. Remove from heat. Stir in fresh lime juice and chopped cilantro. Taste and adjust seasoning.",
+      "Plate: Place one seared chicken breast on each plate. Spoon a generous portion of the roasted corn and bell pepper relish alongside the chicken. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 540,
+      "cholesterol_mg": 162,
+      "dietary_fiber_g": 5.17,
+      "protein_g": 64.17,
+      "saturated_fat_g": 3.66,
+      "sodium_mg": 362,
+      "total_carbs_g": 29.19,
+      "total_fat_g": 19.08,
+      "total_sugars_g": 11.26,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128,
+      "cholesterol_mg": 38.36,
+      "dietary_fiber_g": 1.23,
+      "protein_g": 15.24,
+      "saturated_fat_g": 0.87,
+      "sodium_mg": 86.05,
+      "total_carbs_g": 6.93,
+      "total_fat_g": 4.53,
+      "total_sugars_g": 2.67,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 18,
+      "protein": 128,
+      "saturated_fat": 18,
+      "sodium": 16,
+      "total_carbs": 11,
+      "total_fat": 24
+    },
+    "serving_size_g": 421,
+    "total_recipe_weight_g": 1684
+  },
+  {
+    "recipe_name": "Hearty Chicken and Vegetable Pizza Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_vegetable_pizza_soup_20250624_104424_7029983c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:25.134332000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "mushroom",
+      "oregano",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "pizza cuisine",
+    "visual_description": "A single portion of hearty Chicken and Vegetable Pizza Soup is presented in a deep, rustic ceramic bowl, showcasing a rich, warm red-orange broth. Visible chunks of cooked chicken, diced red bell pepper, sliced mushrooms, and small pasta are generously distributed throughout the soup. The broth has a comforting, slightly thick texture. A simple sprinkle of grated Parmesan cheese melts gently on top, accompanied by a few fresh, vibrant green basil leaves. The bowl sits on a well-used, warm-toned wooden dining table. A casual, red and white checkered cloth napkin is loosely placed beside the bowl. The setting evokes a cozy, lived-in family kitchen atmosphere with soft, natural overhead lighting. The overall presentation is homely and inviting, focusing on the comforting appeal of the soup. A piece of crusty Italian bread or a garlic knot is casually placed next to the bowl, ready for dipping.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian American",
+    "cultural_origin": "Italian American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread or garlic knots for dipping.",
+      "Pair with a simple green salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Mushrooms, sliced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Small pasta (e.g., ditalini, orzo)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil or parsley, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Dice chicken into 2 cm cubes. Dice onion and bell pepper. Slice mushrooms. Mince garlic.",
+      "Heat olive oil in a large pot or Dutch oven over medium heat.",
+      "Add diced onion and bell pepper. Cook for 5-7 minutes until softened.",
+      "Add diced chicken. Cook until lightly browned on all sides, about 5-7 minutes. Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Stir in minced garlic, sliced mushrooms, and dried oregano. Cook for 3 minutes until fragrant.",
+      "Pour in diced tomatoes and chicken broth. Bring to a boil.",
+      "Add small pasta. Reduce heat to low, cover, and simmer for 10-12 minutes, or until pasta is tender.",
+      "Season with salt and black pepper to taste.",
+      "Ladle hot soup into individual bowls. Garnish with fresh chopped basil or parsley and a sprinkle of grated Parmesan cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 442.6,
+      "cholesterol_mg": 85,
+      "dietary_fiber_g": 5.58,
+      "protein_g": 41.15,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 351.4,
+      "total_carbs_g": 37.15,
+      "total_fat_g": 12.93,
+      "total_sugars_g": 11.63,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 61.7,
+      "cholesterol_mg": 11.85,
+      "dietary_fiber_g": 0.78,
+      "protein_g": 5.74,
+      "saturated_fat_g": 0.33,
+      "sodium_mg": 49,
+      "total_carbs_g": 5.18,
+      "total_fat_g": 1.8,
+      "total_sugars_g": 1.62,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28.3,
+      "dietary_fiber": 19.9,
+      "protein": 82.3,
+      "saturated_fat": 12,
+      "sodium": 15.3,
+      "total_carbs": 13.5,
+      "total_fat": 16.6
+    },
+    "serving_size_g": 717.15,
+    "total_recipe_weight_g": 2868.6
+  },
+  {
+    "recipe_name": "Tuscan Chicken and Mushroom Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken_and_mushroom_pasta_20250624_104421_e02534e4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:22.286097000Z",
+    "selected_ingredients": [
+      "chicken",
+      "broccoli",
+      "garlic",
+      "pasta",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate, showcasing a generous individual portion. A mound of al dente penne pasta, coated in a creamy, golden-white sauce, forms the base. Scattered throughout the pasta are tender, browned chicken chunks, irregularly shaped and substantial. Dark brown, sautéed mushroom slices are visible, adding depth and earthy tones. Vibrant green, roasted broccoli florets, some with slightly caramelized edges, are interspersed, providing a contrasting color and texture. A light dusting of finely grated Parmesan cheese covers the top, and fresh, bright green chopped parsley is sprinkled over the entire dish. The composition is organic and inviting, with a focus on the natural textures and colors of the ingredients. The plate sits on a simple wooden table surface with a folded white cotton napkin beside it. Natural, even lighting highlights the dish without harsh shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with crusty Italian bread.",
+      "A simple green salad with a vinaigrette dressing complements the richness."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g (cut into 2-3 cm chunks)"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "400g (cut into small florets)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g (sliced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves (minced)"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small (diced)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g (freshly grated)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g (chopped)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss broccoli florets with 15ml olive oil, salt, and pepper on a baking sheet. Roast for 15-20 minutes until tender-crisp and slightly charred.",
+      "Cook pasta according to package directions in salted water until al dente. Reserve 125ml pasta cooking water. Drain pasta.",
+      "While pasta cooks, season chicken chunks with salt and pepper. Heat remaining 15ml olive oil in a large skillet over medium-high heat. Add chicken. Sear until golden brown on all sides and cooked through. Ensure internal temperature reaches 75°C. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add butter to the same skillet. Add diced onion. Sauté until softened, about 3-4 minutes. Add sliced mushrooms. Cook until mushrooms release their liquid and brown, about 5-7 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet. Stir in heavy cream. Simmer for 2-3 minutes until sauce slightly thickens.",
+      "Return cooked chicken to the skillet. Add cooked pasta. Toss to combine. If sauce is too thick, add reserved pasta cooking water, 30ml at a time, until desired consistency is reached.",
+      "Stir in grated Parmesan cheese and chopped parsley. Taste and adjust seasoning."
+    ],
+    "notes": [
+      "For best results, use freshly grated Parmesan cheese.",
+      "Do not overcook the pasta; it should be al dente."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 985,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 73.9,
+      "saturated_fat_g": 17.6,
+      "sodium_mg": 584,
+      "total_carbs_g": 76.6,
+      "total_fat_g": 37.8,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 200,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 15,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 119,
+      "total_carbs_g": 15.6,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 29,
+      "protein": 148,
+      "saturated_fat": 88,
+      "sodium": 25,
+      "total_carbs": 28,
+      "total_fat": 48
+    },
+    "serving_size_g": 491.75,
+    "total_recipe_weight_g": 1967
+  },
+  {
+    "recipe_name": "Fermented Cashew Macaroni with Roasted Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_cashew_macaroni_with_roasted_root_vegetables_20250624_104421_1074a4c8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:21.848254000Z",
+    "selected_ingredients": [
+      "macaroni",
+      "cheese",
+      "black pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a handcrafted ceramic plate in a natural earth tone, resting on a light bamboo table. A single refined portion occupies the center, surrounded by ample white space. Macaroni, coated in creamy, off-white fermented cashew sauce, forms a natural mound. Rustic, irregularly cut 2-3cm chunks of roasted root vegetables—carrots, parsnips, celeriac—are scattered around, displaying warm orange, pale yellow, and creamy white tones with light caramelization. The vegetables show tender, crinkled textures. Freshly ground black pepper flecks the sauce. A few small, bright green sprigs of fresh parsley provide subtle color contrast. The composition is clean, simple, and unforced, highlighting natural beauty. Soft, natural light illuminates the scene. An undyed linen napkin in natural beige is subtly visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Cashew Cream",
+    "ingredients": [
+      {
+        "name": "Macaroni",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cashews, raw, unsalted",
+        "quantity": "200g"
+      },
+      {
+        "name": "Nutritional Yeast",
+        "quantity": "50g"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black Pepper, freshly ground",
+        "quantity": "5g"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "150-200ml"
+      },
+      {
+        "name": "Root Vegetables (e.g., carrots, parsnips, celeriac)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vegetable Scraps (peels, ends)",
+        "quantity": "for broth"
+      },
+      {
+        "name": "Fresh Herbs (e.g., parsley, dill)",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Cashew Cream: Soak cashews in water for at least 4 hours, or overnight. Drain and rinse. Blend soaked cashews with 150ml fresh water, nutritional yeast, lemon juice, minced garlic, Dijon mustard, smoked paprika, and a pinch of salt until very smooth and creamy. If too thick, add more water gradually. Transfer to a clean jar. Cover loosely with a cloth or lid. Let ferment at room temperature for 12-24 hours, or until slightly tangy and bubbly. Refrigerate after fermentation.",
+      "Prepare Root Vegetables: Preheat oven to 200°C. Wash and peel root vegetables. Keep peels for broth. Cut vegetables into rustic 2-3cm chunks. Toss with olive oil, salt, and black pepper. Spread on a baking tray. Roast for 25-35 minutes, or until tender and slightly caramelized.",
+      "Prepare Zero-Waste Vegetable Broth: While vegetables roast, place all vegetable peels and scraps in a small pot. Add 500ml water. Simmer for 20-30 minutes to create a light broth. Strain and reserve.",
+      "Cook Macaroni: Bring a large pot of salted water to a boil. Add macaroni. Cook according to package directions until al dente. Drain, reserving 100ml pasta water.",
+      "Combine Dish: In a large pan, gently heat the fermented cashew cream. Add cooked macaroni. Stir to coat. If sauce is too thick, add a little reserved pasta water or vegetable broth until desired consistency. Season with fresh black pepper and salt to taste.",
+      "Quick Pickled Scraps (Optional Garnish/Flavor): Take a small portion of root vegetable peels or other firm vegetable scraps. In a small bowl, mix apple cider vinegar, sugar, and a pinch of salt. Add scraps and let sit for at least 15 minutes.",
+      "Plate: Divide macaroni among 4 plates. Arrange roasted root vegetable chunks around or on top of the macaroni. Garnish sparingly with a few fresh herb sprigs or quick-pickled vegetable scraps."
+    ],
+    "notes": [
+      "This recipe utilizes fermentation for depth of flavor and incorporates zero-waste principles by using vegetable scraps for broth or quick pickles. It is entirely plant-based and emphasizes seasonal, local ingredients."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 746,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.3,
+      "protein_g": 27,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 140,
+      "total_carbs_g": 94.8,
+      "total_fat_g": 31,
+      "total_sugars_g": 13.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 167,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 6.1,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 31,
+      "total_carbs_g": 21.3,
+      "total_fat_g": 7,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 40,
+      "protein": 54,
+      "saturated_fat": 27,
+      "sodium": 6,
+      "total_carbs": 34,
+      "total_fat": 40
+    },
+    "serving_size_g": 446,
+    "total_recipe_weight_g": 1783
+  }
+]

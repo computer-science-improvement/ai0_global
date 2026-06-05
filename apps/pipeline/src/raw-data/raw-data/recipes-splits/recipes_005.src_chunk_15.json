@@ -1,0 +1,667 @@
+[
+  {
+    "recipe_name": "Plant-Based Chili with Brown Rice and American Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_174031_34d23899.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-05T17:40:32.638686000Z",
+    "selected_ingredients": [
+      "beef",
+      "kidney bean",
+      "cayenne pepper",
+      "american cheese",
+      "garlic",
+      "chicken stock",
+      "grains of paradise",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "A single portion of hearty plant-based chili is presented in a deep, wide white porcelain bowl set upon a rustic dark wood table. The base features a bed of fluffy, steamed brown rice. Resting on the rice is a thick stew containing large, whole chunks of seared plant-based beef and glossy dark red kidney beans. The sauce is a rich, deep mahogany color with a velvety texture. Two slices of plant-based American cheese are melted over the center, creating vibrant yellow ripples. The dish is finished with a dusting of coarsely ground grains of paradise. A clean white cotton napkin and a simple spoon rest to the side under soft, natural restaurant lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Modern",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled jalapeños",
+      "Accompany with warm cornbread",
+      "Pair with a crisp lager or sparkling water"
+    ],
+    "hero_ingredient": "Kidney Bean",
+    "ingredients": [
+      {
+        "name": "Plant-based beef chunks",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cooked kidney beans",
+        "quantity": "400g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Plant-based chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Plant-based American cheese slices",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Grains of paradise, ground",
+        "quantity": "1g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Rinse brown rice under cold water.",
+      "Boil 600ml water in a pot with a pinch of salt.",
+      "Add rice, reduce heat to low, cover, and simmer for 40 minutes until tender.",
+      "Heat olive oil in a large heavy-bottomed pot over medium-high heat.",
+      "Sear plant-based beef chunks until browned on all sides. Do not slice.",
+      "Add minced garlic and sauté for 1 minute until fragrant.",
+      "Stir in cayenne pepper and ground grains of paradise.",
+      "Pour in the plant-based chicken stock and deglaze the bottom of the pot.",
+      "Add kidney beans and bring to a simmer.",
+      "Reduce heat to low and cook for 20 minutes until the liquid thickens into a rich sauce.",
+      "Ensure the plant-based beef reaches an internal temperature of 75°C.",
+      "Place a portion of brown rice into a bowl.",
+      "Ladle the chili over the rice.",
+      "Place American cheese slices on top of the hot chili to melt."
+    ],
+    "notes": [
+      "Grains of paradise add a complex peppery citrus note superior to black pepper.",
+      "Ensure the plant-based beef is not overcooked to maintain its structural integrity as whole chunks.",
+      "Use a heavy pot like a Dutch oven for even heat distribution during the simmer."
+    ],
+    "traditional_techniques": [
+      "slow simmering",
+      "deglazing",
+      "tempering spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 676.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.3,
+      "protein_g": 34.7,
+      "saturated_fat_g": 13.1,
+      "sodium_mg": 1727.8,
+      "total_carbs_g": 53.9,
+      "total_fat_g": 35.9,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 162.9,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 8.4,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 415.8,
+      "total_carbs_g": 13,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 36.8,
+      "protein": 69.4,
+      "saturated_fat": 65.5,
+      "sodium": 75.1,
+      "total_carbs": 19.6,
+      "total_fat": 46
+    },
+    "serving_size_g": 415.5,
+    "total_recipe_weight_g": 1662
+  },
+  {
+    "recipe_name": "Shoyu Ramen with Seared Pork Belly",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_171810_d9e63aee.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-05T17:18:10.707523000Z",
+    "selected_ingredients": [
+      "ramen noodle"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A deep ceramic bowl sits on a rustic wooden table, filled with a clear, shimmering soy-based broth. Bundles of wavy ramen noodles peek through the surface. Three thick, caramelized chunks of pan-seared pork belly are clustered on one side, showing a rich brown crust. Beside the pork, a soft-boiled egg half reveals a vibrant, jammy orange yolk. Two bright green blanched baby bok choy halves provide a fresh contrast. Fine rings of green onion and a crisp rectangular strip of nori are tucked at the edge. A pair of dark wood chopsticks rests on a small ceramic holder nearby. The scene is lit with warm, soft kitchen light, highlighting the steam rising from the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with wooden chopsticks and a flat-bottomed ceramic soup spoon",
+      "Provide a side dish of pickled ginger or gari",
+      "Slurping noodles is encouraged as a sign of appreciation"
+    ],
+    "hero_ingredient": "Ramen noodles",
+    "ingredients": [
+      {
+        "name": "ramen noodles",
+        "quantity": "720g"
+      },
+      {
+        "name": "pork belly, cut into 3cm chunks",
+        "quantity": "450g"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "1.5L"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "mirin",
+        "quantity": "30ml"
+      },
+      {
+        "name": "fresh ginger, sliced",
+        "quantity": "15g"
+      },
+      {
+        "name": "garlic, smashed",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "baby bok choy, halved",
+        "quantity": "4"
+      },
+      {
+        "name": "green onions, thinly sliced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "nori seaweed, cut into strips",
+        "quantity": "1 sheet"
+      }
+    ],
+    "instructions": [
+      "Boil eggs for 6.5 minutes. Transfer to ice water. Peel and halve.",
+      "Season pork belly chunks with salt. Sear in a pan over medium heat until all sides are browned and internal temperature reaches 75°C.",
+      "In a large pot, combine chicken stock, ginger, garlic, soy sauce, and mirin. Simmer for 15 minutes.",
+      "Add baby bok choy to the broth. Simmer for 2 minutes until tender. Remove and set aside.",
+      "Boil ramen noodles in a separate pot according to package instructions. Drain well.",
+      "Divide noodles into four deep bowls.",
+      "Pour hot broth over the noodles.",
+      "Place pork chunks, one egg half, and two bok choy halves on top of each bowl.",
+      "Garnish with green onions and a strip of nori."
+    ],
+    "notes": [
+      "Do not overcook noodles to maintain an 'al dente' texture",
+      "Strain the broth before serving to ensure a clear presentation",
+      "Adjust soy sauce amount to reach preferred saltiness level"
+    ],
+    "traditional_techniques": [
+      "soft-boiling eggs",
+      "broth seasoning",
+      "pan-searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 1222,
+      "cholesterol_mg": 267,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 40.6,
+      "saturated_fat_g": 24.1,
+      "sodium_mg": 3099,
+      "total_carbs_g": 108.6,
+      "total_fat_g": 69.5,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 151.5,
+      "cholesterol_mg": 33.1,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 5,
+      "saturated_fat_g": 3,
+      "sodium_mg": 384.4,
+      "total_carbs_g": 13.5,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 89,
+      "dietary_fiber": 15.7,
+      "protein": 81.2,
+      "saturated_fat": 120.5,
+      "sodium": 134.7,
+      "total_carbs": 39.5,
+      "total_fat": 89.1
+    },
+    "serving_size_g": 806.25,
+    "total_recipe_weight_g": 3225
+  },
+  {
+    "recipe_name": "Vietnamese Shaking Beef (Bò Lúc Lắc)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_155500_e9ef4fee.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-05T15:55:01.665599000Z",
+    "selected_ingredients": [
+      "beef",
+      "black pepper",
+      "onion",
+      "garlic",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Shaking Beef served on a clean white porcelain plate. The focal point features 2.5cm cubes of seared beef with a dark, caramelized crust. These are tossed with charred 2cm red onion wedges and vibrant orange 5cm carrot batons. The beef and vegetables are piled naturally in the center, showing a glossy glaze. To the side, a fresh bed of green watercress and thick tomato slices provides color contrast. A small ceramic ramekin containing a clear lime and cracked black pepper dipping sauce sits on the plate. The setting is a modern bistro with a light wood table, a pair of dark wood chopsticks, and a side bowl of steamed jasmine rice. Natural side-lighting highlights the textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnam",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed jasmine rice or tomato rice",
+      "Provide a Muối Tiêu Chanh (salt, pepper, and lime) dipping sauce",
+      "Eat with chopsticks and a flat-bottomed soup spoon"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or ribeye",
+        "quantity": "600g"
+      },
+      {
+        "name": "Black pepper, coarsely cracked",
+        "quantity": "10g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Watercress",
+        "quantity": "1 bunch"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 2.5cm cubes.",
+      "Mince garlic finely.",
+      "Mix beef with garlic, 15ml soy sauce, oyster sauce, sugar, and 5g black pepper.",
+      "Marinate beef for 30 minutes at room temperature.",
+      "Peel carrots and cut into 5cm batons.",
+      "Cut red onion into 2cm wedges.",
+      "Whisk lime juice, fish sauce, and remaining black pepper in a small bowl for dipping.",
+      "Heat oil in a wok over high heat until smoking.",
+      "Add beef in a single layer. Sear for 2 minutes without moving.",
+      "Add onion wedges and carrot batons to the wok.",
+      "Shake the wok vigorously for 3 minutes to sear all sides.",
+      "Add butter and toss for 30 seconds to glaze.",
+      "Place watercress on a plate. Top with the hot beef and vegetables."
+    ],
+    "notes": [
+      "Ensure the wok is extremely hot before adding meat to achieve a proper sear.",
+      "Do not overcrowd the pan; cook in batches if necessary to maintain heat.",
+      "The butter at the end provides the signature French-influenced Vietnamese glossy finish."
+    ],
+    "traditional_techniques": [
+      "Wok sear",
+      "Shaking (Lúc Lắc)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 544.5,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 2.18,
+      "protein_g": 43.33,
+      "saturated_fat_g": 11.63,
+      "sodium_mg": 1086,
+      "total_carbs_g": 13.88,
+      "total_fat_g": 34.68,
+      "total_sugars_g": 6.48,
+      "trans_fat_g": 0.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.12,
+      "calories": 244.72,
+      "cholesterol_mg": 50.79,
+      "dietary_fiber_g": 0.98,
+      "protein_g": 19.47,
+      "saturated_fat_g": 5.22,
+      "sodium_mg": 488.09,
+      "total_carbs_g": 6.24,
+      "total_fat_g": 15.58,
+      "total_sugars_g": 2.91,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.7,
+      "dietary_fiber": 7.8,
+      "protein": 86.7,
+      "saturated_fat": 58.2,
+      "sodium": 47.2,
+      "total_carbs": 5,
+      "total_fat": 44.5
+    },
+    "serving_size_g": 222.5,
+    "total_recipe_weight_g": 890
+  },
+  {
+    "recipe_name": "Hungarian Beef Pörkölt",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_134355_12fff658.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-05T13:43:56.148620000Z",
+    "selected_ingredients": [
+      "beef",
+      "olive oil",
+      "tomato",
+      "paprika",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Hungarian Beef Pörkölt is presented on a clean white porcelain plate. The dish features 3cm chunks of tender, slow-braised beef coated in a thick, glossy, deep-crimson sauce. The beef chunks are arranged in a natural, rustic cluster in the center. Small droplets of vibrant red oil glisten on the surface of the rich gravy. Beside the meat, a small portion of hand-torn Nokedli dumplings provides a pale contrast. A garnish of fresh, finely chopped flat-leaf parsley is scattered over the top. The setting is a dark wooden bistro table with a linen napkin and a small side bowl of traditional pickled cucumbers. Natural side lighting emphasizes the succulent texture of the beef.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungary",
+    "cultural_serving_suggestions": [
+      "Serve with Nokedli (Hungarian dumplings)",
+      "Accompany with Savanyúság (pickled vegetables)",
+      "Pair with a dry Hungarian red wine like Egri Bikavér"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 3cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Yellow onions, finely diced",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sweet Hungarian paprika",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Roma tomatoes, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Caraway seeds, crushed",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Water",
+        "quantity": "150ml"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a heavy-bottomed pot over medium heat.",
+      "Add diced onions and sauté until soft and translucent.",
+      "Remove pot from heat and stir in paprika.",
+      "Add beef chunks and return pot to heat.",
+      "Sear beef until browned on all sides.",
+      "Add diced tomatoes, minced garlic, caraway seeds, salt, and pepper.",
+      "Pour in water and stir to combine.",
+      "Cover the pot and reduce heat to low.",
+      "Simmer for 2 hours until beef is fork-tender.",
+      "Adjust seasoning with salt and pepper before serving."
+    ],
+    "notes": [
+      "Do not brown the onions too much; they should be soft to create a thick sauce.",
+      "Always remove the pot from heat before adding paprika to prevent burning.",
+      "The sauce should be thick and reduced, not watery like a soup."
+    ],
+    "traditional_techniques": [
+      "pörkölt technique",
+      "blooming paprika",
+      "slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 633,
+      "cholesterol_mg": 156,
+      "dietary_fiber_g": 4.11,
+      "protein_g": 40.25,
+      "saturated_fat_g": 15.95,
+      "sodium_mg": 707.25,
+      "total_carbs_g": 15.21,
+      "total_fat_g": 45.68,
+      "total_sugars_g": 6.03,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 211,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 1.37,
+      "protein_g": 13.42,
+      "saturated_fat_g": 5.32,
+      "sodium_mg": 235.75,
+      "total_carbs_g": 5.07,
+      "total_fat_g": 15.23,
+      "total_sugars_g": 2.01,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 14.68,
+      "protein": 80.5,
+      "saturated_fat": 79.75,
+      "sodium": 30.75,
+      "total_carbs": 5.53,
+      "total_fat": 58.56
+    },
+    "serving_size_g": 300,
+    "total_recipe_weight_g": 1200
+  },
+  {
+    "recipe_name": "Chicken Velouté with Oregano Oil and Mustard-Glazed Medallions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260505_131221_84fc6199.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-05T13:12:21.739301000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "mustard",
+      "bread",
+      "oregano"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A deep, matte-charcoal designer ceramic bowl contains a silky, ivory-colored chicken velouté. In the center, three thick, golden-brown seared chicken medallions are stacked organically, coated in a glossy mustard glaze. Vibrant green droplets of oregano oil are precisely dotted around the perimeter of the soup, creating a striking contrast against the pale liquid. Several 1cm cubes of chili-dusted brioche croutons provide height and texture. The lighting is dramatic, casting soft shadows across a white Carrara marble surface. A polished silver soup spoon rests on the right. The composition is minimalist with significant negative space, emphasizing the soup's smooth texture and the precise placement of the herb oil.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve in a pre-heated shallow bowl",
+      "Accompany with a crisp dry white wine",
+      "Provide a high-quality silver soup spoon"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Chicken stock (high quality)",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "40g"
+      },
+      {
+        "name": "Wholegrain mustard",
+        "quantity": "20g"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "30g"
+      },
+      {
+        "name": "Grapeseed oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Brioche bread",
+        "quantity": "2 thick slices"
+      },
+      {
+        "name": "Red bird's eye chili",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Shallots, minced",
+        "quantity": "2 pieces"
+      }
+    ],
+    "instructions": [
+      "Blanch oregano leaves in boiling water for 10 seconds. Shock in ice water. Pat dry.",
+      "Blend oregano with grapeseed oil until smooth. Strain through a coffee filter. Set aside.",
+      "Cut brioche into 1cm cubes. Sauté in 20g butter with finely minced chili until golden. Drain on paper towels.",
+      "Cut chicken into 2cm thick chunks. Season with salt.",
+      "Sauté shallots in remaining butter until translucent. Add 400g of chicken chunks. Brown lightly.",
+      "Add chicken stock. Simmer for 20 minutes. Add cream. Simmer for 5 minutes.",
+      "Blend soup until completely smooth. Pass through a fine chinois. Whisk in Dijon mustard.",
+      "Pan-sear remaining chicken chunks in a hot pan until internal temperature reaches 75°C. Toss with wholegrain mustard to glaze.",
+      "Pour soup into warm shallow bowls. Place mustard-glazed chicken chunks in the center.",
+      "Garnish with chili brioche croutons and droplets of oregano oil."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C for safety",
+      "Filter the oregano oil overnight for maximum clarity",
+      "Do not boil the soup after adding mustard to prevent bitterness"
+    ],
+    "traditional_techniques": [
+      "velouté",
+      "emulsification",
+      "infusion",
+      "glazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.5,
+      "calories": 834.6,
+      "cholesterol_mg": 212.5,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 56.6,
+      "saturated_fat_g": 21.4,
+      "sodium_mg": 1620,
+      "total_carbs_g": 18.3,
+      "total_fat_g": 60.3,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 166.9,
+      "cholesterol_mg": 42.5,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 11.3,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 324,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 12.1,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 5,
+      "protein": 113,
+      "saturated_fat": 107,
+      "sodium": 70,
+      "total_carbs": 7,
+      "total_fat": 77
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  }
+]

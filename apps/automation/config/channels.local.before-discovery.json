@@ -1,0 +1,109 @@
+{
+  "_comment": "Active only when NODE_ENV=local-development. Trimmed copy — news / prompts / ai_global strategies temporarily removed to stop paid API calls on flows that already work. Full config preserved at channels.local.full-backup.json; restore with: cp channels.local.full-backup.json channels.local.json && restart pnpm dev:automation.",
+
+  "bots": {
+    "ai0_local_test_bot": {
+      "platform": "telegram",
+      "tokenEnv": "TELEGRAM_BOT_TOKEN"
+    }
+  },
+
+  "channels": {
+    "@pdr_local": {
+      "_name": "PDR | LOCAL",
+      "_inviteLink": "https://t.me/+lH7q9UWKQpYwNDEy",
+      "platform": "telegram",
+      "chatId": "-1003989477674",
+      "botId": "ai0_local_test_bot"
+    },
+
+    "@game_exchange_local": {
+      "_name": "Біржа Ігор | DEV (used locally)",
+      "_inviteLink": "https://t.me/+9hvXQjmMztY3MGYy",
+      "platform": "telegram",
+      "chatId": "-1003612020806",
+      "botId": "ai0_local_test_bot"
+    },
+
+    "@motivation_local": {
+      "_name": "Мотивація | LOCAL — quotes + birthdays",
+      "platform": "telegram",
+      "chatId": "-1003984251759",
+      "botId": "ai0_local_test_bot"
+    }
+  },
+
+  "strategies": [
+    {
+      "id": "pdr-quiz:local",
+      "type": "pdr-quiz",
+      "channelId": "@pdr_local",
+      "schedule": "*/5 * * * *"
+    },
+
+    {
+      "_comment": "Local mirror of dev split: giveaways at 11:00 daily. Test cadence is slower than dev — use truncate + manual restart to force-fire.",
+      "id": "game-channel:local_giveaways",
+      "type": "game-channel",
+      "channelId": "@game_exchange_local",
+      "schedule": "0 11 * * *",
+      "params": {
+        "sources": ["gamerpower", "epic"]
+      }
+    },
+    {
+      "_comment": "Local mirror of dev rotation: deals + news every 2 hours within 12-22 only.",
+      "id": "game-channel:local_rotation",
+      "type": "game-channel",
+      "channelId": "@game_exchange_local",
+      "schedule": "0 12-22/2 * * *",
+      "params": {
+        "sources": ["steam", "news"]
+      }
+    },
+
+    {
+      "_comment": "Motivation rotation — birthday at 11:00, then quote/fact alternate every 4h: 15 quote, 19 fact, 23 quote, 03 fact, 07 quote. 6 posts/day total.",
+      "id": "birthday-strategy:local_motivation",
+      "type": "birthday-strategy",
+      "channelId": "@motivation_local",
+      "schedule": "0 11 * * *"
+    },
+
+    {
+      "id": "quotes:local_motivation",
+      "type": "quotes",
+      "channelId": "@motivation_local",
+      "schedule": "0 7,15,23 * * *"
+    },
+
+    {
+      "_comment": "Curated motivation fact pool: philosophy (A), composers (C), psychology/brain (D), relationships (E), Olympics (F). Pulls random unposted fact from these 17 article titles only — no AI calls.",
+      "id": "facts:motivation",
+      "type": "facts",
+      "channelId": "@motivation_local",
+      "schedule": "0 3,19 * * *",
+      "params": {
+        "articleTitles": [
+          "35 цікавих фактів про Конфуція",
+          "30 цікавих фактів про Будду",
+          "25 цікавих фактів про Аристотеля",
+          "20 цікавих фактів про Сократа",
+          "15 цікавих фактів про Платона",
+          "30 цікавих фактів про Йоганна Себастьяна Баха",
+          "17 цікавих фактів про Моцарта",
+          "15 цікавих фактів з життя Чайковського",
+          "15 цікавих фактів про Бетховена",
+          "30 цікавих фактів про серце людини",
+          "27 цікавих фактів про стрес",
+          "25 цікавих фактів про органи почуттів",
+          "20 цікавих фактів про мозок",
+          "17 цікавих фактів про нервову систему людини",
+          "30 цікавих фактів про кохання",
+          "20 цікавих фактів про дружбу",
+          "25 цікавих фактів про Олімпійські ігри"
+        ]
+      }
+    }
+  ]
+}

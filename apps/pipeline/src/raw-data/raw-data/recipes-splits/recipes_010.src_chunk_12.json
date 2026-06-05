@@ -1,0 +1,794 @@
+[
+  {
+    "recipe_name": "Braised Beef Ragu with Pappardelle and Roasted Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_ragu_with_pappardelle_and_roasted_mushrooms_20250713_143332_091fb6de.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T14:33:32.565358000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Braised Beef Ragu with Pappardelle is presented on a clean, round white porcelain plate. The wide pappardelle noodles form a loose base, generously coated and topped with the rich, deep reddish-brown beef ragu. The braised beef chunks are tender and visible within the sauce, not fanned. Scattered around and atop the pasta are roasted cremini mushrooms, halved or quartered, showing their earthy brown, slightly caramelized surfaces. A light dusting of freshly grated white Parmesan cheese covers the dish, and a sprinkle of vibrant green chopped fresh parsley adds a contrasting color. The plate sits on a simple, dark wooden table surface. A white cotton napkin is folded neatly beside the plate. Natural, even light illuminates the dish from above, highlighting its textures. The background is softly blurred, suggesting a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with freshly grated Parmesan cheese",
+      "Offer crusty artisanal bread for dipping in the sauce",
+      "Pair with a glass of robust red wine"
+    ],
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef Chuck",
+        "quantity": "1 kg, cut into 5 cm chunks"
+      },
+      {
+        "name": "Pappardelle Pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Crushed San Marzano Tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "400 g, halved or quartered"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Celery Stalk",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh Rosemary Sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "100 g, grated"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g, chopped for garnish"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat 30 ml olive oil in a large Dutch oven over medium-high heat. Sear beef in batches until browned on all sides. Remove beef.",
+      "Reduce heat to medium. Add remaining 30 ml olive oil. Add diced onion, carrot, and celery. Cook 8-10 minutes until softened, stirring occasionally. This is the soffritto.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer. Cook 5 minutes until wine reduces by half.",
+      "Stir in crushed tomatoes, beef broth, rosemary, thyme, and bay leaf. Return seared beef to the pot.",
+      "Bring to a gentle simmer. Cover. Reduce heat to low. Cook for 2.5 to 3 hours, or until beef is fork-tender. Stir occasionally.",
+      "While ragu simmers, preheat oven to 200°C. Toss mushrooms with a drizzle of olive oil, salt, and pepper on a baking sheet. Roast 20-25 minutes until tender and browned.",
+      "Remove beef from ragu. Shred beef with two forks. Discard herb sprigs and bay leaf. Return shredded beef to the sauce. Stir well. Keep warm.",
+      "Cook pappardelle according to package directions in salted boiling water until al dente. Drain pasta.",
+      "Add cooked pappardelle to the ragu. Toss to combine thoroughly.",
+      "Serve immediately. Plate a generous portion of pasta and ragu. Top with roasted mushrooms. Garnish with grated Parmesan cheese and fresh chopped parsley."
+    ],
+    "notes": [
+      "For best flavor, the ragu can be made a day in advance and reheated.",
+      "Adjust consistency of ragu with a little pasta water if needed when tossing with pasta."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1384.85,
+      "cholesterol_mg": 232.25,
+      "dietary_fiber_g": 8.93,
+      "protein_g": 92.67,
+      "saturated_fat_g": 22.54,
+      "sodium_mg": 1039.41,
+      "total_carbs_g": 98.6,
+      "total_fat_g": 62.45,
+      "total_sugars_g": 14.45,
+      "trans_fat_g": 2.05
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 167.86,
+      "cholesterol_mg": 28.15,
+      "dietary_fiber_g": 1.08,
+      "protein_g": 11.23,
+      "saturated_fat_g": 2.73,
+      "sodium_mg": 125.99,
+      "total_carbs_g": 11.95,
+      "total_fat_g": 7.57,
+      "total_sugars_g": 1.75,
+      "trans_fat_g": 0.25
+    },
+    "daily_value_percentages": {
+      "cholesterol": 77.42,
+      "dietary_fiber": 31.88,
+      "protein": 185.34,
+      "saturated_fat": 112.68,
+      "sodium": 45.19,
+      "total_carbs": 35.85,
+      "total_fat": 80.06
+    },
+    "serving_size_g": 825,
+    "total_recipe_weight_g": 3300
+  },
+  {
+    "recipe_name": "Chicken and Tomato Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_tomato_risotto_20250713_141108_8c817205.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T14:11:09.256361000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "parmesan cheese",
+      "onion",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy Chicken and Tomato Risotto is presented on a clean, round white porcelain dinner plate. The risotto is free-flowing and spread naturally. Its vibrant orange-red hue contrasts with golden-brown seared chicken chunks, interspersed throughout. Halved, bright red cherry tomatoes add bursts of color and texture. Freshly grated Parmesan cheese lightly dusts the top, providing a pale yellow accent. A few fresh basil leaves are scattered as garnish, offering a pop of green. The plate sits on a simple light wooden table. A folded cotton napkin and traditional Italian flatware are placed beside it. Natural, even lighting illuminates the dish from the side, enhancing its inviting appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and balsamic vinegar.",
+      "Offer crusty ciabatta bread for dipping."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast or thigh",
+        "quantity": "400 g, cut into 2 cm cubes"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g, halved"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g, freshly grated, plus extra for serving"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.2 litres, hot"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "15 g, chopped, plus sprigs for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat 15 ml olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Add chicken cubes. Sear until golden brown on all sides. Cook chicken to an internal temperature of 75°C (167°F). Remove chicken from pot. Set aside.",
+      "Add remaining 15 ml olive oil to the pot. Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice. Stir constantly for 2 minutes until grains are translucent at the edges.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add a ladleful of hot chicken broth. Stir continuously until broth is absorbed.",
+      "Continue adding broth one ladleful at a time. Stir constantly. Wait for each addition to be absorbed before adding the next. This process takes about 18-20 minutes.",
+      "After 10 minutes, add halved cherry tomatoes to the risotto. Continue cooking and stirring.",
+      "When rice is al dente (creamy but with a slight bite), remove from heat.",
+      "Stir in cooked chicken, grated Parmesan cheese, and butter. Stir vigorously for 1 minute for mantecatura (creamy finish).",
+      "Stir in chopped fresh basil.",
+      "Season with salt and black pepper to taste. Serve immediately."
+    ],
+    "notes": [
+      "Risotto requires constant stirring for optimal creaminess.",
+      "Ensure broth is hot for continuous cooking."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 756.9,
+      "cholesterol_mg": 123.1,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 51.9,
+      "saturated_fat_g": 10.9,
+      "sodium_mg": 1261.1,
+      "total_carbs_g": 73,
+      "total_fat_g": 25.3,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 216.3,
+      "cholesterol_mg": 35.2,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 14.8,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 360.3,
+      "total_carbs_g": 20.9,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 8.6,
+      "protein": 103.8,
+      "saturated_fat": 54.5,
+      "sodium": 54.8,
+      "total_carbs": 26.5,
+      "total_fat": 32.4
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Dark Chocolate Miso Entremet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dark_chocolate_miso_entremet_20250713_134152_706a3222.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T13:41:52.610320000Z",
+    "selected_ingredients": [
+      "chocolate"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Japanisch cuisine, Ohne matcha",
+    "visual_description": "A single Dark Chocolate Miso Entremet is meticulously centered on a pristine white ceramic dessert plate. The entremet, a perfect 7 cm cylinder, boasts a mirror-like, ultra-glossy dark chocolate glaze that reflects ambient light. Its surface is impeccably smooth, devoid of imperfections. A small, architecturally precise shard of tempered dark chocolate is placed vertically on top, slightly off-center. Tiny, almost imperceptible flecks of edible gold leaf are delicately scattered around the base of the entremet on the plate's negative space, catching the light. The plate itself is a high-quality, minimalist white porcelain with a very subtle, clean design. Abundant white space surrounds the dessert, emphasizing its refined form and allowing the deep, rich brown of the chocolate to be the dominant color. The lighting is dramatic, casting soft shadows that highlight the entremet's perfect curves and glossy finish. A pristine white linen napkin, precisely folded, rests nearby. The scene conveys ultimate sophistication and precision, typical of haute patisserie.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve individually on minimalist ceramic plates, emphasizing the clean lines and precision of the pastry.",
+      "Present with delicate, small dessert forks."
+    ],
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Dark Chocolate Mousse",
+        "quantity": ""
+      },
+      {
+        "name": "Dark chocolate (70% cacao), finely chopped",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Heavy cream (35% fat), cold",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Miso Caramel Insert",
+        "quantity": ""
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Heavy cream, warm",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted butter, cold, cubed",
+        "quantity": "50 g"
+      },
+      {
+        "name": "White miso paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Chocolate Dacquoise",
+        "quantity": ""
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "2"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cocoa powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Confectioners' sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Glossy Chocolate Glaze",
+        "quantity": ""
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Cocoa powder",
+        "quantity": "35 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "70 ml"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "3 g (1.5 sheets)"
+      },
+      {
+        "name": "Garnish",
+        "quantity": ""
+      },
+      {
+        "name": "Tempered dark chocolate",
+        "quantity": "small amount"
+      },
+      {
+        "name": "Edible gold leaf",
+        "quantity": "tiny flecks"
+      }
+    ],
+    "instructions": [
+      "Prepare Miso Caramel Insert: Combine sugar and water in a saucepan. Cook to a dark amber caramel. Remove from heat. Carefully whisk in warm cream. Add cold butter cubes and miso paste. Stir until smooth. Pour into 4 small silicone dome molds (approx. 3-4 cm diameter). Freeze completely.",
+      "Prepare Chocolate Dacquoise: Preheat oven to 170°C. Whip egg whites to soft peaks. Gradually add granulated sugar, whip to stiff, glossy peaks. Sift almond flour, cocoa powder, and confectioners' sugar. Gently fold dry ingredients into meringue. Pipe or spread onto a parchment-lined baking sheet into four 6 cm diameter circles. Bake 12-15 minutes until set. Cool completely. Trim if necessary.",
+      "Prepare Dark Chocolate Mousse: Melt chopped chocolate over a double boiler or in microwave. Stir until smooth. Set aside. In a small saucepan, combine egg yolks, sugar, and water. Cook over low heat, whisking constantly, until thickened (Nappe stage, 82°C). Remove from heat. Pour hot yolk mixture over melted chocolate. Stir until emulsified. Let cool to 35°C. Whip cold heavy cream to soft peaks. Gently fold whipped cream into chocolate mixture in three additions. Do not overmix.",
+      "Assemble Entremets: Fill four individual entremet silicone molds (approx. 7 cm diameter, 4 cm deep) halfway with chocolate mousse. Place a frozen miso caramel insert in the center of each. Cover with more chocolate mousse, filling molds almost to the top. Gently press a dacquoise disc onto the mousse, ensuring it is level. Freeze entremets for at least 6 hours, preferably overnight, until completely solid.",
+      "Prepare Glossy Chocolate Glaze: Bloom gelatin sheets in cold water. In a saucepan, combine sugar, water, cocoa powder, and heavy cream. Bring to a boil, whisking. Simmer for 1 minute. Remove from heat. Squeeze excess water from gelatin and stir into hot glaze until dissolved. Strain glaze through a fine-mesh sieve. Let cool to 30-32°C. Maintain temperature.",
+      "Glaze and Garnish: Unmold frozen entremets onto a wire rack placed over a baking sheet. Pour warm glaze evenly over each frozen entremet, ensuring full coverage. Allow excess glaze to drip. Carefully transfer glazed entremets to a clean plate using an offset spatula. Decorate with a small, precise tempered chocolate shard and tiny flecks of edible gold leaf. Chill in refrigerator for at least 1 hour to thaw slightly before serving."
+    ],
+    "notes": [
+      "Ensure all components are chilled or frozen to the correct temperature before assembly and glazing for best results.",
+      "Glaze temperature is critical for a perfect mirror finish. Use a thermometer.",
+      "Work quickly when glazing, as the entremets will start to thaw."
+    ],
+    "traditional_techniques": [
+      "Mise en place",
+      "Chocolate tempering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 76.4,
+      "calories": 1253,
+      "cholesterol_mg": 372,
+      "dietary_fiber_g": 10.6,
+      "protein_g": 14,
+      "saturated_fat_g": 54.3,
+      "sodium_mg": 115,
+      "total_carbs_g": 109.9,
+      "total_fat_g": 93.1,
+      "total_sugars_g": 92.5,
+      "trans_fat_g": 2.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 21.7,
+      "calories": 355.9,
+      "cholesterol_mg": 105.6,
+      "dietary_fiber_g": 3,
+      "protein_g": 4,
+      "saturated_fat_g": 15.4,
+      "sodium_mg": 32.5,
+      "total_carbs_g": 31.2,
+      "total_fat_g": 26.4,
+      "total_sugars_g": 26.3,
+      "trans_fat_g": 0.7
+    },
+    "daily_value_percentages": {
+      "cholesterol": 124,
+      "dietary_fiber": 38,
+      "protein": 28,
+      "saturated_fat": 272,
+      "sodium": 5,
+      "total_carbs": 40,
+      "total_fat": 119
+    },
+    "serving_size_g": 352,
+    "total_recipe_weight_g": 1408
+  },
+  {
+    "recipe_name": "Gochujang Beef Bites with Quick-Pickled Radish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_gochujang_beef_bites_with_quick-pickled_radish_20250713_131112_f1ab1a47.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T13:11:13.098663000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "시즈닝과 치즈가 첨가된 큐브스테이크를 야구장에서 즐기는 음식 cuisine",
+    "visual_description": "Seared Gochujang Beef Bites skewers are casually arranged on a light beige handcrafted ceramic platter, placed on a reclaimed wood surface. Beef cubes, cut into 2.5 cm pieces, display a rich reddish-brown caramelization. Glistening and tender, they are surrounded by thin, translucent rounds of quick-pickled daikon radish. A vibrant green sprinkle of finely chopped radish greens and toasted sesame seeds garnishes the beef. A glossy, golden drizzle of melted cheddar cheese cascades over the cubes, adding creamy texture. The plating is minimalistic, with ample negative space. A natural, undyed linen napkin sits to one side. Soft, natural lighting highlights textures and colors. The background is clean, with subtle natural elements, emphasizing an eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve as a communal snack, allowing guests to pick skewers directly from the platter.",
+      "Offer small individual ceramic bowls for extra quick-pickled radish.",
+      "Pair with a light, refreshing beverage commonly found at sports events."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin",
+        "quantity": "400 g, cut into 2.5 cm cubes"
+      },
+      {
+        "name": "Gochujang",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced (or 15g fermented garlic paste)"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "10 g, grated"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml (for marinade)"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Daikon radish",
+        "quantity": "200 g (including greens if possible)"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml (for pickling liquid)"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "60 ml (for pickling liquid)"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15 g (for pickling liquid)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g (for pickling liquid)"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "100 g, grated"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Wooden skewers",
+        "quantity": "8-12 small"
+      }
+    ],
+    "instructions": [
+      "Combine gochujang, soy sauce, sesame oil, minced garlic, grated ginger, 15 ml rice vinegar, and brown sugar in a bowl. Mix well.",
+      "Add beef cubes to the marinade. Toss to coat evenly. Marinate for at least 30 minutes at room temperature, or up to 4 hours refrigerated.",
+      "Wash daikon radish thoroughly. Slice radish into thin rounds or half-moons. Reserve radish greens.",
+      "Combine 120 ml water, 60 ml rice vinegar, granulated sugar, and salt in a small pot. Bring to a boil, stirring until sugar and salt dissolve. Remove from heat.",
+      "Pour hot pickling liquid over sliced radish in a heatproof bowl. Let cool to room temperature. The radish will quick-pickle as it cools.",
+      "Thread marinated beef cubes onto small wooden skewers. Place 3-4 cubes per skewer.",
+      "Preheat a grill pan or large skillet over medium-high heat. Lightly oil the pan.",
+      "Sear beef skewers for 2-3 minutes per side until well-browned and cooked through. Internal temperature should reach 75°C.",
+      "While beef cooks, melt grated cheddar cheese in a small saucepan over low heat, or in a microwave-safe bowl. Stir until smooth and pourable.",
+      "Arrange cooked beef skewers on a serving platter. Scatter quick-pickled radish around the skewers.",
+      "Finely chop reserved radish greens. Sprinkle chopped greens and toasted sesame seeds over the beef and radish.",
+      "Drizzle melted cheese generously over the beef skewers."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing radish greens as a garnish and quick-pickling the radish.",
+      "Gochujang is a naturally fermented Korean chili paste, contributing to the dish's flavor and sustainability theme."
+    ],
+    "traditional_techniques": [
+      "Quick Pickling",
+      "Fermentation (via Gochujang)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 9.65,
+      "calories": 418.3,
+      "cholesterol_mg": 100,
+      "dietary_fiber_g": 1.66,
+      "protein_g": 37.59,
+      "saturated_fat_g": 9.11,
+      "sodium_mg": 1625.1,
+      "total_carbs_g": 18.36,
+      "total_fat_g": 21.29,
+      "total_sugars_g": 12.19,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3.67,
+      "calories": 159,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 0.63,
+      "protein_g": 14.29,
+      "saturated_fat_g": 3.46,
+      "sodium_mg": 617.7,
+      "total_carbs_g": 6.98,
+      "total_fat_g": 8.09,
+      "total_sugars_g": 4.63,
+      "trans_fat_g": 0.27
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 6,
+      "protein": 75,
+      "saturated_fat": 46,
+      "sodium": 71,
+      "total_carbs": 7,
+      "total_fat": 27
+    },
+    "serving_size_g": 263.1,
+    "total_recipe_weight_g": 1052.3
+  },
+  {
+    "recipe_name": "Slow-Braised Beef with Umami Broth",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-braised_beef_with_umami_broth_20250713_130105_822c1a9a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T13:01:05.656270000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "bell pepper",
+      "parmesan cheese",
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of slow-braised beef is presented in a handcrafted, matte cream-colored ceramic bowl, resting on a light, naturally textured reclaimed wood table surface. A generous chunk of fork-tender, deep brown braised beef sits atop a small portion of al dente rigatoni pasta. Beside the beef, a few vibrant, roasted bell pepper wedges (red and yellow) display slight charring, adding pops of color and texture. A few delicate, bright pink pickled red onion slices are strategically placed, adding a touch of acidity and color contrast. The dish is enveloped by a rich, clear amber-hued umami broth, which pools elegantly around the ingredients. A light dusting of finely grated Parmesan cheese and a scattering of fresh, bright green chopped parsley garnish the dish. The overall composition is clean and minimalistic, with ample negative space. Natural soft light illuminates the scene, highlighting the organic textures of the food and the ceramic ware. A folded, undyed linen napkin rests subtly beside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g, cut into 4 large chunks"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, roughly chopped"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large, thinly sliced"
+      },
+      {
+        "name": "Bell peppers (mixed colors)",
+        "quantity": "2 large, cut into wedges"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100g, grated"
+      },
+      {
+        "name": "Parmesan rind",
+        "quantity": "50g"
+      },
+      {
+        "name": "Short pasta (e.g., rigatoni or orecchiette)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, smashed"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat. Sear beef until deeply browned on all sides. Remove beef.",
+      "Add roughly chopped yellow onion and smashed garlic to the pot. Sauté until softened, about 5 minutes.",
+      "Deglaze pot with red wine, scraping up any browned bits. Reduce by half.",
+      "Return beef to the pot. Add beef broth, Parmesan rind, rosemary, thyme, and bay leaves. Bring to a simmer.",
+      "Cover and transfer to a preheated oven at 160°C (325°F). Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "For pickled red onions: Combine thinly sliced red onion, apple cider vinegar, water, salt, and sugar in a small jar. Let sit for at least 30 minutes, or refrigerate for longer preservation.",
+      "While beef braises, preheat oven to 200°C (390°F). Toss bell pepper wedges with a drizzle of olive oil, salt, and pepper. Roast for 20-25 minutes until tender and slightly charred.",
+      "Remove beef from pot. Strain braising liquid into a clean saucepan, discarding solids and rind. Skim any excess fat. Reduce liquid slightly over medium heat to intensify flavor. Season broth to taste.",
+      "Cook pasta according to package directions until al dente. Drain.",
+      "To serve, place a portion of pasta in a bowl. Top with a braised beef chunk and roasted bell pepper wedges. Ladle generous amount of umami broth over the dish. Garnish with grated Parmesan, fresh parsley, and a few pickled red onion slices."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing Parmesan rind for broth and braising a less prime cut of beef.",
+      "Quick-pickled red onions provide a preserved element and bright contrast, celebrating simple preparation and ingredient longevity."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 1036,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 63.2,
+      "saturated_fat_g": 14.2,
+      "sodium_mg": 1387,
+      "total_carbs_g": 93.5,
+      "total_fat_g": 36.8,
+      "total_sugars_g": 12.6,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 136,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.3,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 182,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 25,
+      "protein": 126,
+      "saturated_fat": 71,
+      "sodium": 60,
+      "total_carbs": 34,
+      "total_fat": 47
+    },
+    "serving_size_g": 761.5,
+    "total_recipe_weight_g": 3046
+  }
+]

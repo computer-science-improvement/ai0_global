@@ -1,0 +1,644 @@
+[
+  {
+    "recipe_name": "Lemon Herb Roasted Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_roasted_chicken_and_potatoes_20250902_131948_e8f4f760.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T13:19:48.559285000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Lemon Herb Roasted Chicken and Potatoes is presented on an off-white ceramic plate with a rustic, uneven rim. Two golden-brown, bone-in chicken pieces (thigh and drumstick), skin crisp from roasting, are centered. Substantial potato wedges, deeply caramelized and tender, are scattered around the chicken, some overlapping. Thick wedges of roasted onion, softened and sweet, are interspersed. Bright yellow lemon slices, slightly charred, peek out. The dish is garnished with fresh chopped parsley and small rosemary sprigs. The arrangement is casual, asymmetrical, filling the plate adequately. The scene is on a well-used wooden dining table, lit by warm kitchen light. A folded linen napkin and basic silver flatware rest beside the plate. A small, rustic bowl of olive oil and crusty bread sit nearby, hinting at a lived-in family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and lemon.",
+      "Offer crusty bread for soaking up the pan juices.",
+      "Enjoy family-style, with dishes passed around the table."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs and drumsticks",
+        "quantity": "1.2 kg (4-6 pieces)"
+      },
+      {
+        "name": "Potatoes (e.g., Maris Piper, Yukon Gold)",
+        "quantity": "800 g, cut into 3 cm wedges"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, cut into thick wedges"
+      },
+      {
+        "name": "Lemons",
+        "quantity": "2, one sliced, one for juice"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "3 sprigs, roughly chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tablespoon, leaves picked"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g (to taste)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "3 g (to taste)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken pieces dry with paper towels.",
+      "In a large bowl, combine chicken, potato wedges, and onion wedges.",
+      "Add olive oil, minced garlic, chopped rosemary, thyme leaves, salt, and pepper.",
+      "Squeeze juice from one lemon over the ingredients. Toss well to coat everything evenly.",
+      "Arrange chicken and vegetables in a single layer on a large baking tray.",
+      "Place lemon slices among the chicken and vegetables.",
+      "Roast for 45-55 minutes.",
+      "Turn chicken and vegetables halfway through cooking.",
+      "Chicken is cooked when internal temperature reaches 75°C and juices run clear. Potatoes should be tender and golden.",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "For extra crispiness, broil for the last 5 minutes.",
+      "Adjust herbs based on preference; oregano also works well."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 995,
+      "cholesterol_mg": 330,
+      "dietary_fiber_g": 7,
+      "protein_g": 64.4,
+      "saturated_fat_g": 14.2,
+      "sodium_mg": 1231,
+      "total_carbs_g": 53.9,
+      "total_fat_g": 59.9,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 199,
+      "cholesterol_mg": 66,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 12.9,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 246,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 12,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 110,
+      "dietary_fiber": 25,
+      "protein": 129,
+      "saturated_fat": 71,
+      "sodium": 54,
+      "total_carbs": 20,
+      "total_fat": 77
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Creamy Chicken and Rice Casserole",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_rice_casserole_20250902_131834_e5bafe81.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T13:18:35.222797000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Creamy Chicken and Rice Casserole is presented in a sturdy, off-white ceramic bowl with natural imperfections, placed on a warm, well-used wooden dining table. The casserole features tender, thick chunks of seared chicken thigh, creamy white rice, diced orange carrots, and diced green celery, all bound in a rich, savory sauce. A light sprinkle of fresh, chopped green parsley garnishes the top, adding a pop of color. The dish exhibits a comforting, homely texture with visible, distinct ingredients. A simple, silver spoon rests beside the bowl on a casually placed, folded linen napkin. The entire plate is visible, allowing for appropriate negative space. Warm, cozy kitchen lighting illuminates the scene, creating an inviting, lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "White rice, uncooked",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Cream of mushroom soup",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Celery stalks, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Carrots, peeled and diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease a 2.5-liter casserole dish.",
+      "Cut chicken thighs into thick, 2-3 cm chunks. Season with salt and pepper.",
+      "Melt butter in a large oven-safe pan over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken from pan. Set aside.",
+      "Add diced onion, celery, and carrots to the pan. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in uncooked white rice, chicken broth, and cream of mushroom soup.",
+      "Bring mixture to a simmer. Return seared chicken to the pan. Stir to combine.",
+      "Pour entire mixture into the prepared casserole dish.",
+      "Cover the casserole dish tightly with foil.",
+      "Bake for 30 minutes.",
+      "Remove foil. Stir the casserole. Sprinkle shredded cheddar cheese evenly over the top.",
+      "Bake uncovered for another 15-20 minutes, or until rice is tender, chicken reaches 75°C, and cheese is melted and bubbly.",
+      "Remove from oven. Let stand 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 748,
+      "cholesterol_mg": 205.9,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 42.6,
+      "saturated_fat_g": 14.3,
+      "sodium_mg": 1575.3,
+      "total_carbs_g": 65.4,
+      "total_fat_g": 33.6,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 274.7,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 10,
+      "protein": 85,
+      "saturated_fat": 72,
+      "sodium": 68,
+      "total_carbs": 24,
+      "total_fat": 43
+    },
+    "serving_size_g": 573.5,
+    "total_recipe_weight_g": 2294
+  },
+  {
+    "recipe_name": "One-Pan Roasted Chicken and Potatoes with Herbs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_one-pan_roasted_chicken_and_potatoes_with_herbs_20250902_131748_88f98fd0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T13:17:49.164166000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single roasted chicken thigh, skin golden and crisp, rests on a bed of roasted vegetables. Potatoes are 3 cm chunks, carrots 2 cm thick rounds, and onions thick wedges, all showing caramelized edges and tender interiors. Fresh herb sprigs (rosemary, thyme) are scattered as garnish. Colors are warm browns, golden yellows, and earthy greens. Textures combine crispy chicken skin, tender meat, and soft, charred vegetables. Components touch and overlap naturally. Served on a simple, everyday ceramic plate with natural imperfections. The plate sits on a well-used wooden dining table. A cloth napkin is casually placed. Warm, cozy lighting from kitchen fixtures illuminates a rustic fork and knife. This depicts a modest, home-style individual portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "American Home Cooking",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold or Red Bliss)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with half of the salt and pepper.",
+      "Cut potatoes into 3 cm chunks. Cut onion into thick wedges. Peel and cut carrots into 2 cm thick rounds.",
+      "In a large bowl, combine potato chunks, onion wedges, and carrot rounds. Add olive oil, minced garlic, remaining salt and pepper, roughly chopped rosemary, and picked thyme leaves. Toss to coat evenly.",
+      "Spread vegetables in a single layer on a large baking sheet.",
+      "Place seasoned chicken thighs on top of the vegetables, skin side up.",
+      "Roast for 30 minutes. Flip vegetables and stir gently. Continue roasting for another 15-25 minutes, or until chicken skin is golden brown and crispy, and vegetables are tender. Chicken internal temperature must reach 75°C (167°F). If chicken browns too quickly, tent loosely with foil.",
+      "Remove from oven. Let rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Use a meat thermometer to ensure chicken reaches 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 743,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 7,
+      "protein_g": 41.8,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 1173,
+      "total_carbs_g": 46.4,
+      "total_fat_g": 44.4,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 9.3,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 261,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 25,
+      "protein": 84,
+      "saturated_fat": 51,
+      "sodium": 51,
+      "total_carbs": 17,
+      "total_fat": 57
+    },
+    "serving_size_g": 449,
+    "total_recipe_weight_g": 1795
+  },
+  {
+    "recipe_name": "Agrodolce di Mais e Carote Affumicato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_agrodolce_di_mais_e_carote_affumicato_20250902_122759_35af213a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T12:28:00.333593000Z",
+    "selected_ingredients": [
+      "corn",
+      "smoked paprika",
+      "toasted sesame oil",
+      "carrot"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single starter portion of Agrodolce di Mais e Carote Affumicato is presented on a handcrafted ceramic plate in a natural cream tone. The entire plate is visible, with generous negative space. A small, artfully mounded serving of the vibrant agrodolce sits centrally. Bright yellow whole corn kernels and small, uniform 5mm diced orange carrots are visible, glistening with the sweet and sour glaze. A delicate reddish hue from the smoked paprika subtly coats the vegetables. The texture appears fresh and tender-crisp. A minimal drizzle of dark, rich toasted sesame oil adds visual depth. The dish is garnished with a sprinkle of finely chopped fresh parsley. The setting features a light, textured reclaimed wood table surface. An undyed linen napkin in natural beige is folded neatly beside the plate. A small piece of rustic Italian grissini or focaccia is subtly placed in the background. Soft natural lighting highlights the food's colors and textures against a clean, minimalist background with natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve as part of an antipasto spread.",
+      "Accompany with crusty bread or grissini."
+    ],
+    "hero_ingredient": "Corn",
+    "ingredients": [
+      {
+        "name": "Fresh corn kernels",
+        "quantity": "300 g (from 2-3 cobs)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (200 g), peeled and diced 5mm"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "2 ml (for drizzling)"
+      },
+      {
+        "name": "Fresh parsley or chives, finely chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Remove corn kernels from cobs. Discard cobs or save for stock.",
+      "Dice carrots into 5mm cubes.",
+      "Heat olive oil in a small saucepan over medium heat.",
+      "Add diced carrots. Sauté 3-4 minutes until slightly softened.",
+      "Add corn kernels. Sauté 2 minutes.",
+      "Stir in smoked paprika. Cook 30 seconds until fragrant.",
+      "Pour in white wine vinegar, water, and sugar. Bring to a simmer.",
+      "Reduce heat to low. Simmer 8-10 minutes. Vegetables should be tender-crisp. Liquid should slightly reduce.",
+      "Season with salt and black pepper. Adjust sweetness and acidity.",
+      "Remove from heat. Let cool to room temperature.",
+      "Serve chilled or at room temperature."
+    ],
+    "notes": [
+      "Embrace seasonality by sourcing fresh, local corn and carrots.",
+      "This recipe utilizes agrodolce, a traditional Italian preservation method."
+    ],
+    "traditional_techniques": [
+      "Agrodolce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 123,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 3,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 144,
+      "total_carbs_g": 24.1,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 12.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3.2,
+      "calories": 79,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 1.9,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 93,
+      "total_carbs_g": 15.6,
+      "total_fat_g": 1.8,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 11,
+      "protein": 6,
+      "saturated_fat": 2,
+      "sodium": 6,
+      "total_carbs": 9,
+      "total_fat": 4
+    },
+    "serving_size_g": 154.85,
+    "total_recipe_weight_g": 619.4
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Udon Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_udon_stir-fry_20250902_120757_31353d80.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T12:07:58.145875000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Japanese Chicken and Mushroom Udon Stir-fry is presented in a deep, clean white porcelain bowl. The udon noodles, glossy from the stir-fry sauce, form a substantial base. Scattered among the noodles are generous, irregularly cut chunks of pan-seared chicken breast, cooked to a golden-brown exterior. Sliced shiitake mushrooms and torn oyster mushrooms, having absorbed the savory sauce, add earthy tones and varied textures. Bright green, roughly chopped bok choy and julienned carrots provide vibrant color contrast and slight crispness. The dish is garnished with thinly sliced fresh green spring onions and a sprinkle of toasted white sesame seeds, adding a final touch of color and aroma. The composition is natural and flowing, avoiding rigid arrangements. The bowl sits on a simple wooden table, accompanied by a pair of elegant wooden chopsticks resting on a small ceramic chopstick rest, and a small, shallow dish of bright pink pickled ginger. Natural, even lighting highlights the dish's rich colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve in individual ceramic bowls.",
+      "Provide chopsticks for eating.",
+      "Offer a small side of pickled ginger (gari) or shichimi togarashi (Japanese seven-spice blend) for diners to add to taste."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g"
+      },
+      {
+        "name": "Fresh Udon noodles",
+        "quantity": "400g"
+      },
+      {
+        "name": "Shiitake mushrooms",
+        "quantity": "150g"
+      },
+      {
+        "name": "Oyster mushrooms",
+        "quantity": "100g"
+      },
+      {
+        "name": "Bok choy",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2cm piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sake",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Water (for slurry)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2cm chunks. Toss chicken with 15ml soy sauce and 5g cornstarch. Marinate 15 minutes.",
+      "Cook udon noodles according to package directions. Drain and rinse with cold water. Set aside.",
+      "Prepare stir-fry sauce: Combine remaining soy sauce, mirin, and sake in a small bowl. Whisk.",
+      "Slice shiitake mushrooms. Tear oyster mushrooms. Roughly chop bok choy. Julienne carrot. Mince garlic. Grate ginger.",
+      "Heat 15ml vegetable oil in a large wok or skillet over high heat. Add marinated chicken.",
+      "Sear chicken chunks 4-5 minutes, turning occasionally, until cooked through and lightly browned (internal temperature 75°C/167°F). Remove chicken from wok.",
+      "Add remaining 15ml vegetable oil to wok. Add minced garlic, grated ginger, and julienned carrots. Stir-fry 1 minute.",
+      "Add sliced shiitake and torn oyster mushrooms. Stir-fry 3-4 minutes until softened.",
+      "Add chopped bok choy. Stir-fry 1 minute until slightly wilted.",
+      "Return cooked chicken to wok. Add cooked udon noodles. Pour in the prepared stir-fry sauce.",
+      "Toss well to combine all ingredients and coat noodles evenly. Cook 2-3 minutes.",
+      "In a small bowl, mix remaining 10g cornstarch with 30ml water to make a slurry. Pour into wok.",
+      "Stir constantly until sauce thickens to desired consistency. Drizzle with sesame oil. Toss once more.",
+      "Thinly slice spring onions. Serve immediately. Garnish with sliced spring onions and toasted sesame seeds."
+    ],
+    "notes": [
+      "Ensure all ingredients are prepped and measured (mise en place) before starting the stir-fry for efficient cooking."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Itame mono)",
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 537,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 47.7,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 1298,
+      "total_carbs_g": 44.7,
+      "total_fat_g": 16.7,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 135,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 1,
+      "protein_g": 12,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 326,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 15,
+      "protein": 95,
+      "saturated_fat": 13,
+      "sodium": 56,
+      "total_carbs": 16,
+      "total_fat": 21
+    },
+    "serving_size_g": 398.5,
+    "total_recipe_weight_g": 1594
+  }
+]

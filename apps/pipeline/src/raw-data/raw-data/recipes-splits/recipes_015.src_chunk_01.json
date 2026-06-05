@@ -1,0 +1,633 @@
+[
+  {
+    "recipe_name": "Tuscan Garlic Chicken with Roasted Butternut Squash and Rosemary Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_garlic_chicken_with_roasted_butternut_squash_and_rosemary_potatoes_20250628_091736_9b54cc08.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:17:37.357038000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "squash",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tuscan Garlic Chicken and Roasted Butternut Squash Pasta is elegantly presented on a clean, round white porcelain dinner plate. The creamy pasta, rich with a light golden-beige sauce, is centrally mounded. Visible within the pasta are substantial, seared chicken chunks, approximately 3-4 cm in size, exhibiting a golden-brown crust. Interspersed throughout are soft, caramelized cubes of roasted butternut squash, their vibrant orange color providing a warm contrast. Fresh green spinach leaves are lightly wilted into the pasta, adding a pop of color and freshness. Nestled alongside the pasta, or slightly overlapping, are golden-brown, crispy roasted potato cubes, approximately 2 cm, some with visible flecks of fresh rosemary. A light dusting of grated Parmesan cheese covers the dish, and a few fresh parsley leaves serve as a simple, fresh garnish. The plate rests on a light, natural wooden table surface. A neatly folded white cotton napkin is placed to the side. The scene is bathed in natural, even lighting, creating subtle shadows and highlighting the textures. The background is a softly blurred, modern bistro setting, suggesting a casual yet refined dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Accompany with a simple green salad dressed with a lemon vinaigrette.",
+      "Pair with a light Italian white wine like Pinot Grigio or a Chianti."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Potatoes (e.g., Maris Piper or Yukon Gold)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Rigatoni or Penne pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Double cream (heavy cream)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Freshly grated Parmesan cheese",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley (for garnish)",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Prepare vegetables. Peel and cut potatoes into 2 cm cubes. Peel and cut butternut squash into 2 cm cubes. Mince garlic.",
+      "Roast potatoes. Toss potato cubes with 15 ml olive oil, salt, pepper, and rosemary sprigs. Spread on a baking tray. Roast for 25-30 minutes until golden and tender.",
+      "Roast squash. Toss butternut squash cubes with 15 ml olive oil, salt, pepper, and thyme sprigs. Spread on a separate baking tray. Roast for 20-25 minutes until tender and lightly caramelized.",
+      "Cook pasta. Bring a large pot of salted water to a boil. Add pasta and cook according to package directions until al dente. Reserve 120 ml pasta water. Drain pasta.",
+      "Prepare chicken. Pat chicken thighs dry. Cut into 3-4 cm chunks. Season with salt and pepper.",
+      "Sear chicken. Heat a large pan over medium-high heat. Add chicken pieces. Sear until golden brown on all sides. Reduce heat. Cook until internal temperature reaches 75°C (approximately 8-10 minutes total). Remove chicken from pan. Set aside.",
+      "Make sauce. Add minced garlic to the same pan. Sauté for 1 minute until fragrant. Pour in chicken broth. Scrape up any browned bits. Stir in cream. Bring to a gentle simmer.",
+      "Combine. Add cooked pasta, roasted butternut squash, and cooked chicken chunks to the pan with the sauce. Add spinach. Toss to combine until spinach wilts. Stir in grated Parmesan cheese. If needed, add reserved pasta water to achieve desired consistency.",
+      "Serve. Serve immediately, topping each portion with the roasted rosemary potatoes. Garnish with fresh parsley or extra Parmesan."
+    ],
+    "notes": [
+      "Ensure chicken is cooked thoroughly to 75°C internal temperature.",
+      "Do not overcrowd the pan when searing chicken or roasting vegetables to ensure proper browning and crispiness."
+    ],
+    "traditional_techniques": [
+      "Roasting",
+      "Searing",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 971,
+      "cholesterol_mg": 245,
+      "dietary_fiber_g": 8.1,
+      "protein_g": 52.1,
+      "saturated_fat_g": 18.8,
+      "sodium_mg": 464,
+      "total_carbs_g": 92.7,
+      "total_fat_g": 43.6,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 164,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.8,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 78,
+      "total_carbs_g": 15.7,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81.8,
+      "dietary_fiber": 28.8,
+      "protein": 104.1,
+      "saturated_fat": 94.1,
+      "sodium": 20.2,
+      "total_carbs": 33.7,
+      "total_fat": 55.9
+    },
+    "serving_size_g": 591.5,
+    "total_recipe_weight_g": 2366
+  },
+  {
+    "recipe_name": "Beef & Mushroom Salisbury Steaks",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_%26_mushroom_salisbury_steaks_20250628_091553_0c668847.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:15:54.506564000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "breadcrumbs",
+      "onion",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, robust, oval-shaped beef patty, seared to a rich brown crust, rests centrally on a clean, round white porcelain dinner plate. The patty is generously coated and surrounded by a glossy, dark brown mushroom and onion gravy. The gravy contains distinct, tender slices of sautéed cremini mushrooms and caramelized yellow onion pieces. A vibrant sprinkle of freshly chopped green parsley provides a fresh, contrasting garnish atop the patty and gravy. The dish is presented with moderate negative space, highlighting the substantial portion. The setting is a modern bistro: a simple wooden table, standard silver flatware, and a folded cotton napkin positioned beside the plate, all under soft, natural, even lighting with a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve hot with creamy mashed potatoes.",
+      "Serve alongside steamed green beans or buttered corn.",
+      "Offer a simple side salad with a vinaigrette."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Ground beef (85% lean)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (100g diced, 150g sliced)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300 g, sliced"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Dice 100g of yellow onion finely. Mince garlic.",
+      "In a large bowl, combine ground beef, diced onion, minced garlic, panko breadcrumbs, egg, 5g salt, and 2g black pepper. Mix gently until just combined. Do not overmix.",
+      "Form the mixture into four oval-shaped patties, about 2 cm thick.",
+      "Heat 15 ml olive oil in a large skillet over medium-high heat.",
+      "Add patties to the skillet. Sear 4-5 minutes per side until deeply browned. Cook until internal temperature reaches 75°C (167°F). Remove patties from skillet and set aside.",
+      "Slice remaining 150g yellow onion thinly. Add remaining 15 ml olive oil and 30g butter to the same skillet. Add sliced onions and sliced mushrooms. Sauté 8-10 minutes until softened and lightly browned.",
+      "Sprinkle 30g flour over the onions and mushrooms. Cook 1 minute, stirring constantly, to create a roux.",
+      "Gradually whisk in 500 ml beef broth and 15 ml Worcestershire sauce. Bring to a simmer, stirring constantly, until gravy thickens. Season with salt and pepper to taste.",
+      "Return cooked patties to the skillet with the gravy. Simmer 5 minutes to allow flavors to meld. Ensure patties are fully coated in gravy.",
+      "Garnish generously with chopped fresh parsley before serving."
+    ],
+    "notes": [
+      "For best results, use ground beef with 80/20 or 85/15 fat content for flavor and moisture.",
+      "Do not overmix the ground beef mixture to ensure tender patties."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Roux-based gravy making"
+    ]
+  },
+  {
+    "recipe_name": "Lemongrass Chicken Dumplings",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemongrass_chicken_dumplings_20250628_091538_10b35ab2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:15:38.625494000Z",
+    "selected_ingredients": [
+      "lemongrass",
+      "coriander",
+      "black pepper",
+      "nutmeg",
+      "parsley",
+      "chive",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "flour dumpling",
+    "visual_description": "Four to five golden-brown pan-fried and steamed dumplings are arranged neatly on a clean, round white porcelain plate. The dumplings have visible pleats and a slight crispness on their flat bottoms. They are arranged in a slight curve or small cluster, allowing for negative space. A small, fresh sprig of coriander or a sprinkle of finely chopped chives rests gently on top of the dumplings. A small, white ceramic dipping bowl filled with the light brown soy-based sauce is placed beside the dumplings. The dumplings are a warm golden-brown with hints of light green from the herbs inside. The dipping sauce is a rich amber-brown. The white plate provides a clean contrast. The dumplings show crisp exteriors and a plump, soft interior. The sauce is fluid. Ingredients within the dumpling are finely minced or diced. The plate rests on a simple, light-colored wooden table surface. A grey cotton napkin is folded neatly beside the plate. The scene is illuminated by natural, even lighting from the side, creating soft shadows. The background is a blurred, casual restaurant setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Serve with chili oil or a spicy sriracha sauce for extra heat.",
+      "Enjoy as a shared appetizer.",
+      "Accompany with other small plates."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken mince",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Lemongrass",
+        "quantity": "2 stalks (finely minced)"
+      },
+      {
+        "name": "Coriander (fresh)",
+        "quantity": "30 g (finely chopped)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small (finely diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves (minced)"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "0.5 tsp (grated)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 tsp (freshly ground)"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Round dumpling wrappers",
+        "quantity": "40 pieces"
+      },
+      {
+        "name": "Soy sauce (for dipping)",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Rice vinegar (for dipping)",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Chives (for dipping)",
+        "quantity": "1 tbsp (finely chopped)"
+      },
+      {
+        "name": "Garlic (for dipping)",
+        "quantity": "1 clove (minced)"
+      },
+      {
+        "name": "Chili flakes (optional)",
+        "quantity": "0.5 tsp"
+      }
+    ],
+    "instructions": [
+      "Prepare dumpling filling. Combine chicken mince, minced lemongrass, chopped coriander, diced onion, minced garlic, grated nutmeg, black pepper, soy sauce, sesame oil, and cornstarch in a large bowl. Mix well until combined.",
+      "Assemble dumplings. Place 1 teaspoon of filling in the center of a dumpling wrapper. Moisten the edges with water. Fold wrapper in half to form a half-moon. Pleat the edges to seal.",
+      "Repeat for remaining filling and wrappers.",
+      "Cook dumplings. Heat 1 tbsp neutral oil in a large non-stick pan over medium heat. Place dumplings in a single layer, flat side down. Cook 2-3 minutes until bottoms are golden brown.",
+      "Add 125 ml water to the pan. Immediately cover with a lid. Steam 8-10 minutes, or until chicken reaches 75°C (167°F) internal temperature. Water should evaporate.",
+      "Remove lid. Cook 1-2 minutes more if needed to crisp bottoms.",
+      "Prepare dipping sauce. Combine soy sauce, rice vinegar, chopped chives, minced garlic, and chili flakes (if using) in a small bowl. Mix well.",
+      "Serve dumplings hot with dipping sauce."
+    ],
+    "notes": [
+      "Ensure chicken is cooked thoroughly to 75°C (167°F).",
+      "Do not overcrowd the pan when cooking dumplings. Cook in batches if necessary."
+    ],
+    "traditional_techniques": [
+      "Pan-frying then steaming (potsticker method)",
+      "Finely mincing ingredients for filling consistency"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 414,
+      "cholesterol_mg": 73,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 26.8,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 145,
+      "total_carbs_g": 38.2,
+      "total_fat_g": 16.1,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 194,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 12.6,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 68,
+      "total_carbs_g": 17.9,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 24.3,
+      "dietary_fiber": 6.8,
+      "protein": 53.6,
+      "saturated_fat": 13.4,
+      "sodium": 6.3,
+      "total_carbs": 13.9,
+      "total_fat": 20.6
+    },
+    "serving_size_g": 213.4,
+    "total_recipe_weight_g": 853.5
+  },
+  {
+    "recipe_name": "Mediterranean Chicken Skewers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_chicken_skewers_20250628_091415_a23b70bc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:14:15.786588000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "kosher",
+    "visual_description": "Golden-brown chicken cubes, seared to perfection, are threaded onto small wooden skewers. Six skewers are artfully arranged on a clean, rectangular white porcelain platter, slightly angled to create visual interest. Each chicken cube exhibits a beautiful char on its edges, showcasing the grilling technique. A vibrant sprinkle of finely chopped fresh flat-leaf parsley garnishes the skewers, adding a pop of green and aromatic freshness. Bright yellow lemon wedges are strategically placed on the platter, ready for a squeeze. The presentation is professional yet approachable, with moderate negative space. The platter rests on a simple light wooden table, alongside a small white ceramic bowl holding a creamy, pale tahini dipping sauce. A folded white cotton napkin lies nearby. Natural, soft light illuminates the dish, highlighting its appealing textures and colors, creating an inviting, sophisticated snack presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve as part of a mezze platter with pita bread and fresh salads.",
+      "Offer small bowls of pickles or olives on the side."
+    ],
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast, boneless, skinless",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lemon juice, fresh",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon wedges",
+        "quantity": "2"
+      },
+      {
+        "name": "Tahini",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2.5 cm uniform cubes.",
+      "Combine olive oil, lemon juice, minced garlic, smoked paprika, cumin, oregano, salt, and black pepper in a large bowl. Whisk well.",
+      "Add chicken cubes to the marinade. Toss to coat evenly. Cover and refrigerate for at least 30 minutes, up to 4 hours.",
+      "Soak wooden skewers in water for 20 minutes to prevent burning.",
+      "Thread chicken cubes onto skewers. Do not overcrowd.",
+      "Preheat a grill pan or outdoor grill to medium-high heat.",
+      "Grill skewers for 3-4 minutes per side until chicken is golden brown and cooked through. Internal temperature must reach 75°C (167°F).",
+      "For the tahini sauce: Whisk tahini, 30 ml lemon juice, and cold water in a small bowl until smooth and creamy. Add more water if needed for desired consistency. Season with a pinch of salt.",
+      "Arrange cooked skewers on a serving platter. Garnish with fresh chopped parsley and lemon wedges. Serve immediately with tahini sauce."
+    ],
+    "notes": [
+      "Ensure all ingredients used are certified kosher.",
+      "The tahini sauce is parve, making the dish suitable for a kosher meal."
+    ],
+    "traditional_techniques": [
+      "Marinating for flavor infusion",
+      "Grilling/Pan-searing for char and tenderness"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 401,
+      "cholesterol_mg": 80,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 38.6,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 567,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 24.7,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 191,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 18.4,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 270,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27,
+      "dietary_fiber": 11,
+      "protein": 77,
+      "saturated_fat": 18,
+      "sodium": 25,
+      "total_carbs": 3,
+      "total_fat": 32
+    },
+    "serving_size_g": 210.05,
+    "total_recipe_weight_g": 840.2
+  },
+  {
+    "recipe_name": "Mushroom & Sauerkraut Savory Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom_%26_sauerkraut_savory_bites_20250628_090958_ec65b790.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:09:59.122947000Z",
+    "selected_ingredients": [
+      "cabbage",
+      "horseradish",
+      "mushroom",
+      "tarragon",
+      "sauerkraut"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian, Russian cuisine",
+    "visual_description": "Eight to twelve individual savory bites are artfully arranged on a light, natural-textured platter, such as reclaimed wood or a beige ceramic slab. Each canapé features a small, blanched cabbage leaf, gently cupped, serving as a natural, edible vessel. Inside, a generous spoon of earthy, finely pulsed mushroom and sauerkraut filling, its rich brown and green tones visible. The filling is crowned with a delicate dollop of pale, creamy horseradish-tarragon sauce, offering a stark, clean contrast. A single, fresh tarragon sprig garnishes each bite. The presentation is minimalistic, highlighting the natural forms and colors of the ingredients. The setting features a light, undyed linen napkin and soft, natural light, reflecting sustainable and rustic Russian culinary traditions.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve as part of a traditional Russian zakuski (appetizer) spread",
+      "Pair with chilled vodka or kvass"
+    ],
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "White Cabbage",
+        "quantity": "1 small head (approx. 500g)"
+      },
+      {
+        "name": "Brown Mushrooms",
+        "quantity": "300g, finely diced"
+      },
+      {
+        "name": "Sauerkraut",
+        "quantity": "200g, drained, finely chopped"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small (approx. 80g), finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Fresh Horseradish",
+        "quantity": "30g, grated"
+      },
+      {
+        "name": "Fresh Tarragon",
+        "quantity": "15g, finely chopped, plus small sprigs"
+      },
+      {
+        "name": "Plain Plant-based Yogurt",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Gently remove 8-12 large outer leaves from cabbage. Blanch in boiling salted water for 1-2 minutes until pliable. Drain. Pat dry. Trim into desired cup shapes, approximately 8-10 cm diameter. Set aside.",
+      "Heat olive oil in a pan over medium heat. Add diced onion. Sauté until translucent, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add finely diced mushrooms. Cook, stirring occasionally, until mushrooms release their liquid and brown, about 8-10 minutes.",
+      "Add drained, finely chopped sauerkraut to the mushroom mixture. Stir well. Pour in vegetable broth. Simmer for 5 minutes until liquid reduces. Season with salt and pepper. Remove from heat. Let cool slightly.",
+      "Transfer the mushroom-sauerkraut mixture to a food processor. Pulse briefly until a coarse, spreadable mixture forms. Do not over-process; retain some texture.",
+      "In a small bowl, combine plant-based yogurt, grated horseradish, half of the chopped tarragon, lemon juice, salt, and pepper. Mix until smooth.",
+      "Place each blanched cabbage cup on a serving platter. Spoon 1-2 tablespoons of the mushroom-sauerkraut filling into each cabbage cup. Top each with a small dollop of the horseradish-tarragon cream.",
+      "Garnish with a small tarragon sprig. Refrigerate for 15 minutes before serving for flavors to meld."
+    ],
+    "notes": [
+      "Use outer cabbage leaves for the cups to promote a zero-waste approach."
+    ],
+    "traditional_techniques": [
+      "Fermentation (sauerkraut preparation)"
+    ]
+  }
+]

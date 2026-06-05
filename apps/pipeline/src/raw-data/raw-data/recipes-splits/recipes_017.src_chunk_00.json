@@ -1,0 +1,664 @@
+[
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_pasta_20250626_101458_6a935a77.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:14:58.653168000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of creamy chicken and mushroom pasta rests in a round, off-white ceramic bowl on a well-used wooden dining table. The golden-brown, 2 cm seared chicken cubes are nestled amongst the al dente pasta strands, which are thoroughly coated in a rich, pale cream sauce. Sliced, earthy brown mushrooms are interspersed throughout, adding depth. A scattering of fresh, vibrant green chopped parsley provides a pop of color on top. The dish is presented casually, as if just served from the stove, with the pasta naturally piled. The lighting is warm and natural, suggesting a cozy family kitchen setting. A simple fork rests beside the bowl on a plain cloth napkin, emphasizing the homely, unpretentious comfort of the meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Pasta (e.g., Fettuccine or Penne)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Mushrooms (cremini or button)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "a handful"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Boil a large pot of salted water. Add pasta. Cook according to package directions until al dente. Drain pasta. Reserve 120ml pasta water.",
+      "Pat chicken breast cut into 2 cm cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large pan over medium-high heat. Add chicken cubes. Sear until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C. Remove chicken from pan. Set aside.",
+      "Reduce heat to medium. Add butter to the same pan. Add diced onion. Sauté until softened, about 3-4 minutes. Add sliced mushrooms. Cook until mushrooms are browned and tender, about 5-7 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer. Stir in heavy cream and grated Parmesan cheese. Cook, stirring constantly, until sauce thickens slightly, about 3-5 minutes.",
+      "Add cooked chicken back to the pan with the sauce. Add drained pasta. Toss to coat everything evenly. If sauce is too thick, add reserved pasta water, a little at a time, until desired consistency.",
+      "Taste and adjust seasoning. Garnish with fresh chopped parsley and extra grated Parmesan."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1019,
+      "cholesterol_mg": 223,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 69.9,
+      "saturated_fat_g": 21.7,
+      "sodium_mg": 446,
+      "total_carbs_g": 84.5,
+      "total_fat_g": 43.8,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 210,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 14.4,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 92,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 9,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 16,
+      "protein": 140,
+      "saturated_fat": 108,
+      "sodium": 19,
+      "total_carbs": 31,
+      "total_fat": 56
+    },
+    "serving_size_g": 485.5,
+    "total_recipe_weight_g": 1942
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken and Mushroom Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_and_mushroom_tagliatelle_20250626_101441_189961e2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:14:41.721500000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Chicken and Mushroom Tagliatelle is presented on a clean white porcelain dinner plate. The tagliatelle, glistening with a creamy, light golden sauce, is loosely mounded in the center. Interspersed throughout the pasta are tender, sautéed brown mushroom slices and finely diced onion, adding earthy tones. Four thick, golden-brown pan-seared chicken chunks, cooked to a juicy finish, are artfully placed on and around the pasta, showcasing their crisp exterior. A vibrant sprinkle of fresh, bright green chopped parsley garnishes the dish, providing a pop of color and freshness. The plate is positioned on a simple wooden table surface, accompanied by standard silver flatware and a folded cotton napkin. Natural, even lighting highlights the dish's textures and inviting warmth, creating an authentic casual bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with additional grated Parmesan cheese on the side.",
+      "Offer crusty bread for dipping in the sauce.",
+      "Pair with a light Italian white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Brown mushrooms",
+        "quantity": "250g, sliced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, grated, plus more for serving"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown and internal temperature reaches 75°C. Remove chicken. Set aside.",
+      "Add remaining 15ml olive oil and butter to the skillet. Add diced onion. Sauté 3-4 minutes until softened.",
+      "Add minced garlic and sliced mushrooms. Cook 5-7 minutes until mushrooms are tender and browned.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the skillet. Reduce liquid by half.",
+      "Add chicken broth. Bring to a simmer. Stir in heavy cream.",
+      "While sauce simmers, cook tagliatelle according to package instructions until al dente. Reserve 120ml pasta water. Drain pasta.",
+      "Slice cooked chicken breasts into thick chunks.",
+      "Add cooked tagliatelle to the sauce. Add grated Parmesan and chopped parsley. Toss to coat. Add reserved pasta water as needed for desired consistency.",
+      "Return chicken chunks to the skillet. Gently combine with pasta. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the amount of pasta water to achieve desired sauce consistency.",
+      "Ensure chicken reaches a safe internal temperature of 75°C (167°F)."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 972.6,
+      "cholesterol_mg": 208.2,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 81.2,
+      "saturated_fat_g": 13.1,
+      "sodium_mg": 451.9,
+      "total_carbs_g": 83.3,
+      "total_fat_g": 31.4,
+      "total_sugars_g": 6.7,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 181.5,
+      "cholesterol_mg": 38.8,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 15.1,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 84.3,
+      "total_carbs_g": 15.5,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69.4,
+      "dietary_fiber": 17.1,
+      "protein": 162.4,
+      "saturated_fat": 65.7,
+      "sodium": 19.7,
+      "total_carbs": 30.3,
+      "total_fat": 40.2
+    },
+    "serving_size_g": 536,
+    "total_recipe_weight_g": 2144
+  },
+  {
+    "recipe_name": "Spicy Mediterranean Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_mediterranean_chicken_pasta_20250626_101353_e8323bbb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:13:53.741587000Z",
+    "selected_ingredients": [
+      "chicken",
+      "oil",
+      "tomato",
+      "oregano",
+      "thyme",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "Mediterranean cuisine, Multicooker, healthy, tasty, spicy, some sauce",
+    "visual_description": "A single, generous serving of Spicy Mediterranean Chicken Pasta rests in a simple, deep ceramic bowl on a well-used wooden kitchen table. The al dente penne pasta is coated in a rich, vibrant red tomato sauce, studded with tender, browned chicken chunks (3-4 cm). The sauce shows flecks of diced tomato, minced garlic, and dried oregano and thyme, with visible red chili flakes. A few fresh basil leaves are casually scattered on top for a pop of green. The presentation is homely and inviting, with a natural, slightly asymmetrical arrangement. The lighting is warm and natural, suggesting a cozy family dinner setting. A rustic linen napkin and a fork are placed beside the bowl. The dish fills the bowl comfortably, showcasing its hearty, comforting nature.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Brown onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "3g"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5g (or to taste)"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "350g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks.",
+      "Set multicooker to Sauté function. Add olive oil.",
+      "Brown chicken chunks on all sides. Remove chicken from multicooker. Set aside.",
+      "Add diced onion to multicooker. Sauté until softened, about 5 minutes.",
+      "Add minced garlic, dried oregano, dried thyme, and red chili flakes. Sauté for 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes.",
+      "Pour in diced tomatoes and chicken broth. Scrape up any browned bits from the bottom.",
+      "Return chicken chunks to the multicooker.",
+      "Add penne pasta. Ensure pasta is mostly submerged in liquid.",
+      "Secure multicooker lid. Set to Pressure Cook on High for 5 minutes.",
+      "Once cooking is complete, perform a Quick Release of pressure.",
+      "Open lid carefully. Stir pasta and sauce to combine. Season with salt and black pepper to taste.",
+      "Serve immediately, garnished with fresh basil leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 712,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 46.5,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 725,
+      "total_carbs_g": 81.7,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 10.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.6,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 103,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 26.4,
+      "protein": 93,
+      "saturated_fat": 24,
+      "sodium": 31.5,
+      "total_carbs": 29.7,
+      "total_fat": 28.5
+    },
+    "serving_size_g": 703,
+    "total_recipe_weight_g": 2811
+  },
+  {
+    "recipe_name": "Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_20250626_101343_9e960fbd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:13:43.534806000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "high protein",
+    "visual_description": "A single portion of rustic chicken cacciatore served in a shallow, cream-colored ceramic bowl with minor surface imperfections. Two whole, bone-in chicken thighs are the centerpiece, their skin appearing dark golden and tender from braising. The chicken is partially submerged in a thick, chunky tomato sauce featuring visible pieces of softened translucent onions and whole black olives. A single fresh rosemary sprig is placed casually on top. The bowl sits on a weathered dark wood kitchen table. Beside the bowl is a thick piece of torn crusty bread. The scene is illuminated by warm, soft overhead kitchen lighting, creating a cozy, authentic Italian home-dining atmosphere. A simple linen napkin and a stainless steel fork are placed to the left of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough bread to soak up the tomato sauce",
+      "Pair with a side of simple polenta or rustic mashed potatoes",
+      "Traditional family-style dining involves placing the skillet in the center of the table"
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Heat olive oil in a large deep skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden brown.",
+      "Flip chicken and sear for 4 minutes. Remove chicken from skillet.",
+      "Add diced onion to the skillet. Sauté for 5 minutes until soft.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes, oregano, and the rosemary sprig.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Simmer on low heat for 30 minutes until chicken reaches 75°C internally.",
+      "Stir in the olives 5 minutes before serving."
+    ],
+    "notes": [
+      "Use bone-in thighs for maximum flavor and protein content",
+      "Ensure the sauce reduces until thick to concentrate the savory tomato profile",
+      "Always check the thickest part of the chicken for a safe internal temperature of 75°C"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1716,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 444.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 53,
+      "sodium": 75,
+      "total_carbs": 7,
+      "total_fat": 54
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1543
+  },
+  {
+    "recipe_name": "Creamy Baked Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_baked_chicken_and_rice_20250626_101338_496d8655.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T10:13:39.003743000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Baked Chicken and Rice is presented in a deep, rustic ceramic bowl on a well-worn wooden dining table. Golden-brown chicken thighs, cooked whole, are nestled atop a bed of creamy, tender white rice. The rice is studded with small diced carrots, celery, and onions, offering subtle flecks of orange and green. The top surface of the casserole, where cheese was added, shows a light golden crust. The dish has a natural, slightly irregular texture, characteristic of a comforting home-cooked meal. A simple, everyday ceramic plate holds the portion, with a metal fork resting casually beside it. A casually folded cloth napkin is nearby. The scene is bathed in warm, inviting kitchen lighting, evoking a relaxed, lived-in family atmosphere with minimal background clutter.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad.",
+      "Serve with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Long-grain white rice, uncooked",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Cream of mushroom soup (canned)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Onion, small diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalks, small diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Carrots, small diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried parsley",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Cheddar cheese, shredded (optional)",
+        "quantity": "100 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Season chicken thighs with salt, pepper, garlic powder, onion powder, and paprika.",
+      "Sear chicken thighs 3-4 minutes per side until golden brown. Do not cook through.",
+      "Remove chicken from skillet. Set aside.",
+      "In the same skillet, add diced onion, celery, and carrots. Sauté 5-7 minutes until softened.",
+      "In a large 3-liter baking dish, combine uncooked rice, chicken broth, cream of mushroom soup, and sautéed vegetables. Stir well.",
+      "Nestle the seared chicken thighs into the rice mixture.",
+      "Cover the baking dish tightly with foil.",
+      "Bake for 35 minutes.",
+      "Remove foil. If using, sprinkle shredded cheddar cheese over the chicken and rice.",
+      "Bake uncovered for another 15-20 minutes, or until chicken reaches an internal temperature of 75°C and rice is tender and liquid is absorbed.",
+      "Remove from oven. Let rest 5 minutes before serving.",
+      "Garnish with dried parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust seasoning to your preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 792.25,
+      "cholesterol_mg": 189.5,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 48.76,
+      "saturated_fat_g": 11.88,
+      "sodium_mg": 1389.08,
+      "total_carbs_g": 66.58,
+      "total_fat_g": 36.47,
+      "total_sugars_g": 4.35,
+      "trans_fat_g": 0.25
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.08,
+      "calories": 124,
+      "cholesterol_mg": 29.68,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 7.64,
+      "saturated_fat_g": 1.86,
+      "sodium_mg": 217.55,
+      "total_carbs_g": 10.43,
+      "total_fat_g": 5.71,
+      "total_sugars_g": 0.68,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 13,
+      "protein": 98,
+      "saturated_fat": 59,
+      "sodium": 60,
+      "total_carbs": 24,
+      "total_fat": 47
+    },
+    "serving_size_g": 638.5,
+    "total_recipe_weight_g": 2554
+  }
+]

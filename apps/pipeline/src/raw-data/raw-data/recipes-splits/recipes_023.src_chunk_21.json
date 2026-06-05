@@ -1,0 +1,658 @@
+[
+  {
+    "recipe_name": "Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_risotto_20250624_104420_ce682e0f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:21.094843000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Serve the risotto on a flat white porcelain dinner plate. The consistency is fluid and spreads naturally across the plate, appearing free-flowing rather than molded. The rice grains are distinct, coated in a glossy, creamy sauce. Large 3cm chunks of golden-brown seared chicken thighs are distributed throughout the rice. Sliced cremini and shiitake mushrooms show deep caramelization and earthy brown tones. The dish features a pale golden hue. Finely minced flat-leaf parsley provides a vibrant green contrast. A light dusting of finely grated Parmesan cheese covers the surface. The arrangement is organic. Beside the plate sits a heavy silver spoon and a folded white cotton napkin on a light oak table. Natural side lighting highlights the creamy texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while the consistency remains fluid",
+      "Accompany with a crisp dry white wine such as Pinot Grigio",
+      "Provide extra grated Parmesan at the table"
+    ],
+    "hero_ingredient": "Mixed Mushrooms",
+    "ingredients": [
+      {
+        "name": "boneless skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "mixed mushrooms (cremini and shiitake)",
+        "quantity": "300g"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "fresh flat-leaf parsley",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks.",
+      "Dice onion into 5mm pieces.",
+      "Mince garlic cloves.",
+      "Slice mushrooms into 5mm thick pieces.",
+      "Heat 20ml olive oil in a wide pan over medium-high heat.",
+      "Sear chicken chunks until browned and internal temperature reaches 75°C.",
+      "Remove chicken from pan and set aside.",
+      "Add mushrooms to the same pan. Sauté until moisture evaporates and edges brown.",
+      "Remove mushrooms and set aside.",
+      "Melt 20g butter in the pan. Add onion and garlic.",
+      "Cook until softened but not browned.",
+      "Add rice. Stir 2 minutes to toast the grains until edges are translucent.",
+      "Pour in white wine. Stir until liquid is fully absorbed.",
+      "Add 200ml warm stock. Stir continuously until liquid is absorbed.",
+      "Repeat stock additions one ladle at a time, stirring constantly, until rice is tender but firm.",
+      "Return chicken and mushrooms to the pan.",
+      "Remove from heat.",
+      "Vigorously stir in remaining 30g butter and Parmesan cheese to create a creamy emulsion.",
+      "Season with salt and pepper. Fold in chopped parsley."
+    ],
+    "notes": [
+      "Keep the chicken stock at a low simmer in a separate pot to maintain cooking temperature.",
+      "Stirring constantly is essential to release rice starches for a creamy texture.",
+      "Ensure chicken reaches the safety temperature of 75°C during the initial searing phase."
+    ],
+    "traditional_techniques": [
+      "tostatura",
+      "mantecatura",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 875,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 52,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 1450,
+      "total_carbs_g": 91,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 203,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 12.06,
+      "saturated_fat_g": 3.06,
+      "sodium_mg": 336.2,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 7.77,
+      "total_sugars_g": 0.65,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 9,
+      "protein": 104,
+      "saturated_fat": 66,
+      "sodium": 63,
+      "total_carbs": 33,
+      "total_fat": 43
+    },
+    "serving_size_g": 431,
+    "total_recipe_weight_g": 1725
+  },
+  {
+    "recipe_name": "Coffee-Kissed Lemon Semifreddo with Toasted Breadcrumb Crunch",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coffee-kissed_lemon_semifreddo_with_toasted_breadcrumb_crunch_20250624_104401_afc941bf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:01.850284000Z",
+    "selected_ingredients": [
+      "lemon",
+      "sugar",
+      "breadcrumbs",
+      "coffee"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Coffee-Kissed Lemon Semifreddo is elegantly presented on a clean white porcelain dinner plate, showcasing a harmonious blend of creamy textures and vibrant flavors. The semifreddo, a rectangular slice approximately 2 cm thick and 8 cm long, stands proudly on the plate, revealing its pale yellow hue from the lemon base, beautifully streaked with rich, dark brown swirls of concentrated coffee. Its surface is smooth and slightly glossy, indicating its frozen, yet yielding, texture. A generous sprinkle of golden-brown, toasted breadcrumb crunch cascades around the base and atop the semifreddo, providing a delightful textural contrast. The plate features moderate negative space, allowing the dessert to be the focal point. A thin, delicate round slice of fresh lemon, about 3 cm in diameter, is placed beside the semifreddo, adding a pop of bright yellow and a fresh aromatic element. A small, vibrant green mint sprig provides a touch of contrasting color and freshness. The setting is a modern bistro, with the plate resting on a simple light wooden table. A folded cotton napkin is placed to the side, and the scene is illuminated by soft, natural, even lighting, creating an inviting and refined dessert presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a small espresso on the side.",
+      "Offer with biscotti for dipping.",
+      "Enjoy as a refreshing end to a multi-course Italian meal."
+    ],
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "Egg yolks",
+        "quantity": "4 large (approx. 70g)"
+      },
+      {
+        "name": "Granulated sugar (for semifreddo)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 2 medium lemons"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Heavy cream (cold)",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Salt (for semifreddo)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Espresso or strong brewed coffee",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Granulated sugar (for coffee swirl)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Plain breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20g"
+      },
+      {
+        "name": "Granulated sugar (for breadcrumb crunch)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt (for breadcrumb crunch)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Thin lemon slices",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Mint sprigs",
+        "quantity": "For garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Prepare Breadcrumb Crunch: Melt butter in a pan over medium heat. Add breadcrumbs, sugar, and a pinch of salt. Cook, stirring constantly, until golden brown and crispy. Transfer to a plate. Let cool completely.",
+      "Prepare Coffee Swirl: Combine espresso and sugar in a small saucepan. Heat gently until sugar dissolves. Simmer briefly to reduce slightly, creating a concentrated syrup. Let cool.",
+      "Prepare Lemon Semifreddo Base: In a heatproof bowl set over a saucepan of simmering water (bain-marie), whisk egg yolks, 100g sugar, lemon zest, and lemon juice. Whisk constantly until mixture is pale, thick, and reaches 75°C (167°F). Remove from heat. Continue whisking until cool and very thick.",
+      "Whip Cream: In a separate cold bowl, whip heavy cream until medium-stiff peaks form.",
+      "Combine Semifreddo: Gently fold the whipped cream into the cooled egg yolk mixture until just combined.",
+      "Assemble Semifreddo: Pour half of the semifreddo mixture into a loaf pan (approx. 20x10 cm) lined with cling film, leaving overhang. Drizzle half of the cooled coffee swirl over the semifreddo. Gently swirl with a knife. Add remaining semifreddo mixture. Drizzle with remaining coffee swirl. Swirl gently.",
+      "Freeze: Cover with cling film. Freeze for at least 6 hours, or overnight, until firm.",
+      "Serve: Un-mold the semifreddo. Slice into 4 portions. Plate each slice. Sprinkle generously with toasted breadcrumb crunch. Garnish with a thin lemon slice and a mint sprig."
+    ],
+    "notes": [
+      "Ensure the egg yolk mixture reaches 75°C for food safety.",
+      "Chill the mixing bowl and whisk for the cream for better whipping results.",
+      "Do not overmix when folding in the whipped cream; keep it light and airy."
+    ],
+    "traditional_techniques": [
+      "Bain-marie",
+      "Folding"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 33.75,
+      "calories": 531.01,
+      "cholesterol_mg": 303.38,
+      "dietary_fiber_g": 0.52,
+      "protein_g": 6.32,
+      "saturated_fat_g": 21.6,
+      "sodium_mg": 115.06,
+      "total_carbs_g": 47.69,
+      "total_fat_g": 36.25,
+      "total_sugars_g": 37.34,
+      "trans_fat_g": 1.29
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19.42,
+      "calories": 305.62,
+      "cholesterol_mg": 174.6,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 3.63,
+      "saturated_fat_g": 12.43,
+      "sodium_mg": 66.22,
+      "total_carbs_g": 27.45,
+      "total_fat_g": 20.86,
+      "total_sugars_g": 21.49,
+      "trans_fat_g": 0.74
+    },
+    "daily_value_percentages": {
+      "cholesterol": 151.69,
+      "dietary_fiber": 1.86,
+      "protein": 12.63,
+      "saturated_fat": 108,
+      "sodium": 5,
+      "total_carbs": 17.34,
+      "total_fat": 46.47
+    },
+    "serving_size_g": 173.75,
+    "total_recipe_weight_g": 695
+  },
+  {
+    "recipe_name": "Smoked Sausage and Potato Skillet with Fried Eggs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_sausage_and_potato_skillet_with_fried_eggs_20250624_104351_9fcf419f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:52.469023000Z",
+    "selected_ingredients": [
+      "egg",
+      "smoked sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of German Smoked Sausage and Potato Skillet is presented on a clean white porcelain dinner plate. Cubed potatoes are roasted to a golden-brown, mixed with thick rounds of pan-fried smoked sausage, diced caramelized onions, and vibrant red bell pepper. A perfectly fried egg, with a firm white and a rich, runny yellow yolk, rests atop the hearty mixture. The dish is garnished with a scattering of fresh, bright green chopped parsley. Textures include crispy potato edges, tender vegetables, and the smooth, creamy yolk. The setting is a modern bistro, featuring a simple wooden table. A folded cotton napkin and traditional flatware are placed beside the plate. A small side bowl of tangy sauerkraut accompanies the dish, enhancing its authentic German presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Serve with tangy sauerkraut",
+      "Offer a variety of German mustards (e.g., Dijon, whole grain)",
+      "Serve with pickled gherkins"
+    ],
+    "hero_ingredient": "Smoked Sausage",
+    "ingredients": [
+      {
+        "name": "Smoked sausage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Bell pepper (red)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Paprika (sweet)",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Cut into 2 cm cubes.",
+      "Chop onion into 1 cm dice. Mince garlic.",
+      "Cut smoked sausage into 1.5 cm thick rounds.",
+      "Remove seeds from bell pepper. Cut into 1.5 cm dice.",
+      "Heat oil in large skillet over medium-high heat. Add potatoes. Cook 10-12 minutes until browned and tender. Stir occasionally.",
+      "Add smoked sausage, diced onion, and diced bell pepper to skillet. Cook 8-10 minutes until sausage is browned and vegetables are softened.",
+      "Add minced garlic and paprika. Cook 1 minute until fragrant. Season with salt and pepper.",
+      "Remove skillet from heat. Divide mixture into four portions.",
+      "In a separate pan, melt butter over medium heat. Fry eggs individually until whites are set and yolks are runny.",
+      "Plate one portion of skillet mixture onto each plate. Top each with a fried egg.",
+      "Chop fresh parsley. Garnish each plate with chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Pan-frying (Bratkartoffeln style)",
+      "Sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 642,
+      "cholesterol_mg": 265,
+      "dietary_fiber_g": 6,
+      "protein_g": 25.8,
+      "saturated_fat_g": 14.3,
+      "sodium_mg": 1602,
+      "total_carbs_g": 37.9,
+      "total_fat_g": 43.6,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 199,
+      "cholesterol_mg": 82,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 8,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 497,
+      "total_carbs_g": 11.8,
+      "total_fat_g": 13.5,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 88,
+      "dietary_fiber": 21,
+      "protein": 52,
+      "saturated_fat": 71,
+      "sodium": 70,
+      "total_carbs": 14,
+      "total_fat": 56
+    },
+    "serving_size_g": 322,
+    "total_recipe_weight_g": 1288
+  },
+  {
+    "recipe_name": "Creamy Garlic Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_garlic_chicken_pasta_20250624_104351_cc0c8a59.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:51.810576000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "pasta",
+      "oregano",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of Creamy Garlic Chicken Pasta is presented on a simple, off-white ceramic dinner plate. The penne pasta is coated in a rich, creamy, light-yellow sauce. Irregularly cut, golden-brown chicken chunks are interspersed throughout the pasta, showcasing their seared exterior and tender interior. Finely diced onion and minced garlic are visible within the sauce, alongside flecks of green dried oregano. A light sprinkle of fresh, vibrant green chopped parsley garnishes the top, adding a pop of color and freshness. The dish is arranged naturally, with components touching and slightly overlapping, suggesting a comforting, home-cooked meal. The plate sits on a well-used wooden dining table, alongside a standard fork. The scene is lit with warm, cozy lighting, evoking a relaxed family dining atmosphere with minimal, unobtrusive background elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 grams"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2.5 cm bite-sized chunks. Season with salt and pepper.",
+      "Dice the onion finely. Mince the garlic cloves.",
+      "Heat olive oil in a large pan over medium-high heat.",
+      "Add chicken chunks to the pan. Cook until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C. Remove chicken from pan and set aside.",
+      "Add diced onion to the same pan. Sauté until softened, about 3-4 minutes.",
+      "Add minced garlic and dried oregano to the pan. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the pan.",
+      "Stir in heavy cream and grated Parmesan cheese. Simmer gently for 5 minutes, until sauce thickens slightly.",
+      "Meanwhile, cook penne pasta according to package directions until al dente. Drain well.",
+      "Add cooked pasta and cooked chicken chunks back into the sauce. Toss to combine.",
+      "Stir in fresh chopped parsley. Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 961,
+      "cholesterol_mg": 213.8,
+      "dietary_fiber_g": 4.13,
+      "protein_g": 54.27,
+      "saturated_fat_g": 19.96,
+      "sodium_mg": 527.69,
+      "total_carbs_g": 82.85,
+      "total_fat_g": 44.55,
+      "total_sugars_g": 6.26,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 222,
+      "cholesterol_mg": 49.36,
+      "dietary_fiber_g": 0.95,
+      "protein_g": 12.53,
+      "saturated_fat_g": 4.61,
+      "sodium_mg": 121.83,
+      "total_carbs_g": 19.13,
+      "total_fat_g": 10.29,
+      "total_sugars_g": 1.45,
+      "trans_fat_g": 0.14
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71.27,
+      "dietary_fiber": 14.77,
+      "protein": 108.54,
+      "saturated_fat": 99.8,
+      "sodium": 22.94,
+      "total_carbs": 30.13,
+      "total_fat": 57.12
+    },
+    "serving_size_g": 433.13,
+    "total_recipe_weight_g": 1732.5
+  },
+  {
+    "recipe_name": "Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_20250624_104350_65d64160.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:43:51.317773000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "high protein",
+    "visual_description": "A single portion of rustic chicken cacciatore served in a shallow, cream-colored ceramic bowl with minor surface imperfections. Two whole, bone-in chicken thighs are the centerpiece, their skin appearing dark golden and tender from braising. The chicken is partially submerged in a thick, chunky tomato sauce featuring visible pieces of softened translucent onions and whole black olives. A single fresh rosemary sprig is placed casually on top. The bowl sits on a weathered dark wood kitchen table. Beside the bowl is a thick piece of torn crusty bread. The scene is illuminated by warm, soft overhead kitchen lighting, creating a cozy, authentic Italian home-dining atmosphere. A simple linen napkin and a stainless steel fork are placed to the left of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough bread to soak up the tomato sauce",
+      "Pair with a side of simple polenta or rustic mashed potatoes",
+      "Traditional family-style dining involves placing the skillet in the center of the table"
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Heat olive oil in a large deep skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden brown.",
+      "Flip chicken and sear for 4 minutes. Remove chicken from skillet.",
+      "Add diced onion to the skillet. Sauté for 5 minutes until soft.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes, oregano, and the rosemary sprig.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Simmer on low heat for 30 minutes until chicken reaches 75°C internally.",
+      "Stir in the olives 5 minutes before serving."
+    ],
+    "notes": [
+      "Use bone-in thighs for maximum flavor and protein content",
+      "Ensure the sauce reduces until thick to concentrate the savory tomato profile",
+      "Always check the thickest part of the chicken for a safe internal temperature of 75°C"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1716,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 444.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 53,
+      "sodium": 75,
+      "total_carbs": 7,
+      "total_fat": 54
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1543
+  }
+]

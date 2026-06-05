@@ -1,0 +1,638 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Tomato-Yogurt Sauce and Fresh Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_tomato-yogurt_sauce_and_fresh_pasta_20250625_081140_26b1261c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:11:40.667843000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "ricotta",
+      "greek yogurt"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast, cut into thick chunks, rests atop a neat nest of pale yellow fresh pasta on a handcrafted ceramic plate in a creamy beige tone. The chicken is golden-brown with a visible crust. A vibrant, rustic red-orange fermented tomato-yogurt sauce is spooned generously over the chicken and around the pasta, creating a natural pool. Small dollops of creamy white ricotta are visible within the sauce. Fresh green basil and oregano leaves are scattered lightly as garnish. The plate, showing appropriate negative space, sits on a light, textured reclaimed wood surface. An undyed linen napkin in natural beige is casually placed nearby. Soft, natural lighting illuminates the dish from above, highlighting the textures and colors. The background is clean and minimalist, with a subtle hint of green foliage from a plant, maintaining an eco-conscious, natural aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "cultural_origin": "Mediterranean",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Fresh pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Full-fat Greek yogurt",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Small handful"
+      },
+      {
+        "name": "Fresh oregano leaves",
+        "quantity": "Small handful"
+      }
+    ],
+    "instructions": [
+      "Prepare quick lacto-fermented tomatoes: Dice tomatoes into small cubes. Mince garlic. Combine tomatoes, garlic, 15ml olive oil, 5g salt. Mix well. Transfer to a clean jar. Press down to submerge tomatoes in their own liquid. Cover loosely or use an airlock. Let ferment at room temperature for 2-3 days until slightly tangy. Store in refrigerator.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 30ml olive oil in a large skillet over medium-high heat. Add chicken breasts. Sear for 5-7 minutes per side until golden brown and internal temperature reaches 75°C (167°F). Remove chicken from skillet. Rest on a cutting board.",
+      "While chicken rests, bring a large pot of salted water to a rolling boil. Add fresh pasta. Cook according to package directions until al dente, typically 3-5 minutes. Drain pasta, reserving 120ml pasta water.",
+      "For the sauce: In a bowl, combine fermented tomatoes (and their liquid), Greek yogurt, ricotta cheese. Stir well to combine. If too thick, add a small amount of reserved pasta water until desired consistency. Taste and adjust seasoning.",
+      "Slice chicken breasts into thick chunks, not fanned.",
+      "Divide pasta among four plates. Place sliced chicken chunks over pasta. Spoon generous amounts of the tomato-yogurt sauce over the chicken and pasta. Garnish with fresh basil and oregano leaves. Serve immediately."
+    ],
+    "notes": [
+      "The quick lacto-fermented tomatoes can be prepared up to a week in advance and stored in the refrigerator. This enhances the depth of flavor.",
+      "Reserved pasta water can be used to adjust sauce consistency, adding starchiness and binding the sauce."
+    ],
+    "traditional_techniques": [
+      "Lacto-fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 815,
+      "cholesterol_mg": 226,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 75.3,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 184,
+      "total_carbs_g": 63.1,
+      "total_fat_g": 29.3,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 45.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 15.2,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 37.1,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 13,
+      "protein": 151,
+      "saturated_fat": 41,
+      "sodium": 8,
+      "total_carbs": 23,
+      "total_fat": 38
+    },
+    "serving_size_g": 495,
+    "total_recipe_weight_g": 1980
+  },
+  {
+    "recipe_name": "Cheesy Bacon and Potato Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_bacon_and_potato_gratin_20250625_081139_2dd374d1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:11:39.625007000Z",
+    "selected_ingredients": [
+      "potato",
+      "bacon",
+      "cheese",
+      "garlic",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a simple, round off-white ceramic plate, showcasing a generous, rustic portion of Cheesy Bacon and Potato Gratin. The gratin itself, served directly from a well-loved oval ceramic baking dish, features layers of thinly sliced, tender potatoes. A golden-brown, bubbly crust of melted cheddar cheese covers the top, with crispy, browned bits of diced bacon scattered throughout. Small pieces of bright red diced tomato and flecks of green herbs, possibly thyme, are visible between the potato layers. The textures are varied: creamy potatoes, crisp bacon, and gooey cheese. The overall color palette is warm, with golden browns, creamy whites, and pops of red. The plate sits on a well-worn, natural wooden dining table, alongside a simple silver fork and a casually folded beige cloth napkin. Warm, inviting light from an overhead kitchen fixture illuminates the scene, creating a cozy, homely atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Smoked bacon",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Tomatoes, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Milk",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh thyme (optional)",
+        "quantity": "1 tsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease a 20x30 cm baking dish with butter.",
+      "Peel potatoes. Slice potatoes thinly, about 2-3 mm thick. Pat dry with paper towels.",
+      "Dice bacon into small pieces. Cook bacon in a large pan over medium heat until crispy. Remove bacon from pan, drain on paper towels. Reserve 1 tablespoon bacon fat in the pan.",
+      "Add minced garlic to the pan with bacon fat. Sauté for 1 minute until fragrant. Remove from heat.",
+      "In the prepared baking dish, arrange a layer of sliced potatoes. Season with salt and pepper. Sprinkle with some cooked bacon, diced tomatoes, and grated cheese.",
+      "Repeat layering until all ingredients are used, finishing with a layer of potatoes and cheese on top.",
+      "Pour milk evenly over the potato layers. Ensure milk covers most of the potatoes.",
+      "Bake for 50-60 minutes, or until potatoes are tender and the top is golden brown and bubbly. If top browns too quickly, cover with foil.",
+      "Remove from oven. Let stand for 10 minutes before serving."
+    ],
+    "notes": [
+      "Use starchy potatoes like Russet or Maris Piper for best results.",
+      "Adjust salt and pepper to taste."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 847.03,
+      "cholesterol_mg": 139.55,
+      "dietary_fiber_g": 6.29,
+      "protein_g": 43.12,
+      "saturated_fat_g": 26.25,
+      "sodium_mg": 1359.1,
+      "total_carbs_g": 53.68,
+      "total_fat_g": 51.6,
+      "total_sugars_g": 8.78,
+      "trans_fat_g": 1.24
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 157.81,
+      "cholesterol_mg": 25.99,
+      "dietary_fiber_g": 1.17,
+      "protein_g": 8.03,
+      "saturated_fat_g": 4.89,
+      "sodium_mg": 253.21,
+      "total_carbs_g": 10,
+      "total_fat_g": 9.61,
+      "total_sugars_g": 1.64,
+      "trans_fat_g": 0.23
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.5,
+      "dietary_fiber": 22.5,
+      "protein": 86.2,
+      "saturated_fat": 131.3,
+      "sodium": 59.1,
+      "total_carbs": 19.5,
+      "total_fat": 66.2
+    },
+    "serving_size_g": 536.75,
+    "total_recipe_weight_g": 2147
+  },
+  {
+    "recipe_name": "Braised Chicken with Fermented Tomato & Crispy Potato Skins",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_fermented_tomato_%26_crispy_potato_skins_20250625_081128_4896d8fe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:11:28.898299000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "potato",
+      "garlic",
+      "hot sauce"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of braised chicken and vegetables is presented in a handcrafted ceramic bowl, in a natural, earthy tone like cream or beige. A plump, golden-brown braised chicken thigh rests prominently in the center, its skin slightly crisped from searing and infused with the rich, red hue of the tomato sauce. Around the chicken, tender, rustic chunks of potato and onion are nestled, coated in the deeply flavorful, slightly thickened tomato sauce. The sauce exhibits a natural, unforced flow, pooling gently at the bottom of the bowl. A scattering of vibrant green, roughly chopped fresh parsley provides a pop of color and freshness. Crispy, golden-brown potato skins are scattered artistically over the dish, adding textural contrast and a zero-waste element. The presentation is minimalistic, focusing on the pure beauty of the ingredients and their natural textures. The setting features a light bamboo or reclaimed wood table surface. An undyed linen napkin in natural beige is subtly placed alongside. Soft, natural lighting illuminates the scene, highlighting the organic textures and warm colors of the dish. The background is clean and uncluttered, with a hint of natural elements like a simple green plant, maintaining a focus on sustainability and simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "500g, roughly chopped"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2 (approx. 400g), cut into 2cm wedges"
+      },
+      {
+        "name": "Medium potatoes",
+        "quantity": "4 (approx. 600g), peeled, cut into 3cm chunks (reserve skins)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6, smashed"
+      },
+      {
+        "name": "Fermented hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, roughly chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 15ml olive oil in a large, oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden brown and crispy, about 6-8 minutes. Flip and sear other side for 2-3 minutes. Remove chicken from pot. Set aside.",
+      "Add remaining 15ml olive oil to the pot. Add onion wedges. Sauté until softened, about 5 minutes.",
+      "Add smashed garlic. Cook for 1 minute until fragrant.",
+      "Stir in chopped tomatoes and fermented hot sauce. Cook for 5 minutes, breaking down tomatoes.",
+      "Pour in chicken stock. Bring to a simmer. Scrape up any browned bits from the bottom of the pot.",
+      "Return chicken thighs to the pot. Add potato chunks, nestling them around the chicken.",
+      "Cover pot. Transfer to preheated oven. Braise for 45-50 minutes, or until chicken reaches internal temperature of 75°C (167°F) and potatoes are tender.",
+      "While chicken braises, prepare potato skins. Toss reserved potato skins with a drizzle of olive oil, pinch of salt, and pepper.",
+      "Spread skins in a single layer on a baking sheet. Bake in the same oven for 15-20 minutes, or until crispy and golden. Watch carefully to prevent burning.",
+      "Remove pot from oven. Check seasoning. Adjust with salt and pepper if needed.",
+      "Serve braised chicken and vegetables directly from the pot or portion into individual bowls. Garnish with crispy potato skins and fresh parsley."
+    ],
+    "notes": [
+      "For enhanced fermentation flavor, consider making a quick lacto-fermented tomato paste: Combine 200g chopped tomatoes with 5g sea salt and 2 smashed garlic cloves. Place in a clean jar, press down to submerge in brine, cover loosely, and let ferment at room temperature for 2-3 days until tangy before using in the braise."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Fermentation (via hot sauce and optional tomato paste)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 689,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 45.5,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 840,
+      "total_carbs_g": 42.9,
+      "total_fat_g": 37.9,
+      "total_sugars_g": 8.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 141,
+      "total_carbs_g": 7.2,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 24,
+      "protein": 91,
+      "saturated_fat": 45,
+      "sodium": 37,
+      "total_carbs": 16,
+      "total_fat": 49
+    },
+    "serving_size_g": 597.5,
+    "total_recipe_weight_g": 2390
+  },
+  {
+    "recipe_name": "Beef Ragu with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_ragu_with_pappardelle_20250625_081050_4af30b75.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:10:51.274998000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A wide white porcelain pasta bowl sits on a light oak bistro table. A mound of broad pappardelle ribbons is thoroughly coated in a deep red, thick tomato sauce. Large, intact chunks of slow-braised beef are distributed throughout the pasta, showing a moist, tender texture. The sauce is glossy and emulsified, featuring visible flecks of minced garlic and finely diced vegetables. A light dusting of finely grated Pecorino Romano cheese is concentrated in the center. Three vibrant green whole basil leaves provide a fresh garnish. A heavy stainless steel fork and a white cotton napkin rest to the right. Natural side-lighting creates soft shadows, emphasizing the rich texture of the braised meat and the silky pasta surface.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta bread to mop up remaining sauce.",
+      "Pair with a glass of Chianti or Sangiovese wine.",
+      "Present in a shallow bowl to maintain sauce temperature."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck (3cm cubes)",
+        "quantity": "800g"
+      },
+      {
+        "name": "San Marzano tomatoes (crushed)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic cloves (minced)",
+        "quantity": "4"
+      },
+      {
+        "name": "Onion (finely diced)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot (finely diced)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery (finely diced)",
+        "quantity": "1 stalk"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Pecorino Romano (grated)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Pat beef dry. Season with salt and pepper.",
+      "Heat oil in a heavy pot over medium-high heat.",
+      "Brown beef chunks in batches. Remove and set aside.",
+      "Add onion, carrot, and celery to the pot. Sauté 5 minutes.",
+      "Stir in minced garlic and tomato paste. Cook 2 minutes.",
+      "Pour in red wine. Scrape bottom of pot to release brown bits.",
+      "Add crushed tomatoes, beef stock, and browned beef.",
+      "Reduce heat to low. Cover and simmer 2.5 hours until beef is tender.",
+      "Boil salted water. Cook pappardelle until al dente.",
+      "Drain pasta. Reserve 60ml of pasta water.",
+      "Toss pasta with ragu and reserved water until glossy.",
+      "Plate immediately. Top with cheese and basil."
+    ],
+    "notes": [
+      "Do not shred the beef; maintain distinct chunks for texture.",
+      "Use high-quality canned tomatoes for authentic sweetness.",
+      "Ensure the pasta water is added to achieve a restaurant-quality silkiness."
+    ],
+    "traditional_techniques": [
+      "soffritto",
+      "slow-braising",
+      "emulsifying sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1133,
+      "cholesterol_mg": 171,
+      "dietary_fiber_g": 8,
+      "protein_g": 60.3,
+      "saturated_fat_g": 18.2,
+      "sodium_mg": 1126,
+      "total_carbs_g": 99.3,
+      "total_fat_g": 50.2,
+      "total_sugars_g": 14.9,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 162,
+      "cholesterol_mg": 24.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 161,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 29,
+      "protein": 121,
+      "saturated_fat": 91,
+      "sodium": 49,
+      "total_carbs": 36,
+      "total_fat": 64
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2800
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Creamy Mushroom-Mustard Sauce and Mashed Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_creamy_mushroom-mustard_sauce_and_mashed_potatoes_20250625_081050_abcbed23.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:10:50.837412000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "mustard",
+      "mushroom",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "Пп cuisine, Не запеченная",
+    "visual_description": "A single, hearty portion of Pan-Seared Chicken with Creamy Mushroom-Mustard Sauce and Mashed Potatoes is presented on a cream-colored, everyday ceramic plate. The entire plate is visible, showcasing a comforting, homely arrangement. A mound of creamy mashed potatoes forms the base, with a golden-brown, pan-seared chicken breast (whole piece, not sliced) resting slightly off-center on top. Sliced, tender mushrooms are visible within the rich, pale yellow sauce, which is spooned generously over the chicken and pools around the mashed potatoes. Freshly chopped green parsley is sprinkled over the dish. The scene is set on a well-used wooden dining table, illuminated by warm, inviting kitchen light, suggesting a relaxed family meal. A simple fork and knife are casually placed beside the plate, with a crumpled cloth napkin nearby, enhancing the lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Home",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Starchy potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cremini or button mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Grated Gruyere or Emmental cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Milk (full-fat or low-fat)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Small onion or 2 shallots",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil or butter",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Cut into large, uniform chunks. Place in a large pot, cover with cold salted water. Bring to a boil. Cook until fork-tender, approximately 15-20 minutes.",
+      "Drain potatoes thoroughly. Return to the pot. Mash with a potato masher, adding 50ml milk and 1 tablespoon olive oil or butter. Season with salt and pepper. Keep warm.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 1 tablespoon olive oil or butter in a large skillet over medium-high heat. Add chicken breasts. Sear for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet. Rest on a cutting board.",
+      "While chicken rests, thinly slice mushrooms. Finely dice onion or shallots. Mince garlic.",
+      "Add remaining 1 tablespoon olive oil or butter to the same skillet. Add sliced mushrooms. Sauté until browned and softened, approximately 5-7 minutes.",
+      "Add diced onion or shallots and minced garlic to the skillet. Sauté for 2-3 minutes until fragrant.",
+      "Whisk flour into the remaining 50ml milk to create a slurry.",
+      "Pour chicken broth into the skillet. Bring to a simmer, scraping up any browned bits. Stir in Dijon mustard.",
+      "Gradually whisk in the milk-flour slurry. Cook, stirring constantly, until the sauce thickens to your desired consistency. Reduce heat to low.",
+      "Stir in grated cheese until melted and smooth. Taste and adjust seasoning with salt and pepper.",
+      "To serve, place a generous portion of mashed potatoes on each plate. Top with a whole pan-seared chicken breast. Spoon creamy mushroom-mustard sauce generously over the chicken and potatoes. Garnish with freshly chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 637,
+      "cholesterol_mg": 177,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 71,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 926,
+      "total_carbs_g": 42.4,
+      "total_fat_g": 19.4,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106.5,
+      "cholesterol_mg": 29.6,
+      "dietary_fiber_g": 1,
+      "protein_g": 11.9,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 154.8,
+      "total_carbs_g": 7.1,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 20.6,
+      "protein": 141.9,
+      "saturated_fat": 28.1,
+      "sodium": 40.2,
+      "total_carbs": 15.4,
+      "total_fat": 24.8
+    },
+    "serving_size_g": 598,
+    "total_recipe_weight_g": 2392
+  }
+]

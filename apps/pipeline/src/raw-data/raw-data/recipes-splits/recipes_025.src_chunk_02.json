@@ -1,0 +1,650 @@
+[
+  {
+    "recipe_name": "Spicy Soy-Glazed Chicken with Choy Sum",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_soy-glazed_chicken_with_choy_sum_20250623_142146_19c1b1dc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:21:47.492161000Z",
+    "selected_ingredients": [
+      {
+        "name": "choy sum"
+      },
+      {
+        "name": "soy sauce"
+      },
+      {
+        "name": "dried chili"
+      },
+      {
+        "name": "sesame oil"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "A single serving of Spicy Soy-Glazed Chicken with Choy Sum is presented on a clean, white porcelain dinner plate. The dish features golden-brown chicken chunks, each coated in a glossy, savory-spicy glaze. Adjacent to the chicken are vibrant green choy sum pieces, crisp-tender and lightly coated with the sauce. A few bright red dried chili pieces are visible, adding a pop of color. The chicken is arranged naturally, not fanned, with the choy sum forming a verdant contrast. The overall composition is balanced with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface, a cotton napkin, and chopsticks beside a small white rice bowl. Natural, even lighting illuminates the dish, highlighting its textures and rich colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve hot with steamed white rice.",
+      "Offer a side of pickled daikon or cucumber for contrast."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "500 g, boneless, skinless, cut into 3 cm chunks"
+      },
+      {
+        "name": "Choy sum",
+        "quantity": "400 g, trimmed, cut into 5 cm pieces"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dried red chilies",
+        "quantity": "6-8, whole or broken"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20 g, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 g, for garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Toss chicken with 5 ml soy sauce and 5 g cornstarch. Set aside.",
+      "In a small bowl, whisk together remaining 55 ml soy sauce, 15 ml rice vinegar, 10 g sugar, 10 g cornstarch, and 60 ml water or chicken stock. Set aside.",
+      "Heat 15 ml vegetable oil in a large wok or skillet over medium-high heat. Add chicken. Cook until browned and cooked through, about 6-8 minutes. Ensure internal temperature reaches 75°C (167°F). Remove chicken from wok. Set aside.",
+      "Add remaining 15 ml vegetable oil to the wok. Add dried chilies, ginger slices, and minced garlic. Stir-fry for 30 seconds until fragrant.",
+      "Add choy sum to the wok. Stir-fry for 3-4 minutes until crisp-tender.",
+      "Return cooked chicken to the wok. Pour in the whisked sauce mixture. Cook, stirring constantly, until sauce thickens and coats chicken and choy sum, about 1-2 minutes.",
+      "Stir in 15 ml sesame oil. Toss to combine.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Stir-frying",
+      "Velveting (for chicken tenderness)"
+    ]
+  },
+  {
+    "recipe_name": "Chipotle Braised Beef with Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chipotle_braised_beef_with_caramelized_onions_20250623_142140_8d4e2746.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:21:41.402185000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "chili",
+      "garlic",
+      "pork stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chipotle Braised Beef is presented on a clean white porcelain dinner plate set on a simple wooden table. Large, irregular chunks of tender, dark reddish-brown braised beef are piled centrally, glistening with a rich, glossy chili-infused sauce that pools around the base. A small, artful mound of deeply golden-brown caramelized onions rests atop the beef, adding a sweet contrast. A generous sprinkle of vibrant green chopped fresh cilantro provides a fresh pop of color and aroma over the beef and sauce. A bright green lime wedge is positioned neatly on the side of the plate. The scene is lit with natural, even light, highlighting the textures and deep colors of the dish. A folded charcoal grey cotton napkin sits beside the plate. In the background, slightly out of focus, is a rustic terracotta bowl filled with warm, soft corn tortillas, enhancing the authentic Mexican dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for wrapping the beef",
+      "Offer additional lime wedges for squeezing over the dish",
+      "Serve with a side of pickled red onions or a simple fresh salsa"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8"
+      },
+      {
+        "name": "Chipotle peppers in adobo sauce",
+        "quantity": "3-4 whole"
+      },
+      {
+        "name": "Adobo sauce from chipotle can",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried Guajillo chilies",
+        "quantity": "3"
+      },
+      {
+        "name": "Dried Ancho chilies",
+        "quantity": "2"
+      },
+      {
+        "name": "Pork stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Mexican oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Rehydrate dried guajillo and ancho chilies in hot water for 20 minutes. Remove stems and seeds.",
+      "Pat beef chuck dry. Season beef generously with salt and pepper. Cut beef into 5-6 cm chunks.",
+      "Heat 30 ml olive oil in a large Dutch oven over medium-high heat. Sear beef chunks in batches until browned on all sides. Remove beef and set aside.",
+      "Add remaining 15 ml olive oil to the Dutch oven. Add 2 roughly chopped yellow onions. Sauté until softened, about 5 minutes. Add minced garlic, cumin, and Mexican oregano. Cook for 1 minute until fragrant.",
+      "In a blender, combine rehydrated chilies, chipotle peppers, adobo sauce, diced tomatoes, and 125 ml pork stock. Blend until smooth.",
+      "Pour blended sauce into the Dutch oven. Stir in remaining pork stock and bay leaves. Bring to a simmer. Return seared beef to the Dutch oven. Ensure beef is mostly submerged.",
+      "Cover the Dutch oven. Transfer to a preheated oven at 150°C. Braise for 3-4 hours, or until beef is fork-tender.",
+      "While beef braises, thinly slice the remaining yellow onion. Heat a separate pan over medium-low heat with a little olive oil. Add sliced onions. Cook slowly, stirring occasionally, for 30-40 minutes until deeply golden brown and sweet.",
+      "Once beef is tender, remove from oven. Discard bay leaves. Skim excess fat from the sauce if desired. Stir in apple cider vinegar. Adjust seasoning with salt and pepper.",
+      "Shred or break apart braised beef into large chunks. Serve beef with a generous amount of the rich sauce. Top with caramelized onions. Garnish with fresh chopped cilantro and a lime wedge."
+    ],
+    "notes": [
+      "The richness of pork stock complements the beef and chili flavors.",
+      "Caramelized onions provide a sweet counterpoint to the smoky, savory braise.",
+      "Adjust chipotle quantity to desired spice level."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Slow Cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 920,
+      "cholesterol_mg": 266.3,
+      "dietary_fiber_g": 8,
+      "protein_g": 88.6,
+      "saturated_fat_g": 16.6,
+      "sodium_mg": 447.9,
+      "total_carbs_g": 31.9,
+      "total_fat_g": 50.3,
+      "total_sugars_g": 11.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 136,
+      "cholesterol_mg": 39.3,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 13.1,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 66.1,
+      "total_carbs_g": 4.7,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 88.8,
+      "dietary_fiber": 28.6,
+      "protein": 177.2,
+      "saturated_fat": 82.9,
+      "sodium": 19.5,
+      "total_carbs": 11.6,
+      "total_fat": 64.5
+    },
+    "serving_size_g": 678,
+    "total_recipe_weight_g": 2710
+  },
+  {
+    "recipe_name": "Fermented Bell Pepper & Chicken Pasta with Crispy Sausage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_bell_pepper_%26_chicken_pasta_with_crispy_sausage_20250623_142135_7ffe2ae0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:21:35.805731000Z",
+    "selected_ingredients": [
+      "pasta",
+      "italian sausage",
+      "bell pepper",
+      "breadcrumbs",
+      "onion",
+      "garlic",
+      "chicken",
+      "chili"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of pasta is presented in a handcrafted, matte ceramic bowl in a warm cream hue, resting on a light, reclaimed wood surface. The pasta, perfectly al dente, is tossed with a vibrant, rustic sauce infused with deeply flavorful fermented red and yellow bell peppers, which appear as soft, irregular strips and small diced pieces, providing pops of rich, earthy red and golden yellow. Scattered throughout are golden-brown, irregular chunks of roasted chicken, their surfaces slightly crusted, and crumbled, caramelized Italian sausage, adding savory depth and textural contrast. Thinly sliced garlic and finely diced onion are subtly integrated into the sauce. A generous sprinkle of toasted, golden-brown breadcrumbs, made from day-old bread, provides a delightful crunch and a zero-waste touch. The dish is garnished simply with a few fresh, vibrant green parsley leaves, offering a natural color accent. The overall composition is clean and ingredient-focused, with ample white space around the pasta, emphasizing the natural beauty and textures of each component. The lighting is soft and natural, casting gentle shadows that enhance the dish's organic feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and lemon.",
+      "Accompany with crusty, day-old bread for soaking up any remaining sauce."
+    ],
+    "hero_ingredient": "Fermented Bell Peppers",
+    "ingredients": [
+      {
+        "name": "Dry Pasta (e.g., Rigatoni or Penne)",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Chicken Breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Italian Sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red Bell Peppers",
+        "quantity": "2 large (approx. 400 g)"
+      },
+      {
+        "name": "Yellow Bell Peppers",
+        "quantity": "1 large (approx. 200 g)"
+      },
+      {
+        "name": "Red Chili (e.g., Fresno or Serrano)",
+        "quantity": "1-2, to taste"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200 g)"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4-6"
+      },
+      {
+        "name": "Stale Bread (for breadcrumbs)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley or Basil",
+        "quantity": "a few sprigs, for garnish"
+      },
+      {
+        "name": "Water (for brine)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Non-iodized Salt (for brine)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Fermented Bell Pepper Preparation (Start 2-3 days prior): Wash and core bell peppers and chilies. Slice thinly or dice into small pieces. Dissolve 15 g non-iodized salt in 500 ml water to make brine. Pack bell pepper and chili pieces tightly into a clean glass jar. Pour brine over vegetables, ensuring they are fully submerged. Use a fermentation weight or small clean bag filled with water to keep vegetables under brine. Seal jar loosely or use an airlock. Allow to ferment at room temperature (18-24°C) for 2-3 days, or until desired tanginess is achieved. Store in refrigerator after fermentation.",
+      "Preheat oven to 200°C (390°F). Cut chicken breast into 3-4 cm chunks. Toss with 15 ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 18-22 minutes, or until internal temperature reaches 75°C. Set aside.",
+      "Remove Italian sausage from casings if desired. Crumble or slice sausage into 2-3 cm pieces. Heat 15 ml olive oil in a large skillet over medium-high heat. Add sausage. Cook, breaking up with a spoon, until deeply browned and crispy. Remove sausage with a slotted spoon. Drain excess fat, leaving about 15 ml in the skillet.",
+      "Finely dice onion. Mince garlic. Add onion to the skillet with remaining sausage fat. Sauté over medium heat until softened and translucent, about 5-7 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add 200 g of the prepared fermented bell peppers (and chilies) to the skillet with onion and garlic. Cook for 5 minutes, stirring occasionally, allowing flavors to meld. Lightly mash some peppers to create a rustic sauce base.",
+      "Bring a large pot of salted water to a rolling boil. Add pasta. Cook according to package directions until al dente.",
+      "While pasta cooks, prepare breadcrumbs. Blitz stale bread into coarse crumbs. Heat remaining 30 ml olive oil in a separate small skillet over medium heat. Add breadcrumbs. Toast, stirring frequently, until golden brown and crispy. Season with a pinch of salt.",
+      "Drain pasta, reserving 120 ml of pasta cooking water. Add drained pasta, roasted chicken, and crispy sausage to the skillet with the sauce. Add half of the reserved pasta water. Toss vigorously to combine, adding more pasta water as needed to create a cohesive, lightly saucy consistency.",
+      "Taste and adjust seasoning with salt and pepper as needed. Plate immediately. Garnish each serving with toasted breadcrumbs and fresh parsley or basil."
+    ],
+    "notes": [
+      "For best results, prepare the fermented bell peppers 2-3 days in advance to allow flavors to fully develop. This recipe integrates eco-conscious methods by utilizing fermentation and preventing food waste through repurposing stale bread."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.13,
+      "calories": 1044,
+      "cholesterol_mg": 155,
+      "dietary_fiber_g": 6.49,
+      "protein_g": 63.28,
+      "saturated_fat_g": 12.47,
+      "sodium_mg": 1659,
+      "total_carbs_g": 89.03,
+      "total_fat_g": 44.84,
+      "total_sugars_g": 13.05,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.21,
+      "calories": 197,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 1.22,
+      "protein_g": 11.92,
+      "saturated_fat_g": 2.35,
+      "sodium_mg": 312,
+      "total_carbs_g": 16.78,
+      "total_fat_g": 8.45,
+      "total_sugars_g": 2.46,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 23,
+      "protein": 127,
+      "saturated_fat": 62,
+      "sodium": 72,
+      "total_carbs": 32,
+      "total_fat": 57
+    },
+    "serving_size_g": 530.75,
+    "total_recipe_weight_g": 2123
+  },
+  {
+    "recipe_name": "Tuscan Garlic Mushroom Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_garlic_mushroom_chicken_20250623_142118_f111b765.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:21:19.482647000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "oregano",
+      "onion",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Tuscan Garlic Mushroom Chicken is presented on a clean white porcelain dinner plate. Substantial, golden-brown seared chicken chunks are nestled among tender, earthy cremini mushroom halves and thinly sliced, soft onion pieces. The dish is coated in a rich, rustic red tomato-herb sauce, spooned generously over the ingredients. The vibrant green of fresh chopped parsley is sprinkled over the entire dish, providing a striking contrast. The composition is organic and flowing, with moderate negative space on the plate. The scene is set on a simple light wooden table surface, with a folded cotton napkin and standard European flatware beside the plate. A slice of crusty rustic bread rests nearby, ready for dipping. Lighting is natural and even, highlighting the textures and colors of the dish in a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 ml, chopped"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4-5 cm chunks. Season chicken generously with salt and pepper.",
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat. Sear chicken chunks until golden brown on all sides. Do not overcrowd the pan; cook in batches if necessary. Remove chicken and set aside.",
+      "Add sliced onion to the same skillet. Sauté for 3-4 minutes until softened.",
+      "Add halved or quartered mushrooms to the skillet. Cook for 5-7 minutes until browned and tender.",
+      "Stir in minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the pan. Bring to a simmer.",
+      "Add crushed tomatoes to the skillet. Stir well. Return seared chicken chunks to the pan.",
+      "Reduce heat to medium-low. Simmer gently for 15-20 minutes, or until chicken is cooked through and the sauce has slightly thickened. Chicken should reach an internal temperature of 75°C (167°F).",
+      "Taste and adjust seasoning if needed. Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 367,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 32.7,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 542.2,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 21.7,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 86.1,
+      "cholesterol_mg": 40.8,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.7,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 127.2,
+      "total_carbs_g": 2.5,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 10,
+      "protein": 65,
+      "saturated_fat": 24,
+      "sodium": 24,
+      "total_carbs": 4,
+      "total_fat": 28
+    },
+    "serving_size_g": 426.3,
+    "total_recipe_weight_g": 1705
+  },
+  {
+    "recipe_name": "Bell Pepper & Onion Vinagrete Textures with Tapioca Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bell_pepper_%26_onion_vinagrete_textures_with_tapioca_crisp_20250623_142005_6b34700a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:20:05.635941000Z",
+    "selected_ingredients": [
+      {
+        "name": "marjoram leaf"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "bell pepper"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegan Brazilian",
+    "visual_description": "The dish is presented on a minimalist, matte white bone china sharing platter, set on a dark, rich walnut wood table. Abundant negative space surrounds the components. Small, translucent 1cm x 1cm cubes of vibrant red and yellow bell pepper gelee are artfully scattered across the plate. Each cube reflects light, showcasing its pristine, firm texture. Alongside the gelee, delicate, airy mounds of creamy, off-white caramelized onion and marjoram espuma are precisely piped, creating soft, organic shapes. Irregularly shaped, translucent tapioca crisps, ranging from 5-8cm in length, are strategically placed to provide verticality and a contrasting brittle texture. A subtle dusting of deep red, almost black, charred bell pepper powder lightly enhances parts of the plate, adding depth and a smoky aroma. A few tiny, fresh green marjoram microgreens are meticulously placed as the sole garnish, offering a pop of vibrant color and a hint of fresh herb. The overall composition is a sophisticated interplay of colors, textures, and precise forms, emphasizing minimalist elegance and advanced culinary technique. Dramatic professional lighting casts soft shadows, highlighting the architectural precision of the arrangement.",
+    "number_of_servings": 4,
+    "cuisine_type": "Brazilian Vegan",
+    "cultural_origin": "Brazilian",
+    "cultural_serving_suggestions": [
+      "Serve as a sophisticated \"amuse-bouche\" or part of a multi-course tasting menu.",
+      "Encourage guests to experience the different textures and flavors in each bite."
+    ],
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Red Bell Peppers",
+        "quantity": "2 large (approx. 400g)"
+      },
+      {
+        "name": "Yellow Bell Peppers",
+        "quantity": "2 large (approx. 400g)"
+      },
+      {
+        "name": "Agar-Agar Powder",
+        "quantity": "4g"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White Onions",
+        "quantity": "3 medium (approx. 450g)"
+      },
+      {
+        "name": "Fresh Marjoram Leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Vegan Cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Soy Lecithin",
+        "quantity": "2g"
+      },
+      {
+        "name": "White Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Tapioca Flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Water",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Neutral Oil",
+        "quantity": "As needed (for frying)"
+      },
+      {
+        "name": "Red Bell Pepper (for dust)",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh Marjoram Microgreens",
+        "quantity": "1 punnet"
+      }
+    ],
+    "instructions": [
+      "Roast bell peppers whole until skin is charred. Cool. Peel, deseed, and remove membranes.",
+      "Blend roasted bell peppers into a smooth purée. Pass through a fine-mesh sieve.",
+      "Combine purée with vinegar, sugar, and salt in a saucepan. Bring to a simmer.",
+      "Whisk in agar-agar powder. Simmer 2 minutes, stirring constantly.",
+      "Pour mixture 1cm thick onto a flat tray. Chill until firm.",
+      "Cut gelee into precise 1cm x 1cm cubes.",
+      "Thinly slice onions.",
+      "Caramelize onions slowly in a pan with a little oil until deep golden brown and very sweet. This takes 45-60 minutes on low heat.",
+      "Add vegetable broth and marjoram to caramelized onions. Simmer 10 minutes.",
+      "Remove marjoram leaves. Blend onion mixture until very smooth. Pass through a fine-mesh sieve.",
+      "Stir in vegan cream and soy lecithin. Season with salt and white pepper.",
+      "Pour mixture into a culinary siphon. Charge with N2O cartridge. Chill.",
+      "Combine tapioca flour, water, and salt in a bowl. Mix until a smooth batter forms.",
+      "Heat a non-stick pan over medium heat. Pour small amounts of batter to create thin, transparent crepes. Cook until edges curl and crisp.",
+      "Carefully remove and cool on a wire rack. Break into irregular, shard-like crisps.",
+      "Char the skin of one small red bell pepper over an open flame or under a broiler.",
+      "Scrape off charred skin. Dehydrate the charred skin until brittle.",
+      "Grind dehydrated skin into a fine powder.",
+      "Arrange bell pepper gelee cubes artfully on a large sharing platter or individual plates.",
+      "Dispense a small mound of caramelized onion and marjoram espuma next to each gelee cube.",
+      "Place a few tapioca crisps vertically or horizontally for height and texture.",
+      "Lightly dust the plate with charred bell pepper powder.",
+      "Garnish with fresh marjoram microgreens. Serve immediately."
+    ],
+    "notes": [
+      "Ensure bell pepper purée is very smooth for a refined gelee.",
+      "Caramelizing onions properly is crucial for depth of flavor in the espuma. Low and slow is key.",
+      "Adjust agar-agar quantity slightly if a firmer or softer gelee is desired.",
+      "Soy lecithin helps stabilize the espuma, but other vegan emulsifiers can be used."
+    ]
+  }
+]

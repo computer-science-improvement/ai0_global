@@ -56,6 +56,8 @@ export class TrackingMtprotoClient implements OnModuleInit {
   private readonly logger = new Logger(TrackingMtprotoClient.name);
   private client: TelegramClient | null = null;
   private ready  = false;
+  /** Epoch ms of the last getDialogs() cache-warm; throttles re-warming. */
+  private dialogsWarmedAt = 0;
 
   constructor(private readonly config: ConfigService) {}
 
@@ -84,6 +86,10 @@ export class TrackingMtprotoClient implements OnModuleInit {
       await this.client.connect();
       this.ready = true;
       this.logger.log('TrackingMtprotoClient ready');
+      // Warm the session entity cache so getEntity(channelId) can resolve
+      // subscribed channels by their numeric id (gramjs needs the cached
+      // access_hash, which only dialogs provide).
+      await this.warmDialogs(true);
     } catch (err: any) {
       this.ready = false;
       this.logger.warn(`TrackingMtprotoClient connect failed: ${err.errorMessage ?? err.message ?? err}`);
@@ -96,21 +102,83 @@ export class TrackingMtprotoClient implements OnModuleInit {
 
   /**
    * Convert the caller's address into something gramjs's getEntity accepts.
-   *   - private chat ids (`-1003984251759`) → numeric (gramjs handles the
+   *   - bot-API chat ids (`-1003984251759`) → numeric (gramjs handles the
    *     bot-API ↔ MTProto id translation internally when given a number;
    *     given a string starting with '-100' it tries to resolve as a
    *     username and fails)
+   *   - raw channel ids (`1413275904`, all-digits, positive) → marked into
+   *     bot-API form `-100…` so gramjs treats them as a channel peer rather
+   *     than a user/contact id. (Telegram usernames must start with a
+   *     letter, so an all-digit address is always a numeric id.)
    *   - @usernames and bare usernames → passed through as strings
    *
-   * Returns null when the address looks like a too-large numeric id that
-   * doesn't fit in a JS Number (channel ids are ~1e12, safely under 2^53).
+   * Returns null when the address doesn't fit in a JS Number safely
+   * (channel ids are ~1e12, safely under 2^53 even after the -100 marker).
    */
   private toAddress(usernameOrId: string): string | number | null {
     if (usernameOrId.startsWith('-')) {
       const n = Number(usernameOrId);
       return Number.isSafeInteger(n) ? n : null;
     }
+    if (/^\d+$/.test(usernameOrId)) {
+      // Raw channel id → bot-API marked id so getEntity resolves it as a
+      // channel peer using the cached access_hash.
+      const n = Number(`-100${usernameOrId}`);
+      return Number.isSafeInteger(n) ? n : null;
+    }
     return usernameOrId;
+  }
+
+  /** True for the gramjs/Telegram errors that mean "this session can't see
+   *  this channel" — either it was never cached or the account isn't a
+   *  member. Distinct from transient/flood errors. */
+  private isEntityMiss(err: any): boolean {
+    return err?.errorMessage === 'CHANNEL_INVALID'
+      || err?.errorMessage === 'CHANNEL_PRIVATE'
+      || /could not find the input entity/i.test(String(err?.message ?? ''));
+  }
+
+  /** Load recent dialogs to populate the session's entity cache (access
+   *  hashes). Throttled to once per 60s unless forced. Best-effort —
+   *  failures are swallowed so a poll never dies on a warm. */
+  private async warmDialogs(force = false): Promise<void> {
+    if (!this.client) return;
+    const now = Date.now();
+    if (!force && now - this.dialogsWarmedAt < 60_000) return;
+    this.dialogsWarmedAt = now;
+    try {
+      const dialogs = await this.client.getDialogs({ limit: 500 });
+      this.logger.debug(`warmDialogs: cached ${dialogs.length} dialogs`);
+    } catch (err: any) {
+      this.logger.debug(`warmDialogs failed: ${err?.errorMessage ?? err?.message ?? err}`);
+    }
+  }
+
+  /**
+   * Resolve an address to a gramjs entity, re-warming the dialog cache and
+   * retrying once on a cache miss. This handles the common case where the
+   * account subscribed to the channel AFTER the client connected: the entity
+   * isn't cached yet, so the first getEntity throws "could not find the input
+   * entity". We re-warm dialogs (which now include the freshly-joined
+   * channel) and retry before concluding the session truly can't see it.
+   *
+   * Returns the entity, or 'not_subscribed' when it's unreachable even after
+   * a re-warm. Re-throws non-miss errors (flood waits etc.) for the caller's
+   * handleApiError.
+   */
+  private async resolveEntity(address: string | number): Promise<any | 'not_subscribed'> {
+    try {
+      return await this.client!.getEntity(address as any);
+    } catch (err: any) {
+      if (!this.isEntityMiss(err)) throw err;
+      await this.warmDialogs();
+      try {
+        return await this.client!.getEntity(address as any);
+      } catch (err2: any) {
+        if (this.isEntityMiss(err2)) return 'not_subscribed';
+        throw err2;
+      }
+    }
   }
 
   async getFullChannel(usernameOrId: string): Promise<FullChannelResult | 'not_subscribed' | null> {
@@ -118,7 +186,11 @@ export class TrackingMtprotoClient implements OnModuleInit {
     const address = this.toAddress(usernameOrId);
     if (address === null) return null;
     try {
-      const entity = await this.client.getEntity(address as any);
+      const entity = await this.resolveEntity(address);
+      if (entity === 'not_subscribed') {
+        this.logger.debug(`getFullChannel: ${usernameOrId} not reachable by session (not subscribed)`);
+        return 'not_subscribed';
+      }
       const full = await this.client.invoke(new Api.channels.GetFullChannel({ channel: entity as any }));
       const fc   = (full as any).fullChat;
       const ch   = (full as any).chats?.find((c: any) => String(c.id) === String((entity as any).id));
@@ -130,9 +202,9 @@ export class TrackingMtprotoClient implements OnModuleInit {
         subsCount: fc?.participantsCount ?? null,
       };
     } catch (err: any) {
-      const notSub = err?.errorMessage === 'CHANNEL_INVALID'
-        || /could not find the input entity/i.test(String(err?.message ?? ''));
-      if (notSub) {
+      // GetFullChannel itself rejects with CHANNEL_INVALID when the session
+      // resolved a stale cached entity it's no longer a member of.
+      if (this.isEntityMiss(err)) {
         this.logger.debug(`getFullChannel: ${usernameOrId} not reachable by session (not subscribed)`);
         return 'not_subscribed';
       }
@@ -146,7 +218,11 @@ export class TrackingMtprotoClient implements OnModuleInit {
     const address = this.toAddress(usernameOrId);
     if (address === null) return [];
     try {
-      const entity = await this.client.getEntity(address as any);
+      const entity = await this.resolveEntity(address);
+      if (entity === 'not_subscribed') {
+        this.logger.debug(`getHistory: ${usernameOrId} not reachable by session (not subscribed)`);
+        return [];
+      }
       const res    = await this.client.invoke(
         new Api.messages.GetHistory({ peer: entity as any, limit, minId: offsetId, offsetId: 0 }),
       );
@@ -155,9 +231,7 @@ export class TrackingMtprotoClient implements OnModuleInit {
         .filter((m) => m.className === 'Message')
         .map((m) => this.toRawMessage(m));
     } catch (err: any) {
-      const notSub = err?.errorMessage === 'CHANNEL_INVALID'
-        || /could not find the input entity/i.test(String(err?.message ?? ''));
-      if (notSub) {
+      if (this.isEntityMiss(err)) {
         this.logger.debug(`getHistory: ${usernameOrId} not reachable by session (not subscribed)`);
         return [];
       }

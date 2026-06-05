@@ -1,0 +1,112 @@
+{
+  "_comment": "Active only when NODE_ENV=local-development. Set TELEGRAM_BOT_TOKEN in apps/automation/.env (local file, gitignored) to the LOCAL test bot's token. Replace each TODO_CHAT_ID with the numeric channel ID (negative number starting with -100...) — see docs/runbooks/dev-stage-server-setup.md or the README in this dir.",
+
+  "bots": {
+    "ai0_local_test_bot": {
+      "platform": "telegram",
+      "tokenEnv": "TELEGRAM_BOT_TOKEN"
+    }
+  },
+
+  "channels": {
+    "@ai_tech_local": {
+      "_name": "AI Технології | LOCAL",
+      "_inviteLink": "https://t.me/+gFzJHqREKR9iMzEy",
+      "platform": "telegram",
+      "chatId": "-1003978790664",
+      "botId": "ai0_local_test_bot"
+    },
+
+    "@pdr_local": {
+      "_name": "PDR | LOCAL",
+      "_inviteLink": "https://t.me/+lH7q9UWKQpYwNDEy",
+      "platform": "telegram",
+      "chatId": "-1003989477674",
+      "botId": "ai0_local_test_bot"
+    },
+
+    "@game_exchange_local": {
+      "_name": "Біржа Ігор | DEV (used locally)",
+      "_inviteLink": "https://t.me/+9hvXQjmMztY3MGYy",
+      "platform": "telegram",
+      "chatId": "-1003612020806",
+      "botId": "ai0_local_test_bot"
+    },
+
+    "@ai_news_local": {
+      "_name": "AI Шукає Новини | LOCAL",
+      "_inviteLink": "https://t.me/+d5BAN9gsMvZmOWYy",
+      "platform": "telegram",
+      "chatId": "-1003987757927",
+      "botId": "ai0_local_test_bot",
+      "forwardRoutes": [
+        {
+          "topic": "gaming",
+          "channelId": "@game_exchange_local",
+          "description": "Video games, esports, game industry, game releases, gaming hardware, or news about specific games / studios"
+        },
+        {
+          "topic": "ai_tech",
+          "channelId": "@ai_tech_local",
+          "description": "AI tools, prompt engineering, LLMs, model releases, AI developer news, or AI capabilities relevant to technical builders"
+        },
+        {
+          "topic": "motivation",
+          "channelId": "@motivation_local",
+          "description": "Inspirational stories, personal success, life lessons, biographies of notable people, or self-development content"
+        }
+      ]
+    },
+
+    "@motivation_local": {
+      "_name": "Мотивація | LOCAL — quotes + birthdays",
+      "platform": "telegram",
+      "chatId": "-1003984251759",
+      "botId": "ai0_local_test_bot"
+    }
+  },
+
+  "strategies": [
+    {
+      "id": "ai0-prompts:local_ai_tech",
+      "type": "ai0-prompts",
+      "channelId": "@ai_tech_local",
+      "schedule": "*/5 * * * *"
+    },
+
+    {
+      "id": "pdr-quiz:local",
+      "type": "pdr-quiz",
+      "channelId": "@pdr_local",
+      "schedule": "*/5 * * * *"
+    },
+
+    {
+      "id": "game-channel:local_game_exchange",
+      "type": "game-channel",
+      "channelId": "@game_exchange_local",
+      "schedule": "*/5 * * * *"
+    },
+
+    {
+      "id": "ai0-news:local_ai_news",
+      "type": "ai0-news",
+      "channelId": "@ai_news_local",
+      "schedule": "*/5 * * * *"
+    },
+
+    {
+      "id": "quotes:local_motivation",
+      "type": "quotes",
+      "channelId": "@motivation_local",
+      "schedule": "*/5 * * * *"
+    },
+
+    {
+      "id": "birthday-strategy:local_motivation",
+      "type": "birthday-strategy",
+      "channelId": "@motivation_local",
+      "schedule": "*/5 * * * *"
+    }
+  ]
+}

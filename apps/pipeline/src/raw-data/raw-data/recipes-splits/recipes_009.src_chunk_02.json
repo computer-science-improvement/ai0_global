@@ -1,0 +1,658 @@
+[
+  {
+    "recipe_name": "Sourdough Lemon & Olive Oil Cake with Candied Lemon Peel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sourdough_lemon_%26_olive_oil_cake_with_candied_lemon_peel_20250724_135609_551172f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T13:56:09.819790000Z",
+    "selected_ingredients": [
+      "lemon"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single slice of Sourdough Lemon & Olive Oil Cake rests on a handcrafted, cream-toned ceramic plate. The cake has a delicate golden-brown crust and a moist, tender crumb, speckled with tiny flecks of lemon zest. A light sheen of reserved lemon syrup glistens on top. Beside the slice, a few thin, translucent strips of candied lemon peel are artfully placed, showcasing their natural, slightly curled forms. The plate sits on a light, reclaimed wood surface. An undyed linen napkin in a natural beige is subtly placed nearby. In the soft, natural light, the cake's textures and the subtle yellow hues of lemon are highlighted against the minimalist white space of the plate and clean background. The composition is simple, unforced, and celebrates the natural beauty of the ingredients. A whole, unadorned cake can be seen slightly blurred in the background on a simple wooden cake stand.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "Active sourdough starter",
+        "quantity": "150g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cane sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 2 lemons"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Lemon peels (for candied peel)",
+        "quantity": "from 2 lemons"
+      },
+      {
+        "name": "Cane sugar (for candied peel)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Water (for candied peel)",
+        "quantity": "50ml"
+      }
+    ],
+    "instructions": [
+      "Prepare candied lemon peel. Carefully peel lemons. Remove any white pith from peels. Slice peels into thin strips.",
+      "Place peel strips in a small saucepan. Cover with water. Boil for 5 minutes. Drain water. Repeat this boiling and draining process twice more.",
+      "Combine 50g cane sugar and 50ml water in a clean saucepan. Bring to a simmer. Add blanched lemon peel strips.",
+      "Simmer gently until peel is translucent. The liquid should reduce to a light syrup. Remove peel from syrup. Lay strips on parchment paper to cool. Reserve the lemon syrup.",
+      "Preheat oven to 180°C. Lightly grease and flour a 20cm round cake pan.",
+      "In a large mixing bowl, whisk together the active sourdough starter, olive oil, eggs, lemon juice, and lemon zest.",
+      "In a separate bowl, combine the flour, 150g cane sugar, baking powder, baking soda, and salt.",
+      "Add the dry ingredients to the wet ingredients. Mix gently until just combined. Do not overmix the batter.",
+      "Pour the cake batter into the prepared pan.",
+      "Bake for 30-35 minutes. A skewer inserted into the center should come out clean.",
+      "Cool cake in the pan for 10 minutes. Invert onto a wire rack. Cool completely.",
+      "Once the cake is cool, drizzle the reserved lemon syrup over the top. Arrange the cooled candied lemon peel strips on the cake as a garnish."
+    ],
+    "notes": [
+      "This recipe utilizes zero-waste by using the entire lemon, including the peels for candying and the juice for the cake. Sourdough starter contributes to natural leavening and flavor complexity, reducing reliance on commercial yeast."
+    ],
+    "traditional_techniques": [
+      "Sourdough fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 50,
+      "calories": 733,
+      "cholesterol_mg": 93,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 10.3,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 499,
+      "total_carbs_g": 105,
+      "total_fat_g": 31,
+      "total_sugars_g": 51.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 21.4,
+      "calories": 313.9,
+      "cholesterol_mg": 39.9,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 4.4,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 213.6,
+      "total_carbs_g": 44.9,
+      "total_fat_g": 13.3,
+      "total_sugars_g": 22,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 10,
+      "protein": 21,
+      "saturated_fat": 24,
+      "sodium": 22,
+      "total_carbs": 38,
+      "total_fat": 40
+    },
+    "serving_size_g": 233.5,
+    "total_recipe_weight_g": 934
+  },
+  {
+    "recipe_name": "Tomato Sausage Fried Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tomato_sausage_fried_rice_20250724_133857_ef450816.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T13:38:58.375484000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "sausage",
+      "cheese",
+      "corn",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "fried rice cuisine, fried rice",
+    "visual_description": "The finished dish is a generous individual portion of vibrant Tomato Sausage Fried Rice, served on a round, simple white ceramic plate with a slightly rustic edge. The rice is loosely piled, showcasing varied textures and colors. Cooked white rice forms the base, interspersed with browned sausage chunks, bright yellow corn kernels, soft diced red tomatoes, and translucent diced onions. Melted orange cheddar cheese is visible throughout. The rice has a slight sheen from stir-frying, with some grains lightly toasted. Fresh, bright green chopped green onions scatter on top. The plate rests on a well-used, light-colored wooden dining table. Dark wooden chopsticks sit casually beside the plate. A simple, off-white cloth napkin is folded nearby. Warm kitchen light illuminates the scene, highlighting the dish's comforting appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fried Rice",
+    "cultural_origin": "Asian Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with a small bowl of clear broth on the side.",
+      "Offer chili oil for extra heat."
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Cooked white rice",
+        "quantity": "500g (day-old, cold)"
+      },
+      {
+        "name": "Pork sausage",
+        "quantity": "200g, casing removed, crumbled"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Canned corn",
+        "quantity": "150g, drained"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "100g, shredded"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Prepare all ingredients. Dice onion and tomato. Mince garlic. Shred cheese. Chop green onions.",
+      "Heat 1 tablespoon oil in a large wok or pan over medium-high heat.",
+      "Add sausage. Cook until browned and cooked through, breaking it up. Remove sausage. Drain excess fat.",
+      "Add remaining 1 tablespoon oil to the pan. Add diced onion. Sauté until softened, about 3 minutes.",
+      "Add minced garlic. Sauté 1 minute until fragrant.",
+      "Add diced tomato and corn. Cook 3-4 minutes, stirring, until tomato softens slightly.",
+      "Add cooked rice. Break up any clumps. Stir-fry for 5-7 minutes until rice is heated through and slightly toasted.",
+      "Return cooked sausage to the pan. Mix well.",
+      "Push rice mixture to one side of the pan. Crack egg into the empty space. Scramble egg until cooked. Mix egg into the rice.",
+      "Pour soy sauce over the rice. Add salt and pepper to taste. Stir well to combine.",
+      "Remove pan from heat. Stir in shredded cheese until melted and incorporated.",
+      "Serve immediately. Garnish with chopped green onions."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 578,
+      "cholesterol_mg": 107,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 22.1,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 1597,
+      "total_carbs_g": 48.8,
+      "total_fat_g": 32.5,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 5.9,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 428,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36,
+      "dietary_fiber": 10,
+      "protein": 44,
+      "saturated_fat": 59,
+      "sodium": 69,
+      "total_carbs": 18,
+      "total_fat": 42
+    },
+    "serving_size_g": 373,
+    "total_recipe_weight_g": 1492
+  },
+  {
+    "recipe_name": "Spiced Mango & Bacon Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_mango_%26_bacon_bites_20250724_133254_bad14d6c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T13:32:54.857769000Z",
+    "selected_ingredients": [
+      "mango",
+      "bacon",
+      "fish sauce",
+      "onion",
+      "bell pepper",
+      "star anise",
+      "cinnamon",
+      "chinese five spice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The Spiced Mango & Bacon Bites are presented on a matte, light-colored ceramic plate, offering generous negative space. Irregularly cut, bright yellow mango cubes, lightly brined for a tangy-sweet profile, are artfully scattered. Interspersed are deep russet, crisp bacon crumbles, providing a textural contrast. A delicate drizzle of a glossy, amber-hued sauce, infused with star anise and Chinese five-spice, connects the elements. Scattered over the dish are finely diced, translucent red onion and vibrant red bell pepper pieces, adding subtle color and freshness. The arrangement is organic and unforced, highlighting the natural shapes and colors of the ingredients. The plate sits on a reclaimed light wood surface, accompanied by an undyed linen napkin and a small, green sprig of a leafy herb in the background, reinforcing the eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Mango",
+    "ingredients": [
+      {
+        "name": "Ripe, firm mangoes",
+        "quantity": "2"
+      },
+      {
+        "name": "Streaky bacon",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Star anise pods",
+        "quantity": "2"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 small (approx. 2 cm)"
+      },
+      {
+        "name": "Chinese five spice powder",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "Small bunch, for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare mango and vegetables: Peel mangoes, cut into 2 cm irregular cubes. Dice red onion and red bell pepper into small (0.5 cm) pieces.",
+      "Make quick brine: In a saucepan, combine water, rice vinegar, caster sugar, sea salt, star anise pods, and cinnamon stick. Bring to a simmer. Stir until sugar and salt dissolve. Remove from heat.",
+      "Brine ingredients: Place mango cubes, diced onion, and diced bell pepper in a heatproof jar or bowl. Pour hot brine over them. Ensure ingredients are submerged. Let cool to room temperature. Refrigerate for at least 2 hours, or up to 24 hours for deeper flavor.",
+      "Cook bacon: Heat a frying pan over medium heat. Add streaky bacon. Cook until very crispy and golden brown. Remove bacon, drain on paper towel. Crumble into small pieces when cool.",
+      "Reduce brine liquid: Strain the brining liquid into a small saucepan. Discard star anise and cinnamon stick. Bring liquid to a gentle simmer over medium-low heat. Reduce until slightly thickened to a light syrup consistency (about 10-15 minutes). This will be the sauce.",
+      "Assemble and serve: Remove brined mango, onion, and bell pepper from the liquid. Arrange mango cubes and crispy bacon crumbles on a minimalistic serving plate. Scatter the brined onion and bell pepper over.",
+      "Garnish: Drizzle the reduced brine sauce over the bites. Garnish sparingly with fresh cilantro leaves. Serve immediately as a savory snack."
+    ],
+    "notes": [
+      "This recipe utilizes a quick brining technique to infuse flavor and a slightly preserved texture into the mango, enhancing complexity.",
+      "Adjust sweetness or tanginess of brine to personal preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.75,
+      "calories": 377,
+      "cholesterol_mg": 48.5,
+      "dietary_fiber_g": 3.63,
+      "protein_g": 15.52,
+      "saturated_fat_g": 7.28,
+      "sodium_mg": 1965,
+      "total_carbs_g": 32.63,
+      "total_fat_g": 21,
+      "total_sugars_g": 28.69,
+      "trans_fat_g": 0.05
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.28,
+      "calories": 129,
+      "cholesterol_mg": 16.6,
+      "dietary_fiber_g": 1.24,
+      "protein_g": 5.3,
+      "saturated_fat_g": 2.49,
+      "sodium_mg": 671.8,
+      "total_carbs_g": 11.16,
+      "total_fat_g": 7.18,
+      "total_sugars_g": 9.81,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.17,
+      "dietary_fiber": 12.96,
+      "protein": 31.04,
+      "saturated_fat": 36.4,
+      "sodium": 85.43,
+      "total_carbs": 11.87,
+      "total_fat": 26.92
+    },
+    "serving_size_g": 292.5,
+    "total_recipe_weight_g": 1170
+  },
+  {
+    "recipe_name": "Bacon-Wrapped Spiced Mango Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bacon-wrapped_spiced_mango_bites_20250724_133159_2135cf94.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T13:32:00.306362000Z",
+    "selected_ingredients": [
+      "mango",
+      "bacon",
+      "fish sauce",
+      "onion",
+      "bell pepper",
+      "star anise",
+      "cinnamon",
+      "chinese five spice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Bacon-Wrapped Spiced Mango Bites are presented on a rustic wooden serving board, showcasing several individual pieces arranged casually across the surface. Each bite features a generous, thick chunk of vibrant orange mango, tightly wrapped with a strip of crispy, golden-brown streaky bacon. The bacon is cooked until well-rendered and slightly caramelized, adhering snugly to the sweet fruit. A glossy, deep amber glaze, infused with aromatic star anise, cinnamon, and Chinese five spice, coats each bacon-wrapped piece, providing a rich, savory-sweet sheen. Small, finely diced pieces of red bell pepper and onion from the glaze may cling to the surface, adding subtle flecks of color. The arrangement is unpretentious and inviting, typical of a casual home snack. The board sits on a well-used wooden kitchen table, illuminated by warm, natural kitchen lighting. A simple, casually placed cloth napkin completes the homely scene, emphasizing comfort and shareability.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian Fusion",
+    "cultural_origin": "Asian Fusion",
+    "cultural_serving_suggestions": [
+      "Serve as a shared appetizer or snack for casual gatherings.",
+      "Offer a small bowl of chili flakes or a light lime squeeze on the side for optional extra flavor."
+    ],
+    "hero_ingredient": "Mango",
+    "ingredients": [
+      {
+        "name": "Ripe, firm mangoes",
+        "quantity": "2 large (approximately 600g)"
+      },
+      {
+        "name": "Streaky bacon",
+        "quantity": "200g (approximately 8-10 slices)"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1 (approximately 80g)"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "0.5 (approximately 75g)"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "45g"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "2 whole"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (or 2g ground cinnamon)"
+      },
+      {
+        "name": "Chinese five spice powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Water",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "5ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F). Line a baking tray with parchment paper.",
+      "Peel mangoes. Cut each mango into approximately 8-10 thick chunks. Aim for uniform size.",
+      "Cut bacon slices in half crosswise.",
+      "Wrap one bacon half tightly around each mango chunk. Secure with a toothpick if needed.",
+      "Place wrapped mangoes seam-side down on the prepared baking tray.",
+      "Bake for 15-20 minutes, or until bacon is crispy and golden brown. Drain excess fat.",
+      "While mangoes bake, prepare the glaze. Finely dice the onion and bell pepper.",
+      "Heat vegetable oil in a small saucepan over medium heat.",
+      "Add diced onion and bell pepper. Sauté until softened, about 3-5 minutes.",
+      "Stir in fish sauce, brown sugar, star anise, cinnamon stick, Chinese five spice, and water.",
+      "Bring to a simmer. Cook, stirring occasionally, until sauce thickens to a glossy glaze, about 8-10 minutes. Remove star anise and cinnamon stick.",
+      "Brush the hot bacon-wrapped mango bites generously with the prepared glaze.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 11,
+      "calories": 399,
+      "cholesterol_mg": 49,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 10.8,
+      "saturated_fat_g": 7.6,
+      "sodium_mg": 1492,
+      "total_carbs_g": 37.7,
+      "total_fat_g": 23.1,
+      "total_sugars_g": 33.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4,
+      "calories": 145,
+      "cholesterol_mg": 17.6,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 3.9,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 541.7,
+      "total_carbs_g": 13.7,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 12.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.2,
+      "dietary_fiber": 13,
+      "protein": 21.6,
+      "saturated_fat": 38.2,
+      "sodium": 64.9,
+      "total_carbs": 13.7,
+      "total_fat": 29.7
+    },
+    "serving_size_g": 275.5,
+    "total_recipe_weight_g": 1102
+  },
+  {
+    "recipe_name": "Star Anise Bacon Consommé with Compressed Mango",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_star_anise_bacon_consomm%C3%A9_with_compressed_mango_20250724_132837_b07601ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T13:28:38.505899000Z",
+    "selected_ingredients": [
+      "mango",
+      "bacon",
+      "fish sauce",
+      "onion",
+      "bell pepper",
+      "star anise",
+      "cinnamon",
+      "chinese five spice"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single portion of crystal-clear, golden Star Anise Bacon Consommé is elegantly presented in a wide, pristine white bone china bowl. The consommé fills the base, creating a luminous, reflective surface. Artistically placed in a small cluster, three to four vibrant orange 1cm compressed mango cubes rest gently in the consommé, their edges sharp and defined. Adjacent to the mango, a scattering of deep red, crispy 0.5cm bacon lardons provides a textural contrast. A precise sprinkle of bright red 0.2cm bell pepper brunoise adds a delicate pop of color. A few drops of vivid green chive oil are strategically dotted around the elements, forming small, vibrant pools on the consommé's surface. The plating emphasizes abundant negative space, highlighting the simplicity and perfection of each component. The bowl sits on a polished white Carrara marble surface. A pristine white linen napkin, folded into a precise triangle, and minimalist brushed stainless steel cutlery are placed beside the bowl. Dramatic professional lighting casts subtle shadows, enhancing the dish's architectural precision. The background is ultra-minimalist, drawing full attention to the exquisite soup.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Asian",
+    "cultural_origin": "Modern Asian",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Mango",
+    "ingredients": [
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "200g"
+      },
+      {
+        "name": "Firm ripe mangoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Star anise pods",
+        "quantity": "3"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Chinese five spice powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Premium fish sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "High-quality chicken stock",
+        "quantity": "1.5 liters"
+      },
+      {
+        "name": "Large egg whites",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut 100g bacon into 0.5cm lardons. Reserve. Cut remaining 100g bacon into large chunks for consommé.",
+      "Slice shallots thinly. Cut bell pepper into 0.2cm brunoise. Blanch bell pepper brunoise for 30 seconds. Shock in ice water. Drain well. Reserve.",
+      "For the consommé: In a large pot, render bacon chunks until crisp. Remove bacon. Add sliced shallots to rendered fat. Sauté until softened. Add chicken stock, star anise, cinnamon stick, and Chinese five spice. Bring to a gentle simmer. Cook for 30 minutes. Strain through a fine-mesh sieve. Discard solids. Cool broth.",
+      "For clarification: Whisk egg whites until frothy. Gently fold egg whites into cooled broth. Heat slowly over medium-low heat. Do not stir once egg whites form a 'raft'. Simmer gently for 20 minutes. Carefully ladle clarified consommé through a cheesecloth-lined sieve. Repeat if necessary for crystal clarity. Season consommé with fish sauce, salt, and pepper. Keep warm.",
+      "For compressed mango: Peel and cut mangoes into 1cm cubes. Place mango cubes in a vacuum-seal bag with a splash of fish sauce. Vacuum seal to compress. If no vacuum sealer, press firmly in a sealed bag to remove air. Refrigerate for 30 minutes. Remove mango from bag.",
+      "For crispy lardons: Render reserved 100g bacon lardons in a dry pan over medium heat until very crisp. Drain on paper towels.",
+      "For chive oil: Blanch chives for 10 seconds. Shock in ice water. Drain and pat dry. Blend chives with neutral oil until smooth. Strain through a fine-mesh sieve for clear oil.",
+      "To serve: Ladle warm consommé into each deep, wide serving bowl. Artistically arrange a small cluster of compressed mango cubes in the consommé. Scatter crispy bacon lardons next to the mango. Sprinkle a very small amount of red bell pepper brunoise for color. Drizzle a few drops of chive oil around the elements."
+    ],
+    "notes": [],
+    "traditional_techniques": [
+      "Consommé Clarification",
+      "Precision Cutting",
+      "Infusion"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 437,
+      "cholesterol_mg": 49,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 23.8,
+      "saturated_fat_g": 8.3,
+      "sodium_mg": 3064,
+      "total_carbs_g": 20.5,
+      "total_fat_g": 29.5,
+      "total_sugars_g": 17.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 70.3,
+      "cholesterol_mg": 7.8,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 3.8,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 493.2,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16,
+      "dietary_fiber": 10,
+      "protein": 48,
+      "saturated_fat": 41,
+      "sodium": 133,
+      "total_carbs": 7,
+      "total_fat": 38
+    },
+    "serving_size_g": 621.25,
+    "total_recipe_weight_g": 2485
+  }
+]

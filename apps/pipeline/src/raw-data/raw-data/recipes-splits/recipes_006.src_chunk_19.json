@@ -1,0 +1,742 @@
+[
+  {
+    "recipe_name": "Goan Salmon Curry with Basmati Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_184145_058ac08e.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 19,
+    "timestamp": "2025-10-22T18:41:46.253040000Z",
+    "selected_ingredients": [
+      "salmon",
+      "rice",
+      "chili",
+      "ginger"
+    ],
+    "complexity": "standard",
+    "special_requests": "Indian cuisine",
+    "visual_description": "A single portion of Goan Salmon Curry is presented on a clean white porcelain dinner plate, alongside a neat mound of fluffy basmati rice. The curry, served in a small katori (Indian bowl), features thick, tender chunks of salmon immersed in a vibrant, glossy orange-red coconut-based sauce. The sauce exhibits a rich texture with visible flecks of green chili, grated ginger, and tempered curry leaves. Fresh, bright green chopped coriander leaves are scattered over the curry as a garnish, offering a fresh contrast. The salmon is perfectly cooked, showcasing a flaky interior. The basmati rice is pristine white and well-separated. The setting is a modern bistro with a simple wooden table surface. Natural, even lighting illuminates the dish. A steel spoon and a small side bowl of lime pickle are positioned beside the plate, completing an authentic Indian dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with additional plain steamed basmati rice.",
+      "Accompaniments such as a simple cucumber raita (yogurt dip) or a tangy lime pickle are traditional.",
+      "Can be enjoyed with plain naan bread or roti to scoop up the curry."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin on or off",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Coconut oil or vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Brown onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "5cm piece"
+      },
+      {
+        "name": "Green chilies, slit lengthwise",
+        "quantity": "2"
+      },
+      {
+        "name": "Dried red chilies, stems removed",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Coriander seeds",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Tamarind paste",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Canned coconut milk",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Tomato, chopped",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Mustard seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh curry leaves",
+        "quantity": "1 sprig (approx. 10-12 leaves)"
+      },
+      {
+        "name": "Fresh coriander leaves, chopped",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse basmati rice thoroughly. Cook rice according to package directions. Set aside.",
+      "For the curry paste: In a dry pan, lightly toast coriander seeds and cumin seeds until fragrant. Transfer to a grinder.",
+      "Add dried red chilies, half of the grated ginger, half of the minced garlic, turmeric powder, and tamarind paste to the grinder. Add 2 tablespoons of water. Grind to a smooth paste.",
+      "Heat 1 tablespoon of oil in a large pan or pot over medium heat. Add diced onion. Sauté until translucent, about 5-7 minutes.",
+      "Add the remaining grated ginger and minced garlic to the pan. Sauté for 1 minute until fragrant.",
+      "Add the prepared curry paste to the pan. Cook, stirring constantly, for 3-5 minutes until the raw aroma disappears and oil separates.",
+      "Add chopped tomato and slit green chilies. Cook for 2-3 minutes until tomatoes soften slightly.",
+      "Pour in coconut milk and 150ml water. Bring the curry to a gentle simmer. Season with salt. Reduce heat to low and cook for 10 minutes, allowing flavors to meld.",
+      "Cut salmon fillets into thick chunks. Gently add salmon chunks to the simmering curry. Ensure salmon is submerged.",
+      "Cover the pan and cook for 8-10 minutes, or until salmon is cooked through (internal temperature 75°C / 167°F) and flakes easily. Do not overcook.",
+      "For the tempering (tadka): In a small separate pan, heat the remaining 1 tablespoon of oil over medium heat.",
+      "Add mustard seeds. Once they splutter, add curry leaves. Cook for 30 seconds until fragrant.",
+      "Pour the hot tempering over the finished salmon curry. Stir gently to combine.",
+      "Garnish with fresh chopped coriander leaves. Serve hot with basmati rice."
+    ],
+    "notes": [
+      "Adjust the number of green and dried red chilies according to desired spice level.",
+      "Be careful not to overcook the salmon; it should remain moist and flaky."
+    ],
+    "traditional_techniques": [
+      "Tadka (Tempering)",
+      "Grinding fresh spice paste"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 767,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 6.99,
+      "protein_g": 45.88,
+      "saturated_fat_g": 32.49,
+      "sodium_mg": 615.27,
+      "total_carbs_g": 79.73,
+      "total_fat_g": 55.92,
+      "total_sugars_g": 8.17,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127,
+      "cholesterol_mg": 16.38,
+      "dietary_fiber_g": 1.16,
+      "protein_g": 7.59,
+      "saturated_fat_g": 5.38,
+      "sodium_mg": 101.82,
+      "total_carbs_g": 13.19,
+      "total_fat_g": 9.25,
+      "total_sugars_g": 1.35,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 25,
+      "protein": 91.8,
+      "saturated_fat": 162.5,
+      "sodium": 26.8,
+      "total_carbs": 29,
+      "total_fat": 71.7
+    },
+    "serving_size_g": 604.25,
+    "total_recipe_weight_g": 2417
+  },
+  {
+    "recipe_name": "Ginger Chili Glazed Salmon with Spiced Basmati Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_184033_7544753d.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 19,
+    "timestamp": "2025-10-22T18:40:33.637928000Z",
+    "selected_ingredients": [
+      "salmon",
+      "rice",
+      "ginger ale",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "Indian cuisine",
+    "visual_description": "A single, generously sized pan-seared salmon fillet, golden-brown and glistening with a reduced ginger-chili-ginger ale glaze, rests atop a mound of fluffy, pearlescent basmati rice. The salmon exhibits a slightly caramelized exterior and a tender, flaky interior, presented as a whole piece. The basmati rice is infused with warm whole spices like cardamom and cinnamon, visible as subtle flecks. A vibrant sprinkle of fresh, finely chopped coriander leaves and thin julienned red chili threads provides a fresh, colorful contrast. The dish is presented on a clean white porcelain dinner plate, featuring moderate negative space. The setting includes a simple wooden table surface, a white cotton napkin beside the plate, and a soft, blurred restaurant background with natural, even lighting. The overall presentation is professional and approachable.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of cooling raita (yogurt-based condiment).",
+      "Offer a simple kachumber salad (diced cucumber, tomato, onion) for freshness.",
+      "Accompanied by a wedge of lemon for squeezing."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin on",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Ginger ale",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Fresh red chilies",
+        "quantity": "2-3, finely chopped"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fresh coriander, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Green cardamom pods",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 small"
+      }
+    ],
+    "instructions": [
+      "Prepare salmon marinade: Combine 25g grated ginger, 2 minced garlic cloves, 1 finely chopped red chili, coriander powder, cumin powder, turmeric powder, garam masala, 1 tbsp lemon juice, 1 tbsp vegetable oil, salt, and black pepper. Mix well.",
+      "Coat salmon: Rub the marinade evenly over the salmon fillets. Let marinate at room temperature for 20 minutes.",
+      "Cook rice: Wash basmati rice thoroughly under cold water until water runs clear. Heat 1 tbsp vegetable oil in a medium pot over medium heat. Add cardamom pods, cinnamon stick, and cloves; sauté until fragrant, about 30 seconds. Add diced onion and cook until translucent, 3-4 minutes.",
+      "Add rice to the pot and stir for 1 minute to coat. Pour in 500ml water and add salt to taste. Bring to a boil, then reduce heat to low, cover tightly, and simmer for 12-15 minutes, or until all water is absorbed. Remove from heat and let stand, covered, for 5 minutes. Fluff with a fork.",
+      "Prepare glaze: In a small saucepan, combine ginger ale, remaining 25g grated ginger, remaining 2 minced garlic cloves, remaining 1 finely chopped red chili, and 1 tbsp lemon juice. Bring to a simmer over medium heat. Cook until the liquid reduces by half and slightly thickens, about 8-10 minutes. Season with salt to taste.",
+      "Sear salmon: Heat 1 tbsp vegetable oil in a large non-stick pan over medium-high heat. Place salmon fillets, skin-side down, in the hot pan. Sear for 4-5 minutes until the skin is crispy and golden brown. Flip the salmon fillets.",
+      "Glaze salmon: Pour the prepared ginger ale glaze over the salmon fillets. Continue to cook for another 4-6 minutes, basting the salmon frequently with the glaze, until the salmon reaches an internal temperature of 75°C (167°F) and is cooked through and flaky.",
+      "Plate: Place a portion of the spiced basmati rice on each clean white porcelain dinner plate. Carefully transfer one glazed salmon fillet onto the rice.",
+      "Garnish: Sprinkle generously with fresh chopped coriander. For added visual appeal and a hint of spice, garnish with a few thin julienned threads of fresh red chili or ginger."
+    ],
+    "traditional_techniques": [
+      "Tempering spices (for rice)",
+      "Marination"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.6,
+      "calories": 737.14,
+      "cholesterol_mg": 113.4,
+      "dietary_fiber_g": 2.29,
+      "protein_g": 41.64,
+      "saturated_fat_g": 6.44,
+      "sodium_mg": 606.48,
+      "total_carbs_g": 60.43,
+      "total_fat_g": 34.29,
+      "total_sugars_g": 5.28,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.81,
+      "calories": 166.24,
+      "cholesterol_mg": 25.58,
+      "dietary_fiber_g": 0.52,
+      "protein_g": 9.39,
+      "saturated_fat_g": 1.45,
+      "sodium_mg": 136.83,
+      "total_carbs_g": 13.63,
+      "total_fat_g": 7.74,
+      "total_sugars_g": 1.19,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.8,
+      "dietary_fiber": 8.18,
+      "protein": 83.28,
+      "saturated_fat": 32.2,
+      "sodium": 26.37,
+      "total_carbs": 21.97,
+      "total_fat": 43.96
+    },
+    "serving_size_g": 443.25,
+    "total_recipe_weight_g": 1773
+  },
+  {
+    "recipe_name": "Spicy Salmon Pulao",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_183842_828879b2.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-10-22T18:38:43.784877000Z",
+    "selected_ingredients": [
+      "salmon",
+      "rice",
+      "ginger ale",
+      "chili"
+    ],
+    "complexity": "simple",
+    "special_requests": "Indian cuisine",
+    "visual_description": "A single portion of Spicy Salmon Pulao is presented in a deep, round ceramic bowl. The basmati rice, infused with subtle ginger ale notes and whole spices, forms the base, its grains distinct and fluffy with a light golden hue from turmeric. Nestled atop the rice is a generously sized, pan-seared salmon fillet, its skin crisp and golden-brown, showcasing a vibrant orange-pink interior. Small pieces of green chili and caramelized onion are visible within the rice, adding flecks of color and texture. Fresh, chopped coriander leaves are scattered over the salmon and rice, providing a contrasting green. The arrangement is natural and inviting, appearing hearty and comforting. The bowl sits on a well-used wooden dining table, accompanied by a simple stainless steel spoon and a small side dish of Raita, reflecting a homely Indian meal setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of cooling Raita (yogurt dip with cucumber or boondi).",
+      "Accompanied by sliced red onions marinated in lime juice.",
+      "Can be served with a simple kachumber (cucumber, tomato, onion salad)."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets",
+        "quantity": "600 grams, skin on, cut into 4 pieces"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Ginger ale",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, thinly sliced"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2, slit lengthwise"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Whole spices",
+        "quantity": "2 green cardamom pods, 2 cloves, 1 small cinnamon stick"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "30 grams, chopped"
+      },
+      {
+        "name": "Cooking oil or Ghee",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse basmati rice thoroughly. Soak in water for 30 minutes. Drain.",
+      "Pat salmon fillets dry. Marinate with 2 grams turmeric powder, 2 grams red chili powder, 5 grams ginger-garlic paste, and salt.",
+      "Heat 30 ml oil in a large pot or Dutch oven over medium heat.",
+      "Sear marinated salmon pieces for 2-3 minutes per side until lightly browned. Remove salmon and set aside.",
+      "In the same pot, add remaining oil. Add cumin seeds, cardamom, cloves, and cinnamon stick. Sauté for 30 seconds until fragrant.",
+      "Add sliced onion. Sauté until golden brown, about 8-10 minutes.",
+      "Add remaining ginger-garlic paste, 3 grams turmeric powder, 3 grams red chili powder, and garam masala. Cook for 1 minute, stirring constantly.",
+      "Add green chilies and drained rice. Gently stir for 2 minutes to coat rice with spices.",
+      "Pour in ginger ale and water. Add salt to taste. Bring to a boil.",
+      "Reduce heat to low. Place seared salmon pieces on top of the rice.",
+      "Cover pot tightly. Cook for 15-18 minutes, or until liquid is absorbed and rice is tender.",
+      "Turn off heat. Let rest, covered, for 10 minutes.",
+      "Gently fluff rice with a fork. Garnish with fresh chopped coriander leaves."
+    ],
+    "traditional_techniques": [
+      "Tadka (tempering whole spices in oil)",
+      "Dum cooking (slow cooking rice with minimal steam escape)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.8,
+      "calories": 762.52,
+      "cholesterol_mg": 94.5,
+      "dietary_fiber_g": 3.51,
+      "protein_g": 37.55,
+      "saturated_fat_g": 7,
+      "sodium_mg": 601.1,
+      "total_carbs_g": 73.44,
+      "total_fat_g": 34.09,
+      "total_sugars_g": 7.44,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.28,
+      "calories": 203.34,
+      "cholesterol_mg": 25.2,
+      "dietary_fiber_g": 0.94,
+      "protein_g": 10.01,
+      "saturated_fat_g": 1.87,
+      "sodium_mg": 160.3,
+      "total_carbs_g": 19.58,
+      "total_fat_g": 9.09,
+      "total_sugars_g": 1.98,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31.5,
+      "dietary_fiber": 12.5,
+      "protein": 75.1,
+      "saturated_fat": 35,
+      "sodium": 26.1,
+      "total_carbs": 26.7,
+      "total_fat": 43.7
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Indian Ginger-Chili Salmon Curry with Basmati Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_183559_68c421a6.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 20,
+    "timestamp": "2025-10-22T18:35:59.611605000Z",
+    "selected_ingredients": [
+      "salmon",
+      "rice",
+      "ginger ale",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "Indian cuisine",
+    "visual_description": "A vibrant Indian Ginger-Chili Salmon Curry is presented on a clean white porcelain dinner plate, centrally placed on a simple wooden table. A generous portion of fluffy white basmati rice forms a neat mound on one side. Beside it, a deep katori bowl holds the rich, orange-red salmon curry. The curry features moist, flaky salmon chunks, clearly visible within the glossy, thick sauce. Hints of green from slit chilies and fresh chopped coriander garnish the curry, adding freshness and contrasting color. A lime wedge sits on the rim of the katori. The setting includes a folded white cotton napkin and traditional Indian-style flatware beside the plate. The overall composition is balanced with moderate negative space, highlighted by natural, even lighting from above. The scene evokes a modern bistro atmosphere with authentic cultural touches, focusing on the natural textures and colors of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of cooling Raita (yogurt dip with cucumber and mint).",
+      "Offer warm Naan bread or Chapati for scooping up the curry.",
+      "A small bowl of pickled onions or mango pickle can accompany the meal."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin on",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Ginger ale",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Green chilies, slit lengthwise",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic paste",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Ginger paste",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Coconut milk, full fat",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Mustard seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Curry leaves",
+        "quantity": "10-12"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "1/2 tsp (adjust to taste)"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Fresh coriander, chopped",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse basmati rice thoroughly. Cook rice according to package directions. Keep warm.",
+      "Pat salmon fillets dry. Cut into 4-5 cm chunks. Season with salt.",
+      "Heat vegetable oil in a large pan or kadai over medium heat.",
+      "Add mustard seeds. Once they splutter, add curry leaves and green chilies.",
+      "Add chopped onion. Sauté until translucent, about 5-7 minutes.",
+      "Stir in ginger paste and garlic paste. Cook for 1 minute until fragrant.",
+      "Add turmeric powder, coriander powder, cumin powder, and red chili powder. Cook for 30 seconds, stirring constantly.",
+      "Pour in diced tomatoes. Cook, stirring occasionally, until tomatoes soften and oil separates, about 8-10 minutes.",
+      "Add ginger ale and coconut milk. Bring to a gentle simmer.",
+      "Carefully add salmon chunks to the simmering curry. Do not stir vigorously.",
+      "Cover and cook for 5-7 minutes, or until salmon is cooked through and flaky.",
+      "Gently stir in garam masala, fresh coriander, and lime juice. Adjust salt to taste.",
+      "Serve immediately with hot basmati rice."
+    ],
+    "traditional_techniques": [
+      "Tempering spices (Tadka)"
+    ]
+  },
+  {
+    "recipe_name": "Peruvian Chicken and Beef Saltado",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251022_183159_ed5221f5.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2025-10-22T18:31:59.803543000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "rice",
+      "tomato",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Plated on a clean white porcelain dinner plate, the vibrant Peruvian Chicken and Beef Saltado is centrally arranged. Seared chicken and beef chunks intersperse with bright red tomato wedges and translucent red onion julienne. A glossy, savory sauce coats all ingredients, reflecting the wok's high heat. Green flecks of fresh cilantro add a pop of color. The dish is accompanied by fluffy white rice and golden-brown, thick-cut potato fries, crisp outside, tender within. The overall presentation is fresh, colorful, and appetizing, with natural flowing arrangements. The plate sits on a simple wooden table, flanked by a cotton napkin. A traditional Peruvian ceramic bowl or a small glass for chicha morada could be subtly placed in the background, creating an authentic bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "cultural_origin": "Peruvian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of white rice to soak up the savory sauce.",
+      "Accompany with crispy fried potatoes (papas fritas).",
+      "Offer Aji Verde (green chili sauce) on the side for those who prefer extra spice.",
+      "Traditionally enjoyed with a beverage like Chicha Morada (purple corn drink)."
+    ],
+    "hero_ingredient": "Chicken and Beef",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef sirloin",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "White rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook rice: Wash rice. Combine rice with 600 ml water in a pot. Bring to boil, then reduce heat, cover, and simmer for 15 minutes. Remove from heat, let stand 5 minutes, then fluff with a fork.",
+      "Prepare potatoes: Heat enough vegetable oil in a deep pan or pot to 175°C. Cut potatoes into thick-cut fries (batons). Fry potato batons until golden brown and crispy. Drain on paper towels. Season with salt.",
+      "Marinate meat: Cut chicken and beef into 3 cm cubes. In a bowl, toss chicken and beef cubes with salt, pepper, cumin, and oregano.",
+      "Sear meat: Heat a large wok or heavy-bottomed pan over high heat until smoking. Add a splash of oil. Sear beef cubes in a single layer until browned, 2-3 minutes. Remove beef. Add more oil if needed, then sear chicken cubes until browned, 3-4 minutes. Remove chicken.",
+      "Sauté aromatics: Add a bit more oil to the wok. Cut red onion into thick julienne strips. Sauté red onion for 1-2 minutes until slightly softened. Mince garlic. Add minced garlic and Aji Amarillo paste. Sauté for 1 minute until fragrant.",
+      "Combine: Return seared beef and chicken to the wok. Cut tomatoes into thick wedges. Add tomato wedges, soy sauce, and red wine vinegar. Toss quickly for 1-2 minutes until ingredients are coated and heated through. Do not overcook tomatoes.",
+      "Finish: Chop fresh cilantro. Stir in chopped fresh cilantro.",
+      "Serve: Serve immediately with cooked white rice and crispy potato fries on the side."
+    ],
+    "notes": [
+      "Ensure the wok or pan is very hot before searing the meat to get a good crust and prevent stewing.",
+      "Work in batches if your pan is not large enough to avoid overcrowding, which lowers the temperature and prevents proper searing.",
+      "The key to Saltado is quick cooking over high heat to maintain the freshness and texture of the vegetables."
+    ],
+    "traditional_techniques": [
+      "Saltado (Stir-frying)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 949,
+      "cholesterol_mg": 155,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 68.7,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 1749,
+      "total_carbs_g": 93.2,
+      "total_fat_g": 32.3,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.2,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 233,
+      "total_carbs_g": 12.4,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.7,
+      "dietary_fiber": 23,
+      "protein": 137.5,
+      "saturated_fat": 26.4,
+      "sodium": 76,
+      "total_carbs": 33.9,
+      "total_fat": 41.4
+    },
+    "serving_size_g": 750,
+    "total_recipe_weight_g": 3000
+  }
+]

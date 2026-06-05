@@ -1,0 +1,659 @@
+[
+  {
+    "recipe_name": "Spiced Squash Bread Pudding with Candied Chickpeas and Umami Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_squash_bread_pudding_with_candied_chickpeas_and_umami_glaze_20250625_155051_bd074047.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:50:51.840782000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread",
+      "bean",
+      "carrot",
+      "squash"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of warm Spiced Squash Bread Pudding is presented on a clean, round white porcelain plate, centrally placed. The pudding is a substantial square cut from the pan, golden-brown on top with visible caramelized edges and soft, creamy interior. Small specks of orange from the grated carrot are subtly visible within the pudding. A generous scattering of glossy, amber-colored candied chickpeas rests beside and on top of the pudding, offering a contrasting crisp texture. A rich, amber-hued umami glaze is artfully drizzled over the pudding and around the plate, creating subtle pools. The setting is a modern bistro, featuring a light wooden table surface and a folded grey cotton napkin beside the plate. Natural, soft, even lighting illuminates the dish, highlighting its comforting textures and warm colors. The background is softly blurred, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Butternut Squash",
+    "ingredients": [
+      {
+        "name": "Stale Brioche Bread",
+        "quantity": "300g, cut into 2cm cubes"
+      },
+      {
+        "name": "Butternut Squash",
+        "quantity": "500g, peeled, deseeded, cut into 3cm chunks"
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "150g (for pudding), 50g (for chickpeas)"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground Nutmeg",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Cooked Chickpeas (canned, rinsed)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium (approx 100g), finely grated"
+      },
+      {
+        "name": "Unsalted Chicken Broth",
+        "quantity": "500ml (for glaze)"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "30ml (for glaze)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "Drizzle (for roasting)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss squash chunks with a drizzle of olive oil. Roast for 25-30 minutes until tender and caramelized. Mash or blend until smooth.",
+      "In a large bowl, whisk eggs, 150g sugar, vanilla, cinnamon, nutmeg, and salt. Gradually whisk in milk and cream. Stir in mashed squash puree and grated carrot.",
+      "Place bread cubes in a 20x20cm baking dish. Pour custard mixture over bread. Press gently to submerge bread. Let sit for 30 minutes to absorb.",
+      "Preheat oven to 175°C. Bake bread pudding for 40-50 minutes, or until set and golden brown. A knife inserted near the center should come out clean.",
+      "While pudding bakes, heat 50g sugar with 30ml water in a small saucepan. Bring to a simmer. Add chickpeas. Cook, stirring constantly, until water evaporates and sugar crystallizes around chickpeas. Continue cooking over low heat, stirring, until sugar caramelizes lightly and chickpeas are crisp. Spread on parchment paper to cool.",
+      "In a small saucepan, combine chicken broth and maple syrup. Bring to a boil, then reduce heat to low. Simmer gently for 20-25 minutes, or until liquid reduces by half and becomes a syrupy glaze. Strain for smoothness.",
+      "Spoon warm bread pudding onto individual plates. Garnish with candied chickpeas. Drizzle generously with the umami glaze."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 56,
+      "calories": 1048.19,
+      "cholesterol_mg": 338.16,
+      "dietary_fiber_g": 9.26,
+      "protein_g": 27.13,
+      "saturated_fat_g": 25.32,
+      "sodium_mg": 585.46,
+      "total_carbs_g": 130.71,
+      "total_fat_g": 49.43,
+      "total_sugars_g": 77.97,
+      "trans_fat_g": 1.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 7.09,
+      "calories": 132.82,
+      "cholesterol_mg": 42.85,
+      "dietary_fiber_g": 1.17,
+      "protein_g": 3.44,
+      "saturated_fat_g": 3.21,
+      "sodium_mg": 74.18,
+      "total_carbs_g": 16.56,
+      "total_fat_g": 6.26,
+      "total_sugars_g": 9.88,
+      "trans_fat_g": 0.14
+    },
+    "daily_value_percentages": {
+      "cholesterol": 112.72,
+      "dietary_fiber": 33.07,
+      "protein": 54.26,
+      "saturated_fat": 126.6,
+      "sodium": 25.45,
+      "total_carbs": 47.53,
+      "total_fat": 63.37
+    },
+    "serving_size_g": 789.25,
+    "total_recipe_weight_g": 3157
+  },
+  {
+    "recipe_name": "Classic Pasta Carbonara",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_pasta_carbonara_20250625_155006_0342ae0e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:50:07.253231000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Classic Pasta Carbonara is presented in a clean, shallow white porcelain bowl, centered on a simple light wooden table. The spaghetti is artfully piled and twirled into a natural mound, coated in a rich, creamy, golden-yellow sauce. Interspersed throughout the pasta are crispy, golden-brown cubes of rendered guanciale. A generous dusting of finely grated white Pecorino Romano cheese covers the top, contrasting with abundant coarse black pepper flecks. The sauce has a glossy, emulsified texture, clinging beautifully to each strand of pasta. The overall composition is balanced with moderate negative space, highlighting the dish's inviting warmth and rustic elegance. A silver fork is positioned to the side, ready for serving. Natural, even light illuminates the dish from above, emphasizing the textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately after preparation.",
+      "Offer extra grated Pecorino Romano and black pepper at the table.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Guanciale",
+    "ingredients": [
+      {
+        "name": "Spaghetti",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Guanciale (or pancetta)",
+        "quantity": "150 g, cut into 1 cm cubes or strips"
+      },
+      {
+        "name": "Large egg yolks",
+        "quantity": "4"
+      },
+      {
+        "name": "Large whole egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Pecorino Romano cheese, finely grated",
+        "quantity": "80 g, plus extra for serving"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "5 g, plus extra for serving"
+      },
+      {
+        "name": "Salt",
+        "quantity": "for pasta water"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil. Add spaghetti. Cook according to package directions until al dente. Reserve 250 ml of pasta cooking water before draining.",
+      "While pasta cooks, heat a large non-stick pan over medium-low heat. Add guanciale. Render slowly until crispy and golden, about 8-10 minutes. Remove pan from heat. Do not discard rendered fat.",
+      "In a medium bowl, whisk together egg yolks, whole egg, grated Pecorino Romano, and black pepper until smooth and creamy.",
+      "Drain pasta. Immediately add hot spaghetti to the pan with rendered guanciale and fat. Toss to coat.",
+      "Quickly pour the egg mixture over the pasta, tossing vigorously with tongs. Add reserved pasta water, 30 ml at a time, continuously tossing until a creamy, emulsified sauce forms and coats the pasta. The heat from the pasta will cook the egg mixture without scrambling it.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "The key to Carbonara is the emulsification of egg, cheese, and pasta water to create a creamy sauce without cream.",
+      "Do not cook the egg mixture directly on heat, as it will scramble. The heat from the pasta is sufficient."
+    ],
+    "traditional_techniques": [
+      "Emulsification"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 639.61,
+      "cholesterol_mg": 282.03,
+      "dietary_fiber_g": 2.88,
+      "protein_g": 28.71,
+      "saturated_fat_g": 11.92,
+      "sodium_mg": 1038.91,
+      "total_carbs_g": 61.59,
+      "total_fat_g": 29.55,
+      "total_sugars_g": 2.36,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 221.91,
+      "cholesterol_mg": 97.84,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.96,
+      "saturated_fat_g": 4.14,
+      "sodium_mg": 360.42,
+      "total_carbs_g": 21.37,
+      "total_fat_g": 10.25,
+      "total_sugars_g": 0.82,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 94.01,
+      "dietary_fiber": 10.29,
+      "protein": 57.42,
+      "saturated_fat": 59.6,
+      "sodium": 45.17,
+      "total_carbs": 22.39,
+      "total_fat": 37.88
+    },
+    "serving_size_g": 288.25,
+    "total_recipe_weight_g": 1153
+  },
+  {
+    "recipe_name": "Chicken and Tomato Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_tomato_risotto_20250625_155000_6f090738.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:50:01.421875000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "parmesan cheese",
+      "onion",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy Chicken and Tomato Risotto is presented on a clean, round white porcelain dinner plate. The risotto is free-flowing and spread naturally. Its vibrant orange-red hue contrasts with golden-brown seared chicken chunks, interspersed throughout. Halved, bright red cherry tomatoes add bursts of color and texture. Freshly grated Parmesan cheese lightly dusts the top, providing a pale yellow accent. A few fresh basil leaves are scattered as garnish, offering a pop of green. The plate sits on a simple light wooden table. A folded cotton napkin and traditional Italian flatware are placed beside it. Natural, even lighting illuminates the dish from the side, enhancing its inviting appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and balsamic vinegar.",
+      "Offer crusty ciabatta bread for dipping."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast or thigh",
+        "quantity": "400 g, cut into 2 cm cubes"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g, halved"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g, freshly grated, plus extra for serving"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.2 litres, hot"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "15 g, chopped, plus sprigs for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat 15 ml olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Add chicken cubes. Sear until golden brown on all sides. Cook chicken to an internal temperature of 75°C (167°F). Remove chicken from pot. Set aside.",
+      "Add remaining 15 ml olive oil to the pot. Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice. Stir constantly for 2 minutes until grains are translucent at the edges.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add a ladleful of hot chicken broth. Stir continuously until broth is absorbed.",
+      "Continue adding broth one ladleful at a time. Stir constantly. Wait for each addition to be absorbed before adding the next. This process takes about 18-20 minutes.",
+      "After 10 minutes, add halved cherry tomatoes to the risotto. Continue cooking and stirring.",
+      "When rice is al dente (creamy but with a slight bite), remove from heat.",
+      "Stir in cooked chicken, grated Parmesan cheese, and butter. Stir vigorously for 1 minute for mantecatura (creamy finish).",
+      "Stir in chopped fresh basil.",
+      "Season with salt and black pepper to taste. Serve immediately."
+    ],
+    "notes": [
+      "Risotto requires constant stirring for optimal creaminess.",
+      "Ensure broth is hot for continuous cooking."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 756.9,
+      "cholesterol_mg": 123.1,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 51.9,
+      "saturated_fat_g": 10.9,
+      "sodium_mg": 1261.1,
+      "total_carbs_g": 73,
+      "total_fat_g": 25.3,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 216.3,
+      "cholesterol_mg": 35.2,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 14.8,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 360.3,
+      "total_carbs_g": 20.9,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 8.6,
+      "protein": 103.8,
+      "saturated_fat": 54.5,
+      "sodium": 54.8,
+      "total_carbs": 26.5,
+      "total_fat": 32.4
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Arroz con Pollo Mexicano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_mexicano_20250625_154935_7e275d17.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:49:35.632878000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "chili",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Arroz con Pollo is presented on a pristine white ceramic dinner plate. Two golden-brown, skin-on chicken thighs, cooked whole, are prominently positioned atop a generous bed of vibrant, moist orange-red long-grain rice. The rice is studded with finely diced white onion, red bell pepper, and specks of green jalapeño, offering a rich tapestry of color and texture. Fresh, bright green chopped cilantro is sprinkled generously over the chicken and rice. A quartered lime wedge rests beside the chicken. The plate maintains moderate negative space. The setting includes a simple wooden table, a folded white cotton napkin, and a small ceramic bowl of vibrant salsa roja. A stack of warm corn tortillas in a woven basket completes the authentic Mexican dining experience under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas.",
+      "Offer a side of salsa roja or pico de gallo.",
+      "Accompany with refried beans or a simple green salad.",
+      "Serve with a Mexican agua fresca."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 medium (approx. 800 g)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "White onion, diced",
+        "quantity": "1 medium (approx. 150 g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Jalapeño, deseeded and minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime, cut into wedges",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat. Sear chicken skin-side down until golden brown and crispy, about 5-7 minutes. Flip and sear other side for 3-5 minutes. Remove chicken. Set aside.",
+      "Reduce heat to medium. Add diced onion, minced garlic, minced jalapeño, and diced bell pepper to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add rice to the pot. Stir constantly for 2-3 minutes until lightly toasted.",
+      "Stir in ground cumin and dried oregano for 1 minute. Pour in crushed tomatoes and chicken broth. Scrape bottom of pot to loosen any browned bits. Bring to a simmer. Season with salt and pepper.",
+      "Return seared chicken thighs to the pot, nestling them into the rice mixture. Ensure chicken is partially submerged.",
+      "Cover the pot tightly. Reduce heat to low. Simmer for 20-25 minutes, or until rice is tender and liquid is absorbed. Chicken should reach an internal temperature of 75°C (167°F).",
+      "Remove from heat. Let rest, covered, for 10 minutes before serving.",
+      "Garnish with fresh chopped cilantro and serve with lime wedges."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Sofrito",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 46,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 897,
+      "total_carbs_g": 68.1,
+      "total_fat_g": 38.2,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.4,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 143,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 14,
+      "protein": 92,
+      "saturated_fat": 46,
+      "sodium": 39,
+      "total_carbs": 25,
+      "total_fat": 49
+    },
+    "serving_size_g": 625.5,
+    "total_recipe_weight_g": 2502
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_risotto_20250625_154734_b176a000.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:47:35.141103000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Serve the risotto on a flat white porcelain dinner plate. The consistency is fluid and spreads naturally across the plate, appearing free-flowing rather than molded. The rice grains are distinct, coated in a glossy, creamy sauce. Large 3cm chunks of golden-brown seared chicken thighs are distributed throughout the rice. Sliced cremini and shiitake mushrooms show deep caramelization and earthy brown tones. The dish features a pale golden hue. Finely minced flat-leaf parsley provides a vibrant green contrast. A light dusting of finely grated Parmesan cheese covers the surface. The arrangement is organic. Beside the plate sits a heavy silver spoon and a folded white cotton napkin on a light oak table. Natural side lighting highlights the creamy texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while the consistency remains fluid",
+      "Accompany with a crisp dry white wine such as Pinot Grigio",
+      "Provide extra grated Parmesan at the table"
+    ],
+    "hero_ingredient": "Mixed Mushrooms",
+    "ingredients": [
+      {
+        "name": "boneless skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "mixed mushrooms (cremini and shiitake)",
+        "quantity": "300g"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "fresh flat-leaf parsley",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks.",
+      "Dice onion into 5mm pieces.",
+      "Mince garlic cloves.",
+      "Slice mushrooms into 5mm thick pieces.",
+      "Heat 20ml olive oil in a wide pan over medium-high heat.",
+      "Sear chicken chunks until browned and internal temperature reaches 75°C.",
+      "Remove chicken from pan and set aside.",
+      "Add mushrooms to the same pan. Sauté until moisture evaporates and edges brown.",
+      "Remove mushrooms and set aside.",
+      "Melt 20g butter in the pan. Add onion and garlic.",
+      "Cook until softened but not browned.",
+      "Add rice. Stir 2 minutes to toast the grains until edges are translucent.",
+      "Pour in white wine. Stir until liquid is fully absorbed.",
+      "Add 200ml warm stock. Stir continuously until liquid is absorbed.",
+      "Repeat stock additions one ladle at a time, stirring constantly, until rice is tender but firm.",
+      "Return chicken and mushrooms to the pan.",
+      "Remove from heat.",
+      "Vigorously stir in remaining 30g butter and Parmesan cheese to create a creamy emulsion.",
+      "Season with salt and pepper. Fold in chopped parsley."
+    ],
+    "notes": [
+      "Keep the chicken stock at a low simmer in a separate pot to maintain cooking temperature.",
+      "Stirring constantly is essential to release rice starches for a creamy texture.",
+      "Ensure chicken reaches the safety temperature of 75°C during the initial searing phase."
+    ],
+    "traditional_techniques": [
+      "tostatura",
+      "mantecatura",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 875,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 52,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 1450,
+      "total_carbs_g": 91,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 203,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 12.06,
+      "saturated_fat_g": 3.06,
+      "sodium_mg": 336.2,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 7.77,
+      "total_sugars_g": 0.65,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 9,
+      "protein": 104,
+      "saturated_fat": 66,
+      "sodium": 63,
+      "total_carbs": 33,
+      "total_fat": 43
+    },
+    "serving_size_g": 431,
+    "total_recipe_weight_g": 1725
+  }
+]

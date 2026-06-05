@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Slow-Cooked Beef with Fermented Mushroom Duxelles and Roasted Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_with_fermented_mushroom_duxelles_and_roasted_root_vegetables_20250624_104737_d82d3d02.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:38.054089000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of slow-cooked beef is centrally placed on a handcrafted, matte cream ceramic plate. Two generous, naturally formed chunks of rich, dark braised beef, with a tender, shreddable texture, anchor the dish. Alongside, several thick-cut, roasted root vegetable wedges – vibrant orange carrots, pale parsnips, and earthy celeriac – display their caramelized edges and natural textures. A spoonful of dark, finely chopped fermented mushroom duxelles, glistening slightly, is artfully placed beside the beef, adding a deep umami contrast. The plating emphasizes white space, allowing each ingredient to breathe. A sprig of fresh thyme garnishes the beef. The plate rests on a light, textured reclaimed wood surface, accompanied by an undyed linen napkin. Soft, natural light illuminates the scene, with subtle green plant elements visible in the clean, minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300g"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "200g"
+      },
+      {
+        "name": "Celeriac",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1 (200g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red wine (optional)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste (plus 2% by mushroom weight for fermentation)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented mushrooms: Slice mushrooms. Weigh them. Add 2% of their weight in sea salt. Mix well. Pack tightly into a clean glass jar. Use a weight to keep mushrooms submerged under their liquid. Cover loosely. Ferment at room temperature for 5-7 days. Refrigerate once desired tanginess is achieved.",
+      "Prepare beef: Cut beef chuck into 5-6cm thick chunks. Pat dry. Season generously with salt and pepper.",
+      "Sear beef: Heat olive oil in a large oven-safe pot or Dutch oven over high heat. Sear beef chunks on all sides until deeply browned. Remove beef and set aside.",
+      "Sauté aromatics: Reduce heat to medium. Add chopped onion to the pot. Sauté until softened, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Deglaze (optional): Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is reduced by half.",
+      "Braise beef: Return beef to the pot. Add beef stock, thyme, and rosemary. Liquid should mostly cover the beef. Bring to a simmer.",
+      "Slow cook: Cover the pot. Transfer to a preheated oven at 150°C. Cook for 2.5-3 hours, or until beef is fork-tender.",
+      "Prepare root vegetables: While beef cooks, peel carrots, parsnips, and celeriac. Cut into rustic 4-5cm thick chunks. Toss with a drizzle of olive oil, salt, and pepper.",
+      "Roast vegetables: Spread vegetables on a baking tray. Roast in the same oven as the beef during the last 45-60 minutes of cooking, or until tender and lightly caramelized.",
+      "Make mushroom duxelles: Drain fermented mushrooms. Finely chop them (or pulse in a food processor). Sauté in a dry pan over medium heat until most moisture evaporates and they are dark and concentrated. Season lightly if needed.",
+      "Serve: Remove beef from the braising liquid. Arrange several beef chunks on each plate. Spoon a generous portion of fermented mushroom duxelles next to the beef. Place roasted root vegetable chunks around the plate. Garnish with a fresh thyme sprig."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste cooking. Use vegetable trimmings and beef bones (if available) to make your own beef stock for enhanced flavor and sustainability.",
+      "Fermentation of mushrooms adds a unique umami depth and tangy note, contributing to gut health and flavor complexity.",
+      "Source local, seasonal vegetables to reduce carbon footprint and support local agriculture."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 736,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 9.5,
+      "protein_g": 61.3,
+      "saturated_fat_g": 13.1,
+      "sodium_mg": 2055,
+      "total_carbs_g": 33.9,
+      "total_fat_g": 37.9,
+      "total_sugars_g": 14.7,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99.5,
+      "cholesterol_mg": 21.6,
+      "dietary_fiber_g": 1.28,
+      "protein_g": 8.28,
+      "saturated_fat_g": 1.77,
+      "sodium_mg": 277.9,
+      "total_carbs_g": 4.59,
+      "total_fat_g": 5.12,
+      "total_sugars_g": 1.99,
+      "trans_fat_g": 0.16
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.3,
+      "dietary_fiber": 33.9,
+      "protein": 122.6,
+      "saturated_fat": 65.5,
+      "sodium": 89.4,
+      "total_carbs": 12.3,
+      "total_fat": 48.6
+    },
+    "serving_size_g": 739.5,
+    "total_recipe_weight_g": 2958
+  },
+  {
+    "recipe_name": "Chicken and Tomato Rigatoni with Pecorino",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_tomato_rigatoni_with_pecorino_20250624_104729_80dfb19c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:30.025361000Z",
+    "selected_ingredients": [
+      "cheese",
+      "black pepper",
+      "pasta",
+      "tomato",
+      "chicken stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken and Tomato Rigatoni is presented on a clean, round white porcelain dinner plate. The al dente rigatoni pasta is generously coated in a rich, vibrant red tomato sauce. Interspersed throughout the pasta are golden-brown, thick 2-3 cm cubes of pan-seared chicken breast. The dish is topped with a generous sprinkle of finely grated Pecorino Romano cheese, which adds a pale, creamy contrast. Freshly cracked black pepper speckles the cheese and sauce. A few vibrant green basil leaves are artfully placed on top as a fresh garnish. The composition is organic and flowing, not overly structured, with appropriate negative space on the plate. The dish rests on a simple wooden table surface, accompanied by a folded cotton napkin and traditional silver flatware. Natural, even lighting highlights the textures and colors of the food, creating an inviting, professional bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the sauce.",
+      "Offer extra grated Pecorino Romano at the table.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g, cut into 2-3 cm cubes"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Crushed tomatoes (passata)",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Pecorino Romano cheese",
+        "quantity": "100g, freshly grated"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g, freshly ground, plus extra for serving"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 small bunch, leaves picked, for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Season chicken cubes with salt and pepper.",
+      "Heat 15ml olive oil in a large pan over medium-high heat.",
+      "Sear chicken cubes until golden brown on all sides. Cook to internal temperature of 75°C. Remove chicken from pan and set aside.",
+      "Add remaining 15ml olive oil to the pan. Reduce heat to medium.",
+      "Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken stock. Bring to a simmer.",
+      "Reduce heat to low. Simmer sauce for 15 minutes, stirring occasionally. Season with salt.",
+      "Meanwhile, cook rigatoni in a large pot of salted boiling water according to package directions until al dente. Reserve 100ml pasta water.",
+      "Drain pasta. Add pasta and seared chicken to the tomato sauce.",
+      "Add 80g grated Pecorino Romano and 5g freshly ground black pepper.",
+      "Toss well to combine. Add a splash of reserved pasta water if needed for desired consistency.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Sautéing aromatics (soffritto base for sauce)",
+      "Cooking pasta al dente",
+      "Emulsifying cheese with pasta water for a creamy sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 799.2,
+      "cholesterol_mg": 127,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 61.4,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 1106.1,
+      "total_carbs_g": 88.4,
+      "total_fat_g": 20.3,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141.3,
+      "cholesterol_mg": 22.5,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 10.9,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 195.6,
+      "total_carbs_g": 15.6,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.3,
+      "dietary_fiber": 22.8,
+      "protein": 122.9,
+      "saturated_fat": 35.4,
+      "sodium": 48.1,
+      "total_carbs": 32.2,
+      "total_fat": 26.1
+    },
+    "serving_size_g": 565.5,
+    "total_recipe_weight_g": 2262
+  },
+  {
+    "recipe_name": "Slow-Braised Beef Cheek with Fermented Mushroom & Garlic Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-braised_beef_cheek_with_fermented_mushroom_%26_garlic_risotto_20250624_104727_1113cda0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:27.717243000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "rice",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy, free-flowing risotto is presented on a handcrafted, earth-toned ceramic plate. The risotto, made with Arborio rice and infused with mushroom stock, has a velvety texture and a natural, off-white hue. Resting atop the risotto are a few generous, irregular chunks of slow-braised beef cheek, their dark, glistening surfaces showing the rich, tender meat. Around the beef, a deep, dark braising jus is artfully drizzled, adding depth of color. The dish is garnished minimally with a few delicately sautéed mushroom slices and a scattering of fresh microgreens, providing subtle pops of green and an organic texture contrast. The entire plate is visible, showcasing ample negative space. The setting features a light, textured bamboo table surface and an undyed linen napkin, bathed in soft, natural light for an eco-conscious, clean aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beef Cheek",
+    "ingredients": [
+      {
+        "name": "Beef Cheek",
+        "quantity": "800 g - 1 kg"
+      },
+      {
+        "name": "Mixed Mushrooms (shiitake, cremini, oyster)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Dried Porcini Mushrooms",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Arborio Rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Fermented Garlic Paste",
+        "quantity": "2-3 tbsp (or 2-3 cloves black garlic)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery Stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Red Wine (optional)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "800 ml - 1 L"
+      },
+      {
+        "name": "Mushroom Stems/Trimmings",
+        "quantity": "From 300g mixed mushrooms"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Parmesan Cheese (optional)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh Parsley or Microgreens",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Mushroom Stock: Combine mushroom stems/trimmings with 1.5 L water. Simmer 30 minutes. Strain and keep warm. Rehydrate dried porcini in 200 ml warm mushroom stock. Chop rehydrated porcini. Reserve liquid.",
+      "Braise Beef Cheek: Season beef cheeks with salt and pepper. Sear beef in olive oil in a Dutch oven until deeply browned on all sides. Remove beef.",
+      "Sauté aromatics: Add diced onion, carrot, celery to the pot. Sauté until softened, about 5-7 minutes.",
+      "Deglaze: Deglaze with red wine (if using), scraping up any browned bits from the bottom. Simmer until liquid reduces by half.",
+      "Braise: Return beef to pot. Add beef stock. Bring to a simmer. Cover. Braise in oven at 150°C for 2.5-3 hours, or until fork-tender.",
+      "Reduce Jus: Remove beef. Strain braising liquid into a saucepan. Reduce liquid over medium heat until slightly thickened to form a rich jus. Shred beef into large, irregular chunks or keep whole.",
+      "Prepare Mushrooms for Risotto: Sauté sliced mixed fresh mushrooms in olive oil until browned. Season. Set aside some for garnish.",
+      "Start Risotto: In a large pot, sauté 1 finely diced shallot or small onion in olive oil until translucent. Add Arborio rice. Toast 1-2 minutes until edges are translucent.",
+      "Deglaze Rice: Deglaze with white wine (if using). Stir until absorbed.",
+      "Cook Risotto: Gradually add warm mushroom stock, one ladle at a time, stirring constantly. Wait until each addition is absorbed before adding more. After half the stock, add chopped rehydrated porcini and their reserved liquid. Continue adding stock until rice is al dente, about 15-18 minutes total.",
+      "Finish Risotto: Stir in fermented garlic paste, half of the sautéed fresh mushrooms, butter, and Parmesan (if using). Stir vigorously for creaminess. Season with salt and pepper.",
+      "Assemble and Serve: Ladle risotto onto individual plates. Place generous chunks of braised beef cheek on top of the risotto. Drizzle with the reduced braising jus. Garnish with remaining sautéed mushrooms and a few delicate sprigs of fresh parsley or microgreens. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1018,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 65.9,
+      "saturated_fat_g": 16.4,
+      "sodium_mg": 1647,
+      "total_carbs_g": 81.4,
+      "total_fat_g": 40.5,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.2,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 206,
+      "total_carbs_g": 10.2,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 16,
+      "protein": 132,
+      "saturated_fat": 82,
+      "sodium": 72,
+      "total_carbs": 30,
+      "total_fat": 52
+    },
+    "serving_size_g": 800,
+    "total_recipe_weight_g": 3200
+  },
+  {
+    "recipe_name": "Tuscan Chicken and Roasted Red Pepper Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken_and_roasted_red_pepper_pasta_20250624_104708_ba09e4cc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:09.006665000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "garlic",
+      "pasta",
+      "tomato",
+      "basil",
+      "bell pepper",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tuscan Chicken and Roasted Red Pepper Pasta is presented on a pristine white porcelain dinner plate. Al dente penne pasta, coated in a rich, rustic tomato-based sauce, forms the base. Golden-brown seared chicken chunks are nestled among the pasta. Vibrant red roasted bell pepper strips and earthy brown cremini mushrooms are visible throughout. A generous scattering of bright green fresh basil leaves adds a pop of color. A light dusting of finely grated Parmesan cheese covers the dish. The plating is organized yet natural, with moderate negative space. The plate rests on a simple, light-colored wooden table surface, with a silver fork and knife placed neatly beside it. A casually folded white cotton napkin lies nearby. Natural, soft, even lighting highlights the textures and colors, creating an inviting, casual dining atmosphere. The entire plate is visible, showcasing a balanced and appealing composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce",
+      "Pair with a glass of dry red wine, such as Chianti or Sangiovese"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red bell peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1/2 cup"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Onion, small diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Slice red bell peppers into wide strips. Mince 2 garlic cloves. Toss bell pepper strips with 1 tablespoon olive oil, minced garlic, salt, and pepper on a baking sheet. Roast for 20-25 minutes until tender and slightly charred. Remove from oven and set aside.",
+      "Cut chicken breasts into 2-3 cm chunks. Season chicken chunks with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a large skillet over medium-high heat. Add chicken chunks. Sear until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C. Remove chicken from skillet and set aside.",
+      "Add remaining 1 tablespoon olive oil to the same skillet. Add diced onion and cook until softened, about 3-4 minutes. Add sliced mushrooms and cook until browned, about 5-7 minutes. Mince remaining 2 garlic cloves and add to skillet. Cook for 1 minute until fragrant.",
+      "Pour in diced tomatoes and chicken broth. Bring to a simmer. Add roasted bell pepper strips. Let sauce simmer gently for 5-7 minutes.",
+      "Meanwhile, cook penne pasta according to package directions until al dente. Drain pasta, reserving 125 ml of pasta water.",
+      "Add cooked pasta and seared chicken chunks to the sauce in the skillet. Toss to combine. If needed, add a little reserved pasta water to achieve desired sauce consistency.",
+      "Stir in most of the fresh basil leaves, roughly chopped. Taste and adjust seasoning with salt and pepper. Stir in half of the grated Parmesan cheese.",
+      "Serve immediately, garnished with remaining fresh basil and grated Parmesan."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust the amount of chicken broth or reserved pasta water to achieve your preferred sauce consistency.",
+      "For extra flavor, a pinch of red pepper flakes can be added to the sauce with the garlic."
+    ],
+    "traditional_techniques": [
+      "Al dente pasta cooking",
+      "Sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 860,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 7.9,
+      "protein_g": 70.1,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 1246,
+      "total_carbs_g": 91.3,
+      "total_fat_g": 22.3,
+      "total_sugars_g": 12.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 22.6,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 11.2,
+      "saturated_fat_g": 1,
+      "sodium_mg": 199.7,
+      "total_carbs_g": 14.6,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 28,
+      "protein": 140,
+      "saturated_fat": 31,
+      "sodium": 54,
+      "total_carbs": 33,
+      "total_fat": 29
+    },
+    "serving_size_g": 624,
+    "total_recipe_weight_g": 2496
+  },
+  {
+    "recipe_name": "Chicken Biryani",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_biryani_20250624_104703_efd72287.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:04.187765000Z",
+    "selected_ingredients": [
+      "chicken",
+      "spice mix",
+      "rice",
+      "salt"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken Biryani served on a clean white porcelain plate. The dish features a mound of long-grain Basmati rice. The rice displays a natural color variation from pale white to deep orange-yellow from the spice infusion. Two large, bone-in chicken thigh chunks are nestled within the rice. The chicken is tender and coated in a thick, savory masala. Topping the rice are thin, golden-brown fried onion strips and vibrant green sprigs of fresh coriander. The arrangement is organic and centered with moderate negative space. A small ceramic bowl of white yogurt raita sits to the side. The background is a dark wood bistro table with a folded linen napkin and a polished brass spoon.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of cucumber raita",
+      "Accompany with lime wedges and sliced raw red onions",
+      "Traditional brass or copper serving spoon"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, cut into large chunks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Biryani spice mix",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Onions, thinly sliced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh coriander and mint leaves",
+        "quantity": "1/2 cup"
+      },
+      {
+        "name": "Water",
+        "quantity": "1.5 L"
+      }
+    ],
+    "instructions": [
+      "Wash rice until water runs clear. Soak in water for 30 minutes.",
+      "Mix chicken chunks with yogurt, spice mix, ginger-garlic paste, and 5g salt. Marinate for 1 hour.",
+      "Heat ghee in a heavy-bottomed pot. Fry sliced onions until dark golden brown. Remove half for garnish.",
+      "Boil 1.5 L water with 10g salt. Add soaked rice. Cook until 70% tender. Drain immediately.",
+      "Add marinated chicken to the pot with remaining onions and ghee. Cook for 5 minutes over medium heat.",
+      "Layer the parboiled rice over the chicken chunks. Top with reserved fried onions, coriander, and mint.",
+      "Cover pot with a tight-fitting lid. Use a heavy weight or dough to seal steam inside.",
+      "Cook on very low heat for 25 minutes. Ensure chicken internal temperature reaches 75°C.",
+      "Turn off heat. Let the pot rest for 10 minutes before opening.",
+      "Gently fluff the rice from the sides to mix colors without breaking grains."
+    ],
+    "notes": [
+      "Do not overcook the rice during the initial boil or it will turn mushy during the steaming phase.",
+      "Use a heavy-bottomed pot (like a Dutch oven) to prevent the bottom layer of chicken from burning."
+    ],
+    "traditional_techniques": [
+      "dum cooking",
+      "tempering spices",
+      "rice parboiling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 814,
+      "cholesterol_mg": 166.5,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 45,
+      "saturated_fat_g": 14.2,
+      "sodium_mg": 1550,
+      "total_carbs_g": 89.8,
+      "total_fat_g": 30.5,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 180.9,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.73,
+      "protein_g": 10,
+      "saturated_fat_g": 3.16,
+      "sodium_mg": 344.4,
+      "total_carbs_g": 19.96,
+      "total_fat_g": 6.78,
+      "total_sugars_g": 1.22,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.5,
+      "dietary_fiber": 11.8,
+      "protein": 90,
+      "saturated_fat": 71,
+      "sodium": 67.4,
+      "total_carbs": 32.7,
+      "total_fat": 39.1
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  }
+]

@@ -1,0 +1,629 @@
+[
+  {
+    "recipe_name": "Garlic Butter Shrimp with Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_butter_shrimp_with_roasted_vegetables_20250812_131038_94bbc5fc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T13:10:39.436278000Z",
+    "selected_ingredients": [
+      "shrimp"
+    ],
+    "complexity": "simple",
+    "special_requests": "Vegetables",
+    "visual_description": "A comforting, single portion of Garlic Butter Shrimp with Roasted Vegetables is presented on a simple, round ceramic plate with natural, off-white tones, placed on a well-used wooden dining table. The golden-pink, plump, seared shrimp are arranged naturally in the center of the plate, lightly coated in glistening garlic butter. Bright green roasted broccoli florets, vibrant red bell pepper chunks, and burst cherry tomatoes are casually scattered around the shrimp, showcasing their slightly charred edges and tender textures. A sprinkle of fresh green chopped parsley adds a final touch of color. The setting features a casually placed cloth napkin and warm, inviting lighting, suggesting a relaxed family meal in a homely kitchen environment.",
+    "number_of_servings": 2,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Large shrimp, peeled and deveined",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Red bell pepper, cut into 2 cm chunks",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss broccoli florets, red bell pepper chunks, and cherry tomatoes with 15 ml olive oil, salt, and pepper on a baking sheet.",
+      "Roast vegetables for 15-20 minutes, until tender-crisp.",
+      "While vegetables roast, melt butter and remaining 15 ml olive oil in a large skillet over medium heat.",
+      "Add minced garlic to the skillet. Sauté for 1 minute until fragrant.",
+      "Add shrimp to the skillet. Cook for 2-3 minutes per side, until pink and opaque. Do not overcrowd the pan; cook in batches if necessary.",
+      "Remove skillet from heat. Stir in chopped fresh parsley.",
+      "Serve shrimp immediately alongside the roasted vegetables."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 551,
+      "cholesterol_mg": 306,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 35.7,
+      "saturated_fat_g": 17.6,
+      "sodium_mg": 215,
+      "total_carbs_g": 17.8,
+      "total_fat_g": 39.6,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 65,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.5,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 45,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 102,
+      "dietary_fiber": 20,
+      "protein": 71.5,
+      "saturated_fat": 88.2,
+      "sodium": 9.3,
+      "total_carbs": 6.5,
+      "total_fat": 50.8
+    },
+    "serving_size_g": 474.25,
+    "total_recipe_weight_g": 948.5
+  },
+  {
+    "recipe_name": "Pan-Seared Pork Medallions with Tomato Mushroom Ragu",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_pork_medallions_with_tomato_mushroom_ragu_20250812_121900_8c234b3e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T12:19:01.400137000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "tomato",
+      "mushroom",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Pork Medallions with Tomato Mushroom Ragu is presented on a clean white porcelain dinner plate. Three golden-brown, pan-seared pork medallions are centrally arranged, showcasing their slightly irregular, organic shapes. A generous portion of rustic tomato-mushroom ragu is spooned over and around the pork, featuring vibrant red crushed tomatoes, earthy brown sliced mushrooms, and translucent bits of softened diced onion. Specks of dark green fresh oregano are visible within the glossy sauce. A sprinkle of bright green chopped fresh parsley garnishes the dish, providing a fresh color contrast. The pork has a visible seared crust and appears tender, while the sauce is thick and luscious. The setting is a simple wooden table surface with a folded white cotton napkin placed beside the plate. Traditional silver flatware is arranged. Natural, even lighting illuminates the dish from above, creating subtle shadows and highlighting textures. The background is a softly blurred, modern bistro setting with warm, inviting tones.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Serve alongside simple pasta or polenta"
+    ],
+    "hero_ingredient": "Pork Medallions",
+    "ingredients": [
+      {
+        "name": "Pork tenderloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Mushrooms (cremini or button)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Slice pork tenderloin into 2.5 cm thick medallions. Gently flatten each medallion to 1.5 cm thickness.",
+      "Season pork medallions with salt and pepper. Dredge lightly in flour, shaking off excess.",
+      "Heat 15ml olive oil and 15g butter in a large skillet over medium-high heat.",
+      "Sear pork medallions in batches until golden brown, about 2-3 minutes per side. Cook to an internal temperature of 75°C.",
+      "Remove pork from skillet and set aside.",
+      "Add remaining 15ml olive oil and 15g butter to the skillet. Add diced onions and cook until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook until mushrooms are browned and tender, about 7-8 minutes.",
+      "Stir in crushed tomatoes, chicken broth, and chopped fresh oregano. Bring to a simmer.",
+      "Return pork medallions to the skillet. Simmer gently for 5-7 minutes, allowing flavors to meld and pork to finish cooking if needed.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Building a ragu-style sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 435,
+      "cholesterol_mg": 126,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 45.2,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 859,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 18.9,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 91.5,
+      "cholesterol_mg": 26.4,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.5,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 180.6,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 4,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 17,
+      "protein": 90,
+      "saturated_fat": 34,
+      "sodium": 37,
+      "total_carbs": 8,
+      "total_fat": 24
+    },
+    "serving_size_g": 475.5,
+    "total_recipe_weight_g": 1902
+  },
+  {
+    "recipe_name": "Spinach and Ricotta Ravioli with Sage Butter",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spinach_and_ricotta_ravioli_with_sage_butter_20250812_121648_a932ea7f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T12:16:49.026047000Z",
+    "selected_ingredients": [
+      "egg",
+      "flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spinach and Ricotta Ravioli is presented on a clean, white porcelain plate. The golden-yellow homemade ravioli, approximately 4x4 cm squares, gently overlap. Their light green spinach-ricotta filling is subtly visible. A glossy, amber sage butter sauce lightly coats each piece, with crispy, deep green sage leaves scattered over. Freshly grated Parmigiano Reggiano dusts the top. The plate has moderate negative space with a natural arrangement. The setting features a simple wooden table, a cotton napkin, and classic silver flatware. Natural, soft lighting illuminates the dish, highlighting its textures and vibrant colors. The background is minimal, evoking a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of crisp white wine, such as Pinot Grigio or Vermentino.",
+      "Offer additional freshly grated Parmigiano Reggiano at the table.",
+      "Accompany with crusty bread for dipping in the leftover sauce."
+    ],
+    "hero_ingredient": "Homemade Ravioli",
+    "ingredients": [
+      {
+        "name": "Tipo '00' flour",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Nutmeg, freshly grated",
+        "quantity": "1/4 teaspoon"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "15-20"
+      }
+    ],
+    "instructions": [
+      "On a clean surface, make a well with the flour. Crack eggs into the well. Add olive oil and a pinch of salt.",
+      "Gradually mix flour into eggs using a fork, then knead by hand for 10-15 minutes until dough is smooth and elastic.",
+      "Wrap dough tightly in cling film. Let rest at room temperature for 30 minutes.",
+      "Blanch spinach briefly. Drain well. Squeeze out all excess water. Chop finely.",
+      "In a bowl, combine ricotta, chopped spinach, grated Parmigiano Reggiano, nutmeg, salt, and pepper. Mix well.",
+      "Divide pasta dough into four portions. Roll one portion very thinly using a pasta machine or rolling pin. Keep remaining dough covered.",
+      "Place small spoonfuls of filling onto one half of the pasta sheet, spaced evenly.",
+      "Fold the other half of the pasta sheet over the filling. Press around filling to seal, removing air.",
+      "Cut out ravioli using a pasta cutter or knife. Ensure edges are well-sealed. Place finished ravioli on a lightly floured tray. Repeat with remaining dough and filling.",
+      "Bring a large pot of salted water to a rolling boil. Gently add ravioli. Cook for 3-4 minutes, or until they float and are al dente.",
+      "While ravioli cooks, melt butter in a large skillet over medium heat. Add sage leaves. Cook until butter is lightly browned and sage is crispy.",
+      "Using a slotted spoon, transfer cooked ravioli directly into the skillet with the sage butter. Add a splash of pasta cooking water (30-60 ml).",
+      "Gently toss ravioli in the sauce until coated and sauce emulsifies. This is 'mantecare'.",
+      "Serve immediately with extra grated Parmigiano Reggiano."
+    ],
+    "traditional_techniques": [
+      "Making fresh pasta by hand",
+      "Mantecare (emulsifying pasta with sauce)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 690.6,
+      "cholesterol_mg": 223.5,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 25.9,
+      "saturated_fat_g": 20.3,
+      "sodium_mg": 345.8,
+      "total_carbs_g": 61.7,
+      "total_fat_g": 37.2,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 272.5,
+      "cholesterol_mg": 88.2,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 10.2,
+      "saturated_fat_g": 8,
+      "sodium_mg": 136.4,
+      "total_carbs_g": 24.4,
+      "total_fat_g": 14.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 111.8,
+      "dietary_fiber": 11.1,
+      "protein": 51.8,
+      "saturated_fat": 101.5,
+      "sodium": 15,
+      "total_carbs": 22.4,
+      "total_fat": 47.7
+    },
+    "serving_size_g": 253.5,
+    "total_recipe_weight_g": 1013.8
+  },
+  {
+    "recipe_name": "Creamy Garlic Chicken Bucatini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_garlic_chicken_bucatini_20250812_120738_2c9f12e9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T12:07:39.360225000Z",
+    "selected_ingredients": [
+      {
+        "name": "chicken",
+        "comment": "chicken breast"
+      },
+      {
+        "name": "pasta",
+        "comment": "bucatini"
+      },
+      "cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, comforting portion of Creamy Garlic Chicken Bucatini rests on a simple, off-white ceramic plate with a subtle, organic rim. The bucatini is loosely twirled, creating a natural mound, coated in a rich, glossy, pale cream sauce. Nestled within and atop the pasta are irregular 2-3 cm cubes of pan-seared chicken breast, displaying a golden-brown exterior and tender appearance. Specks of vibrant green chopped fresh parsley are scattered over the dish, providing a fresh contrast. The plate is set on a well-used, warm-toned wooden dining table. A standard silver fork is casually placed beside the plate. The scene is illuminated by soft, warm kitchen lighting, evoking a cozy, lived-in family atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread for dipping into the sauce.",
+      "Offer a simple green salad dressed with olive oil and vinegar.",
+      "Pair with a glass of light Italian white wine or sparkling water."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Bucatini pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Double cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breasts into 2-3 cm cubes. Season chicken with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a large pan over medium-high heat. Add chicken cubes. Sear until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C. Remove chicken from pan and set aside.",
+      "While chicken cooks, bring a large pot of salted water to a boil. Add bucatini. Cook according to package directions until al dente. Drain pasta, reserving 120 ml pasta water.",
+      "In the same pan, add remaining 1 tablespoon olive oil. Add diced onion. Sauté until softened, about 3-4 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the pan.",
+      "Stir in double cream and grated Parmesan cheese. Reduce heat to low. Simmer gently for 2-3 minutes until sauce slightly thickens.",
+      "Add cooked bucatini and cooked chicken to the pan with the sauce. Toss to coat well. If sauce is too thick, add reserved pasta water, 30 ml at a time, until desired consistency.",
+      "Stir in chopped fresh parsley. Taste and adjust seasoning with salt and pepper. Serve immediately."
+    ],
+    "notes": [
+      "For extra flavor, use fresh chicken broth instead of bouillon.",
+      "Ensure the cream does not boil vigorously once added, as it can curdle. Simmer gently.",
+      "Adjust the amount of reserved pasta water to achieve your preferred sauce consistency."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecare"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 958,
+      "cholesterol_mg": 205,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 62.1,
+      "saturated_fat_g": 20.7,
+      "sodium_mg": 496,
+      "total_carbs_g": 81.4,
+      "total_fat_g": 41.4,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 240,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 1,
+      "protein_g": 15.6,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 124,
+      "total_carbs_g": 20.4,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 14,
+      "protein": 124,
+      "saturated_fat": 104,
+      "sodium": 22,
+      "total_carbs": 30,
+      "total_fat": 53
+    },
+    "serving_size_g": 399.2,
+    "total_recipe_weight_g": 1596.6
+  },
+  {
+    "recipe_name": "Creamy Tomato Chicken Bucatini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_chicken_bucatini_20250812_120640_72c9fdd9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-12T12:06:40.770818000Z",
+    "selected_ingredients": [
+      {
+        "name": "chicken",
+        "comment": "chicken breast"
+      },
+      {
+        "name": "pasta",
+        "comment": "bucatini"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Creamy Tomato Chicken Bucatini is presented on a simple, cream-colored ceramic plate with subtle imperfections, resting on a well-used rustic wooden dining table. Thick chunks of pan-seared chicken breast are nestled among long strands of bucatini pasta, coated generously in a rich, creamy, vibrant reddish-orange tomato sauce. Visible flecks of diced onion and minced garlic are present. A light scattering of freshly grated Parmesan cheese and a few torn fresh basil leaves garnish the top, adding contrasting green. The arrangement is casual and natural, with components overlapping, giving a homely, comforting feel. Warm kitchen light illuminates the scene, with a casually placed cloth napkin and standard flatware, emphasizing a relaxed family dining atmosphere. The chicken is cut into 3-4 cm thick chunks.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American Comfort",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Bucatini pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "small bunch, for garnish"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "60 g, grated, for serving"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 3-4 cm thick chunks. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken and set aside. Ensure internal temperature reaches 75°C (167°F).",
+      "Dice the onion and mince the garlic. Add to the same pot, reduce heat to medium. Cook until softened, about 5 minutes.",
+      "Pour in crushed tomatoes, chicken broth, and dried oregano. Stir well. Bring to a simmer.",
+      "Return chicken chunks to the pot. Cover and simmer for 15-20 minutes, allowing flavors to meld.",
+      "While sauce simmers, cook bucatini according to package directions until al dente. Drain, reserving 125 ml of pasta water.",
+      "Stir heavy cream into the sauce. Add cooked bucatini to the pot with the sauce and chicken. Toss to coat.",
+      "If sauce is too thick, add a little reserved pasta water until desired consistency is reached.",
+      "Serve immediately, garnished with fresh basil and grated Parmesan cheese."
+    ],
+    "notes": [
+      "Always ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 914,
+      "cholesterol_mg": 181.5,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 69.7,
+      "saturated_fat_g": 12.7,
+      "sodium_mg": 932.9,
+      "total_carbs_g": 88.9,
+      "total_fat_g": 30.1,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156.8,
+      "cholesterol_mg": 31.1,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 12,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 160,
+      "total_carbs_g": 15.3,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.5,
+      "dietary_fiber": 23.4,
+      "protein": 139.4,
+      "saturated_fat": 63.5,
+      "sodium": 40.6,
+      "total_carbs": 32.3,
+      "total_fat": 38.6
+    },
+    "serving_size_g": 583,
+    "total_recipe_weight_g": 2332
+  }
+]

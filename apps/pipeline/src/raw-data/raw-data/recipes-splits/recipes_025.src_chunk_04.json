@@ -1,0 +1,670 @@
+[
+  {
+    "recipe_name": "Cheesy Baked Pasta with Spicy Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_baked_pasta_with_spicy_tomato_sauce_20250623_141703_72e14a34.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:17:03.641442000Z",
+    "selected_ingredients": [
+      "onion",
+      "pasta",
+      "hot sauce",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, comforting portion of Cheesy Baked Pasta with Spicy Tomato Sauce is served on a round, rustic ceramic plate. The pasta, a mix of penne or ziti, is coated in a rich, reddish-orange tomato sauce with visible diced onions. A thick layer of melted, bubbly mozzarella and golden-brown Parmesan cheese forms a savory crust over the top. The dish exhibits soft, gooey textures from the cheese and tender pasta. A few fresh basil leaves are scattered casually on top, adding a vibrant green contrast. The plate rests on a well-used wooden dining table. A simple, light-colored cloth napkin is loosely folded nearby. Standard metal flatware complements the homely setting. Warm, inviting light illuminates the scene, suggesting a cozy, lived-in family kitchen atmosphere. The background is subtly blurred.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with warm garlic bread.",
+      "Serve with a crisp green salad."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Penne or Ziti pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "2ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Shredded mozzarella cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh basil or parsley, for garnish (optional)",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook pasta al dente according to package directions. Drain well.",
+      "Heat olive oil in a large pot over medium heat. Add diced onion. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic, oregano, and red pepper flakes. Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes, broth, and hot sauce. Bring to a simmer.",
+      "Reduce heat. Simmer for 15-20 minutes, stirring occasionally, until sauce thickens slightly. Season with salt and pepper.",
+      "Combine cooked pasta with the tomato sauce in the pot.",
+      "Pour half of the pasta mixture into a 23x33 cm baking dish.",
+      "Sprinkle with half of the mozzarella cheese.",
+      "Add remaining pasta mixture. Top with remaining mozzarella and all of the Parmesan cheese.",
+      "Bake for 20-25 minutes, or until cheese is melted and bubbly and edges are golden.",
+      "Let stand 5 minutes before serving. Garnish with fresh basil or parsley if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 706.1,
+      "cholesterol_mg": 40.5,
+      "dietary_fiber_g": 6.8,
+      "protein_g": 35,
+      "saturated_fat_g": 9.9,
+      "sodium_mg": 144,
+      "total_carbs_g": 91.3,
+      "total_fat_g": 22.7,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101.6,
+      "cholesterol_mg": 5.8,
+      "dietary_fiber_g": 1,
+      "protein_g": 5,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 20.7,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14,
+      "dietary_fiber": 24,
+      "protein": 70,
+      "saturated_fat": 50,
+      "sodium": 6,
+      "total_carbs": 33,
+      "total_fat": 29
+    },
+    "serving_size_g": 695,
+    "total_recipe_weight_g": 2780
+  },
+  {
+    "recipe_name": "Mustard Braised Short Ribs with Potato Puree and Corn Salsa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mustard_braised_short_ribs_with_potato_puree_and_corn_salsa_20250623_141633_3351a1ad.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:16:34.323935000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot",
+      "mustard",
+      "potato",
+      "salad green",
+      "corn",
+      "tomato",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features two robust, dark brown braised beef short ribs, gently nestled on a creamy, smooth mound of golden potato puree. The short ribs are fork-tender, glistening with a rich, reduced mustard-infused braising sauce that pools slightly around their base. Beside the ribs, a vibrant, fresh corn salsa bursts with color: bright yellow corn kernels, halved crimson cherry tomatoes, and specks of verdant diced chili and fresh cilantro. A small, artfully arranged cluster of crisp, emerald-green salad leaves provides a fresh counterpoint. Textures range from the tender, yielding meat to the silky potato puree and the crisp-pop of the salsa. The dish is presented on a clean, round white porcelain dinner plate, centered on a simple, warm-toned wooden table surface. A neatly folded light grey cotton napkin rests beside the plate. The scene is bathed in natural, soft, even lighting, creating subtle shadows and highlighting the food's textures. The background is minimally blurred, suggesting a modern bistro atmosphere without distraction. Potatoes are cut into 2cm chunks. Cherry tomatoes are halved. Chili is finely diced.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Beef short ribs, bone-in",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, diced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Celery stalks, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Milk or cream, warm",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Corn kernels (fresh or frozen)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh chili (e.g., serrano or jalapeño), finely diced",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Fresh cilantro or parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat short ribs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat. Sear ribs on all sides until deeply browned. Remove ribs from pot.",
+      "Add diced onion, carrots, and celery to the pot. Sauté for 8-10 minutes until softened.",
+      "Stir in minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Deglaze the pot with red wine. Scrape up any browned bits from the bottom. Reduce wine by half.",
+      "Return ribs to the pot. Pour in beef broth. Bring to a simmer.",
+      "Cover the Dutch oven. Braise in a preheated oven at 160°C (325°F) for 2.5-3 hours, or until ribs are very tender.",
+      "Remove ribs from pot. Strain braising liquid through a fine-mesh sieve. Discard solids. Skim fat from the liquid.",
+      "Return strained liquid to a saucepan. Reduce over medium heat by half until slightly thickened. Whisk in 30g Dijon mustard. Season sauce with salt and pepper.",
+      "While ribs braise, prepare potato puree. Peel and cut potatoes into 2cm chunks. Boil in salted water until very tender. Drain well.",
+      "Mash hot potatoes. Add warm milk/cream and butter. Whip until smooth and creamy. Season with salt and pepper. Keep warm.",
+      "For corn salsa, combine corn kernels, halved cherry tomatoes, finely diced chili, and remaining 30g Dijon mustard in a bowl. Add chopped cilantro or parsley. Mix gently. Season with salt and pepper.",
+      "Lightly dress salad greens with a drizzle of olive oil and a pinch of salt.",
+      "To plate, place a generous dollop of potato puree on each plate. Arrange 1-2 braised short ribs on top. Spoon mustard braising sauce over the ribs. Place a spoonful of corn salsa beside the ribs. Add a small mound of dressed salad greens."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1233,
+      "cholesterol_mg": 213.72,
+      "dietary_fiber_g": 9.32,
+      "protein_g": 62.28,
+      "saturated_fat_g": 33.08,
+      "sodium_mg": 992.22,
+      "total_carbs_g": 62.89,
+      "total_fat_g": 78.84,
+      "total_sugars_g": 14.9,
+      "trans_fat_g": 0.43
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 122,
+      "cholesterol_mg": 21.11,
+      "dietary_fiber_g": 0.92,
+      "protein_g": 6.15,
+      "saturated_fat_g": 3.27,
+      "sodium_mg": 98.01,
+      "total_carbs_g": 6.21,
+      "total_fat_g": 7.79,
+      "total_sugars_g": 1.47,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71.24,
+      "dietary_fiber": 33.29,
+      "protein": 124.56,
+      "saturated_fat": 165.4,
+      "sodium": 43.14,
+      "total_carbs": 22.87,
+      "total_fat": 101.08
+    },
+    "serving_size_g": 1012.25,
+    "total_recipe_weight_g": 4049
+  },
+  {
+    "recipe_name": "Classic Vanilla Bread Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_vanilla_bread_pudding_20250623_141633_38450fbb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:16:34.178659000Z",
+    "selected_ingredients": [
+      "sausage",
+      "bread",
+      "potato",
+      "american cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of classic bread pudding is presented in a rustic, everyday ceramic bowl on a well-used wooden dining table. The bread pudding features a golden-brown, slightly crisp top crust, hinting at the warm, custardy interior. Visible through the soft, pale yellow custard are pieces of cubed day-old bread, some edges lightly toasted, others saturated with the creamy mixture. Dark, plump raisins are interspersed throughout the pudding, adding small bursts of color. The overall texture appears soft and comforting. A light dusting of powdered sugar subtly covers the top. The bowl sits on a simple, slightly worn wooden table, possibly with natural imperfections. A plain, casually folded cloth napkin and a simple spoon rest beside the bowl. Warm, cozy lighting from overhead kitchen fixtures illuminates the scene, creating a lived-in, inviting atmosphere typical of a family kitchen. The background is minimal, focusing on the dish as the centerpiece of a comforting home meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Dessert",
+    "cultural_serving_suggestions": [
+      "Serve warm with a scoop of vanilla ice cream",
+      "Serve with a drizzle of crème anglaise or a simple caramel sauce",
+      "Enjoy with a cup of coffee or tea"
+    ],
+    "hero_ingredient": "Stale Bread",
+    "ingredients": [
+      {
+        "name": "Day-old bread",
+        "quantity": "400 g, cubed"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Raisins (optional)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "10 g, for greasing"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease a 20x20 cm baking dish with butter.",
+      "Place cubed bread in the prepared baking dish.",
+      "In a large bowl, whisk together milk, sugar, eggs, vanilla extract, and cinnamon until well combined.",
+      "Stir in raisins, if using.",
+      "Pour the custard mixture evenly over the bread cubes in the baking dish. Press bread down gently to ensure it soaks up the custard.",
+      "Let sit for 10-15 minutes to allow bread to absorb the liquid.",
+      "Bake for 40-50 minutes, or until the top is golden brown and the center is set. A knife inserted into the center should come out clean.",
+      "Remove from oven. Let cool slightly before serving."
+    ],
+    "notes": [
+      "For best results, use day-old or slightly stale bread as it absorbs the custard better.",
+      "Brioche or challah bread can be used for an even richer pudding.",
+      "Adjust sugar to taste. Add a pinch of nutmeg for extra warmth."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 42.5,
+      "calories": 602.4,
+      "cholesterol_mg": 158.8,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 18.7,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 592.7,
+      "total_carbs_g": 104,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 57.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.4,
+      "calories": 189.7,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 5.9,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 186.7,
+      "total_carbs_g": 32.8,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 18,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 13,
+      "protein": 37,
+      "saturated_fat": 26,
+      "sodium": 26,
+      "total_carbs": 38,
+      "total_fat": 16
+    },
+    "serving_size_g": 317.5,
+    "total_recipe_weight_g": 1270
+  },
+  {
+    "recipe_name": "Argentine Beef Bavette with Chimichurri, Roasted Potatoes, and Charred Bell Pepper Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_argentine_beef_bavette_with_chimichurri%2C_roasted_potatoes%2C_and_charred_bell_pepper_salad_20250623_141531_cb4a89f4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:15:31.580116000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "onion",
+      "bell pepper",
+      "salad green",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of perfectly seared beef bavette, presented as a thick, juicy piece, anchors the center of a clean white porcelain plate. Alongside, a generous mound of golden-brown roasted potato wedges, their skins slightly crisped. Vibrant strips of charred red and green bell peppers and tender, caramelized red onion wedges are artfully arranged next to the beef, adding bursts of color and sweetness. The dish is generously drizzled with a bright, herbaceous chimichurri, its vibrant green flecks contrasting beautifully with the rich tones. A fresh side salad of crisp arugula, lightly dressed, sits gracefully to the side, offering a refreshing, peppery contrast. The presentation is professional and approachable, set on a simple wooden surface with standard flatware, capturing a modern bistro dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Argentine",
+    "cultural_origin": "Argentine",
+    "cultural_serving_suggestions": [
+      "Served with crusty bread for soaking up juices and chimichurri",
+      "Often accompanied by a simple green salad"
+    ],
+    "hero_ingredient": "Beef Bavette",
+    "ingredients": [
+      {
+        "name": "Beef Bavette or Flank Steak",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": "900 g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Green Bell Pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Arugula or Mixed Salad Greens",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fresh Oregano",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": "75 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Red Pepper Flakes (optional)",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Chimichurri: Finely chop parsley, oregano, and 3 garlic cloves. Combine in a bowl with 60 ml red wine vinegar, 120 ml olive oil, red pepper flakes (if using), 5 ml salt, and 2.5 ml black pepper. Stir well. Set aside.",
+      "Prepare Vegetables: Preheat oven to 200°C. Wash and cut potatoes into 2-3 cm wedges. Halve and deseed bell peppers, cut into 2 cm wide strips. Peel and cut red onion into 2 cm thick wedges. Mince remaining 3 garlic cloves.",
+      "Roast Potatoes: Toss potato wedges with 15 ml olive oil, 2.5 ml salt, and 1.25 ml black pepper on a baking sheet. Roast for 25-30 minutes, or until tender and golden brown.",
+      "Char Bell Peppers and Onions: In a large pan or cast-iron skillet, heat 15 ml olive oil over medium-high heat. Add bell pepper strips and onion wedges. Cook for 8-10 minutes, stirring occasionally, until tender and lightly charred. Add minced garlic during the last minute. Remove from pan.",
+      "Cook Beef: Pat beef bavette dry. Season generously with salt and black pepper. Heat 15 ml olive oil in the same pan over high heat until shimmering. Sear beef for 4-6 minutes per side for medium-rare, or to desired doneness.",
+      "Rest Beef: Transfer beef to a cutting board. Tent loosely with foil. Let rest for 10 minutes.",
+      "Assemble Salad: In a bowl, toss salad greens with 15 ml olive oil, 15 ml red wine vinegar, 1.25 ml salt, and 0.5 ml black pepper.",
+      "Plate Dish: Slice rested beef against the grain into thick pieces. Arrange beef on white porcelain plates. Place roasted potato wedges, charred bell peppers, and caramelized onion wedges alongside. Spoon generous amounts of chimichurri over the beef and potatoes. Serve with the fresh arugula salad."
+    ],
+    "traditional_techniques": [
+      "Grilling (Asado style)",
+      "Chimichurri preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1104.47,
+      "cholesterol_mg": 122.5,
+      "dietary_fiber_g": 10.69,
+      "protein_g": 53,
+      "saturated_fat_g": 16.96,
+      "sodium_mg": 165.3,
+      "total_carbs_g": 57.54,
+      "total_fat_g": 73.34,
+      "total_sugars_g": 8.55,
+      "trans_fat_g": 0.88
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149.4,
+      "cholesterol_mg": 16.57,
+      "dietary_fiber_g": 1.45,
+      "protein_g": 7.17,
+      "saturated_fat_g": 2.29,
+      "sodium_mg": 22.36,
+      "total_carbs_g": 7.78,
+      "total_fat_g": 9.92,
+      "total_sugars_g": 1.16,
+      "trans_fat_g": 0.12
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.83,
+      "dietary_fiber": 38.17,
+      "protein": 106,
+      "saturated_fat": 84.78,
+      "sodium": 7.19,
+      "total_carbs": 20.92,
+      "total_fat": 94.02
+    },
+    "serving_size_g": 739.25,
+    "total_recipe_weight_g": 2957
+  },
+  {
+    "recipe_name": "Spicy Tomato Pasta with Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_tomato_pasta_with_caramelized_onions_20250623_141450_8246ca59.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:14:51.243633000Z",
+    "selected_ingredients": [
+      "onion",
+      "pasta",
+      "hot sauce",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Pasta tossed in a rich, reddish-orange spicy tomato sauce, served in a simple, deep ceramic bowl. Caramelized onion strands are visible throughout, adding depth of color. A few fresh green basil leaves are casually placed on top. The pasta is slightly glistening from the sauce, showing its al dente texture. The bowl rests on a well-worn wooden kitchen table. A simple, slightly wrinkled linen napkin is beside the bowl. A fork is placed casually on the side of the bowl. Lighting is warm and inviting, typical of an overhead kitchen light. The background is softly blurred, hinting at a cozy, lived-in kitchen environment. A generous, satisfying single portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American Comfort",
+    "cultural_serving_suggestions": [
+      "Crusty bread for dipping",
+      "A simple green salad",
+      "Grated Parmesan cheese"
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., penne, rigatoni)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, sliced"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2g (optional)"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "small bunch, for garnish (optional)"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "for serving (optional)"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or deep skillet over medium-low heat.",
+      "Add sliced onions. Cook slowly for 20-25 minutes until deeply caramelized and soft. Stir occasionally.",
+      "Add minced garlic, dried oregano, and red pepper flakes (if using). Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and hot sauce. Stir well.",
+      "Bring sauce to a simmer. Reduce heat to low. Cook for 15-20 minutes, allowing flavors to meld. Season with salt and pepper.",
+      "While sauce simmers, cook pasta according to package directions in a separate pot of salted boiling water until al dente.",
+      "Drain pasta, reserving 120ml of pasta water.",
+      "Add cooked pasta to the sauce. Add reserved pasta water as needed to reach desired consistency. Toss to coat.",
+      "Serve immediately. Garnish with fresh basil and grated Parmesan cheese, if desired."
+    ],
+    "notes": [
+      "Adjust hot sauce to your preferred spice level.",
+      "A pinch of sugar can balance the tomato acidity if needed."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 590,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 16.9,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 354,
+      "total_carbs_g": 96.4,
+      "total_fat_g": 16,
+      "total_sugars_g": 13.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 147,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 4.2,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 88,
+      "total_carbs_g": 24,
+      "total_fat_g": 4,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 27.5,
+      "protein": 33.7,
+      "saturated_fat": 11.3,
+      "sodium": 15.4,
+      "total_carbs": 35.1,
+      "total_fat": 20.5
+    },
+    "serving_size_g": 401,
+    "total_recipe_weight_g": 1604
+  }
+]

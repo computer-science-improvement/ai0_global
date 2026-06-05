@@ -1,0 +1,682 @@
+[
+  {
+    "recipe_name": "Pan-Seared Salmon with Garlic Fried Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_salmon_with_garlic_fried_rice_20250702_223626_6d412b71.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T22:36:27.194801000Z",
+    "selected_ingredients": [
+      "salmon",
+      "rice",
+      "garlic",
+      "onion",
+      "green pea"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared salmon fillet rests beside a mound of golden-brown garlic fried rice on a clean white porcelain dinner plate. The salmon features a crispy, deeply caramelized skin contrasting with its tender, flaky interior. The rice is studded with vibrant green peas and flecks of minced garlic and onion, showcasing a slight sheen from soy and sesame oil. Thinly sliced bright green scallions are scattered over the salmon and rice, adding a fresh visual accent. The arrangement is professional yet approachable, with moderate negative space. The plate is set on a simple light wooden table. Beside the plate, a pair of dark wooden chopsticks rests on a small chopstick rest. A small white ceramic bowl of soy sauce and a cotton napkin complete the casual bistro setting. Natural, even lighting illuminates the dish, highlighting its textures and inviting colors. The salmon is presented as a whole piece, not sliced.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin on",
+        "quantity": "4 x 180 g"
+      },
+      {
+        "name": "Cooked jasmine rice, day-old preferred",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Green onions, thinly sliced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat salmon fillets dry. Season generously with salt and pepper.",
+      "Heat 15 ml vegetable oil in a large non-stick pan over medium-high heat. Place salmon skin-side down.",
+      "Sear salmon for 5-7 minutes until skin is crispy and golden. Flip carefully. Cook for another 3-5 minutes, or until internal temperature reaches 63°C.",
+      "Remove salmon from pan. Set aside to rest.",
+      "Add remaining 15 ml vegetable oil to the same pan. Add diced onion. Sauté for 3 minutes until softened.",
+      "Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Add cooked rice to the pan. Break up any clumps with a spatula. Stir-fry for 3-4 minutes until rice is heated through and slightly toasted.",
+      "Add green peas to the rice. Cook for 2 minutes.",
+      "Pour soy sauce and sesame oil over the rice. Stir well to combine. Cook for 1-2 minutes.",
+      "Stir in most of the sliced green onions, reserving some for garnish.",
+      "Divide garlic fried rice among four plates. Place one salmon fillet beside each portion of rice.",
+      "Garnish with reserved green onions."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 691,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 3.37,
+      "protein_g": 44.3,
+      "saturated_fat_g": 6.78,
+      "sodium_mg": 1044,
+      "total_carbs_g": 46.72,
+      "total_fat_g": 34.46,
+      "total_sugars_g": 3.71,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 0.82,
+      "protein_g": 10.74,
+      "saturated_fat_g": 1.64,
+      "sodium_mg": 253,
+      "total_carbs_g": 11.33,
+      "total_fat_g": 8.36,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 12,
+      "protein": 88.6,
+      "saturated_fat": 33.9,
+      "sodium": 45.4,
+      "total_carbs": 17,
+      "total_fat": 44.2
+    },
+    "serving_size_g": 412.3,
+    "total_recipe_weight_g": 1649.2
+  },
+  {
+    "recipe_name": "Spicy Chicken and Tomato Arancini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_and_tomato_arancini_20250702_222456_809c2a85.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T22:24:56.702628000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "chili",
+      "rice",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian cuisine",
+    "visual_description": "Three golden-brown, crispy Arancini are arranged organically on a clean, round white porcelain dinner plate, slightly off-center. Each Arancino, approximately 6 cm in diameter, boasts a perfectly fried, uniform golden-brown crust. A small, vibrant red dollop of spicy tomato sauce is placed beside the Arancini. A few small, fresh basil leaves are scattered on and around the Arancini, adding a pop of bright green. The plate features moderate negative space, allowing each element to breathe. The chicken inside is finely diced and integrated into the creamy rice. The setting is a light-colored wooden table surface, with a folded light grey cotton napkin placed to the side. Natural, soft, even lighting from the side highlights the textures and colors. The background is minimally blurred, suggesting a modern bistro atmosphere, keeping the focus entirely on the dish.",
+    "number_of_servings": 1,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve as an antipasto or a sophisticated snack.",
+      "Accompany with a small bowl of spicy arrabbiata sauce for dipping."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "100 g"
+      },
+      {
+        "name": "White onion",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Tomato passata",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fresh mozzarella, diced",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Vegetable oil for frying",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cook chicken breast until internal temperature reaches 75°C. Shred or finely dice. Set aside.",
+      "Finely dice onion and garlic. Mince red chili.",
+      "Heat olive oil in a small saucepan over medium heat. Sauté onion until translucent, about 3 minutes. Add garlic and chili; cook 1 minute until fragrant.",
+      "Add Arborio rice. Toast for 2 minutes, stirring constantly.",
+      "Pour in chicken broth, one ladle at a time, stirring frequently. Allow liquid to absorb before adding more. Continue until rice is al dente, about 18-20 minutes.",
+      "Stir in shredded chicken, tomato passata, and grated Parmesan. Season with salt and pepper. Mix well. Remove from heat. Spread risotto on a plate to cool completely. Chill in refrigerator for 30 minutes.",
+      "Take small portions of cooled risotto. Flatten in your palm. Place a diced mozzarella cube in the center. Form into a compact ball, about 5-6 cm diameter.",
+      "Set up a breading station: one bowl with flour, one with beaten egg, one with breadcrumbs.",
+      "Roll each arancino in flour, then dip in egg, then coat thoroughly in breadcrumbs. Press gently to ensure coating adheres.",
+      "Heat vegetable oil in a deep pot to 175°C. Carefully fry arancini, 2-3 at a time, for 4-5 minutes until golden brown and crispy. Ensure internal temperature reaches 75°C.",
+      "Remove arancini with a slotted spoon. Drain on paper towels.",
+      "Serve immediately with additional spicy tomato sauce or a simple marinara."
+    ],
+    "notes": [
+      "Chilling the risotto mixture is crucial for easier shaping of the arancini.",
+      "Ensure oil temperature is consistent for even frying and a crispy exterior."
+    ],
+    "traditional_techniques": [
+      "Risotto preparation (mantecatura)",
+      "Frying (fritto misto style)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1173,
+      "cholesterol_mg": 316,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 71.1,
+      "saturated_fat_g": 13.6,
+      "sodium_mg": 920,
+      "total_carbs_g": 137.6,
+      "total_fat_g": 46.2,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 9.9,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 128,
+      "total_carbs_g": 19.1,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 105,
+      "dietary_fiber": 18,
+      "protein": 142,
+      "saturated_fat": 68,
+      "sodium": 40,
+      "total_carbs": 50,
+      "total_fat": 59
+    },
+    "serving_size_g": 720,
+    "total_recipe_weight_g": 720
+  },
+  {
+    "recipe_name": "Hyderabadi Chicken Biryani",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hyderabadi_chicken_biryani_20250702_222239_18abc55b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T22:22:39.444604000Z",
+    "selected_ingredients": [
+      "biryani masala"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The entire plate is captured in a professional shot. The dish is presented in a traditional wide-rimmed white porcelain bowl. Steamed long-grain Basmati rice displays a mix of snow-white and saffron-infused yellow grains. Large, moist chunks of marinated and steamed bone-in chicken thighs are buried partially in the rice, coated in a dark, aromatic masala. The top is scattered with crispy, deep-brown fried onions and vibrant green chopped mint and coriander. A small copper bowl of chilled cucumber raita sits to the left. The setting includes a dark wood surface, a silver spoon, and a crisp white cotton napkin. Natural light emphasizes the fluffy rice texture and the steam rising from the center. No meat is sliced.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Chilled cucumber and onion raita",
+      "Mirchi ka Salan",
+      "Fresh lime wedges and sliced red onions"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in chunks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Biryani masala",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fried onions",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Green cardamom pods",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "4 pieces"
+      }
+    ],
+    "instructions": [
+      "Mix chicken chunks, yogurt, biryani masala, ginger-garlic paste, and 10g salt.",
+      "Marinate for 60 minutes.",
+      "Rinse rice until water runs clear.",
+      "Soak rice in water for 30 minutes.",
+      "Boil 2 liters water with cloves and cardamom.",
+      "Add rice and cook until 70% tender.",
+      "Drain rice immediately.",
+      "Place marinated chicken chunks in a heavy-bottomed pot.",
+      "Spread 50g fried onions, chopped mint, and coriander over chicken.",
+      "Layer rice over the herbs and onions.",
+      "Drizzle saffron-infused milk and ghee over rice.",
+      "Seal pot lid tightly with aluminum foil.",
+      "Cook on low heat for 30 minutes.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Rest for 10 minutes before fluffing with a fork."
+    ],
+    "notes": [
+      "Use high-quality aged Basmati rice for long, separate grains.",
+      "Do not stir the rice during the dum process to prevent breakage."
+    ],
+    "traditional_techniques": [
+      "dum cooking",
+      "marinating",
+      "tempering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 955,
+      "cholesterol_mg": 153.5,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 43,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 1636.1,
+      "total_carbs_g": 114.8,
+      "total_fat_g": 36,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 173.6,
+      "cholesterol_mg": 27.9,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 297.5,
+      "total_carbs_g": 20.9,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 14,
+      "protein": 86,
+      "saturated_fat": 49,
+      "sodium": 71,
+      "total_carbs": 42,
+      "total_fat": 46
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Roasted Mushroom and Garlic-Tomato Bruschetta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_mushroom_and_garlic-tomato_bruschetta_20250702_221750_4b240189.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T22:17:50.748621000Z",
+    "selected_ingredients": [
+      "garlic",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Eight to twelve pieces of Roasted Mushroom and Garlic-Tomato Bruschetta are arranged artfully on a light-colored, rustic wooden serving board. Each bruschetta features a golden-brown, diagonally sliced and toasted baguette base. A vibrant red layer of rich, mashed garlic-tomato confit, showing soft, tender textures and flecks of herbs, is spread generously on top. This is crowned with an abundant pile of earthy, roasted mixed mushrooms, showcasing varied shades of brown and a slightly crinkled, caramelized texture. The mushrooms are sliced into irregular 5mm thick pieces. Fresh, bright green basil leaves, roughly torn, are scattered over the top of each bruschetta, adding a pop of color and freshness. The overall presentation is clean and inviting, with moderate negative space around the pieces. The scene is set on a simple wooden table surface, with natural, even lighting. A clean white porcelain dinner plate sits subtly beside the board, and a folded cotton napkin rests nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve as a classic Italian antipasto.",
+      "Enjoy with a glass of dry white wine."
+    ],
+    "hero_ingredient": "Roasted Mushrooms",
+    "ingredients": [
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "12"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Mixed mushrooms (e.g., cremini, shiitake)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Baguette",
+        "quantity": "1 (about 300g)"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 150°C.",
+      "Place cherry tomatoes, unpeeled garlic cloves, 120 ml olive oil, thyme, salt, and pepper in a small oven-safe dish.",
+      "Bake for 45-60 minutes until tomatoes are soft and garlic is tender. Remove from oven. Let cool slightly. Peel garlic cloves. Gently mash confit ingredients.",
+      "Increase oven temperature to 200°C.",
+      "Clean mushrooms. Slice mushrooms into 5mm thick pieces.",
+      "Toss sliced mushrooms with 30 ml olive oil, salt, and pepper on a baking sheet.",
+      "Roast mushrooms for 15-20 minutes until tender and slightly caramelized.",
+      "Slice baguette into 1.5 cm thick diagonal pieces.",
+      "Lightly brush baguette slices with olive oil. Toast in oven or a pan until golden.",
+      "Spread a generous spoonful of tomato-garlic confit onto each toasted baguette slice.",
+      "Top with roasted mushrooms.",
+      "Garnish with fresh basil leaves."
+    ],
+    "notes": [
+      "The confit can be made ahead of time and stored in the refrigerator."
+    ],
+    "traditional_techniques": [
+      "Confit"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 547,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4,
+      "protein_g": 10.8,
+      "saturated_fat_g": 5,
+      "sodium_mg": 879,
+      "total_carbs_g": 50.3,
+      "total_fat_g": 35.8,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 209,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 4.1,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 336,
+      "total_carbs_g": 19.2,
+      "total_fat_g": 13.7,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 14,
+      "protein": 22,
+      "saturated_fat": 25,
+      "sodium": 38,
+      "total_carbs": 18,
+      "total_fat": 46
+    },
+    "serving_size_g": 261.5,
+    "total_recipe_weight_g": 1046
+  },
+  {
+    "recipe_name": "Cheesy Chicken and Potato Macaroni Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_chicken_and_potato_macaroni_bake_20250702_220528_de26be9d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T22:05:28.769752000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "macaroni",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Cheesy Chicken and Potato Macaroni Bake is served directly from the baking dish onto a sturdy, round, cream-colored ceramic plate. The golden-brown potato topping, slightly crisp at the edges, covers the creamy macaroni and diced chicken beneath. Melted cheese bubbles around the potato slices. Some of the rich, creamy sauce is visible at the edges. The dish is warm and inviting, with natural, slightly irregular edges from being scooped. The colors are warm: golden-brown from the baked cheese and potatoes, creamy white from the sauce, and hints of cooked chicken. The plate rests on a well-worn, rustic wooden dining table. A simple, dark blue checkered cloth napkin is casually placed beside the plate. A metal fork with a classic design lies to the right. In the background, out of focus, a blurred glimpse of a cozy kitchen counter with a few everyday cooking items suggests a lived-in family kitchen. Warm, soft light from an overhead fixture illuminates the dish, creating inviting shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette",
+      "Serve with crusty bread for dipping into the sauce"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs or breasts",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potatoes (Russet or Yukon Gold)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Milk, full-fat",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Medium onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Extra shredded cheese for topping",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Peel potatoes. Cut into 1 cm thick slices. Boil in salted water until tender. Drain well. Mash or keep slices.",
+      "Cook macaroni according to package directions until al dente. Drain.",
+      "Dice chicken into 2 cm cubes. Season with salt and pepper. Sear chicken in a large oven-safe pan over medium-high heat until browned and cooked through (internal temperature 75°C). Remove chicken from pan. Set aside.",
+      "Melt butter in the same pan. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in flour. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in milk and chicken broth until smooth. Bring to a simmer, whisking constantly, until thickened.",
+      "Remove pan from heat. Stir in 200g shredded cheese until melted and smooth. Season sauce with salt, pepper, paprika, and dried thyme.",
+      "Add cooked macaroni and seared chicken to the cheese sauce. Stir to coat all ingredients.",
+      "Transfer the mixture to a 20x30 cm baking dish if not using an oven-safe pan.",
+      "Spread mashed potatoes evenly over the macaroni mixture OR arrange potato slices neatly over the mixture. Sprinkle extra shredded cheese on top.",
+      "Bake for 20-25 minutes, or until bubbly and the cheese is golden brown."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1022.16,
+      "cholesterol_mg": 211.63,
+      "dietary_fiber_g": 5.86,
+      "protein_g": 70.89,
+      "saturated_fat_g": 23.59,
+      "sodium_mg": 1139.63,
+      "total_carbs_g": 88.78,
+      "total_fat_g": 40.22,
+      "total_sugars_g": 9.39,
+      "trans_fat_g": 1.12
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 164.27,
+      "cholesterol_mg": 34.01,
+      "dietary_fiber_g": 0.94,
+      "protein_g": 11.39,
+      "saturated_fat_g": 3.79,
+      "sodium_mg": 183.15,
+      "total_carbs_g": 14.27,
+      "total_fat_g": 6.46,
+      "total_sugars_g": 1.51,
+      "trans_fat_g": 0.18
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70.54,
+      "dietary_fiber": 20.91,
+      "protein": 141.77,
+      "saturated_fat": 117.96,
+      "sodium": 49.55,
+      "total_carbs": 32.28,
+      "total_fat": 51.56
+    },
+    "serving_size_g": 622.25,
+    "total_recipe_weight_g": 2489
+  }
+]

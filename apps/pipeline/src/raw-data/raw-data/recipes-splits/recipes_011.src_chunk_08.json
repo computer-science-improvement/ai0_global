@@ -1,0 +1,526 @@
+[
+  {
+    "recipe_name": "Chicken and Mushroom Pasta Tartlets",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_pasta_tartlets_20250707_003430_a98a22d3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T00:34:30.487566000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Golden-brown puff pastry tartlets, approximately 5 cm in diameter, filled with a creamy, rich pasta mixture. The filling showcases small, tender ditalini pasta intertwined with finely diced cooked chicken breast and thinly sliced sautéed cremini mushrooms. Flecks of fresh green thyme are visible throughout the creamy sauce, providing a vibrant contrast to the light beige pasta and light brown chicken. Each tartlet is uniformly baked, with a slightly puffed, flaky crust. Eight to ten tartlets are artfully arranged on a sleek, dark slate serving board, leaving ample negative space. A few scattered fresh thyme sprigs adorn the board. The setting features a simple wooden table, soft, natural overhead lighting, and a crisp white linen napkin subtly placed beside the board, evoking a modern bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Ditalini pasta",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Puff pastry",
+        "quantity": "300 g sheet"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1, small"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Double cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease a 12-cup mini muffin tin.",
+      "Roll out puff pastry. Cut 12 circles using a 6 cm round cutter. Press each circle into a muffin tin cavity.",
+      "Cook ditalini pasta in salted boiling water until al dente. Drain and set aside.",
+      "Heat 10 ml olive oil in a pan over medium-high heat. Season chicken breast with salt and pepper. Cook chicken 6-8 minutes per side, until internal temperature reaches 75°C. Remove, cool slightly, then finely dice.",
+      "In the same pan, melt butter with remaining olive oil. Add thinly sliced mushrooms and finely diced shallot. Sauté 5-7 minutes until softened.",
+      "Add minced garlic and half of the fresh thyme leaves. Cook 1 minute more.",
+      "Pour in chicken stock and double cream. Bring to a gentle simmer. Cook 2-3 minutes, stirring, until slightly thickened.",
+      "Stir in grated Parmesan cheese until melted and smooth. Season with salt and pepper.",
+      "Combine cooked ditalini pasta, diced chicken, and mushroom cream sauce in a bowl. Mix well.",
+      "Spoon the mixture evenly into the prepared puff pastry cases.",
+      "Bake 15-20 minutes, or until pastry is golden brown and puffed. Garnish with remaining fresh thyme leaves. Serve warm."
+    ]
+  },
+  {
+    "recipe_name": "Crab and Potato Hash with Fried Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crab_and_potato_hash_with_fried_egg_20250707_003333_406b3814.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T00:33:34.390987000Z",
+    "selected_ingredients": [
+      "potato",
+      "crab",
+      "cheese",
+      "egg",
+      "onion",
+      "cheddar",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of vibrant Crab and Potato Hash is centrally plated on a round white porcelain dinner plate. The hash features golden-brown 1 cm diced potatoes, mixed with delicate white flaked crab meat and streaks of melted golden cheddar. Finely diced, caramelized yellow onion is visible throughout the hash, adding depth. A perfectly fried sunny-side up egg rests atop the hash, its bright yellow yolk contrasting with the crisp white edges. Scattered around the base of the egg and over the hash are small, bright red 0.5 cm diced fresh tomatoes, adding a pop of color and freshness. A sprinkle of bright green chopped fresh parsley or chives provides a final garnish. The dish is presented on a simple light wooden table surface. A folded white cotton napkin is placed beside the plate. Natural, even lighting illuminates the scene, highlighting textures and colors. The background is clean and slightly blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Bistro",
+    "cultural_origin": "American",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "600 g, peeled and diced into 1 cm cubes"
+      },
+      {
+        "name": "Cooked Crab Meat",
+        "quantity": "200 g, flaked"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Cheddar Cheese",
+        "quantity": "100 g, shredded"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "2 medium, diced into 0.5 cm cubes"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Parsley or Chives",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Boil diced potatoes in salted water for 5-7 minutes. Potatoes should be tender but still firm. Drain well.",
+      "Heat olive oil and butter in a large non-stick pan over medium-high heat.",
+      "Add diced onion. Sauté 3-4 minutes until softened and translucent.",
+      "Add drained potatoes to the pan. Cook, stirring occasionally, for 10-12 minutes until potatoes are golden brown and slightly crispy.",
+      "Gently fold in flaked crab meat and shredded cheddar cheese. Cook for 2-3 minutes, stirring until cheese melts and ingredients are combined. Season with salt and pepper.",
+      "While hash cooks, fry 4 eggs in a separate pan to desired doneness.",
+      "Divide hash among 4 plates. Top each portion with a fried egg.",
+      "Garnish with fresh diced tomatoes and chopped parsley or chives. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Modern Crab and Potato Hash with Fried Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_modern_crab_and_potato_hash_with_fried_egg_20250707_003315_65103001.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T00:33:15.437239000Z",
+    "selected_ingredients": [
+      "potato",
+      "crab",
+      "cheese",
+      "egg",
+      "onion",
+      "cheddar",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a single, refined portion on a clean white porcelain dinner plate, centered on a simple wooden table surface. A generous, golden-brown mound of Modern Crab and Potato Hash forms the base. The hash, made from pan-fried 1 cm diced potatoes and finely diced yellow onions, shows crisp edges and tender interiors, flecked with white lump crab meat and melted cheddar cheese. Perched atop the hash is a perfectly fried egg with a firm white and a vibrant, glistening runny yolk that promises richness. Beside the hash, a small, vibrant spoonful of fresh tomato relish adds a burst of color and acidity, showcasing finely diced ripe red tomatoes. The overall presentation is clean and balanced, with moderate negative space, highlighting the natural colors and textures of the ingredients. The dish is accompanied by standard silver flatware and a neatly folded cotton napkin, set under natural, even lighting in a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Potatoes (Yukon Gold or similar)",
+        "quantity": "600g, peeled, diced into 1 cm cubes"
+      },
+      {
+        "name": "Crab meat (lump or claw)",
+        "quantity": "250g, picked clean"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "100g, grated"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Tomatoes (ripe)",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "freshly ground, to taste"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2, juiced"
+      },
+      {
+        "name": "Chives",
+        "quantity": "15g, chopped"
+      }
+    ],
+    "instructions": [
+      "Boil diced potatoes in salted water until tender but still firm, about 8-10 minutes. Drain well.",
+      "Heat 30ml olive oil and butter in a large non-stick pan over medium heat. Add diced onion and cook until softened, about 5 minutes. Add minced garlic and cook for 1 minute more.",
+      "Add drained potatoes to the pan. Increase heat to medium-high. Cook, stirring occasionally, until potatoes are golden and slightly crispy, about 10-12 minutes.",
+      "Gently fold in crab meat and grated cheddar cheese into the potato mixture. Cook for 2-3 minutes until cheese is melted and crab is heated through. Season with salt and pepper. Stir in chopped parsley. Keep warm.",
+      "In a small bowl, combine diced tomatoes, remaining 30ml olive oil, and a squeeze of lemon juice. Season with salt and pepper.",
+      "Heat a separate non-stick pan over medium heat. Add a little oil. Crack eggs into the pan. Fry until whites are set and yolks are still runny, about 2-3 minutes.",
+      "Divide warm hash among four plates. Top each serving with a fried egg. Place a spoonful of tomato relish next to the hash. Garnish with fresh chopped chives. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 565,
+      "cholesterol_mg": 263.3,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 28.3,
+      "saturated_fat_g": 12.8,
+      "sodium_mg": 488.1,
+      "total_carbs_g": 36.6,
+      "total_fat_g": 34.7,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126.8,
+      "cholesterol_mg": 59.1,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.4,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 109.6,
+      "total_carbs_g": 8.2,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 87.8,
+      "dietary_fiber": 19.2,
+      "protein": 56.6,
+      "saturated_fat": 64.1,
+      "sodium": 21.2,
+      "total_carbs": 13.3,
+      "total_fat": 44.5
+    },
+    "serving_size_g": 445.5,
+    "total_recipe_weight_g": 1782
+  },
+  {
+    "recipe_name": "Turkish Lemon Semolina Cake (Revani)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_turkish_lemon_semolina_cake_%28revani%29_20250707_000043_3d172d37.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T00:00:44.019694000Z",
+    "selected_ingredients": [
+      {
+        "name": "milk"
+      },
+      {
+        "name": "egg"
+      },
+      {
+        "name": "sugar"
+      },
+      {
+        "name": "lemon"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Turkish",
+    "visual_description": "A single diamond-shaped slice of golden-brown Turkish Lemon Semolina Cake (Revani) is presented on a simple, round, white ceramic plate with a subtle blue rim, characteristic of everyday Turkish dinnerware. The cake slice is moist and glistening with absorbed lemon syrup, showing the fine texture of semolina. A few thin, candied lemon slices rest gently on top of the slice. In the background, the remaining whole cake sits in its square baking dish on a wooden cutting board, slightly out of focus, suggesting a homely kitchen setting. The table is a well-used wooden dining table. A traditional Turkish teacup (ince belli çay bardağı) and saucer are casually placed next to the plate, along with a small, plain dessert fork. Warm, natural light illuminates the scene, creating a cozy and inviting atmosphere. The overall presentation is unpretentious and comforting, as if prepared for a family gathering.",
+    "number_of_servings": 4,
+    "cuisine_type": "Turkish",
+    "cultural_origin": "Turkish",
+    "cultural_serving_suggestions": [
+      "Served with a glass of strong Turkish tea",
+      "Often garnished with shredded coconut or ground pistachios"
+    ],
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "Granulated Sugar",
+        "quantity": "400g"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "2 medium (1 for juice/zest, 1 for slices)"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Fine Semolina",
+        "quantity": "150g"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vanilla Sugar (or vanilla extract)",
+        "quantity": "1 sachet (or 5ml)"
+      }
+    ],
+    "instructions": [
+      "Make syrup: Combine 400g sugar, 500ml water, juice from 1 lemon, and 2-3 lemon slices in a saucepan. Bring to a boil.",
+      "Simmer syrup for 10 minutes. Remove from heat. Let cool completely.",
+      "Preheat oven to 180°C. Lightly grease a 20x20 cm baking dish.",
+      "Prepare batter: In a large bowl, whisk 3 eggs and 150g sugar until pale and fluffy.",
+      "Add liquids: Stir in 100ml milk and 80ml vegetable oil.",
+      "Add dry ingredients: Fold in 150g fine semolina, 50g plain flour, 10g baking powder, 1 sachet vanilla sugar (or 5ml vanilla extract), and zest of 1 lemon. Mix until just combined. Do not overmix.",
+      "Bake cake: Pour batter into the prepared dish. Bake for 30-35 minutes, or until golden brown and a toothpick inserted into the center comes out clean.",
+      "Soak cake: Immediately after removing from oven, slowly pour the cooled syrup evenly over the hot cake. The cake will absorb the syrup.",
+      "Rest: Let the cake rest at room temperature for at least 2-3 hours, or preferably overnight, for syrup to fully absorb and flavors to meld.",
+      "Serve: Cut into diamond or square portions."
+    ],
+    "notes": [
+      "Ensure the syrup is cold and the cake is hot for optimal absorption and moisture."
+    ],
+    "traditional_techniques": [
+      "Şerbetleme (syrup soaking)"
+    ]
+  },
+  {
+    "recipe_name": "Seared Chicken Breast with Delicate Pea Rice and Spring Onion Consommé",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_breast_with_delicate_pea_rice_and_spring_onion_consomm%C3%A9_20250706_233119_ae3aab8d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T23:31:20.246682000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "green pea",
+      "onion"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "chinese cuisine",
+    "visual_description": "A pristine white bone china plate holds a meticulously crafted starter. At its core, a natural, free-flowing mound of tender, creamy white Pea Rice is artfully arranged, dotted with vibrant green peas. Resting on the rice is a single, perfectly seared chicken medallion, its surface a rich golden-brown, showcasing a crisp exterior and juicy interior. A clear, amber-hued Spring Onion Consommé pools gracefully around the rice, creating a delicate moat. A few fresh, emerald pea shoots are precisely placed atop the chicken as the sole garnish, adding a touch of verdant contrast. The presentation is ultra-minimalist, emphasizing abundant negative space. The plate is set on a premium grey veined marble surface, accompanied by a single elegant pair of polished chopsticks and a pristine white linen napkin folded into a precise triangle. Dramatic professional lighting casts soft shadows, highlighting the dish's architectural precision and sophisticated simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve in individual, small porcelain or bone china bowls/plates.",
+      "Accompanied by a delicate porcelain spoon or fine chopsticks."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh or frozen green peas",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Low-sodium chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pea shoots or microgreens",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Spring Onion Consommé: Thinly slice 3 spring onion stalks. Peel and thinly slice ginger. Peel and crush garlic. Combine chicken stock, sliced spring onions, ginger, and garlic in a saucepan. Bring to a simmer. Cook for 20 minutes. Strain through a fine-mesh sieve. Discard solids. Season consommé lightly with salt. Keep warm.",
+      "Prepare Pea Rice: Rinse jasmine rice until water runs clear. In a medium saucepan, combine rice with 300 ml water. Bring to a boil. Reduce heat to low. Cover and simmer for 15 minutes, or until water is absorbed and rice is tender. Stir in green peas. Cook for 2 minutes. Stir in 5 ml sesame oil. Season with salt and white pepper. Keep warm. The rice should be soft and slightly fluid, like a refined congee.",
+      "Prepare Chicken Breast: Pat chicken breast dry. Cut into 4 equal, thick medallions. In a small bowl, combine Shaoxing wine and light soy sauce. Marinate chicken medallions for 10 minutes. Heat 15 ml neutral oil in a non-stick pan over medium-high heat. Add chicken medallions. Sear for 4-5 minutes per side until golden brown and internal temperature reaches 75°C (167°F). Remove from pan. Rest chicken for 5 minutes.",
+      "Plate the dish: Ladle a generous portion of the fluid Pea Rice onto the center of each individual starter plate, creating an organic, flowing shape. Place one seared chicken medallion atop the rice. Pour warm Spring Onion Consommé around the base of the rice, creating a clear pool. Garnish with a few delicate pea shoots or microgreens. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Refined stock preparation for clear consommé",
+      "Congee-style rice cooking for a fluid texture",
+      "Precise searing for protein"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 278.81,
+      "cholesterol_mg": 53.13,
+      "dietary_fiber_g": 1.82,
+      "protein_g": 23.06,
+      "saturated_fat_g": 1.26,
+      "sodium_mg": 622.86,
+      "total_carbs_g": 26.19,
+      "total_fat_g": 7.77,
+      "total_sugars_g": 2.21,
+      "trans_fat_g": 0.02
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 103.32,
+      "cholesterol_mg": 19.69,
+      "dietary_fiber_g": 0.67,
+      "protein_g": 8.55,
+      "saturated_fat_g": 0.47,
+      "sodium_mg": 230.82,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 2.88,
+      "total_sugars_g": 0.82,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.7,
+      "dietary_fiber": 6.5,
+      "protein": 46.1,
+      "saturated_fat": 6.3,
+      "sodium": 27.1,
+      "total_carbs": 9.5,
+      "total_fat": 10
+    },
+    "serving_size_g": 269.85,
+    "total_recipe_weight_g": 1079.4
+  }
+]

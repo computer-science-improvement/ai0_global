@@ -1,0 +1,664 @@
+[
+  {
+    "recipe_name": "Vegetarian Golubtsy (Stuffed Cabbage Rolls)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vegetarian_golubtsy_%28stuffed_cabbage_rolls%29_20250628_090859_30e35939.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:09:00.011994000Z",
+    "selected_ingredients": [
+      "cabbage",
+      "onion",
+      "mushroom",
+      "potato",
+      "barley"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian, Russian cuisine",
+    "visual_description": "Two generous vegetarian golubtsy, or stuffed cabbage rolls, are neatly arranged on a pristine white porcelain dinner plate. Each roll, encased in tender blanched cabbage, reveals a hearty filling of finely diced mushrooms, grated potato, and cooked pearl barley. A rich, deep red tomato-based sauce, infused with sautéed onions and carrots, is generously spooned over the rolls. A dollop of creamy white smetana sits atop one golubets, contrasting beautifully with the vibrant sauce. Fresh green dill sprigs are artfully placed for garnish. The dish is presented on a rustic wooden table, accompanied by a small side bowl of smetana, a traditional silver spoon, and a simple linen napkin. Natural, soft lighting illuminates the textures and colors, highlighting the comforting, authentic Russian presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a generous dollop of smetana (sour cream).",
+      "Garnish with fresh chopped dill.",
+      "Traditionally served with black bread on the side."
+    ],
+    "hero_ingredient": "Cabbage",
+    "ingredients": [
+      {
+        "name": "Large white cabbage head",
+        "quantity": "1 (approx. 1.5 kg)"
+      },
+      {
+        "name": "Pearl barley",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Sour cream (smetana)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Remove core from cabbage head. Blanch cabbage in a large pot of boiling salted water for 10-15 minutes. Leaves should soften. Carefully peel off individual leaves. Trim thick veins from leaves.",
+      "Cook pearl barley according to package instructions until tender. Drain well.",
+      "Dice one onion finely. Slice mushrooms. Grate potatoes. Grate carrot. Mince garlic.",
+      "Heat 15 ml vegetable oil in a large pan. Sauté diced onion until translucent. Add sliced mushrooms. Cook until softened and moisture evaporates. Add grated potatoes and minced garlic. Cook for 5 minutes. Remove from heat. Combine sautéed vegetables with cooked barley in a large bowl. Season with salt and pepper. This is your filling.",
+      "Lay a cabbage leaf flat. Place a spoonful of filling near the stem end. Fold sides over filling. Roll tightly from bottom to top to form a compact parcel. Repeat with remaining leaves and filling.",
+      "Heat remaining 15 ml vegetable oil in a large pot or Dutch oven. Sauté the second diced onion and grated carrot until softened, about 5-7 minutes. Stir in tomato paste. Cook for 2 minutes.",
+      "Add crushed tomatoes, vegetable broth, and bay leaf to the pot. Bring sauce to a simmer. Season with salt and pepper.",
+      "Carefully arrange stuffed cabbage rolls in a single layer in the simmering sauce. Ensure rolls are mostly submerged. Add more broth or water if needed.",
+      "Cover pot. Simmer on low heat for 45-60 minutes, or until cabbage is very tender and filling is heated through.",
+      "Serve hot. Garnish each serving with a generous dollop of sour cream and fresh chopped dill."
+    ],
+    "notes": [
+      "This vegetarian version of Golubtsy offers a hearty and satisfying main course.",
+      "The use of pearl barley and mushrooms provides a rich, earthy texture and flavor that complements the tender cabbage."
+    ],
+    "traditional_techniques": [
+      "Blanching cabbage leaves for flexibility",
+      "Slow simmering in a flavorful sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 592.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 22.8,
+      "protein_g": 19.6,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 752.2,
+      "total_carbs_g": 95.6,
+      "total_fat_g": 18.4,
+      "total_sugars_g": 25,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 65.9,
+      "cholesterol_mg": 3.3,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 2.2,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 83.6,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 2,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 81,
+      "protein": 39,
+      "saturated_fat": 32,
+      "sodium": 33,
+      "total_carbs": 35,
+      "total_fat": 24
+    },
+    "serving_size_g": 900,
+    "total_recipe_weight_g": 3600
+  },
+  {
+    "recipe_name": "Hearty Beef and Lentil Pot",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_lentil_pot_20250628_090736_4bc79d8f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:07:36.720805000Z",
+    "selected_ingredients": [
+      "onion",
+      "red lentil",
+      "black bean",
+      "beef",
+      "pepper",
+      "tuna",
+      "tomato",
+      "cucumber",
+      "turkey",
+      "beef stock",
+      "egg"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Hearty Beef and Lentil Pot is presented in a clean, wide, shallow white porcelain bowl. The stew is rich, deep brown, showcasing tender, irregular chunks of beef nestled among vibrant red lentils, glossy black beans, and distinct pieces of diced red and green bell peppers. The texture is hearty yet refined, with visible separation of ingredients. A generous scattering of fresh chopped parsley provides a bright green contrast on top. The bowl sits on a simple light wooden table. A folded off-white cotton napkin is placed beside the plate. Natural, even lighting illuminates the dish, highlighting its warmth and texture. The background is a soft, blurred restaurant setting, minimal and unobtrusive, allowing the dish to be the focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, trimmed, cut into 3 cm cubes",
+        "quantity": "700 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Dried red lentils, rinsed",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Canned black beans, rinsed and drained",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped, for garnish",
+        "quantity": "15 grams"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry with paper towels. Season generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef cubes in batches until well browned on all sides. Do not overcrowd the pot. Remove beef and set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and diced red and green bell peppers. Cook for another 5 minutes until slightly tender.",
+      "Stir in crushed tomatoes, beef stock, rinsed red lentils, dried thyme, and bay leaf. Bring mixture to a simmer.",
+      "Return seared beef to the pot. Cover and reduce heat to low. Simmer for 1.5 to 2 hours, or until beef is very tender.",
+      "Stir in rinsed black beans. Continue to simmer uncovered for 15-20 minutes, allowing the stew to thicken slightly and flavors to meld.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper as needed.",
+      "Ladle the Hearty Beef and Lentil Pot into individual serving bowls. Garnish generously with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 847,
+      "cholesterol_mg": 123,
+      "dietary_fiber_g": 16.8,
+      "protein_g": 68.6,
+      "saturated_fat_g": 11.8,
+      "sodium_mg": 1609,
+      "total_carbs_g": 63.7,
+      "total_fat_g": 34.8,
+      "total_sugars_g": 9.2,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 118,
+      "cholesterol_mg": 17,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 9.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 224,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 60,
+      "protein": 137,
+      "saturated_fat": 59,
+      "sodium": 70,
+      "total_carbs": 23,
+      "total_fat": 45
+    },
+    "serving_size_g": 718,
+    "total_recipe_weight_g": 2870
+  },
+  {
+    "recipe_name": "Rustic Dark Beer and Chili Bean Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_dark_beer_and_chili_bean_soup_20250628_090720_44c618e5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:07:21.263146000Z",
+    "selected_ingredients": [
+      "chicken stock",
+      "dark beer",
+      "chili"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A deep, inviting ceramic bowl holds a generous portion of Rustic Dark Beer and Chili Bean Soup. The soup is a rich, earthy reddish-brown, reflecting the dark beer, tomatoes, and chili. Visible tender, diced onions and plump, softened kidney beans are suspended in the slightly thick, comforting broth. The surface is subtly textured, with a scattering of vibrant green, chopped fresh flat-leaf parsley adding a pop of color. A thick, rustic slice of crusty, golden-brown bread rests casually beside the bowl, ready for dipping. The setting is a well-worn wooden kitchen table, bathed in warm, natural light, conveying a cozy, homely atmosphere. A simple, sturdy metal spoon and a casually folded cloth napkin complete the unpretentious, inviting scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chili",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Dark beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Canned kidney beans",
+        "quantity": "400 g, drained and rinsed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15 g, chopped for garnish"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "4 thick slices"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion. Cook 5-7 minutes until softened and translucent.",
+      "Add minced garlic, chili powder, smoked paprika, and ground cumin. Cook 1 minute, stirring constantly, until fragrant.",
+      "Stir in canned diced tomatoes, dark beer, and chicken stock. Bring to a simmer.",
+      "Reduce heat to low. Simmer gently for 20 minutes, allowing flavors to meld.",
+      "Add drained and rinsed kidney beans. Continue to simmer for another 5 minutes, heating beans through.",
+      "Season with salt and black pepper to taste.",
+      "Ladle soup into bowls. Garnish with chopped fresh parsley. Serve immediately with thick slices of crusty bread."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 404,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.1,
+      "protein_g": 16.9,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 1018,
+      "total_carbs_g": 64.1,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 72,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 3,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 181,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 1.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 36,
+      "protein": 34,
+      "saturated_fat": 8,
+      "sodium": 44,
+      "total_carbs": 23,
+      "total_fat": 12
+    },
+    "serving_size_g": 562,
+    "total_recipe_weight_g": 2248
+  },
+  {
+    "recipe_name": "Potato Blini with Spiced Avocado Spread",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_blini_with_spiced_avocado_spread_20250628_090709_6b4f3548.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:07:09.440269000Z",
+    "selected_ingredients": [
+      "avocado",
+      "chili",
+      "paprika",
+      "garlic",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian, yummy, Russian, everyday cooking cuisine",
+    "visual_description": "Plating: 8-12 small, golden-brown potato blini, each about 5cm diameter. Blini are arranged casually on a traditional Russian wooden serving board or a simple ceramic platter. Each blini is topped with a generous dollop of creamy, pale green avocado spread. The spread has flecks of red chili and a dusting of vibrant red paprika. Fresh green dill sprigs are placed on top of each canapé. The blini show slightly irregular, homemade edges. Setting: The platter sits on a well-used, warm-toned wooden kitchen table. A simple, slightly wrinkled linen napkin in a neutral color is casually placed nearby. Lighting is warm and inviting, typical of a cozy kitchen. The background is slightly out of focus, showing glimpses of a lived-in family kitchen, perhaps a traditional Russian tea kettle or ceramic ware. The overall impression is one of rustic, comforting, and authentic home cooking.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with strong black tea or kvass.",
+      "Offer small bowls of sour cream or gherkins on the side, in traditional zakuski style."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Milk",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 grams"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Avocados, ripe",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Red chili, small",
+        "quantity": "0.5"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "3 grams"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "10 grams"
+      }
+    ],
+    "instructions": [
+      "Peel and boil potatoes until very tender. Drain well. Mash thoroughly until smooth.",
+      "In a large bowl, combine mashed potatoes, flour, milk, egg, baking powder, salt, and pepper. Mix until a smooth batter forms.",
+      "Heat vegetable oil in a large non-stick pan over medium heat.",
+      "Spoon tablespoonfuls of batter into the hot pan. Cook for 3-4 minutes per side, until golden brown and cooked through. Transfer blini to a wire rack to cool.",
+      "For the spread, halve and pit avocados. Scoop flesh into a bowl. Mash with a fork.",
+      "Finely mince garlic clove and red chili. Add to mashed avocado.",
+      "Stir in smoked paprika, lemon juice, salt, and pepper. Mix well until combined.",
+      "To assemble, place a dollop of spiced avocado spread on each potato blini. Garnish with a small sprig of fresh dill."
+    ],
+    "notes": [
+      "This recipe creates a comforting, everyday Russian-style canapé.",
+      "The blini are more like small potato pancakes than thin crepes, fitting the home cooking style."
+    ],
+    "traditional_techniques": [
+      "Blini making"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 459.7,
+      "cholesterol_mg": 50.4,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 9.7,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 663.7,
+      "total_carbs_g": 51.2,
+      "total_fat_g": 25.6,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.3,
+      "cholesterol_mg": 16.9,
+      "dietary_fiber_g": 3,
+      "protein_g": 3.2,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 222.8,
+      "total_carbs_g": 17.2,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.8,
+      "dietary_fiber": 31.9,
+      "protein": 19.3,
+      "saturated_fat": 22.9,
+      "sodium": 28.9,
+      "total_carbs": 18.6,
+      "total_fat": 32.8
+    },
+    "serving_size_g": 297.9,
+    "total_recipe_weight_g": 1191.5
+  },
+  {
+    "recipe_name": "Rustic Potato and Poblano Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_potato_and_poblano_soup_20250628_090604_e3f00a8a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:06:04.479183000Z",
+    "selected_ingredients": [
+      "avocado",
+      "poblano chile",
+      "cumin",
+      "chihuahua cheese",
+      "annatto",
+      "thyme",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian, yummy, Russian cuisine",
+    "visual_description": "A single, generous portion of thick, creamy, pale yellow potato soup fills a deep, rustic ceramic bowl. The soup’s surface is rich and inviting, with visible small, soft potato chunks and flecks of finely diced green poblano. A dollop of cool, white sour cream rests off-center, gently swirling into the soup. Fresh, vibrant green dill sprigs are sprinkled over the sour cream and soup, adding a pop of color and freshness. Small, neatly diced cubes of ripe green avocado are scattered on top. The bowl sits on a well-used, warm wooden dining table. A casually folded linen napkin and a thick slice of dark rye bread are placed beside the bowl. The scene is lit with warm, cozy kitchen lighting, creating a comforting, lived-in atmosphere, characteristic of a family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian Home",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of dark rye bread (Borodinsky bread is excellent).",
+      "Offer extra sour cream (smetana) at the table for guests to add as desired.",
+      "Accompany with pickled vegetables, such as cucumbers or cabbage, for a traditional Russian touch."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Poblano chile",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Chihuahua cheese",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Avocado",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Annatto seeds",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.5 liters"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Sour cream (Smetana)",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F). Place poblano chiles on a baking sheet. Roast for 20-25 minutes until skin is blistered and charred. Transfer chiles to a bowl. Cover tightly with plastic wrap. Let steam for 10 minutes.",
+      "Peel, deseed, and finely chop the roasted poblanos. Set aside.",
+      "Peel and dice potatoes into 2 cm cubes. Dice onion and carrot. Mince garlic.",
+      "In a large pot or Dutch oven, heat olive oil over medium heat. Add annatto seeds and cumin seeds. Cook for 1 minute until fragrant. Remove seeds if desired, or leave them for texture.",
+      "Add diced onion and carrot to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic and chopped poblano. Cook for 2 minutes more.",
+      "Add diced potatoes and vegetable broth to the pot. Add thyme sprigs. Bring to a boil, then reduce heat to low. Simmer for 15-20 minutes, or until potatoes are very tender.",
+      "Remove thyme sprigs. Using an immersion blender, blend about half of the soup until creamy, leaving some potato chunks for texture. Alternatively, carefully transfer half of the soup to a regular blender and blend. Return blended portion to the pot.",
+      "Grate Chihuahua cheese. Add grated cheese to the soup. Stir until cheese is completely melted and soup is smooth and creamy. Season with salt and black pepper to taste.",
+      "Dice avocado just before serving.",
+      "Ladle hot soup into individual bowls. Garnish each serving with a dollop of sour cream, a sprinkle of fresh dill, and diced avocado."
+    ],
+    "traditional_techniques": [
+      "Hearty slow simmering",
+      "Roasting vegetables"
+    ]
+  }
+]

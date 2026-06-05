@@ -1,0 +1,773 @@
+[
+  {
+    "recipe_name": "Spanish Chicken and Peach Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_peach_rice_20250712_215847_6f43a3a0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T21:58:47.979812000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "garlic",
+      "peach",
+      "onion",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Chicken and Peach Rice is presented in a wide, shallow white porcelain bowl, set on a simple wooden table. A golden-brown seared chicken thigh, with crispy skin, rests prominently atop a bed of vibrant, tender rice. The rice is a warm, saffron-infused yellow, studded with soft, diced red tomatoes, translucent diced onions, and hints of tender diced peach. Alongside, a few caramelized roasted peach wedges add contrasting texture and color. The dish is garnished with fresh, bright green chopped parsley. The composition is clean and professional, with moderate negative space, highlighting the rich colors and textures. Natural, even lighting creates an inviting, approachable restaurant-style presentation. A cotton napkin is folded beside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the flavorful rice.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar.",
+      "Enjoy with a glass of dry white wine or sangria."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Ripe tomatoes, diced",
+        "quantity": "2 large (approx. 300g)"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Firm ripe peaches",
+        "quantity": "2 (approx. 250g each)"
+      },
+      {
+        "name": "Chicken broth, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "pinch (0.1g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley or cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, oven-safe pan or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 6-8 minutes until golden brown and crispy. Flip and sear for 2-3 minutes. Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add diced onion to the pan. Cook for 5-7 minutes until softened and translucent.",
+      "Add minced garlic and diced tomatoes. Cook for 3-4 minutes, stirring frequently, until tomatoes break down slightly.",
+      "Stir in tomato paste, smoked paprika, and saffron threads. Cook for 1 minute until fragrant.",
+      "Add rice to the pan. Stir constantly for 2-3 minutes until rice is lightly toasted.",
+      "Pour in hot chicken broth. Bring to a simmer. Return seared chicken thighs to the pan, skin-side up.",
+      "Reduce heat to low, cover the pan, and simmer for 20 minutes. Do not stir during this time.",
+      "While rice cooks, dice one peach into 1cm cubes. Cut the second peach into 8 thick wedges. Toss wedges with a drizzle of olive oil, salt, and pepper.",
+      "Preheat oven to 200°C (390°F). Roast peach wedges on a baking sheet for 10-15 minutes until tender and slightly caramelized.",
+      "After 20 minutes, stir diced peach cubes into the rice. Cover and cook for another 5-10 minutes, or until rice is tender and liquid is absorbed. Ensure chicken reaches 75°C (167°F) internal temperature.",
+      "Remove pan from heat. Let rest, covered, for 5 minutes.",
+      "Serve individual portions of rice with one chicken thigh. Garnish with roasted peach wedges and fresh chopped parsley or cilantro."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Slow cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 819.3,
+      "cholesterol_mg": 165.6,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 42.78,
+      "saturated_fat_g": 8.55,
+      "sodium_mg": 239.1,
+      "total_carbs_g": 83.48,
+      "total_fat_g": 36.19,
+      "total_sugars_g": 15.72,
+      "trans_fat_g": 0.18
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129.5,
+      "cholesterol_mg": 26.2,
+      "dietary_fiber_g": 0.87,
+      "protein_g": 6.76,
+      "saturated_fat_g": 1.35,
+      "sodium_mg": 37.8,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 5.72,
+      "total_sugars_g": 2.48,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55.2,
+      "dietary_fiber": 19.6,
+      "protein": 85.6,
+      "saturated_fat": 42.8,
+      "sodium": 10.4,
+      "total_carbs": 30.4,
+      "total_fat": 46.4
+    },
+    "serving_size_g": 632.5,
+    "total_recipe_weight_g": 2530
+  },
+  {
+    "recipe_name": "Moroccan Chicken with Preserved Lemon and Olives",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_moroccan_chicken_with_preserved_lemon_and_olives_20250712_212617_11e9bf48.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T21:26:18.378396000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a traditional shallow terracotta tagine base on a rustic wooden table. Four whole, golden-browned chicken thighs are nestled in a vibrant, thick yellow saffron sauce. The chicken skin is crispy and glistening. Bright green cracked olives and translucent yellow strips of preserved lemon rind are scattered across the sauce. Freshly chopped green cilantro and parsley provide a vivid color contrast. The entire plate is visible, showing the rich texture of the braised onions in the sauce. A side of fluffy steamed couscous in a small ceramic bowl and a piece of crusty khobz bread sit nearby. The lighting is natural and warm, highlighting the moist texture of the whole chicken pieces.",
+    "number_of_servings": 4,
+    "cuisine_type": "Moroccan",
+    "cultural_origin": "Moroccan",
+    "cultural_serving_suggestions": [
+      "Serve with steamed couscous",
+      "Accompany with crusty Moroccan khobz bread",
+      "Pair with hot Moroccan mint tea"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in skin-on chicken thighs",
+        "quantity": "1.2 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onions, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Ras el Hanout",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Preserved lemon, pulp removed and rind sliced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Cracked green olives",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "20 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry with paper towels.",
+      "Season chicken with salt and pepper.",
+      "Heat olive oil in a large tagine or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs skin-side down for 6 minutes until golden.",
+      "Flip chicken and sear for 4 minutes.",
+      "Transfer chicken to a plate.",
+      "Add onions to the pot and sauté for 5 minutes.",
+      "Stir in garlic, ginger, turmeric, saffron, and Ras el Hanout.",
+      "Cook spices for 1 minute until fragrant.",
+      "Pour in chicken stock and deglaze the pot.",
+      "Return chicken to the pot skin-side up.",
+      "Add preserved lemon rinds and olives.",
+      "Reduce heat to low and cover.",
+      "Simmer for 30 minutes until chicken reaches 75°C internal temperature.",
+      "Stir in cilantro and parsley before serving."
+    ],
+    "notes": [
+      "Ensure the preserved lemon pulp is removed to prevent excessive saltiness.",
+      "Use a heavy-bottomed Dutch oven if a traditional tagine is unavailable."
+    ],
+    "traditional_techniques": [
+      "Slow braising",
+      "Spice blooming",
+      "Tagine cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 608,
+      "cholesterol_mg": 189,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 40.3,
+      "saturated_fat_g": 11.2,
+      "sodium_mg": 1480,
+      "total_carbs_g": 13.3,
+      "total_fat_g": 43.8,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.2,
+      "cholesterol_mg": 41.1,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.8,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 321.7,
+      "total_carbs_g": 2.9,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 11.6,
+      "protein": 80.5,
+      "saturated_fat": 56,
+      "sodium": 64.3,
+      "total_carbs": 4.8,
+      "total_fat": 56.1
+    },
+    "serving_size_g": 460,
+    "total_recipe_weight_g": 1840
+  },
+  {
+    "recipe_name": "Braised Chicken with Lemon, Olives, and Paprika Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_lemon%2C_olives%2C_and_paprika_rice_20250712_212511_4bc612b8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T21:25:11.479079000Z",
+    "selected_ingredients": [
+      "onion",
+      "tomato",
+      "garlic",
+      "apple",
+      "rice",
+      "chocolate",
+      "flour",
+      "orange",
+      "bread",
+      "chicken",
+      "lemon",
+      "sugar",
+      "coffee",
+      "mushroom",
+      "olive",
+      "almond",
+      "tuna",
+      "margarine",
+      "milk",
+      "yogurt",
+      "oil",
+      "butter",
+      "grape",
+      "mayonnaise",
+      "cranberry",
+      "noodle",
+      "cucumber",
+      "cashew",
+      "macaroni",
+      "walnut",
+      "carrot",
+      "egg",
+      "honey",
+      "marshmallow",
+      "olive oil",
+      "paprika",
+      "pistachio",
+      "banana",
+      "fish",
+      "ketchup",
+      "sweet potato",
+      "tea",
+      "black tea",
+      "green onion",
+      "mandarin",
+      "salami",
+      "vinegar",
+      "kale",
+      "pumpkin seed",
+      "watermelon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of braised chicken thigh, golden-brown and tender, rests centrally on a bed of fluffy, light yellow Basmati rice on a clean white porcelain dinner plate. The chicken is a whole piece, showcasing its natural shape. A rich, savory sauce, infused with diced tomatoes, lemon slices, and dark Kalamata olives, pools around the chicken and lightly coats the rice. Fresh, vibrant green chopped parsley is sprinkled generously over the dish, adding a pop of color and freshness. The arrangement is organic and inviting, not overly structured, with moderate negative space on the plate. The setting features a simple wooden table surface, a grey cotton napkin folded beside the plate, and standard silver flatware. Natural, even lighting illuminates the dish, creating a warm, appealing glow, with a softly blurred bistro-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm crusty bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800 g total)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Diced tomatoes",
+        "quantity": "400 g can or 2 fresh medium tomatoes, diced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, half sliced into rounds, half juiced"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "80 g, pitted and halved"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Fresh parsley or cilantro",
+        "quantity": "30 g, chopped, for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down for 5-7 minutes until golden brown and crispy. Flip and sear for 2-3 minutes on the other side. Remove chicken from pot.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic, paprika, cumin, and turmeric. Cook for 1 minute until fragrant.",
+      "Stir in diced tomatoes and lemon juice. Bring to a simmer.",
+      "Pour in chicken broth. Bring to a boil.",
+      "Return chicken thighs to the pot. Add lemon slices and halved olives.",
+      "Reduce heat to low. Cover and simmer for 30-35 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is tender.",
+      "While chicken braises, cook Basmati rice according to package instructions. Fluff with a fork.",
+      "Taste the sauce. Adjust seasoning if needed.",
+      "Serve chicken over a bed of cooked rice. Spoon sauce and olives over the chicken. Garnish with fresh chopped parsley or cilantro."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 897,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 50.3,
+      "saturated_fat_g": 12.5,
+      "sodium_mg": 976,
+      "total_carbs_g": 76.9,
+      "total_fat_g": 42.9,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139.5,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 151.8,
+      "total_carbs_g": 12,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 24.5,
+      "protein": 100.5,
+      "saturated_fat": 62.4,
+      "sodium": 42.4,
+      "total_carbs": 28,
+      "total_fat": 55
+    },
+    "serving_size_g": 643,
+    "total_recipe_weight_g": 2572
+  },
+  {
+    "recipe_name": "Orange Pear Crumble Muffins",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orange_pear_crumble_muffins_20250712_211225_0eb86e40.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T21:12:25.832199000Z",
+    "selected_ingredients": [
+      "orange",
+      "pear",
+      "wheat",
+      "sugar"
+    ],
+    "complexity": "simple",
+    "special_requests": "muffin",
+    "visual_description": "A single Orange Pear Crumble Muffin, baked golden-brown, rests on a rustic, off-white ceramic plate. Its top is generously covered with a textured, golden crumble. The muffin is slightly domed, revealing a moist, light yellow interior dotted with soft, translucent pear cubes and vibrant orange zest. In the background, a basket overflows with more freshly baked muffins, some with paper liners, conveying home-baked warmth. The scene is a well-used wooden dining table in a homely kitchen, with warm lighting and a casually placed cloth napkin. The overall impression is comforting, simple, and expertly prepared homemade goodness.",
+    "number_of_servings": 12,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Served warm with coffee or tea",
+      "As part of a brunch spread"
+    ],
+    "hero_ingredient": "Orange Pear",
+    "ingredients": [
+      {
+        "name": "all-purpose wheat flour",
+        "quantity": "300 g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "baking powder",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "salt",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "milk",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "large oranges, zest",
+        "quantity": "2"
+      },
+      {
+        "name": "large orange, juice",
+        "quantity": "1"
+      },
+      {
+        "name": "medium pears, peeled, cored, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "all-purpose wheat flour (for crumble)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "granulated sugar (for crumble)",
+        "quantity": "75 g"
+      },
+      {
+        "name": "cold unsalted butter, cubed (for crumble)",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Crumble: In a medium bowl, combine 100 g flour and 75 g sugar. Add 50 g cold butter cubes. Rub butter into flour mixture until coarse crumbs form. Set aside.",
+      "Preheat Oven: Preheat oven to 200°C. Line a 12-cup muffin tin with paper liners.",
+      "Combine Dry Ingredients: In a large bowl, whisk together 300 g flour, 150 g sugar, baking powder, and salt.",
+      "Combine Wet Ingredients: In a separate medium bowl, whisk together eggs, milk, vegetable oil, orange zest, and orange juice.",
+      "Mix Batter: Pour wet ingredients into dry ingredients. Stir gently with a spatula until just combined. Do not overmix.",
+      "Fold in Fruit: Gently fold in the diced pears.",
+      "Fill Muffin Cups: Divide batter evenly among the 12 prepared muffin cups, filling each about two-thirds full.",
+      "Add Crumble: Sprinkle a generous amount of crumble topping over each muffin.",
+      "Bake: Bake for 20-25 minutes, or until a wooden skewer inserted into the center comes out clean. Tops should be golden brown.",
+      "Cool: Remove muffins from oven. Let them cool in the muffin tin for a few minutes before transferring to a wire rack to cool completely."
+    ],
+    "notes": [
+      "Do not overmix batter.",
+      "Pears should be ripe but firm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 18.75,
+      "calories": 326.16,
+      "cholesterol_mg": 42.31,
+      "dietary_fiber_g": 2.08,
+      "protein_g": 5.4,
+      "saturated_fat_g": 3.37,
+      "sodium_mg": 240.04,
+      "total_carbs_g": 51.64,
+      "total_fat_g": 11.57,
+      "total_sugars_g": 23.86,
+      "trans_fat_g": 0.17
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 14.07,
+      "calories": 244.72,
+      "cholesterol_mg": 31.74,
+      "dietary_fiber_g": 1.56,
+      "protein_g": 4.05,
+      "saturated_fat_g": 2.53,
+      "sodium_mg": 180.11,
+      "total_carbs_g": 38.74,
+      "total_fat_g": 8.68,
+      "total_sugars_g": 17.9,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14.1,
+      "dietary_fiber": 7.43,
+      "protein": 10.8,
+      "saturated_fat": 16.85,
+      "sodium": 10.44,
+      "total_carbs": 18.78,
+      "total_fat": 14.83
+    },
+    "serving_size_g": 133.3,
+    "total_recipe_weight_g": 1599.3
+  },
+  {
+    "recipe_name": "Orange & Pear Layer Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orange_%26_pear_layer_cake_20250712_211130_44024ef6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T21:11:30.722269000Z",
+    "selected_ingredients": [
+      "orange",
+      "pear",
+      "wheat",
+      "sugar"
+    ],
+    "complexity": "standard",
+    "special_requests": "muffin",
+    "visual_description": "A single slice of Orange & Pear Layer Cake is elegantly presented on a clean, round white porcelain dessert plate. The cake slice, approximately 5cm wide, reveals two distinct, light golden cake layers with subtle orange zest flecks. Between the cake layers, a pale, creamy orange-tinted cream cheese frosting is visible, providing a soft contrast. A slightly darker, translucent golden-brown layer of small diced pear compote is nestled above the first cake layer. The top of the cake slice is crowned with a smooth yet artfully swirled frosting, adorned with a delicate, paper-thin fresh pear slice and a small, vibrant curl of candied orange peel. The overall presentation is clean and professional, with moderate negative space on the plate. The setting is a modern bistro, featuring a simple wooden table surface and natural, even lighting. A neatly folded white cotton napkin rests beside the plate, with a simple silver dessert fork to its right, enhancing the approachable yet refined restaurant aesthetic.",
+    "number_of_servings": 12,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Orange",
+    "ingredients": [
+      {
+        "name": "Wheat flour",
+        "quantity": "450g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "400g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "225g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Buttermilk",
+        "quantity": "240ml"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Orange zest",
+        "quantity": "from 2 large oranges"
+      },
+      {
+        "name": "Fresh orange juice (for cake)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Ripe pears, peeled, cored, small diced",
+        "quantity": "600g"
+      },
+      {
+        "name": "Granulated sugar (for compote)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh orange juice (for compote)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Vanilla extract (for compote)",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Cream cheese, softened",
+        "quantity": "450g"
+      },
+      {
+        "name": "Unsalted butter, softened (for frosting)",
+        "quantity": "225g"
+      },
+      {
+        "name": "Icing sugar, sifted",
+        "quantity": "500g"
+      },
+      {
+        "name": "Orange zest (for frosting)",
+        "quantity": "from 1 large orange"
+      },
+      {
+        "name": "Fresh orange juice (for frosting)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vanilla extract (for frosting)",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh pear, thinly sliced (for garnish)",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Candied orange peel or very thin orange slices (for garnish)",
+        "quantity": "a few pieces"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour two 20cm round cake pans.",
+      "Whisk flour, baking powder, and salt in a bowl. Set aside.",
+      "Cream softened butter and 400g granulated sugar until light and fluffy.",
+      "Beat in eggs one at a time, mixing well after each addition.",
+      "Stir in orange zest and 60ml orange juice.",
+      "Gradually add dry ingredients to wet ingredients, alternating with buttermilk. Begin and end with dry. Mix until just combined. Do not overmix.",
+      "Divide batter evenly between prepared pans. Bake 25-30 minutes, or until a toothpick inserted into the center comes out clean.",
+      "Cool cakes in pans for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Combine diced pears, 100g granulated sugar, 120ml orange juice, and cinnamon stick in a saucepan.",
+      "Bring to a simmer over medium heat. Cook 10-15 minutes, stirring occasionally, until pears are tender and liquid thickens.",
+      "Remove cinnamon stick. Stir in 5ml vanilla extract. Cool compote completely.",
+      "Beat softened cream cheese and 225g softened butter until smooth and creamy.",
+      "Gradually add sifted icing sugar, beating until well combined.",
+      "Stir in orange zest, 30ml orange juice, and 5ml vanilla extract. Beat until light and fluffy.",
+      "Place one cooled cake layer on a serving plate.",
+      "Spread half of the pear compote evenly over the first cake layer.",
+      "Spread a thin layer of frosting over the compote to create a barrier.",
+      "Place the second cake layer on top.",
+      "Spread remaining pear compote over the second layer, leaving a small border.",
+      "Frost the top and sides of the cake with orange cream cheese frosting.",
+      "Garnish with thinly sliced fresh pear and candied orange peel or thin orange slices."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 83.3,
+      "calories": 939,
+      "cholesterol_mg": 181.1,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 9.6,
+      "saturated_fat_g": 28.1,
+      "sodium_mg": 396.6,
+      "total_carbs_g": 117.5,
+      "total_fat_g": 45.7,
+      "total_sugars_g": 83.8,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 27.2,
+      "calories": 306,
+      "cholesterol_mg": 59.1,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 3.1,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 129.3,
+      "total_carbs_g": 38.3,
+      "total_fat_g": 14.9,
+      "total_sugars_g": 27.3,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.4,
+      "dietary_fiber": 9.7,
+      "protein": 19.2,
+      "saturated_fat": 140.5,
+      "sodium": 17.2,
+      "total_carbs": 42.7,
+      "total_fat": 58.6
+    },
+    "serving_size_g": 306.7,
+    "total_recipe_weight_g": 3680
+  }
+]

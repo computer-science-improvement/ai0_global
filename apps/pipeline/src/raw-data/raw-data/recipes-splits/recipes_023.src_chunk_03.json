@@ -1,0 +1,648 @@
+[
+  {
+    "recipe_name": "Gnocchi with Spicy Cannellini Bean Ragu",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_gnocchi_with_spicy_cannellini_bean_ragu_20250624_105321_fc24a090.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:53:21.690415000Z",
+    "selected_ingredients": [
+      "bean",
+      "potato",
+      "tomato",
+      "basil",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "This dish features tender potato gnocchi coated in a vibrant, rustic ragu, served in a classic white porcelain bowl. The ragu presents a rich red hue from the crushed tomatoes, studded with creamy white cannellini beans and tiny flecks of red chili. Finely diced onion and minced garlic are visibly integrated within the sauce, which clings beautifully to the soft, pillowy gnocchi. Fresh, vibrant green basil leaves are torn and scattered generously over the top, providing a striking color contrast and aromatic freshness. A subtle sheen of olive oil indicates the sauce's richness. The overall presentation is inviting and generous, with moderate negative space on the plate. A simple wooden table and a folded cotton napkin complete the casual bistro setting, with natural, even lighting highlighting the dish's comforting appeal. A fork and spoon rest beside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta bread to soak up the sauce.",
+      "Offer a simple green salad with a light vinaigrette as an accompaniment.",
+      "Pair with a medium-bodied Italian red wine, such as Chianti."
+    ],
+    "hero_ingredient": "Potato Gnocchi",
+    "ingredients": [
+      {
+        "name": "Potato Gnocchi",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cannellini Beans",
+        "quantity": "400 g can, drained and rinsed"
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "1 large bunch (about 30g)"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium (about 150g), finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Red Chili Flakes",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50 g, freshly grated (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pan over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and red chili flakes. Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes and vegetable broth. Bring to a simmer.",
+      "Add drained cannellini beans. Reduce heat to low. Simmer for 15 minutes, stirring occasionally.",
+      "While ragu simmers, cook gnocchi according to package directions. Gnocchi are ready when they float to the surface.",
+      "Drain gnocchi. Add cooked gnocchi directly to the ragu.",
+      "Toss gently to coat. Remove from heat.",
+      "Stir in half of the fresh basil leaves, torn. Season with salt and pepper to taste.",
+      "Serve immediately. Garnish each portion with remaining fresh basil and grated Parmesan cheese, if using."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 508.6,
+      "cholesterol_mg": 11.1,
+      "dietary_fiber_g": 13.1,
+      "protein_g": 20.9,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 1268,
+      "total_carbs_g": 77.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 98,
+      "cholesterol_mg": 2.1,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 4,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 244.2,
+      "total_carbs_g": 14.9,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 3.7,
+      "dietary_fiber": 46.7,
+      "protein": 41.7,
+      "saturated_fat": 17.4,
+      "sodium": 55.1,
+      "total_carbs": 28.2,
+      "total_fat": 15.7
+    },
+    "serving_size_g": 519.3,
+    "total_recipe_weight_g": 2077
+  },
+  {
+    "recipe_name": "Creamy Tomato Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_chicken_pasta_20250624_105317_debef7e0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:53:17.784001000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken",
+      "american cheese",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Tomato Chicken Pasta is presented on a clean, white porcelain dinner plate, centrally placed on a simple wooden table. The penne pasta is coated in a luscious, creamy reddish-orange tomato sauce, forming a gently mounded pile. Nestled within and atop the pasta are several golden-brown, seared chicken medallions, cut into thick, substantial chunks, showcasing their tender interior. The dish is garnished with vibrant green chopped fresh parsley, providing a fresh contrast. The overall presentation is clean and professional, with moderate negative space around the food. A standard silver fork and knife rest beside the plate on a white cotton napkin. The scene is illuminated by natural, even lighting, creating a casual yet refined bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with standard flatware."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "American cheese slices",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and pepper.",
+      "Heat 15 ml olive oil in a large skillet over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown and cooked to an internal temperature of 75°C. Remove chicken from skillet. Set aside. Let rest 5 minutes.",
+      "Cook penne pasta according to package directions until al dente. Drain, reserving 100 ml pasta water.",
+      "Dice onion. Mince garlic. Add remaining 15 ml olive oil to the same skillet. Sauté diced onion 3-4 minutes until softened.",
+      "Add minced garlic and smoked paprika. Sauté 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a simmer. Cook 5 minutes, stirring occasionally.",
+      "Reduce heat to low. Stir in heavy cream and American cheese slices until cheese is fully melted and sauce is smooth.",
+      "Add cooked pasta to the sauce. Toss to coat evenly. If sauce is too thick, add reserved pasta water gradually until desired consistency is reached.",
+      "Slice rested chicken breasts into thick medallions or substantial chunks.",
+      "Serve pasta onto plates. Arrange chicken medallions on top of the pasta. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Pan-searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 826,
+      "cholesterol_mg": 182,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 65.6,
+      "saturated_fat_g": 13.9,
+      "sodium_mg": 1198,
+      "total_carbs_g": 69.6,
+      "total_fat_g": 31.7,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 172,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1,
+      "protein_g": 13.7,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 250,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.7,
+      "dietary_fiber": 17.4,
+      "protein": 131.2,
+      "saturated_fat": 69.7,
+      "sodium": 52.1,
+      "total_carbs": 25.3,
+      "total_fat": 40.7
+    },
+    "serving_size_g": 479.4,
+    "total_recipe_weight_g": 1917.6
+  },
+  {
+    "recipe_name": "Savory Egg Custard with Roasted Cherry Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_egg_custard_with_roasted_cherry_tomatoes_20250624_105309_510a4275.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:53:09.597872000Z",
+    "selected_ingredients": [
+      "egg",
+      "tomato",
+      "milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of savory egg custard is presented in a pristine white porcelain ramekin, placed on a simple round white dinner plate. The custard has a delicate golden-yellow hue, slightly puffed at the edges, indicating a creamy, tender texture. Embedded within the custard are vibrant red, roasted cherry tomatoes, some visibly burst, adding pockets of bright color and soft texture. A sprinkle of fresh, finely chopped green chives and parsley garnishes the top, providing a subtle color contrast and fresh aroma. The ramekin sits on a clean, light-colored wooden table surface, suggesting a modern bistro setting. A neatly folded cotton napkin and standard silver flatware are placed beside the plate. Natural, even lighting illuminates the dish, highlighting its warmth and simple elegance. The entire plate is visible, with moderate negative space, creating a professional yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve immediately with slices of crusty baguette.",
+      "Pair with a simple green salad dressed with a light vinaigrette."
+    ],
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "8"
+      },
+      {
+        "name": "Full-fat milk or light cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh chives, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Grated Gruyere or Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Place cherry tomatoes on a baking tray. Drizzle with 15 ml olive oil, salt, and pepper. Roast for 15-20 minutes until softened and slightly burst.",
+      "Finely dice the shallot. Mince the garlic.",
+      "Heat butter and remaining olive oil in a small pan over medium heat. Add diced shallot and sauté until translucent, about 3 minutes. Add minced garlic and cook for 1 minute until fragrant. Remove from heat.",
+      "In a large bowl, whisk eggs, milk, chopped chives, and chopped parsley. Season with salt and pepper.",
+      "Stir in the grated cheese and sautéed shallot-garlic mixture.",
+      "Lightly grease four 150 ml ramekins. Divide the roasted cherry tomatoes among the ramekins.",
+      "Carefully pour the egg mixture over the tomatoes in each ramekin.",
+      "Place ramekins in a baking dish. Pour hot water into the baking dish to come halfway up the sides of the ramekins (bain-marie).",
+      "Bake for 20-25 minutes, or until custards are set but still slightly wobbly in the center. Do not overcook.",
+      "Remove ramekins from water bath. Let rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Do not overbake the custards; they should be just set and creamy, not rubbery.",
+      "Ensure the water for the bain-marie is hot to help even cooking."
+    ],
+    "traditional_techniques": [
+      "Bain-marie"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 360,
+      "cholesterol_mg": 402,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 19.7,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 201,
+      "total_carbs_g": 10.2,
+      "total_fat_g": 26.9,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130,
+      "cholesterol_mg": 145,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 73,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 134,
+      "dietary_fiber": 5,
+      "protein": 39,
+      "saturated_fat": 51,
+      "sodium": 9,
+      "total_carbs": 4,
+      "total_fat": 34
+    },
+    "serving_size_g": 276.2,
+    "total_recipe_weight_g": 1104.6
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Spicy Strawberry-Apple Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_spicy_strawberry-apple_relish_20250624_105307_31604650.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:53:07.753984000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bread",
+      "apple",
+      "garlic",
+      "hot sauce",
+      "sugar",
+      "olive",
+      "strawberry",
+      "oil",
+      "butter"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant pan-seared chicken breast anchors the center of a clean white porcelain dinner plate, presented as a whole, succulent piece. The chicken exhibits a golden-brown, lightly caramelized crust, indicating a perfect sear. Adjacent to it, a rich, glossy spicy strawberry-apple relish with softened fruit chunks adds a pop of reddish-orange, contrasting beautifully with the chicken. Roasted cherry tomatoes, their skins slightly blistered and deepened in color, are artfully scattered alongside, interspersed with dark, halved Kalamata olives and soft, roasted garlic cloves. Crisp, golden-brown rustic bread croutons, cut into irregular 2cm cubes, are sprinkled over the dish, providing textural contrast. A light dusting of fresh, bright green chopped parsley adds a final touch of color and freshness. The plate is presented on a simple wooden table, accompanied by standard silver flatware and a folded cotton napkin, under natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "rustic bread",
+        "quantity": "2 slices, 2cm thick"
+      },
+      {
+        "name": "Granny Smith apple",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "4 (2 minced, 2 whole)"
+      },
+      {
+        "name": "sriracha or similar hot sauce",
+        "quantity": "15ml (1 tablespoon)"
+      },
+      {
+        "name": "brown sugar",
+        "quantity": "15g (1 tablespoon)"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "50g"
+      },
+      {
+        "name": "fresh strawberries",
+        "quantity": "150g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30ml (2 tablespoons)"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "30g (2 tablespoons)"
+      },
+      {
+        "name": "salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Preheat oven to 200°C (400°F). Toss cherry tomatoes and 2 whole garlic cloves with 15ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 15-20 minutes until softened and slightly charred.",
+      "Dice apple into 1cm cubes. Hull and quarter strawberries. In a small saucepan, combine diced apple, quartered strawberries, minced garlic, brown sugar, and hot sauce. Cook over medium heat for 8-10 minutes, stirring occasionally, until fruit softens and mixture thickens slightly.",
+      "Cube rustic bread into 2cm pieces. In a large pan, melt 15g butter with 15ml olive oil over medium heat. Add bread cubes. Toast, stirring frequently, until golden brown and crisp on all sides. Remove from pan and set aside.",
+      "In the same pan, melt remaining 15g butter over medium-high heat. Add chicken breasts. Sear for 6-8 minutes per side, until golden brown and cooked through to an internal temperature of 75°C (167°F).",
+      "Roughly chop roasted garlic cloves. Pit and halve Kalamata olives. Combine roasted tomatoes, chopped roasted garlic, and halved olives.",
+      "Place one seared chicken breast on each plate. Spoon a generous amount of the spicy strawberry-apple relish alongside. Arrange the roasted tomato-olive mixture next to the chicken. Scatter garlic croutons over and around the dish. Garnish with fresh chopped parsley."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.48,
+      "calories": 597.18,
+      "cholesterol_mg": 177.63,
+      "dietary_fiber_g": 4.09,
+      "protein_g": 63.34,
+      "saturated_fat_g": 6.94,
+      "sodium_mg": 944.42,
+      "total_carbs_g": 48.62,
+      "total_fat_g": 20.61,
+      "total_sugars_g": 16.33,
+      "trans_fat_g": 0.23
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.02,
+      "calories": 135.33,
+      "cholesterol_mg": 40.25,
+      "dietary_fiber_g": 0.93,
+      "protein_g": 14.35,
+      "saturated_fat_g": 1.57,
+      "sodium_mg": 214.02,
+      "total_carbs_g": 11.02,
+      "total_fat_g": 4.67,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.21,
+      "dietary_fiber": 14.6,
+      "protein": 126.68,
+      "saturated_fat": 34.69,
+      "sodium": 41.06,
+      "total_carbs": 17.68,
+      "total_fat": 26.42
+    },
+    "serving_size_g": 441.3,
+    "total_recipe_weight_g": 1765.1
+  },
+  {
+    "recipe_name": "Spiced Carrot and Apple Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_carrot_and_apple_crumble_20250624_105303_d7109f0f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:53:04.268368000Z",
+    "selected_ingredients": [
+      "carrot",
+      "apple"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Spiced Carrot and Apple Crumble is presented in a deep, off-white ceramic bowl, placed on a well-used wooden kitchen table. The crumble topping is golden brown, rustic, and slightly uneven, with some larger clumps and visible oats, hinting at its homemade origin. Patches of the warm, amber-toned apple and grated carrot filling peek through the cracks in the crust, showing its soft, bubbling texture. A generous dollop of thick, white cream rests on top or beside the crumble. The setting is a homely family kitchen, with warm, natural lighting. A simple, silver spoon rests beside the bowl on a casually placed cloth napkin. The overall impression is one of comforting, unpretentious warmth, inviting immediate enjoyment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Dessert",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Apples (e.g., Bramley or Granny Smith), peeled, cored, diced into 2 cm cubes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Carrots, peeled, grated",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Light brown sugar (for filling)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Cornflour",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Unsalted butter, cold, cubed",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Rolled oats (optional)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Light brown sugar (for crumble)",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (fan 160°C).",
+      "Combine diced apples, grated carrots, granulated sugar, 30g brown sugar, cinnamon, nutmeg, lemon juice, and cornflour in a large bowl. Mix well.",
+      "Spoon fruit mixture into a 1.5-liter baking dish.",
+      "For the crumble, place flour and cold butter in a separate bowl. Rub butter into flour with fingertips until mixture resembles coarse breadcrumbs.",
+      "Stir in oats, 70g brown sugar, and salt. Mix until just combined.",
+      "Sprinkle crumble topping evenly over the fruit mixture.",
+      "Bake for 30-40 minutes, or until topping is golden brown and fruit filling is bubbling."
+    ],
+    "notes": [
+      "Serve warm with a dollop of thick cream, vanilla ice cream, or custard."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 36.6,
+      "calories": 564.8,
+      "cholesterol_mg": 40.3,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 7,
+      "saturated_fat_g": 10,
+      "sodium_mg": 95,
+      "total_carbs_g": 98.7,
+      "total_fat_g": 16.9,
+      "total_sugars_g": 52.3,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.7,
+      "calories": 180.4,
+      "cholesterol_mg": 12.9,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 2.2,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 30.3,
+      "total_carbs_g": 31.5,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 16.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13,
+      "dietary_fiber": 26,
+      "protein": 14,
+      "saturated_fat": 50,
+      "sodium": 4,
+      "total_carbs": 36,
+      "total_fat": 22
+    },
+    "serving_size_g": 313.1,
+    "total_recipe_weight_g": 1252.2
+  }
+]

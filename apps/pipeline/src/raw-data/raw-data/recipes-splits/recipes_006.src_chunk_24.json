@@ -1,0 +1,664 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Roasted Bell Pepper and Parmesan Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251020_090612_3dd6a359.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-20T09:06:12.820313000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate. A single, golden-brown pan-seared chicken breast is the focal point, positioned slightly off-center. It is nestled amidst a vibrant bed of roasted bell pepper strips, cut into uniform 2cm batons, in shades of rich red and sunny yellow. The bell peppers are glistening with a rustic tomato-herb sauce, showing gentle charring from sautéing. A crisp, golden-brown crust of melted Parmesan cheese generously covers the chicken and parts of the bell peppers, offering a textural contrast. Freshly chopped green basil leaves are scattered over the dish, providing a bright color pop. The plate has moderate negative space. The setting is a modern bistro, with a simple wooden table surface and a white cotton napkin beside the plate. The lighting is natural and even. A fork and knife, traditional flatware, are placed on either side of the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "A simple green salad with a vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Red and yellow bell peppers",
+        "quantity": "2 large (approx. 400g total)"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Canned chopped tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut bell peppers into 2cm strips.",
+      "Heat 15ml olive oil in an oven-safe pan over medium heat.",
+      "Add bell pepper strips. Sauté for 8-10 minutes until softened and slightly charred. Remove from pan.",
+      "Add remaining 15ml olive oil to the same pan.",
+      "Season chicken breasts with salt and pepper.",
+      "Sear chicken breasts for 3-4 minutes per side until golden brown. Remove chicken.",
+      "Add diced onion to the pan. Sauté for 3 minutes until translucent.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in chopped tomatoes and chicken stock. Bring to a simmer. Cook for 5 minutes, reducing slightly.",
+      "Return bell peppers to the pan with the tomato sauce. Stir in half of the fresh basil.",
+      "Place seared chicken breasts into the sauce in the pan. Ensure chicken is partially submerged.",
+      "Sprinkle grated Parmesan cheese generously over the chicken and bell pepper mixture.",
+      "Transfer the pan to the preheated oven.",
+      "Bake for 15-20 minutes, or until chicken reaches an internal temperature of 75°C and Parmesan is golden and bubbly.",
+      "Garnish with remaining fresh basil before serving."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Sautéing",
+      "Gratin"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 436,
+      "cholesterol_mg": 121,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 56.2,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 771,
+      "total_carbs_g": 13.5,
+      "total_fat_g": 16.6,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 12,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 164,
+      "total_carbs_g": 2.9,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 13,
+      "protein": 112,
+      "saturated_fat": 31,
+      "sodium": 34,
+      "total_carbs": 5,
+      "total_fat": 21
+    },
+    "serving_size_g": 470,
+    "total_recipe_weight_g": 1878
+  },
+  {
+    "recipe_name": "Spicy Chicken and Vegetable Barley Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251020_063334_4c2d1c1c.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 18,
+    "timestamp": "2025-10-20T06:33:35.504461000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "chili",
+      "onion",
+      "green pea",
+      "carrot",
+      "tomato",
+      "barley"
+    ],
+    "complexity": "simple",
+    "special_requests": "spicy, low calories",
+    "visual_description": "A single, modest serving of Spicy Chicken and Vegetable Barley Skillet is presented on a rustic, round ceramic plate with subtle imperfections, resting on a well-used wooden dining table. The dish features generous chunks of seared chicken breast (approximately 3cm cubes) nestled among plump, toothsome barley grains. Brightly colored diced bell peppers (red and yellow), diced carrots, and vibrant green peas are interspersed throughout, creating a visually appealing medley of textures and natural hues. The rich, savory tomato-based sauce lightly coats all ingredients, giving a comforting sheen. A sprinkle of fresh, chopped parsley provides a final touch of verdant freshness. The plate is adequately filled, allowing for some negative space. Standard flatware is casually placed beside the plate. The scene is bathed in warm, cozy kitchen lighting, reflecting a relaxed family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Pearl barley",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Diced tomatoes (canned)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Low-sodium chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breasts into 3 cm chunks. Dice onion, red and yellow bell peppers, and carrots. Finely chop chili. Mince garlic.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken chunks. Sear until browned on all sides, about 5-7 minutes. Remove chicken from skillet and set aside.",
+      "Add diced onion, bell peppers, carrots, and chopped chili to the skillet. Sauté for 5-7 minutes until vegetables soften.",
+      "Stir in minced garlic, smoked paprika, ground cumin, and dried oregano. Cook for 1 minute until fragrant.",
+      "Add diced tomatoes and pearl barley to the skillet. Stir well.",
+      "Pour in chicken broth. Bring to a simmer. Reduce heat to medium-low, cover, and cook for 25-30 minutes, or until barley is tender and most liquid is absorbed. Stir occasionally.",
+      "Return seared chicken to the skillet. Add frozen green peas. Stir and cook for another 5 minutes, or until chicken is heated through and reaches an internal temperature of 75°C (167°F).",
+      "Season with salt and black pepper to taste. Remove from heat.",
+      "Chop fresh parsley. Garnish individual servings with chopped parsley before serving."
+    ],
+    "notes": [
+      "Adjust chili quantity to desired spice level.",
+      "For a lower calorie option, ensure to use lean chicken breast and measure olive oil precisely."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 458,
+      "cholesterol_mg": 66,
+      "dietary_fiber_g": 14.8,
+      "protein_g": 40.1,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 282,
+      "total_carbs_g": 61,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 81,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 7.1,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 50,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 1.1,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 22,
+      "dietary_fiber": 53,
+      "protein": 80,
+      "saturated_fat": 6,
+      "sodium": 12,
+      "total_carbs": 22,
+      "total_fat": 8
+    },
+    "serving_size_g": 568,
+    "total_recipe_weight_g": 2270
+  },
+  {
+    "recipe_name": "Hungarian Beef and Bell Pepper Pörkölt",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251020_062850_7d08b57e.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-20T06:28:50.883341000Z",
+    "selected_ingredients": [
+      "beef",
+      "mustard",
+      "bell pepper",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of rich, dark red Hungarian Beef Pörkölt is presented in a deep, rustic ceramic bowl. Tender, braised beef chunks, approximately 3-4 cm, are nestled amongst vibrant, softened bell pepper chunks (2 cm), caramelized onions, and a thick, glossy paprika-infused sauce. The beef exhibits a deep, browned crust from initial searing and a fork-tender interior. The bell peppers retain their distinct colors – crimson red, sunny yellow, and forest green – providing visual contrast against the stew's deep hue. A small dollop of sour cream or crème fraîche is gently swirled on top, offering a creamy counterpoint. The dish is garnished with finely chopped fresh parsley. Beside the bowl, a slice of crusty artisan bread or a small portion of nokedli (Hungarian dumplings) is arranged on a simple white porcelain plate, inviting a complete experience, set on a simple wooden table with natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Serve with nokedli (Hungarian egg noodles/dumplings), boiled potatoes, or crusty bread.",
+      "Traditionally accompanied by a side of pickled cucumbers or pickled cabbage.",
+      "Often served with a dollop of sour cream (tejföl) on top."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or stewing beef, cut into 3-4 cm cubes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Onions, finely chopped",
+        "quantity": "2 large (approx. 300 g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Bell peppers (mixed colors), deseeded and cut into 2 cm chunks",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Sweet Hungarian paprika",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Diced tomatoes",
+        "quantity": "1 can (400 g)"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Caraway seeds, crushed",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried marjoram",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "All-purpose flour (optional, for thickening)",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove beef from pot.",
+      "Add chopped onions to the pot. Sauté until softened and translucent, about 5-7 minutes.",
+      "Add minced garlic and crushed caraway seeds. Cook for 1 minute until fragrant.",
+      "Remove pot from heat. Stir in Hungarian paprika quickly to prevent burning.",
+      "Return beef to the pot. Stir well to coat beef with paprika and onions.",
+      "Add diced bell peppers, diced tomatoes, and beef broth. Stir in Dijon mustard and dried marjoram.",
+      "Bring to a simmer. Reduce heat to low. Cover and cook for 2-2.5 hours, or until beef is very tender. Stir occasionally.",
+      "If desired, mix 1 tablespoon flour with 2 tablespoons water to create a slurry. Stir into the simmering stew during the last 30 minutes of cooking to slightly thicken.",
+      "Taste and adjust seasoning with salt and pepper."
+    ],
+    "notes": [
+      "For best flavor, use high-quality Hungarian sweet paprika.",
+      "The stew tastes even better the next day."
+    ],
+    "traditional_techniques": [
+      "Searing meat before braising to develop flavor",
+      "Slow simmering for tenderization",
+      "Building flavor layers with paprika, onions, and other aromatics"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 631,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 7.4,
+      "protein_g": 46.5,
+      "saturated_fat_g": 12.9,
+      "sodium_mg": 973,
+      "total_carbs_g": 23.3,
+      "total_fat_g": 39.5,
+      "total_sugars_g": 11.3,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 111,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.2,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 171,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 26,
+      "protein": 93,
+      "saturated_fat": 65,
+      "sodium": 42,
+      "total_carbs": 8,
+      "total_fat": 51
+    },
+    "serving_size_g": 570,
+    "total_recipe_weight_g": 2282
+  },
+  {
+    "recipe_name": "Mediterranean Lemon Chickpea and Rice Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251019_221952_2b6f9c76.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-19T22:19:53.545500000Z",
+    "selected_ingredients": [
+      "lemon",
+      "chickpea",
+      "vegetable stock",
+      "onion",
+      "garlic",
+      "rice",
+      "bean",
+      "potato",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of Mediterranean Lemon Chickpea and Rice Soup is presented in a clean white porcelain bowl, centered on a light wooden table. The soup features a vibrant, slightly creamy yellow broth with visible tender white Arborio rice grains, pale golden chickpeas, and soft 1.5 cm diced potatoes. Small pieces of bright red diced tomatoes add color. The surface is garnished with a generous sprinkle of fresh, finely chopped green parsley and delicate dill sprigs, offering a fresh contrast. A bright yellow lemon wedge rests on the rim of the bowl. The arrangement is natural and inviting, with moderate negative space. A simple white cotton napkin is folded neatly beside the bowl. Natural, even lighting highlights the soup's textures and colors, set against a subtle, modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Greek/Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Chickpea",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium (150 g), finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Potato",
+        "quantity": "2 medium (300 g), peeled, diced into 1.5 cm cubes"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g can, undrained"
+      },
+      {
+        "name": "Cooked chickpeas",
+        "quantity": "400 g can, rinsed and drained"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "60 ml (from 2 medium lemons)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lemon wedges",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Add diced onion. Sauté 5 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Add diced potatoes, undrained diced tomatoes, rinsed chickpeas, and Arborio rice to the pot.",
+      "Pour in vegetable stock. Bring to a boil.",
+      "Reduce heat to low. Simmer 20-25 minutes. Stir occasionally.",
+      "Cook until potatoes are tender and rice is cooked through.",
+      "Remove pot from heat. Stir in fresh lemon juice.",
+      "Season with salt and black pepper to taste.",
+      "Ladle soup into bowls. Garnish with chopped fresh parsley and dill. Serve with lemon wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 431,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.8,
+      "protein_g": 14.8,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 951,
+      "total_carbs_g": 73.8,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 13.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 53,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 1.8,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 117,
+      "total_carbs_g": 9.1,
+      "total_fat_g": 1.2,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 42,
+      "protein": 30,
+      "saturated_fat": 6,
+      "sodium": 41,
+      "total_carbs": 27,
+      "total_fat": 12
+    },
+    "serving_size_g": 812.5,
+    "total_recipe_weight_g": 3250
+  },
+  {
+    "recipe_name": "Lemon-Chickpea & Potato Velouté with Crispy Basmati Rice, Herb Oil, and Microgreens",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251019_221819_fcece71a.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-10-19T22:18:20.044201000Z",
+    "selected_ingredients": [
+      "lemon",
+      "chickpea",
+      "vegetable stock",
+      "onion",
+      "garlic",
+      "rice",
+      "bean",
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of luminous, pale yellow velouté rests in an elegant, shallow bone china bowl. The soup's surface is impeccably smooth, reflecting light. A vibrant green herb oil, precisely swirled, creates an artistic contrast against the velouté's creamy hue. Centered atop this, a delicate mound of golden-crisp basmati rice provides textural intrigue, its irregular shapes catching the light. Adjacent, a cluster of fresh, verdant microgreens adds a final touch of living color and height. The bowl sits on a pristine white Carrara marble surface, complemented by a subtly patterned designer plate and a precisely folded white linen napkin. Dramatic professional lighting emphasizes the dish's refined simplicity, casting soft shadows that enhance depth, with ample negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Vegetarian",
+    "cultural_origin": "Modern Vegetarian",
+    "hero_ingredient": "Chickpea & Lemon",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium (approx. 150 g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Potato, peeled, diced",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cooked chickpeas",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1/2 lemon"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Cooked basmati rice, cooled",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "for deep frying"
+      },
+      {
+        "name": "Fresh parsley leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Microgreens (e.g., pea shoots, radish sprouts)",
+        "quantity": "20 g"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a saucepan over medium heat. Add diced onion. Sauté until translucent, about 5 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add diced potato and cooked chickpeas to the saucepan. Pour in vegetable stock. Bring to a simmer. Cook for 15-20 minutes, or until potatoes are very tender.",
+      "Remove from heat. Blend the soup using an immersion blender until very smooth. Alternatively, transfer to a high-speed blender and blend until silky. Pass the soup through a fine-mesh sieve into a clean saucepan for an ultra-smooth consistency.",
+      "Return the sieved velouté to low heat. Stir in lemon zest and lemon juice. Season with salt and white pepper. Keep warm.",
+      "Heat neutral oil in a small saucepan or deep fryer to 170°C. Carefully add cooled cooked basmati rice in small batches. Fry until golden brown and crispy, about 2-3 minutes. Remove with a slotted spoon. Drain on paper towels. Season lightly with salt.",
+      "Blanch parsley and chives in boiling water for 10 seconds. Immediately transfer to an ice bath to stop cooking and preserve color. Squeeze out excess water.",
+      "Combine blanched herbs and olive oil in a small blender. Blend until very smooth and vibrant green. Pass through a fine-mesh sieve or coffee filter for a clear oil. Season with a pinch of salt.",
+      "Ladle the warm velouté into individual shallow soup bowls. Create a swirl or a few drops of herb oil on the surface of the soup. Carefully place a small mound of crispy basmati rice in the center or slightly off-center. Garnish with a small cluster of microgreens. Serve immediately."
+    ],
+    "notes": [
+      "Passing the soup through a sieve is crucial for a fine-dining texture.",
+      "Ensure the herb oil is vibrant green; blanching helps maintain color.",
+      "Fry rice in small batches to avoid clumping and ensure even crispness."
+    ]
+  }
+]

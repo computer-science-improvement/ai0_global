@@ -1,0 +1,722 @@
+[
+  {
+    "recipe_name": "Hearty Braised Beef with Cheesy Potato Topping",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_braised_beef_with_cheesy_potato_topping_20250626_091001_59ecb37d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:10:01.983321000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot",
+      "potato",
+      "onion",
+      "garlic",
+      "green pea",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of hearty braised beef and root vegetable pot is presented on a clean, round white porcelain dinner plate. The rich, dark brown braised beef, cut into substantial 3-4 cm chunks, is nestled at the base, interspersed with vibrant orange carrot chunks and bright green peas. A generous, irregular mound of creamy, fluffy mashed potatoes sits atop the beef mixture, slightly off-center. The potatoes are lightly browned, indicating the melted, golden-orange grated sharp cheddar cheese cascading over their peak. A sprinkle of fresh, vibrant green chopped parsley adds a final touch of color and freshness. The plate rests on a simple wooden surface, with a folded white cotton napkin beside it. Natural, even lighting illuminates the dish, highlighting its comforting textures and inviting colors against a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800 g, cut into 3-4 cm cubes"
+      },
+      {
+        "name": "Potatoes (Russet or Maris Piper)",
+        "quantity": "1 kg, peeled and quartered"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g, peeled and cut into 2 cm chunks"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Green peas (frozen)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cheddar cheese (sharp)",
+        "quantity": "100 g, grated"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Red wine (dry)",
+        "quantity": "200 ml (optional)"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Milk (whole)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat. Sear beef in batches until browned. Remove beef and set aside.",
+      "Add diced onions to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic and tomato paste. Cook for 1 minute, stirring constantly.",
+      "Stir in flour. Cook for 1 minute, forming a roux.",
+      "Pour in red wine (if using), scraping up browned bits. Reduce by half. If not using wine, add 200 ml more beef broth here.",
+      "Add beef broth, thyme sprigs, and bay leaf. Return seared beef to the pot. Bring to a simmer.",
+      "Reduce heat to low, cover, and braise for 2.5-3 hours, or until beef is very tender.",
+      "While beef braises, boil potatoes in salted water until very tender, about 15-20 minutes. Drain well.",
+      "Mash potatoes with butter and milk until smooth. Season with salt and pepper. Keep warm.",
+      "Remove thyme sprigs and bay leaf from the beef stew. Stir in carrot chunks. Cook uncovered for 20-25 minutes, or until carrots are tender-crisp.",
+      "Stir in frozen green peas. Cook for 2-3 minutes until heated through. Adjust seasoning.",
+      "To serve, spoon a generous portion of the braised beef and vegetable mixture onto the center of each plate.",
+      "Top with a large dollop of warm mashed potatoes.",
+      "Sprinkle grated cheese over the mashed potatoes. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1178.3,
+      "cholesterol_mg": 216.22,
+      "dietary_fiber_g": 11.11,
+      "protein_g": 61.08,
+      "saturated_fat_g": 29.96,
+      "sodium_mg": 1046.36,
+      "total_carbs_g": 74.04,
+      "total_fat_g": 68.32,
+      "total_sugars_g": 12.41,
+      "trans_fat_g": 2.33
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.83,
+      "cholesterol_mg": 23.46,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.63,
+      "saturated_fat_g": 3.25,
+      "sodium_mg": 113.52,
+      "total_carbs_g": 8.03,
+      "total_fat_g": 7.41,
+      "total_sugars_g": 1.35,
+      "trans_fat_g": 0.25
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.07,
+      "dietary_fiber": 39.69,
+      "protein": 122.16,
+      "saturated_fat": 149.79,
+      "sodium": 45.49,
+      "total_carbs": 26.92,
+      "total_fat": 87.59
+    },
+    "serving_size_g": 921.75,
+    "total_recipe_weight_g": 3687
+  },
+  {
+    "recipe_name": "Fermented Coconut Root Broth",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_coconut_root_broth_20250626_090904_d1c8ce9d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:09:05.299252000Z",
+    "selected_ingredients": [
+      "coconut"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of clear, amber broth is presented in a handcrafted, unglazed ceramic bowl, reflecting natural cream tones. The translucent liquid reveals precisely cut 1 cm cubes of tender-crisp carrots, parsnips, and celeriac, their natural hues scattered organically within. A delicate scattering of finely chopped fresh green parsley adds a contrasting pop of color on the surface. Alongside, a few crisp, golden-brown strands of roasted root vegetable peels are artfully placed, providing a rustic, zero-waste element. The bowl rests on a light, textured bamboo surface. An undyed linen napkin in natural beige is subtly folded nearby. Soft, natural light illuminates the scene, highlighting the clean, simple composition. The minimal background, with a hint of greenery, maintains focus on the dish's pure ingredients and sustainable ethos.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Coconut",
+    "ingredients": [
+      {
+        "name": "Coconut Water",
+        "quantity": "1 liter"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "200g"
+      },
+      {
+        "name": "Celeriac",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Black Peppercorns",
+        "quantity": "10 whole"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Starter Culture (sauerkraut or kimchi juice)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Coconut Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Parsley or Dill",
+        "quantity": "small handful"
+      }
+    ],
+    "instructions": [
+      "Thoroughly scrub root vegetables. Reserve peels. Cut roots into 1 cm cubes.",
+      "In a large pot, combine root vegetable peels, ginger, garlic, bay leaves, and black peppercorns. Add 1 liter water. Simmer gently for 30 minutes. Strain, discard solids. This is the vegetable stock.",
+      "In a clean glass jar, combine coconut water, 5g sea salt, and starter culture. Stir well. Cover loosely with a cloth. Let ferment at room temperature for 24-48 hours, or until slightly tangy. Taste regularly.",
+      "In a clean pot, combine the fermented coconut water and the prepared vegetable stock. Bring to a gentle simmer.",
+      "Heat coconut oil in a separate pan. Add cubed root vegetables. Sauté for 5-7 minutes until slightly tender.",
+      "Add sautéed root vegetables to the simmering broth. Cook for 5 minutes, until vegetables are tender-crisp.",
+      "Taste and adjust salt.",
+      "Thoroughly wash reserved root vegetable peels. Toss lightly with a tiny bit of coconut oil and a pinch of salt. Roast in oven at 180°C until crispy, or air fry.",
+      "Ladle hot soup into bowls. Garnish with chopped fresh herbs and crispy root vegetable peels."
+    ],
+    "notes": [
+      "Adjust fermentation time based on desired tanginess and room temperature. Colder temperatures slow fermentation.",
+      "Ensure all root vegetable scraps are clean for broth and garnish.",
+      "This recipe embraces a nose-to-tail approach for vegetables."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 169,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 3.9,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 826,
+      "total_carbs_g": 30.4,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 12.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 40,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 0.9,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 196,
+      "total_carbs_g": 7.2,
+      "total_fat_g": 1,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 27,
+      "protein": 8,
+      "saturated_fat": 17,
+      "sodium": 36,
+      "total_carbs": 11,
+      "total_fat": 6
+    },
+    "serving_size_g": 422.3,
+    "total_recipe_weight_g": 1689
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Absinthe-Lime Cream Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_absinthe-lime_cream_sauce_20250626_090822_e1e3b656.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:08:22.804038000Z",
+    "selected_ingredients": [
+      "absinthe",
+      "key lime zest",
+      "clotted cream",
+      "angostura bitters",
+      "gin"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared chicken is presented on a clean white porcelain dinner plate. Two to three thick pieces of golden-brown chicken are arranged centrally. A velvety, off-white absinthe-lime cream sauce is generously spooned over the chicken, with some pooling around the base. Beside the chicken, a neat bundle of vibrant green, tender-crisp asparagus spears is placed. A smooth, light yellow potato puree, formed into a soft quenelle or scoop, completes the arrangement. Fresh green chopped herbs, either parsley or chives, are sprinkled over the chicken and sauce for a pop of color and freshness. The plate is positioned on a simple wooden or laminate table surface, suggesting a modern bistro setting. A crisp white cotton napkin is folded neatly beside the plate. Natural, even lighting illuminates the dish, highlighting the textures and colors. The background is minimal and slightly blurred, focusing attention entirely on the professionally plated meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200 g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Gin",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Absinthe",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Clotted cream",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Key lime zest",
+        "quantity": "from 2 key limes"
+      },
+      {
+        "name": "Angostura bitters",
+        "quantity": "5 ml (approx. 10 dashes)"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "400 g, trimmed"
+      },
+      {
+        "name": "Potatoes, peeled and cubed",
+        "quantity": "600 g (e.g., Russet or Yukon Gold)"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Milk or cream",
+        "quantity": "50 ml, warmed"
+      },
+      {
+        "name": "Fresh parsley or chives, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear chicken breasts for 5-7 minutes per side until golden brown and cooked through. Internal temperature must reach 75°C. Remove chicken from skillet. Set aside. Keep warm.",
+      "Reduce heat to medium. Add diced shallots to the skillet. Sauté for 2-3 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in gin. Deglaze the pan, scraping up any browned bits. Simmer for 1 minute.",
+      "Add absinthe and chicken broth. Bring to a simmer. Reduce liquid by half, about 5 minutes.",
+      "Stir in clotted cream. Whisk until smooth. Simmer gently for 2-3 minutes until sauce thickens slightly.",
+      "Remove skillet from heat. Stir in key lime zest and Angostura bitters. Taste and adjust seasoning with salt and pepper.",
+      "While chicken cooks, steam or boil cubed potatoes until very tender. Drain well.",
+      "Mash potatoes with butter and warmed milk/cream until smooth. Season with salt.",
+      "Blanch or roast asparagus spears until tender-crisp. Season with salt.",
+      "To serve, place a scoop of potato puree on each plate. Arrange roasted asparagus next to it.",
+      "Slice each chicken breast into two or three thick pieces. Place chicken on the plate.",
+      "Spoon the absinthe-lime cream sauce generously over the chicken. Garnish with fresh chopped parsley or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 232.7,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 66.2,
+      "saturated_fat_g": 16.9,
+      "sodium_mg": 886,
+      "total_carbs_g": 41.1,
+      "total_fat_g": 37.3,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125.5,
+      "cholesterol_mg": 36.1,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 10.3,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 137.6,
+      "total_carbs_g": 6.4,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78,
+      "dietary_fiber": 25,
+      "protein": 132,
+      "saturated_fat": 85,
+      "sodium": 39,
+      "total_carbs": 15,
+      "total_fat": 48
+    },
+    "serving_size_g": 643.8,
+    "total_recipe_weight_g": 2575
+  },
+  {
+    "recipe_name": "Pan-Seared Salt Cod with Taro & Jackfruit Stir-Fry, Jasmine Tea-Umeboshi Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_salt_cod_with_taro_%26_jackfruit_stir-fry%2C_jasmine_tea-umeboshi_glaze_20250626_090711_869ebd1c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:07:11.697761000Z",
+    "selected_ingredients": [
+      "salt cod fish",
+      "savoy cabbage",
+      "shaoxing wine",
+      "spearmint",
+      "taro",
+      "umeboshi",
+      "jasmine tea",
+      "jackfruit",
+      "eau de vie"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate within a modern bistro setting. A golden-brown, pan-seared salt cod fillet, its surface slightly crisp, is positioned slightly off-center. Alongside, vibrant green savoy cabbage and tender pulled young jackfruit are lightly stir-fried, forming a colorful base. Roasted taro cubes, their edges slightly caramelized, are artfully arranged nearby. A glossy, amber-hued jasmine tea-umeboshi glaze is elegantly drizzled over the cod and around the plate. Fresh spearmint leaves are thoughtfully scattered for a pop of contrasting green. The composition features moderate negative space, highlighting the dish's balanced colors and textures. A cotton napkin is placed beside the plate, with natural, even lighting illuminating the scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Asian",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Salt Cod",
+    "ingredients": [
+      {
+        "name": "Salt Cod",
+        "quantity": "400g"
+      },
+      {
+        "name": "Savoy Cabbage",
+        "quantity": "1 small head (approx. 500g)"
+      },
+      {
+        "name": "Taro",
+        "quantity": "400g"
+      },
+      {
+        "name": "Young Jackfruit (canned in brine)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Shaoxing Wine",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Umeboshi Paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Jasmine Tea",
+        "quantity": "2 bags or 5g loose leaf"
+      },
+      {
+        "name": "Spearmint",
+        "quantity": "1 small bunch, fresh"
+      },
+      {
+        "name": "Eau de Vie (e.g., pear or apple)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "20g, grated"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "for cooking"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Desalt salt cod: Submerge salt cod in cold water for 24-36 hours. Change water every 6-8 hours. Drain and pat dry.",
+      "Prepare taro: Peel taro. Cut into 2cm cubes. Toss with 15ml vegetable oil, salt, and pepper. Roast at 200°C for 20-25 minutes until tender and slightly caramelized.",
+      "Prepare glaze: Steep jasmine tea bags in 100ml hot water for 5 minutes. Discard bags. In a small saucepan, combine tea, Shaoxing wine, umeboshi paste, soy sauce, rice vinegar, and sugar. Bring to a simmer. Reduce until slightly thickened, about 8-10 minutes. Stir in eau de vie. Keep warm.",
+      "Prepare jackfruit and cabbage: Drain and rinse young jackfruit. Shred with fingers or two forks. Shred savoy cabbage. Mince garlic and grate ginger.",
+      "Cook stir-fry: Heat 15ml vegetable oil in a large wok or pan over medium-high heat. Add minced garlic and grated ginger. Stir-fry 30 seconds until fragrant. Add shredded jackfruit. Cook 3-4 minutes until lightly browned. Add shredded savoy cabbage. Stir-fry 5-7 minutes until tender-crisp. Stir in sesame oil. Season with salt and pepper.",
+      "Cook salt cod: Cut desalted cod into 4 equal portions. Heat 15ml vegetable oil in a non-stick pan over medium-high heat. Season cod with pepper. Place cod presentation-side down. Sear 4-5 minutes until golden and crisp. Flip. Cook another 3-4 minutes until cooked through and flaky.",
+      "Plate the dish: Divide roasted taro cubes among 4 plates. Spoon jackfruit and cabbage stir-fry next to taro. Place one pan-seared salt cod portion on each plate. Drizzle generously with warm jasmine tea-umeboshi glaze. Garnish with fresh spearmint leaves. Serve immediately."
+    ],
+    "notes": [
+      "For best results, begin desalting the salt cod 24-36 hours in advance."
+    ],
+    "traditional_techniques": [
+      "Stir-frying",
+      "Glazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 390,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 10.6,
+      "protein_g": 29.1,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 3922,
+      "total_carbs_g": 45.9,
+      "total_fat_g": 10,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 80,
+      "cholesterol_mg": 8.8,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 6,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 803,
+      "total_carbs_g": 9.4,
+      "total_fat_g": 2,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14,
+      "dietary_fiber": 38,
+      "protein": 58,
+      "saturated_fat": 7,
+      "sodium": 171,
+      "total_carbs": 17,
+      "total_fat": 13
+    },
+    "serving_size_g": 488.5,
+    "total_recipe_weight_g": 1954
+  },
+  {
+    "recipe_name": "Braised Beef Ragu with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_ragu_with_pappardelle_20250626_090524_70eedbc3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:05:24.895813000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Braised Beef Ragu with Pappardelle is presented on a clean white porcelain dinner plate, centrally composed. The wide, flat pappardelle noodles are thoroughly coated in a rich, dark red-brown ragu, forming an appealing mound. Tender, large chunks of braised beef are visibly nestled within the sauce and pasta, showcasing their fork-shredded texture. A sprinkle of bright green, freshly chopped Italian parsley adds a vibrant color contrast, along with a generous dusting of finely grated Pecorino Romano cheese, providing a touch of white and a slightly coarser texture. The plating is organized yet retains a natural, flowing quality, with moderate negative space on the plate. The scene is set on a simple wooden table surface, illuminated by natural, even light, capturing the warmth and richness of the dish. Traditional flatware is placed beside the plate, and a crisp cotton napkin completes the modern bistro setting. The entire plate is visible, highlighting the professional, approachable presentation. The beef is presented as large chunks, while the vegetables in the soffritto are finely diced.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to soak up the sauce.",
+      "Offer extra grated Pecorino Romano cheese at the table."
+    ],
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef shin or chuck",
+        "quantity": "800g (cut into 5cm chunks)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (finely diced)"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium (finely diced)"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1 (finely diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves (minced)"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Pecorino Romano cheese",
+        "quantity": "50g (grated, for serving)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch (chopped, for garnish)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season beef chunks generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef chunks on all sides until deeply browned. Work in batches to avoid overcrowding. Remove beef and set aside.",
+      "Reduce heat to medium. Add finely diced onion, carrot, and celery to the pot. Cook, stirring occasionally, until softened, about 8-10 minutes. This is the soffritto.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and cook until wine has mostly evaporated, about 5 minutes.",
+      "Return seared beef to the pot. Add crushed tomatoes, beef stock, bay leaf, and thyme.",
+      "Bring to a gentle simmer. Cover the pot tightly.",
+      "Transfer to a preheated oven at 150°C (300°F) or continue simmering on stovetop over very low heat. Cook for 3-4 hours, or until beef is fork-tender.",
+      "Remove beef from the pot. Shred the beef into smaller pieces using two forks. Discard bay leaf and thyme sprigs.",
+      "Return shredded beef to the sauce. Stir well. Taste and adjust seasoning with salt and pepper. Keep warm.",
+      "Cook pappardelle in a large pot of salted boiling water according to package directions until al dente.",
+      "Drain pasta. Add drained pasta directly to the ragu. Toss to coat thoroughly.",
+      "Serve immediately. Garnish each plate with grated Pecorino Romano cheese and fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1059,
+      "cholesterol_mg": 161,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 75.9,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 968,
+      "total_carbs_g": 90.6,
+      "total_fat_g": 35.3,
+      "total_sugars_g": 12.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 187,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 13.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 171,
+      "total_carbs_g": 16,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 22,
+      "protein": 152,
+      "saturated_fat": 66,
+      "sodium": 42,
+      "total_carbs": 33,
+      "total_fat": 45
+    },
+    "serving_size_g": 565,
+    "total_recipe_weight_g": 2260
+  }
+]

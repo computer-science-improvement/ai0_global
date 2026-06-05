@@ -1,0 +1,696 @@
+[
+  {
+    "recipe_name": "Italian Sausage and Artichoke Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_sausage_and_artichoke_pasta_20250623_135129_2a3aac4b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:51:30.233190000Z",
+    "selected_ingredients": [
+      "pasta",
+      "artichoke",
+      "sausage",
+      "asparagus",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Italian Sausage and Artichoke Pasta is presented in a shallow, white porcelain pasta bowl, centered on a simple wooden table. Al dente rigatoni noodles are coated in a light, savory sauce, interspersed with golden-brown, crumbled Italian sausage chunks. Vibrant green asparagus pieces and small, tender broccoli florets add bursts of color. Quartered artichoke hearts are visibly nestled throughout the dish. A generous sprinkle of white, freshly grated Pecorino Romano cheese and bright green chopped fresh parsley provide a finishing flourish. The composition is balanced, with moderate negative space, showcasing the texture and natural colors of the ingredients. Standard silver flatware and a folded white cotton napkin are placed beside the plate on the clean, light-toned table surface, illuminated by natural, even lighting from the side, creating a casual bistro atmosphere. The entire plate is visible, professionally plated but approachable.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Pair with a glass of dry white wine, such as Pinot Grigio or Vermentino.",
+      "Offer additional grated Pecorino Romano or Parmigiano Reggiano at the table."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "320 grams"
+      },
+      {
+        "name": "Italian sausage (removed from casing)",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Artichoke hearts (canned or jarred, quartered)",
+        "quantity": "250 grams (drained weight)"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Yellow onion (diced)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic (minced)",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley (chopped)",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Pecorino Romano or Parmigiano Reggiano cheese (grated)",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "2 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Cook pasta according to package directions until al dente.",
+      "While pasta cooks, heat olive oil in a large skillet over medium-high heat. Add sausage, breaking it into small chunks. Cook until browned and cooked through, about 8-10 minutes. Remove sausage from skillet; set aside.",
+      "Drain off most fat from skillet, leaving about 15 ml. Add diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes (if using). Cook for 1 minute until fragrant.",
+      "Add asparagus cut into 3-4 cm pieces and small broccoli florets to the skillet. Sauté for 3-4 minutes until tender-crisp.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the skillet. Reduce wine by half, about 2 minutes.",
+      "Stir in chicken broth and quartered artichoke hearts. Bring to a simmer.",
+      "Return cooked sausage to the skillet. Stir to combine. Reduce heat to low.",
+      "Drain cooked pasta, reserving 250 ml of pasta water. Add pasta directly to the skillet with the sauce. Toss well to coat.",
+      "Add half of the grated cheese and half of the fresh parsley. Add 60-120 ml of reserved pasta water, a little at a time, to achieve a creamy sauce consistency. Toss vigorously (mantecatura) to emulsify the sauce.",
+      "Taste and adjust seasoning with salt and black pepper.",
+      "Serve immediately, garnished with remaining cheese and fresh parsley."
+    ],
+    "notes": [
+      "Ensure pasta is cooked al dente for best texture. The pasta will finish cooking in the sauce.",
+      "Adjust red pepper flakes to your preferred level of spice."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 807,
+      "cholesterol_mg": 83,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 35.3,
+      "saturated_fat_g": 13,
+      "sodium_mg": 1573,
+      "total_carbs_g": 76.8,
+      "total_fat_g": 38,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 159,
+      "cholesterol_mg": 16,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 310,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 26,
+      "protein": 71,
+      "saturated_fat": 65,
+      "sodium": 68,
+      "total_carbs": 28,
+      "total_fat": 49
+    },
+    "serving_size_g": 507.5,
+    "total_recipe_weight_g": 2030
+  },
+  {
+    "recipe_name": "West African Peanut Beef Tongue Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_west_african_peanut_beef_tongue_stew_20250623_135104_58b400c5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:51:04.621808000Z",
+    "selected_ingredients": [
+      "beef tongue",
+      "peanut butter",
+      "artichoke",
+      "fig",
+      "anchovy"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of West African Peanut Beef Tongue Stew is presented in a deep, earthy-toned ceramic bowl. The stew is rich, thick, and a warm reddish-brown. Prominent are thick, irregular chunks of tender, braised beef tongue, their surfaces slightly browned. Quartered artichoke hearts, their pale green edges, contrast with the stew's depth. Small, dark pieces of fig add subtle texture. The stew has a natural, flowing consistency. Fresh chopped vibrant green coriander leaves are sprinkled on top. The bowl sits on a well-used, light wooden dining table. A small side bowl of fluffy white rice and a simple metal spoon on a plain linen napkin accompany the dish. Warm, natural lighting creates a cozy, lived-in family kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "West African",
+    "cultural_origin": "West African",
+    "cultural_serving_suggestions": [
+      "Serve traditionally with a side of steamed rice, fufu, banku, or kenkey for soaking up the rich sauce.",
+      "Offer a side of sliced fresh chili or a chili sauce for those who prefer more heat.",
+      "Enjoy as a communal meal, serving from a large central pot."
+    ],
+    "hero_ingredient": "Beef Tongue",
+    "ingredients": [
+      {
+        "name": "Beef Tongue",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Peanut Butter (creamy, unsweetened)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Dried Figs",
+        "quantity": "6-8"
+      },
+      {
+        "name": "Canned Artichoke Hearts (in water, drained)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Anchovy Fillets (oil-packed)",
+        "quantity": "3"
+      },
+      {
+        "name": "Large Onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cayenne Pepper (optional)",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Coriander (cilantro) for garnish",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Rinse beef tongue thoroughly. Place tongue in a large pot. Cover with water. Bring to a boil. Reduce heat. Simmer for 2-3 hours until tender. Tongue should be easily pierced with a fork. Drain water. Let tongue cool slightly. Peel outer skin from tongue. Trim any tough or fatty bits. Cut peeled tongue into 2-3 cm thick chunks. Set aside.",
+      "Heat vegetable oil in a large heavy-bottomed pot or Dutch oven over medium heat.",
+      "Chop onion finely. Add to pot. Sauté until softened, about 5-7 minutes.",
+      "Mince garlic and grate ginger. Add to pot with onion. Cook for 2 minutes until fragrant.",
+      "Add ground cumin, smoked paprika, and cayenne pepper (if using). Stir well. Cook for 1 minute.",
+      "Add anchovy fillets to pot. Stir constantly until fillets melt into the aromatics.",
+      "Stir in diced tomatoes and beef stock. Bring mixture to a simmer.",
+      "Whisk peanut butter into the simmering liquid until smooth and fully dissolved.",
+      "Add prepared beef tongue chunks to the pot. Stir to coat.",
+      "Chop dried figs into small pieces. Add to the stew. Stir well.",
+      "Reduce heat to low. Cover pot. Simmer for at least 30-45 minutes to allow flavors to meld. Stir occasionally.",
+      "Drain and quarter artichoke hearts. Add to stew during the last 10 minutes of simmering. Stir gently.",
+      "Taste stew. Adjust seasoning with salt and black pepper as needed.",
+      "Serve hot. Garnish with fresh chopped coriander."
+    ],
+    "notes": [
+      "Ensure beef tongue is very tender before peeling and cutting for best texture.",
+      "The anchovy fillets melt completely and provide a deep umami flavor, not a fishy taste."
+    ],
+    "traditional_techniques": [
+      "Slow braising",
+      "Layering of aromatics and spices (soup base development)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1040.55,
+      "cholesterol_mg": 378,
+      "dietary_fiber_g": 9.83,
+      "protein_g": 59.4,
+      "saturated_fat_g": 22.35,
+      "sodium_mg": 1208.15,
+      "total_carbs_g": 37.06,
+      "total_fat_g": 73.61,
+      "total_sugars_g": 15.32,
+      "trans_fat_g": 1.78
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140.9,
+      "cholesterol_mg": 51.19,
+      "dietary_fiber_g": 1.33,
+      "protein_g": 8.04,
+      "saturated_fat_g": 3.02,
+      "sodium_mg": 163.59,
+      "total_carbs_g": 5.02,
+      "total_fat_g": 9.97,
+      "total_sugars_g": 2.07,
+      "trans_fat_g": 0.24
+    },
+    "daily_value_percentages": {
+      "cholesterol": 126,
+      "dietary_fiber": 35.11,
+      "protein": 118.8,
+      "saturated_fat": 111.75,
+      "sodium": 52.53,
+      "total_carbs": 13.48,
+      "total_fat": 94.37
+    },
+    "serving_size_g": 738.5,
+    "total_recipe_weight_g": 2954
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Garlic-Basil Glaze & Seasonal Kraut",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_garlic-basil_glaze_%26_seasonal_kraut_20250623_134407_21eb8f89.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:44:07.508546000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "basil"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, perfectly pan-seared chicken thigh, its skin rendered to a deep golden crisp, glistens with a translucent fermented garlic-basil glaze. The chicken is presented whole, a succulent chunk of meat. Beside it, a vibrant mound of quick-fermented seasonal kraut bursts with natural colors: shredded purple cabbage, bright orange carrots, and deep red beets, offering a contrasting crunchy texture. Fresh green basil leaves are scattered organically over the dish and around the kraut, providing a fresh aromatic accent. The arrangement is natural and unfussy, with ample negative space on a handcrafted cream-colored ceramic plate. The plate rests on a light, textured reclaimed wood surface, accompanied by a rumpled undyed linen napkin. Soft, natural light illuminates the scene, highlighting the dish's pure, wholesome ingredients against a clean, minimalist background with subtle green plant elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, skin-on, bone-in",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Fermented garlic paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30g"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "100g"
+      },
+      {
+        "name": "Beets",
+        "quantity": "50g"
+      },
+      {
+        "name": "Non-iodized salt (for kraut)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Filtered water (for kraut)",
+        "quantity": "500ml"
+      }
+    ],
+    "instructions": [
+      "Prepare the Seasonal Kraut: Thinly slice or shred the cabbage, carrots, and beets. Combine vegetables in a large bowl. Add 5g non-iodized salt. Massage vegetables vigorously for 5-7 minutes until liquid releases. Pack firmly into a clean jar, pressing down to remove air bubbles. Ensure vegetables are submerged under their own brine. If not, top with filtered water. Seal jar loosely. Allow to ferment at room temperature for 3-5 days, tasting daily until desired tanginess. Refrigerate once ready.",
+      "Prepare Chicken: Pat chicken thighs dry thoroughly with paper towels. Season generously with sea salt and black pepper on both sides.",
+      "Sear Chicken: Heat olive oil in a large oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear for 8-10 minutes until skin is deeply golden and crispy. Do not move chicken during searing.",
+      "Flip and Finish: Flip chicken thighs. Transfer skillet to a preheated oven at 190°C (375°F). Roast for 15-20 minutes, or until internal temperature reaches 75°C (167°F).",
+      "Prepare Glaze: While chicken roasts, finely chop 20g of fresh basil leaves. In a small bowl, combine fermented garlic paste, honey (or maple syrup), apple cider vinegar, and chopped basil. Mix well.",
+      "Glaze Chicken: Remove chicken from oven. Drain excess fat from skillet. Return skillet to low heat. Brush or spoon the garlic-basil glaze over the chicken, ensuring even coating. Cook for 1-2 minutes, allowing glaze to slightly reduce and coat chicken. Do not burn.",
+      "Serve: Plate one chicken thigh per person. Serve alongside a generous portion of the Seasonal Kraut. Garnish with remaining fresh basil leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 547,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 38.2,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 525,
+      "total_carbs_g": 13.5,
+      "total_fat_g": 38,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.5,
+      "calories": 187,
+      "cholesterol_mg": 64,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 13,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 179,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.9,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 9,
+      "protein": 76,
+      "saturated_fat": 48,
+      "sodium": 23,
+      "total_carbs": 5,
+      "total_fat": 49
+    },
+    "serving_size_g": 293.5,
+    "total_recipe_weight_g": 1174
+  },
+  {
+    "recipe_name": "Pollo e Patate al Forno con Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_e_patate_al_forno_con_mozzarella_20250623_134137_2676c792.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:41:37.557580000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion",
+      "garlic",
+      "tomato",
+      "breadcrumbs",
+      "mozzarella",
+      "parmesan"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Golden-brown roasted chicken thighs, crispy-edged potato wedges, and tender onion segments are artfully arranged on a clean, white porcelain dinner plate. The chicken, succulent and retaining its natural shape as a whole piece, is topped with bubbling, melted mozzarella and a light scattering of golden-brown breadcrumbs and grated Parmesan. Interspersed among the main components are vibrant, blistered cherry tomatoes and soft, caramelized garlic cloves. A sprinkle of fresh, torn basil leaves adds a pop of green and aromatic freshness. The dish is presented with moderate negative space, highlighting the rich textures and warm colors of the roasted ingredients. The scene is set on a simple wooden table, with a crisp white cotton napkin and classic silver flatware positioned beside the plate, all bathed in soft, even natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up juices.",
+      "Pair with a simple green salad dressed with vinaigrette.",
+      "Enjoy with a glass of dry red wine, such as Chianti."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 700g total)"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Yukon Gold)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Low-moisture mozzarella, shredded",
+        "quantity": "150g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (392°F).",
+      "Pat chicken thighs dry. Season generously with salt, pepper, and 3g dried oregano.",
+      "Wash potatoes. Cut into 2cm thick wedges.",
+      "Peel red onion. Cut into 8 wedges.",
+      "Smash garlic cloves with the side of a knife, keeping skins on.",
+      "In a large roasting pan, toss potato wedges, onion wedges, and smashed garlic with 45ml olive oil, salt, pepper, and remaining 2g dried oregano. Spread in a single layer.",
+      "Roast for 20 minutes.",
+      "Remove pan from oven. Add chicken thighs to the pan, nestling them among the vegetables.",
+      "Add cherry tomatoes to the pan. Drizzle chicken and tomatoes with remaining 15ml olive oil.",
+      "Return pan to oven. Roast for another 20-25 minutes, or until chicken internal temperature reaches 75°C (167°F) and potatoes are tender.",
+      "Remove pan from oven. Sprinkle mozzarella, Parmesan, and Panko breadcrumbs evenly over chicken and vegetables.",
+      "Return to oven. Bake for 5-7 minutes, or until cheese is melted and bubbly and breadcrumbs are golden brown.",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Garnish with fresh basil leaves before serving."
+    ],
+    "traditional_techniques": [
+      "Al Forno (baking/roasting in an oven)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 919,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 54.4,
+      "saturated_fat_g": 17,
+      "sodium_mg": 639,
+      "total_carbs_g": 52.4,
+      "total_fat_g": 54.1,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 181,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 10.7,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 126,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 10.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.5,
+      "dietary_fiber": 21.1,
+      "protein": 108.8,
+      "saturated_fat": 85,
+      "sodium": 27.8,
+      "total_carbs": 19.1,
+      "total_fat": 69.3
+    },
+    "serving_size_g": 509,
+    "total_recipe_weight_g": 2036
+  },
+  {
+    "recipe_name": "Pollo e Peperoni Arrostiti con Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_e_peperoni_arrostiti_con_pasta_20250623_133847_8b488613.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:38:48.491231000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo e Peperoni Arrostiti con Pasta is presented on a clean, round white porcelain dinner plate. Al dente penne pasta is coated in a rich, creamy roasted red pepper and tomato sauce, displaying vibrant orange-red hues. Tender, golden-brown chicken breast chunks, approximately 3-4 cm, are interspersed and visible atop the pasta. The chicken pieces are whole, not sliced. Sliced roasted red pepper strips are mixed within. Freshly grated Parmesan cheese lightly dusts the dish. Fresh green basil leaves are thoughtfully placed on top, providing a vibrant contrast. The dish has a natural, flowing arrangement with moderate negative space. The setting is a modern bistro: a simple light wooden table, standard silver flatware, and a folded white cotton napkin beside the plate. Natural, even lighting creates a warm atmosphere with a blurred casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red bell peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Halve and deseed red peppers. Place skin-side up on a baking sheet. Roast at 200°C for 20-25 minutes until skin blackens. Transfer to a bowl. Cover tightly. Let steam 10 minutes. Peel skins. Slice peppers into strips.",
+      "Bring a large pot of salted water to boil. Cook pasta according to package directions until al dente. Reserve 120ml pasta water. Drain pasta.",
+      "Cut chicken breasts into 3-4 cm thick chunks. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add chicken chunks. Sear 4-5 minutes per side until golden brown and cooked through (75°C internal temperature). Remove chicken. Set aside.",
+      "Add remaining 15ml olive oil to skillet. Add diced onion. Sauté 5 minutes until softened. Add minced garlic. Sauté 1 minute until fragrant.",
+      "Stir in tomato paste. Cook 2 minutes. Pour in chicken broth. Bring to simmer. Cook 5 minutes, scraping up browned bits. Stir in heavy cream. Simmer 3 minutes.",
+      "Add roasted pepper strips to sauce. Return chicken chunks to skillet. Stir to coat.",
+      "Add drained pasta to skillet with sauce. Add reserved pasta water as needed for desired consistency. Toss to combine. Stir in grated Parmesan.",
+      "Garnish with fresh basil. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecare"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 927,
+      "cholesterol_mg": 184,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 68,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 905,
+      "total_carbs_g": 88.1,
+      "total_fat_g": 31.6,
+      "total_sugars_g": 10.6,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 177.9,
+      "cholesterol_mg": 35.3,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 13.1,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 173.8,
+      "total_carbs_g": 16.9,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 23,
+      "protein": 136,
+      "saturated_fat": 69,
+      "sodium": 39,
+      "total_carbs": 32,
+      "total_fat": 41
+    },
+    "serving_size_g": 520.8,
+    "total_recipe_weight_g": 2083
+  }
+]

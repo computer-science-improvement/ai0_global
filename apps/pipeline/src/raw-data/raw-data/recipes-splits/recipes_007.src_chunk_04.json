@@ -1,0 +1,505 @@
+[
+  {
+    "recipe_name": "Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_20250903_100027_a6ca23d8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T10:00:28.244195000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo presented on a clean white porcelain plate. Two whole, bone-in chicken thighs with deeply browned, crispy skin sit atop a bed of golden, saffron-stained rice. The rice grains are plump and distinct, interspersed with fine bits of softened onion and concentrated red tomato. The dish shows vibrant yellow and orange hues from the saffron and paprika. A generous sprinkle of bright green, finely chopped parsley is scattered over the top. A single lemon wedge is placed neatly on the side. The plate sits on a light oak wooden table with a folded white cotton napkin. Lighting is bright, natural, and even, highlighting the textures of the crispy skin and the moist rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Alioli (garlic mayonnaise)",
+      "Accompany with crusty bread and a glass of chilled white wine",
+      "Present in a traditional terracotta cazuela for family-style dining"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip and brown the other side. Remove chicken from pan.",
+      "Add onion to the same pan. Sauté until translucent.",
+      "Stir in garlic and grated tomato. Cook until liquid evaporates and mixture darkens.",
+      "Add smoked paprika and rice. Stir to coat rice in oil for 2 minutes.",
+      "Pour in white wine. Deglaze the pan. Simmer until wine reduces by half.",
+      "Add hot stock and saffron. Stir once to distribute.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer undisturbed over medium-low heat for 18-20 minutes.",
+      "Ensure chicken reaches internal temperature of 75°C.",
+      "Remove from heat. Cover with a clean cloth. Rest for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form on the bottom.",
+      "Use a wide pan to ensure even rice cooking."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice absorption method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1414,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 8.6,
+      "protein": 66.4,
+      "saturated_fat": 46.5,
+      "sodium": 61.5,
+      "total_carbs": 24.5,
+      "total_fat": 52.1
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Sweet Berry Cottage Cheese Parfait (Diabetic-Friendly)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_berry_cottage_cheese_parfait_%28diabetic-friendly%29_20250903_082435_6dc18bd6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:24:35.756386000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "для диабетика",
+    "visual_description": "Four individual parfaits are presented in clear, simple glass tumblers. Distinct layers of creamy white cottage cheese alternate with vibrant mixed berries. Berries are whole blueberries, raspberries, and roughly chopped strawberries, showcasing natural reds and blues. Each parfait is generously topped with coarsely chopped walnuts, adding a rustic crunch. The cottage cheese maintains its soft, textured appearance. Berries glisten naturally. The scene is set on a well-used wooden dining table. A simple, light-colored cloth napkin is casually placed. Warm, cozy lighting illuminates the scene, suggesting a relaxed family kitchen. Everyday dessert spoons accompany each parfait. Portions are generous and unpretentious, reflecting homemade comfort.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Homestyle",
+    "hero_ingredient": "Cottage cheese",
+    "ingredients": [
+      {
+        "name": "Low-fat cottage cheese",
+        "quantity": "500g"
+      },
+      {
+        "name": "Mixed berries (fresh or thawed frozen)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Erythritol or Stevia blend",
+        "quantity": "20g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Walnuts, coarsely chopped",
+        "quantity": "40g"
+      }
+    ],
+    "instructions": [
+      "Place cottage cheese in a mixing bowl.",
+      "Add erythritol and vanilla extract to the cottage cheese. Stir well.",
+      "Gently wash fresh berries. Pat dry.",
+      "Chop larger berries, like strawberries, into smaller pieces.",
+      "Layer the cottage cheese mixture and mixed berries in four individual serving glasses or bowls.",
+      "Start with a layer of cottage cheese. Add a layer of mixed berries.",
+      "Repeat layers, ending with berries on top.",
+      "Sprinkle chopped walnuts over each parfait.",
+      "Serve immediately or chill for 15 minutes."
+    ],
+    "notes": [
+      "Adjust sweetener to taste based on berry sweetness and personal preference.",
+      "Use fresh, ripe berries for the best flavor.",
+      "Parfaits can be assembled up to 2 hours ahead and chilled."
+    ]
+  },
+  {
+    "recipe_name": "Baked Lemon Cottage Cheese Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_lemon_cottage_cheese_pudding_20250903_081718_62255858.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:17:19.330736000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "для диабетика",
+    "visual_description": "A modest square piece of Baked Lemon Cottage Cheese Pudding sits on a simple, round, off-white ceramic plate. The pudding has a lightly golden, slightly crinkled top and a creamy, pale yellow interior, showing the subtle texture of cottage cheese. A small cluster of vibrant red raspberries is artfully placed beside the pudding. The plate rests on a well-used, light-colored wooden dining table. A simple silver fork lies casually to the right. Warm, soft kitchen lighting illuminates the scene, creating a cozy and inviting atmosphere. A casually folded cloth napkin is visible in the background, adding to the homely feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "cottage cheese",
+    "ingredients": [
+      {
+        "name": "cottage cheese",
+        "quantity": "500 g"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "granulated erythritol",
+        "quantity": "60 g"
+      },
+      {
+        "name": "lemon zest",
+        "quantity": "from 1 medium lemon"
+      },
+      {
+        "name": "fresh lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "fresh raspberries",
+        "quantity": "100 g (for serving)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Lightly grease a 20x20 cm baking dish.",
+      "In a large bowl, combine cottage cheese, eggs, erythritol, lemon zest, lemon juice, vanilla extract, cornstarch, and salt.",
+      "Mix well until smooth. A hand blender can be used for a creamier texture, or a whisk for a slightly coarser texture.",
+      "Pour the mixture into the prepared baking dish.",
+      "Bake for 35-45 minutes. The pudding should be set and lightly golden on top.",
+      "Remove from oven. Let it cool completely in the dish.",
+      "Cut into 4 modest square pieces. Serve chilled, topped with fresh raspberries."
+    ],
+    "notes": [
+      "This recipe uses a sugar substitute and is suitable for a diabetic diet. Adjust sweetener to your preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 157,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 0.1,
+      "protein_g": 16.6,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 483,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 0,
+      "protein_g": 9.3,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 272,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 0,
+      "protein": 33,
+      "saturated_fat": 13,
+      "sodium": 21,
+      "total_carbs": 3,
+      "total_fat": 7
+    },
+    "serving_size_g": 178,
+    "total_recipe_weight_g": 711
+  },
+  {
+    "recipe_name": "Baked Cottage Cheese Vanilla Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_cottage_cheese_vanilla_pudding_20250903_081234_eeb04372.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:12:35.241300000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "для диабетика",
+    "visual_description": "A single portion of warm Baked Cottage Cheese Vanilla Pudding rests in a modest, round, light blue ceramic bowl on a worn wooden kitchen table. The pudding is a creamy off-white with a faintly golden-brown, slightly textured top from baking. It is served as a generous, soft scoop, maintaining its shape but appearing yielding. A scattering of fresh, plump blueberries, in varying shades of deep blue, sits atop and around the pudding, offering a natural color contrast. The background features a casually placed, slightly rumpled white linen napkin and the soft, warm glow of natural kitchen light, creating a homely and comforting scene. The entire bowl is visible, showing a natural, unpretentious presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Cottage cheese",
+    "ingredients": [
+      {
+        "name": "Low-fat cottage cheese",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Erythritol or Stevia blend",
+        "quantity": "100 g sugar equivalent"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh blueberries",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Lightly grease a 1.5-litre baking dish.",
+      "In a large bowl, combine cottage cheese, eggs, erythritol, vanilla extract, and lemon zest. Mix well until smooth using an immersion blender or food processor.",
+      "Add cornstarch to the mixture. Blend again until fully incorporated and smooth.",
+      "Pour the mixture into the prepared baking dish.",
+      "Bake for 35-40 minutes, or until the pudding is set and lightly golden on top. A knife inserted into the center should come out clean.",
+      "Remove from oven. Let cool slightly before serving.",
+      "Serve warm or chilled. Garnish each portion with fresh blueberries."
+    ],
+    "notes": [
+      "This recipe is designed to be diabetic-friendly by using a sugar substitute. Always consult with a healthcare professional regarding dietary needs.",
+      "For a smoother texture, ensure the cottage cheese mixture is blended thoroughly.",
+      "The pudding can be prepared ahead of time and chilled. It sets firmer when cold."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 147.4,
+      "cholesterol_mg": 98,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 18.7,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 438,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 74.6,
+      "cholesterol_mg": 49.6,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 9.5,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 222,
+      "total_carbs_g": 4.9,
+      "total_fat_g": 1.9,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 1,
+      "protein": 37,
+      "saturated_fat": 8,
+      "sodium": 19,
+      "total_carbs": 3,
+      "total_fat": 5
+    },
+    "serving_size_g": 197.5,
+    "total_recipe_weight_g": 790
+  },
+  {
+    "recipe_name": "Diabetic-Friendly Baked Cottage Cheese with Berries",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_diabetic-friendly_baked_cottage_cheese_with_berries_20250903_081107_1b21b0e1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:11:08.180923000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "для диабетика",
+    "visual_description": "A thick, rustic square slice of baked cottage cheese pudding sits on a simple, off-white ceramic plate. The pudding top is golden-brown. Its interior is creamy and off-white. It is flecked with vibrant red and blue berries. The texture is soft, moist, and slightly firm. A few fresh, whole raspberries and blueberries are scattered naturally on top of the slice. The plate rests on a well-used, light-colored wooden dining table. A small, plain white bowl holds a spoonful of plain Greek yogurt to the side. A simple, slightly worn silver fork lies next to the plate. A loosely folded, light linen napkin is casually placed. Warm, natural light illuminates the scene, creating a cozy atmosphere of a family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of plain Greek yogurt or sugar-free berry compote.",
+      "Enjoy warm or chilled for breakfast or dessert."
+    ],
+    "hero_ingredient": "Cottage cheese",
+    "ingredients": [
+      {
+        "name": "Cottage cheese",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Diabetic-friendly granular sweetener",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 1/2 lemon"
+      },
+      {
+        "name": "Fine semolina or cornstarch",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh or frozen mixed berries",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease a 20 cm x 20 cm baking dish.",
+      "In a large bowl, combine cottage cheese, eggs, sweetener, vanilla extract, lemon zest, semolina, and salt. Mix well until smooth. Use a fork or immersion blender.",
+      "Gently fold in the mixed berries.",
+      "Pour the mixture into the prepared baking dish.",
+      "Bake for 35-45 minutes. The top should be golden brown. The pudding should be set in the center. A skewer inserted should come out mostly clean.",
+      "Remove from oven. Let cool slightly before serving."
+    ],
+    "notes": [
+      "Adjust the amount of diabetic-friendly sweetener to your taste preference.",
+      "For a smoother texture, blend the cottage cheese mixture thoroughly before adding berries.",
+      "This recipe is suitable for individuals managing blood sugar, using sugar substitutes and low-glycemic berries."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 187,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 17.9,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 526,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 260,
+      "total_carbs_g": 8.2,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 5,
+      "protein": 36,
+      "saturated_fat": 13,
+      "sodium": 23,
+      "total_carbs": 6,
+      "total_fat": 7
+    },
+    "serving_size_g": 202,
+    "total_recipe_weight_g": 808
+  }
+]

@@ -1,0 +1,676 @@
+[
+  {
+    "recipe_name": "Beef Bourguignon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260507_054710_f406a8f2.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-07T05:47:11.020058000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Beef Bourguignon is served in a wide, shallow white porcelain bowl. The centerpiece features four to five large, succulent chunks of braised beef chuck, glistening with a deep, mahogany-colored glossy sauce. Interspersed among the meat are whole, tender pearl onions and golden-brown sautéed button mushroom halves. Bright orange carrot rounds provide a pop of color. The stew is finished with a sprinkle of finely chopped fresh parsley. The sauce has a rich, velvety consistency, pooling slightly around the base. The dish sits on a dark wood bistro table. A side of crusty baguette slices and a simple silver spoon rest on a white cotton napkin nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty French baguette",
+      "Pair with a glass of Pinot Noir or red Burgundy",
+      "Traditionally served with buttery mashed potatoes or boiled potatoes"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 5cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Smoked bacon lardons",
+        "quantity": "150g"
+      },
+      {
+        "name": "Red wine (Burgundy style)",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Pearl onions, peeled",
+        "quantity": "200g"
+      },
+      {
+        "name": "Button mushrooms, halved",
+        "quantity": "250g"
+      },
+      {
+        "name": "Carrots, cut into 2cm rounds",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Bouquet garni (thyme, bay leaf, parsley)",
+        "quantity": "1 bundle"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper.",
+      "Sauté bacon lardons in a heavy pot until crisp. Remove and set aside.",
+      "Sear beef chunks in the bacon fat over high heat until browned on all sides. Remove beef.",
+      "Add sliced carrots and onions to the pot. Sauté for 5 minutes.",
+      "Stir in tomato paste and flour. Cook for 2 minutes.",
+      "Pour in red wine. Scrape the bottom of the pot to release browned bits.",
+      "Return beef and bacon to the pot. Add beef stock and bouquet garni.",
+      "Cover and simmer on low heat for 2.5 hours until meat is tender.",
+      "Sauté mushrooms and pearl onions in butter in a separate pan until golden.",
+      "Add mushrooms and pearl onions to the stew. Simmer for 15 minutes.",
+      "Remove bouquet garni. Season to taste.",
+      "Garnish with chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure the beef is patted dry before searing to achieve a deep crust.",
+      "Use a high-quality dry red wine for the most authentic flavor profile.",
+      "The sauce should be thick enough to coat the back of a spoon."
+    ],
+    "traditional_techniques": [
+      "braising",
+      "deglazing",
+      "sautéing",
+      "lardons preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 815,
+      "cholesterol_mg": 210,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 47.8,
+      "saturated_fat_g": 25,
+      "sodium_mg": 850,
+      "total_carbs_g": 21.5,
+      "total_fat_g": 59,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.56,
+      "saturated_fat_g": 5,
+      "sodium_mg": 170,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 1.26,
+      "trans_fat_g": 0.12
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 8.9,
+      "protein": 95.6,
+      "saturated_fat": 125,
+      "sodium": 37,
+      "total_carbs": 7.8,
+      "total_fat": 75.6
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Spinach and Tomato Curry with Steamed Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260507_030243_6bfaccf8.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-07T03:02:43.770338000Z",
+    "selected_ingredients": [
+      "chili",
+      "onion",
+      "tomato",
+      "spinach",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Spinach and Tomato Curry served in a shallow, rustic earthenware bowl. A generous mound of fluffy, long-grain white basmati rice occupies half the bowl. Beside it, the thick, vibrant dark green curry features wilted spinach leaves, small cubes of softened red tomato, and translucent diced onions. A single bright green chili, slit lengthwise, rests on top as a functional garnish. The curry has a moist, textured consistency without being watery. The bowl sits on a dark wooden table next to a small side dish of white yogurt and a piece of crisp papadum. A simple stainless steel spoon lies on a folded cotton napkin. Soft, warm kitchen lighting highlights the steam rising from the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian Homestyle",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Plain whole milk yogurt",
+      "Mango or lime pickle",
+      "Crispy papadum",
+      "Fresh coriander leaves"
+    ],
+    "hero_ingredient": "Spinach",
+    "ingredients": [
+      {
+        "name": "Basmati rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "500g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "200g"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2 pieces"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "10g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Water",
+        "quantity": "600ml"
+      }
+    ],
+    "instructions": [
+      "Rinse 300g basmati rice under cold water until clear.",
+      "Combine rice and 600ml water in a pot.",
+      "Bring to a boil then cover and simmer 12 minutes.",
+      "Finely dice 200g onions and 300g tomatoes.",
+      "Chop 500g spinach into 2cm wide ribbons.",
+      "Heat 30ml oil in a large pan over medium heat.",
+      "Add 5g cumin seeds and toast until fragrant.",
+      "Sauté diced onions until translucent and light brown.",
+      "Stir in 10g minced garlic and 2 slit green chilies.",
+      "Add diced tomatoes and 5g turmeric powder.",
+      "Cook 5 minutes until tomatoes soften.",
+      "Add chopped spinach and 5g salt.",
+      "Stir until spinach wilts and integrates into a thick sauce.",
+      "Serve the curry immediately beside the hot rice."
+    ],
+    "notes": [
+      "Use fresh spinach for the best texture and color.",
+      "Ensure rice is fluffy by letting it rest covered for 5 minutes after cooking.",
+      "Adjust chili count to control the heat level."
+    ],
+    "traditional_techniques": [
+      "tempering spices",
+      "bhuna"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 401.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5.74,
+      "protein_g": 10.73,
+      "saturated_fat_g": 1.18,
+      "sodium_mg": 589,
+      "total_carbs_g": 73.04,
+      "total_fat_g": 8.38,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107.07,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.53,
+      "protein_g": 2.86,
+      "saturated_fat_g": 0.31,
+      "sodium_mg": 157.07,
+      "total_carbs_g": 19.48,
+      "total_fat_g": 2.23,
+      "total_sugars_g": 1.31,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 20.5,
+      "protein": 21.5,
+      "saturated_fat": 5.9,
+      "sodium": 25.6,
+      "total_carbs": 26.6,
+      "total_fat": 10.7
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Spinach and Tomato Curry with Steamed Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260507_030010_c509cf38.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-07T03:00:10.639292000Z",
+    "selected_ingredients": [
+      "chili",
+      "onion",
+      "tomato",
+      "spinach",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Spinach and Tomato Curry served in a shallow, rustic earthenware bowl. A generous mound of fluffy, long-grain white basmati rice occupies half the bowl. Beside it, the thick, vibrant dark green curry features wilted spinach leaves, small cubes of softened red tomato, and translucent diced onions. A single bright green chili, slit lengthwise, rests on top as a functional garnish. The curry has a moist, textured consistency without being watery. The bowl sits on a dark wooden table next to a small side dish of white yogurt and a piece of crisp papadum. A simple stainless steel spoon lies on a folded cotton napkin. Soft, warm kitchen lighting highlights the steam rising from the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian Homestyle",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Plain whole milk yogurt",
+      "Mango or lime pickle",
+      "Crispy papadum",
+      "Fresh coriander leaves"
+    ],
+    "hero_ingredient": "Spinach",
+    "ingredients": [
+      {
+        "name": "Basmati rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "500g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "200g"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2 pieces"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "10g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Water",
+        "quantity": "600ml"
+      }
+    ],
+    "instructions": [
+      "Rinse 300g basmati rice under cold water until clear.",
+      "Combine rice and 600ml water in a pot.",
+      "Bring to a boil then cover and simmer 12 minutes.",
+      "Finely dice 200g onions and 300g tomatoes.",
+      "Chop 500g spinach into 2cm wide ribbons.",
+      "Heat 30ml oil in a large pan over medium heat.",
+      "Add 5g cumin seeds and toast until fragrant.",
+      "Sauté diced onions until translucent and light brown.",
+      "Stir in 10g minced garlic and 2 slit green chilies.",
+      "Add diced tomatoes and 5g turmeric powder.",
+      "Cook 5 minutes until tomatoes soften.",
+      "Add chopped spinach and 5g salt.",
+      "Stir until spinach wilts and integrates into a thick sauce.",
+      "Serve the curry immediately beside the hot rice."
+    ],
+    "notes": [
+      "Use fresh spinach for the best texture and color.",
+      "Ensure rice is fluffy by letting it rest covered for 5 minutes after cooking.",
+      "Adjust chili count to control the heat level."
+    ],
+    "traditional_techniques": [
+      "tempering spices",
+      "bhuna"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 401.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5.74,
+      "protein_g": 10.73,
+      "saturated_fat_g": 1.18,
+      "sodium_mg": 589,
+      "total_carbs_g": 73.04,
+      "total_fat_g": 8.38,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107.07,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.53,
+      "protein_g": 2.86,
+      "saturated_fat_g": 0.31,
+      "sodium_mg": 157.07,
+      "total_carbs_g": 19.48,
+      "total_fat_g": 2.23,
+      "total_sugars_g": 1.31,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 20.5,
+      "protein": 21.5,
+      "saturated_fat": 5.9,
+      "sodium": 25.6,
+      "total_carbs": 26.6,
+      "total_fat": 10.7
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Pan-Seared Salmon with White Bean Purée and Gremolata",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260507_021557_e200310b.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-07T02:15:58.258092000Z",
+    "selected_ingredients": [
+      "salmon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single thick-cut salmon fillet sits as the centerpiece, featuring a deeply golden, crackling skin facing upward. It rests on a velvety, pale ivory cannellini bean purée spread in a fluid circle on a matte white porcelain plate. Five whole cherry tomatoes, charred and blistered with deep red hues, are clustered to the side. A vibrant green gremolata of finely minced parsley and bright yellow lemon zest is drizzled over the fish. The plate is set on a dark wood bistro table with a crisp linen napkin and polished silver fork. Natural side lighting highlights the moist texture of the fish and the smooth sheen of the purée, leaving elegant negative space around the edges.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty ciabatta bread",
+      "Pair with a crisp Vermentino or Pinot Grigio",
+      "Present on pre-warmed ceramic plates"
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin-on",
+        "quantity": "4 x 150g"
+      },
+      {
+        "name": "Cannellini beans, canned and rinsed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic clove, peeled",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Lemon, zest and juice",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Drain and rinse the cannellini beans thoroughly.",
+      "Blend beans with garlic, 30ml olive oil, and stock until smooth.",
+      "Transfer purée to a small saucepan over low heat.",
+      "Pat salmon skin completely dry with paper towels.",
+      "Season both sides of the salmon with salt and pepper.",
+      "Heat 15ml oil in a heavy skillet over medium-high heat.",
+      "Place salmon skin-side down in the pan.",
+      "Press the fish down for 30 seconds to ensure even contact.",
+      "Sear for 4 minutes until the skin is crispy and golden.",
+      "Flip the salmon carefully and cook for 2 minutes.",
+      "Remove salmon from the pan and set aside.",
+      "Add cherry tomatoes to the same pan.",
+      "Blister tomatoes for 3 minutes until skins begin to burst.",
+      "Combine chopped parsley, lemon zest, and remaining olive oil.",
+      "Spoon purée onto plates and top with salmon and tomatoes.",
+      "Drizzle parsley gremolata over the fish."
+    ],
+    "notes": [
+      "Ensure the salmon skin is bone-dry before cooking to achieve maximum crispness.",
+      "Do not move the fish during the first 3 minutes of searing."
+    ],
+    "traditional_techniques": [
+      "mise en place",
+      "pan-searing",
+      "emulsifying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 530,
+      "cholesterol_mg": 82.5,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 36.2,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 872.3,
+      "total_carbs_g": 17.3,
+      "total_fat_g": 34.5,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168.3,
+      "cholesterol_mg": 26.2,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 11.5,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 276.9,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 10.9,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27.5,
+      "dietary_fiber": 20.4,
+      "protein": 72.4,
+      "saturated_fat": 33,
+      "sodium": 37.9,
+      "total_carbs": 6.3,
+      "total_fat": 44.2
+    },
+    "serving_size_g": 315,
+    "total_recipe_weight_g": 1260
+  },
+  {
+    "recipe_name": "Open-Faced Turkey and Chicken Melt on Rye",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260507_021054_45043084.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-07T02:10:54.884389000Z",
+    "selected_ingredients": [
+      "turkey",
+      "cheese",
+      "rye bread",
+      "chicken",
+      "onion",
+      "green pea",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of this Modern American dish is presented on a clean white porcelain plate. The focal point is a thick, toasted slice of dark rye bread topped with large, 3cm golden-seared chunks of turkey and chicken. A generous layer of melted, bubbly Gruyère cheese drapes over the meat, revealing glimpses of dark caramelized onions beneath. Two roasted tomato wedges sit to the side, their skins slightly charred and concentrated. A vibrant scattering of bright green, blanched peas provides a sharp color contrast against the dark bread and white plate. The arrangement is organic and centered, with moderate negative space. Natural light highlights the textures of the melted cheese and the crusty rye bread.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of dill pickles",
+      "Accompany with a light grain mustard",
+      "Pair with a crisp amber ale"
+    ],
+    "hero_ingredient": "Turkey and Chicken Chunks",
+    "ingredients": [
+      {
+        "name": "Turkey breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Rye bread",
+        "quantity": "4 thick slices"
+      },
+      {
+        "name": "Gruyère cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Green peas",
+        "quantity": "200g"
+      },
+      {
+        "name": "Plum tomatoes",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "2 sprigs"
+      }
+    ],
+    "instructions": [
+      "Cut turkey and chicken into 3cm chunks.",
+      "Slice onions into thin half-moons.",
+      "Cut tomatoes into thick wedges.",
+      "Blanch peas in boiling salted water for 2 minutes, then drain.",
+      "Sauté onions in butter over medium heat until deep golden brown.",
+      "Toss tomato wedges with olive oil and roast at 200°C for 12 minutes.",
+      "Season poultry chunks with salt, pepper, and thyme.",
+      "Sear poultry in a hot pan with olive oil until the internal temperature reaches 75°C.",
+      "Toast rye bread slices until crisp.",
+      "Spread caramelized onions over bread.",
+      "Pile turkey and chicken chunks onto the onions.",
+      "Top with sliced Gruyère cheese.",
+      "Broil under high heat until cheese is melted and bubbling.",
+      "Garnish with peas and serve with roasted tomato wedges."
+    ],
+    "notes": [
+      "Ensure the poultry reaches exactly 75°C to maintain juiciness.",
+      "Use aged Gruyère for a sharper flavor profile.",
+      "The rye bread should be sliced at least 2cm thick to support the toppings."
+    ],
+    "traditional_techniques": [
+      "caramelizing",
+      "searing",
+      "broiling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 616.8,
+      "cholesterol_mg": 149.8,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 54.3,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 615.8,
+      "total_carbs_g": 36.2,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 194.3,
+      "cholesterol_mg": 47.2,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 17.1,
+      "saturated_fat_g": 4,
+      "sodium_mg": 194,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.9,
+      "dietary_fiber": 24.6,
+      "protein": 108.6,
+      "saturated_fat": 63,
+      "sodium": 26.8,
+      "total_carbs": 13.2,
+      "total_fat": 36.2
+    },
+    "serving_size_g": 317.5,
+    "total_recipe_weight_g": 1270
+  }
+]

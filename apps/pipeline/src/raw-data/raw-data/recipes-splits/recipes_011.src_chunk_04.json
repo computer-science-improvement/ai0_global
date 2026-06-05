@@ -1,0 +1,666 @@
+[
+  {
+    "recipe_name": "Braised Chicken with Tomatoes and Green Chilies",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_tomatoes_and_green_chilies_20250707_044315_66302819.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T04:43:16.327156000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "chili"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of braised chicken with tomatoes and green chilies is presented on a simple, everyday off-white ceramic plate. A whole, bone-in, skin-on chicken thigh, its skin beautifully browned and slightly crispy, is nestled in a rich, rustic tomato and green chili sauce. The sauce is thick and chunky, with visible pieces of softened diced tomato, diced onion, and mild green chilies. The chicken is not sliced. A sprinkle of roughly chopped fresh cilantro adds a touch of green. The plate sits on a well-used, warm-toned wooden dining table. A simple, casually folded cloth napkin in a neutral color is placed beside the plate. The scene is lit with warm, inviting kitchen lighting, creating a cozy, lived-in family atmosphere. The background is minimal, keeping the focus entirely on the comforting dish. The entire plate is visible, with adequate negative space around the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Green chilies (e.g., Anaheim or Poblano), diced",
+        "quantity": "2-3 medium"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4-5 cloves"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown and crispy. This takes about 5-7 minutes. Flip and sear the other side for 2-3 minutes. Remove chicken from pot.",
+      "Add diced onion to the pot. Sauté until softened and translucent, about 5 minutes.",
+      "Add minced garlic, diced green chilies (remove seeds for less heat), dried oregano, and cumin. Sauté for 2 minutes until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring the mixture to a simmer, scraping up any browned bits from the bottom of the pot.",
+      "Return chicken thighs to the pot, nestling them into the sauce. Ensure chicken is mostly submerged.",
+      "Reduce heat to low. Cover the pot and simmer for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is very tender.",
+      "Taste the sauce and adjust seasoning as needed.",
+      "Serve hot, garnished with fresh chopped cilantro."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 535.5,
+      "cholesterol_mg": 169.3,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 37.5,
+      "saturated_fat_g": 8.4,
+      "sodium_mg": 187,
+      "total_carbs_g": 21.5,
+      "total_fat_g": 34.7,
+      "total_sugars_g": 11.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 95,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.7,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 33.2,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.4,
+      "dietary_fiber": 16.2,
+      "protein": 74.9,
+      "saturated_fat": 42.1,
+      "sodium": 8.1,
+      "total_carbs": 7.8,
+      "total_fat": 44.5
+    },
+    "serving_size_g": 563.5,
+    "total_recipe_weight_g": 2254
+  },
+  {
+    "recipe_name": "Caramelized Apple & Bee Pollen Millefoglie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_apple_%26_bee_pollen_millefoglie_20250707_041311_ed4ebe0f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T04:13:11.685556000Z",
+    "selected_ingredients": [
+      "bee pollen",
+      "beef",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Caramelized Apple & Bee Pollen Millefoglie is presented on a clean white porcelain rectangular plate. A single, tall slice stands elegantly, showcasing distinct, golden-brown puff pastry layers. Visible laminations reveal the pastry's flakiness. Between the crisp layers, smooth, pale yellow bee pollen diplomat cream is piped, interspersed with glistening, amber-toned caramelized apple cubes. Apples are cut into small, uniform cubes. Irregular, golden-brown shards of crispy pasta crumble are scattered around the base and over the cream, adding textural contrast. A light dusting of powdered sugar crowns the top layer. Bright yellow bee pollen granules are artfully scattered on the plate. Presentation is clean and professional, with moderate negative space, set on a simple wooden table surface under natural, even lighting. A folded white cotton napkin rests beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Pastry",
+    "hero_ingredient": "Caramelized Apple",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cold rendered beef fat",
+        "quantity": "200g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Granulated sugar (for pastry cream)",
+        "quantity": "60g"
+      },
+      {
+        "name": "Large egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "20g"
+      },
+      {
+        "name": "Vanilla bean",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Bee pollen granules (for pastry cream)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cold heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Firm apples",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Unsalted butter (for apples)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Granulated sugar (for apples)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Water (for apples)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Small dried pasta (e.g., orzo)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsalted butter (for pasta crumble)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Granulated sugar (for pasta crumble)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Bee pollen granules (for garnish)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Prepare Beef Fat Puff Pastry:",
+      "Combine flour, 125ml cold water, and 5g salt. Mix until a rough dough forms. Chill 30 minutes.",
+      "Place 200g cold beef fat between parchment. Roll into a 15x15cm square. Keep chilled.",
+      "Roll dough into a 20x20cm square. Place beef fat diagonally in center. Fold dough corners to enclose. Pinch seams to seal.",
+      "Roll dough into a 40x15cm rectangle. Fold dough in thirds (letter fold). Turn 90 degrees.",
+      "Repeat rolling and folding for 3 turns total. Chill 30 minutes between turns. Chill thoroughly for 1 hour after final turn.",
+      "Bake Puff Pastry:",
+      "Preheat oven to 190°C.",
+      "Roll chilled pastry to 3mm thickness. Cut into 12 rectangles (approx. 10x4cm) for 4 portions.",
+      "Place pastry rectangles on parchment-lined baking sheet. Prick with a fork. Place another parchment and baking sheet on top.",
+      "Bake 20-25 minutes until golden and crisp. Cool completely on wire rack.",
+      "Prepare Bee Pollen Pastry Cream:",
+      "In saucepan, heat milk and vanilla bean until simmering. Remove from heat. Steep 10 minutes. Remove vanilla bean.",
+      "In a bowl, whisk egg yolks, 60g granulated sugar, and cornstarch until pale.",
+      "Gradually whisk hot milk into egg mixture. Return to saucepan.",
+      "Cook over medium heat, whisking constantly, until cream thickens and boils 1 minute.",
+      "Remove from heat. Stir in 10g bee pollen. Transfer to bowl. Cover surface with plastic wrap. Chill completely.",
+      "Once cold, whisk heavy cream to soft peaks. Gently fold into chilled pastry cream.",
+      "Caramelize Apples:",
+      "Peel, core, and cut apples into 1cm cubes.",
+      "In non-stick pan, melt 20g butter over medium heat. Add apple cubes. Cook 3-4 minutes until softened.",
+      "Add 30g granulated sugar and 15ml water. Cook, stirring, until apples are tender and liquid glazes. Cool completely.",
+      "Make Crispy Pasta Crumble:",
+      "Process or finely crush dried pasta into small, irregular pieces.",
+      "In small pan, melt 10g butter over medium heat. Add crushed pasta. Toast until golden brown.",
+      "Add 15g granulated sugar. Continue cooking until sugar melts and coats pasta.",
+      "Spread crumble onto parchment paper to cool and harden. Break into small pieces.",
+      "Assemble Millefoglie (for each of 4 portions):",
+      "Place one baked pastry rectangle on serving plate.",
+      "Spread a layer of bee pollen diplomat cream over pastry.",
+      "Arrange caramelized apple cubes over cream.",
+      "Sprinkle generously with pasta crumble.",
+      "Top with second pastry rectangle. Repeat cream, apples, and crumble layers.",
+      "Finish with third pastry rectangle.",
+      "Garnish:",
+      "Dust assembled millefoglie with powdered sugar.",
+      "Scatter remaining 10g bee pollen granules around the plate."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 28.8,
+      "calories": 1143,
+      "cholesterol_mg": 252,
+      "dietary_fiber_g": 5,
+      "protein_g": 14.2,
+      "saturated_fat_g": 37.4,
+      "sodium_mg": 535,
+      "total_carbs_g": 110,
+      "total_fat_g": 72.1,
+      "total_sugars_g": 44.2,
+      "trans_fat_g": 2.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 7,
+      "calories": 279,
+      "cholesterol_mg": 62,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 3.5,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 131,
+      "total_carbs_g": 26.9,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0.7
+    },
+    "daily_value_percentages": {
+      "cholesterol": 84.1,
+      "dietary_fiber": 17.9,
+      "protein": 28.4,
+      "saturated_fat": 187,
+      "sodium": 23.2,
+      "total_carbs": 40,
+      "total_fat": 92.4
+    },
+    "serving_size_g": 409,
+    "total_recipe_weight_g": 1636
+  },
+  {
+    "recipe_name": "Abalone and Tropical Fruit Medley",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_abalone_and_tropical_fruit_medley_20250707_041157_f4eb73d2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T04:11:57.627246000Z",
+    "selected_ingredients": [
+      "abalone"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, colorful fruit medley is centrally mounded on a clean white porcelain dinner plate, set on a simple wooden table surface. The fruit, uniformly diced into 1.5 cm cubes, includes bright yellow mango, orange papaya, pale yellow pineapple, and green kiwi. Thin, perfectly round medallions of lightly blanched abalone, showcasing its pearly sheen, are artfully placed on top of and around the fruit, not fanned. A subtle sheen of citrus-mint dressing coats the fruits. Fresh, bright green mint leaves are scattered over the fruit and abalone as a garnish. The dish presents a balanced composition of bright colors from the fruit against the subtle, creamy tones of the abalone. Textures range from the soft, juicy fruit to the delicate, tender chew of the abalone. A cotton napkin is placed beside the plate. Natural, even lighting highlights the fresh ingredients. The entire plate is visible, showcasing an individual portion with moderate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Abalone",
+    "ingredients": [
+      {
+        "name": "Abalone",
+        "quantity": "4 medium pieces"
+      },
+      {
+        "name": "Mango",
+        "quantity": "1 large, ripe"
+      },
+      {
+        "name": "Papaya",
+        "quantity": "1 small, ripe"
+      },
+      {
+        "name": "Pineapple",
+        "quantity": "1/4 medium"
+      },
+      {
+        "name": "Kiwi",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Mint leaves",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "2 (juice and zest)"
+      },
+      {
+        "name": "Honey",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Clean abalone. Remove from shell. Remove viscera and tough outer membrane.",
+      "Score one side lightly in a crosshatch pattern for tenderness.",
+      "Bring 100 ml water to a gentle simmer with a pinch of salt.",
+      "Carefully blanch abalone for 30-60 seconds, or until just tender. Do not overcook.",
+      "Immediately transfer abalone to ice bath to stop cooking.",
+      "Drain abalone and pat dry. Slice abalone thinly against the grain into medallions.",
+      "Peel and dice mango, papaya, pineapple, and kiwi into uniform 1.5 cm cubes.",
+      "Gently combine diced fruits in a large bowl.",
+      "Finely chop fresh mint leaves.",
+      "In a small bowl, whisk together lime juice, lime zest, and honey.",
+      "Stir in chopped mint.",
+      "Gently pour dressing over mixed fruits. Toss lightly to coat.",
+      "Arrange fruit medley on individual white porcelain plates.",
+      "Artfully place thin abalone slices on top or alongside the fruit.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.6,
+      "calories": 187,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 6.9,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 185,
+      "total_carbs_g": 41.6,
+      "total_fat_g": 1,
+      "total_sugars_g": 32.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.9,
+      "calories": 62,
+      "cholesterol_mg": 9,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 2.3,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 62,
+      "total_carbs_g": 13.9,
+      "total_fat_g": 0.3,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 8.5,
+      "dietary_fiber": 15.4,
+      "protein": 13.9,
+      "saturated_fat": 0.8,
+      "sodium": 8,
+      "total_carbs": 15.1,
+      "total_fat": 1.2
+    },
+    "serving_size_g": 300,
+    "total_recipe_weight_g": 1199
+  },
+  {
+    "recipe_name": "Spanish Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_rice_20250707_041137_444bcdf0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T04:11:37.447947000Z",
+    "selected_ingredients": [
+      "rice",
+      "chicken",
+      "broth",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Spanish chicken and rice served in a wide, shallow white porcelain bowl. The rice is moist and fluid, colored a vibrant golden-orange from the smoked paprika and broth. Thick 4cm chunks of seared chicken thighs are nestled into the rice, showing a crisp, dark golden-brown exterior. Small dices of softened red bell pepper and translucent onions are evenly distributed throughout the grains. The dish is finished with a scatter of bright green chopped parsley. A single yellow lemon wedge sits on the side of the plate. The background features a rustic wooden table, a folded white cotton napkin, and natural side-lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve in a traditional terracotta cazuela",
+      "Accompany with crusty bread and aioli",
+      "Pair with a crisp Spanish white wine like Albariño"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, cut into 4cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Arborio rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon wedges",
+        "quantity": "4 units"
+      }
+    ],
+    "instructions": [
+      "Season chicken chunks with salt, pepper, and half the paprika.",
+      "Heat olive oil in a wide, shallow pan over medium-high heat.",
+      "Brown chicken chunks for 5 minutes until golden. Remove from pan.",
+      "Add onion and red pepper to the same pan. Sauté until softened.",
+      "Stir in garlic and remaining paprika. Cook for 1 minute.",
+      "Add rice. Stir for 2 minutes to toast the grains.",
+      "Pour in chicken broth. Bring to a boil.",
+      "Return chicken chunks to the pan. Reduce heat to low.",
+      "Simmer uncovered for 18 minutes. Do not stir.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Remove from heat. Let rest for 5 minutes.",
+      "Garnish with parsley and serve with lemon wedges."
+    ],
+    "notes": [
+      "Use short-grain rice to ensure the correct starchy consistency.",
+      "Avoid stirring the rice once the broth is added to allow a slight crust to form.",
+      "Ensure the broth is hot before adding it to the pan to maintain cooking temperature."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice toasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 738,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 48.9,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 1160,
+      "total_carbs_g": 90.6,
+      "total_fat_g": 19.5,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134.2,
+      "cholesterol_mg": 29.1,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.9,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 210.9,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 15,
+      "protein": 98,
+      "saturated_fat": 18,
+      "sodium": 50,
+      "total_carbs": 33,
+      "total_fat": 25
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Pollo al Forno con Mozzarella e Pomodoro",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_al_forno_con_mozzarella_e_pomodoro_20250707_041018_b63e5994.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-07T04:10:19.345670000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "cheese",
+      "oregano",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generously sized chicken breast is centered on a clean white porcelain dinner plate. The chicken is golden-brown from searing, partially submerged in a vibrant, rich red tomato sauce. Melted fresh mozzarella forms a bubbly, golden-edged cap over the chicken. A few whole fresh basil leaves are scattered artfully over the melted cheese and sauce, providing a pop of bright green. The tomato sauce has a slightly rustic texture with visible specks of oregano. The plate sits on a simple light wooden table surface, accompanied by a folded white cotton napkin and classic silver Italian flatware. The lighting is natural and even, highlighting the dish's warmth and inviting textures. The background suggests a modern bistro setting, subtly blurred to keep the focus on the food. The chicken is presented whole, not sliced.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce.",
+      "Accompanied by a simple green salad dressed with olive oil and red wine vinegar."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh mozzarella cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 3 minutes per side until golden brown. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add finely diced onion to the skillet. Cook for 5 minutes until softened.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Pour crushed tomatoes into the skillet. Stir in dried oregano. Season with salt and pepper. Bring to a simmer.",
+      "Return seared chicken breasts to the skillet, nestling them into the tomato sauce.",
+      "Slice fresh mozzarella into thick medallions. Arrange mozzarella slices over each chicken breast.",
+      "Transfer the skillet to the preheated oven. Bake for 15-20 minutes, or until chicken reaches an internal temperature of 75°C and cheese is bubbly and golden.",
+      "Remove skillet from oven. Let rest for 5 minutes.",
+      "Garnish with fresh basil leaves before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 577,
+      "cholesterol_mg": 191,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 72.3,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 811,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 24.4,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117,
+      "cholesterol_mg": 38.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 14.6,
+      "saturated_fat_g": 2,
+      "sodium_mg": 164,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 13,
+      "protein": 145,
+      "saturated_fat": 48,
+      "sodium": 35,
+      "total_carbs": 5,
+      "total_fat": 31
+    },
+    "serving_size_g": 494,
+    "total_recipe_weight_g": 1976
+  }
+]

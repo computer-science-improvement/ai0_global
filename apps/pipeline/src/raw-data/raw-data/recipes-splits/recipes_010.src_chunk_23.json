@@ -1,0 +1,598 @@
+[
+  {
+    "recipe_name": "Orange Olive Oil Cake with Candied Orange",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orange_olive_oil_cake_with_candied_orange_20250712_210645_d42bc2ea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T21:06:46.002566000Z",
+    "selected_ingredients": [
+      "orange",
+      "sugar",
+      "wheat"
+    ],
+    "complexity": "standard",
+    "special_requests": "muffin",
+    "visual_description": "A single, generous slice of golden-hued Orange Olive Oil Cake is presented on a pristine white porcelain plate, showcasing its moist, tender crumb. The cake, with its subtle golden-orange hue, is lightly drizzled with a translucent orange blossom glaze, adding a delicate sheen. Perched gracefully atop the slice are two thin, glistening candied orange slices, their edges slightly caramelized and translucent, offering a vibrant burst of color and a hint of chewiness. The plate provides ample negative space, ensuring the cake remains the focal point. The setting is a clean, light-toned wooden table, with a neatly folded cotton napkin beside the plate. Soft, natural light illuminates the scene, enhancing the cake's inviting texture and elegant simplicity, evoking a sophisticated casual dining experience.",
+    "number_of_servings": 12,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Orange",
+    "ingredients": [
+      {
+        "name": "Large oranges",
+        "quantity": "4"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "300 g"
+      },
+      {
+        "name": "All-purpose wheat flour",
+        "quantity": "350 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Orange blossom water",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Granulated sugar for candying",
+        "quantity": "200 g"
+      }
+    ],
+    "instructions": [
+      "Prepare candied oranges: Slice 1 orange thinly (2-3 mm).",
+      "Simmer orange slices in water for 10 minutes. Drain.",
+      "Combine 200 g granulated sugar with 200 ml water in a saucepan. Bring to boil.",
+      "Add blanched orange slices to the syrup. Simmer gently for 45 minutes until translucent.",
+      "Remove candied slices. Cool on a wire rack.",
+      "Preheat oven to 175°C. Grease and flour a 26 cm round springform pan.",
+      "In a large bowl, whisk together flour, baking powder, and salt.",
+      "In a separate bowl, whisk eggs and 300 g granulated sugar until pale.",
+      "Gradually whisk in olive oil, zest from 3 oranges, juice from 2 oranges (approx. 120 ml), and milk until well combined.",
+      "Pour wet ingredients into dry ingredients. Fold gently with a spatula until just combined. Do not overmix.",
+      "Pour batter into prepared pan. Bake for 45-55 minutes, or until a skewer inserted into the center comes out clean.",
+      "Let cake cool in pan for 10 minutes. Invert onto a wire rack. Cool completely.",
+      "Prepare glaze: In a small bowl, whisk powdered sugar, juice from 1 orange (approx. 60 ml), and orange blossom water until smooth.",
+      "Pour glaze over cooled cake. Arrange candied orange slices on top."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 54.15,
+      "calories": 549,
+      "cholesterol_mg": 63.3,
+      "dietary_fiber_g": 2.39,
+      "protein_g": 6.03,
+      "saturated_fat_g": 3.42,
+      "sodium_mg": 324,
+      "total_carbs_g": 85.29,
+      "total_fat_g": 21.53,
+      "total_sugars_g": 61.18,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 27.65,
+      "calories": 280.2,
+      "cholesterol_mg": 32.3,
+      "dietary_fiber_g": 1.22,
+      "protein_g": 3.08,
+      "saturated_fat_g": 1.75,
+      "sodium_mg": 165.4,
+      "total_carbs_g": 43.55,
+      "total_fat_g": 10.99,
+      "total_sugars_g": 31.24,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21,
+      "dietary_fiber": 9,
+      "protein": 12,
+      "saturated_fat": 17,
+      "sodium": 14,
+      "total_carbs": 31,
+      "total_fat": 28
+    },
+    "serving_size_g": 196,
+    "total_recipe_weight_g": 2350
+  },
+  {
+    "recipe_name": "Homestyle Orange Celebration Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_orange_celebration_cake_20250712_210532_bc9d4c22.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T21:05:32.792596000Z",
+    "selected_ingredients": [
+      "orange",
+      "sugar",
+      "wheat"
+    ],
+    "complexity": "simple",
+    "special_requests": "muffin",
+    "visual_description": "A generous, inviting slice of Homestyle Orange Celebration Cake rests on a simple, off-white ceramic plate with subtle imperfections, placed on a well-used wooden dining table. The cake itself is a warm golden-yellow, exhibiting a tender, open crumb. A rustic, slightly opaque white orange glaze cascades down its sides, forming natural drips. A few vibrant, thinly sliced fresh orange segments or a scattering of finely chopped orange zest are casually placed atop the glaze, providing a natural garnish. In the soft-focused background, the remaining whole cake sits on a plain cake stand, hinting at a larger celebration. A casually draped cloth napkin and a simple glass of milk complete the homely, lived-in atmosphere, bathed in warm, cozy kitchen lighting, evoking a relaxed family dining experience.",
+    "number_of_servings": 12,
+    "cuisine_type": "Homestyle Cake",
+    "hero_ingredient": "Orange",
+    "ingredients": [
+      {
+        "name": "Unsalted Butter, room temperature",
+        "quantity": "250g"
+      },
+      {
+        "name": "Caster Sugar",
+        "quantity": "250g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Plain Wheat Flour",
+        "quantity": "250g"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Oranges (zest of 2, juice of 1-2)",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Icing Sugar",
+        "quantity": "200g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 23cm round cake tin.",
+      "In a large bowl, cream butter and caster sugar until light and fluffy.",
+      "Beat in eggs one at a time. Mix well after each addition.",
+      "Sift plain wheat flour and baking powder into the wet mixture. Fold gently until just combined.",
+      "Stir in orange zest and 60ml of orange juice. Add whole milk. Mix until batter is smooth.",
+      "Pour batter into the prepared cake tin. Smooth the top with a spatula.",
+      "Bake for 40-50 minutes. Cake is done when a skewer inserted into the center comes out clean.",
+      "Cool cake in the tin for 10 minutes. Invert onto a wire rack to cool completely.",
+      "Prepare glaze: Whisk icing sugar with remaining orange juice (approx. 40-60ml, adjust for desired consistency) until smooth.",
+      "Pour glaze over the completely cooled cake. Let the glaze set before slicing and serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.483,
+      "calories": 424.528,
+      "cholesterol_mg": 120.417,
+      "dietary_fiber_g": 0.963,
+      "protein_g": 5.334,
+      "saturated_fat_g": 11.634,
+      "sodium_mg": 121.291,
+      "total_carbs_g": 56.301,
+      "total_fat_g": 19.579,
+      "total_sugars_g": 39.835,
+      "trans_fat_g": 0.677
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 29.151,
+      "calories": 330.157,
+      "cholesterol_mg": 93.649,
+      "dietary_fiber_g": 0.749,
+      "protein_g": 4.148,
+      "saturated_fat_g": 9.048,
+      "sodium_mg": 94.329,
+      "total_carbs_g": 43.785,
+      "total_fat_g": 15.227,
+      "total_sugars_g": 30.98,
+      "trans_fat_g": 0.526
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.1,
+      "dietary_fiber": 3.4,
+      "protein": 10.7,
+      "saturated_fat": 58.2,
+      "sodium": 5.3,
+      "total_carbs": 20.5,
+      "total_fat": 25.1
+    },
+    "serving_size_g": 128.583,
+    "total_recipe_weight_g": 1543
+  },
+  {
+    "recipe_name": "Classic Orange Bundt Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_orange_bundt_cake_20250712_210221_d35875fb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T21:02:21.637834000Z",
+    "selected_ingredients": [
+      "orange",
+      "sugar",
+      "wheat"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous slice of Classic Orange Bundt Cake sits on a simple, off-white ceramic plate. The cake slice reveals a moist, tender, golden crumb with a perfectly baked, slightly darker crust. A thick, opaque white orange glaze is generously drizzled over the top and down the fluted sides of the slice, pooling slightly at its base. In the background, the full, beautifully fluted Bundt cake rests on a simple white cake stand, also glazed. The setting is a warm, homely family kitchen, with the cake presented on a well-used wooden dining table. A casually placed, light-colored cloth napkin is nearby. Natural, cozy lighting illuminates the scene, emphasizing the comforting, homemade appeal of the cake.",
+    "number_of_servings": 12,
+    "cuisine_type": "Classic Baked",
+    "cultural_origin": "American Home Baking",
+    "cultural_serving_suggestions": [
+      "Served with coffee or tea for dessert or an afternoon treat."
+    ],
+    "hero_ingredient": "Orange",
+    "ingredients": [
+      {
+        "name": "Plain (all-purpose) flour",
+        "quantity": "350 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Orange zest (from 2 large oranges)",
+        "quantity": ""
+      },
+      {
+        "name": "Orange juice (for cake)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Icing sugar (for glaze)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Orange juice (for glaze)",
+        "quantity": "45 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour a 2.5-liter Bundt pan.",
+      "Whisk flour, baking powder, and salt in a bowl. Set aside.",
+      "Cream softened butter and granulated sugar in a large bowl until light and fluffy.",
+      "Beat in eggs one at a time. Mix well after each addition.",
+      "Stir in orange zest and vanilla extract.",
+      "Add dry ingredients to wet ingredients in three additions, alternating with milk and orange juice. Begin and end with dry ingredients. Mix until just combined. Do not overmix.",
+      "Pour batter evenly into prepared Bundt pan.",
+      "Bake for 50-60 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Cool cake in pan for 10 minutes. Invert onto a wire rack. Cool completely.",
+      "Prepare glaze: Whisk icing sugar and orange juice in a small bowl until smooth.",
+      "Pour glaze over cooled cake. Let set before serving."
+    ],
+    "notes": [
+      "Ensure all ingredients are at room temperature for best results."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 41.7,
+      "calories": 453,
+      "cholesterol_mg": 108,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 5.7,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 279,
+      "total_carbs_g": 65.8,
+      "total_fat_g": 19.4,
+      "total_sugars_g": 43.2,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 31.9,
+      "calories": 347,
+      "cholesterol_mg": 83,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 4.4,
+      "saturated_fat_g": 8.8,
+      "sodium_mg": 214,
+      "total_carbs_g": 50.4,
+      "total_fat_g": 14.8,
+      "total_sugars_g": 33.1,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36,
+      "dietary_fiber": 3,
+      "protein": 11,
+      "saturated_fat": 58,
+      "sodium": 12,
+      "total_carbs": 24,
+      "total_fat": 25
+    },
+    "serving_size_g": 130.5,
+    "total_recipe_weight_g": 1566
+  },
+  {
+    "recipe_name": "Orange Chiffon Cake with Glaze and Candied Peel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orange_chiffon_cake_with_glaze_and_candied_peel_20250712_210045_f41b4154.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T21:00:46.214282000Z",
+    "selected_ingredients": [
+      "orange",
+      "sugar",
+      "wheat"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "An elegant, single slice of Orange Chiffon Cake rests on a pristine white porcelain dinner plate, centrally positioned. The cake slice, cut cleanly to reveal its light, airy texture and delicate crumb, is generously coated with a smooth, glossy, pale orange glaze. A few delicate, translucent julienne strips of candied orange peel are artfully placed on top of the glaze, adding a touch of vibrant color and textural contrast. The entire plate is visible, showcasing moderate negative space around the slice. In the subtly blurred background, a whole, un-sliced Orange Chiffon Cake sits on a simple white cake stand, providing context. The setting is a modern bistro, featuring a clean, light-toned wooden table surface. A neatly folded, neutral-colored cotton napkin is placed beside the plate. Natural, even lighting illuminates the scene, creating soft shadows and highlighting the cake's refined details. The background is minimal and unobtrusive, focusing all attention on the professionally presented dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Pastry",
+    "hero_ingredient": "Orange",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "120 g (divided)"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "4 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4 (separated)"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Fresh orange juice",
+        "quantity": "90 ml (divided)"
+      },
+      {
+        "name": "Orange zest",
+        "quantity": "1.5 oranges"
+      },
+      {
+        "name": "Cream of tartar",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Orange (for candied peel)",
+        "quantity": "1"
+      },
+      {
+        "name": "Water (for candied peel)",
+        "quantity": "100 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare candied orange peel: Wash one orange. Peel in wide strips. Remove all white pith. Cut peel into thin strips (julienne).",
+      "Blanch peel: Place julienned peel in small saucepan. Cover with water. Bring to boil. Boil 5 minutes. Drain. Repeat blanching two more times.",
+      "Make candied peel syrup: Combine 100g granulated sugar and 100ml water in small saucepan. Heat until sugar dissolves. Add blanched peel to syrup.",
+      "Simmer peel: Simmer gently 20-30 minutes until peel is translucent. Remove peel with slotted spoon. Place on parchment paper. Let dry completely.",
+      "Prepare cake pan: Preheat oven to 160°C. Do not grease an 18 cm tube pan.",
+      "Mix dry ingredients: Sift flour, baking powder, and salt together in a bowl. Set aside.",
+      "Mix wet ingredients: In a large bowl, whisk egg yolks with 60g granulated sugar until pale. Whisk in vegetable oil, 60ml orange juice, and 1 orange zest.",
+      "Combine mixtures: Gradually add dry ingredients to yolk mixture. Mix until just combined. Do not overmix.",
+      "Whip meringue: In a separate clean bowl, beat egg whites with cream of tartar until soft peaks form. Gradually add remaining 60g granulated sugar. Beat until stiff, glossy peaks form.",
+      "Fold batter: Gently fold one-third of meringue into yolk mixture to lighten. Fold in remaining meringue in two additions until no streaks remain. Be gentle.",
+      "Bake cake: Pour batter into ungreased tube pan. Bake 35-40 minutes, or until a wooden skewer inserted comes out clean.",
+      "Cool cake: Invert pan immediately onto a bottle neck or pan legs. Let cool completely upside down. Once cool, run a thin knife around edges to release cake.",
+      "Make glaze: In a small bowl, whisk powdered sugar, 30ml orange juice, and 0.5 orange zest until smooth. Adjust juice for desired consistency.",
+      "Glaze cake: Place cooled cake on a wire rack over parchment paper. Pour glaze over top of cake. Let excess drip off.",
+      "Decorate and serve: Arrange dried candied orange peel on top of glazed cake. Let glaze set before slicing. Serve individual slices."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 59.9,
+      "calories": 510,
+      "cholesterol_mg": 187,
+      "dietary_fiber_g": 2,
+      "protein_g": 9.2,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 363,
+      "total_carbs_g": 85.8,
+      "total_fat_g": 14.9,
+      "total_sugars_g": 62.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 34.3,
+      "calories": 291,
+      "cholesterol_mg": 107,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 5.3,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 207,
+      "total_carbs_g": 49,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 35.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 7,
+      "protein": 18,
+      "saturated_fat": 12,
+      "sodium": 16,
+      "total_carbs": 31,
+      "total_fat": 19
+    },
+    "serving_size_g": 175,
+    "total_recipe_weight_g": 700
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Roasted Butternut Squash and Apple-Sage Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_roasted_butternut_squash_and_apple-sage_sauce_20250712_200431_2b61032d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T20:04:32.118495000Z",
+    "selected_ingredients": [
+      "chicken",
+      "apple",
+      "squash"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, whole pan-seared chicken breast is centrally placed on a clean white porcelain plate. The chicken boasts a rich golden-brown crust. Beside it, perfectly roasted 2cm butternut squash cubes display vibrant orange hues and caramelized edges. A glossy, amber-colored apple-sage sauce, flecked with green sage, is artfully spooned over the chicken and around the plate. The composition is balanced with moderate negative space, highlighting the dish's refined simplicity. The setting features a simple wooden table surface and a folded cotton napkin, illuminated by natural, even lighting. The background is minimal, focusing entirely on the plated food for a professional bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Pan-Seared Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (about 180-200g each)"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "800g, peeled, deseeded, cut into 2cm cubes"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large, finely minced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Apple",
+        "quantity": "1 medium (e.g., Honeycrisp or Granny Smith), peeled, cored, finely diced"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "10-12, finely chopped"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "5ml (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss butternut squash cubes with 30ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 20-25 minutes, until tender and lightly caramelized.",
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat remaining 30ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 4-5 minutes per side until golden brown.",
+      "Transfer skillet to preheated oven. Bake for 8-10 minutes, or until internal temperature reaches 75°C. Remove chicken, rest on a cutting board, tented with foil.",
+      "While chicken rests, melt butter in the same skillet over medium heat. Add minced shallot, cook for 2-3 minutes until softened.",
+      "Add minced garlic and diced apple to skillet. Cook for 2 minutes until fragrant.",
+      "Pour in chicken broth and apple cider vinegar. Bring to a simmer. Stir in chopped sage.",
+      "Reduce heat to low. Simmer for 5-7 minutes, until sauce slightly thickens. Taste and adjust seasoning. Add honey if desired for balance.",
+      "To serve, place a chicken breast on each plate. Arrange roasted butternut squash beside the chicken. Spoon apple-sage sauce generously over the chicken and around the plate."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 630,
+      "cholesterol_mg": 178,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 63,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 916,
+      "total_carbs_g": 35.5,
+      "total_fat_g": 26.2,
+      "total_sugars_g": 11.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 117,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.7,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 170,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 22,
+      "protein": 126,
+      "saturated_fat": 39,
+      "sodium": 40,
+      "total_carbs": 13,
+      "total_fat": 34
+    },
+    "serving_size_g": 539,
+    "total_recipe_weight_g": 2155
+  }
+]

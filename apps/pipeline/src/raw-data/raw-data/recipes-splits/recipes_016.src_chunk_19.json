@@ -1,0 +1,680 @@
+[
+  {
+    "recipe_name": "Chicken & Potato Croquettes with Roasted Bell Pepper Aioli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_%26_potato_croquettes_with_roasted_bell_pepper_aioli_20250627_011839_85110dcd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:18:40.424147000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "bell pepper",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Eight to ten golden-brown, elongated oval croquettes are artfully arranged on a clean, white rectangular serving platter. The croquettes have a crispy, textured panko coating. A vibrant, smooth roasted bell pepper aioli is drizzled elegantly beside and partially over the croquettes, showcasing its rich orange-red hue. Each croquette is garnished with a delicate sprinkle of finely chopped fresh parsley, adding a pop of green. The overall plating is clean, professional, and balanced, with moderate negative space. The setting features a simple wooden table surface, a folded white cotton napkin placed beside the platter, and natural, even lighting that highlights the textures and colors of the dish. The background is minimal, creating a focused, restaurant-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Chicken Croquettes",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Potatoes (floury, e.g., Russet)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "for deep frying"
+      },
+      {
+        "name": "Water",
+        "quantity": "for boiling"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve the red bell pepper and remove seeds. Place bell pepper halves and 2 unpeeled garlic cloves on a baking tray. Drizzle with 10 ml olive oil. Roast for 20-25 minutes until tender and slightly charred. Let cool.",
+      "Peel and dice potatoes into 2 cm cubes. Place in a pot. Cover with cold water. Add a pinch of salt. Bring to a boil. Cook for 15-20 minutes until very tender. Drain well. Mash thoroughly until smooth. Set aside.",
+      "Place chicken breast in a small saucepan. Cover with water. Bring to a gentle simmer. Cook for 15-20 minutes until internal temperature reaches 75°C. Remove chicken. Shred or finely dice chicken. Set aside.",
+      "Peel and finely dice the onion. Peel and mince the remaining garlic clove. Heat 20 ml olive oil in a pan over medium heat. Add diced onion. Sauté for 5 minutes until softened. Add minced garlic and finely diced bell pepper (from the roasted pepper). Sauté for 3-5 minutes. Set aside.",
+      "For the aioli: Peel roasted bell pepper. Squeeze roasted garlic from its skin. Combine roasted bell pepper, roasted garlic, and mayonnaise in a blender. Blend until smooth. Season with salt and pepper. Set aside.",
+      "In a large bowl, combine mashed potatoes, shredded chicken, sautéed onion, and diced bell pepper. Season with salt and black pepper to taste. Mix well.",
+      "Form the mixture into 8-10 elongated oval or cylindrical croquettes, approximately 5 cm long.",
+      "Prepare a breading station: Place flour in one shallow dish, beaten eggs in a second, and panko breadcrumbs in a third. Dredge each croquette first in flour, shaking off excess. Then dip in egg, allowing excess to drip off. Finally, roll in panko breadcrumbs, pressing gently to coat completely.",
+      "Heat vegetable oil in a deep pot or fryer to 175°C. Fry croquettes in batches for 3-4 minutes, or until golden brown and heated through. Do not overcrowd the pot. Remove croquettes with a slotted spoon. Place on a wire rack lined with paper towels to drain excess oil.",
+      "Finely chop fresh parsley for garnish.",
+      "Arrange croquettes on a serving platter. Serve immediately with a dollop or drizzle of roasted bell pepper aioli. Garnish with fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 941,
+      "cholesterol_mg": 169.2,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 35.8,
+      "saturated_fat_g": 9.9,
+      "sodium_mg": 426.1,
+      "total_carbs_g": 63.2,
+      "total_fat_g": 60.9,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 246.8,
+      "cholesterol_mg": 44.4,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 9.4,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 111.8,
+      "total_carbs_g": 16.6,
+      "total_fat_g": 16,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 19,
+      "protein": 72,
+      "saturated_fat": 50,
+      "sodium": 19,
+      "total_carbs": 23,
+      "total_fat": 78
+    },
+    "serving_size_g": 381.3,
+    "total_recipe_weight_g": 1525
+  },
+  {
+    "recipe_name": "Roasted Bell Pepper & Onion Financier with Umami Essence",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_bell_pepper_%26_onion_financier_with_umami_essence_20250627_011726_48dc63a4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:17:27.311143000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "bell pepper",
+      "garlic"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "Six to nine meticulously crafted miniature petit fours are artfully arranged on a pristine white bone china platter, leaving abundant negative space. Each petit four features a small, golden-brown caramelized onion financier as its base, exhibiting a delicate crumb. Perched elegantly atop each financier is a vibrant, ruby-red dome or dollop of roasted red bell pepper and passion fruit crémeux, its smooth surface contrasting with the financier's texture. A single, translucent, golden-crisp potato tuile stands vertically or leans gracefully against the financier, providing an architectural element. A minute, glistening droplet of clear chicken essence gel is precisely placed beside each composition, reflecting light. The entire presentation is finished with a few scattered bright green micro basil leaves, adding a final touch of color and freshness. The lighting is dramatic, casting soft shadows that enhance depth and sophistication. The background is ultra-minimalist, emphasizing the exquisite detail and precision of the culinary artistry.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Roasted Red Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Red Bell Peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Russet Potato",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken Breast",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Chicken Bones (for consommé)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Egg Whites",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Almond Flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "60 g"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Passion Fruit Puree",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Gelatin Leaf",
+        "quantity": "1 (2g)"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Micro Herbs (e.g., Basil, Thyme)",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "For Chicken Consommé Essence: Roast chicken bones and chicken breast at 200°C for 20 minutes until golden. Place roasted bones and breast in a pot. Cover with 1.5 liters cold water. Simmer gently for 2 hours. Skim impurities. Strain broth through a fine-mesh sieve. Chill. Remove fat. Clarify broth by simmering with 2 beaten egg whites until raft forms. Strain through cheesecloth. Reduce clarified consommé over low heat until 50 ml remain. This is your chicken essence. It should be thick and intensely flavored. Keep warm for plating.",
+      "For Roasted Red Bell Pepper & Passion Fruit Crémeux: Roast bell peppers whole at 200°C until skin is blistered and charred. Place in a bowl, cover with cling film for 10 minutes. Peel, deseed, and finely dice the roasted bell pepper flesh. Blend bell pepper with passion fruit puree until smooth. Bloom gelatin in cold water. Gently warm bell pepper-passion fruit mixture. Stir in bloomed gelatin until dissolved. Pour into small silicone molds or a shallow tray. Chill until set.",
+      "For Caramelized Onion Financier: Finely dice onion and garlic. Sauté in 10g butter over low heat until deeply caramelized and sweet, about 25-30 minutes. Cool. Melt remaining 60g butter until browned (beurre noisette). Strain solids. Whisk egg whites, almond flour, granulated sugar, and all-purpose flour in a bowl. Fold in cooled caramelized onion-garlic mixture and browned butter. Pour batter into mini financier molds. Bake at 170°C for 12-15 minutes until golden and cooked through. Cool completely.",
+      "For Crispy Potato Tuiles: Peel potato. Slice paper-thin using a mandoline. Place slices on parchment-lined baking sheet. Lightly brush with melted butter. Season with a pinch of salt. Bake at 160°C until golden and crisp, about 10-15 minutes. Watch closely to prevent burning. Cool on a wire rack.",
+      "Assembly: Arrange 6-9 financiers on an elegant serving platter. Gently unmold the set crémeux. Place a small piece or sphere of crémeux atop each financier. Carefully place a crispy potato tuile artistically on each petit four, standing upright or angled. Use a dropper or small spoon to place a tiny droplet or a thin brushstroke of the warm chicken essence gel beside or on a part of each petit four. Garnish with a few micro herbs. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 15,
+      "calories": 443.3,
+      "cholesterol_mg": 69.5,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 20,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 69,
+      "total_carbs_g": 42.8,
+      "total_fat_g": 22.6,
+      "total_sugars_g": 22.6,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 5.6,
+      "calories": 165.1,
+      "cholesterol_mg": 25.9,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 7.4,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 25.7,
+      "total_carbs_g": 16,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 23,
+      "protein": 40,
+      "saturated_fat": 49,
+      "sodium": 3,
+      "total_carbs": 16,
+      "total_fat": 29
+    },
+    "serving_size_g": 268.5,
+    "total_recipe_weight_g": 1074
+  },
+  {
+    "recipe_name": "Chicken and Tomato Rice Fritters",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_tomato_rice_fritters_20250627_010943_a34ea37f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:09:43.755133000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A small cluster of three to four golden brown fritters rests on a simple, slightly off-white ceramic plate. The fritters are irregularly shaped ovals, showcasing a crispy, textured exterior. Hints of rustic red tomato flecks and soft white rice are visible within the fritters. A small sprig of fresh green parsley is casually placed beside them, adding a touch of color. The plate sits on a well-worn, light wooden dining table, revealing its natural grain. A casually folded, plain linen napkin is nearby, adding to the relaxed atmosphere. Warm, inviting light from an overhead kitchen fixture illuminates the scene, creating a cozy, lived-in feel. The background is softly blurred, hinting at a comfortable family kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Homestyle",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Short-grain rice",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Plain breadcrumbs",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500 ml, for frying"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped, for garnish"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 1 cm cubes. Season with salt and pepper.",
+      "Heat 15 ml oil in a large skillet over medium heat. Add diced chicken. Cook until browned and cooked through, about 5-7 minutes. Internal temperature must reach 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "Add another 15 ml oil to the same skillet. Add diced onion. Sauté until softened, about 3 minutes.",
+      "Add minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Stir in rice. Cook for 2 minutes, stirring constantly.",
+      "Pour in chicken broth and crushed tomatoes. Bring to a simmer. Reduce heat to low. Cover and cook until rice is tender and liquid is absorbed, about 15-18 minutes.",
+      "Remove rice from heat. Fluff with a fork. Stir in cooked chicken. Season with salt and pepper to taste. Let mixture cool completely.",
+      "Beat eggs in a shallow bowl. Place breadcrumbs in another shallow bowl.",
+      "Form rice and chicken mixture into small, oval-shaped fritters, about 5 cm long.",
+      "Dip each fritter in beaten egg, then roll in breadcrumbs, ensuring full coating.",
+      "Heat remaining 500 ml vegetable oil in a deep pot or Dutch oven to 175°C (350°F).",
+      "Carefully place fritters into hot oil, frying in batches to avoid overcrowding. Fry until golden brown and crispy, about 3-4 minutes per side.",
+      "Remove fritters with a slotted spoon. Place on a wire rack lined with paper towels to drain excess oil.",
+      "Serve warm, garnished with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 518,
+      "cholesterol_mg": 147,
+      "dietary_fiber_g": 3,
+      "protein_g": 30.7,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 290,
+      "total_carbs_g": 54.6,
+      "total_fat_g": 19.3,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 166,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.9,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 93,
+      "total_carbs_g": 17.5,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 10.7,
+      "protein": 61.4,
+      "saturated_fat": 18,
+      "sodium": 12.6,
+      "total_carbs": 19.9,
+      "total_fat": 24.7
+    },
+    "serving_size_g": 311.5,
+    "total_recipe_weight_g": 1246
+  },
+  {
+    "recipe_name": "Spicy Turkey Ricotta Meatballs with Sugo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_turkey_ricotta_meatballs_with_sugo_20250627_010859_f96c0522.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:08:59.991126000Z",
+    "selected_ingredients": [
+      "turkey",
+      "green pea",
+      "breadcrumbs",
+      "oregano",
+      "parmesan",
+      "tomato",
+      "chili",
+      "hot sauce",
+      "ricotta",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single white porcelain dinner plate holds a generous portion of Spicy Turkey Ricotta Meatballs with Sugo. Three to four plump, golden-brown turkey meatballs, about 4cm in diameter, are nestled in a vibrant, rustic red tomato sauce. The sauce, rich with diced tomatoes and softened green peas, pools around the meatballs. A dollop of creamy white ricotta cheese rests atop one meatball, slowly melting into the warm sauce. A scattering of bright green chopped parsley and fresh basil leaves provides a fresh counterpoint, alongside finely grated Parmesan cheese. The presentation is organized yet naturally flowing, with ample negative space. The plate sits on a simple wooden table surface, accompanied by a folded cotton napkin and traditional Italian flatware. Natural, even lighting illuminates the dish, highlighting its textures and inviting colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sugo.",
+      "Offer a side of simple green salad with vinaigrette.",
+      "Provide extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Turkey Meatballs",
+    "ingredients": [
+      {
+        "name": "Ground turkey",
+        "quantity": "500g"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250g (100g for meatballs, 150g for serving)"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g (plus extra for garnish)"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "60g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Green peas, frozen",
+        "quantity": "150g"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "A few, for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Meatballs: In a large bowl, combine ground turkey, 100g ricotta, 50g grated Parmesan, breadcrumbs, egg, 2 minced garlic cloves, dried oregano, 10g chopped parsley, salt, and pepper. Mix gently until just combined. Do not overmix.",
+      "Form Meatballs: Roll mixture into 16-20 meatballs, about 4cm in diameter.",
+      "Brown Meatballs: Heat olive oil in a large deep skillet or Dutch oven over medium-high heat. Add meatballs in batches. Brown meatballs on all sides until golden, about 5-7 minutes. Remove browned meatballs and set aside.",
+      "Sauté Aromatics: Reduce heat to medium. Add diced onion and remaining 2 minced garlic cloves to the skillet. Sauté until softened, about 5 minutes.",
+      "Simmer Sauce: Pour in crushed tomatoes. Add chili flakes and hot sauce. Stir well. Bring sauce to a simmer.",
+      "Cook Meatballs: Carefully return browned meatballs to the simmering sauce. Cover and cook for 20 minutes, stirring occasionally, until meatballs are cooked through (internal temperature 75°C/167°F).",
+      "Add Peas: Stir in green peas. Cook for another 5 minutes, uncovered, until peas are tender and sauce thickens slightly.",
+      "Serve: Season sauce with salt and pepper to taste. Serve hot with a dollop of remaining ricotta, a sprinkle of fresh Parmesan, and remaining chopped parsley and fresh basil leaves."
+    ],
+    "notes": [
+      "Ensure meatballs are fully cooked to 75°C (167°F).",
+      "Adjust chili flakes and hot sauce to desired spice level."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for the sauce base)",
+      "Gentle simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 558,
+      "cholesterol_mg": 164,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 45,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 1356,
+      "total_carbs_g": 34.7,
+      "total_fat_g": 26.6,
+      "total_sugars_g": 11.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.8,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 264.7,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54.7,
+      "dietary_fiber": 22.5,
+      "protein": 90,
+      "saturated_fat": 47,
+      "sodium": 59,
+      "total_carbs": 12.6,
+      "total_fat": 34.1
+    },
+    "serving_size_g": 512.25,
+    "total_recipe_weight_g": 2049
+  },
+  {
+    "recipe_name": "Baked Chicken and Tomato Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_chicken_and_tomato_brown_rice_20250627_010530_32930685.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:05:30.948452000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "brown rice",
+      "carrot",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A golden-crusted, baked chicken breast, presented whole, rests prominently on a bed of savory, reddish-brown tomato-infused brown rice. The rice is moist, showcasing bits of finely diced onion and vibrant crushed tomato. Around the chicken and rice, roasted carrot chunks, approximately 2cm, display a slight caramelization, adding a pop of orange and tender texture. Melted, bubbly mozzarella cheese, with golden-brown spots, drapes invitingly over the chicken and rice. A generous sprinkle of fresh, bright green chopped parsley garnishes the dish, providing a fresh contrast. The dish is served as a single, refined portion on a clean white porcelain dinner plate, centered on a simple wooden table. Silver flatware is neatly placed beside the plate, alongside a folded white cotton napkin. Natural, even lighting illuminates the scene, highlighting the dish's comforting appeal in a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, peeled"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Shredded mozzarella cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Heat 1 tablespoon olive oil in a large oven-safe skillet over medium-high heat.",
+      "Season chicken breasts with salt and pepper. Sear chicken 3-4 minutes per side until golden brown. Remove chicken from skillet. Set aside.",
+      "Add remaining 1 tablespoon olive oil to the skillet. Add diced onion and cook 5 minutes until softened.",
+      "Add minced garlic and cook 1 minute until fragrant.",
+      "Stir in brown rice, crushed tomatoes, chicken stock, and dried oregano. Season with salt and pepper. Bring to a simmer.",
+      "Return seared chicken breasts to the skillet, nestling them into the rice mixture.",
+      "Cut carrots into 2cm chunks or thick wedges. Arrange carrot chunks around the chicken in the skillet.",
+      "Cover skillet tightly with a lid or foil. Bake 30 minutes.",
+      "Remove cover. Sprinkle mozzarella cheese over the chicken and rice.",
+      "Bake uncovered 10-15 minutes more, or until chicken reaches 75°C (167°F) internal temperature and cheese is melted and bubbly.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 777,
+      "cholesterol_mg": 191,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 77.5,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 525,
+      "total_carbs_g": 62.5,
+      "total_fat_g": 23.8,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 12.7,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 86,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 20,
+      "protein": 155,
+      "saturated_fat": 41,
+      "sodium": 23,
+      "total_carbs": 23,
+      "total_fat": 30
+    },
+    "serving_size_g": 610,
+    "total_recipe_weight_g": 2440
+  }
+]

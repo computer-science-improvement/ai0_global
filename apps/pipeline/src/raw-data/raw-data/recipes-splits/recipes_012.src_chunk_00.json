@@ -1,0 +1,644 @@
+[
+  {
+    "recipe_name": "Cheesy Chicken and Vegetable Rice Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_chicken_and_vegetable_rice_bake_20250703_043434_22540b1b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T04:34:34.621457000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "rice",
+      "green pea",
+      "potato",
+      "cheese",
+      "chili",
+      "corn",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Cheesy Chicken and Vegetable Rice Bake is presented in a deep, rustic ceramic bowl, showcasing a hearty single portion. Golden-brown chicken chunks, seared to perfection, are nestled amongst fluffy, savory rice. Diced potatoes and vibrant green peas and corn kernels are evenly distributed, adding pops of color and varied textures. Bright green broccoli florets are tender-crisp, peeking through a glistening, melted layer of golden cheddar cheese on top. The cheese has some beautifully browned, bubbly spots. A sprinkle of fresh, finely chopped parsley provides a final touch of verdant freshness. The dish exudes warmth and comfort, with steam subtly rising. It is placed on a simple wooden table with a white linen napkin beside it, under natural, soft lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "long-grain rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "frozen green peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "medium potatoes",
+        "quantity": "2"
+      },
+      {
+        "name": "cheddar cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "medium green chili, deseeded and minced",
+        "quantity": "1"
+      },
+      {
+        "name": "frozen corn kernels",
+        "quantity": "150g"
+      },
+      {
+        "name": "broccoli florets",
+        "quantity": "200g"
+      },
+      {
+        "name": "chicken broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "garlic powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium-high heat.",
+      "Season chicken chunks with salt, pepper, garlic powder, and paprika. Add chicken to skillet. Sear until golden brown on all sides. Remove chicken from skillet.",
+      "Add diced onion to skillet. Sauté until softened, about 5 minutes.",
+      "Stir in rice, diced potato, minced chili (if using), corn, and green peas. Cook for 2 minutes, stirring constantly.",
+      "Pour in chicken broth. Bring to a simmer.",
+      "Return seared chicken to the skillet, nestling it into the rice mixture.",
+      "Cover skillet with a lid or foil. Transfer to preheated oven. Bake for 20 minutes.",
+      "Remove from oven. Stir in broccoli florets.",
+      "Sprinkle shredded cheese evenly over the top. Return to oven, uncovered. Bake for another 10-15 minutes, or until rice is tender, liquid is absorbed, and cheese is melted and bubbly. Chicken internal temperature should reach 75°C.",
+      "Let rest for 5 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 934,
+      "cholesterol_mg": 194,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 58.3,
+      "saturated_fat_g": 15.2,
+      "sodium_mg": 1137,
+      "total_carbs_g": 89.7,
+      "total_fat_g": 38.5,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 155,
+      "total_carbs_g": 12.2,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64.5,
+      "dietary_fiber": 31,
+      "protein": 116.7,
+      "saturated_fat": 76,
+      "sodium": 49.4,
+      "total_carbs": 32.6,
+      "total_fat": 49.3
+    },
+    "serving_size_g": 733.5,
+    "total_recipe_weight_g": 2934
+  },
+  {
+    "recipe_name": "Poached Chicken Breast, Broccoli Velouté, Thyme Aerated Mayonnaise",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poached_chicken_breast%2C_broccoli_velout%C3%A9%2C_thyme_aerated_mayonnaise_20250703_043403_e7c81524.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T04:34:04.107003000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mayonnaise",
+      "thyme",
+      "broccoli"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, perfectly poached chicken breast, pristine white and impeccably smooth, occupies the center of a large, round white bone china plate. Adjacent to the chicken, a small, vibrant green pool of velvety broccoli velouté gleams, reflecting the light. A delicate, airy dollop of pale, off-white thyme aerated mayonnaise rests precisely on the chicken or beside the velouté, its light texture providing visual contrast. The composition is minimalist, with abundant negative space around the elements. One or two tiny, perfectly blanched broccoli florets or micro-thyme leaves are placed with precision as a subtle garnish. The plate rests on a cool, grey-veined Carrara marble surface, illuminated by dramatic professional lighting that creates soft shadows, enhancing the dish's architectural precision. A pristine white linen napkin, folded into a crisp triangle, and a single piece of modern silver flatware complete the ultra-minimalist, sophisticated setting, emphasizing restraint and perfect execution.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Broccoli heads",
+        "quantity": "2 large (approx. 800g total)"
+      },
+      {
+        "name": "High-quality mayonnaise",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "15-20"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "40g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Microgreens or tiny thyme sprigs",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken: Season chicken breasts generously with salt and white pepper. Vacuum-seal each breast individually. Cook in a precise water bath (sous-vide) at 63°C for 1.5 hours. Ensure internal temperature reaches 75°C. Remove from bag, pat dry.",
+      "Prepare broccoli velouté: Trim broccoli. Separate florets and stems. Peel stems. Cut stems into 1 cm pieces. Reserve a few tiny florets for garnish. Blanch remaining florets and stem pieces in generously salted boiling water for 5 minutes until very tender. Immediately transfer to an ice bath to stop cooking. Drain thoroughly.",
+      "Melt butter in a saucepan over medium heat. Add blanched broccoli. Add chicken stock. Bring to a simmer. Transfer mixture to a high-speed blender. Blend until exceptionally smooth. Pass the velouté through a fine-mesh sieve (tamis) using a spatula for a silky texture. Season with salt, white pepper, and a squeeze of fresh lemon juice. Keep warm.",
+      "Prepare thyme aerated mayonnaise: Gently warm neutral oil with fresh thyme sprigs in a small saucepan over low heat for 10 minutes to infuse. Do not fry the thyme. Let oil cool completely. Strain out thyme sprigs. In a small bowl, combine high-quality mayonnaise with the infused thyme oil and a few drops of fresh lemon juice. Using an immersion blender or small whisk, vigorously aerate the mixture just before plating until light and frothy. For a true foam, use a culinary siphon charged with N2O.",
+      "To plate: On a large, warm white bone china plate, place one perfectly cooked chicken breast, cut cleanly if desired (e.g., a thick diagonal slice or kept whole). Create a small, elegant pool or artistic swipe of the vibrant green broccoli velouté next to the chicken. Delicately place a dollop or a few small dots of the airy thyme aerated mayonnaise near the chicken. Garnish with one or two tiny, perfectly blanched broccoli florets or a few micro-thyme leaves for visual contrast. Serve immediately."
+    ],
+    "notes": [
+      "For best results with the chicken, a sous-vide immersion circulator is highly recommended for precise temperature control and unparalleled tenderness. If unavailable, very gentle poaching in barely simmering chicken stock will also work, ensuring internal temperature reaches 75°C.",
+      "Passing the broccoli velouté through a tamis (fine-mesh sieve) is crucial for achieving a truly silky, refined texture.",
+      "The aeration of the mayonnaise should be done just before serving to maintain its light, frothy texture. A culinary siphon is ideal for a stable foam."
+    ],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 732,
+      "cholesterol_mg": 194,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 65.6,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 505,
+      "total_carbs_g": 15.7,
+      "total_fat_g": 46.3,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 13.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 101,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 19,
+      "protein": 131,
+      "saturated_fat": 57,
+      "sodium": 22,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Sustainable Prune & Orange Petit Fours",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_prune_%26_orange_petit_fours_20250703_040053_21f73537.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T04:00:53.651941000Z",
+    "selected_ingredients": [
+      {
+        "name": "prune"
+      },
+      {
+        "name": "orange"
+      },
+      {
+        "name": "almond"
+      },
+      {
+        "name": "vanilla"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegan Australian",
+    "visual_description": "Six to nine perfectly uniform miniature rectangular petit fours are artfully arranged on an unglazed, handcrafted ceramic rectangular platter in a natural cream tone. The petit fours feature a light, golden-hued almond and orange cake base, layered with a deep plum-colored prune and orange preserve. Each delicate bite is topped with a thin, glossy, off-white vanilla glaze, subtly hinting at citrus. A few fine slivers of toasted almond are scattered across the glaze for texture, along with a tiny, delicate curl of candied orange peel, emphasizing zero-waste. The presentation is minimalistic, with ample negative space around the pieces, highlighting their clean lines and natural colors. The platter rests on a light, textured reclaimed wood surface, accompanied by a loosely folded undyed linen napkin. Soft, diffused natural light illuminates the scene, emphasizing the pure beauty of the ingredients against a clean, uncluttered background with subtle natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Sustainable Australian",
+    "cultural_origin": "Australian",
+    "cultural_serving_suggestions": [
+      "Serve elegantly on a shared platter, accompanied by a selection of artisanal teas or freshly brewed coffee, reflecting modern Australian cafe culture."
+    ],
+    "hero_ingredient": "Prune",
+    "ingredients": [
+      {
+        "name": "Pitted prunes",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Orange, large (for zest and juice)",
+        "quantity": "1"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Plant milk (e.g., almond or soy)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "7.5 ml"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Toasted slivered almonds",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Line a 20x20 cm baking tin with parchment paper.",
+      "For the prune and orange preserve: Finely chop prunes. In a small saucepan, combine chopped prunes, 50 ml fresh orange juice, and 2.5 ml vanilla extract. Simmer over low heat for 15-20 minutes. Stir occasionally. Cook until prunes are very soft and liquid reduces to a thick, jam-like consistency. Mash gently. Cool completely.",
+      "For the cake: In a large bowl, whisk together almond flour, all-purpose flour, baking powder, salt, and orange zest from the orange. Reserve a few thin strips of orange peel for garnish.",
+      "In a separate bowl, whisk together plant milk, remaining 80 ml orange juice, maple syrup, vegetable oil, and 5 ml vanilla extract.",
+      "Pour wet ingredients into dry ingredients. Whisk until just combined. Do not overmix.",
+      "Pour batter into the prepared baking tin. Spread evenly.",
+      "Bake for 20-25 minutes. Cake is done when a toothpick inserted into the center comes out clean. Cool completely in the tin on a wire rack.",
+      "Once cooled, carefully remove cake from tin. Cut the cake into 6-9 perfectly uniform miniature rectangular pieces.",
+      "Split each cake piece horizontally. Spread a thin layer of the cooled prune and orange preserve on the bottom half of each cake piece. Place the top half back on.",
+      "For the glaze: In a small bowl, whisk powdered sugar with 20-30 ml fresh orange juice and 2.5 ml vanilla extract until smooth and pourable. Adjust juice for desired consistency.",
+      "Drizzle or gently brush glaze over each petit four. Let glaze set slightly.",
+      "Garnish each petit four with a few toasted slivered almonds and a tiny curl of reserved candied orange peel. Serve immediately on an elegant platter."
+    ],
+    "notes": [
+      "This recipe emphasizes sustainability through minimal processing, use of natural sweeteners, and utilizing ingredients like orange zest and peel to reduce waste.",
+      "The prune and orange preserve, slow-cooked to concentrate flavors, highlights a simple form of preservation for enhanced taste."
+    ]
+  },
+  {
+    "recipe_name": "Homestyle Curried Cabbage & Tofu Fritters",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_curried_cabbage_%26_tofu_fritters_20250703_035905_ff2707c4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T03:59:06.143220000Z",
+    "selected_ingredients": [
+      "cabbage",
+      "madras curry powder",
+      "soy sauce",
+      "tomato",
+      "onion",
+      "carrot",
+      "green pea",
+      "garlic",
+      "mustard",
+      "tofu",
+      "pork stock"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Homestyle Curried Cabbage & Tofu Fritters are presented casually on a rustic, round ceramic plate with a slightly uneven rim, placed on a well-used wooden dining table. Three to four golden-brown, irregularly shaped fritters are stacked loosely or arranged naturally, showcasing their crispy, pan-fried exterior and visible flecks of green cabbage, orange carrot, and bright green peas within the soft, savory tofu matrix. The fritters have a comforting, homemade appearance, not perfectly uniform. A small, simple bowl of a light green cilantro-mint chutney or plain yogurt is positioned beside the fritters. The background is slightly blurred, hinting at a cozy kitchen environment with natural, warm light filtering in. A casually folded linen napkin in a muted tone rests nearby. The entire plate is visible, with ample negative space around the food, emphasizing its unpretentious, inviting nature.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of plain yogurt or a simple mint-cilantro chutney.",
+      "Enjoy as a hearty snack or light appetizer."
+    ],
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Firm tofu, pressed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Green cabbage, finely shredded",
+        "quantity": "300g"
+      },
+      {
+        "name": "Medium onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium carrot, grated",
+        "quantity": "1"
+      },
+      {
+        "name": "Frozen green peas, thawed",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Madras curry powder",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Small tomato, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Pork stock",
+        "quantity": "50ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "60g"
+      },
+      {
+        "name": "Large egg, beaten",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable oil, for frying",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Press tofu for 30 minutes to remove excess water. Crumble into a large bowl.",
+      "Heat 1 tablespoon oil in a large pan over medium heat. Add diced onion, grated carrot, and minced garlic. Sauté for 5 minutes until softened.",
+      "Stir in Madras curry powder. Cook for 1 minute until fragrant.",
+      "Add shredded cabbage, diced tomato, and pork stock to the pan. Cover and cook for 5-7 minutes until cabbage is tender-crisp. Stir in green peas. Remove from heat. Let cool slightly.",
+      "Add the cooled vegetable mixture to the crumbled tofu. Stir in soy sauce, Dijon mustard, beaten egg, and all-purpose flour. Mix well until all ingredients are combined. Season with salt and black pepper to taste.",
+      "Form the mixture into 8-10 uniform patties, about 2 cm thick.",
+      "Heat 2-3 cm vegetable oil in a large skillet over medium-high heat. Fry patties in batches for 3-4 minutes per side, until golden brown and cooked through.",
+      "Transfer fried patties to a wire rack lined with paper towels to drain excess oil.",
+      "Serve warm."
+    ],
+    "notes": [
+      "For best results, ensure tofu is well-pressed to remove excess moisture.",
+      "Patties can be made ahead and reheated gently in an oven or air fryer."
+    ],
+    "traditional_techniques": [
+      "Pan-frying",
+      "Sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 277.4,
+      "cholesterol_mg": 46.6,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 15.3,
+      "saturated_fat_g": 2,
+      "sodium_mg": 339.2,
+      "total_carbs_g": 29.9,
+      "total_fat_g": 12.3,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 84.2,
+      "cholesterol_mg": 14.2,
+      "dietary_fiber_g": 2,
+      "protein_g": 4.6,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 103,
+      "total_carbs_g": 9.1,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15.5,
+      "dietary_fiber": 23.4,
+      "protein": 30.5,
+      "saturated_fat": 10,
+      "sodium": 14.7,
+      "total_carbs": 10.9,
+      "total_fat": 15.8
+    },
+    "serving_size_g": 329.3,
+    "total_recipe_weight_g": 1317
+  },
+  {
+    "recipe_name": "Sustainable Chicken & Chard Pasta with Preserved Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_chicken_%26_chard_pasta_with_preserved_tomato_20250703_035745_3403548b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T03:57:45.723548000Z",
+    "selected_ingredients": [
+      "chicken",
+      "basil",
+      "pasta",
+      "tomato",
+      "swiss chard"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Sustainable Chicken & Chard Pasta with Preserved Tomato is presented on a handcrafted, natural cream-colored ceramic plate, centered on a light bamboo table surface. A whole, pan-seared chicken breast, with a golden-brown crust and moist interior, rests beside a loose, natural mound of short pasta. The pasta is lightly coated in a rustic, slightly chunky sauce made from vibrant red-orange fermented tomatoes. Wide ribbons of deep green swiss chard are gently intertwined with the pasta, adding a pop of color and natural texture. Fresh, vibrant green basil leaves are scattered artfully over the dish, providing a fresh garnish. The composition emphasizes natural forms and textures with ample negative space around the food. The background is minimalist and clean, featuring soft, natural lighting that highlights the dish's organic colors and textures. An undyed linen napkin in a natural beige tone and subtle green plant elements are visible in the soft-focus background, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken Breast",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Short Pasta (e.g., Rigatoni)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "500g (for fermented tomato sauce)"
+      },
+      {
+        "name": "Swiss Chard",
+        "quantity": "1 large bunch (approx. 300g)"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Small Onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Non-chlorinated Water",
+        "quantity": "500ml (for fermentation brine)"
+      },
+      {
+        "name": "Pickling Salt (non-iodized)",
+        "quantity": "15g (for fermentation brine)"
+      }
+    ],
+    "instructions": [
+      "For Fermented Tomatoes (prepare 5-7 days in advance): Wash tomatoes. Cut into quarters. Pack tightly into a clean glass jar. Dissolve 15g pickling salt in 500ml non-chlorinated water. Pour brine over tomatoes, ensuring they are fully submerged. Seal jar loosely or use an airlock lid. Ferment at room temperature (18-24°C) for 5-7 days, or until desired tanginess. Refrigerate once fermented.",
+      "Prepare Chicken: Pat chicken breasts dry. Season generously with sea salt and black pepper.",
+      "Sear Chicken: Heat 15ml olive oil in a large pan over medium-high heat. Add chicken breasts. Sear 6-8 minutes per side until golden brown and internal temperature reaches 75°C (167°F). Remove chicken from pan. Rest on a cutting board, tented with foil.",
+      "Cook Pasta: Bring a large pot of salted water to a rolling boil. Add pasta. Cook according to package directions until al dente. Reserve 120ml pasta cooking water. Drain pasta.",
+      "Prepare Swiss Chard: Separate chard leaves from stems. Finely chop stems (for optional stock or discard). Cut chard leaves into wide ribbons (approx. 2-3 cm).",
+      "Make Sauce: In the same pan used for chicken, add remaining 15ml olive oil. Add finely diced onion and minced garlic. Sauté 3-4 minutes until softened. Add fermented tomatoes (roughly chopped) and their brine. Break down tomatoes with a spoon. Stir in vegetable stock. Simmer 5-7 minutes, reducing slightly.",
+      "Combine: Add drained pasta to the sauce. Add chard ribbons. Toss to combine. If too dry, add reserved pasta water until desired consistency. Cook 2-3 minutes until chard wilts slightly. Stir in half of the fresh basil leaves, roughly torn.",
+      "Plate: Divide pasta mixture among four plates. Place one whole pan-seared chicken breast beside the pasta on each plate. Garnish with remaining fresh basil leaves. Serve immediately."
+    ],
+    "notes": [
+      "For true zero-waste, use chard stems and tomato scraps to make homemade vegetable stock."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 693.69,
+      "cholesterol_mg": 153,
+      "dietary_fiber_g": 5.72,
+      "protein_g": 68.78,
+      "saturated_fat_g": 3,
+      "sodium_mg": 858.4,
+      "total_carbs_g": 67.94,
+      "total_fat_g": 15.09,
+      "total_sugars_g": 7.21,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126.54,
+      "cholesterol_mg": 27.91,
+      "dietary_fiber_g": 1.04,
+      "protein_g": 12.55,
+      "saturated_fat_g": 0.55,
+      "sodium_mg": 156.57,
+      "total_carbs_g": 12.39,
+      "total_fat_g": 2.75,
+      "total_sugars_g": 1.31,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 20.43,
+      "protein": 137.56,
+      "saturated_fat": 15,
+      "sodium": 37.32,
+      "total_carbs": 24.71,
+      "total_fat": 19.35
+    },
+    "serving_size_g": 548.25,
+    "total_recipe_weight_g": 2193
+  }
+]

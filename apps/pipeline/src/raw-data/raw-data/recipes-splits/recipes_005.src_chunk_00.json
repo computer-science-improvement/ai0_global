@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Monkfish with Roasted Bell Pepper Emulsion and Piperade",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260514_053256_0e931cdf.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-14T05:32:56.831152000Z",
+    "selected_ingredients": [
+      "bell pepper"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A whole, thick monkfish medallion sits off-center on a charcoal-grey matte designer plate. The fish features a deep golden-brown crust from pan-searing. A vibrant, silk-smooth red bell pepper emulsion flows naturally beneath the fish, creating an organic pool. Precise 5mm cubes of yellow bell pepper and translucent shallots are arranged artistically over the sauce. Two small, charred red pepper batons rest against the fish for texture. Small droplets of bright green herb oil provide contrast against the red base. The arrangement uses significant negative space on the large plate. The setting is a polished white Carrara marble surface with professional dramatic lighting. A single silver fork and a crisp white linen napkin are positioned precisely.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Spanish Basque",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of chilled Albariño wine",
+      "Accompany with crusty sourdough bread to finish the emulsion"
+    ],
+    "hero_ingredient": "Red Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Monkfish tail, cleaned and cut into 4 thick medallions",
+        "quantity": "600g"
+      },
+      {
+        "name": "Red bell peppers",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Yellow bell peppers, diced into 5mm cubes",
+        "quantity": "2"
+      },
+      {
+        "name": "Shallots, finely minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Sherry vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Garlic, crushed",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1g"
+      },
+      {
+        "name": "Micro-basil for garnish",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Char red peppers over an open flame until the skin is completely blackened.",
+      "Place charred peppers in a bowl and cover with plastic wrap for 10 minutes.",
+      "Peel the skin, remove seeds, and rinse red peppers.",
+      "Blend red peppers with 60ml olive oil, sherry vinegar, and smoked paprika until smooth.",
+      "Pass the emulsion through a fine-mesh sieve and season with salt.",
+      "Sauté diced yellow peppers and shallots in 20ml olive oil until tender but not browned.",
+      "Season monkfish medallions with salt and pepper.",
+      "Heat remaining oil and butter in a heavy skillet over medium-high heat.",
+      "Sear monkfish for 4 minutes per side until the internal temperature reaches 63°C.",
+      "Rest the fish for 3 minutes.",
+      "Spoon red pepper emulsion onto the center of each plate in an organic pool.",
+      "Place one whole monkfish medallion on the emulsion.",
+      "Top with the yellow pepper piperade and garnish with micro-basil."
+    ],
+    "notes": [
+      "Ensure the monkfish is fully dried before searing to achieve a golden crust",
+      "The emulsion can be served warm or at room temperature"
+    ],
+    "traditional_techniques": [
+      "Charring and peeling peppers",
+      "Emulsifying",
+      "Pan-searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 461.8,
+      "cholesterol_mg": 53.8,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 25,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 221.5,
+      "total_carbs_g": 18.8,
+      "total_fat_g": 32.2,
+      "total_sugars_g": 10.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 167.9,
+      "cholesterol_mg": 19.6,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 9.1,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 80.5,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 11.7,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.9,
+      "dietary_fiber": 17.1,
+      "protein": 50,
+      "saturated_fat": 37.5,
+      "sodium": 9.6,
+      "total_carbs": 6.8,
+      "total_fat": 41.3
+    },
+    "serving_size_g": 275,
+    "total_recipe_weight_g": 1100
+  },
+  {
+    "recipe_name": "Thai Garlic and Pepper Chicken with Smashed Cucumber Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260514_052635_5e6ae732.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-14T05:26:36.092908000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cucumber"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Thai garlic chicken sits on a white porcelain plate. The chicken consists of large, bite-sized chunks, seared to a deep golden-brown with a glossy oyster sauce glaze. Beside the chicken is a vibrant mound of smashed cucumber. The cucumber is broken into irregular, jagged pieces, glistening with a lime and fish sauce dressing. Toasted peanuts and fresh cilantro leaves garnish the dish. The plate sits on a wooden table in a modern bistro. A bowl of steamed jasmine rice and traditional Thai utensils are placed nearby. Natural light highlights the textures of the crispy garlic and succulent meat. The composition is balanced with clean negative space, showcasing the entire plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with warm jasmine rice in a separate bowl",
+      "Provide a small dish of Prik Nam Pla (fish sauce with sliced chilies)",
+      "Eat using a large spoon in the right hand and a fork in the left"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless and skinless",
+        "quantity": "800g"
+      },
+      {
+        "name": "Persian cucumbers",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "10 units"
+      },
+      {
+        "name": "White peppercorns",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Cilantro roots or stems",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Palm sugar or brown sugar",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Bird's eye chilies, sliced",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Toasted peanuts, crushed",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into large bite-sized chunks.",
+      "Pound garlic, peppercorns, and cilantro roots in a mortar until a coarse paste forms.",
+      "Mix chicken with half the paste, soy sauce, and 1 teaspoon of sugar.",
+      "Marinate chicken for 20 minutes.",
+      "Place cucumbers on a board and smash with the flat side of a knife.",
+      "Break smashed cucumbers into irregular bite-sized pieces.",
+      "Whisk fish sauce, lime juice, remaining sugar, and chilies in a bowl.",
+      "Toss cucumbers with the dressing and set aside.",
+      "Heat oil in a wok over high heat.",
+      "Add remaining garlic paste and fry until golden.",
+      "Add chicken chunks to the wok.",
+      "Stir-fry until chicken is caramelized and reaches an internal temperature of 75°C.",
+      "Stir in oyster sauce to glaze the meat.",
+      "Serve chicken immediately alongside the cucumber salad."
+    ],
+    "notes": [
+      "Use cilantro roots for a deeper, more traditional aroma",
+      "Do not overcook the cucumber to maintain its refreshing crunch",
+      "Ensure the wok is very hot before adding the meat for proper caramelization"
+    ],
+    "traditional_techniques": [
+      "Mortar and pestle pounding",
+      "Wok frying",
+      "Cucumber smashing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 592,
+      "cholesterol_mg": 170,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 45.8,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 1089.5,
+      "total_carbs_g": 13.78,
+      "total_fat_g": 38.88,
+      "total_sugars_g": 5.28,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.92,
+      "calories": 181.7,
+      "cholesterol_mg": 52.19,
+      "dietary_fiber_g": 0.52,
+      "protein_g": 14.06,
+      "saturated_fat_g": 3.01,
+      "sodium_mg": 334.46,
+      "total_carbs_g": 4.23,
+      "total_fat_g": 11.93,
+      "total_sugars_g": 1.62,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.7,
+      "dietary_fiber": 6.1,
+      "protein": 91.6,
+      "saturated_fat": 49,
+      "sodium": 47.4,
+      "total_carbs": 5,
+      "total_fat": 49.8
+    },
+    "serving_size_g": 325.75,
+    "total_recipe_weight_g": 1303
+  },
+  {
+    "recipe_name": "Belgian Carbonnade Flamande",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260514_043750_c8a3ff33.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-14T04:37:51.309139000Z",
+    "selected_ingredients": [
+      "beef",
+      "dark beer",
+      "onion",
+      "worcestershire sauce",
+      "smoked pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A deep, wide white porcelain bowl sits on a rustic dark oak table. The centerpiece is a rich, glossy Belgian Carbonnade. Large, 4cm chunks of succulent, fork-tender braised beef are piled centrally, coated in a mahogany-colored sauce. Visible throughout the stew are translucent, caramelized onion slivers and small, crispy 1cm cubes of rendered smoked pork. The sauce has a thick, velvet-like consistency. A vibrant sprinkle of finely chopped flat-leaf parsley provides a color contrast against the dark stew. To the side, a small basket of thick-cut, golden-brown Belgian fries and a tall chalice of dark abbey ale complete the authentic setting. Natural window light highlights the glistening texture of the meat.",
+    "number_of_servings": 4,
+    "cuisine_type": "Belgian",
+    "cultural_origin": "Belgian",
+    "cultural_serving_suggestions": [
+      "Serve with thick-cut Belgian frites",
+      "Side of traditional mayonnaise for dipping",
+      "Pair with a Belgian Dubbel or Quadrupel beer"
+    ],
+    "hero_ingredient": "Beef chunks",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Smoked pork lardons",
+        "quantity": "150g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "500g"
+      },
+      {
+        "name": "Dark Belgian Abbey-style beer",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sourdough bread",
+        "quantity": "1 slice"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2 pieces"
+      }
+    ],
+    "instructions": [
+      "Dice smoked pork into 1cm cubes.",
+      "Cut beef into 4cm chunks. Season with salt and pepper.",
+      "Render smoked pork in a heavy pot over medium heat until crispy. Remove pork and set aside.",
+      "Increase heat. Sear beef chunks in the pork fat until deeply browned on all sides. Remove beef.",
+      "Add butter and sliced onions to the pot. Sauté until dark golden and caramelized.",
+      "Deglaze the pot with dark beer, scraping all browned bits from the bottom.",
+      "Return beef and pork to the pot. Add beef stock, worcestershire sauce, sugar, thyme, and bay leaves.",
+      "Spread mustard thickly on the sourdough bread. Place bread mustard-side down onto the liquid.",
+      "Cover and simmer on low heat for 2 hours until beef is tender.",
+      "Remove thyme sprigs and bay leaves. Stir the disintegrated bread into the sauce to thicken."
+    ],
+    "notes": [
+      "Do not use bitter IPAs; the hops will become too bitter when reduced.",
+      "Caramelizing the onions slowly is essential for the depth of flavor.",
+      "The bread acts as a natural thickener and adds a traditional tangy finish."
+    ],
+    "traditional_techniques": [
+      "braising",
+      "deglazing",
+      "mustard-bread thickening"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.5,
+      "calories": 849.3,
+      "cholesterol_mg": 193.5,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 46.9,
+      "saturated_fat_g": 22.1,
+      "sodium_mg": 1051.3,
+      "total_carbs_g": 29.4,
+      "total_fat_g": 54.3,
+      "total_sugars_g": 11,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 193.6,
+      "cholesterol_mg": 44.1,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 10.7,
+      "saturated_fat_g": 5,
+      "sodium_mg": 239.6,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 9,
+      "protein": 94,
+      "saturated_fat": 111,
+      "sodium": 46,
+      "total_carbs": 11,
+      "total_fat": 70
+    },
+    "serving_size_g": 438.75,
+    "total_recipe_weight_g": 1755
+  },
+  {
+    "recipe_name": "Sicilian Tuna in Agrodolce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260513_150134_491ac086.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-13T15:01:34.748464000Z",
+    "selected_ingredients": [
+      "onion",
+      "tuna"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Sicilian Tuna in Agrodolce served on a clean white porcelain plate. Two thick, rectangular blocks of seared tuna sit centrally, showing a golden-brown crust and a vibrant pink center. The tuna is generously topped with soft, glossy red onion wedges that have turned a deep translucent purple from the agrodolce reduction. Scattered toasted pine nuts and green capers are visible within the sauce. The plate is finished with bright green torn mint leaves. The setting is a modern bistro with a dark oak table, a folded white linen napkin, and a stainless steel fork and knife. The lighting is natural and soft, highlighting the textures of the glazed onions and the seared fish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Sicilian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Sicilian bread to soak up the agrodolce sauce",
+      "Pair with a chilled glass of Grillo or Etna Bianco wine",
+      "Traditionally served as a warm main course or at room temperature as part of an antipasto spread"
+    ],
+    "hero_ingredient": "Tuna",
+    "ingredients": [
+      {
+        "name": "Fresh tuna loin, cut into 4 thick blocks",
+        "quantity": "720 g"
+      },
+      {
+        "name": "Red onions, cut into 1cm wedges",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "25 g"
+      },
+      {
+        "name": "Salted capers, rinsed",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Toasted pine nuts",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fresh mint leaves, torn",
+        "quantity": "10 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Sea salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat 30ml olive oil in a large skillet over medium heat.",
+      "Add onion wedges and a pinch of salt.",
+      "Cook onions for 10 minutes until soft and translucent.",
+      "Dissolve sugar into the white wine vinegar.",
+      "Pour vinegar mixture over onions.",
+      "Add capers and pine nuts to the skillet.",
+      "Simmer for 5 minutes until liquid reduces to a syrupy consistency.",
+      "Season tuna blocks with salt and pepper.",
+      "Lightly dust tuna with flour, shaking off excess.",
+      "Heat remaining 30ml oil in a separate heavy pan over high heat.",
+      "Sear tuna for 90 seconds per side for medium-rare.",
+      "Transfer tuna to the onion skillet and coat with sauce.",
+      "Garnish with fresh mint and serve immediately."
+    ],
+    "notes": [
+      "Do not overcook the tuna; the center should remain pink to preserve moisture.",
+      "Ensure capers are thoroughly rinsed to control the salt level of the dish.",
+      "The onions must be cooked slowly to develop sweetness before adding the vinegar."
+    ],
+    "traditional_techniques": [
+      "agrodolce",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.3,
+      "calories": 436.4,
+      "cholesterol_mg": 81,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 44.5,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 453.5,
+      "total_carbs_g": 22.3,
+      "total_fat_g": 18.8,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.2,
+      "calories": 149.9,
+      "cholesterol_mg": 27.8,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 15.3,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 155.8,
+      "total_carbs_g": 7.7,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27,
+      "dietary_fiber": 8.2,
+      "protein": 89,
+      "saturated_fat": 12.5,
+      "sodium": 19.7,
+      "total_carbs": 8.1,
+      "total_fat": 24.1
+    },
+    "serving_size_g": 291.1,
+    "total_recipe_weight_g": 1164.5
+  },
+  {
+    "recipe_name": "Lomo Saltado with Steamed Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260513_010311_d847c45f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-13T01:03:12.327150000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "tomato",
+      "onion",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Lomo Saltado presented on a clean white porcelain plate. The dish features thick, seared beef chunks tossed with vibrant purple red onion wedges and softened red tomato wedges. Golden-brown fried potato batons are interspersed throughout the stir-fry, coated in a dark, glossy soy-vinegar sauce. A neat, circular mound of fluffy white long-grain rice is positioned on the side of the plate. The beef shows a deep brown sear. Fresh green cilantro leaves are scattered over the top. The arrangement is organic and centered with moderate negative space. The setting is a light wood table with a linen napkin and a simple fork and spoon.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian Fusion",
+    "cultural_origin": "Peru",
+    "cultural_serving_suggestions": [
+      "Serve with a side of spicy aji verde sauce",
+      "Pair with Inca Kola or a Pisco Sour",
+      "Traditional fork and spoon service"
+    ],
+    "hero_ingredient": "Beef Sirloin",
+    "ingredients": [
+      {
+        "name": "Beef sirloin chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Aji amarillo paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "60ml"
+      }
+    ],
+    "instructions": [
+      "Rinse rice until water runs clear. Combine with 450ml water. Simmer covered until tender.",
+      "Peel potatoes. Cut into 1cm thick batons. Fry in oil until golden and crisp. Drain on paper towels.",
+      "Cut beef into 2cm thick chunks. Season with salt and pepper.",
+      "Heat 30ml oil in a wok over high heat. Sear beef chunks in batches until browned. Remove and set aside.",
+      "Add remaining oil to wok. Sauté red onion wedges for 2 minutes until slightly softened.",
+      "Stir in minced garlic and aji amarillo paste. Cook for 1 minute.",
+      "Add tomato wedges and return beef to the wok.",
+      "Pour in soy sauce and red wine vinegar. Toss rapidly for 1 minute to deglaze.",
+      "Fold in the fried potato batons and chopped cilantro. Remove from heat immediately.",
+      "Serve immediately with the steamed rice."
+    ],
+    "notes": [
+      "Ensure the wok is smoking hot before adding beef to achieve authentic 'wok hei' flavor.",
+      "Do not overcook the tomatoes; they should be softened but hold their wedge shape.",
+      "Add potatoes at the very last second to maintain their crispness."
+    ],
+    "traditional_techniques": [
+      "Wok searing",
+      "Deglazing",
+      "Chifa stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 856,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 55.3,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 1125,
+      "total_carbs_g": 85.5,
+      "total_fat_g": 32.5,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152.1,
+      "cholesterol_mg": 8.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.8,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 199.9,
+      "total_carbs_g": 15.2,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16,
+      "dietary_fiber": 19.6,
+      "protein": 110.6,
+      "saturated_fat": 46,
+      "sodium": 48.9,
+      "total_carbs": 31.1,
+      "total_fat": 41.7
+    },
+    "serving_size_g": 562.5,
+    "total_recipe_weight_g": 2250
+  }
+]

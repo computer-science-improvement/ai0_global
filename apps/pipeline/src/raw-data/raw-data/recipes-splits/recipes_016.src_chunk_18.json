@@ -1,0 +1,653 @@
+[
+  {
+    "recipe_name": "Slow-Cooked Beef Ragu with Pappardelle and Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_ragu_with_pappardelle_and_roasted_vegetables_20250627_015858_08eca06f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:58:59.144545000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "garlic",
+      "bell pepper",
+      "parmesan cheese",
+      "carrot",
+      "eggplant",
+      "noodle",
+      "rice",
+      "macaroni",
+      "oil",
+      "thyme",
+      "tomato",
+      "chicken",
+      "corn",
+      "potato",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Slow-Cooked Beef Ragu is served centrally on a clean white porcelain dinner plate. The rich, deeply colored ragu, made with shredded beef chuck, diced onion, garlic, and carrot, coats a generous nest of perfectly al dente pappardelle noodles. The beef is tender, falling apart, with visible strands. Roasted vegetables, including vibrant red bell pepper chunks and tender eggplant wedges, are artfully placed alongside the pasta, showcasing their caramelized edges and natural colors. A light dusting of freshly grated Parmesan cheese covers the ragu and pasta. A sprig of fresh oregano garnishes the dish. The overall presentation is inviting, with balanced composition and natural textures. A simple cotton napkin and traditional fork and spoon are beside the plate on a dark wooden surface, under natural, even lighting, creating a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the rich sauce",
+      "Pair with a simple green salad dressed with vinaigrette"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef Chuck",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large, cut into 2 cm chunks"
+      },
+      {
+        "name": "Eggplant",
+        "quantity": "1 medium, cut into 2 cm wedges"
+      },
+      {
+        "name": "Canned Crushed Tomatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Red Wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "10 grams"
+      },
+      {
+        "name": "Pappardelle Noodles",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "80 grams, freshly grated"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chuck dry. Season generously with salt and pepper.",
+      "Heat 30 ml olive oil in a large Dutch oven over medium-high heat. Sear beef on all sides until deeply browned. Remove beef from pot. Set aside.",
+      "Add remaining 30 ml olive oil to the pot. Add diced onion, minced garlic, and diced carrot. Sauté for 5-7 minutes until softened. This is your soffritto base.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine reduces by half, about 5 minutes.",
+      "Stir in crushed tomatoes, beef broth, thyme sprigs, and dried oregano. Return seared beef to the pot.",
+      "Bring to a simmer. Reduce heat to low. Cover and cook for 2.5-3 hours, or until beef is fork-tender. Check periodically and stir.",
+      "While ragu simmers, preheat oven to 200°C. Toss red bell pepper chunks and eggplant wedges with a drizzle of olive oil, salt, and pepper on a baking sheet. Roast for 20-25 minutes until tender and slightly caramelized. Set aside.",
+      "Remove beef from ragu. Shred beef using two forks. Discard thyme sprigs. Return shredded beef to the ragu. Stir to combine.",
+      "Cook pappardelle noodles according to package directions in salted water until al dente.",
+      "Drain noodles. Serve ragu over hot pappardelle. Top with roasted vegetables and freshly grated Parmesan cheese. Garnish with a small sprig of fresh oregano."
+    ],
+    "notes": [],
+    "traditional_techniques": [
+      "Slow Braising",
+      "Soffritto"
+    ]
+  },
+  {
+    "recipe_name": "Rosemary Lemon Roasted Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rosemary_lemon_roasted_chicken_and_potatoes_20250627_014853_ebdbd3fe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:48:53.502938000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish presents a single serving of golden-brown roasted chicken and potato wedges on a rustic, round ceramic plate. A crisply seared chicken thigh or drumstick, its skin deeply caramelized, rests amidst thick-cut potato wedges. The potatoes are roasted to a tender interior and a slightly crispy exterior, showing natural variations in their golden hue. Scattered among the main components are soft, caramelized onion slices and whole roasted garlic cloves. Fresh rosemary sprigs are casually placed, adding a touch of vibrant green and aromatic contrast. The arrangement is natural and inviting, with components touching and overlapping slightly, filling the plate adequately without overcrowding. The plate sits on a well-used wooden dining table, accompanied by a simple fork and knife, and a casually folded cloth napkin. Warm, soft light illuminates the scene, suggesting a cozy, home kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve directly from the skillet or on individual plates.",
+      "Accompany with a simple green salad.",
+      "Serve with crusty bread to sop up pan juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs and drumsticks",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6 whole"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken pieces dry. Season generously with salt and pepper.",
+      "Cut potatoes into 2.5 cm wedges. Slice onion into thick rings. Lightly crush garlic cloves.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken pieces skin-side down for 5-7 minutes. Flip and sear for another 3 minutes. Remove chicken from skillet.",
+      "Add potato wedges, onion rings, and whole garlic cloves to the skillet. Season with salt and pepper. Toss to coat.",
+      "Place chicken pieces back into the skillet among the potatoes and onions.",
+      "Add rosemary sprigs. Slice lemon into thin rounds and tuck them into the skillet.",
+      "Pour chicken broth into the skillet.",
+      "Transfer skillet to the preheated oven. Roast for 30-35 minutes, or until chicken is cooked through and potatoes are tender. Chicken internal temperature should reach 75°C.",
+      "Remove skillet from oven. Let rest for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 759,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 47,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 210,
+      "total_carbs_g": 45.5,
+      "total_fat_g": 43.4,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 159,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.8,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 44,
+      "total_carbs_g": 9.5,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 19,
+      "protein": 94,
+      "saturated_fat": 51,
+      "sodium": 9,
+      "total_carbs": 17,
+      "total_fat": 56
+    },
+    "serving_size_g": 478.3,
+    "total_recipe_weight_g": 1913
+  },
+  {
+    "recipe_name": "Pollo Asado con Patatas y Pimentón",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_asado_con_patatas_y_piment%C3%B3n_20250627_014728_56575238.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:47:28.649452000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic yet refined single portion of Pollo Asado con Patatas y Pimentón is presented on a round, matte white ceramic plate. A golden-brown seared chicken thigh sits prominently, its skin crisp. Beside it, golden potato wedges with slightly crispy edges, roasted red and green bell pepper strips, and caramelized onion chunks are scattered organically. The vegetables show subtle charring and tender textures. A light drizzle of the rich, savory pan juices pools subtly. Fresh, vibrant green chopped parsley is sprinkled over the dish, adding a pop of color. The color palette is warm, with deep reds, oranges, and earthy browns contrasting with fresh green herbs. The setting features natural, even lighting, a simple wooden table, and a folded cotton napkin, creating an authentic Spanish dining scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread (pan de pueblo) to soak up the juices.",
+      "A simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs and drumsticks",
+        "quantity": "800 g (4 pieces total)"
+      },
+      {
+        "name": "Potatoes (Yukon Gold or similar)",
+        "quantity": "600 g, cut into 3 cm wedges"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, cut into 2 cm strips"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1, cut into 2 cm strips"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, smashed and peeled"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken dry. Season generously with salt, pepper, smoked paprika, and sweet paprika.",
+      "In a large roasting pan, toss potato wedges, bell pepper strips, onion, garlic, rosemary, and thyme with 30 ml olive oil, salt, and pepper. Spread evenly.",
+      "Heat remaining 30 ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken pieces skin-side down until golden brown, about 5 minutes. Flip and sear for another 3 minutes.",
+      "Transfer seared chicken pieces directly onto the vegetables in the roasting pan.",
+      "Pour chicken stock around the chicken and vegetables.",
+      "Roast for 40-50 minutes, or until chicken internal temperature reaches 75°C (167°F) and potatoes are tender and golden.",
+      "Remove from oven. Rest chicken for 5 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken is fully cooked for safety.",
+      "The pan juices are essential for flavor."
+    ],
+    "traditional_techniques": [
+      "Roasting (asado)",
+      "Use of pimentón for flavor and color"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 627.5,
+      "cholesterol_mg": 180.1,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 41.2,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 505.3,
+      "total_carbs_g": 36.1,
+      "total_fat_g": 34.9,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156.9,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 10.3,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 126.3,
+      "total_carbs_g": 9,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 23.3,
+      "protein": 82.5,
+      "saturated_fat": 38.4,
+      "sodium": 22,
+      "total_carbs": 13.1,
+      "total_fat": 44.7
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Braised Beef with Rustic Mushroom-Tomato Ragu",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_rustic_mushroom-tomato_ragu_20250627_014712_0c2cdeb8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:47:13.355008000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of braised beef is centered on a clean, round white porcelain plate. Large, irregular chunks of tender, fall-apart beef are nestled within a substantial pool of rich, glossy, dark reddish-brown mushroom-tomato ragu. The sauce, featuring tender sliced mushrooms, has a rustic yet refined appearance, coating the beef and pooling elegantly on the plate, leaving moderate negative space around the rim. A vibrant sprinkle of freshly chopped green parsley garnishes the dish, providing a striking color contrast. The setting is a modern bistro: a simple, dark wooden table surface, a neatly folded light grey linen napkin beside the plate, and a polished silver fork and knife. Natural, even lighting illuminates the dish, creating soft shadows and highlighting its inviting textures and deep, appealing colors. The background is softly blurred, suggesting a relaxed restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium carrot",
+        "quantity": "1"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef chuck dry. Cut into 4-6 large chunks. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef; set aside.",
+      "Add diced onion, carrot, and celery to the pot. Cook for 5-7 minutes until softened.",
+      "Stir in minced garlic and tomato paste. Cook for 2 minutes until fragrant.",
+      "Pour in red wine. Scrape up browned bits from the pot bottom. Bring to a simmer.",
+      "Add crushed tomatoes, beef broth, rosemary, thyme, and bay leaf. Bring to a boil.",
+      "Return seared beef to the pot. Ensure beef is mostly submerged.",
+      "Reduce heat to low. Cover and simmer for 2.5-3 hours until beef is fork-tender.",
+      "In a separate pan, sauté sliced mushrooms until browned and tender.",
+      "Remove beef from the pot. Strain the sauce through a fine-mesh sieve, pressing solids to extract liquid. Discard solids and herbs.",
+      "Return strained sauce to the pot. Bring to a gentle simmer. Add sautéed mushrooms.",
+      "Gently break beef into large, tender chunks. Return to the sauce. Simmer for 10-15 minutes to meld flavors.",
+      "Taste and adjust seasoning with salt and pepper. Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 715,
+      "cholesterol_mg": 178,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 59.8,
+      "saturated_fat_g": 13.3,
+      "sodium_mg": 805,
+      "total_carbs_g": 21,
+      "total_fat_g": 38.3,
+      "total_sugars_g": 10.4,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 105,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.8,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 118,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 16,
+      "protein": 120,
+      "saturated_fat": 67,
+      "sodium": 35,
+      "total_carbs": 8,
+      "total_fat": 49
+    },
+    "serving_size_g": 682,
+    "total_recipe_weight_g": 2727
+  },
+  {
+    "recipe_name": "Chicken Consommé, Potato Pavé, Crispy Skin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_consomm%C3%A9%2C_potato_pav%C3%A9%2C_crispy_skin_20250627_013052_dd6b6a25.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:30:52.457526000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, elegantly plated portion of chicken consommé presented in a pristine white bone china soup bowl. The consommé is crystal clear with a rich, golden amber hue. Nestled precisely at the bottom are three to four small, impeccably cut 1 cm cubes of poached chicken breast and one golden-brown, small rectangular 2 cm x 2 cm x 1 cm potato pavé, revealing its delicate, layered texture. A single, irregularly shaped shard of perfectly crispy chicken skin stands upright on the rim or gently rests on the surface. A few vibrant green drops of chive oil are artfully dotted across the consommé, providing a pop of contrasting color. The bowl is centered on a luxurious white Carrara marble surface, complemented by a precisely folded white linen napkin. Dramatic, focused lighting casts soft shadows, enhancing the minimalist composition and abundant negative space, highlighting the dish's refined simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken bones, roasted",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Chicken skin",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Potatoes (Yukon Gold or similar)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Celery, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken Stock: Place roasted chicken bones in a large pot. Cover with 3 litres cold water. Add bay leaf and thyme. Bring to a simmer. Skim foam. Simmer gently for 4 hours. Strain stock through a fine-mesh sieve. Chill completely.",
+      "Prepare Chicken Consommé: Combine chilled stock with diced carrot, celery, onion, and egg whites. Whisk thoroughly. Place over medium heat. Stir constantly until raft forms and mixture simmers. Stop stirring. Simmer gently for 45 minutes without disturbing the raft. Carefully ladle clear consommé through a cheesecloth-lined sieve. Season with salt and pepper. Keep warm.",
+      "Prepare Poached Chicken Breast: Bring a small pot of salted water to a gentle simmer. Add chicken breast. Poach gently until internal temperature reaches 75°C (167°F), about 10-12 minutes. Remove chicken. Cool slightly. Cut chicken into small, precise 1 cm cubes.",
+      "Prepare Potato Pavé: Peel potatoes. Slice very thinly using a mandoline, about 1.5 mm thick. Layer potato slices tightly in a small, buttered, parchment-lined rectangular mold. Dot each layer with butter, a brush of cream, salt, and pepper. Press firmly. Bake at 160°C for 45 minutes, or until tender. Place a weight on top and chill overnight. Once chilled, cut into small, precise 2 cm x 2 cm x 1 cm rectangular pavé pieces. Pan-fry gently until golden on all sides before serving.",
+      "Prepare Crispy Chicken Skin: Place chicken skin between two sheets of parchment paper. Place a heavy baking sheet on top. Bake at 180°C for 20-25 minutes, or until deeply golden and crisp. Remove. Drain on paper towels. Season with salt. Break into irregular, crisp shards.",
+      "Prepare Chive Oil: Blanch chives in boiling water for 10 seconds. Immediately plunge into ice water. Squeeze out excess water. Blend blanched chives with neutral oil until smooth and vibrant green. Strain through a fine-mesh sieve or cheesecloth for a clear oil. Discard solids.",
+      "Assemble Dish: Place 4-5 chicken cubes and one potato pavé piece artfully at the bottom of a warm, shallow soup bowl. Carefully ladle hot, clear consommé around the elements. Garnish with one crispy chicken skin shard. Drizzle a few drops of chive oil onto the consommé. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 393.3,
+      "cholesterol_mg": 89.6,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 17.3,
+      "saturated_fat_g": 12.4,
+      "sodium_mg": 60.5,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 30.2,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102.5,
+      "cholesterol_mg": 23.4,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 4.5,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 15.8,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29.9,
+      "dietary_fiber": 6.3,
+      "protein": 34.6,
+      "saturated_fat": 61.9,
+      "sodium": 2.6,
+      "total_carbs": 4.9,
+      "total_fat": 38.8
+    },
+    "serving_size_g": 383.8,
+    "total_recipe_weight_g": 1535
+  }
+]

@@ -1,0 +1,645 @@
+[
+  {
+    "recipe_name": "Creamy Peanut Chicken & Sausage Skillet with Cheesy Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_peanut_chicken_%26_sausage_skillet_with_cheesy_rice_20250625_165636_feed4201.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:56:37.177668000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "sausage",
+      "rice",
+      "bell pepper",
+      "cheddar",
+      "american cheese",
+      "peanut butter",
+      "broccoli",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Creamy Peanut Chicken & Sausage Skillet is presented in a shallow, white porcelain bowl, resting on a rustic wooden table. The dish features a rich, golden-brown chicken chunk and several rounds of smoked sausage nestled amongst creamy, saucy rice. Vibrant green broccoli florets and bright red bell pepper pieces are interspersed, adding pops of color. The sauce has a glossy, thick texture from the melted cheddar and American cheeses, creating an inviting, comforting appearance. Small, tender potato cubes are visible within the hearty mix. The overall presentation is warm and inviting, with a balanced composition and moderate negative space. A cotton napkin and standard flatware rest beside the bowl. Natural, even lighting highlights the dish's textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken thighs",
+        "quantity": "450g"
+      },
+      {
+        "name": "smoked sausage",
+        "quantity": "200g"
+      },
+      {
+        "name": "large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "medium potato",
+        "quantity": "1"
+      },
+      {
+        "name": "broccoli florets",
+        "quantity": "150g"
+      },
+      {
+        "name": "crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "creamy peanut butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "long-grain white rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "shredded cheddar cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "American cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse rice. Combine with 300ml water in a saucepan. Bring to a boil. Reduce heat to low, cover, and simmer for 15 minutes. Remove from heat and let stand covered for 5 minutes. Fluff with a fork.",
+      "Heat 1 tbsp olive oil in a large skillet over medium-high heat. Add chicken chunks. Sear until browned on all sides, about 5-7 minutes. Remove chicken.",
+      "Add sausage to the skillet. Cook until lightly browned, about 3-4 minutes per side. Remove sausage.",
+      "Add remaining 1 tbsp olive oil to the skillet. Add diced onion and bell pepper. Sauté until softened, about 5-7 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes. Cook for 2 minutes. Whisk peanut butter into chicken broth until smooth. Pour broth mixture into the skillet. Bring to a simmer.",
+      "Return chicken and sausage to the skillet. Add potato cubes and broccoli florets. Stir to combine. Cover and simmer for 15-20 minutes, or until chicken is cooked through (internal temperature 75°C / 167°F) and potatoes are tender. Stir occasionally.",
+      "Stir in the cooked rice. Add shredded cheddar and American cheese. Stir until cheeses are melted and sauce is creamy.",
+      "Season with salt and black pepper to taste. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 935.8,
+      "cholesterol_mg": 212.4,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 51.6,
+      "saturated_fat_g": 18.8,
+      "sodium_mg": 2090.2,
+      "total_carbs_g": 58,
+      "total_fat_g": 56.5,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 136.6,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.5,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 305.3,
+      "total_carbs_g": 8.5,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70.8,
+      "dietary_fiber": 21.2,
+      "protein": 103.2,
+      "saturated_fat": 94.2,
+      "sodium": 90.9,
+      "total_carbs": 21.1,
+      "total_fat": 72.4
+    },
+    "serving_size_g": 684.7,
+    "total_recipe_weight_g": 2738.6
+  },
+  {
+    "recipe_name": "Classic Boeuf Bourguignon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_boeuf_bourguignon_20250625_165617_9331b73e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:56:17.897767000Z",
+    "selected_ingredients": [
+      "carrot",
+      "potato",
+      "beef",
+      "red wine",
+      "beef fat"
+    ],
+    "complexity": "standard",
+    "special_requests": "french cuisine",
+    "visual_description": "A single portion of Boeuf Bourguignon is served in a wide, shallow white porcelain bowl. The centerpiece features four large, rustic chunks of tender, braised beef, glistening with a deep burgundy red wine reduction. Surrounding the meat are four thick, vibrant orange carrot coins and three halved gold potatoes, all fork-tender. The rich, glossy sauce coats the ingredients evenly, pooling slightly at the base. A small sprig of fresh parsley rests on top. The bowl sits on a dark oak bistro table alongside a crusty baguette. A white cotton napkin and polished silver spoon complete the setting. Natural light highlights the velvety texture of the sauce and the grain of the whole beef chunks.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Rustic",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette to soak up the sauce",
+      "Pair with a glass of medium-bodied French red wine",
+      "Present in a shallow bowl or traditional copper pot"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck, cut into 5cm chunks",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Beef fat (tallow or trimmings)",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Dry red wine (Pinot Noir or Burgundy)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Carrots, cut into 2cm thick coins",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Potatoes, peeled and halved",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yellow onion, cut into wedges",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Fresh thyme and bay leaf",
+        "quantity": "1 bouquet"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat beef fat in a heavy pot over medium-high heat.",
+      "Sear beef chunks in batches until browned on all sides.",
+      "Remove beef and set aside.",
+      "Sauté onion wedges and carrot coins in the remaining fat for 5 minutes.",
+      "Stir in tomato paste and garlic. Cook for 2 minutes.",
+      "Pour in red wine to deglaze the pot. Scrape the bottom for browned bits.",
+      "Return beef to the pot. Add beef stock and herbs.",
+      "Simmer on low heat, covered, for 90 minutes.",
+      "Add halved potatoes to the pot. Continue simmering for 30 minutes until tender.",
+      "Remove lid and reduce sauce for 10 minutes until glossy.",
+      "Season with salt and pepper before serving."
+    ],
+    "notes": [
+      "Do not crowd the pan when searing the beef.",
+      "Use a wine you would enjoy drinking for the best sauce flavor.",
+      "Ensure the sauce is thick enough to coat the back of a spoon."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing",
+      "Rendering fat",
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1030.6,
+      "cholesterol_mg": 228.33,
+      "dietary_fiber_g": 8.17,
+      "protein_g": 72.21,
+      "saturated_fat_g": 24.04,
+      "sodium_mg": 4663.96,
+      "total_carbs_g": 57.28,
+      "total_fat_g": 59.51,
+      "total_sugars_g": 11.34,
+      "trans_fat_g": 1.73
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102.4,
+      "cholesterol_mg": 22.68,
+      "dietary_fiber_g": 0.81,
+      "protein_g": 7.17,
+      "saturated_fat_g": 2.39,
+      "sodium_mg": 463.31,
+      "total_carbs_g": 5.69,
+      "total_fat_g": 5.91,
+      "total_sugars_g": 1.13,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 29,
+      "protein": 144,
+      "saturated_fat": 120,
+      "sodium": 203,
+      "total_carbs": 21,
+      "total_fat": 76
+    },
+    "serving_size_g": 1006.67,
+    "total_recipe_weight_g": 30200
+  },
+  {
+    "recipe_name": "Simple Chicken and Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_simple_chicken_and_vegetable_stew_20250625_165447_f178084d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:54:48.154180000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "tomato",
+      "carrot"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A rustic, single serving of Simple Chicken and Vegetable Stew is presented in a deep, off-white ceramic bowl with natural imperfections. The stew features two golden-brown, tender chicken thighs, submerged halfway in a rich, reddish-brown tomato and chicken broth. Thick-cut, tender carrot rounds and softened diced onions are visible throughout the stew. A few pieces of fresh, bright green chopped parsley are sprinkled on top, providing a color contrast. The chicken skin is slightly crisp, with visible browning from searing. The broth is thick and unctuous. The bowl sits on a well-used wooden dining table, showing subtle grain and natural wear. A simple, dark-colored cloth napkin is casually placed beside the bowl. The scene is illuminated by warm, natural light, creating a cozy, inviting atmosphere. The overall presentation is homely and comforting, with natural portions and components touching.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Rustic",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve hot with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (diced)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (peeled, cut into 2 cm thick rounds)"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g (1 can)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves (minced)"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g (to taste)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g (freshly ground, to taste)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g (chopped, for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden brown, about 5-7 minutes. Flip and sear other side for 3 minutes. Remove chicken from pot.",
+      "Add diced onion and carrot rounds to the pot. Cook, stirring, until softened, about 5-7 minutes.",
+      "Stir in minced garlic and dried thyme. Cook for 1 minute until fragrant.",
+      "Pour in canned diced tomatoes and chicken broth. Scrape up any browned bits from the bottom of the pot. Add bay leaf.",
+      "Return chicken thighs to the pot, nestling them into the liquid.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for 45-60 minutes, or until chicken is very tender and reaches an internal temperature of 75°C (167°F).",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "This stew can be made ahead; flavors deepen overnight."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 557,
+      "cholesterol_mg": 183,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 40.2,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 491,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 38,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 93,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 13,
+      "protein": 80,
+      "saturated_fat": 46,
+      "sodium": 21,
+      "total_carbs": 5,
+      "total_fat": 49
+    },
+    "serving_size_g": 527,
+    "total_recipe_weight_g": 2108
+  },
+  {
+    "recipe_name": "Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_20250625_165141_96d9d2f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:51:41.613351000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "high protein",
+    "visual_description": "A single portion of rustic chicken cacciatore served in a shallow, cream-colored ceramic bowl with minor surface imperfections. Two whole, bone-in chicken thighs are the centerpiece, their skin appearing dark golden and tender from braising. The chicken is partially submerged in a thick, chunky tomato sauce featuring visible pieces of softened translucent onions and whole black olives. A single fresh rosemary sprig is placed casually on top. The bowl sits on a weathered dark wood kitchen table. Beside the bowl is a thick piece of torn crusty bread. The scene is illuminated by warm, soft overhead kitchen lighting, creating a cozy, authentic Italian home-dining atmosphere. A simple linen napkin and a stainless steel fork are placed to the left of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough bread to soak up the tomato sauce",
+      "Pair with a side of simple polenta or rustic mashed potatoes",
+      "Traditional family-style dining involves placing the skillet in the center of the table"
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Heat olive oil in a large deep skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden brown.",
+      "Flip chicken and sear for 4 minutes. Remove chicken from skillet.",
+      "Add diced onion to the skillet. Sauté for 5 minutes until soft.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes, oregano, and the rosemary sprig.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Simmer on low heat for 30 minutes until chicken reaches 75°C internally.",
+      "Stir in the olives 5 minutes before serving."
+    ],
+    "notes": [
+      "Use bone-in thighs for maximum flavor and protein content",
+      "Ensure the sauce reduces until thick to concentrate the savory tomato profile",
+      "Always check the thickest part of the chicken for a safe internal temperature of 75°C"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1716,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 444.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 53,
+      "sodium": 75,
+      "total_carbs": 7,
+      "total_fat": 54
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1543
+  },
+  {
+    "recipe_name": "Creamy Cheesy Chicken and Rice Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_cheesy_chicken_and_rice_skillet_20250625_164911_97087cc0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:49:11.856995000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Cheesy Chicken and Rice Skillet is presented on a simple, round ceramic plate with a slight beige hue. The dish features a generous bed of creamy, golden-white rice, studded with irregular, tender chunks of seared chicken. The rice has a soft, slightly wet texture, indicating its creamy consistency, with visible strands of melted cheddar cheese throughout. The chicken pieces are golden-brown from searing, with some caramelized edges, and are naturally distributed within the rice, not fanned. A sprinkle of bright green, freshly chopped parsley garnishes the top, adding a pop of color and freshness. The plate is positioned casually on a well-used wooden dining table, revealing its natural grain. The scene is lit with warm, soft light, mimicking a cozy kitchen atmosphere. A standard fork and knife are placed beside the plate. The overall presentation is homely and inviting, showcasing comforting, satisfying portions.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm chunks. Season chicken with half the salt and pepper.",
+      "Heat olive oil in a large, deep skillet over medium-high heat.",
+      "Add chicken chunks to the skillet. Sear chicken for 5-7 minutes. Cook until internal temperature reaches 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Sauté for 5 minutes until softened.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Add rice to the skillet. Stir for 2 minutes to toast lightly.",
+      "Pour in chicken broth. Bring to a simmer. Cover the skillet. Reduce heat to low.",
+      "Cook for 15-20 minutes. Cook until rice is tender and most liquid is absorbed.",
+      "Stir in milk, shredded cheese, and remaining salt and pepper. Stir until cheese is melted and creamy.",
+      "Return cooked chicken chunks to the skillet. Stir to combine. Heat through for 2 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 768,
+      "cholesterol_mg": 191,
+      "dietary_fiber_g": 1.94,
+      "protein_g": 48.06,
+      "saturated_fat_g": 14.12,
+      "sodium_mg": 1284,
+      "total_carbs_g": 67.92,
+      "total_fat_g": 34.61,
+      "total_sugars_g": 3.35,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 143,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 0.36,
+      "protein_g": 8.92,
+      "saturated_fat_g": 2.62,
+      "sodium_mg": 238,
+      "total_carbs_g": 12.61,
+      "total_fat_g": 6.43,
+      "total_sugars_g": 0.62,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 7,
+      "protein": 96,
+      "saturated_fat": 71,
+      "sodium": 56,
+      "total_carbs": 25,
+      "total_fat": 44
+    },
+    "serving_size_g": 538.5,
+    "total_recipe_weight_g": 2154
+  }
+]

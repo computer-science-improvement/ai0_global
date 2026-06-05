@@ -1,0 +1,582 @@
+[
+  {
+    "recipe_name": "Vanilla Bean Milk Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vanilla_bean_milk_cake_20250630_025044_434704c7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:50:44.447321000Z",
+    "selected_ingredients": [
+      "flour",
+      "milk",
+      "vanilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single elegant slice of Vanilla Bean Milk Cake is centered on a clean, round white porcelain dinner plate. The cake, a delicate golden-brown, is visibly moist and infused with milk, topped generously with a pristine white, airy whipped cream. Fresh, vibrant red raspberries and deep blue blueberries are artfully scattered around the base of the cake slice, with a few placed delicately on the whipped cream. A light dusting of powdered sugar glistens over the cream and berries. A slender sprig of fresh mint stands upright beside the cake, adding a touch of green. The overall presentation is clean, balanced, and professional, allowing for moderate negative space. The setting is a modern bistro, featuring a simple light wooden table surface. A neatly folded white cotton napkin rests beside the plate. Natural, even lighting illuminates the scene, highlighting the cake's textures and colors against a soft, subtly blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Classic Pastry",
+    "hero_ingredient": "Vanilla Bean",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Vanilla bean",
+        "quantity": "1"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Sweetened condensed milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "7 ml"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh mixed berries",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh mint sprigs",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Grease and flour a 20 cm round cake pan.",
+      "Sift flour, baking powder, and salt into a bowl.",
+      "In a separate bowl, whisk egg yolks with 75 g granulated sugar until pale. Stir in 80 ml full-fat milk, melted and cooled butter, and scraped vanilla bean seeds.",
+      "Gradually fold dry ingredients into egg yolk mixture until just combined. Do not overmix.",
+      "In a clean bowl, beat egg whites until soft peaks form. Gradually add remaining 75 g granulated sugar and beat until stiff, glossy peaks form.",
+      "Gently fold one-third of egg whites into batter to lighten it. Then fold in remaining egg whites until no streaks remain.",
+      "Pour batter into prepared pan. Bake 25-30 minutes, or until a skewer inserted into the center comes out clean.",
+      "Cool cake in pan for 10 minutes. Invert onto a wire rack. Cool completely.",
+      "For milk soak: Whisk together 150 ml full-fat milk, condensed milk, 50 ml heavy cream, and 5 ml vanilla extract.",
+      "Place cooled cake back into cleaned cake pan or a slightly larger dish. Prick cake all over with a fork.",
+      "Slowly pour milk soak over cake, allowing it to absorb fully. Chill cake for at least 2 hours, or preferably overnight.",
+      "For topping: Whip remaining 200 ml heavy cream with powdered sugar and 2 ml vanilla extract until medium-stiff peaks form.",
+      "Remove cake from pan. Spread whipped cream evenly over top of cake.",
+      "To serve: Slice cake into 4 portions. Place one slice on each plate.",
+      "Garnish each slice with fresh mixed berries, a light dusting of powdered sugar, and a small mint sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 62.9,
+      "calories": 821.4,
+      "cholesterol_mg": 267,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 13.5,
+      "saturated_fat_g": 25.5,
+      "sodium_mg": 309.2,
+      "total_carbs_g": 98.2,
+      "total_fat_g": 42.7,
+      "total_sugars_g": 68.8,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 22.6,
+      "calories": 295.7,
+      "cholesterol_mg": 96.1,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 4.8,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 111.3,
+      "total_carbs_g": 35.3,
+      "total_fat_g": 15.4,
+      "total_sugars_g": 24.8,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 89,
+      "dietary_fiber": 6,
+      "protein": 27,
+      "saturated_fat": 127,
+      "sodium": 13,
+      "total_carbs": 36,
+      "total_fat": 55
+    },
+    "serving_size_g": 277.8,
+    "total_recipe_weight_g": 1111
+  },
+  {
+    "recipe_name": "Garlic Butter Shrimp Toasts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_butter_shrimp_toasts_20250630_025040_83a6a0ee.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:50:41.412100000Z",
+    "selected_ingredients": [
+      "shrimp"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A well-used wooden dining table holds a simple, rustic ceramic platter. On the platter, 8-12 golden-brown baguette slices are arranged, each topped with a plump, pink, whole pan-seared shrimp. The toasted baguette rounds are crisp, showing slight char marks. The shrimp retain their natural curve, glistening lightly from the garlic butter. Bright green flecks of finely chopped fresh parsley are sprinkled generously over the shrimp and toasts, providing a vibrant contrast. The arrangement is casual and inviting, with toasts slightly overlapping, suggesting a home kitchen setting. Natural, warm light illuminates the scene, highlighting the textures and appetizing colors of the comfort food. The background is minimal, hinting at a lived-in family dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Large shrimp, peeled and deveined",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Baguette",
+        "quantity": "1"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Slice baguette diagonally into 1.5 cm thick rounds.",
+      "Arrange baguette slices on a baking sheet. Drizzle with olive oil. Bake for 8-10 minutes until lightly golden and crisp. Remove and set aside.",
+      "Melt butter in a large skillet over medium heat. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Add shrimp to the skillet. Season with salt and pepper. Cook for 2-3 minutes per side until pink and opaque. Do not overcrowd the pan; cook in batches if necessary.",
+      "Remove shrimp from heat. Stir in half of the chopped fresh parsley.",
+      "To assemble, place one cooked shrimp on each toasted baguette slice. Sprinkle with remaining fresh parsley.",
+      "Serve immediately on a platter."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 418,
+      "cholesterol_mg": 193,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 27.6,
+      "saturated_fat_g": 8.8,
+      "sodium_mg": 478,
+      "total_carbs_g": 41.2,
+      "total_fat_g": 17.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 209,
+      "cholesterol_mg": 97,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 13.8,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 239,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 8,
+      "protein": 55,
+      "saturated_fat": 44,
+      "sodium": 21,
+      "total_carbs": 14,
+      "total_fat": 26
+    },
+    "serving_size_g": 200,
+    "total_recipe_weight_g": 800
+  },
+  {
+    "recipe_name": "Savory Cocoa Deviled Eggs",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_cocoa_deviled_eggs_20250630_024008_faa567e1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:40:08.641821000Z",
+    "selected_ingredients": [
+      "egg",
+      "cream",
+      "chocolate"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A simple ceramic serving platter holds a dozen Savory Cocoa Deviled Eggs. Each halved egg white is filled generously with a creamy, pale yellow yolk mixture, subtly tinted with cocoa, creating a comforting, inviting appearance. The tops are lightly dusted with reddish-brown smoked paprika and sprinkled with vibrant green, finely chopped chives, providing a pop of color and freshness. The eggs are arranged casually, some touching, on a well-used wooden dining table. The setting is a homely family kitchen, with warm, cozy lighting, and a casually placed cloth napkin in the background. The entire plate is visible, showcasing the natural portions and unpretentious presentation, emphasizing a relaxed, casual eating experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Casual appetizer",
+      "Potluck dish"
+    ],
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "large eggs",
+        "quantity": "6"
+      },
+      {
+        "name": "heavy cream",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "unsweetened cocoa powder",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "0.25 tsp, plus more for garnish"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "finely chopped chives",
+        "quantity": "2 tbsp, plus more for garnish"
+      }
+    ],
+    "instructions": [
+      "Place eggs in a saucepan. Cover with cold water by 2 cm.",
+      "Bring water to a rolling boil over high heat.",
+      "Immediately remove from heat. Cover the pan. Let stand for 10-12 minutes for hard-boiled eggs.",
+      "Drain hot water. Transfer eggs to an ice bath for 5 minutes. This stops cooking and helps peeling.",
+      "Gently peel eggs under cold running water.",
+      "Carefully slice each egg in half lengthwise.",
+      "Scoop out the egg yolks into a medium bowl. Place egg whites on a serving plate.",
+      "Add heavy cream, Dijon mustard, cocoa powder, smoked paprika, salt, and pepper to the yolks.",
+      "Mash with a fork until smooth and creamy. Taste and adjust seasoning.",
+      "Stir in 2 tablespoons of chopped chives.",
+      "Spoon or pipe the yolk mixture evenly back into the egg white halves.",
+      "Garnish with a sprinkle of smoked paprika and more fresh chives. Serve immediately or chill."
+    ],
+    "notes": [
+      "Best served chilled."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 170,
+      "cholesterol_mg": 301,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 10.2,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 258,
+      "total_carbs_g": 1.8,
+      "total_fat_g": 13.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 182,
+      "cholesterol_mg": 321,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 10.9,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 275,
+      "total_carbs_g": 1.9,
+      "total_fat_g": 14.4,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 100,
+      "dietary_fiber": 1,
+      "protein": 20,
+      "saturated_fat": 31,
+      "sodium": 11,
+      "total_carbs": 1,
+      "total_fat": 17
+    },
+    "serving_size_g": 94,
+    "total_recipe_weight_g": 375
+  },
+  {
+    "recipe_name": "Savory Steamed Egg Custard with Dark Chocolate Umami",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_steamed_egg_custard_with_dark_chocolate_umami_20250630_023846_022bda7a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:38:47.090553000Z",
+    "selected_ingredients": [
+      "egg",
+      "cream",
+      "chocolate"
+    ],
+    "complexity": "simple",
+    "special_requests": "Chinese cuisine",
+    "visual_description": "Steamed in individual ceramic bowls, the custard presents a smooth, pale yellow surface with a slight tremble. A few fine speckles of dark chocolate might be subtly visible, blending into the creamy texture, adding depth rather than distinct chocolate flavor. It is generously topped with vibrant green, thinly sliced spring onions and a glistening drizzle of light soy sauce and toasted sesame oil. The custard is presented in modest, round, white or light-colored ceramic bowls, placed casually on a well-used wooden kitchen table. A simple cloth napkin and a pair of wooden chopsticks rest nearby. The lighting is warm and inviting, typical of a lived-in home kitchen, highlighting the comforting and approachable nature of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Served warm as a light snack or a comforting side dish in a family meal.",
+      "Eaten with a spoon to appreciate its silky texture."
+    ],
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Light cream (18% fat)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa or higher), finely grated",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Spring onions, thinly sliced",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Lightly beat eggs in a medium bowl. Do not over-whisk.",
+      "In a small saucepan, gently warm chicken stock and cream over low heat. Do not boil.",
+      "Add grated dark chocolate to the warm liquid. Stir until completely dissolved.",
+      "Slowly pour the warm liquid mixture into the beaten eggs while stirring continuously.",
+      "Add light soy sauce and a pinch of white pepper to the mixture. Stir gently.",
+      "Strain the egg mixture through a fine-mesh sieve into a clean bowl. This removes air bubbles and ensures a smooth custard.",
+      "Divide the strained egg mixture evenly into four small, heatproof ceramic bowls.",
+      "Prepare a steamer. Bring water to a boil in the steamer pot.",
+      "Carefully place the bowls into the steamer. Cover the steamer lid with a cloth or towel to prevent condensation from dripping onto the custard.",
+      "Steam over medium-low heat for 12-15 minutes, or until the custard is just set but still slightly wobbly in the center. Do not overcook.",
+      "Remove bowls from the steamer. Drizzle each serving with toasted sesame oil.",
+      "Garnish generously with thinly sliced spring onions. Serve warm."
+    ],
+    "notes": [
+      "The small amount of dark chocolate adds a subtle savory depth and umami, not a sweet chocolate flavor. Use high-quality dark chocolate for best results.",
+      "Steaming over medium-low heat is crucial for a smooth, silky custard. High heat can cause bubbles and a tough texture."
+    ],
+    "traditional_techniques": [
+      "Steaming"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 151.9,
+      "cholesterol_mg": 201.9,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 8.4,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 534.4,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 11.7,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 96.6,
+      "cholesterol_mg": 128.4,
+      "dietary_fiber_g": 0.1,
+      "protein_g": 5.3,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 340.1,
+      "total_carbs_g": 1.8,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 1,
+      "protein": 17,
+      "saturated_fat": 26,
+      "sodium": 23,
+      "total_carbs": 1,
+      "total_fat": 15
+    },
+    "serving_size_g": 157.2,
+    "total_recipe_weight_g": 629
+  },
+  {
+    "recipe_name": "Fermented Chicken and Brown Rice Bowl with Seasonal Pickles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chicken_and_brown_rice_bowl_with_seasonal_pickles_20250630_023620_ed5786fb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T02:36:21.420355000Z",
+    "selected_ingredients": [
+      "brown rice",
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion is arranged in a handcrafted, natural beige ceramic bowl. The base features a generous portion of fluffy brown rice, occupying about one-third of the bowl. Adjacent to the rice, thick, golden-brown seared chicken chunks are nestled, showcasing their crispy exterior and moist interior. Alongside, a vibrant mix of quick-pickled seasonal vegetables, including julienned carrots, thin daikon rounds, and finely shredded red cabbage, provides contrasting colors and textures. The plating is clean, minimalist, and unfussy, with deliberate negative space highlighting each component. A scattering of thinly sliced green spring onions and a few fresh cilantro leaves are placed naturally over the chicken and rice. The bowl sits on a light, textured reclaimed wood surface, accompanied by an undyed linen napkin in natural beige. Soft, natural light illuminates the scene, with a clean, minimalist background suggesting natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Water",
+        "quantity": "600ml (for rice), 1 litre (for chicken brine)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 teaspoons (for chicken brine), 1 teaspoon (for pickle brine), plus more for seasoning"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 teaspoon (for chicken brine), 2 tablespoons (for pickle brine)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Daikon radish",
+        "quantity": "150g"
+      },
+      {
+        "name": "Red cabbage",
+        "quantity": "100g"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1 small bunch"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken brine: In a bowl, combine 1 litre water, 2 teaspoons salt, and 1 teaspoon sugar. Submerge chicken thighs in brine. Refrigerate for 4-12 hours.",
+      "Cook brown rice: Rinse 300g brown rice. Combine with 600ml water in a pot. Bring to a boil, then reduce heat to low. Cover and simmer for 40-45 minutes until water is absorbed and rice is tender. Let stand, covered, for 10 minutes.",
+      "Prepare seasonal pickles: Wash and prepare vegetables. Julienne carrots. Cut daikon into thin rounds. Finely shred red cabbage. Combine 250ml water, 250ml rice vinegar, 2 tablespoons sugar, and 1 teaspoon salt in a saucepan. Heat until sugar and salt dissolve. Pour hot brine over prepared vegetables. Let cool to room temperature, then refrigerate for at least 30 minutes.",
+      "Cook chicken: Remove chicken from brine and pat dry thoroughly. Heat 1 tablespoon cooking oil in a large pan over medium-high heat. Sear chicken thighs 6-8 minutes per side until golden brown and internal temperature reaches 75°C (167°F). Remove from pan and rest for 5 minutes. Cut chicken into thick chunks.",
+      "Assemble bowls: Divide cooked brown rice evenly among 4 bowls. Arrange chicken chunks on one side of the rice. Place a portion of assorted pickled vegetables next to the chicken.",
+      "Garnish: Drizzle each bowl with a tiny bit of sesame oil. Garnish with thinly sliced spring onions and fresh cilantro leaves."
+    ],
+    "notes": [
+      "Consider using leftover chicken bones for a nourishing broth. Reserve vegetable trimmings for a zero-waste vegetable stock."
+    ],
+    "traditional_techniques": [
+      "Brining",
+      "Quick Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.3,
+      "calories": 629,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 6,
+      "protein_g": 36.1,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 2161,
+      "total_carbs_g": 72,
+      "total_fat_g": 21.5,
+      "total_sugars_g": 11.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 105,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1,
+      "protein_g": 6,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 361,
+      "total_carbs_g": 12,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.5,
+      "dietary_fiber": 21.5,
+      "protein": 72.2,
+      "saturated_fat": 24.3,
+      "sodium": 93.9,
+      "total_carbs": 26.2,
+      "total_fat": 27.6
+    },
+    "serving_size_g": 598.5,
+    "total_recipe_weight_g": 2394
+  }
+]

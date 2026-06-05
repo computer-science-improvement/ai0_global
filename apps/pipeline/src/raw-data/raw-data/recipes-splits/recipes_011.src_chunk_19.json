@@ -1,0 +1,647 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Potato Puree and Chili Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_potato_puree_and_chili_crisp_20250706_165214_7cc909b9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:52:15.132749000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "green bean",
+      "hot sauce"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, refined serving of Pan-Seared Chicken with Fermented Potato Puree and Chili Crisp is presented on a handcrafted, matte ceramic plate in a warm cream tone, resting on a light, textured reclaimed wood surface. A generous, organic mound of creamy, off-white fermented potato puree sits slightly off-center, showcasing its smooth, natural texture. Beside it, a cluster of vibrant, bright green blanched green bean batons are artfully arranged, maintaining their crisp, elongated form. A single, pan-seared chicken thigh, with its deeply golden-brown, crispy skin facing upwards, is placed elegantly atop or beside the puree. The chicken is presented whole, not sliced. A rich, textural spoonful of dark amber chicken skin chili crisp, flecked with reddish chili flakes and tiny pieces of rendered chicken skin, is spooned directly over the crispy chicken skin, adding depth and visual interest. A subtle, natural drizzle of bright red hot sauce lightly accents a portion of the chicken or puree. The plating emphasizes negative space, allowing each element to breathe. The overall color palette is earthy and natural, highlighting the ingredients' inherent beauty. The background is clean and minimalist, with a hint of soft natural light illuminating the dish, and a subtle out-of-focus green plant element suggesting an eco-conscious setting. An undyed linen napkin in a natural beige tone is folded simply beside the plate, completing the authentic, sustainable aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx 180-200g each)"
+      },
+      {
+        "name": "Floury potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Fresh green beans",
+        "quantity": "300g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Non-iodized salt (for fermentation)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Filtered water (for fermentation)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "10g"
+      },
+      {
+        "name": "Dried chili flakes",
+        "quantity": "15g"
+      },
+      {
+        "name": "Neutral oil (e.g., rapeseed)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Potatoes (Advance Prep): Peel 600g potatoes. Cut into 2cm cubes. Place in a clean glass jar. Dissolve 30g non-iodized salt in 500ml filtered water to make a brine. Pour brine over potatoes, ensuring they are fully submerged. Use a fermentation weight or small plate to keep potatoes under brine. Seal jar loosely. Ferment at room temperature for 3-5 days until slightly tangy. Burp daily. Refrigerate when ready.",
+      "Prepare Chicken: Carefully remove skin from chicken thighs. Reserve skin. Season chicken thighs generously with sea salt and black pepper.",
+      "Make Chili Crisp: Cut reserved chicken skin into small pieces. Heat a heavy-bottomed pan over medium heat. Add chicken skin. Cook slowly until fat renders and skin is deeply golden and crispy. Remove crispy skin pieces; set aside. Leave rendered fat in pan.",
+      "Mince garlic and ginger. Add to rendered chicken fat in pan. Cook 1 minute until fragrant. Add dried chili flakes and 20ml hot sauce. Stir 30 seconds. Turn off heat. Stir in 5ml soy sauce and 5ml sesame oil. Crumble crispy chicken skin into mixture. This is your chili crisp.",
+      "Cook Green Beans: Bring a pot of salted water to a boil. Add 300g green beans. Blanch for 2-3 minutes until tender-crisp. Drain immediately. Plunge into ice water to stop cooking. Drain again. Set aside.",
+      "Prepare Potato Puree: Drain fermented potatoes. Discard brine. Rinse potatoes briefly. Place in a pot with fresh water to cover. Bring to a boil. Cook until very tender, about 15-20 minutes. Drain well. Mash potatoes thoroughly until smooth. Season with a pinch of sea salt if needed.",
+      "Sear Chicken: Heat a clean pan over medium-high heat with a drizzle of olive oil. Place seasoned chicken thighs skin-side down. Sear for 8-10 minutes until skin is deeply golden and crispy. Flip chicken. Continue cooking for another 6-8 minutes, or until internal temperature reaches 75°C. Remove chicken from pan. Rest for 5 minutes.",
+      "Assemble and Serve: Spoon a generous portion of fermented potato puree onto each plate. Arrange 4-5 blanched green bean batons next to the puree. Place one pan-seared chicken thigh on the plate. Drizzle remaining 30ml hot sauce lightly over the chicken or puree. Spoon a generous amount of chicken skin chili crisp over the chicken. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 860,
+      "cholesterol_mg": 171,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 43.2,
+      "saturated_fat_g": 11.1,
+      "sodium_mg": 803,
+      "total_carbs_g": 40.1,
+      "total_fat_g": 59.1,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 212,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 10.7,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 198,
+      "total_carbs_g": 9.9,
+      "total_fat_g": 14.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 23,
+      "protein": 86,
+      "saturated_fat": 56,
+      "sodium": 35,
+      "total_carbs": 15,
+      "total_fat": 76
+    },
+    "serving_size_g": 405,
+    "total_recipe_weight_g": 1620
+  },
+  {
+    "recipe_name": "Hearty Lamb and Bean Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_lamb_and_bean_stew_20250706_165156_a785c490.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:51:56.602068000Z",
+    "selected_ingredients": [
+      "lamb",
+      "onion",
+      "beer",
+      "bean",
+      "garlic",
+      "mustard",
+      "rosemary",
+      "green pea"
+    ],
+    "complexity": "standard",
+    "special_requests": "Украинская cuisine",
+    "visual_description": "A deep, white porcelain bowl holds a generous portion of hearty lamb and bean stew. Succulent, dark brown lamb chunks are nestled among soft white beans and vibrant green peas. Diced carrots, onions, and celery add rustic texture and amber hues. The stew is enveloped in a rich, glossy, dark amber sauce, thick and comforting. The dish is generously garnished with a scattering of bright green chopped fresh dill and parsley, and a dollop of creamy white smetana sits invitingly on top. The composition is balanced, showcasing a single, substantial serving. The bowl rests on a simple wooden table. A white cotton napkin is placed beside the plate. A traditional metal spoon is positioned to the right of the bowl. The scene is illuminated by natural, even lighting, highlighting the dish as the centerpiece within a casual, inviting restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Ukrainian",
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Lamb shoulder or leg",
+        "quantity": "800 g, cut into 4 cm chunks"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dark or amber beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Canned white beans",
+        "quantity": "400 g, drained and rinsed"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "45 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30 g, chopped for garnish"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped for garnish"
+      },
+      {
+        "name": "Smetana or sour cream",
+        "quantity": "120 g, for serving"
+      }
+    ],
+    "instructions": [
+      "Pat lamb chunks dry. Season generously with salt and black pepper. Dredge lamb lightly in flour, shaking off excess.",
+      "Heat vegetable oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear lamb in batches until well browned on all sides. Do not overcrowd the pot. Remove seared lamb and set aside.",
+      "Reduce heat to medium. Add diced onions, carrots, and celery to the pot. Cook, stirring occasionally, for 8-10 minutes until vegetables soften.",
+      "Stir in minced garlic and tomato paste. Cook for 1 minute until fragrant.",
+      "Pour in the beer, scraping up any browned bits from the bottom of the pot. Bring to a simmer and cook for 2 minutes.",
+      "Return seared lamb to the pot. Add beef broth, Dijon mustard, and rosemary sprigs. Stir to combine.",
+      "Bring the stew to a gentle simmer. Cover the pot, reduce heat to low, and braise for 1.5 to 2 hours, or until the lamb is fork-tender.",
+      "Remove rosemary sprigs. Stir in drained white beans and green peas. Continue to cook for 5-10 minutes, until beans and peas are heated through.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Ladle the hearty lamb stew into individual deep bowls. Garnish generously with fresh chopped dill and parsley. Serve with a dollop of smetana or sour cream."
+    ]
+  },
+  {
+    "recipe_name": "Pan-Seared Salmon with Strawberry-Yogurt Sauce and Garlic Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_salmon_with_strawberry-yogurt_sauce_and_garlic_noodles_20250706_165134_3d3bf833.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:51:34.800892000Z",
+    "selected_ingredients": [
+      "garlic",
+      "strawberry",
+      "yogurt",
+      "salmon",
+      "noodle",
+      "cranberry"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared salmon is centered on a bed of golden egg noodles on a clean, round white porcelain plate. The salmon fillet, a thick chunk, showcases a perfectly crispy, golden-brown skin contrasting with its flaky, vibrant orange-pink flesh. The noodles are loosely arranged, glistening with a light coating of butter and minced garlic. A pale pink strawberry-yogurt sauce is artfully spooned around the salmon, creating a soft, flowing pool. Bright red whole fresh cranberries are scattered over the sauce and noodles, adding pops of color. Freshly chopped green dill or chives are sprinkled over the salmon and sauce, providing a fresh accent. The plate has ample negative space. The setting is a modern bistro, with a simple light wooden table surface and a folded cotton napkin beside the plate. Natural, even lighting highlights the dish’s textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with a light, crisp white wine or sparkling water."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin-on",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Fresh strawberries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Plain Greek yogurt",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Egg noodles",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh cranberries",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh dill or chives",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat salmon fillets dry with paper towel. Season generously with salt and pepper.",
+      "Cook egg noodles according to package directions. Drain well. Return to pot.",
+      "Melt butter in a small pan. Add minced garlic. Sauté 1 minute until fragrant. Do not brown.",
+      "Add garlic butter to cooked noodles. Toss to coat. Keep warm.",
+      "Rinse and hull strawberries. Combine strawberries, Greek yogurt, and lemon juice in a blender. Blend until smooth. Season sauce with a pinch of salt.",
+      "Heat olive oil in a large non-stick skillet over medium-high heat. Place salmon fillets skin-side down.",
+      "Sear salmon for 5-7 minutes until skin is crispy and golden. Do not move the fish during this time.",
+      "Flip salmon fillets. Cook for another 3-5 minutes, or until internal temperature reaches 63°C (145°F) for desired doneness.",
+      "To plate, create a bed of garlic noodles on each plate. Place one seared salmon fillet on top of the noodles.",
+      "Spoon strawberry-yogurt sauce around the salmon. Garnish with fresh cranberries and chopped dill or chives.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Adjust the tartness of the strawberry-yogurt sauce with more lemon juice or a touch of honey if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 751.5,
+      "cholesterol_mg": 185.25,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 49.73,
+      "saturated_fat_g": 10.86,
+      "sodium_mg": 138.15,
+      "total_carbs_g": 51.82,
+      "total_fat_g": 36.78,
+      "total_sugars_g": 4.96,
+      "trans_fat_g": 0.26
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156.07,
+      "cholesterol_mg": 38.47,
+      "dietary_fiber_g": 0.73,
+      "protein_g": 10.33,
+      "saturated_fat_g": 2.26,
+      "sodium_mg": 28.69,
+      "total_carbs_g": 10.76,
+      "total_fat_g": 7.64,
+      "total_sugars_g": 1.03,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.75,
+      "dietary_fiber": 12.5,
+      "protein": 99.46,
+      "saturated_fat": 54.3,
+      "sodium": 6.01,
+      "total_carbs": 18.85,
+      "total_fat": 47.15
+    },
+    "serving_size_g": 481.5,
+    "total_recipe_weight_g": 1926
+  },
+  {
+    "recipe_name": "Patatas Dulces & Fresa Fermentada",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_patatas_dulces_%26_fresa_fermentada_20250706_165031_33dc6cff.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:50:32.080505000Z",
+    "selected_ingredients": [
+      "garlic",
+      "potato",
+      "corn",
+      "chocolate",
+      "chicken stock",
+      "pasta",
+      "strawberry",
+      "yogurt",
+      "rum"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "испанская cuisine",
+    "visual_description": "A single portion of 'Patatas Dulces & Fresa Fermentada' is presented on a handcrafted, cream-toned ceramic plate with an organic, slightly irregular rim, resting on a light, textured reclaimed wood surface. The plating is minimalistic, featuring ample negative space. A small, natural cluster of golden-brown, rustic baked potato 'churros' sits prominently. Adjacent to them, a vibrant pool of deep red fermented strawberry compote, showcasing natural fruit pieces, glistens subtly. A glossy, dark chocolate sauce is artfully drizzled over the potato elements. Completing the composition, a soft, creamy white dollop of rum-infused yogurt adds a smooth contrast. The dish is subtly garnished with a few delicate, crisped strands of corn silk, providing a natural texture and hint of zero-waste. The scene is illuminated by soft, natural light, enhancing the natural textures and colors of the ingredients. An undyed linen napkin in a natural beige tone is folded neatly beside the plate, reinforcing the eco-conscious aesthetic. The overall presentation is clean, unfussy, and highlights the pure beauty of each ingredient with simple, clean composition.",
+    "number_of_servings": 8,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve individually on small dessert plates",
+      "May be accompanied by a small glass of Spanish Moscatel dessert wine"
+    ],
+    "hero_ingredient": "Fermented Strawberry",
+    "ingredients": [
+      {
+        "name": "Strawberries",
+        "quantity": "500g"
+      },
+      {
+        "name": "Sugar (for fermentation)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt (for fermentation)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Starchy potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "50g"
+      },
+      {
+        "name": "Sugar (for potato dough)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt (for potato dough)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "For baking/air-frying"
+      },
+      {
+        "name": "Dark chocolate",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water or plant-based milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Rum",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Plain unsweetened yogurt",
+        "quantity": "400g"
+      },
+      {
+        "name": "Maple syrup or agave nectar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1 very small"
+      },
+      {
+        "name": "Corn silk",
+        "quantity": "From 1 ear of corn (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Strawberry Compote: Wash strawberries. Hull and quarter strawberries. Place in a clean glass jar. Dissolve 50g sugar and pinch of salt in 100ml filtered water. Pour over strawberries. Ensure strawberries are submerged. Cover jar loosely. Ferment at room temperature (20-24°C) for 2-3 days, tasting daily. Refrigerate once desired tanginess is achieved.",
+      "Prepare Potato \"Churros\": Peel potatoes. Boil until very tender. Mash potatoes until smooth. In a bowl, mix mashed potato with cornstarch, 30g sugar, and pinch of salt. Knead dough lightly until combined. Pipe dough through a star nozzle or roll into small rustic logs. Lightly brush with olive oil. Bake or air-fry at 180°C until golden and crispy. Set aside.",
+      "Prepare Rum-Infused Yogurt: Gently bruise the small garlic clove. Add to 50ml rum. Let infuse for 30 minutes. Remove garlic clove. Mix yogurt with infused rum and maple syrup. Whisk until smooth. Refrigerate.",
+      "Prepare Chocolate Sauce: Chop dark chocolate. Heat 100ml water or plant-based milk gently. Melt chocolate into the hot liquid, stirring until smooth. Stir in remaining 30ml rum and a pinch of salt. Keep warm.",
+      "Assemble the Dish: Spoon fermented strawberry compote onto individual plates. Arrange baked potato \"churros\" artfully next to the compote. Drizzle chocolate sauce over the potato \"churros\". Spoon a dollop of rum-infused yogurt onto the plate. Garnish with a few strands of crisped corn silk or vibrant green strawberry tops."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing strawberry tops and corn silk as garnishes.",
+      "Fermentation naturally preserves strawberries and adds complex, tangy notes."
+    ],
+    "traditional_techniques": [
+      "Fermentation (used for preservation and flavor development)",
+      "Mashing potatoes (a technique foundational to many Spanish potato preparations, adapted here for a sweet context)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 18,
+      "calories": 367.9,
+      "cholesterol_mg": 1.8,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 8.7,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 78.8,
+      "total_carbs_g": 48.2,
+      "total_fat_g": 13.6,
+      "total_sugars_g": 24.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 8.2,
+      "calories": 166.9,
+      "cholesterol_mg": 0.8,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 3.9,
+      "saturated_fat_g": 3,
+      "sodium_mg": 35.7,
+      "total_carbs_g": 21.9,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 1,
+      "dietary_fiber": 19,
+      "protein": 17,
+      "saturated_fat": 33,
+      "sodium": 3,
+      "total_carbs": 18,
+      "total_fat": 17
+    },
+    "serving_size_g": 220.4,
+    "total_recipe_weight_g": 1763
+  },
+  {
+    "recipe_name": "Filet de Porc, Tomate Confite, Gelée de Tomate, Jus de Veau au Romarin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_filet_de_porc%2C_tomate_confite%2C_gel%C3%A9e_de_tomate%2C_jus_de_veau_au_romarin_20250706_165013_ec28f675.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:50:13.417984000Z",
+    "selected_ingredients": [
+      "pork",
+      "tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "French cuisine",
+    "visual_description": "A minimalist, artfully composed single serving on a pristine white bone china plate. A thick, seared pork medallion, cooked to a tender, rosy pink interior, is positioned off-center, showcasing its golden-brown crust. Adjacent to it, a small cluster of glossy, deep red confit cherry tomatoes provides a vibrant color contrast. Scattered around these elements are delicate, translucent shards of clear tomato gelee, catching the light and adding textural intrigue. A rich, dark brown rosemary-infused veal jus forms a small, natural pool beneath the pork, its sheen reflecting the dramatic overhead lighting. The composition features abundant negative space, highlighting the precision and restraint of each element. The plate rests on a polished white Carrara marble surface, accompanied by a precisely folded white linen napkin and elegant, simple French silver flatware.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "hero_ingredient": "Pork Filet Mignon",
+    "ingredients": [
+      {
+        "name": "Pork Filet Mignon",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ripe Roma Tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely minced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, peeled, lightly crushed"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "High-quality Veal Stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "100ml (for confit), 30ml (for searing)"
+      },
+      {
+        "name": "Gelatin Sheets",
+        "quantity": "4g"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Freshly ground, to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 120°C. Halve cherry tomatoes. Arrange cut-side up in a small baking dish. Sprinkle with salt, sugar, and thyme sprigs. Pour 100ml olive oil over. Bake for 1.5-2 hours until shriveled and intensely flavored. Cool.",
+      "Roughly chop Roma tomatoes. Blend until smooth. Strain through a fine-mesh sieve, pressing to extract all juice. Discard solids. You need about 300ml clear tomato juice. Bloom gelatin sheets in cold water. Gently heat a small portion of tomato juice. Dissolve bloomed gelatin in warm juice. Combine with remaining cold juice. Pour into a shallow dish to a depth of 0.5 cm. Chill until set, about 2 hours. Cut into small, irregular shards or cubes before plating.",
+      "In a small saucepan, sauté minced shallots in a knob of butter until translucent. Add veal stock and one rosemary sprig. Bring to a simmer. Reduce by half over medium-low heat until thickened and glossy. Strain through a fine-mesh sieve. Keep warm.",
+      "Pat pork dry. Season generously with salt and pepper. Heat 30ml olive oil in a heavy-bottomed pan over medium-high heat. Sear pork filet mignon on all sides until deeply golden brown. Reduce heat to medium. Add remaining garlic cloves and rosemary sprig to the pan. Baste pork with pan drippings. Cook to an internal temperature of 63°C. Rest pork on a cutting board for 5-7 minutes. Slice into thick medallions (about 2-3 cm thick).",
+      "Spoon a small pool of veal jus onto one side of each plate. Place 2-3 slices of rested pork medallion artfully on the jus. Arrange 3-4 confit cherry tomatoes beside the pork. Delicately place a few shards of tomato gelee near the pork. Garnish with a tiny sprig of fresh thyme or micro basil."
+    ],
+    "traditional_techniques": [
+      "Confit",
+      "Jus Rôti"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 600,
+      "cholesterol_mg": 116,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 39.5,
+      "saturated_fat_g": 12.3,
+      "sodium_mg": 881,
+      "total_carbs_g": 15,
+      "total_fat_g": 44.9,
+      "total_sugars_g": 8.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 102,
+      "cholesterol_mg": 19.7,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 6.7,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 149.8,
+      "total_carbs_g": 2.6,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 11,
+      "protein": 79,
+      "saturated_fat": 62,
+      "sodium": 38,
+      "total_carbs": 5,
+      "total_fat": 58
+    },
+    "serving_size_g": 588.25,
+    "total_recipe_weight_g": 2353
+  }
+]

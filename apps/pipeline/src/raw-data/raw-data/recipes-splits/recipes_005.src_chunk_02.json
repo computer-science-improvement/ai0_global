@@ -1,0 +1,659 @@
+[
+  {
+    "recipe_name": "Paprika-Rubbed Chicken Supreme with Mushroom Puree and Strawberry Gastrique",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260511_134914_3a9e1cc0.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-11T13:49:15.264236000Z",
+    "selected_ingredients": [
+      "paprika",
+      "strawberry",
+      "mushroom"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single whole roasted chicken supreme sits off-center on a matte charcoal ceramic plate. The skin is a vibrant, matte deep-orange from the paprika rub. Next to the chicken, a smooth, pale-grey king oyster mushroom puree is spread in an organic, fluid motion. Three small, whole glazed strawberries rest atop the puree. Droplets of dark crimson strawberry-balsamic gastrique are dotted precisely around the plate. A few micro-herbs add a touch of green. The lighting is dramatic, casting soft shadows on a dark marble tabletop. The composition uses significant negative space, highlighting the textures of the crispy skin and velvet-smooth puree. The chicken is presented whole and succulent, honoring the fine-dining aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve on pre-heated bone china.",
+      "Pair with a light-bodied red wine like Pinot Noir."
+    ],
+    "hero_ingredient": "Chicken Supreme",
+    "ingredients": [
+      {
+        "name": "Chicken supreme, skin-on",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "King oyster mushrooms, diced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh strawberries, halved",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Shallot, minced",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Season chicken with salt and paprika.",
+      "Heat oil in an oven-proof pan.",
+      "Sear chicken skin-side down for 4 minutes.",
+      "Flip chicken over.",
+      "Roast in oven until internal temperature reaches 75°C.",
+      "Rest chicken for 5 minutes.",
+      "Sauté mushrooms and shallots in the same pan.",
+      "Add stock and reduce by half.",
+      "Blend mushrooms with butter until smooth.",
+      "Simmer strawberries and vinegar in a pot until thick.",
+      "Strain the strawberry reduction through a fine sieve."
+    ],
+    "notes": [
+      "Ensure the chicken skin is completely dry before applying paprika for maximum crispness.",
+      "Use a thermometer to confirm the 75°C internal temperature."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Reduction",
+      "Emulsification",
+      "Gastrique preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 535.1,
+      "cholesterol_mg": 196.9,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 48.9,
+      "saturated_fat_g": 11.9,
+      "sodium_mg": 723.8,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 33.2,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 189.4,
+      "cholesterol_mg": 69.7,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 17.3,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 256.2,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 9,
+      "protein": 98,
+      "saturated_fat": 60,
+      "sodium": 31,
+      "total_carbs": 4,
+      "total_fat": 43
+    },
+    "serving_size_g": 282.5,
+    "total_recipe_weight_g": 1130
+  },
+  {
+    "recipe_name": "Pan-Seared Paneer with Rhubarb Chutney and Asparagus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260511_123458_23470f63.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-11T12:34:59.934047000Z",
+    "selected_ingredients": [
+      "asparagus",
+      "rhubarb",
+      "chive"
+    ],
+    "complexity": "standard",
+    "special_requests": "chutney cuisine",
+    "visual_description": "A single portion of pan-seared paneer served on a clean white porcelain plate. Three large, golden-brown 4cm paneer cubes are positioned centrally. Beside them, five whole blanched and sautéed green asparagus spears are laid parallel. A generous spoonful of vibrant, chunky red rhubarb chutney, containing 1cm diced fruit, is placed atop the paneer. The dish is finished with a sprinkle of finely chopped bright green chives. The arrangement is clean with significant negative space. The setting is a modern bistro with a dark wood table. A cotton napkin and polished steel flatware sit to the side. Natural light highlights the glossy texture of the chutney and the charred edges of the asparagus. The presentation reflects a contemporary Indian style.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm garlic naan or paratha.",
+      "Accompany with a side of plain basmati rice.",
+      "Pair with a cooling cucumber and yogurt raita."
+    ],
+    "hero_ingredient": "Paneer",
+    "ingredients": [
+      {
+        "name": "Paneer",
+        "quantity": "500g"
+      },
+      {
+        "name": "Rhubarb",
+        "quantity": "300g"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "30g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "15g"
+      },
+      {
+        "name": "Cumin Seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Dice 300g rhubarb into 1cm cubes.",
+      "Mince 15g fresh ginger.",
+      "Heat 10ml vegetable oil in a saucepan over medium heat.",
+      "Add 5g cumin seeds and fry until they sizzle.",
+      "Add diced rhubarb, minced ginger, 50g sugar, and 2g salt.",
+      "Cook for 12 minutes until rhubarb breaks down into a thick jam.",
+      "Remove from heat and stir in 30g finely chopped chives.",
+      "Trim woody ends from 400g asparagus spears.",
+      "Blanch asparagus in boiling water for 2 minutes then drain.",
+      "Cut 500g paneer into 4cm cubes.",
+      "Heat 20ml oil in a large skillet over medium-high heat.",
+      "Sear paneer cubes for 2 minutes per side until golden brown.",
+      "Add blanched asparagus to the skillet for 1 minute to char slightly.",
+      "Place three paneer cubes and five asparagus spears on each plate.",
+      "Spoon a generous portion of rhubarb-chive chutney over the paneer."
+    ],
+    "notes": [
+      "Use fresh rhubarb for the most vibrant red color.",
+      "Do not over-sear the paneer to maintain a soft interior texture.",
+      "Shock asparagus in ice water after blanching to preserve the bright green color."
+    ],
+    "traditional_techniques": [
+      "tempering spices",
+      "chutney reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.5,
+      "calories": 523.75,
+      "cholesterol_mg": 75,
+      "dietary_fiber_g": 3.85,
+      "protein_g": 28.43,
+      "saturated_fat_g": 18.45,
+      "sodium_mg": 503.25,
+      "total_carbs_g": 25.7,
+      "total_fat_g": 34.83,
+      "total_sugars_g": 19.75,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3.75,
+      "calories": 157.28,
+      "cholesterol_mg": 22.52,
+      "dietary_fiber_g": 1.16,
+      "protein_g": 8.54,
+      "saturated_fat_g": 5.54,
+      "sodium_mg": 151.13,
+      "total_carbs_g": 7.72,
+      "total_fat_g": 10.46,
+      "total_sugars_g": 5.93,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 25,
+      "dietary_fiber": 13.75,
+      "protein": 56.86,
+      "saturated_fat": 92.25,
+      "sodium": 21.88,
+      "total_carbs": 9.35,
+      "total_fat": 44.65
+    },
+    "serving_size_g": 333,
+    "total_recipe_weight_g": 1332
+  },
+  {
+    "recipe_name": "Hungarian Beef and Mushroom Goulash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260511_094217_2b598f82.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-11T09:42:17.803536000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "mushroom",
+      "garlic",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Hungarian Beef Goulash served in a deep, wide white porcelain bowl. The dish features large 3cm tender chunks of braised beef coated in a rich, deep mahogany-red sauce. Visible within the stew are glossy halved cremini mushrooms and softened bits of tomato and onion. The sauce has a velvety, thick consistency. Beside the stew, a neat mound of small buttered egg noodles provides a pale contrast. A dollop of thick white sour cream sits off-center, topped with a sprig of fresh flat-leaf parsley. The lighting is soft and natural, highlighting the moist texture of the meat and the sheen of the paprika-infused oil. The setting includes a dark wood surface and a simple cotton napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Serve with nokedli (Hungarian egg dumplings)",
+      "Accompany with fermented pickles or a cucumber salad",
+      "Pair with a glass of Kadarka or Egri Bikavér red wine"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck, 3cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Yellow onions, finely diced",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Cremini mushrooms, halved",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, diced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Sweet Hungarian Paprika",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat oil in a heavy-bottomed pot over medium heat.",
+      "Add diced onions. Sauté until translucent and soft.",
+      "Stir in minced garlic and caraway seeds. Cook for 1 minute.",
+      "Remove pot from heat. Stir in paprika to prevent burning.",
+      "Add beef chunks. Return to heat. Brown meat on all sides.",
+      "Add diced tomatoes and halved mushrooms to the pot.",
+      "Pour in beef stock until meat is just submerged.",
+      "Cover and simmer on low heat for 90 minutes.",
+      "Season with salt and pepper.",
+      "Simmer uncovered for 15 minutes until sauce thickens to a velvety consistency."
+    ],
+    "notes": [
+      "Do not brown the onions too quickly; slow cooking develops the necessary sweetness.",
+      "Always remove the pot from heat before adding paprika to avoid bitterness.",
+      "Substitute beef chuck with shin or brisket for more gelatinous texture."
+    ],
+    "traditional_techniques": [
+      "dinsztelés",
+      "braising",
+      "tempering paprika"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 585,
+      "cholesterol_mg": 155,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 14.2,
+      "sodium_mg": 1180,
+      "total_carbs_g": 18.8,
+      "total_fat_g": 38.5,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130,
+      "cholesterol_mg": 34.44,
+      "dietary_fiber_g": 1.13,
+      "protein_g": 9.22,
+      "saturated_fat_g": 3.16,
+      "sodium_mg": 262.22,
+      "total_carbs_g": 4.18,
+      "total_fat_g": 8.56,
+      "total_sugars_g": 1.87,
+      "trans_fat_g": 0.27
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 18,
+      "protein": 83,
+      "saturated_fat": 71,
+      "sodium": 51,
+      "total_carbs": 7,
+      "total_fat": 49
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Turkey and Mushroom Stuffed Conchiglioni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260511_074149_1b852506.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-11T07:41:50.128917000Z",
+    "selected_ingredients": [
+      "turkey",
+      "basil",
+      "cottage cheese",
+      "mushroom",
+      "cheddar",
+      "oregano",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features five large conchiglioni shells arranged centrally on a clean white porcelain plate. Each shell is generously filled with a textured mixture of browned ground turkey and finely diced sautéed mushrooms, bound by creamy cottage cheese. The shells are topped with melted, lightly golden-browned cheddar cheese. A vibrant green basil chiffonade is scattered over the shells. The plate sits on a dark oak bistro table. A single polished silver fork and a folded white cotton napkin rest to the right. The lighting is soft and natural, highlighting the contrast between the pale pasta and the rich, golden cheese crust. Moderate negative space surrounds the pasta for a professional presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty ciabatta bread",
+      "Pair with a light-bodied red wine like Chianti",
+      "Present on pre-warmed ceramic plates"
+    ],
+    "hero_ingredient": "Jumbo Pasta Shells",
+    "ingredients": [
+      {
+        "name": "Jumbo pasta shells (conchiglioni)",
+        "quantity": "20 pieces"
+      },
+      {
+        "name": "Ground turkey",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cremini mushrooms, finely diced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh basil, chiffonade",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "100 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Boil pasta shells in salted water until slightly firm. Drain and cool.",
+      "Heat olive oil in a pan over medium-high heat.",
+      "Sauté diced mushrooms until browned and moisture evaporates.",
+      "Add ground turkey to the pan. Cook until browned. Ensure internal temperature reaches 75°C.",
+      "Stir in minced garlic and dried oregano. Cook for 1 minute. Season with salt and pepper.",
+      "Remove from heat. Let cool slightly.",
+      "In a bowl, combine turkey mixture, cottage cheese, and half of the cheddar.",
+      "Stuff each pasta shell with the turkey mixture.",
+      "Place shells in a baking dish. Pour milk into the bottom of the dish.",
+      "Top shells with remaining cheddar.",
+      "Bake for 20 minutes until cheese melts and bubbles.",
+      "Garnish with fresh basil before serving."
+    ],
+    "notes": [
+      "Ensure mushrooms are very finely diced to integrate with the turkey",
+      "Do not overcook the pasta shells during the initial boil as they will soften further in the oven",
+      "Use full-fat cottage cheese for a creamier filling texture"
+    ],
+    "traditional_techniques": [
+      "al dente boiling",
+      "sautéing",
+      "baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 743.8,
+      "cholesterol_mg": 146.3,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 52.1,
+      "saturated_fat_g": 12.5,
+      "sodium_mg": 755.5,
+      "total_carbs_g": 60.3,
+      "total_fat_g": 32.6,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165.3,
+      "cholesterol_mg": 32.5,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.6,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 167.9,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 11,
+      "protein": 104,
+      "saturated_fat": 63,
+      "sodium": 33,
+      "total_carbs": 22,
+      "total_fat": 42
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Ginger and Onion Beef Stir-Fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260511_073846_659d2645.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-11T07:38:46.915582000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "Chinese cuisine",
+    "visual_description": "A single portion of Ginger and Onion Beef is served on a clean, round white porcelain plate. The dish features thick, irregular chunks of succulent seared beef coated in a glossy, dark umami glaze. Interspersed are charred yellow onion wedges and pale ginger batons. The beef displays a rich mahogany color with visible sear marks. The onions remain slightly crisp with caramelized edges. A small bowl of steamed white jasmine rice sits to the upper left. A pair of dark wood chopsticks rests on a ceramic holder to the right. The setting is a minimalist modern bistro with a light oak table and a neutral cotton napkin. Natural side lighting highlights the sauce's sheen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Cantonese",
+    "cultural_serving_suggestions": [
+      "Serve with individual bowls of steamed jasmine rice",
+      "Accompany with a side of blanched bok choy",
+      "Provide hot oolong tea as a palate cleanser"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef flank or sirloin, cut into 4cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yellow onions, cut into 2cm wedges",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic, thinly sliced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger, peeled and sliced into batons",
+        "quantity": "30g"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Shaoxing rice wine",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Whisk light soy sauce, rice wine, white pepper, and cornstarch in a bowl.",
+      "Add beef chunks to the marinade and rest for 20 minutes.",
+      "Combine dark soy sauce, oyster sauce, and sugar in a small bowl.",
+      "Heat 30ml oil in a wok over high heat until smoking.",
+      "Sear beef chunks in a single layer until browned. Remove and set aside.",
+      "Add remaining 15ml oil to the wok.",
+      "Stir-fry ginger batons and garlic slices for 30 seconds.",
+      "Add onion wedges and stir-fry for 2 minutes until edges slightly char.",
+      "Return beef to the wok.",
+      "Pour in the sauce mixture and toss rapidly on high heat for 1 minute.",
+      "Drizzle with sesame oil and serve immediately."
+    ],
+    "notes": [
+      "Cut beef against the grain to ensure tenderness",
+      "Ensure the wok is smoking hot before adding beef to achieve wok hei",
+      "Do not overcook the onions; they should retain a slight crunch"
+    ],
+    "traditional_techniques": [
+      "velveting",
+      "wok hei",
+      "stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.8,
+      "calories": 442,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 43.6,
+      "saturated_fat_g": 6.9,
+      "sodium_mg": 1207.5,
+      "total_carbs_g": 14.9,
+      "total_fat_g": 23.1,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 163.1,
+      "cholesterol_mg": 38.7,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 16.1,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 445.6,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 5.2,
+      "protein": 87.2,
+      "saturated_fat": 34.5,
+      "sodium": 52.5,
+      "total_carbs": 5,
+      "total_fat": 35.5
+    },
+    "serving_size_g": 271,
+    "total_recipe_weight_g": 1084
+  }
+]

@@ -1,0 +1,631 @@
+[
+  {
+    "recipe_name": "Apricot Vanilla Mousse with Almond Financier and Apple Consommé",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_apricot_vanilla_mousse_with_almond_financier_and_apple_consomm%C3%A9_20250723_040049_e2fc992c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T04:00:49.802418000Z",
+    "selected_ingredients": [
+      {
+        "name": "apricot"
+      },
+      {
+        "name": "vanilla"
+      },
+      {
+        "name": "almond"
+      },
+      {
+        "name": "apple"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": null,
+    "visual_description": "A single elegant portion centers a pristine white bone china plate set on a white Carrara marble surface. The main element is a perfectly smooth, pale orange apricot mousse dome, approximately 6 cm in diameter, glistening softly. It rests atop a thin, golden-brown almond financier disc, precisely cut to match the mousse base. Around the financier, a small, clear pool of vibrant, amber apple-apricot consommé is meticulously poured. A small, vibrant quenelle of spiced apple compote sits delicately beside the mousse, offering a contrasting deep red hue. A single, delicate, crisp almond tuile shard is placed vertically, leaning against the mousse, adding architectural height and texture. The composition is highly minimalist with abundant negative space. Lighting is dramatic, casting soft shadows. A pristine white linen napkin, folded into a precise triangle, and a polished silver dessert spoon rest beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Dessert",
+    "cultural_origin": "Modern French",
+    "hero_ingredient": "Apricot",
+    "ingredients": [
+      {
+        "name": "Fresh Apricots",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Gelatin Leaves",
+        "quantity": "4 g"
+      },
+      {
+        "name": "Heavy Cream (for mousse)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Egg Yolks",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Vanilla Bean",
+        "quantity": "1 pod"
+      },
+      {
+        "name": "Milk (for crémeux)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Almond Flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Egg Whites (for financier)",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Powdered Sugar",
+        "quantity": "90 g"
+      },
+      {
+        "name": "Apple Juice",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Apples (e.g., Granny Smith)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cinnamon Stick",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Water",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Prepare the Almond Financier:",
+      "Melt 80g unsalted butter until golden brown. Strain through a fine-mesh sieve. Cool to room temperature.",
+      "Combine 60g almond flour, 20g all-purpose flour, and 90g powdered sugar in a bowl.",
+      "Whisk 3 large egg whites until foamy. Gently fold into dry ingredients.",
+      "Slowly fold in the cooled brown butter until just combined. Do not overmix.",
+      "Pour batter into a greased 20x20 cm square pan or financier molds.",
+      "Bake at 170°C (340°F) for 15-20 minutes, until golden and set. Cool completely. Cut into 6 cm diameter discs.",
+      "Prepare the Vanilla Bean Crémeux:",
+      "Split 1 vanilla bean. Scrape seeds into a saucepan with 100ml milk and 100ml heavy cream. Bring to a simmer.",
+      "Whisk 3 large egg yolks with 20g granulated sugar until pale.",
+      "Temper egg mixture with hot milk mixture. Return to saucepan.",
+      "Cook over medium-low heat, stirring constantly, until thickened (82°C/180°F). Strain through a fine-mesh sieve.",
+      "Pour crémeux into a piping bag. Pipe small domes (approx. 2.5 cm diameter) onto a parchment-lined tray. Freeze until solid.",
+      "Prepare the Apricot Mousse:",
+      "Soak 4g gelatin leaves in ice water until soft.",
+      "Wash and pit 200g fresh apricots. Puree until smooth. Pass through a fine-mesh sieve.",
+      "Heat half of the apricot puree with 40g granulated sugar until sugar dissolves. Squeeze excess water from gelatin; stir into warm puree until dissolved.",
+      "Combine with remaining cold apricot puree. Cool to room temperature.",
+      "Whip 200ml heavy cream to soft peaks. Gently fold into the cooled apricot mixture.",
+      "Assemble the Mousse Domes:",
+      "Place frozen vanilla crémeux domes into silicone half-sphere molds (approx. 7 cm diameter).",
+      "Pipe apricot mousse around and over the crémeux, filling the molds. Ensure crémeux is centered.",
+      "Freeze for at least 4 hours, or until solid.",
+      "Prepare the Apple-Apricot Consommé:",
+      "Wash and pit 100g fresh apricots. Roughly chop 1 medium apple. Combine with 250ml apple juice, 40g granulated sugar, 30ml lemon juice, and 1 cinnamon stick.",
+      "Bring to a gentle simmer. Cook for 15 minutes. Cool slightly.",
+      "Pour mixture into a cheesecloth-lined sieve set over a bowl. Let drain naturally overnight in the refrigerator. Do not press.",
+      "The next day, gently collect the clear consommé. Discard solids.",
+      "Prepare the Spiced Apple Compote:",
+      "Dice 1 medium apple into small cubes (approx. 0.5 cm).",
+      "Combine diced apple with 20g granulated sugar, 15ml lemon juice, and a pinch of cinnamon powder in a small saucepan.",
+      "Cook over medium-low heat until apples are tender and liquid has reduced, about 8-10 minutes. Cool completely.",
+      "Assembly and Plating:",
+      "Unmold the frozen apricot vanilla mousse domes. Let temper in the refrigerator for 20-30 minutes.",
+      "Place an almond financier disc in the center of each serving plate.",
+      "Carefully place a tempered apricot vanilla mousse dome on top of each financier.",
+      "Spoon a small quenelle or dot of spiced apple compote beside the mousse.",
+      "Just before serving, gently pour a small pool of chilled apple-apricot consommé around the base of the financier and mousse."
+    ],
+    "notes": [
+      "Precision is key for this dessert. Ensure components are well-chilled or frozen as specified for clean assembly.",
+      "The apple-apricot consommé should be perfectly clear; do not rush the straining process."
+    ]
+  },
+  {
+    "recipe_name": "Sous Vide Chicken Breast, Smoked Bell Pepper Puree, Confit Chili Threads",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sous_vide_chicken_breast%2C_smoked_bell_pepper_puree%2C_confit_chili_threads_20250723_000048_98bdf596.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T00:00:48.673996000Z",
+    "selected_ingredients": [
+      {
+        "name": "bell pepper"
+      },
+      {
+        "name": "chili"
+      },
+      {
+        "name": "chicken"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": null,
+    "visual_description": "A meticulously plated individual portion centered on a modern, matte white ceramic plate. A thick, perfectly seared chicken breast medallion, its skin deeply golden and crisp, is positioned slightly off-center. Beside it, a vibrant, smooth swoosh of rich orange-red smoked bell pepper puree provides a striking color contrast. A delicate, artful cluster of translucent, ruby-red confit chili threads rests atop the chicken or gently beside it, adding a subtle textural and color accent. A glistening, deep amber chicken jus forms a precise pool around the chicken, reflecting light. The composition features abundant negative space, highlighting the pristine execution of each element. The dish is presented on a luxurious grey-veined marble surface, with a crisply folded white linen napkin and minimalist silver flatware completing the sophisticated Michelin-starred setting under dramatic, focused lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, skin on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Red bell peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Yellow bell peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Long red chilies",
+        "quantity": "2-3 (mild to medium heat)"
+      },
+      {
+        "name": "Quality chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic clove, minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "150 ml (for confit and cooking)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Wood chips (for smoking)",
+        "quantity": "Small handful"
+      }
+    ],
+    "instructions": [
+      "Season chicken breasts with salt and pepper. Place each breast in a vacuum-sealable bag with one thyme sprig. Vacuum seal.",
+      "Cook chicken in a water bath at 63°C (145°F) for 1.5 hours.",
+      "Halve and deseed bell peppers. Smoke bell peppers over wood chips until tender and slightly charred. Peel skins.",
+      "Blend smoked bell pepper flesh until very smooth. Season with salt and pepper. Pass through a fine-mesh sieve for ultimate smoothness. Keep warm.",
+      "Slice red chilies lengthwise very thinly into fine threads. Place chili threads in a small saucepan. Cover with 100 ml olive oil. Gently heat over very low heat (approx. 80°C/175°F) for 30-40 minutes until softened and translucent. Drain, reserving oil.",
+      "In a saucepan, sauté diced shallot and minced garlic in a little olive oil until softened. Deglaze with white wine (if using), reduce by half. Add chicken stock and a thyme sprig. Bring to a simmer and reduce by two-thirds until rich and glossy. Strain through a fine-mesh sieve. Whisk in butter just before serving for shine. Keep warm.",
+      "Remove chicken from sous vide bath. Pat dry thoroughly. Sear chicken skin-side down in a hot pan until deeply golden and crispy. Flip and sear briefly on the flesh side. Rest for 5 minutes.",
+      "Slice each chicken breast into 2-3 thick medallions. Arrange medallions slightly offset on one side of a minimalist plate. Create a precise swoosh or dollop of smoked bell pepper puree beside the chicken. Place a small, artful cluster of confit chili threads on top of or beside the chicken. Spoon a rich pool of chicken jus around the chicken. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Fermented Bell Pepper Pasta with Sourdough Pangrattato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_bell_pepper_pasta_with_sourdough_pangrattato_20250722_235940_fcca836c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T23:59:41.273793000Z",
+    "selected_ingredients": [
+      "bread",
+      "pasta",
+      "onion",
+      "garlic",
+      "bell pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of pasta spirals gracefully on an unglazed, handcrafted ceramic plate in a warm, natural beige tone. The pasta is coated in a vibrant, creamy sauce of rich red and orange hues from the blended fermented bell peppers, flecked with darker notes of tomato paste. The sauce clings to each strand of pasta, showcasing its smooth texture. A generous sprinkle of golden, crispy sourdough pangrattato crowns the pasta, providing a contrasting texture and earthy color. The plate is intentionally under-filled, allowing ample white space around the dish. The setting features a light, textured bamboo surface. An undyed linen napkin, in a natural beige, is folded simply beside the plate. Soft, natural light illuminates the scene from the side, enhancing the natural textures and colors. A small, green potted plant provides a subtle, living element in the background, maintaining a clean, minimalist aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Fermented Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., spaghetti, linguine)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Bell Peppers (red, yellow, diced)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion (finely diced)",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Garlic (minced)",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Stale Sourdough Bread (for pangrattato)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water (for brine and cooking pasta)",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "To prepare fermented bell peppers: Dice bell peppers. Pack into a clean jar. Cover with 2% brine (20g salt per 1 litre water). Seal. Ferment at room temperature for 5-7 days until tangy. Refrigerate until use.",
+      "Make pangrattato: Tear 150g stale sourdough bread into small pieces. Pulse in a food processor to coarse crumbs. Heat 30ml olive oil in a pan over medium heat. Add breadcrumbs. Toast until golden and crisp. Set aside.",
+      "Prepare sauce base: Finely dice 1 large onion. Mince 4 garlic cloves. In the same pan, heat remaining 30ml olive oil. Add onion. Sauté until translucent, 5 minutes.",
+      "Add garlic. Sauté 1 minute until fragrant.",
+      "Cook sauce: Drain fermented bell peppers, reserving 50ml brine. Add bell peppers to pan. Cook 5 minutes. Stir in 30g tomato paste.",
+      "Add reserved brine and 200ml vegetable broth. Simmer 10 minutes.",
+      "Blend sauce: Transfer sauce mixture to a blender. Blend until smooth. Return to pan. Season with salt and pepper. Keep warm.",
+      "Cook pasta: Bring a large pot of salted water to a rolling boil. Add 400g pasta. Cook according to package until al dente.",
+      "Finish dish: Drain pasta, reserving 100ml pasta water. Add pasta to sauce. Toss to coat. Add reserved pasta water as needed for consistency.",
+      "Serve: Divide pasta among four plates. Top with toasted sourdough pangrattato."
+    ]
+  },
+  {
+    "recipe_name": "Slow-Cooked Pork Ragu with Fermented Bell Pepper, Hand-Cut Tagliatelle, and Pickled Red Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_pork_ragu_with_fermented_bell_pepper%2C_hand-cut_tagliatelle%2C_and_pickled_red_onions_20250722_235904_49213530.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T23:59:04.663216000Z",
+    "selected_ingredients": [
+      "bread",
+      "pasta",
+      "onion",
+      "pork",
+      "garlic",
+      "bell pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of slow-cooked pork ragu is presented in a handcrafted, shallow ceramic bowl with an earthy cream-beige glaze. Tender, rich brown pork chunks are nestled among wide, golden tagliatelle ribbons. The ragu features vibrant red and yellow diced bell peppers and softened onion pieces, coated in a deep reddish-brown sauce. A small pool of the subtly tangy, reddish-orange bell pepper puree is swirled into the sauce, adding a bright color contrast. A scattering of thinly sliced, translucent purple pickled red onions provides a sharp visual pop and crisp texture. A sprinkle of golden, coarse sourdough breadcrumbs is dusted over the top, offering a rustic crunch. The dish rests on a light, textured reclaimed wood surface. An undyed linen napkin in natural beige is casually draped beside the bowl. Soft, natural light illuminates the scene from the side, highlighting the textures and colors of the ingredients. The background is clean and minimalist, with subtle hints of green foliage, maintaining focus on the food while creating an eco-conscious, natural aesthetic. The entire plate is visible, with ample negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Slow-Cooked Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "800g (cut into 3-4 cm chunks)"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large (1 diced, 1 thinly sliced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves (4 minced, 2 thinly sliced)"
+      },
+      {
+        "name": "Bell peppers",
+        "quantity": "3 medium (mixed colors, 2 diced, 1 for puree)"
+      },
+      {
+        "name": "Stale sourdough bread",
+        "quantity": "2 slices"
+      },
+      {
+        "name": "Fresh tagliatelle",
+        "quantity": "400g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Pork or vegetable stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh rosemary sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare pickled red onions: Thinly slice one onion. Combine with apple cider vinegar, sugar, 5g salt, and 50ml hot water in a jar. Stir to dissolve sugar. Let sit at room temperature while preparing ragu.",
+      "Prepare quick bell pepper puree: Dice one bell pepper. Blend until smooth. Season with a pinch of salt. Set aside.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Season pork chunks generously with salt and pepper. Sear pork in batches until browned on all sides. Remove pork from pot.",
+      "Add diced onion and diced bell peppers to the pot. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return pork to the pot. Add crushed tomatoes, stock, bay leaf, rosemary, and thyme. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 2.5-3 hours, or until pork is fork-tender. Stir occasionally.",
+      "While ragu simmers, prepare crispy breadcrumbs: Pulse stale sourdough bread in a food processor until coarse crumbs form. Toast in a dry pan over medium heat until golden and crispy. Set aside.",
+      "Remove bay leaf, rosemary, and thyme sprigs from ragu. Stir in the quick bell pepper puree. Taste and adjust seasoning.",
+      "Cook tagliatelle according to package instructions in salted boiling water until al dente. Reserve 125ml pasta water.",
+      "Drain pasta. Add pasta directly to the ragu. Add reserved pasta water as needed to create a glossy sauce. Toss to combine.",
+      "Serve ragu and pasta in shallow bowls. Garnish with pickled red onions and crispy sourdough breadcrumbs."
+    ],
+    "notes": [
+      "This recipe embraces zero-waste by utilizing stale bread for crispy breadcrumbs and using pork bones (if available) for a richer stock. The pickled onions and quick bell pepper puree incorporate preservation and fermentation techniques, enhancing flavor depth sustainably."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5,
+      "calories": 1000.82,
+      "cholesterol_mg": 220,
+      "dietary_fiber_g": 6.95,
+      "protein_g": 69.52,
+      "saturated_fat_g": 12.01,
+      "sodium_mg": 642.21,
+      "total_carbs_g": 78.68,
+      "total_fat_g": 38.89,
+      "total_sugars_g": 16.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.71,
+      "calories": 141.16,
+      "cholesterol_mg": 31.03,
+      "dietary_fiber_g": 0.98,
+      "protein_g": 9.8,
+      "saturated_fat_g": 1.69,
+      "sodium_mg": 90.58,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 5.48,
+      "total_sugars_g": 2.28,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73.33,
+      "dietary_fiber": 24.82,
+      "protein": 139.04,
+      "saturated_fat": 60.05,
+      "sodium": 27.92,
+      "total_carbs": 28.61,
+      "total_fat": 49.86
+    },
+    "serving_size_g": 709,
+    "total_recipe_weight_g": 2836
+  },
+  {
+    "recipe_name": "Slow-Cooked Pork Ragu with Pappardelle and Garlic Bread",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_pork_ragu_with_pappardelle_and_garlic_bread_20250722_235646_e62517ac.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-22T23:56:46.907151000Z",
+    "selected_ingredients": [
+      "onion",
+      "pork",
+      "tomato",
+      "pasta",
+      "bread"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of pappardelle pasta is presented in a rustic, shallow ceramic bowl with an off-white glaze. The wide, flat pasta strands are thoroughly coated in a rich, dark red pork ragu, creating a natural, slightly mounded shape in the center of the bowl. Irregularly shredded chunks of tender pork are visible throughout the sauce, along with hints of slow-cooked tomato and onion. A light sprinkle of vibrant green, freshly chopped parsley adds a fresh contrast. A golden-brown slice of garlic bread, showing its toasted edges and specks of green herbs, leans casually against the rim of the bowl. The bowl sits on a well-worn wooden dining table. A simple, cream-colored linen napkin is casually folded beside the bowl, holding a classic silver fork. Warm, soft kitchen lighting illuminates the scene, creating a homely, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with freshly grated Pecorino Romano or Parmesan cheese.",
+      "Offer a simple green salad dressed with olive oil and vinegar on the side.",
+      "Pair with a robust red wine, such as Chianti or Sangiovese.",
+      "Provide extra crusty bread for dipping in the rich sauce."
+    ],
+    "hero_ingredient": "Pork shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Crusty bread or baguette",
+        "quantity": "1 loaf"
+      },
+      {
+        "name": "Butter",
+        "quantity": "60 g, softened"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Parmesan or Pecorino Romano cheese",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 5-6 cm chunks. Season generously with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear pork chunks on all sides until deeply browned. Remove pork and set aside.",
+      "Reduce heat to medium. Add diced onion, carrot, and celery to the pot. Cook for 8-10 minutes until softened, stirring occasionally. This is the soffritto.",
+      "Stir in minced garlic and tomato paste. Cook for 2 minutes, stirring constantly until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and cook for 5 minutes, allowing alcohol to evaporate.",
+      "Return seared pork to the pot. Add crushed tomatoes, broth, bay leaf, and dried oregano. Stir to combine.",
+      "Bring the ragu to a gentle simmer. Reduce heat to low, cover the pot, and cook for 2.5-3 hours, or until pork is fork-tender. Stir occasionally.",
+      "Remove pork from the pot. Shred pork using two forks. Discard bay leaf. Return shredded pork to the sauce. Stir well. Taste and adjust seasoning.",
+      "Preheat oven to 180°C (350°F). Slice bread lengthwise. Mix softened butter with half of the chopped parsley and a pinch of salt. Spread butter mixture on bread slices.",
+      "Bake garlic bread for 8-10 minutes, or until golden brown and toasted.",
+      "Cook pappardelle pasta according to package directions until al dente. Drain, reserving some pasta water.",
+      "Add cooked pasta to the ragu. Toss to coat. Add a splash of reserved pasta water if needed for desired consistency.",
+      "Serve immediately, garnished with remaining fresh parsley and grated cheese. Serve with garlic bread."
+    ],
+    "notes": [
+      "For a deeper flavor, allow the ragu to rest overnight in the refrigerator and gently reheat before serving.",
+      "If the sauce becomes too thick, thin it with a little reserved pasta water or broth."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1230,
+      "cholesterol_mg": 207,
+      "dietary_fiber_g": 9.4,
+      "protein_g": 74,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 1745,
+      "total_carbs_g": 131,
+      "total_fat_g": 38.1,
+      "total_sugars_g": 14.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 141,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 199,
+      "total_carbs_g": 15,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 34,
+      "protein": 148,
+      "saturated_fat": 74,
+      "sodium": 76,
+      "total_carbs": 48,
+      "total_fat": 49
+    },
+    "serving_size_g": 875,
+    "total_recipe_weight_g": 3500
+  }
+]

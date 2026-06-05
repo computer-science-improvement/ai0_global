@@ -1,0 +1,628 @@
+[
+  {
+    "recipe_name": "Thai Basil Chicken with Jasmine Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_basil_chicken_with_jasmine_rice_20250624_105223_21bbafd5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:52:24.137520000Z",
+    "selected_ingredients": [
+      "basil",
+      "rice",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A steaming mound of fluffy jasmine rice occupies half of a clean white porcelain plate. Beside it, glossy 2cm chunks of golden-brown seared chicken thighs are coated in a dark, savory sauce. Vibrant green Thai basil leaves are wilted throughout the stir-fry. A single fried egg with a lacy, golden-crisp edge and a bright runny yolk rests atop the chicken. The dish is presented on a dark teak wood table with a small side dish of fish sauce containing sliced red chilies. Soft natural lighting highlights the textures of the crispy egg and tender chicken. A traditional Thai stainless steel spoon and fork lie on a white cotton napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with Prik Nam Pla (fish sauce with chilies)",
+      "Eat with a spoon in the right hand and fork in the left",
+      "Provide cucumber slices to cool the palate"
+    ],
+    "hero_ingredient": "Thai Basil",
+    "ingredients": [
+      {
+        "name": "Jasmine rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken thighs, cut into 2cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Thai basil leaves",
+        "quantity": "2 cups"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "6"
+      },
+      {
+        "name": "Thai bird's eye chilies, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Rinse rice until water runs clear.",
+      "Cook rice in 600ml water until fluffy.",
+      "Heat 1 tbsp oil in a pan over high heat.",
+      "Fry eggs until edges are crispy and brown.",
+      "Remove eggs and set aside.",
+      "Heat remaining oil in a wok.",
+      "Sauté garlic and chilies until fragrant.",
+      "Add chicken chunks to the wok.",
+      "Stir-fry chicken until browned and internal temperature reaches 75°C.",
+      "Stir in oyster sauce, soy sauces, and sugar.",
+      "Add basil leaves and toss until wilted.",
+      "Divide rice into four plates.",
+      "Top rice with chicken and a fried egg."
+    ],
+    "notes": [
+      "Use Holy Basil for the most authentic flavor if available.",
+      "Adjust chili count based on heat preference."
+    ],
+    "traditional_techniques": [
+      "Wok hei",
+      "Pounding aromatics in a mortar"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 711,
+      "cholesterol_mg": 320,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 43.5,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 707,
+      "total_carbs_g": 84.3,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 145.8,
+      "cholesterol_mg": 65.6,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1,
+      "sodium_mg": 145,
+      "total_carbs_g": 17.3,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 106.7,
+      "dietary_fiber": 4.6,
+      "protein": 87,
+      "saturated_fat": 24,
+      "sodium": 30.7,
+      "total_carbs": 30.7,
+      "total_fat": 28.5
+    },
+    "serving_size_g": 487.5,
+    "total_recipe_weight_g": 1950
+  },
+  {
+    "recipe_name": "Potato and Caramelized Onion Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_and_caramelized_onion_salad_20250624_105222_4174829d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:52:22.752794000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "mustard"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous portion of creamy Potato and Caramelized Onion Salad is mounded casually in a rustic, off-white ceramic bowl, typical of a well-loved home kitchen. Diced, tender Yukon Gold potatoes, their natural yellow hues visible, are gently mixed with thinly sliced, golden-brown caramelized onions, creating a comforting blend of textures. A rich, creamy whole grain mustard dressing coats every component, ensuring full flavor integration. The salad is garnished simply with a scattering of fresh, chopped green parsley and a few crispy bacon bits for added savory depth and texture, maintaining a homely, unpretentious appearance. The bowl sits on a worn wooden dining table, alongside a simple fork and a casually folded cloth napkin. Warm, inviting light from a kitchen fixture illuminates the scene, capturing the essence of a relaxed family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve as a side dish for barbecues, picnics, or family dinners.",
+      "Often accompanied by grilled meats or sandwiches."
+    ],
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Yellow Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Whole Grain Mustard",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Bacon (optional)",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Wash potatoes. Boil whole potatoes in salted water until fork-tender, about 20-25 minutes. Drain and let cool slightly. Dice cooled potatoes into 2 cm cubes.",
+      "Peel and thinly slice onions. In a large skillet, cook sliced onions over medium-low heat with a little oil until deeply golden and caramelized, about 20-25 minutes. Stir occasionally.",
+      "While onions cook, crisp bacon in a separate pan if using. Drain on paper towels. Crumble into small bits.",
+      "In a large bowl, whisk together mayonnaise, whole grain mustard, apple cider vinegar, salt, and black pepper until smooth.",
+      "Add diced potatoes and caramelized onions to the dressing. Gently fold until all ingredients are evenly coated.",
+      "Stir in chopped fresh parsley.",
+      "Serve the salad warm or chilled. Garnish with crumbled bacon bits, if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 582,
+      "cholesterol_mg": 31.2,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 12,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 1169,
+      "total_carbs_g": 51.6,
+      "total_fat_g": 37.5,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 149,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 3.1,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 299.1,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 26,
+      "protein": 24,
+      "saturated_fat": 33,
+      "sodium": 51,
+      "total_carbs": 19,
+      "total_fat": 48
+    },
+    "serving_size_g": 391,
+    "total_recipe_weight_g": 1564
+  },
+  {
+    "recipe_name": "Braised Beef with Fermented Onion Relish and Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_fermented_onion_relish_and_root_vegetables_20250624_105201_5cdd3351.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:52:01.977584000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Braised Beef with Fermented Onion Relish and Root Vegetables is presented on a round, handcrafted ceramic plate in a creamy beige tone. A substantial, naturally shaped chunk of deeply browned, tender braised beef sits as the focal point. Beside it, two or three large, rustic chunks of roasted root vegetables – vibrant orange carrots, pale parsnips, and light brown potato halves – are casually arranged, their charred edges adding visual interest. A spoonful of translucent, pale pink fermented red onion relish is placed on the beef or beside it, providing a pop of color and contrasting texture. A fresh sprig of parsley or thyme garnishes the dish. The plating is clean and unforced, celebrating natural ingredient beauty. The setting features an eco-conscious light wood table, with an undyed linen napkin. Soft, natural lighting illuminates the dish, highlighting earthy colors and textures. The background is minimalist, with a hint of natural greenery for an organic feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Red onions (for relish)",
+        "quantity": "2 medium (approx. 300g)"
+      },
+      {
+        "name": "Sea salt (for relish)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Filtered water (for relish)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Beef chuck roast",
+        "quantity": "1 kg (cut into 4 large chunks)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Brown onions (coarsely chopped)",
+        "quantity": "2 large (approx. 400g)"
+      },
+      {
+        "name": "Garlic (minced)",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef stock (homemade if possible)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Carrots (cut into large chunks)",
+        "quantity": "2 medium (approx. 200g)"
+      },
+      {
+        "name": "Parsnips (cut into large chunks)",
+        "quantity": "2 medium (approx. 200g)"
+      },
+      {
+        "name": "Potatoes (halved or quartered)",
+        "quantity": "4 small (approx. 400g)"
+      },
+      {
+        "name": "Fresh parsley or thyme (for garnish)",
+        "quantity": "Sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Onion Relish (5-7 days in advance): Dissolve 1 tbsp sea salt in 500ml filtered water to make brine. Pack thinly sliced red onions tightly into a clean glass jar. Pour brine over onions, ensuring they are fully submerged. Use a fermentation weight or small clean jar to keep onions under liquid. Seal jar loosely or use an airlock lid. Ferment at room temperature (18-24°C) for 5-7 days, or until desired tanginess is achieved. Refrigerate once fermented.",
+      "Sear Beef: Pat beef chunks dry. Season generously with salt and pepper. Heat 2 tbsp olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef from pot.",
+      "Sauté Aromatics: Add coarsely chopped brown onions to the pot. Sauté until softened and lightly caramelized, about 8-10 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Deglaze and Braise: Pour in red wine (if using). Scrape up any browned bits from the bottom of the pot. Reduce wine by half. Return beef to the pot. Pour in beef stock. Add rosemary and thyme sprigs. Bring to a simmer. Reduce heat to low. Cover tightly. Braise in the oven at 160°C (325°F) for 2.5-3 hours, or until beef is fork-tender. Ensure internal temperature reaches 75°C (167°F).",
+      "Prepare Root Vegetables: Toss carrots, parsnips, and potatoes with 1 tbsp olive oil, salt, and pepper. Roast in a separate oven at 200°C (390°F) for 30-40 minutes, or until tender and lightly browned.",
+      "Serve: Place one large braised beef chunk on each plate. Arrange roasted root vegetable chunks alongside. Spoon a generous portion of the Fermented Onion Relish over or next to the beef. Garnish with a fresh sprig of parsley or thyme."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by encouraging homemade beef stock from bones/trimmings. Vegetable scraps from root vegetables and onion skins can be saved for future vegetable stocks.",
+      "Fermentation of onions is a key preservation technique used in this sustainable dish."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 927,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 67.5,
+      "saturated_fat_g": 15.8,
+      "sodium_mg": 2094,
+      "total_carbs_g": 49.8,
+      "total_fat_g": 46,
+      "total_sugars_g": 15.7,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 2,
+      "sodium_mg": 265,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 100,
+      "dietary_fiber": 32,
+      "protein": 135,
+      "saturated_fat": 79,
+      "sodium": 91,
+      "total_carbs": 18,
+      "total_fat": 59
+    },
+    "serving_size_g": 790.9,
+    "total_recipe_weight_g": 3163.5
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken, Fermented Potato Purée, Zero-Waste Pesto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken%2C_fermented_potato_pur%C3%A9e%2C_zero-waste_pesto_20250624_105151_8f86f4f7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:51:52.179192000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken thigh, with its crispy, golden-brown skin, rests on a handcrafted, cream-colored ceramic plate. The chicken is whole, presenting a succulent, rustic appearance. Beside it, a generous, organic dollop of creamy, off-white fermented potato purée displays natural swirls, suggesting a soft, airy texture. Leaning against the chicken or purée is a delicate, irregular golden-brown cheese tuile, its intricate texture adding a subtle crisp element. Vibrant green zero-waste pesto is artfully drizzled in a few drops around the plate, providing a fresh color contrast. The plating emphasizes negative space, allowing each component to stand out. The scene is set on a light-colored, reclaimed wood table, complemented by an undyed linen napkin in a natural beige tone. Soft, diffused natural light illuminates the dish from the side, enhancing its textures and colors. A minimalist background features blurred green foliage, hinting at natural elements and an eco-conscious setting. The entire plate is visible, showcasing a refined, restaurant-style portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4"
+      },
+      {
+        "name": "Potatoes, starchy",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Hard cheese (e.g., Parmesan)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Milk or plant-based milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Butter or olive oil",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Carrot tops or herb stems (e.g., parsley, basil)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Sunflower seeds or pumpkin seeds",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "0.5"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water, filtered",
+        "quantity": "250 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented potato liquid: Combine 250 ml filtered water with 5 g salt. Peel potatoes; reserve peels. Submerge potato peels in salted water. Cover loosely. Ferment at room temperature 3-5 days. Strain liquid; discard peels. Reserve liquid for purée.",
+      "Trim excess fat from chicken thighs; reserve trimmings and bones for stock. Pat chicken dry. Season with salt and pepper.",
+      "Make zero-waste pesto: Wash carrot tops or herb stems thoroughly. In a food processor, combine carrot tops/herb stems, sunflower seeds, 1 garlic clove, 50 ml olive oil, and juice from half a lemon. Process until smooth. Season with salt.",
+      "Make cheese tuiles: Grate hard cheese finely. Heat a non-stick pan over medium heat. Sprinkle small mounds of grated cheese onto the hot pan, leaving space between. Cook 2-3 minutes until golden and crispy. Transfer to a wire rack to cool and harden. Break into irregular pieces.",
+      "Prepare potatoes: Peel potatoes. Cut into uniform 3 cm cubes. Place in a pot. Cover with cold water. Add a pinch of salt. Bring to a boil. Reduce heat; simmer 15-20 minutes until fork-tender. Drain well.",
+      "Make fermented potato purée: Return drained potatoes to the pot. Add milk, butter, remaining garlic clove (minced), and 50 ml of the fermented potato liquid. Mash until smooth. Add more fermented liquid or milk to achieve desired creamy consistency. Season with salt and pepper.",
+      "Sear chicken thighs: Heat 15 ml olive oil in a large oven-safe pan over medium-high heat. Place chicken thighs skin-side down. Sear 8-10 minutes until skin is golden and crispy. Flip chicken. Transfer pan to a preheated oven at 190°C (375°F). Roast 15-20 minutes, or until internal temperature reaches 75°C (167°F). Rest chicken 5 minutes.",
+      "Plate: Place a generous dollop of fermented potato purée on one side of a handcrafted ceramic plate. Place one seared chicken thigh beside the purée. Arrange 1-2 crispy cheese tuile pieces against the chicken or purée. Drizzle zero-waste pesto around the dish. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 891.7,
+      "cholesterol_mg": 200.9,
+      "dietary_fiber_g": 4.62,
+      "protein_g": 45.2,
+      "saturated_fat_g": 17.92,
+      "sodium_mg": 377.3,
+      "total_carbs_g": 39.89,
+      "total_fat_g": 63.39,
+      "total_sugars_g": 2.91,
+      "trans_fat_g": 0.23
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 201.3,
+      "cholesterol_mg": 45.3,
+      "dietary_fiber_g": 1.04,
+      "protein_g": 10.2,
+      "saturated_fat_g": 4.05,
+      "sodium_mg": 85.2,
+      "total_carbs_g": 9,
+      "total_fat_g": 14.31,
+      "total_sugars_g": 0.66,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 16.5,
+      "protein": 90.4,
+      "saturated_fat": 89.6,
+      "sodium": 16.4,
+      "total_carbs": 14.5,
+      "total_fat": 81.3
+    },
+    "serving_size_g": 443,
+    "total_recipe_weight_g": 1772
+  },
+  {
+    "recipe_name": "Pasta with Fermented Tomato & Braised Greens",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_with_fermented_tomato_%26_braised_greens_20250624_105140_f91a3414.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:51:41.297248000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A single portion of pasta is presented in a handcrafted, matte cream ceramic bowl. The pasta, such as rigatoni or paccheri, is coated in a vibrant, rustic red fermented tomato sauce. Deep green, tender braised cavolo nero leaves are scattered throughout the pasta, providing color and textural contrast. A few fresh basil leaves are placed naturally on top. The pasta has a slight sheen, the greens appear tender and slightly wilted, and the sauce shows subtle texture from the mashed tomatoes. The bowl rests on a light, naturally textured reclaimed wood table surface. A simple, undyed linen napkin in a natural beige tone is folded beside the bowl. Soft, natural light illuminates the dish from the side, creating gentle shadows. The background is clean and minimalist, possibly with a hint of a blurred green plant.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a primo piatto.",
+      "Offer crusty bread to soak up extra sauce.",
+      "Pair with a simple green salad."
+    ],
+    "hero_ingredient": "Fermented Tomatoes",
+    "ingredients": [
+      {
+        "name": "Overripe Tomatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Rigatoni or Paccheri Pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chilli Flakes",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Seasonal Greens (e.g., Cavolo Nero, Swiss Chard)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Vegetable Broth (from scraps)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh Basil or Oregano",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented tomatoes: Roughly chop 1 kg overripe tomatoes. Place in a clean jar with 20g sea salt. Cover loosely. Ferment at room temperature for 5-7 days, burping daily, until tangy.",
+      "Strain fermented tomatoes, reserving fermentation liquid. Roughly chop fermented tomatoes.",
+      "Heat 30ml olive oil in a large pan over medium heat. Add 2 cloves minced garlic and 2g chilli flakes. Sauté 1 minute until fragrant.",
+      "Add chopped fermented tomatoes to the pan. Cook 10 minutes, mashing with a spoon. Add 100ml reserved fermentation liquid. Simmer 15 minutes.",
+      "Meanwhile, cook 400g pasta according to package directions in salted water until al dente. Reserve 150ml pasta cooking water.",
+      "While pasta cooks, wash and roughly chop 200g seasonal greens.",
+      "In a separate pan, heat 15ml olive oil. Add chopped greens. Sauté until wilted. Add 100ml vegetable broth. Braise 5-7 minutes until tender. Season with salt and pepper.",
+      "Drain pasta. Add pasta to the tomato sauce. Add 50-100ml pasta cooking water as needed to create a light sauce. Toss to combine.",
+      "Divide pasta among serving plates. Top each portion with braised greens. Garnish with fresh basil or oregano."
+    ],
+    "notes": [
+      "Fermentation time for tomatoes can vary based on temperature. Taste daily for desired tang.",
+      "Use any seasonal greens available, such as spinach, chard, or even broccoli rabe.",
+      "Vegetable broth can be made from saved vegetable scraps (e.g., carrot peels, onion skins, celery ends) simmered with water for a zero-waste approach."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al Dente cooking",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 525.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 16.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 2082.4,
+      "total_carbs_g": 89.4,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 3.7,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 466.6,
+      "total_carbs_g": 20,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 26.7,
+      "protein": 33.2,
+      "saturated_fat": 8.7,
+      "sodium": 90.5,
+      "total_carbs": 32.5,
+      "total_fat": 16
+    },
+    "serving_size_g": 446.3,
+    "total_recipe_weight_g": 1785
+  }
+]

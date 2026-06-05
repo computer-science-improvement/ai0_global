@@ -1,0 +1,641 @@
+[
+  {
+    "recipe_name": "Cantonese Beef and Broccoli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cantonese_beef_and_broccoli_20250630_062604_ef225b89.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:26:05.172735000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "Chinese cuisine",
+    "visual_description": "The Cantonese Beef and Broccoli is presented as a single, generous portion on a clean, round white porcelain plate. Thinly sliced beef strips, wok-seared to a tender, slightly caramelized finish, are interspersed with vibrant, crisp-tender broccoli florets. Each ingredient is generously coated in a glossy, savory-brown sauce that reflects the light. The dish boasts a harmonious balance of rich brown from the beef and deep green from the broccoli. The beef maintains its natural shape, not fanned, offering a hearty appearance. The composition is balanced, allowing for moderate negative space around the central mound of food. The plate rests on a simple wooden table, accompanied by a small white rice bowl and a pair of dark wooden chopsticks, embodying a refined yet authentic casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Cantonese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed white rice",
+      "Provide chopsticks for an authentic dining experience"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef (flank or sirloin)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 large head (about 500 g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Light Soy Sauce",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Dark Soy Sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Oyster Sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Shaoxing Wine",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "White Pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Water or Chicken Broth",
+        "quantity": "120 ml"
+      }
+    ],
+    "instructions": [
+      "Slice beef against the grain into thin 0.5 cm strips (batons).",
+      "In a bowl, combine beef with 15 ml light soy sauce, 15 ml Shaoxing wine, and 15 g cornstarch. Mix well. Add 15 ml vegetable oil. Coat beef evenly. Set aside to marinate for 15 minutes.",
+      "Cut broccoli into small florets. Mince garlic and ginger finely.",
+      "In a separate bowl, whisk together remaining 30 ml light soy sauce, 15 ml dark soy sauce, oyster sauce, remaining 15 ml Shaoxing wine, remaining 15 g cornstarch, sesame oil, sugar, white pepper, and water or chicken broth. Set aside; this is your sauce.",
+      "Bring a pot of water to a boil. Blanch broccoli florets for 1-2 minutes until tender-crisp. Drain immediately and set aside.",
+      "Heat a large wok or skillet over high heat until smoking. Add 30 ml vegetable oil. Add marinated beef in a single layer. Stir-fry for 1-2 minutes until browned but not fully cooked. Remove beef from wok and set aside.",
+      "Add remaining 15 ml vegetable oil to the wok. Add minced garlic and ginger. Stir-fry for 30 seconds until fragrant.",
+      "Return blanched broccoli to the wok. Stir-fry for 1 minute.",
+      "Return beef to the wok. Stir everything together.",
+      "Stir the prepared sauce mixture again. Pour sauce over beef and broccoli. Stir constantly until sauce thickens and coats all ingredients, about 1-2 minutes.",
+      "Ensure beef reaches an internal temperature of 75°C (167°F).",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Velveting",
+      "Wok Hei"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.6,
+      "calories": 405.92,
+      "cholesterol_mg": 81.25,
+      "dietary_fiber_g": 3.56,
+      "protein_g": 36.72,
+      "saturated_fat_g": 3.45,
+      "sodium_mg": 1335.35,
+      "total_carbs_g": 21.93,
+      "total_fat_g": 20.97,
+      "total_sugars_g": 5.74,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.79,
+      "calories": 123.05,
+      "cholesterol_mg": 24.63,
+      "dietary_fiber_g": 1.08,
+      "protein_g": 11.13,
+      "saturated_fat_g": 1.05,
+      "sodium_mg": 404.81,
+      "total_carbs_g": 6.65,
+      "total_fat_g": 6.36,
+      "total_sugars_g": 1.74,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27.08,
+      "dietary_fiber": 12.71,
+      "protein": 73.44,
+      "saturated_fat": 17.25,
+      "sodium": 58.06,
+      "total_carbs": 7.97,
+      "total_fat": 26.88
+    },
+    "serving_size_g": 329.88,
+    "total_recipe_weight_g": 1319.5
+  },
+  {
+    "recipe_name": "Orecchiette con Salsiccia e Friarielli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orecchiette_con_salsiccia_e_friarielli_20250630_062540_a3321a44.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:25:40.687899000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Orecchiette con Salsiccia e Friarielli is presented in a shallow, matte white pasta bowl, showcasing its rustic elegance. Tender orecchiette pasta, shaped like small ears, is generously coated with a light, flavorful sauce. Crumbled, browned Italian sausage pieces are evenly distributed, their savory, caramelized notes contrasting with the vibrant, deep green florets and stems of crisp-tender broccoli rabe. Thinly sliced garlic slivers and subtle red pepper flakes are visible throughout, adding visual depth. The dish has a harmonious balance of earthy browns, verdant greens, and the pale, inviting yellow of the pasta. A light sheen from olive oil coats the ingredients, and a dusting of finely grated Pecorino Romano cheese adds a subtle white highlight. The composition is natural and inviting, with moderate negative space, allowing each ingredient to be appreciated. The pasta is not piled high but rather spread, allowing the textures and colors to meld. The overall impression is one of wholesome, authentic Italian comfort.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce",
+      "Pair with a glass of robust red wine, such as Primitivo or Aglianico"
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Italian sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Broccoli rabe (friarielli)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Pecorino Romano cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Clean broccoli rabe. Discard tough lower stems. Cut remaining stems and florets into 2-3 cm pieces.",
+      "Bring a large pot of salted water to a boil. Blanch broccoli rabe for 2-3 minutes until tender-crisp. Remove with a slotted spoon. Reserve pasta water.",
+      "Heat 30 ml olive oil in a large skillet over medium-high heat. Remove sausage from casings. Crumble sausage into the skillet. Cook, breaking up with a spoon, until browned and cooked through. Remove sausage from skillet, leaving rendered fat.",
+      "Add remaining 30 ml olive oil to the skillet. Add thinly sliced garlic and red pepper flakes. Sauté for 1 minute until fragrant. Do not burn garlic.",
+      "Add blanched broccoli rabe to the skillet. Sauté for 3-5 minutes, tossing to combine with garlic and oil.",
+      "Return cooked sausage to the skillet with the broccoli rabe. Stir to combine. Keep warm over low heat.",
+      "In the same pot of boiling water, cook orecchiette according to package directions until al dente.",
+      "Before draining, reserve 250 ml of pasta water. Drain pasta.",
+      "Add drained orecchiette directly to the skillet with sausage and broccoli rabe. Add 125 ml reserved pasta water and half of the Pecorino Romano cheese.",
+      "Toss vigorously to coat pasta, emulsifying the sauce. Add more pasta water if needed to achieve a creamy consistency. Season with salt and black pepper to taste.",
+      "Serve immediately, topped with remaining Pecorino Romano cheese."
+    ],
+    "notes": [
+      "Ensure broccoli rabe is tender but still retains some bite.",
+      "Use high-quality Italian sausage for best flavor."
+    ],
+    "traditional_techniques": [
+      "Al dente cooking",
+      "Manteca (emulsifying pasta with sauce and pasta water)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 901,
+      "cholesterol_mg": 86,
+      "dietary_fiber_g": 7,
+      "protein_g": 38.9,
+      "saturated_fat_g": 15.6,
+      "sodium_mg": 1006,
+      "total_carbs_g": 83.6,
+      "total_fat_g": 47.5,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 252,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 2,
+      "protein_g": 10.9,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 282,
+      "total_carbs_g": 23.4,
+      "total_fat_g": 13.3,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28.5,
+      "dietary_fiber": 25,
+      "protein": 77.8,
+      "saturated_fat": 78.1,
+      "sodium": 43.7,
+      "total_carbs": 30.4,
+      "total_fat": 60.9
+    },
+    "serving_size_g": 357,
+    "total_recipe_weight_g": 1427
+  },
+  {
+    "recipe_name": "Red Wine Braised Beef with Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_red_wine_braised_beef_with_root_vegetables_20250630_062501_ff5502f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:25:01.956603000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "onion",
+      "garlic",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "This dish features four large, 4cm cubes of tender, dark-brown braised beef centered in a wide, white porcelain rimmed bowl. The beef is surrounded by four oblique-cut glazed carrots and four turned, skinless white potatoes. A rich, mahogany-colored glossy sauce coats the base of the bowl, partially submerging the ingredients. The vegetables show a slight sheen from the butter glaze. A single sprig of fresh thyme sits atop the central beef chunk. The plating is clean with significant negative space on the wide rim. The scene is set on a dark oak table with a folded white linen napkin and a silver spoon. Natural side lighting highlights the textures of the meat.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Modern",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve in a deep-rimmed soup plate or shallow bowl",
+      "Accompany with crusty baguette slices for dipping",
+      "Pair with a glass of full-bodied French red wine"
+    ],
+    "hero_ingredient": "Braised Beef Chunks",
+    "ingredients": [
+      {
+        "name": "Beef chuck steak, cut into 4cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Waxy potatoes, peeled and halved",
+        "quantity": "500g"
+      },
+      {
+        "name": "Carrots, peeled and oblique-cut",
+        "quantity": "300g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "4"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season beef cubes with salt and pepper. Dust lightly with flour.",
+      "Heat oil in a heavy-bottomed pot over medium-high heat.",
+      "Sear beef in batches until dark brown on all sides. Remove beef.",
+      "Add onions and carrots to the pot. Sauté for 5 minutes.",
+      "Stir in garlic and tomato paste. Cook for 2 minutes.",
+      "Pour in red wine. Scrape the bottom of the pot to release browned bits.",
+      "Return beef to the pot. Add beef stock and thyme sprigs.",
+      "Bring to a simmer. Cover and cook over low heat for 90 minutes.",
+      "Add potatoes to the pot. Cover and cook for another 30 minutes.",
+      "Remove lid. Simmer for 10 minutes to thicken the sauce.",
+      "Stir in butter to finish the sauce. Season with salt and pepper."
+    ],
+    "notes": [
+      "Do not crowd the pan when searing beef to ensure a proper crust.",
+      "Use a waxy potato variety like Charlotte or Yukon Gold to maintain shape during braising.",
+      "The sauce should be thick enough to coat the back of a spoon."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing",
+      "Mirepoix",
+      "Glazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 907,
+      "cholesterol_mg": 187.5,
+      "dietary_fiber_g": 6,
+      "protein_g": 46.5,
+      "saturated_fat_g": 21.5,
+      "sodium_mg": 925,
+      "total_carbs_g": 43.5,
+      "total_fat_g": 55.4,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 164.9,
+      "cholesterol_mg": 34.1,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.5,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 168.2,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 21,
+      "protein": 93,
+      "saturated_fat": 108,
+      "sodium": 40,
+      "total_carbs": 16,
+      "total_fat": 71
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Pan-Roasted Chicken with Fermented Tomato Relish and Asparagus Puree",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-roasted_chicken_with_fermented_tomato_relish_and_asparagus_puree_20250630_062227_e10d1de6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:22:27.826334000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "potato",
+      "tomato",
+      "oregano",
+      "mushroom",
+      "cottage cheese",
+      "asparagus"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single pan-roasted chicken thigh, skin deeply golden and crisp, rests prominently on a handcrafted, earthy-toned ceramic plate. Beside it, a compact mound of mushroom-potato hash, featuring 1cm diced potatoes and mushrooms, shows varied textures from crispy edges to tender interiors. A vibrant green swoosh of smooth asparagus puree provides a striking color contrast. A small, bright pile of the fermented tomato and garlic relish, with its diced texture and rich red hues, adds a tangy focal point. A dollop of creamy white cottage cheese offers a soft, cooling element. The entire composition is clean and uncluttered, with ample white space on the plate. A few blanched asparagus tips serve as the only natural garnish. The dish is presented on a light, textured reclaimed wood surface, accompanied by an undyed linen napkin. Soft, natural lighting highlights the inherent beauty and distinct textures of each ingredient, emphasizing a minimalistic and eco-conscious aesthetic. The entire plate is visible, showcasing a refined restaurant portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "cultural_serving_suggestions": [
+      "Serve immediately to enjoy textures.",
+      "Pair with a simple glass of water or naturally infused water."
+    ],
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Tomato & Garlic Relish: Dice tomatoes finely. Mince 2 garlic cloves. Combine tomatoes, minced garlic, a pinch of salt, and 1/2 teaspoon chopped fresh oregano in a clean jar. Cover loosely. Ferment at room temperature for 2-3 days until slightly tangy. Stir daily. Refrigerate when ready.",
+      "Prepare Asparagus Puree: Trim woody ends from asparagus. Reserve 8 tips for garnish. Blanch remaining asparagus in boiling salted water for 3 minutes. Immediately transfer to ice bath. Drain well. Blend blanched asparagus with 30ml water until smooth puree forms. Season with salt and pepper. Keep warm.",
+      "Prepare Mushroom-Potato Hash: Peel potatoes. Dice potatoes into 1cm cubes. Dice mushrooms into 1cm cubes, including stems. Heat 15ml olive oil in a large pan over medium-high heat. Add potatoes. Cook 10 minutes, stirring occasionally, until golden. Add mushrooms and remaining 2 minced garlic cloves. Cook 8-10 minutes more, until potatoes are tender and mushrooms are browned. Season with salt, pepper, and remaining chopped fresh oregano. Keep warm.",
+      "Cook Chicken: Pat chicken thighs dry. Season skin generously with salt and pepper. Heat remaining 15ml olive oil in an oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear for 8-10 minutes until skin is deeply golden and crispy. Flip chicken. Transfer skillet to preheated oven at 190°C (375°F). Roast for 15-20 minutes, or until internal temperature reaches 75°C (167°F). Rest chicken for 5 minutes.",
+      "Assemble Dish: Place a spoonful of mushroom-potato hash on one side of each plate. Arrange one pan-roasted chicken thigh next to the hash. Spoon a dollop of asparagus puree or create a swoosh on the plate. Add a small portion of fermented tomato & garlic relish. Place a spoonful of cottage cheese beside the chicken or puree. Garnish with reserved blanched asparagus tips."
+    ],
+    "notes": [
+      "The fermentation time for the relish can vary based on ambient temperature and desired tanginess.",
+      "Ensure chicken reaches internal temperature of 75°C (167°F) for food safety.",
+      "Use fresh, seasonal ingredients for best flavor and sustainability."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Pan-roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 599,
+      "cholesterol_mg": 170,
+      "dietary_fiber_g": 5,
+      "protein_g": 44,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 504,
+      "total_carbs_g": 26.3,
+      "total_fat_g": 36,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 99,
+      "total_carbs_g": 5.2,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 18,
+      "protein": 88,
+      "saturated_fat": 46,
+      "sodium": 22,
+      "total_carbs": 10,
+      "total_fat": 46
+    },
+    "serving_size_g": 511,
+    "total_recipe_weight_g": 2044
+  },
+  {
+    "recipe_name": "Fermented Garlic & Herb Roasted Chicken with Potato-Broccoli Smash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_garlic_%26_herb_roasted_chicken_with_potato-broccoli_smash_20250630_062048_2b927ddf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T06:20:48.665513000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "potato",
+      "broccoli",
+      "cheddar",
+      "tomato",
+      "oregano"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, crispy-skinned roasted chicken thigh, cooked to a rich golden-brown, rests on a handcrafted, unglazed ceramic plate in an earthy cream tone. Beside the chicken, a rustic, natural mound of pale green and cream potato-broccoli smash with visible textures from the unpeeled potatoes and tender broccoli pieces. Scattered around the chicken and smash are vibrant red, halved quick-pickled cherry tomatoes, their bright color contrasting with the earthy tones. A light dusting of finely grated white cheddar cheese adds a subtle accent to the smash. The overall plating is minimalistic and clean, with ample negative space. The setting features a light, natural wood table surface and an undyed linen napkin in a natural beige. Soft, natural light illuminates the dish from the side, highlighting the organic textures and natural colors of the ingredients. The background is simple and uncluttered, allowing the food to be the focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Roasted Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Fermented garlic paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh oregano, chopped",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Potatoes (e.g., Desiree or Yukon Gold), unpeeled",
+        "quantity": "800g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500g (florets and tender stem parts)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Cheddar cheese, aged",
+        "quantity": "100g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Pat chicken thighs dry. In a bowl, combine fermented garlic paste, half of the chopped oregano, 30ml olive oil, salt, and pepper. Rub mixture generously over chicken thighs. Marinate for at least 30 minutes, or up to 4 hours in the refrigerator.",
+      "Place marinated chicken thighs on a baking tray. Roast for 30-40 minutes, or until internal temperature reaches 75°C and skin is crispy and golden. Rest chicken for 5 minutes before serving.",
+      "While chicken roasts, wash potatoes. Cut potatoes into 3-4 cm chunks, leave skins on. Cut broccoli into florets. Peel and chop tender parts of broccoli stem.",
+      "Boil potatoes in salted water until fork-tender, about 15-20 minutes. Add broccoli florets and stem pieces to the pot during the last 5 minutes of cooking. Drain well.",
+      "Return potatoes and broccoli to the pot. Add remaining 30ml olive oil, remaining oregano, salt, and pepper. Roughly smash with a fork or potato masher. Leave some texture.",
+      "Halve cherry tomatoes. In a small bowl, combine apple cider vinegar and a pinch of salt. Add halved cherry tomatoes. Stir to coat. Let sit for at least 10 minutes to quick-pickle.",
+      "Grate cheddar cheese.",
+      "To serve, place a roasted chicken thigh on each plate. Spoon a generous portion of potato-broccoli smash beside it. Scatter quick-pickled cherry tomatoes around. Sprinkle with grated cheddar cheese."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 718.3,
+      "cholesterol_mg": 148.5,
+      "dietary_fiber_g": 9,
+      "protein_g": 43.8,
+      "saturated_fat_g": 12.3,
+      "sodium_mg": 811.7,
+      "total_carbs_g": 49.7,
+      "total_fat_g": 41.3,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130.6,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 147.6,
+      "total_carbs_g": 9,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 32,
+      "protein": 88,
+      "saturated_fat": 62,
+      "sodium": 35,
+      "total_carbs": 18,
+      "total_fat": 53
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  }
+]

@@ -1,0 +1,677 @@
+[
+  {
+    "recipe_name": "Mediterranean Orzo with Roasted Vegetables and Farmer Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_orzo_with_roasted_vegetables_and_farmer_cheese_20250625_160037_e5554dab.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:00:38.033093000Z",
+    "selected_ingredients": [
+      "farmer cheese",
+      "sun dried tomato",
+      "oregano",
+      "pasta",
+      "broccoli rabe",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Orzo with Roasted Vegetables and Farmer Cheese is presented on a clean, round white porcelain dinner plate. The orzo forms a golden base, loosely piled but with structure. Vibrant red and yellow roasted bell pepper strips are interspersed throughout, along with deep green broccoli rabe florets. Creamy white crumbled farmer cheese is visible, some pieces slightly melted into the warm orzo, others retaining their shape. Julienne strips of rich red sun-dried tomatoes add concentrated color. The dish is garnished with a scattering of fresh green oregano leaves. Textures are a mix of al dente pasta, tender-crisp vegetables, and soft, creamy cheese. The plate is positioned on a simple wooden table surface, accompanied by standard silver flatware and a folded cotton napkin beside it. Natural, even lighting highlights the dish's fresh colors and textures. The background is minimally blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm, crusty bread for dipping",
+      "Pair with a simple green salad dressed with lemon vinaigrette"
+    ],
+    "hero_ingredient": "Farmer cheese",
+    "ingredients": [
+      {
+        "name": "Orzo pasta",
+        "quantity": "320 grams"
+      },
+      {
+        "name": "Broccoli rabe",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Sun-dried tomatoes (oil-packed, drained)",
+        "quantity": "80 grams"
+      },
+      {
+        "name": "Farmer cheese",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "10 grams"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Parmesan cheese (for serving, optional)",
+        "quantity": "50 grams"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Slice red and yellow bell peppers into thick strips. Toss with 15 ml olive oil, salt, and pepper. Roast on a baking sheet for 20 minutes, or until tender and slightly charred. Set aside.",
+      "Bring a large pot of salted water to a boil. Add broccoli rabe florets and stems. Blanch for 2 minutes. Drain immediately and plunge into ice water to stop cooking. Drain well and chop roughly. Set aside.",
+      "Cook orzo pasta according to package directions until al dente. Drain, reserving 100 ml pasta water. Set aside.",
+      "While pasta cooks, heat remaining 45 ml olive oil in a large skillet over medium heat. Add minced garlic and red pepper flakes if using. Sauté for 1 minute until fragrant. Do not brown.",
+      "Add chopped sun-dried tomatoes and chopped blanched broccoli rabe to the skillet. Sauté for 3-4 minutes. Stir in roasted bell pepper strips.",
+      "Add cooked orzo to the skillet. Pour in vegetable broth and reserved pasta water. Stir well. Cook for 2 minutes until liquid is slightly reduced.",
+      "Remove skillet from heat. Crumble farmer cheese directly into the pasta. Add chopped fresh oregano. Stir gently until cheese is just melted and creamy. Season with salt and black pepper to taste.",
+      "Serve immediately. Garnish with additional fresh oregano or grated Parmesan cheese if desired."
+    ],
+    "notes": [
+      "Use high-quality olive oil for best flavor.",
+      "Adjust red pepper flakes to desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 562,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 22.5,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 507,
+      "total_carbs_g": 80.8,
+      "total_fat_g": 18,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155,
+      "cholesterol_mg": 2,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 6.2,
+      "saturated_fat_g": 1,
+      "sodium_mg": 139,
+      "total_carbs_g": 22.2,
+      "total_fat_g": 5,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 3.8,
+      "dietary_fiber": 32.4,
+      "protein": 45,
+      "saturated_fat": 18,
+      "sodium": 22.1,
+      "total_carbs": 29.4,
+      "total_fat": 23.1
+    },
+    "serving_size_g": 363.8,
+    "total_recipe_weight_g": 1455
+  },
+  {
+    "recipe_name": "Sous Vide Chicken Breast, Truffled Potato Puree, Black Garlic Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sous_vide_chicken_breast%2C_truffled_potato_puree%2C_black_garlic_jus_20250625_155826_9f42dbae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:58:27.841048000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A minimalist, elegant plating on a pristine white bone china plate. A generous, organic swirl of velvety truffled potato puree forms the base, its creamy ivory color contrasting subtly with the plate. Beside it, two or three thick, golden-crusted pan-seared chicken breast medallions, their interiors moist and white, are arranged naturally, not fanned. A rich, glossy, dark mahogany black garlic jus is artfully spooned around the chicken and puree, creating fluid lines. The dish is accented by a single, delicate sprig of vibrant green microgreens or a precisely cut chive baton, providing a pop of fresh color. The composition emphasizes abundant negative space, showcasing precise cooking and luxurious textures. The plate rests on a polished dark wood surface, illuminated by dramatic, directional light casting soft shadows, with a crisp white linen napkin folded precisely nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Black garlic",
+        "quantity": "100g"
+      },
+      {
+        "name": "High-quality chicken stock",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Unsalted butter, cold, cut into cubes",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsalted butter for searing",
+        "quantity": "30g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "White truffle oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "High-quality extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Xanthan gum (optional)",
+        "quantity": "1g"
+      },
+      {
+        "name": "Microgreens or chive batons",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Season chicken breasts with salt and pepper. Place each breast in a vacuum-sealable bag with one thyme sprig and 10ml olive oil. Vacuum seal.",
+      "Cook chicken in a sous vide water bath at 63°C for 1.5 hours.",
+      "Peel and dice potatoes into 2cm cubes. Place in a saucepan, cover with cold salted water. Bring to a boil, reduce heat, and simmer until very tender (about 15-20 minutes). Drain well.",
+      "Pass hot potatoes through a fine-mesh sieve or potato ricer into a clean saucepan. Add heavy cream and 70g cold butter cubes. Whisk vigorously until smooth and creamy. Stir in truffle oil. Season with salt to taste. Keep warm.",
+      "Peel black garlic cloves. In a small saucepan, combine black garlic and chicken stock. Bring to a simmer. Cook gently for 10 minutes to infuse.",
+      "Transfer the black garlic mixture to a high-speed blender. Blend until completely smooth. Pass through a fine-mesh sieve into a clean saucepan.",
+      "Return jus to low heat. Whisk in remaining 30g cold butter cubes until emulsified and glossy. Season with salt and pepper. If desired, whisk in a tiny pinch of xanthan gum for slight thickening. Keep warm.",
+      "Once sous vide cooking is complete, remove chicken from bags. Pat dry thoroughly with paper towels. Heat 30g butter in a heavy-bottomed skillet over medium-high heat until shimmering. Sear chicken breasts for 2-3 minutes until deeply golden brown and crisp. Flip and sear other side for 1-2 minutes. Ensure internal temperature reaches 75°C. Rest chicken for 5 minutes.",
+      "Slice each chicken breast into 2-3 thick, diagonal medallions (not fanned). Spoon a generous dollop of truffled potato puree slightly off-center on each plate. Arrange chicken pieces naturally beside the puree. Spoon black garlic jus artfully around the chicken and puree. Garnish with microgreens or chive batons."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 861,
+      "cholesterol_mg": 266,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 64.9,
+      "saturated_fat_g": 25.9,
+      "sodium_mg": 238,
+      "total_carbs_g": 30.2,
+      "total_fat_g": 53.3,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 13.4,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 49,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 11,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 89,
+      "dietary_fiber": 12,
+      "protein": 130,
+      "saturated_fat": 129,
+      "sodium": 10,
+      "total_carbs": 11,
+      "total_fat": 68
+    },
+    "serving_size_g": 483,
+    "total_recipe_weight_g": 1932
+  },
+  {
+    "recipe_name": "Stuffed Plantain with Savory Beef and Burdock",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_stuffed_plantain_with_savory_beef_and_burdock_20250625_155754_007d9e76.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:57:55.153854000Z",
+    "selected_ingredients": [
+      "plantain",
+      "burdock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, perfectly roasted ripe plantain rests diagonally on a clean white porcelain dinner plate. The plantain is split lengthwise, revealing a generous, richly colored savory filling of finely diced burdock root, browned ground beef, and vibrant red bell pepper. The burdock is tender, contrasting with the soft, caramelized plantain. A sprinkle of bright green chopped fresh cilantro garnishes the filling, adding a pop of color and freshness. A neat lime wedge sits beside the plantain, ready to be squeezed. The plate features moderate negative space, highlighting the dish as the focal point. The scene is set on a simple wooden table, with a neatly folded cotton napkin beside the plate. Natural, even light illuminates the dish, emphasizing its inviting textures and warm, earthy tones. The presentation is professional, approachable, and visually balanced.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Latin American, East Asian Fusion",
+    "hero_ingredient": "Plantain",
+    "ingredients": [
+      {
+        "name": "Ripe Plantains",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Ground Beef",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Burdock Root",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Peel plantains. Slice each plantain lengthwise, not all the way through, creating a pocket.",
+      "Place plantains on a baking sheet. Drizzle with 15 ml olive oil. Bake 20-25 minutes, until tender and slightly golden.",
+      "While plantains bake, heat remaining 15 ml olive oil in a large skillet over medium-high heat. Add ground beef. Cook until browned, breaking it apart. Drain excess fat.",
+      "Add diced onion, red bell pepper, and finely diced burdock to the skillet. Sauté 5-7 minutes, until vegetables soften.",
+      "Stir in minced garlic, tomato paste, cumin, smoked paprika, and oregano. Cook 1 minute, stirring constantly.",
+      "Pour in beef broth. Bring to a simmer. Reduce heat to medium-low. Cook 10-12 minutes, until liquid reduces and flavors meld. Season with salt and pepper.",
+      "Remove plantains from oven. Carefully open each plantain pocket.",
+      "Spoon generous amount of beef and burdock filling into each plantain.",
+      "Garnish with chopped fresh cilantro. Serve immediately with lime wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 667.2,
+      "cholesterol_mg": 73,
+      "dietary_fiber_g": 9.39,
+      "protein_g": 22.71,
+      "saturated_fat_g": 9.37,
+      "sodium_mg": 106.5,
+      "total_carbs_g": 89.05,
+      "total_fat_g": 29.19,
+      "total_sugars_g": 38.63,
+      "trans_fat_g": 0.98
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.7,
+      "cholesterol_mg": 14,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 4.35,
+      "saturated_fat_g": 1.79,
+      "sodium_mg": 20.4,
+      "total_carbs_g": 17.05,
+      "total_fat_g": 5.59,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0.19
+    },
+    "daily_value_percentages": {
+      "cholesterol": 24.33,
+      "dietary_fiber": 33.54,
+      "protein": 45.42,
+      "saturated_fat": 46.85,
+      "sodium": 4.63,
+      "total_carbs": 32.38,
+      "total_fat": 37.42
+    },
+    "serving_size_g": 522.4,
+    "total_recipe_weight_g": 2089.6
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Garlic & Seasonal Greens",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_garlic_%26_seasonal_greens_20250625_155706_90f54f24.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:57:06.879029000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a minimalist, matte white ceramic plate, showcasing a single, generous individual portion. Pan-seared chicken thighs, cooked to a golden-brown exterior, are cut into thick, rustic chunks and arranged centrally. The chicken is moist and tender, revealing its natural texture. Alongside, a vibrant bed of deep green, wilted seasonal leafy greens, such as Swiss chard or kale, is artfully mounded, its stalks visible and tender. The greens are glossy from the pan drippings and subtly flecked with the creamy, beige fermented garlic paste. Bright orange carrot rounds and delicate purple-red slices of quick-pickled red onion are scattered sparingly around the plate, providing sharp color contrast and a crisp texture. The overall composition is clean and organic, with ample white space on the plate. The setting features a light, textured wooden surface, an undyed linen napkin in a natural beige, and soft, diffused natural lighting. The focus remains entirely on the wholesome, natural beauty of the ingredients, presented simply and elegantly.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable Cuisine",
+    "cultural_serving_suggestions": [
+      "Serve alongside a simple grain like quinoa or brown rice, or with crusty sourdough bread to soak up the juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 700-800g total)"
+      },
+      {
+        "name": "Whole garlic heads",
+        "quantity": "2"
+      },
+      {
+        "name": "Sea salt (for fermented garlic paste)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Water (for fermented garlic paste)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Seasonal leafy greens (e.g., kale, Swiss chard), stems included",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large carrot, thinly sliced into rounds",
+        "quantity": "1"
+      },
+      {
+        "name": "Red onion, thinly sliced",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Apple cider vinegar (for quick pickles)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Water (for quick pickles)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Sugar (for quick pickles)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Sea salt (for quick pickles)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt and freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lemon, half juiced, half thinly sliced for garnish",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Prepare quick pickled vegetables: Thinly slice carrot and red onion. In a small saucepan, combine apple cider vinegar, 120ml water, 15g sugar, and 5g sea salt. Bring to a simmer, stirring until sugar and salt dissolve. Pour hot brine over sliced vegetables in a heatproof jar. Set aside to cool.",
+      "Prepare fermented garlic paste: Peel 2 heads of garlic. Blend cloves with 20g sea salt and 100ml water until a smooth paste forms. Transfer to a clean jar, seal loosely, and ferment at room temperature for 1-2 weeks until bubbly and tangy.",
+      "Cook chicken: Pat chicken thighs dry. Season generously with salt and black pepper. Heat olive oil in a large skillet over medium-high heat. Sear chicken thighs for 5-7 minutes per side until golden brown. Cook until internal temperature reaches 75°C. Remove chicken from skillet. Let rest on a cutting board for 5 minutes.",
+      "Sauté greens: While chicken rests, add leafy greens (stems first, then leaves) to the same skillet with residual oil. Sauté for 3-5 minutes until wilted and tender. Stir in 15-20g of the prepared fermented garlic paste. Squeeze in juice from half a lemon. Season with a pinch of salt if needed.",
+      "Assemble dish: Slice rested chicken thighs into thick chunks. Arrange sautéed greens on individual plates. Top with chicken chunks. Drain quick pickled vegetables and scatter over the chicken and greens. Garnish with a thin lemon slice if desired."
+    ],
+    "notes": [
+      "The fermented garlic paste is a key flavor component and requires preparation 1-2 weeks in advance. If time is limited, substitute with roasted garlic cloves mashed into a paste or very finely minced fresh garlic sautéed until deeply golden and soft.",
+      "This recipe embraces a zero-waste philosophy by utilizing entire parts of vegetables, like leafy green stems, and preserving ingredients through fermentation and quick pickling."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.75,
+      "calories": 495.47,
+      "cholesterol_mg": 176.25,
+      "dietary_fiber_g": 3.56,
+      "protein_g": 46.23,
+      "saturated_fat_g": 5.13,
+      "sodium_mg": 2617.3,
+      "total_carbs_g": 18.48,
+      "total_fat_g": 23.24,
+      "total_sugars_g": 6.64,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.92,
+      "calories": 121.81,
+      "cholesterol_mg": 43.33,
+      "dietary_fiber_g": 0.87,
+      "protein_g": 11.37,
+      "saturated_fat_g": 1.26,
+      "sodium_mg": 643.46,
+      "total_carbs_g": 4.54,
+      "total_fat_g": 5.71,
+      "total_sugars_g": 1.63,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.75,
+      "dietary_fiber": 12.71,
+      "protein": 92.46,
+      "saturated_fat": 25.65,
+      "sodium": 113.8,
+      "total_carbs": 6.72,
+      "total_fat": 29.79
+    },
+    "serving_size_g": 406.75,
+    "total_recipe_weight_g": 1627
+  },
+  {
+    "recipe_name": "Pollo Rustico con Risotto al Parmigiano e Uovo Fritto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_rustico_con_risotto_al_parmigiano_e_uovo_fritto_20250625_155658_929bc76f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T15:56:58.739535000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "egg",
+      "cheese",
+      "bread",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate. A generous portion of creamy, free-flowing Parmigiano Risotto forms the base, its pale yellow hue contrasting with the golden-brown, crispy-skinned roasted chicken thigh, positioned slightly off-center. Alongside, a single fried egg, with its crisp edges and visible, vibrant yellow yolk, rests against the chicken or on the risotto. Rustic chunks of roasted potato, with their browned exteriors, are scattered around the plate, adding earthy tones. The dish is garnished simply with freshly chopped green parsley and a light dusting of grated Parmigiano Reggiano, enhancing its inviting aroma and color balance. The overall presentation is organized yet organic, allowing for moderate negative space. The table setting includes a simple cotton napkin and basic flatware, with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of dry white wine such as Pinot Grigio or Vermentino.",
+      "Offer crusty ciabatta bread on the side for soaking up the rich risotto."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Stale bread (for breadcrumbs)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Small potatoes, cut into 2-3 cm chunks",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Hot chicken stock",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "White onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Pat chicken thighs dry. Season with salt, pepper, rosemary, and thyme. Toss potato chunks with olive oil, salt, and pepper.",
+      "Place chicken and potatoes on a baking tray. Roast for 30-40 minutes, or until chicken reaches an internal temperature of 75°C and skin is crispy. Potatoes should be tender and browned.",
+      "While chicken roasts, prepare breadcrumbs. Process stale bread into coarse crumbs.",
+      "For the risotto, heat 30ml olive oil in a large pot over medium heat. Add diced onion; cook until translucent, about 5 minutes (Soffritto). Add minced garlic; cook 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Toast rice for 2 minutes, stirring constantly. Pour in white wine; stir until absorbed.",
+      "Begin adding hot chicken stock, one ladle at a time. Stir continuously. Wait for each ladleful to be absorbed before adding the next. This process takes about 18-20 minutes. Risotto should be creamy and al dente.",
+      "Remove risotto from heat. Stir in 40g butter and 80g Parmigiano Reggiano (Mantecatura). Season with salt and pepper. Stir in half of the chopped parsley.",
+      "Heat remaining 30ml olive oil in a non-stick pan over medium-high heat. Coat eggs in breadcrumbs. Fry eggs one at a time until edges are crispy and yolk is still runny, about 2-3 minutes per side. Remove and drain on paper towel.",
+      "Plate immediately. Serve a portion of risotto on a plate. Top with a roasted chicken thigh and fried egg. Arrange roasted potato chunks around the plate. Garnish with remaining fresh parsley and a sprinkle of Parmigiano Reggiano."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 1130,
+      "cholesterol_mg": 433,
+      "dietary_fiber_g": 4,
+      "protein_g": 67.1,
+      "saturated_fat_g": 24.7,
+      "sodium_mg": 2668,
+      "total_carbs_g": 60.2,
+      "total_fat_g": 69.8,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 118.6,
+      "cholesterol_mg": 45.4,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 7.05,
+      "saturated_fat_g": 2.59,
+      "sodium_mg": 279.9,
+      "total_carbs_g": 6.32,
+      "total_fat_g": 7.33,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 144,
+      "dietary_fiber": 14,
+      "protein": 134,
+      "saturated_fat": 124,
+      "sodium": 116,
+      "total_carbs": 22,
+      "total_fat": 89
+    },
+    "serving_size_g": 952.25,
+    "total_recipe_weight_g": 3809
+  }
+]

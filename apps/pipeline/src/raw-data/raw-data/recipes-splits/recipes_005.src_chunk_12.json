@@ -1,0 +1,718 @@
+[
+  {
+    "recipe_name": "Red Braised Beef with Daikon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_131713_06bce750.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-06T13:17:14.606448000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "Chinese cuisine",
+    "visual_description": "A single portion of Red Braised Beef is presented in a deep, clean white porcelain bowl. The dish features 3cm cubes of tender beef brisket, braised to a deep mahogany hue with a vibrant glossy sheen. These are nestled among large, translucent wedges of daikon radish that have absorbed the dark, savory braising liquid. The rich, dark brown sauce pools at the bottom, coating the ingredients perfectly. A garnish of bright green scallion curls and fine ginger batons is placed on top for color contrast. The bowl sits on a dark wood table next to a small bowl of steamed white rice and dark wood chopsticks. Natural, soft side lighting emphasizes the succulent texture of the meat and the clean edges of the radish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice",
+      "Accompany with a side of pickled mustard greens",
+      "Provide dark wood chopsticks and a ceramic soup spoon"
+    ],
+    "hero_ingredient": "Beef Brisket",
+    "ingredients": [
+      {
+        "name": "Beef brisket, cut into 3cm cubes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Daikon radish, cut into thick wedges",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ginger, sliced into thick coins",
+        "quantity": "40g"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "4"
+      },
+      {
+        "name": "Scallions, cut into 5cm lengths",
+        "quantity": "3"
+      },
+      {
+        "name": "Rock sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "2 pieces"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water or beef stock",
+        "quantity": "1 liter"
+      }
+    ],
+    "instructions": [
+      "Place beef cubes in a pot of cold water.",
+      "Bring to a boil for 5 minutes.",
+      "Drain beef and rinse with cold water.",
+      "Heat oil in a heavy-bottomed pot over medium heat.",
+      "Add rock sugar and stir until melted and amber brown.",
+      "Add beef cubes and stir to coat in caramel.",
+      "Add ginger, garlic, scallions, star anise, and cinnamon.",
+      "Fry for 2 minutes until aromatic.",
+      "Pour in Shaoxing wine to deglaze.",
+      "Add light and dark soy sauces.",
+      "Add water until beef is submerged.",
+      "Simmer on low heat for 90 minutes with a lid.",
+      "Add daikon wedges to the pot.",
+      "Simmer for another 30 minutes until beef and daikon are tender.",
+      "Remove lid and reduce sauce over high heat until glossy."
+    ],
+    "notes": [
+      "Ensure the sugar does not burn past amber to avoid bitterness",
+      "Blanching the beef is essential for a clean, clear sauce",
+      "If the sauce is too thin, reduce it further after removing the lid"
+    ],
+    "traditional_techniques": [
+      "blanching",
+      "caramelizing sugar",
+      "slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 660,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 39,
+      "saturated_fat_g": 15,
+      "sodium_mg": 1459,
+      "total_carbs_g": 18.2,
+      "total_fat_g": 45,
+      "total_sugars_g": 10,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.7,
+      "calories": 146.7,
+      "cholesterol_mg": 31.1,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 8.7,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 324.2,
+      "total_carbs_g": 4,
+      "total_fat_g": 10,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.7,
+      "dietary_fiber": 7.5,
+      "protein": 78,
+      "saturated_fat": 75,
+      "sodium": 63.4,
+      "total_carbs": 6.6,
+      "total_fat": 57.7
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Vietnamese Shaking Beef (Bò Lúc Lắc)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_090849_fa68bf12.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2026-05-06T09:08:50.480269000Z",
+    "selected_ingredients": [
+      "beef",
+      "black pepper",
+      "onion",
+      "garlic",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Shaking Beef served on a clean white porcelain plate. The focal point features 2.5cm cubes of seared beef with a dark, caramelized crust. These are tossed with charred 2cm red onion wedges and vibrant orange 5cm carrot batons. The beef and vegetables are piled naturally in the center, showing a glossy glaze. To the side, a fresh bed of green watercress and thick tomato slices provides color contrast. A small ceramic ramekin containing a clear lime and cracked black pepper dipping sauce sits on the plate. The setting is a modern bistro with a light wood table, a pair of dark wood chopsticks, and a side bowl of steamed jasmine rice. Natural side-lighting highlights the textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnam",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed jasmine rice or tomato rice",
+      "Provide a Muối Tiêu Chanh (salt, pepper, and lime) dipping sauce",
+      "Eat with chopsticks and a flat-bottomed soup spoon"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or ribeye",
+        "quantity": "600g"
+      },
+      {
+        "name": "Black pepper, coarsely cracked",
+        "quantity": "10g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Watercress",
+        "quantity": "1 bunch"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 2.5cm cubes.",
+      "Mince garlic finely.",
+      "Mix beef with garlic, 15ml soy sauce, oyster sauce, sugar, and 5g black pepper.",
+      "Marinate beef for 30 minutes at room temperature.",
+      "Peel carrots and cut into 5cm batons.",
+      "Cut red onion into 2cm wedges.",
+      "Whisk lime juice, fish sauce, and remaining black pepper in a small bowl for dipping.",
+      "Heat oil in a wok over high heat until smoking.",
+      "Add beef in a single layer. Sear for 2 minutes without moving.",
+      "Add onion wedges and carrot batons to the wok.",
+      "Shake the wok vigorously for 3 minutes to sear all sides.",
+      "Add butter and toss for 30 seconds to glaze.",
+      "Place watercress on a plate. Top with the hot beef and vegetables."
+    ],
+    "notes": [
+      "Ensure the wok is extremely hot before adding meat to achieve a proper sear.",
+      "Do not overcrowd the pan; cook in batches if necessary to maintain heat.",
+      "The butter at the end provides the signature French-influenced Vietnamese glossy finish."
+    ],
+    "traditional_techniques": [
+      "Wok sear",
+      "Shaking (Lúc Lắc)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 544.5,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 2.18,
+      "protein_g": 43.33,
+      "saturated_fat_g": 11.63,
+      "sodium_mg": 1086,
+      "total_carbs_g": 13.88,
+      "total_fat_g": 34.68,
+      "total_sugars_g": 6.48,
+      "trans_fat_g": 0.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.12,
+      "calories": 244.72,
+      "cholesterol_mg": 50.79,
+      "dietary_fiber_g": 0.98,
+      "protein_g": 19.47,
+      "saturated_fat_g": 5.22,
+      "sodium_mg": 488.09,
+      "total_carbs_g": 6.24,
+      "total_fat_g": 15.58,
+      "total_sugars_g": 2.91,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.7,
+      "dietary_fiber": 7.8,
+      "protein": 86.7,
+      "saturated_fat": 58.2,
+      "sodium": 47.2,
+      "total_carbs": 5,
+      "total_fat": 44.5
+    },
+    "serving_size_g": 222.5,
+    "total_recipe_weight_g": 890
+  },
+  {
+    "recipe_name": "Vietnamese Shaking Beef (Bò Lúc Lắc)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_090838_4d779d4c.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2026-05-06T09:08:39.450881000Z",
+    "selected_ingredients": [
+      "beef",
+      "black pepper",
+      "onion",
+      "garlic",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Shaking Beef served on a clean white porcelain plate. The focal point features 2.5cm cubes of seared beef with a dark, caramelized crust. These are tossed with charred 2cm red onion wedges and vibrant orange 5cm carrot batons. The beef and vegetables are piled naturally in the center, showing a glossy glaze. To the side, a fresh bed of green watercress and thick tomato slices provides color contrast. A small ceramic ramekin containing a clear lime and cracked black pepper dipping sauce sits on the plate. The setting is a modern bistro with a light wood table, a pair of dark wood chopsticks, and a side bowl of steamed jasmine rice. Natural side-lighting highlights the textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnam",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed jasmine rice or tomato rice",
+      "Provide a Muối Tiêu Chanh (salt, pepper, and lime) dipping sauce",
+      "Eat with chopsticks and a flat-bottomed soup spoon"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or ribeye",
+        "quantity": "600g"
+      },
+      {
+        "name": "Black pepper, coarsely cracked",
+        "quantity": "10g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Neutral oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Watercress",
+        "quantity": "1 bunch"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 2.5cm cubes.",
+      "Mince garlic finely.",
+      "Mix beef with garlic, 15ml soy sauce, oyster sauce, sugar, and 5g black pepper.",
+      "Marinate beef for 30 minutes at room temperature.",
+      "Peel carrots and cut into 5cm batons.",
+      "Cut red onion into 2cm wedges.",
+      "Whisk lime juice, fish sauce, and remaining black pepper in a small bowl for dipping.",
+      "Heat oil in a wok over high heat until smoking.",
+      "Add beef in a single layer. Sear for 2 minutes without moving.",
+      "Add onion wedges and carrot batons to the wok.",
+      "Shake the wok vigorously for 3 minutes to sear all sides.",
+      "Add butter and toss for 30 seconds to glaze.",
+      "Place watercress on a plate. Top with the hot beef and vegetables."
+    ],
+    "notes": [
+      "Ensure the wok is extremely hot before adding meat to achieve a proper sear.",
+      "Do not overcrowd the pan; cook in batches if necessary to maintain heat.",
+      "The butter at the end provides the signature French-influenced Vietnamese glossy finish."
+    ],
+    "traditional_techniques": [
+      "Wok sear",
+      "Shaking (Lúc Lắc)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 544.5,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 2.18,
+      "protein_g": 43.33,
+      "saturated_fat_g": 11.63,
+      "sodium_mg": 1086,
+      "total_carbs_g": 13.88,
+      "total_fat_g": 34.68,
+      "total_sugars_g": 6.48,
+      "trans_fat_g": 0.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.12,
+      "calories": 244.72,
+      "cholesterol_mg": 50.79,
+      "dietary_fiber_g": 0.98,
+      "protein_g": 19.47,
+      "saturated_fat_g": 5.22,
+      "sodium_mg": 488.09,
+      "total_carbs_g": 6.24,
+      "total_fat_g": 15.58,
+      "total_sugars_g": 2.91,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.7,
+      "dietary_fiber": 7.8,
+      "protein": 86.7,
+      "saturated_fat": 58.2,
+      "sodium": 47.2,
+      "total_carbs": 5,
+      "total_fat": 44.5
+    },
+    "serving_size_g": 222.5,
+    "total_recipe_weight_g": 890
+  },
+  {
+    "recipe_name": "Argentine Pastel de Papa",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_090316_44cb23be.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-06T09:03:17.252972000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "potato",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented as a single, hearty square portion served on a clean white porcelain plate. The top layer features a deeply golden-brown, bubbly crust of melted Reggianito cheese with visible toasted peaks. Beneath the cheese, a thick layer of smooth, creamy mashed potatoes provides a stark white contrast. The bottom layer consists of a rich, dark red beef ragu containing 2cm hand-cut beef cubes, visible chunks of diced tomato, and sliced green olives. The portion is neatly stacked, revealing distinct horizontal layers. The setting is a modern bistro with a dark wood table. A simple linen napkin and a stainless steel fork sit beside the plate. Natural, soft side-lighting highlights textures of the crust and succulent meat.",
+    "number_of_servings": 4,
+    "cuisine_type": "South American",
+    "cultural_origin": "Argentina",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad of lettuce and tomato",
+      "Pair with an Argentine Malbec red wine",
+      "Offer crusty bread to soak up the sauce"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g (cut into 2cm cubes)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1kg (peeled)"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Reggianito cheese",
+        "quantity": "150g (grated)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves (minced)"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Green olives",
+        "quantity": "50g (pitted)"
+      },
+      {
+        "name": "Hard-boiled eggs",
+        "quantity": "2 (sliced)"
+      }
+    ],
+    "instructions": [
+      "Peel 1kg potatoes.",
+      "Boil in salted water until soft.",
+      "Drain well.",
+      "Mash with 50g butter and 60ml milk.",
+      "Season with salt.",
+      "Heat 30ml oil in a large pan.",
+      "Sear 800g beef cubes until brown.",
+      "Remove beef from pan.",
+      "Sauté 1 diced onion and 2 minced garlic cloves.",
+      "Return beef to pan.",
+      "Add 1 tsp cumin and 1 tsp paprika.",
+      "Add 400g crushed tomatoes and 100ml beef stock.",
+      "Simmer 30 minutes until beef is tender.",
+      "Stir in 50g pitted olives and 2 sliced hard-boiled eggs.",
+      "Place beef mixture in a baking dish.",
+      "Spread potato mash on top.",
+      "Sprinkle 150g grated cheese.",
+      "Bake at 200°C for 20 minutes until golden."
+    ],
+    "notes": [
+      "Use floury potatoes like Russet for a smoother mash",
+      "Do not over-mix the beef once eggs are added to keep slices intact"
+    ],
+    "traditional_techniques": [
+      "gratinating",
+      "slow-simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1032,
+      "cholesterol_mg": 357,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 61.9,
+      "saturated_fat_g": 29.5,
+      "sodium_mg": 1210,
+      "total_carbs_g": 55.5,
+      "total_fat_g": 62.5,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165.1,
+      "cholesterol_mg": 57.1,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.9,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 193.6,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 10,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 119,
+      "dietary_fiber": 26.8,
+      "protein": 123.8,
+      "saturated_fat": 147.5,
+      "sodium": 52.6,
+      "total_carbs": 20.2,
+      "total_fat": 80.1
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  },
+  {
+    "recipe_name": "Taiwanese Braised Beef Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_075427_89f3e138.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-06T07:54:28.073716000Z",
+    "selected_ingredients": [
+      "beef",
+      "noodle"
+    ],
+    "complexity": "standard",
+    "special_requests": "Chinese beef noodle soup, noodle shop style... cuisine",
+    "visual_description": "A deep blue-and-white porcelain bowl filled with a rich, dark amber beef broth. Large 4cm cubes of braised beef shank are piled in the center, showing visible layers of tender meat and translucent gelatinous tendon. Thick, pale wheat noodles emerge from the liquid on one side. Two vibrant green bok choy halves are placed neatly against the rim. The surface of the soup features small droplets of red chili oil and a scatter of finely sliced bright green scallions. The dish sits on a dark wood table with a pair of bamboo chopsticks and a flat-bottomed ceramic soup spoon. A small side dish of chopped pickled mustard greens provides a textural contrast.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Taiwanese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of chopped pickled mustard greens (Suan Cai)",
+      "Provide extra chili oil for individual heat adjustment",
+      "Pair with a cold side dish of marinated tofu or seaweed",
+      "Use a deep ceramic bowl to maintain broth temperature"
+    ],
+    "hero_ingredient": "Beef Shank",
+    "ingredients": [
+      {
+        "name": "Beef shank",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Thick wheat noodles",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6 units"
+      },
+      {
+        "name": "Scallions",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Spicy bean paste (Doubanjiang)",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Shaoxing rice wine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Rock sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Bok choy",
+        "quantity": "4 heads"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 L"
+      }
+    ],
+    "instructions": [
+      "Cut beef shank into 4cm chunks.",
+      "Blanch beef in boiling water for 5 minutes.",
+      "Drain and rinse beef under cold water.",
+      "Heat oil in a heavy pot over medium heat.",
+      "Sauté sliced ginger, smashed garlic, and scallion whites until fragrant.",
+      "Add spicy bean paste and stir for 1 minute.",
+      "Add beef chunks and sear for 3 minutes.",
+      "Pour in soy sauces and rice wine.",
+      "Add water, rock sugar, star anise, and cinnamon.",
+      "Simmer on low heat for 2.5 hours until beef is tender.",
+      "Boil noodles in a separate pot until al dente.",
+      "Blanch bok choy in noodle water for 1 minute.",
+      "Place noodles in bowls and top with beef chunks and broth.",
+      "Garnish with sliced scallion greens."
+    ],
+    "notes": [
+      "Do not skip the blanching step to ensure a clear, clean broth",
+      "Rock sugar provides a more mellow sweetness and better shine than granulated sugar",
+      "Beef shank is preferred for its high collagen content which thickens the soup"
+    ],
+    "traditional_techniques": [
+      "Hong shao (Red braising)",
+      "Blanching",
+      "Tempering aromatics"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.5,
+      "calories": 1050,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 4,
+      "protein_g": 77.8,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 3165,
+      "total_carbs_g": 111,
+      "total_fat_g": 29.5,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 127.3,
+      "cholesterol_mg": 24.2,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.4,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 383.6,
+      "total_carbs_g": 13.5,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66.7,
+      "dietary_fiber": 16,
+      "protein": 155.6,
+      "saturated_fat": 56.5,
+      "sodium": 137.6,
+      "total_carbs": 37,
+      "total_fat": 45.4
+    },
+    "serving_size_g": 825,
+    "total_recipe_weight_g": 3300
+  }
+]

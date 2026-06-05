@@ -1,0 +1,637 @@
+[
+  {
+    "recipe_name": "Spiced Coffee-Tomato Chicken and Shrimp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_coffee-tomato_chicken_and_shrimp_20250903_044734_80ae3b79.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T04:47:35.347734000Z",
+    "selected_ingredients": [
+      "chicken",
+      "shrimp",
+      "coffee",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, hearty portion of Spiced Coffee-Tomato Chicken and Shrimp is presented on a round, rustic off-white ceramic plate. Seared golden-brown chicken, cut into thick chunks, is nestled alongside plump, pink whole shrimp. Both are generously coated in a deep, rich red-brown coffee-tomato sauce, which has a slightly textured, rustic consistency from diced tomatoes. The dish is casually garnished with a sprinkle of fresh, bright green chopped parsley. The components are naturally arranged, filling the plate without overcrowding, showcasing the robust colors and textures. The plate sits on a well-worn wooden dining table. A simple metal fork and knife rest on a linen napkin. The setting evokes a cozy, home-cooked meal under warm kitchen lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the sauce.",
+      "Serve over steamed rice or creamy polenta for a more substantial meal."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g, cut into 3 cm thick chunks"
+      },
+      {
+        "name": "Large shrimp, peeled and deveined",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Diced tomatoes, canned",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Strong brewed coffee",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Season with salt and pepper.",
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat. Sear chicken until golden brown on all sides. Do not fully cook. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in diced tomatoes, brewed coffee, chicken broth, smoked paprika, dried oregano, and brown sugar. Bring to a simmer.",
+      "Return seared chicken to the skillet. Ensure chicken is submerged in sauce. Cover and simmer for 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Add shrimp to the skillet. Cook for 3-5 minutes, stirring occasionally, until shrimp turn pink and opaque.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "The coffee adds depth and complexity to the tomato sauce without imparting a strong coffee flavor.",
+      "For a spicier kick, add a pinch of red pepper flakes with the garlic."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.2,
+      "calories": 455,
+      "cholesterol_mg": 325,
+      "dietary_fiber_g": 4,
+      "protein_g": 52.2,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 1176,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 20.9,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 77,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.8,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 199,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 108,
+      "dietary_fiber": 14,
+      "protein": 104,
+      "saturated_fat": 25,
+      "sodium": 51,
+      "total_carbs": 6,
+      "total_fat": 27
+    },
+    "serving_size_g": 591.3,
+    "total_recipe_weight_g": 2365.1
+  },
+  {
+    "recipe_name": "Chinese Braised Chicken and Potato with Shrimp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chinese_braised_chicken_and_potato_with_shrimp_20250903_044540_eef2390b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T04:45:40.382230000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "coriander",
+      "shrimp"
+    ],
+    "complexity": "simple",
+    "special_requests": "chinese cuisine",
+    "visual_description": "A generous individual portion of Chinese Braised Chicken and Potato with Shrimp is presented in a simple, deep ceramic bowl with a wide rim. Irregular 4-5cm chicken chunks, large 5cm potato wedges, and bright pink, curled shrimp are nestled together, coated in a glossy, dark amber braising sauce. A vibrant sprinkle of fresh green chopped coriander leaves and thinly sliced green spring onion tops provides a fresh contrast on top. The bowl sits on a well-used wooden dining table. A pair of dark wooden chopsticks rests beside the bowl. A small, white ceramic rice bowl filled with fluffy white steamed rice is placed nearby. A simple, folded cloth napkin and a small side dish of pickled daikon complete the homely, authentic setting. Warm, soft light from above illuminates the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve family style with individual bowls of steamed white rice.",
+      "Offer a side of pickled vegetables or a light stir-fried green vegetable."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in chicken thighs",
+        "quantity": "800g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Shrimp, peeled and deveined",
+        "quantity": "250g"
+      },
+      {
+        "name": "Coriander, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh ginger, sliced",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic, smashed",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4-5 cm chunks. Season lightly with salt.",
+      "Peel potatoes. Cut into large 5 cm chunks.",
+      "Heat vegetable oil in a wok or large pot over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken from pot.",
+      "Add sliced ginger, smashed garlic, and white parts of spring onions to the pot. Sauté until fragrant, about 1 minute.",
+      "Return chicken to the pot. Add potato chunks.",
+      "Pour in light soy sauce, dark soy sauce, Shaoxing wine, sugar, and water or chicken stock. Bring to a boil.",
+      "Reduce heat to low. Cover the pot and simmer for 20-25 minutes, or until chicken and potatoes are tender. Ensure chicken internal temperature reaches 75°C.",
+      "Stir in shrimp. Cook for 2-3 minutes until shrimp turn pink and opaque.",
+      "Mix cornstarch with 30ml water to create a slurry. Stir the slurry into the pot. Cook until the sauce thickens.",
+      "Garnish with fresh chopped coriander and thinly sliced green parts of spring onions. Serve hot."
+    ],
+    "notes": [
+      "Adjust sugar and soy sauce quantities to balance sweetness and saltiness to your preference.",
+      "Bone-in chicken enhances the depth of flavor in the braising liquid."
+    ],
+    "traditional_techniques": [
+      "Braising (红烧 - hongshao style)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.7,
+      "calories": 692,
+      "cholesterol_mg": 289,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 55.8,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 1412,
+      "total_carbs_g": 34.1,
+      "total_fat_g": 37.6,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 138,
+      "cholesterol_mg": 58,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.2,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 282,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 96.3,
+      "dietary_fiber": 12.9,
+      "protein": 111.6,
+      "saturated_fat": 46,
+      "sodium": 61.4,
+      "total_carbs": 12.4,
+      "total_fat": 48.2
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Frango com Molho de Vinho do Porto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_frango_com_molho_de_vinho_do_porto_20250903_040540_ac5fcb82.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T04:05:40.393606000Z",
+    "selected_ingredients": [
+      "port wine",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "portuguese cuisine",
+    "visual_description": "A single, perfectly seared boneless chicken thigh, golden-brown and glistening, sits centrally on a clean white porcelain dinner plate. Its surface shows a rich, caramelized crust. Surrounding the chicken are several golden-roasted potato wedges, their skins crisp and interiors fluffy. A generous pour of a dark, glossy port wine sauce coats the chicken and pools around the potatoes. The dish is garnished with a scattering of vibrant, coarsely chopped fresh parsley. The setting is a modern bistro: a simple wooden table, a white cotton napkin folded beside the plate, and standard silver flatware. A small, rustic ceramic bowl of briny olives sits in the background. Natural, even light illuminates the scene, highlighting the dish's rich colors and textures against a subtly blurred restaurant backdrop.",
+    "number_of_servings": 4,
+    "cuisine_type": "Portuguese",
+    "cultural_origin": "Portuguese",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Portuguese bread (pão) to soak up the sauce.",
+      "Pair with a glass of robust Portuguese red wine.",
+      "Offer a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g total)"
+      },
+      {
+        "name": "Ruby Port wine",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g (for garnish)"
+      },
+      {
+        "name": "Small potatoes, cut into wedges",
+        "quantity": "500 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss potato wedges with 15 ml olive oil, salt, and pepper. Roast for 30-35 minutes until golden and tender.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large, heavy-bottomed pan over medium-high heat.",
+      "Sear chicken thighs for 4-5 minutes per side until deeply golden brown. Internal temperature must reach 75°C. Remove chicken from pan and set aside.",
+      "Add chopped onion to the same pan. Sauté for 5 minutes until softened. Add minced garlic and cook for 1 minute more until fragrant.",
+      "Stir in flour and cook for 1 minute, stirring constantly.",
+      "Pour in port wine. Scrape up any browned bits from the bottom of the pan. Bring to a simmer and cook for 2 minutes, allowing alcohol to evaporate.",
+      "Stir in chicken broth and bay leaf. Bring to a gentle simmer. Cook for 5-7 minutes, until the sauce thickens slightly.",
+      "Return seared chicken thighs to the pan with the sauce. Ensure chicken is fully cooked (75°C internal temperature). Simmer for 5 minutes, allowing chicken to absorb flavors. Discard bay leaf.",
+      "Taste and adjust seasoning as needed.",
+      "Serve chicken with port wine sauce and roasted potato wedges. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Use a good quality Ruby Port for the best flavor in the sauce.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Do not overcrowd the pan when searing chicken to achieve a good crust."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Deglazing"
+    ]
+  },
+  {
+    "recipe_name": "Zitronen-Muschel Essenz mit Brioche-Krokant",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zitronen-muschel_essenz_mit_brioche-krokant_20250903_040227_259814b2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T04:02:27.995208000Z",
+    "selected_ingredients": [
+      {
+        "name": "clam"
+      },
+      {
+        "name": "bread"
+      },
+      {
+        "name": "lemon"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "The 'Zitronen-Muschel Essenz mit Brioche-Krokant' is presented as a singular, elegant portion on a round, matte white designer plate, set against a pristine white Carrara marble surface with dramatic, focused lighting creating soft shadows. A perfectly formed, smooth pale yellow quenelle of Lemon Crémeux rests slightly off-center, its surface gleaming. Around it, precisely cut, translucent cubes of Sweetened Clam Gel, approximately 5mm, are artfully arranged, catching the light with their subtle shimmer. A delicate scattering of golden-brown Brioche Croquant crumbs provides a crisp textural contrast. A single, vibrant green micro lemon balm leaf is meticulously placed, offering a final aromatic and visual flourish. The composition emphasizes abundant negative space, reflecting a sophisticated minimalist aesthetic, complemented by a precisely folded white linen napkin and subtle, elegant flatware.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Served with a small, chilled glass of a dry, crisp German Riesling or a sparkling Sekt.",
+      "Presented as a final, light course after a refined meal."
+    ],
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "Fresh clams",
+        "quantity": "250g"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "1g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Vanilla bean, scraped",
+        "quantity": "1/4"
+      },
+      {
+        "name": "Lemon, zest",
+        "quantity": "1/4"
+      },
+      {
+        "name": "Lemon, juice",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Large egg yolks",
+        "quantity": "2"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "75g"
+      },
+      {
+        "name": "Unsalted butter, cubed, chilled",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "Zest of 1"
+      },
+      {
+        "name": "Brioche bread",
+        "quantity": "2 slices"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "15g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Micro lemon balm",
+        "quantity": "4 small sprigs"
+      }
+    ],
+    "instructions": [
+      "Prepare Sweetened Clam Gel: Place cleaned clams in a pot with 200ml water. Cover. Steam over high heat until clams open (5-7 minutes).",
+      "Remove clams. Strain liquid through a fine-mesh sieve, then a coffee filter, for clarity. You should have about 150ml clear clam broth. Discard clam meat.",
+      "In a small saucepan, combine 150ml clam broth, 50g sugar, pinch sea salt, and vanilla bean seeds. Bring to a simmer, stirring until sugar dissolves.",
+      "Whisk in 1g agar-agar powder. Simmer gently for 2 minutes, whisking constantly, until fully dissolved.",
+      "Remove from heat. Stir in lemon zest and lemon juice.",
+      "Pour mixture into a shallow, flat container to a thickness of about 5mm. Chill for at least 2 hours until firm.",
+      "Once firm, carefully cut the gel into small, precise cubes (5mm x 5mm) or elegant, irregular shards. Keep chilled.",
+      "Prepare Lemon Crémeux: In a heatproof bowl, whisk together 100ml lemon juice, egg yolks, 75g sugar, and pinch salt.",
+      "Set bowl over a saucepan of simmering water (bain-marie). Whisk constantly until mixture thickens (coats spoon) and reaches 80-82°C. Do not boil.",
+      "Remove from heat. Immediately add chilled butter cubes, one at a time, whisking vigorously until fully incorporated and crémeux is smooth and glossy.",
+      "Strain crémeux through a fine-mesh sieve. Cover surface with plastic wrap. Chill for at least 3 hours, preferably overnight, until firm.",
+      "Prepare Brioche Croquant: Cut brioche slices into small, irregular crumbs or tear into tiny pieces.",
+      "In a small pan, melt 15g butter over medium heat. Add brioche crumbs and 10g sugar. Cook, stirring frequently, until golden brown and crispy.",
+      "Spread croquant on parchment paper to cool completely.",
+      "Assembly (just before serving): Place a small, elegant spoonful or quenelle of chilled Lemon Crémeux slightly off-center on each serving plate.",
+      "Arrange a few precise cubes or shards of the Sweetened Clam Gel around the crémeux, creating an artistic, minimalist composition.",
+      "Sprinkle a small amount of Brioche Croquant sparingly over and around the elements for texture.",
+      "Garnish each plate with a single, tiny sprig of micro lemon balm. Serve immediately."
+    ],
+    "notes": [
+      "The key to this dish is the absolute clarity and delicate sweetness of the clam gel, ensuring it complements rather than overwhelms the lemon.",
+      "Precision in cutting the gel and plating is crucial for the minimalist, fine-dining aesthetic."
+    ]
+  },
+  {
+    "recipe_name": "Lebkuchen Spiced Crumble, Vanilla Bean Crème Anglaise, Poached Apple, Elderflower Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lebkuchen_spiced_crumble%2C_vanilla_bean_cr%C3%A8me_anglaise%2C_poached_apple%2C_elderflower_cream_20250903_040108_0865c4f6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T04:01:09.793278000Z",
+    "selected_ingredients": [
+      {
+        "name": "sausage"
+      },
+      {
+        "name": "egg"
+      },
+      {
+        "name": "cream"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A sophisticated, minimalist dessert presented on an expensive bone china plate with a subtle, modern pattern. The plate showcases a single individual portion. A creamy, pale yellow pool of silken Vanilla Bean Crème Anglaise forms the base, flowing organically across the plate. Within this elegant pool, glistening, precisely cut small cubes and wedges of pale green and yellow poached apple are artfully arranged in a natural, flowing composition. Scattered around and partially over the apple are golden-brown Lebkuchen spiced crumbles, providing textural contrast and a warm, inviting hue. A delicate, airy quenelle of off-white Elderflower Cream sits adjacent to the main elements, adding a soft, cloud-like form. A single, vibrant green mint leaf or a few tiny white elderflower blossoms are placed with precision as a garnish, offering a pop of color and freshness. Abundant negative space surrounds the components, emphasizing the architectural precision and beauty of each element. The setting features a premium white Carrara marble surface, a pristine white linen napkin folded into a precise triangle, and dramatic professional lighting casting soft shadows, with an ultra-minimalist background to highlight the dish's elegance and cultural authenticity.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Serve chilled, ideally with a small glass of German dessert wine such as a Riesling Beerenauslese or Eiswein.",
+      "Offer a small, strong espresso as a digestif."
+    ],
+    "hero_ingredient": "Vanilla Bean Crème Anglaise",
+    "ingredients": [
+      {
+        "name": "Unsalted butter, cold, diced",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "25 g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "25 g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Ground cloves",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "White pepper, freshly ground",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "8"
+      },
+      {
+        "name": "Caster sugar (for custard)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Double cream (for custard)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Vanilla bean, split and scraped",
+        "quantity": "1"
+      },
+      {
+        "name": "Firm apples (e.g., Braeburn, Gala)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Water",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Caster sugar (for poaching syrup)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "1"
+      },
+      {
+        "name": "Double cream (for elderflower cream)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Elderflower cordial or liqueur",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh mint leaves or elderflower blossoms (for garnish)",
+        "quantity": "Small handful"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. For the Lebkuchen Spiced Crumble: Combine plain flour, caster sugar, brown sugar, almond flour, cinnamon, cloves, nutmeg, and white pepper in a bowl. Add diced cold butter. Rub with fingertips until a coarse, sandy crumble forms. Spread on a baking tray. Bake for 15-20 minutes, stirring halfway, until golden brown and crisp. Cool completely.",
+      "For the Vanilla Bean Crème Anglaise: Whisk egg yolks and 100g caster sugar in a bowl until pale. In a saucepan, heat milk, 250ml double cream, and vanilla bean (pod and seeds) until just simmering. Remove vanilla pod. Gradually pour hot milk mixture into egg yolk mixture, whisking constantly. Return mixture to saucepan. Cook over low heat, stirring constantly with a spatula, until the custard coats the back of the spatula (82-85°C). Do not boil. Strain through a fine-mesh sieve into a clean bowl. Cool over an ice bath, stirring occasionally. Chill thoroughly.",
+      "For the Poached Apple: Peel, core, and cut apples into small, precise cubes and wedges. In a saucepan, combine 300ml water, 150g caster sugar, lemon juice, cinnamon stick, and star anise. Bring to a simmer, stirring until sugar dissolves. Add apple pieces. Poach gently for 5-7 minutes until tender but still holding shape. Remove from heat. Let apples cool in the syrup. Drain before plating.",
+      "For the Elderflower Cream: Whip 200ml double cream until soft peaks form. Gently fold in elderflower cordial or liqueur. Chill until ready to serve.",
+      "To assemble: Spoon a generous, free-flowing pool of chilled Vanilla Bean Crème Anglaise onto the center of each plate. Artfully arrange a few precise cubes and wedges of poached apple within the crème. Scatter a small amount of Lebkuchen Spiced Crumble around and over the apple for texture. Place a delicate quenelle of Elderflower Cream beside the apple and crumble. Garnish with a small, vibrant mint leaf or a few elderflower blossoms."
+    ],
+    "notes": [
+      "The 'sausage' element is reinterpreted as a spiced crumble, drawing on Lebkuchen spices to evoke traditional German flavors in a sweet context, offering a textural and aromatic echo rather than a literal meat component.",
+      "Achieve a smooth, velvety crème anglaise by cooking it gently and straining meticulously.",
+      "Ensure apples are poached until tender but retain their shape, providing a pleasant bite against the smooth custard and crisp crumble."
+    ]
+  }
+]

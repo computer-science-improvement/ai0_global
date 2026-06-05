@@ -1,0 +1,664 @@
+[
+  {
+    "recipe_name": "Spicy Chicken Arrabbiata Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken_arrabbiata_pasta_20250624_105139_acc84dbc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:51:40.097333000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of Spicy Chicken Arrabbiata Pasta is presented centrally on a clean, round white porcelain dinner plate. Al dente penne pasta, coated in a vibrant, glossy, deep red tomato sauce, is piled neatly. Seared chicken chunks, golden-brown and tender, are interspersed throughout the pasta, showcasing their irregular, rustic shapes. The sauce has visible flecks of red chili and thinly sliced garlic. A generous sprinkle of bright green, finely chopped fresh parsley provides a striking color contrast and freshness. The dish is framed by a moderate amount of negative space on the plate. The setting features a simple wooden table surface with a subtle grain. A standard silver fork and spoon are placed to the right of the plate, and a folded cotton napkin rests to the left. Natural, even lighting illuminates the dish, creating subtle shadows and highlighting the textures. The background is softly blurred, hinting at a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Offer grated Pecorino Romano or Parmesan cheese on the side.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200ml"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 3cm thick chunks. Season with salt and pepper.",
+      "Heat 30ml olive oil in a large pan over medium-high heat. Sear chicken chunks until golden brown on all sides and cooked through (internal temperature 75°C). Remove chicken from pan. Set aside.",
+      "Add remaining 30ml olive oil to the same pan. Add finely diced red onion. Cook until softened, about 5 minutes.",
+      "Add thinly sliced garlic and red chili flakes. Cook for 1 minute until fragrant. Do not burn garlic.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a simmer. Reduce heat to low. Cook for 15-20 minutes, stirring occasionally, until sauce thickens slightly.",
+      "While sauce simmers, cook penne pasta in a large pot of salted boiling water according to package directions until al dente. Drain pasta, reserving 120ml pasta water.",
+      "Return cooked chicken to the sauce. Add drained pasta and half of the chopped fresh parsley to the pan.",
+      "Toss pasta with sauce and chicken to combine. If sauce is too thick, add reserved pasta water, 30ml at a time, until desired consistency is reached.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately. Garnish with remaining fresh parsley and grated Parmesan cheese."
+    ],
+    "notes": [
+      "Adjust the amount of red chili flakes to suit your preferred spice level. For less heat, remove seeds from fresh chilies."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 845,
+      "cholesterol_mg": 139,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 67.1,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 393,
+      "total_carbs_g": 84.9,
+      "total_fat_g": 25.3,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.6,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 68,
+      "total_carbs_g": 14.7,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.2,
+      "dietary_fiber": 22.6,
+      "protein": 134.2,
+      "saturated_fat": 30.4,
+      "sodium": 17.1,
+      "total_carbs": 30.9,
+      "total_fat": 32.4
+    },
+    "serving_size_g": 577.5,
+    "total_recipe_weight_g": 2310
+  },
+  {
+    "recipe_name": "Carrot and Apple Tarte Tatin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_carrot_and_apple_tarte_tatin_20250624_105103_8132d3f4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:51:03.913120000Z",
+    "selected_ingredients": [
+      "carrot",
+      "apple"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of golden-brown Carrot and Apple Tarte Tatin rests on a clean white porcelain dinner plate. The tarte is round, featuring deeply caramelized apple wedges and carrot batons arranged in a spiral pattern, showcasing their rich, glossy texture. The puff pastry crust, flaky and golden, forms a crisp base. A small, elegant dollop of bright white crème fraîche is placed beside the tarte, offering a visual contrast. The plate has moderate negative space, enhancing the tarte's prominence. The setting is a modern bistro, with a simple wooden table surface and a folded cotton napkin. Natural, even lighting highlights the dessert's warmth and inviting colors. The presentation is professional yet approachable, reflecting classic French simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve warm with a dollop of crème fraîche.",
+      "Can also be served with vanilla bean ice cream."
+    ],
+    "hero_ingredient": "Caramelized Apples and Carrots",
+    "ingredients": [
+      {
+        "name": "Puff pastry",
+        "quantity": "1 sheet (approx. 250g)"
+      },
+      {
+        "name": "Firm, tart apples (e.g., Granny Smith)",
+        "quantity": "3-4 medium (approx. 500g)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2-3 medium (approx. 200g)"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "80g"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2g"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Crème fraîche or vanilla bean ice cream (for serving)",
+        "quantity": "100g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (fan assisted).",
+      "Peel, core, and cut apples into 8 thick wedges each.",
+      "Peel carrots. Cut into 5cm long, 1cm thick batons.",
+      "In a 20cm oven-safe, heavy-bottomed skillet, melt butter over medium heat.",
+      "Add sugar and pinch of salt. Cook, stirring occasionally, until a golden amber caramel forms. Do not burn.",
+      "Remove skillet from heat. Carefully arrange apple wedges and carrot batons in a concentric pattern in the caramel, packing them tightly.",
+      "Sprinkle with ground cinnamon and lemon juice.",
+      "Unroll puff pastry. Cut a circle slightly larger than the skillet diameter.",
+      "Place pastry over fruit, gently tucking the edges down around the fruit inside the skillet.",
+      "Cut a small vent in the center of the pastry to allow steam to escape.",
+      "Bake for 30-35 minutes, or until the pastry is golden brown and puffed.",
+      "Remove from oven. Let the tarte cool in the skillet for 5 minutes.",
+      "Place a large serving plate over the skillet. Carefully and confidently invert the tarte onto the plate.",
+      "Serve warm with a dollop of crème fraîche or a scoop of vanilla bean ice cream."
+    ],
+    "notes": [
+      "Ensure the caramel reaches a deep amber color for best flavor, but be careful not to burn it.",
+      "The apples and carrots should be packed tightly in the skillet to create a cohesive tarte."
+    ],
+    "traditional_techniques": [
+      "Caramelization",
+      "Puff pastry handling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.5,
+      "calories": 720,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 4.8,
+      "saturated_fat_g": 22.1,
+      "sodium_mg": 272,
+      "total_carbs_g": 85.2,
+      "total_fat_g": 40.3,
+      "total_sugars_g": 53,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 12.5,
+      "calories": 240,
+      "cholesterol_mg": 14,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 1.6,
+      "saturated_fat_g": 7.4,
+      "sodium_mg": 91,
+      "total_carbs_g": 28.5,
+      "total_fat_g": 13.5,
+      "total_sugars_g": 17.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 22,
+      "dietary_fiber": 19,
+      "protein": 10,
+      "saturated_fat": 111,
+      "sodium": 12,
+      "total_carbs": 31,
+      "total_fat": 52
+    },
+    "serving_size_g": 299.5,
+    "total_recipe_weight_g": 1198
+  },
+  {
+    "recipe_name": "Amaranth-Crusted Chicken with Aji Amarillo Sauce and Andean Quinoa Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_amaranth-crusted_chicken_with_aji_amarillo_sauce_and_andean_quinoa_salad_20250624_105102_7f4a66de.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:51:03.129777000Z",
+    "selected_ingredients": [
+      "amaranth flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared amaranth-crusted chicken breast is the focal point, cut into thick diagonal slices revealing its tender interior and golden-brown, crispy exterior. The chicken is arranged neatly on a clean white porcelain plate, with a rich, vibrant yellow aji amarillo sauce generously drizzled over and beside it. Adjacent is a vibrant mound of Andean quinoa salad, featuring fluffy quinoa mixed with small diced red bell pepper, green cucumber, and halved red cherry tomatoes, brightened by fresh cilantro. The plating is professional and balanced, with moderate negative space. The dish rests on a simple wooden table surface with a cotton napkin beside the plate. Natural, even lighting highlights the textures and colors against a soft, casual restaurant-style background. Subtle blurred Peruvian textiles hint at cultural origin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "cultural_origin": "Peruvian",
+    "cultural_serving_suggestions": [
+      "Serve with extra aji amarillo sauce on the side for dipping.",
+      "Can be accompanied by a small portion of simple white rice or roasted potatoes.",
+      "Offer a small side of rocoto chili paste for those desiring more heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Amaranth flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Plain wheat flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "60g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 medium, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Evaporated milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Queso fresco or feta cheese",
+        "quantity": "50g, crumbled"
+      },
+      {
+        "name": "Cooked quinoa",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1/2, diced small"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "150g, halved or quartered"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1/2, diced small"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, juiced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and pepper.",
+      "Set up a dredging station: one plate with plain wheat flour, one shallow bowl with beaten eggs, one plate with amaranth flour.",
+      "Dredge each chicken breast first in plain flour, shaking off excess. Dip in egg, letting excess drip off. Coat thoroughly with amaranth flour, pressing to adhere.",
+      "Heat vegetable oil in a large skillet over medium-high heat.",
+      "Carefully place chicken breasts in hot oil. Do not overcrowd. Pan-fry for 5-7 minutes per side, until golden brown and cooked through (internal temperature 75°C).",
+      "Remove chicken from skillet. Place on a wire rack to drain excess oil. Keep warm.",
+      "For Aji Amarillo Sauce: In a small saucepan, sauté diced red onion in a teaspoon of oil until softened. Add minced garlic. Cook for 1 minute.",
+      "Stir in aji amarillo paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in evaporated milk. Bring to a gentle simmer. Add crumbled queso fresco or feta. Stir until cheese melts and sauce thickens slightly.",
+      "Season sauce with salt to taste. Remove from heat. Keep warm.",
+      "For Quinoa Salad: In a large bowl, combine cooked quinoa, diced cucumber, halved cherry tomatoes, diced red bell pepper, and chopped cilantro.",
+      "In a small bowl, whisk together lime juice and olive oil. Season with salt and pepper.",
+      "Pour dressing over quinoa mixture. Toss gently to combine.",
+      "To serve, slice each chicken breast diagonally into 3-4 thick pieces. Arrange on individual plates.",
+      "Spoon a generous amount of Aji Amarillo sauce over and beside the chicken. Serve a portion of Andean Quinoa Salad alongside."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to 75°C (167°F) internal temperature for safety.",
+      "Aji amarillo paste is available in Latin American markets or online. Its unique fruity heat is essential to Peruvian cuisine."
+    ],
+    "traditional_techniques": [
+      "Apanado (breading/crusting)",
+      "Aderezo (soffritto base for sauces)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 871,
+      "cholesterol_mg": 264.8,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 73.6,
+      "saturated_fat_g": 9,
+      "sodium_mg": 695,
+      "total_carbs_g": 58.5,
+      "total_fat_g": 35,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161.8,
+      "cholesterol_mg": 49.2,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 13.7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 129.1,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 88,
+      "dietary_fiber": 25,
+      "protein": 147,
+      "saturated_fat": 45,
+      "sodium": 30,
+      "total_carbs": 21,
+      "total_fat": 45
+    },
+    "serving_size_g": 538.5,
+    "total_recipe_weight_g": 2154
+  },
+  {
+    "recipe_name": "Mediterranean Chicken and Brown Rice Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_chicken_and_brown_rice_skillet_20250624_105047_7d17b41b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:50:47.565004000Z",
+    "selected_ingredients": [
+      "chicken",
+      "brown rice",
+      "tomato",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Chicken and Brown Rice Skillet is presented on a clean white porcelain plate, centrally placed on a simple wooden table. One golden-brown seared chicken thigh sits atop a bed of fluffy, earthy brown rice. Scattered around the chicken are vibrant halved cherry tomatoes and dark Kalamata olives, adding pops of red and black. The dish is garnished with bright green chopped fresh parsley and creamy white crumbled feta cheese. A lemon wedge is placed beside the chicken. The textures are varied: crisp chicken skin, tender rice, juicy tomatoes. Natural, even lighting highlights the dish. A folded white cotton napkin and standard flatware rest beside the plate. A warm pita bread is subtly placed on the side, inviting cultural accompaniment. The background is clean and slightly blurred, creating a modern bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with warm pita bread for scooping.",
+      "Accompany with a simple green salad dressed with olive oil and lemon."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180 g each)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "80 g, pitted"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "60 g, crumbled"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pita bread",
+        "quantity": "4 pieces"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat 30 ml olive oil in a large, oven-safe skillet over medium-high heat.",
+      "Sear chicken thighs 4-5 minutes per side until golden brown. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add remaining 30 ml olive oil to skillet.",
+      "Add diced onion. Sauté 5 minutes until softened.",
+      "Add minced garlic and oregano. Sauté 1 minute until fragrant.",
+      "Stir in brown rice. Cook 2 minutes, stirring to coat.",
+      "Pour in chicken broth. Bring to a simmer. Return chicken thighs to skillet.",
+      "Cover skillet. Reduce heat to low. Cook 30 minutes, or until chicken internal temperature reaches 75°C (167°F) and rice is tender.",
+      "Halve cherry tomatoes. Add halved tomatoes and pitted olives to skillet.",
+      "Remove from heat. Let rest 5 minutes, covered.",
+      "Squeeze fresh lemon juice over dish. Garnish with chopped fresh parsley and crumbled feta cheese.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 842.9,
+      "cholesterol_mg": 184.4,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 59.2,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 1185,
+      "total_carbs_g": 65.9,
+      "total_fat_g": 38.6,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0.12
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.21,
+      "calories": 129.4,
+      "cholesterol_mg": 28.3,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.1,
+      "saturated_fat_g": 1.45,
+      "sodium_mg": 182,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.5,
+      "dietary_fiber": 22.5,
+      "protein": 118.4,
+      "saturated_fat": 47.1,
+      "sodium": 51.5,
+      "total_carbs": 24,
+      "total_fat": 49.5
+    },
+    "serving_size_g": 651.3,
+    "total_recipe_weight_g": 2605
+  },
+  {
+    "recipe_name": "Beetroot and Goat Cheese Salad with Candied Walnuts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beetroot_and_goat_cheese_salad_with_candied_walnuts_20250624_105044_1e3ec1e6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:50:45.405996000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented on a clean white porcelain dinner plate, showcasing a vibrant interplay of colors and textures. Roasted beetroot cubes, in varying shades of deep red and golden, are scattered among crisp emerald-green mixed salad leaves. Crumbled white goat cheese provides creamy contrast, interspersed with golden-brown candied walnuts offering a crunchy, sweet counterpoint. The components are artfully arranged, allowing for natural flow and ample negative space on the plate. A light sheen of balsamic vinaigrette glistens over the ingredients. The dish is set on a simple wooden table, accompanied by standard silver flatware and a folded cotton napkin, under natural, even lighting that highlights the freshness of the ingredients and the professional, approachable plating. The entire plate is visible, emphasizing a balanced individual portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Beetroot",
+    "ingredients": [
+      {
+        "name": "Beetroot",
+        "quantity": "500 g mixed colours"
+      },
+      {
+        "name": "Mixed Salad Greens",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Goat Cheese",
+        "quantity": "100 g crumbled"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Balsamic Vinegar",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "90 ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash beetroots. Wrap each beetroot in foil. Roast for 45-60 minutes until tender. Let cool slightly. Peel and dice beetroots into 2 cm cubes.",
+      "For candied walnuts: Heat a small pan over medium heat. Add walnuts and maple syrup. Stir constantly for 3-5 minutes until syrup caramelizes and coats walnuts. Spread walnuts on parchment paper to cool and harden.",
+      "For balsamic vinaigrette: In a small bowl, whisk together balsamic vinegar, Dijon mustard, salt, and pepper. Slowly drizzle in olive oil while whisking continuously until emulsified.",
+      "In a large bowl, combine diced beetroot and mixed salad greens. Add about half of the vinaigrette. Gently toss to coat.",
+      "Divide salad among four plates. Top each portion with crumbled goat cheese and candied walnuts. Drizzle with additional vinaigrette if desired. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.7,
+      "calories": 505,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 11.2,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 428,
+      "total_carbs_g": 25.4,
+      "total_fat_g": 41.8,
+      "total_sugars_g": 18.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.6,
+      "calories": 197,
+      "cholesterol_mg": 8.7,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 4.4,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 167,
+      "total_carbs_g": 9.9,
+      "total_fat_g": 16.3,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7,
+      "dietary_fiber": 19,
+      "protein": 22,
+      "saturated_fat": 47,
+      "sodium": 19,
+      "total_carbs": 9,
+      "total_fat": 54
+    },
+    "serving_size_g": 256,
+    "total_recipe_weight_g": 1024
+  }
+]

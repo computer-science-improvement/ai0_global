@@ -1,0 +1,653 @@
+[
+  {
+    "recipe_name": "Rigatoni with Italian Sausage and Basil Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rigatoni_with_italian_sausage_and_basil_tomato_sauce_20250624_105506_530834fa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:55:06.649018000Z",
+    "selected_ingredients": [
+      "pasta",
+      "italian sausage",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Rigatoni with Italian Sausage and Basil Tomato Sauce is presented on a clean, round white porcelain plate. The al dente rigatoni noodles are coated in a rich, rustic red tomato sauce, interspersed with golden-brown, crumbled Italian sausage chunks. Vibrant green fresh basil leaves are scattered throughout, with a few whole leaves artfully placed on top. A generous dusting of freshly grated white Parmesan cheese completes the dish. The overall color palette is warm and inviting: deep red, earthy brown, bright green, and creamy white. Textures are varied, from the firm pasta and tender sausage to the soft sauce and fresh herbs. The plate is well-proportioned, allowing for moderate negative space around the food. The setting features a simple wooden table surface, a grey cotton napkin beside the plate, and traditional silver flatware. Natural, even lighting illuminates the scene, creating a professional yet approachable bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread",
+      "Offer extra grated Parmesan cheese at the table"
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Italian sausage (casings removed)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "700g can"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "2.5ml"
+      },
+      {
+        "name": "Fresh basil, roughly chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Freshly grated Parmesan cheese",
+        "quantity": "60g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat.",
+      "Add Italian sausage, breaking it apart with a spoon. Cook until browned and cooked through, about 8-10 minutes. Remove sausage with a slotted spoon; set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic and red pepper flakes (if using). Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and broth. Bring to a simmer.",
+      "Return cooked sausage to the sauce. Stir well. Reduce heat to low, cover, and simmer for 20 minutes.",
+      "While sauce simmers, cook rigatoni according to package directions in salted boiling water until al dente. Reserve 120ml pasta water.",
+      "Drain pasta. Add pasta to the sauce. Add half of the chopped basil and half of the grated Parmesan.",
+      "Toss to combine. Add reserved pasta water as needed to reach desired consistency.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately. Garnish with remaining fresh basil leaves and grated Parmesan."
+    ],
+    "traditional_techniques": [
+      "Sautéing aromatics",
+      "Simmering sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 835,
+      "cholesterol_mg": 83.5,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 35.7,
+      "saturated_fat_g": 13.1,
+      "sodium_mg": 1387.5,
+      "total_carbs_g": 83.4,
+      "total_fat_g": 38.2,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 176,
+      "cholesterol_mg": 17.6,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.5,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 291.8,
+      "total_carbs_g": 17.5,
+      "total_fat_g": 8,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27.8,
+      "dietary_fiber": 21.1,
+      "protein": 71.3,
+      "saturated_fat": 65.5,
+      "sodium": 60.3,
+      "total_carbs": 30.3,
+      "total_fat": 49
+    },
+    "serving_size_g": 476,
+    "total_recipe_weight_g": 1902
+  },
+  {
+    "recipe_name": "Smoky Chipotle Chicken and Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoky_chipotle_chicken_and_brown_rice_20250624_105506_840c688a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:55:06.437465000Z",
+    "selected_ingredients": [
+      "chipotle chile",
+      "brown rice",
+      "egg",
+      "chicken stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, showcasing a generous, naturally mounded portion of fluffy brown rice infused with smoky chipotle and rich chicken stock. Tender, golden-brown seared chicken thigh pieces, cut into rustic chunks, are nestled invitingly within and atop the rice, displaying a crisp exterior. Vibrant diced red bell peppers and finely minced cilantro sprigs are scattered throughout, adding pops of color and freshness. Each serving is crowned with a perfectly fried egg, its sunny-side-up yolk glistening, ready to meld into the dish. A fresh lime wedge rests beside the rice. The setting features a simple wooden table, a cotton napkin, and warm, natural lighting, highlighting the dish's inviting and abundant appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping.",
+      "Offer extra lime wedges for fresh acidity."
+    ],
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chipotle chiles in adobo",
+        "quantity": "2 chiles, plus 15 ml adobo sauce"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Lime, cut into wedges",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat 15 ml olive oil in a large, deep skillet or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden brown on all sides. Cook chicken to an internal temperature of 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "Add remaining 15 ml olive oil to the skillet. Reduce heat to medium.",
+      "Add diced onion and red bell pepper. Cook until softened, about 5 minutes.",
+      "Stir in minced garlic and tomato paste. Cook for 1 minute until fragrant.",
+      "Add brown rice to the skillet. Stir for 2 minutes to coat the rice.",
+      "Stir in chipotle chiles and adobo sauce. Pour in chicken stock.",
+      "Bring liquid to a boil. Reduce heat to low. Cover the skillet tightly.",
+      "Simmer for 30 minutes, or until rice is tender and liquid is absorbed.",
+      "While rice cooks, fry the eggs sunny-side up.",
+      "Once rice is cooked, return chicken thighs to the skillet. Fluff the rice with a fork. Mix in half of the fresh cilantro.",
+      "Serve individual portions of rice and chicken. Top each with a fried egg and remaining fresh cilantro. Serve with a lime wedge."
+    ],
+    "notes": [
+      "Adjust chipotle chiles to desired spice level."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 697.5,
+      "cholesterol_mg": 351,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 45.1,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 1451.4,
+      "total_carbs_g": 65.9,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116.9,
+      "cholesterol_mg": 58.8,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 243.3,
+      "total_carbs_g": 11,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 117,
+      "dietary_fiber": 15,
+      "protein": 90,
+      "saturated_fat": 34,
+      "sodium": 63,
+      "total_carbs": 24,
+      "total_fat": 36
+    },
+    "serving_size_g": 596.5,
+    "total_recipe_weight_g": 2386
+  },
+  {
+    "recipe_name": "Fermented Tomato & Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_%26_chicken_pasta_20250624_105503_6e174306.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:55:03.802108000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "bel paese cheese",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Fermented Tomato & Chicken Pasta is presented on a handcrafted, cream-toned ceramic plate. The rigatoni, cooked al dente, is generously coated in a rich, rustic deep-red tomato sauce, studded with tender pieces of shredded chicken. A whole, braised chicken thigh, with its skin a golden-brown, rests naturally on top of the pasta, showcasing its tender texture. Scattered over the dish are small, irregular pieces of crispy, golden-brown chicken skin cracklings, adding a textural contrast. Fresh, vibrant green basil leaves are torn and sprinkled over the top, providing a pop of color and freshness. The plating is minimalist, allowing the natural colors and textures of the ingredients to shine. The background is a clean, light reclaimed wood surface with an undyed linen napkin in natural beige. Soft, natural light illuminates the dish, highlighting its organic beauty. The scene is uncluttered, emphasizing the sustainable and ingredient-focused nature of the meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and red wine vinegar.",
+      "Offer crusty artisanal bread to soak up the rich sauce."
+    ],
+    "hero_ingredient": "Fermented Tomatoes",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, skin-on, bone-in",
+        "quantity": "4"
+      },
+      {
+        "name": "Ripe tomatoes (for fermenting)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Ripe tomatoes (fresh, for sauce)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Bel Paese cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water (for fermenting brine)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Non-chlorinated water (for broth)",
+        "quantity": "1 L"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented tomatoes (at least 5 days in advance): Wash and roughly chop 500g ripe tomatoes. Place in a clean jar. Dissolve 15g sea salt in 500ml non-chlorinated water to make brine. Pour brine over tomatoes, ensuring they are fully submerged. Seal jar loosely. Ferment at room temperature for 5-7 days, burping daily, until tangy. Refrigerate when ready.",
+      "Separate chicken skin from thighs. Cut skin into small squares. Set thighs aside.",
+      "Render chicken skin: Place skin squares in a cold pan. Cook over medium-low heat until crispy and golden, about 10-15 minutes. Remove cracklings. Drain excess fat, reserving 15ml for cooking.",
+      "Sear chicken thighs: Heat reserved chicken fat or 15ml olive oil in a large pot over medium-high heat. Sear chicken thighs, skin-side down, until golden brown, about 5-7 minutes. Flip and sear other side for 3 minutes. Remove chicken from pot. Set aside.",
+      "Make chicken bone broth: Place chicken bones from thighs into a small pot. Add 1 L non-chlorinated water. Simmer gently for 30-45 minutes. Strain broth. Set aside.",
+      "Sauté aromatics: Add remaining 15ml olive oil to the large pot. Sauté diced onion until translucent, about 5 minutes. Add minced garlic. Cook 1 minute until fragrant.",
+      "Prepare tomato sauce: Crush fresh tomatoes by hand into the pot. Add fermented tomatoes and their brine. Stir in dried oregano. Bring to a simmer.",
+      "Braise chicken: Return seared chicken thighs to the sauce. Ensure chicken is mostly submerged. Cover and simmer over low heat for 30 minutes, or until chicken reaches 75°C (167°F) internal temperature and is tender. Remove chicken from sauce. Shred meat from bones. Discard bones or save for more broth. Keep shredded chicken warm.",
+      "Cook pasta: While chicken braises, cook rigatoni according to package directions in salted water until al dente. Reserve 120ml pasta water. Drain pasta.",
+      "Finish sauce: Add reserved chicken broth to the tomato sauce. Simmer gently. Stir in shredded chicken. Add grated Bel Paese cheese to the sauce, stirring until melted and creamy. Season with salt and pepper to taste.",
+      "Combine: Add drained pasta to the sauce. Toss to coat evenly. Add a splash of reserved pasta water if needed for desired consistency.",
+      "Plate: Serve pasta in individual bowls. Top with fresh basil leaves. Scatter crispy chicken skin cracklings over each portion."
+    ],
+    "notes": [
+      "The fermented tomatoes require preparation several days in advance. This step is key for flavor and eco-conscious practice.",
+      "Save chicken bones to make a flavorful broth, contributing to a zero-waste kitchen.",
+      "Adjust the amount of fermented tomato brine to control the tanginess of the sauce."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Lacto-fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 920,
+      "cholesterol_mg": 209,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 50.3,
+      "saturated_fat_g": 13.4,
+      "sodium_mg": 357,
+      "total_carbs_g": 75.1,
+      "total_fat_g": 45.1,
+      "total_sugars_g": 10.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 136,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2,
+      "sodium_mg": 53,
+      "total_carbs_g": 11.1,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 25,
+      "protein": 101,
+      "saturated_fat": 67,
+      "sodium": 16,
+      "total_carbs": 27,
+      "total_fat": 58
+    },
+    "serving_size_g": 678,
+    "total_recipe_weight_g": 2711
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Sourdough Crust, Dill Noodles & Pickled Cucumber",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_sourdough_crust%2C_dill_noodles_%26_pickled_cucumber_20250624_105427_3a1a8da2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:54:27.548774000Z",
+    "selected_ingredients": [
+      "chicken",
+      "breadcrumbs",
+      "noodle",
+      "dill",
+      "cucumber"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single seared chicken breast, golden-brown from its sourdough breadcrumb crust, rests on a matte white ceramic plate. Beside it, a loose nest of pale yellow noodles, tossed with finely chopped green dill, occupies the center. Thin, translucent ribbons of quick-pickled cucumber, a vibrant light green, are artfully draped around the chicken and noodles, adding delicate contrast. The arrangement is organic and clean, with ample negative space. The chicken offers a crisp exterior. The noodles are soft with bright green dill. The cucumber ribbons provide a smooth, fresh look. A few small, fresh dill sprigs garnish sparingly. The plate sits on a light, reclaimed wood surface. A natural beige linen napkin is folded simply. Soft, natural light illuminates the dish, highlighting textures. A subtle, out-of-focus green plant element is visible in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 150-180g each)"
+      },
+      {
+        "name": "Sourdough breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Egg noodles or thin spaghetti",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30g"
+      },
+      {
+        "name": "English cucumber",
+        "quantity": "1 large (approx. 300g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Quick-Pickled Cucumber: Thinly slice 300g English cucumber into ribbons. Combine 125ml water, 125ml white vinegar, 15g granulated sugar, and 5g salt in a bowl. Submerge cucumber ribbons. Let sit for 30 minutes.",
+      "Prepare Fermented Sourdough Breadcrumbs: In a shallow dish, combine 100g sourdough breadcrumbs with 15ml olive oil, a pinch of salt, a pinch of black pepper, and 10g finely chopped fresh dill.",
+      "Cook Noodles: Boil 300g noodles according to package directions until al dente. Drain. Toss with 15ml olive oil and 20g finely chopped fresh dill. Keep warm.",
+      "Prepare Chicken: Pat 4 boneless, skinless chicken breasts dry. Season with salt and black pepper. Lightly dredge chicken breasts in the seasoned sourdough breadcrumbs, pressing to adhere firmly.",
+      "Sear Chicken: Heat a large pan over medium-high heat. Add a small amount of olive oil. Sear chicken breasts for 6-8 minutes per side, until golden brown and internal temperature reaches 75°C. Remove from pan, let rest 5 minutes.",
+      "Plate: Create a noodle nest on each of 4 plates. Place one seared chicken breast beside the noodle nest. Arrange quick-pickled cucumber ribbons around the chicken and noodles. Garnish with fresh dill sprigs."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing stale bread for crumbs.",
+      "Cucumber peels can be used for infused water or composted."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Quick Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 747,
+      "cholesterol_mg": 204,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 64.9,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 277,
+      "total_carbs_g": 76,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 192,
+      "cholesterol_mg": 52,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 16.7,
+      "saturated_fat_g": 1,
+      "sodium_mg": 71,
+      "total_carbs_g": 19.5,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 16,
+      "protein": 130,
+      "saturated_fat": 19,
+      "sodium": 12,
+      "total_carbs": 28,
+      "total_fat": 23
+    },
+    "serving_size_g": 389.6,
+    "total_recipe_weight_g": 1558.5
+  },
+  {
+    "recipe_name": "Sausage and Ricotta Stuffed Lumaconi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sausage_and_ricotta_stuffed_lumaconi_20250624_105424_abce994b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:54:24.953930000Z",
+    "selected_ingredients": [
+      "pasta",
+      "italian sausage",
+      "ricotta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Sausage and Ricotta Stuffed Lumaconi is presented on a clean, round white porcelain plate, showcasing a refined yet approachable elegance. Two large, plump lumaconi shells, generously stuffed with a creamy ricotta and crumbled Italian sausage filling, rest partially submerged in a rich, vibrant red marinara sauce. The pasta shells exhibit a tender, al dente texture, with a slight golden-brown char on exposed edges from baking. The filling, a creamy white with flecks of savory brown sausage, peeks from the pasta openings. A light dusting of melted, golden-brown Parmigiano Reggiano coats the top of the shells and sauce. Fresh, bright green basil leaves are artfully scattered as a garnish, providing a pop of color and freshness. The overall composition is balanced, with moderate negative space. The dish is set on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting highlights the dish’s textures and colors against a soft, blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Lumaconi pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Italian sausage, casings removed",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Marinara sauce",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large handful"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water or vegetable broth",
+        "quantity": "125 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease a 23x33 cm baking dish.",
+      "Bring a large pot of salted water to a rolling boil. Add lumaconi pasta. Cook pasta until al dente, about 2 minutes less than package directions. Drain well. Rinse with cold water to prevent sticking.",
+      "Heat olive oil in a large skillet over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add crumbled Italian sausage to the skillet. Cook, breaking up large pieces, until browned and cooked through. Ensure internal temperature reaches 75°C. Drain excess fat.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Remove skillet from heat. Transfer sausage mixture to a large bowl. Let cool slightly.",
+      "Add ricotta cheese, 50 g of grated Parmigiano Reggiano, and half of the chopped fresh basil to the sausage mixture. Season with salt and pepper. Mix until just combined.",
+      "Pour half of the marinara sauce into the prepared baking dish. Spread evenly.",
+      "Carefully stuff each cooked lumaconi shell with the sausage-ricotta filling. Arrange stuffed shells in a single layer over the marinara sauce in the baking dish.",
+      "Pour remaining marinara sauce over the stuffed shells. Ensure most shells are covered.",
+      "Sprinkle remaining 50 g of Parmigiano Reggiano over the top.",
+      "Bake for 20-25 minutes, or until sauce is bubbly and cheese is melted and lightly golden. If browning too quickly, cover with foil.",
+      "Remove from oven. Let rest for 5 minutes before serving.",
+      "Garnish with remaining fresh basil leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.5,
+      "calories": 892,
+      "cholesterol_mg": 106,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 46.6,
+      "saturated_fat_g": 17.7,
+      "sodium_mg": 1669,
+      "total_carbs_g": 72.5,
+      "total_fat_g": 44.4,
+      "total_sugars_g": 12.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 172,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 322,
+      "total_carbs_g": 14,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 24,
+      "protein": 93,
+      "saturated_fat": 89,
+      "sodium": 73,
+      "total_carbs": 26,
+      "total_fat": 57
+    },
+    "serving_size_g": 518.5,
+    "total_recipe_weight_g": 2074
+  }
+]

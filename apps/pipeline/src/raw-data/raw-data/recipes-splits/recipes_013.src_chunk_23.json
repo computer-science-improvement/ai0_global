@@ -1,0 +1,629 @@
+[
+  {
+    "recipe_name": "Pappardelle with Creamy Ricotta and Sun-Dried Tomato Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pappardelle_with_creamy_ricotta_and_sun-dried_tomato_sauce_20250701_143453_75d5184f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:34:54.124564000Z",
+    "selected_ingredients": [
+      "pasta",
+      "ricotta",
+      "sun dried tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Pappardelle with Creamy Ricotta and Sun-Dried Tomato Sauce is presented centrally on a clean, round white porcelain plate. Broad ribbons of al dente pappardelle are loosely twirled, coated evenly in a creamy, off-white sauce with subtle orange undertones. Roughly chopped, deep red sun-dried tomatoes are visibly dispersed throughout the pasta, offering vibrant color contrast. A few delicate streaks of fresh, creamy ricotta are visible, adding textural interest. The dish is garnished simply with several fresh, bright green basil leaves and a generous sprinkle of finely grated Parmigiano Reggiano. A glistening drizzle of golden extra virgin olive oil adds a final touch. The plate rests on a simple wooden table, with a crisp white cotton napkin and traditional silver flatware positioned beside it. Natural, even light illuminates the scene, highlighting the dish's fresh ingredients and appealing textures in a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping",
+      "Pair with a simple green salad dressed with vinaigrette",
+      "Offer extra Parmigiano Reggiano at the table"
+    ],
+    "hero_ingredient": "Ricotta",
+    "ingredients": [
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Oil-packed sun-dried tomatoes",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "50 g (plus more for serving)"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5 g (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil. Cook pappardelle according to package directions until al dente.",
+      "While pasta cooks, finely dice the shallot and mince the garlic. Roughly chop the sun-dried tomatoes, reserving 15 ml of their oil.",
+      "Heat 15 ml olive oil and the reserved sun-dried tomato oil in a large skillet over medium heat. Add diced shallot and cook until softened, about 3-4 minutes.",
+      "Add minced garlic and red pepper flakes (if using). Cook for 1 minute until fragrant. Do not brown garlic.",
+      "Stir in chopped sun-dried tomatoes. Cook for 2 minutes.",
+      "Pour in vegetable broth. Bring to a simmer and cook for 3 minutes, allowing flavors to meld.",
+      "Remove skillet from heat. Stir in ricotta cheese and 50 g grated Parmigiano Reggiano. Mix until creamy and well combined.",
+      "Drain pasta, reserving 120 ml of pasta cooking water. Add drained pasta directly to the skillet with the sauce.",
+      "Toss pasta vigorously with the sauce, adding reserved pasta water gradually until the sauce coats the pasta evenly and reaches desired consistency. This is the mantecare process.",
+      "Season with salt and black pepper to taste. Tear fresh basil leaves and gently fold into the pasta.",
+      "Serve immediately, garnished with extra grated Parmigiano Reggiano and a drizzle of fresh extra virgin olive oil."
+    ],
+    "traditional_techniques": [
+      "Mantecare (emulsifying sauce with pasta water and cheese)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 674,
+      "cholesterol_mg": 42.9,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 27,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 1104.8,
+      "total_carbs_g": 85.5,
+      "total_fat_g": 22.9,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 248.6,
+      "cholesterol_mg": 15.8,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 10,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 407.5,
+      "total_carbs_g": 31.5,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14,
+      "dietary_fiber": 21,
+      "protein": 54,
+      "saturated_fat": 46,
+      "sodium": 48,
+      "total_carbs": 31,
+      "total_fat": 29
+    },
+    "serving_size_g": 271.2,
+    "total_recipe_weight_g": 1084.6
+  },
+  {
+    "recipe_name": "Fermented Corn & Tomato Salsa with Crispy Corn Husk Chips",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_corn_%26_tomato_salsa_with_crispy_corn_husk_chips_20250701_143419_f2c6df87.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:34:20.339770000Z",
+    "selected_ingredients": [
+      "tomato",
+      "corn"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a light reclaimed wood surface, highlighting its eco-conscious nature. A handcrafted, shallow ceramic bowl in an earthy tone holds the vibrant Fermented Corn & Tomato Salsa. The salsa showcases a medley of bright red diced tomatoes, golden corn kernels, finely diced red onion, and subtle green flecks of jalapeño and coriander, creating a fresh, organic mound. Its texture appears juicy and slightly textured. Around the bowl, or on a small, matching ceramic side dish, are artfully arranged Crispy Corn Husk Chips. These chips exhibit a natural beige to light golden hue, with visible fibrous textures, suggesting their zero-waste origin. The plating is minimalistic, with ample negative space around the elements. An undyed linen napkin in natural beige is casually placed nearby. Soft, natural lighting illuminates the scene from the side, enhancing the natural colors and textures. The background is clean and unobtrusive, featuring subtle hints of natural elements or plants, reinforcing the sustainable theme. The entire plate is visible, showcasing a clean, uncrowded composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Fermented Corn & Tomato",
+    "ingredients": [
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Corn Kernels (fresh or frozen)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Jalapeño",
+        "quantity": "1 (small)"
+      },
+      {
+        "name": "Lime Juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "15 g (for fermentation) + to taste"
+      },
+      {
+        "name": "Coriander Leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried Corn Husks",
+        "quantity": "8-10 large"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Filtered Water",
+        "quantity": "as needed (for fermentation brine)"
+      }
+    ],
+    "instructions": [
+      "Prepare corn husks: Gently separate husks from corn cobs. Rinse them thoroughly. Pat dry completely. Set aside.",
+      "Prepare tomatoes: Dice tomatoes into small cubes (approx. 1 cm). Place in a clean bowl.",
+      "Prepare corn: If using fresh corn, cut kernels from cobs. Add to diced tomatoes.",
+      "Prepare aromatics: Finely dice red onion. Mince jalapeño (remove seeds for less heat). Add to tomato and corn.",
+      "Combine salsa ingredients: Add lime juice and 15 g sea salt to the bowl. Mix well. Transfer mixture to a clean, wide-mouthed glass jar.",
+      "Ferment salsa: Press down mixture to remove air pockets. Ensure liquid covers solids; if not, add a small amount of filtered water. Place a fermentation weight or small, clean jar on top to keep solids submerged. Cover jar loosely with a lid or cloth. Let ferment at room temperature (20-24°C) for 3-5 days. Taste daily; fermentation is complete when desired tanginess is achieved. Refrigerate when done.",
+      "Prepare corn husk chips: Preheat oven to 160°C. Lightly brush both sides of dried corn husks with olive oil. Sprinkle with a pinch of sea salt.",
+      "Bake chips: Lay husks in a single layer on a baking sheet. Bake for 10-15 minutes, or until crispy and lightly golden. Watch carefully to prevent burning. Cool completely; they will crisp further.",
+      "Serve: Spoon the fermented corn and tomato salsa into a handcrafted ceramic bowl. Arrange crispy corn husk chips around the bowl or on a small sharing platter alongside. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 158,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 4,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 1475,
+      "total_carbs_g": 21.5,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 69,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 1.7,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 643,
+      "total_carbs_g": 9.4,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 15,
+      "protein": 8,
+      "saturated_fat": 6,
+      "sodium": 64,
+      "total_carbs": 8,
+      "total_fat": 10
+    },
+    "serving_size_g": 229.4,
+    "total_recipe_weight_g": 917.6
+  },
+  {
+    "recipe_name": "Adobong Manok at Patatas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_adobong_manok_at_patatas_20250701_143417_6f1d1bbf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:34:17.823841000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "potato",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Adobong Manok at Patatas is presented in a clean white porcelain dinner plate, showcasing the rich, dark, glistening braised chicken and tender potato chunks. Two pieces of chicken thigh, seared to a deep golden-brown before braising, are nestled among several 3 cm potato cubes, which have absorbed the savory adobo sauce. The sauce, a glossy dark brown from soy sauce and vinegar, pools generously around the chicken and potatoes. A few whole black peppercorns are visible within the sauce, adding texture. The dish is garnished with a sprinkle of bright green chopped spring onions and a few vibrant red chili slices, providing a fresh contrast to the deep tones of the chicken and sauce. The arrangement is organic, allowing the ingredients to settle naturally. The plate sits on a simple wooden table surface. A small bowl of steamed white rice and a pair of traditional Filipino flatware are placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and colors against a minimalist restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Filipino",
+    "cultural_origin": "Filipino",
+    "cultural_serving_suggestions": [
+      "Served immediately with freshly steamed white rice.",
+      "Often accompanied by atchara (pickled green papaya) or other pickled vegetables."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": "800g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 whole head"
+      },
+      {
+        "name": "Bird's Eye Chilies",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Cane Vinegar",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Whole Black Peppercorns",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried Bay Leaves",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Spring Onions",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with a pinch of salt.",
+      "Heat oil in a large pot or deep pan over medium-high heat. Brown chicken thighs skin-side down for 5-7 minutes until golden. Flip and brown other side for 3-4 minutes. Remove chicken.",
+      "Add smashed garlic to the pot. Sauté for 1-2 minutes until fragrant. Do not burn.",
+      "Return chicken to the pot. Add soy sauce, vinegar, water, whole black peppercorns, and bay leaves.",
+      "Bring to a boil. Reduce heat to low. Cover and simmer for 20 minutes.",
+      "Add potato chunks and sliced chilies to the pot. Stir gently.",
+      "Cover and simmer for another 20-25 minutes, or until chicken is cooked through (internal temperature 75°C) and potatoes are tender.",
+      "Uncover and increase heat to medium. Simmer for 5-7 minutes, allowing sauce to reduce and thicken slightly. Stir occasionally.",
+      "Remove bay leaves. Taste and adjust seasoning if needed."
+    ],
+    "notes": [
+      "The vinegar and soy sauce act as natural tenderizers and preservatives.",
+      "Do not stir immediately after adding vinegar; allow it to cook off slightly before mixing to prevent a raw vinegar taste.",
+      "Adjust chili amount based on spice preference."
+    ],
+    "traditional_techniques": [
+      "Braising (pagluluto sa adobo)",
+      "Balancing sour-salty-umami flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 473,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 41.2,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 1492,
+      "total_carbs_g": 23.3,
+      "total_fat_g": 22.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.6,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 382,
+      "total_carbs_g": 6,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 10,
+      "protein": 82,
+      "saturated_fat": 28,
+      "sodium": 65,
+      "total_carbs": 8,
+      "total_fat": 28
+    },
+    "serving_size_g": 390.5,
+    "total_recipe_weight_g": 1562
+  },
+  {
+    "recipe_name": "Spiced Chicken and Rice Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_chicken_and_rice_skillet_20250701_143303_b5323cec.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:33:03.514717000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "green pea",
+      "onion",
+      "chili",
+      "bean",
+      "bell pepper",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Spiced Chicken and Rice Skillet is presented on a round white porcelain dinner plate. Large, irregular chunks of golden-brown seared chicken breast are nestled among fluffy, individual grains of long-grain rice. The rice is infused with warm, reddish-brown spices, interspersed with vibrant green peas, dark black beans, and diced crimson red bell pepper. Thin slices of bright red chili and fresh green thyme leaves are scattered on top, adding pops of color. The dish has a slightly moist texture, showcasing tender chicken and perfectly cooked rice. The presentation is organized yet natural, with moderate negative space. The plate rests on a simple wooden table surface, accompanied by a folded cotton napkin and standard silver flatware. Natural, even lighting illuminates the dish, highlighting its textures and rich colors, with a soft, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Green peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Black beans, canned",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2.5 cm irregular chunks. Dice yellow onion and red bell pepper. Mince garlic. Thinly slice red chili.",
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat.",
+      "Add chicken chunks to the hot skillet. Sear until golden brown on all sides. Remove chicken from skillet and set aside. Ensure chicken reaches 75°C internal temperature later.",
+      "Add diced onion, diced bell pepper, and sliced chili to the skillet. Sauté for 5-7 minutes until softened.",
+      "Stir in minced garlic, smoked paprika, and cumin. Cook for 1 minute until fragrant.",
+      "Add rice to the skillet. Stir to coat rice with spices and vegetables. Toast for 2 minutes.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the skillet. Bring to a boil.",
+      "Return seared chicken to the skillet. Reduce heat to low. Cover and simmer for 15-18 minutes, or until most liquid is absorbed and rice is nearly tender.",
+      "Stir in green peas, drained black beans, and fresh thyme leaves. Cover and cook for another 5 minutes, or until rice is fully cooked and chicken is heated through. Check chicken internal temperature to ensure it reaches 75°C.",
+      "Remove from heat. Let stand covered for 5 minutes. Season with salt and black pepper to taste. Serve hot."
+    ],
+    "notes": [
+      "Adjust chili quantity to desired spice level.",
+      "Always ensure chicken reaches a safe internal temperature of 75°C (167°F)."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 856,
+      "cholesterol_mg": 128,
+      "dietary_fiber_g": 14.1,
+      "protein_g": 67.2,
+      "saturated_fat_g": 3,
+      "sodium_mg": 983,
+      "total_carbs_g": 100.3,
+      "total_fat_g": 14.7,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 104,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 8.1,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 119,
+      "total_carbs_g": 12.1,
+      "total_fat_g": 1.8,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 50,
+      "protein": 134,
+      "saturated_fat": 15,
+      "sodium": 43,
+      "total_carbs": 36,
+      "total_fat": 19
+    },
+    "serving_size_g": 825.25,
+    "total_recipe_weight_g": 3301
+  },
+  {
+    "recipe_name": "Creamy Herb Chicken with Green Peas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_herb_chicken_with_green_peas_20250701_143301_c60f2095.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:33:02.734791000Z",
+    "selected_ingredients": [
+      "chicken",
+      "green pea"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Herb Chicken with Green Peas is artfully presented on a clean, round white porcelain plate. Two golden-brown, tender chicken thighs, cut into generous, rustic chunks, are the centerpiece. The chicken is nestled in a rich, creamy, pale ivory sauce, which pools elegantly around the pieces. Bright green peas are scattered throughout the sauce, providing vibrant color contrast and textural variation. A sprinkle of fresh, chopped parsley and thyme leaves garnishes the dish, adding a pop of fresh green. The sauce has a smooth, velvety texture, and the chicken appears moist and succulent. The overall presentation is refined yet inviting, with moderate negative space on the plate. The dish is set on a simple light wooden table surface, accompanied by a folded white linen napkin and standard silver flatware. Natural, even lighting illuminates the scene, creating a professional and appealing photograph.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "600g"
+      },
+      {
+        "name": "Green peas, frozen",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Single cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh thyme, leaves picked",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil and 15g butter in a large pan over medium-high heat. Sear chicken thighs until golden brown on both sides, about 4-5 minutes per side. Remove chicken from pan.",
+      "Reduce heat to medium. Add remaining 15g butter to the pan. Add diced onion and sauté until softened, about 5 minutes. Add minced garlic and thyme leaves; cook for 1 minute until fragrant.",
+      "Stir in flour and cook for 1 minute, creating a roux.",
+      "Gradually whisk in white wine, scraping up any browned bits. Cook until almost evaporated. Gradually whisk in chicken stock until smooth. Bring to a simmer.",
+      "Return chicken thighs to the pan. Reduce heat to low, cover, and simmer for 15-20 minutes, or until chicken is cooked through and reaches an internal temperature of 75°C (167°F).",
+      "Stir in frozen green peas and cream. Simmer gently for 3-5 minutes, or until peas are tender and sauce is slightly thickened.",
+      "Taste and adjust seasoning. Stir in fresh chopped parsley just before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 536,
+      "cholesterol_mg": 181.1,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 41.1,
+      "saturated_fat_g": 12.2,
+      "sodium_mg": 611.5,
+      "total_carbs_g": 22.7,
+      "total_fat_g": 29.2,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 43.6,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.9,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 147.2,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 17,
+      "protein": 82,
+      "saturated_fat": 61,
+      "sodium": 27,
+      "total_carbs": 8,
+      "total_fat": 37
+    },
+    "serving_size_g": 415.5,
+    "total_recipe_weight_g": 1661.8
+  }
+]

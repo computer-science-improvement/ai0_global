@@ -1,0 +1,790 @@
+[
+  {
+    "recipe_name": "Potato Gnocchi with Fresh Tomato and Basil",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_gnocchi_with_fresh_tomato_and_basil_20250630_053728_c7dc0097.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:37:28.502067000Z",
+    "selected_ingredients": [
+      "potato",
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, white porcelain pasta bowl, showcasing a single elegant starter portion of potato gnocchi. The gnocchi are plump and soft, coated generously in a vibrant, rich red tomato sauce made from finely diced San Marzano tomatoes. Bright green fresh basil leaves, torn, are scattered over the top, providing a striking color contrast. A light dusting of finely grated Parmigiano Reggiano cheese adds a subtle white accent and delicate texture. The arrangement is organic and flowing, with moderate negative space around the gnocchi. The entire plate is visible, placed on a simple wooden table surface, accompanied by a folded cotton napkin and a traditional Italian fork. Natural, even lighting highlights the dish's fresh ingredients and appealing textures, creating a casual yet refined bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Served with grated Parmigiano Reggiano",
+      "Served with fresh basil",
+      "Accompanied by crusty Italian bread"
+    ],
+    "hero_ingredient": "Potato Gnocchi",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "00 Flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Large Egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "San Marzano Tomatoes (crushed or whole)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "Boil potatoes. Cook whole, unpeeled potatoes in salted water until very tender. Drain.",
+      "Prepare gnocchi dough. Peel hot potatoes. Pass through a ricer or mash thoroughly. On a clean surface, make a well in the riced potatoes. Add flour, egg, and salt to the center. Gently mix with hands until a soft, cohesive dough forms. Do not overmix.",
+      "Shape gnocchi. Divide dough into quarters. Roll each quarter into a 2 cm thick rope. Cut ropes into 2.5 cm pieces. Optionally, roll each piece lightly over the back of a fork to create ridges.",
+      "Cook gnocchi. Bring a large pot of salted water to a gentle boil. Carefully drop gnocchi into the water in batches. Cook until they float to the surface, about 2-3 minutes. Remove with a slotted spoon.",
+      "Make tomato sauce. In a large pan, heat olive oil over medium heat. Add thinly sliced garlic; cook until fragrant, about 1 minute. Add crushed or finely diced tomatoes and a pinch of salt. Simmer gently for 10-15 minutes, allowing flavors to meld.",
+      "Combine and serve. Add cooked gnocchi directly into the pan with the tomato sauce. Toss gently to coat. Tear fresh basil leaves and stir through.",
+      "Plate. Serve individual portions in shallow bowls. Garnish with additional fresh basil leaves and a generous grating of Parmigiano Reggiano. Serve immediately."
+    ],
+    "notes": [
+      "Do not overmix gnocchi dough to ensure a light texture.",
+      "Use starchy potatoes like Russet for best gnocchi results."
+    ],
+    "traditional_techniques": [
+      "Hand-rolling gnocchi",
+      "Simple soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 407,
+      "cholesterol_mg": 57,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 14.4,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 1506,
+      "total_carbs_g": 59.5,
+      "total_fat_g": 12.7,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101,
+      "cholesterol_mg": 14,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 3.6,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 374,
+      "total_carbs_g": 14.8,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19,
+      "dietary_fiber": 23,
+      "protein": 29,
+      "saturated_fat": 19,
+      "sodium": 65,
+      "total_carbs": 22,
+      "total_fat": 16
+    },
+    "serving_size_g": 402.4,
+    "total_recipe_weight_g": 1609.6
+  },
+  {
+    "recipe_name": "Dum Lamb Biryani with Fermented Tomato Chutney and Mint Raita",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dum_lamb_biryani_with_fermented_tomato_chutney_and_mint_raita_20250630_053251_db6e5a5a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:32:51.936860000Z",
+    "selected_ingredients": [
+      "lamb",
+      "potato",
+      "onion",
+      "tomato",
+      "rice",
+      "chili"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Indian cuisine",
+    "visual_description": "A single, generous portion of Dum Lamb Biryani is presented in a shallow, round, unglazed terracotta thali-style plate, reflecting rustic Indian pottery. The biryani is lightly mounded, showcasing the distinct layers of long-grain basmati rice and tender lamb chunks. The rice varies in color, from pearly white to saffron-infused golden and a light brown where it absorbed the lamb's rich gravy. Large, irregular chunks of slow-cooked lamb are visible, nestled among the rice and soft, pale-yellow potato cubes. Scattered throughout are slivers of caramelized, crispy fried onions (birista) and vibrant green flecks of fresh mint and cilantro. The plating emphasizes natural textures and colors, with ample negative space on the plate's rim. Accompanying the biryani are two small, round katori bowls: one filled with a vibrant, deep red Fermented Spiced Tomato Chutney, chunky and rustic, and the other with a creamy white Mint Raita, garnished with finely chopped fresh mint leaves. The setting features a light, textured reclaimed wood surface. An undyed, natural beige linen napkin is subtly folded beside the plate. Soft, diffused natural light illuminates the scene from the side, creating gentle shadows and highlighting the dish's depth and warmth. The background is clean and minimalist, with a hint of green foliage from a potted plant, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm flatbreads like naan or roti.",
+      "Offer a side of kachumber salad (diced cucumber, onion, tomato salad).",
+      "Traditionally eaten with hands, scooping up portions with the right hand.",
+      "Serve with a cooling glass of Lassi (yogurt drink)."
+    ],
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Lamb shoulder/leg",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yogurt (plain, full-fat)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "8g"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt (for marinade)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh mint leaves (chopped)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh cilantro leaves (chopped)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onions (thinly sliced)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Potatoes (peeled, cut into 3 cm cubes)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Tomatoes (diced)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Green chilies (slit lengthwise)",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Cardamom pods",
+        "quantity": "4"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "2 cm"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Ghee/Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Saffron strands",
+        "quantity": "0.5g"
+      },
+      {
+        "name": "Warm milk",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water/Vegetable stock",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Salt (to taste for biryani)",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Overripe tomatoes/tomato scraps (for chutney)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red chilies (for chutney, stemmed)",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Garlic cloves (for chutney)",
+        "quantity": "2"
+      },
+      {
+        "name": "Ginger (for chutney, roughly chopped)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Mustard seeds (for chutney)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cumin seeds (for chutney)",
+        "quantity": "3g"
+      },
+      {
+        "name": "Fenugreek seeds (for chutney)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Curry leaves (for chutney, optional)",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Vinegar (apple cider or white, for chutney)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Jaggery/Brown sugar (for chutney, optional)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt (for chutney fermentation)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Oil (for chutney)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Plain yogurt (for raita)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cucumber (grated, for raita, optional)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Red onion (finely chopped, for raita)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Fresh mint leaves (finely chopped, for raita)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Roasted cumin powder (for raita)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Black salt (Kala Namak, for raita, optional)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt (to taste for raita)",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Tomato Chutney: Combine tomatoes/scraps, red chilies, garlic, ginger, salt in a clean jar. Cover loosely. Ferment at room temperature for 3-5 days, stirring daily, until tangy. Once fermented, blend ingredients into a coarse paste. Heat oil in a small pan. Add mustard seeds, cumin seeds, fenugreek seeds, curry leaves. Sauté until fragrant. Add blended tomato paste, vinegar, jaggery (if using). Simmer for 10-15 minutes until thickened. Cool and store.",
+      "Marinate Lamb: In a large bowl, combine lamb chunks with yogurt, ginger-garlic paste, red chili powder, turmeric, coriander, cumin, garam masala, salt, chopped mint, and cilantro. Mix well. Cover and refrigerate for at least 2 hours, preferably overnight.",
+      "Prepare Birista (Crispy Onions): Heat 50ml ghee/oil in a heavy-bottomed pot or Dutch oven. Fry thinly sliced onions over medium heat until deep golden brown and crispy. Remove onions with a slotted spoon. Drain on paper towels. Set aside. Reserve the flavored oil.",
+      "Par-cook Rice: Wash basmati rice thoroughly until water runs clear. Soak for 30 minutes. Drain. Bring a large pot of water to a boil with salt and a few whole spices (cardamom, cinnamon, cloves, bay leaves). Add soaked rice. Cook until 70% done (grains are elongated but still firm). Drain immediately.",
+      "Cook Lamb Curry Base: In the same pot with reserved onion oil, add remaining whole spices. Sauté for 30 seconds. Add marinated lamb. Sear lamb on all sides until browned. Add diced tomatoes and green chilies. Cook for 10-15 minutes until tomatoes soften and oil separates. Add 100ml water/stock. Simmer, covered, for 20-30 minutes, until lamb is partially tender (about 60% cooked).",
+      "Add Potatoes: Add potato cubes to the lamb curry. Cook for another 10 minutes until potatoes are slightly tender.",
+      "Layer Biryani (Dum Cooking): Spread half of the par-cooked rice over the lamb and potato mixture in the pot. Sprinkle half of the birista and some fresh mint/cilantro. Gently spread the remaining rice. Top with remaining birista, fresh herbs, and saffron milk.",
+      "Dum Cook: Cover the pot tightly with a lid, sealing with dough or a heavy object to trap steam. Cook on low heat for 25-30 minutes. Let rest off heat for 10 minutes.",
+      "Prepare Mint Raita: Whisk yogurt until smooth. Stir in grated cucumber (if using), finely chopped red onion, chopped mint, roasted cumin powder, black salt (if using), and salt to taste.",
+      "Serve: Gently fluff the biryani with a fork, mixing the layers. Serve hot with Fermented Spiced Tomato Chutney and Mint Raita."
+    ],
+    "notes": [
+      "For zero-waste, save vegetable scraps (onion peels, potato skins, herb stems) to make a quick vegetable stock for the biryani.",
+      "The Fermented Tomato Chutney can be made in advance and stored in the refrigerator for several weeks.",
+      "Adjust chili levels in the biryani and chutney to personal preference."
+    ],
+    "traditional_techniques": [
+      "Dum Cooking",
+      "Birista",
+      "Layering",
+      "Spice tempering",
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.64,
+      "calories": 1025.38,
+      "cholesterol_mg": 155.53,
+      "dietary_fiber_g": 8.94,
+      "protein_g": 46.17,
+      "saturated_fat_g": 19.91,
+      "sodium_mg": 1533.67,
+      "total_carbs_g": 122.32,
+      "total_fat_g": 44.41,
+      "total_sugars_g": 15.09,
+      "trans_fat_g": 1.76
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.43,
+      "calories": 120.33,
+      "cholesterol_mg": 18.25,
+      "dietary_fiber_g": 1.05,
+      "protein_g": 5.42,
+      "saturated_fat_g": 2.34,
+      "sodium_mg": 179.99,
+      "total_carbs_g": 14.36,
+      "total_fat_g": 5.21,
+      "total_sugars_g": 1.77,
+      "trans_fat_g": 0.21
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.84,
+      "dietary_fiber": 31.94,
+      "protein": 92.35,
+      "saturated_fat": 99.55,
+      "sodium": 66.68,
+      "total_carbs": 44.48,
+      "total_fat": 56.93
+    },
+    "serving_size_g": 852.13,
+    "total_recipe_weight_g": 3408.5
+  },
+  {
+    "recipe_name": "Sausage and Potato Croquettes with Spicy Tomato Dip",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sausage_and_potato_croquettes_with_spicy_tomato_dip_20250630_053042_2ed36394.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:30:42.607191000Z",
+    "selected_ingredients": [
+      "potato",
+      "sausage",
+      "cheese",
+      "tomato",
+      "onion",
+      "carrot",
+      "salad green"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single starter portion of three golden-brown, oblong croquettes rests on a clean, round white porcelain plate. Each croquette exhibits a perfectly crisp, textured panko exterior. Adjacent to the croquettes is a vibrant, smooth, rich red pool of spicy tomato dip. The croquettes are arranged organically, allowing for clear visibility of their uniform shape and crispy texture. A small, fresh cluster of bright green rocket leaves and a sprinkle of chopped parsley sit atop the croquettes, providing a pop of color and freshness. The setting is a modern bistro, featuring a simple, light wooden table surface. Natural, even lighting illuminates the dish. A folded white cotton napkin and standard silver flatware are subtly placed beside the plate. The background is minimally blurred, suggesting a casual, inviting restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Pork Sausage",
+    "ingredients": [
+      {
+        "name": "Starchy potatoes",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Good quality pork sausage",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Mature cheddar cheese, grated",
+        "quantity": "75 grams"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "25 grams"
+      },
+      {
+        "name": "Brown onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Carrot, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Fresh rocket (arugula)",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Eggs, beaten",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Vegetable oil for frying",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Chilli flakes (optional)",
+        "quantity": "1/2 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Cut into 2 cm chunks. Boil in salted water until tender, about 15-20 minutes. Drain well. Mash until smooth. Set aside to cool slightly.",
+      "Remove sausage meat from casings. Crumble into a large frying pan. Cook over medium-high heat until browned and cooked through, about 8-10 minutes. Break up any large pieces. Drain excess fat. Ensure internal temperature reaches 75°C (167°F). Set aside.",
+      "In the same pan, add 1 tablespoon olive oil. Sauté half of the diced onion until softened, about 5 minutes. Add half of the minced garlic. Cook for 1 minute until fragrant. Remove from heat.",
+      "Combine mashed potatoes, cooked sausage, sautéed onion and garlic, grated cheddar, grated Parmesan, and half of the chopped parsley in a large bowl. Season with salt and pepper. Mix well until combined. Form the mixture into 12 uniform croquettes, each about 6 cm long.",
+      "Prepare three shallow dishes: one with flour, one with beaten eggs, and one with panko breadcrumbs. Dredge each croquette in flour, then dip in egg, then coat thoroughly in panko breadcrumbs. Press gently to adhere.",
+      "For the spicy tomato dip: Heat remaining olive oil in a saucepan. Sauté remaining diced onion and diced carrot until softened, about 7-8 minutes. Add remaining minced garlic and chilli flakes (if using). Cook for 1 minute.",
+      "Pour in crushed tomatoes. Bring to a simmer. Cook for 15-20 minutes, stirring occasionally, until slightly thickened. Season with salt and pepper. Blend the sauce with an immersion blender until smooth. Keep warm.",
+      "Heat vegetable oil in a deep pan or pot to 175°C (350°F). Fry croquettes in batches for 3-4 minutes per side, until golden brown and crispy. Do not overcrowd the pan. Remove with a slotted spoon. Place on a wire rack lined with paper towels to drain excess oil.",
+      "Plate 3 croquettes per serving. Spoon a generous amount of spicy tomato dip beside them. Garnish with fresh rocket leaves and remaining chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 962,
+      "cholesterol_mg": 152.7,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 32.5,
+      "saturated_fat_g": 14.6,
+      "sodium_mg": 962.9,
+      "total_carbs_g": 81.1,
+      "total_fat_g": 61.6,
+      "total_sugars_g": 8.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 201,
+      "cholesterol_mg": 31.9,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.8,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 201.5,
+      "total_carbs_g": 17,
+      "total_fat_g": 12.9,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 26,
+      "protein": 65,
+      "saturated_fat": 73,
+      "sodium": 42,
+      "total_carbs": 30,
+      "total_fat": 79
+    },
+    "serving_size_g": 478,
+    "total_recipe_weight_g": 1911
+  },
+  {
+    "recipe_name": "Baked Blueberry Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_blueberry_crumble_20250630_053040_6cbaea5e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:30:41.236814000Z",
+    "selected_ingredients": [
+      "blueberry"
+    ],
+    "complexity": "simple",
+    "special_requests": "без добавления сахара",
+    "visual_description": "The baked blueberry crumble rests in a rustic, round ceramic baking dish on a well-worn wooden kitchen table. The topping is golden-brown and uneven, showcasing the texture of baked oats and flour. Deep purple-blue blueberries bubble visibly through the crumble. A single serving is presented in a smaller, off-white ceramic bowl with a chipped rim. The crumble in the bowl is naturally mounded, with vibrant blueberries peeking out. A simple, plain white spoon rests casually. The lighting is warm and inviting, typical of a cozy kitchen, emphasizing the dessert's comforting warmth. A casually folded linen napkin in a neutral tone is placed nearby. The scene is homely and unpretentious, inviting immediate enjoyment.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Rustic",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve warm with a dollop of plain unsweetened Greek yogurt."
+    ],
+    "hero_ingredient": "Blueberry",
+    "ingredients": [
+      {
+        "name": "Blueberries",
+        "quantity": "500g"
+      },
+      {
+        "name": "Rolled Oats",
+        "quantity": "100g"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "80g"
+      },
+      {
+        "name": "Cold Butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Lightly grease a medium baking dish (approx. 20x20 cm).",
+      "Place blueberries in the prepared baking dish.",
+      "In a bowl, combine rolled oats, flour, cinnamon, and salt.",
+      "Add cold butter cubes to the dry ingredients.",
+      "Rub butter into the dry ingredients with fingertips until mixture resembles coarse crumbs.",
+      "Sprinkle crumble mixture evenly over the blueberries.",
+      "Bake for 30-35 minutes, or until topping is golden brown and blueberries are bubbling.",
+      "Remove from oven. Let cool slightly before serving."
+    ],
+    "notes": [
+      "Use ripe, sweet blueberries for best results, as no sugar is added.",
+      "Frozen blueberries can be used directly from the freezer; no need to thaw. Baking time might increase slightly."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 370,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 6.85,
+      "protein_g": 7.41,
+      "saturated_fat_g": 9.36,
+      "sodium_mg": 101,
+      "total_carbs_g": 50.98,
+      "total_fat_g": 16.51,
+      "total_sugars_g": 12.55,
+      "trans_fat_g": 0.57
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 196,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 3.63,
+      "protein_g": 3.92,
+      "saturated_fat_g": 4.95,
+      "sodium_mg": 53,
+      "total_carbs_g": 26.97,
+      "total_fat_g": 8.73,
+      "total_sugars_g": 6.64,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13,
+      "dietary_fiber": 24,
+      "protein": 15,
+      "saturated_fat": 47,
+      "sodium": 4,
+      "total_carbs": 19,
+      "total_fat": 21
+    },
+    "serving_size_g": 189,
+    "total_recipe_weight_g": 756
+  },
+  {
+    "recipe_name": "Southwestern Pork & Chicken Hash with Cheesy Brown Rice Cakes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_southwestern_pork_%26_chicken_hash_with_cheesy_brown_rice_cakes_20250630_052935_537883f3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T05:29:36.204339000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheddar",
+      "mushroom",
+      "onion",
+      "brown rice",
+      "pickled jalapeno chilies",
+      "oregano",
+      "pork",
+      "swiss chard",
+      "corn"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined portion is presented on a clean white porcelain dinner plate. At the center, a golden-brown, pan-fried cheesy brown rice cake serves as the base, its exterior showing a delicate crispness. Piled artfully atop the rice cake is a generous mound of vibrant Southwestern hash. The hash features well-seared, rustic chunks of chicken and pork, showcasing rich brown caramelization. Interspersed are golden-brown potato cubes, earthy sautéed mushroom slices, and translucent diced onions. Bright green ribbons of wilted Swiss chard and sunny yellow corn kernels provide fresh color and texture. Hints of red from diced pickled jalapeños are visible throughout. A small sprinkle of grated cheddar melts gently over the warm hash. The dish is subtly garnished with a fresh sprig of oregano and a light dollop of sour cream or crema beside the hash. The plate sits on a simple wooden table, accompanied by a folded cotton napkin and classic flatware, with natural, even lighting from the side. A small, rustic bowl of fresh salsa is placed nearby, completing the casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Southwestern",
+    "cultural_origin": "Southwestern",
+    "cultural_serving_suggestions": [
+      "Serve with a side of fresh salsa.",
+      "Offer sour cream or crema as an optional topping.",
+      "Accompany with warm corn tortillas for a complete meal."
+    ],
+    "hero_ingredient": "Pork & Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400g"
+      },
+      {
+        "name": "Boneless pork shoulder",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "200g uncooked"
+      },
+      {
+        "name": "Sharp cheddar cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Pickled jalapeño chilies, diced",
+        "quantity": "30g"
+      },
+      {
+        "name": "Pickled jalapeño brine",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Swiss chard, stems removed and chopped",
+        "quantity": "1 large bunch (approx. 250g)"
+      },
+      {
+        "name": "Corn kernels (fresh or frozen)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cook brown rice according to package directions. Set aside to cool slightly.",
+      "Dice chicken thighs and pork shoulder into 2cm cubes. Season with salt and pepper.",
+      "Dice potatoes into 1.5cm cubes. Slice mushrooms. Dice onion. Mince garlic.",
+      "Heat 15ml vegetable oil in a large skillet over medium-high heat. Add pork cubes. Sear until browned on all sides. Remove pork from skillet. Set aside.",
+      "Add remaining 15ml vegetable oil to skillet. Add chicken cubes. Sear until browned and cooked through (internal temperature 75°C). Remove chicken. Set aside.",
+      "Add diced potatoes to the skillet. Cook, stirring occasionally, until lightly browned and tender-crisp, about 8-10 minutes.",
+      "Add diced onion and sliced mushrooms to the skillet with potatoes. Sauté until softened, about 5-7 minutes.",
+      "Stir in minced garlic, diced jalapeños, and dried oregano. Cook for 1 minute until fragrant.",
+      "Return cooked pork and chicken to the skillet. Pour in chicken stock and jalapeño brine. Bring to a simmer. Cook for 5 minutes, allowing flavors to meld and liquid to reduce slightly.",
+      "Stir in corn kernels and chopped Swiss chard. Cook until chard is wilted and corn is tender, about 3-5 minutes. Season hash with salt and pepper to taste. Keep warm.",
+      "Grate cheddar cheese. In a bowl, combine cooled cooked brown rice with 100g grated cheddar and 15g butter. Mix well. Form mixture into four round patties, about 2cm thick.",
+      "Heat a clean non-stick skillet over medium heat. Add remaining 15g butter. Place rice cakes in skillet. Cook 3-4 minutes per side until golden brown and crispy.",
+      "To serve, place one crispy brown rice cake on each plate. Spoon a generous portion of the Southwestern pork and chicken hash over the rice cake. Garnish with remaining grated cheddar."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1037,
+      "cholesterol_mg": 242.5,
+      "dietary_fiber_g": 9,
+      "protein_g": 58,
+      "saturated_fat_g": 20.2,
+      "sodium_mg": 1475,
+      "total_carbs_g": 78.1,
+      "total_fat_g": 55.6,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130.7,
+      "cholesterol_mg": 30.6,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.3,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 185.9,
+      "total_carbs_g": 9.8,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81,
+      "dietary_fiber": 32,
+      "protein": 116,
+      "saturated_fat": 101,
+      "sodium": 64,
+      "total_carbs": 28,
+      "total_fat": 71
+    },
+    "serving_size_g": 793,
+    "total_recipe_weight_g": 3173
+  }
+]

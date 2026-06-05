@@ -1,0 +1,653 @@
+[
+  {
+    "recipe_name": "Savory Mackerel Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_mackerel_noodle_soup_20250627_040859_f3f7868d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:08:59.831357000Z",
+    "selected_ingredients": [
+      "watermelon",
+      "mackerel",
+      "rice noodle",
+      "dark chocolate",
+      "soy sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of savory mackerel noodle soup is presented in a deep, rustic ceramic bowl with natural imperfections. The clear, amber-hued broth flows around tender white rice vermicelli noodles. Thick, flaky chunks of poached mackerel rest atop the noodles. Bright red, small cubes of fresh watermelon and vibrant green sliced spring onions are casually scattered over the soup, adding pops of color and texture. A subtle sheen of sesame oil glistens on the surface. The bowl sits on a well-used wooden kitchen table. A simple pair of dark wooden chopsticks rests beside the bowl. The lighting is warm and natural, suggesting a cozy, lived-in family kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a small side of chili oil for an optional spicy kick",
+      "Offer lime wedges for a fresh citrus accent"
+    ],
+    "hero_ingredient": "Mackerel",
+    "ingredients": [
+      {
+        "name": "Mackerel fillets",
+        "quantity": "4 (approx 150g each)"
+      },
+      {
+        "name": "Rice vermicelli noodles",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Watermelon",
+        "quantity": "300 g (cubed)"
+      },
+      {
+        "name": "Dark chocolate (minimum 70% cacao)",
+        "quantity": "5 g (finely grated)"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20 g (sliced)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3 (smashed)"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "30 g (sliced)"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat mackerel fillets dry. Season with salt and pepper.",
+      "Heat vegetable oil in a large pot over medium heat. Add sliced ginger and smashed garlic. Sauté 1 minute until fragrant.",
+      "Add 200g of cubed watermelon to the pot. Cook for 2 minutes.",
+      "Pour in chicken or vegetable broth. Bring to a gentle boil, then reduce heat and simmer for 10 minutes.",
+      "Strain the broth through a fine-mesh sieve into a clean pot. Discard solids. Return strained broth to heat.",
+      "Stir in soy sauce and finely grated dark chocolate until chocolate is fully dissolved.",
+      "Cook rice vermicelli noodles according to package instructions until tender. Drain well.",
+      "Gently place mackerel fillets into the simmering broth. Poach for 5-7 minutes, or until internal temperature reaches 75°C (167°F). Remove mackerel and break into thick chunks.",
+      "Divide cooked noodles among four individual serving bowls. Top each with mackerel chunks.",
+      "Ladle hot broth over the noodles and mackerel. Garnish with remaining 100g fresh watermelon cubes, sliced spring onions, and a drizzle of sesame oil. Serve immediately."
+    ],
+    "notes": [],
+    "traditional_techniques": [
+      "Poaching delicate fish"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 607.1,
+      "cholesterol_mg": 105.1,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 36.2,
+      "saturated_fat_g": 7.4,
+      "sodium_mg": 2396.6,
+      "total_carbs_g": 51.6,
+      "total_fat_g": 27.7,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88.2,
+      "cholesterol_mg": 15.3,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 5.3,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 348,
+      "total_carbs_g": 7.5,
+      "total_fat_g": 4,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 6.4,
+      "protein": 72.4,
+      "saturated_fat": 37,
+      "sodium": 104.2,
+      "total_carbs": 18.8,
+      "total_fat": 35.5
+    },
+    "serving_size_g": 688.6,
+    "total_recipe_weight_g": 2754.4
+  },
+  {
+    "recipe_name": "Watermelon Noodle Salad with Savory Mackerel and Chocolate-Soy Dressing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_watermelon_noodle_salad_with_savory_mackerel_and_chocolate-soy_dressing_20250627_040757_3b3274d3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:07:57.902169000Z",
+    "selected_ingredients": [
+      "watermelon",
+      "mackerel",
+      "rice noodle",
+      "dark chocolate",
+      "soy sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "This homely Watermelon Noodle Salad is presented in a wide, shallow, everyday ceramic bowl, showcasing its vibrant, natural colors. Diced watermelon cubes (2 cm) are mixed throughout the translucent rice vermicelli noodles, which form the base. Flaked pieces of savory mackerel are interspersed, not fanned, adding a subtle protein element. Bright julienned cucumber and shredded carrot provide a crisp texture and pop of orange and green. Freshly chopped mint and cilantro leaves are generously scattered, offering verdant accents. The savory chocolate-soy dressing lightly coats all ingredients, with some pooling at the bottom of the bowl. The setting is a well-used wooden kitchen table under warm, natural light, with a simple fork and a cloth napkin casually placed beside the bowl, emphasizing a comfortable, family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian Fusion",
+    "cultural_origin": "Asian Fusion",
+    "hero_ingredient": "Watermelon",
+    "ingredients": [
+      {
+        "name": "Watermelon",
+        "quantity": "300g"
+      },
+      {
+        "name": "Rice vermicelli noodles",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mackerel (canned)",
+        "quantity": "2 cans (approx 120g each)"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large (approx 200g)"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 large (approx 150g)"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "50g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "10g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dark chocolate (70% or higher), finely grated",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh red chili, deseeded and minced (optional)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Sugar or maple syrup",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Cook rice vermicelli noodles according to package directions. Drain well. Rinse with cold water to prevent sticking. Set aside.",
+      "Prepare watermelon: Dice into 2 cm cubes.",
+      "Prepare mackerel: Drain canned mackerel. Flake the fish into small pieces. Remove any large bones if present.",
+      "Prepare vegetables: Julienne cucumber. Shred carrot. Roughly chop mint and cilantro.",
+      "Make dressing: In a small bowl, whisk together soy sauce, lime juice, sesame oil, grated ginger, minced garlic, grated dark chocolate, minced red chili (if using), and sugar. Mix until sugar dissolves and chocolate is well incorporated.",
+      "Assemble salad: In a large mixing bowl, combine cooked rice noodles, diced watermelon, flaked mackerel, julienned cucumber, shredded carrot, mint, and cilantro.",
+      "Pour dressing over the salad ingredients. Toss gently to combine all ingredients evenly.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.75,
+      "calories": 433,
+      "cholesterol_mg": 57.04,
+      "dietary_fiber_g": 4.29,
+      "protein_g": 20.25,
+      "saturated_fat_g": 3.27,
+      "sodium_mg": 1127.04,
+      "total_carbs_g": 48.97,
+      "total_fat_g": 15.89,
+      "total_sugars_g": 10.95,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.85,
+      "calories": 134,
+      "cholesterol_mg": 17.69,
+      "dietary_fiber_g": 1.33,
+      "protein_g": 6.28,
+      "saturated_fat_g": 1.01,
+      "sodium_mg": 349.47,
+      "total_carbs_g": 15.18,
+      "total_fat_g": 4.93,
+      "total_sugars_g": 3.39,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19.01,
+      "dietary_fiber": 15.33,
+      "protein": 40.5,
+      "saturated_fat": 16.36,
+      "sodium": 49,
+      "total_carbs": 17.81,
+      "total_fat": 20.37
+    },
+    "serving_size_g": 322.5,
+    "total_recipe_weight_g": 1290
+  },
+  {
+    "recipe_name": "Rustic Chicken with Mushrooms, Potatoes, and Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_with_mushrooms%2C_potatoes%2C_and_tomato_20250627_040757_c5b10ba9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:07:57.630935000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "mushroom",
+      "potato",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Rustic Chicken with Mushrooms, Potatoes, and Tomato is presented on a clean white porcelain dinner plate. A base of fluffy white basmati rice sits slightly off-center. Generous portions of the rich, savory chicken stew are spooned over the rice, allowing the deep reddish-brown tomato sauce to naturally pool. The chicken pieces are thick, irregular chunks, beautifully browned from searing, showcasing their tender texture. Quartered baby potatoes, with slightly browned edges, nestle among halved cremini mushrooms that have absorbed the sauce, appearing plump and earthy. A vibrant sprinkle of fresh, chopped green parsley contrasts beautifully with the warm tones of the stew. The dish is set on a simple wooden table, with a crisp white cotton napkin and polished standard flatware beside the plate, all under soft, natural lighting in a modern bistro setting. The background is a gently blurred, inviting restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the rich sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "800g"
+      },
+      {
+        "name": "Baby potatoes, quartered",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cremini mushrooms, halved",
+        "quantity": "250g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Medium onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Basmati or long-grain rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry. Season with salt and pepper.",
+      "Heat olive oil in large pot or Dutch oven over medium-high heat.",
+      "Sear chicken chunks until browned on all sides. Remove chicken. Set aside.",
+      "Add diced onion to pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in red wine, if using. Scrape up browned bits from bottom of pot. Simmer 2 minutes.",
+      "Add diced tomatoes, chicken broth, rosemary, and thyme. Bring to a simmer.",
+      "Return chicken to pot. Add quartered potatoes. Stir.",
+      "Cover. Reduce heat to low. Simmer 25 minutes.",
+      "Add halved mushrooms. Continue simmering, covered, for another 15-20 minutes, or until chicken reaches 75°C and potatoes are tender.",
+      "While stew simmers, cook rice according to package instructions.",
+      "Remove rosemary and thyme sprigs from stew.",
+      "Taste and adjust seasoning.",
+      "Serve stew hot over cooked rice. Garnish with fresh parsley."
+    ],
+    "notes": [
+      "If omitting red wine, increase chicken broth to 350ml."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 726,
+      "cholesterol_mg": 260,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 60.8,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 556,
+      "total_carbs_g": 72.9,
+      "total_fat_g": 24.9,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.9,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 82,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 87,
+      "dietary_fiber": 22,
+      "protein": 122,
+      "saturated_fat": 29,
+      "sodium": 24,
+      "total_carbs": 27,
+      "total_fat": 32
+    },
+    "serving_size_g": 681.8,
+    "total_recipe_weight_g": 2727
+  },
+  {
+    "recipe_name": "Mackerel Pasta with Olives, Lemon, and Fresh Watermelon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mackerel_pasta_with_olives%2C_lemon%2C_and_fresh_watermelon_20250627_040547_d21bf3f2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:05:48.386772000Z",
+    "selected_ingredients": [
+      "watermelon",
+      "pasta",
+      "mackerel",
+      "lemon",
+      "olive",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Mackerel Pasta is presented on a round, rustic ceramic plate with a slightly uneven, natural glaze, sitting on a well-worn wooden dining table. The golden-yellow fusilli pasta is loosely piled, coated in a light, glossy sauce infused with olive oil, garlic, and lemon. Interspersed throughout the pasta are generous chunks of flaky, pan-seared mackerel, its skin a golden-brown and slightly crisp. Halved black olives are scattered among the pasta, adding dark visual contrast. Bright red, 2cm cubed watermelon pieces are gently folded in, some resting on top, adding a fresh, vibrant pop of color and juicy texture. A scattering of fresh, chopped green parsley adds a final touch of color. A lemon wedge rests casually on the side of the plate. The overall presentation is natural and unpretentious, reflecting a comforting, homemade meal. Lighting is warm and inviting, as if from a kitchen window or overhead fixture, highlighting the natural colors of the ingredients. A simple, folded linen napkin and basic flatware are placed beside the plate, completing the homely scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Mackerel",
+    "ingredients": [
+      {
+        "name": "Fusilli pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh mackerel fillets",
+        "quantity": "4 (approx. 150-180g each)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves, minced"
+      },
+      {
+        "name": "Pitted black olives",
+        "quantity": "150g, halved"
+      },
+      {
+        "name": "Lemons",
+        "quantity": "2"
+      },
+      {
+        "name": "Watermelon",
+        "quantity": "500g, 2cm cubes"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5g (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cook fusilli pasta in a large pot of salted boiling water according to package directions until al dente. Reserve 250ml of pasta water before draining. Drain pasta and set aside.",
+      "Pat mackerel fillets dry with paper towels. Season generously with salt and black pepper.",
+      "Heat 30ml of olive oil in a large skillet or pan over medium-high heat. Place mackerel fillets skin-side down in the hot pan. Sear for 3-4 minutes until the skin is crispy and golden. Flip the fillets and cook for another 2-3 minutes until cooked through and opaque. Remove mackerel from the pan and let cool slightly. Once cool enough to handle, gently break the fillets into large, rustic flakes, removing any bones.",
+      "Add the remaining 30ml of olive oil to the same skillet. Add minced garlic and red pepper flakes (if using). Sauté for 1 minute until fragrant. Do not brown the garlic.",
+      "Add the halved black olives to the skillet. Sauté for 2 minutes, allowing their flavors to release.",
+      "Add the cooked pasta to the skillet with the garlic and olives. Grate the zest from one lemon directly over the pasta, then squeeze in the juice from the same lemon. Toss to combine all ingredients well.",
+      "Gradually add the reserved pasta water, about 60ml at a time, tossing continuously. Continue adding water until a light, glossy sauce forms and coats the pasta beautifully.",
+      "Gently fold in the flaked mackerel into the pasta mixture. Be careful not to break up the fish too much.",
+      "Remove the skillet from the heat. Gently fold in the 2cm cubed watermelon pieces. Avoid overmixing.",
+      "Serve immediately. Garnish each portion with fresh chopped parsley and a lemon wedge."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 929.2,
+      "cholesterol_mg": 115.5,
+      "dietary_fiber_g": 6,
+      "protein_g": 45.6,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 437,
+      "total_carbs_g": 90.6,
+      "total_fat_g": 42.5,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 197.9,
+      "cholesterol_mg": 24.6,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9.7,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 93.1,
+      "total_carbs_g": 19.3,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 21,
+      "protein": 91,
+      "saturated_fat": 41,
+      "sodium": 19,
+      "total_carbs": 33,
+      "total_fat": 54
+    },
+    "serving_size_g": 469.5,
+    "total_recipe_weight_g": 1878
+  },
+  {
+    "recipe_name": "Mediterranean Mackerel & Orzo Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_mackerel_%26_orzo_soup_20250627_040453_45015435.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:04:54.051509000Z",
+    "selected_ingredients": [
+      "watermelon",
+      "pasta",
+      "mackerel",
+      "lemon",
+      "olive"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Mackerel & Orzo Soup is presented in a rustic, earth-toned ceramic bowl with natural imperfections, resting on a well-used wooden dining table. The bowl is generously filled, showcasing the rich, savory broth with a subtle red hue from the watermelon. Tender, pale yellow orzo pasta is visibly suspended throughout. Large, flaky chunks of golden-brown mackerel are nestled among the pasta, alongside dark purple-black halved olives. A sprinkle of vibrant green, roughly chopped fresh parsley garnishes the surface, with a thin lemon slice placed on the bowl's rim. The scene is lit by warm, natural light, creating a cozy, lived-in atmosphere characteristic of a family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Mackerel",
+    "ingredients": [
+      {
+        "name": "Fresh mackerel fillets",
+        "quantity": "400g"
+      },
+      {
+        "name": "Watermelon",
+        "quantity": "500g, cubed"
+      },
+      {
+        "name": "Orzo pasta",
+        "quantity": "150g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Pitted black olives",
+        "quantity": "80g, halved"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "3 tablespoons, roughly chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Blend cubed watermelon until smooth. Strain through a fine-mesh sieve into a bowl. Discard solids. Set aside watermelon juice.",
+      "Heat olive oil in a large pot over medium heat. Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in vegetable broth and watermelon juice. Bring to a simmer.",
+      "Add orzo pasta. Cook according to package directions until al dente, stirring occasionally.",
+      "Cut mackerel fillets into 2-3 cm chunks. Add mackerel chunks and halved olives to the soup. Simmer gently for 3-4 minutes, until mackerel is cooked through and flaky.",
+      "Squeeze in lemon juice from half the lemon. Grate in zest from the whole lemon. Stir well.",
+      "Season with salt and black pepper to taste.",
+      "Ladle soup into individual bowls. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 499,
+      "cholesterol_mg": 70,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 25.8,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 493,
+      "total_carbs_g": 46.2,
+      "total_fat_g": 24.1,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 82,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 4.3,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 81,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 4,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 14,
+      "protein": 52,
+      "saturated_fat": 24,
+      "sodium": 21,
+      "total_carbs": 17,
+      "total_fat": 31
+    },
+    "serving_size_g": 605.7,
+    "total_recipe_weight_g": 2422.6
+  }
+]

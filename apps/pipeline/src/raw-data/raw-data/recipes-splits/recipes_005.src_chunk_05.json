@@ -1,0 +1,684 @@
+[
+  {
+    "recipe_name": "Chicken Thigh Tagine with Preserved Lemon and Olives",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260509_085528_cad072e3.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-09T08:55:28.925137000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features two golden-brown, whole bone-in chicken thighs resting in a shallow, conical terracotta tagine. The chicken skin is crisp and glistening with a vibrant yellow-orange sauce. Diced onions have softened into a thick, rustic glaze. Whole green olives and thin julienne strips of yellow preserved lemon peel are scattered naturally around the meat. A generous sprinkle of roughly chopped green cilantro and parsley provides a fresh color contrast. The sauce is rich and glossy. The tagine sits on a dark wooden table next to a small bowl of fluffy couscous and a hand-woven cotton napkin. Lighting is soft and natural, highlighting the textures of the braised meat and the earthenware vessel.",
+    "number_of_servings": 4,
+    "cuisine_type": "Moroccan",
+    "cultural_origin": "Moroccan",
+    "cultural_serving_suggestions": [
+      "Serve with warm khobz (Moroccan crusty bread)",
+      "Accompany with steamed couscous",
+      "Serve in the traditional clay tagine used for cooking"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onions, finely diced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Preserved lemon, peel only, julienne",
+        "quantity": "1 piece"
+      },
+      {
+        "name": "Green olives, pitted and whole",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken dry with paper towels.",
+      "Season chicken with salt and pepper.",
+      "Heat oil in a tagine or heavy pot over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden.",
+      "Flip chicken and sear for 3 minutes. Remove from pot.",
+      "Add diced onions to the pot. Sauté until translucent.",
+      "Stir in garlic, ginger, turmeric, and cumin. Toast for 1 minute.",
+      "Return chicken to the pot. Add cinnamon and saffron.",
+      "Pour in chicken stock. Bring to a simmer.",
+      "Cover and cook on low heat for 35 minutes.",
+      "Add julienne preserved lemon and whole olives.",
+      "Simmer uncovered for 10 minutes to thicken sauce.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Stir in cilantro and parsley before serving."
+    ],
+    "notes": [
+      "Rinse preserved lemons thoroughly before julienning to remove excess salt.",
+      "Do not over-salt the initial chicken as olives and preserved lemons are naturally salty."
+    ],
+    "traditional_techniques": [
+      "Slow braising",
+      "Tempering spices",
+      "Layering aromatics"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 551,
+      "cholesterol_mg": 168.8,
+      "dietary_fiber_g": 3,
+      "protein_g": 37.1,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 1100,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 39.3,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.8,
+      "cholesterol_mg": 39.2,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 255.2,
+      "total_carbs_g": 3,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.3,
+      "dietary_fiber": 10.7,
+      "protein": 74.2,
+      "saturated_fat": 47.5,
+      "sodium": 47.8,
+      "total_carbs": 4.7,
+      "total_fat": 50.4
+    },
+    "serving_size_g": 431,
+    "total_recipe_weight_g": 1724
+  },
+  {
+    "recipe_name": "Italian Sausage and Apple Sauté with Garlic Corn Mash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260509_060411_610bba9f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-09T06:04:12.948697000Z",
+    "selected_ingredients": [
+      "apple",
+      "corn",
+      "flour",
+      "garlic",
+      "bacon",
+      "italian sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "low fat",
+    "visual_description": "A single portion served on a wide, matte white porcelain plate. The foundation is a generous mound of vibrant yellow, coarse-textured garlic corn mash. Atop the mash, two whole, golden-brown seared Italian sausages are placed centrally, showing distinct char marks. Beside the sausages, three thick, caramelized Granny Smith apple wedges are arranged naturally. A light, translucent amber pan sauce coats the fruit and meat. Small, crispy bacon bits and bright green chopped sage are scattered over the top. The plating is clean with significant negative space. The scene features a light oak wood background, a simple linen napkin, and natural side-lighting to emphasize the textures of the meat and corn.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Italian",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed bitter greens",
+      "Accompany with crusty whole-grain bread"
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Lean Italian sausage links",
+        "quantity": "400g"
+      },
+      {
+        "name": "Center-cut bacon",
+        "quantity": "2 strips"
+      },
+      {
+        "name": "Granny Smith apples, thick wedges",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Sweet corn kernels",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "Low-sodium chicken stock",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Fresh sage, chopped",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Dice bacon into small pieces.",
+      "Cook bacon in a large skillet over medium heat until crisp.",
+      "Remove bacon and drain all but 5ml of fat from the pan.",
+      "Add whole sausages to the skillet.",
+      "Brown sausages for 4 minutes per side.",
+      "Remove sausages and set aside.",
+      "Add apple wedges and garlic to the same skillet.",
+      "Sauté for 3 minutes until apples soften slightly.",
+      "Stir in flour and cook for 1 minute.",
+      "Slowly pour in 150ml of chicken stock while stirring.",
+      "Return sausages and bacon to the pan.",
+      "Simmer for 6 minutes until sauce thickens and sausages are cooked through.",
+      "Boil corn in remaining stock for 5 minutes.",
+      "Drain and pulse corn in a food processor to create a coarse, thick mash.",
+      "Season corn mash with pepper and garlic.",
+      "Place a portion of corn mash on each plate.",
+      "Top with whole sausages and sautéed apples.",
+      "Garnish with fresh sage."
+    ],
+    "notes": [
+      "Use turkey or chicken Italian sausage to minimize fat content.",
+      "Ensure the corn mash remains chunky for authentic texture.",
+      "Do not peel the apples to retain fiber and visual contrast."
+    ],
+    "traditional_techniques": [
+      "rendering",
+      "deglazing",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 386,
+      "cholesterol_mg": 65,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 23.8,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 765,
+      "total_carbs_g": 38.6,
+      "total_fat_g": 15.1,
+      "total_sugars_g": 17.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123,
+      "cholesterol_mg": 20.7,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 243.8,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21.7,
+      "dietary_fiber": 18.6,
+      "protein": 47.6,
+      "saturated_fat": 23.5,
+      "sodium": 33.3,
+      "total_carbs": 14,
+      "total_fat": 19.4
+    },
+    "serving_size_g": 313.8,
+    "total_recipe_weight_g": 1255.2
+  },
+  {
+    "recipe_name": "Alambre de Res y Salchicha",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260509_055912_6b401891.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-09T05:59:12.821206000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "potato",
+      "yogurt",
+      "italian sausage",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "mexican cuisine",
+    "visual_description": "A vibrant Mexican Alambre served on a large white porcelain plate. The dish features a mountain of seared 2cm beef chunks and browned sausage crumbles mixed with golden-brown 1cm potato cubes. Quartered cremini mushrooms show a deep caramelized glaze alongside softened diced onions. The arrangement is organic and hearty, occupying the center of the plate with clean margins. A generous drizzle of thick, white yogurt mimics Mexican crema across the top. Freshly chopped green cilantro is scattered over the dish. The setting includes a rustic wooden table, a stack of warm corn tortillas in a cloth-lined basket, and a small bowl of charred salsa roja. Natural light highlights the textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas.",
+      "Offer charred salsa roja on the side.",
+      "Provide fresh lime wedges for acidity."
+    ],
+    "hero_ingredient": "Beef chunks",
+    "ingredients": [
+      {
+        "name": "Beef Sirloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Italian Sausage",
+        "quantity": "200g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "White Onion",
+        "quantity": "150g"
+      },
+      {
+        "name": "Plain Greek Yogurt",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "15g"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "15g"
+      },
+      {
+        "name": "Limes",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 2cm cubes.",
+      "Dice potatoes into 1cm cubes.",
+      "Boil potatoes 5 minutes in salted water. Drain.",
+      "Heat 30ml oil in large skillet over high heat.",
+      "Sear beef chunks until browned. Remove beef.",
+      "Remove sausage meat from casings.",
+      "Brown sausage meat in skillet. Break into small chunks.",
+      "Add diced onions and quartered mushrooms. Sauté until golden.",
+      "Add potatoes. Cook until crispy on edges.",
+      "Return beef to skillet.",
+      "Add minced garlic, cumin, and paprika.",
+      "Cook 2 minutes. Season with salt.",
+      "Garnish with yogurt drizzle and chopped cilantro."
+    ],
+    "notes": [
+      "Parboiling potatoes ensures a fluffy interior and crispy exterior.",
+      "Greek yogurt provides a tang similar to Mexican crema agria.",
+      "Breaking the sausage into small bits distributes flavor throughout the alambre."
+    ],
+    "traditional_techniques": [
+      "Salteado",
+      "Tatemado"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 697.8,
+      "cholesterol_mg": 151.5,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 55.2,
+      "saturated_fat_g": 13.7,
+      "sodium_mg": 994.8,
+      "total_carbs_g": 24.5,
+      "total_fat_g": 41.1,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 209.5,
+      "cholesterol_mg": 45.5,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 16.6,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 298.7,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 12.3,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50.5,
+      "dietary_fiber": 10,
+      "protein": 110.4,
+      "saturated_fat": 68.5,
+      "sodium": 43.3,
+      "total_carbs": 8.9,
+      "total_fat": 52.7
+    },
+    "serving_size_g": 333,
+    "total_recipe_weight_g": 1332
+  },
+  {
+    "recipe_name": "Portuguese Braised Chicken in a Clay Pot",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260509_032024_2936f8f9.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-09T03:20:25.538315000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "chili",
+      "onion",
+      "potato",
+      "tomato",
+      "rice",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Presented on a wide, clean white porcelain dinner plate, a whole braised chicken leg and thigh rest as the central focal point. The chicken skin is a deep, caramelized mahogany. Surrounding the meat are thick 3cm potato cubes and halved cremini mushrooms, all coated in a glossy, savory tomato and onion reduction. The sauce is a rich ochre color, containing translucent onion half-moons and minced garlic. A neat mound of fluffy long-grain white rice is positioned to the side, absorbing the braising juices. The arrangement is organic with moderate negative space. Garnish includes finely chopped flat-leaf parsley and thin red chili rounds. The setting is a modern bistro with a light wooden table and natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Portuguese",
+    "cultural_origin": "Portugal",
+    "cultural_serving_suggestions": [
+      "Serve in a traditional Púcara de Alcobaça clay pot",
+      "Accompany with a chilled glass of Vinho Verde",
+      "Provide crusty bread to soak up the braising sauce"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs and drumsticks",
+        "quantity": "1.2 kg"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "4"
+      },
+      {
+        "name": "Red chili, sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "Onions, sliced into half-moons",
+        "quantity": "2"
+      },
+      {
+        "name": "Potatoes, peeled and cut into 3cm cubes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Tomatoes, diced",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cremini mushrooms, halved",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken pieces with salt and pepper.",
+      "Heat olive oil in a heavy-bottomed pot over medium-high heat.",
+      "Sear chicken pieces for 5 minutes until skin is golden-brown.",
+      "Remove chicken from the pot and set aside.",
+      "Add onions, garlic, and chili to the same pot.",
+      "Sauté for 5 minutes until onions soften.",
+      "Add mushrooms and potato cubes. Cook for 5 minutes.",
+      "Stir in diced tomatoes and a bay leaf.",
+      "Return chicken to the pot and pour in white wine.",
+      "Cover with a tight-fitting lid and simmer for 35 minutes.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Boil rice in 600ml salted water until tender. Drain.",
+      "Place a portion of rice on each plate and top with chicken and vegetables."
+    ],
+    "notes": [
+      "Using a clay pot enhances the earthy flavors of the mushrooms and potatoes.",
+      "Ensure the sauce is thick enough to coat the back of a spoon before serving."
+    ],
+    "traditional_techniques": [
+      "Estufar",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1039,
+      "cholesterol_mg": 240,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 60.7,
+      "saturated_fat_g": 13,
+      "sodium_mg": 230,
+      "total_carbs_g": 92,
+      "total_fat_g": 47.5,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148.4,
+      "cholesterol_mg": 34.29,
+      "dietary_fiber_g": 0.94,
+      "protein_g": 8.67,
+      "saturated_fat_g": 1.86,
+      "sodium_mg": 32.86,
+      "total_carbs_g": 13.14,
+      "total_fat_g": 6.79,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80,
+      "dietary_fiber": 23.6,
+      "protein": 121.4,
+      "saturated_fat": 65,
+      "sodium": 10,
+      "total_carbs": 33.5,
+      "total_fat": 60.9
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2800
+  },
+  {
+    "recipe_name": "Rigatoni with Braised Pork Ragu and Fresh Oregano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260509_003633_fa816d5a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-09T00:36:33.901781000Z",
+    "selected_ingredients": [
+      "pasta",
+      "oregano",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A wide, shallow white porcelain pasta bowl holds a generous portion of rigatoni. The pasta is coated in a thick, vibrant red tomato sauce with a glossy sheen. Large, tender 3cm chunks of slow-braised pork are distributed naturally among the rigatoni tubes. The meat is dark and succulent, showing visible braised fibers. Bright green, whole fresh oregano leaves are scattered across the top. Fine, snowy shavings of white Pecorino Romano cheese are dusted over the center. The bowl sits on a dark walnut wood table. A neutral linen napkin and a polished silver fork are placed to the right. Natural side lighting creates soft shadows and highlights the sauce texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Sicilian Italian",
+    "cultural_origin": "Sicily",
+    "cultural_serving_suggestions": [
+      "Serve with crusty durum wheat bread for 'scarpetta' to finish the sauce.",
+      "Pair with a glass of Nero d'Avola or Cerasuolo di Vittoria wine.",
+      "Present in a large communal bowl before portioning for family-style dining."
+    ],
+    "hero_ingredient": "Braised pork chunks",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "500g"
+      },
+      {
+        "name": "Pork shoulder, cut into 3cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Canned San Marzano tomatoes, crushed",
+        "quantity": "800g"
+      },
+      {
+        "name": "Fresh oregano leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Pecorino Romano, finely grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Sea salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season pork chunks with salt and pepper.",
+      "Heat oil in a heavy-based pot over medium-high heat.",
+      "Brown pork chunks thoroughly on all sides. Remove pork from pot.",
+      "Add onion and garlic to the same pot. Sauté until translucent.",
+      "Deglaze with red wine. Scrape the bottom to release browned bits.",
+      "Add crushed tomatoes and half of the fresh oregano.",
+      "Return pork to the pot. Cover and simmer on low for 90 minutes.",
+      "Boil a large pot of salted water. Cook rigatoni until al dente.",
+      "Drain pasta. Reserve 100ml of the cooking water.",
+      "Combine pasta with the pork ragu. Add reserved water to emulsify.",
+      "Toss over low heat for 1 minute. Stir in remaining fresh oregano.",
+      "Serve immediately with grated Pecorino Romano."
+    ],
+    "notes": [
+      "Ensure the pork is braised until it yields easily to a fork.",
+      "The sauce should be thick enough to cling to the ridges of the rigatoni.",
+      "Use high-quality Sicilian olive oil for the finishing drizzle if desired."
+    ],
+    "traditional_techniques": [
+      "soffritto",
+      "slow-braising",
+      "mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 974.5,
+      "cholesterol_mg": 117.5,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 49.1,
+      "saturated_fat_g": 10,
+      "sodium_mg": 1085,
+      "total_carbs_g": 103.8,
+      "total_fat_g": 36.4,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 200.5,
+      "cholesterol_mg": 24.2,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 10.1,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 223.3,
+      "total_carbs_g": 21.4,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.2,
+      "dietary_fiber": 23.6,
+      "protein": 98.2,
+      "saturated_fat": 50,
+      "sodium": 47.2,
+      "total_carbs": 37.7,
+      "total_fat": 46.7
+    },
+    "serving_size_g": 486,
+    "total_recipe_weight_g": 1945
+  }
+]

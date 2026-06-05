@@ -1,0 +1,599 @@
+[
+  {
+    "recipe_name": "Oyakodon (Japanese Chicken and Egg Rice Bowl)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_oyakodon_%28japanese_chicken_and_egg_rice_bowl%29_20250701_145455_771ffb90.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:54:56.169132000Z",
+    "selected_ingredients": [
+      "egg",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Oyakodon presented in a deep, traditional indigo-patterned ceramic donburi bowl. The base consists of a clean mound of steaming, pearlescent Japanese short-grain rice. Draped over the rice is a rich, glossy layer of simmered eggs, featuring a soft and creamy curd texture. Large, succulent chunks of braised chicken thigh are embedded within the egg, showing a light golden-brown exterior. Translucent, thin-sliced onions are interspersed throughout the mixture, coated in a dark umami-rich dashi glaze. The dish is finished with a vibrant garnish of diagonally sliced green scallions and fresh mitsuba leaves. The bowl sits on a minimalist light oak table accompanied by dark wooden chopsticks on a small ceramic rest.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of miso soup",
+      "Accompany with takuan (pickled daikon radish)",
+      "Offer shichimi togarashi (seven-spice powder) on the side"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, cut into 3cm chunks",
+        "quantity": "600g"
+      },
+      {
+        "name": "Large eggs, lightly beaten",
+        "quantity": "4"
+      },
+      {
+        "name": "Yellow onion, thinly sliced",
+        "quantity": "1"
+      },
+      {
+        "name": "Dashi stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Cooked Japanese short-grain rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Scallions, sliced diagonally",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Mitsuba (Japanese parsley) or cilantro",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Combine dashi, soy sauce, mirin, and sugar in a wide shallow pan.",
+      "Bring the liquid to a simmer over medium heat.",
+      "Add sliced onions to the pan. Cook for 2 minutes until softened.",
+      "Add chicken chunks in a single layer. Simmer for 6 minutes.",
+      "Check chicken internal temperature reaches 75°C.",
+      "Slowly pour beaten eggs in a circular motion over the chicken and onions.",
+      "Cover the pan immediately. Cook for 45 seconds until eggs are soft-set.",
+      "Divide hot rice into four deep ceramic bowls.",
+      "Slide a portion of the chicken and egg mixture onto each rice bowl.",
+      "Garnish with scallions and fresh mitsuba."
+    ],
+    "notes": [
+      "Use a small Oyakodon pan for individual portions if available.",
+      "Do not over-beat the eggs to maintain distinct white and yellow streaks.",
+      "Ensure rice is hot to help steam the base of the egg mixture."
+    ],
+    "traditional_techniques": [
+      "Donburi preparation",
+      "Simmering",
+      "Egg tempering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 9.8,
+      "calories": 499,
+      "cholesterol_mg": 327,
+      "dietary_fiber_g": 1,
+      "protein_g": 39.7,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 949,
+      "total_carbs_g": 44.5,
+      "total_fat_g": 16.8,
+      "total_sugars_g": 11.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.95,
+      "calories": 150.1,
+      "cholesterol_mg": 98.3,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 11.94,
+      "saturated_fat_g": 1.53,
+      "sodium_mg": 285.4,
+      "total_carbs_g": 13.38,
+      "total_fat_g": 5.05,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 109,
+      "dietary_fiber": 3.6,
+      "protein": 79.4,
+      "saturated_fat": 25.5,
+      "sodium": 41.3,
+      "total_carbs": 14.8,
+      "total_fat": 25.8
+    },
+    "serving_size_g": 332.5,
+    "total_recipe_weight_g": 1330
+  },
+  {
+    "recipe_name": "Jalapeno-Lime Chicken with Creamy Coriander Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_jalapeno-lime_chicken_with_creamy_coriander_sauce_20250701_145452_cc514ca7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:54:53.166333000Z",
+    "selected_ingredients": [
+      "chicken",
+      "coriander",
+      "mayonnaise",
+      "jalapeno chile",
+      "cumin"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, perfectly pan-seared chicken breast, cooked to a golden-brown finish, is centrally placed on a clean, round white porcelain plate. The chicken retains its natural shape, showcasing its inviting crust. A vibrant, creamy, pale green sauce is generously spooned over the chicken and pooled around its base, highlighting its smooth texture. A few fresh, bright green coriander leaves are scattered artfully on top of the sauce, providing a pop of color and freshness. The plate is set on a simple, warm-toned wooden table. A folded cotton napkin and a lime wedge are subtly placed beside the plate. Natural, soft light illuminates the dish, emphasizing the rich colors and inviting textures. The overall presentation is refined yet approachable, honoring a casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for wrapping",
+      "Accompany with a side of Mexican rice or refried beans",
+      "Offer extra lime wedges on the side for added zest"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Fresh coriander (cilantro)",
+        "quantity": "60g, roughly chopped"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Jalapeno chile",
+        "quantity": "1-2, deseeded and roughly chopped (adjust to taste)"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5ml (1 teaspoon)"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 (juice and zest)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 4-5 minutes per side until golden brown. Transfer skillet to a preheated oven at 190°C (375°F).",
+      "Bake for 10-15 minutes, or until internal temperature reaches 75°C (167°F). Remove from oven and let rest 5 minutes.",
+      "While chicken bakes, prepare the sauce: Combine mayonnaise, chopped fresh coriander, deseeded jalapeno, ground cumin, lime juice, lime zest, and minced garlic in a blender or food processor.",
+      "Blend until smooth and creamy. Taste and adjust seasoning as needed.",
+      "To serve, place one whole chicken breast on each plate. Spoon a generous amount of creamy coriander sauce over and around the chicken.",
+      "Garnish with a few fresh coriander leaves or a lime wedge."
+    ],
+    "notes": [
+      "Adjust jalapeno quantity to control the spice level. For less heat, remove all seeds and membranes."
+    ]
+  },
+  {
+    "recipe_name": "Braised Beef Cheek, Black Garlic Tamarind Glaze, Pickled Shallots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_cheek%2C_black_garlic_tamarind_glaze%2C_pickled_shallots_20250701_145418_4feb5288.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:54:19.272516000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "thai cuisine",
+    "visual_description": "A single, substantial portion of braised beef cheek rests elegantly on a pristine white bone china plate. The beef, deep mahogany from its rich glaze, is fork-tender, holding its natural, irregular shape. Its surface glistens with dark, viscous black garlic tamarind glaze. Beside the beef, a small, artfully arranged cluster of translucent, ruby-red pickled shallot rings adds a vibrant pop of color and delicate, sharp contrast. Golden-brown, irregularly shaped crispy garlic chips scatter for textural intrigue. A thin, vibrant green cilantro oil line sparingly drizzled, enhancing the dish's sophisticated color palette. Abundant negative space emphasizes minimalist elegance and component perfection. The plate is on a superpremium grey-veined marble, with a folded white linen napkin and modern silver flatware. Dramatic lighting casts soft shadows, highlighting luxurious appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "While this is a fine-dining interpretation, traditional Thai meals are often served family-style with rice. For this dish, it is presented as a standalone main course."
+    ],
+    "hero_ingredient": "Beef Cheek",
+    "ingredients": [
+      {
+        "name": "Beef cheeks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 whole head"
+      },
+      {
+        "name": "Black Garlic",
+        "quantity": "40g"
+      },
+      {
+        "name": "Tamarind Paste",
+        "quantity": "60g"
+      },
+      {
+        "name": "Palm Sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": "40ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "30g, sliced"
+      },
+      {
+        "name": "Lemongrass",
+        "quantity": "2 stalks, bruised"
+      },
+      {
+        "name": "Galangal",
+        "quantity": "20g, sliced"
+      },
+      {
+        "name": "Cilantro roots",
+        "quantity": "4-5"
+      },
+      {
+        "name": "White Peppercorns",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Star Anise",
+        "quantity": "2 pods"
+      },
+      {
+        "name": "Cinnamon Stick",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "For frying and searing"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Trim beef cheeks of excess fat. Season heavily with salt and pepper.",
+      "Heat vegetable oil in a heavy-bottomed pot. Sear beef cheeks until deeply browned on all sides. Remove beef.",
+      "Add sliced ginger, bruised lemongrass, galangal, cilantro roots, white peppercorns, star anise, and cinnamon stick to the pot. Sauté until fragrant.",
+      "Return beef to pot. Add beef stock, 20g tamarind paste, 20g palm sugar, and 20ml fish sauce. Bring to a simmer. Cover.",
+      "Transfer pot to preheated oven at 150°C. Braise for 3-4 hours, or until beef is fork-tender.",
+      "Remove beef. Strain braising liquid through a fine-mesh sieve. Discard solids.",
+      "Return strained liquid to a clean pot. Reduce by half over medium heat.",
+      "Thinly slice 100g shallots. Combine rice vinegar, 100ml water, 50g sugar, and a pinch of salt in a small saucepan. Bring to a boil. Pour over sliced shallots. Let cool.",
+      "Thinly slice remaining 100g shallots and all garlic. Heat vegetable oil in a small pan to 140°C. Fry sliced garlic until golden and crispy. Remove with a slotted spoon. Fry sliced shallots until golden and crispy. Remove. Drain on paper towel.",
+      "Combine black garlic, remaining 40g tamarind paste, 30g palm sugar, 20ml fish sauce, and 100ml of the reduced braising liquid in a separate pan. Simmer until thickened to a glaze consistency. Blend until smooth.",
+      "Blanch a small bunch of cilantro. Immediately shock in ice water. Squeeze dry. Blend with 50ml neutral oil until smooth. Strain through a fine-mesh sieve.",
+      "Gently reheat beef cheeks in some braising liquid if needed. Brush generously with black garlic tamarind glaze before serving.",
+      "Place one beef cheek per plate. Arrange a small, artful cluster of pickled shallots beside it. Scatter a few crispy garlic chips. Drizzle cilantro oil sparingly around the beef."
+    ],
+    "notes": [
+      "Use high-quality beef cheeks for best results. Precision in each component's preparation is key for this minimalist dish.",
+      "Ensure the black garlic tamarind glaze is smooth and coats the beef well."
+    ],
+    "traditional_techniques": [
+      "Slow Braising",
+      "Glaze Reduction",
+      "Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 24.25,
+      "calories": 724,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 4.29,
+      "protein_g": 58.42,
+      "saturated_fat_g": 9.71,
+      "sodium_mg": 3425,
+      "total_carbs_g": 56.82,
+      "total_fat_g": 29.27,
+      "total_sugars_g": 36.63,
+      "trans_fat_g": 0.25
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4.55,
+      "calories": 136,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.81,
+      "protein_g": 10.97,
+      "saturated_fat_g": 1.82,
+      "sodium_mg": 643,
+      "total_carbs_g": 10.67,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 6.88,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 15,
+      "protein": 117,
+      "saturated_fat": 49,
+      "sodium": 149,
+      "total_carbs": 21,
+      "total_fat": 38
+    },
+    "serving_size_g": 532.5,
+    "total_recipe_weight_g": 2130
+  },
+  {
+    "recipe_name": "Caramelized Onion and Wild Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_onion_and_wild_rice_salad_20250701_145358_252c7f0c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:53:59.464707000Z",
+    "selected_ingredients": [
+      "onion",
+      "rice"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish is presented on a minimalist, large white bone china plate with a subtle grey rim, set against a pristine white Carrara marble surface. Dramatic, directional lighting casts soft shadows, highlighting the textures. The salad is composed with artistic restraint, featuring a fluid, organic arrangement of rich, dark caramelized red onions intertwined with the varied textures of glossy black and brown wild rice grains. Each element is purposefully placed, leaving abundant negative space on the plate. The deep amber of the onions contrasts with the earthy tones of the rice. A delicate drizzle of golden truffle vinaigrette glistens over the components. A scattering of toasted, pale golden pine nuts provides textural intrigue, while a small, vibrant cluster of bright green pea microgreens is precisely positioned as a fresh, high-contrast accent. The cutting of the onions is thin and uniform, showcasing careful knife work. The wild rice grains are distinct and perfectly cooked. The overall presentation is one of sophisticated simplicity and luxurious refinement, emphasizing the natural beauty of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Onion",
+    "ingredients": [
+      {
+        "name": "red onions, thinly sliced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "aged balsamic vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "sea salt",
+        "quantity": "pinch"
+      },
+      {
+        "name": "wild rice blend",
+        "quantity": "150 g"
+      },
+      {
+        "name": "vegetable stock or water",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "shallot, finely minced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "white truffle oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "pine nuts, lightly toasted",
+        "quantity": "30 g"
+      },
+      {
+        "name": "microgreens (e.g., pea shoots or radish microgreens)",
+        "quantity": "small handful"
+      }
+    ],
+    "instructions": [
+      "Heat 30 ml olive oil in a large pan over medium-low heat. Add thinly sliced red onions. Cook slowly for 30-40 minutes, stirring occasionally, until deeply golden brown and very tender. Stir in 15 ml balsamic vinegar and a pinch of salt. Cook for 2 more minutes. Set aside.",
+      "Rinse wild rice blend under cold water. Combine rice and 600 ml vegetable stock (or water) with a pinch of salt in a medium saucepan. Bring to a boil, then reduce heat to low, cover, and simmer for 40-45 minutes, or until rice is tender and grains have burst open. Drain any excess liquid. Fluff with a fork. Let cool slightly.",
+      "In a small bowl, whisk together minced shallot, minced garlic, 60 ml extra virgin olive oil, 15 ml white truffle oil, 30 ml balsamic vinegar, Dijon mustard, salt, and pepper until emulsified.",
+      "In a large bowl, gently combine the cooled wild rice and caramelized onions. Add half of the truffle vinaigrette. Toss gently to coat. Taste and adjust seasoning.",
+      "On each of four individual fine-dining plates, artfully arrange a portion of the wild rice and caramelized onion mixture. Create an organic, flowing shape. Drizzle remaining truffle vinaigrette sparingly over and around the salad. Scatter a few toasted pine nuts. Place a small cluster of microgreens precisely on top or to the side for visual contrast."
+    ],
+    "notes": [
+      "The slow caramelization of the onions is crucial for depth of flavor. Do not rush this step.",
+      "The wild rice should be cooked al dente, with some grains burst for textural interest."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 467,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 8.7,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 185.9,
+      "total_carbs_g": 45.7,
+      "total_fat_g": 29.8,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 151,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 2.8,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 60,
+      "total_carbs_g": 14.7,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 19.6,
+      "protein": 17.3,
+      "saturated_fat": 18.8,
+      "sodium": 8.1,
+      "total_carbs": 16.6,
+      "total_fat": 38.2
+    },
+    "serving_size_g": 310,
+    "total_recipe_weight_g": 1240
+  },
+  {
+    "recipe_name": "Grilled Salmon and Zucchini Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_grilled_salmon_and_zucchini_bites_20250701_145358_fe99091f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:53:59.261924000Z",
+    "selected_ingredients": [
+      "salmon"
+    ],
+    "complexity": "simple",
+    "special_requests": "grilled cuisine",
+    "visual_description": "Eight to twelve bite-sized Grilled Salmon and Zucchini Bites are artfully arranged on a rustic wooden serving board. Each piece features a tender, pinkish-orange grilled salmon strip, approximately 1.5 cm wide and 6 cm long, snugly rolled within a thin, slightly charred, vibrant green zucchini slice. The zucchini slices exhibit distinct grill marks, adding visual texture. The rolls are presented naturally, some slightly overlapping, creating a casual yet refined arrangement. A scattering of bright green chopped fresh dill and finely grated lemon zest provides a fresh, aromatic garnish, enhancing the natural colors of the dish. The wooden board sits on a well-used wooden dining table, illuminated by warm, inviting kitchen lighting. The scene is uncluttered, emphasizing the homely comfort and simple elegance of the canapés, suitable for a relaxed family gathering.",
+    "number_of_servings": 4,
+    "cuisine_type": "Grilled",
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillet, skinless and boneless",
+        "quantity": "250g"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml, plus extra for grilling"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh dill or parsley, chopped",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Slice zucchini lengthwise into thin strips, about 3mm thick.",
+      "Brush zucchini strips lightly with olive oil. Grill zucchini strips on a preheated grill pan or outdoor grill. Cook until tender with visible grill marks, about 1-2 minutes per side. Set aside.",
+      "Cut salmon fillet into strips, approximately 1.5 cm wide and 6 cm long. Season salmon strips with salt, pepper, minced garlic, and a squeeze of lemon juice.",
+      "Heat a grill pan or outdoor grill. Grill salmon strips for 2-3 minutes per side, or until cooked through (internal temperature 63°C/145°F). Do not overcook.",
+      "Lay a grilled zucchini strip flat. Place a cooked salmon strip at one end. Carefully roll the zucchini around the salmon. Secure with a small toothpick if needed.",
+      "Arrange the rolls on a serving platter.",
+      "Garnish with fresh chopped dill or parsley and finely grated lemon zest."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 206.9,
+      "cholesterol_mg": 39.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 13.6,
+      "saturated_fat_g": 3,
+      "sodium_mg": 40.3,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 15.1,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.4,
+      "cholesterol_mg": 25.2,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.7,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 25.8,
+      "total_carbs_g": 2.3,
+      "total_fat_g": 9.7,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13.1,
+      "dietary_fiber": 3.9,
+      "protein": 27.2,
+      "saturated_fat": 14.8,
+      "sodium": 1.8,
+      "total_carbs": 1.3,
+      "total_fat": 19.4
+    },
+    "serving_size_g": 156.3,
+    "total_recipe_weight_g": 625
+  }
+]

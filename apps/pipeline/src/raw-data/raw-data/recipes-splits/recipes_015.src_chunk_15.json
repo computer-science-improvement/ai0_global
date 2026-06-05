@@ -1,0 +1,629 @@
+[
+  {
+    "recipe_name": "Torta al Limone e Semi di Papavero (Senza Glutine, Senza Lattosio)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_torta_al_limone_e_semi_di_papavero_%28senza_glutine%2C_senza_lattosio%29_20250628_075819_e0276b77.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:58:19.548742000Z",
+    "selected_ingredients": [
+      "rice flour",
+      "poppy seed",
+      "lemon"
+    ],
+    "complexity": "simple",
+    "special_requests": "Italia cuisine, Gluten-free, dairy-free",
+    "visual_description": "A single slice of golden-yellow cake is presented on a simple, round, white ceramic plate with a slightly rustic edge. The cake has a fine, moist crumb visible on the cut side, dotted generously with small, dark poppy seeds. A thin, slightly opaque white lemon glaze cascades gently over the top surface of the slice, pooling slightly at the base. A small, fresh lemon wedge rests casually beside the cake slice on the plate. In the blurred background, the remaining whole cake, round and fully glazed, sits on a worn wooden cutting board or a simple cake stand. The setting is a well-used wooden dining table. Lighting is warm and natural, suggesting a cozy kitchen atmosphere. A loosely folded, light-colored linen napkin is placed nearby. The overall impression is one of comforting, homemade Italian dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a small cup of freshly brewed espresso.",
+      "Enjoy as an afternoon snack (merenda) or after a light meal."
+    ],
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "Rice flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Poppy seeds",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 2 lemons"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Lemon juice (for glaze)",
+        "quantity": "15-30 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 20 cm round cake tin with rice flour.",
+      "In a large bowl, whisk together rice flour, granulated sugar, poppy seeds, baking powder, and salt.",
+      "In a separate bowl, whisk eggs, olive oil, 60 ml lemon juice, lemon zest, and vanilla extract.",
+      "Pour wet ingredients into dry ingredients. Mix until just combined. Do not overmix.",
+      "Pour batter into prepared cake tin.",
+      "Bake for 30-35 minutes, or until a skewer inserted into the center comes out clean.",
+      "Remove cake from oven. Let cool in the tin for 10 minutes. Invert onto a wire rack to cool completely.",
+      "For the glaze, whisk icing sugar with 15-30 ml lemon juice until smooth. Adjust consistency with more juice if needed.",
+      "Once cake is cool, pour glaze over the top. Let glaze set before serving."
+    ],
+    "notes": [
+      "Ensure all ingredients are at room temperature for best results.",
+      "Do not overmix the batter to keep the cake tender."
+    ],
+    "traditional_techniques": [
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 70,
+      "calories": 801,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 9.2,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 513,
+      "total_carbs_g": 114.6,
+      "total_fat_g": 35.5,
+      "total_sugars_g": 71.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 31.6,
+      "calories": 361,
+      "cholesterol_mg": 63,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 4.1,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 231,
+      "total_carbs_g": 51.7,
+      "total_fat_g": 16,
+      "total_sugars_g": 32.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 10,
+      "protein": 18,
+      "saturated_fat": 28,
+      "sodium": 22,
+      "total_carbs": 42,
+      "total_fat": 46
+    },
+    "serving_size_g": 221.7,
+    "total_recipe_weight_g": 886.6
+  },
+  {
+    "recipe_name": "Steamed Chicken Breast, Avocado Crème, Compressed Yam, Tomato Essence, Parmesan Garlic Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_steamed_chicken_breast%2C_avocado_cr%C3%A8me%2C_compressed_yam%2C_tomato_essence%2C_parmesan_garlic_crisp_20250628_075440_c027c951.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:54:40.937215000Z",
+    "selected_ingredients": [
+      {
+        "name": "garlic",
+        "comment": "fried"
+      },
+      {
+        "name": "avocado",
+        "comment": "boiled"
+      },
+      "onion",
+      "yam",
+      {
+        "name": "chicken",
+        "comment": "steam"
+      },
+      "tomato",
+      "cheese"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single individual portion of a Michelin-starred dish presented on an exquisite, large, bone china plate with a wide, pristine white rim. The composition is elegantly asymmetrical and organic, celebrating abundant negative space. A perfectly steamed and lightly seared chicken medallion, showcasing a delicate golden crust and moist interior, rests slightly off-center. Beside it, a silken, pale green quenelle of avocado crème, its surface impossibly smooth, adds a soft, luxurious counterpoint. A precise, golden-orange rectangle of compressed yam confit is positioned to balance the plate, its subtle sear visible. Several translucent, vibrant red cubes of tomato essence gel are scattered artfully, providing bursts of color and acidity. A delicate, golden-brown parmesan-garlic crisp, with an irregular, organic shape, stands vertically or lies delicately, offering a textural contrast. The plate is garnished with a minimal scattering of bright green, finely sliced chives. The setting is a luxurious white Carrara marble surface, illuminated by dramatic professional lighting that creates subtle shadows, emphasizing the dish's architectural precision. A pristine white linen napkin, precisely folded into a triangle, sits to the side. The background is ultra-minimalist, ensuring the dish remains the absolute focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken Breasts",
+        "quantity": "2 medium (approx. 450g total)"
+      },
+      {
+        "name": "Avocados",
+        "quantity": "2 ripe (approx. 400g total)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Yams",
+        "quantity": "2 medium (approx. 400g total)"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "White Pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "4 (approx. 500g total)"
+      },
+      {
+        "name": "Small Shallot",
+        "quantity": "1"
+      },
+      {
+        "name": "Thyme Sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Agar-Agar",
+        "quantity": "1g"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50g, finely grated"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2, finely minced"
+      },
+      {
+        "name": "Chives",
+        "quantity": "Small bunch, finely sliced"
+      },
+      {
+        "name": "Neutral Oil",
+        "quantity": "As needed for searing"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken: Season chicken breasts with salt and pepper. Steam chicken for 15-18 minutes, or until internal temperature reaches 75°C. Rest chicken. Cut into 4 thick medallions.",
+      "Make Avocado Crème: Bring a small pot of water to a boil. Add whole avocados. Boil for 5-7 minutes until very soft. Drain and cool slightly. Scoop avocado flesh into a high-speed blender. Add 15ml olive oil and pinch of salt. Blend until ultra-smooth and silken. Pass through a fine mesh sieve for ultimate refinement. Keep warm.",
+      "Prepare Compressed Yam: Peel and dice yams into 2cm cubes. Melt butter in a pan. Add yams, salt, and white pepper. Cook over low heat, stirring occasionally, until very tender, about 20-25 minutes. Mash lightly. Press the cooked yam mixture into a small, parchment-lined rectangular mold. Chill under pressure for at least 2 hours. Cut into 4 precise rectangles.",
+      "Create Tomato Essence Gel: Roughly chop tomatoes and shallot. Combine with thyme in a saucepan. Cook over medium heat until tomatoes break down, about 15 minutes. Strain mixture through a fine mesh sieve, pressing solids to extract all liquid. Discard solids. Gently heat the clear tomato liquid. Whisk in agar-agar until dissolved. Pour into a shallow dish. Chill until set. Cut into small, precise cubes or spheres.",
+      "Bake Parmesan Garlic Crisp: Preheat oven to 160°C. Mix grated Parmesan with minced garlic. Spread a very thin layer onto a parchment-lined baking sheet, forming irregular, delicate shapes. Bake for 8-10 minutes until golden and crisp. Cool completely.",
+      "Sear Yam and Chicken: Heat a non-stick pan with a touch of neutral oil. Sear yam rectangles on all sides until golden. Briefly sear chicken medallions for a light crust.",
+      "Plate Dish: Place one seared chicken medallion slightly off-center on a pristine white plate. Spoon a quenelle of avocado crème beside it. Arrange one seared yam rectangle elegantly. Place a few tomato essence gel cubes artfully. Finish with a delicate parmesan garlic crisp. Garnish with a sprinkle of finely sliced chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 633.3,
+      "cholesterol_mg": 122.9,
+      "dietary_fiber_g": 12.3,
+      "protein_g": 44.3,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 310.8,
+      "total_carbs_g": 41.4,
+      "total_fat_g": 33.7,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 137,
+      "cholesterol_mg": 26.6,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 9.6,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 67.2,
+      "total_carbs_g": 9,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 43.9,
+      "protein": 88.6,
+      "saturated_fat": 50.3,
+      "sodium": 13.5,
+      "total_carbs": 15.1,
+      "total_fat": 43.2
+    },
+    "serving_size_g": 462.2,
+    "total_recipe_weight_g": 1848.8
+  },
+  {
+    "recipe_name": "Fermented Corn Broth with Zero-Waste Greens",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_corn_broth_with_zero-waste_greens_20250628_075348_81040e26.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:53:49.305745000Z",
+    "selected_ingredients": [
+      "corn"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A minimalistic and clean presentation of a clear, light golden broth in a handcrafted, unglazed cream-colored ceramic bowl. At the bottom of the bowl, bright yellow, plump fermented corn kernels are naturally scattered. A small, intentional cluster of finely chopped green garnishes, including delicate corn silk and vibrant spring onion greens, rests gently atop the corn. The composition emphasizes natural textures and colors, with ample white space around the liquid. The bowl sits on a light, textured reclaimed wood surface, accompanied by an undyed natural linen napkin. Soft, diffused natural light illuminates the dish from the side, creating subtle shadows and highlighting the pure beauty of the ingredients. The background is clean and simple, with a hint of natural greenery, maintaining a focus on sustainable simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Corn",
+    "ingredients": [
+      {
+        "name": "Fresh corn kernels",
+        "quantity": "300g"
+      },
+      {
+        "name": "Non-iodized sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Filtered water (for fermentation)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Corn cobs (from 3-4 cobs)",
+        "quantity": "4"
+      },
+      {
+        "name": "Mixed vegetable scraps (carrot peels, onion skins, celery ends, mushroom stems)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Water (for broth)",
+        "quantity": "2 litres"
+      },
+      {
+        "name": "Sea salt (for broth)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Corn silk",
+        "quantity": "from the cobs"
+      },
+      {
+        "name": "Finely chopped spring onion greens",
+        "quantity": "2g"
+      },
+      {
+        "name": "Finely chopped fresh parsley or cilantro stems",
+        "quantity": "small sprigs"
+      }
+    ],
+    "instructions": [
+      "Combine corn kernels, 5g sea salt, and 250ml filtered water in a clean glass jar. Ensure kernels are fully submerged. Seal loosely or use an airlock. Ferment at room temperature (18-24°C) for 3-5 days, or until desired tanginess. Burp daily if sealed. Refrigerate once fermented.",
+      "Place corn cobs and mixed vegetable scraps in a large pot. Add 2 litres of water. Bring to a boil, then reduce heat to low. Simmer gently for 45-60 minutes.",
+      "Strain broth through a fine-mesh sieve, discarding all solids. Season broth with 2g sea salt.",
+      "Gently warm the zero-waste broth in a saucepan. Do not boil vigorously.",
+      "Ladle warm broth into four individual ceramic bowls. Add 30-40g of fermented corn kernels to each bowl.",
+      "Finely chop corn silk, spring onion greens, and parsley/cilantro stems. Sprinkle a small, neat cluster of this zero-waste garnish over the center of the corn kernels in each bowl. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 65,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 2.5,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 711,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 1,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 11,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 0.4,
+      "saturated_fat_g": 0,
+      "sodium_mg": 121,
+      "total_carbs_g": 2.4,
+      "total_fat_g": 0.2,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 7,
+      "protein": 5,
+      "saturated_fat": 1,
+      "sodium": 31,
+      "total_carbs": 5,
+      "total_fat": 1
+    },
+    "serving_size_g": 590,
+    "total_recipe_weight_g": 2360
+  },
+  {
+    "recipe_name": "Fermented Chicken & Potato Croquettes with Umami Mushroom Ketchup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chicken_%26_potato_croquettes_with_umami_mushroom_ketchup_20250628_075258_aa1e5bc4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:52:58.803688000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A collection of golden-brown, irregularly shaped croquettes are arranged artfully on a light cream-colored handcrafted ceramic plate, leaving generous negative space. Each croquette, roughly cylindrical and about 5cm long, boasts a slightly textured, crispy exterior from frying. The color palette is earthy and warm: the deep golden-brown of the croquettes contrasts with the rich, dark brown of the accompanying mushroom ketchup. A small, organic dollop of the smooth, glossy Umami Mushroom Ketchup sits beside the croquettes, reflecting light subtly. The plating emphasizes natural forms and simple elegance. No garnishes are used, highlighting the pure beauty of the ingredients. The plate rests on a light reclaimed wood surface. Soft, diffused natural light illuminates the scene, casting gentle shadows and enhancing the organic textures. The background is clean and minimalist, featuring a hint of natural plant greenery, reinforcing the sustainable theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Chicken & Potato Croquettes",
+    "ingredients": [
+      {
+        "name": "Shredded cooked chicken",
+        "quantity": "300g"
+      },
+      {
+        "name": "Boiled, mashed potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fermented garlic paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Sun-dried tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Mushrooms (caps and stems)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Potato starch",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Neutral oil for frying",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Water",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Garlic Paste: Blend 100g peeled garlic cloves with 100ml non-chlorinated water and 2g sea salt. Transfer to a clean jar. Ferment 5-7 days at room temperature until tangy. Refrigerate.",
+      "Make Umami Mushroom Ketchup: Roughly chop 200g mushrooms. In a saucepan, combine mushrooms, 150ml water, 15ml light soy sauce, 10ml rice vinegar, and 5g brown sugar. Simmer 20-25 minutes until mushrooms are very soft. Blend until smooth. Strain through a fine-mesh sieve.",
+      "Prepare Croquette Mixture: Combine 300g shredded cooked chicken, 400g mashed potatoes, 15g fermented garlic paste, and 30g sun-dried tomato paste in a large bowl. Add 30g potato starch, salt, and pepper. Mix well to form a cohesive dough.",
+      "Form Croquettes: Shape 30g portions of mixture into small cylinders or spheres.",
+      "Fry Croquettes: Heat neutral oil to 170°C (340°F). Fry croquettes in batches 3-4 minutes until golden brown and crisp. Ensure internal temperature reaches 75°C (167°F). Drain.",
+      "Serve: Arrange croquettes on a plate. Serve immediately with Umami Mushroom Ketchup."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.2,
+      "calories": 454.5,
+      "cholesterol_mg": 63.8,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 28.4,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 815.5,
+      "total_carbs_g": 34.6,
+      "total_fat_g": 23.2,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0.02
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 147.4,
+      "cholesterol_mg": 20.7,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.2,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 264.6,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21.3,
+      "dietary_fiber": 11.8,
+      "protein": 56.8,
+      "saturated_fat": 11.5,
+      "sodium": 35.5,
+      "total_carbs": 12.6,
+      "total_fat": 29.7
+    },
+    "serving_size_g": 308.25,
+    "total_recipe_weight_g": 1233
+  },
+  {
+    "recipe_name": "Seared Beef with Orange-Chocolate Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_beef_with_orange-chocolate_reduction_20250628_075250_d2b533e0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:52:51.275145000Z",
+    "selected_ingredients": [
+      "beef",
+      "orange",
+      "flour",
+      "chocolate"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of perfectly seared beef, presented as a whole, thick piece, rests centrally on a clean white porcelain plate. The beef boasts a rich, deep brown crust from searing, contrasting with its tender, rosy interior. A glossy, amber-orange reduction sauce, infused with dark chocolate, is artfully spooned over the beef, creating a vibrant sheen. Beside the beef, a neat cluster of bright green beans, steamed to a tender-crisp, and a few whole, vibrant orange baby carrots provide a fresh counterpoint of color and texture. A sprig of fresh thyme garnishes the beef, adding a touch of herbaceous green. The plate features moderate negative space, highlighting the dish's balanced composition. The setting is a modern bistro, with a simple wooden table surface and a folded white cotton napkin beside the plate, all bathed in natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Beef Fillet",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or fillet",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Large oranges",
+        "quantity": "2"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Baby carrots",
+        "quantity": "200 g"
+      }
+    ],
+    "instructions": [
+      "Pat beef dry with paper towels. Season all sides generously with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pan over medium-high heat until shimmering.",
+      "Carefully place beef into hot pan. Sear 3-4 minutes per side for medium-rare, or until internal temperature reaches 60-65°C. For well-done, cook to 75°C.",
+      "Remove beef from pan. Place on a cutting board. Cover loosely with foil. Let rest 5-7 minutes.",
+      "Reduce heat to medium. Add shallots to pan drippings. Sauté 2 minutes until softened. Add garlic. Sauté 1 minute more.",
+      "Pour in red wine, if using. Scrape up any browned bits from bottom of pan. Bring to a simmer. Reduce by half.",
+      "Add beef stock and orange juice. Bring to a gentle simmer.",
+      "In a small bowl, whisk plain flour with 30 ml cold water to form a smooth slurry. Gradually whisk slurry into simmering sauce. Stir constantly until sauce thickens slightly.",
+      "Remove pan from heat. Stir in orange zest and chopped dark chocolate until chocolate is fully melted and sauce is smooth.",
+      "Stir in butter and fresh thyme sprigs. Taste sauce. Adjust seasoning with salt and pepper as needed.",
+      "While sauce reduces, steam or blanch green beans and baby carrots until tender-crisp. Drain well.",
+      "To serve, place one whole seared beef piece on each plate. Spoon generous amount of orange-chocolate reduction over beef.",
+      "Arrange a portion of green beans and baby carrots neatly beside beef. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 499,
+      "cholesterol_mg": 119.9,
+      "dietary_fiber_g": 6,
+      "protein_g": 35.4,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 191.6,
+      "total_carbs_g": 27.4,
+      "total_fat_g": 25.9,
+      "total_sugars_g": 14.1,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 110,
+      "cholesterol_mg": 26.4,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.8,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 42.2,
+      "total_carbs_g": 6,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 21.4,
+      "protein": 70.8,
+      "saturated_fat": 52.5,
+      "sodium": 8.3,
+      "total_carbs": 10,
+      "total_fat": 33.2
+    },
+    "serving_size_g": 454.5,
+    "total_recipe_weight_g": 1818
+  }
+]

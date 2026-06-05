@@ -2,6 +2,7 @@ import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import { ChannelConfigService } from '../config/channel-config.service';
+import { ConfigCacheService } from '../config/config-cache.service';
 
 /**
  * Sends admin notifications to the bot owner via Telegram.
@@ -17,6 +18,7 @@ export class TelegramNotifier implements OnModuleInit {
   constructor(
     private readonly config:        ConfigService,
     private readonly channelConfig: ChannelConfigService,
+    private readonly cache:         ConfigCacheService,
   ) {}
 
   onModuleInit() {
@@ -35,7 +37,7 @@ export class TelegramNotifier implements OnModuleInit {
    */
   async notifyPublished(channelId: string, messageId: string): Promise<void> {
     const postUrl = this.buildPostUrl(channelId, messageId);
-    const text = `✅ ${channelId}\n${postUrl}`;
+    const text = `✅ ${this.resolveName(channelId)}\n${postUrl}`;
     await this.send(text);
   }
 
@@ -46,7 +48,7 @@ export class TelegramNotifier implements OnModuleInit {
    * @param sourceUrl  original article/item URL for context
    */
   async notifyFailed(channelId: string, reason: string, sourceUrl: string): Promise<void> {
-    const text = `❌ ${channelId} [${reason}]\n${sourceUrl}`;
+    const text = `❌ ${this.resolveName(channelId)} [${reason}]\n${sourceUrl}`;
     await this.send(text);
   }
 
@@ -57,11 +59,26 @@ export class TelegramNotifier implements OnModuleInit {
    * @param reason     short human-readable reason
    */
   async notifySkipped(channelId: string, reason: string): Promise<void> {
-    const text = `ℹ️ ${channelId} skipped: ${reason}`;
+    const text = `ℹ️ ${this.resolveName(channelId)} skipped: ${reason}`;
     await this.send(text);
   }
 
   // ─── Helpers ───────────────────────────────────────────────────────────────
+
+  /**
+   * Human-readable channel name for notifications. The strategy passes either a
+   * channel_key (@username) or the internal UUID. Prefer the title (esp. for
+   * private channels, which have no @username), then @username, channel_key,
+   * and only fall back to the raw id if nothing else is known.
+   */
+  private resolveName(channelId: string): string {
+    const ch = this.cache.getChannelByKey(channelId) ?? this.cache.getChannelById(channelId);
+    if (!ch) return channelId;
+    const title = ch.title?.trim();
+    if (title) return title;
+    if (ch.username) return `@${ch.username}`;
+    return ch.channel_key ?? channelId;
+  }
 
   private buildPostUrl(channelId: string, messageId: string): string {
     // Resolve the channel key to its actual chatId.

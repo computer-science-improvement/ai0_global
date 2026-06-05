@@ -1,0 +1,665 @@
+[
+  {
+    "recipe_name": "Fermented Honey-Pineapple Chamomile Multigrain Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_honey-pineapple_chamomile_multigrain_cake_20250624_030914_a6f289ea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:09:15.379908000Z",
+    "selected_ingredients": [
+      "honey",
+      "pineapple",
+      "chamomile",
+      "multi grain flour"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "No added sugar besides honey or maple syrup",
+    "visual_description": "A single slice of golden-brown cake is elegantly presented on a round, unglazed ceramic plate in a natural cream tone. The cake slice reveals a moist, textured crumb speckled with bright, diced pineapple chunks. A light, translucent drizzle of honey-chamomile glaze coats the top surface, subtly pooling. A few tiny, dried chamomile flower petals are scattered lightly on top. The full round cake, also glazed, rests on a simple, light-colored wooden cake stand in the background, out of sharp focus. The setting features a light, textured reclaimed wood surface, an undyed linen napkin in a soft beige, and soft, diffused natural light from the side. The background is clean and minimalist, with a hint of green foliage.",
+    "number_of_servings": 8,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Pineapple",
+    "ingredients": [
+      {
+        "name": "Multigrain Flour",
+        "quantity": "400g"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "15g"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "3g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Honey",
+        "quantity": "250g"
+      },
+      {
+        "name": "Neutral Vegetable Oil",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Dried Chamomile Flowers",
+        "quantity": "5g"
+      },
+      {
+        "name": "Water",
+        "quantity": "220ml"
+      },
+      {
+        "name": "Unfed Sourdough Discard",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh Pineapple",
+        "quantity": "300g"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "5ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 23cm round cake tin.",
+      "Brew strong chamomile tea. Steep 5g dried chamomile flowers in 200ml hot water for 10 minutes. Strain and cool completely. Reserve 20ml for glaze.",
+      "In a large bowl, whisk together eggs, 200g honey, oil, cooled chamomile tea (180ml), vanilla extract, and sourdough discard until well combined.",
+      "In a separate bowl, whisk multigrain flour, baking powder, baking soda, and salt.",
+      "Gradually add dry ingredients to wet ingredients. Mix until just combined. Do not overmix.",
+      "Peel, core, and dice fresh pineapple into 1 cm cubes. Gently fold diced pineapple into the batter.",
+      "Pour batter into prepared cake tin.",
+      "Bake for 45-55 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Cool cake in tin for 10 minutes, then invert onto a wire rack to cool completely.",
+      "For the glaze: Whisk 50g honey, 20ml reserved strong chamomile tea, and a pinch of salt in a small bowl until smooth.",
+      "Drizzle glaze over cooled cake."
+    ],
+    "notes": [
+      "To further reduce waste, pineapple core and peel can be simmered with water to make a flavorful tea or syrup base for other recipes.",
+      "Compost all organic scraps."
+    ],
+    "traditional_techniques": [
+      "Sourdough Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 25.6,
+      "calories": 516,
+      "cholesterol_mg": 93,
+      "dietary_fiber_g": 6,
+      "protein_g": 10.8,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 539,
+      "total_carbs_g": 73.4,
+      "total_fat_g": 21.1,
+      "total_sugars_g": 30.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 12,
+      "calories": 242,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 5.1,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 253,
+      "total_carbs_g": 34.4,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 14.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 21,
+      "protein": 22,
+      "saturated_fat": 12,
+      "sodium": 23,
+      "total_carbs": 27,
+      "total_fat": 27
+    },
+    "serving_size_g": 213.5,
+    "total_recipe_weight_g": 1708
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Roasted Grape & Orange Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_roasted_grape_%26_orange_pasta_20250624_030901_cc520e31.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:09:02.086352000Z",
+    "selected_ingredients": [
+      "orange",
+      "watermelon",
+      "grape",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Chicken with Roasted Grape & Orange Pasta is presented on a clean, round white porcelain dinner plate, centrally placed on a simple wooden table surface. The golden-brown seared chicken breast is sliced into thick, substantial medallions, arranged neatly atop a bed of al dente fusilli pasta. The pasta is coated in a light, glossy sauce, showcasing softened, slightly burst roasted red grapes and bright orange segments. Small, vibrant red watermelon cubes are scattered throughout, providing a fresh contrast. A few fresh thyme leaves garnish the dish, adding a touch of green. The overall composition is clean and professional, with moderate negative space. The lighting is natural and even, highlighting the dish's textures and colors. A neatly folded cotton napkin rests beside the plate, completing the modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Fusilli pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Red grapes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Watermelon",
+        "quantity": "150 g (seedless)"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "240 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken breasts 4-5 minutes per side until golden brown. Transfer skillet to a preheated oven at 190°C. Cook until internal temperature reaches 75°C, about 10-12 minutes. Remove chicken. Rest for 5 minutes.",
+      "While chicken cooks, halve the red grapes. Peel and segment the orange, reserving any juice. Dice watermelon into 1 cm cubes.",
+      "Finely dice shallots. Mince garlic.",
+      "Cook fusilli pasta in salted boiling water according to package directions until al dente. Drain, reserving 120 ml pasta water.",
+      "In the same skillet used for chicken, add remaining 15 ml olive oil. Add shallots and sauté 2 minutes until softened. Add garlic and thyme sprigs. Cook 1 minute until fragrant.",
+      "Pour in white wine. Deglaze the pan, scraping up browned bits. Reduce by half.",
+      "Add chicken broth and reserved orange juice. Bring to a simmer. Stir in butter until melted. Season with salt and pepper.",
+      "Add halved grapes to the sauce. Cook 2-3 minutes until slightly softened. Remove thyme sprigs.",
+      "Add drained pasta to the skillet with the sauce. Toss to coat. If too dry, add a splash of reserved pasta water.",
+      "Slice rested chicken breasts into thick medallions.",
+      "Divide pasta among four plates. Arrange chicken medallions over pasta. Scatter fresh orange segments and diced watermelon cubes over each portion. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 835.3,
+      "cholesterol_mg": 169.1,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 69.1,
+      "saturated_fat_g": 7,
+      "sodium_mg": 205.4,
+      "total_carbs_g": 83.9,
+      "total_fat_g": 21.6,
+      "total_sugars_g": 20.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129.6,
+      "cholesterol_mg": 26.2,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 10.7,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 31.9,
+      "total_carbs_g": 13,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 3.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.4,
+      "dietary_fiber": 18.6,
+      "protein": 138.2,
+      "saturated_fat": 34.8,
+      "sodium": 8.9,
+      "total_carbs": 30.5,
+      "total_fat": 27.7
+    },
+    "serving_size_g": 644.7,
+    "total_recipe_weight_g": 2578.6
+  },
+  {
+    "recipe_name": "Pasta al Pomodoro Fresco e Ricotta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pasta_al_pomodoro_fresco_e_ricotta_20250624_030858_58b92adc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:08:59.007411000Z",
+    "selected_ingredients": [
+      "tomato",
+      "basil",
+      "pasta",
+      "garlic",
+      "ricotta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents a vibrant single serving of Pasta al Pomodoro Fresco e Ricotta on a clean, round white porcelain plate. Long strands of pasta, like spaghetti, are neatly twirled into a moderate mound at the center. The pasta is coated in a bright, rustic sauce with halved and quartered burst cherry tomatoes, showcasing their tender texture. Fresh green basil leaves, some torn, some whole, are scattered over the pasta, providing color and aromatic contrast. Creamy white dollops of fresh ricotta cheese are artfully placed around the pasta, melting slightly into the warm sauce, adding a luxurious texture. A light drizzle of golden-green extra virgin olive oil glistens over the dish. The setting includes a simple, light-toned wooden table surface, with a neatly folded light-colored cotton napkin beside the plate. Natural, even lighting highlights the fresh ingredients and inviting colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Grated Parmigiano-Reggiano cheese",
+      "Crusty artisan bread",
+      "A glass of dry red wine"
+    ],
+    "hero_ingredient": "Fresh Tomatoes",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., Spaghetti, Linguine)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh ripe cherry tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-6, thinly sliced"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1 large bunch, leaves picked"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese",
+        "quantity": "50 g, for serving (optional)"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil. Add pasta and cook according to package directions until al dente. Reserve 250 ml of pasta cooking water before draining.",
+      "While pasta cooks, heat olive oil in a large skillet over medium heat. Add thinly sliced garlic and sauté for 1 minute until fragrant, do not brown.",
+      "Add halved and quartered cherry tomatoes to the skillet. Cook for 8-10 minutes, stirring occasionally, until tomatoes soften and burst, releasing their juices. Lightly crush some tomatoes with a spoon to create a rustic sauce.",
+      "Stir in most of the fresh basil leaves into the tomato sauce. Season with salt and black pepper.",
+      "Add the drained pasta to the skillet with the tomato sauce. Toss well to combine. Add a ladleful of reserved pasta water if needed to create a light sauce consistency.",
+      "Divide the pasta among four serving plates. Place several creamy dollops of ricotta cheese artfully over each portion. Garnish with remaining fresh basil leaves. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 677,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 27.1,
+      "saturated_fat_g": 7.6,
+      "sodium_mg": 264,
+      "total_carbs_g": 86.5,
+      "total_fat_g": 24.3,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170,
+      "cholesterol_mg": 7.5,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.8,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 66,
+      "total_carbs_g": 21.7,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 21,
+      "protein": 54,
+      "saturated_fat": 38,
+      "sodium": 11,
+      "total_carbs": 31,
+      "total_fat": 31
+    },
+    "serving_size_g": 398.3,
+    "total_recipe_weight_g": 1593
+  },
+  {
+    "recipe_name": "Jamaican Oxtail Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_jamaican_oxtail_stew_20250624_030829_61d79c71.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:08:30.108404000Z",
+    "selected_ingredients": [
+      "oxtail"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Jamaican Oxtail Stew is presented on a clean white porcelain dinner plate. Tender, dark brown oxtail chunks, braised until fall-off-the-bone, are the centerpiece. They are nestled amongst vibrant green broad beans, thick-cut orange carrot rounds, and medium-diced creamy potatoes. The rich, glossy, deep brown gravy coats all ingredients, pooling slightly at the base. A generous sprinkle of fresh green chopped scallions and a few delicate thyme sprigs garnish the dish, adding fresh contrast. The setting is a modern bistro: a simple light wooden table surface. A small, white bowl of fluffy 'Rice and Peas' (rice cooked with kidney beans) sits beside the main plate, along with a small dish holding a few vibrant red pickled Scotch bonnet slices. A cotton napkin and standard flatware complete the authentic Jamaican casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Caribbean",
+    "cultural_origin": "Jamaican",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Rice and Peas.",
+      "Offer a small dish of traditional Jamaican hot sauce or pickled Scotch bonnet for added heat.",
+      "Accompany with steamed callaloo or boiled plantain."
+    ],
+    "hero_ingredient": "Oxtail",
+    "ingredients": [
+      {
+        "name": "Oxtail, jointed",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Onion, large, chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "6"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Scotch bonnet pepper, whole",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Allspice berries",
+        "quantity": "10"
+      },
+      {
+        "name": "Browning sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "1 L"
+      },
+      {
+        "name": "Carrots, peeled, thick-sliced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes, peeled, medium-diced",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Broad beans, canned, drained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Scallions, chopped",
+        "quantity": "4"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season oxtail pieces generously with salt and black pepper. Rub with 1 tablespoon browning sauce. Marinate in refrigerator for at least 4 hours, preferably overnight.",
+      "Heat vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear oxtail pieces in batches until deeply browned on all sides. Remove oxtail and set aside.",
+      "Add chopped onion to the pot. Sauté until softened, about 5 minutes.",
+      "Stir in minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Return oxtail to the pot. Add remaining browning sauce, Worcestershire sauce, ketchup, brown sugar, thyme sprigs, and allspice berries.",
+      "Pour in beef broth. Add the whole Scotch bonnet pepper. Bring to a boil.",
+      "Reduce heat to low. Cover the pot tightly. Simmer for 2.5 to 3 hours, or until oxtail is very tender and nearly falling off the bone. Stir occasionally.",
+      "Remove Scotch bonnet pepper and discard. Remove thyme sprigs.",
+      "Add thick-sliced carrots and medium-diced potatoes to the pot. Continue to simmer, covered, for 20-30 minutes, or until vegetables are tender.",
+      "Stir in broad beans during the last 5 minutes of cooking.",
+      "Taste and adjust seasoning if needed. The sauce should be rich and thick. If too thin, simmer uncovered for a few minutes to reduce.",
+      "Serve hot, garnished with fresh chopped scallions."
+    ],
+    "traditional_techniques": [
+      "Slow braising",
+      "Seasoning meat overnight"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.2,
+      "calories": 1278.3,
+      "cholesterol_mg": 345,
+      "dietary_fiber_g": 9.4,
+      "protein_g": 82.1,
+      "saturated_fat_g": 34.1,
+      "sodium_mg": 2017,
+      "total_carbs_g": 48.5,
+      "total_fat_g": 86.1,
+      "total_sugars_g": 14,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 159.8,
+      "cholesterol_mg": 43.1,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 10.3,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 252.2,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 10.8,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.001
+    },
+    "daily_value_percentages": {
+      "cholesterol": 115,
+      "dietary_fiber": 34,
+      "protein": 164,
+      "saturated_fat": 171,
+      "sodium": 88,
+      "total_carbs": 18,
+      "total_fat": 110
+    },
+    "serving_size_g": 800,
+    "total_recipe_weight_g": 3200
+  },
+  {
+    "recipe_name": "Savory Mushroom and Swiss Chard Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_mushroom_and_swiss_chard_noodle_soup_20250624_030754_89504e15.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:07:54.777065000Z",
+    "selected_ingredients": [
+      "noodle",
+      "swiss chard",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single, generous portion of savory noodle soup is presented in a deep, wide, matte off-white ceramic bowl. Clear, amber-hued broth cradles a bed of perfectly cooked udon noodles, gently coiled at the bottom. Tender, sliced shiitake and cremini mushrooms, with their earthy brown caps, are nestled amongst vibrant green Swiss chard leaves and tender, lighter green stems. Thinly sliced green onions are scattered across the top, alongside a few delicate sprigs of fresh cilantro. A subtle sheen of sesame oil glistens on the broth's surface. The setting features a simple, natural wood table with a clean white cotton napkin and a pair of dark wooden chopsticks resting on a small, matching ceramic rest. Natural, even lighting illuminates the dish, highlighting its fresh ingredients and inviting textures, with a soft, blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Asian",
+    "cultural_origin": "Modern Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of chili garlic paste or sriracha for those who prefer more heat.",
+      "Offer a small bowl of steamed white rice on the side for a more substantial meal."
+    ],
+    "hero_ingredient": "Shiitake Mushroom",
+    "ingredients": [
+      {
+        "name": "Udon noodles",
+        "quantity": "400g"
+      },
+      {
+        "name": "Mixed mushrooms (shiitake, cremini)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "1 large bunch (approx. 250g)"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.8 litres"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare ingredients. Slice mushrooms. Separate Swiss chard stems from leaves; chop stems into 1 cm pieces, chop leaves into 2 cm pieces.",
+      "Mince garlic and ginger. Thinly slice green onions diagonally, separating white and green parts.",
+      "Cook udon noodles according to package directions. Drain and rinse with cold water to prevent sticking. Set aside.",
+      "Heat cooking oil in a large pot or Dutch oven over medium heat. Add minced garlic and ginger. Sauté for 1 minute until fragrant.",
+      "Add sliced mushrooms to the pot. Sauté for 5-7 minutes until softened and lightly browned.",
+      "Pour in vegetable broth. Add chopped Swiss chard stems. Bring to a simmer.",
+      "Reduce heat to low. Stir in soy sauce, toasted sesame oil, and rice vinegar. Season with salt and white pepper to taste.",
+      "Add chopped Swiss chard leaves to the simmering broth. Cook for 2-3 minutes until wilted.",
+      "To serve, divide cooked udon noodles among 4 deep bowls. Ladle hot soup over the noodles, ensuring an even distribution of mushrooms and chard.",
+      "Garnish each bowl with sliced green onion greens and fresh cilantro sprigs. Serve immediately."
+    ],
+    "notes": [
+      "For a richer broth, lightly toast mushroom stems and aromatics before adding broth."
+    ],
+    "traditional_techniques": [
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 225.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 10.2,
+      "saturated_fat_g": 1,
+      "sodium_mg": 1480.2,
+      "total_carbs_g": 33,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 30.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 1.4,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 200.1,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 1,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 12,
+      "protein": 20,
+      "saturated_fat": 5,
+      "sodium": 64,
+      "total_carbs": 12,
+      "total_fat": 10
+    },
+    "serving_size_g": 740,
+    "total_recipe_weight_g": 2959
+  }
+]

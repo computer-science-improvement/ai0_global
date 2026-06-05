@@ -1,0 +1,674 @@
+[
+  {
+    "recipe_name": "Prosciutto-Wrapped Turkey Roulade with Mushroom Duxelles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_prosciutto-wrapped_turkey_roulade_with_mushroom_duxelles_20250810_124930_a75f812a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T12:49:31.006509000Z",
+    "selected_ingredients": [
+      "turkey"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A robust, golden-brown turkey roulade, cut into two or three thick, substantial chunks, occupies the center of a clean white porcelain dinner plate. The cross-section of each chunk reveals the intricate layers of succulent, cooked turkey breast, a rich, earthy mushroom duxelles filling, and hints of savory prosciutto. The exterior of the turkey boasts a beautiful, even sear with a slight crispness. A glossy, amber-hued pan sauce is generously spooned over and around the turkey, catching the light. Fresh, vibrant green chopped parsley is sprinkled over the dish, providing a contrasting pop of color. The plate is presented on a simple, light wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. The scene is illuminated by natural, even lighting, creating a professional yet approachable bistro atmosphere with minimal, unobtrusive background elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Turkey Breast",
+    "ingredients": [
+      {
+        "name": "Turkey breast",
+        "quantity": "1 large (approx. 800-900g), boneless, skinless"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g, finely diced"
+      },
+      {
+        "name": "Prosciutto slices",
+        "quantity": "8-10 thin"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium, finely minced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tbsp, chopped"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 tsp, chopped"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "1 tbsp, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Butterfly turkey breast. Pound evenly to 1 cm thickness. Season both sides with salt and pepper.",
+      "Heat 15g butter in a large pan over medium heat. Add shallots. Sauté until soft, about 3 minutes.",
+      "Add garlic, mushrooms, thyme, and rosemary. Cook until all moisture evaporates, about 8-10 minutes. Season with salt and pepper. Set aside to cool slightly.",
+      "Spread mushroom duxelles evenly over the pounded turkey breast. Layer prosciutto slices over the duxelles.",
+      "Tightly roll the turkey breast from one long side. Secure with kitchen twine at 3-4 points along the length. Lightly dust the exterior with 1 tbsp flour.",
+      "Heat olive oil in an oven-safe pan over medium-high heat. Sear the turkey roulade until golden brown on all sides, about 8-10 minutes total.",
+      "Transfer the pan to the preheated oven. Roast for 25-35 minutes, or until an internal temperature of 75°C (167°F) is reached. Remove from oven. Rest the roulade on a cutting board for 10 minutes.",
+      "While roulade rests, make the pan sauce. Pour off excess fat from the pan. Place pan over medium heat. Pour in white wine. Scrape up any browned bits from the bottom of the pan. Reduce wine by half.",
+      "Add chicken stock to the pan. Simmer until the sauce slightly thickens, about 5-7 minutes. Stir in remaining 15g butter until melted and incorporated. Season sauce with salt and pepper to taste.",
+      "Remove kitchen twine from the rested roulade. Cut the roulade into thick, substantial chunks (2-3 per serving).",
+      "Arrange turkey chunks on individual plates. Spoon pan sauce generously over the turkey. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 462.6,
+      "cholesterol_mg": 152.5,
+      "dietary_fiber_g": 2,
+      "protein_g": 54.6,
+      "saturated_fat_g": 7.2,
+      "sodium_mg": 426.5,
+      "total_carbs_g": 10.2,
+      "total_fat_g": 20.6,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107.7,
+      "cholesterol_mg": 35.5,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 12.7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 99.3,
+      "total_carbs_g": 2.4,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50.8,
+      "dietary_fiber": 7.1,
+      "protein": 109.2,
+      "saturated_fat": 35.9,
+      "sodium": 18.5,
+      "total_carbs": 3.7,
+      "total_fat": 26.4
+    },
+    "serving_size_g": 429.4,
+    "total_recipe_weight_g": 1717.6
+  },
+  {
+    "recipe_name": "Roasted Chicken with Freekeh and Herb Tahini Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_with_freekeh_and_herb_tahini_sauce_20250810_120055_77a2956e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T12:00:56.365311000Z",
+    "selected_ingredients": [
+      {
+        "name": "sage"
+      },
+      {
+        "name": "verjus"
+      },
+      {
+        "name": "chicken"
+      },
+      {
+        "name": "parsley"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Lebanese",
+    "visual_description": "A single portion of Lebanese Roasted Chicken is presented on a clean white porcelain dinner plate, set on a simple wooden table surface. One golden-brown, crispy-skinned chicken thigh, roasted whole, is positioned prominently. Beside it, a neat mound of earthy green-brown freekeh pilaf, studded with diced onion and fluffed, is arranged. A creamy, pale green herb tahini sauce is artfully drizzled over the chicken and freekeh, with a small pool of sauce beside the chicken. Vibrant green finely chopped fresh parsley is scattered generously over the dish, with a few toasted golden pine nuts sprinkled over the freekeh, adding texture and warmth. The overall composition is balanced, showcasing the tender chicken and the wholesome grain. The scene is illuminated by natural, even lighting, creating soft shadows. A plain white cotton napkin is folded beside the plate. In the background, subtly blurred, are traditional Lebanese elements: a small ceramic bowl holding extra tahini sauce, a stack of warm, soft pita bread, and a small dish of bright green olives, evoking a casual bistro atmosphere while honoring cultural authenticity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Lebanese",
+    "cultural_origin": "Lebanese",
+    "cultural_serving_suggestions": [
+      "Serve with warm pita bread for scooping.",
+      "Offer a side of fresh vegetables like cucumber and tomato, or a simple green salad.",
+      "Accompany with traditional Lebanese pickles (mkhallal) for a tangy contrast."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "10g"
+      },
+      {
+        "name": "Verjus",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Ground sumac",
+        "quantity": "5g"
+      },
+      {
+        "name": "Lebanese seven spice blend",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g, or to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g, or to taste"
+      },
+      {
+        "name": "Freekeh (cracked green wheat)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Pine nuts",
+        "quantity": "30g, toasted"
+      },
+      {
+        "name": "Tahini",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30ml, or as needed for sauce"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. In a bowl, combine 30ml olive oil, minced garlic, finely chopped sage, sumac, seven spice, 30ml verjus, salt, and pepper. Add chicken and coat thoroughly. Marinate chicken for at least 1 hour, or up to 4 hours in the refrigerator.",
+      "Preheat oven to 200°C (390°F). Place marinated chicken thighs on a baking tray, skin side up. Roast for 35-45 minutes, until skin is golden brown and internal temperature reaches 75°C (167°F).",
+      "While chicken roasts, prepare freekeh. In a medium pot, heat 15ml olive oil over medium heat. Add diced onion and sauté until translucent, about 5 minutes. Add freekeh and toast for 2 minutes, stirring constantly.",
+      "Pour in chicken broth and remaining 30ml verjus. Bring to a boil, then reduce heat to low, cover, and simmer for 15-20 minutes, or until freekeh is tender and liquid is absorbed. Fluff with a fork.",
+      "Prepare herb tahini sauce. In a small bowl, whisk together tahini, yogurt, remaining 15ml olive oil, and 30ml water until smooth and creamy. Finely chop half of the fresh parsley and all of the fresh mint. Stir chopped herbs into the tahini sauce. Season with a pinch of salt if needed.",
+      "Chop remaining fresh parsley for garnish.",
+      "Serve roasted chicken thigh alongside a portion of freekeh pilaf. Drizzle generously with herb tahini sauce. Garnish with fresh chopped parsley and toasted pine nuts."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Verjus can be found in specialty food stores; it provides a milder, fruitier acidity than lemon."
+    ],
+    "traditional_techniques": [
+      "Marinating chicken for flavor infusion",
+      "Pilaf preparation (freekeh)",
+      "Using sumac and seven spice blend",
+      "Preparing a tahini-based sauce"
+    ]
+  },
+  {
+    "recipe_name": "Seared Chicken Breast, Tomato Consommé, Saffron Arancini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_breast%2C_tomato_consomm%C3%A9%2C_saffron_arancini_20250810_112905_4df3be1b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T11:29:05.554933000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "rice"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, perfectly pan-seared chicken breast, golden-brown and glistening, rests elegantly on a large, pristine white bone china plate. Its skin is crisp, contrasting with the tender interior. Adjacent to the chicken, a small, clear pool of vibrant, deep red-orange roasted tomato consommé shimmers, reflecting the light. A single, perfectly spherical saffron arancini, golden-brown and crisp on the exterior, is positioned thoughtfully, offering a textural and color counterpoint. The arancini's surface shows the subtle texture of panko. A few fresh, vivid green micro basil leaves are precisely placed near the chicken and arancini, providing a delicate pop of color and freshness. Abundant negative space surrounds the components, emphasizing the minimalist and architectural precision of the plating. The plate is set on a premium white Carrara marble surface, with a crisply folded white linen napkin nearby. Dramatic professional lighting creates subtle shadows, enhancing the dish's sculptural quality and highlighting the premium ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Ripe plum tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5g"
+      },
+      {
+        "name": "Large shallot, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "High-quality chicken stock",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large egg, beaten",
+        "quantity": "1"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Micro basil",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "For the Roasted Tomato Consommé: Preheat oven to 180°C. Halve tomatoes. Toss with 15ml olive oil, salt, pepper. Roast 30 minutes until softened and slightly caramelized. Transfer roasted tomatoes to a fine-mesh sieve lined with cheesecloth over a bowl. Let drain slowly overnight in refrigerator. Do not press. Gently clarify liquid if needed. Season consommé with salt.",
+      "For the Saffron Risotto: Bloom saffron in 2 tablespoons hot chicken stock. In a saucepan, heat 15ml olive oil. Sauté diced shallot until translucent. Add Arborio rice. Stir 1 minute until toasted. Deglaze with white wine. Cook until absorbed. Gradually add hot chicken stock, 150ml at a time. Stir continuously until each addition is absorbed before adding more. Add saffron liquid. Continue until rice is al dente and creamy (approx. 18-20 minutes). Stir in 25g butter and grated Parmesan. Season with salt, pepper. Spread risotto on a tray. Chill completely.",
+      "For the Saffron Arancini: Once risotto is cold, form into 4 equal, compact spheres. Prepare breading station: flour, beaten egg, panko breadcrumbs. Dredge each sphere in flour, then egg, then panko. Ensure full coating.",
+      "For the Chicken Breast: Season chicken breasts with salt, pepper. Place in vacuum-sealable bags. Add a small knob of butter to each bag. Sous vide at 63°C for 1.5 hours.",
+      "Finishing and Plating: Preheat a deep fryer or heavy-bottomed pot with oil to 170°C. Fry arancini 3-4 minutes until golden brown and crisp. Drain on paper towels. Heat a non-stick pan over medium-high heat with remaining 25g butter. Remove chicken from bags. Pat dry thoroughly. Sear chicken breasts 3-4 minutes per side until golden brown and crisp. Rest chicken 5 minutes.",
+      "To plate, spoon a small pool of warm tomato consommé onto one side of each large, pristine white plate. Place one seared chicken breast beside the consommé. Position one saffron arancini strategically on the plate. Garnish with a few micro basil leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 945,
+      "cholesterol_mg": 248,
+      "dietary_fiber_g": 4,
+      "protein_g": 77.5,
+      "saturated_fat_g": 12.2,
+      "sodium_mg": 1475,
+      "total_carbs_g": 79.2,
+      "total_fat_g": 30.6,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 11.5,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 218,
+      "total_carbs_g": 11.7,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 83,
+      "dietary_fiber": 14,
+      "protein": 155,
+      "saturated_fat": 61,
+      "sodium": 64,
+      "total_carbs": 29,
+      "total_fat": 39
+    },
+    "serving_size_g": 676.1,
+    "total_recipe_weight_g": 2704.5
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Mediterranean Vegetable Medley",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_mediterranean_vegetable_medley_20250810_093109_5c597c90.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T09:31:09.426940000Z",
+    "selected_ingredients": [
+      "tomato",
+      "cucumber",
+      "squash",
+      "onion",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken breast, cooked to a golden-brown crust and moist interior, rests prominently on a clean white porcelain dinner plate. Alongside, a vibrant Mediterranean vegetable medley is artfully arranged. This medley features diced zucchini and ripe tomatoes, softened red onion, and minced garlic, all gently sautéed until tender yet retaining their distinct shapes and colors. The vegetables display a natural, slightly rustic texture with hints of olive oil sheen. A small, refreshing mound of finely diced cucumber and fresh parsley provides a crisp, bright contrast. The dish is garnished simply with a small sprig of fresh basil. The composition is clean and balanced, with appropriate negative space. It sits on a simple wooden table, accompanied by a folded white cotton napkin and classic silver flatware. Natural, even lighting highlights the fresh ingredients and inviting colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty rustic bread to sop up the vegetable juices.",
+      "Pair with a light, crisp white wine, such as a Sauvignon Blanc or Pinot Grigio."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "400g, diced (or 1 can 400g diced tomatoes)"
+      },
+      {
+        "name": "Zucchini or yellow squash",
+        "quantity": "300g, diced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium (approx. 150g), diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large (approx. 250g), small diced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Chicken stock (low sodium)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 30ml olive oil in a large skillet over medium-high heat. Add chicken breasts. Sear 5-7 minutes per side until golden brown and internal temperature reaches 75°C (167°F). Remove chicken, set aside to rest.",
+      "In the same skillet, add remaining 30ml olive oil. Add diced red onion and sauté 3-4 minutes until softened.",
+      "Add minced garlic and diced squash. Cook 5-7 minutes, stirring occasionally, until squash is tender-crisp.",
+      "Stir in diced tomatoes and chicken stock. Bring to a simmer. Cook 5-7 minutes, reducing liquid slightly, until vegetables are tender. Season with salt and pepper.",
+      "For the cucumber salad: In a small bowl, combine small diced cucumber with chopped parsley and red wine vinegar. Season with a pinch of salt.",
+      "To serve: Plate each chicken breast. Spoon the Mediterranean vegetable medley alongside. Place a small mound of cucumber salad next to the vegetables. Garnish with fresh basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 515,
+      "cholesterol_mg": 162,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 62.4,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 186,
+      "total_carbs_g": 14,
+      "total_fat_g": 21.3,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 98,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 11.8,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 35,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 4,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.8,
+      "dietary_fiber": 14,
+      "protein": 124.8,
+      "saturated_fat": 19.6,
+      "sodium": 8.1,
+      "total_carbs": 5.1,
+      "total_fat": 27.3
+    },
+    "serving_size_g": 527.5,
+    "total_recipe_weight_g": 2110
+  },
+  {
+    "recipe_name": "Moroccan Spiced Chicken with Raisins and Cashews",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_moroccan_spiced_chicken_with_raisins_and_cashews_20250810_092503_3b79e9b8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T09:25:03.595462000Z",
+    "selected_ingredients": [
+      "ras el hanout",
+      "raisin",
+      "cashew"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Moroccan Spiced Chicken is presented on a clean white porcelain dinner plate, showcasing the rich, aromatic stew. Thick chunks of golden-brown seared chicken are nestled within a deep reddish-brown sauce, vibrant with the hues of ras el hanout and tomatoes. Plump, rehydrated raisins are visible, along with pale, crunchy cashews scattered throughout. A generous sprinkle of bright green chopped fresh cilantro provides a vibrant contrast and freshness. The sauce has a glossy, appealing sheen and a moderate consistency, coating the chicken well. The plate is arranged with an organic flow, allowing some negative space. The setting is a modern bistro, featuring a simple wooden table surface and a clean cotton napkin placed beside the plate. Natural, even lighting highlights the textures and colors of the dish. A small, subtly placed traditional Moroccan ceramic bowl or tagine lid might hint at its cultural origin in the background, without distracting from the food itself.",
+    "number_of_servings": 4,
+    "cuisine_type": "Moroccan",
+    "cultural_origin": "Moroccan",
+    "cultural_serving_suggestions": [
+      "Serve alongside fluffy steamed couscous.",
+      "Offer warm, crusty Moroccan bread (Khobz) for dipping into the sauce.",
+      "Accompany with a side of refreshing mint tea."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "1-inch piece"
+      },
+      {
+        "name": "Ras el Hanout spice blend",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Raisins",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Saffron threads, pinch soaked in 2 tablespoons hot water",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Honey",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Cashews, whole or halves",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into thick chunks. Season with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken chunks in batches until golden brown on all sides. Do not overcrowd the pot. Remove chicken and set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5-7 minutes.",
+      "Stir in minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Add ras el hanout, turmeric, and cinnamon stick. Cook for 1 minute, stirring constantly.",
+      "Pour in diced tomatoes and chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the pot.",
+      "Return chicken to the pot. Stir in raisins and saffron (with its soaking liquid).",
+      "Reduce heat to low, cover, and simmer for 25-30 minutes, or until chicken is tender and cooked through to an internal temperature of 75°C (167°F).",
+      "Stir in honey and cashews. Cook for another 5 minutes, uncovered, allowing sauce to thicken slightly.",
+      "Remove cinnamon stick. Taste and adjust seasoning as needed.",
+      "Garnish generously with fresh chopped cilantro before serving."
+    ],
+    "notes": [
+      "Ras el Hanout is a complex Moroccan spice blend; its exact composition varies by region and blend. Adjust to your preferred spice level.",
+      "For an extra layer of flavor, a preserved lemon quarter can be added during the last 10 minutes of simmering."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Layering spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 574,
+      "cholesterol_mg": 228,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 39,
+      "saturated_fat_g": 6.6,
+      "sodium_mg": 846,
+      "total_carbs_g": 37.5,
+      "total_fat_g": 30.9,
+      "total_sugars_g": 22,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 111,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.5,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 163,
+      "total_carbs_g": 7.2,
+      "total_fat_g": 6,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75.8,
+      "dietary_fiber": 14.7,
+      "protein": 77.9,
+      "saturated_fat": 33.1,
+      "sodium": 36.8,
+      "total_carbs": 13.6,
+      "total_fat": 39.6
+    },
+    "serving_size_g": 517.3,
+    "total_recipe_weight_g": 2069
+  }
+]

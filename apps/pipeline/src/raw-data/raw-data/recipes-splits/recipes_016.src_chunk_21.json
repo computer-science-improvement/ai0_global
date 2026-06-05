@@ -1,0 +1,605 @@
+[
+  {
+    "recipe_name": "Crispy Shrimp & Noodle Fritters with Chili Dip",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_shrimp_%26_noodle_fritters_with_chili_dip_20250627_002303_7a3ff7ab.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T00:23:04.384707000Z",
+    "selected_ingredients": [
+      "shrimp",
+      "chili",
+      "rice noodle",
+      "tapioca flour",
+      "black pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "asian cuisine",
+    "visual_description": "A small stack of golden-brown, irregular-shaped fritters on a simple, round ceramic plate. The fritters are naturally piled, some slightly overlapping. A small, rustic ceramic bowl of vibrant red chili dipping sauce sits next to the fritters. Each fritter is roughly 5-6 cm in diameter, golden brown with visible specks of red chili and green onion. The texture is crispy on the outside, slightly chewy inside due to tapioca flour, with small chunks of pinkish shrimp and white rice noodles. A light sprinkle of thinly sliced green onion garnishes the fritters. The plate rests on a well-worn wooden dining table. A simple, dark-colored cloth napkin is casually placed beside the plate. Dark wooden chopsticks rest across the small dipping sauce bowl. Warm, inviting lighting creates a homely kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Served with a sweet and spicy dipping sauce (Nuoc Cham style).",
+      "Eaten by hand or with chopsticks."
+    ],
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Shrimp, peeled and deveined",
+        "quantity": "300g"
+      },
+      {
+        "name": "Rice Vermicelli Noodles",
+        "quantity": "100g"
+      },
+      {
+        "name": "Tapioca Flour",
+        "quantity": "60g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh Red Chili, finely minced",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Green Onions, thinly sliced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black Pepper, freshly ground",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vegetable Oil, for shallow frying",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Water (for sauce)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Granulated Sugar (for sauce)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Rice Vinegar (for sauce)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fish Sauce (for sauce)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Red Chili, finely minced (for sauce)",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced (for sauce)",
+        "quantity": "1 clove"
+      }
+    ],
+    "instructions": [
+      "Cook rice vermicelli noodles. Drain well. Rinse with cold water. Roughly chop into 2-3 cm lengths.",
+      "In a large bowl, combine chopped shrimp, chopped rice noodles, tapioca flour, egg, minced fresh red chili, minced garlic, the white parts of sliced green onions, 15ml fish sauce, 5g sugar, and black pepper. Mix thoroughly.",
+      "Prepare the chili dipping sauce: In a small bowl, whisk together 60ml water, 30g sugar, 30ml rice vinegar, 30ml fish sauce, minced fresh red chili, and minced garlic until sugar dissolves. Set aside.",
+      "Heat about 2 cm of vegetable oil in a large non-stick pan over medium heat.",
+      "Spoon about 30g of fritter mixture per fritter into the pan. Flatten each spoonful to form a round patty, about 5-6 cm in diameter. Do not overcrowd.",
+      "Fry for 3-4 minutes per side, or until golden brown and shrimp is cooked through. Internal temperature should reach 75°C.",
+      "Remove fritters from pan. Place on a wire rack lined with paper towels to drain oil.",
+      "Serve hot. Garnish with the green parts of the sliced green onions. Serve alongside the chili dipping sauce."
+    ],
+    "traditional_techniques": [
+      "Shallow frying",
+      "Balancing sweet, sour, salty, spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.75,
+      "calories": 391.41,
+      "cholesterol_mg": 160.63,
+      "dietary_fiber_g": 1.14,
+      "protein_g": 19.94,
+      "saturated_fat_g": 2.39,
+      "sodium_mg": 224.01,
+      "total_carbs_g": 45.49,
+      "total_fat_g": 14.73,
+      "total_sugars_g": 9.38,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4.37,
+      "calories": 195.46,
+      "cholesterol_mg": 80.21,
+      "dietary_fiber_g": 0.57,
+      "protein_g": 9.96,
+      "saturated_fat_g": 1.19,
+      "sodium_mg": 111.86,
+      "total_carbs_g": 22.72,
+      "total_fat_g": 7.36,
+      "total_sugars_g": 4.68,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.54,
+      "dietary_fiber": 4.07,
+      "protein": 39.88,
+      "saturated_fat": 11.95,
+      "sodium": 9.74,
+      "total_carbs": 16.54,
+      "total_fat": 18.88
+    },
+    "serving_size_g": 200.25,
+    "total_recipe_weight_g": 801
+  },
+  {
+    "recipe_name": "Spicy Asian Shrimp Noodle Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_asian_shrimp_noodle_salad_20250627_002133_70a262ea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T00:21:34.066410000Z",
+    "selected_ingredients": [
+      "shrimp",
+      "chili",
+      "rice noodle"
+    ],
+    "complexity": "simple",
+    "special_requests": "asian cuisine",
+    "visual_description": "A vibrant, fresh Asian noodle salad presented on a simple, slightly imperfect ceramic plate, sitting on a well-worn wooden kitchen table. The cooked rice vermicelli noodles are loosely piled, forming a base. Pink, plump, whole shrimp are nestled among the noodles. Bright green julienned cucumber and vibrant orange julienned carrots are scattered throughout, adding color and texture. Thin slices of red chili provide a pop of contrasting color. Fresh green mint and coriander leaves are casually mixed in, with some leaves visible on top. A sprinkle of roughly chopped roasted peanuts adds a rustic crunch. The dish is naturally portioned, filling the plate without overcrowding, showcasing a homely, inviting appeal. Warm, cozy lighting from kitchen fixtures illuminates the scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve with small individual ceramic bowls.",
+      "Offer chopsticks as traditional utensils.",
+      "A small side dish of extra chili sauce or a lime wedge can be provided for personal adjustment."
+    ],
+    "hero_ingredient": "Shrimp",
+    "ingredients": [
+      {
+        "name": "Shrimp",
+        "quantity": "400g, peeled, deveined"
+      },
+      {
+        "name": "Rice Vermicelli Noodles",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red Chili",
+        "quantity": "2, deseeded, thinly sliced"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1, julienned"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1, julienned"
+      },
+      {
+        "name": "Fresh Mint",
+        "quantity": "30g, roughly chopped"
+      },
+      {
+        "name": "Fresh Coriander (Cilantro)",
+        "quantity": "30g, roughly chopped"
+      },
+      {
+        "name": "Roasted Peanuts",
+        "quantity": "50g, roughly chopped"
+      },
+      {
+        "name": "Lime Juice",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Cook rice noodles according to package directions. Drain. Rinse with cold water. Set aside.",
+      "Heat vegetable oil in a pan over medium-high heat.",
+      "Add shrimp to pan. Cook 2-3 minutes until pink and opaque. Remove from heat.",
+      "In a small bowl, whisk lime juice, fish sauce, brown sugar, water, minced garlic, and sesame oil to make dressing.",
+      "In a large bowl, combine cooked noodles, cooked shrimp, julienned cucumber, julienned carrot, sliced chili, mint, and coriander.",
+      "Pour dressing over salad ingredients. Toss gently to combine.",
+      "Divide salad into four starter portions. Garnish with chopped peanuts."
+    ],
+    "notes": [
+      "For extra spice, leave some seeds in the chili.",
+      "Adjust sweetness and sourness of dressing to personal preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 446.8,
+      "cholesterol_mg": 152,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 29,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 1388.4,
+      "total_carbs_g": 54.7,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 140.8,
+      "cholesterol_mg": 47.9,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 9.1,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 437.5,
+      "total_carbs_g": 17.2,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 15,
+      "protein": 58,
+      "saturated_fat": 8,
+      "sodium": 60,
+      "total_carbs": 20,
+      "total_fat": 15
+    },
+    "serving_size_g": 317.4,
+    "total_recipe_weight_g": 1269.4
+  },
+  {
+    "recipe_name": "Rustic Fermented Tomato & Cheddar Galette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_fermented_tomato_%26_cheddar_galette_20250627_001235_372379c7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T00:12:35.660483000Z",
+    "selected_ingredients": [
+      "tomato",
+      "salad green",
+      "cheddar"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of a rustic, freeform galette is presented on a handcrafted, earth-toned ceramic plate. The galette has a golden-brown, slightly irregular, puffed crust. The exposed filling showcases vibrant red fermented tomato wedges, some softened and some holding their shape, interspersed with bubbling, melted golden-orange grated cheddar cheese. Flecks of green, roughly chopped fresh basil are visible throughout the filling. A small, vibrant green dollop of crispy salad green pesto rests beside the galette, adding a contrasting color and texture. The plate is positioned on a light, reclaimed wood table surface. An undyed linen napkin in natural beige is folded neatly to the side. Soft, natural lighting illuminates the scene, casting gentle shadows. The background is clean and minimalist, with a hint of natural greenery visible, emphasizing the eco-conscious and sustainable theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Fermented Tomato",
+    "ingredients": [
+      {
+        "name": "Ripe tomatoes (mixed varieties for color)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "250g"
+      },
+      {
+        "name": "Cold unsalted butter, cubed",
+        "quantity": "125g"
+      },
+      {
+        "name": "Ice water",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Aged cheddar cheese, grated",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh basil leaves, roughly chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Egg, beaten (for egg wash)",
+        "quantity": "1"
+      },
+      {
+        "name": "Salad greens (any variety, including stems)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "30g"
+      },
+      {
+        "name": "Parmesan cheese, grated (optional)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil (for pesto)",
+        "quantity": "60ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Tomatoes: Slice tomatoes into 1.5 cm thick wedges. Place in a clean jar with 5g sea salt and thyme sprigs. Press down gently. Cover loosely. Let sit at room temperature for 24-48 hours until slightly tangy. Refrigerate until use. (Tomato cores and scraps can be saved for vegetable stock).",
+      "Make Galette Dough: Combine flour and 5g sea salt in a bowl. Cut in cold butter until pea-sized crumbs form. Gradually add ice water, mixing until dough comes together. Do not overmix. Form into a disc. Wrap in cling film. Refrigerate 30 minutes.",
+      "Preheat Oven: Preheat oven to 200°C. Line a baking tray with baking paper.",
+      "Prepare Galette Filling: Drain fermented tomatoes. Gently pat dry. In a bowl, combine drained tomatoes, grated cheddar, roughly chopped basil, 15ml olive oil, and black pepper. Mix gently.",
+      "Roll and Assemble Galette: On a lightly floured surface, roll dough into a 30 cm circle. Transfer to prepared baking tray. Spread tomato-cheddar mixture evenly over dough, leaving a 4 cm border. Fold dough border over filling, pleating as needed. Brush dough with beaten egg.",
+      "Bake Galette: Bake 30-35 minutes, or until crust is golden brown and filling is bubbly.",
+      "Make Crispy Salad Green Pesto: While galette bakes, combine 100g salad greens (including stems), walnuts, grated Parmesan (if using), and garlic clove in a food processor. Pulse until finely chopped. Gradually add 60ml olive oil while blending until smooth. Season with salt and pepper.",
+      "Serve: Let galette cool slightly. Cut into 4 portions. Serve each portion with a dollop or drizzle of crispy salad green pesto."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 891.8,
+      "cholesterol_mg": 158.3,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 22.9,
+      "saturated_fat_g": 27.9,
+      "sodium_mg": 1030.4,
+      "total_carbs_g": 56.2,
+      "total_fat_g": 64.2,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 253.5,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.5,
+      "saturated_fat_g": 7.9,
+      "sodium_mg": 292.9,
+      "total_carbs_g": 16,
+      "total_fat_g": 18.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.8,
+      "dietary_fiber": 15.7,
+      "protein": 45.8,
+      "saturated_fat": 139.5,
+      "sodium": 44.8,
+      "total_carbs": 20.4,
+      "total_fat": 82.3
+    },
+    "serving_size_g": 352,
+    "total_recipe_weight_g": 1407
+  },
+  {
+    "recipe_name": "Spinach and Sun-Dried Tomato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spinach_and_sun-dried_tomato_salad_20250627_000045_8df30018.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T00:00:46.598709000Z",
+    "selected_ingredients": [
+      {
+        "name": "spinach"
+      },
+      {
+        "name": "sun dried tomato"
+      },
+      {
+        "name": "garlic"
+      },
+      {
+        "name": "pine nut"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A generous, inviting portion of fresh spinach salad rests on an everyday, slightly off-white ceramic plate. The vibrant green spinach leaves form a natural base, loosely piled and showing their natural texture. Thinly sliced, deep red sun-dried tomatoes are scattered throughout, providing pops of rich color and a chewy contrast. Golden-brown toasted pine nuts are sprinkled generously over the top, adding a warm, nutty hue and crisp texture. A light, glossy vinaigrette glistens on the leaves and tomatoes, subtly coating each ingredient. The salad is casually arranged, with ingredients naturally overlapping, suggesting a home-prepared meal. The plate sits on a well-used wooden dining table, possibly with subtle grain visible. A simple, silver fork rests beside the plate. Warm, soft light from an overhead kitchen fixture illuminates the scene, creating a comforting, unpretentious atmosphere. The background is minimally cluttered, hinting at a lived-in family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Spinach",
+    "ingredients": [
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Sun-dried tomatoes (oil-packed, drained)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Pine nuts",
+        "quantity": "50g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1g"
+      }
+    ],
+    "instructions": [
+      "Toast pine nuts in a dry pan over medium heat until golden. Set aside.",
+      "Thinly slice drained sun-dried tomatoes. Mince garlic cloves.",
+      "In a small bowl, whisk together olive oil, red wine vinegar, Dijon mustard, minced garlic, salt, and black pepper until emulsified.",
+      "In a large bowl, combine fresh spinach, thinly sliced sun-dried tomatoes, and toasted pine nuts.",
+      "Pour dressing over salad ingredients. Toss gently to coat all components evenly.",
+      "Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Lemon Herb Roasted Chicken Thighs with Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_roasted_chicken_thighs_with_potatoes_20250626_235631_0939a2e2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T23:56:31.941214000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single golden-brown roasted chicken thigh, skin lightly crisp, rests on a rustic white ceramic plate. Alongside, a generous serving of tender, golden-brown potato wedges, their exteriors slightly caramelized. Fresh sprigs of rosemary and thyme are naturally scattered over the chicken and potatoes, adding vibrant green accents. A bright yellow lemon wedge sits nearby. The chicken is presented whole, not sliced. The plate is positioned on a warm, well-used wooden dining table. A casually folded blue and white checkered cloth napkin and simple silver cutlery are placed beside it. Warm, inviting light illuminates the scene, suggesting a cozy, homely family meal. The background is softly blurred, hinting at a lived-in kitchen environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve directly from the baking sheet for family-style meals.",
+      "Pair with a simple green salad or steamed seasonal vegetables."
+    ],
+    "hero_ingredient": "chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approximately 200g each)"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Yukon Gold)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "15g (about 3 sprigs)"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "10g (about 5 sprigs)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a large baking sheet with parchment paper.",
+      "Wash potatoes. Cut potatoes into 2cm thick wedges. Place in a large bowl.",
+      "Mince garlic cloves. Finely chop rosemary and thyme leaves.",
+      "Add olive oil, minced garlic, chopped rosemary, chopped thyme, salt, and pepper to the bowl with potatoes. Toss to coat evenly.",
+      "Arrange potato wedges in a single layer on one half of the prepared baking sheet.",
+      "Pat chicken thighs dry with paper towels. Season chicken thighs generously with salt and pepper on both sides.",
+      "Place chicken thighs, skin-side up, on the other half of the baking sheet alongside the potatoes.",
+      "Slice the lemon into thin rounds. Place a few lemon rounds on top of and around the chicken and potatoes.",
+      "Roast for 35-45 minutes, or until chicken skin is golden and crispy, and potatoes are tender and browned. Chicken internal temperature must reach 75°C.",
+      "Remove from oven. Let rest 5 minutes before serving."
+    ],
+    "notes": [
+      "For extra crispiness, broil chicken for the last 2-3 minutes, watching carefully to prevent burning.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 713.42,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 5.48,
+      "protein_g": 43.59,
+      "saturated_fat_g": 9.84,
+      "sodium_mg": 672.67,
+      "total_carbs_g": 46.2,
+      "total_fat_g": 40.13,
+      "total_sugars_g": 2.46,
+      "trans_fat_g": 0.16
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 166.39,
+      "cholesterol_mg": 50.85,
+      "dietary_fiber_g": 1.28,
+      "protein_g": 10.17,
+      "saturated_fat_g": 2.29,
+      "sodium_mg": 156.89,
+      "total_carbs_g": 10.78,
+      "total_fat_g": 9.36,
+      "total_sugars_g": 0.57,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.67,
+      "dietary_fiber": 19.57,
+      "protein": 87.18,
+      "saturated_fat": 49.2,
+      "sodium": 29.25,
+      "total_carbs": 16.8,
+      "total_fat": 51.45
+    },
+    "serving_size_g": 428.75,
+    "total_recipe_weight_g": 1715
+  }
+]

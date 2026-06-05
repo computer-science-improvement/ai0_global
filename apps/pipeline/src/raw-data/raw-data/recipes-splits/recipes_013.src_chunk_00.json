@@ -1,0 +1,692 @@
+[
+  {
+    "recipe_name": "Chicken Pozole Verde with Fermented Radish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_pozole_verde_with_fermented_radish_20250701_152054_2f7f2079.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:20:55.214815000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "mexican cuisine",
+    "visual_description": "The dish is presented in a deep, handcrafted ceramic bowl with a rustic, earthy glaze, perhaps in a deep forest green or ochre tone, reflecting traditional Mexican pottery. A single generous portion of vibrant green Chicken Pozole Verde fills the bowl, showcasing whole, tender chunks of shredded chicken and plump, white hominy kernels suspended in a rich, verdant broth. The surface is subtly adorned with a scattering of freshly chopped cilantro and thin crescents of white onion, adding contrasting color and texture. A lime wedge sits on the rim of the bowl, ready to be squeezed. Alongside the bowl, on a light, reclaimed wood surface, are small, individual ceramic dishes holding vibrant pink fermented radish slices and a pinch of dried oregano. A stack of golden, crispy corn tostadas is neatly arranged beside the bowl. The setting is minimalist, with a natural undyed linen napkin and soft, diffused natural light enhancing the dish's organic colors and textures. The background is clean and uncluttered, hinting at natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Served with lime wedges",
+      "Dried oregano",
+      "Finely shredded fermented radish or cabbage",
+      "Tostadas or corn tortilla crisps"
+    ],
+    "hero_ingredient": "Chicken, Hominy",
+    "ingredients": [
+      {
+        "name": "Chicken (bone-in pieces)",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Water",
+        "quantity": "3 litres"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 medium, halved"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, smashed"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g (for broth)"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vegetable scraps (carrot ends, celery tops, onion peels, herb stems)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Tomatillos",
+        "quantity": "500g, husked and rinsed"
+      },
+      {
+        "name": "Poblano peppers",
+        "quantity": "2, stems removed"
+      },
+      {
+        "name": "Jalapeño peppers",
+        "quantity": "1-2, stems removed"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1 small, roughly chopped (for sauce)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3 (for sauce)"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": "1 large bunch (about 60g), roughly chopped"
+      },
+      {
+        "name": "Epazote (optional)",
+        "quantity": "1 small sprig"
+      },
+      {
+        "name": "Canned hominy (white or yellow)",
+        "quantity": "800g, rinsed and drained"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste (for pozole)"
+      },
+      {
+        "name": "Red radishes",
+        "quantity": "250g, thinly sliced"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "250ml (for brine)"
+      },
+      {
+        "name": "Non-iodized salt",
+        "quantity": "5g (for brine)"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1, smashed (optional, for radish)"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1 (optional, for radish)"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "Chopped, for serving"
+      },
+      {
+        "name": "Thinly sliced white onion",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Tostadas or corn tortillas",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Radish (ahead of time): Dissolve 5g non-iodized salt in 250ml filtered water to make brine. Place thinly sliced radishes, smashed garlic (if using), and bay leaf (if using) in a clean jar. Pour brine over radishes, ensuring they are fully submerged. Seal jar loosely. Ferment at room temperature for 3-5 days, or until desired tanginess is achieved. Refrigerate.",
+      "Cook Chicken and Make Broth: Place chicken, halved onion, smashed garlic, bay leaves, 10g salt, peppercorns, and vegetable scraps in a large pot. Add 3 litres water. Bring to a boil. Reduce heat to low. Simmer for 1-1.5 hours, or until chicken is cooked through and tender (internal temperature 75°C). Skim any foam from surface.",
+      "Shred Chicken: Remove chicken from broth. Let cool slightly. Discard bones and skin. Shred chicken meat into bite-sized pieces. Set aside. Strain broth through a fine-mesh sieve. Discard solids. Reserve 250ml broth for verde sauce. Keep remaining broth hot.",
+      "Prepare Verde Sauce: Roast tomatillos, poblano peppers, and jalapeños on a comal or baking sheet until softened and lightly charred. Peel poblano and jalapeño if desired. Blend roasted vegetables with roughly chopped small onion, 3 garlic cloves, roughly chopped cilantro, epazote (if using), and 250ml reserved chicken broth until smooth.",
+      "Assemble Pozole: Heat 30ml olive oil in a large pot over medium heat. Pour in verde sauce. Simmer for 10-15 minutes, stirring occasionally, until sauce thickens slightly and deepens in color. Add shredded chicken and rinsed hominy to the pot. Pour in remaining hot chicken broth. Bring to a gentle simmer. Cook for 15-20 minutes, allowing flavors to meld. Season with salt to taste.",
+      "Serve: Ladle hot pozole into bowls. Serve with lime wedges, dried oregano, fresh chopped cilantro, thinly sliced white onion, and a side of fermented radish. Offer tostadas or corn tortilla crisps for dipping."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by using chicken bones and vegetable scraps for a flavorful broth.",
+      "The fermented radish provides a tangy, probiotic element and extends the shelf life of fresh produce."
+    ],
+    "traditional_techniques": [
+      "Slow simmering for broth",
+      "Roasting ingredients for salsa verde"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1104,
+      "cholesterol_mg": 334,
+      "dietary_fiber_g": 10.6,
+      "protein_g": 81.3,
+      "saturated_fat_g": 16,
+      "sodium_mg": 998,
+      "total_carbs_g": 51.1,
+      "total_fat_g": 62.8,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 245.3,
+      "cholesterol_mg": 74.2,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 18.1,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 221.7,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 14,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 111.3,
+      "dietary_fiber": 38,
+      "protein": 162.6,
+      "saturated_fat": 79.9,
+      "sodium": 43.4,
+      "total_carbs": 18.6,
+      "total_fat": 80.5
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Seared Scallops with Coffee-Chocolate Mole and Coffee Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_scallops_with_coffee-chocolate_mole_and_coffee_cream_20250701_152052_f37e173c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:20:53.304901000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "coffee",
+      "cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, simple white porcelain dinner plate, centrally placed on a light, natural wooden table surface. Three perfectly seared sea scallops, displaying a beautiful golden-brown crust and tender, opaque white interiors, are artfully arranged atop a rich, glossy pool of dark coffee-chocolate mole sauce. The mole, deep brown with subtle red undertones, provides a striking contrast to the scallops. A delicate drizzle of pale, frothy coffee cream cascades over and around the scallops, adding a lighter hue and creamy texture. Fresh, vibrant green cilantro leaves are sparingly placed for a pop of color and freshness. A bright lime wedge rests beside the main arrangement, ready to be squeezed. The overall presentation is clean, professional, and balanced, with ample negative space. Standard, polished flatware (fork and knife) is neatly placed beside the plate on a folded white cotton napkin. Natural, even lighting illuminates the dish, highlighting its textures and colors against a softly blurred, casual restaurant background that suggests a modern bistro atmosphere without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican Fusion",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "A small side of warm corn tortillas could be offered for dipping in the mole, though not necessary for a starter."
+    ],
+    "hero_ingredient": "Scallops",
+    "ingredients": [
+      {
+        "name": "large sea scallops",
+        "quantity": "12 (approx. 300g)"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "white onion, finely diced",
+        "quantity": "50 g"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "dried ancho chili, rehydrated, deseeded, and chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "dark chocolate (70% or higher), finely chopped",
+        "quantity": "10 g"
+      },
+      {
+        "name": "strong brewed espresso or coffee",
+        "quantity": "75 ml"
+      },
+      {
+        "name": "chicken or vegetable broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "ground cumin",
+        "quantity": "2 g"
+      },
+      {
+        "name": "ground coriander",
+        "quantity": "1 g"
+      },
+      {
+        "name": "ground cinnamon",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "heavy cream",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "fresh cilantro leaves",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "lime wedges",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare the Mole: Heat 15 ml olive oil in a small saucepan over medium heat. Add diced white onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and chopped ancho chili. Cook for 1 minute until fragrant.",
+      "Pour in 60 ml brewed espresso and chicken broth. Bring to a simmer. Reduce heat to low. Stir in ground cumin, coriander, and cinnamon.",
+      "Add chopped dark chocolate. Stir until chocolate melts and sauce is smooth. Simmer gently for 5-7 minutes. Season with salt. Keep warm.",
+      "Prepare the Coffee Cream: In a small bowl, combine heavy cream, 15 ml espresso, and a pinch of salt. Whisk until slightly thickened but still pourable. Do not over-whisk.",
+      "Sear the Scallops: Pat scallops thoroughly dry with paper towels. Season both sides with salt and pepper.",
+      "Heat 15 ml olive oil in a heavy-bottomed skillet over high heat until shimmering.",
+      "Place scallops in the hot skillet in a single layer. Sear for 2-3 minutes per side until a deep golden-brown crust forms and scallops are cooked through.",
+      "Plate the Dish: Spoon a small pool of warm coffee-chocolate mole onto each of four white porcelain starter plates.",
+      "Arrange 3 seared scallops neatly on top of the mole on each plate.",
+      "Drizzle a small amount of coffee cream over and around the scallops.",
+      "Garnish with a few fresh cilantro leaves and a lime wedge. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Mole preparation (simplified)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 215,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 13.8,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 295,
+      "total_carbs_g": 8.2,
+      "total_fat_g": 14.8,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 126,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.1,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 174,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 15,
+      "dietary_fiber": 6,
+      "protein": 28,
+      "saturated_fat": 27,
+      "sodium": 13,
+      "total_carbs": 3,
+      "total_fat": 19
+    },
+    "serving_size_g": 170,
+    "total_recipe_weight_g": 680
+  },
+  {
+    "recipe_name": "Chicken and Corn Fritters",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_corn_fritters_20250701_152036_a7f3c08f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:20:36.594735000Z",
+    "selected_ingredients": [
+      "corn",
+      "chili",
+      "onion",
+      "coriander",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A casual platter of golden-brown Chicken and Corn Fritters is arranged on a simple, well-used wooden dining table. The fritters are irregularly shaped, showcasing crispy edges and a soft, textured interior with visible pieces of finely diced chicken, bright yellow corn kernels, and specks of red chili and green coriander. They are piled naturally, not overly arranged, reflecting a homely preparation. Beside the fritters, a small ceramic bowl holds a vibrant green chili-coriander dip, flecked with red chili pieces. The scene is lit with warm, cozy kitchen lighting, creating a comfortable, inviting atmosphere. A casually placed cloth napkin and a few stray fresh coriander leaves complete the unpretentious, family-style presentation. The plate is adequately filled but not overcrowded, allowing for negative space around the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Cooked chicken breast",
+        "quantity": "300 g, finely diced"
+      },
+      {
+        "name": "Corn kernels",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1, deseeded and finely chopped"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "for frying"
+      },
+      {
+        "name": "Fresh coriander (for dip)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Red chili (for dip)",
+        "quantity": "0.5, deseeded and finely chopped"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Greek yogurt or sour cream",
+        "quantity": "100 g"
+      }
+    ],
+    "instructions": [
+      "Cook chicken breast. Boil or pan-fry chicken until internal temperature reaches 75°C. Let cool. Finely dice chicken.",
+      "Prepare fritter batter. In a large bowl, whisk together flour, baking powder, salt, and pepper.",
+      "Add wet ingredients. Whisk in egg and milk until just combined. Do not overmix.",
+      "Combine fritter ingredients. Fold in diced chicken, corn kernels, diced red onion, and chopped red chili into the batter.",
+      "Make the dip. In a small bowl, combine chopped coriander, finely chopped chili, lime juice, and Greek yogurt or sour cream. Season with salt.",
+      "Heat oil. Heat 2 cm of vegetable oil in a large frying pan over medium-high heat.",
+      "Cook fritters. Drop spoonfuls of batter into the hot oil. Flatten slightly. Cook for 3-4 minutes per side, until golden brown and cooked through.",
+      "Drain fritters. Transfer cooked fritters to a plate lined with paper towel to drain excess oil.",
+      "Serve hot. Serve fritters immediately with the chili-coriander dip."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 428,
+      "cholesterol_mg": 118,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 34.3,
+      "saturated_fat_g": 3,
+      "sodium_mg": 724,
+      "total_carbs_g": 45.3,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150.5,
+      "cholesterol_mg": 41.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 12.1,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 254.8,
+      "total_carbs_g": 15.9,
+      "total_fat_g": 4.4,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.3,
+      "dietary_fiber": 11.1,
+      "protein": 68.6,
+      "saturated_fat": 14.9,
+      "sodium": 31.5,
+      "total_carbs": 16.5,
+      "total_fat": 15.9
+    },
+    "serving_size_g": 284.25,
+    "total_recipe_weight_g": 1137
+  },
+  {
+    "recipe_name": "Sausage & Rice Bites with Fennel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sausage_%26_rice_bites_with_fennel_20250701_151917_e14e5457.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:19:17.878097000Z",
+    "selected_ingredients": [
+      "fennel",
+      "paprika",
+      "sausage",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish features a generous pile of golden-brown Sausage & Rice Bites, arranged casually on a rustic wooden serving board. Each bite is irregularly shaped, showcasing a homely, unpretentious appeal. The exterior is a rich golden-brown from baking, with visible flecks of darker, cooked sausage and lighter rice. Finely diced, softened fennel and onion are subtly integrated within the bites, contributing to their textured appearance. The overall color palette is warm, with golden and reddish-brown tones from the cooked sausage and paprika. A few scattered fresh parsley leaves add a pop of vibrant green. The board is placed on a well-used wooden dining table, with a simple, folded checkered cloth napkin nearby. The lighting is warm and inviting, typical of a cozy family kitchen, emphasizing the comforting nature of the snack. The entire platter is visible, showcasing a casual, sharing portion suitable for relaxed eating.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Sausage, mild Italian or pork",
+        "quantity": "400 g"
+      },
+      {
+        "name": "White rice, uncooked",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fennel bulb",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped (optional)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Cook rice according to package directions. Use 400 ml water. Set aside to cool.",
+      "Remove sausage from casings. Crumble into small pieces.",
+      "Heat olive oil in a large pan over medium heat.",
+      "Add crumbled sausage. Cook until browned and cooked through. Break up any large pieces. Drain excess fat. Remove sausage from pan. Set aside.",
+      "Finely dice fennel bulb and onion. Mince garlic.",
+      "Add diced fennel and onion to the same pan. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "In a large bowl, combine cooled cooked rice, cooked sausage, sautéed fennel-onion mixture, and egg.",
+      "Season with salt and black pepper. Mix well until thoroughly combined.",
+      "Form the mixture into small, golf-ball sized bites. About 24-28 bites.",
+      "Preheat oven to 200°C. Line a baking sheet with parchment paper.",
+      "Place bites on the prepared baking sheet. Ensure space between each bite.",
+      "Bake for 15-20 minutes, or until golden brown and heated through.",
+      "Alternatively, pan-fry bites in a little oil until golden brown on all sides.",
+      "Serve warm, optionally garnished with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 562,
+      "cholesterol_mg": 122,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 21.4,
+      "saturated_fat_g": 10,
+      "sodium_mg": 705,
+      "total_carbs_g": 48.7,
+      "total_fat_g": 31.3,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 223,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 8.5,
+      "saturated_fat_g": 4,
+      "sodium_mg": 279,
+      "total_carbs_g": 19.3,
+      "total_fat_g": 12.4,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 12,
+      "protein": 43,
+      "saturated_fat": 50,
+      "sodium": 31,
+      "total_carbs": 18,
+      "total_fat": 40
+    },
+    "serving_size_g": 252.5,
+    "total_recipe_weight_g": 1010
+  },
+  {
+    "recipe_name": "Vanilla Bean Panna Cotta with Raspberry Coulis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vanilla_bean_panna_cotta_with_raspberry_coulis_20250701_151845_44bb2f70.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:18:46.007312000Z",
+    "selected_ingredients": [
+      "tomato",
+      "green bean",
+      "beef",
+      "worcestershire sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegantly plated Vanilla Bean Panna Cotta rests on a clean, round white porcelain dinner plate, centered with thoughtful negative space. The panna cotta is a smooth, creamy white cylinder, approximately 6 cm in diameter and 5 cm tall, with a delicate wobble. A vibrant, deep red raspberry coulis is artfully spooned around its base, creating an organic, flowing pool that contrasts beautifully with the panna cotta's pristine surface. A few fresh, plump raspberries are scattered beside the panna cotta, adding bursts of color and natural texture. A small, fresh mint sprig provides a subtle green accent. The setting is a modern bistro, featuring a simple light wooden table surface. A neatly folded white cotton napkin rests beside the plate. Natural, soft, even lighting illuminates the dish, highlighting its refined textures and inviting colors. The presentation is clean, professional, and balanced.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Traditionally served chilled, often with fresh fruit or fruit coulis. Best enjoyed as a light, sweet end to a meal."
+    ],
+    "hero_ingredient": "Vanilla Bean",
+    "ingredients": [
+      {
+        "name": "Heavy cream",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Gelatin leaves",
+        "quantity": "3 (or 5g powder)"
+      },
+      {
+        "name": "Vanilla bean",
+        "quantity": "1 (or 5 ml extract)"
+      },
+      {
+        "name": "Fresh raspberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Soak gelatin leaves in cold water for 5 minutes until softened. If using powder, sprinkle over 30 ml cold water and let bloom.",
+      "Split vanilla bean lengthwise. Scrape seeds into a medium saucepan. Add cream and sugar. Add vanilla pod.",
+      "Heat cream mixture over medium heat until simmering, stirring to dissolve sugar. Do not boil.",
+      "Remove vanilla pod. Squeeze excess water from gelatin leaves. Stir bloomed gelatin into hot cream until fully dissolved.",
+      "Pour mixture evenly into four 150 ml ramekins or molds. Refrigerate for at least 4 hours, or until set.",
+      "For raspberry coulis, combine raspberries, 15g sugar, and lemon juice in a blender. Blend until smooth.",
+      "Pass coulis through a fine-mesh sieve to remove seeds. Chill until ready to serve.",
+      "To serve, briefly dip bottom of ramekins in hot water. Invert panna cottas onto white porcelain plates. Spoon raspberry coulis artfully around each panna cotta. Garnish with a few fresh raspberries and a small mint sprig."
+    ],
+    "notes": [
+      "Ensure gelatin is fully dissolved for smooth texture. Adjust sugar in coulis to taste, depending on raspberry sweetness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 18.8,
+      "calories": 528.6,
+      "cholesterol_mg": 163,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 4.2,
+      "saturated_fat_g": 28.8,
+      "sodium_mg": 45.8,
+      "total_carbs_g": 28.8,
+      "total_fat_g": 45.3,
+      "total_sugars_g": 24.8,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 9.4,
+      "calories": 266,
+      "cholesterol_mg": 81.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 2.1,
+      "saturated_fat_g": 14.5,
+      "sodium_mg": 23,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 22.8,
+      "total_sugars_g": 12.5,
+      "trans_fat_g": 0.9
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 12,
+      "protein": 8,
+      "saturated_fat": 144,
+      "sodium": 2,
+      "total_carbs": 10,
+      "total_fat": 58
+    },
+    "serving_size_g": 198.75,
+    "total_recipe_weight_g": 795
+  }
+]

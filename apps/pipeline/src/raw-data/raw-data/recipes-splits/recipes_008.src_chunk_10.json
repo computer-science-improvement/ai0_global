@@ -1,0 +1,698 @@
+[
+  {
+    "recipe_name": "Moroccan Spiced Beef with Apricots & Turmeric Couscous",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_moroccan_spiced_beef_with_apricots_%26_turmeric_couscous_20250811_111728_df52907c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T11:17:28.754297000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "apple",
+      "garlic",
+      "lemon",
+      "coriander",
+      "butter",
+      "thyme",
+      "apricot",
+      "egg",
+      "couscous",
+      "turmeric"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Moroccan Spiced Beef with Apricots and Turmeric Couscous is presented in a deep, rustic white ceramic bowl. A generous mound of vibrant yellow turmeric-infused couscous forms the base, its distinct grains fluffy and light. Hearty, dark brown beef chuck chunks, slow-cooked to tender perfection, are naturally nestled atop the couscous, retaining their irregular, un-sliced shapes. Golden-orange dried apricot halves and tender, light yellow apple chunks are interspersed among the beef, coated in a rich, glossy, deep reddish-brown sauce. The sauce pools invitingly around the base, showcasing its depth. A generous scattering of bright green, freshly chopped coriander leaves provides a fresh, herbaceous contrast. The dish features warm browns, golden yellows, and bright oranges, punctuated by vibrant green. Textures range from tender beef and soft fruits to fluffy couscous and crisp herbs. The bowl is placed on a simple wooden table, with a folded cotton napkin beside it. Natural, even lighting highlights the dish, with a subtly blurred background suggesting a casual bistro setting. The entire plate is visible, with appropriate negative space and no overcrowding.",
+    "number_of_servings": 4,
+    "cuisine_type": "Moroccan",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Firm apple",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Dried apricots",
+        "quantity": "150g"
+      },
+      {
+        "name": "Medium grain couscous",
+        "quantity": "300g"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "10g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chuck chunks dry. Season beef generously with salt and black pepper.",
+      "Heat butter and 15ml olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef in batches until deeply browned on all sides. Remove beef from pot and set aside.",
+      "Add remaining 15ml olive oil to the pot. Add roughly chopped onions. Sauté until softened, about 8-10 minutes. Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Stir in ground turmeric, ground cumin, sweet paprika, and ground cinnamon. Cook for 1 minute, stirring constantly, until aromatic.",
+      "Return seared beef to the pot. Pour in beef broth. Add lemon zest and thyme sprigs. Bring liquid to a simmer. Reduce heat to low, cover tightly, and cook for 1.5-2 hours, or until beef is very tender.",
+      "Stir in halved dried apricots and 2 cm apple chunks. Continue to cook, covered, for another 20-30 minutes, or until apples are tender and sauce has thickened slightly.",
+      "Remove thyme sprigs from the tagine. Stir in half of the fresh chopped coriander and all of the lemon juice. Taste and adjust seasoning as needed.",
+      "For the couscous: In a medium bowl, combine couscous, 5g ground turmeric, and a pinch of salt. Pour 350ml boiling water or broth over the couscous. Cover the bowl tightly with plastic wrap or a plate. Let stand for 5-7 minutes until all liquid is absorbed. Fluff the couscous with a fork.",
+      "Ladle the spiced beef and apricot tagine over the fluffy turmeric couscous. Garnish generously with the remaining fresh chopped coriander before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1077,
+      "cholesterol_mg": 176,
+      "dietary_fiber_g": 11.5,
+      "protein_g": 68.3,
+      "saturated_fat_g": 17.4,
+      "sodium_mg": 727,
+      "total_carbs_g": 104.5,
+      "total_fat_g": 45.4,
+      "total_sugars_g": 29.1,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 150,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 101,
+      "total_carbs_g": 14.6,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59,
+      "dietary_fiber": 41,
+      "protein": 137,
+      "saturated_fat": 87,
+      "sodium": 32,
+      "total_carbs": 38,
+      "total_fat": 58
+    },
+    "serving_size_g": 717.5,
+    "total_recipe_weight_g": 2870
+  },
+  {
+    "recipe_name": "Pan-Seared Turkey Medallions with Ricotta Agnolotti and Brown Butter Sage Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_turkey_medallions_with_ricotta_agnolotti_and_brown_butter_sage_sauce_20250811_105609_af2ce82e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T10:56:10.368784000Z",
+    "selected_ingredients": [
+      "turkey",
+      "breadcrumbs",
+      "pasta",
+      "ricotta"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single portion rests on a pristine white bone china plate. Two pan-seared turkey medallions, with a golden crust and tender interior, are positioned elegantly. Beside them, a small, organic cluster of delicate, hand-shaped ricotta agnolotti with subtle ridges. A luminous brown butter and sage sauce is artfully drizzled around the components, creating natural pools and delicate trails. Crispy golden pangrattato is sparingly scattered for textural contrast. The color palette is refined: warm golden browns from the turkey and butter, creamy white agnolotti, and subtle green accents from the sage. Abundant negative space surrounds the components, highlighting their minimalist precision. The scene is set on a premium grey veined marble surface, with a precisely folded white linen napkin. Dramatic, soft lighting casts subtle shadows, enhancing the dish's sophisticated presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a small glass of crisp Italian white wine, such as a Pinot Grigio or Vermentino."
+    ],
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Turkey breast",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "00 pasta flour",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh ricotta cheese",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Fresh chives, chopped",
+        "quantity": "10 grams"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "12"
+      },
+      {
+        "name": "Fine breadcrumbs (panko)",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Make pasta dough: Mound flour on a clean surface. Create a well in the center. Crack eggs into well. Slowly incorporate flour into eggs with a fork. Knead dough for 10-12 minutes until smooth and elastic. Wrap in plastic film. Rest at room temperature for 30 minutes.",
+      "Prepare ricotta filling: In a bowl, combine ricotta, grated Parmigiano Reggiano, chopped parsley, chives, and lemon zest. Season with salt and pepper. Mix well. Transfer to a piping bag.",
+      "Form agnolotti: Divide pasta dough into four portions. Roll one portion very thinly using a pasta machine (setting 7 or 8). Pipe small lines of ricotta filling onto one half of the pasta sheet, spaced 2 cm apart. Fold the other half of the pasta sheet over the filling. Press firmly around the filling to seal, removing air. Use a fluted pastry wheel to cut individual agnolotti. Pinch each agnolotto firmly to create the traditional 'plin' shape. Dust with semolina flour. Repeat for remaining dough.",
+      "Prepare turkey: Cut turkey breast into 8 equal medallions. Season generously with salt and pepper. Heat olive oil in a large oven-safe pan over medium-high heat. Sear turkey medallions for 3-4 minutes per side until golden brown. Transfer pan to a preheated oven at 180°C (350°F). Cook for 8-10 minutes, or until internal temperature reaches 75°C (167°F). Rest turkey for 5 minutes.",
+      "Make brown butter sage sauce: In a separate pan, melt butter over medium heat. Cook until butter foams, then browns and smells nutty. Add sage leaves. Cook until fragrant and slightly crispy. Remove from heat.",
+      "Toast pangrattato: In a small dry pan, toast breadcrumbs over medium heat until golden and crispy. Stir frequently to prevent burning.",
+      "Cook agnolotti: Bring a large pot of salted water to a rolling boil. Carefully add agnolotti. Cook for 2-3 minutes, or until they float and are al dente. Drain gently, reserving some pasta water.",
+      "Assemble dish: Arrange a few agnolotti artfully on each plate. Place two rested turkey medallions alongside. Drizzle generously with brown butter sage sauce. Sprinkle with crispy pangrattato. Garnish with a fresh sage leaf or microgreens."
+    ],
+    "traditional_techniques": [
+      "Fresh pasta making",
+      "Agnolotti del Plin shaping",
+      "Brown butter sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 793.7,
+      "cholesterol_mg": 248.5,
+      "dietary_fiber_g": 2.62,
+      "protein_g": 54.36,
+      "saturated_fat_g": 20.49,
+      "sodium_mg": 401.8,
+      "total_carbs_g": 51.61,
+      "total_fat_g": 40.24,
+      "total_sugars_g": 2.78,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 229.7,
+      "cholesterol_mg": 71.9,
+      "dietary_fiber_g": 0.76,
+      "protein_g": 15.73,
+      "saturated_fat_g": 5.93,
+      "sodium_mg": 116.3,
+      "total_carbs_g": 14.94,
+      "total_fat_g": 11.65,
+      "total_sugars_g": 0.81,
+      "trans_fat_g": 0.23
+    },
+    "daily_value_percentages": {
+      "cholesterol": 82.8,
+      "dietary_fiber": 9.4,
+      "protein": 108.7,
+      "saturated_fat": 102.4,
+      "sodium": 17.5,
+      "total_carbs": 18.8,
+      "total_fat": 51.6
+    },
+    "serving_size_g": 345.5,
+    "total_recipe_weight_g": 1382
+  },
+  {
+    "recipe_name": "Roasted Chicken Supreme, Wild Mushroom Duxelles, Black Truffle Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_supreme%2C_wild_mushroom_duxelles%2C_black_truffle_jus_20250811_095650_f0d5c504.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T09:56:50.934290000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "chicken stock"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A roasted chicken supreme, golden-skinned and perfectly crisp, rests elegantly on a pristine white bone china plate. The chicken is presented whole, its natural shape maintained, hinting at the savory wild mushroom duxelles within. Adjacent to the chicken, a smooth, creamy quenelle of celeriac purée provides a soft, inviting contrast. A rich, dark black truffle jus, glossy and viscous, is artfully drizzled around the chicken, forming a natural, organic pool. The plating is minimalist, featuring abundant negative space that highlights each element's precise placement and texture. A single, delicate sprig of microgreens garnishes the dish. The scene is illuminated by dramatic professional lighting, casting subtle shadows on the premium marble surface, with a crisp white linen napkin folded precisely to the side.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Supreme",
+    "ingredients": [
+      {
+        "name": "Chicken Supremes (bone-in, skin-on)",
+        "quantity": "4 (approx. 250g each)"
+      },
+      {
+        "name": "Mixed Wild Mushrooms (e.g., girolles, oyster, shiitake)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Dry White Wine (e.g., Chardonnay)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Black Truffle (fresh or preserved)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Celeriac",
+        "quantity": "1 large (approx. 500g)"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Microgreens",
+        "quantity": "For garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Carefully de-bone chicken supremes, leaving skin on and wing bone intact. Create a pocket in the thickest part of the breast. Season chicken with salt and pepper.",
+      "Finely chop mushrooms, shallots, and garlic. Sauté shallots in 15g butter until translucent. Add garlic and mushrooms. Cook over medium-high heat until all moisture evaporates and mushrooms are deeply caramelized. Season with salt, pepper, and chopped thyme. Cool completely.",
+      "Fill chicken pockets with mushroom duxelles. Secure opening with a small skewer if needed.",
+      "Preheat oven to 190°C. Heat 15ml olive oil and 15g butter in an oven-safe pan. Sear chicken supremes skin-side down until golden and crisp (5-7 minutes). Flip and sear briefly on other side. Transfer pan to oven. Roast 15-20 minutes, or until internal temperature reaches 75°C. Rest chicken 5 minutes.",
+      "Peel and chop celeriac into 2cm cubes. Place in a saucepan, cover with milk and water (50/50 ratio), add a pinch of salt. Simmer until very tender (15-20 minutes). Drain well. Pass celeriac through a fine-mesh sieve or blend until very smooth with remaining butter and cream. Season with salt and pepper. Keep warm.",
+      "Deglaze pan used for chicken with white wine. Scrape up browned bits. Reduce by half. Add chicken stock. Simmer until reduced by two-thirds to a syrupy consistency. Remove from heat. Stir in finely grated black truffle. Adjust seasoning.",
+      "Spoon celeriac purée onto one side of each plate. Place a roasted chicken supreme next to the purée. Drizzle generously with black truffle jus around the chicken. Garnish with microgreens."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1039.53,
+      "cholesterol_mg": 311.75,
+      "dietary_fiber_g": 4.22,
+      "protein_g": 72.1,
+      "saturated_fat_g": 30.08,
+      "sodium_mg": 472.04,
+      "total_carbs_g": 20.78,
+      "total_fat_g": 73.01,
+      "total_sugars_g": 6.06,
+      "trans_fat_g": 1.46
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156.67,
+      "cholesterol_mg": 46.99,
+      "dietary_fiber_g": 0.64,
+      "protein_g": 10.87,
+      "saturated_fat_g": 4.53,
+      "sodium_mg": 71.14,
+      "total_carbs_g": 3.13,
+      "total_fat_g": 11,
+      "total_sugars_g": 0.91,
+      "trans_fat_g": 0.22
+    },
+    "daily_value_percentages": {
+      "cholesterol": 103.92,
+      "dietary_fiber": 15.07,
+      "protein": 144.2,
+      "saturated_fat": 150.4,
+      "sodium": 20.52,
+      "total_carbs": 7.56,
+      "total_fat": 93.6
+    },
+    "serving_size_g": 663.5,
+    "total_recipe_weight_g": 2654
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs with Glazed Carrots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_with_glazed_carrots_20250811_083251_bce13247.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T08:32:51.447152000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "français cuisine",
+    "visual_description": "A single, generous portion of deeply braised beef short ribs rests centrally on a clean white porcelain dinner plate. The rich, dark brown braising sauce generously coats the whole piece of beef, glistening under the natural light. Beside the beef, a vibrant cluster of bright orange carrots, cut into thick rounds, are perfectly glazed, showcasing their glossy texture. A delicate sprinkle of finely chopped fresh green parsley provides a fresh color contrast atop the beef. The plate is set on a simple wooden table surface, suggesting a modern bistro setting. A neatly folded cotton napkin and traditional French flatware are placed beside the plate, hinting at a refined yet approachable dining experience. The background is minimal, allowing the dish to be the sole focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with creamy mashed potatoes (purée de pommes de terre)",
+      "Accompany with a crusty baguette to soak up the sauce",
+      "Pair with a glass of the same red wine used for braising"
+    ],
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Bone-in beef short ribs",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Dry red wine (e.g., Cabernet Sauvignon)",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef short ribs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat. Sear ribs on all sides until deeply browned. Remove ribs and set aside.",
+      "Reduce heat to medium. Add chopped onions and diced carrots (200g) to the pot. Sauté until softened, about 8 minutes.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and reduce by half.",
+      "Stir in beef stock, thyme sprigs, and bay leaves. Return seared ribs to the pot. Ensure ribs are mostly submerged. Add more stock if needed.",
+      "Bring to a gentle simmer. Cover the Dutch oven tightly. Transfer to a preheated oven at 160°C for 2.5 to 3 hours, or until ribs are fork-tender.",
+      "Remove ribs from the pot. Strain the braising liquid through a fine-mesh sieve into a saucepan. Discard solids. Skim off excess fat.",
+      "Return saucepan with braising liquid to medium heat. Simmer gently until reduced to a rich sauce consistency. Season with salt and pepper.",
+      "For glazed carrots: Cut remaining 300g carrots into thick rounds or small batons. Place in a separate saucepan with butter, sugar, a pinch of salt, and 60ml water. Cover and cook over medium heat until tender. Uncover and increase heat, swirling until liquid evaporates and carrots are glossy.",
+      "Serve braised short ribs with reduced sauce and glazed carrots. Garnish with chopped fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Braising (Braiser)",
+      "Glazing (Glaçage)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.75,
+      "calories": 1272.05,
+      "cholesterol_mg": 221.58,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 57.97,
+      "saturated_fat_g": 35.77,
+      "sodium_mg": 447.88,
+      "total_carbs_g": 33.19,
+      "total_fat_g": 85.57,
+      "total_sugars_g": 15.86,
+      "trans_fat_g": 3.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.54,
+      "calories": 181.72,
+      "cholesterol_mg": 31.65,
+      "dietary_fiber_g": 0.89,
+      "protein_g": 8.28,
+      "saturated_fat_g": 5.11,
+      "sodium_mg": 63.98,
+      "total_carbs_g": 4.74,
+      "total_fat_g": 12.22,
+      "total_sugars_g": 2.27,
+      "trans_fat_g": 0.45
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73.86,
+      "dietary_fiber": 22.14,
+      "protein": 115.94,
+      "saturated_fat": 178.85,
+      "sodium": 19.47,
+      "total_carbs": 12.07,
+      "total_fat": 109.71
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2800
+  },
+  {
+    "recipe_name": "Rustic Chicken and Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_vegetable_stew_20250811_081415_b0164c6d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T08:14:15.843203000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "cucumber",
+      "squash",
+      "celery"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Rustic Chicken and Vegetable Stew is presented in a deep, off-white ceramic bowl, centered on a worn, light-colored wooden kitchen table. The stew features chunky, golden-brown seared chicken pieces nestled amongst soft, diced zucchini, celery, and onion, all coated in a rich, reddish-brown tomato-based sauce. Flecks of dried herbs are visible. A generous spoonful of fresh, finely diced cucumber and chopped parsley relish sits atop the stew, providing a vibrant green and white textural contrast. The plate below the bowl is a simple, everyday ceramic. A casually folded beige linen napkin and basic metal flatware rest beside the bowl. Warm, natural light illuminates the scene, creating an inviting, unpretentious family meal atmosphere. The focus is on comfort and natural appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "Rustic American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the stew's sauce.",
+      "A side of plain white rice can be served to soak up the broth.",
+      "The fresh cucumber relish provides a cooling and bright contrast to the hearty stew."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 large (approx. 600-700g), cut into 3-4cm chunks"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1 (approx. 150g), diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2 (approx. 100g), sliced"
+      },
+      {
+        "name": "Medium zucchini",
+        "quantity": "2 (approx. 300g), diced into 2cm cubes"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Large cucumber",
+        "quantity": "1 (approx. 200g), finely diced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Red wine vinegar (for relish)",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add chicken chunks. Sear until golden brown on all sides. Remove chicken and set aside.",
+      "Add diced onion, celery, and minced garlic to the pot. Sauté until softened, about 5-7 minutes.",
+      "Stir in diced zucchini, canned diced tomatoes, chicken broth, and dried oregano. Bring to a simmer.",
+      "Return seared chicken to the pot. Cover and reduce heat to low.",
+      "Simmer for 25-30 minutes, or until chicken is tender and cooked through. Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "While stew simmers, prepare the relish: In a small bowl, combine finely diced cucumber, half of the chopped fresh parsley, red wine vinegar, a pinch of salt, and pepper. Stir well.",
+      "Season stew with additional salt and pepper to taste.",
+      "Serve hot, garnished with the remaining fresh parsley and a generous spoonful of the cucumber relish on top."
+    ],
+    "notes": [
+      "For best flavor, allow the stew to rest for 10 minutes before serving.",
+      "This stew can be made ahead and reheats well."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 409,
+      "cholesterol_mg": 220,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 37.8,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 1208,
+      "total_carbs_g": 14.7,
+      "total_fat_g": 21,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 68.8,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.4,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 203.3,
+      "total_carbs_g": 2.5,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 16,
+      "protein": 76,
+      "saturated_fat": 25,
+      "sodium": 53,
+      "total_carbs": 5,
+      "total_fat": 27
+    },
+    "serving_size_g": 594,
+    "total_recipe_weight_g": 2376
+  }
+]

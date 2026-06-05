@@ -1,0 +1,683 @@
+[
+  {
+    "recipe_name": "Moroccan Spiced Chicken with Orange and Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_moroccan_spiced_chicken_with_orange_and_tomato_20250624_122252_8ceede79.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:53.024944000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "orange"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Moroccan Spiced Chicken with Orange and Tomato is presented in a deep, rustic terracotta-colored ceramic bowl. Two generous, bone-in chicken thighs, seared to golden-brown and braised until fork-tender, are nestled in a rich, reddish-orange sauce. The sauce contains visible soft diced tomatoes and translucent softened onion. Vibrant, tender orange slices are interspersed throughout, adding bright color contrast. Fresh, chopped cilantro and parsley are generously sprinkled over the top, adding verdant freshness. The chicken is moist, and the sauce shimmers. Beside the bowl, a small, fluffy mound of steamed couscous is perfectly portioned. The setting is a warm, simple wooden table, with natural, soft lighting. A subtly patterned linen napkin is neatly folded beside the bowl, completing the authentic, refined presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Moroccan",
+    "cultural_origin": "Moroccan",
+    "cultural_serving_suggestions": [
+      "Serve with couscous or warm flatbread (khobz).",
+      "Offer a side of harissa for those who prefer more heat.",
+      "Serve in a communal tagine pot for a traditional family meal."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "8 (bone-in, skin-on)"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "400g (diced)"
+      },
+      {
+        "name": "Oranges",
+        "quantity": "2"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium (diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves (minced)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": "30g (fresh, chopped)"
+      },
+      {
+        "name": "Parsley",
+        "quantity": "20g (fresh, chopped)"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "10g (ground)"
+      },
+      {
+        "name": "Coriander",
+        "quantity": "10g (ground)"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "5g (ground)"
+      },
+      {
+        "name": "Turmeric",
+        "quantity": "5g (ground)"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "a pinch (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt, pepper, cumin, coriander, ginger, turmeric, and paprika.",
+      "Heat olive oil in a large tagine or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden brown. About 5-7 minutes. Flip and sear other side for 3-5 minutes. Remove chicken.",
+      "Add diced onions to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Return chicken to the pot. Add diced tomatoes, orange juice (from 1 orange), chicken stock, and half of the fresh cilantro and parsley. Add saffron if using.",
+      "Bring to a simmer. Reduce heat to low. Cover and cook for 45-60 minutes, or until chicken is tender and cooked through (75°C internal temperature).",
+      "Slice remaining orange into rounds. Add orange slices to the pot during the last 15 minutes of cooking.",
+      "Adjust seasoning as needed.",
+      "Garnish with remaining fresh cilantro and parsley before serving."
+    ],
+    "notes": [
+      "Adjust spice levels to personal preference.",
+      "Chicken can be marinated overnight for deeper flavor."
+    ],
+    "traditional_techniques": [
+      "Braising (slow cooking in aromatic liquid)",
+      "Layering spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 979,
+      "cholesterol_mg": 315,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 74.2,
+      "saturated_fat_g": 16.8,
+      "sodium_mg": 328,
+      "total_carbs_g": 24.3,
+      "total_fat_g": 64.6,
+      "total_sugars_g": 11.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 175,
+      "cholesterol_mg": 56,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 13.3,
+      "saturated_fat_g": 3,
+      "sodium_mg": 59,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 11.6,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 105,
+      "dietary_fiber": 23,
+      "protein": 148,
+      "saturated_fat": 84,
+      "sodium": 14,
+      "total_carbs": 9,
+      "total_fat": 83
+    },
+    "serving_size_g": 559,
+    "total_recipe_weight_g": 2234
+  },
+  {
+    "recipe_name": "Chipotle Chicken with Roasted Corn, Black Bean Salsa & Crispy Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chipotle_chicken_with_roasted_corn%2C_black_bean_salsa_%26_crispy_potatoes_20250624_122242_41960bd9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:43.349531000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean",
+      "potato",
+      "corn",
+      "chipotle chile"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A seared, golden-brown chicken breast, cooked whole, anchors the center of a clean white porcelain dinner plate. Its surface reveals a slight char and the deep reddish-orange hue of the chipotle marinade. Adjacent to the chicken are irregular, crispy roasted potato wedges, their golden-brown exteriors contrasting with their fluffy interiors. A vibrant mound of black bean and corn salsa sits nearby, showcasing a medley of dark black beans, bright yellow corn kernels, finely diced red onion, and verdant chopped cilantro. The arrangement is organic yet balanced, with moderate negative space. A fresh lime wedge and a few cilantro sprigs garnish the dish. The setting is a modern bistro, featuring a simple wooden table surface, a grey cotton napkin folded neatly beside the plate, and even, natural lighting, creating an inviting, authentic Mexican casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Warm corn tortillas",
+      "Fresh lime wedges",
+      "A side of crema or sour cream"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Small waxy potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Black beans, canned",
+        "quantity": "400g, rinsed and drained"
+      },
+      {
+        "name": "Frozen corn kernels",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chipotle chiles in adobo sauce",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Adobo sauce from chipotle can",
+        "quantity": "15ml (1 tablespoon)"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, juiced"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "0.5, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5ml (1 teaspoon)"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5ml (1 teaspoon)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml (4 tablespoons)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Wash potatoes. Cut into 2-3 cm wedges or chunks. In a large bowl, toss potatoes with 30ml olive oil, 2.5ml salt, 2.5ml pepper, and 2.5ml cumin. Spread potatoes in a single layer on a baking sheet. Roast for 25-30 minutes, or until tender and crispy. Stir halfway through.",
+      "While potatoes roast, prepare chicken marinade. In a shallow dish, combine minced chipotle chiles, adobo sauce, half of the lime juice, 2.5ml cumin, smoked paprika, 2.5ml salt, 2.5ml pepper, and 15ml olive oil. Add chicken breasts to marinade. Turn to coat evenly. Marinate for at least 15 minutes, or up to 30 minutes in the refrigerator.",
+      "For the salsa, combine rinsed black beans, frozen corn kernels, diced red onion, minced garlic, and chopped cilantro in a medium bowl. Add remaining lime juice and 15ml olive oil. Season with salt and pepper to taste. Stir well. If using fresh corn, roast kernels with potatoes for the last 10 minutes.",
+      "Heat remaining 15ml olive oil in a large skillet over medium-high heat. Add marinated chicken breasts. Sear for 5-7 minutes per side, until golden brown and cooked through. Ensure internal temperature reaches 75°C. Remove chicken from skillet. Let rest for 5 minutes.",
+      "To plate, place one whole seared chicken breast on each plate. Arrange a portion of crispy potato wedges beside the chicken. Spoon a generous amount of black bean and corn salsa next to the potatoes. Garnish with fresh cilantro leaves and a lime wedge."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 735,
+      "cholesterol_mg": 162,
+      "dietary_fiber_g": 13.7,
+      "protein_g": 72.8,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 990,
+      "total_carbs_g": 60.8,
+      "total_fat_g": 22.5,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138.3,
+      "cholesterol_mg": 30.4,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 13.7,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 186.4,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 49,
+      "protein": 146,
+      "saturated_fat": 21,
+      "sodium": 43,
+      "total_carbs": 22,
+      "total_fat": 29
+    },
+    "serving_size_g": 531.25,
+    "total_recipe_weight_g": 2125
+  },
+  {
+    "recipe_name": "Pollo al Forno con Patate e Pomodoro",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_al_forno_con_patate_e_pomodoro_20250624_122242_3a649d48.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:43.171276000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "potato",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo al Forno con Patate e Pomodoro is presented on a clean, round white porcelain dinner plate, embodying a simple restaurant-style aesthetic. At the center, one golden-brown, crispy-skinned chicken thigh, cooked whole, anchors the dish. Surrounding the chicken are tender, roasted potato wedges with slightly crisped edges and bursting, caramelized cherry tomato halves. Thinly sliced, softened onion pieces are interspersed among the vegetables. A light, savory pan sauce, rich with chicken drippings and tomato juices, pools subtly around the base. The dish is generously sprinkled with freshly grated Parmigiano-Reggiano, melted and slightly browned in places, and a vibrant scattering of chopped fresh parsley. The colors are earthy and warm: deep golden chicken, rustic brown potatoes, vibrant red tomatoes, and green parsley, all balanced against the white plate. The textures are varied, from crispy chicken skin to soft potato interior and juicy tomatoes. The setting is a modern bistro with a simple wooden table surface. A folded white cotton napkin rests beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and colors without harsh shadows. The background is minimally blurred, suggesting a casual restaurant ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the pan juices.",
+      "Accompany with a simple mixed green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 large (approx. 200g each)"
+      },
+      {
+        "name": "New potatoes or small red potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Parmigiano-Reggiano, freshly grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Onion, thinly sliced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh rosemary, leaves picked and chopped",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme, leaves picked",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and halve potatoes. Quarter cherry tomatoes.",
+      "In a large roasting pan, combine halved potatoes, quartered tomatoes, sliced onion, minced garlic, chopped rosemary, thyme, 30ml olive oil, salt, and pepper. Toss to coat. Spread in a single layer.",
+      "Pat chicken thighs thoroughly dry with paper towels. Season generously with salt and pepper.",
+      "Heat remaining 30ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken thighs skin-side down for 5-7 minutes until skin is golden and crispy. Flip and sear for 2-3 minutes on the other side.",
+      "Nestle seared chicken thighs among the vegetables in the roasting pan.",
+      "Pour chicken broth into the pan.",
+      "Bake for 30-35 minutes, or until chicken internal temperature reaches 75°C and potatoes are tender. Chicken skin should be crispy.",
+      "Remove pan from oven. Sprinkle grated Parmigiano-Reggiano evenly over chicken and vegetables.",
+      "Return to oven for 5 minutes, or until cheese is melted and bubbly.",
+      "Rest chicken for 5 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken skin is thoroughly dried before searing for maximum crispness.",
+      "Adjust baking time based on the size and thickness of chicken thighs."
+    ],
+    "traditional_techniques": [
+      "Al Forno (Baking/Roasting)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 797.8,
+      "cholesterol_mg": 191,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 50.3,
+      "saturated_fat_g": 13.3,
+      "sodium_mg": 439.3,
+      "total_carbs_g": 36,
+      "total_fat_g": 50.1,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 137.2,
+      "cholesterol_mg": 32.9,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.7,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 75.6,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.7,
+      "dietary_fiber": 18.2,
+      "protein": 100.6,
+      "saturated_fat": 66.5,
+      "sodium": 19.1,
+      "total_carbs": 13.1,
+      "total_fat": 64.3
+    },
+    "serving_size_g": 581.3,
+    "total_recipe_weight_g": 2325
+  },
+  {
+    "recipe_name": "Pan-Seared Garlic Chicken with Rosemary",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_garlic_chicken_with_rosemary_20250624_122242_16f44dfb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:43.164386000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of golden-brown pan-seared chicken breast, whole and plump, rests slightly off-center on a clean white porcelain dinner plate. A glossy, light amber pan sauce, infused with garlic and rosemary, is generously drizzled over the chicken and pools elegantly around its base. Beside the chicken, a neat cluster of roasted baby potatoes, halved and showing golden, crispy edges, provides an earthy counterpoint. Vibrant green asparagus spears, blanched to tender-crisp perfection, are arranged alongside the potatoes. A small sprig of fresh rosemary garnishes the chicken. The dish is presented on a simple wooden table, with a white cotton napkin and standard silver flatware, under natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8, minced"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1/2, juiced"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Baby potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "300 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve or quarter baby potatoes. Toss with 15 ml olive oil, salt, and pepper. Roast for 25-30 minutes until tender and golden.",
+      "Pat chicken breasts dry with paper towels. Season generously with salt and black pepper.",
+      "Heat remaining 15 ml olive oil in a large oven-safe skillet over medium-high heat. Add chicken breasts. Sear for 5-7 minutes per side until golden brown and cooked through to an internal temperature of 75°C (167°F). Remove chicken from skillet. Set aside and keep warm.",
+      "While chicken rests, bring a pot of salted water to a boil. Blanch asparagus spears for 2-3 minutes until vibrant green and tender-crisp. Drain immediately.",
+      "Reduce skillet heat to medium. Add minced garlic, rosemary, and thyme to the skillet. Sauté for 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the pan. Reduce liquid by half, about 5-7 minutes.",
+      "Remove skillet from heat. Stir in butter and lemon juice until butter is melted and sauce is emulsified. Taste and adjust seasoning.",
+      "To serve, place a pan-seared chicken breast on each plate. Spoon pan sauce generously over chicken. Arrange roasted baby potatoes and blanched asparagus alongside. Garnish with a fresh rosemary sprig if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 541.24,
+      "cholesterol_mg": 169.63,
+      "dietary_fiber_g": 4.81,
+      "protein_g": 61.39,
+      "saturated_fat_g": 6.66,
+      "sodium_mg": 809.39,
+      "total_carbs_g": 28.49,
+      "total_fat_g": 19.98,
+      "total_sugars_g": 2.68,
+      "trans_fat_g": 0.24
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117.41,
+      "cholesterol_mg": 36.8,
+      "dietary_fiber_g": 1.04,
+      "protein_g": 13.32,
+      "saturated_fat_g": 1.45,
+      "sodium_mg": 175.57,
+      "total_carbs_g": 6.18,
+      "total_fat_g": 4.34,
+      "total_sugars_g": 0.58,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 17,
+      "protein": 123,
+      "saturated_fat": 33,
+      "sodium": 35,
+      "total_carbs": 10,
+      "total_fat": 26
+    },
+    "serving_size_g": 461,
+    "total_recipe_weight_g": 1844
+  },
+  {
+    "recipe_name": "Dark Beer Braised Chicken with Fermented Root & Aubergine Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dark_beer_braised_chicken_with_fermented_root_%26_aubergine_rice_20250624_122233_7801f8b4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:33.674751000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "eggplant",
+      "dark beer",
+      "carrot"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single braised chicken thigh, rich brown and glistening, rests on a handcrafted, matte cream ceramic plate. Beside it, a generous, slightly organic mound of fluffy long-grain rice is subtly infused with vibrant, small diced fermented carrots and eggplant, their colors peeking through. The chicken, unsliced, showcases its tender, whole form. Braised eggplant chunks, soft and deep-hued, and thick-cut carrot rounds are nestled around the chicken, lightly coated in the dark beer braising liquid. The plate features ample negative space, highlighting the natural textures and earthy tones of the ingredients. A fresh, delicate sprig of thyme provides a touch of green. The scene is set on a light, reclaimed wood surface, accompanied by a natural beige linen napkin, under soft, diffused natural light, emphasizing the dish's sustainable simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Eggplant (aubergine)",
+        "quantity": "1 large (approx. 400g)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium (approx. 200g)"
+      },
+      {
+        "name": "Dark beer",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "For Fermented Vegetables: Eggplant, diced (1cm cubes)",
+        "quantity": "1 small (approx. 150g)"
+      },
+      {
+        "name": "For Fermented Vegetables: Carrots, diced (1cm cubes)",
+        "quantity": "1 medium (approx. 100g)"
+      },
+      {
+        "name": "For Fermented Vegetables: Non-chlorinated water",
+        "quantity": "500ml"
+      },
+      {
+        "name": "For Fermented Vegetables: Sea salt (non-iodized)",
+        "quantity": "15g (3% brine)"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Vegetables: Dice small eggplant and one carrot into 1cm cubes. Combine water and salt to make a brine. Stir until salt dissolves. Place diced vegetables in a clean glass jar. Pour brine over vegetables, ensuring they are fully submerged. Use a fermentation weight or small clean rock to keep vegetables under brine. Seal jar with an airlock lid or burp daily. Ferment at room temperature for 5-10 days, or until desired tanginess is reached. Store in refrigerator once fermented.",
+      "Sear Chicken: Pat chicken thighs dry. Season generously with salt and pepper. Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear chicken, skin-side down, until deeply golden brown and crispy, about 8-10 minutes. Flip and sear for another 2-3 minutes. Remove chicken from pot and set aside.",
+      "Sauté Aromatics: Reduce heat to medium. Add diced onion to the pot. Sauté until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Deglaze and Braise: Pour in dark beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer. Return chicken to the pot. Add remaining whole eggplant, cut into large chunks (2-3cm), and remaining carrot, cut into thick rounds (1cm). Add vegetable broth and fresh thyme sprigs. Liquid should partially cover chicken. If not, add more broth or water.",
+      "Cook Chicken: Bring to a gentle simmer. Cover pot tightly. Reduce heat to low. Braise for 45-60 minutes, or until chicken is very tender and reaches an internal temperature of 75°C (167°F).",
+      "Cook Rice: While chicken braises, rinse rice thoroughly. In a separate pot, combine rinsed rice with 600ml water (or a mix of water and some braising liquid for extra flavor). Bring to a boil, then reduce heat to low, cover, and simmer for 15-18 minutes, until water is absorbed and rice is tender. Let stand, covered, for 5 minutes.",
+      "Combine Rice and Fermented Vegetables: Fluff cooked rice with a fork. Gently fold in 100g of the prepared fermented eggplant and carrot cubes. Adjust seasoning if needed.",
+      "Serve: Remove chicken from braising liquid. Spoon a portion of the fermented vegetable rice onto each plate. Place one braised chicken thigh alongside. Spoon some of the braised eggplant and carrot chunks and a little braising liquid over the chicken and rice. Garnish with a small sprig of fresh thyme or finely chopped chives."
+    ],
+    "notes": [
+      "For optimal flavor and zero-waste, use homemade vegetable broth made from kitchen scraps (e.g., onion skins, carrot peels, herb stems).",
+      "Save chicken bones after braising to make homemade chicken stock for future recipes.",
+      "Fermented vegetables can be made weeks in advance and stored in the refrigerator."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 871,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 7.94,
+      "protein_g": 47.16,
+      "saturated_fat_g": 9.19,
+      "sodium_mg": 2278,
+      "total_carbs_g": 85.22,
+      "total_fat_g": 37.89,
+      "total_sugars_g": 10.04,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.06,
+      "protein_g": 6.29,
+      "saturated_fat_g": 1.23,
+      "sodium_mg": 304,
+      "total_carbs_g": 11.36,
+      "total_fat_g": 5.05,
+      "total_sugars_g": 1.34,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 28,
+      "protein": 94,
+      "saturated_fat": 46,
+      "sodium": 99,
+      "total_carbs": 31,
+      "total_fat": 49
+    },
+    "serving_size_g": 750,
+    "total_recipe_weight_g": 3000
+  }
+]

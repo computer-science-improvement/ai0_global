@@ -1,0 +1,661 @@
+[
+  {
+    "recipe_name": "Slow-Cooked Beef and Plantain Ragu with Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_and_plantain_ragu_with_rigatoni_20250628_081740_0e962db9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:17:40.867200000Z",
+    "selected_ingredients": [
+      "banana",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, centrally placed on a simple light wooden table. Al dente rigatoni forms the base. Over it, a rich, deeply colored slow-cooked beef and plantain ragu is spooned generously. Tender beef cubes, fork-shredded in places, showcase their slow-cooked texture. Golden-orange plantain slices are interspersed throughout the ragu, maintaining distinct shapes. The thick sauce clings to the pasta, with visible diced red bell pepper and onion. Dominant colors are the ragu's red-brown, plantains' golden-orange, and pasta's pale yellow. A vibrant sprinkle of fresh, chopped green cilantro adds a pop of color. A small ceramic bowl of grated Cotija cheese sits beside the plate. A folded cotton napkin and fork are positioned, reflecting a modern bistro aesthetic with Latin American authenticity. Natural, even lighting highlights textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Latin American",
+    "cultural_serving_suggestions": [
+      "Grated Cotija cheese",
+      "Simple green salad"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "600g"
+      },
+      {
+        "name": "Ripe plantains",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "3g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30g"
+      },
+      {
+        "name": "Cotija cheese (optional)",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 3cm cubes. Season generously with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat. Sear beef cubes in batches until well browned on all sides. Remove beef from pot and set aside.",
+      "Peel and dice the onion. Dice the red bell pepper. Mince the garlic cloves.",
+      "Add diced onion and bell pepper to the pot. Sauté for 5-7 minutes until softened. Add minced garlic and cook for 1 minute more until fragrant.",
+      "Stir in ground cumin, dried oregano, and smoked paprika. Cook for 30 seconds.",
+      "If using, pour in red wine and deglaze the pot, scraping up any browned bits from the bottom. Reduce liquid slightly.",
+      "Return seared beef to the pot. Add crushed tomatoes, beef broth, and bay leaf. Bring mixture to a simmer.",
+      "Reduce heat to low, cover the pot, and cook for 2 to 2.5 hours, or until beef is very tender.",
+      "While ragu simmers, peel ripe plantains. Cut into 1.5cm thick slices.",
+      "Add plantain slices to the ragu during the last 30 minutes of cooking. Cook until plantains are tender but still hold their shape.",
+      "Meanwhile, cook rigatoni according to package instructions until al dente. Drain well.",
+      "Remove bay leaf from the ragu. Taste and adjust seasoning as needed.",
+      "Serve the slow-cooked beef and plantain ragu generously over the al dente rigatoni. Garnish with fresh, chopped cilantro and grated Cotija cheese, if desired."
+    ],
+    "traditional_techniques": [
+      "Slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1122.57,
+      "cholesterol_mg": 116.25,
+      "dietary_fiber_g": 10.57,
+      "protein_g": 61.84,
+      "saturated_fat_g": 12.44,
+      "sodium_mg": 1086.55,
+      "total_carbs_g": 137.68,
+      "total_fat_g": 35.09,
+      "total_sugars_g": 32.6,
+      "trans_fat_g": 0.75
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.35,
+      "cholesterol_mg": 15.99,
+      "dietary_fiber_g": 1.45,
+      "protein_g": 8.5,
+      "saturated_fat_g": 1.71,
+      "sodium_mg": 149.41,
+      "total_carbs_g": 18.93,
+      "total_fat_g": 4.83,
+      "total_sugars_g": 4.48,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.75,
+      "dietary_fiber": 37.74,
+      "protein": 123.68,
+      "saturated_fat": 62.18,
+      "sodium": 47.24,
+      "total_carbs": 50.06,
+      "total_fat": 44.99
+    },
+    "serving_size_g": 727.25,
+    "total_recipe_weight_g": 2909
+  },
+  {
+    "recipe_name": "Pappardelle with Creamy Wild Mushroom and Pancetta Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pappardelle_with_creamy_wild_mushroom_and_pancetta_sauce_20250628_081635_99ff6626.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:16:35.579931000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Pappardelle with Creamy Wild Mushroom and Pancetta Sauce is presented on a clean, round white porcelain plate, centered on a rustic wooden table. Broad, flat ribbons of al dente pappardelle are loosely coiled, coated in a rich, velvety cream sauce. Interspersed throughout are golden-brown, crispy diced pancetta pieces and an assortment of earthy wild mushrooms (cremini, shiitake, oyster) in varied, natural shapes and sizes. A generous sprinkle of freshly grated Parmigiano Reggiano covers the top, along with vibrant green, finely chopped flat-leaf parsley. The dish exhibits warm, inviting tones of cream, brown, and green. A folded white cotton napkin and classic Italian-style flatware rest beside the plate. Natural, even lighting highlights the textures and colors, with a soft, blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread.",
+      "Offer a simple green salad on the side.",
+      "Pair with a glass of dry Italian white wine like Pinot Grigio or Vermentino."
+    ],
+    "hero_ingredient": "Pancetta",
+    "ingredients": [
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Pancetta, diced",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mixed wild mushrooms (cremini, shiitake, oyster), sliced",
+        "quantity": "400g"
+      },
+      {
+        "name": "Shallots, finely chopped",
+        "quantity": "2 (approx. 80g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "80g, plus more for serving"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Cook pappardelle according to package directions until al dente. Reserve 250ml pasta water. Drain pasta.",
+      "Heat a large skillet over medium heat. Add diced pancetta. Cook until crispy and fat is rendered. Remove pancetta with a slotted spoon. Set aside.",
+      "Add olive oil to the skillet with rendered pancetta fat. Add chopped shallots. Sauté until softened, about 3 minutes.",
+      "Add minced garlic and sliced mushrooms. Increase heat to medium-high. Sauté mushrooms until browned and tender, about 5-7 minutes.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the skillet. Simmer until wine is mostly reduced, about 2 minutes.",
+      "Stir in heavy cream. Bring to a gentle simmer. Cook for 2-3 minutes until slightly thickened.",
+      "Add cooked pappardelle to the skillet. Add reserved crispy pancetta and 60g grated Parmigiano Reggiano. Toss well. Add pasta water gradually to achieve desired sauce consistency.",
+      "Stir in fresh chopped parsley. Season with salt and freshly ground black pepper to taste.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 891,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 32.6,
+      "saturated_fat_g": 21.6,
+      "sodium_mg": 919,
+      "total_carbs_g": 86.6,
+      "total_fat_g": 44,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 239,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 8.8,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 247,
+      "total_carbs_g": 23.3,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 23,
+      "protein": 65,
+      "saturated_fat": 108,
+      "sodium": 40,
+      "total_carbs": 31,
+      "total_fat": 56
+    },
+    "serving_size_g": 372.25,
+    "total_recipe_weight_g": 1489
+  },
+  {
+    "recipe_name": "Spanish Pork and Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_pork_and_tomato_rice_20250628_081330_10559d79.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:13:31.090761000Z",
+    "selected_ingredients": [
+      "pork",
+      "rice",
+      "tomato",
+      "garlic",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous, rustic portion of Spanish Pork and Tomato Rice is centrally mounded on a round, white porcelain dinner plate. The short-grain rice is cooked al dente, imbued with a rich, inviting red-orange hue from the tomato and smoked paprika. Tender, substantial chunks of seared pork are nestled throughout the rice, showcasing their golden-brown crust and juicy interior. The dish has a moist, slightly cohesive texture, characteristic of a traditional Spanish rice. A sprig of fresh thyme and a sprinkle of vibrant green chopped parsley provide an aromatic and visual contrast. The plate rests on a simple, light wooden table surface, accompanied by a folded neutral-toned cotton napkin and classic silver flatware. The background is a subtly blurred bistro setting, illuminated by natural, even lighting, evoking an authentic and inviting Spanish dining experience. The entire plate is visible, with appropriate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and vinegar",
+      "Accompany with crusty bread for soaking up the juices",
+      "Pair with a glass of dry Spanish red wine"
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Short-grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 2-3 cm cubes. Season with salt and pepper.",
+      "Heat olive oil in a large, deep skillet or Dutch oven over medium-high heat.",
+      "Sear pork cubes in batches until browned on all sides. Remove pork and set aside.",
+      "Dice the onion. Mince the garlic. Remove leaves from thyme sprigs.",
+      "Add diced onion to the skillet. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and thyme leaves. Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes and smoked paprika. Cook for 5 minutes, stirring occasionally, until slightly reduced.",
+      "Add rice to the skillet. Stir to coat rice grains with the tomato mixture. Toast for 2 minutes.",
+      "Pour in chicken or vegetable broth. Bring to a simmer.",
+      "Return seared pork cubes to the skillet. Stir gently to distribute.",
+      "Reduce heat to low. Cover the skillet. Cook for 20-25 minutes, or until rice is tender and most liquid is absorbed.",
+      "Remove from heat. Let the dish rest, covered, for 5 minutes.",
+      "Fluff with a fork. Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure pork is cooked to an internal temperature of 75°C (167°F).",
+      "For extra depth, add a pinch of saffron threads to the broth."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 608,
+      "cholesterol_mg": 110,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 41.4,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 310,
+      "total_carbs_g": 70.8,
+      "total_fat_g": 18,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 6.9,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 52,
+      "total_carbs_g": 11.8,
+      "total_fat_g": 3,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 12,
+      "protein": 83,
+      "saturated_fat": 23,
+      "sodium": 13,
+      "total_carbs": 26,
+      "total_fat": 23
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2399
+  },
+  {
+    "recipe_name": "Creamy Garlic Chicken and Spinach Penne",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_garlic_chicken_and_spinach_penne_20250628_080827_68c7777a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:08:27.485906000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "cream",
+      "spinach"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Garlic Chicken and Spinach Penne is artfully arranged on a clean, round white porcelain plate. A generous mound of penne pasta, evenly coated in a rich, pale green, creamy sauce, forms the base. Interspersed throughout the pasta are tender, vibrant green wilted spinach leaves. On top of the pasta, several thick, golden-brown seared chicken medallions are neatly placed, showcasing their cooked texture. The dish is garnished with a light scattering of finely chopped fresh green parsley, adding a pop of color. The plate sits on a simple, rustic wooden table surface. Standard silver cutlery and a neatly folded white cotton napkin are placed beside the plate. The scene is illuminated by soft, natural, even lighting, highlighting the dish's appealing textures and warm colors in a modern bistro setting.",
+    "number_of_servings": 2,
+    "cuisine_type": "Italian-American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "2 (approx. 200g each)"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "200g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add chicken breasts. Sear 5-7 minutes per side until golden brown and internal temperature reaches 75°C (167°F).",
+      "Remove chicken from skillet. Let rest 5 minutes. Slice into 2 cm thick medallions.",
+      "Cook penne pasta in salted boiling water according to package directions until al dente. Drain, reserving 50ml pasta water.",
+      "In the same skillet, add remaining 15ml olive oil. Add diced onion. Sauté 3-4 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Pour in chicken broth and heavy cream. Bring to a gentle simmer. Cook 2-3 minutes, stirring occasionally.",
+      "Add fresh spinach to the sauce. Cook 1-2 minutes until spinach wilts.",
+      "Stir in grated Parmesan cheese until melted and sauce thickens slightly.",
+      "Add cooked penne pasta to the skillet with the sauce. Toss to coat evenly. If sauce is too thick, add a splash of reserved pasta water.",
+      "Return sliced chicken medallions to the skillet. Gently toss with pasta and sauce. Ensure chicken is warmed through.",
+      "Serve immediately. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1308.8,
+      "cholesterol_mg": 297,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 90.4,
+      "saturated_fat_g": 31.7,
+      "sodium_mg": 822.5,
+      "total_carbs_g": 86.4,
+      "total_fat_g": 65.8,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 184.5,
+      "cholesterol_mg": 41.9,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 12.7,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 115.9,
+      "total_carbs_g": 12.2,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 99,
+      "dietary_fiber": 20.2,
+      "protein": 180.8,
+      "saturated_fat": 158.7,
+      "sodium": 35.8,
+      "total_carbs": 31.4,
+      "total_fat": 84.4
+    },
+    "serving_size_g": 709.5,
+    "total_recipe_weight_g": 1419
+  },
+  {
+    "recipe_name": "Fermented Chicken with Potato Skin Crisps & Seasonal Kimchi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chicken_with_potato_skin_crisps_%26_seasonal_kimchi_20250628_080728_8b8363d9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:07:29.275350000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of the dish is presented on a light, handcrafted ceramic plate with an organic, slightly irregular rim, set on a light bamboo or reclaimed wood table surface. A seared chicken thigh, boasting a rich golden-brown, crispy skin, rests beside a smooth, creamy mound of pale yellow potato puree. The chicken is presented as a whole piece. Adjacent to the chicken and puree is a vibrant, rustic pile of seasonal kimchi, showcasing shredded red cabbage, orange carrots, and green onion pieces. Scattered over the potato puree and chicken are golden-brown, irregularly shaped potato skin crisps, adding textural contrast. The overall composition is clean and minimalist, with ample negative space. Natural, soft light illuminates the scene, highlighting the varied textures and natural colors. An undyed linen napkin in beige is folded neatly nearby. The background is clean and slightly blurred, with hints of natural elements like green plants, emphasizing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180 g each)"
+      },
+      {
+        "name": "Potatoes (Russet or similar)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Napa cabbage",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Daikon radish",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Sea salt (for brine/kimchi)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Water (for brine)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Gochugaru (Korean chili flakes)",
+        "quantity": "15 g (or to taste)"
+      },
+      {
+        "name": "Neutral oil (e.g., rapeseed or sunflower)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh coriander/cilantro",
+        "quantity": "Small bunch for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken brine: Dissolve 20 g sea salt in 500 ml water. Submerge chicken thighs in brine. Cover and refrigerate for 8-12 hours.",
+      "Prepare kimchi: Thinly slice Napa cabbage, carrots, and daikon radish. Mince garlic and ginger. Chop green onions. Combine vegetables, garlic, ginger, green onions, 10 g sea salt, and gochugaru in a large bowl. Massage ingredients until vegetables soften and release liquid. Pack tightly into a clean jar, ensuring vegetables are submerged in their liquid. Leave at room temperature for 3-5 days to ferment, burping daily.",
+      "Prepare potato puree: Peel potatoes, reserving skins. Cut potatoes into 2 cm chunks. Boil until very tender. Drain well. Mash or pass through a ricer until smooth. Season with salt and pepper. Keep warm.",
+      "Prepare potato skin crisps: Rinse reserved potato skins thoroughly. Pat dry. Toss with a drizzle of oil and a pinch of salt. Bake at 180°C until golden and crispy (approx. 15-20 minutes).",
+      "Cook chicken: Remove chicken from brine; pat very dry. Heat 15 ml oil in a heavy-bottomed pan over medium-high heat. Place chicken skin-side down. Sear for 6-8 minutes until skin is deeply golden and crispy. Flip chicken. Reduce heat to medium. Cook for another 10-12 minutes, or until internal temperature reaches 75°C. Rest chicken for 5 minutes.",
+      "Plate the dish: Spoon potato puree onto a handcrafted ceramic plate. Place a seared chicken thigh beside the puree. Add a generous spoonful of fermented kimchi. Arrange a few potato skin crisps over the puree and chicken. Garnish with fresh coriander/cilantro leaves."
+    ],
+    "notes": [
+      "This recipe utilizes fermentation for flavor depth and preservation. It emphasizes zero-waste by repurposing potato skins into crispy garnishes. Consider using other seasonal vegetable scraps for the kimchi base."
+    ],
+    "traditional_techniques": [
+      "Lacto-fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 592,
+      "cholesterol_mg": 162,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 38.8,
+      "saturated_fat_g": 7.9,
+      "sodium_mg": 696,
+      "total_carbs_g": 31.9,
+      "total_fat_g": 34.8,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 162,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 10.6,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 191,
+      "total_carbs_g": 8.7,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 21,
+      "protein": 78,
+      "saturated_fat": 40,
+      "sodium": 30,
+      "total_carbs": 12,
+      "total_fat": 45
+    },
+    "serving_size_g": 365,
+    "total_recipe_weight_g": 1460
+  }
+]

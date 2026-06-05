@@ -1,0 +1,704 @@
+[
+  {
+    "recipe_name": "Rum Gugelhupf, Spiced Apple, Cinnamon Diplomat",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rum_gugelhupf%2C_spiced_apple%2C_cinnamon_diplomat_20250903_200156_c325b803.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T20:01:57.333068000Z",
+    "selected_ingredients": [
+      {
+        "name": "rum"
+      },
+      {
+        "name": "sugar"
+      },
+      {
+        "name": "cinnamon"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single, perfectly plated dessert rests on an expansive, pristine white Carrara marble surface. Dramatic professional lighting casts soft, intentional shadows, highlighting the dish's architectural precision. The modern designer bone china plate, subtly off-white, features abundant negative space. A golden-brown mini Rum Gugelhupf, deeply saturated with syrup, sits slightly off-center, its fluted edges distinct. Adjacent, a smooth, artfully piped quenelle of pale, creamy cinnamon diplomat cream provides soft contrast. A small, delicate cluster of glistening, finely diced caramelized apple cubes (5mm cubes) is precisely placed, their warm amber tones catching light. A rich, dark amber rum caramel sauce is artfully drizzled in a natural, flowing line. A single, delicate, curved cinnamon tuile shard, thin and translucent, leans gracefully against the Gugelhupf, providing crisp texture. The presentation is ultra-minimalist, emphasizing flawless execution. A pristine white linen napkin, folded into a precise triangle, rests nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Traditionally, Gugelhupf is served with coffee or tea in the afternoon.",
+      "This refined version is best served as a standalone dessert, allowing its complex flavors to be appreciated."
+    ],
+    "hero_ingredient": "Rum",
+    "ingredients": [
+      {
+        "name": "Strong bread flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh yeast",
+        "quantity": "7g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "75g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Water (for syrup)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Caster sugar (for syrup)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Dark rum (for syrup)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Milk (for cream)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "2"
+      },
+      {
+        "name": "Caster sugar (for cream)",
+        "quantity": "40g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Unsalted butter (for cream)",
+        "quantity": "20g"
+      },
+      {
+        "name": "Ground cinnamon (for cream)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Gelatin leaf",
+        "quantity": "1 (2g)"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Granny Smith apple",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Unsalted butter (for apple)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Caster sugar (for apple)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Caster sugar (for caramel)",
+        "quantity": "75g"
+      },
+      {
+        "name": "Water (for caramel)",
+        "quantity": "25ml"
+      },
+      {
+        "name": "Heavy cream (for caramel)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Unsalted butter (for caramel)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Dark rum (for caramel)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt (for caramel)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "10g"
+      },
+      {
+        "name": "Egg white",
+        "quantity": "1"
+      },
+      {
+        "name": "Melted unsalted butter",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ground cinnamon (for tuile)",
+        "quantity": "1g"
+      }
+    ],
+    "instructions": [
+      "Warm milk slightly. Dissolve yeast and a pinch of sugar in milk. Let sit 5 minutes until foamy.",
+      "In a stand mixer, combine flour, remaining sugar, egg, salt, and yeast mixture. Mix on low speed for 5 minutes.",
+      "Gradually add softened butter, small pieces at a time. Mix on medium speed for 10-12 minutes until dough is smooth.",
+      "Cover bowl. Let dough rise in a warm place for 1.5-2 hours, until doubled.",
+      "Gently punch down dough. Divide into 4 equal portions. Form into small balls.",
+      "Place each dough ball into a greased mini Gugelhupf mold. Let rise again for 30-45 minutes.",
+      "Preheat oven to 180°C. Bake Gugelhupf for 15-20 minutes, until golden and cooked through. Remove from molds. Let cool slightly.",
+      "Combine water and sugar in a saucepan. Bring to a simmer, stirring until sugar dissolves. Remove from heat. Stir in dark rum. Keep warm.",
+      "While Gugelhupf are still warm, soak them thoroughly in the rum syrup. Allow them to absorb completely.",
+      "Bloom gelatin leaf in cold water.",
+      "In a saucepan, heat milk with half the cinnamon until simmering.",
+      "In a bowl, whisk egg yolks, sugar, cornstarch, and remaining cinnamon until pale.",
+      "Temper egg mixture with hot milk, whisking constantly. Return mixture to saucepan.",
+      "Cook over medium heat, stirring constantly, until thickened. Remove from heat. Stir in butter and squeezed gelatin until dissolved.",
+      "Pour custard into a shallow dish. Cover surface with plastic wrap. Chill completely.",
+      "Once chilled, whisk heavy cream to soft peaks. Gently fold whipped cream into the chilled cinnamon custard until smooth. Transfer to a piping bag.",
+      "Peel, core, and dice apple into small cubes (approx. 5mm).",
+      "Melt butter in a non-stick pan over medium heat. Add apple cubes and sugar. Sauté until apples are tender and lightly caramelized, 5-7 minutes. Stir in lemon juice. Set aside to cool.",
+      "In a heavy-bottomed saucepan, combine sugar and water. Cook over medium-high heat without stirring until deep amber caramel forms.",
+      "Carefully remove from heat. Slowly whisk in warm heavy cream. Stir in butter and salt until smooth. Stir in dark rum. Set aside to cool slightly.",
+      "Preheat oven to 160°C. In a bowl, whisk icing sugar, flour, and cinnamon. Add egg white and melted butter. Whisk until smooth.",
+      "Spread a very thin layer of batter onto a silicone mat or parchment paper. Bake for 5-7 minutes, until golden and crisp.",
+      "Remove from oven. Immediately shape as desired or let cool flat. Break into shards.",
+      "Place one rum-soaked Gugelhupf slightly off-center on a large, minimalist plate.",
+      "Pipe a swirl or quenelle of Cinnamon Diplomat Cream next to the Gugelhupf.",
+      "Arrange a small, artful cluster of caramelized apple cubes near the cream or Gugelhupf.",
+      "Drizzle a small amount of Rum Caramel Sauce elegantly around the components.",
+      "Garnish with a single Cinnamon Tuile shard, artfully placed."
+    ],
+    "notes": [
+      "Ensure the Gugelhupf is fully soaked but not soggy.",
+      "The diplomat cream must be thoroughly chilled before folding in whipped cream for best texture.",
+      "Practice caramel making to achieve the perfect amber color without burning."
+    ],
+    "traditional_techniques": [
+      "Yeast dough preparation (Gugelhupf)",
+      "Tempering (for custard base of diplomat cream)",
+      "Caramelization"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 70,
+      "calories": 770.94,
+      "cholesterol_mg": 257.79,
+      "dietary_fiber_g": 2.61,
+      "protein_g": 12.24,
+      "saturated_fat_g": 26.92,
+      "sodium_mg": 262.65,
+      "total_carbs_g": 115.42,
+      "total_fat_g": 45.21,
+      "total_sugars_g": 78.95,
+      "trans_fat_g": 1.68
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19.47,
+      "calories": 214.39,
+      "cholesterol_mg": 71.69,
+      "dietary_fiber_g": 0.72,
+      "protein_g": 3.4,
+      "saturated_fat_g": 7.49,
+      "sodium_mg": 73.04,
+      "total_carbs_g": 32.09,
+      "total_fat_g": 12.57,
+      "total_sugars_g": 21.96,
+      "trans_fat_g": 0.47
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85.93,
+      "dietary_fiber": 9.32,
+      "protein": 24.48,
+      "saturated_fat": 134.6,
+      "sodium": 11.42,
+      "total_carbs": 41.97,
+      "total_fat": 57.96
+    },
+    "serving_size_g": 359.6,
+    "total_recipe_weight_g": 1438.4
+  },
+  {
+    "recipe_name": "Black Sesame Crémeux with Rice Crisp and Yuzu Gel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_black_sesame_cr%C3%A9meux_with_rice_crisp_and_yuzu_gel_20250903_200053_6806b32a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T20:00:54.397695000Z",
+    "selected_ingredients": [
+      {
+        "name": "sesame seed"
+      },
+      {
+        "name": "rice flour"
+      },
+      {
+        "name": "sugar"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single portion of an ultra-minimalist dessert is presented on a round, matte bone china plate with a subtle, irregular texture, set upon a polished grey-veined Carrara marble surface. The composition features a single, elegantly sculpted quenelle of dark, glossy black sesame crémeux, its surface smooth and inviting. Leaning delicately against the crémeux is an irregular, translucent shard of golden-brown rice crisp, providing architectural height and a contrasting texture. Around these central elements, three precisely placed, vibrant yellow dots of yuzu gel create a bright, acidic counterpoint and visual interest, their glossy finish catching the light. A sparse scattering of toasted white sesame seeds adds a subtle aroma and a final textural whisper. Abundant negative space surrounds the components, emphasizing their perfect execution and artistic arrangement. The scene is lit with dramatic professional lighting, casting soft shadows that enhance depth. A pristine white linen napkin, folded into a precise triangle, rests to the side, maintaining a luxurious, uncluttered aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Black Sesame Crémeux",
+    "ingredients": [
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "4"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Black sesame paste",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Gelatin sheet",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Rice flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Yuzu juice",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sugar (for gel)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "White sesame seeds",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "For the Black Sesame Crémeux: Bloom gelatin sheet in cold water. In a saucepan, combine heavy cream, milk, and 30 g sugar. Bring to a simmer.",
+      "Whisk egg yolks with remaining 40 g sugar until pale. Slowly temper hot cream mixture into egg yolks, whisking constantly.",
+      "Return mixture to saucepan. Cook over medium-low heat, stirring constantly, until thickened to a custard consistency (nappe). Do not boil.",
+      "Remove from heat. Stir in black sesame paste until fully incorporated. Squeeze excess water from gelatin; stir into hot crémeux until dissolved.",
+      "Pass crémeux through a fine-mesh sieve into a clean bowl. Cover surface with plastic wrap. Chill for at least 4 hours, or until firm.",
+      "For the Rice Crisp: Preheat oven to 160°C. Line a baking sheet with parchment paper.",
+      "Whisk rice flour, melted butter, 15 g sugar, and water until smooth. Spread batter very thinly and evenly onto the prepared baking sheet. Aim for an irregular, organic shape.",
+      "Bake for 10-12 minutes, or until golden brown and crisp. Cool completely. Break into 4 irregular shards.",
+      "For the Yuzu Gel: In a small saucepan, combine yuzu juice, 20 g sugar, and agar-agar. Whisk well.",
+      "Bring to a boil, whisking constantly. Boil for 1 minute. Pour into a shallow dish. Chill until firm.",
+      "Once firm, transfer gel to a blender. Blend until completely smooth. Transfer to a piping bag.",
+      "For the Toasted White Sesame Seeds: Lightly toast white sesame seeds in a dry pan over medium heat until fragrant. Cool.",
+      "To assemble: Using a warm spoon, create a smooth quenelle or a free-form dollop of black sesame crémeux on one side of each plate. Place one rice crisp shard leaning against the crémeux or slightly overlapping.",
+      "Pipe small, artistic dots or a delicate swirl of yuzu gel around the crémeux. Sprinkle a very small amount of toasted white sesame seeds over the crémeux and plate for garnish."
+    ],
+    "notes": [],
+    "traditional_techniques": []
+  },
+  {
+    "recipe_name": "Homestyle Grape and Berry Fruit Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_grape_and_berry_fruit_salad_20250903_192252_d1420625.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T19:22:52.986873000Z",
+    "selected_ingredients": [
+      "grape"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A vibrant individual serving of fruit salad is presented in a modest, cream-colored ceramic bowl with a slightly irregular rim, placed on a well-worn, light-stained wooden kitchen table. The fruit salad features whole red and green grapes, bright red strawberries cut into halves, and plump blueberries, all gently mixed and mounded naturally. The fruits display their natural, bright colors and juicy textures, appearing fresh and inviting. A simple metal spoon rests beside the bowl on a loosely folded white linen napkin. The background hints at a relaxed family kitchen, with soft, warm natural light emphasizing a comfortable, unpretentious, and inviting homestyle presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve chilled as a refreshing side dish or light dessert.",
+      "Serve in individual bowls with a spoon."
+    ],
+    "hero_ingredient": "grape",
+    "ingredients": [
+      {
+        "name": "Red grapes",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Green grapes",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Fresh strawberries",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Fresh blueberries",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Honey",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Wash all fruit thoroughly under cold water.",
+      "Pat fruit dry with a clean towel.",
+      "Remove grapes from stems.",
+      "Slice larger strawberries in half or quarters. Leave smaller strawberries whole.",
+      "Combine red grapes, green grapes, strawberries, and blueberries in a large mixing bowl.",
+      "In a small bowl, whisk together honey and lemon juice.",
+      "Pour dressing over the fruit salad.",
+      "Gently toss to coat all fruit evenly.",
+      "Chill for at least 30 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.6,
+      "calories": 156,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 1.6,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 3.9,
+      "total_carbs_g": 40.8,
+      "total_fat_g": 0.5,
+      "total_sugars_g": 34.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3.8,
+      "calories": 69,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 0.7,
+      "saturated_fat_g": 0.04,
+      "sodium_mg": 1.7,
+      "total_carbs_g": 18,
+      "total_fat_g": 0.2,
+      "total_sugars_g": 15.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 11,
+      "protein": 3,
+      "saturated_fat": 0,
+      "sodium": 0,
+      "total_carbs": 15,
+      "total_fat": 1
+    },
+    "serving_size_g": 226.75,
+    "total_recipe_weight_g": 907
+  },
+  {
+    "recipe_name": "Bell Pepper and Quinoa Salad with Lemon-Herb Dressing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bell_pepper_and_quinoa_salad_with_lemon-herb_dressing_20250903_180900_31fb935a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T18:09:01.431581000Z",
+    "selected_ingredients": [
+      "vegetable stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Bell Pepper and Quinoa Salad is presented on a clean, white porcelain dinner plate. The fluffy, stock-cooked quinoa forms the base, generously mixed with finely diced red, yellow, and orange bell peppers, crisp diced cucumber, halved cherry tomatoes, and finely minced red onion. Chickpeas add substance, while toasted slivered almonds provide a crucial crunch. The salad is lightly tossed with a bright lemon-herb vinaigrette, ensuring all components are glistening but not swimming in dressing. Freshly chopped parsley and mint leaves are scattered over the top as a vibrant garnish, with a few extra slivered almonds for visual texture. The composition is balanced and inviting, showcasing the diverse colors and textures of the ingredients. The plate sits on a simple wooden table, complemented by a neatly folded cotton napkin and standard restaurant-style flatware. Natural, even lighting illuminates the dish, highlighting its freshness and appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "hero_ingredient": "Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Quinoa",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Orange bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g, halved"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2, finely minced"
+      },
+      {
+        "name": "Canned chickpeas",
+        "quantity": "400 g, rinsed and drained"
+      },
+      {
+        "name": "Slivered almonds",
+        "quantity": "50 g, toasted"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse quinoa thoroughly. Combine quinoa and vegetable stock in a saucepan. Bring to a boil, then reduce heat to low, cover, and simmer for 15 minutes, or until all liquid is absorbed.",
+      "Remove quinoa from heat. Let stand, covered, for 5 minutes. Fluff with a fork and let cool completely.",
+      "In a large bowl, combine cooled quinoa, diced bell peppers, diced cucumber, halved cherry tomatoes, minced red onion, rinsed chickpeas, and toasted slivered almonds.",
+      "Prepare the dressing: In a small bowl, whisk together olive oil, lemon juice, Dijon mustard, minced garlic, salt, and black pepper.",
+      "Pour dressing over the quinoa and vegetable mixture. Add chopped parsley and mint.",
+      "Toss gently to combine all ingredients evenly. Taste and adjust seasoning as needed.",
+      "Serve chilled or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 689.98,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 17.44,
+      "protein_g": 22.69,
+      "saturated_fat_g": 3.81,
+      "sodium_mg": 50.06,
+      "total_carbs_g": 79.71,
+      "total_fat_g": 30.48,
+      "total_sugars_g": 12.57,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114.99,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.91,
+      "protein_g": 3.78,
+      "saturated_fat_g": 0.64,
+      "sodium_mg": 8.34,
+      "total_carbs_g": 13.29,
+      "total_fat_g": 5.08,
+      "total_sugars_g": 2.09,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 62.29,
+      "protein": 45.38,
+      "saturated_fat": 19.05,
+      "sodium": 2.18,
+      "total_carbs": 28.98,
+      "total_fat": 39.08
+    },
+    "serving_size_g": 599.9,
+    "total_recipe_weight_g": 2399.6
+  },
+  {
+    "recipe_name": "Root to Stem Leek & Potato Terrine with Fermented Leek",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_root_to_stem_leek_%26_potato_terrine_with_fermented_leek_20250903_172244_9ec92396.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T17:22:44.614186000Z",
+    "selected_ingredients": [
+      "potato",
+      "leek",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, upright slice of the \"Root to Stem Leek & Potato Terrine\" rests on a handcrafted ceramic plate in a natural cream tone. The rectangular terrine, 2 cm thick, reveals distinct layers of thinly sliced, pale yellow potato, translucent leek, and delicate onion. Muted olive-green leek leaves subtly encase the terrine. A vibrant mound of quick fermented leek heart, bright green and glossy, tops the terrine. A delicate dusting of dark, earthy onion skin powder and a few fresh chive sprigs complete the plating. The plate is on a light, naturally textured reclaimed wood surface. An undyed linen napkin rests subtly. Soft, natural light illuminates the dish, highlighting organic textures and colors. The background is clean and minimalist, with a hint of natural plant foliage. The entire plate is visible, with ample negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Leek",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Leeks",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Vegetable stock (from scraps)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Plant-based cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Nutritional yeast",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "4 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh dill or chives",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Zero-Waste Stock: Combine potato peels, onion skins, dark green leek tops, 1.5 litres water, 1 bay leaf, and 5-6 peppercorns in a pot. Simmer for 45 minutes. Strain. Reserve 500 ml.",
+      "Prepare Onion Skin Powder: Lay clean onion skins on a baking tray. Bake at 120°C for 20-30 minutes until brittle. Cool. Grind to a fine powder. Set aside.",
+      "Prepare Quick Fermented Leek Heart: Combine 100 g thinly sliced inner leek parts with 2 g salt, 50 ml white wine vinegar, and 50 ml water in a small jar. Mix well. Let stand at room temperature for at least 30 minutes.",
+      "Prepare Leeks for Terrine: Blanch wide, pliable dark green leek leaves in boiling water for 1-2 minutes. Drain. Refresh in cold water. Pat dry. These will line the terrine mould.",
+      "Sauté Vegetables: Heat olive oil in a large pan. Add thinly sliced white/light green leeks and sliced onions. Sauté gently over medium heat for 10-15 minutes until softened. Season with salt and pepper.",
+      "Prepare Terrine Base Mixture: In a bowl, whisk together 500 ml reserved vegetable stock, plant-based cream, nutritional yeast, and agar-agar powder. Bring to a simmer in a saucepan, whisking constantly for 2 minutes, until agar-agar dissolves.",
+      "Assemble Terrine: Line a 20x10 cm loaf tin with parchment paper, then with blanched leek leaves, overlapping and extending over the sides. Layer one-third of thinly sliced potatoes. Season. Add half of the sautéed leek and onion mixture. Layer another one-third of potatoes. Season. Add remaining sautéed leek and onion mixture. Top with final one-third of potatoes. Season.",
+      "Pour and Seal: Pour the hot stock and cream mixture evenly over the layered vegetables. Fold overlapping leek leaves over the top. Cover mould with foil.",
+      "Cook Terrine: Place mould in a larger baking dish. Fill baking dish with hot water halfway up the sides. Bake at 170°C for 1 hour.",
+      "Chill Terrine: Remove from oven. Cool slightly. Remove foil. Place a weight on top. Refrigerate for at least 4 hours, preferably overnight, until fully set.",
+      "Serve: Invert terrine onto a cutting board. Remove parchment. Slice into 2 cm thick portions. Plate a single slice. Top with quick fermented leek heart. Sprinkle with onion skin powder and fresh dill or chives."
+    ],
+    "notes": [
+      "Adjust fermentation time for leek heart based on desired tanginess.",
+      "Ensure agar-agar dissolves completely for a firm set.",
+      "Use a sharp knife for clean slices of the terrine."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 502,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 12.6,
+      "protein_g": 13.2,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 830,
+      "total_carbs_g": 79.2,
+      "total_fat_g": 16.3,
+      "total_sugars_g": 15.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 67,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 1.7,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 110,
+      "total_carbs_g": 10.5,
+      "total_fat_g": 2.2,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 45,
+      "protein": 26,
+      "saturated_fat": 9,
+      "sodium": 36,
+      "total_carbs": 29,
+      "total_fat": 21
+    },
+    "serving_size_g": 754,
+    "total_recipe_weight_g": 3016
+  }
+]

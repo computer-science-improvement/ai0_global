@@ -1,0 +1,654 @@
+[
+  {
+    "recipe_name": "Lemon Herb Roasted Chicken with Crispy Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_roasted_chicken_with_crispy_potatoes_20250810_142125_24d99454.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T14:21:26.227325000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Lemon Herb Roasted Chicken is presented on a clean, round white porcelain dinner plate. A golden-brown, crispy-skinned roasted chicken thigh, cooked as a whole piece, is the focal point. Alongside it, several thick chunks of roasted Yukon Gold potatoes exhibit a golden-brown crust and fluffy interior. Caramelized yellow onion wedges, tender and slightly charred at the edges, are interspersed among the potatoes. Fresh green rosemary and thyme sprigs are artfully placed for color and aroma. Thin lemon slices add a bright, zesty accent. A light drizzle of savory pan sauce gleams over the chicken and vegetables. The plate sits on a simple wooden table surface, with a folded cotton napkin beside it. Natural, even lighting illuminates the dish, highlighting its textures and vibrant, earthy colors. The background is a subtly blurred modern bistro setting, emphasizing the casual yet refined presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "20g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Cut potatoes into 2.5cm thick chunks. Cut onions into 8 wedges each. Smash garlic cloves.",
+      "Toss potatoes, onion wedges, garlic, half the rosemary, and half the thyme with 30ml olive oil, salt, and pepper on a large baking sheet. Spread in a single layer.",
+      "Roast vegetables for 20 minutes.",
+      "While vegetables roast, heat remaining 30ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear chicken thighs skin-side down for 6-8 minutes until skin is golden brown and crispy. Flip chicken.",
+      "Remove baking sheet from oven. Push vegetables to one side. Place seared chicken thighs skin-side up on the baking sheet alongside the vegetables.",
+      "Add remaining rosemary and thyme sprigs to the baking sheet. Add lemon slices.",
+      "Return baking sheet to oven. Roast for another 20-25 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and vegetables are tender.",
+      "Remove chicken and vegetables from baking sheet. Tent with foil to rest.",
+      "Deglaze the skillet or baking sheet with chicken broth, scraping up any browned bits. Simmer briefly until slightly reduced. Season with salt and pepper.",
+      "Chop fresh parsley.",
+      "Serve chicken with roasted potatoes and onions. Drizzle with pan sauce. Garnish with fresh parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Resting the chicken after roasting helps keep it juicy."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 695,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 45.7,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 695,
+      "total_carbs_g": 35.2,
+      "total_fat_g": 40.2,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.6,
+      "saturated_fat_g": 2,
+      "sodium_mg": 145,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 19,
+      "protein": 91,
+      "saturated_fat": 47,
+      "sodium": 30,
+      "total_carbs": 13,
+      "total_fat": 52
+    },
+    "serving_size_g": 478,
+    "total_recipe_weight_g": 1913
+  },
+  {
+    "recipe_name": "Spanish Chicken and Potato Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_potato_skillet_20250810_142046_dce32709.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T14:20:46.867247000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "onion",
+      "tomato",
+      "potato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Chicken and Potato Skillet is presented on a clean white porcelain dinner plate, centered. A golden-brown, seared chicken thigh sits prominently. Rustic, tender potato wedges, their skins lightly crisped, are arranged around the chicken. Blistered, vibrant red cherry tomatoes are scattered among the potatoes and softened, caramelized red onion wedges. Melted, golden-brown Manchego cheese lightly coats the chicken and vegetables, adding a rich texture. Freshly chopped green parsley is sprinkled generously over the entire dish, providing a contrasting color and freshness. The composition is balanced and inviting, with moderate negative space. The plate rests on a simple wooden table surface, accompanied by a fork and knife, and a folded cotton napkin beside the plate. Natural, even lighting highlights the textures and colors of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the flavorful pan juices.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800 g)"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Manchego cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with salt, pepper, and smoked paprika.",
+      "Halve small potatoes. Quarter red onion. Mince garlic.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Place chicken thighs skin-side down in skillet. Sear 8-10 minutes until skin is golden and crispy. Flip chicken. Sear 2 minutes.",
+      "Remove chicken from skillet. Set aside.",
+      "Add potatoes and red onion to skillet. Sauté 5-7 minutes until slightly softened and browned.",
+      "Add minced garlic and dried oregano. Sauté 1 minute until fragrant.",
+      "Return chicken to skillet, nestling among vegetables. Add cherry tomatoes and chicken broth.",
+      "Bring liquid to a simmer. Transfer skillet to preheated oven.",
+      "Bake 20-25 minutes, or until chicken reaches internal temperature of 75°C and potatoes are tender. Stir occasionally.",
+      "Grate Manchego cheese. Sprinkle over chicken and vegetables.",
+      "Return skillet to oven for 5 minutes, or until cheese is melted and bubbly.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Chop fresh parsley. Garnish dish generously before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Skillet Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 711,
+      "cholesterol_mg": 205,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 47.8,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 515,
+      "total_carbs_g": 30.8,
+      "total_fat_g": 42.5,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 10.3,
+      "saturated_fat_g": 3,
+      "sodium_mg": 111,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 19,
+      "protein": 96,
+      "saturated_fat": 69,
+      "sodium": 22,
+      "total_carbs": 11,
+      "total_fat": 54
+    },
+    "serving_size_g": 465.25,
+    "total_recipe_weight_g": 1861
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Lyonnaise Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_lyonnaise_potatoes_20250810_141426_cf5ade0c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T14:14:26.562565000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown pan-seared chicken thigh rests centrally on a clean white porcelain plate. The chicken skin is crisp, contrasting with the tender interior. Beside it, a generous mound of Lyonnaise potatoes, featuring golden-brown, pan-fried potato slices interspersed with soft, caramelized onion slivers and finely minced fresh parsley. The potatoes have a slightly irregular, rustic shape. A few sprigs of fresh parsley are scattered over the potatoes and chicken, adding a vibrant green accent. The plate has ample negative space. The dish is presented on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting highlights the textures and warm tones of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp green salad with vinaigrette.",
+      "Pair with a glass of dry white wine, such as Chardonnay or Sauvignon Blanc."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Waxy potatoes",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "Wash and peel potatoes. Cut into uniform 5mm thick slices or 1.5cm cubes.",
+      "Boil potato slices/cubes in salted water for 5-7 minutes until slightly tender but still firm. Drain well. Set aside.",
+      "Peel and thinly slice onions. Mince garlic.",
+      "Heat 15 ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Place chicken thighs skin-side down in the hot skillet. Sear for 8-10 minutes until skin is deeply golden and crispy.",
+      "Flip chicken thighs. Transfer skillet to a preheated oven at 180°C (350°F). Cook for 10-15 minutes until internal temperature reaches 75°C (167°F). Remove chicken and rest.",
+      "In the same skillet (or a separate pan), melt butter over medium heat. Add sliced onions. Sauté for 10-15 minutes until deeply caramelized and tender. Add minced garlic and cook for 1 minute more.",
+      "Add par-cooked potatoes to the skillet with onions. Increase heat to medium-high. Sauté, stirring occasionally, until potatoes are golden-brown and crispy, about 10-15 minutes.",
+      "Deglaze the pan with chicken stock. Stir in Dijon mustard. Cook for 2-3 minutes until sauce slightly thickens.",
+      "Chop fresh parsley. Stir half of the chopped parsley into the potato mixture.",
+      "Taste and adjust seasoning for potatoes. Serve chicken thighs alongside the Lyonnaise potatoes. Garnish with remaining fresh parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For crispier potatoes, do not overcrowd the pan during sautéing. Cook in batches if necessary."
+    ],
+    "traditional_techniques": [
+      "Searing (for chicken)",
+      "Sautéing (for potatoes and onions)",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 707,
+      "cholesterol_mg": 198,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 43.3,
+      "saturated_fat_g": 15.5,
+      "sodium_mg": 274,
+      "total_carbs_g": 38.6,
+      "total_fat_g": 46.8,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 143.1,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.8,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 55.3,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 19.9,
+      "protein": 86.6,
+      "saturated_fat": 77.3,
+      "sodium": 11.9,
+      "total_carbs": 14,
+      "total_fat": 59.9
+    },
+    "serving_size_g": 494.5,
+    "total_recipe_weight_g": 1978
+  },
+  {
+    "recipe_name": "Pollo e Rigatoni al Pomodoro Arrosto e Basilico",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_e_rigatoni_al_pomodoro_arrosto_e_basilico_20250810_131658_05c26e31.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T13:16:58.772442000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of rigatoni pasta, coated in a rich, rustic roasted tomato and basil sauce, is presented in a deep white porcelain pasta bowl. Golden-brown seared chicken chunks, approximately 3-4 cm irregular pieces, are artfully nestled amongst the al dente pasta, showcasing their caramelized crusts. The vibrant red sauce, made from roasted cherry tomatoes, contrasts beautifully with the pale pasta and the bright green of torn fresh basil leaves, scattered generously over the dish. A light dusting of finely grated Parmesan cheese completes the presentation. The setting is a simple wooden table, with a folded off-white linen napkin and polished silver Italian flatware beside the bowl. A small ceramic dish of extra Parmesan is nearby. Natural, soft lighting illuminates the scene, highlighting the dish's inviting textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta bread for dipping into the sauce.",
+      "Accompany with a simple green salad dressed with olive oil and red wine vinegar.",
+      "Pair with a glass of dry Italian red wine, such as Chianti or Sangiovese."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss cherry tomatoes with 15 ml olive oil, salt, and pepper on a baking sheet. Roast for 25-30 minutes until softened and slightly caramelized.",
+      "Cut chicken thighs into 3-4 cm irregular chunks. Season chicken generously with salt and pepper.",
+      "Heat 30 ml olive oil in a large skillet over medium-high heat. Add chicken chunks. Sear until golden brown on all sides and cooked through, reaching an internal temperature of 75°C. Remove chicken from skillet and set aside.",
+      "Add remaining 15 ml olive oil to the same skillet. Add finely diced red onion. Sauté until softened, about 5 minutes.",
+      "Add thinly sliced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer, scraping up any browned bits from the bottom of the skillet.",
+      "Add roasted tomatoes to the skillet. Gently crush some tomatoes with a spoon to release juices. Simmer sauce for 5 minutes.",
+      "Meanwhile, cook rigatoni according to package instructions until al dente. Reserve 120 ml pasta cooking water before draining.",
+      "Add cooked rigatoni and seared chicken chunks to the skillet with the sauce. Toss to combine.",
+      "If needed, add reserved pasta water, 30 ml at a time, to achieve desired sauce consistency.",
+      "Remove from heat. Stir in half of the fresh basil leaves, roughly torn. Taste and adjust seasoning.",
+      "Serve immediately in deep bowls, garnished with remaining fresh basil and freshly grated Parmesan cheese."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for onion and garlic base)",
+      "Al dente pasta cooking",
+      "Building a pan sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 899,
+      "cholesterol_mg": 187,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 53.5,
+      "saturated_fat_g": 10.8,
+      "sodium_mg": 599,
+      "total_carbs_g": 83,
+      "total_fat_g": 37,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 10.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 113,
+      "total_carbs_g": 15.7,
+      "total_fat_g": 7,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 20,
+      "protein": 107,
+      "saturated_fat": 54,
+      "sodium": 26,
+      "total_carbs": 30,
+      "total_fat": 47
+    },
+    "serving_size_g": 529.3,
+    "total_recipe_weight_g": 2117
+  },
+  {
+    "recipe_name": "Creamy Turkey Noodle Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_turkey_noodle_bake_20250810_125550_02ba780d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T12:55:50.662002000Z",
+    "selected_ingredients": [
+      "turkey",
+      "noodle"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Creamy Turkey Noodle Bake is presented on a simple, round, off-white ceramic plate with a slight rim. The baked dish features tender, golden-brown egg noodles combined with savory ground turkey, diced carrots, celery, and onion in a creamy sauce. A golden-brown crust of melted cheddar cheese tops the casserole, showing slight bubbling. The noodles are intertwined with the turkey and vegetables, creating a comforting, textural mix. A few small, chopped fresh parsley leaves are sprinkled over for a touch of green. The plate sits on a well-used, warm-toned wooden dining table. In the background, a casually placed linen napkin and a simple fork suggest a relaxed family meal. Warm, soft kitchen lighting illuminates the dish, highlighting its homely appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad.",
+      "Offer with crusty bread for dipping."
+    ],
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Turkey mince",
+        "quantity": "500g"
+      },
+      {
+        "name": "Egg noodles",
+        "quantity": "300g"
+      },
+      {
+        "name": "Condensed cream of mushroom soup",
+        "quantity": "2 cans (approx. 800g total)"
+      },
+      {
+        "name": "Milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Celery, diced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrots, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g (for garnish, optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Cook egg noodles according to package directions. Drain.",
+      "In a large pan, melt butter over medium heat. Add diced celery, onion, and carrots. Sauté 5-7 minutes until softened.",
+      "Add turkey mince to the pan. Break it apart. Cook until browned and cooked through, about 8-10 minutes. Drain any excess fat.",
+      "Stir in condensed cream of mushroom soup, milk, salt, and black pepper. Bring to a simmer.",
+      "Add cooked noodles and 150g shredded cheddar cheese to the pan. Stir to combine.",
+      "Transfer mixture to a 20x30cm baking dish.",
+      "Sprinkle remaining 50g shredded cheddar cheese over the top.",
+      "Bake 25-30 minutes, until bubbly and cheese is golden.",
+      "Remove from oven. Let stand 5 minutes before serving.",
+      "Garnish with chopped fresh parsley, if desired."
+    ],
+    "notes": [
+      "This recipe is easily adaptable with other ground meats or vegetables."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 769,
+      "cholesterol_mg": 198,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 48.4,
+      "saturated_fat_g": 21.5,
+      "sodium_mg": 2281,
+      "total_carbs_g": 42.2,
+      "total_fat_g": 43.8,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 127,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 377,
+      "total_carbs_g": 7,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 14,
+      "protein": 97,
+      "saturated_fat": 108,
+      "sodium": 99,
+      "total_carbs": 15,
+      "total_fat": 56
+    },
+    "serving_size_g": 605,
+    "total_recipe_weight_g": 2420
+  }
+]

@@ -1,0 +1,742 @@
+[
+  {
+    "recipe_name": "Turkey and Chipotle Enchiladas with Oaxaca Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_turkey_and_chipotle_enchiladas_with_oaxaca_cheese_20250627_041815_89faaec4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:18:16.203798000Z",
+    "selected_ingredients": [
+      "turkey",
+      "chili",
+      "chipotle chile",
+      "corn tortilla",
+      "oaxaca cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents two generously sized Turkey and Chipotle Enchiladas, nestled side-by-side on a clean, round white porcelain plate. Each corn tortilla is tightly rolled, filled with savory, finely ground turkey, and drenched in a rich, glossy, deep red-brown chipotle and dried chili sauce. The surface is covered with melted Oaxaca cheese, bubbling slightly and exhibiting a soft, golden sheen. A generous sprinkle of bright green, freshly chopped cilantro garnishes the top, along with a contrasting dollop of cool, white Mexican crema. The plating is clean and balanced, with moderate negative space. The background features a simple wooden table, a folded cotton napkin, and a rustic ceramic bowl, hinting at a casual bistro setting with authentic Mexican warmth. Natural, even light illuminates the vibrant colors and appealing textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Mexican rice and refried beans",
+      "Offer additional salsa or hot sauce on the side",
+      "Accompany with a simple green salad with lime vinaigrette"
+    ],
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Ground turkey",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Dried ancho chiles",
+        "quantity": "2"
+      },
+      {
+        "name": "Dried guajillo chiles",
+        "quantity": "2"
+      },
+      {
+        "name": "Chipotle chile in adobo",
+        "quantity": "1 (from can)"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "8"
+      },
+      {
+        "name": "Oaxaca cheese, shredded",
+        "quantity": "200 g"
+      },
+      {
+        "name": "White onion, chopped",
+        "quantity": "0.5 (small)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Roma tomato, roasted",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "375 mL"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Mexican oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 mL"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Mexican crema or sour cream",
+        "quantity": "120 mL"
+      }
+    ],
+    "instructions": [
+      "Prepare Dried Chiles: Remove stems and seeds from ancho and guajillo chiles. Toast chiles lightly in a dry pan 1-2 minutes until fragrant. Soak in hot water 20 minutes until soft.",
+      "Make Enchilada Sauce: Drain chiles. Blend soaked chiles with chipotle in adobo, roasted tomato, chopped onion, garlic, cumin, Mexican oregano, and 250 mL chicken broth until smooth. Strain sauce through a fine-mesh sieve into a saucepan. Simmer sauce 15 minutes, stirring, until slightly thickened. Season with salt.",
+      "Cook Turkey: In a large pan, heat 15 mL oil over medium-high heat. Add ground turkey. Cook, breaking up meat, until browned and cooked through. Ensure internal temperature reaches 75°C (167°F). Drain excess fat. Stir in 125 mL of the prepared enchilada sauce. Season with salt and pepper.",
+      "Assemble Enchiladas: Preheat oven to 190°C. Lightly grease a 23x33 cm baking dish. Briefly warm corn tortillas in a dry pan or microwave to make pliable. Dip each tortilla in the enchilada sauce, coating both sides. Place about 60-70 g of turkey mixture down the center of each tortilla. Roll tightly.",
+      "Bake Enchiladas: Arrange rolled enchiladas seam-side down in the baking dish. Pour remaining enchilada sauce evenly over the enchiladas. Sprinkle generously with shredded Oaxaca cheese.",
+      "Finish Dish: Bake 20-25 minutes, or until cheese is melted and bubbly and sauce is hot.",
+      "Serve: Garnish with fresh cilantro and a dollop of Mexican crema. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Rehydrating and toasting dried chiles for sauce",
+      "Preparing a traditional 'salsa de chiles secos' (dried chili sauce)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 599,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 44.4,
+      "saturated_fat_g": 14.4,
+      "sodium_mg": 1046.7,
+      "total_carbs_g": 33.6,
+      "total_fat_g": 34.4,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168,
+      "cholesterol_mg": 43.1,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 12.4,
+      "saturated_fat_g": 4,
+      "sodium_mg": 292.8,
+      "total_carbs_g": 9.4,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 23,
+      "protein": 89,
+      "saturated_fat": 72,
+      "sodium": 46,
+      "total_carbs": 12,
+      "total_fat": 44
+    },
+    "serving_size_g": 358,
+    "total_recipe_weight_g": 1430
+  },
+  {
+    "recipe_name": "Seared Duck Breast with Crispy Pork Belly and Verjus-Chili Gastrique",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_duck_breast_with_crispy_pork_belly_and_verjus-chili_gastrique_20250627_041552_09aa0318.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:15:53.304807000Z",
+    "selected_ingredients": [
+      "duck",
+      "verjus",
+      "chili",
+      "rosemary",
+      "pork"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A pristine white bone china plate or polished slate tile presents 8-12 exquisite canapés. Each features a thick, seared chunk of duck breast with crisp, golden skin, alongside a petite, golden-brown cube of crispy pork belly. The duck meat shows a delicate pink. A glossy, ruby-red verjus-chili gastrique is artfully drizzled, catching the light. Small, verdant dots of rosemary oil are strategically placed. Each canapé is crowned with a single vibrant microgreen, providing a fresh accent. The elements are arranged with abundant negative space, showcasing architectural precision and a natural, flowing composition. Dramatic professional lighting casts soft shadows, enhancing textures. The ultra-minimalist background, likely a premium white Carrara marble, accentuates the dish's refined elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Duck",
+    "ingredients": [
+      {
+        "name": "Duck breast",
+        "quantity": "2 (approx. 200g each), skin on"
+      },
+      {
+        "name": "Pork belly",
+        "quantity": "200g, skin on, boneless"
+      },
+      {
+        "name": "Verjus",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1 small, deseeded, finely minced"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs (for oil), 1 small sprig (for garnish)"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "10g"
+      },
+      {
+        "name": "Microgreens",
+        "quantity": "Small handful, for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Pork Belly: Preheat oven to 160°C. Score pork belly skin deeply in a crosshatch pattern. Season generously with salt and pepper. Place pork belly skin-side up on a wire rack over a baking tray. Roast for 1.5-2 hours until tender. Increase oven temperature to 220°C. Roast for another 20-30 minutes, or until skin is crisp and crackling. Remove, cool slightly, then cut into 1x1 cm small cubes.",
+      "Make Rosemary Oil: Gently heat vegetable oil with 2 rosemary sprigs in a small saucepan over low heat for 10 minutes. Do not boil. Remove from heat, let cool, then strain. Discard rosemary.",
+      "Prepare Verjus-Chili Gastrique: In a small saucepan, combine sugar and red wine vinegar. Cook over medium heat until sugar dissolves and mixture slightly caramelizes to a light amber. Carefully add verjus and minced red chili. Bring to a simmer and reduce by half until syrupy. Season with a pinch of salt. Keep warm.",
+      "Cook Duck Breast: Score duck breast skin in a crosshatch pattern. Season skin with salt and pepper. Place duck breast skin-side down in a cold, dry skillet. Cook over medium-low heat for 8-10 minutes, rendering fat until skin is golden brown and crispy. Pour off excess fat. Flip duck breast. Cook for 3-5 minutes on flesh side until internal temperature reaches 75°C (167°F). Remove from pan. Rest for 5 minutes. Cut duck breast into 1x1 cm thick chunks.",
+      "Assemble Canapés: Arrange 2-3 chunks of seared duck breast and 2-3 cubes of crispy pork belly artistically on each serving plate or a shared platter.",
+      "Finish and Serve: Drizzle each piece with verjus-chili gastrique. Add small dots of rosemary oil around the components. Garnish with a single microgreen or a tiny rosemary sprig. Serve immediately."
+    ],
+    "notes": [
+      "The duck breast cooking time is for medium-well to well-done (75°C internal temperature), ensuring food safety. Adjust for desired doneness.",
+      "Rendered duck fat can be saved for future cooking."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 664,
+      "cholesterol_mg": 131.9,
+      "dietary_fiber_g": 0.2,
+      "protein_g": 23.6,
+      "saturated_fat_g": 21,
+      "sodium_mg": 569.6,
+      "total_carbs_g": 4.7,
+      "total_fat_g": 60.5,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2,
+      "calories": 348.6,
+      "cholesterol_mg": 69.2,
+      "dietary_fiber_g": 0.1,
+      "protein_g": 12.4,
+      "saturated_fat_g": 11,
+      "sodium_mg": 299,
+      "total_carbs_g": 2.5,
+      "total_fat_g": 31.7,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44,
+      "dietary_fiber": 0.7,
+      "protein": 47.2,
+      "saturated_fat": 105,
+      "sodium": 24.8,
+      "total_carbs": 1.7,
+      "total_fat": 77.6
+    },
+    "serving_size_g": 190.5,
+    "total_recipe_weight_g": 762
+  },
+  {
+    "recipe_name": "Cabbage and Porcini Salad with Chili Miso Dressing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cabbage_and_porcini_salad_with_chili_miso_dressing_20250627_041453_7012e584.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:14:53.586141000Z",
+    "selected_ingredients": [
+      "duck",
+      "beef",
+      "porcini mushroom",
+      "thai green chili",
+      "dark miso"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A vibrant, homely Cabbage and Porcini Salad is presented in a shallow, rustic ceramic bowl on a well-worn wooden kitchen table. Thinly sliced white cabbage forms the base, layered with bright orange julienned carrots, green julienned cucumbers, and thinly sliced red bell pepper. Earthy brown, sliced rehydrated porcini mushrooms are interspersed throughout. A savory chili miso dressing coats the vegetables, adding a subtle sheen. A scattering of small, seared beef strips, fresh green chopped coriander, and sliced spring onions rests on top. Golden-brown chopped roasted peanuts provide a textural contrast. The arrangement is natural and casual, with components overlapping slightly. Chopsticks are placed beside the bowl. Warm, inviting kitchen light illuminates the scene, highlighting the fresh, natural colors of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve family-style in a large bowl with individual smaller bowls for each person.",
+      "Eat with chopsticks, which are traditionally used for Asian salads.",
+      "Offer a small side of steamed jasmine rice for a more substantial meal."
+    ],
+    "hero_ingredient": "Cabbage",
+    "ingredients": [
+      {
+        "name": "White cabbage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cucumbers",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dried porcini mushrooms",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Beef sirloin or flank steak",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Thai green chilies",
+        "quantity": "2-3 (adjust to taste)"
+      },
+      {
+        "name": "Dark miso paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Roasted peanuts",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Rehydrate porcini mushrooms in hot water for 20 minutes. Drain well. Slice thinly.",
+      "Thinly slice white cabbage. Julienne carrots and cucumbers. Thinly slice red bell pepper.",
+      "Finely mince Thai green chilies, garlic, and grate ginger.",
+      "Prepare dressing: In a bowl, whisk together dark miso paste, lime juice, soy sauce, toasted sesame oil, rice vinegar, minced chilies, minced garlic, and grated ginger. Mix until smooth.",
+      "Pat beef dry. Heat vegetable oil in a pan over high heat. Sear beef slices for 1-2 minutes per side until cooked to desired doneness. Remove from pan, let rest briefly, then slice into small, thin strips.",
+      "In a large mixing bowl, combine sliced cabbage, julienned carrots, julienned cucumbers, sliced bell pepper, and sliced porcini mushrooms.",
+      "Pour the prepared dressing over the vegetables and mushrooms. Toss gently to coat all ingredients evenly.",
+      "Chop fresh coriander and slice spring onions. Roughly chop roasted peanuts.",
+      "Plate the salad. Arrange small strips of seared beef sparingly on top. Garnish with chopped coriander, sliced spring onions, and chopped roasted peanuts. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the quantity of Thai green chilies to control the spice level according to your preference.",
+      "For a vegetarian version, omit the beef and consider adding pan-fried tofu cubes or edamame for extra protein."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 323,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 21.3,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 819,
+      "total_carbs_g": 24.7,
+      "total_fat_g": 15.2,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 92.6,
+      "cholesterol_mg": 8.2,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 6.1,
+      "saturated_fat_g": 1,
+      "sodium_mg": 234.6,
+      "total_carbs_g": 7.1,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 29,
+      "protein": 43,
+      "saturated_fat": 17,
+      "sodium": 36,
+      "total_carbs": 9,
+      "total_fat": 19
+    },
+    "serving_size_g": 349,
+    "total_recipe_weight_g": 1396
+  },
+  {
+    "recipe_name": "Red Chile Beef with Almond Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_red_chile_beef_with_almond_rice_20250627_041451_4bc55387.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:14:51.676816000Z",
+    "selected_ingredients": [
+      "pasta",
+      "dark chocolate",
+      "coffee",
+      "almond",
+      "butter",
+      "cheese",
+      "red wine",
+      "jalapeno chile",
+      "beef",
+      "chili",
+      "onion",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Red Chile Beef with Almond Rice is presented on a clean, simple white porcelain dinner plate. The rich, deep red-brown beef stew, featuring thick chunks of slow-cooked, tender beef, is spooned onto one side of the plate. The sauce is glossy and clings to the beef. Beside it, a neat scoop of fluffy white long-grain rice is placed, visibly studded with golden-brown slivered almonds. The dish is garnished with a scattering of crumbled white Cotija cheese over the beef and a few vibrant green, thinly sliced fresh jalapeno rounds and fresh cilantro leaves for color contrast. The entire plate is visible, with moderate negative space, showcasing a professional yet approachable arrangement. The setting is a modern bistro, with a simple wooden table surface and a white cotton napkin placed beside the plate. Natural, even lighting illuminates the scene, with a subtly blurred restaurant-style background maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping the chile."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef Chuck Roast",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Dried Ancho Chiles",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Dried Guajillo Chiles",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Unsweetened Dark Chocolate (70% cocoa)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Strong Brewed Coffee",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried Mexican Oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Jalapeno Chile",
+        "quantity": "1, fresh"
+      },
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Slivered Almonds",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cotija Cheese (or Monterey Jack)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 4-5 cm chunks. Season generously with salt and pepper.",
+      "Heat vegetable oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef chunks in batches until browned on all sides. Remove beef and set aside.",
+      "Remove stems and seeds from dried Ancho and Guajillo chiles. Place chiles in a bowl. Cover with boiling water. Let rehydrate for 20 minutes until softened.",
+      "While chiles rehydrate, add chopped onion to the pot. Sauté until softened, about 5-7 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Deglaze the pot with red wine, scraping up any browned bits. Cook until wine is mostly evaporated.",
+      "Drain rehydrated chiles. Blend chiles with diced tomatoes, beef broth, ground cumin, and Mexican oregano until smooth. Strain the chile mixture through a fine-mesh sieve into the pot, pressing solids to extract all liquid. Discard solids.",
+      "Return seared beef to the pot with the chile sauce. Stir in dark chocolate and brewed coffee. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer for 2.5-3 hours, or until beef is very tender. Stir occasionally. Internal temperature of beef should reach 75°C.",
+      "While beef simmers, prepare the almond rice. Rinse rice under cold water until water runs clear. Cook rice according to package directions.",
+      "In a small pan, melt butter over medium heat. Add slivered almonds. Toast almonds until golden brown and fragrant. Be careful not to burn. Stir toasted almonds into the cooked rice.",
+      "Slice fresh jalapeno into thin rounds for garnish. Crumble or shred Cotija cheese.",
+      "Taste the chile beef. Adjust seasoning with salt and pepper as needed.",
+      "Serve the Red Chile Beef hot, alongside the Almond Rice. Garnish with crumbled Cotija cheese, fresh jalapeno slices, and fresh cilantro leaves."
+    ],
+    "traditional_techniques": [
+      "Rehydrating dried chiles",
+      "Straining chile sauce (colar)",
+      "Slow braising (estofado)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.8,
+      "calories": 1371.8,
+      "cholesterol_mg": 241.3,
+      "dietary_fiber_g": 10.1,
+      "protein_g": 85.1,
+      "saturated_fat_g": 26.1,
+      "sodium_mg": 651,
+      "total_carbs_g": 87.9,
+      "total_fat_g": 69.2,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 149.7,
+      "cholesterol_mg": 26.3,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.3,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 71,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80,
+      "dietary_fiber": 36,
+      "protein": 170,
+      "saturated_fat": 131,
+      "sodium": 28,
+      "total_carbs": 32,
+      "total_fat": 89
+    },
+    "serving_size_g": 916.5,
+    "total_recipe_weight_g": 3666
+  },
+  {
+    "recipe_name": "Seared Scallops with Bitter Melon & Black Bean Dashi Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_scallops_with_bitter_melon_%26_black_bean_dashi_glaze_20250627_041107_7a76f3cb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T04:11:08.442678000Z",
+    "selected_ingredients": [
+      "bitter melon",
+      "black bean sauce",
+      "dashi",
+      "sansho pepper",
+      "coriander root"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Twelve individual bite-sized canapés are arranged on an elegant, dark slate serving platter. Each canapé features a perfectly seared, plump sea scallop, golden-brown, resting atop a vibrant, pale green, thin bitter melon round. A glossy, dark amber black bean dashi glaze is delicately drizzled over each scallop. A sprinkle of bright green, finely minced coriander root and a dusting of sansho pepper adorn the top, adding color and texture. The arrangement is clean and balanced, with moderate negative space, showcasing unified presentation. The scene is set on a simple wooden table, illuminated by natural, even lighting. A crisp white cotton napkin is neatly folded beside the platter. The entire platter is visible, presenting a cohesive and inviting display of appetizers.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Japanese",
+    "cultural_origin": "Modern Japanese",
+    "cultural_serving_suggestions": [
+      "Serve immediately while warm to enjoy the textures and flavors.",
+      "Offer small appetizer forks or elegant toothpicks for easy serving."
+    ],
+    "hero_ingredient": "Scallops",
+    "ingredients": [
+      {
+        "name": "Large sea scallops",
+        "quantity": "12 pieces"
+      },
+      {
+        "name": "Bitter melon",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dashi stock",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Black bean sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sake (cooking)",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "10 g, finely grated"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove, minced"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "15 ml (for slurry)"
+      },
+      {
+        "name": "Neutral oil (e.g., canola or grapeseed)",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Finely ground sansho pepper",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Coriander root",
+        "quantity": "2-3 roots, finely minced"
+      }
+    ],
+    "instructions": [
+      "Prepare bitter melon: Wash bitter melon. Slice into thin rounds, about 3 mm thick. Remove seeds. Bring a pot of water to a boil. Blanch bitter melon rounds for 30 seconds. Immediately transfer to an ice bath. Drain well and pat dry.",
+      "Prepare black bean dashi glaze: In a small saucepan, combine dashi stock, black bean sauce, soy sauce, mirin, sake, grated ginger, minced garlic, and sugar. Bring to a simmer over medium heat. In a small bowl, whisk cornstarch with cold water to create a slurry. Slowly whisk slurry into simmering sauce. Cook, stirring constantly, until sauce thickens to a glossy glaze. Remove from heat. Keep warm.",
+      "Prepare scallops: Pat scallops very dry with paper towels. Season lightly with salt. Heat neutral oil in a non-stick skillet over high heat until shimmering. Place scallops in skillet, ensuring not to overcrowd. Sear for 1.5 to 2 minutes per side, until golden brown and cooked through.",
+      "Assemble canapés: Place one seared scallop on top of each blanched bitter melon round. Arrange on a serving platter. Drizzle each scallop with the warm black bean dashi glaze. Garnish generously with finely ground sansho pepper and minced coriander root. Serve immediately."
+    ],
+    "notes": [
+      "Bitter melon can be quite bitter. Blanching helps reduce bitterness. For a milder flavor, blanch for slightly longer, or soak in salted water for 15-20 minutes after slicing, then rinse thoroughly before blanching.",
+      "Ensure scallops are very dry before searing to achieve a good crust. Overcrowding the pan will steam the scallops instead of searing them."
+    ],
+    "traditional_techniques": [
+      "Dashi preparation",
+      "Blanching",
+      "Glazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4,
+      "calories": 160.5,
+      "cholesterol_mg": 29.7,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 14.7,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 1094,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.9,
+      "calories": 76.4,
+      "cholesterol_mg": 14.1,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 7,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 521,
+      "total_carbs_g": 6.4,
+      "total_fat_g": 2.5,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 5,
+      "protein": 29,
+      "saturated_fat": 2,
+      "sodium": 48,
+      "total_carbs": 5,
+      "total_fat": 7
+    },
+    "serving_size_g": 210,
+    "total_recipe_weight_g": 840
+  }
+]

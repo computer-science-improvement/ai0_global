@@ -1,0 +1,666 @@
+[
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_pasta_20250723_112650_b4bc69b4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T11:26:50.546418000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of creamy chicken and mushroom pasta rests in a round, off-white ceramic bowl on a well-used wooden dining table. The golden-brown, 2 cm seared chicken cubes are nestled amongst the al dente pasta strands, which are thoroughly coated in a rich, pale cream sauce. Sliced, earthy brown mushrooms are interspersed throughout, adding depth. A scattering of fresh, vibrant green chopped parsley provides a pop of color on top. The dish is presented casually, as if just served from the stove, with the pasta naturally piled. The lighting is warm and natural, suggesting a cozy family kitchen setting. A simple fork rests beside the bowl on a plain cloth napkin, emphasizing the homely, unpretentious comfort of the meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Pasta (e.g., Fettuccine or Penne)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Mushrooms (cremini or button)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "a handful"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Boil a large pot of salted water. Add pasta. Cook according to package directions until al dente. Drain pasta. Reserve 120ml pasta water.",
+      "Pat chicken breast cut into 2 cm cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large pan over medium-high heat. Add chicken cubes. Sear until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C. Remove chicken from pan. Set aside.",
+      "Reduce heat to medium. Add butter to the same pan. Add diced onion. Sauté until softened, about 3-4 minutes. Add sliced mushrooms. Cook until mushrooms are browned and tender, about 5-7 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer. Stir in heavy cream and grated Parmesan cheese. Cook, stirring constantly, until sauce thickens slightly, about 3-5 minutes.",
+      "Add cooked chicken back to the pan with the sauce. Add drained pasta. Toss to coat everything evenly. If sauce is too thick, add reserved pasta water, a little at a time, until desired consistency.",
+      "Taste and adjust seasoning. Garnish with fresh chopped parsley and extra grated Parmesan."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1019,
+      "cholesterol_mg": 223,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 69.9,
+      "saturated_fat_g": 21.7,
+      "sodium_mg": 446,
+      "total_carbs_g": 84.5,
+      "total_fat_g": 43.8,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 210,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 14.4,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 92,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 9,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 16,
+      "protein": 140,
+      "saturated_fat": 108,
+      "sodium": 19,
+      "total_carbs": 31,
+      "total_fat": 56
+    },
+    "serving_size_g": 485.5,
+    "total_recipe_weight_g": 1942
+  },
+  {
+    "recipe_name": "Lemon Herb Roasted Chicken and Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_herb_roasted_chicken_and_root_vegetables_20250723_112617_811c928e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T11:26:17.979408000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, hearty portion of roasted chicken (one whole drumstick or thigh) is centered on a round, rustic ceramic plate. Surrounding it are naturally arranged, golden-brown roasted potato wedges, thick carrot chunks, and caramelized red onion wedges. Charred lemon slices and fresh herb sprigs (rosemary, thyme) are casually placed among ingredients. The chicken skin is crispy and golden; vegetables show tender interiors and slightly crisped edges. Colors are warm: golden chicken, earthy brown potatoes, vibrant orange carrots, deep purple onions. The plate rests on a well-used, light wooden dining table. A simple, off-white cloth napkin is casually folded beside. Standard fork and knife are placed. Warm, soft light illuminates the scene, suggesting a cozy kitchen atmosphere. The background is minimal, hinting at a lived-in family dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve directly from the roasting pan for family style.",
+      "Accompany with a simple green salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken drumsticks or thighs",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken dry. Season generously with salt and pepper.",
+      "In a large roasting pan, combine potato wedges, thick carrot chunks, and red onion wedges.",
+      "Add smashed garlic cloves, rosemary sprigs, and thyme sprigs to vegetables.",
+      "Drizzle vegetables with 30 ml olive oil. Season with salt and pepper. Toss to coat.",
+      "Arrange chicken pieces among vegetables in the pan.",
+      "Drizzle chicken with remaining 30 ml olive oil.",
+      "Place lemon slices over and around chicken. Squeeze half a lemon over everything.",
+      "Roast for 40-50 minutes, or until chicken internal temperature reaches 75°C and vegetables are tender.",
+      "Baste chicken and vegetables halfway through cooking.",
+      "Remove from oven. Let rest 5 minutes before serving."
+    ],
+    "notes": [
+      "Check chicken internal temperature with a meat thermometer to ensure it reaches 75°C.",
+      "For extra crispiness, broil for the last 2-3 minutes."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808.25,
+      "cholesterol_mg": 272.5,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 53.95,
+      "saturated_fat_g": 11.1475,
+      "sodium_mg": 480.125,
+      "total_carbs_g": 38.5,
+      "total_fat_g": 48.925,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0.25
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148.50712007349563,
+      "cholesterol_mg": 50.06889389986265,
+      "dietary_fiber_g": 1.1943959577400092,
+      "protein_g": 9.912723931100597,
+      "saturated_fat_g": 2.0482315112531007,
+      "sodium_mg": 88.21773082223243,
+      "total_carbs_g": 7.073955810740468,
+      "total_fat_g": 8.98943592099219,
+      "total_sugars_g": 1.341203499311006,
+      "trans_fat_g": 0.04593477262287551
+    },
+    "daily_value_percentages": {
+      "cholesterol": 90.83333333333333,
+      "dietary_fiber": 23.214285714285715,
+      "protein": 107.9,
+      "saturated_fat": 55.7375,
+      "sodium": 20.875,
+      "total_carbs": 14,
+      "total_fat": 62.72435897435897
+    },
+    "serving_size_g": 544.25,
+    "total_recipe_weight_g": 2177
+  },
+  {
+    "recipe_name": "Coffee-Cacao Mousse with Caramelized Banana and Hazelnut Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coffee-cacao_mousse_with_caramelized_banana_and_hazelnut_crumble_20250723_112558_24a9d2f3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T11:25:58.655408000Z",
+    "selected_ingredients": [
+      "banana",
+      "hazelnut",
+      "coffee",
+      "cacao",
+      "lemon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Coffee-Cacao Mousse is presented in a pristine, clear glass ramekin, positioned slightly off-center on a clean white porcelain dessert plate. The mousse is a rich, deep brown, its surface lightly dusted with fine cacao powder, showcasing a velvety texture. Beside the ramekin, two or three thick 1 cm round slices of caramelized banana, golden-brown with slightly darker edges, are neatly arranged. A generous sprinkling of coarse hazelnut crumble, in varying shades of light to golden brown, is scattered over the caramelized bananas and extends gently onto the white plate, providing a textural contrast. The overall composition is clean and balanced, with moderate negative space allowing each element to stand out. The plate rests on a simple wooden table surface, accompanied by a folded cotton napkin. Natural, even lighting illuminates the dish, emphasizing its refined appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Coffee-Cacao Mousse",
+    "ingredients": [
+      {
+        "name": "Dark chocolate (70% cacao)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Espresso coffee, strong",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Cacao powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Firm ripe bananas",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Roasted hazelnuts",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Cold unsalted butter",
+        "quantity": "20g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Prepare Hazelnut Crumble: Pulse roasted hazelnuts, flour, cold butter, sugar, and salt in a food processor until coarse crumbs form. Spread on a baking sheet. Bake at 160°C for 10-12 minutes until golden. Cool completely.",
+      "Make Coffee-Cacao Mousse Base: Melt dark chocolate and strong espresso coffee together over a double boiler or in microwave. Stir until smooth.",
+      "Prepare Egg Yolk Mixture: Whisk egg yolks and sugar in a heatproof bowl until pale. Place over double boiler. Whisk constantly until thickened and light, about 5-7 minutes. Remove from heat.",
+      "Combine Mousse Base: Gradually whisk melted chocolate-coffee mixture into the egg yolk mixture. Stir in lemon zest. Let cool slightly.",
+      "Fold in Cream: In a separate bowl, whip heavy cream to soft peaks. Gently fold whipped cream into the chocolate-egg yolk mixture in three additions until just combined. Do not overmix.",
+      "Chill Mousse: Divide mousse into 4 serving glasses or ramekins. Chill for at least 4 hours, or preferably overnight, until set.",
+      "Caramelize Bananas: Just before serving, slice bananas into 1 cm thick rounds. Melt butter and brown sugar in a non-stick pan over medium heat. Add banana slices. Cook 1-2 minutes per side until caramelized. Remove from heat. Drizzle with lemon juice.",
+      "Assemble and Serve: Spoon caramelized banana slices next to each mousse. Sprinkle hazelnut crumble over the bananas and around the mousse. Dust mousse lightly with cacao powder. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 39.4,
+      "calories": 832.5,
+      "cholesterol_mg": 236,
+      "dietary_fiber_g": 8,
+      "protein_g": 10.3,
+      "saturated_fat_g": 33,
+      "sodium_mg": 152.9,
+      "total_carbs_g": 69,
+      "total_fat_g": 61.7,
+      "total_sugars_g": 50.1,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 14.5,
+      "calories": 306.1,
+      "cholesterol_mg": 86.8,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 3.8,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 56.2,
+      "total_carbs_g": 25.4,
+      "total_fat_g": 22.7,
+      "total_sugars_g": 18.4,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 79,
+      "dietary_fiber": 29,
+      "protein": 21,
+      "saturated_fat": 165,
+      "sodium": 7,
+      "total_carbs": 25,
+      "total_fat": 79
+    },
+    "serving_size_g": 272,
+    "total_recipe_weight_g": 1088
+  },
+  {
+    "recipe_name": "Pollo ai Funghi",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_ai_funghi_20250723_112528_a26bf44d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T11:25:29.145723000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Pollo ai Funghi is presented on a clean, round white porcelain dinner plate. Two golden-brown, seared chicken thighs are centrally placed, displaying a rich, inviting crust. Abundantly scattered around and partially over the chicken are irregular slices of earthy brown cremini mushrooms, sautéed to a tender, slightly caramelized finish. A glossy, amber-hued pan sauce, rich with wine and chicken broth, pools generously around the chicken and mushrooms, reflecting the soft, natural light. The dish is garnished with a vibrant scattering of freshly chopped bright green parsley, adding a fresh contrast. The composition is organic and flowing, not rigid, with appropriate negative space. The plate rests on a simple, light wooden table surface, accompanied by standard silver cutlery and a folded cotton napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to soak up the sauce.",
+      "Accompany with a side of creamy polenta or simple buttered pasta.",
+      "Pair with a glass of dry white wine, such as Pinot Grigio."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Sear chicken thighs 5-7 minutes per side until golden brown. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add butter to skillet.",
+      "Add diced onion. Sauté 3-4 minutes until softened.",
+      "Add minced garlic. Sauté 1 minute until fragrant.",
+      "Add sliced cremini mushrooms. Cook 5-7 minutes until browned and tender.",
+      "Sprinkle flour over mushrooms and stir 1 minute.",
+      "Pour in white wine. Scrape up any browned bits from bottom of skillet. Simmer 2 minutes.",
+      "Add chicken broth and thyme sprigs. Bring to a simmer.",
+      "Return chicken thighs to skillet. Cover. Simmer 10-15 minutes, or until chicken is cooked through.",
+      "Remove thyme sprigs. Stir in chopped fresh parsley.",
+      "Taste sauce. Adjust seasoning as needed."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For a gluten-free sauce, omit flour and reduce sauce by simmering longer."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Sautéing",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 430.6,
+      "cholesterol_mg": 173.7,
+      "dietary_fiber_g": 3,
+      "protein_g": 38.9,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 347.1,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 24.5,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 98.5,
+      "cholesterol_mg": 39.7,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 79.4,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57.9,
+      "dietary_fiber": 10.8,
+      "protein": 77.7,
+      "saturated_fat": 34.1,
+      "sodium": 15.1,
+      "total_carbs": 4.3,
+      "total_fat": 31.4
+    },
+    "serving_size_g": 437.25,
+    "total_recipe_weight_g": 1749
+  },
+  {
+    "recipe_name": "Caramelized Banana with Coffee-Cacao Mousse and Hazelnut Praline",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_banana_with_coffee-cacao_mousse_and_hazelnut_praline_20250723_112459_932cb63e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T11:24:59.942768000Z",
+    "selected_ingredients": [
+      "banana",
+      "hazelnut",
+      "coffee",
+      "cacao",
+      "lemon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single elegant portion rests on a clean white porcelain dessert plate. A generous, airy quenelle of dark coffee-cacao mousse, a rich, deep brown, sits slightly off-center. Adjacent to it, a golden-brown caramelized banana half, its surface glistening, showcases a soft, inviting texture. The banana is sliced lengthwise, revealing its creamy interior. Around the mousse and banana, a scattering of coarse hazelnut praline provides a contrasting light brown hue and a delicate crunch. A sprinkle of dark cacao nibs adds visual depth and bitterness. Bright yellow lemon zest is finely grated over the mousse, offering a pop of color. A small, vibrant green mint sprig is placed artfully to complete the presentation. The arrangement is organic and inviting, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface, a cotton napkin, and natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Dessert",
+    "cultural_origin": "Modern Dessert",
+    "hero_ingredient": "Caramelized Banana",
+    "ingredients": [
+      {
+        "name": "Dark chocolate (70% cacao)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Strong brewed coffee",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Granulated sugar (for mousse)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Cacao powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Whole hazelnuts",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar (for praline)",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "25 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Firm ripe bananas",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cacao nibs",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 1/2 lemon"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "small sprigs"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Spread hazelnuts on a baking sheet. Roast 8-10 minutes until fragrant. Rub hazelnuts in a clean towel to remove skins. Set aside.",
+      "In a saucepan, combine 75g granulated sugar and water. Heat over medium heat without stirring until sugar dissolves. Increase heat to medium-high. Cook until caramel turns amber. Add roasted hazelnuts and salt. Stir to coat.",
+      "Pour praline onto a silicone mat or parchment paper. Spread thinly. Let cool completely. Once hard, break into pieces. Pulse in a food processor until a coarse crumble forms. Do not over-process.",
+      "Melt dark chocolate over a double boiler or in a microwave. Stir until smooth.",
+      "In a separate bowl, whisk egg yolks and 50g granulated sugar until pale and thick.",
+      "Heat brewed coffee until hot. Slowly whisk hot coffee into egg yolk mixture.",
+      "Return mixture to a clean saucepan. Cook over low heat, stirring constantly, until mixture thickens slightly (coats the back of a spoon). Do not boil. Remove from heat.",
+      "Pour hot egg mixture over melted chocolate. Stir until smooth. Whisk in cacao powder until combined. Let cool slightly.",
+      "In a separate cold bowl, whip heavy cream to soft peaks.",
+      "Gently fold whipped cream into chocolate mixture in three additions until just combined. Do not overmix. Chill mousse for at least 2 hours.",
+      "Just before serving, melt butter in a non-stick skillet over medium heat. Add brown sugar. Stir until sugar melts and bubbles.",
+      "Place banana halves cut-side down into skillet. Cook 2-3 minutes until golden brown and caramelized. Flip bananas. Cook 1-2 minutes more.",
+      "Squeeze fresh lemon juice over bananas. Remove from heat.",
+      "Spoon a generous dollop of coffee-cacao mousse onto each dessert plate.",
+      "Place one caramelized banana half next to the mousse.",
+      "Sprinkle hazelnut praline generously over the plate, some on the mousse and some around the banana.",
+      "Garnish with a sprinkle of cacao nibs, fresh lemon zest, and a small mint sprig. Serve immediately."
+    ],
+    "notes": [
+      "Ensure the mousse is well chilled for optimal texture and ease of plating.",
+      "Praline can be pulsed to a finer or coarser crumb depending on desired texture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 47.2,
+      "calories": 899.4,
+      "cholesterol_mg": 227.1,
+      "dietary_fiber_g": 9.9,
+      "protein_g": 12.5,
+      "saturated_fat_g": 29.8,
+      "sodium_mg": 41.1,
+      "total_carbs_g": 79.7,
+      "total_fat_g": 63.7,
+      "total_sugars_g": 60.4,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19,
+      "calories": 361.9,
+      "cholesterol_mg": 91.4,
+      "dietary_fiber_g": 4,
+      "protein_g": 5,
+      "saturated_fat_g": 12,
+      "sodium_mg": 16.5,
+      "total_carbs_g": 32.1,
+      "total_fat_g": 25.6,
+      "total_sugars_g": 24.3,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 35,
+      "protein": 25,
+      "saturated_fat": 149,
+      "sodium": 2,
+      "total_carbs": 29,
+      "total_fat": 82
+    },
+    "serving_size_g": 248.5,
+    "total_recipe_weight_g": 994
+  }
+]

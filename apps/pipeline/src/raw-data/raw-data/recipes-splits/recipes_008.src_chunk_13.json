@@ -1,0 +1,676 @@
+[
+  {
+    "recipe_name": "Spicy Brown Rice Bowl with Pickled Red Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_brown_rice_bowl_with_pickled_red_onions_20250811_000059_f48027a8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T00:01:01.164395000Z",
+    "selected_ingredients": [
+      {
+        "name": "hot sauce"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "oil"
+      },
+      {
+        "name": "brown rice"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "The dish is presented in a handcrafted ceramic bowl, cream or natural beige in color, set on a light reclaimed wood table. A single portion of fluffy, earthy brown rice forms the base. Scattered over the rice are naturally arranged roasted seasonal vegetables, including vibrant green broccoli florets, rustic orange carrot chunks, and strips of red bell pepper, each retaining their distinct color and slightly caramelized texture. The vegetables are tender-crisp. Bright pink pickled red onion slivers are artfully distributed over the top, providing a sharp visual contrast and tangy accent. A few fresh green herb leaves, such as parsley or cilantro, are sparsely placed for a touch of freshness. The overall presentation is clean, minimalist, and unfussy, highlighting the natural beauty and textures of each ingredient with ample negative space around the central food. The scene is lit by soft, natural light from the side. A simple, undyed linen napkin in a natural beige tone is folded beside the bowl. The background is clean and slightly blurred, with subtle, out-of-focus green plant elements hinting at nature and sustainability.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Hot Sauce",
+    "ingredients": [
+      {
+        "name": "Brown rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fermented hot sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Mixed seasonal vegetables (e.g., broccoli, carrots, bell peppers)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Nutritional yeast (optional)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh herbs (e.g., parsley, cilantro)",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare pickled red onions. Thinly slice 1 red onion. Place in a heatproof jar. In a small saucepan, combine 100ml apple cider vinegar, 15g sugar, 5g salt, and 100ml water. Bring to a boil. Pour hot liquid over red onions. Cool completely. Refrigerate for at least 30 minutes.",
+      "Cook brown rice. Rinse 300g brown rice. In a medium pot, combine rice with 750ml vegetable broth. Bring to a boil. Reduce heat to low. Cover and simmer for 40-45 minutes until liquid is absorbed and rice is tender. Fluff with a fork.",
+      "Roast seasonal vegetables. Preheat oven to 200°C. Cut 400g seasonal vegetables (e.g., broccoli florets, carrot chunks, bell pepper strips) into uniform pieces. Toss with 15ml oil and pinch of salt. Spread on a baking sheet. Roast for 20-25 minutes until tender-crisp and slightly caramelized.",
+      "Sauté aromatics. Heat remaining 15ml oil in a large pan over medium heat. Add 1 diced yellow onion and 4 minced garlic cloves. Sauté for 5-7 minutes until softened and translucent.",
+      "Combine ingredients. Add cooked brown rice and roasted vegetables to the pan with aromatics. Stir in 60ml fermented hot sauce and 15g nutritional yeast (if using). Mix well until heated through and coated.",
+      "Plate and serve. Divide rice mixture among four bowls. Top each serving with a generous portion of pickled red onions. Garnish with fresh herbs."
+    ]
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Tomato-Olive-Rosemary Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_tomato-olive-rosemary_pasta_20250810_210247_e436fb94.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T21:02:47.818382000Z",
+    "selected_ingredients": [
+      "chicken",
+      "oil",
+      "tomato",
+      "garlic",
+      "rosemary",
+      "pasta",
+      "olive"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pan-Seared Chicken with Tomato-Olive-Rosemary Pasta is presented on a clean white porcelain dinner plate, centrally placed on a simple light wooden table. A generous mound of golden tagliatelle, perfectly coated in a rich, vibrant red tomato sauce, forms the base. Scattered within the pasta are dark, glossy halved Kalamata olives and flecks of deep green rosemary. Resting atop the pasta are two thick, golden-brown pan-seared chicken breast pieces, showcasing a crisp, savory crust. A light sprinkle of bright green chopped fresh parsley adds a pop of color and freshness. The plate is clean with moderate negative space. A neatly folded cotton napkin is placed beside the plate. The scene is illuminated by natural, even light, creating a professional yet approachable bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Served with a side of crusty bread to sop up the sauce",
+      "A glass of red wine"
+    ],
+    "hero_ingredient": "Pan-Seared Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Tagliatelle or fettuccine pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs, finely chopped"
+      },
+      {
+        "name": "Kalamata olives, pitted and halved",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "Small bunch (for garnish)"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "50g (optional, for serving)"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "Pinch (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add chicken breasts. Sear 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken. Set aside. Keep warm.",
+      "In the same skillet, add remaining 15ml olive oil. Add minced garlic and chopped rosemary. Sauté 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Add halved olives and red pepper flakes (if using). Bring to a simmer. Cook 10 minutes, stirring occasionally. Sauce should thicken slightly.",
+      "While sauce simmers, cook pasta according to package directions in salted boiling water until al dente. Drain pasta.",
+      "Add drained pasta to the sauce. Toss to coat evenly.",
+      "Slice chicken breasts into thick medallions. Plate pasta generously. Top with chicken pieces. Garnish with fresh parsley and grated Parmesan (if desired)."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to 75°C internal temperature for food safety."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 890,
+      "cholesterol_mg": 173,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 79,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 1023,
+      "total_carbs_g": 82.5,
+      "total_fat_g": 24.8,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 185,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 16.5,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 213,
+      "total_carbs_g": 17.2,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 20,
+      "protein": 158,
+      "saturated_fat": 31,
+      "sodium": 44,
+      "total_carbs": 30,
+      "total_fat": 32
+    },
+    "serving_size_g": 480.36,
+    "total_recipe_weight_g": 1921.45
+  },
+  {
+    "recipe_name": "Beer-Braised Chicken with Lemon-Asparagus Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_chicken_with_lemon-asparagus_risotto_20250810_204708_5b261bbd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T20:47:09.047253000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "rice",
+      "oil",
+      "breadcrumbs",
+      "lemon",
+      "potato",
+      "asparagus",
+      "bean",
+      "beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, set on a simple light wooden table. A single, whole braised chicken thigh, its skin a deep golden-brown from searing and braising, rests prominently on the plate. Beside the chicken is a flowing, creamy mound of lemon-asparagus risotto, its pale green flecks of tender, small-cut asparagus contrasting with the creamy white rice. The risotto has a fluid consistency, not dry. Around the chicken and risotto, a neat arrangement of roasted potato halves, their skins lightly crisped and golden, and vibrant green beans, perfectly tender-crisp. The dish is garnished with bright green chopped fresh parsley and a sprinkle of golden toasted Panko breadcrumbs for texture. A lemon wedge provides a final pop of yellow. The plate is moderately spaced, allowing elements to breathe. A simple white cotton napkin and standard silver flatware are placed beside the plate, enhancing the casual bistro setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Bistro",
+    "cultural_origin": "European Bistro",
+    "hero_ingredient": "Beer-Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Yellow onion, medium",
+        "quantity": "2"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Small waxy potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "200g"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "150g"
+      },
+      {
+        "name": "Light lager beer",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 30ml olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear chicken, skin-side down, until golden brown and crispy, about 6-8 minutes. Flip and sear other side for 2 minutes. Remove chicken from pot.",
+      "Add one diced onion and 2 minced garlic cloves to the pot. Sauté until softened, about 3-4 minutes. Deglaze with beer, scraping up any browned bits. Bring to a simmer.",
+      "Return chicken to the pot, skin-side up. Pour in 250ml hot chicken stock. Cover and transfer to a preheated oven at 180°C (350°F). Braise for 45-50 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is very tender.",
+      "While chicken braises, preheat oven to 200°C (400°F). Halve or quarter small potatoes. Toss potatoes and green beans with 15ml olive oil, salt, and pepper on a baking tray. Roast for 25-30 minutes until tender and lightly browned. Add asparagus during the last 10 minutes of roasting.",
+      "In a separate medium pot, heat 15ml olive oil over medium heat. Add the remaining diced onion and sauté until translucent, about 5 minutes. Add 2 minced garlic cloves and cook for 1 minute more until fragrant.",
+      "Add Arborio rice to the pot. Stir for 1-2 minutes until grains are translucent at the edges. Pour in 125ml hot chicken stock and stir until absorbed. Continue adding hot stock, 125ml at a time, stirring constantly until each addition is absorbed before adding the next. This process takes about 18-20 minutes. The risotto should be creamy and al dente.",
+      "When risotto is nearly done, stir in the roasted asparagus (reserving a few tips for garnish). Remove from heat. Stir in 50g butter, 50g grated Parmesan (if using), and zest of half a lemon. Season with salt and pepper. The risotto should be fluid and creamy.",
+      "In a small dry pan, toast Panko breadcrumbs over medium heat until golden and crispy. Set aside.",
+      "Spoon a generous portion of creamy risotto onto each plate. Place one braised chicken thigh beside the risotto. Arrange roasted potatoes and green beans around the chicken. Garnish with fresh chopped parsley, lemon zest, and a sprinkle of toasted Panko breadcrumbs."
+    ],
+    "notes": [
+      "For best results, use bone-in, skin-on chicken thighs for maximum flavour and moisture during braising.",
+      "Ensure the chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "The risotto should be stirred constantly and cooked until it has a creamy, flowing consistency, not dry or stiff.",
+      "Adjust seasoning to taste throughout the cooking process."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1097.8,
+      "cholesterol_mg": 215.4,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 56.8,
+      "saturated_fat_g": 18.5,
+      "sodium_mg": 1162.8,
+      "total_carbs_g": 103.5,
+      "total_fat_g": 57.5,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115.4,
+      "cholesterol_mg": 22.6,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 122.2,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 6,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71.8,
+      "dietary_fiber": 27.3,
+      "protein": 113.5,
+      "saturated_fat": 92.5,
+      "sodium": 50.6,
+      "total_carbs": 37.6,
+      "total_fat": 73.7
+    },
+    "serving_size_g": 951.25,
+    "total_recipe_weight_g": 3805
+  },
+  {
+    "recipe_name": "Creamy Chicken, Rice, and Macaroni Bake with Roasted Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken%2C_rice%2C_and_macaroni_bake_with_roasted_potatoes_20250810_204207_c0632d9d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T20:42:08.169531000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "tomato",
+      "garlic",
+      "macaroni",
+      "mushroom",
+      "cheese",
+      "potato",
+      "rice",
+      "mayonnaise"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Creamy Chicken, Rice, and Macaroni Bake is presented on a clean white porcelain dinner plate, centrally positioned on a simple wooden table. The bake features a golden-brown, bubbly cheese crust on top, indicating its creamy interior. Visible elements within the bake include tender, thick chunks of seared chicken, sliced brown mushrooms, and a harmonious mix of macaroni and rice, all bound by a rich, savory sauce. Alongside the bake, several golden-brown roasted potato wedges are arranged artfully. A sprinkle of vibrant chopped fresh parsley adds a pop of green. The setting is a modern bistro, with a clean cotton napkin placed beside the plate. Natural, even lighting illuminates the dish, highlighting its comforting textures and inviting colors against a subtly blurred background, focusing entirely on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Macaroni pasta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "White rice",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Brown mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Wash and cut potatoes into 2 cm thick wedges. Toss with 15 ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 30-35 minutes, or until golden and tender, flipping halfway.",
+      "Cook macaroni according to package directions until al dente. Drain and set aside.",
+      "Cook rice according to package directions. Set aside.",
+      "Cut chicken breasts into 2-3 cm thick chunks. Season with salt and pepper.",
+      "Heat 15 ml olive oil in a large oven-safe pan or Dutch oven over medium-high heat. Sear chicken chunks until golden brown on all sides. Remove chicken from pan and set aside.",
+      "Reduce heat to medium. Add butter to the pan. Add diced onion and cook until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook for 5-7 minutes until mushrooms are tender and browned.",
+      "Stir in flour and cook for 1 minute, stirring constantly.",
+      "Gradually whisk in milk and chicken stock. Cook, stirring, until sauce thickens.",
+      "Stir in diced tomatoes, mayonnaise, and 100 g shredded cheddar cheese. Cook until cheese is melted and sauce is smooth.",
+      "Return chicken chunks to the pan. Add cooked macaroni and cooked rice. Stir to combine all ingredients evenly in the sauce.",
+      "Transfer the mixture to a 20x30 cm baking dish if not using an oven-safe pan. Top with remaining 50 g shredded cheddar cheese.",
+      "Bake for 20-25 minutes, or until the top is golden brown and bubbly. Ensure chicken internal temperature reaches 75°C (167°F).",
+      "Remove from oven. Let stand 5 minutes before serving. Garnish with chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 1124,
+      "cholesterol_mg": 197,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 72.8,
+      "saturated_fat_g": 17.5,
+      "sodium_mg": 1102.5,
+      "total_carbs_g": 103.6,
+      "total_fat_g": 46.8,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 163.1,
+      "cholesterol_mg": 28.6,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 10.6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 160,
+      "total_carbs_g": 15,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 22,
+      "protein": 146,
+      "saturated_fat": 87,
+      "sodium": 48,
+      "total_carbs": 38,
+      "total_fat": 60
+    },
+    "serving_size_g": 689.5,
+    "total_recipe_weight_g": 2758
+  },
+  {
+    "recipe_name": "Creamy Chicken Macaroni Sopas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_macaroni_sopas_20250810_203847_228d7772.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T20:38:48.034085000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "tomato",
+      "garlic",
+      "macaroni"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Creamy Chicken Macaroni Sopas is presented in a deep, wide white porcelain soup bowl, centered on a simple wooden table. The rich, creamy, light-golden broth cradles tender, 2cm diced chicken pieces and plump elbow macaroni. Vibrant orange carrot cubes and tender shredded pale green cabbage are interspersed throughout. A sprinkle of bright green chopped spring onions garnishes the top, providing a fresh contrast. The soup has a comforting, hearty appearance with a slight sheen on its surface. Beside the bowl, a small white plate holds a fresh, bright green calamansi wedge. A simple silver spoon rests next to the bowl on a folded white cotton napkin. The setting is a modern bistro, with natural, even lighting and a subtly blurred background, emphasizing the dish's warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Filipino",
+    "cultural_origin": "Filipino",
+    "cultural_serving_suggestions": [
+      "Serve piping hot.",
+      "Offer calamansi or lime wedges for squeezing.",
+      "Provide extra fish sauce (patis) for diners to adjust seasoning.",
+      "Often served with toasted pandesal (Filipino bread rolls) for dipping."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g, diced into 2cm cubes"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Evaporated milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Cabbage",
+        "quantity": "150g, shredded"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, diced into small cubes"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fish sauce (Patis)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 tablespoons, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Cook elbow macaroni according to package directions until al dente. Drain. Set aside.",
+      "Heat cooking oil in a large pot over medium heat.",
+      "Add diced onion. Sauté until translucent, about 3 minutes.",
+      "Add minced garlic. Sauté until fragrant, about 1 minute.",
+      "Add diced chicken. Cook until lightly browned on all sides and no longer pink, about 5-7 minutes. Ensure chicken reaches an internal temperature of 75°C.",
+      "Add diced tomato. Cook for 2 minutes, stirring occasionally.",
+      "Pour in chicken broth. Bring to a simmer.",
+      "Stir in fish sauce and black pepper. Season with salt to taste.",
+      "Add cooked macaroni, diced carrots, and shredded cabbage to the pot. Simmer for 5-7 minutes, until vegetables are tender-crisp.",
+      "Stir in evaporated milk. Heat through for 1-2 minutes. Do not boil after adding milk.",
+      "Ladle hot soup into individual serving bowls.",
+      "Garnish with chopped green onions. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for safety."
+    ],
+    "traditional_techniques": [
+      "Gisa (sautéing aromatics)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 587,
+      "cholesterol_mg": 121,
+      "dietary_fiber_g": 4,
+      "protein_g": 53.5,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 1863,
+      "total_carbs_g": 52.6,
+      "total_fat_g": 17.4,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 97,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.8,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 306,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 14,
+      "protein": 107,
+      "saturated_fat": 25,
+      "sodium": 81,
+      "total_carbs": 19,
+      "total_fat": 22
+    },
+    "serving_size_g": 608.4,
+    "total_recipe_weight_g": 2433.5
+  }
+]

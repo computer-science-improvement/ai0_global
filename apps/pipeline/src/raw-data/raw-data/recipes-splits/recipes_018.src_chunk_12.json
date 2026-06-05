@@ -1,0 +1,761 @@
+[
+  {
+    "recipe_name": "Mediterranean Roasted Chicken with Herbed Rice, Roasted Carrots, and Olive-Tomato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_roasted_chicken_with_herbed_rice%2C_roasted_carrots%2C_and_olive-tomato_salad_20250625_161449_73861454.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:14:50.223711000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "potato",
+      "corn",
+      "tomato",
+      "basil",
+      "oregano",
+      "bread",
+      "pasta",
+      "carrot",
+      "cheese",
+      "olive"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single roasted chicken thigh, golden-brown and tender, is presented atop a generous bed of fluffy herbed rice on a clean white porcelain dinner plate. Alongside, several vibrant orange roasted carrot chunks, slightly caramelized, are neatly arranged. A fresh, colorful salad of halved bright red cherry tomatoes, plump yellow corn kernels, and dark purple Kalamata olive halves provides a burst of color and texture. Freshly chopped green basil and oregano leaves are scattered throughout the salad and lightly over the chicken and rice, adding aromatic freshness. A delicate drizzle of extra virgin olive oil glistens over the entire dish. The plate sits on a simple wooden table, with a neatly folded cotton napkin placed beside it. The scene is illuminated by soft, natural, even lighting, creating a relaxed, modern bistro atmosphere. A small basket of crusty bread is subtly visible in the background, suggesting a complete meal. The overall presentation is professional yet inviting, with appropriate negative space highlighting the quality ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in olive oil or juices.",
+      "Enjoy with a light dry white wine.",
+      "A simple green salad can accompany the main dish."
+    ],
+    "hero_ingredient": "Roasted Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Basmati rice or long-grain rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Carrots, medium",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Corn kernels, fresh or frozen",
+        "quantity": "150g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "80g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh oregano leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil, extra virgin",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "5g"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "1 loaf (for serving)"
+      },
+      {
+        "name": "Feta cheese, crumbled (optional)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Onion, small",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Prepare chicken: Pat chicken thighs dry. Season with 5g salt and 3g black pepper. Set aside.",
+      "Prepare carrots: Wash and peel carrots. Cut into 3cm chunks. In a bowl, toss carrot chunks with 15ml olive oil, 1 crushed garlic clove, 2g salt, and 1g black pepper.",
+      "Roast chicken and carrots: Arrange seasoned chicken thighs and carrot chunks in a single layer on a large baking tray. Roast for 30 minutes.",
+      "Check chicken temperature: Ensure internal temperature reaches 75°C.",
+      "Prepare herbed rice: While chicken roasts, finely dice the small onion. In a medium saucepan, heat 15ml olive oil over medium heat. Add diced onion and remaining 2 crushed garlic cloves. Sauté until softened, about 3 minutes. Add rice and stir for 1 minute until lightly toasted. Pour in chicken broth. Bring to a boil, then reduce heat to low. Cover and simmer for 15-18 minutes, until liquid is absorbed and rice is tender. Fluff with a fork.",
+      "Prepare olive-tomato salad: While chicken, carrots, and rice cook, halve cherry tomatoes. Halve pitted Kalamata olives. Roughly chop fresh basil and oregano. In a medium bowl, combine halved tomatoes, halved olives, corn kernels, chopped basil, and chopped oregano.",
+      "Dress salad: Zest half the lemon into the salad. Squeeze juice from the whole lemon into the salad. Add 50ml olive oil, 2g salt, and 1g black pepper. Toss gently to combine.",
+      "Plate: Create a bed of herbed rice on each plate. Place one roasted chicken thigh on top of the rice. Arrange roasted carrot chunks alongside the chicken and rice. Spoon a generous portion of the olive-tomato salad next to the chicken and carrots.",
+      "Serve: Offer crusty bread on the side. Optionally, sprinkle crumbled feta cheese over the salad."
+    ],
+    "notes": [
+      "Adjust seasoning to taste.",
+      "For crispier carrots, turn them halfway through roasting.",
+      "Ensure chicken is cooked through before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 829.1,
+      "cholesterol_mg": 137.1,
+      "dietary_fiber_g": 8.4,
+      "protein_g": 47.4,
+      "saturated_fat_g": 8,
+      "sodium_mg": 1470.3,
+      "total_carbs_g": 76,
+      "total_fat_g": 36,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125,
+      "cholesterol_mg": 20.7,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.2,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 221.6,
+      "total_carbs_g": 11.5,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45.7,
+      "dietary_fiber": 30,
+      "protein": 94.9,
+      "saturated_fat": 40.2,
+      "sodium": 63.9,
+      "total_carbs": 27.6,
+      "total_fat": 46.1
+    },
+    "serving_size_g": 663.4,
+    "total_recipe_weight_g": 2653.6
+  },
+  {
+    "recipe_name": "Cotoletta di Pollo alla Milanese con Patate e Carote Arrosto e Mostarda di Fragole",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cotoletta_di_pollo_alla_milanese_con_patate_e_carote_arrosto_e_mostarda_di_fragole_20250625_161252_c88518c6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:12:52.421738000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread",
+      "onion",
+      "potato",
+      "garlic",
+      "sugar",
+      "lemon",
+      "strawberry",
+      "milk",
+      "oil",
+      "butter",
+      "carrot",
+      "egg",
+      "cabbage",
+      "ketchup",
+      "flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian cuisine",
+    "visual_description": "A golden-brown Cotoletta di Pollo alla Milanese is the centerpiece on a clean white porcelain dinner plate. The chicken cutlet, pounded thin and perfectly crispy, rests prominently. Beside it, a generous portion of roasted 2cm potato cubes and carrot chunks, tender with slightly caramelized edges, are neatly arranged. A small, vibrant dollop of ruby-red strawberry mostarda is placed near the chicken, offering a contrasting color. Fresh lemon wedges and a sprinkle of chopped fresh parsley adorn the plate. The composition is balanced and inviting, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface. Standard European flatware is placed beside the plate, with a folded cotton napkin. Natural, even lighting illuminates the dish, highlighting its textures and rich colors, against a soft, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with additional lemon wedges for squeezing over the chicken.",
+      "Offer a simple green salad dressed with olive oil and white wine vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast fillets",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Stale bread",
+        "quantity": "150g (for breadcrumbs)"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, finely chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (zest)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Medium potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Medium carrots",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh strawberries",
+        "quantity": "150g"
+      },
+      {
+        "name": "Small red onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry mustard powder",
+        "quantity": "2.5g (1/2 tsp)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Cut potatoes and carrots into 2cm cubes/chunks. Place on a baking tray. Add crushed garlic, rosemary, 30ml olive oil, salt, and pepper. Toss to coat. Roast for 30-35 minutes, until tender and lightly browned. Turn once.",
+      "Prepare strawberry mostarda. Hull and quarter strawberries. Finely dice red onion. Combine strawberries, onion, sugar, white wine vinegar, water, and a pinch of salt in a small saucepan. Bring to a simmer over medium heat. Cook for 15-20 minutes, stirring occasionally, until thickened. Stir in dry mustard powder. Set aside.",
+      "Prepare chicken cutlets. Place each chicken breast between two sheets of parchment paper. Pound evenly to about 1cm thickness. Season both sides with salt and pepper.",
+      "Set up breading station. Place flour in a shallow dish. Whisk eggs in a second shallow dish. In a third dish, combine breadcrumbs, grated Parmesan, finely chopped parsley, and lemon zest.",
+      "Dredge each chicken cutlet in flour, shaking off excess. Dip in beaten egg, ensuring full coverage. Transfer to breadcrumb mixture. Press firmly to adhere breadcrumbs evenly on both sides.",
+      "Heat 100ml olive oil and butter in a large skillet over medium-high heat. Once butter is melted and oil shimmers, carefully add chicken cutlets. Do not overcrowd the pan; cook in batches if necessary.",
+      "Fry chicken for 4-5 minutes per side, until golden brown and cooked through. Internal temperature should reach 75°C (167°F). Transfer cooked cutlets to a wire rack to drain excess oil.",
+      "Serve chicken cutlets immediately with roasted potatoes and carrots. Garnish with fresh lemon wedges and a dollop of strawberry mostarda."
+    ],
+    "traditional_techniques": [
+      "Impanatura (breading)",
+      "Pounding cutlets",
+      "Arrosto (roasting)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 9,
+      "calories": 1059.1,
+      "cholesterol_mg": 286.7,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 73.6,
+      "saturated_fat_g": 14,
+      "sodium_mg": 1017.3,
+      "total_carbs_g": 71.3,
+      "total_fat_g": 71.7,
+      "total_sugars_g": 16.6,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.5,
+      "calories": 177,
+      "cholesterol_mg": 47.9,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 12.3,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 170.2,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 12,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 95.6,
+      "dietary_fiber": 26.7,
+      "protein": 147.2,
+      "saturated_fat": 70.1,
+      "sodium": 44.2,
+      "total_carbs": 25.9,
+      "total_fat": 91.9
+    },
+    "serving_size_g": 598.25,
+    "total_recipe_weight_g": 2393
+  },
+  {
+    "recipe_name": "Rigatoni with Chicken and Sausage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rigatoni_with_chicken_and_sausage_20250625_161204_a7867bdb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:12:05.359002000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken",
+      "sausage",
+      "garlic",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Rigatoni with Chicken and Sausage is presented on a clean, round white porcelain dinner plate, centrally placed on a simple light wooden table. The rigatoni is coated in a rich, deep red tomato sauce, naturally piled without excessive arrangement. Diced chicken pieces, approximately 2.5 cm, are visibly browned and nestled among the pasta, alongside savory crumbled Italian sausage. The dish is vibrant with the red of the sauce, the golden-brown of the meats, and a scattering of fresh, bright green chopped parsley as garnish. A dusting of finely grated Parmesan cheese lightly covers the top. The overall presentation is professional yet approachable, with moderate negative space on the plate. Beside the plate, a neatly folded light grey cotton napkin and traditional Italian flatware (fork and spoon) are arranged. In the softly blurred background, a small white bowl holds extra grated Parmesan, and a few fresh thyme sprigs hint at the dish's aromatic profile. Natural, even lighting highlights the textures and colors, creating an inviting, casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the sauce",
+      "A simple green salad with vinaigrette"
+    ],
+    "hero_ingredient": "Rigatoni Pasta",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Mild Italian sausage",
+        "quantity": "250 g, casings removed"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g, plus more for serving"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2.5 ml (optional)"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 2.5 cm pieces. Remove sausage from casings; crumble.",
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat.",
+      "Add crumbled sausage. Cook, breaking up with a spoon, until browned. Remove sausage with a slotted spoon; set aside.",
+      "Add diced chicken to the same skillet. Cook until browned on all sides. Internal temperature should reach 75°C.",
+      "Remove chicken; set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes (if using). Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Add thyme sprigs. Bring to a simmer.",
+      "Reduce heat to low. Simmer for 15 minutes, allowing flavors to meld.",
+      "Meanwhile, cook rigatoni according to package directions until al dente. Drain, reserving 125 ml pasta water.",
+      "Remove thyme sprigs from sauce. Return cooked sausage and chicken to the skillet. Stir to combine.",
+      "Add drained rigatoni to the sauce. Toss well to coat.",
+      "Stir in grated Parmesan cheese. If sauce is too thick, add reserved pasta water, a little at a time, until desired consistency.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately, garnished with fresh chopped parsley and extra Parmesan."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for safety.",
+      "Adjust spice level with red pepper flakes."
+    ],
+    "traditional_techniques": [
+      "Soffritto preparation",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 897,
+      "cholesterol_mg": 175.4,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 47.9,
+      "saturated_fat_g": 12.1,
+      "sodium_mg": 1078.3,
+      "total_carbs_g": 85.1,
+      "total_fat_g": 38.4,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 183.6,
+      "cholesterol_mg": 35.9,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.8,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 220.7,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.5,
+      "dietary_fiber": 18.7,
+      "protein": 95.8,
+      "saturated_fat": 60.4,
+      "sodium": 46.9,
+      "total_carbs": 30.9,
+      "total_fat": 49.3
+    },
+    "serving_size_g": 488.5,
+    "total_recipe_weight_g": 1954
+  },
+  {
+    "recipe_name": "Crispy Chicken and Potato Croquettes with Tangy Slaw and Strawberry Ketchup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_chicken_and_potato_croquettes_with_tangy_slaw_and_strawberry_ketchup_20250625_161135_101dbf18.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:11:36.249169000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bread",
+      "onion",
+      "potato",
+      "garlic",
+      "sugar",
+      "lemon",
+      "strawberry",
+      "milk",
+      "oil",
+      "butter",
+      "carrot",
+      "egg",
+      "cabbage",
+      "ketchup",
+      "flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Three golden-brown, cylindrical chicken and potato croquettes are centrally plated on a pristine white ceramic dish. Each croquette boasts a perfectly crisp, textured crust. Beside them, a vibrant mound of finely julienned carrot and shredded green cabbage slaw adds a fresh, crunchy contrast. A small, rich red pool of strawberry ketchup, smooth and glossy, is artfully placed to the side for dipping. A delicate sprig of fresh parsley or a thin lemon wedge garnishes the plate, enhancing color and flavor. The arrangement is clean and balanced, allowing moderate negative space. The dish sits on a light wooden table, suggesting a casual yet refined bistro setting, illuminated by soft, natural light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "0.5 small head"
+      },
+      {
+        "name": "Fresh strawberries",
+        "quantity": "200g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Boil potatoes until tender. Drain. Mash thoroughly. Set aside.",
+      "Poach or bake chicken breast until internal temperature reaches 75°C. Shred or finely chop chicken. Set aside.",
+      "Mince garlic. Finely dice half the onion. In a pan, melt 20g butter. Sauté diced onion and minced garlic until softened. Remove from heat.",
+      "In a large bowl, combine mashed potatoes, shredded chicken, sautéed onion and garlic, milk, 30g butter, salt, and pepper. Mix well to form a cohesive mixture.",
+      "Shape mixture into 12-16 cylindrical or oval croquettes.",
+      "Prepare three shallow dishes: one with flour, one with beaten eggs, and one with breadcrumbs.",
+      "Dredge each croquette in flour, then dip in egg, then coat thoroughly in breadcrumbs. Press gently to ensure full coverage.",
+      "Heat vegetable oil in a deep pot or fryer to 175°C. Fry croquettes in batches for 4-6 minutes, or until golden brown and crispy. Ensure internal temperature is hot. Drain on paper towels.",
+      "For the strawberry ketchup: Hull and quarter strawberries. In a small saucepan, combine strawberries, sugar, ketchup, and juice of half a lemon. Simmer over medium-low heat for 10-15 minutes, stirring occasionally, until strawberries soften and sauce thickens. Mash or blend until smooth. Season with salt to taste.",
+      "For the slaw: Finely julienne carrots. Shred cabbage. In a bowl, combine carrots and cabbage. Whisk remaining lemon juice with 2 tablespoons of vegetable oil, salt, and pepper. Toss dressing with vegetables.",
+      "Serve hot croquettes with a side of fresh slaw and strawberry ketchup. Garnish with chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 15,
+      "calories": 970,
+      "cholesterol_mg": 212,
+      "dietary_fiber_g": 9.9,
+      "protein_g": 47,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 558,
+      "total_carbs_g": 100.1,
+      "total_fat_g": 41.6,
+      "total_sugars_g": 27.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.4,
+      "calories": 156,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 90,
+      "total_carbs_g": 16.1,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 35,
+      "protein": 94,
+      "saturated_fat": 53,
+      "sodium": 24,
+      "total_carbs": 36,
+      "total_fat": 53
+    },
+    "serving_size_g": 622,
+    "total_recipe_weight_g": 2488
+  },
+  {
+    "recipe_name": "Pappardelle al Ragù Bolognese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pappardelle_al_rag%C3%B9_bolognese_20250625_161125_8f4645a6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:11:26.356222000Z",
+    "selected_ingredients": [
+      "mincemeat",
+      "pasta",
+      "tomato",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Pappardelle al Ragù Bolognese is presented in a clean, white porcelain pasta bowl. A generous mound of broad, flat pappardelle noodles is loosely intertwined with a rich, thick, reddish-brown ragù. The mincemeat, finely diced carrots, celery, and onions are visibly integrated within the sauce, creating a textured, cohesive coating on the pasta. The dish is garnished with a scattering of freshly grated, pale yellow Parmigiano Reggiano and a few vibrant green, torn fresh basil leaves. The overall presentation is inviting, with a balanced composition and moderate negative space. The bowl sits on a simple wooden table, accompanied by a folded cotton napkin and classic silver flatware, under natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmigiano Reggiano on the side.",
+      "Accompany with crusty Italian bread for dipping.",
+      "Pair with a robust red wine like Sangiovese or Chianti."
+    ],
+    "hero_ingredient": "Mincemeat",
+    "ingredients": [
+      {
+        "name": "Mixed mincemeat (beef and pork)",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Pancetta, diced",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Parmigiano Reggiano, grated",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400 grams"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium heat.",
+      "Add diced pancetta. Cook until crispy. Remove pancetta, set aside. Leave rendered fat in pot.",
+      "Add finely diced onion, carrot, and celery (soffritto) to the pot. Cook until softened, about 8-10 minutes. Do not brown.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Increase heat to medium-high. Add mincemeat to the pot. Break it apart with a spoon. Brown meat thoroughly on all sides. Drain excess fat if necessary.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Simmer until wine has almost completely evaporated.",
+      "Add milk. Simmer until milk has almost completely evaporated and absorbed by the meat.",
+      "Stir in crushed tomatoes and tomato paste. Add beef stock. Bring to a gentle simmer.",
+      "Reduce heat to low. Cover partially. Simmer for at least 2-3 hours, stirring occasionally. The longer it simmers, the richer the flavor. Add a little hot water or stock if sauce becomes too thick.",
+      "Season the ragù with salt and black pepper to taste.",
+      "Just before serving, cook pappardelle pasta in a large pot of salted boiling water according to package instructions until al dente.",
+      "Drain pasta. Add pasta directly to the ragù in the pot. Toss to coat thoroughly.",
+      "Serve immediately. Garnish each portion with fresh basil leaves and grated Parmigiano Reggiano."
+    ],
+    "notes": [
+      "Authentic Bolognese requires a long, slow simmer for the best flavor development.",
+      "Do not rush the evaporation steps for the wine and milk, as they contribute significantly to the ragù's depth.",
+      "The ragù should be thick enough to cling to the pasta, not watery."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow simmering (Stufato)"
+    ]
+  }
+]

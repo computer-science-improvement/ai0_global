@@ -1,0 +1,682 @@
+[
+  {
+    "recipe_name": "Chocolate Mochi with Cherry Compote and Macadamia Crunch",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chocolate_mochi_with_cherry_compote_and_macadamia_crunch_20250811_214822_737008b3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T21:48:22.966747000Z",
+    "selected_ingredients": [
+      "chocolate",
+      "glutinous rice flour",
+      "macadamia nut",
+      "kewra",
+      "cherry"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dessert is presented on a clean, round white porcelain plate, centrally composed. Three glossy, dark chocolate mochi spheres, each approximately 4 cm in diameter, are artfully arranged in a gentle curve or cluster. Their surfaces are smooth and have a soft sheen, hinting at their chewy texture. Beside the mochi, a vibrant crimson pool of cherry compote glistens, its rich color contrasting with the deep brown of the mochi. The compote has a slightly viscous texture, with some whole or halved cherry pieces visible. Scattered around the mochi and compote are irregular, golden-brown shards of macadamia crunch, providing a textural contrast. A few fresh, small mint leaves are strategically placed to add a pop of bright green. The overall presentation is clean and professional, with thoughtful negative space. The dish is illuminated by natural, even lighting, creating soft shadows. The background features a simple wooden table surface and a clean cotton napkin, suggesting a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "fresh or frozen cherries, pitted",
+        "quantity": "200 g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "water",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "lemon juice",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "kewra water",
+        "quantity": "2 ml"
+      },
+      {
+        "name": "raw macadamia nuts",
+        "quantity": "50 g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "5 g"
+      },
+      {
+        "name": "sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "glutinous rice flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "cocoa powder, unsweetened",
+        "quantity": "20 g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "water",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "kewra water",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": "20 g"
+      },
+      {
+        "name": "dark chocolate (70% cocoa), finely chopped",
+        "quantity": "80 g"
+      },
+      {
+        "name": "heavy cream",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Cherry Compote: Combine cherries, sugar, and water in a small saucepan. Bring to a simmer over medium heat. Cook for 8-10 minutes, stirring occasionally, until cherries soften and sauce thickens slightly. Stir in lemon juice and kewra water. Set aside to cool.",
+      "Make Macadamia Crunch: Preheat oven to 160°C. Spread macadamia nuts on a baking sheet. Toast for 8-10 minutes until lightly golden and fragrant. Let cool. Chop nuts coarsely. Melt sugar and butter in a small skillet over medium-low heat until caramelized. Stir in chopped macadamia nuts and salt. Spread mixture onto parchment paper. Let cool completely. Break into small, irregular pieces.",
+      "Prepare Chocolate Mochi Dough: In a heatproof bowl, whisk together glutinous rice flour, cocoa powder, and sugar. Gradually whisk in water and kewra water until smooth.",
+      "Steam Mochi: Cover the bowl tightly with plastic wrap or a plate. Steam over high heat for 15-20 minutes, or until dough is translucent and firm. Stir the dough every 5-7 minutes during steaming for even cooking.",
+      "Cool and Shape Mochi: Remove from steamer. Let cool slightly. Dust a clean surface generously with cornstarch. Transfer warm mochi dough onto the surface. Knead gently for 1-2 minutes until smooth. Divide dough into 12 equal portions. Roll each portion into a small ball. Flatten each ball into a disc.",
+      "Make Chocolate Ganache: Heat heavy cream in a small saucepan until simmering. Remove from heat. Add chopped dark chocolate and butter. Let sit for 2 minutes, then whisk until smooth and glossy.",
+      "Assemble Mochi: Place a small spoonful of chocolate ganache in the center of each mochi disc. Carefully gather the edges of the mochi dough to enclose the ganache, pinching seams to seal. Roll gently between palms to form a smooth ball.",
+      "Plate and Serve: Arrange 3 chocolate mochi balls per serving plate. Spoon a generous amount of cherry compote alongside. Scatter macadamia crunch around the mochi and compote. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Steaming"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 27.7,
+      "calories": 549,
+      "cholesterol_mg": 32.96,
+      "dietary_fiber_g": 6.85,
+      "protein_g": 7.1,
+      "saturated_fat_g": 13.39,
+      "sodium_mg": 15.54,
+      "total_carbs_g": 68.34,
+      "total_fat_g": 29.21,
+      "total_sugars_g": 36.32,
+      "trans_fat_g": 0.41
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.34,
+      "calories": 224.77,
+      "cholesterol_mg": 13.49,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 2.91,
+      "saturated_fat_g": 5.48,
+      "sodium_mg": 6.36,
+      "total_carbs_g": 27.98,
+      "total_fat_g": 11.96,
+      "total_sugars_g": 14.87,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10.99,
+      "dietary_fiber": 24.46,
+      "protein": 14.2,
+      "saturated_fat": 66.95,
+      "sodium": 0.68,
+      "total_carbs": 24.85,
+      "total_fat": 37.45
+    },
+    "serving_size_g": 244.25,
+    "total_recipe_weight_g": 977
+  },
+  {
+    "recipe_name": "Mini Peach and Strawberry Galettes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mini_peach_and_strawberry_galettes_20250811_214745_391b91ec.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T21:47:46.163787000Z",
+    "selected_ingredients": [
+      "chocolate",
+      "butter",
+      "peach",
+      "strawberry",
+      "icing sugar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Eight individual mini galettes are neatly arranged on a clean, rectangular white porcelain platter. Each galette features a golden-brown, rustic butter pastry crust, imperfectly folded to enclose a vibrant fruit filling. Thinly sliced peaches, showing slight caramelization at their edges, are layered with bright red, quartered strawberries. The fruit is tender and glistening. A delicate, artistic zig-zag of smooth, pure white chocolate drizzle cascades over the warm fruit and pastry. A very light dusting of white icing sugar enhances the visual sweetness. The platter rests on a light wooden table surface in a modern bistro setting. Natural, even lighting highlights the galettes' warm tones, fruit vibrancy, and the elegant chocolate lines, creating an inviting and refined snack presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Peach",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter, cold, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Icing sugar (for dough)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Ice water",
+        "quantity": "60-80 ml"
+      },
+      {
+        "name": "Fresh peaches, firm, ripe, thinly sliced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh strawberries, ripe, hulled and quartered",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Icing sugar (for fruit)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter, melted (for brushing)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "White chocolate, good quality",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Unsalted butter (for drizzle)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Extra icing sugar for dusting",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "Prepare Dough: Combine flour, 15g icing sugar, salt in a bowl. Cut in cold diced butter until mixture resembles coarse crumbs. Gradually add ice water, 15ml at a time, mixing until dough forms. Do not overmix. Form into a disc. Wrap and chill 30 minutes.",
+      "Prepare Fruit: Gently toss thinly sliced peaches and quartered strawberries with 30g icing sugar. Set aside.",
+      "Roll and Assemble: Preheat oven to 190°C. Line a baking tray with parchment paper. On a lightly floured surface, roll dough to 3mm thickness. Cut 8 circles, 12-15 cm diameter.",
+      "Fill Galettes: Arrange fruit in center of each dough circle. Leave a 2 cm border. Fold dough border over fruit, pleating to form rustic edge.",
+      "Bake: Transfer galettes to baking tray. Brush folded crusts with melted butter. Bake 25-30 minutes. Crusts should be golden. Fruit should be tender and bubbling.",
+      "Make Drizzle: Melt white chocolate and 5g butter in a small heatproof bowl over simmering water. Stir until smooth.",
+      "Finish: Drizzle melted white chocolate over warm galettes. Dust lightly with extra icing sugar if desired. Serve warm or at room temperature."
+    ],
+    "notes": [
+      "Ensure butter is very cold for flaky dough.",
+      "Do not overwork the dough.",
+      "Adjust sweetness of fruit based on ripeness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 17.5,
+      "calories": 568,
+      "cholesterol_mg": 65.8,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 7.4,
+      "saturated_fat_g": 17.9,
+      "sodium_mg": 16.2,
+      "total_carbs_g": 71.5,
+      "total_fat_g": 29.4,
+      "total_sugars_g": 30.7,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 6.6,
+      "calories": 213,
+      "cholesterol_mg": 24.7,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 2.8,
+      "saturated_fat_g": 6.7,
+      "sodium_mg": 6.1,
+      "total_carbs_g": 26.8,
+      "total_fat_g": 11,
+      "total_sugars_g": 11.5,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 22,
+      "dietary_fiber": 15,
+      "protein": 15,
+      "saturated_fat": 90,
+      "sodium": 1,
+      "total_carbs": 26,
+      "total_fat": 38
+    },
+    "serving_size_g": 266.3,
+    "total_recipe_weight_g": 1065
+  },
+  {
+    "recipe_name": "Smoky Beef and Pork Chili",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoky_beef_and_pork_chili_20250811_201908_f42a98c4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T20:19:09.060218000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "pork",
+      "chili",
+      "onion",
+      "bean",
+      "bell pepper",
+      "hot sauce",
+      "garlic",
+      "chipotle chile"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Smoky Beef and Pork Chili fills a clean, deep white ceramic bowl. The chili presents a rich, dark reddish-brown hue, thick and hearty, with visible chunks of tender beef and pork, diced red bell pepper, and kidney beans. A dollop of creamy white sour cream or Mexican crema rests slightly off-center on top, contrasting beautifully. A sprinkle of bright green, freshly chopped cilantro garnishes the chili. The bowl sits on a simple wooden table surface, accompanied by a small side plate holding a piece of golden cornbread. Natural, even lighting illuminates the scene, highlighting the textures and vibrant colors. The background is minimally blurred, suggesting a modern bistro setting, with a cotton napkin placed beside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Tex-Mex",
+    "cultural_origin": "Tex-Mex",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas or cornbread.",
+      "Offer additional toppings like shredded cheddar cheese, diced red onion, or sliced jalapeños."
+    ],
+    "hero_ingredient": "Chipotle Chile",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "500 g, coarse ground or small diced"
+      },
+      {
+        "name": "Pork shoulder",
+        "quantity": "250 g, coarse ground or small diced"
+      },
+      {
+        "name": "Dried chipotle chiles",
+        "quantity": "3-4, rehydrated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Canned kidney beans",
+        "quantity": "400 g, drained and rinsed"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "5 ml, or to taste"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "Small bunch, chopped for garnish"
+      },
+      {
+        "name": "Sour cream or Mexican crema",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Rehydrate dried chipotle chiles in hot water for 20 minutes. Remove stems and seeds. Blend rehydrated chiles with a small amount of their soaking liquid until a smooth paste forms.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Add beef and pork. Brown thoroughly, breaking up meat with a spoon. Drain excess fat.",
+      "Add diced onion and diced red bell pepper to the pot. Cook until softened, about 5-7 minutes.",
+      "Stir in minced garlic, ground cumin, chili powder, smoked paprika, and dried oregano. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes, chipotle paste, kidney beans, and beef stock. Stir well.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for at least 1.5-2 hours, stirring occasionally, until meat is very tender and flavors have melded.",
+      "Stir in hot sauce. Season with salt and black pepper to taste.",
+      "Serve hot in bowls. Garnish each serving with a dollop of sour cream or crema and a sprinkle of fresh chopped cilantro."
+    ],
+    "notes": [
+      "For deeper flavor, prepare chili one day in advance and reheat. Flavors intensify overnight.",
+      "Adjust chipotle quantity based on desired smokiness and heat level."
+    ],
+    "traditional_techniques": [
+      "Layering flavors",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 874,
+      "cholesterol_mg": 173,
+      "dietary_fiber_g": 15.7,
+      "protein_g": 56.1,
+      "saturated_fat_g": 16.6,
+      "sodium_mg": 1807,
+      "total_carbs_g": 54.1,
+      "total_fat_g": 47.6,
+      "total_sugars_g": 13.4,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 7.6,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 246,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 56,
+      "protein": 112,
+      "saturated_fat": 83,
+      "sodium": 79,
+      "total_carbs": 20,
+      "total_fat": 61
+    },
+    "serving_size_g": 734,
+    "total_recipe_weight_g": 2937
+  },
+  {
+    "recipe_name": "Spanish Kielbasa and Chickpea Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_kielbasa_and_chickpea_stew_20250811_200059_a49e208a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T20:00:59.818276000Z",
+    "selected_ingredients": [
+      {
+        "name": "kielbasa"
+      },
+      {
+        "name": "tomato"
+      },
+      {
+        "name": "garlic"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Spanish",
+    "visual_description": "A single, generous portion of the hearty Spanish kielbasa and chickpea stew fills a deep, everyday ceramic bowl. Thick, browned kielbasa chunks are prominently featured, interspersed with softened diced red bell pepper, onion, and plump chickpeas. All ingredients are coated in a rustic, rich reddish-orange tomato sauce, infused with smoked paprika. Green flecks of fresh chopped parsley provide a vibrant contrast. The bowl sits on a well-used wooden dining table. Beside it, a simple cloth napkin and a thick slice of rustic Spanish bread (barra de pan) are casually placed, perfect for soaking up the sauce. Warm, inviting light from a kitchen fixture illuminates the scene, creating an authentic, homely Spanish family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Spanish bread for dipping.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Kielbasa",
+    "ingredients": [
+      {
+        "name": "Kielbasa sausage",
+        "quantity": "500g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Canned chickpeas",
+        "quantity": "400g, drained and rinsed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "handful, chopped"
+      }
+    ],
+    "instructions": [
+      "Slice kielbasa into thick, 2.5 cm chunks.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add kielbasa chunks to the pot. Brown well on all sides, about 5-7 minutes. Remove kielbasa and set aside.",
+      "Reduce heat to medium. Add diced onion and red bell pepper to the pot. Sauté until softened, about 5-7 minutes.",
+      "Stir in minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and vegetable broth. Bring to a gentle simmer.",
+      "Return browned kielbasa to the pot. Add drained and rinsed chickpeas.",
+      "Season with salt and black pepper to taste.",
+      "Simmer uncovered for 20-25 minutes. Stir occasionally. The stew should thicken slightly.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure kielbasa is fully cooked and smoked for best flavor.",
+      "Adjust paprika quantity to preferred spice level (sweet or hot)."
+    ]
+  },
+  {
+    "recipe_name": "Hungarian Paprika Beef and Noodle Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hungarian_paprika_beef_and_noodle_stew_20250811_195931_96269b33.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-11T19:59:31.846524000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "tomato",
+      "noodle",
+      "mustard"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hungarian Paprika Beef and Noodle Stew is presented in a deep, round white porcelain bowl, centered on a simple wooden table surface. The stew features large, tender 3-4 cm cubes of slow-cooked beef, rich with caramelized onions and tender tomato pieces, all enveloped in a thick, deep reddish-brown paprika-infused sauce. It rests on a bed of wide, golden egg noodles that are visible beneath the stew. A clean dollop of bright white sour cream crowns the top, lightly melting into the warm stew, and is sprinkled with vibrant green fresh chopped parsley. The composition is balanced and inviting, with moderate negative space. A simple fork and spoon rest beside the bowl on a folded cotton napkin. The setting features natural, even lighting, suggesting a casual yet refined bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of pickled cucumbers or gherkins for a traditional acidic contrast.",
+      "Offer fresh crusty bread to sop up the rich sauce."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Large yellow onions",
+        "quantity": "2, sliced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Sweet Hungarian paprika",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Hot Hungarian paprika",
+        "quantity": "5 g (optional)"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "5 ml (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Vegetable oil or lard",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Wide egg noodles",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish, chopped"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 3-4 cm cubes. Season beef generously with salt and pepper.",
+      "Heat vegetable oil or lard in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef cubes in batches until browned on all sides. Do not overcrowd the pot. Remove seared beef and set aside.",
+      "Reduce heat to medium. Add sliced onions to the pot. Cook, stirring occasionally, until softened and deeply caramelized, about 10-15 minutes.",
+      "Add minced garlic, sweet paprika, and hot paprika (if using). Stir for 1 minute until fragrant. Do not burn the paprika.",
+      "Stir in tomato paste and Dijon mustard. Cook for 2 minutes, stirring constantly.",
+      "Return seared beef to the pot. Pour in beef broth. Add diced tomatoes, bay leaves, and caraway seeds (if using).",
+      "Bring the mixture to a simmer. Reduce heat to low, cover, and cook for 2 to 2.5 hours, or until beef is very tender. Stir occasionally.",
+      "While stew simmers, cook wide egg noodles according to package directions until al dente. Drain well.",
+      "Remove bay leaves from the stew. Taste and adjust seasoning with salt and pepper as needed.",
+      "Ladle generous portions of cooked noodles into individual bowls. Spoon hot beef stew over the noodles.",
+      "Garnish each serving with a dollop of sour cream and a sprinkle of fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Pörkölés (Searing meat and caramelizing onions as a base)",
+      "Paprika oil infusion (Blooming paprika in fat)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1032.58,
+      "cholesterol_mg": 222,
+      "dietary_fiber_g": 9.34,
+      "protein_g": 62.86,
+      "saturated_fat_g": 16.27,
+      "sodium_mg": 961.65,
+      "total_carbs_g": 90.75,
+      "total_fat_g": 47.93,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 1.48
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148.57,
+      "cholesterol_mg": 31.94,
+      "dietary_fiber_g": 1.34,
+      "protein_g": 9.04,
+      "saturated_fat_g": 2.34,
+      "sodium_mg": 138.37,
+      "total_carbs_g": 13.06,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 1.41,
+      "trans_fat_g": 0.21
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 33.36,
+      "protein": 125.72,
+      "saturated_fat": 81.35,
+      "sodium": 41.81,
+      "total_carbs": 32.99,
+      "total_fat": 61.45
+    },
+    "serving_size_g": 695,
+    "total_recipe_weight_g": 2780
+  }
+]

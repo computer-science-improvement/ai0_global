@@ -1,0 +1,655 @@
+[
+  {
+    "recipe_name": "Smoky Ancho Muhammara",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoky_ancho_muhammara_20250810_040058_bec99d60.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T04:00:58.866594000Z",
+    "selected_ingredients": [
+      {
+        "name": "ancho chile"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "garlic"
+      },
+      {
+        "name": "bell pepper"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Lebanese",
+    "visual_description": "A vibrant, richly colored Smoky Ancho Muhammara is elegantly presented as a single starter portion on a clean white porcelain dinner plate. The dip, a deep reddish-brown with subtle specks, is swirled gently in the center of the plate, creating soft, organic contours. It has a smooth, creamy texture with slight visual hints of its roasted ingredients. A generous drizzle of bright green extra virgin olive oil garnishes the surface, pooling slightly in the depressions. Scattered artfully over the muhammara are vibrant green chopped fresh parsley and ruby-red pomegranate seeds, providing a striking color contrast and fresh appeal. The plate features moderate negative space around the dip, highlighting its inviting presentation. The dish is set on a simple light wooden table surface. Beside the plate, a neatly folded white cotton napkin and a small stack of warm, golden-brown pita bread triangles are arranged. The setting is illuminated by soft, natural, even lighting, creating a warm, inviting atmosphere typical of a modern bistro with a touch of authentic Lebanese charm.",
+    "number_of_servings": 4,
+    "cuisine_type": "Lebanese",
+    "cultural_origin": "Lebanese",
+    "cultural_serving_suggestions": [
+      "Serve with fresh or toasted pita bread.",
+      "Offer alongside other mezze items like hummus, labneh, or tabbouleh.",
+      "Traditionally enjoyed as a dip or spread."
+    ],
+    "hero_ingredient": "Roasted Bell Pepper",
+    "ingredients": [
+      {
+        "name": "Red Bell Peppers",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Ancho Chile",
+        "quantity": "1 large, dried"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, roughly chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, unpeeled"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": "100 g, toasted"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "60 g (from stale bread)"
+      },
+      {
+        "name": "Pomegranate Molasses",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "60 ml, plus extra for garnish"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped, for garnish"
+      },
+      {
+        "name": "Pomegranate Seeds",
+        "quantity": "15 g, for garnish"
+      },
+      {
+        "name": "Pita Bread",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Place bell peppers, chopped onion, and unpeeled garlic cloves on a baking tray. Drizzle with 15 ml olive oil. Roast for 25-30 minutes, or until peppers are charred and soft.",
+      "Rehydrate dried ancho chile. Remove stem and seeds. Place in a heatproof bowl. Pour boiling water over it. Let soak for 20 minutes until soft. Drain.",
+      "Once roasted, remove bell peppers from oven. Place in a bowl and cover with plastic wrap for 10 minutes. This steams the skin for easier peeling.",
+      "Peel the roasted bell peppers. Discard skins and seeds. Peel roasted garlic.",
+      "In a food processor, combine peeled bell peppers, roasted onion, peeled garlic, rehydrated ancho chile, toasted walnuts, breadcrumbs, pomegranate molasses, lemon juice, 60 ml olive oil, cumin, salt, and black pepper.",
+      "Process until smooth or slightly chunky, as desired. Scrape down sides as needed.",
+      "Taste and adjust seasoning. Add more salt, lemon juice, or pomegranate molasses if necessary.",
+      "Transfer muhammara to a serving bowl. Drizzle with extra virgin olive oil. Garnish with chopped fresh parsley and pomegranate seeds.",
+      "Serve immediately with warm pita bread."
+    ],
+    "notes": [
+      "For best flavor, allow the muhammara to rest in the refrigerator for at least 30 minutes before serving.",
+      "Adjust the amount of ancho chile for desired spiciness. Remove more seeds for less heat."
+    ],
+    "traditional_techniques": [
+      "Roasting vegetables for depth of flavor",
+      "Balancing sweet, sour, and savory notes"
+    ]
+  },
+  {
+    "recipe_name": "Ricotta and Turkey Stuffed Acorn Squash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ricotta_and_turkey_stuffed_acorn_squash_20250810_015052_a4c23c04.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T01:50:52.796923000Z",
+    "selected_ingredients": [
+      "turkey",
+      "squash",
+      "tomato",
+      "ricotta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generously stuffed acorn squash half is centered on a simple, everyday ceramic plate, likely off-white or light blue, resting on a well-used, rustic wooden dining table. The squash, a warm, earthy yellow-orange, is roasted tender with slightly caramelized edges. Its natural ridges are prominent. The cavity is filled with a hearty, savory ground turkey and tomato mixture, showing finely diced, softened onion and flecks of green herbs. The turkey is evenly browned. Bright red diced tomatoes are visible throughout the rich, savory filling. Irregular dollops of creamy, pure white ricotta cheese are nestled on top of the turkey mixture, some slightly melted. A light sprinkle of fresh, vibrant green chopped parsley adds freshness. The plating is natural and unforced. A sturdy fork and knife are casually placed beside the plate. The lighting is warm and cozy, evoking a kitchen at dusk.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Acorn Squash",
+    "ingredients": [
+      {
+        "name": "medium acorn squash",
+        "quantity": "2"
+      },
+      {
+        "name": "ground turkey",
+        "quantity": "450g"
+      },
+      {
+        "name": "ricotta cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "medium onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "canned diced tomatoes, undrained",
+        "quantity": "400g"
+      },
+      {
+        "name": "chicken broth",
+        "quantity": "60ml"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "dried basil",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Halve each acorn squash lengthwise. Scoop out seeds and stringy bits.",
+      "Brush cut sides of squash with olive oil. Season with salt and pepper.",
+      "Place squash cut-side down on a baking sheet. Roast for 30-40 minutes, or until tender.",
+      "While squash roasts, heat remaining olive oil in a large pan over medium heat.",
+      "Add diced onion. Cook until softened, about 5-7 minutes.",
+      "Add ground turkey to the pan. Break it apart with a spoon. Cook until browned and cooked through, about 8-10 minutes.",
+      "Drain any excess fat from the turkey.",
+      "Add minced garlic, oregano, and basil to the pan. Cook for 1 minute until fragrant.",
+      "Stir in diced tomatoes and chicken broth. Bring to a simmer.",
+      "Reduce heat to low. Simmer for 10-15 minutes, allowing flavors to meld and sauce to thicken slightly.",
+      "Remove pan from heat. Stir in 100g of ricotta cheese. Season with salt and pepper.",
+      "Once squash is tender, remove from oven. Turn squash halves cut-side up.",
+      "Divide turkey mixture evenly among the four squash halves.",
+      "Dollop remaining 100g ricotta cheese over the top of each stuffed squash.",
+      "Return stuffed squash to the oven. Bake for another 10-15 minutes, or until heated through and ricotta is slightly warmed.",
+      "Garnish with fresh chopped parsley if desired. Serve warm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 409,
+      "cholesterol_mg": 93.8,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 31.9,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 345.4,
+      "total_carbs_g": 35.5,
+      "total_fat_g": 17.1,
+      "total_sugars_g": 11.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 73,
+      "cholesterol_mg": 16.7,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 5.7,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 61.4,
+      "total_carbs_g": 6.3,
+      "total_fat_g": 3,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31.3,
+      "dietary_fiber": 23,
+      "protein": 63.7,
+      "saturated_fat": 26.4,
+      "sodium": 15,
+      "total_carbs": 12.9,
+      "total_fat": 21.9
+    },
+    "serving_size_g": 562.5,
+    "total_recipe_weight_g": 2249.8
+  },
+  {
+    "recipe_name": "Bengali Tilapia Jhol (Light Fish Curry)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bengali_tilapia_jhol_%28light_fish_curry%29_20250810_014635_77adccb4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T01:46:35.742438000Z",
+    "selected_ingredients": [
+      "black cumin",
+      "tilapia",
+      "turmeric",
+      "oil",
+      "green chili"
+    ],
+    "complexity": "simple",
+    "special_requests": "Bengali cuisine",
+    "visual_description": "A single portion of Bengali Tilapia Jhol is presented in a deep, rustic ceramic bowl, reflecting a homely kitchen setting. The golden-yellow curry, fluid and light, holds two large, pan-fried tilapia chunks with their skin slightly crisp and golden-brown. Green chilies, slit lengthwise, float within the curry, adding vibrant color and a hint of spice. A scattering of black cumin seeds is visible, contributing a subtle dark contrast. The bowl sits on a well-used, light wooden dining table. Beside it, a small, white ceramic bowl filled with fluffy, steamed white rice, a traditional accompaniment. A simple, folded cloth napkin and basic, everyday cutlery are casually placed. Warm, soft kitchen lighting illuminates the scene, highlighting the natural textures and inviting colors of the dish. The background is minimal, suggesting a cozy, lived-in family kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Bengali",
+    "cultural_origin": "Bengali",
+    "cultural_serving_suggestions": [
+      "Serve hot with steamed white rice."
+    ],
+    "hero_ingredient": "Tilapia",
+    "ingredients": [
+      {
+        "name": "Tilapia fillets or steaks",
+        "quantity": "4 (approx. 150-200g each)"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Mustard oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Black cumin seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "4, slit lengthwise"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, thinly sliced"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "15g"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml"
+      }
+    ],
+    "instructions": [
+      "Clean tilapia pieces. Pat dry with paper towels.",
+      "Marinate fish with 5g turmeric powder and salt. Set aside for 15 minutes.",
+      "Heat mustard oil in a large pan or kadai over medium-high heat.",
+      "Fry marinated fish pieces until golden brown and lightly crisp on both sides. Cook in batches if necessary. Remove fish and set aside.",
+      "Reduce heat to medium. Add black cumin seeds to the remaining oil. Sauté for 10 seconds until fragrant.",
+      "Add sliced onion to the pan. Sauté until translucent, about 5-7 minutes.",
+      "Stir in ginger-garlic paste. Cook for 2 minutes until raw smell disappears.",
+      "Add remaining 10g turmeric powder and a pinch of salt. Add a tablespoon of water to prevent burning. Cook the spice paste for 2 minutes.",
+      "Pour in 500ml water. Bring the curry to a rolling boil.",
+      "Gently place the fried fish pieces back into the simmering curry.",
+      "Reduce heat to low. Cover and simmer for 8-10 minutes, or until fish is cooked through (internal temperature 75°C) and flavors meld.",
+      "Adjust salt if needed. Serve hot."
+    ],
+    "traditional_techniques": [
+      "Tempering with black cumin (Kalo Jeera Faron)",
+      "Use of mustard oil for frying and curry base"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 324.4,
+      "cholesterol_mg": 87.5,
+      "dietary_fiber_g": 1.91,
+      "protein_g": 36.23,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 587,
+      "total_carbs_g": 7.04,
+      "total_fat_g": 17.35,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 91.1,
+      "cholesterol_mg": 24.6,
+      "dietary_fiber_g": 0.54,
+      "protein_g": 10.17,
+      "saturated_fat_g": 0.79,
+      "sodium_mg": 164.8,
+      "total_carbs_g": 1.97,
+      "total_fat_g": 4.87,
+      "total_sugars_g": 0.45,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 7,
+      "protein": 72,
+      "saturated_fat": 14,
+      "sodium": 26,
+      "total_carbs": 3,
+      "total_fat": 22
+    },
+    "serving_size_g": 356.25,
+    "total_recipe_weight_g": 1425
+  },
+  {
+    "recipe_name": "Homestyle Pork & Bok Choy Stir-fry with Garlic Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_pork_%26_bok_choy_stir-fry_with_garlic_rice_20250810_014207_01f1abe2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T01:42:07.613738000Z",
+    "selected_ingredients": [
+      "pork",
+      "rice",
+      "onion",
+      "garlic",
+      "tomato",
+      "bok choy"
+    ],
+    "complexity": "simple",
+    "special_requests": "don't use the oven",
+    "visual_description": "A single generous portion of Homestyle Pork & Bok Choy Stir-fry is presented on a simple, slightly off-white ceramic plate. The stir-fry features tender, bite-sized pork chunks, vibrant green bok choy quartered lengthwise, and diced red tomatoes, all glistening with a savory, lightly thickened sauce. The ingredients are naturally arranged, slightly overlapping, showcasing their distinct colors and textures. Beside the stir-fry, a neat mound of fluffy garlic rice, infused with golden-brown minced garlic, completes the dish. The overall presentation is casual and inviting, typical of a comforting home-cooked meal. The plate sits on a well-worn wooden dining table, with a pair of simple wooden chopsticks resting beside it, under warm, natural kitchen lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve with individual rice bowls",
+      "Serve with chopsticks"
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder or loin",
+        "quantity": "500g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1 (approx. 150g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Medium tomatoes",
+        "quantity": "2 (approx. 250g)"
+      },
+      {
+        "name": "Bok choy",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10g"
+      },
+      {
+        "name": "Water or stock",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Spring onions, chopped (for garnish)",
+        "quantity": "Optional"
+      }
+    ],
+    "instructions": [
+      "Rinse rice. Cook according to package directions. Keep warm.",
+      "Cut pork into 2cm cubes.",
+      "Slice onion. Mince garlic. Dice tomatoes. Quarter bok choy lengthwise.",
+      "Heat 15ml oil in a large wok or pan over medium-high heat. Add minced garlic. Sauté 30 seconds until fragrant. Add cooked rice. Stir-fry 2-3 minutes until lightly golden. Season with a pinch of salt. Transfer garlic rice to a bowl. Keep warm.",
+      "Add remaining 15ml oil to the same wok. Increase heat to high. Add pork cubes. Stir-fry 5-7 minutes until browned on all sides and cooked through. Ensure pork reaches 70°C internal temperature. Remove pork from wok. Set aside.",
+      "Add sliced onion to the wok. Stir-fry 2 minutes until softened.",
+      "Add diced tomatoes and bok choy to the wok. Stir-fry 3-4 minutes until bok choy is tender-crisp.",
+      "Return pork to the wok.",
+      "In a small bowl, whisk together soy sauce, sugar, rice vinegar, and 120ml water or stock.",
+      "Pour sauce over ingredients in the wok. Bring to a simmer.",
+      "Mix cornstarch with 30ml water to create a slurry. Pour into simmering sauce, stirring constantly, until sauce thickens.",
+      "Serve hot stir-fry alongside garlic rice. Garnish with chopped spring onions if desired."
+    ],
+    "notes": [
+      "Pork internal temperature should reach 70°C for safety.",
+      "Adjust sweetness and saltiness of sauce to taste."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 720,
+      "cholesterol_mg": 91,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 34.1,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 1306,
+      "total_carbs_g": 76.8,
+      "total_fat_g": 30.7,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 146,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.9,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 265,
+      "total_carbs_g": 15.6,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30,
+      "dietary_fiber": 14,
+      "protein": 68,
+      "saturated_fat": 47,
+      "sodium": 57,
+      "total_carbs": 28,
+      "total_fat": 39
+    },
+    "serving_size_g": 494,
+    "total_recipe_weight_g": 1974
+  },
+  {
+    "recipe_name": "Braised Pork with Beer, Mustard, and Gruyère",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_pork_with_beer%2C_mustard%2C_and_gruy%C3%A8re_20250810_014008_9d8ed63c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T01:40:09.122605000Z",
+    "selected_ingredients": [
+      "pork",
+      "beer",
+      "mustard",
+      "cheese",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "don't use the oven",
+    "visual_description": "A single, individual serving is presented on a clean, round white porcelain dinner plate set on a simple wooden table surface. A neat mound of creamy, off-white cheesy mashed potatoes occupies the center-left. Two to three thick, fork-tender braised pork chunks, with a rich golden-brown exterior, are nestled against the potatoes. A glossy, amber-hued beer-mustard-Gruyère sauce is generously spooned over the pork and flows around the base of the potatoes, creating a vibrant pool. The dish is garnished with a scattering of bright green, finely chopped fresh parsley, adding a pop of color and freshness. The arrangement is professional and balanced, with moderate negative space. Standard silver flatware (a fork and knife) rests to the right of the plate. A folded white cotton napkin is placed beside the plate. The background suggests a modern bistro setting, subtly blurred to keep focus on the food, with natural, even lighting highlighting the textures and rich colors of the dish. A out-of-focus dark beer glass subtly hints at the beer component in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "hero_ingredient": "Braised Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "1 kg, cut into 5 cm chunks"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, thinly sliced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Dark lager beer",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Whole grain mustard",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Gruyère cheese",
+        "quantity": "100 g, grated"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Potatoes (Russet or similar)",
+        "quantity": "800 g, peeled and cubed"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat pork chunks dry. Season generously with salt and black pepper. Lightly dredge pork in flour, shaking off excess.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat. Sear pork chunks in batches until deeply browned on all sides. Do not overcrowd the pot. Remove seared pork and set aside.",
+      "Reduce heat to medium. Add sliced onions to the pot. Cook, stirring occasionally, for 10-12 minutes until softened and deeply caramelized. Add minced garlic; cook for 1 minute until fragrant.",
+      "Pour in beer, scraping up any browned bits from the bottom of the pot. Bring to a simmer and reduce by one-third.",
+      "Stir in Dijon mustard, whole grain mustard, and beef broth. Return seared pork chunks to the pot. Ensure liquid mostly covers the pork. Add more broth if needed.",
+      "Bring liquid to a gentle simmer. Cover the pot, reduce heat to low, and braise for 1.5 to 2 hours, or until pork is fork-tender. Stir occasionally.",
+      "While pork braises, prepare mashed potatoes. Place cubed potatoes in a large pot. Cover with cold salted water. Bring to a boil and cook until very tender, about 15-20 minutes.",
+      "Drain potatoes well. Return to the hot pot. Add butter and milk. Mash until smooth and creamy. Stir in 50 g of grated Gruyère cheese. Season with salt and pepper to taste. Keep warm.",
+      "Once pork is tender, remove pork chunks from the pot and set aside. Skim any excess fat from the braising liquid. Bring liquid to a simmer over medium heat. Reduce sauce slightly if too thin.",
+      "Stir in heavy cream and remaining 50 g of grated Gruyère cheese until melted and smooth. Taste and adjust seasoning as needed.",
+      "Return pork to the sauce. Gently warm through.",
+      "To serve, spoon a mound of cheesy mashed potatoes onto each plate. Arrange braised pork chunks beside or on top of the potatoes. Ladle generous amounts of the beer-mustard-Gruyère sauce over the pork and potatoes. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1266.35,
+      "cholesterol_mg": 284.38,
+      "dietary_fiber_g": 7.18,
+      "protein_g": 74.34,
+      "saturated_fat_g": 30.01,
+      "sodium_mg": 1065.24,
+      "total_carbs_g": 68.17,
+      "total_fat_g": 73.68,
+      "total_sugars_g": 8.63,
+      "trans_fat_g": 1.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 144.02,
+      "cholesterol_mg": 32.34,
+      "dietary_fiber_g": 0.82,
+      "protein_g": 8.45,
+      "saturated_fat_g": 3.41,
+      "sodium_mg": 121.15,
+      "total_carbs_g": 7.75,
+      "total_fat_g": 8.38,
+      "total_sugars_g": 0.98,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 94.79,
+      "dietary_fiber": 25.64,
+      "protein": 148.68,
+      "saturated_fat": 150.07,
+      "sodium": 46.31,
+      "total_carbs": 24.79,
+      "total_fat": 94.46
+    },
+    "serving_size_g": 879.25,
+    "total_recipe_weight_g": 3517
+  }
+]

@@ -1,0 +1,712 @@
+[
+  {
+    "recipe_name": "Creamy Chicken, Potato, and Broccoli Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken%2C_potato%2C_and_broccoli_gratin_20250624_141406_9f3d615e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:14:07.302693000Z",
+    "selected_ingredients": [
+      "potato",
+      "cheese",
+      "chicken",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous rectangular portion of Creamy Chicken, Potato, and Broccoli Gratin is presented on a clean, classic white porcelain dinner plate. The gratin boasts a rich, golden-brown, bubbly top crust from perfectly melted cheese and creamy sauce. Distinct layers are visible: tender, thinly sliced potato rounds, succulent 2 cm chicken chunks, and vibrant green blanched broccoli florets. The creamy sauce coats all ingredients, providing cohesive texture. Fresh thyme sprigs are placed as garnish, adding aromatic appeal. The dish is centered, with appropriate negative space. The setting is a modern bistro: a simple light wooden table surface, a neatly folded cotton napkin, and a polished silver fork beside the plate. Natural, even lighting illuminates the dish, highlighting textures and colors against a soft, blurred restaurant background, suggesting refined dining.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes (starchy, e.g., Russet or Maris Piper)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Nutmeg, freshly grated",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Lightly grease a 2.5-liter baking dish.",
+      "Slice potatoes into 3 mm thick rounds. Use a mandoline for even slices. Place in cold water to prevent browning.",
+      "Cut chicken breasts into 2 cm cubes. Season with salt and pepper. Heat olive oil in a large pan over medium-high heat. Sear chicken cubes until golden brown on all sides. Do not cook through. Set aside. Ensure internal temperature reaches 75°C during baking.",
+      "Blanch broccoli florets in boiling salted water for 2 minutes. Immediately transfer to an ice bath to stop cooking and preserve color. Drain well.",
+      "In a saucepan, melt butter over medium heat. Add diced onion and cook until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in flour to form a roux. Cook for 2 minutes, stirring constantly.",
+      "Gradually whisk in milk and cream until smooth and thickened. Bring to a gentle simmer. Cook for 5 minutes, stirring frequently.",
+      "Remove from heat. Stir in Gruyère and Cheddar cheese until melted and smooth. Season with salt, pepper, and nutmeg. Add fresh thyme.",
+      "Drain potato slices. Pat them dry thoroughly.",
+      "Arrange one-third of the potato slices in a single layer at the bottom of the prepared baking dish. Top with half of the seared chicken cubes and half of the blanched broccoli florets.",
+      "Pour one-third of the cheese sauce evenly over the layer.",
+      "Repeat layering: another third of potatoes, remaining chicken, remaining broccoli, and another third of the cheese sauce.",
+      "Top with the remaining potato slices. Pour the last third of the cheese sauce over the top. Gently press down to ensure all ingredients are submerged.",
+      "Bake for 45-55 minutes, or until potatoes are tender and the top is golden brown and bubbly. If the top browns too quickly, loosely cover with foil.",
+      "Remove from oven. Let rest for 10 minutes before serving. This allows the gratin to set slightly."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1125,
+      "cholesterol_mg": 304.6,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 77.8,
+      "saturated_fat_g": 35.4,
+      "sodium_mg": 514.3,
+      "total_carbs_g": 63,
+      "total_fat_g": 62.9,
+      "total_sugars_g": 12.8,
+      "trans_fat_g": 2.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 154.9,
+      "cholesterol_mg": 41.9,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 10.7,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 70.8,
+      "total_carbs_g": 8.7,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 102,
+      "dietary_fiber": 29,
+      "protein": 156,
+      "saturated_fat": 177,
+      "sodium": 22,
+      "total_carbs": 23,
+      "total_fat": 81
+    },
+    "serving_size_g": 726.5,
+    "total_recipe_weight_g": 2906
+  },
+  {
+    "recipe_name": "Baked Penne with Bell Peppers and Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_penne_with_bell_peppers_and_tomato_20250624_141347_4e622aa6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:13:48.268179000Z",
+    "selected_ingredients": [
+      "pasta",
+      {
+        "name": "tomato",
+        "comment": "not cherry"
+      },
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of baked penne pasta is served directly from the baking dish onto a simple, round, off-white ceramic plate. The pasta is coated in a rich, rustic tomato sauce, with tender, diced red, yellow, and green bell peppers visibly mixed throughout. A golden-brown, slightly bubbly crust of melted cheese (if used) tops the pasta, revealing some of the vibrant red sauce and colorful vegetables underneath. The dish exudes warmth and comfort, with natural, inviting textures. It is presented on a well-worn wooden kitchen table, bathed in soft, warm, natural light. A simple metal fork rests beside the plate. The scene is unpretentious, capturing the essence of a cozy, homely family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping in the sauce.",
+      "Pair with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Parmesan cheese (optional)",
+        "quantity": "50 g, grated"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Chop onion into small pieces. Dice bell peppers into 1 cm cubes. Mince garlic.",
+      "Heat olive oil in a large pot or deep pan over medium heat.",
+      "Add chopped onion. Cook until softened, about 5 minutes.",
+      "Add diced bell peppers. Cook for 7-8 minutes until tender-crisp.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Stir in dried oregano, salt, and black pepper. Bring to a simmer.",
+      "Reduce heat to low. Simmer sauce gently for 20 minutes, stirring occasionally.",
+      "While sauce simmers, cook penne pasta according to package directions until al dente. Drain well.",
+      "Add cooked pasta to the sauce. Stir to combine.",
+      "Tear fresh basil leaves and stir into the pasta mixture.",
+      "Transfer pasta mixture to a 2.5 litre baking dish.",
+      "If using, sprinkle grated Parmesan cheese evenly over the top.",
+      "Bake for 20-25 minutes, or until bubbly and cheese is golden brown.",
+      "Remove from oven. Let rest for a few minutes before serving."
+    ],
+    "notes": [
+      "For extra richness, add a splash of red wine to the sauce before adding tomatoes.",
+      "Any short pasta shape like rigatoni or ziti can be used instead of penne."
+    ],
+    "traditional_techniques": [
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 570,
+      "cholesterol_mg": 11.1,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 21.2,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 230.6,
+      "total_carbs_g": 93.8,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 13.6,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128,
+      "cholesterol_mg": 2.5,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 4.8,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 51.8,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 30,
+      "protein": 42,
+      "saturated_fat": 18,
+      "sodium": 10,
+      "total_carbs": 34,
+      "total_fat": 16
+    },
+    "serving_size_g": 445.5,
+    "total_recipe_weight_g": 1782
+  },
+  {
+    "recipe_name": "Hearty Turkey and Vegetable Rice Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_turkey_and_vegetable_rice_skillet_20250624_141327_6c9e6ab5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:13:27.487395000Z",
+    "selected_ingredients": [
+      "milk",
+      "egg",
+      "greek yogurt",
+      "chicken stock",
+      "mincemeat",
+      "chicken",
+      "beef",
+      "turkey",
+      "spinach",
+      "carrot",
+      "banana",
+      "apple",
+      "avocado",
+      "tomato",
+      "rice",
+      "bread",
+      "onion",
+      "cucumber",
+      "coriander",
+      "garlic",
+      "ginger",
+      "chili",
+      "lime",
+      "coconut oil",
+      "olive oil",
+      "butter",
+      "maple syrup",
+      "honey",
+      "peanut butter",
+      "coconut cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "make turkey mince the main protein. No meatballs.",
+    "visual_description": "A single generous portion of Hearty Turkey and Vegetable Rice Skillet is presented on a rustic, off-white ceramic plate with natural imperfections. The dish fills the plate, showing a comforting blend of textures and colors. Fluffy, cooked rice forms the base, intermingled with savory, browned turkey mince chunks. Diced orange carrots and vibrant green wilted spinach leaves are visibly mixed throughout, adding pops of color. Small pieces of diced red tomato are scattered, contributing to the homely appearance. The dish has a moist, cohesive texture, not dry, inviting a spoonful. A light scattering of freshly chopped green coriander leaves sits casually on top, providing a fresh garnish. The plate rests directly on a well-used, light-colored wooden dining table, showing subtle grain and natural wear. A simple, folded grey cloth napkin is casually placed beside the plate. The scene is illuminated by warm, soft natural light, creating a cozy and inviting atmosphere typical of a family kitchen. The overall presentation is simple, unpretentious, and focuses on the comforting appeal of expertly prepared home cooking.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Turkey Mince",
+    "ingredients": [
+      {
+        "name": "Turkey mince",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Spinach",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1 thumb-sized piece"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Coriander",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Chili",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet or deep pan over medium-high heat.",
+      "Add diced onion and carrot. Cook for 5-7 minutes until softened.",
+      "Add turkey mince to the skillet. Break it apart with a spoon. Cook until browned, about 8-10 minutes. Ensure no pink remains.",
+      "Drain any excess fat if necessary.",
+      "Stir in minced garlic, grated ginger, and chopped chili (if using). Cook for 1 minute until fragrant.",
+      "Add diced tomato and rice to the skillet. Stir well to combine.",
+      "Pour in chicken stock. Bring to a boil.",
+      "Reduce heat to low, cover the skillet, and simmer for 15-20 minutes. Cook until rice is tender and liquid is absorbed.",
+      "Stir in fresh spinach until wilted, about 2-3 minutes.",
+      "Season with salt and black pepper to taste.",
+      "Let rest for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 593.2,
+      "cholesterol_mg": 86.3,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 35.9,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 363.3,
+      "total_carbs_g": 74.9,
+      "total_fat_g": 15.8,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 95.9,
+      "cholesterol_mg": 13.9,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 5.8,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 58.7,
+      "total_carbs_g": 12.1,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28.8,
+      "dietary_fiber": 17.5,
+      "protein": 71.8,
+      "saturated_fat": 18.5,
+      "sodium": 15.8,
+      "total_carbs": 27.2,
+      "total_fat": 20.3
+    },
+    "serving_size_g": 618.5,
+    "total_recipe_weight_g": 2474
+  },
+  {
+    "recipe_name": "Creamy Chicken, Potato, and Broccoli Risotto with Poached Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken%2C_potato%2C_and_broccoli_risotto_with_poached_egg_20250624_141326_054004ea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:13:27.016133000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "potato",
+      "cheese",
+      "basil",
+      "broccoli",
+      "mozzarella",
+      "bread",
+      "pasta",
+      "chili",
+      "shrimp",
+      "salmon",
+      "milk",
+      "butter",
+      "egg",
+      "eggplant"
+    ],
+    "complexity": "standard",
+    "special_requests": "breakfast cuisine",
+    "visual_description": "A clean white porcelain dinner plate holds a single portion of creamy, free-flowing risotto. The risotto is light ivory, studded with vibrant green blanched broccoli florets, tender diced potatoes, fresh basil, and melted mozzarella. Beside the risotto rests a golden-brown, pan-seared chicken breast, whole and unsliced. On top, a delicate poached egg with a bright, visible yolk adds a soft texture. Fresh basil leaves and a sprinkle of red pepper flakes garnish the dish. The setting is a modern bistro, with a simple wooden table and a cotton napkin. Natural, even lighting illuminates the dish, highlighting its textures and colors against a soft, unobtrusive background, creating an inviting, casual dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Modern Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Potatoes (Yukon Gold or Russet)",
+        "quantity": "200g, peeled and diced into 1cm cubes"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "40g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Yellow onion, small diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken broth, hot",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5g (optional)"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "15ml (for poaching eggs)"
+      }
+    ],
+    "instructions": [
+      "Season chicken breasts with salt and pepper.",
+      "Heat 15ml olive oil in a large pan over medium-high heat. Sear chicken 5-7 minutes per side until golden brown and cooked to 75°C (167°F). Remove chicken. Rest 5 minutes.",
+      "In the same pan, add 15ml olive oil and 20g butter. Add diced onion and diced potatoes. Cook 5-7 minutes until potatoes are slightly tender.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Add Arborio rice. Stir 2 minutes until rice grains are translucent at edges.",
+      "Pour in white wine. Stir until absorbed.",
+      "Add hot chicken broth one ladle at a time. Stir constantly. Wait for liquid to absorb before adding next ladle. Continue for 18-20 minutes until rice is creamy and al dente, and potatoes are tender.",
+      "While risotto cooks, blanch broccoli florets in boiling salted water for 2 minutes. Drain.",
+      "Stir in remaining 40g butter, 60g Parmesan cheese, and 40g shredded mozzarella into risotto. Add blanched broccoli. Stir well. Season with salt and pepper.",
+      "Fill a separate pot with water. Add white vinegar. Bring to a gentle simmer. Crack each egg into a small bowl first. Gently slide eggs into simmering water. Poach 3-4 minutes for runny yolk. Remove with slotted spoon.",
+      "To serve, spoon risotto onto plates. Place one seared chicken breast beside risotto. Top risotto with a poached egg. Garnish with fresh basil leaves and optional red pepper flakes."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1009.3,
+      "cholesterol_mg": 391.5,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 82.74,
+      "saturated_fat_g": 16.55,
+      "sodium_mg": 877.1,
+      "total_carbs_g": 84.36,
+      "total_fat_g": 38.9,
+      "total_sugars_g": 3.85,
+      "trans_fat_g": 0.53
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120.6,
+      "cholesterol_mg": 46.77,
+      "dietary_fiber_g": 0.49,
+      "protein_g": 9.89,
+      "saturated_fat_g": 1.98,
+      "sodium_mg": 104.79,
+      "total_carbs_g": 10.08,
+      "total_fat_g": 4.65,
+      "total_sugars_g": 0.46,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 130.5,
+      "dietary_fiber": 14.6,
+      "protein": 165.5,
+      "saturated_fat": 82.7,
+      "sodium": 38.1,
+      "total_carbs": 30.7,
+      "total_fat": 49.9
+    },
+    "serving_size_g": 837,
+    "total_recipe_weight_g": 3348
+  },
+  {
+    "recipe_name": "Hearty Sausage, Potato, and Egg Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_sausage%2C_potato%2C_and_egg_skillet_20250624_141322_e6999690.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:13:23.228974000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "potato",
+      "sausage",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty Sausage, Potato, and Egg Skillet is presented in a well-seasoned cast-iron skillet, resting on a worn wooden dining table. Diced golden-brown potatoes are cooked alongside browned sausage rounds, mixed with tender, translucent diced onions and vibrant red diced tomatoes. Two perfectly cooked eggs, one with a soft yolk and the other with a firmer yolk, sit nestled within the hash, their whites set. Melted, gooey yellow cheddar cheese generously covers the top, creating a comforting, inviting texture. A sprinkle of fresh green chopped parsley adds a touch of color. The setting is a homely family kitchen with warm, cozy lighting. A simple ceramic plate and a sturdy fork are casually placed beside the skillet, emphasizing a relaxed, everyday meal. The composition is natural and unpretentious, reflecting true comfort food.",
+    "number_of_servings": 1,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Potato",
+        "quantity": "1 medium (approx. 200g)"
+      },
+      {
+        "name": "Pork sausage",
+        "quantity": "1 link (approx. 100g)"
+      },
+      {
+        "name": "Egg",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "50g"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "70g"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "5g (optional garnish)"
+      }
+    ],
+    "instructions": [
+      "Peel potato. Dice potato into 1 cm cubes.",
+      "Slice sausage into 1 cm thick rounds.",
+      "Dice onion into small pieces.",
+      "Dice tomato into small pieces.",
+      "Heat olive oil in a 20 cm skillet over medium-high heat.",
+      "Add diced potatoes to the skillet. Cook, stirring occasionally, for 8-10 minutes until tender and golden-brown.",
+      "Push potatoes to one side of the skillet. Add sausage rounds to the empty side. Cook for 3-4 minutes until browned on both sides. Break up sausage if desired.",
+      "Add diced onion to the skillet. Cook with potatoes and sausage for 3 minutes until softened.",
+      "Add diced tomato. Stir to combine all ingredients. Cook for 2 minutes.",
+      "Create two small wells in the mixture. Crack one egg into each well.",
+      "Season eggs and mixture with salt and pepper.",
+      "Reduce heat to low. Cover skillet and cook for 3-5 minutes, or until egg whites are set and yolks are to your liking.",
+      "Sprinkle grated cheese over the entire skillet. Cover again for 1 minute until cheese is melted and bubbly.",
+      "Remove from heat. Garnish with fresh parsley if desired. Serve directly from the skillet or transfer to a warm plate."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 885,
+      "cholesterol_mg": 475,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 40.7,
+      "saturated_fat_g": 20.5,
+      "sodium_mg": 1028,
+      "total_carbs_g": 44.9,
+      "total_fat_g": 61.1,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156.9,
+      "cholesterol_mg": 84.2,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.2,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 182.4,
+      "total_carbs_g": 8,
+      "total_fat_g": 10.8,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 158,
+      "dietary_fiber": 22,
+      "protein": 81,
+      "saturated_fat": 103,
+      "sodium": 45,
+      "total_carbs": 16,
+      "total_fat": 78
+    },
+    "serving_size_g": 563.8,
+    "total_recipe_weight_g": 563.8
+  }
+]

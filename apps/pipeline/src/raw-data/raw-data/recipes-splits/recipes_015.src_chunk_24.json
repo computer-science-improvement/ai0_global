@@ -1,0 +1,661 @@
+[
+  {
+    "recipe_name": "Baked Egg and Spinach Bread Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_egg_and_spinach_bread_bowl_20250628_061922_15dff67d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:19:22.861945000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "spinach",
+      "olive oil",
+      "bread"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single baked egg and spinach bread bowl rests on a simple, well-used wooden dining table. The small, rustic bread boule is golden-brown with a crisp crust, hollowed to form a natural vessel. Inside, a single baked egg shows a set white and a slightly soft, vibrant yellow yolk, peeking through bubbling, melted cheese. Dark green wilted spinach is visible beneath. The dish is presented on an off-white, everyday ceramic plate with natural imperfections. A simple fork and knife are placed casually beside it. A folded cloth napkin rests nearby. Warm, inviting kitchen lighting casts soft shadows, enhancing the comforting appearance. The scene is uncluttered, focusing on the hearty, individual portion, conveying honest, appealing comfort food.",
+    "number_of_servings": 1,
+    "cuisine_type": "Home Comfort",
+    "hero_ingredient": "Egg",
+    "ingredients": [
+      {
+        "name": "Small round bread loaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Grated cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Cut a deep hole in the center of the bread loaf. Remove inner bread, leaving a sturdy shell.",
+      "Roughly chop the fresh spinach.",
+      "Heat olive oil in a small pan over medium heat.",
+      "Add chopped spinach to the pan. Sauté until wilted, about 2-3 minutes.",
+      "Season wilted spinach with a pinch of salt and pepper. Stir well.",
+      "Spoon the wilted spinach into the hollowed-out bread loaf.",
+      "Sprinkle half of the grated cheese over the spinach.",
+      "Carefully crack the egg into the bread hole, on top of the spinach and cheese.",
+      "Sprinkle the remaining grated cheese over the egg.",
+      "Place the bread bowl directly on a baking sheet.",
+      "Bake for 15-20 minutes, or until the egg white is set and the yolk reaches desired doneness.",
+      "Remove from oven and serve immediately."
+    ],
+    "notes": [
+      "Adjust baking time for desired egg yolk consistency; less time for runnier yolk, more for firmer."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 10,
+      "calories": 994,
+      "cholesterol_mg": 239,
+      "dietary_fiber_g": 7.9,
+      "protein_g": 44.2,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 1837,
+      "total_carbs_g": 125.5,
+      "total_fat_g": 34.8,
+      "total_sugars_g": 15,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.5,
+      "calories": 245.4,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 10.9,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 453.5,
+      "total_carbs_g": 31,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80,
+      "dietary_fiber": 28,
+      "protein": 88,
+      "saturated_fat": 74,
+      "sodium": 80,
+      "total_carbs": 46,
+      "total_fat": 45
+    },
+    "serving_size_g": 405.1,
+    "total_recipe_weight_g": 405.1
+  },
+  {
+    "recipe_name": "Pan-Seared Cod with Roasted Potatoes and Lemon-Herb Green Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_cod_with_roasted_potatoes_and_lemon-herb_green_beans_20250628_061750_587a93d1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:17:51.168667000Z",
+    "selected_ingredients": [
+      "fish"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A pan-seared cod fillet, with golden-brown skin and flaky white interior, rests on an off-white ceramic dinner plate. Beside it, a casual pile of roasted potato chunks, their skins crisped and interiors tender, display warm golden hues. Bright green beans, whole or snapped, are loosely arranged alongside, retaining vibrant color. A small, glistening pool of lemon-herb butter sauce, flecked with fresh dill and parsley, gathers by the fish. The plate sits on a well-used wooden dining table. A simple metal fork and knife are placed beside it. A casually folded, light-colored cloth napkin lies nearby. Warm kitchen light illuminates the scene, creating a cozy, lived-in atmosphere. The background is minimal, suggesting a relaxed family dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Cod Fillet",
+    "ingredients": [
+      {
+        "name": "Cod fillets",
+        "quantity": "4 x 180g fillets"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Wash potatoes. Cut into 2cm thick wedges or chunks. Do not peel.",
+      "Toss potatoes with 30ml olive oil, salt, and pepper on a baking sheet. Spread in a single layer.",
+      "Roast potatoes for 25-30 minutes. Turn halfway. Cook until golden and tender.",
+      "Trim ends off green beans. Toss with remaining 30ml olive oil, salt, and pepper.",
+      "Add green beans to the baking sheet with potatoes during the last 10-15 minutes of roasting.",
+      "Pat cod fillets dry with paper towels. Season both sides with salt and pepper.",
+      "Melt butter in a large non-stick skillet over medium-high heat. Add minced garlic. Cook 30 seconds until fragrant.",
+      "Place cod fillets skin-side down in the hot skillet. Sear for 4-5 minutes until skin is crispy and golden.",
+      "Flip cod fillets. Cook for another 3-4 minutes until opaque and cooked through. Fish should flake easily.",
+      "Remove skillet from heat. Squeeze juice of half a lemon over the fish. Stir in chopped dill and parsley.",
+      "Serve each cod fillet with a portion of roasted potatoes and green beans. Spoon pan sauce over the fish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 536.28,
+      "cholesterol_mg": 109.65,
+      "dietary_fiber_g": 6.69,
+      "protein_g": 37.27,
+      "saturated_fat_g": 9.89,
+      "sodium_mg": 498.44,
+      "total_carbs_g": 36.31,
+      "total_fat_g": 27.51,
+      "total_sugars_g": 4.86,
+      "trans_fat_g": 0.49
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 111.26,
+      "cholesterol_mg": 22.75,
+      "dietary_fiber_g": 1.39,
+      "protein_g": 7.73,
+      "saturated_fat_g": 2.05,
+      "sodium_mg": 103.41,
+      "total_carbs_g": 7.53,
+      "total_fat_g": 5.71,
+      "total_sugars_g": 1.01,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36.55,
+      "dietary_fiber": 23.89,
+      "protein": 74.54,
+      "saturated_fat": 49.45,
+      "sodium": 21.67,
+      "total_carbs": 13.2,
+      "total_fat": 35.27
+    },
+    "serving_size_g": 482,
+    "total_recipe_weight_g": 1928
+  },
+  {
+    "recipe_name": "Creamy Tuscan Chicken with Penne",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tuscan_chicken_with_penne_20250628_061543_6c818e66.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:15:43.573702000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato",
+      "onion",
+      "potato",
+      "mustard",
+      "rice",
+      "salad green",
+      "bell pepper",
+      "corn",
+      "flour",
+      "cheddar",
+      "orange",
+      "turkey",
+      "dark chocolate",
+      "chocolate",
+      "apple",
+      "sugar",
+      "lemon",
+      "mushroom",
+      "tuna",
+      "mayonnaise",
+      "coriander",
+      "milk",
+      "mozzarella",
+      "yogurt",
+      "ginger",
+      "yeast",
+      "oil",
+      "butter",
+      "parsley",
+      "soy sauce",
+      "brown sugar",
+      "noodle",
+      "lime",
+      "cheese",
+      "cream cheese",
+      "thyme",
+      "cucumber",
+      "mint",
+      "ricotta",
+      "cabbage",
+      "olive oil",
+      "parmesan",
+      "paprika",
+      "coconut milk",
+      "cinnamon",
+      "cumin",
+      "sesame seed",
+      "caper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, single portion of Creamy Tuscan Chicken with Penne is presented on a clean, round white porcelain plate. Tender, seared chicken chunks are nestled among al dente penne pasta, coated in a rich, creamy tomato-based sauce. The sauce features diced red bell peppers and sliced mushrooms, providing varied textures and earthy tones. Fresh, vibrant green spinach leaves are lightly wilted into the dish, adding a pop of color. A generous sprinkle of bright green chopped fresh parsley and grated Parmesan cheese finishes the top. The chicken pieces are golden-brown from searing. The dish is arranged naturally, allowing the pasta and sauce to flow organically. The plate is centered on a light wooden table surface. A simple white linen napkin is folded beside the plate, with classic silver flatware. Natural, even lighting highlights the dish's inviting colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty focaccia bread to sop up the sauce.",
+      "Pair with a simple green salad dressed with olive oil and balsamic vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Bell pepper (red)",
+        "quantity": "1"
+      },
+      {
+        "name": "Mushroom",
+        "quantity": "200g"
+      },
+      {
+        "name": "Tomato (canned diced)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "100g"
+      },
+      {
+        "name": "Parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Cook penne pasta according to package directions until al dente. Drain. Reserve 120ml pasta water.",
+      "Cut chicken breasts into 2.5cm chunks. Season with salt, pepper, and paprika.",
+      "Heat olive oil in a large pan over medium-high heat. Add chicken chunks. Sear until golden brown and cooked through (internal temperature 75°C). Remove chicken.",
+      "Add diced onion and diced bell pepper to the same pan. Sauté 5 minutes until softened.",
+      "Add minced garlic and sliced mushrooms. Sauté 3-4 minutes until mushrooms are tender.",
+      "Stir in diced tomatoes, chicken broth, and thyme. Bring to a simmer. Cook 10 minutes, allowing sauce to thicken slightly.",
+      "Reduce heat to low. Stir in heavy cream and grated parmesan cheese until cheese melts and sauce is creamy.",
+      "Return cooked chicken to the pan. Add cooked penne pasta and fresh spinach. Toss to combine. If sauce is too thick, add reserved pasta water.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for safety.",
+      "Adjust seasoning to taste before serving."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Reducing sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 935,
+      "cholesterol_mg": 181.1,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 73.5,
+      "saturated_fat_g": 13.1,
+      "sodium_mg": 551.3,
+      "total_carbs_g": 91.7,
+      "total_fat_g": 31.6,
+      "total_sugars_g": 10.2,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148,
+      "cholesterol_mg": 28.6,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.6,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 87.1,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 5,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.4,
+      "dietary_fiber": 26,
+      "protein": 147,
+      "saturated_fat": 65.3,
+      "sodium": 24,
+      "total_carbs": 33.4,
+      "total_fat": 40.5
+    },
+    "serving_size_g": 633,
+    "total_recipe_weight_g": 2532
+  },
+  {
+    "recipe_name": "Rustic Roasted Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_roasted_chicken_and_potatoes_20250628_061506_16fa4173.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:15:06.543985000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Rustic Roasted Chicken and Potatoes rests on an everyday cream-colored ceramic plate. Two golden-brown roasted chicken drumsticks, with crispy, crackled skin, are positioned naturally beside a generous pile of thick-cut, golden-brown roasted potato wedges. The potatoes show a slightly crispy exterior and tender interior, some edges lightly charred. Scattered among the potatoes and chicken are a few wilted rosemary and thyme sprigs and roasted garlic cloves. The arrangement is casual and unpretentious, reflecting home cooking. The plate is placed on a well-used wooden dining table, with a simple cloth napkin and standard flatware nearby. Warm, inviting kitchen lighting illuminates the scene, creating a cozy, lived-in atmosphere. The background is softly blurred, hinting at a comfortable family kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken drumsticks or thighs",
+        "quantity": "8 pieces (about 1.2 kg)"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold or red)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6, smashed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and pat dry chicken pieces. Season generously with salt and pepper.",
+      "Wash potatoes. Cut into thick wedges, about 2-3 cm thick.",
+      "In a large bowl, combine potato wedges, olive oil, smashed garlic, rosemary, and thyme. Season with salt and pepper. Toss to coat evenly.",
+      "Arrange chicken pieces and potato wedges in a single layer on a large baking tray. Ensure chicken skin faces up.",
+      "Roast for 30 minutes. Flip potatoes once during cooking.",
+      "Continue roasting for another 20-30 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are tender and golden-brown.",
+      "Remove from oven. Let rest for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1001,
+      "cholesterol_mg": 282,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 59.3,
+      "saturated_fat_g": 14.5,
+      "sodium_mg": 1719,
+      "total_carbs_g": 56,
+      "total_fat_g": 59.7,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 174,
+      "cholesterol_mg": 49,
+      "dietary_fiber_g": 1,
+      "protein_g": 10.3,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 298,
+      "total_carbs_g": 9.7,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 94,
+      "dietary_fiber": 20.4,
+      "protein": 118.5,
+      "saturated_fat": 72.6,
+      "sodium": 74.8,
+      "total_carbs": 20.4,
+      "total_fat": 76.5
+    },
+    "serving_size_g": 576.25,
+    "total_recipe_weight_g": 2305
+  },
+  {
+    "recipe_name": "French Creamy Chicken and Potato Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_french_creamy_chicken_and_potato_soup_20250628_060713_cd26a425.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T06:07:13.823289000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of French Creamy Chicken and Potato Soup is presented in a clean, elegant white porcelain bowl. The soup is a smooth, pale cream color, with a velvety texture that fills the bowl. In the center, several golden-brown, seared chicken cubes (1.5 cm) are neatly arranged, showcasing their tender interior and crisp exterior. Around the chicken, a scattering of perfectly golden, crisp rustic bread croutons (1.5 cm cubes) adds textural contrast. A small, pristine dollop of white crème fraîche is placed beside the chicken. A vibrant sprinkle of finely chopped fresh chives provides a final pop of color and freshness. The overall presentation is professional and inviting, with balanced negative space. The bowl rests on a simple, light-colored wooden table surface, suggesting a modern bistro. A neatly folded white cotton napkin is placed to the side. A classic silver soup spoon is positioned alongside the bowl. Natural, even lighting highlights the dish without harsh shadows. The background is minimal and unobtrusive, focusing entirely on the culinary presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty baguette slices for dipping.",
+      "Serve with a light green salad with a simple vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skinless chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Yukon Gold potatoes, peeled",
+        "quantity": "500 g"
+      },
+      {
+        "name": "large leek, white and light green parts",
+        "quantity": "1"
+      },
+      {
+        "name": "medium yellow onion",
+        "quantity": "1"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "good quality chicken stock",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "heavy cream (35% fat)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "rustic bread (e.g., baguette or sourdough)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "white pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "fresh chives, finely chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "crème fraîche",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 1.5 cm cubes. Season with salt and white pepper.",
+      "Heat 1 tbsp olive oil in a large pot over medium-high heat. Sear chicken cubes until golden brown on all sides. Cook chicken to an internal temperature of 75°C (167°F). Remove chicken. Set aside.",
+      "Dice onion and leek. Mince garlic. Peel and dice potatoes into 2 cm cubes.",
+      "Melt butter and remaining 1 tbsp olive oil in the same pot over medium heat. Add diced onion and leek. Sauté until softened, about 5-7 minutes. Add minced garlic and thyme sprigs. Sauté 1 minute more.",
+      "Add diced potatoes to the pot. Pour in chicken stock. Bring to a simmer. Cook until potatoes are very tender, about 15-20 minutes. Remove thyme sprigs.",
+      "Carefully transfer soup to a blender. Blend until very smooth. For an extra velvety texture, pass the blended soup through a fine-mesh sieve into a clean pot.",
+      "Return soup to low heat. Stir in heavy cream. Gently reheat; do not boil. Taste and adjust seasoning with salt and white pepper.",
+      "Cut rustic bread into 1.5 cm cubes. In a separate pan, toast bread cubes in a dry pan or with a little olive oil until golden and crisp, forming croutons.",
+      "To serve, ladle hot soup into individual bowls. Arrange seared chicken cubes in the center. Scatter toasted croutons around the chicken. Garnish with a dollop of crème fraîche and a sprinkle of fresh chopped chives."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to 75°C (167°F) for food safety.",
+      "Use high-quality chicken stock for best flavor.",
+      "Passing the soup through a sieve is crucial for restaurant-quality smoothness."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Puréeing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 746,
+      "cholesterol_mg": 169,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 44.1,
+      "saturated_fat_g": 18.5,
+      "sodium_mg": 1393,
+      "total_carbs_g": 60.3,
+      "total_fat_g": 38.1,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 94.3,
+      "cholesterol_mg": 21.3,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 5.6,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 176,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 22,
+      "protein": 88,
+      "saturated_fat": 93,
+      "sodium": 61,
+      "total_carbs": 22,
+      "total_fat": 49
+    },
+    "serving_size_g": 791.25,
+    "total_recipe_weight_g": 3165
+  }
+]

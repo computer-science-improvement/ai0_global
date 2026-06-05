@@ -1,0 +1,613 @@
+[
+  {
+    "recipe_name": "Zero-Waste Fermented Broth with Plant-Based Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zero-waste_fermented_broth_with_plant-based_chicken_20250625_084356_ed0711da.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:43:56.452893000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "plant-based",
+    "visual_description": "A single generous serving of clear, amber broth fills a handcrafted, cream-colored ceramic bowl. Substantial chunks of golden-brown plant-based 'chicken' are nestled within the broth. Precisely diced orange carrots and parsnips, along with thin, wavy slices of rehydrated shiitake mushrooms, are distributed throughout the soup. A vibrant scattering of blanched leafy green tops provides a fresh, verdant contrast on the surface. The broth glistens lightly, showcasing its depth. The bowl rests on a light, textured reclaimed wood table. A simple, undyed linen napkin is folded beside the bowl. Soft, natural light illuminates the scene from the side, creating gentle shadows and highlighting the organic textures of the food and setting. The background is clean and minimalist, hinting at natural elements. The plating is uncrowded, with ample negative space around the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Plant-based Chicken",
+    "ingredients": [
+      {
+        "name": "Plant-based chicken pieces",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Dried shiitake mushrooms",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "5 cm piece"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Vegetable scraps (onion skins, carrot peels, celery ends)",
+        "quantity": "2 cups"
+      },
+      {
+        "name": "Kombu (dried sea kelp)",
+        "quantity": "10 cm strip"
+      },
+      {
+        "name": "Fermented vegetable brine (e.g., kimchi liquid or sauerkraut juice)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Soy sauce (or tamari)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh leafy greens (e.g., radish greens, carrot tops, spinach)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Rehydrate dried shiitake mushrooms in 500 ml hot water for 30 minutes. Reserve mushroom liquid. Thinly slice rehydrated mushrooms.",
+      "Prepare vegetable broth: Combine vegetable scraps, peeled ginger (reserve ginger skin), and garlic cloves (unpeeled) in a large pot. Add kombu. Pour in 2 liters cold water. Bring to a boil. Reduce heat. Simmer for 45 minutes. Strain broth. Discard solids. This is your zero-waste broth base.",
+      "Peel carrots and parsnips. Reserve peels for next broth batch. Dice carrots and parsnips into 1 cm cubes.",
+      "Heat vegetable oil in a large pot over medium-high heat. Add plant-based chicken pieces. Sear until golden brown on all sides. Remove from pot. Set aside.",
+      "Add diced carrots, parsnips, and sliced rehydrated mushrooms to the pot. Sauté for 5 minutes until slightly softened.",
+      "Pour in the prepared zero-waste broth and reserved mushroom liquid. Bring to a gentle simmer. Cook vegetables until tender-crisp, about 10-12 minutes.",
+      "Stir in fermented vegetable brine and soy sauce. Add seared plant-based chicken pieces. Heat through for 2-3 minutes.",
+      "Blanch fresh leafy greens in a separate pot of boiling water for 30 seconds. Drain immediately. This uses edible parts often discarded.",
+      "Season soup with salt and pepper to taste. Adjust seasoning as needed.",
+      "Ladle hot soup into individual bowls. Garnish each serving with blanched leafy greens."
+    ],
+    "notes": [
+      "Save all vegetable scraps, herb stems, and onion skins for future broth making.",
+      "Fermented vegetable brine adds a complex, savory depth and probiotic benefits.",
+      "Adjust the amount of fermented brine to your preference for tanginess."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 324,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.5,
+      "protein_g": 27.1,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 1507,
+      "total_carbs_g": 38.7,
+      "total_fat_g": 7,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 8.2,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 459,
+      "total_carbs_g": 11.8,
+      "total_fat_g": 2.1,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 37.4,
+      "protein": 54.1,
+      "saturated_fat": 1.4,
+      "sodium": 65.5,
+      "total_carbs": 14.1,
+      "total_fat": 9
+    },
+    "serving_size_g": 328.5,
+    "total_recipe_weight_g": 1314
+  },
+  {
+    "recipe_name": "Thai Basil Chicken Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_basil_chicken_stir-fry_20250625_084354_e20f1043.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:43:54.945787000Z",
+    "selected_ingredients": [
+      "chili",
+      "chicken",
+      "garlic",
+      "basil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Thai Basil Chicken Stir-fry is presented on a clean white porcelain plate, alongside a mound of fluffy white jasmine rice. The chicken mince, cooked to a rich brown, is mixed with vibrant green wilted basil leaves and flecks of red chili. A perfectly fried egg with a crisp edge and a glossy, runny yolk rests atop the rice. The dish displays a balanced composition of textures and colors: the tender chicken, fresh basil, and the golden egg. The plate is moderately spaced, allowing each element to stand out. A set of chopsticks rests beside the plate, on a simple wooden table, under natural, even lighting, evoking a modern bistro setting with an authentic Thai culinary touch.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with a side of prik nam pla (fish sauce with sliced chilies) for extra seasoning.",
+      "Traditionally eaten with jasmine rice as a staple accompaniment.",
+      "A fried egg (kai dao) is a common and essential topping."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken mince",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8, minced"
+      },
+      {
+        "name": "Fresh red bird's eye chilies",
+        "quantity": "4-6, sliced (adjust to taste)"
+      },
+      {
+        "name": "Holy Basil leaves",
+        "quantity": "2 cups, packed (or Thai Basil)"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "4 servings, cooked"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Prepare the sauce: In a small bowl, combine soy sauce, fish sauce, oyster sauce, and sugar. Mix well.",
+      "Heat vegetable oil in a large wok or frying pan over high heat until smoking.",
+      "Add minced garlic and sliced chilies. Stir-fry for 30 seconds until fragrant.",
+      "Add chicken mince to the wok. Break up the chicken with a spatula. Stir-fry for 5-7 minutes until chicken is cooked through and lightly browned. Ensure internal temperature reaches 75°C (167°F).",
+      "Pour the prepared sauce over the chicken. Stir quickly to coat all ingredients.",
+      "Add the basil leaves. Stir-fry for 30-60 seconds until basil wilts but retains vibrant green color.",
+      "Remove from heat immediately.",
+      "While chicken cooks, fry 4 eggs sunny-side up until whites are set and yolks are runny.",
+      "Serve the Thai Basil Chicken stir-fry immediately over individual portions of cooked jasmine rice, topped with a fried egg."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Wok Hei)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.72,
+      "calories": 582.11,
+      "cholesterol_mg": 297.75,
+      "dietary_fiber_g": 1.07,
+      "protein_g": 39.28,
+      "saturated_fat_g": 5.61,
+      "sodium_mg": 1466.8,
+      "total_carbs_g": 50.31,
+      "total_fat_g": 23.3,
+      "total_sugars_g": 2.97,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.45,
+      "calories": 151.79,
+      "cholesterol_mg": 77.64,
+      "dietary_fiber_g": 0.28,
+      "protein_g": 10.24,
+      "saturated_fat_g": 1.46,
+      "sodium_mg": 382.48,
+      "total_carbs_g": 13.12,
+      "total_fat_g": 6.07,
+      "total_sugars_g": 0.77,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 99.25,
+      "dietary_fiber": 3.82,
+      "protein": 78.56,
+      "saturated_fat": 28.05,
+      "sodium": 63.77,
+      "total_carbs": 18.29,
+      "total_fat": 29.87
+    },
+    "serving_size_g": 383.5,
+    "total_recipe_weight_g": 1534
+  },
+  {
+    "recipe_name": "Hearty Sausage and Potato Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_sausage_and_potato_skillet_20250625_084228_02f4d108.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:42:29.390756000Z",
+    "selected_ingredients": [
+      "tomato",
+      "bread",
+      "pasta",
+      "onion",
+      "potato",
+      "sausage",
+      "sugar",
+      "gherkin",
+      "milk",
+      "oil",
+      "butter",
+      "cheese",
+      "cucumber"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Hearty Sausage and Potato Skillet presented in a deep, rustic ceramic bowl on a worn wooden dining table. The dish features a rich, creamy, reddish-orange tomato sauce enveloping browned, 2cm diced potatoes and crumbled, cooked sausage. Melted white cheddar cheese threads through the sauce, creating a comforting texture. A sprinkle of vibrant green chopped parsley garnishes the top. A thick slice of crusty, golden-brown bread rests casually beside the bowl, ready for dipping. A small, simple white bowl holds a refreshing side salad of thinly sliced green cucumber and pale gherkins. The setting is a cozy, homely family kitchen with warm, natural lighting. The overall arrangement is natural and unpretentious.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve family-style directly from the skillet or in individual bowls.",
+      "Provide crusty bread for dipping into the rich sauce."
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Sausage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "100g"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "1 loaf"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Gherkins",
+        "quantity": "4-5 small"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Peel and dice potatoes into 2cm cubes. Boil in salted water for 8-10 minutes until tender-crisp. Drain well.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add drained potatoes. Cook until golden brown and tender, about 10-12 minutes. Remove potatoes. Set aside.",
+      "Add remaining 15ml olive oil to the skillet. Add sausage. Break up with a spoon. Cook until browned and cooked through. Drain any excess fat. Remove sausage. Set aside.",
+      "Add butter to the skillet. Finely dice onion. Add to skillet. Cook until softened, about 5-7 minutes.",
+      "Stir in crushed tomatoes and sugar. Bring to a simmer. Reduce heat to low. Cook for 10 minutes, stirring occasionally.",
+      "Stir in milk. Bring to a gentle simmer. Cook for 2-3 minutes.",
+      "Return cooked sausage and potatoes to the skillet. Stir to combine with the sauce.",
+      "Grate cheddar cheese. Stir into the skillet until melted and the sauce is creamy. Season with salt and pepper to taste.",
+      "For the salad: Thinly slice cucumber and gherkins. Combine in a small bowl. Dress with white vinegar, a pinch of salt, and chopped fresh dill."
+    ],
+    "notes": [
+      "This dish is excellent for a comforting family meal.",
+      "Adjust seasoning to your preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 737,
+      "cholesterol_mg": 121,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 28.8,
+      "saturated_fat_g": 21.3,
+      "sodium_mg": 1184,
+      "total_carbs_g": 40.3,
+      "total_fat_g": 52.8,
+      "total_sugars_g": 10.1,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 153,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 245,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 10.9,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.3,
+      "dietary_fiber": 19.6,
+      "protein": 57.6,
+      "saturated_fat": 106.5,
+      "sodium": 51.5,
+      "total_carbs": 14.7,
+      "total_fat": 67.7
+    },
+    "serving_size_g": 483,
+    "total_recipe_weight_g": 1933
+  },
+  {
+    "recipe_name": "Fermented Buckwheat Tofu Waffles with Roasted Radish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_buckwheat_tofu_waffles_with_roasted_radish_20250625_084219_26dbb1c7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:42:19.983691000Z",
+    "selected_ingredients": [
+      "tofu",
+      "buckwheat groat",
+      "olive oil",
+      "radish"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "plant-based, waffles, 180g of tofu, all ingredients inside, no sugar, seasonings, no sauces",
+    "visual_description": "A single portion of golden-brown Fermented Buckwheat Tofu Waffles rests on a round, natural beige ceramic plate. The waffles exhibit a crisp, textured exterior from the waffle iron, with a soft, airy interior. Scattered around and atop the waffles are roasted radish wedges, their vibrant pink and red hues deepened by caramelization, showcasing their tender-crisp texture. The arrangement is clean and natural, allowing ample negative space on the plate. The entire composition is set on a light, textured reclaimed wood surface, with an undyed linen napkin subtly placed beside the plate. Soft, diffused natural light illuminates the dish from the side, enhancing its earthy colors and simple elegance, highlighting a sustainable, ingredient-focused approach.",
+    "number_of_servings": 1,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Firm Tofu, pressed",
+        "quantity": "180g"
+      },
+      {
+        "name": "Buckwheat Groats",
+        "quantity": "80g"
+      },
+      {
+        "name": "Water",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "5-6 medium"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Rinse buckwheat groats thoroughly. Place groats in a bowl with 150ml water. Cover loosely and let ferment at room temperature for 12-24 hours.",
+      "Drain fermented buckwheat groats, reserving 15ml of the soaking liquid. Combine drained groats with pressed tofu in a blender. Blend until smooth. Add salt and black pepper to taste. Adjust batter consistency with reserved soaking liquid if too thick.",
+      "Preheat oven to 200°C. Wash radishes. Cut radishes into wedges. Toss radish wedges with 5ml olive oil, a pinch of salt, and a pinch of black pepper. Spread radishes in a single layer on a baking tray.",
+      "Roast radishes for 15-20 minutes, until tender-crisp and lightly caramelized.",
+      "Preheat waffle iron. Lightly brush waffle iron plates with remaining 10ml olive oil. Pour enough batter to cover the waffle plate. Cook until waffles are golden brown and crisp. Repeat with remaining batter.",
+      "Plate the cooked waffles. Top generously with the roasted radish wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 548,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 10.3,
+      "protein_g": 26,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 259,
+      "total_carbs_g": 64.3,
+      "total_fat_g": 25,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 6,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 60,
+      "total_carbs_g": 14.8,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 37,
+      "protein": 52,
+      "saturated_fat": 19,
+      "sodium": 11,
+      "total_carbs": 23,
+      "total_fat": 32
+    },
+    "serving_size_g": 435,
+    "total_recipe_weight_g": 435
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Lacto-Fermented Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_lacto-fermented_root_vegetables_20250625_084210_54d73724.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:42:10.641022000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, pan-seared chicken thigh, golden-brown and crisp-skinned, rests whole on a round, unglazed ceramic plate in creamy off-white. Adjacent, a vibrant medley of lacto-fermented root vegetables—carrots, parsnips, and daikon radish—are artfully arranged. These vegetables, cut into irregular batons and wedges, display natural shapes and slightly translucent textures, with earthy orange and pale cream tones. A light, herb-infused pan sauce is delicately drizzled around the chicken. The dish is minimally garnished with a fresh thyme sprig and a few thinly sliced pickled radish rounds for crimson contrast. The clean composition features generous negative space, highlighting the natural beauty and sustainable ethos. It sits on a light, natural wood surface with an undyed linen napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 (bone-in, skin-on)"
+      },
+      {
+        "name": "Lacto-fermented root vegetables",
+        "quantity": "500g (prepared in advance)"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, smashed"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in an oven-safe skillet over medium-high heat.",
+      "Place chicken thighs skin-side down in hot skillet. Sear for 8-10 minutes until skin is deeply golden and crispy.",
+      "Flip chicken. Add rosemary, thyme, and smashed garlic cloves to skillet.",
+      "Transfer skillet to preheated oven at 200°C (390°F). Roast for 15-20 minutes, or until internal temperature reaches 75°C (167°F).",
+      "Remove chicken from skillet. Rest on a cutting board for 5 minutes.",
+      "Return skillet to stovetop over medium heat. Add 100ml water to deglaze, scraping up browned bits. Simmer for 2-3 minutes to reduce slightly. This is the pan sauce.",
+      "Gently warm the lacto-fermented root vegetables in a separate pan or serve at room temperature.",
+      "Plate one chicken thigh per serving. Arrange a portion of fermented root vegetables alongside.",
+      "Drizzle chicken and vegetables with the pan sauce. Serve immediately."
+    ],
+    "notes": [
+      "To prepare lacto-fermented root vegetables: Combine 500g peeled, cut root vegetables (carrots, daikon, parsnips) with a brine of 500ml non-chlorinated water and 15g sea salt. Pack tightly into a clean glass jar, ensuring vegetables are submerged. Ferment at room temperature for 5-7 days, then refrigerate."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 500,
+      "cholesterol_mg": 166,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 38,
+      "saturated_fat_g": 8.8,
+      "sodium_mg": 803,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 35.1,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149,
+      "cholesterol_mg": 49.6,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 11.3,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 240,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 16,
+      "protein": 76,
+      "saturated_fat": 44,
+      "sodium": 35,
+      "total_carbs": 5,
+      "total_fat": 45
+    },
+    "serving_size_g": 335,
+    "total_recipe_weight_g": 1340
+  }
+]

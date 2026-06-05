@@ -1,0 +1,766 @@
+[
+  {
+    "recipe_name": "Rustic Chicken and Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_vegetable_stew_20250624_121659_e1fe5e93.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:17:00.354907000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "cucumber",
+      "squash",
+      "celery"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Rustic Chicken and Vegetable Stew is presented in a deep, off-white ceramic bowl, centered on a worn, light-colored wooden kitchen table. The stew features chunky, golden-brown seared chicken pieces nestled amongst soft, diced zucchini, celery, and onion, all coated in a rich, reddish-brown tomato-based sauce. Flecks of dried herbs are visible. A generous spoonful of fresh, finely diced cucumber and chopped parsley relish sits atop the stew, providing a vibrant green and white textural contrast. The plate below the bowl is a simple, everyday ceramic. A casually folded beige linen napkin and basic metal flatware rest beside the bowl. Warm, natural light illuminates the scene, creating an inviting, unpretentious family meal atmosphere. The focus is on comfort and natural appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "Rustic American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the stew's sauce.",
+      "A side of plain white rice can be served to soak up the broth.",
+      "The fresh cucumber relish provides a cooling and bright contrast to the hearty stew."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 large (approx. 600-700g), cut into 3-4cm chunks"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1 (approx. 150g), diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2 (approx. 100g), sliced"
+      },
+      {
+        "name": "Medium zucchini",
+        "quantity": "2 (approx. 300g), diced into 2cm cubes"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Large cucumber",
+        "quantity": "1 (approx. 200g), finely diced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Red wine vinegar (for relish)",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add chicken chunks. Sear until golden brown on all sides. Remove chicken and set aside.",
+      "Add diced onion, celery, and minced garlic to the pot. Sauté until softened, about 5-7 minutes.",
+      "Stir in diced zucchini, canned diced tomatoes, chicken broth, and dried oregano. Bring to a simmer.",
+      "Return seared chicken to the pot. Cover and reduce heat to low.",
+      "Simmer for 25-30 minutes, or until chicken is tender and cooked through. Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "While stew simmers, prepare the relish: In a small bowl, combine finely diced cucumber, half of the chopped fresh parsley, red wine vinegar, a pinch of salt, and pepper. Stir well.",
+      "Season stew with additional salt and pepper to taste.",
+      "Serve hot, garnished with the remaining fresh parsley and a generous spoonful of the cucumber relish on top."
+    ],
+    "notes": [
+      "For best flavor, allow the stew to rest for 10 minutes before serving.",
+      "This stew can be made ahead and reheats well."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 409,
+      "cholesterol_mg": 220,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 37.8,
+      "saturated_fat_g": 4.9,
+      "sodium_mg": 1208,
+      "total_carbs_g": 14.7,
+      "total_fat_g": 21,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 68.8,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.4,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 203.3,
+      "total_carbs_g": 2.5,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 16,
+      "protein": 76,
+      "saturated_fat": 25,
+      "sodium": 53,
+      "total_carbs": 5,
+      "total_fat": 27
+    },
+    "serving_size_g": 594,
+    "total_recipe_weight_g": 2376
+  },
+  {
+    "recipe_name": "Chicken Dum Biryani",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_dum_biryani_20250624_121656_6aeb3d50.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:16:56.697870000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "carrot",
+      "tomato",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Chicken Dum Biryani is presented in a clean, white porcelain bowl, showcasing distinct, aromatic layers. Fluffy, long-grain basmati rice, infused with saffron's golden hue and subtle whole spices, forms the top layer. Beneath, tender, succulent bone-in chicken chunks, cooked to perfection (75°C internal), are nestled amidst soft, diced potatoes (2 cm cubes) and tender-crisp diced carrots (1.5 cm cubes). The chicken boasts a rich, reddish-brown color from searing. Vibrant green flecks of fresh mint and cilantro are scattered throughout. Crispy, deep golden-brown fried onions crown the dish, adding texture. The composition is a harmonious blend of warm colors\n—golden rice, rich chicken, earthy vegetables, and verdant herbs. The bowl sits on a simple wooden table, beside a white cotton napkin and a traditional Indian steel spoon, against a subtly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with raita (yogurt dip)",
+      "Serve with a simple kachumber (cucumber and onion salad)"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken pieces",
+        "quantity": "600g bone-in, skinless"
+      },
+      {
+        "name": "Basmati Rice",
+        "quantity": "300g, aged"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, thinly sliced"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium, finely chopped"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Green Chilies",
+        "quantity": "2-3, slit"
+      },
+      {
+        "name": "Plain Yogurt",
+        "quantity": "150g, full-fat"
+      },
+      {
+        "name": "Biryani Masala",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Red Chili Powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Fresh Mint Leaves",
+        "quantity": "1/2 cup, chopped"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "1/2 cup, chopped, plus extra for garnish"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Green Cardamom Pods",
+        "quantity": "4"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Cinnamon Stick",
+        "quantity": "1 (2 cm)"
+      },
+      {
+        "name": "Saffron Strands",
+        "quantity": "1/4 teaspoon, soaked in 2 tablespoons warm milk"
+      },
+      {
+        "name": "Ghee or Oil",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "Marinate chicken: In a large bowl, combine chicken pieces with yogurt, ginger-garlic paste, biryani masala, turmeric powder, red chili powder, salt, half of the chopped mint, and half of the chopped cilantro. Mix well. Marinate for at least 1 hour, preferably 4 hours or overnight in the refrigerator.",
+      "Prepare rice: Wash basmati rice thoroughly until water runs clear. Soak rice in water for 30 minutes. Drain well.",
+      "Fry onions: Heat 2 tablespoons ghee or oil in a heavy-bottomed pot or Dutch oven over medium heat. Add thinly sliced onions. Fry until deep golden brown and crispy. Remove half of the fried onions and set aside for garnish.",
+      "Sauté aromatics: To the remaining onions in the pot, add whole spices (bay leaves, cardamom, cloves, cinnamon stick) and green chilies. Sauté for 1 minute until fragrant.",
+      "Cook chicken: Add marinated chicken to the pot. Cook on medium-high heat for 8-10 minutes, stirring occasionally, until chicken is seared and changes color.",
+      "Add vegetables: Add chopped tomatoes, diced carrots (1.5 cm cubes), and diced potatoes (2 cm cubes) to the pot. Stir well. Reduce heat to medium-low, cover, and cook for 15-20 minutes, or until chicken is partially cooked and vegetables are tender-crisp. Stir occasionally.",
+      "Par-cook rice: While chicken cooks, bring a large pot of salted water to a rolling boil. Add drained basmati rice. Cook for 5-7 minutes, until rice is 70% cooked (still firm in the center). Drain immediately.",
+      "Layer biryani: Spread the par-cooked rice evenly over the chicken and vegetable mixture in the pot. Do not stir.",
+      "Add toppings: Sprinkle remaining chopped mint and cilantro over the rice. Drizzle with saffron milk and remaining 2 tablespoons ghee or oil.",
+      "Dum cooking: Cover the pot tightly with a lid. Cook on very low heat for 20-25 minutes. This allows flavors to meld and rice to fully cook in steam.",
+      "Rest and serve: Turn off heat. Let biryani rest for 10 minutes, covered. Gently fluff the biryani with a fork, mixing the layers. Serve hot, garnished with reserved fried onions and fresh cilantro."
+    ],
+    "traditional_techniques": [
+      "Dum cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 650,
+      "cholesterol_mg": 169,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 54.8,
+      "saturated_fat_g": 11.3,
+      "sodium_mg": 674,
+      "total_carbs_g": 54.4,
+      "total_fat_g": 22.1,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.6,
+      "saturated_fat_g": 2,
+      "sodium_mg": 118,
+      "total_carbs_g": 9.5,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 24,
+      "protein": 110,
+      "saturated_fat": 56,
+      "sodium": 29,
+      "total_carbs": 20,
+      "total_fat": 28
+    },
+    "serving_size_g": 570.8,
+    "total_recipe_weight_g": 2283
+  },
+  {
+    "recipe_name": "Hearty Chicken and Rice Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_rice_pilaf_20250624_121644_23295865.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:16:45.023358000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hearty Chicken and Rice Pilaf is presented on a rustic, matte ceramic plate. A mound of fluffy, golden-hued rice, subtly colored by turmeric, forms the base, with visible flecks of soft, caramelized diced onions mixed throughout. Two seared bone-in chicken thighs, boasting deeply golden-brown and slightly crisped skin, rest naturally atop the rice. The chicken appears moist and tender. A fresh sprinkle of vibrant green chopped flat-leaf parsley is scattered over the dish, providing a bright contrast. The entire plate is placed on a well-used, warm-toned wooden dining table. A simple, folded cloth napkin and a rustic fork are casually positioned alongside the plate. Warm, natural kitchen lighting illuminates the scene, emphasizing the comforting, homely appeal. A small, plain ceramic bowl with a dollop of plain white yogurt is subtly placed to the side, suggesting an optional accompaniment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of plain yogurt or a simple green salad.",
+      "Enjoy as a comforting family meal, served directly from the pot."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Long-grain rice (Basmati or similar)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30g, chopped, for garnish"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "Optional, for serving"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down for 5-7 minutes until skin is deeply golden and crisp. Flip and sear for 2-3 minutes on the other side. Remove chicken from pot and set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Sauté for 5-7 minutes until softened and translucent.",
+      "Add minced garlic, cumin, smoked paprika, and turmeric. Cook for 1 minute until fragrant.",
+      "Stir in the rice until well coated with the spices and onion, about 1-2 minutes.",
+      "Pour in the chicken broth. Scrape any browned bits from the bottom of the pot. Bring to a boil.",
+      "Nestle the seared chicken thighs into the rice mixture, skin-side up.",
+      "Reduce heat to low, cover the pot tightly, and simmer for 18-20 minutes, or until rice has absorbed most of the liquid and chicken reaches an internal temperature of 75°C (167°F).",
+      "Remove pot from heat. Let rest, covered, for 10 minutes.",
+      "Fluff rice gently with a fork. Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Resting the pilaf after cooking allows the rice to fully absorb moisture and become perfectly fluffy."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 811,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 44.4,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 1198,
+      "total_carbs_g": 67.5,
+      "total_fat_g": 38.7,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 185.3,
+      "cholesterol_mg": 41.1,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 10.1,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 273.9,
+      "total_carbs_g": 15.4,
+      "total_fat_g": 8.8,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 10,
+      "protein": 89,
+      "saturated_fat": 47,
+      "sodium": 52,
+      "total_carbs": 25,
+      "total_fat": 50
+    },
+    "serving_size_g": 437.5,
+    "total_recipe_weight_g": 1750
+  },
+  {
+    "recipe_name": "Classic Shepherd's Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_shepherd%27s_pie_20250624_121626_41c563e1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:16:26.463460000Z",
+    "selected_ingredients": [
+      "potato",
+      "mincemeat",
+      "oil",
+      "bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Classic Shepherd's Pie is presented in a pristine white oval gratin dish, centrally placed on a dark wooden table. The golden-brown mashed potato topping, with delicate fork ridges, forms a rustic crust. Peeking from beneath the potato, the rich, savory lamb mincemeat filling reveals a deep, earthy brown color with flecks of green herbs and diced vegetables. A sprinkle of fresh, vibrant green chopped parsley garnishes the potato. Beside the gratin dish, a slice of perfectly toasted, crusty bread rests on the table. The setting is a modern bistro: a simple cotton napkin is folded neatly to the left, and a classic silver fork and knife are positioned to the right. Natural, even lighting illuminates the dish, highlighting its comforting textures and warm tones against a subtly blurred background.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Often served with green vegetables like peas or green beans.",
+      "A dollop of HP Sauce or ketchup is a common accompaniment in British homes."
+    ],
+    "hero_ingredient": "Lamb Mincemeat",
+    "ingredients": [
+      {
+        "name": "Lamb Mincemeat",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery",
+        "quantity": "1 stalk"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red Wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "5g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmesan Cheese (grated)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Crusty Bread",
+        "quantity": "4 slices"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley (for garnish)",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "Peel and cut potatoes into equal chunks. Place in a large pot, cover with cold salted water. Bring to a boil, then reduce heat and simmer until very tender (about 15-20 minutes). Drain well.",
+      "Return drained potatoes to the hot pot over low heat for 1 minute to dry. Mash thoroughly. Add milk, 30g butter, salt, and pepper. Mash until smooth and creamy. Set aside.",
+      "Heat olive oil in a large oven-safe pan or Dutch oven over medium-high heat. Add lamb mincemeat. Cook, breaking it up with a spoon, until browned. Drain excess fat.",
+      "Add diced onion, carrot, and celery to the pan. Cook until softened, about 5-7 minutes. Add minced garlic and cook for 1 minute more until fragrant.",
+      "Stir in tomato paste and cook for 2 minutes. Pour in red wine and deglaze the pan. Let it simmer until reduced by half.",
+      "Add beef stock, Worcestershire sauce, chopped thyme, and rosemary. Bring to a simmer. Reduce heat to low, cover, and cook for 20-25 minutes. Season with salt and pepper to taste.",
+      "Preheat oven to 190°C (375°F). Spoon the mincemeat filling evenly into individual oven-safe gratin dishes or a single large oven-safe dish. Spread the mashed potato evenly over the mincemeat, using a fork to create ridges on top. Sprinkle with grated Parmesan cheese if desired.",
+      "Bake for 25-30 minutes, or until the potato topping is golden brown and the filling is bubbling.",
+      "While pie bakes, toast or grill the bread slices until golden.",
+      "Let the pies rest for a few minutes before serving. Garnish with fresh parsley. Serve with toasted bread on the side."
+    ],
+    "notes": [
+      "For a thicker sauce, stir in 15g of flour with the tomato paste before adding liquids.",
+      "Ensure potatoes are very dry before mashing for a smooth, lump-free texture."
+    ],
+    "traditional_techniques": [
+      "Browning mincemeat",
+      "Sautéing mirepoix",
+      "Deglazing with wine",
+      "Making classic mashed potato"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 927,
+      "cholesterol_mg": 159,
+      "dietary_fiber_g": 8,
+      "protein_g": 36,
+      "saturated_fat_g": 24.7,
+      "sodium_mg": 665,
+      "total_carbs_g": 68.6,
+      "total_fat_g": 53.5,
+      "total_sugars_g": 8,
+      "trans_fat_g": 2.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 173,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 6.7,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 124,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 10,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 28,
+      "protein": 72,
+      "saturated_fat": 123,
+      "sodium": 29,
+      "total_carbs": 25,
+      "total_fat": 69
+    },
+    "serving_size_g": 536,
+    "total_recipe_weight_g": 2144
+  },
+  {
+    "recipe_name": "Aromatic Beef and Onion Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_aromatic_beef_and_onion_pilaf_20250624_121623_774ebcc6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:16:24.462226000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Aromatic Beef and Onion Pilaf is presented in a clean, shallow white porcelain bowl, centrally placed on a light wooden table surface. Tender, browned beef chunks, cut into 3 cm cubes, are nestled among fluffy, long-grain basmati rice. The rice is golden-hued from turmeric and saffron, interspersed with deep golden caramelized onion slices and whole, fragrant spices like green cardamom pods and cinnamon sticks. A generous sprinkle of fresh, vibrant green chopped cilantro and a few mint leaves provides a fresh contrast. The dish is naturally arranged, showing individual grains of rice and the textural variations of the beef and onions. Beside the bowl, a neatly folded white cotton napkin and a small ceramic dish holds a dollop of cooling cucumber raita. Natural, soft overhead lighting illuminates the dish, highlighting its textures. The background is a soft blur of a casual restaurant setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of cooling Raita (yogurt dip with cucumber and mint).",
+      "Accompany with pickled onions (kachumber) or a simple green salad.",
+      "Offer papadum for a crunchy accompaniment."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef stewing cubes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onions, thinly sliced",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Ghee or vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Green cardamom pods",
+        "quantity": "4"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (5 cm piece)"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Hot water or beef broth",
+        "quantity": "450 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "0.25 cup"
+      },
+      {
+        "name": "Fresh mint leaves, chopped (optional)",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Rinse basmati rice thoroughly under cold water. Soak for 20 minutes. Drain well.",
+      "Heat ghee in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Add beef cubes. Sear until browned on all sides. Remove beef from pot. Set aside.",
+      "Add sliced onions to the same pot. Cook, stirring often, until deep golden brown and caramelized. This takes 15-20 minutes.",
+      "Add ginger-garlic paste. Sauté 1 minute until fragrant.",
+      "Stir in green cardamom, cloves, cinnamon stick, bay leaf, turmeric powder, red chili powder, and garam masala. Cook 30 seconds until aromatic.",
+      "Return seared beef to pot. Add yogurt and stir well. Cook 2 minutes.",
+      "Add drained basmati rice, hot water, and salt. Stir gently to combine. Bring mixture to a rolling boil.",
+      "Reduce heat to very low. Cover pot tightly with a lid. Cook for 15 minutes, or until all water is absorbed and rice is tender.",
+      "Turn off heat. Let pot rest, covered, for 10 minutes. Do not lift the lid.",
+      "Gently fluff rice with a fork. Stir in fresh cilantro and mint (if using).",
+      "Serve hot."
+    ],
+    "notes": [
+      "For best results, use good quality Basmati rice; rinsing and soaking prevents stickiness.",
+      "Caramelizing onions properly is key to the pilaf's flavor and color.",
+      "Adjust chili powder to your preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Tadka (tempering spices)",
+      "Dum cooking (slow cooking under a tight lid)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 605,
+      "cholesterol_mg": 125,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 39.8,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 589,
+      "total_carbs_g": 68.5,
+      "total_fat_g": 15.9,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 28.5,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 135,
+      "total_carbs_g": 15.7,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 9,
+      "protein": 80,
+      "saturated_fat": 43,
+      "sodium": 26,
+      "total_carbs": 25,
+      "total_fat": 20
+    },
+    "serving_size_g": 438,
+    "total_recipe_weight_g": 1750
+  }
+]

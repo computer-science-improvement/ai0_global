@@ -1,0 +1,632 @@
+[
+  {
+    "recipe_name": "Penne with Roasted Tomato, Olive, and Artichoke Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_penne_with_roasted_tomato%2C_olive%2C_and_artichoke_sauce_20250628_082449_31be6974.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:24:50.026679000Z",
+    "selected_ingredients": [
+      "tomato",
+      "pasta",
+      "olive",
+      "artichoke"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, showcasing a generous individual portion. Penne pasta, cooked al dente, forms a loose mound in the center. It is thoroughly coated in a rustic sauce of vibrant roasted cherry tomatoes, some beautifully burst, others plump and whole. Interspersed throughout are deep purple-black Kalamata olive halves and tender, quartered artichoke hearts, adding contrasting color and texture. Finely sliced garlic and sautéed red onion are visible. The entire composition is brightened by a generous scattering of fresh, torn basil leaves and a light grating of pale yellow Parmesan cheese. A subtle sheen of olive oil coats the ingredients. The plating is natural and inviting, with moderate negative space. The setting includes a simple wooden table, a folded cotton napkin beside the plate, and even natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Offer extra grated Parmesan cheese at the table.",
+      "Pair with a light red or crisp white Italian wine."
+    ],
+    "hero_ingredient": "Roasted Cherry Tomatoes",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Artichoke hearts, canned/jarred, drained",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1/2 cup"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "1/4 cup"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Halve cherry tomatoes. Place on a baking sheet. Drizzle with 15 ml olive oil. Season with salt and pepper. Roast for 20-25 minutes, until tender and slightly burst.",
+      "While tomatoes roast, bring a large pot of salted water to a boil. Add penne pasta. Cook according to package directions until al dente.",
+      "Drain pasta, reserving 250 ml of pasta water.",
+      "Thinly slice garlic cloves. Dice red onion. Quarter drained artichoke hearts. Halve pitted Kalamata olives.",
+      "Heat remaining 45 ml olive oil in a large skillet over medium heat.",
+      "Add diced red onion. Sauté for 3-4 minutes until softened.",
+      "Add sliced garlic. Cook for 1 minute until fragrant.",
+      "Stir in quartered artichoke hearts and halved Kalamata olives. Cook for 2 minutes.",
+      "Add roasted cherry tomatoes to the skillet. Gently mash some tomatoes with a spoon to create a saucier consistency.",
+      "Add cooked penne pasta to the skillet. Toss to combine with the sauce.",
+      "Gradually add reserved pasta water, 60 ml at a time, until the sauce reaches desired consistency.",
+      "Remove from heat. Stir in fresh torn basil leaves and chopped parsley.",
+      "Serve immediately. Top each portion with grated Parmesan cheese."
+    ],
+    "notes": [
+      "Adjust pasta cooking time for desired al dente texture. It should have a slight bite.",
+      "Use good quality extra virgin olive oil for both roasting and finishing for best flavor."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 668.8,
+      "cholesterol_mg": 11.1,
+      "dietary_fiber_g": 8.9,
+      "protein_g": 21.7,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 737.3,
+      "total_carbs_g": 92.6,
+      "total_fat_g": 24.9,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 189.7,
+      "cholesterol_mg": 3.2,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 6.2,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 209.2,
+      "total_carbs_g": 26.3,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 32,
+      "protein": 43,
+      "saturated_fat": 27,
+      "sodium": 32,
+      "total_carbs": 34,
+      "total_fat": 32
+    },
+    "serving_size_g": 352.5,
+    "total_recipe_weight_g": 1410
+  },
+  {
+    "recipe_name": "Red Onion, Cucumber, and Chickpea Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_red_onion%2C_cucumber%2C_and_chickpea_salad_20250628_082035_855f5cdd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:20:36.177470000Z",
+    "selected_ingredients": [
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A generous portion of Red Onion, Cucumber, and Chickpea Salad is presented on a rustic, off-white ceramic plate with a slightly uneven rim. The salad features thinly sliced purple-red onions, small bright green cucumber cubes, and creamy beige chickpeas, all speckled with vibrant green chopped fresh mint. The ingredients are casually tossed and layered, allowing their natural colors and textures to intermingle. A light, creamy tahini dressing coats the components, adding a subtle sheen. The plate sits on a well-used, warm-toned wooden dining table, suggesting a homely family kitchen setting. A simple, folded linen napkin in a neutral tone and a plain glass of water are casually placed nearby. The lighting is soft and warm, emanating from an overhead kitchen fixture, creating a cozy, inviting atmosphere typical of a comfortable home meal. The entire plate is visible, showcasing the fresh, wholesome ingredients in a natural, unpretentious arrangement.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Mediterranean-inspired",
+    "cultural_serving_suggestions": [
+      "A side of warm pita bread",
+      "A bowl of hummus"
+    ],
+    "hero_ingredient": "Red Onion",
+    "ingredients": [
+      {
+        "name": "Red onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cucumbers",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Chickpeas",
+        "quantity": "1 can (400g)"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "1/2 cup"
+      },
+      {
+        "name": "Tahini",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Water",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1/4 teaspoon"
+      }
+    ],
+    "instructions": [
+      "Thinly slice red onions. Dice cucumbers into small cubes. Chop fresh mint.",
+      "Rinse and drain chickpeas.",
+      "In a small bowl, whisk together tahini, lemon juice, olive oil, minced garlic, salt, and pepper. Gradually add water, whisking until smooth and desired consistency is reached.",
+      "In a large mixing bowl, combine sliced red onions, diced cucumbers, chickpeas, and chopped mint.",
+      "Pour dressing over salad ingredients. Toss gently to coat all ingredients evenly.",
+      "Serve immediately or chill before serving."
+    ],
+    "notes": [
+      "This salad benefits from a brief chill before serving to allow flavors to meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 271,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.4,
+      "protein_g": 8.9,
+      "saturated_fat_g": 2,
+      "sodium_mg": 304.5,
+      "total_carbs_g": 29.2,
+      "total_fat_g": 14.8,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 3.4,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 114.9,
+      "total_carbs_g": 11,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 30,
+      "protein": 17.8,
+      "saturated_fat": 10,
+      "sodium": 13.2,
+      "total_carbs": 10.6,
+      "total_fat": 19
+    },
+    "serving_size_g": 264.9,
+    "total_recipe_weight_g": 1059.5
+  },
+  {
+    "recipe_name": "Potato Pave with Rosemary-Garlic Emulsion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato_pave_with_rosemary-garlic_emulsion_20250628_081937_f7aab59f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:19:38.155100000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian",
+    "visual_description": "Two perfectly seared, golden-brown potato pave rectangles are precisely arranged on a pristine white bone china sharing platter, creating a sophisticated, minimalist composition. The pave exhibits a beautifully crisp exterior with visible layers of tender potato within. A delicate, creamy pale-yellow rosemary-garlic emulsion is artfully swirled or dotted beside the pave, offering a subtle contrast in color and texture. Irregular, golden-crisp potato shards are placed architecturally to add verticality and a shatteringly crisp element. The presentation emphasizes abundant negative space, highlighting the architectural precision and clean lines of each component. A few vibrant green chive batons are scattered as a precise, elegant garnish. The scene is set on a superpremium grey-veined marble surface, with dramatic professional lighting casting soft shadows, enhancing the textures and creating depth. A pristine white linen napkin, folded into a precise triangle, sits unobtrusively to the side. The background is ultra-minimalist, ensuring the dish remains the absolute focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Large Russet Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic Cloves, thinly sliced",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh Rosemary Sprigs",
+        "quantity": "6"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Egg Yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Chives, finely chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes. Slice thinly using a mandoline, about 2 mm thick.",
+      "Melt 100 g butter in a saucepan. Add sliced garlic and 4 rosemary sprigs. Cook gently 5 minutes until fragrant. Do not brown garlic.",
+      "Layer potato slices tightly in a 20x10 cm baking dish lined with parchment paper. Season each layer lightly with salt and pepper.",
+      "Pour infused butter mixture over potatoes. Press firmly to remove air pockets.",
+      "Cover with foil. Bake at 160°C for 90 minutes, or until very tender.",
+      "Remove from oven. Place a weighted object (e.g., another baking dish with cans) on top. Chill overnight in refrigerator.",
+      "For rosemary-garlic emulsion: In a small saucepan, combine remaining 50 g butter, 2 rosemary sprigs, and 2 garlic cloves (peeled, smashed). Cook gently 10 minutes. Strain, discard solids. You need about 50ml infused butter.",
+      "In a heatproof bowl, whisk egg yolk with lemon juice. Slowly drizzle in warm infused butter while whisking constantly. Continue whisking until emulsified and thickened. Season with salt.",
+      "For crispy potato shards: Peel 1 small potato. Use a vegetable peeler to create thin, irregular shards. Fry in hot oil (170°C) until golden and crisp. Drain on paper towels. Season with fine salt.",
+      "Remove chilled potato pave from dish. Cut into 8 equal rectangular portions (approx. 5x5 cm each).",
+      "Heat a non-stick pan over medium-high heat with a little oil. Sear pave portions 3-4 minutes per side until golden and crispy.",
+      "Warm vegetable stock slightly.",
+      "Plate two seared potato pave portions per person on a sharing platter. Drizzle rosemary-garlic emulsion artfully alongside. Arrange crispy potato shards for height and texture. Garnish with finely chopped chives."
+    ],
+    "notes": [
+      "Ensure potatoes are sliced uniformly thin for even cooking and a tight pave structure.",
+      "Press the pave firmly after layering and during chilling to achieve a dense, cohesive block.",
+      "The emulsion requires slow drizzling of fat while whisking to prevent breaking.",
+      "Fry potato shards at the correct temperature to ensure crispness without burning."
+    ],
+    "traditional_techniques": [
+      "Pave"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 587,
+      "cholesterol_mg": 127,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 6.3,
+      "saturated_fat_g": 21.3,
+      "sodium_mg": 72,
+      "total_carbs_g": 45.7,
+      "total_fat_g": 43.4,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 162,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 1.8,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 20,
+      "total_carbs_g": 12.6,
+      "total_fat_g": 12,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.3,
+      "dietary_fiber": 20.8,
+      "protein": 12.7,
+      "saturated_fat": 106.5,
+      "sodium": 3.1,
+      "total_carbs": 16.6,
+      "total_fat": 55.7
+    },
+    "serving_size_g": 361.2,
+    "total_recipe_weight_g": 1444.6
+  },
+  {
+    "recipe_name": "Confit Potato Terrine with Caramelized Onion Jam and Crispy Sage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_confit_potato_terrine_with_caramelized_onion_jam_and_crispy_sage_20250628_081902_6a63d6fe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:19:03.241025000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian",
+    "visual_description": "The Confit Potato Terrine is presented on an expensive bone china sharing platter, against a premium white Carrara marble surface. Dramatic professional lighting creates subtle shadows, enhancing the dish's architectural precision. Abundant negative space surrounds the composition. The terrine pieces, cut into precise 2x4 cm rectangles, are seared to a golden-brown crisp on their exteriors, revealing soft, creamy layers within. They are arranged organically, slightly askew, with intentional spacing. Small, glossy dollops of deep amber caramelized onion jam are strategically placed beside some terrine pieces, their rich color contrasting with the golden potato. Scattered around are delicate, vibrant dark green crispy sage leaves, providing a textural crunch and aromatic visual. A light dusting of flaky sea salt catches the light. The overall presentation is ultra-minimalist and sophisticated, emphasizing perfect execution of each element. A pristine white linen napkin, folded into a precise triangle, rests nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes (e.g., Yukon Gold or desiree)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, crushed"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Large red onions",
+        "quantity": "3 (approx. 600g), thinly sliced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "20-30"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed or sunflower)",
+        "quantity": "for frying"
+      },
+      {
+        "name": "Flaky sea salt",
+        "quantity": "for finishing"
+      }
+    ],
+    "instructions": [
+      "Prepare Confit Potato Terrine:",
+      "Peel potatoes. Slice very thinly, 1-2 mm thick, using a mandoline.",
+      "Melt butter in a saucepan with thyme, crushed garlic, and bay leaves. Season with salt and pepper.",
+      "Layer potato slices tightly in a small, parchment-lined loaf pan or terrine mold (approx. 20x10 cm). Pour melted butter mixture over layers. Ensure all potatoes are submerged.",
+      "Cover pan tightly with foil. Bake at 160°C for 90-120 minutes, until potatoes are very tender.",
+      "Remove from oven. Place a weighted object (e.g., another pan with cans) on top of the foil-covered potatoes to press them. Refrigerate overnight.",
+      "Unmold terrine. Carefully slice into precise 2x4 cm rectangles or desired shapes.",
+      "Sear terrine pieces in a hot pan with a little oil until golden brown and crispy on all sides.",
+      "Prepare Caramelized Onion Jam:",
+      "Heat olive oil in a heavy-bottomed pot over medium-low heat. Add thinly sliced red onions.",
+      "Cook slowly, stirring occasionally, for 45-60 minutes until deeply caramelized and soft. Do not rush.",
+      "Add brown sugar, balsamic vinegar, and water. Stir well.",
+      "Simmer for 15-20 minutes, stirring occasionally, until liquid reduces and jam thickens. Season with a pinch of salt. Set aside.",
+      "Prepare Crispy Sage:",
+      "Heat neutral oil in a small saucepan to 170°C.",
+      "Carefully fry sage leaves in batches for 10-15 seconds until crisp. They will turn dark green.",
+      "Remove with a slotted spoon. Drain on paper towels. Season lightly with flaky sea salt.",
+      "Assemble and Serve:",
+      "Arrange seared potato terrine pieces artfully on a luxury sharing platter or individual bone china plates.",
+      "Spoon small, elegant dollops of caramelized onion jam next to or on top of the terrine.",
+      "Scatter crispy sage leaves around the terrine and jam.",
+      "Finish with a sprinkle of flaky sea salt. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 9.7,
+      "calories": 837,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 8.1,
+      "protein_g": 7.3,
+      "saturated_fat_g": 33.5,
+      "sodium_mg": 518,
+      "total_carbs_g": 67.7,
+      "total_fat_g": 61.8,
+      "total_sugars_g": 18,
+      "trans_fat_g": 2.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.8,
+      "calories": 158.1,
+      "cholesterol_mg": 25.4,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 1.4,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 97.8,
+      "total_carbs_g": 12.8,
+      "total_fat_g": 11.7,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 29,
+      "protein": 15,
+      "saturated_fat": 168,
+      "sodium": 23,
+      "total_carbs": 25,
+      "total_fat": 79
+    },
+    "serving_size_g": 529.5,
+    "total_recipe_weight_g": 2118
+  },
+  {
+    "recipe_name": "Crispy Smashed Potatoes with Sauerkraut & Smoked Tofu",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_smashed_potatoes_with_sauerkraut_%26_smoked_tofu_20250628_081834_86e91806.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:18:34.809098000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single crispy smashed potato sits centrally on a round, matte cream ceramic plate. Its craggy, golden-brown surface and irregular shape are prominent. Beside it, a compact mound of pale green sauerkraut, subtly glistening, provides a soft color contrast. Two to three perfectly seared smoked tofu chunks, deep golden with slightly charred edges, are arranged thoughtfully next to the sauerkraut, showcasing their firm texture. A sprinkle of vibrant green, finely chopped fresh dill rests atop the tofu and potato, adding a fresh accent. The plate has ample white space, emphasizing the clean lines and natural textures of the ingredients. The plate rests on a light, naturally textured reclaimed wood surface. A simple, undyed linen napkin in a natural beige tone is folded neatly beside the plate. The background is minimalist, with a hint of soft, diffused natural light creating gentle shadows. A subtle, out-of-focus green plant element is visible in the background, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes (small, waxy)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Smoked Tofu",
+        "quantity": "400 g block"
+      },
+      {
+        "name": "Sauerkraut (drained)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Soy Sauce (low sodium)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garlic Powder",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash potatoes thoroughly. Do not peel. Boil potatoes in salted water until fork-tender (about 15-20 minutes). Drain well. Reserve potato water for other uses.",
+      "Place boiled potatoes on a baking sheet. Using a fork or potato masher, gently smash each potato until flattened but still holding shape.",
+      "Drizzle smashed potatoes with 30 ml olive oil, season with salt and pepper. Bake for 25-30 minutes, or until golden brown and crispy.",
+      "While potatoes bake, press excess water from tofu. Cut tofu into 2 cm thick slices.",
+      "In a bowl, whisk together soy sauce, apple cider vinegar, smoked paprika, and garlic powder. Add tofu, toss to coat. Marinate for 10 minutes.",
+      "Heat remaining 30 ml olive oil in a large non-stick pan over medium-high heat. Add marinated tofu. Cook, turning occasionally, until golden brown and slightly crispy on all sides (about 8-10 minutes).",
+      "Drain sauerkraut if very wet. Briefly warm sauerkraut in a small pan or serve at room temperature.",
+      "Chop fresh dill.",
+      "To serve, arrange crispy smashed potatoes on plates. Top with warm sauerkraut and smoked tofu. Garnish with fresh dill."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 439,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 18.2,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 1069,
+      "total_carbs_g": 44.7,
+      "total_fat_g": 22.3,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 4.2,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 247,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 30.4,
+      "protein": 36.4,
+      "saturated_fat": 15.7,
+      "sodium": 46.5,
+      "total_carbs": 16.2,
+      "total_fat": 28.6
+    },
+    "serving_size_g": 432.1,
+    "total_recipe_weight_g": 1728.2
+  }
+]

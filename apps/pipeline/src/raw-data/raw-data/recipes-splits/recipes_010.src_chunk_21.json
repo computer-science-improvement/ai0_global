@@ -1,0 +1,666 @@
+[
+  {
+    "recipe_name": "Hearty Beef and Bell Pepper Goulash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_bell_pepper_goulash_20250712_233815_63a8f3eb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T23:38:16.244905000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of rich, reddish-brown beef goulash is presented in a deep, rustic ceramic bowl on a well-used wooden dining table. Chunks of seared beef chuck are nestled among tender, vibrant red and green bell pepper pieces, quartered brown mushrooms, and diced red tomatoes. The beef is cut into substantial, irregular chunks, not sliced. The sauce is thick and glossy, infused with paprika, coating all ingredients. A small scattering of fresh, chopped green parsley provides a simple, functional garnish. The plating is natural and unforced, with components touching and overlapping. A simple white ceramic plate is under the bowl, accompanied by a casual fork and spoon. Warm, soft kitchen lighting illuminates the dish, highlighting its comforting colors and textures, suggesting a cozy, lived-in family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of sour cream",
+      "Serve with crusty bread"
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g, cut into 3-4 cm cubes"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large, cut into 3 cm pieces"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large, cut into 3 cm pieces"
+      },
+      {
+        "name": "Button mushrooms",
+        "quantity": "250g, quartered"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g (1 can)"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g (2 tbsp)"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "20g (2 tbsp)"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30g (3 tbsp)"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml (2 tbsp)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g (1/4 cup), chopped"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper. Toss with flour.",
+      "Heat oil in large pot over medium-high heat. Sear beef in batches until browned on all sides. Remove beef from pot.",
+      "Add diced onions to pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic and smoked paprika. Cook 1 minute until fragrant.",
+      "Stir in tomato paste. Cook 2 minutes.",
+      "Return beef to pot. Add diced tomatoes and beef broth. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer 1.5 hours, or until beef is tender.",
+      "Add bell pepper pieces and quartered mushrooms. Continue simmering, uncovered, 30-40 minutes, until vegetables are tender and sauce thickens.",
+      "Season with salt and pepper to taste.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "Browning beef thoroughly adds depth of flavor."
+    ],
+    "traditional_techniques": [
+      "Browning meat",
+      "Paprika blooming"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 712,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 57.5,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 742,
+      "total_carbs_g": 29.1,
+      "total_fat_g": 41.8,
+      "total_sugars_g": 12.2,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 104,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.4,
+      "saturated_fat_g": 2,
+      "sodium_mg": 108,
+      "total_carbs_g": 4.2,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 27,
+      "protein": 115,
+      "saturated_fat": 69,
+      "sodium": 32,
+      "total_carbs": 11,
+      "total_fat": 54
+    },
+    "serving_size_g": 685.5,
+    "total_recipe_weight_g": 2742
+  },
+  {
+    "recipe_name": "Cheesy Chicken & Broccoli Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_chicken_%26_broccoli_bake_20250712_231440_525945f0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T23:14:40.865978000Z",
+    "selected_ingredients": [
+      "chicken",
+      "broccoli",
+      "mayonnaise",
+      "cheddar",
+      "hemp seed"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous square slice of the Cheesy Chicken & Broccoli Bake rests on a simple, off-white ceramic plate on a well-used wooden dining table. The bake features a golden-brown, slightly bubbly cheddar crust. Below, the interior reveals tender, diced chicken breast pieces, vibrant green broccoli florets, and specks of melted orange cheddar, all bound in a creamy matrix. The texture is moist and comforting. A light sprinkle of fresh, chopped chives and a few whole hemp seeds adorn the top. The plate is accompanied by a plain metal fork and a casually folded linen napkin. Warm, natural light illuminates the homely scene, emphasizing the comforting, inviting nature of the dish. The remaining bake is visible in the background in its baking dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken Cheddar",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "400g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Hemp seeds",
+        "quantity": "30g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Grease a 20x20cm baking dish.",
+      "Dice chicken breast into 1.5cm cubes. Mince garlic. Dice onion finely.",
+      "Heat olive oil in a large skillet over medium heat. Sauté onion until translucent, about 5 minutes. Add garlic; cook 1 minute more.",
+      "Add diced chicken to skillet. Cook until browned and cooked through, about 7-8 minutes. Ensure internal temperature reaches 75°C. Season with half the salt and pepper. Set aside.",
+      "Steam broccoli florets until tender-crisp, about 3-5 minutes. Chop florets into smaller pieces.",
+      "In a large bowl, whisk eggs. Stir in mayonnaise, shredded cheddar cheese, breadcrumbs, hemp seeds, remaining salt, and pepper.",
+      "Add cooked chicken and chopped broccoli to the bowl. Mix gently until well combined.",
+      "Spoon mixture into the prepared baking dish. Spread evenly.",
+      "Bake for 25-30 minutes, or until top is golden brown and bubbly. Let stand 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 737,
+      "cholesterol_mg": 249.4,
+      "dietary_fiber_g": 4,
+      "protein_g": 60,
+      "saturated_fat_g": 13.5,
+      "sodium_mg": 1110.6,
+      "total_carbs_g": 22.9,
+      "total_fat_g": 46.3,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 209,
+      "cholesterol_mg": 70.9,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 17.1,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 315.8,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 13.2,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 83.1,
+      "dietary_fiber": 14.1,
+      "protein": 120,
+      "saturated_fat": 67.6,
+      "sodium": 48.3,
+      "total_carbs": 8.3,
+      "total_fat": 59.4
+    },
+    "serving_size_g": 351.7,
+    "total_recipe_weight_g": 1406.8
+  },
+  {
+    "recipe_name": "Baked Chicken with Creamy Cheddar-Broccoli Topping",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_chicken_with_creamy_cheddar-broccoli_topping_20250712_230820_8cf938f6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T23:08:20.526428000Z",
+    "selected_ingredients": [
+      "chicken",
+      "broccoli",
+      "mayonnaise",
+      "cheddar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of baked chicken with creamy cheddar-broccoli topping is centered on a clean white porcelain dinner plate. The pan-seared chicken breast is whole, displaying a golden-brown hue from initial searing. It is generously covered with a vibrant, bubbly, golden-brown topping of melted cheddar cheese and roughly chopped, tender-crisp green broccoli florets, bound in a creamy sauce. The texture is moist chicken with a rich, cheesy, slightly textured topping. The plate sits on a simple wooden table surface. A white cotton napkin is placed beside the plate, accompanied by standard silver flatware. Natural, even lighting illuminates the dish, highlighting its comforting colors and textures. The background is minimal, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "500g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "150g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken breasts dry. Season chicken generously with salt and pepper.",
+      "Heat olive oil in an oven-safe skillet over medium-high heat. Sear chicken breasts 3 minutes per side until golden brown. Remove chicken from skillet.",
+      "Steam or blanch broccoli florets until tender-crisp. Drain very well. Roughly chop cooked broccoli into smaller pieces.",
+      "In a medium bowl, combine mayonnaise, shredded cheddar, minced garlic, onion powder, and Dijon mustard. Mix thoroughly. Season mixture with salt and pepper.",
+      "Fold the chopped broccoli into the mayonnaise-cheese mixture.",
+      "Place seared chicken breasts back into the skillet or transfer to a baking dish.",
+      "Spoon the creamy broccoli-cheddar mixture generously over each chicken breast, spreading to cover the top.",
+      "Bake 15-20 minutes, or until chicken reaches an internal temperature of 75°C and the topping is golden and bubbly.",
+      "Remove from oven. Rest chicken 5 minutes before serving.",
+      "Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.2,
+      "calories": 704,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 69.3,
+      "saturated_fat_g": 13.4,
+      "sodium_mg": 611,
+      "total_carbs_g": 12.6,
+      "total_fat_g": 42.1,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 185,
+      "cholesterol_mg": 53,
+      "dietary_fiber_g": 1,
+      "protein_g": 18.2,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 160,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.6,
+      "dietary_fiber": 13.2,
+      "protein": 138.6,
+      "saturated_fat": 67,
+      "sodium": 26.6,
+      "total_carbs": 4.6,
+      "total_fat": 54
+    },
+    "serving_size_g": 381.2,
+    "total_recipe_weight_g": 1524.8
+  },
+  {
+    "recipe_name": "Beer-Braised Chicken Thighs with Cheesy Mashed Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_chicken_thighs_with_cheesy_mashed_potatoes_20250712_230155_50ad0fbb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T23:01:55.792169000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "dark beer",
+      "american cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic presentation of two rich, dark beer-braised chicken thighs, each whole and bone-in, are positioned slightly overlapping on one side of a clean white porcelain dinner plate. The chicken boasts a deep mahogany brown color with visible browning from searing, showcasing its tender, fall-off-the-bone texture. Adjacent to the chicken, a generous, creamy quenelle of golden-yellow cheesy mashed potatoes rests, its smooth texture contrasting with the chicken. The potatoes are infused with melted American cheese, offering a subtle sheen. A light sprinkle of fresh, vibrant green chopped parsley garnishes both the chicken and potatoes, adding a pop of color. A few pan-braising liquid drippings, rich and glossy, are spooned around the chicken. The plate is set on a simple wooden surface, with a folded cotton napkin and standard flatware to the side. Natural, even lighting highlights the comforting appeal of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 200-250g each)"
+      },
+      {
+        "name": "Potatoes (Russet or Yukon Gold)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Dark beer (stout or porter)",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "American cheese (slices or block)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "120 ml, warm"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped for garnish"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C (325°F).",
+      "Season chicken thighs generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe Dutch oven or heavy-bottomed pot over medium-high heat. Sear chicken thighs, skin-side down, until deeply golden and crisp, about 8-10 minutes. Flip and sear other side for 3-5 minutes. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Pour in dark beer. Scrape up any browned bits from the bottom of the pot with a wooden spoon. Bring to a simmer.",
+      "Add chicken broth and fresh thyme sprigs. Return seared chicken thighs to the pot, skin-side up. Ensure chicken is partially submerged in the liquid.",
+      "Bring the liquid to a gentle simmer. Cover the pot tightly. Transfer to the preheated oven. Braise for 1.5 to 2 hours, or until chicken is very tender and reaches an internal temperature of 75°C (167°F).",
+      "While chicken braises, prepare the mashed potatoes. Peel and cut potatoes into 2-3 cm chunks. Place in a large pot. Cover with cold water and add a pinch of salt.",
+      "Bring to a boil over high heat. Cook until potatoes are very tender and easily pierced with a fork, about 15-20 minutes. Drain well.",
+      "Return drained potatoes to the hot pot. Add butter and warm milk. Mash until smooth and creamy.",
+      "Add American cheese (cut into small pieces if using a block). Stir vigorously until cheese is fully melted and incorporated, creating creamy, cheesy mashed potatoes. Season with salt and black pepper to taste.",
+      "To serve, spoon a generous portion of cheesy mashed potatoes onto each plate. Place one or two braised chicken thighs next to the potatoes. Spoon some of the rich braising liquid over the chicken. Garnish generously with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "The braising liquid can be reduced further on the stovetop after removing the chicken if a thicker sauce is desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1064.5,
+      "cholesterol_mg": 271.5,
+      "dietary_fiber_g": 6.6,
+      "protein_g": 57,
+      "saturated_fat_g": 24.7,
+      "sodium_mg": 1341,
+      "total_carbs_g": 56.4,
+      "total_fat_g": 65.4,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.1,
+      "cholesterol_mg": 32.4,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.8,
+      "saturated_fat_g": 3,
+      "sodium_mg": 160.1,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 90.5,
+      "dietary_fiber": 23.5,
+      "protein": 114,
+      "saturated_fat": 123.5,
+      "sodium": 58.3,
+      "total_carbs": 20.5,
+      "total_fat": 83.8
+    },
+    "serving_size_g": 837.5,
+    "total_recipe_weight_g": 3350
+  },
+  {
+    "recipe_name": "Tuscan Herb Chicken with Roasted Potatoes and Sautéed Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_herb_chicken_with_roasted_potatoes_and_saut%C3%A9ed_vegetables_20250712_222245_45c00379.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-12T22:22:46.214419000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "tomato",
+      "basil",
+      "bell pepper",
+      "mushroom",
+      "rice",
+      "pasta",
+      "broccoli",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Tuscan Herb Chicken is presented on a clean, round white porcelain dinner plate, centrally positioned on a light wooden table. A single golden-brown, crispy-skinned chicken thigh, whole and plump, anchors the dish. Around the chicken, roasted potato wedges, golden with tender interiors, are neatly arranged. Vibrant strips of red and yellow bell peppers, along with browned cremini mushroom halves, are artfully mounded beside the chicken. A rich, glossy red tomato-garlic-basil sauce is spooned around the chicken and vegetables, creating a natural flow. The dish is garnished with a scattering of fresh green basil leaves and a light dusting of finely grated Parmesan cheese, adding freshness and texture. The overall composition is balanced and inviting, with moderate negative space. A neatly folded cotton napkin and standard silver flatware are placed beside the plate. The setting evokes a modern bistro with natural, even lighting that highlights the food's colors and textures, creating an approachable yet refined culinary image.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the delicious sauce.",
+      "Offer a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with salt, pepper, and 5g oregano. Set aside.",
+      "Wash potatoes. Cut potatoes into 2 cm wedges. Toss with 30 ml olive oil, salt, and pepper. Spread on a baking sheet.",
+      "Roast potatoes for 15 minutes.",
+      "Add chicken thighs to the baking sheet with potatoes. Roast for another 25-30 minutes. Internal temperature of chicken must reach 75°C.",
+      "While chicken roasts, prepare vegetables. Slice bell peppers into 1.5 cm strips. Halve mushrooms. Mince garlic.",
+      "Heat remaining 30 ml olive oil in a large skillet over medium-high heat.",
+      "Add bell peppers and mushrooms to skillet. Sauté for 7-8 minutes until tender-crisp and lightly browned.",
+      "Add minced garlic to skillet. Sauté for 1 minute until fragrant.",
+      "Stir in diced tomatoes and chicken broth. Bring to a simmer. Cook for 5 minutes until sauce slightly thickens.",
+      "Remove chicken and potatoes from oven. Let chicken rest for 5 minutes.",
+      "Stir half of the fresh basil into the vegetable sauce. Taste and adjust seasoning.",
+      "Plate one chicken thigh per person. Arrange roasted potato wedges around chicken. Spoon sautéed bell peppers, mushrooms, and sauce generously over and around.",
+      "Garnish with remaining fresh basil leaves and grated Parmesan cheese. Serve immediately."
+    ],
+    "notes": [
+      "Always ensure chicken internal temperature reaches 75°C (167°F) for food safety.",
+      "For extra flavor, marinate chicken in herbs and olive oil for at least 30 minutes before roasting."
+    ],
+    "traditional_techniques": [
+      "Arrosto (Roasting)",
+      "Soffritto (for sauce base)",
+      "Fresh Herb Infusion"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 803.56,
+      "cholesterol_mg": 211,
+      "dietary_fiber_g": 7.05,
+      "protein_g": 51.58,
+      "saturated_fat_g": 13.4,
+      "sodium_mg": 1079.06,
+      "total_carbs_g": 36.13,
+      "total_fat_g": 50.05,
+      "total_sugars_g": 9.16,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125.07,
+      "cholesterol_mg": 32.84,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.03,
+      "saturated_fat_g": 2.08,
+      "sodium_mg": 167.95,
+      "total_carbs_g": 5.62,
+      "total_fat_g": 7.79,
+      "total_sugars_g": 1.43,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70.33,
+      "dietary_fiber": 25.16,
+      "protein": 103.14,
+      "saturated_fat": 66.98,
+      "sodium": 46.91,
+      "total_carbs": 13.14,
+      "total_fat": 64.17
+    },
+    "serving_size_g": 642.5,
+    "total_recipe_weight_g": 2570
+  }
+]

@@ -1,0 +1,650 @@
+[
+  {
+    "recipe_name": "Chicken Ballotine with Herb Butter, Potato Fondant, and Roasted Red Pepper Coulis",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_ballotine_with_herb_butter%2C_potato_fondant%2C_and_roasted_red_pepper_coulis_20250626_090252_3368519f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:02:52.810087000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken",
+      "broccoli",
+      "bell pepper"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Chicken Ballotine with Herb Butter, Potato Fondant, and Roasted Red Pepper Coulis is meticulously arranged on a sophisticated, matte white ceramic plate with a subtle, organic rim. Two thick, seared chicken ballotine medallions, revealing the vibrant green herb butter stuffing, are positioned elegantly at the center. Beside them, a perfectly golden-brown, precisely cut potato fondant cylinder stands tall, its edges crisp. A small cluster of vibrant green, al dente broccoli florets provides a pop of color and texture. A rich, glossy roasted red pepper coulis is artfully swiped across the plate, adding a bold, contrasting red hue. The composition emphasizes natural, flowing lines with abundant negative space. The dish rests on a polished grey marble surface. A pristine white linen napkin, precisely folded into a triangle, is placed to the side. The scene is bathed in dramatic, professional lighting, casting soft shadows that highlight the dish's contours. The background is ultra-minimalist, drawing full attention to the exquisite plating.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve as a main course in a multi-course fine-dining experience.",
+      "Accompany with a glass of crisp white wine, such as a Sancerre or Chablis.",
+      "Utilize traditional European flatware for dining."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes (Russet or Maris Piper)",
+        "quantity": "2 large (approx. 400g total)"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 head (approx. 300g)"
+      },
+      {
+        "name": "Red bell peppers",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "10g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Halve and deseed bell peppers. Place cut-side down on a baking tray. Roast for 25-30 minutes until skin is blistered and charred.",
+      "Remove peppers from oven. Place in a bowl and cover tightly with cling film for 10 minutes. Peel skins, discard. Puree roasted flesh in a blender until smooth. Season with salt and pepper. Set aside.",
+      "Peel potatoes. Trim ends to create flat surfaces. Cut into precise 5cm thick cylinders or rectangular blocks. Season with salt and pepper.",
+      "Heat 30g butter and 15ml olive oil in an oven-safe pan over medium-high heat. Sear potato fondants on all sides until golden brown. Add 100ml chicken stock. Transfer pan to oven. Roast for 20-25 minutes, basting occasionally, until tender.",
+      "Finely dice shallot and garlic. Chop parsley and chives. Combine with 20g softened butter. Season with salt and pepper. This is the herb butter stuffing.",
+      "Place each chicken breast between two sheets of cling film. Pound gently with a mallet to an even 1cm thickness.",
+      "Spread herb butter evenly over one side of each chicken breast. Roll each breast tightly into a ballotine shape. Secure ends with butcher's twine or wrap tightly in cling film (for sous-vide option).",
+      "Heat 15ml olive oil in a large oven-safe pan over medium-high heat. Sear chicken ballotines on all sides until golden brown. Transfer pan to oven. Roast for 15-20 minutes, or until internal temperature reaches 75°C. Rest chicken for 5 minutes.",
+      "Bring a pot of salted water to a boil. Cut broccoli into small, even florets. Blanch broccoli in boiling water for 2-3 minutes until tender-crisp. Drain immediately. Toss with a knob of butter, salt, and pepper.",
+      "To serve, slice each chicken ballotine into 2-3 thick medallions. Arrange 2 medallions per plate. Place one potato fondant next to chicken. Arrange a few blanched broccoli florets. Spoon a precise amount of red pepper coulis onto the plate. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Ballotine",
+      "Fondant",
+      "Coulis"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 748,
+      "cholesterol_mg": 224,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 69.7,
+      "saturated_fat_g": 15.9,
+      "sodium_mg": 471,
+      "total_carbs_g": 32.5,
+      "total_fat_g": 35.6,
+      "total_sugars_g": 5.8,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1,
+      "protein_g": 10.9,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 73,
+      "total_carbs_g": 5.1,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 24,
+      "protein": 139,
+      "saturated_fat": 80,
+      "sodium": 20,
+      "total_carbs": 12,
+      "total_fat": 46
+    },
+    "serving_size_g": 641.25,
+    "total_recipe_weight_g": 2565
+  },
+  {
+    "recipe_name": "Spicy Beef and Tomato Rice Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_beef_and_tomato_rice_skillet_20250626_090242_1c309f1e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:02:43.004959000Z",
+    "selected_ingredients": [
+      "beef",
+      "rice",
+      "tomato",
+      "chili",
+      "onion",
+      "cheddar",
+      "basil",
+      "oil",
+      "soy sauce",
+      "lime"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spicy Beef and Tomato Rice Skillet is presented on a clean white porcelain dinner plate. The rich, red-orange hue of the tomato and chili-infused rice base is vibrant. Browned, coarse ground beef is evenly distributed throughout the fluffy, tender rice. Bright green specks of fresh basil leaves are torn and scattered generously over the top. Melted, golden-orange cheddar cheese forms a bubbly, glossy layer over the rice, with some slightly browned edges. The dish is arranged in a modest mound in the center of the plate, allowing for ample negative space around the edges. A few small, bright green basil leaves and a lime wedge are placed beside the rice for garnish. The texture is a mix of soft rice, tender beef, and gooey cheese. The overall impression is hearty and inviting, with a modern bistro table setting and natural, soft lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "500 g"
+      },
+      {
+        "name": "White rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1-2"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Prepare ingredients: Dice 1 red onion. Mince 2 garlic cloves. Finely chop 1-2 red chilies. Grate 100 g cheddar.",
+      "Brown beef: Heat 15 ml olive oil in a large skillet over medium-high heat. Add 500 g ground beef. Break apart with a spoon. Cook until browned, about 8-10 minutes. Drain excess fat.",
+      "Sauté aromatics: Add remaining 15 ml olive oil to skillet. Add diced red onion, minced garlic, and chopped red chili. Sauté 5-7 minutes until onion softens.",
+      "Combine: Stir in 400 g crushed tomatoes, 30 ml soy sauce, 250 ml beef broth, 5 g salt, and 2 g black pepper. Bring to a simmer.",
+      "Add rice: Stir in 200 g rinsed white rice. Reduce heat to low. Cover skillet. Cook 15-20 minutes, or until rice is tender and liquid absorbed.",
+      "Finish dish: Remove from heat. Sprinkle grated cheddar over the rice mixture. Cover skillet again for 5 minutes, allowing cheese to melt.",
+      "Serve: Squeeze juice from 1 lime over the dish. Garnish with fresh basil leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 709,
+      "cholesterol_mg": 119,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 45.8,
+      "saturated_fat_g": 15,
+      "sodium_mg": 1607,
+      "total_carbs_g": 50.8,
+      "total_fat_g": 37.5,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.4,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 364,
+      "total_carbs_g": 11.5,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 10,
+      "protein": 92,
+      "saturated_fat": 75,
+      "sodium": 70,
+      "total_carbs": 18,
+      "total_fat": 48
+    },
+    "serving_size_g": 442,
+    "total_recipe_weight_g": 1768
+  },
+  {
+    "recipe_name": "Crispy Corn Tostadas with Red Wine Glazed Mushrooms and Spiced Cottage Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_corn_tostadas_with_red_wine_glazed_mushrooms_and_spiced_cottage_cheese_20250626_090219_652df736.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:02:20.091711000Z",
+    "selected_ingredients": [
+      "tortilla",
+      "vegetable stock",
+      "red wine",
+      "corn tortilla",
+      "cottage cheese",
+      "cucumber"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Two golden-crisp corn tostadas are elegantly presented on a clean white porcelain plate. Each tostada is topped with a generous mound of rich, dark red wine glazed mushrooms, their earthy brown hues contrasting with the vibrant toppings. A creamy, off-white dollop of spiced cottage cheese sits atop the mushrooms, providing a soft texture. Freshly diced cucumber, cut into small, uniform cubes, and bright green chopped cilantro are scattered over the cottage cheese, adding pops of color and freshness. The arrangement is balanced, allowing for moderate negative space around the tostadas. The dish is set on a simple wooden table, accompanied by a folded cotton napkin, under natural, even lighting, creating a modern bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Small corn tortillas",
+        "quantity": "8"
+      },
+      {
+        "name": "Cremini or mixed mushrooms, sliced",
+        "quantity": "400g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Full-fat cottage cheese",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large cucumber, diced small",
+        "quantity": "1"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Chili powder or smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Lime, for juice",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "0.25 bunch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Lightly brush corn tortillas with olive oil. Bake 8-10 minutes until crisp and golden. Set aside.",
+      "Heat 2 tablespoons olive oil in a large pan over medium-high heat. Add sliced mushrooms. Cook until browned and tender, about 8-10 minutes. Remove mushrooms and set aside.",
+      "Add remaining 1 tablespoon olive oil to the same pan. Add diced onion. Cook until softened, 3-4 minutes. Add minced garlic and tomato paste. Cook 1 minute more.",
+      "Pour in red wine. Bring to a simmer. Cook until wine is reduced by half, about 5 minutes. Stir in vegetable stock. Return mushrooms to the pan. Simmer 5-7 minutes until sauce thickens slightly. Season with salt and pepper.",
+      "In a small bowl, combine cottage cheese, chili powder, and cumin. Add a squeeze of lime juice. Stir well. Season with salt.",
+      "In another small bowl, combine diced cucumber with a squeeze of lime juice and a pinch of salt.",
+      "To assemble each tostada, place a crispy corn tortilla on a plate. Spoon a generous amount of red wine glazed mushrooms over the tortilla. Top with a dollop of spiced cottage cheese. Finish with diced cucumber and fresh chopped cilantro. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 331,
+      "cholesterol_mg": 9,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 12.5,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 625,
+      "total_carbs_g": 35.8,
+      "total_fat_g": 14.1,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 79,
+      "cholesterol_mg": 2,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 3,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 150,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 2.8,
+      "dietary_fiber": 21.7,
+      "protein": 24.9,
+      "saturated_fat": 15.3,
+      "sodium": 27.2,
+      "total_carbs": 13,
+      "total_fat": 18
+    },
+    "serving_size_g": 416.3,
+    "total_recipe_weight_g": 1665
+  },
+  {
+    "recipe_name": "Chicken Cacciatore with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_with_pappardelle_20250626_090214_1fd9f772.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:02:15.182131000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of wide, golden pappardelle ribbons is nested in a clean white porcelain pasta bowl. The pasta is coated in a thick, vibrant red San Marzano tomato sauce. A whole, bone-in braised chicken thigh rests centrally on the pasta, showing a rich, caramelized exterior. Small, tender cubes of carrot and celery, along with dark, wrinkled Kalamata olives, are distributed throughout the sauce. Freshly chopped flat-leaf parsley provides a vivid green garnish. The dish is set on a dark wood table with a folded linen napkin and a silver fork. Soft, natural light emphasizes the glossy texture of the sauce and the rustic appeal of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta bread",
+      "Pair with a medium-bodied Chianti wine",
+      "Offer freshly grated Pecorino Romano at the table"
+    ],
+    "hero_ingredient": "Braised Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "bone-in, skin-on chicken thighs",
+        "quantity": "800g"
+      },
+      {
+        "name": "pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "crushed San Marzano tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "dry red wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "celery stalk, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "fresh rosemary, chopped",
+        "quantity": "10g"
+      },
+      {
+        "name": "fresh thyme, chopped",
+        "quantity": "10g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "50g"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken with salt and pepper.",
+      "Heat olive oil in a large pan over medium-high heat.",
+      "Sear chicken skin-side down until golden.",
+      "Flip chicken and brown the other side.",
+      "Remove chicken from pan. Set aside.",
+      "Add onion, carrot, and celery to the pan.",
+      "Sauté vegetables for 5 minutes.",
+      "Stir in garlic, rosemary, and thyme. Cook 1 minute.",
+      "Pour in wine. Deglaze the pan bottom.",
+      "Add tomatoes and olives. Stir well.",
+      "Return chicken to the pan. Cover.",
+      "Simmer 30 minutes until chicken reaches 75°C.",
+      "Boil salted water. Cook pappardelle until al dente.",
+      "Drain pasta. Toss with sauce.",
+      "Place pasta in bowls. Top with one whole chicken thigh."
+    ],
+    "notes": [
+      "Ensure the sauce is thick enough to coat the wide pasta ribbons",
+      "Use high-quality San Marzano tomatoes for authentic flavor"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 877,
+      "cholesterol_mg": 185,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 43.2,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 364,
+      "total_carbs_g": 85,
+      "total_fat_g": 38.5,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 219,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 10.8,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 91,
+      "total_carbs_g": 21.3,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 20,
+      "protein": 86,
+      "saturated_fat": 51,
+      "sodium": 16,
+      "total_carbs": 31,
+      "total_fat": 49
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Vol-au-vents d'Asperges et Estragon au Verjus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vol-au-vents_d%27asperges_et_estragon_au_verjus_20250626_090153_74ab8e85.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:01:54.418613000Z",
+    "selected_ingredients": [
+      {
+        "name": "white wine"
+      },
+      {
+        "name": "shallot"
+      },
+      {
+        "name": "tarragon"
+      },
+      {
+        "name": "asparagus"
+      },
+      {
+        "name": "verjus"
+      },
+      {
+        "name": "thyme"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "French",
+    "visual_description": "Eight to twelve elegant, golden-brown vol-au-vents are arranged artfully on a pristine white rectangular porcelain serving platter, set against a simple wooden table surface in a modern bistro setting. Each vol-au-vent, approximately 5cm in diameter, boasts a light, flaky puff pastry exterior. The interior reveals a creamy, pale green filling, visible within the cavity, studded with finely chopped, vibrant green asparagus pieces and subtle flecks of dark green tarragon. Each canapé is precisely topped with one or two bright green, blanched asparagus tips, positioned neatly. A few tiny, fresh thyme sprigs are scattered delicately around the platter, enhancing the fresh aroma and visual appeal. The overall presentation is clean and refined, with moderate negative space, highlighted by natural, soft, even lighting. The scene is uncluttered, allowing the dish to be the primary focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Asparagus",
+    "ingredients": [
+      {
+        "name": "Puff pastry",
+        "quantity": "1 sheet (approx. 300g)"
+      },
+      {
+        "name": "Green asparagus",
+        "quantity": "250g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Verjus",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Fresh tarragon",
+        "quantity": "10g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "5ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking sheet with parchment paper.",
+      "Unroll puff pastry. Cut out 12 circles, 5cm diameter. Use a smaller cutter (3cm) to lightly score a circle inside 6 of the larger circles, do not cut through. These will be the tops.",
+      "Place all pastry circles on the baking sheet. Brush the 6 scored circles with egg yolk. Bake for 12-15 minutes until golden and puffed. The scored tops will lift easily after baking. Remove from oven and let cool slightly.",
+      "Snap off woody ends of asparagus. Blanch asparagus in salted boiling water for 2-3 minutes until tender-crisp. Immediately transfer to an ice bath to stop cooking. Drain well.",
+      "Reserve 12-18 asparagus tips for garnish. Finely chop the remaining asparagus stalks.",
+      "Finely dice the shallot. Roughly chop tarragon leaves. Pick thyme leaves from stems.",
+      "In a small saucepan, melt 15g butter over medium heat. Add diced shallot and cook until translucent, about 3-4 minutes.",
+      "Add white wine and verjus to the saucepan. Bring to a simmer and reduce liquid by half. Set aside.",
+      "In another small saucepan, melt remaining 15g butter over medium heat. Whisk in flour to create a roux. Cook for 1 minute.",
+      "Gradually whisk in milk until smooth and thickened. Cook for 2-3 minutes, stirring constantly.",
+      "Stir the reduced shallot mixture into the milk sauce. Add chopped asparagus and most of the chopped tarragon. Season with salt and pepper. Cook for 2 minutes, stirring.",
+      "Carefully remove the scored tops from the baked vol-au-vents, creating a cavity. Fill each vol-au-vent with the warm asparagus mixture.",
+      "Garnish each filled vol-au-vent with 1-2 reserved asparagus tips. Sprinkle with fresh thyme leaves and remaining tarragon.",
+      "Serve immediately on a platter."
+    ]
+  }
+]

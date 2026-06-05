@@ -1,0 +1,713 @@
+[
+  {
+    "recipe_name": "Seared Chicken & Beef with Spiced Buckwheat Rice, Herb Yogurt, and Fresh Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_%26_beef_with_spiced_buckwheat_rice%2C_herb_yogurt%2C_and_fresh_salad_20250625_082658_2a8a059f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:26:59.278746000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken",
+      "rice",
+      "buckwheat groat",
+      "egg",
+      "greek yogurt",
+      "milk",
+      "bread",
+      "cucumber",
+      "apple",
+      "banana"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate, showcasing a balanced and approachable composition. At the center is a mound of fluffy, golden-brown spiced buckwheat rice, its grains distinct and glistening. Nestled beside the rice are a whole, pan-seared chicken breast, its skin a rich golden-brown, and several thick, seared beef chunks with a deep brown crust and hints of pink interior. A generous dollop of creamy white herb yogurt sauce rests beside the proteins, with a light drizzle extending onto the grains. A perfectly fried egg, its vibrant yellow yolk contrasting with crisp white edges, sits atop the buckwheat rice. To the side, a small, neat pile of bright green diced cucumber and crisp white apple cubes adds a fresh, vibrant pop of color and texture. Two to three thin, subtly caramelized banana slices, with a light golden hue, are artfully placed near the proteins. The dish is garnished with a sprinkle of fresh green dill and parsley, adding freshness. A lemon wedge and a slice of rustic crusty bread complete the presentation. The setting is a modern bistro, featuring a simple wooden table surface, a clean white cotton napkin beside the plate, and standard flatware. Natural, even lighting illuminates the scene, highlighting the food while maintaining a casual, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken and Beef",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, skinless, boneless",
+        "quantity": "2 (approx. 400g total)"
+      },
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "400g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "150g"
+      },
+      {
+        "name": "Buckwheat groats",
+        "quantity": "150g"
+      },
+      {
+        "name": "Medium onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Greek yogurt, full-fat",
+        "quantity": "250g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Large cucumber",
+        "quantity": "1"
+      },
+      {
+        "name": "Large crisp apple (e.g., Granny Smith)",
+        "quantity": "1"
+      },
+      {
+        "name": "Firm banana",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh dill, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "Pinch (optional)"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (half juiced, half cut into wedges)"
+      },
+      {
+        "name": "Crusty bread or baguette slices",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Rinse rice and buckwheat separately. Heat 15ml olive oil in a large pot. Add half diced onion, cook until softened, about 3 minutes. Add rice and buckwheat, stir 1 minute. Pour in chicken broth. Bring to boil, then reduce heat, cover, and simmer 15-18 minutes until liquid is absorbed and grains are tender. Stir in 15g butter. Keep warm.",
+      "Pat chicken breasts dry. Season chicken and beef all over with salt and black pepper. Heat remaining 15ml olive oil in a large skillet over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown and internal temperature reaches 75°C. Remove chicken, let rest. Add beef to hot skillet. Sear 3-4 minutes per side for medium-rare, or to desired doneness. Remove beef, let rest 5 minutes. Slice beef into 2cm thick chunks or medallions. Leave chicken breasts whole or slice into two thick pieces.",
+      "In a bowl, combine Greek yogurt, milk, lemon juice, half chopped dill, and half chopped parsley. Season with salt and pepper. Stir well.",
+      "Dice cucumber and apple into 1cm cubes. In a small bowl, combine diced cucumber and apple. Season lightly with salt and pepper.",
+      "Peel banana. Slice into 0.5cm thick rounds. Heat a small non-stick pan over medium heat. Add banana slices. Cook 1-2 minutes per side until lightly caramelized. Season with a tiny pinch of salt and red pepper flakes (if using).",
+      "Fry 4 eggs in the same skillet used for proteins until whites are set and yolks are runny or to your preference. Season with salt and pepper.",
+      "Spoon a generous portion of spiced buckwheat rice onto each plate. Arrange seared chicken and beef chunks/medallions beside the grains. Place a fried egg on top of or next to the grains. Spoon a dollop of herb yogurt next to the proteins, or drizzle over. Place a small mound of apple-cucumber salad on the plate. Arrange 2-3 slices of savory banana next to the proteins. Garnish with remaining fresh dill and parsley. Serve with a lemon wedge and a slice of crusty bread."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1059,
+      "cholesterol_mg": 363,
+      "dietary_fiber_g": 9.5,
+      "protein_g": 83,
+      "saturated_fat_g": 12.9,
+      "sodium_mg": 1265,
+      "total_carbs_g": 100,
+      "total_fat_g": 37.4,
+      "total_sugars_g": 16.2,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 136.9,
+      "cholesterol_mg": 46.9,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 10.7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 163.6,
+      "total_carbs_g": 12.9,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 121,
+      "dietary_fiber": 34,
+      "protein": 166,
+      "saturated_fat": 65,
+      "sodium": 55,
+      "total_carbs": 36,
+      "total_fat": 48
+    },
+    "serving_size_g": 773.4,
+    "total_recipe_weight_g": 3093.6
+  },
+  {
+    "recipe_name": "One-Pan Chicken and Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_one-pan_chicken_and_tomato_rice_20250625_082541_81b3ad6c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:25:41.812777000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Golden-brown seared chicken thighs rest on a generous bed of reddish-orange rice. The rice is fluffy, with distinct grains, interspersed with soft, diced red tomatoes and tender, caramelized onion pieces. A sprinkle of fresh, chopped green parsley adds a bright contrast. The dish is presented on a round, rustic cream-colored ceramic plate, filling it with a hearty, home-style portion. The plate sits on a well-used, light wooden kitchen table. A simple, silver fork and knife are placed casually beside the plate, with a slightly crumpled plain linen napkin. Soft, warm overhead lighting illuminates the scene, creating a cozy, inviting atmosphere. The background subtly suggests a lived-in family kitchen, with natural, minimal clutter.",
+    "number_of_servings": 4,
+    "cuisine_type": "Homestyle",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g (1 can)"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium (approx. 150g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large, deep skillet over medium-high heat.",
+      "Sear chicken thighs skin-side down for 5-7 minutes until golden and crispy. Flip. Sear for another 3-4 minutes. Remove chicken from skillet. Set aside.",
+      "Add diced onion to skillet. Sauté for 5 minutes until softened and lightly golden.",
+      "Add minced garlic and dried oregano. Sauté for 1 minute until fragrant.",
+      "Stir in rice. Cook for 2 minutes, stirring constantly, until lightly toasted.",
+      "Pour in diced tomatoes (undrained) and chicken broth. Bring to a simmer.",
+      "Return chicken thighs to skillet, nestling them into the rice mixture. Ensure liquid almost covers chicken.",
+      "Reduce heat to low. Cover skillet. Simmer for 20-25 minutes, or until rice is tender and liquid is absorbed. Chicken internal temperature should reach 75°C.",
+      "Remove from heat. Let stand, covered, for 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 811,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 43.6,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 1533,
+      "total_carbs_g": 71.9,
+      "total_fat_g": 38.5,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 180,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 9.7,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 341,
+      "total_carbs_g": 16,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 12,
+      "protein": 87,
+      "saturated_fat": 48,
+      "sodium": 67,
+      "total_carbs": 26,
+      "total_fat": 49
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Braised Turkey & Root Vegetable Bowl with Quick-Pickled Red Onion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_turkey_%26_root_vegetable_bowl_with_quick-pickled_red_onion_20250625_082446_edf09e9c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:24:46.644848000Z",
+    "selected_ingredients": [
+      "turkey"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of the Braised Turkey & Root Vegetable Bowl rests in a handcrafted, unglazed ceramic bowl of natural, earthy beige. The bowl is positioned slightly off-center on a light, reclaimed wood table. A generous bed of roasted root vegetables—chunks of golden potato, orange carrot, and pale parsnip—display tender, caramelized edges. Interspersed are crisp, halved Brussels sprouts, their vibrant green contrasting with softer interiors. Substantial, pulled chunks of dark turkey meat are centrally placed, showcasing its tender texture. A light sheen of reduced braising liquid coats the turkey. To one side, a small, vibrant pile of thinly sliced quick-pickled red onions adds a pop of fuchsia. A few fresh rosemary sprigs are tucked among the ingredients. The composition is clean, with ample white space, emphasizing each ingredient's pure beauty. Soft, natural light illuminates the scene, highlighting organic textures. An undyed linen napkin in natural beige is folded simply beside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Turkey thighs, bone-in, skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Carrots, scrubbed, cut into 3 cm chunks",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Parsnips, scrubbed, cut into 3 cm chunks",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Potatoes, scrubbed, cut into 3 cm chunks",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Brussels sprouts, trimmed, halved",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red onion, thinly sliced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5"
+      },
+      {
+        "name": "Dried bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil, divided",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "Turkey broth or low-sodium chicken broth",
+        "quantity": "500 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Pickled Onions: In a small saucepan, combine white wine vinegar, water, sugar, 5g salt, peppercorns, and bay leaf. Bring to a simmer, stirring until sugar and salt dissolve. Remove from heat. Place thinly sliced red onion in a heatproof jar or bowl. Pour hot brine over onions. Let cool, then cover and refrigerate for at least 30 minutes.",
+      "Braise Turkey: Preheat oven to 160°C. Pat turkey thighs dry. Season generously with salt and pepper. In a large oven-safe pot or Dutch oven, heat 30 ml olive oil over medium-high heat. Sear turkey thighs, skin-side down, until golden brown and crispy, about 5-7 minutes. Flip and sear for another 3 minutes. Remove turkey from pot.",
+      "Braise Turkey (continued): Add rosemary and thyme sprigs to the pot. Deglaze with turkey broth, scraping up any browned bits. Return turkey thighs to the pot, skin-side up. Bring to a simmer. Cover tightly and transfer to the preheated oven. Braise for 1.5 to 2 hours, or until turkey is very tender and pulls easily from the bone.",
+      "Roast Vegetables: While turkey braises, toss carrots, parsnips, and potatoes with remaining 30 ml olive oil, salt, and pepper on a large baking sheet. Roast in the oven with the turkey for the last 45-60 minutes of turkey cooking time, or until tender and lightly browned. Add Brussels sprouts to the baking sheet for the last 20 minutes of roasting, tossing with vegetables.",
+      "Finish Turkey: Once braised, remove turkey thighs from the pot. Discard skin and bones. Shred or pull turkey meat into large, rustic chunks. Skim any excess fat from the braising liquid. Reduce braising liquid over medium-high heat on the stovetop until slightly thickened, about 5-7 minutes.",
+      "Assemble and Serve: Divide roasted root vegetables and Brussels sprouts among 4 individual serving bowls. Place generous chunks of braised turkey on top of the vegetables. Spoon some reduced braising liquid over the turkey and vegetables. Garnish each bowl with a small pile of quick-pickled red onions. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.7,
+      "calories": 670,
+      "cholesterol_mg": 143,
+      "dietary_fiber_g": 11.6,
+      "protein_g": 42.2,
+      "saturated_fat_g": 7,
+      "sodium_mg": 724,
+      "total_carbs_g": 53.4,
+      "total_fat_g": 30.7,
+      "total_sugars_g": 15.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 88,
+      "cholesterol_mg": 18.8,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 5.6,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 95.4,
+      "total_carbs_g": 7,
+      "total_fat_g": 4,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 48,
+      "dietary_fiber": 41,
+      "protein": 84,
+      "saturated_fat": 35,
+      "sodium": 31,
+      "total_carbs": 19,
+      "total_fat": 39
+    },
+    "serving_size_g": 758.8,
+    "total_recipe_weight_g": 3035
+  },
+  {
+    "recipe_name": "Sausage, Tomato, and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sausage%2C_tomato%2C_and_mushroom_risotto_20250625_082444_c9f7b405.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:24:44.668155000Z",
+    "selected_ingredients": [
+      "bean",
+      "tomato",
+      "sausage",
+      "parmesan cheese",
+      "onion",
+      "mushroom",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of Sausage, Tomato, and Mushroom Risotto is presented in a clean, white porcelain bowl, resting on a simple wooden table surface. The risotto is fluid and creamy, spreading slightly in the bowl, showcasing its rich, pale orange-red hue from the crushed tomatoes. Prominently visible are rustic, browned chunks of savory Italian sausage, tender sliced cremini mushrooms, and creamy white cannellini beans, all evenly dispersed within the al dente rice grains. A sprinkle of freshly grated white Parmesan cheese melts gently on top, accompanied by a small cluster of vibrant green, roughly chopped fresh parsley, providing a fresh contrast. The setting is a modern bistro, with a subtly blurred background suggesting a casual dining atmosphere. A simple silver fork and spoon are placed neatly beside the bowl on a folded cotton napkin. Natural, even lighting highlights the dish's textures and colors, emphasizing its comforting yet refined appeal. The entire plate is visible, with moderate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while hot and creamy.",
+      "Offer extra grated Parmesan cheese at the table.",
+      "Serve with crusty bread to soak up any remaining creamy sauce."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Chicken or vegetable broth, warm",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Remove sausage from casings. Crumble into bite-sized chunks.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat. Add sausage chunks. Brown thoroughly, breaking up with a spoon. Remove sausage to a plate, leaving rendered fat in the pot.",
+      "Dice onion. Add to the pot. Cook until softened, about 5 minutes. Mince garlic. Add to the pot, cook 1 minute until fragrant.",
+      "Slice mushrooms. Add to the pot. Sauté until mushrooms release their liquid and begin to brown, about 5-7 minutes.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes to toast the rice until edges become translucent.",
+      "Pour in white wine. Stir until completely absorbed by the rice.",
+      "Stir in crushed tomatoes. Cook for 2 minutes, stirring occasionally.",
+      "Add one ladle of warm broth to the rice. Stir constantly until liquid is almost fully absorbed. Continue adding broth one ladle at a time, stirring frequently, allowing each addition to be absorbed before adding the next. This process takes 18-20 minutes.",
+      "Drain and rinse cannellini beans. When risotto is almost al dente (after about 15 minutes of broth additions), stir in the cooked sausage and cannellini beans.",
+      "Continue adding broth until rice is creamy and al dente, with a slight bite in the center. The risotto should be fluid, not stiff.",
+      "Remove pot from heat. Add butter and 70 g of the grated Parmesan cheese. Stir vigorously for 1-2 minutes until butter and cheese are fully incorporated and the risotto is very creamy (mantecatura).",
+      "Season with salt and black pepper to taste. Let risotto rest for 2 minutes, covered.",
+      "Serve immediately in warm bowls. Garnish each serving with fresh chopped parsley and the remaining grated Parmesan cheese."
+    ],
+    "notes": [
+      "Ensure broth is kept warm throughout the cooking process to maintain rice temperature and promote even cooking.",
+      "Adjust the amount of broth to achieve desired creamy, fluid consistency; not all broth may be needed."
+    ],
+    "traditional_techniques": [
+      "Tostatura",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1083,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 11.6,
+      "protein_g": 48.1,
+      "saturated_fat_g": 20,
+      "sodium_mg": 1775,
+      "total_carbs_g": 102.8,
+      "total_fat_g": 50.5,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131.3,
+      "cholesterol_mg": 14.5,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 5.8,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 215.2,
+      "total_carbs_g": 12.5,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 41.3,
+      "protein": 96.2,
+      "saturated_fat": 100.1,
+      "sodium": 77.2,
+      "total_carbs": 37.4,
+      "total_fat": 64.8
+    },
+    "serving_size_g": 825,
+    "total_recipe_weight_g": 3300
+  },
+  {
+    "recipe_name": "Fermented Chickpea Dal with Spiced Root-to-Stem Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chickpea_dal_with_spiced_root-to-stem_vegetables_20250625_082358_84b18999.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:23:59.316306000Z",
+    "selected_ingredients": [
+      "ginger",
+      "black cumin",
+      "dried chili",
+      "chickpea dal"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Fermented Chickpea Dal is served in a handcrafted, deep cream-colored ceramic bowl with a subtle matte finish. The dal, a rich golden-yellow, is thick and comforting, with visible whole chickpeas, soft diced tomatoes, and tender pieces of green root-to-stem vegetables. A scattering of bright green chopped fresh coriander leaves provides a fresh contrast on top. A few whole, toasted black cumin seeds and slivers of red dried chili are visible. The bowl rests on a light, natural reclaimed wood surface with visible grain. Adjacent to the bowl, a small, undyed linen napkin in natural beige is casually folded. A small, rustic ceramic side dish holds a few extra pieces of vibrant, roughly chopped fermented vegetable pickle. Soft, diffused natural light illuminates the scene from the side, creating gentle shadows. The background is clean and minimalist.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm, whole-wheat flatbread (roti or chapati)",
+      "Serve with steamed brown rice",
+      "Offer a side of plain yogurt or a simple cucumber raita"
+    ],
+    "hero_ingredient": "Chickpea Dal",
+    "ingredients": [
+      {
+        "name": "Chickpea Dal (split chickpeas)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Water",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "50g"
+      },
+      {
+        "name": "Black Cumin Seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried Red Chilies",
+        "quantity": "3-4 whole"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Seasonal Root-to-Stem Vegetables (e.g., carrot tops, radish greens, cauliflower leaves)",
+        "quantity": "200g, chopped"
+      },
+      {
+        "name": "Fermented Vegetable Pickle (e.g., lacto-fermented carrots or radishes)",
+        "quantity": "100g, roughly chopped"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Coriander Powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Coriander Leaves",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Lemon or Lime",
+        "quantity": "1, juiced"
+      }
+    ],
+    "instructions": [
+      "Rinse chickpea dal thoroughly. Soak dal in water for 4-6 hours, or overnight.",
+      "Drain soaked dal. Place dal in a large pot with 1.5 litres fresh water. Bring to a boil. Skim any foam.",
+      "Reduce heat to low. Simmer dal for 45-60 minutes until tender. Dal should be soft.",
+      "Heat oil in a separate pan over medium heat. Add black cumin seeds and dried red chilies. Sauté until fragrant, about 30 seconds.",
+      "Add diced onion and minced garlic. Cook until softened and translucent, about 5-7 minutes.",
+      "Add grated ginger, turmeric powder, and coriander powder. Cook for 1 minute until aromatic.",
+      "Stir in diced tomatoes and chopped root-to-stem vegetables. Cook for 5-7 minutes until vegetables soften slightly.",
+      "Pour the cooked dal into the vegetable mixture. Add vegetable stock. Stir well.",
+      "Simmer for another 10-15 minutes, allowing flavors to meld. Add water if dal becomes too thick.",
+      "Stir in the roughly chopped fermented vegetable pickle. Cook for 2 minutes.",
+      "Season with salt to taste. Squeeze fresh lemon or lime juice.",
+      "Garnish with fresh coriander leaves."
+    ],
+    "notes": [
+      "This recipe prioritizes using vegetable scraps and fermented elements to minimize food waste and enhance flavor complexity.",
+      "Adjust dried red chili quantity to personal heat preference."
+    ],
+    "traditional_techniques": [
+      "Tadka (Tempering Spices)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 392,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 16.4,
+      "protein_g": 16.2,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 709,
+      "total_carbs_g": 56,
+      "total_fat_g": 11,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 87.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 3.6,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 157.6,
+      "total_carbs_g": 12.4,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 58.5,
+      "protein": 32.5,
+      "saturated_fat": 5.4,
+      "sodium": 30.8,
+      "total_carbs": 20.4,
+      "total_fat": 14
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  }
+]

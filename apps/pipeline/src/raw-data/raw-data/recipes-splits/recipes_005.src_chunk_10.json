@@ -1,0 +1,668 @@
+[
+  {
+    "recipe_name": "Open-Faced Turkey and Chicken Melt on Rye",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260507_021038_22443a2a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-07T02:10:39.401867000Z",
+    "selected_ingredients": [
+      "turkey",
+      "cheese",
+      "rye bread",
+      "chicken",
+      "onion",
+      "green pea",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of this Modern American dish is presented on a clean white porcelain plate. The focal point is a thick, toasted slice of dark rye bread topped with large, 3cm golden-seared chunks of turkey and chicken. A generous layer of melted, bubbly Gruyère cheese drapes over the meat, revealing glimpses of dark caramelized onions beneath. Two roasted tomato wedges sit to the side, their skins slightly charred and concentrated. A vibrant scattering of bright green, blanched peas provides a sharp color contrast against the dark bread and white plate. The arrangement is organic and centered, with moderate negative space. Natural light highlights the textures of the melted cheese and the crusty rye bread.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of dill pickles",
+      "Accompany with a light grain mustard",
+      "Pair with a crisp amber ale"
+    ],
+    "hero_ingredient": "Turkey and Chicken Chunks",
+    "ingredients": [
+      {
+        "name": "Turkey breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Rye bread",
+        "quantity": "4 thick slices"
+      },
+      {
+        "name": "Gruyère cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Green peas",
+        "quantity": "200g"
+      },
+      {
+        "name": "Plum tomatoes",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "2 sprigs"
+      }
+    ],
+    "instructions": [
+      "Cut turkey and chicken into 3cm chunks.",
+      "Slice onions into thin half-moons.",
+      "Cut tomatoes into thick wedges.",
+      "Blanch peas in boiling salted water for 2 minutes, then drain.",
+      "Sauté onions in butter over medium heat until deep golden brown.",
+      "Toss tomato wedges with olive oil and roast at 200°C for 12 minutes.",
+      "Season poultry chunks with salt, pepper, and thyme.",
+      "Sear poultry in a hot pan with olive oil until the internal temperature reaches 75°C.",
+      "Toast rye bread slices until crisp.",
+      "Spread caramelized onions over bread.",
+      "Pile turkey and chicken chunks onto the onions.",
+      "Top with sliced Gruyère cheese.",
+      "Broil under high heat until cheese is melted and bubbling.",
+      "Garnish with peas and serve with roasted tomato wedges."
+    ],
+    "notes": [
+      "Ensure the poultry reaches exactly 75°C to maintain juiciness.",
+      "Use aged Gruyère for a sharper flavor profile.",
+      "The rye bread should be sliced at least 2cm thick to support the toppings."
+    ],
+    "traditional_techniques": [
+      "caramelizing",
+      "searing",
+      "broiling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 616.8,
+      "cholesterol_mg": 149.8,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 54.3,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 615.8,
+      "total_carbs_g": 36.2,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 194.3,
+      "cholesterol_mg": 47.2,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 17.1,
+      "saturated_fat_g": 4,
+      "sodium_mg": 194,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49.9,
+      "dietary_fiber": 24.6,
+      "protein": 108.6,
+      "saturated_fat": 63,
+      "sodium": 26.8,
+      "total_carbs": 13.2,
+      "total_fat": 36.2
+    },
+    "serving_size_g": 317.5,
+    "total_recipe_weight_g": 1270
+  },
+  {
+    "recipe_name": "Lemon Mushroom Avgolemono Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_214000_5665fa96.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-06T21:40:00.765604000Z",
+    "selected_ingredients": [
+      "lemon",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy Lemon Mushroom Avgolemono Soup is served in a rustic, hand-glazed ceramic bowl with slight imperfections. The soup features a pale, opaque yellow broth thickened with tempered eggs. Thickly sliced, golden-brown cremini mushrooms and tender grains of long-grain rice are visible throughout the liquid. The soup is garnished simply with a scatter of finely chopped bright green dill and one thin, fresh lemon wheel floating on the surface. The bowl sits on a dark, weathered wooden table next to a piece of torn, crusty sourdough bread. A simple vintage silver spoon rests beside the bowl. The lighting is warm and soft, mimicking a cozy home kitchen atmosphere. The entire bowl is centered with natural negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough or pita bread",
+      "Accompany with Kalamata olives",
+      "Provide extra lemon wedges on the side"
+    ],
+    "hero_ingredient": "Cremini Mushrooms",
+    "ingredients": [
+      {
+        "name": "Cremini mushrooms, thickly sliced",
+        "quantity": "500g"
+      },
+      {
+        "name": "Yellow onion, small diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "100g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh dill, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat.",
+      "Sauté mushroom slices for 8 minutes until browned.",
+      "Add diced onion and cook for 5 minutes until soft.",
+      "Stir in minced garlic for 30 seconds.",
+      "Pour in vegetable stock and bring to a boil.",
+      "Add rice and reduce heat to low.",
+      "Simmer for 15 minutes until rice is tender.",
+      "Whisk eggs and lemon juice in a bowl until frothy.",
+      "Slowly whisk two ladles of hot broth into the egg mixture to temper.",
+      "Pour the tempered mixture back into the pot.",
+      "Stir constantly on low heat until the soup thickens.",
+      "Do not let the soup boil after adding eggs.",
+      "Season with salt, pepper, and fresh dill."
+    ],
+    "notes": [
+      "Use fresh lemon juice for the best flavor balance.",
+      "Ensure the stock is not boiling when adding the egg mixture to prevent curdling.",
+      "Cremini mushrooms provide a deeper color and earthier flavor than white buttons."
+    ],
+    "traditional_techniques": [
+      "tempering eggs",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 273,
+      "cholesterol_mg": 93,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 11.2,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 1727,
+      "total_carbs_g": 35,
+      "total_fat_g": 9.8,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 54.6,
+      "cholesterol_mg": 18.6,
+      "dietary_fiber_g": 0.46,
+      "protein_g": 2.24,
+      "saturated_fat_g": 0.36,
+      "sodium_mg": 345.4,
+      "total_carbs_g": 7,
+      "total_fat_g": 1.96,
+      "total_sugars_g": 1.32,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 8.2,
+      "protein": 22.4,
+      "saturated_fat": 9,
+      "sodium": 75.1,
+      "total_carbs": 12.7,
+      "total_fat": 12.6
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Thai Chicken with Cashews",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_210415_e451501a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-06T21:04:16.720303000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Thai Chicken with Cashews presented on a matte celadon ceramic plate. The dish features 3cm chunks of glossy, golden-brown seared chicken thigh. The meat is tossed with 2cm squares of vibrant green bell pepper and translucent white onion. Whole toasted cashews and dark, crispy tempered red chilies are distributed throughout. A rich, amber-colored sauce glazes every ingredient. The plate is set on a dark teak wood table with a white cotton napkin. A side bowl of steamed jasmine rice and a traditional Thai spoon and fork are placed beside the plate. Natural, side-angled lighting emphasizes the textures and the slight char from the wok.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thailand",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed long-grain jasmine rice",
+      "Eat using a spoon in the right hand and a fork in the left to push food",
+      "Accompany with Prik Nam Pla (fish sauce with sliced chilies) for added seasoning"
+    ],
+    "hero_ingredient": "Chicken thigh chunks",
+    "ingredients": [
+      {
+        "name": "Chicken thigh, boneless and skinless",
+        "quantity": "600g"
+      },
+      {
+        "name": "Roasted cashew nuts",
+        "quantity": "100g"
+      },
+      {
+        "name": "Dried red chilies, whole",
+        "quantity": "10 pieces"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "White onion, 2cm dice",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper, 2cm dice",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Spring onions, 3cm lengths",
+        "quantity": "3 stalks"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "45ml"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 3cm chunks.",
+      "Heat oil in a wok over medium heat.",
+      "Fry dried chilies until dark red and fragrant. Remove and set aside.",
+      "Increase heat to high.",
+      "Add chicken chunks to the wok.",
+      "Sear chicken until the internal temperature reaches 75°C.",
+      "Add garlic and onion. Stir-fry for 1 minute.",
+      "Add bell pepper squares. Toss for 30 seconds.",
+      "Whisk oyster sauce, soy sauce, sugar, and white pepper in a small bowl.",
+      "Pour sauce into the wok. Stir to coat all ingredients.",
+      "Fold in roasted cashews and fried chilies.",
+      "Add spring onions. Toss briefly. Serve immediately."
+    ],
+    "notes": [
+      "Use chicken thighs instead of breast for better moisture and flavor",
+      "Ensure the wok is smoking hot before adding meat to achieve wok hei",
+      "Do not overcook the bell peppers to maintain a crisp texture"
+    ],
+    "traditional_techniques": [
+      "Wok hei",
+      "Tempering dried chilies"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.3,
+      "calories": 472.2,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 35.1,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 738.5,
+      "total_carbs_g": 19.5,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 165.8,
+      "cholesterol_mg": 49.5,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 12.3,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 259.3,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 11.4,
+      "protein": 70.2,
+      "saturated_fat": 26,
+      "sodium": 32.1,
+      "total_carbs": 7.1,
+      "total_fat": 36.2
+    },
+    "serving_size_g": 284.8,
+    "total_recipe_weight_g": 1139
+  },
+  {
+    "recipe_name": "Asian-style Ground Beef and Tomato Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_194309_e48f9822.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-06T19:43:10.213989000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "garlic",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "Asian cuisine, Gluten-free, ground beef",
+    "visual_description": "A single portion of the stir-fry is presented in a shallow, wide white porcelain bowl on a dark walnut table. The ground beef appears in savory, crusted clusters coated in a glossy, translucent brown glaze. Vibrant red Roma tomato wedges are nestled among the meat, softened but retaining their shape. Crisp, 2cm squares of bright green bell pepper and translucent white onion wedges provide structural contrast. The dish is topped with a precise garnish of bias-cut green onions. Beside the bowl, a pair of dark wood chopsticks rests on a ceramic holder next to a small bowl of fluffy, steamed jasmine rice. Natural, even lighting highlights the textures of the seared beef and the reflective surface of the sauce.",
+    "number_of_servings": 6,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Cantonese",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice",
+      "Accompany with hot oolong tea",
+      "Provide chili oil on the side for extra heat"
+    ],
+    "hero_ingredient": "Ground Beef",
+    "ingredients": [
+      {
+        "name": "Lean ground beef",
+        "quantity": "800 g"
+      },
+      {
+        "name": "White onions, cut into 2cm wedges",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Roma tomatoes, cut into 6 wedges each",
+        "quantity": "6 medium"
+      },
+      {
+        "name": "Green bell peppers, cut into 2cm squares",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh ginger, finely grated",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Tamari (gluten-free soy sauce)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Green onions, thinly sliced",
+        "quantity": "3 stalks"
+      }
+    ],
+    "instructions": [
+      "Whisk tamari, sesame oil, cornstarch, sugar, and ginger in a small bowl.",
+      "Heat 15 ml vegetable oil in a wok or large skillet over high heat.",
+      "Add ground beef and cook until browned, breaking into small chunks.",
+      "Remove beef from wok and drain excess fat.",
+      "Add remaining 15 ml oil to the wok.",
+      "Stir-fry onion wedges and bell pepper squares for 3 minutes until edges char.",
+      "Add minced garlic and cook for 30 seconds until fragrant.",
+      "Return beef to the wok and add tomato wedges.",
+      "Pour the sauce over the mixture.",
+      "Toss constantly for 2 minutes until sauce thickens and tomatoes soften slightly.",
+      "Garnish with sliced green onions."
+    ],
+    "notes": [
+      "Ensure the wok is smoking hot to achieve wok hei flavor",
+      "Use tamari specifically to maintain the gluten-free requirement",
+      "Do not overcook tomatoes to prevent the dish from becoming watery"
+    ],
+    "traditional_techniques": [
+      "wok hei",
+      "stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.6,
+      "calories": 366,
+      "cholesterol_mg": 86.7,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 27.9,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 748,
+      "total_carbs_g": 14.8,
+      "total_fat_g": 20.3,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 128.9,
+      "cholesterol_mg": 30.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 9.8,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 263.4,
+      "total_carbs_g": 5.2,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 10,
+      "protein": 56,
+      "saturated_fat": 32,
+      "sodium": 33,
+      "total_carbs": 5,
+      "total_fat": 26
+    },
+    "serving_size_g": 284,
+    "total_recipe_weight_g": 1705
+  },
+  {
+    "recipe_name": "Savory Ground Beef Picadillo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_194054_05395468.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-06T19:40:54.666225000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "garlic",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "Gluten-free, ground beef",
+    "visual_description": "A single portion of Picadillo served in a shallow, cream-colored ceramic bowl on a dark, well-used wooden table. The dish features crumbles of seared ground beef mixed with small-diced red and green bell peppers and translucent diced onions. Small, golden-brown fried potato cubes are folded into the mixture. The sauce is a concentrated, savory reddish-brown from reduced tomatoes. Sliced green olives are scattered throughout for color and texture contrast. The bowl is placed next to a portion of steamed white rice. The lighting is warm and soft, suggesting a cozy home kitchen. A simple stainless steel spoon lies on a folded linen napkin. The arrangement is natural and asymmetrical, showing a hearty, satisfying meal.",
+    "number_of_servings": 6,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Cuban",
+    "cultural_serving_suggestions": [
+      "Serve with white rice",
+      "Side of black beans",
+      "Fried sweet plantains (maduros)"
+    ],
+    "hero_ingredient": "ground beef",
+    "ingredients": [
+      {
+        "name": "ground beef (80/20)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "yellow onions, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "green bell peppers, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "potatoes, cut into 1cm cubes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "pitted green olives, sliced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "ground cumin",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat 30ml oil in a large skillet over medium-high heat.",
+      "Brown ground beef until fully cooked. Drain excess fat and set beef aside.",
+      "Heat remaining 30ml oil in the same skillet.",
+      "Fry potato cubes until golden and tender. Remove and set aside.",
+      "Sauté diced onions and bell peppers in the skillet until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Return beef to the skillet. Stir in cumin and oregano.",
+      "Pour in crushed tomatoes. Reduce heat to low.",
+      "Simmer for 15 minutes until sauce thickens.",
+      "Fold in fried potatoes and sliced olives.",
+      "Season with salt and pepper. Serve hot."
+    ],
+    "notes": [
+      "Ensure potatoes are fried separately for best texture.",
+      "Use a heavy skillet for even heat distribution.",
+      "Naturally gluten-free when served with rice."
+    ],
+    "traditional_techniques": [
+      "sofrito base",
+      "reduction simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 642,
+      "cholesterol_mg": 118.3,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 32.4,
+      "saturated_fat_g": 14.3,
+      "sodium_mg": 831.8,
+      "total_carbs_g": 25.9,
+      "total_fat_g": 45.4,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 190,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9.6,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 245.9,
+      "total_carbs_g": 7.7,
+      "total_fat_g": 13.4,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.4,
+      "dietary_fiber": 18.2,
+      "protein": 64.8,
+      "saturated_fat": 71.5,
+      "sodium": 36.2,
+      "total_carbs": 9.4,
+      "total_fat": 58.2
+    },
+    "serving_size_g": 338.3,
+    "total_recipe_weight_g": 2030
+  }
+]

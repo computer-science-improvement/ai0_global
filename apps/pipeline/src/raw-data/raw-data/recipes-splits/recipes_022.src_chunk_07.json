@@ -1,0 +1,636 @@
+[
+  {
+    "recipe_name": "Baked Rigatoni with Savory Tomato-Onion Ragù and Potato Gratin Crust",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_rigatoni_with_savory_tomato-onion_rag%C3%B9_and_potato_gratin_crust_20250624_122232_8520bd51.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:32.988377000Z",
+    "selected_ingredients": [
+      "onion",
+      "pasta",
+      "tomato",
+      "bread",
+      "potato",
+      "apple"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of Baked Rigatoni is presented in a shallow, rustic white porcelain bowl. The top features a golden-brown, crispy crust of thinly sliced potatoes, artfully arranged in an overlapping pattern, and toasted Panko breadcrumbs mixed with grated Parmesan. Beneath the crisp topping, the rich, deep reddish-brown tomato-onion ragù, infused with subtle notes of apple, bubbles gently around the edges. Scattered fresh green basil leaves provide a vibrant color contrast and aromatic garnish. The dish is centered on a simple light wooden table, flanked by a folded white cotton napkin and classic silver flatware. Natural, soft lighting illuminates the textures and warm colors of the dish, creating an inviting, professional bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a light vinaigrette.",
+      "Offer crusty bread on the side for dipping into any remaining sauce."
+    ],
+    "hero_ingredient": "Baked Rigatoni",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large yellow onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned crushed San Marzano tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Small tart apple (e.g., Granny Smith)",
+        "quantity": "1"
+      },
+      {
+        "name": "Medium potatoes",
+        "quantity": "2"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "Large handful"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "Pinch (optional)"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "150g"
+      }
+    ],
+    "instructions": [
+      "Slice onions thinly. Heat olive oil and butter in a large, heavy-bottomed pot over medium-low heat. Add sliced onions. Cook for 30-40 minutes, stirring occasionally, until deeply golden brown and very sweet.",
+      "Mince garlic. Grate or finely dice the apple. Add minced garlic and prepared apple to the caramelized onions. Cook for 5 minutes, stirring.",
+      "Pour in crushed tomatoes and vegetable broth. Bring the mixture to a gentle simmer. Season with salt, black pepper, and red pepper flakes if using. Cook for 20-30 minutes, stirring occasionally, until the sauce slightly thickens.",
+      "While the ragù simmers, preheat oven to 200°C (390°F). Cook rigatoni according to package directions, reducing cooking time by 1-2 minutes to ensure it is al dente. Drain pasta.",
+      "Lightly grease a 20x30 cm baking dish. Combine the cooked rigatoni with the tomato-onion ragù. Stir in the shredded mozzarella until just combined.",
+      "Thinly slice potatoes, preferably using a mandoline. Arrange the potato slices in an overlapping pattern over the pasta mixture in the baking dish.",
+      "In a small bowl, mix Panko breadcrumbs with grated Parmesan cheese and a drizzle of olive oil. Sprinkle this mixture evenly over the potato topping.",
+      "Bake for 25-30 minutes, or until the potato and breadcrumb topping is golden brown and crispy, and the pasta is bubbling around the edges.",
+      "Remove from oven. Let rest for 5 minutes. Garnish generously with fresh basil leaves before serving."
+    ],
+    "traditional_techniques": [
+      "Slow caramelization of onions (soffritto base)",
+      "Cooking pasta al dente"
+    ]
+  },
+  {
+    "recipe_name": "Creamy Tomato Rigatoni with Spicy Italian Sausage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_rigatoni_with_spicy_italian_sausage_20250624_122226_fba633de.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:26.482332000Z",
+    "selected_ingredients": [
+      "pasta",
+      "italian sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Tomato Rigatoni with Spicy Italian Sausage is presented centrally on a clean, round white porcelain dinner plate. The rich, vibrant red-orange tomato cream sauce generously coats the ridged rigatoni pasta, which is cooked al dente. Irregularly shaped, browned chunks of spicy Italian sausage are distributed throughout the pasta, providing a hearty texture contrast. A swirl of lighter cream is visible within the sauce, highlighting its richness. Fresh, bright green basil leaves, roughly chopped, are scattered over the top, adding a pop of color and freshness. Finely grated Parmesan cheese lightly dusts the dish. The presentation is natural and inviting, with moderate negative space around the pasta. The plate rests on a simple wooden table surface in a modern bistro setting. A white cotton napkin is neatly folded beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and colors. A subtle, out-of-focus background suggests a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Spicy Italian sausage",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "700 g can"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Remove sausage from casings. Break into small chunks.",
+      "Heat olive oil in a large skillet over medium-high heat. Add sausage chunks. Cook until browned and cooked through. Break up any large pieces. Remove sausage from skillet. Set aside.",
+      "Dice the yellow onion. Mince the garlic cloves.",
+      "Reduce heat to medium. Add diced onion to the skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Bring to a simmer. Reduce heat to low. Simmer for 15 minutes, stirring occasionally.",
+      "While sauce simmers, cook rigatoni according to package directions until al dente. Reserve 120 ml pasta water.",
+      "Stir heavy cream into the tomato sauce. Return cooked sausage to the skillet. Stir to combine. Simmer for 5 minutes.",
+      "Drain pasta. Add cooked rigatoni to the sauce. Toss to coat. Add reserved pasta water as needed for desired consistency.",
+      "Grate Parmesan cheese. Roughly chop fresh basil.",
+      "Serve immediately. Garnish with fresh basil and grated Parmesan."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1031,
+      "cholesterol_mg": 137,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 43.9,
+      "saturated_fat_g": 23,
+      "sodium_mg": 1603,
+      "total_carbs_g": 85.4,
+      "total_fat_g": 56.5,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 216,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9.2,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 335,
+      "total_carbs_g": 17.9,
+      "total_fat_g": 11.8,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46,
+      "dietary_fiber": 22,
+      "protein": 88,
+      "saturated_fat": 115,
+      "sodium": 70,
+      "total_carbs": 31,
+      "total_fat": 72
+    },
+    "serving_size_g": 478,
+    "total_recipe_weight_g": 1912
+  },
+  {
+    "recipe_name": "Braised Chicken with Tomatoes and Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_tomatoes_and_onions_20250624_122224_1b3b6466.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:24.593975000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of braised chicken with tomatoes and onions is presented on a round, off-white ceramic plate. Two golden-brown chicken thighs, bone-in, are nestled into a rich, rust-red tomato and onion sauce. The sauce features softened diced onion and tender crushed tomato. A few fresh, vibrant green basil leaves are casually scattered over the dish. The chicken skin is slightly crisp on top, contrasting with the tender meat. The plate sits on a well-worn light wooden dining table. A simple, folded linen napkin rests beside it. Warm, natural light bathes the scene, creating a cozy, inviting family kitchen atmosphere. The dish exudes homely comfort, with natural ingredient colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the sauce.",
+      "Accompany with a simple green salad dressed with olive oil and lemon."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "handful"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large, oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs skin-side down until golden brown. About 5-7 minutes.",
+      "Flip chicken. Sear other side for 3-4 minutes. Remove chicken from pot. Set aside.",
+      "Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a simmer.",
+      "Return chicken thighs to the pot, skin-side up. Nestle them into the sauce.",
+      "Cover the pot. Reduce heat to low.",
+      "Simmer for 30 minutes.",
+      "Uncover. Increase heat to medium. Simmer for another 15-20 minutes, or until chicken reaches 75°C internal temperature and sauce thickens slightly.",
+      "Check seasoning. Adjust salt and pepper if needed.",
+      "Garnish with fresh basil leaves. Serve hot."
+    ],
+    "notes": [
+      "This dish is even better made ahead and reheated, allowing flavors to deepen."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 547.5,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 40.9,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 455.5,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 38.3,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 9,
+      "saturated_fat_g": 2,
+      "sodium_mg": 100.7,
+      "total_carbs_g": 2.3,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 9.8,
+      "protein": 81.7,
+      "saturated_fat": 45.8,
+      "sodium": 19.8,
+      "total_carbs": 3.8,
+      "total_fat": 49.1
+    },
+    "serving_size_g": 452.5,
+    "total_recipe_weight_g": 1810
+  },
+  {
+    "recipe_name": "Spiced Lentil and Green Pea Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spiced_lentil_and_green_pea_pilaf_20250624_122224_66e2c7fe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:24.518879000Z",
+    "selected_ingredients": [
+      "rice",
+      "lentil",
+      "green pea"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A clean white porcelain dinner plate holds a generous, fluffy mound of golden-hued pilaf. The basmati rice grains are distinct, intertwined with tender, earthy red lentils and bright green peas. A scattering of deep golden-brown, crispy fried onion slivers crowns the pilaf, adding textural contrast. Fresh, finely chopped green coriander leaves are sprinkled generously over the top, providing a vibrant color pop. The presentation is professional, organized yet organic, with moderate negative space on the plate. Beside the plate, a small, simple white bowl holds a dollop of creamy white raita. The setting is a rustic wooden table with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve alongside cooling Raita (yogurt dip).",
+      "Offer Indian pickle (achar) as a condiment.",
+      "Accompanied by crisp Papadum."
+    ],
+    "hero_ingredient": "Lentil",
+    "ingredients": [
+      {
+        "name": "Basmati Rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red Lentils (Masoor Dal)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Green Peas (fresh or frozen)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Green Chillies",
+        "quantity": "2 (slit lengthwise)"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "1 medium (diced)"
+      },
+      {
+        "name": "Ghee or Vegetable Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Cumin Seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Cinnamon Stick",
+        "quantity": "1 (2.5 cm piece)"
+      },
+      {
+        "name": "Green Cardamom Pods",
+        "quantity": "4"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Coriander Powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g (or to taste)"
+      },
+      {
+        "name": "Fresh Coriander Leaves",
+        "quantity": "30 g (chopped)"
+      },
+      {
+        "name": "Hot Water",
+        "quantity": "600 ml"
+      }
+    ],
+    "instructions": [
+      "Wash basmati rice. Soak in water for 20 minutes. Drain well.",
+      "Wash red lentils. Soak in water for 20 minutes. Drain well.",
+      "Slice half of the onion thinly into rings.",
+      "Heat 15 ml ghee/oil in a small pan. Fry sliced onion until golden brown and crispy. Remove with slotted spoon. Drain on paper towel. Set aside for garnish.",
+      "Dice remaining half onion and the tomato.",
+      "Heat remaining 15 ml ghee/oil in a heavy-bottomed pot or pressure cooker over medium heat.",
+      "Add cumin seeds, bay leaf, cinnamon stick, cardamom pods, and cloves. Sauté for 15 seconds until fragrant.",
+      "Add diced onion. Sauté for 3 minutes until translucent.",
+      "Add ginger-garlic paste and slit green chillies. Sauté for 1 minute.",
+      "Add diced tomato. Cook for 2 minutes until softened.",
+      "Add turmeric powder, coriander powder, and salt. Sauté for 1 minute.",
+      "Add drained lentils. Sauté for 2 minutes.",
+      "Add drained rice and green peas. Gently mix for 1 minute.",
+      "Pour in 600 ml hot water. Bring to a boil.",
+      "Cover pot. Reduce heat to low. Cook for 15-20 minutes until water is absorbed and rice/lentils are tender. (If using pressure cooker, cook for 1 whistle on high, then 5 minutes on low. Let pressure release naturally).",
+      "Remove from heat. Let pilaf rest, covered, for 5 minutes.",
+      "Gently fluff pilaf with a fork. Sprinkle garam masala and half of chopped fresh coriander. Gently mix.",
+      "Serve hot. Garnish with remaining fresh coriander and crispy fried onions."
+    ],
+    "traditional_techniques": [
+      "Tempering (Tadka): For blooming spices in hot fat.",
+      "Dum Cooking: Slow cooking method allowing flavors to meld and rice to steam perfectly."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 500,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 11.8,
+      "protein_g": 17.8,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 1264,
+      "total_carbs_g": 88.8,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.4,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 4.4,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 312,
+      "total_carbs_g": 21.9,
+      "total_fat_g": 2.3,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 42.2,
+      "protein": 35.7,
+      "saturated_fat": 6.5,
+      "sodium": 55,
+      "total_carbs": 32.3,
+      "total_fat": 12
+    },
+    "serving_size_g": 405.1,
+    "total_recipe_weight_g": 1620.5
+  },
+  {
+    "recipe_name": "Rustic Beef and Rice Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_beef_and_rice_soup_20250624_122219_e9aa7e76.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:22:20.321403000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "onion",
+      "rice",
+      "mushroom"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Rustic Beef and Rice Soup is presented in a deep, slightly chipped ceramic bowl. The rich, reddish-brown broth is brimming with hearty chunks of slow-cooked beef, distinct white grains of tender rice, bright red diced tomatoes, and earthy brown sliced mushrooms. The beef chunks are irregularly cut, showcasing a rustic, home-cooked feel. A sprinkle of vibrant green, roughly chopped fresh parsley floats on top, providing a fresh contrast to the deep colors of the soup. The bowl sits on a well-used, warm-toned wooden dining table. A simple, sturdy metal spoon rests beside the bowl on a casually folded beige linen napkin. The lighting is warm and inviting, typical of a cozy kitchen, casting soft shadows that enhance the soup's comforting appeal. The scene evokes a relaxed family meal, emphasizing unpretentious, nourishing fare.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef stewing cubes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Large onion, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Mushrooms, sliced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Long-grain rice, uncooked",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat olive oil in a large pot over medium-high heat.",
+      "Sear beef cubes in batches until browned on all sides. Remove beef from pot. Set aside.",
+      "Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Return beef to the pot. Add diced tomatoes, sliced mushrooms, and beef broth.",
+      "Bring soup to a boil. Reduce heat to low. Cover and simmer for 1 hour, or until beef is tender. Add water if soup becomes too thick.",
+      "Stir in uncooked rice. Continue to simmer, uncovered, for 15-20 minutes, or until rice is tender.",
+      "Adjust seasoning with salt and pepper.",
+      "Ladle soup into bowls. Garnish with fresh chopped parsley. Serve hot."
+    ],
+    "notes": [
+      "Beef tenderness is key. Simmer longer if needed for very tender beef."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 536,
+      "cholesterol_mg": 88,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 36.7,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 470,
+      "total_carbs_g": 44,
+      "total_fat_g": 23.3,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 69.4,
+      "cholesterol_mg": 11.3,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 4.8,
+      "saturated_fat_g": 1,
+      "sodium_mg": 60.8,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 3,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 12,
+      "protein": 73,
+      "saturated_fat": 39,
+      "sodium": 20,
+      "total_carbs": 16,
+      "total_fat": 30
+    },
+    "serving_size_g": 773,
+    "total_recipe_weight_g": 3090
+  }
+]

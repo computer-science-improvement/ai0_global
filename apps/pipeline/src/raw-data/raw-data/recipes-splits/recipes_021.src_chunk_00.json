@@ -1,0 +1,656 @@
+[
+  {
+    "recipe_name": "Roasted Potato and Tomato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_potato_and_tomato_bake_20250624_142750_405e71a5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:27:50.913856000Z",
+    "selected_ingredients": [
+      "potato",
+      "tomato",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish presents a generous single portion of golden-brown roasted potato wedges and vibrant, slightly burst cherry tomatoes. The potatoes exhibit a crisp exterior and a tender interior, showcasing their rustic cut. Interspersed among them are thinly sliced garlic and flecks of fresh green rosemary and oregano, adding color and texture. The natural arrangement is organic and inviting, piled moderately high on a clean, round white porcelain plate, leaving ample negative space around the edges. A light sheen of olive oil coats the vegetables, hinting at their rich flavor. The scene is set on a simple wooden table, with a folded cotton napkin beside the plate. Natural, even lighting illuminates the dish, highlighting the warm tones of the potatoes and the bright red of the tomatoes against the crisp white plate. The background is minimally blurred, suggesting a casual, warm bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread (pane di casa)",
+      "Serve alongside a simple green salad dressed with olive oil and vinegar"
+    ],
+    "hero_ingredient": "Roasted Potatoes",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg, cut into 2-3 cm wedges or chunks"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400 g, left whole"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "80 ml, plus more for drizzling"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, thinly sliced or minced"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs, leaves picked and roughly chopped"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "1 sprig, leaves picked and roughly chopped"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "1 tsp, or to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 tsp, freshly ground, or to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and cut potatoes into uniform 2-3 cm wedges or chunks.",
+      "In a large roasting tray, combine potatoes, 80 ml olive oil, sliced garlic, chopped rosemary, chopped oregano, salt, and pepper. Toss well to coat.",
+      "Spread potatoes in a single layer. Roast for 30 minutes.",
+      "Add whole cherry tomatoes to the roasting tray with the potatoes. Gently toss.",
+      "Return to oven. Roast for another 15-20 minutes, or until potatoes are tender and golden-brown, and tomatoes are slightly burst.",
+      "Serve immediately. Drizzle with extra virgin olive oil. Garnish with fresh basil."
+    ],
+    "notes": [
+      "Use a high-quality extra virgin olive oil for best flavor and a beautiful finish.",
+      "Ensure potatoes are cut uniformly for even cooking."
+    ],
+    "traditional_techniques": [
+      "Roasting (al forno)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 379,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7,
+      "protein_g": 6.2,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 602,
+      "total_carbs_g": 49.1,
+      "total_fat_g": 18.8,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 1.9,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 190,
+      "total_carbs_g": 15.5,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 25,
+      "protein": 12,
+      "saturated_fat": 13,
+      "sodium": 26,
+      "total_carbs": 18,
+      "total_fat": 24
+    },
+    "serving_size_g": 318,
+    "total_recipe_weight_g": 1270
+  },
+  {
+    "recipe_name": "Spicy Asian Chicken and Potato Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_asian_chicken_and_potato_stir-fry_20250624_142746_337d153e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:27:46.771770000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "mushroom",
+      "hot sauce",
+      "bell pepper",
+      "garlic",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "Asian cuisine, multi-use like meal prep",
+    "visual_description": "A vibrant, savory Asian stir-fry plated in a clean white porcelain bowl, suitable for a single serving. Golden-brown chicken chunks, roughly 3-4 cm, are nestled among tender, pan-fried potato wedges (2-3 cm), glossy with sauce. Bright red and green bell pepper squares (2 cm) and thinly sliced carrot rounds (0.5 cm) add pops of color and slight crispness. Thickly sliced cremini mushrooms contribute earthy tones. The dish is coated in a rich, amber-hued, slightly glossy sauce. A generous sprinkle of thinly sliced green scallions and toasted sesame seeds garnishes the top, adding freshness and texture. The bowl rests on a light wooden table, accompanied by a small white rice bowl and dark wooden chopsticks. Natural, even lighting highlights the dish, with a simple, unobtrusive restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed jasmine rice.",
+      "Offer a small side of pickled daikon or kimchi for added tang.",
+      "Serve family-style, allowing guests to scoop portions onto individual rice bowls."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Small waxy potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Large carrot",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Asian hot sauce (e.g., Sriracha or Gochujang)",
+        "quantity": "2-3 tbsp"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Scallions, for garnish",
+        "quantity": "2"
+      },
+      {
+        "name": "Toasted sesame seeds, for garnish",
+        "quantity": "1 tsp"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks. Season lightly with salt and pepper.",
+      "Cut potatoes into 2-3 cm wedges or large dice. Par-boil potatoes for 5 minutes. Drain well.",
+      "Slice mushrooms thickly. Cut bell peppers into 2 cm squares. Slice carrot into 0.5 cm rounds or batons.",
+      "Mince garlic. Grate ginger.",
+      "In a small bowl, whisk together hot sauce, soy sauce, sesame oil, and rice vinegar. Set aside.",
+      "In another small bowl, dissolve cornstarch in 2 tbsp water to make a slurry.",
+      "Heat 1 tbsp vegetable oil in a large skillet or wok over medium-high heat. Add par-boiled potatoes. Pan-fry until golden and tender, about 8-10 minutes. Remove potatoes and set aside.",
+      "Add remaining 1 tbsp vegetable oil to the skillet. Add chicken chunks. Sear until golden brown on all sides and cooked through, reaching an internal temperature of 75°C (167°F). Remove chicken and set aside with potatoes.",
+      "Add garlic, ginger, bell peppers, and carrot to the skillet. Stir-fry for 3-4 minutes until vegetables are slightly tender-crisp.",
+      "Add sliced mushrooms to the skillet. Stir-fry for 2-3 minutes until softened.",
+      "Return cooked chicken and potatoes to the skillet with the vegetables. Pour in the prepared sauce.",
+      "Bring the sauce to a simmer. Stir in the cornstarch slurry. Cook, stirring constantly, until the sauce thickens and coats all ingredients, about 1-2 minutes.",
+      "Remove from heat. Garnish with thinly sliced scallions and toasted sesame seeds."
+    ],
+    "notes": [
+      "This dish is excellent for meal prepping; flavors tend to deepen overnight.",
+      "Adjust the amount of hot sauce to suit your preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.8,
+      "calories": 503,
+      "cholesterol_mg": 208.5,
+      "dietary_fiber_g": 5.72,
+      "protein_g": 35.99,
+      "saturated_fat_g": 4.85,
+      "sodium_mg": 1346.8,
+      "total_carbs_g": 33.66,
+      "total_fat_g": 25.56,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.36,
+      "calories": 100,
+      "cholesterol_mg": 41.4,
+      "dietary_fiber_g": 1.14,
+      "protein_g": 7.15,
+      "saturated_fat_g": 0.96,
+      "sodium_mg": 267.6,
+      "total_carbs_g": 6.68,
+      "total_fat_g": 5.08,
+      "total_sugars_g": 1.61,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69.5,
+      "dietary_fiber": 20.4,
+      "protein": 72,
+      "saturated_fat": 24.3,
+      "sodium": 58.6,
+      "total_carbs": 12.2,
+      "total_fat": 32.8
+    },
+    "serving_size_g": 503.5,
+    "total_recipe_weight_g": 2014
+  },
+  {
+    "recipe_name": "Hearty Southwestern Bean & Potato Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_southwestern_bean_%26_potato_soup_20250624_142738_9a11c0bb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:27:38.819712000Z",
+    "selected_ingredients": [
+      "potato",
+      "mushroom",
+      "tomato",
+      "pickled jalapeno chilies",
+      "bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single serving of Hearty Southwestern Bean & Potato Soup is presented in a deep, clean white porcelain bowl. The soup is rich, reddish-brown, filled with distinct components. Diced potatoes, 2 cm cubes, are tender and creamy. Whole, plump black beans are interspersed. Sliced cremini mushrooms, caramelized golden, add depth. Diced tomatoes provide vibrant, rustic texture. Bright green, freshly chopped cilantro garnishes the center, contrasting with warm tones. Thin slices of pickled jalapeno top the cilantro for color and spice. The bowl sits on a simple, light wooden table surface. A crisp white cotton napkin is folded beside the bowl, a rustic metal spoon rests on it. Natural, even lighting illuminates the dish, creating a warm, inviting atmosphere. The background is minimally blurred, suggesting a casual bistro setting, focusing on the well-composed soup.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "Southwestern American",
+    "cultural_serving_suggestions": [
+      "Serve with warm cornbread.",
+      "Offer tortilla chips on the side for dipping.",
+      "A dollop of sour cream or a sprinkle of shredded cheddar cheese can be offered as optional toppings."
+    ],
+    "hero_ingredient": "Black Beans",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Cremini mushrooms, sliced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Potatoes, peeled and diced (2 cm cubes)",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Canned black beans, rinsed and drained",
+        "quantity": "2 cans (425 g each)"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Pickled jalapeno slices, thinly sliced or minced",
+        "quantity": "30 g (about 4-5 slices)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium heat.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook for 5-7 minutes until mushrooms are browned and tender.",
+      "Stir in diced potatoes, canned diced tomatoes, rinsed black beans, vegetable broth, cumin, chili powder, and oregano.",
+      "Bring the soup to a boil. Reduce heat to low, cover, and simmer for 20-25 minutes. Cook until potatoes are fork-tender.",
+      "Stir in the sliced pickled jalapenos. Simmer for another 5 minutes.",
+      "Season the soup with salt and black pepper to taste.",
+      "Ladle hot soup into individual bowls. Garnish each serving with fresh chopped cilantro. Serve with a lime wedge on the side."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 420,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 18.8,
+      "protein_g": 19,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 1956,
+      "total_carbs_g": 70.5,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 44,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 2,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 207,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 1,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 67,
+      "protein": 38,
+      "saturated_fat": 6,
+      "sodium": 85,
+      "total_carbs": 26,
+      "total_fat": 12
+    },
+    "serving_size_g": 946.5,
+    "total_recipe_weight_g": 3786
+  },
+  {
+    "recipe_name": "Roasted Chicken Thigh with Potatoes and Carrots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_thigh_with_potatoes_and_carrots_20250624_142722_45d28b3f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:27:22.995720000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single roasted chicken thigh is centered on a simple, round ceramic plate. The skin is golden-brown and slightly crispy. Next to the chicken are tender, rustic cubes of roasted potato with lightly browned edges. Bright orange roasted carrot chunks are scattered alongside. A few dark green rosemary leaves cling to the chicken and vegetables. The plate sits on a well-used, warm wooden dining table. The setting is a homely family kitchen. Natural light from a nearby window illuminates the dish. A casually placed cloth napkin and a standard fork and knife are beside the plate. The overall impression is comforting and inviting.",
+    "number_of_servings": 1,
+    "cuisine_type": "American Home",
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Chicken thigh",
+        "quantity": "1 (approx. 180-200g)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "1 medium (approx. 150g)"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "1 medium (approx. 100g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh rosemary sprig",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash chicken thigh. Pat dry with paper towel.",
+      "Peel potato and carrot. Cut potato into 2 cm cubes. Cut carrot into 2 cm chunks.",
+      "Place chicken, potato cubes, and carrot chunks on a baking tray.",
+      "Drizzle with olive oil. Sprinkle with salt and black pepper.",
+      "Add fresh rosemary sprig to the tray.",
+      "Roast for 30-35 minutes.",
+      "Check chicken internal temperature with a thermometer. It must reach 75°C.",
+      "Remove from oven. Let rest 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 717.7,
+      "cholesterol_mg": 201.4,
+      "dietary_fiber_g": 6.81,
+      "protein_g": 49.52,
+      "saturated_fat_g": 11.2,
+      "sodium_mg": 2181.5,
+      "total_carbs_g": 37.15,
+      "total_fat_g": 47.37,
+      "total_sugars_g": 5.96,
+      "trans_fat_g": 0.19
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155.8,
+      "cholesterol_mg": 43.7,
+      "dietary_fiber_g": 1.48,
+      "protein_g": 10.75,
+      "saturated_fat_g": 2.43,
+      "sodium_mg": 473.5,
+      "total_carbs_g": 8.06,
+      "total_fat_g": 10.28,
+      "total_sugars_g": 1.29,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 24,
+      "protein": 99,
+      "saturated_fat": 56,
+      "sodium": 95,
+      "total_carbs": 14,
+      "total_fat": 61
+    },
+    "serving_size_g": 460.7,
+    "total_recipe_weight_g": 460.7
+  },
+  {
+    "recipe_name": "Spicy Coastal Chicken & Salmon Wraps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_coastal_chicken_%26_salmon_wraps_20250624_142712_4e6fedc7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:27:12.674390000Z",
+    "selected_ingredients": [
+      "chicken",
+      "oil",
+      "garlic",
+      "hot sauce",
+      "salmon",
+      "cream cheese",
+      "mayonnaise",
+      "tortilla",
+      "clam",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A single, generously filled Spicy Coastal Chicken & Salmon Wrap rests diagonally on a rustic, off-white ceramic plate. The tortilla, lightly golden, is neatly rolled, revealing a peek of the vibrant, creamy filling at its open ends. Shredded chicken and flaked salmon, mixed with small pieces of clam, diced onion, and specks of red hot sauce, create a mosaic of textures and natural colors—creamy white, light pink, and brown. The wrap is placed on a well-used wooden dining table, slightly worn, alongside a simple fork and a casual, folded cloth napkin. A small, unadorned bowl of salsa or a lime wedge might sit adjacent, offering a hint of accompaniment. Warm, inviting kitchen light illuminates the scene, highlighting the homely, comforting nature of the dish. Portions are modest and approachable, designed for a family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with a side of salsa or guacamole.",
+      "Offer extra hot sauce for those who prefer more heat."
+    ],
+    "hero_ingredient": "Chicken and Salmon",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "2 (approx. 400g total)"
+      },
+      {
+        "name": "Salmon fillets",
+        "quantity": "2 (approx. 300g total)"
+      },
+      {
+        "name": "Canned clams, drained",
+        "quantity": "1 can (150g)"
+      },
+      {
+        "name": "Flour tortillas",
+        "quantity": "8 medium"
+      },
+      {
+        "name": "Cream cheese, softened",
+        "quantity": "125g"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Season chicken breasts and salmon fillets with salt, pepper, and paprika.",
+      "Place chicken and salmon on a baking sheet. Drizzle with 15ml olive oil.",
+      "Bake for 18-20 minutes, or until chicken internal temperature reaches 75°C and salmon flakes easily.",
+      "Remove from oven. Let chicken rest, then shred into bite-sized pieces. Flake salmon.",
+      "Heat remaining 15ml olive oil in a large pan over medium heat.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Drain canned clams well. Add to the pan. Cook for 2 minutes.",
+      "In a large bowl, combine shredded chicken, flaked salmon, cooked onion, garlic, and clams.",
+      "Add cream cheese, mayonnaise, and hot sauce to the bowl. Mix well until all ingredients are coated.",
+      "Warm tortillas according to package directions.",
+      "Divide filling evenly among warm tortillas. Roll into wraps.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust hot sauce quantity to suit your spice preference."
+    ],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.9,
+      "calories": 914,
+      "cholesterol_mg": 184,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 60.7,
+      "saturated_fat_g": 14.1,
+      "sodium_mg": 1465,
+      "total_carbs_g": 55.1,
+      "total_fat_g": 50.1,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 236,
+      "cholesterol_mg": 47.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 15.7,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 378.3,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 12.9,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 13,
+      "protein": 121,
+      "saturated_fat": 71,
+      "sodium": 64,
+      "total_carbs": 20,
+      "total_fat": 64
+    },
+    "serving_size_g": 387.3,
+    "total_recipe_weight_g": 1549
+  }
+]

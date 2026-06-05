@@ -1,0 +1,693 @@
+[
+  {
+    "recipe_name": "Braised Lamb Shank with Root Vegetable Puree and Glazed Carrots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_lamb_shank_with_root_vegetable_puree_and_glazed_carrots_20250624_122029_9cdbefe3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:30.144554000Z",
+    "selected_ingredients": [
+      "potato",
+      "carrot",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generously sized braised lamb shank rests elegantly on a bed of smooth, creamy root vegetable puree. The puree, a pale, inviting orange-yellow, is spread artfully across one side of a round white porcelain plate. Beside the lamb, a small cluster of vibrant orange glazed carrot batons and translucent, tender glazed onion wedges adds a pop of color and texture. A rich, dark red-brown braising liquid is spooned generously over the lamb shank, catching the light. Fresh green parsley leaves are scattered over the dish, providing a fresh contrast. The plate rests on a simple, light-colored wooden table surface. A folded crisp white cotton napkin is placed to the side. Natural, soft light illuminates the dish, highlighting its warmth and depth. The background is subtly blurred, hinting at a casual bistro atmosphere. No other distracting elements are present.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Lamb Shank",
+    "ingredients": [
+      {
+        "name": "Lamb shanks",
+        "quantity": "4 (approx. 400g each)"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Yukon Gold)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "500g (300g for puree, 200g for glazing)"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large (for braising), 1 small (for glazing)"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Beef or lamb stock",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat lamb shanks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat. Sear shanks on all sides until deeply browned. Remove shanks. Set aside.",
+      "Reduce heat to medium. Add chopped large onions, 300g carrots, and celery to the pot. Sauté 8-10 minutes until softened.",
+      "Add minced garlic and tomato paste. Cook 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Reduce wine by half.",
+      "Return lamb shanks to the pot. Add beef or lamb stock, rosemary, thyme, and bay leaf. Liquid should mostly cover shanks. Add more stock if needed.",
+      "Bring to a simmer. Cover tightly. Transfer to a preheated oven at 160°C. Braise 2.5-3 hours, or until lamb is fork-tender and falling off the bone.",
+      "While lamb braises, prepare root vegetable puree. Peel and chop potatoes and 300g carrots into 2-3 cm chunks. Boil in salted water until very tender. Drain well.",
+      "Mash potatoes and carrots with 40g butter, salt, and pepper until smooth and creamy. Keep warm.",
+      "For glazed carrots: Peel and cut remaining 200g carrots into 4-5 cm batons. Cut small onion into wedges. Melt remaining 10g butter in a small pan over medium heat. Add carrots, onion, sugar, and 50ml water. Cover and cook 8-10 minutes until tender. Uncover and cook until water evaporates and vegetables are lightly glazed.",
+      "Once lamb is done, remove shanks from pot. Strain braising liquid into a saucepan. Discard solids. Skim excess fat. Reduce liquid over medium-high heat until it thickens into a rich sauce.",
+      "Plate: Spoon a generous portion of root vegetable puree onto each plate. Place one lamb shank on top of the puree. Arrange glazed carrot batons and onion wedges beside the lamb. Drizzle reduced braising sauce over the lamb. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "Allow lamb shanks to rest for 10 minutes after removing from the oven for optimal tenderness.",
+      "Adjust consistency of puree with a splash of warm milk or stock if desired."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 1263,
+      "cholesterol_mg": 309,
+      "dietary_fiber_g": 10.04,
+      "protein_g": 89.5,
+      "saturated_fat_g": 27.56,
+      "sodium_mg": 1479,
+      "total_carbs_g": 57.66,
+      "total_fat_g": 69.92,
+      "total_sugars_g": 15.94,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.11,
+      "calories": 111,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 0.88,
+      "protein_g": 7.85,
+      "saturated_fat_g": 2.42,
+      "sodium_mg": 130,
+      "total_carbs_g": 5.06,
+      "total_fat_g": 6.13,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 102.9,
+      "dietary_fiber": 35.9,
+      "protein": 179,
+      "saturated_fat": 137.8,
+      "sodium": 64.3,
+      "total_carbs": 20.9,
+      "total_fat": 89.6
+    },
+    "serving_size_g": 1140.5,
+    "total_recipe_weight_g": 4562
+  },
+  {
+    "recipe_name": "Creamy Tomato Pasta with Seared Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tomato_pasta_with_seared_chicken_20250624_122025_9489fd7e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:26.147380000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Creamy Tomato Pasta with Seared Chicken is presented on a clean, round white porcelain dinner plate. The penne pasta is coated in a vibrant, creamy, reddish-orange tomato sauce, showing its smooth, rich texture. Nestled artfully atop the pasta are several thick, golden-brown seared chicken breast medallions, their edges slightly caramelized, revealing tender white meat. A generous scattering of freshly grated Parmesan cheese lightly dusts the dish, adding a pale, crumbly texture. Fresh, whole basil leaves, vibrant green, are strategically placed as a garnish, providing a pop of color and freshness. The dish maintains moderate negative space, appearing inviting and approachable. The setting is a modern bistro, featuring a simple light wooden table surface. A folded white cotton napkin rests beside the plate, with standard silver flatware. Natural, even light illuminates the scene, highlighting the dish's appealing colors and textures against a softly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the sauce."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g, plus more for serving"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/2 bunch, chopped, plus whole leaves for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2g (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and pepper.",
+      "Heat 15ml olive oil in a large pan over medium-high heat. Sear chicken breasts 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C).",
+      "Remove chicken from pan. Let rest 5 minutes. Slice into thick medallions.",
+      "Cook penne pasta according to package directions until al dente. Reserve 120ml pasta water. Drain pasta.",
+      "In the same pan, add remaining 15ml olive oil. Add diced shallots. Cook 3 minutes until softened.",
+      "Add minced garlic and red pepper flakes (if using). Cook 1 minute until fragrant.",
+      "Stir in crushed tomatoes and chicken broth. Bring to a simmer. Cook 5 minutes, stirring occasionally.",
+      "Reduce heat to low. Stir in heavy cream and 50g grated Parmesan cheese. Simmer 2 minutes.",
+      "Add chopped fresh basil. Season sauce with salt and pepper to taste. If sauce is too thick, add reserved pasta water, 30ml at a time, until desired consistency.",
+      "Add drained pasta to the sauce. Toss to coat evenly.",
+      "Divide pasta among four plates. Arrange sliced chicken medallions artfully atop the pasta. Garnish with whole fresh basil leaves and extra grated Parmesan cheese. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Reserve some pasta cooking water to adjust sauce consistency if needed."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 932,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 79.7,
+      "saturated_fat_g": 11.2,
+      "sodium_mg": 399,
+      "total_carbs_g": 86.3,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 195,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 16.7,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 84,
+      "total_carbs_g": 18.1,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 20,
+      "protein": 159,
+      "saturated_fat": 56,
+      "sodium": 17,
+      "total_carbs": 31,
+      "total_fat": 36
+    },
+    "serving_size_g": 477.3,
+    "total_recipe_weight_g": 1909
+  },
+  {
+    "recipe_name": "Sustainable Chicken Tacos with Fermented Salsa and Pickled Broccoli Stems",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_chicken_tacos_with_fermented_salsa_and_pickled_broccoli_stems_20250624_122022_e42fef51.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:22.858619000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "carrot",
+      "cheese",
+      "tortilla",
+      "broccoli"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Sustainable Chicken Tacos is presented on a handcrafted, earth-toned ceramic plate, reflecting a natural, minimalist aesthetic. Two warm corn tortillas hold diced, seared chicken cubes, topped with vibrant orange and red fermented bell pepper and carrot salsa. A light scattering of white crumbled Cotija cheese and fresh green cilantro leaves provides contrast. Alongside the tacos, a small mound of tender-crisp, roasted broccoli florets displays shades of deep green, complemented by a few pale green pickled broccoli stem batons. The composition is clean, with ample negative space. The setting features a light, textured bamboo surface, an undyed linen napkin, and soft, natural lighting that highlights the ingredients' organic textures and colors. The entire plate is visible, showcasing mindful spacing and unforced arrangement.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with extra lime wedges for fresh acidity",
+      "Offer additional fresh cilantro for garnish"
+    ],
+    "hero_ingredient": "Fermented Vegetables",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "8"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 head (florets and stems)"
+      },
+      {
+        "name": "Cotija cheese",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "0.5 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": "0.25 bunch"
+      },
+      {
+        "name": "Lime",
+        "quantity": "2"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "3 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "250 ml (for pickling)"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "250 ml (for pickling)"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Salsa: Dice red bell pepper and carrot into small cubes. Mince half the red onion and one garlic clove. Combine vegetables in a clean jar. Add 2% salt by weight of vegetables. Cover with water. Seal tightly. Ferment at room temperature for 3-5 days, burping daily, until desired tanginess. Refrigerate.",
+      "Prepare Pickled Broccoli Stems: Peel broccoli stems. Cut into 5 cm batons. Blanch in boiling water for 1 minute. Drain. Pack into a clean jar. Heat water and white vinegar to a boil with a pinch of salt. Pour over stems. Seal. Refrigerate for at least 2 hours before serving, or up to 2 weeks.",
+      "Prepare Chicken: Dice chicken breast into 2 cm cubes. In a bowl, combine chicken with chili powder, cumin, minced remaining garlic, juice of one lime, and a pinch of salt. Marinate for 15 minutes.",
+      "Roast Broccoli Florets: Toss broccoli florets with a drizzle of olive oil and a pinch of salt. Roast at 200°C (390°F) for 12-15 minutes, until tender-crisp. Set aside.",
+      "Cook Chicken: Heat a large skillet over medium-high heat. Add marinated chicken. Cook, stirring occasionally, until chicken is cooked through and reaches an internal temperature of 75°C (167°F). This takes about 8-10 minutes. Set aside.",
+      "Warm Tortillas: Warm corn tortillas on a dry skillet or microwave until pliable.",
+      "Assemble Tacos: Place two warm tortillas on each plate. Fill each tortilla with cooked chicken. Top with a spoonful of fermented salsa. Crumble Cotija cheese over the top. Garnish with fresh cilantro. Serve with roasted broccoli florets and pickled broccoli stems on the side. Offer lime wedges for squeezing."
+    ],
+    "notes": [
+      "This recipe utilizes fermentation and pickling for preservation, reducing food waste and enhancing flavor.",
+      "Broccoli stems, often discarded, are repurposed into a delicious pickled accompaniment.",
+      "The recipe focuses on seasonal vegetables and plant-forward elements, with chicken as a complementary protein."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 439,
+      "cholesterol_mg": 116,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 48.2,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 392,
+      "total_carbs_g": 40.6,
+      "total_fat_g": 9.8,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116.3,
+      "cholesterol_mg": 30.8,
+      "dietary_fiber_g": 2,
+      "protein_g": 12.8,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 103.9,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 2.6,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 27,
+      "protein": 96,
+      "saturated_fat": 17,
+      "sodium": 17,
+      "total_carbs": 15,
+      "total_fat": 13
+    },
+    "serving_size_g": 377.6,
+    "total_recipe_weight_g": 1510.5
+  },
+  {
+    "recipe_name": "Sustainable Umami Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_umami_noodle_soup_20250624_122015_534db538.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:15.790665000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of Sustainable Umami Noodle Soup is presented in a handcrafted, natural ceramic bowl with an organic, matte finish in cream or beige. The rich, clear amber broth forms the base. Visible are tender chunks of slow-cooked beef, generous portions of shredded chicken, and al dente whole wheat fusilli. Thinly sliced leek rounds and earthy mushroom slices are naturally scattered within the broth. The dish is garnished simply with a few vibrant green parsley leaves and a delicate, thinly sliced radish. The composition is clean and minimalistic, allowing each ingredient to stand out. The bowl sits on a light, reclaimed wood table surface, accompanied by an undyed linen napkin in natural beige. Soft, diffused natural light illuminates the scene, with a hint of green from a background plant, maintaining an eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Fusion",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef bones or marrow bones",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Chicken carcass or wings",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Beef chuck or short rib",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Whole wheat fusilli or penne pasta",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fermented tomato paste or puree",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Onion peels, carrot tops, celery ends, mushroom stems (vegetable scraps)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Leek (white and green parts), thinly sliced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Mushrooms, sliced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh ginger, sliced",
+        "quantity": "3 cm"
+      },
+      {
+        "name": "Water",
+        "quantity": "3 L"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or dill, for garnish",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Crispy kale stems or radish slices, for garnish",
+        "quantity": "optional"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Roast beef bones and chicken carcass on a baking sheet for 30 minutes until browned.",
+      "Transfer roasted bones and carcass to a large stock pot. Add vegetable scraps, crushed garlic, and ginger. Cover with 3 L cold water.",
+      "Bring to a boil, then reduce heat to low. Simmer gently for 4-6 hours. Skim any foam. Strain broth through a fine-mesh sieve. Discard solids.",
+      "Season the strained broth with salt and pepper. Add beef chuck to the broth. Simmer for 1.5-2 hours, or until very tender. Remove beef, let cool slightly, then shred or cut into 2-3 cm chunks. Set aside.",
+      "Add chicken thighs to the simmering broth. Poach for 15-20 minutes, or until internal temperature reaches 75°C. Remove chicken, let cool, then shred. Set aside.",
+      "In a separate pot, cook whole wheat fusilli according to package directions until al dente. Drain and set aside.",
+      "Return broth to a simmer. Stir in fermented tomato paste. Add sliced leek and mushrooms. Cook for 5 minutes until vegetables are tender-crisp.",
+      "To serve, divide cooked pasta among four bowls. Ladle hot broth with leeks and mushrooms over pasta. Arrange shredded beef and chicken chunks on top.",
+      "Garnish each bowl with fresh parsley or dill, and crispy kale stems or radish slices if using. Serve immediately."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing vegetable scraps and bones for a flavorful broth.",
+      "Fermented tomato paste adds depth of flavor and aligns with sustainable food practices."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Slow Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 620,
+      "cholesterol_mg": 149,
+      "dietary_fiber_g": 5.6,
+      "protein_g": 52.7,
+      "saturated_fat_g": 9,
+      "sodium_mg": 969,
+      "total_carbs_g": 45.5,
+      "total_fat_g": 25.1,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 62,
+      "cholesterol_mg": 15,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 5.3,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 97,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 2.5,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 20,
+      "protein": 105,
+      "saturated_fat": 45,
+      "sodium": 42,
+      "total_carbs": 17,
+      "total_fat": 32
+    },
+    "serving_size_g": 1000,
+    "total_recipe_weight_g": 4000
+  },
+  {
+    "recipe_name": "Baked Chicken with Mayonnaise and Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_chicken_with_mayonnaise_and_cheese_20250624_122013_bdd78b04.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:13.551424000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mayonnaise",
+      "garlic",
+      "onion",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "Russian cuisine",
+    "visual_description": "A single, modest portion of baked chicken with mayonnaise and cheese is presented on a round, off-white ceramic plate with a subtle blue floral pattern, typical of Russian home dinnerware. The chicken breast cutlet, a whole, thick piece, is generously topped with a rich layer of caramelized golden-brown sautéed onion rings, beneath a thick, bubbly, melted cheese crust. The cheese is slightly browned at the edges, revealing hints of creamy mayonnaise beneath. A small sprig of fresh dill or parsley is casually placed on the melted cheese. The plate rests slightly off-center on a well-worn, light-colored wooden dining table. A simple silver fork and knife are positioned to the side of the plate. In the softly blurred background, a slice of dark rye bread and a small bowl of pickled cucumbers hint at a traditional Russian family meal, all bathed in warm, cozy kitchen lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Russian",
+    "cultural_origin": "Russian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with a side of boiled potatoes, mashed potatoes, or buckwheat kasha (grechka).",
+      "Often accompanied by simple fresh vegetable salads or pickled vegetables.",
+      "Rye bread is a common accompaniment at the Russian table."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Hard cheese (e.g., Gouda, Edam)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Fresh dill or parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Slice chicken breasts horizontally into 2 cm thick cutlets. Lightly pound each cutlet to an even thickness.",
+      "Season chicken cutlets on both sides with salt and black pepper.",
+      "Thinly slice onions into rings. Mince garlic.",
+      "Heat vegetable oil in a large skillet over medium heat. Add sliced onions and sauté until softened and translucent, about 5-7 minutes.",
+      "Add minced garlic to the onions. Cook for 1 minute more until fragrant. Remove from heat.",
+      "Grate the hard cheese.",
+      "Arrange seasoned chicken cutlets in a single layer on a baking sheet lined with parchment paper.",
+      "Spread a generous layer of sautéed onions and garlic evenly over each chicken cutlet.",
+      "Top the onion layer with a spoonful of mayonnaise, spreading it to cover the onions.",
+      "Sprinkle a thick layer of grated cheese over the mayonnaise on each cutlet.",
+      "Bake for 25-30 minutes, or until chicken reaches an internal temperature of 75°C and cheese is golden brown and bubbly.",
+      "Remove from oven. Let rest for 5 minutes before serving.",
+      "Garnish with fresh dill or parsley if desired."
+    ],
+    "notes": [
+      "Ensure chicken is cooked through to 75°C for food safety.",
+      "Do not overcook the chicken to keep it moist and tender.",
+      "Adjust mayonnaise quantity based on preference for creaminess."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.21,
+      "calories": 800,
+      "cholesterol_mg": 212.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 69.43,
+      "saturated_fat_g": 15.24,
+      "sodium_mg": 1271.4,
+      "total_carbs_g": 8.82,
+      "total_fat_g": 53.3,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0.73
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.06,
+      "calories": 242,
+      "cholesterol_mg": 64.3,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 21.05,
+      "saturated_fat_g": 4.62,
+      "sodium_mg": 385.5,
+      "total_carbs_g": 2.67,
+      "total_fat_g": 16.16,
+      "total_sugars_g": 0.85,
+      "trans_fat_g": 0.22
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70.73,
+      "dietary_fiber": 3.56,
+      "protein": 138.86,
+      "saturated_fat": 76.18,
+      "sodium": 55.28,
+      "total_carbs": 3.21,
+      "total_fat": 68.33
+    },
+    "serving_size_g": 329.8,
+    "total_recipe_weight_g": 1319.2
+  }
+]

@@ -1,0 +1,616 @@
+[
+  {
+    "recipe_name": "Rustic Root Vegetable & Lavender Comfort Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_root_vegetable_%26_lavender_comfort_soup_20250627_010050_b718cacb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T01:00:50.643350000Z",
+    "selected_ingredients": [
+      {
+        "name": "lavender"
+      },
+      {
+        "name": "kudzu"
+      },
+      {
+        "name": "coconut vinegar"
+      },
+      {
+        "name": "verjus"
+      },
+      {
+        "name": "sour cream"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A single, generous portion of Rustic Root Vegetable & Lavender Comfort Soup is presented in a deep, textured ceramic bowl. The soup is hearty, showcasing visible chunks of tender diced potatoes and carrots within a creamy, off-white broth. A subtle swirl of rich sour cream is visible on the surface, partially blending into the soup. Fresh, bright green chopped parsley is sprinkled unevenly over the top, adding a pop of color and freshness. The bowl sits on a well-used, warm-toned wooden dining table, suggesting a cozy, lived-in kitchen environment. A casually folded cloth napkin is placed beside the bowl. The lighting is soft and warm, casting gentle shadows and highlighting the soup's comforting texture. The overall presentation is simple, unpretentious, and inviting, emphasizing wholesome home cooking.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Root Vegetables",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Carrots, peeled and diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes, peeled and diced",
+        "quantity": "3 medium"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Dried culinary lavender",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Kudzu starch",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Coconut vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Verjus",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in diced carrots and potatoes. Cook for 5 minutes, stirring occasionally.",
+      "Pour in vegetable broth. Add dried lavender. Bring to a simmer. Reduce heat, cover, and cook for 15-20 minutes until vegetables are tender.",
+      "In a small bowl, whisk kudzu starch with cold water until smooth. This is your slurry.",
+      "Stir the kudzu slurry into the simmering soup. Cook, stirring constantly, until the soup thickens, about 2-3 minutes.",
+      "Remove the pot from heat. Stir in coconut vinegar and verjus.",
+      "Gently stir in sour cream until fully incorporated. Do not boil after adding sour cream.",
+      "Season the soup with salt and black pepper to taste.",
+      "Ladle hot soup into bowls. Garnish with fresh chopped parsley before serving."
+    ]
+  },
+  {
+    "recipe_name": "Chicken and Broccoli Macaroni Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_broccoli_macaroni_gratin_20250627_005958_cd0dd8dc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T00:59:59.042007000Z",
+    "selected_ingredients": [
+      "chicken",
+      "parmesan cheese",
+      "broccoli",
+      "pasta",
+      "macaroni"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken and Broccoli Macaroni Gratin is presented in a small, oval white ceramic gratin dish, placed centrally on a clean white porcelain dinner plate. The gratin boasts a rich, golden-brown, bubbly crust of baked Parmesan cheese and macaroni, with hints of creamy white sauce and vibrant green broccoli florets peeking through. Generous 2-3 cm cubes of pan-seared chicken are visible, nestled among the al dente elbow macaroni and bright green broccoli florets. The textures are a contrast of crispy baked top and a luscious, creamy interior. A sprinkle of fresh chopped parsley adds a final touch of color and freshness. The setting is a modern bistro, featuring a simple light wooden table surface. A neatly folded grey cotton napkin and traditional silver flatware are positioned beside the plate. Natural, even lighting illuminates the dish, creating a warm, inviting glow. The background is subtly blurred, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp green salad tossed with a simple vinaigrette.",
+      "Offer crusty Italian bread for dipping into the creamy sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "400g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "500g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Small yellow onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Nutmeg, grated",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cut chicken into 2-3 cm cubes. Season with salt and pepper.",
+      "Heat olive oil in a large oven-safe pan over medium-high heat. Sear chicken cubes until golden brown and cooked through to an internal temperature of 75°C. Remove chicken from pan. Set aside.",
+      "Cook macaroni in salted boiling water until al dente, according to package directions. Drain well.",
+      "Blanch broccoli florets in boiling water for 2 minutes. Drain. Immediately plunge into ice water to stop cooking. Drain well.",
+      "In the same pan used for chicken, melt butter over medium heat. Add diced onion; sauté until softened, about 3 minutes. Add minced garlic; cook 1 minute until fragrant.",
+      "Stir in flour to create a roux. Cook 1 minute, stirring constantly.",
+      "Gradually whisk in milk until smooth. Bring to a simmer, stirring, until sauce thickens.",
+      "Remove from heat. Stir in 100g grated Parmesan, nutmeg, salt, and pepper until cheese is melted and sauce is smooth.",
+      "Combine cooked macaroni, seared chicken, and blanched broccoli with the cheese sauce in the pan or a large mixing bowl.",
+      "Transfer the mixture to a large gratin dish or individual gratin dishes. Top generously with additional grated Parmesan cheese.",
+      "Bake for 20-25 minutes, or until bubbly and the top is golden brown.",
+      "Let rest 5 minutes before serving."
+    ],
+    "traditional_techniques": [
+      "Béchamel sauce preparation",
+      "Gratin baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1092,
+      "cholesterol_mg": 196,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 82,
+      "saturated_fat_g": 17.3,
+      "sodium_mg": 652,
+      "total_carbs_g": 103.2,
+      "total_fat_g": 37.9,
+      "total_sugars_g": 13.1,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 167.1,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 12.5,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 99.7,
+      "total_carbs_g": 15.8,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 26,
+      "protein": 164,
+      "saturated_fat": 87,
+      "sodium": 28,
+      "total_carbs": 38,
+      "total_fat": 49
+    },
+    "serving_size_g": 654,
+    "total_recipe_weight_g": 2616.1
+  },
+  {
+    "recipe_name": "Slow-Roasted Pork with Potatoes, Orange, and Bay",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-roasted_pork_with_potatoes%2C_orange%2C_and_bay_20250627_005300_5aff1f23.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T00:53:01.118553000Z",
+    "selected_ingredients": [
+      {
+        "name": "pork",
+        "comment": "Prepackaged pork shoulder with orange peel and bay"
+      },
+      "orange",
+      "potato",
+      "bay leaf"
+    ],
+    "complexity": "simple",
+    "special_requests": "Prepackaged pork shoulder with orange peel and bay leaf",
+    "visual_description": "A single portion of slow-roasted pork shoulder is centrally placed on an everyday, off-white ceramic plate. The pork is cut into thick, rustic chunks, showing its tender, fall-apart texture and rich, browned exterior. Several golden-brown roasted potato wedges are casually arranged around the pork. Thin, caramelized orange slices are nestled among the pork and potatoes, adding a subtle burst of color. A small amount of the savory pan juices pools at the bottom of the plate, glistening under warm, cozy kitchen lighting. The plate sits on a well-used wooden dining table, accompanied by a simple, folded cloth napkin and a standard metal fork and knife. The background is minimally cluttered, suggesting a lived-in family kitchen atmosphere, highlighting the comforting, home-cooked appeal.",
+    "number_of_servings": 3,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the pan juices."
+    ],
+    "hero_ingredient": "Pork shoulder",
+    "ingredients": [
+      {
+        "name": "Prepackaged pork shoulder with orange peel and bay",
+        "quantity": "800g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Fresh bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Pat pork shoulder dry with paper towels. Season generously with salt and black pepper.",
+      "Heat olive oil in a large Dutch oven or oven-safe pot over medium-high heat.",
+      "Sear pork shoulder on all sides until deeply browned. Remove pork from the pot.",
+      "Cut potatoes into rustic wedges. Slice the onion into thick pieces. Lightly smash garlic cloves. Slice the orange into rounds.",
+      "Add onion slices and garlic cloves to the pot. Sauté for 3-4 minutes until softened.",
+      "Return pork to the pot. Arrange potato wedges, fresh orange slices, and fresh bay leaves around the pork.",
+      "Pour in chicken broth. The liquid should come about halfway up the pork.",
+      "Bring the liquid to a simmer on the stovetop. Cover the pot tightly with a lid.",
+      "Transfer the covered pot to the preheated oven. Cook for 2.5 to 3 hours, or until pork is fork-tender.",
+      "For a slightly browned exterior, remove the lid for the last 30 minutes of cooking.",
+      "Carefully remove pork and potatoes from the pot. Let pork rest for 10 minutes.",
+      "Cut pork into thick chunks. Serve pork chunks and potatoes with the pan juices from the pot."
+    ],
+    "notes": [
+      "Cooking time may vary based on pork shoulder thickness; ensure it is fork-tender.",
+      "Adjust salt and pepper to taste before serving."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 950,
+      "cholesterol_mg": 208,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 62.2,
+      "saturated_fat_g": 18.7,
+      "sodium_mg": 274.9,
+      "total_carbs_g": 50.8,
+      "total_fat_g": 57.6,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 136,
+      "cholesterol_mg": 29.9,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.9,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 39.5,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69.3,
+      "dietary_fiber": 20.5,
+      "protein": 124.3,
+      "saturated_fat": 93.4,
+      "sodium": 12,
+      "total_carbs": 18.5,
+      "total_fat": 73.8
+    },
+    "serving_size_g": 697,
+    "total_recipe_weight_g": 2090
+  },
+  {
+    "recipe_name": "Korean Beef Bulgogi with Sautéed Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_korean_beef_bulgogi_with_saut%C3%A9ed_vegetables_20250627_002921_338526e2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T00:29:21.649264000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "onion",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, savory Korean Beef Bulgogi dish presented on a clean white porcelain dinner plate. Thinly sliced, pan-seared beef, cooked to a rich brown, forms a central mound. Alongside the beef are sautéed cremini mushrooms, translucent sliced onions, and bright red diced tomatoes, all glistening lightly. The vegetables maintain distinct shapes and a tender-crisp texture. The entire dish is garnished with thinly sliced bright green scallions and a sprinkle of toasted sesame seeds, adding color and texture contrast. There is appropriate negative space on the plate. The setting is a modern bistro, featuring a simple wooden table surface. Traditional Korean metal chopsticks and a long spoon are neatly placed beside the plate. A small, elegant white ceramic bowl filled with fluffy white steamed rice sits to the side, along with a small dish of vibrant red kimchi and a small dish of pale yellow pickled radish (danmuji), completing the authentic Korean dining experience. Natural, even light illuminates the scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with freshly steamed white rice.",
+      "Offer various banchan (side dishes) such as kimchi and pickled radishes.",
+      "Provide fresh lettuce leaves and ssamjang (spicy dipping paste) for wrapping the beef."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef",
+        "quantity": "600g thinly sliced sirloin or ribeye"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g cremini mushrooms, sliced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large onion, half thinly sliced for marinade, half thinly sliced for sautéing"
+      },
+      {
+        "name": "Tomato",
+        "quantity": "2 medium tomatoes, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "1 piece (2 cm), grated"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Asian Pear or Apple",
+        "quantity": "100g, grated"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": "2 stalks, thinly sliced for garnish"
+      },
+      {
+        "name": "Toasted Sesame Seeds",
+        "quantity": "5g, for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare marinade: Combine soy sauce, brown sugar, sesame oil, mirin, grated pear, minced garlic, grated ginger, and black pepper in a bowl. Mix well.",
+      "Marinate beef: Add thinly sliced beef and half of the sliced onion to the marinade. Toss to coat evenly. Marinate for at least 30 minutes, or up to 4 hours in the refrigerator.",
+      "Sauté vegetables: Heat vegetable oil in a large pan or wok over medium-high heat. Add remaining sliced onion and sliced mushrooms. Sauté for 5-7 minutes until softened and lightly browned. Add diced tomatoes. Sauté for another 2-3 minutes. Remove from pan and set aside.",
+      "Cook bulgogi: Increase heat to high. Add marinated beef to the hot pan in a single layer. Do not overcrowd the pan; cook in batches if necessary. Cook for 2-3 minutes per side until browned and cooked through.",
+      "Combine and serve: Return sautéed vegetables to the pan with the cooked beef. Toss gently to combine.",
+      "Plate immediately. Garnish with sliced green onions and toasted sesame seeds."
+    ],
+    "traditional_techniques": [
+      "Marinating beef with fruit for tenderizing.",
+      "Quick pan-frying or grilling at high heat."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 11.2,
+      "calories": 409.2,
+      "cholesterol_mg": 99,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 38.6,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 232.6,
+      "total_carbs_g": 27.5,
+      "total_fat_g": 16.1,
+      "total_sugars_g": 18.4,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.7,
+      "calories": 98.1,
+      "cholesterol_mg": 23.7,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.3,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 55.8,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 16.8,
+      "protein": 77.2,
+      "saturated_fat": 22.5,
+      "sodium": 10.1,
+      "total_carbs": 10,
+      "total_fat": 20.6
+    },
+    "serving_size_g": 417,
+    "total_recipe_weight_g": 1668
+  },
+  {
+    "recipe_name": "Broccoli and Garlic Salad with Lemon Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_broccoli_and_garlic_salad_with_lemon_vinaigrette_20250627_002715_32153c44.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T00:27:16.127465000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "broccoli",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of the salad is presented on a simple, round, off-white ceramic plate with a slightly rustic edge. Roasted broccoli florets, small diced golden-brown chicken pieces, and pale yellow grated Parmesan cheese are casually tossed together. The ingredients are distributed naturally, with some overlapping, creating a visually appealing mix of vibrant greens, off-white, and pale yellow. The light lemon vinaigrette subtly coats all components, adding a gentle sheen. A scattering of fresh, bright green chopped parsley provides a final pop of color and freshness. The plate rests on a well-used wooden dining table. A simple, folded cloth napkin in a neutral tone is placed beside the plate. Warm, cozy lighting from an overhead kitchen fixture illuminates the scene, casting soft shadows. A standard fork and knife with simple handles are placed next to the plate, suggesting a relaxed family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Broccoli",
+    "ingredients": [
+      {
+        "name": "Broccoli florets",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss broccoli florets with 30 ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 15-20 minutes until tender-crisp and slightly charred.",
+      "Cut chicken breast into small, 1 cm diced pieces. Toss with 5 ml olive oil, salt, and pepper. Pan-fry in a medium skillet over medium-high heat for 5-7 minutes, stirring occasionally, until cooked through and golden. Ensure internal temperature reaches 75°C.",
+      "For the dressing, whisk together remaining 25 ml olive oil, lemon juice, Dijon mustard, minced garlic, salt, and pepper in a small bowl.",
+      "In a large bowl, combine roasted broccoli, diced chicken, and grated Parmesan cheese.",
+      "Pour dressing over the salad. Toss gently to coat all ingredients.",
+      "Garnish with fresh chopped parsley. Serve warm or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 284.3,
+      "cholesterol_mg": 40.38,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 20.04,
+      "saturated_fat_g": 4.41,
+      "sodium_mg": 290.54,
+      "total_carbs_g": 10.71,
+      "total_fat_g": 18.85,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138.7,
+      "cholesterol_mg": 19.7,
+      "dietary_fiber_g": 1.71,
+      "protein_g": 9.77,
+      "saturated_fat_g": 2.15,
+      "sodium_mg": 141.73,
+      "total_carbs_g": 5.23,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 1.17,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13.5,
+      "dietary_fiber": 12.5,
+      "protein": 40.1,
+      "saturated_fat": 22,
+      "sodium": 12.6,
+      "total_carbs": 3.9,
+      "total_fat": 24.2
+    },
+    "serving_size_g": 205,
+    "total_recipe_weight_g": 820
+  }
+]

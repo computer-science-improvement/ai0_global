@@ -1,0 +1,668 @@
+[
+  {
+    "recipe_name": "Hungarian Paprika Beef with Roasted Potatoes and Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hungarian_paprika_beef_with_roasted_potatoes_and_peppers_20250624_172927_49ea8196.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:29:27.953210000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic yet refined individual portion of Hungarian Paprika Beef is centered on a clean white porcelain dinner plate, placed on a simple wooden table. The rich, deep reddish-brown beef chunks are tender and glistening with a thick, savory paprika sauce. They are arranged naturally, not fanned. Beside the beef are vibrant roasted vegetables: golden-brown potato cubes with slightly crispy edges and brightly colored red and yellow bell pepper squares, softly charred. A scattering of fresh, finely chopped green parsley provides a fresh contrast and pop of color. The entire plate is visible, with moderate negative space. A cotton napkin and a simple fork are placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and inviting warmth. The background is minimally blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of sour cream or crème fraîche on the side.",
+      "Accompany with crusty bread for dipping in the rich sauce."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "600g, cut into 3cm cubes"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500g, peeled and cut into 2cm cubes"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large, deseeded and cut into 2cm squares"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large, deseeded and cut into 2cm squares"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Sweet Hungarian paprika",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "For garnish, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry with paper towels. Season with salt and black pepper.",
+      "Heat vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear beef cubes in batches until browned on all sides. Remove beef and set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook until softened, about 5-7 minutes.",
+      "Add minced garlic, sweet paprika, smoked paprika, and caraway seeds. Stir constantly for 1 minute until fragrant. Do not burn the paprika.",
+      "Stir in tomato paste. Cook for 2 minutes.",
+      "Pour in beef broth, scraping up any browned bits from the bottom of the pot. Return seared beef and bay leaf to the pot. Bring to a simmer.",
+      "Cover the pot. Reduce heat to low. Simmer for 1.5 to 2 hours, or until beef is very tender.",
+      "Preheat oven to 200°C (400°F). Toss potato cubes and bell pepper squares with 1 tbsp oil, salt, and pepper on a baking sheet.",
+      "Roast potatoes and peppers for 25-30 minutes, turning halfway, until tender and lightly caramelized.",
+      "Remove bay leaf from beef stew. Adjust seasoning if needed.",
+      "To serve, spoon beef stew onto plates. Arrange roasted potatoes and bell peppers beside or on top of the beef. Garnish generously with fresh chopped parsley."
+    ],
+    "notes": [
+      "Use good quality Hungarian sweet paprika for authentic flavor."
+    ],
+    "traditional_techniques": [
+      "Slow braising",
+      "Layering of flavors with paprika"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 629,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 7,
+      "protein_g": 44.3,
+      "saturated_fat_g": 11,
+      "sodium_mg": 257,
+      "total_carbs_g": 37.8,
+      "total_fat_g": 32.9,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131.4,
+      "cholesterol_mg": 25.1,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 9.2,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 53.7,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 6.9,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 25,
+      "protein": 88.6,
+      "saturated_fat": 55,
+      "sodium": 11.2,
+      "total_carbs": 13.7,
+      "total_fat": 42.2
+    },
+    "serving_size_g": 478.5,
+    "total_recipe_weight_g": 1914
+  },
+  {
+    "recipe_name": "Spanish Style Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_style_chicken_and_rice_20250624_172903_3ba74d98.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:29:03.559671000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "garlic",
+      "bell pepper",
+      "oregano",
+      "rice",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Spanish Style Chicken and Rice is presented in a rustic, deep ceramic bowl on a well-used wooden dining table. Golden-brown, bone-in chicken thighs, cooked to tender perfection, are nestled amongst the vibrant, reddish-orange rice. The rice is moist, studded with visible diced red bell pepper, white onion, and small chunks of tomato. A sprinkle of fresh, bright green chopped parsley garnishes the top, adding a pop of color and freshness. The dish exudes warmth and comfort. A simple, sturdy fork rests beside the bowl. The setting is a cozy family kitchen, bathed in warm, natural light, reflecting a homely, lived-in atmosphere. The overall presentation is unpretentious and inviting, typical of a comforting family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the flavorful juices."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "Short grain rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "Small bunch, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large, oven-safe pan or Dutch oven over medium-high heat. Sear chicken, skin-side down, until golden brown and crisp, about 6-8 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pan. Set aside.",
+      "Reduce heat to medium. Add diced onion and diced bell pepper to the pan. Cook, stirring occasionally, until softened, about 5 minutes.",
+      "Add minced garlic, smoked paprika, and dried oregano to the pan. Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes. Cook for 2 minutes, stirring to combine.",
+      "Add rice to the pan. Stir well to coat the rice grains with the vegetable and tomato mixture.",
+      "Pour in chicken broth. Bring the mixture to a boil, stirring gently.",
+      "Nestle the seared chicken pieces back into the pan, skin-side up, ensuring they are partially submerged in the liquid.",
+      "Reduce heat to low. Cover the pan tightly. Simmer for 20-25 minutes, or until rice is cooked through and liquid is absorbed. Chicken internal temperature must reach 75°C.",
+      "Remove pan from heat. Let stand, covered, for 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 835.3,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 45.6,
+      "saturated_fat_g": 9.4,
+      "sodium_mg": 331.5,
+      "total_carbs_g": 75.2,
+      "total_fat_g": 38.7,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130.9,
+      "cholesterol_mg": 28.2,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.1,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 51.9,
+      "total_carbs_g": 11.8,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 17.5,
+      "protein": 91.2,
+      "saturated_fat": 46.9,
+      "sodium": 14.4,
+      "total_carbs": 27.4,
+      "total_fat": 49.6
+    },
+    "serving_size_g": 638.3,
+    "total_recipe_weight_g": 2553
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Goat Cheese Cream and Coffee-Lime Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_goat_cheese_cream_and_coffee-lime_reduction_20250624_172852_18d74f6c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:28:52.775709000Z",
+    "selected_ingredients": [
+      "milk",
+      "goat cheese",
+      "goat milk",
+      "lime",
+      "coffee"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared chicken breast is the focal point on a round, clean white ceramic plate. The chicken is golden-brown with a crisp crust, presented whole and unsliced. Beside the chicken, a generous pool of creamy, off-white goat cheese sauce provides a soft contrast. A dark, glossy coffee-lime reduction is artfully drizzled over the chicken and around the plate, adding depth. The dish is garnished with vibrant green fresh thyme sprigs, a sprinkle of finely chopped chives, and a few delicate, thin curls of lime zest, offering pops of color and freshness. The plate is well-proportioned with moderate negative space, ensuring a clean and professional restaurant-style presentation. The setting is a modern bistro, featuring a simple light-colored wooden table surface. A silver fork and knife are placed beside the plate, accompanied by a neatly folded white cotton napkin. The scene is illuminated by soft, natural, even lighting, creating an inviting and casual restaurant atmosphere in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Soft goat cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Goat milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Strong brewed coffee (espresso strength)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Limes",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1, finely diced"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "finely chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat. Sear chicken breasts for 4-5 minutes per side until golden brown.",
+      "Transfer skillet to a preheated oven at 180°C. Bake for 10-15 minutes, or until internal temperature reaches 75°C. Rest chicken on a cutting board, tented with foil.",
+      "In the same skillet, add coffee, juice from 1 lime, and chicken broth. Bring to a simmer. Reduce liquid by half, about 5-7 minutes, until slightly thickened and glossy. Stir in half the butter (15g). Season with salt and pepper. Set aside.",
+      "In a small saucepan, combine goat milk and remaining 15g butter. Bring to a gentle simmer over medium heat.",
+      "Reduce heat to low. Whisk in goat cheese until smooth and creamy. Season with salt and pepper. Keep warm.",
+      "Spoon goat cheese cream onto clean white plates. Place one whole pan-seared chicken breast on top or beside the cream.",
+      "Drizzle coffee-lime reduction over chicken. Garnish with fresh thyme sprigs, chopped chives, and a few thin lime zest curls. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 572,
+      "cholesterol_mg": 213,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 68.5,
+      "saturated_fat_g": 13.9,
+      "sodium_mg": 330,
+      "total_carbs_g": 8.4,
+      "total_fat_g": 28.1,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149,
+      "cholesterol_mg": 56,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 17.8,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 86,
+      "total_carbs_g": 2.2,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 4,
+      "protein": 137,
+      "saturated_fat": 70,
+      "sodium": 14,
+      "total_carbs": 3,
+      "total_fat": 36
+    },
+    "serving_size_g": 383.75,
+    "total_recipe_weight_g": 1535
+  },
+  {
+    "recipe_name": "Spanish Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_rice_20250624_172838_3fa93081.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:28:38.483425000Z",
+    "selected_ingredients": [
+      "rice",
+      "chicken",
+      "broth",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Spanish chicken and rice served in a wide, shallow white porcelain bowl. The rice is moist and fluid, colored a vibrant golden-orange from the smoked paprika and broth. Thick 4cm chunks of seared chicken thighs are nestled into the rice, showing a crisp, dark golden-brown exterior. Small dices of softened red bell pepper and translucent onions are evenly distributed throughout the grains. The dish is finished with a scatter of bright green chopped parsley. A single yellow lemon wedge sits on the side of the plate. The background features a rustic wooden table, a folded white cotton napkin, and natural side-lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve in a traditional terracotta cazuela",
+      "Accompany with crusty bread and aioli",
+      "Pair with a crisp Spanish white wine like Albariño"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, cut into 4cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Arborio rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon wedges",
+        "quantity": "4 units"
+      }
+    ],
+    "instructions": [
+      "Season chicken chunks with salt, pepper, and half the paprika.",
+      "Heat olive oil in a wide, shallow pan over medium-high heat.",
+      "Brown chicken chunks for 5 minutes until golden. Remove from pan.",
+      "Add onion and red pepper to the same pan. Sauté until softened.",
+      "Stir in garlic and remaining paprika. Cook for 1 minute.",
+      "Add rice. Stir for 2 minutes to toast the grains.",
+      "Pour in chicken broth. Bring to a boil.",
+      "Return chicken chunks to the pan. Reduce heat to low.",
+      "Simmer uncovered for 18 minutes. Do not stir.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Remove from heat. Let rest for 5 minutes.",
+      "Garnish with parsley and serve with lemon wedges."
+    ],
+    "notes": [
+      "Use short-grain rice to ensure the correct starchy consistency.",
+      "Avoid stirring the rice once the broth is added to allow a slight crust to form.",
+      "Ensure the broth is hot before adding it to the pan to maintain cooking temperature."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice toasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 738,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 48.9,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 1160,
+      "total_carbs_g": 90.6,
+      "total_fat_g": 19.5,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134.2,
+      "cholesterol_mg": 29.1,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.9,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 210.9,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 15,
+      "protein": 98,
+      "saturated_fat": 18,
+      "sodium": 50,
+      "total_carbs": 33,
+      "total_fat": 25
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Medallions with Tomato-Worcestershire Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_medallions_with_tomato-worcestershire_reduction_20250624_172832_5d9aa2a8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:28:33.380915000Z",
+    "selected_ingredients": [
+      "beef",
+      "worcestershire sauce",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared beef medallions is presented on a clean white porcelain dinner plate. The beef, cut into thick, circular medallions, exhibits a deep, caramelized crust from searing, revealing a tender, rosy interior. A rich, glossy tomato-Worcestershire reduction is artfully pooled beside and slightly beneath the beef, its dark, concentrated color contrasting with the meat. Accompanying the beef are golden-brown roasted baby potatoes, some halved, some whole, their skins slightly crisped. Vibrant green steamed asparagus spears are neatly arranged. A fresh sprig of thyme rests atop the beef, adding a pop of green. The overall composition is balanced, with moderate negative space. The setting features a simple light wooden table surface, a folded white cotton napkin to the left, and standard silver flatware. Natural, even lighting illuminates the dish, creating a warm, inviting ambiance. The entire plate is visible, showcasing a refined yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Beef Medallions",
+    "ingredients": [
+      {
+        "name": "Beef sirloin",
+        "quantity": "700g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Baby potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve baby potatoes. Toss with 15ml olive oil, salt, and pepper. Roast for 30-35 minutes until tender and golden. Set aside.",
+      "Trim beef sirloin. Cut into 8 thick medallions (approximately 3.5cm thick). Season generously with salt and pepper.",
+      "Heat 15ml olive oil in a large oven-safe skillet over medium-high heat until shimmering.",
+      "Sear beef medallions for 3-4 minutes per side for medium-rare, or until desired doneness. Transfer beef to a plate, tent with foil. Let rest.",
+      "Reduce heat to medium. Add 15g butter to the same skillet. Add minced shallots and cook until softened, about 3 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in tomato paste and cook for 1 minute. Deglaze the pan with Worcestershire sauce, scraping up any browned bits. Cook until slightly reduced.",
+      "Pour in beef stock. Bring to a simmer. Reduce heat to low and cook until the sauce has thickened to a rich consistency, about 8-10 minutes. Stir in sugar to balance acidity.",
+      "Remove skillet from heat. Whisk in remaining 35g cold butter, one piece at a time, until sauce is glossy and emulsified. Season with salt and pepper to taste.",
+      "While sauce reduces, steam or blanch asparagus until tender-crisp, about 3-4 minutes. Season with salt.",
+      "To serve, place two beef medallions on each plate. Spoon generous amount of the rich tomato-Worcestershire reduction over and around the beef. Arrange roasted baby potatoes and steamed asparagus alongside. Garnish each plate with a fresh thyme sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.8,
+      "calories": 688.4,
+      "cholesterol_mg": 149.4,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 59.1,
+      "saturated_fat_g": 12.6,
+      "sodium_mg": 335.1,
+      "total_carbs_g": 42.6,
+      "total_fat_g": 31.2,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 134.4,
+      "cholesterol_mg": 29.2,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 65.5,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 20,
+      "protein": 118,
+      "saturated_fat": 63,
+      "sodium": 15,
+      "total_carbs": 15,
+      "total_fat": 40
+    },
+    "serving_size_g": 512,
+    "total_recipe_weight_g": 2048
+  }
+]

@@ -1,0 +1,611 @@
+[
+  {
+    "recipe_name": "Japanese Pork Shogayaki",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_japanese_pork_shogayaki_20250701_151551_04ccc2ba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:15:51.503992000Z",
+    "selected_ingredients": [
+      "onion",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "Asian cuisine, Fast",
+    "visual_description": "A clean white porcelain dinner plate holds a generous portion of golden-brown, seared pork medallions, cooked as whole pieces, not fanned. Alongside the pork, glistening, tender, caramelized onion slices are nestled. A vibrant mound of finely shredded green cabbage provides a fresh counterpoint. The dish is lightly coated in a rich, glossy, savory-sweet ginger-soy glaze. Bright green, thinly sliced spring onion is scattered over the pork as a garnish. The plate is set on a simple wooden table. A white rice bowl and a pair of chopsticks are placed beside the dish, enhancing the authentic Japanese bistro setting. Natural, even lighting highlights the textures and colors of the food. The background is minimalist and unobtrusive.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with steamed white rice",
+      "Serve with a side of shredded green cabbage",
+      "Can be accompanied by miso soup",
+      "Eaten with chopsticks"
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork loin or shoulder, thinly sliced",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Sake",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Green cabbage, shredded",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Green onions, thinly sliced",
+        "quantity": "2"
+      }
+    ],
+    "instructions": [
+      "Combine grated ginger, soy sauce, mirin, and sake in a small bowl. Whisk to combine. Set aside.",
+      "Slice onions into thin half-moon shapes.",
+      "Heat vegetable oil in a large skillet or wok over medium-high heat.",
+      "Add pork slices to the hot skillet in a single layer. Cook for 2-3 minutes per side until browned and cooked through. Cook in batches if necessary to avoid overcrowding. Remove cooked pork from skillet and set aside.",
+      "Add sliced onions to the same skillet. Sauté for 3-5 minutes until softened and lightly caramelized.",
+      "Return cooked pork to the skillet with the onions.",
+      "Pour the prepared sauce over the pork and onions. Toss to coat evenly. Cook for 1-2 minutes, stirring constantly, until the sauce thickens slightly and coats the ingredients.",
+      "Serve immediately over steamed white rice, accompanied by shredded green cabbage."
+    ],
+    "traditional_techniques": [
+      "Stir-frying",
+      "Seasoning balance"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5.1,
+      "calories": 369,
+      "cholesterol_mg": 113,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 43.4,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 968,
+      "total_carbs_g": 16.6,
+      "total_fat_g": 12.8,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.6,
+      "calories": 117,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 13.7,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 306,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 4,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 10,
+      "protein": 87,
+      "saturated_fat": 21,
+      "sodium": 42,
+      "total_carbs": 6,
+      "total_fat": 16
+    },
+    "serving_size_g": 316,
+    "total_recipe_weight_g": 1264
+  },
+  {
+    "recipe_name": "Homestyle Steamed Pork and Shrimp Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_steamed_pork_and_shrimp_cake_20250701_151507_8c8f46e7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:15:07.963389000Z",
+    "selected_ingredients": [
+      "pork",
+      "shrimp"
+    ],
+    "complexity": "simple",
+    "special_requests": "chinese cuisine, minced pork and cut up shrimp mixed and seasoned with chinese ingredients, no garlic or onions",
+    "visual_description": "A single portion of Homestyle Steamed Pork and Shrimp Cake rests in a rustic, shallow ceramic bowl, its off-white interior subtly contrasting the dish. The cake, a modest, round patty about 2.5 cm thick, displays a tender, slightly irregular surface, indicating its handmade nature. Its color is a natural, inviting blend of light pink from the chopped shrimp and pale brown from the minced pork, with visible flecks of both ingredients and grated ginger. The cake is moist and glistening, pooling a small amount of savory cooking liquid at its base. A few fresh, vibrant green coriander leaves are casually placed on top, adding a pop of color and freshness. The bowl sits on a well-worn, warm-toned wooden dining table, showing natural grain and minor imperfections. Beside it, a pair of dark wooden chopsticks rests on a simple ceramic chopstick rest. A small bowl of fluffy white steamed rice is positioned nearby. The scene is illuminated by soft, warm kitchen light, creating a cozy, inviting atmosphere typical of a family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with plain steamed white rice.",
+      "Offer a side of blanched green vegetables like bok choy or gai lan.",
+      "Serve with a simple, clear broth."
+    ],
+    "hero_ingredient": "Pork and Shrimp",
+    "ingredients": [
+      {
+        "name": "Minced pork (80% lean)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh shrimp, peeled and deveined",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh ginger, finely grated",
+        "quantity": "20g"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "2g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g (or to taste)"
+      },
+      {
+        "name": "Fresh coriander leaves, for garnish",
+        "quantity": "a few sprigs"
+      }
+    ],
+    "instructions": [
+      "Peel and devein shrimp. Roughly chop the shrimp into 0.5 cm pieces.",
+      "In a large mixing bowl, combine the minced pork, chopped shrimp, grated ginger, light soy sauce, Shaoxing wine, sesame oil, cornstarch, white pepper, sugar, water, and salt.",
+      "Mix vigorously for 5 minutes. Use your hands or a spoon to combine until the mixture becomes sticky and cohesive.",
+      "Transfer the mixture to a shallow, heatproof dish suitable for steaming. Flatten the mixture evenly into a cake, about 2.5 cm thick.",
+      "Prepare a steamer. Bring water to a rolling boil in the steamer pot.",
+      "Carefully place the dish with the pork and shrimp cake into the hot steamer. Cover tightly.",
+      "Steam over high heat for 15-20 minutes. The cake is cooked when it is firm to the touch and the internal temperature reaches 75°C (167°F).",
+      "Carefully remove the dish from the steamer.",
+      "Garnish the steamed cake with fresh coriander leaves.",
+      "Serve hot with plain steamed white rice."
+    ],
+    "traditional_techniques": [
+      "Steaming"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 355.7,
+      "cholesterol_mg": 168.5,
+      "dietary_fiber_g": 0.32,
+      "protein_g": 28.48,
+      "saturated_fat_g": 7.99,
+      "sodium_mg": 754.01,
+      "total_carbs_g": 5.81,
+      "total_fat_g": 23.32,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.27,
+      "calories": 195.4,
+      "cholesterol_mg": 92.56,
+      "dietary_fiber_g": 0.18,
+      "protein_g": 15.65,
+      "saturated_fat_g": 4.39,
+      "sodium_mg": 414.17,
+      "total_carbs_g": 3.19,
+      "total_fat_g": 12.81,
+      "total_sugars_g": 0.44,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 1,
+      "protein": 57,
+      "saturated_fat": 40,
+      "sodium": 33,
+      "total_carbs": 2,
+      "total_fat": 30
+    },
+    "serving_size_g": 182.1,
+    "total_recipe_weight_g": 728.2
+  },
+  {
+    "recipe_name": "Pan-Seared Beef with Caramelized Onion Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_with_caramelized_onion_jus_20250701_151443_600c8cb7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:14:44.122378000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "Fast",
+    "visual_description": "A single portion of pan-seared beef steak is centrally placed on a clean, round white porcelain plate. The beef, either as a whole seared piece or thick-cut chunks, exhibits a dark, crusty sear on its exterior, contrasting with a tender, reddish-pink interior visible on any cut surfaces. A generous pool of rich, glossy caramelized onion jus surrounds the beef, with soft, deep amber-brown onion slices visibly suspended within the thickened sauce. The jus glistens under natural light, highlighting its luxurious texture. A vibrant sprinkle of finely chopped fresh parsley or chives provides a pop of green against the deep tones of the dish. The plate sits on a simple wooden table, accompanied by elegant silver flatware and a folded cotton napkin, creating a sophisticated yet approachable bistro setting with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin steaks",
+        "quantity": "4 x 200g"
+      },
+      {
+        "name": "Large yellow onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef steaks dry. Season generously with salt and pepper.",
+      "Slice onions thinly. Mince garlic.",
+      "Heat olive oil in a large, heavy-bottomed pan over medium-high heat.",
+      "Sear steaks 3-4 minutes per side for medium-rare, or to desired doneness. Adjust time for thickness.",
+      "Remove steaks from pan. Tent with foil. Let rest 5-10 minutes.",
+      "Reduce heat to medium. Add sliced onions to the same pan. Cook, stirring occasionally, until softened and caramelized, about 10-15 minutes.",
+      "Add minced garlic and thyme sprigs. Cook 1 minute until fragrant.",
+      "Pour in red wine. Scrape up any browned bits from the pan bottom. Simmer 2 minutes, reducing wine slightly.",
+      "Add beef stock. Bring to a simmer. Reduce heat to low. Simmer until sauce thickens to a jus consistency, about 5-7 minutes.",
+      "Remove thyme sprigs. Stir in butter until melted and incorporated. Taste and adjust seasoning.",
+      "Plate beef. Spoon caramelized onion jus over and around the beef. Garnish with fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 690,
+      "cholesterol_mg": 166,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 54.2,
+      "saturated_fat_g": 16.8,
+      "sodium_mg": 447,
+      "total_carbs_g": 9.9,
+      "total_fat_g": 43.2,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 243,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 19.1,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 157,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 15.2,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 5,
+      "protein": 108,
+      "saturated_fat": 84,
+      "sodium": 19,
+      "total_carbs": 4,
+      "total_fat": 55
+    },
+    "serving_size_g": 284,
+    "total_recipe_weight_g": 1136
+  },
+  {
+    "recipe_name": "Steamed Pork and Shrimp Patty",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_steamed_pork_and_shrimp_patty_20250701_151413_17e39e87.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:14:13.796395000Z",
+    "selected_ingredients": [
+      "pork",
+      "shrimp"
+    ],
+    "complexity": "simple",
+    "special_requests": "chinese cuisine, minced pork and cut up shrimp mixed and seasoned with chinese ingredients, no garlic or onions",
+    "visual_description": "A single portion of Steamed Pork and Shrimp Patty rests on a simple, slightly off-white ceramic plate. The patty, about 2.5 cm thick, is round, showcasing the tender, light brown minced pork speckled with vibrant pink roughly chopped shrimp and tiny white diced water chestnuts. A light sheen of savory cooking liquid pools around the base. It is generously garnished with bright green, thinly sliced spring onion. Beside the patty, a small mound of fluffy white steamed rice sits in a traditional Chinese rice bowl. A pair of dark wooden chopsticks lies casually across the plate's rim. The scene is set on a warm, well-used wooden dining table, illuminated by soft, inviting kitchen light, evoking a comforting family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed white rice.",
+      "Offer a small dish of light soy sauce for dipping."
+    ],
+    "hero_ingredient": "Minced Pork",
+    "ingredients": [
+      {
+        "name": "Minced pork",
+        "quantity": "500g"
+      },
+      {
+        "name": "Shrimp, peeled and deveined, roughly chopped",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water chestnuts, finely diced",
+        "quantity": "50g"
+      },
+      {
+        "name": "Ginger, finely grated",
+        "quantity": "15g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "10g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Spring onion, thinly sliced (for garnish)",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Combine minced pork, chopped shrimp, diced water chestnuts, grated ginger, soy sauce, Shaoxing wine, sesame oil, white pepper, and cornstarch in a large bowl.",
+      "Mix thoroughly until well combined and slightly sticky.",
+      "Add 30ml water. Mix until absorbed.",
+      "Transfer mixture to a shallow, heatproof dish. Flatten into an even patty, about 2-3 cm thick.",
+      "Prepare a steamer. Bring water to a rolling boil.",
+      "Place dish in steamer. Steam for 15-20 minutes.",
+      "Ensure internal temperature reaches 75°C (167°F).",
+      "Remove from steamer. Garnish with sliced spring onion.",
+      "Serve hot."
+    ],
+    "traditional_techniques": [
+      "Steaming (Zheng)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 346.78,
+      "cholesterol_mg": 171,
+      "dietary_fiber_g": 0.77,
+      "protein_g": 39.97,
+      "saturated_fat_g": 5.62,
+      "sodium_mg": 617.09,
+      "total_carbs_g": 7.19,
+      "total_fat_g": 16.44,
+      "total_sugars_g": 1.01,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 158.6,
+      "cholesterol_mg": 78.21,
+      "dietary_fiber_g": 0.35,
+      "protein_g": 18.28,
+      "saturated_fat_g": 2.57,
+      "sodium_mg": 282.23,
+      "total_carbs_g": 3.29,
+      "total_fat_g": 7.52,
+      "total_sugars_g": 0.46,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 2.75,
+      "protein": 79.94,
+      "saturated_fat": 28.1,
+      "sodium": 26.83,
+      "total_carbs": 2.61,
+      "total_fat": 21.08
+    },
+    "serving_size_g": 218.65,
+    "total_recipe_weight_g": 874.6
+  },
+  {
+    "recipe_name": "Braised Beef with Caramelized Onions",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_caramelized_onions_20250701_151346_0d76fd37.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:13:46.947422000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Braised Beef with Caramelized Onions is presented on a clean, round white porcelain dinner plate. A large, rustic chunk of dark brown, fork-tender braised beef, its surface glistening, is positioned slightly off-center. Beneath and around the beef is a generous bed of deeply caramelized, soft, golden-brown onion slices, showing their rich, glossy texture. A dark, glossy, rich pan sauce is artfully spooned over the beef and pooled around the base, creating a sheen. A small sprig of fresh thyme rests gently on top of the beef, adding a touch of green. The overall presentation is clean and organized, with moderate negative space. The plate sits on a simple light wooden table. A neatly folded light grey cotton napkin is placed to the left of the plate. The scene is illuminated with natural, even lighting, creating a warm, inviting bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Bistro",
+    "cultural_origin": "European",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck steak",
+        "quantity": "1.2 kg, cut into 4 equal chunks"
+      },
+      {
+        "name": "Large yellow onions",
+        "quantity": "4, thinly sliced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, peeled and roughly chopped"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Red wine",
+        "quantity": "250 ml, dry"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper. Dredge beef in flour, shaking off excess.",
+      "Heat olive oil in a large oven-safe Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef and set aside.",
+      "Add sliced onions to the pot. Reduce heat to medium-low. Cook, stirring occasionally, for 20-25 minutes until deeply caramelized and soft. Add a pinch of sugar if needed to aid caramelization.",
+      "Add chopped carrots, celery, and minced garlic to the pot. Cook for 5 minutes until vegetables soften slightly.",
+      "Pour in red wine. Scrape the bottom of the pot to deglaze. Bring to a simmer and cook for 5 minutes, reducing slightly.",
+      "Pour in beef broth. Add thyme sprigs and bay leaves. Bring to a simmer.",
+      "Return seared beef chunks to the pot. Ensure beef is mostly submerged in liquid. Cover the pot with a lid.",
+      "Transfer to a preheated oven at 160°C. Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Carefully remove beef from the pot. Strain the braising liquid through a fine-mesh sieve into a saucepan, pressing on solids to extract all liquid. Discard solids.",
+      "Skim any excess fat from the strained liquid. Bring to a simmer over medium heat. Reduce until the sauce slightly thickens and coats the back of a spoon. Stir in butter. Season with salt and pepper to taste.",
+      "Serve each beef chunk with a generous portion of the caramelized onions and a ladle of the rich pan sauce."
+    ],
+    "notes": [
+      "For best flavor, braise the beef a day in advance. Cool completely, then refrigerate. Reheat gently on the stovetop or in the oven.",
+      "Adjust the consistency of the sauce by reducing it further for a thicker glaze or adding a splash of broth for a thinner consistency."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Caramelizing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 947,
+      "cholesterol_mg": 242,
+      "dietary_fiber_g": 5,
+      "protein_g": 67,
+      "saturated_fat_g": 21.7,
+      "sodium_mg": 1389,
+      "total_carbs_g": 35.2,
+      "total_fat_g": 54.3,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.1,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 168,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81,
+      "dietary_fiber": 18,
+      "protein": 134,
+      "saturated_fat": 108,
+      "sodium": 60,
+      "total_carbs": 13,
+      "total_fat": 70
+    },
+    "serving_size_g": 828,
+    "total_recipe_weight_g": 3312
+  }
+]

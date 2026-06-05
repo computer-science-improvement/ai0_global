@@ -1,0 +1,717 @@
+[
+  {
+    "recipe_name": "Fermented Apple & Seed Crumble with Cashew Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_apple_%26_seed_crumble_with_cashew_cream_20250626_094851_12ff5249.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:48:51.487195000Z",
+    "selected_ingredients": [
+      "apple"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of dessert is presented on a shallow, round, handcrafted ceramic plate in a natural cream color. At the center, a generous dollop of warm, slightly textured apple compote showcases tender, diced apple pieces. The zero-waste seed crumble, with its earthy, golden-brown hues and varied textures, is artfully scattered over and around the compote. A smooth, off-white swoosh of fermented cashew cream is placed elegantly beside the compote, creating a soft, organic shape. A single, thin, crispy dehydrated apple slice stands upright, leaning against the compote, providing a delicate visual and textural contrast. The plating is clean, uncrowded, and natural, with ample white space on the plate. The scene is set on a light, textured reclaimed wood surface. An undyed linen napkin in a natural beige tone is casually folded to one side. Soft, diffused natural light illuminates the dish, and the background is clean and minimalist, with a blurred hint of green foliage from a plant, enhancing the eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Apples",
+        "quantity": "4 medium (approx. 600g)"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Cinnamon Stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Raw Cashews",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Probiotic Capsule (or 15ml Water Kefir)",
+        "quantity": "1"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Rolled Oats",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Pumpkin Seeds",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Sunflower Seeds",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Coconut Oil",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Pinch of Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Zero-Waste Crumble: Wash apples thoroughly. Peel and core apples. Reserve peels and cores. Thinly slice a few apple peels. Dehydrate apple peels and cores at 50°C for 4-6 hours until fully dry and brittle. Grind dried peels and cores into a fine powder. In a bowl, combine ground dried apple peel/core powder, rolled oats, pumpkin seeds, sunflower seeds, melted coconut oil, 15ml maple syrup, and a pinch of salt. Mix well. Spread mixture on a baking tray. Bake at 160°C for 15-20 minutes until golden and crisp. Let cool completely.",
+      "Prepare Fermented Cashew Cream: Soak cashews in hot water for 30 minutes, then drain. Blend soaked cashews with 120ml fresh water, 15ml maple syrup, vanilla extract, and contents of probiotic capsule (or water kefir) until completely smooth and creamy. Transfer to a clean jar. Cover loosely with a cloth. Let ferment at room temperature for 8-12 hours, or until slightly tangy. Refrigerate until ready to use.",
+      "Prepare Apple Compote: Dice peeled and cored apples into 1.5 cm cubes. In a saucepan, combine diced apples, remaining 30ml maple syrup, cinnamon stick, lemon juice, and 60ml water. Bring to a simmer over medium heat. Cook for 15-20 minutes, stirring occasionally, until apples are tender and liquid has reduced to a compote consistency. Remove cinnamon stick. Let cool slightly.",
+      "Assemble Dessert: Spoon warm apple compote onto individual serving plates. Dollop or swoosh fermented cashew cream beside the compote. Sprinkle generously with the cooled zero-waste crumble. Garnish with a thin, crispy dehydrated apple slice if desired. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.09,
+      "calories": 572,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.06,
+      "protein_g": 14.44,
+      "saturated_fat_g": 10.36,
+      "sodium_mg": 10,
+      "total_carbs_g": 61.42,
+      "total_fat_g": 33.16,
+      "total_sugars_g": 31.88,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4.34,
+      "calories": 205,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.89,
+      "protein_g": 5.18,
+      "saturated_fat_g": 3.72,
+      "sodium_mg": 4,
+      "total_carbs_g": 22.03,
+      "total_fat_g": 11.9,
+      "total_sugars_g": 11.44,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 29,
+      "protein": 29,
+      "saturated_fat": 52,
+      "sodium": 0,
+      "total_carbs": 22,
+      "total_fat": 43
+    },
+    "serving_size_g": 278.75,
+    "total_recipe_weight_g": 1115
+  },
+  {
+    "recipe_name": "Zero-Waste Chicken & Spring Risotto with Fermented Carrots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zero-waste_chicken_%26_spring_risotto_with_fermented_carrots_20250626_094819_72773bfe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:48:19.748380000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "cheese"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single generous portion of creamy, free-flowing risotto sits on a handcrafted ceramic plate in an earthy cream tone. The Arborio rice grains are plump, coated in a luscious, pale golden broth. Interspersed within the risotto are vibrant green, tender-crisp asparagus pieces, cut into 3cm lengths. Piled gently on top of the risotto are rustic chunks of shredded chicken, showcasing its natural texture. Bright orange batons of lacto-fermented carrots are strategically placed to add a pop of contrasting color and visual interest. A scattering of roughly chopped fresh parsley provides a final touch of green. The plate is centered on a light, textured reclaimed wood table. An undyed linen napkin and simple, natural utensils are subtly present, suggesting an eco-conscious dining experience. Soft, natural light illuminates the scene from the side, highlighting the dish's organic beauty and inviting textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Risotto",
+    "ingredients": [
+      {
+        "name": "Chicken carcass or bones",
+        "quantity": "500g"
+      },
+      {
+        "name": "Vegetable scraps (onion peels, carrot ends, celery leaves, mushroom stems)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 litres"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "300g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Carrots, peeled, cut into thin batons",
+        "quantity": "150g"
+      },
+      {
+        "name": "Filtered water (for carrots)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Green asparagus, cut into 3cm pieces",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsalted butter, cold, cubed",
+        "quantity": "40g"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "80g"
+      },
+      {
+        "name": "Fresh parsley, roughly chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Broth: Combine chicken carcass/bones, vegetable scraps, 2 litres water, 5g peppercorns, and 1 bay leaf in a large pot. Bring to a simmer. Skim foam. Reduce heat. Simmer gently for 2 hours. Strain broth. Discard solids. Keep broth hot.",
+      "Cook Chicken: Season chicken thighs with salt and pepper. Poach chicken in 500ml of the hot broth until internal temperature reaches 75°C (about 15-20 minutes). Remove chicken. Shred chicken meat. Set aside.",
+      "Ferment Carrots: Combine 150g carrots, 3g salt, and 150ml filtered water in a clean jar. Ensure carrots are fully submerged. Seal jar. Leave at room temperature for 2-3 days until slightly tart and bubbly. Refrigerate.",
+      "Start Risotto: Heat olive oil in a large, heavy-bottomed pot or deep pan over medium heat. Add diced onion. Sauté until translucent, about 5 minutes. Add minced garlic. Cook 1 minute until fragrant.",
+      "Toast Rice: Add Arborio rice to pot. Stir constantly for 2 minutes until edges of grains are translucent.",
+      "Deglaze: Pour in white wine. Stir until wine is fully absorbed.",
+      "Cook Risotto: Add hot broth, one ladle at a time. Stir constantly. Wait for liquid to be almost absorbed before adding next ladle. Continue for 15-18 minutes until rice is al dente and creamy.",
+      "Add Vegetables: In the last 3 minutes of cooking, add asparagus pieces to the risotto. Stir until tender-crisp.",
+      "Finish Risotto: Remove risotto from heat. Stir in shredded chicken, cold butter, and grated Parmesan cheese. Stir vigorously until creamy. Season with salt and pepper to taste.",
+      "Serve: Ladle risotto onto warm plates. Top with fermented carrot batons. Garnish with fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 675,
+      "cholesterol_mg": 107,
+      "dietary_fiber_g": 3,
+      "protein_g": 32.3,
+      "saturated_fat_g": 11.2,
+      "sodium_mg": 1059,
+      "total_carbs_g": 69.3,
+      "total_fat_g": 25.9,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 112,
+      "cholesterol_mg": 18,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 5.4,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 176,
+      "total_carbs_g": 11.5,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36,
+      "dietary_fiber": 11,
+      "protein": 65,
+      "saturated_fat": 56,
+      "sodium": 46,
+      "total_carbs": 25,
+      "total_fat": 33
+    },
+    "serving_size_g": 602,
+    "total_recipe_weight_g": 2406
+  },
+  {
+    "recipe_name": "Ginger Garlic Chicken Stir-fry with Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ginger_garlic_chicken_stir-fry_with_brown_rice_20250626_094801_37bf0768.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:48:01.950829000Z",
+    "selected_ingredients": [
+      "chicken",
+      "broccoli",
+      "tomato",
+      "bell pepper",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, white porcelain dinner plate, showcasing a single portion. At the center, a vibrant mound of Ginger Garlic Chicken Stir-fry. Tender, golden-brown chicken chunks are interspersed with bright green broccoli florets and crisp-tender red and green bell pepper squares. Halved cherry tomatoes add pops of rich red. Ingredients are coated in a glossy, light brown sauce. Each piece is distinct, showing proper cutting shapes. Beside the stir-fry, a neat scoop of fluffy, earthy brown rice. The dish is garnished with thinly sliced green onions and toasted sesame seeds, adding freshness and nutty aroma. The plate is set on a simple wooden table. Dark wood chopsticks rest across a small white rice bowl. A folded cotton napkin sits to the side. Natural, even lighting illuminates the scene, highlighting colors and textures. The background is minimally blurred, suggesting a casual bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with hot brown rice.",
+      "Offer a side of chili garlic sauce for extra heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "200g (dry)"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "40g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "3"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook brown rice according to package directions. Keep warm.",
+      "In a small bowl, whisk together soy sauce, rice vinegar, sesame oil, cornstarch, and chicken broth. Set aside.",
+      "Heat 15ml vegetable oil in a large wok or skillet over high heat. Add chicken chunks (cut into 3cm chunks). Sear until golden brown on all sides and cooked through, about 6-8 minutes. Ensure internal temperature reaches 75°C. Remove chicken from wok. Set aside.",
+      "Add remaining 15ml vegetable oil to the wok. Add minced ginger and garlic. Stir-fry for 30 seconds until fragrant.",
+      "Add broccoli florets and bell pepper squares (cut into 2cm squares). Stir-fry for 3-4 minutes until vegetables are tender-crisp.",
+      "Return chicken to the wok. Add halved cherry tomatoes.",
+      "Re-whisk the sauce mixture. Pour into the wok. Cook, stirring constantly, until sauce thickens and coats chicken and vegetables, about 1-2 minutes.",
+      "Taste and adjust seasoning with salt and pepper if needed."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to 75°C internal temperature.",
+      "Do not overcrowd the wok; cook in batches if necessary to maintain high heat and achieve proper searing."
+    ],
+    "traditional_techniques": [
+      "Wok hei"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 631.2,
+      "cholesterol_mg": 127.5,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 56.2,
+      "saturated_fat_g": 3,
+      "sodium_mg": 1046.8,
+      "total_carbs_g": 59.7,
+      "total_fat_g": 18.5,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 103.5,
+      "cholesterol_mg": 20.9,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.2,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 171.6,
+      "total_carbs_g": 9.8,
+      "total_fat_g": 3,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.5,
+      "dietary_fiber": 24.5,
+      "protein": 112.4,
+      "saturated_fat": 14.8,
+      "sodium": 45.5,
+      "total_carbs": 21.7,
+      "total_fat": 23.7
+    },
+    "serving_size_g": 610,
+    "total_recipe_weight_g": 2440
+  },
+  {
+    "recipe_name": "Smoked Bacon & Egg Yolk Ravioli, Broccoli Emulsion, Ricotta Cloud",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_bacon_%26_egg_yolk_ravioli%2C_broccoli_emulsion%2C_ricotta_cloud_20250626_094757_13ffe0e4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:47:57.603650000Z",
+    "selected_ingredients": [
+      "pasta",
+      "heavy cream",
+      "bacon",
+      "egg",
+      "broccoli",
+      "ricotta",
+      "breadcrumbs"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A pristine white bone china plate, generously proportioned, showcases a minimalist and artful composition. At the heart, a vibrant, glossy pool of smooth, emerald-green broccoli emulsion provides a striking color contrast and foundation. Nestled organically within the emulsion are three perfectly plump, golden-yellow smoked bacon and egg yolk ravioli. Their delicate, slightly translucent pasta casings reveal the rich filling within. Adjacent to the ravioli, a cloud-like quenelle of creamy white ricotta cheese sits, offering a soft, ethereal texture. A scattering of golden, finely toasted pangrattato, infused with lemon zest and fresh parsley, adds a textural crunch and bright visual accent, primarily over the ricotta and ravioli. The arrangement is natural and flowing, avoiding rigid geometry, with abundant white space around the elements, emphasizing precision and the quality of each component. The scene is lit with dramatic professional lighting, casting soft, intentional shadows that highlight the dish's contours and textures. The background is ultra-minimalist, perhaps a subtle grey marble surface or a premium matte white tablecloth, allowing the dish to be the sole focus. A single, precisely folded white linen napkin and a piece of elegant, simple silverware are subtly placed to complete the sophisticated fine-dining aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a small, elegant portion.",
+      "Pair with a light, crisp white wine, such as a Vermentino or Pinot Grigio.",
+      "Offer freshly ground black pepper at the table, but no grated cheese, as the dish is balanced."
+    ],
+    "hero_ingredient": "Smoked Bacon & Egg Yolk Ravioli",
+    "ingredients": [
+      {
+        "name": "00 flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Smoked bacon (pancetta or guanciale)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large egg yolks",
+        "quantity": "4"
+      },
+      {
+        "name": "Finely grated Pecorino Romano cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Vegetable stock or light chicken stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh ricotta cheese (full-fat, drained)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "Zest of 3/4 lemon"
+      },
+      {
+        "name": "Fresh breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Microgreens or small basil leaves",
+        "quantity": "Optional, for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Ravioli Dough: Combine flour, eggs, and a pinch of salt. Knead until smooth and elastic, about 10 minutes. Wrap in cling film. Rest 30 minutes at room temperature.",
+      "Prepare Smoked Bacon: Finely dice bacon. Render in a cold pan over medium-low heat until very crispy. Drain bacon bits on paper towel. Reserve 15 ml rendered fat.",
+      "Prepare Ravioli Filling: In a bowl, combine crispy bacon bits, 4 egg yolks, Pecorino Romano, and black pepper. Mix well. Ensure bacon bits are cold before mixing with yolks.",
+      "Assemble Ravioli: Roll pasta dough very thin, 1 mm thickness. Place small mounds of filling (approx. 10g each) evenly spaced on one half of the dough. Brush edges with water. Fold other half over. Press around filling to seal. Cut into 4x4 cm squares. Ensure no air pockets.",
+      "Prepare Broccoli Emulsion: Steam or blanch broccoli florets until very tender. Immediately plunge into ice bath. Drain well. Blend broccoli with vegetable stock and 50 ml heavy cream until very smooth. Pass through a fine-mesh sieve for ultimate silkiness. Season with salt. Keep warm.",
+      "Prepare Ricotta Cloud: Whisk ricotta cheese with 30 ml heavy cream, a pinch of salt, and zest of 1/4 lemon until light and fluffy. Transfer to a piping bag or prepare for quenelles.",
+      "Prepare Lemon & Herb Pangrattato: Heat 15 ml olive oil in a small pan. Add breadcrumbs. Toast until golden brown and crispy. Remove from heat. Stir in chopped parsley, zest of 1/2 lemon, and a pinch of salt.",
+      "Cook Ravioli: Bring a large pot of salted water to a gentle boil. Carefully add ravioli. Cook 3-4 minutes until al dente and floating. Do not overcook.",
+      "Finish Dish: Gently remove cooked ravioli with a slotted spoon. Transfer to a pan with reserved bacon fat and butter. Toss gently to coat.",
+      "Plate: Spoon a vibrant pool of broccoli emulsion onto the center of each warm plate. Arrange 3-4 ravioli artfully on the emulsion. Place a delicate quenelle or piped dot of ricotta cloud beside the ravioli. Sprinkle pangrattato over the ricotta and ravioli for texture. Finish with a grind of black pepper and a few microgreens if using. Serve immediately."
+    ],
+    "notes": [
+      "Ensure all ingredients are high quality, especially the bacon and ricotta, for optimal flavor.",
+      "Precision in cooking times is critical for pasta and broccoli to maintain texture and color.",
+      "Draining ricotta well is essential for a firm, light quenelle.",
+      "The broccoli emulsion should be very smooth and vibrant. Passing it through a sieve is key."
+    ],
+    "traditional_techniques": [
+      "Pasta fresca",
+      "Emulsification"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 717,
+      "cholesterol_mg": 372.11,
+      "dietary_fiber_g": 2.97,
+      "protein_g": 28.73,
+      "saturated_fat_g": 19.01,
+      "sodium_mg": 744.03,
+      "total_carbs_g": 51.07,
+      "total_fat_g": 44.5,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.61
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 259.25,
+      "cholesterol_mg": 134.58,
+      "dietary_fiber_g": 1.07,
+      "protein_g": 10.39,
+      "saturated_fat_g": 6.88,
+      "sodium_mg": 269.09,
+      "total_carbs_g": 18.47,
+      "total_fat_g": 16.09,
+      "total_sugars_g": 1.41,
+      "trans_fat_g": 0.22
+    },
+    "daily_value_percentages": {
+      "cholesterol": 124.04,
+      "dietary_fiber": 10.61,
+      "protein": 57.46,
+      "saturated_fat": 95.05,
+      "sodium": 32.35,
+      "total_carbs": 18.57,
+      "total_fat": 57.05
+    },
+    "serving_size_g": 276.5,
+    "total_recipe_weight_g": 1106
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs with Thyme-Infused Lentil Mash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_with_thyme-infused_lentil_mash_20250626_094753_68881ea8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:47:54.127862000Z",
+    "selected_ingredients": [
+      "potato",
+      "onion",
+      "beef stock",
+      "thyme",
+      "lentil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Braised Beef Short Ribs with Thyme-Infused Lentil Mash is presented on a clean white porcelain dinner plate. A large, rich brown, fall-apart tender beef short rib, presented as a whole piece, is centered on the plate. Beside it, a generous quenelle of creamy, earthy green-brown lentil mash sits, showing flecks of green thyme. A glossy, deep brown reduction of the braising liquid is spooned artfully over the beef and slightly around the base of the mash. A few vibrant green fresh thyme sprigs are placed on top of the beef, with a light sprinkle of finely chopped chives on the mash for a pop of color. The plating is organized yet natural, leaving moderate negative space. The scene is set on a simple wooden table, with a silver fork and knife beside the plate and a folded white cotton napkin. Natural, even lighting highlights the dish, creating a professional yet approachable restaurant-style presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Beef short ribs",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Potatoes (Russet or Maris Piper)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Brown lentils",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "6"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Milk or cream",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or chives",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef short ribs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear short ribs on all sides until deeply browned. Remove ribs and set aside.",
+      "Reduce heat to medium. Add diced onion, carrots, and celery to the pot. Cook, stirring occasionally, until softened, about 8-10 minutes.",
+      "Add minced garlic and cook for 1 minute until fragrant.",
+      "If using, pour in red wine. Scrape up any browned bits from the bottom of the pot. Reduce wine by half.",
+      "Return short ribs to the pot. Add beef stock, 4 thyme sprigs, and bay leaf. Bring to a simmer.",
+      "Cover the pot and transfer to a preheated oven at 160°C (325°F). Braise for 2.5-3 hours, or until beef is fork-tender.",
+      "While beef braises, rinse lentils. Combine lentils with 500 ml water in a saucepan. Bring to a boil, then reduce heat and simmer until tender, about 20-25 minutes. Drain any excess water.",
+      "Peel and cut potatoes into large chunks. Place in a pot of salted cold water. Bring to a boil and cook until very tender, about 15-20 minutes. Drain well.",
+      "Return drained potatoes to the hot pot. Add butter, milk or cream, and leaves from 2 fresh thyme sprigs. Mash until smooth and creamy. Season with salt and pepper to taste. Fold in cooked lentils.",
+      "Once beef is tender, carefully remove ribs from the pot. Strain the braising liquid through a fine-mesh sieve into a saucepan. Discard solids and herbs.",
+      "Skim any excess fat from the braising liquid. Bring to a simmer over medium heat and reduce until slightly thickened and glossy. Season with salt and pepper.",
+      "Serve braised short ribs whole or in large chunks alongside a generous portion of the thyme-infused lentil mash. Spoon reduced braising liquid over the beef and mash. Garnish with fresh parsley or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1763.7,
+      "cholesterol_mg": 310,
+      "dietary_fiber_g": 20.1,
+      "protein_g": 123.6,
+      "saturated_fat_g": 45.6,
+      "sodium_mg": 306,
+      "total_carbs_g": 78.1,
+      "total_fat_g": 101.4,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 2.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 201.6,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 14.1,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 35,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 11.6,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 103,
+      "dietary_fiber": 72,
+      "protein": 247,
+      "saturated_fat": 228,
+      "sodium": 13,
+      "total_carbs": 28,
+      "total_fat": 130
+    },
+    "serving_size_g": 875,
+    "total_recipe_weight_g": 3500
+  }
+]

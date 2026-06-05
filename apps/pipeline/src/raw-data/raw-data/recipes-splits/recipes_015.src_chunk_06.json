@@ -1,0 +1,692 @@
+[
+  {
+    "recipe_name": "Buckwheat Tuiles, Silken Tofu Crémeux, Ancho Chili Consommé Gel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_buckwheat_tuiles%2C_silken_tofu_cr%C3%A9meux%2C_ancho_chili_consomm%C3%A9_gel_20250628_084922_beaf69fb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:49:23.235681000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "oil",
+      "soybean",
+      "chili",
+      "ancho chile"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian, very tasty cuisine",
+    "visual_description": "The dish is presented on an expansive, pristine white bone china plate with a subtle, organic ripple pattern. Abundant negative space surrounds a meticulously composed cluster of elements. A smooth, ethereal swirl of ivory Silken Tofu Crémeux anchors the composition, its surface gleaming softly. Adjacent, two or three irregularly shaped, golden-brown Buckwheat Tuile shards stand upright, showcasing their delicate, crisp texture. Scattered around the crémeux and tuiles are a few jewel-like, translucent cubes of deep ruby-red Ancho Chili Consommé Gel, catching the light. A few precise drops of vibrant red Chili Oil are strategically placed on the crémeux, adding a pop of intense color. The entire arrangement is crowned with a whisper of fresh, bright green micro cilantro, providing a final touch of verdant contrast. The lighting is dramatic, casting soft shadows that emphasize the dish's architectural precision and textural interplay. The background is ultra-minimalist, hinting at a premium grey marble surface.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Buckwheat",
+    "ingredients": [
+      {
+        "name": "Buckwheat flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Egg white",
+        "quantity": "2"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt (for tuiles)",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Silken tofu",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Soy milk (unsweetened)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt (for crémeux)",
+        "quantity": "3 g"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Dried ancho chiles",
+        "quantity": "2 (about 20 g)"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt (for gel)",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Neutral oil (e.g., grapeseed)",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Dried red chili flakes",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Micro cilantro or micro basil",
+        "quantity": "small handful"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Whisk melted butter, egg whites, and sugar.",
+      "Sift buckwheat flour, all-purpose flour, and salt into mixture. Whisk until smooth.",
+      "Spread thin layers of batter onto a silicone mat using an offset spatula.",
+      "Bake 8-10 minutes, until golden and crisp.",
+      "Cool on a wire rack. Break into irregular, elegant shards.",
+      "Combine silken tofu, soy milk, rice vinegar, salt, and white pepper in a high-speed blender.",
+      "Blend until perfectly smooth and creamy.",
+      "Pass through a fine-mesh sieve for ultimate silkiness.",
+      "Refrigerate for at least 30 minutes to chill and firm slightly.",
+      "Toast ancho chiles lightly in a dry pan until fragrant. Do not burn.",
+      "Rehydrate chiles in hot water for 15 minutes. Discard water.",
+      "Blend rehydrated chiles with vegetable stock until smooth.",
+      "Pass mixture through a fine-mesh sieve, pressing solids to extract all liquid. This is your \"consommé.\"",
+      "Bring consommé to a simmer. Whisk in agar-agar and smoked paprika. Simmer 1 minute, whisking constantly.",
+      "Pour into a shallow dish. Chill until set, about 30 minutes.",
+      "Once set, cut into small, irregular cubes or break into delicate shards.",
+      "Heat neutral oil in a small saucepan over low heat.",
+      "Add dried red chili flakes. Infuse for 10 minutes. Do not let flakes burn.",
+      "Strain oil, discarding flakes. Let cool.",
+      "Spoon a dollop of Silken Tofu Crémeux onto one side of each plate, creating an organic swirl.",
+      "Arrange 2-3 Buckwheat Tuile shards artfully around the crémeux.",
+      "Place a few pieces of Ancho Chili Consommé Gel alongside.",
+      "Drizzle a few drops of Chili Oil sparingly over the crémeux and gel.",
+      "Garnish with a few micro cilantro or micro basil leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 310.15,
+      "cholesterol_mg": 21.5,
+      "dietary_fiber_g": 3.61,
+      "protein_g": 8.14,
+      "saturated_fat_g": 6.71,
+      "sodium_mg": 681.28,
+      "total_carbs_g": 20.91,
+      "total_fat_g": 22.7,
+      "total_sugars_g": 4.81,
+      "trans_fat_g": 0.32
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.25,
+      "calories": 155.46,
+      "cholesterol_mg": 10.78,
+      "dietary_fiber_g": 1.81,
+      "protein_g": 4.08,
+      "saturated_fat_g": 3.36,
+      "sodium_mg": 341.5,
+      "total_carbs_g": 10.48,
+      "total_fat_g": 11.38,
+      "total_sugars_g": 2.41,
+      "trans_fat_g": 0.16
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7.2,
+      "dietary_fiber": 12.9,
+      "protein": 16.3,
+      "saturated_fat": 33.5,
+      "sodium": 29.6,
+      "total_carbs": 7.6,
+      "total_fat": 29.1
+    },
+    "serving_size_g": 199.5,
+    "total_recipe_weight_g": 798
+  },
+  {
+    "recipe_name": "Warm Barley & Buckwheat Salad with Roasted Root Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_warm_barley_%26_buckwheat_salad_with_roasted_root_vegetables_20250628_084803_75b5616d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:48:03.522005000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "wheat",
+      "barley",
+      "mustard",
+      "beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian, British cuisine",
+    "visual_description": "A single starter portion of warm grain salad is elegantly presented on a clean white porcelain dinner plate, centrally placed on a simple wooden table. The composition features a balanced mound of earthy pearl barley, buckwheat groats, and bulgur wheat. Interspersed throughout are vibrant orange carrot cubes, creamy white parsnip cubes, and pale celeriac cubes, all roasted to a tender-crisp texture with slightly caramelized edges. A light, glossy beer-mustard vinaigrette coats the ingredients, providing a subtle sheen. The salad is garnished with a sprinkle of fresh, bright green chopped parsley, adding a pop of color and freshness. Moderate negative space surrounds the dish, highlighting the food. Traditional silver flatware is placed beside the plate on a folded cotton napkin. Natural, even lighting illuminates the scene, creating a professional yet approachable bistro atmosphere in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve alongside a crusty loaf of artisanal bread for dipping.",
+      "Can be offered as part of a selection of small plates or starters."
+    ],
+    "hero_ingredient": "Barley",
+    "ingredients": [
+      {
+        "name": "Pearl barley",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Buckwheat groats",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Bulgur wheat",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celeriac",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Light ale (beer)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Peel carrots, parsnips, and celeriac. Cut into 1.5 cm cubes.",
+      "Toss cut vegetables with 2 tablespoons olive oil, fresh thyme, salt, and pepper. Spread on a baking tray.",
+      "Roast vegetables for 25-30 minutes. They should be tender and slightly caramelized.",
+      "Rinse pearl barley. Cook in 400 ml vegetable stock according to package instructions, about 25-30 minutes. Drain excess liquid.",
+      "Rinse buckwheat groats and bulgur. Cook in remaining 400 ml vegetable stock for 10-15 minutes, or until tender. Drain well.",
+      "Finely dice the shallot. In a small bowl, whisk together light ale, Dijon mustard, apple cider vinegar, remaining 3 tablespoons olive oil, diced shallot, salt, and pepper to make the vinaigrette.",
+      "In a large bowl, combine the warm cooked barley, buckwheat, bulgur, and roasted vegetables. Gently mix.",
+      "Pour the vinaigrette over the warm grain and vegetable mixture. Toss gently to coat.",
+      "Portion the warm salad onto individual plates. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 412.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 13.76,
+      "protein_g": 10.09,
+      "saturated_fat_g": 2.24,
+      "sodium_mg": 865.4,
+      "total_carbs_g": 69.98,
+      "total_fat_g": 16.22,
+      "total_sugars_g": 9.02,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 102.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.42,
+      "protein_g": 2.51,
+      "saturated_fat_g": 0.56,
+      "sodium_mg": 214.9,
+      "total_carbs_g": 17.39,
+      "total_fat_g": 4.03,
+      "total_sugars_g": 2.24,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 49.2,
+      "protein": 20.2,
+      "saturated_fat": 11.2,
+      "sodium": 37.6,
+      "total_carbs": 25.5,
+      "total_fat": 20.8
+    },
+    "serving_size_g": 402.5,
+    "total_recipe_weight_g": 1610
+  },
+  {
+    "recipe_name": "Buckwheat-Crusted Delicata Squash, Almond, Mustard Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_buckwheat-crusted_delicata_squash%2C_almond%2C_mustard_reduction_20250628_084710_539b284d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:47:10.873867000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "almond",
+      "squash",
+      "mustard",
+      "breadcrumbs"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian, American cuisine",
+    "visual_description": "A single, perfectly round buckwheat-crusted delicata squash medallion anchors the center of a pristine white bone china plate with a subtle, delicate pattern. The squash exhibits a rich golden-orange interior with a dark, crisp, textured buckwheat and panko crust. Beneath the medallion, a small, artfully placed pool of glossy, golden-brown mustard reduction provides a sophisticated base. Around the squash, a scattering of toasted slivered almonds adds a light, contrasting texture and a warm, nutty hue. A few vibrant green microgreens are precisely placed for a delicate pop of color and freshness. The composition embraces abundant negative space. The dish rests on a premium grey veined marble surface, illuminated by dramatic professional lighting that creates soft shadows. A meticulously folded white linen napkin sits beside the plate, complementing the ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Delicata Squash",
+    "ingredients": [
+      {
+        "name": "Delicata squash",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Buckwheat groats",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Blanched slivered almonds",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Microgreens",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking sheet with parchment paper.",
+      "Wash squash. Slice squash into 1.5 cm thick rounds. Remove seeds.",
+      "Toss squash rounds with 15 ml olive oil, salt, and pepper. Roast for 15-20 minutes until tender-crisp. Cool slightly.",
+      "Spread buckwheat groats on a separate baking sheet. Toast in oven for 8-10 minutes until fragrant and lightly browned. Let cool.",
+      "Pulse toasted buckwheat groats and panko breadcrumbs in a food processor until a coarse, even crumb forms. Season with a pinch of salt.",
+      "Lightly coat each squash medallion in the buckwheat-breadcrumb mixture, pressing gently to adhere.",
+      "Heat remaining 15 ml olive oil in a non-stick pan over medium heat. Sear crusted squash medallions for 2-3 minutes per side until golden and crisp. Set aside.",
+      "For the mustard reduction, combine Dijon mustard, vegetable stock, maple syrup, and apple cider vinegar in a small saucepan.",
+      "Bring to a simmer. Reduce heat and cook until sauce thickens to a nappe consistency, about 8-10 minutes. Stir occasionally.",
+      "Toast slivered almonds in a dry pan over medium-low heat until golden and fragrant. Watch carefully to prevent burning.",
+      "To plate, spoon a small pool of mustard reduction onto the center of each plate. Place one buckwheat-crusted squash medallion atop the reduction.",
+      "Scatter a few toasted slivered almonds around the squash. Garnish with a few microgreens. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.33,
+      "calories": 358.4,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.53,
+      "protein_g": 11.13,
+      "saturated_fat_g": 1.55,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 50.33,
+      "total_fat_g": 15.7,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.05,
+      "calories": 113,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.37,
+      "protein_g": 3.51,
+      "saturated_fat_g": 0.49,
+      "sodium_mg": 94.76,
+      "total_carbs_g": 15.87,
+      "total_fat_g": 4.95,
+      "total_sugars_g": 3.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 26.89,
+      "protein": 22.26,
+      "saturated_fat": 7.75,
+      "sodium": 13.07,
+      "total_carbs": 18.3,
+      "total_fat": 20.13
+    },
+    "serving_size_g": 317.1,
+    "total_recipe_weight_g": 1268.5
+  },
+  {
+    "recipe_name": "Celery & Buckwheat Salad with Smoked Paprika Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_celery_%26_buckwheat_salad_with_smoked_paprika_vinaigrette_20250628_084616_01ab9071.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:46:16.779417000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "smoked paprika",
+      "mustard",
+      "celery",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian, French cuisine",
+    "visual_description": "The salad is presented on a handcrafted ceramic plate in an earthy cream tone, set on a light reclaimed wood surface. Cooked buckwheat forms a natural base, artfully topped with thinly sliced rounds of pale green pickled celery and vibrant purple-red slivers of pickled red onion, showcasing their distinct colors and textures. The ingredients are loosely yet thoughtfully arranged, allowing each component to be visible and contributing to an organic, unfussy composition. A glistening smoked paprika vinaigrette lightly coats the ingredients, adding a subtle warm hue. Freshly chopped bright green celery leaves and parsley are scattered over the top for a final pop of color and freshness. The overall presentation is clean and minimalistic, emphasizing the natural beauty of the plant-based ingredients. A simple, undyed linen napkin in natural beige and a glass of water are subtly placed beside the plate, enhancing the eco-conscious and authentic French dining experience. Soft, natural light illuminates the scene, highlighting the textures and vibrant colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a fresh, crusty baguette for dipping in any residual dressing.",
+      "Enjoy as a light main course or a substantial side dish."
+    ],
+    "hero_ingredient": "Celery",
+    "ingredients": [
+      {
+        "name": "Buckwheat groats",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "4-5 (about 300 g)"
+      },
+      {
+        "name": "Celery inner leaves",
+        "quantity": "from stalks"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium (about 150 g)"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g, plus more for seasoning"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5-6"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh parsley or chives",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Rinse buckwheat groats. Cook in 400 ml salted boiling water for 15 minutes. Drain any excess water. Fluff with a fork. Set aside to cool.",
+      "Thinly slice celery stalks into 2 mm rounds. Finely slice red onion into thin half-moons.",
+      "Combine apple cider vinegar, water, sugar, 5 g salt, peppercorns, and bay leaf in a small saucepan. Bring to a simmer. Stir until sugar dissolves. Remove from heat.",
+      "Place sliced celery and red onion in a heatproof jar or bowl. Pour hot pickling liquid over vegetables. Ensure vegetables are submerged. Let cool to room temperature. Refrigerate for at least 30 minutes, or up to several days for deeper flavor.",
+      "Strain pickled vegetables. Reserve 30 ml of the pickling liquid for the dressing.",
+      "In a small bowl, whisk together Dijon mustard, smoked paprika, and the reserved 30 ml pickling liquid. Slowly drizzle in olive oil while whisking continuously until emulsified.",
+      "In a large bowl, combine cooled buckwheat, pickled celery, pickled red onion, and chopped celery inner leaves. Pour dressing over the salad. Toss gently to combine. Taste and adjust seasoning with salt if needed.",
+      "Divide salad among four plates. Garnish with fresh chopped parsley or chives."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing celery leaves. The pickling liquid is also incorporated into the dressing.",
+      "For deeper flavor, pickle vegetables a day in advance.",
+      "This salad celebrates seasonal and local produce, aligning with sustainable culinary practices."
+    ],
+    "traditional_techniques": [
+      "Vinaigrette preparation",
+      "Quick pickling (French 'à la Grecque' style inspiration)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 366,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.9,
+      "protein_g": 8.1,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 594,
+      "total_carbs_g": 49.1,
+      "total_fat_g": 17.3,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 98,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 2.2,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 159,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 28.3,
+      "protein": 16.2,
+      "saturated_fat": 12.5,
+      "sodium": 25.8,
+      "total_carbs": 17.9,
+      "total_fat": 22.1
+    },
+    "serving_size_g": 372.75,
+    "total_recipe_weight_g": 1491
+  },
+  {
+    "recipe_name": "Fermented Buckwheat Blini with Pickled Carrot",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_buckwheat_blini_with_pickled_carrot_20250628_084520_7fc99acb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:45:20.455605000Z",
+    "selected_ingredients": [
+      "buckwheat groat",
+      "oil",
+      "buttermilk",
+      "smoked paprika",
+      "carrot"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian, Ukrainian cuisine",
+    "visual_description": "Small, round blini arranged organically on a handcrafted, matte ceramic plate in an earthy cream tone. Blini are golden-brown with slight crisp edges. Each blini is topped with a dollop of creamy white buttermilk, contrasting with the vibrant orange, thin julienne strips of pickled carrot. Fresh green dill sprigs are placed artfully on top. Negative space is abundant, highlighting each component. The plate rests on a light, reclaimed wood surface. A textured, undyed linen napkin in natural beige is casually draped nearby. Soft, diffused natural light illuminates the scene from the side, creating gentle shadows. The background is simple and uncluttered, with a subtle hint of green from a potted plant. Multiple individual blini are presented on a single sharing plate, inviting communal enjoyment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Ukrainian",
+    "cultural_origin": "Ukrainian",
+    "cultural_serving_suggestions": [
+      "Serve with additional pickled vegetables like cucumbers or cabbage.",
+      "Accompany with a glass of Kvass."
+    ],
+    "hero_ingredient": "Fermented Buckwheat",
+    "ingredients": [
+      {
+        "name": "Buckwheat Groats",
+        "quantity": "200g"
+      },
+      {
+        "name": "Buttermilk",
+        "quantity": "300ml"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Water",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": "2g"
+      },
+      {
+        "name": "Cooking Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Buckwheat Batter: Rinse buckwheat groats. Place in a bowl. Cover with 200ml buttermilk. Cover bowl loosely. Let sit at room temperature for 12-24 hours. The mixture will thicken and become slightly bubbly. Transfer to a blender. Add 100ml water, 2g salt, 2g baking soda, and 2g smoked paprika. Blend until smooth. Batter should be thick but pourable.",
+      "Prepare Quick-Pickled Carrots: Wash and peel carrots. Cut into thin julienne strips or use a mandoline to create thin ribbons. In a small pot, combine 200ml water, 50ml apple cider vinegar, 10g sugar, and 3g salt. Bring to a boil. Pour hot brine over carrots in a heatproof jar. Let cool. Refrigerate for at least 30 minutes.",
+      "Make Buttermilk Cream: In a small bowl, whisk remaining 100ml buttermilk with 2g salt and finely chopped dill.",
+      "Cook Blini: Heat a non-stick pan over medium heat. Lightly brush with cooking oil. Pour small amounts of buckwheat batter to form 8-10cm blini. Cook 2-3 minutes per side, until golden brown and cooked through. Repeat with remaining batter.",
+      "Assemble and Serve: Arrange warm blini on a serving platter. Top each blini with a small dollop of buttermilk cream. Drain pickled carrots and place a small mound on top of the cream. Garnish with fresh dill sprigs. Serve immediately."
+    ],
+    "notes": [
+      "This recipe emphasizes natural fermentation for enhanced flavor and digestibility.",
+      "Using whole buckwheat groats is key for the fermentation process."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 291,
+      "cholesterol_mg": 3,
+      "dietary_fiber_g": 6,
+      "protein_g": 9.6,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 727,
+      "total_carbs_g": 45.8,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 8.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 121,
+      "cholesterol_mg": 1,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 4,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 301,
+      "total_carbs_g": 19,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 1,
+      "dietary_fiber": 21,
+      "protein": 19,
+      "saturated_fat": 9,
+      "sodium": 32,
+      "total_carbs": 17,
+      "total_fat": 12
+    },
+    "serving_size_g": 241.4,
+    "total_recipe_weight_g": 965.6
+  }
+]

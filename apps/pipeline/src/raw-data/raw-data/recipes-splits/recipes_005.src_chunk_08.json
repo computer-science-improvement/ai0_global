@@ -1,0 +1,701 @@
+[
+  {
+    "recipe_name": "Orecchiette with Italian Sausage and Broccoli Rabe",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260508_070505_a76e2a66.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-08T07:05:06.096850000Z",
+    "selected_ingredients": [
+      "pasta",
+      "italian sausage",
+      "bell pepper",
+      "broccoli rabe",
+      "oregano",
+      "garlic",
+      "sun dried tomato",
+      "bread",
+      "mushroom",
+      "gnocchi",
+      "ricotta",
+      "artichoke"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a clean, white porcelain pasta bowl on a rustic wooden table. Orecchiette pasta shells are tossed with 3cm irregular chunks of seared Italian sausage and vibrant green broccoli rabe florets. Small wedges of red bell pepper and sliced cremini mushrooms provide color contrast. Julienned sun-dried tomatoes add flecks of deep crimson. The sauce is a light, translucent emulsion of olive oil and garlic, coating each ingredient with a gentle sheen. A dusting of coarse, golden-brown toasted breadcrumbs and fresh oregano leaves is concentrated in the center. The arrangement is natural and organic, showing balanced portions with visible negative space around the inner rim of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of Primitivo or Negroamaro wine",
+      "Provide extra virgin olive oil for drizzling at the table",
+      "Accompany with crusty sourdough bread"
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "500g"
+      },
+      {
+        "name": "Italian sausage, casings removed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Broccoli rabe, trimmed",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cremini mushrooms, sliced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Sun-dried tomatoes, julienned",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh oregano, chopped",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Sourdough bread, pulsed into crumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring 4 liters of heavily salted water to a boil.",
+      "Blanch broccoli rabe for 2 minutes until bright green. Remove and shock in ice water. Drain and chop into 5cm pieces.",
+      "Heat 20ml olive oil in a pan. Add breadcrumbs and half the oregano. Toast until golden and crisp. Set aside.",
+      "In a large skillet, heat 20ml olive oil over medium-high heat. Break sausage into 3cm chunks and sear until browned.",
+      "Add mushrooms and bell peppers to the skillet. Sauté for 6 minutes until softened.",
+      "Stir in garlic, sun-dried tomatoes, and chili flakes. Cook for 2 minutes.",
+      "Boil orecchiette in the same water used for broccoli rabe until al dente.",
+      "Reserve 150ml of pasta water. Drain pasta.",
+      "Add pasta and broccoli rabe to the skillet. Pour in reserved pasta water and remaining olive oil.",
+      "Toss vigorously over high heat for 1 minute to emulsify the sauce.",
+      "Season with salt and remaining oregano.",
+      "Divide into four bowls and top with toasted breadcrumbs."
+    ],
+    "notes": [
+      "Do not overcook the broccoli rabe during the blanching stage to maintain its snap",
+      "Use high-quality bronze-die pasta for better sauce adhesion"
+    ],
+    "traditional_techniques": [
+      "blanching",
+      "emulsifying",
+      "pangrattato preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1009,
+      "cholesterol_mg": 60,
+      "dietary_fiber_g": 9.2,
+      "protein_g": 36.9,
+      "saturated_fat_g": 11.1,
+      "sodium_mg": 1325,
+      "total_carbs_g": 123.1,
+      "total_fat_g": 41,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 183.5,
+      "cholesterol_mg": 10.9,
+      "dietary_fiber_g": 1.67,
+      "protein_g": 6.71,
+      "saturated_fat_g": 2.02,
+      "sodium_mg": 240.9,
+      "total_carbs_g": 22.38,
+      "total_fat_g": 7.45,
+      "total_sugars_g": 1.55,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20,
+      "dietary_fiber": 33,
+      "protein": 74,
+      "saturated_fat": 56,
+      "sodium": 58,
+      "total_carbs": 45,
+      "total_fat": 53
+    },
+    "serving_size_g": 550,
+    "total_recipe_weight_g": 2200
+  },
+  {
+    "recipe_name": "Authentic Jollof Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260507_235608_ad3ddaa6.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-07T23:56:09.387119000Z",
+    "selected_ingredients": [
+      "rice",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of Jollof Rice is served on a rustic, cream-colored ceramic plate. The rice features a deep, uniform orange-red hue with distinct, fluffy grains of long-grain parboiled rice. Beside the rice sit three thick, un-sliced chunks of fried sweet plantain, showing dark caramelized edges and a soft yellow interior. The arrangement is casual and off-center. The plate rests on a well-worn wooden kitchen table under soft, natural light. A simple metal spoon and a woven cotton napkin are placed to the right. In the background, a small bowl of spicy tomato gravy and a glass of water provide a lived-in, authentic atmosphere. The steam is visible, rising gently from the warm grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "West African",
+    "cultural_origin": "West Africa",
+    "cultural_serving_suggestions": [
+      "Fried sweet plantain (dodo)",
+      "Steamed bean pudding (moin moin)",
+      "Fresh coleslaw",
+      "Served at room temperature during festive gatherings"
+    ],
+    "hero_ingredient": "long-grain rice",
+    "ingredients": [
+      {
+        "name": "long-grain parboiled rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "large tomatoes",
+        "quantity": "4"
+      },
+      {
+        "name": "red bell peppers",
+        "quantity": "2"
+      },
+      {
+        "name": "scotch bonnet pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "red onions",
+        "quantity": "2"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "tomato paste",
+        "quantity": "50g"
+      },
+      {
+        "name": "dried thyme",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "curry powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "vegetable stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Blend tomatoes, bell peppers, scotch bonnet, and one onion until smooth.",
+      "Finely dice the remaining onion.",
+      "Heat vegetable oil in a heavy-bottomed pot over medium heat.",
+      "Sauté diced onions for 5 minutes until translucent.",
+      "Add tomato paste. Fry for 3 minutes, stirring constantly.",
+      "Pour in the blended vegetable mixture. Simmer for 15 minutes until reduced and darkened.",
+      "Stir in thyme, curry powder, bay leaves, and salt.",
+      "Rinse rice thoroughly in cold water until the water runs clear.",
+      "Add rice to the pot. Stir to coat every grain in the tomato base.",
+      "Pour in vegetable stock. Stir once to combine.",
+      "Cover the pot tightly with aluminum foil, then place the lid on top.",
+      "Reduce heat to low. Simmer for 25-30 minutes until liquid is absorbed.",
+      "Turn off heat. Keep covered to steam for 10 minutes before fluffing with a fork."
+    ],
+    "notes": [
+      "Using parboiled rice prevents the grains from becoming mushy.",
+      "The foil seal is essential to trap steam for even cooking.",
+      "The slight char at the bottom of the pot (party rice flavor) is highly desirable."
+    ],
+    "traditional_techniques": [
+      "frying the stew base",
+      "steaming under foil",
+      "parboiling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 661,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 11.4,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 950,
+      "total_carbs_g": 100.3,
+      "total_fat_g": 24.3,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 176.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 3,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 253.3,
+      "total_carbs_g": 26.7,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 22,
+      "protein": 23,
+      "saturated_fat": 18,
+      "sodium": 41,
+      "total_carbs": 36,
+      "total_fat": 31
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  },
+  {
+    "recipe_name": "Spanish Chicken and Rice with White Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260507_103525_b68db9f5.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-07T10:35:27.225264000Z",
+    "selected_ingredients": [
+      "potato",
+      "onion",
+      "tomato",
+      "garlic",
+      "chicken",
+      "bean",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, whole roasted chicken thigh sits atop a bed of golden, short-grain Bomba rice. The rice is interspersed with 2cm cubes of browned potatoes and plump white beans. Small 1cm red tomato fragments and translucent diced onions are visible throughout the grains. The chicken skin is mahogany-brown and crisp. The dish is presented in a shallow, wide white porcelain bowl. Freshly chopped flat-leaf parsley is scattered over the top. A bright yellow lemon wedge rests on the side. The arrangement is clean with visible negative space around the bowl's rim. The setting is a rustic wooden bistro table with a neutral linen napkin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with a side of garlic alioli",
+      "Accompany with crusty bread",
+      "Pair with a chilled Spanish white wine like Albariño"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "bone-in skin-on chicken thighs",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "cooked white beans",
+        "quantity": "200g"
+      },
+      {
+        "name": "potatoes, diced 2cm",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "800ml"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "fresh flat-leaf parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "lemon",
+        "quantity": "1 unit"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide, shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until mahogany-brown and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add 2cm potato cubes to the same pan.",
+      "Fry potatoes until edges are golden and crisp.",
+      "Add diced onions to the pan.",
+      "Sauté until onions are translucent and soft.",
+      "Stir in garlic and grated tomato to create the sofrito.",
+      "Cook until the tomato liquid has mostly evaporated.",
+      "Stir in smoked paprika and rice for 1 minute.",
+      "Pour in chicken stock and add white beans.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer uncovered for 18-20 minutes without stirring.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Remove from heat and let rest for 5 minutes.",
+      "Garnish with chopped parsley and lemon wedges."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to encourage a crust (socarrat) at the bottom.",
+      "Ensure the chicken skin stays above the liquid line to maintain crispness."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 883.5,
+      "cholesterol_mg": 132.8,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 46.3,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 840.5,
+      "total_carbs_g": 101.1,
+      "total_fat_g": 32,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153.7,
+      "cholesterol_mg": 23.1,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 146.2,
+      "total_carbs_g": 17.6,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44,
+      "dietary_fiber": 31,
+      "protein": 93,
+      "saturated_fat": 39,
+      "sodium": 37,
+      "total_carbs": 37,
+      "total_fat": 41
+    },
+    "serving_size_g": 575,
+    "total_recipe_weight_g": 2300
+  },
+  {
+    "recipe_name": "Lomo Saltado",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260507_101628_ca1ba424.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-07T10:16:28.713417000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Lomo Saltado presented on a clean white porcelain plate. The dish features 3cm chunks of seared beef sirloin with a deep brown crust. These are mixed with thick, glossy wedges of purple red onion and bright red Roma tomatoes. Golden, thick-cut potato batons are scattered through the beef mixture, all coated in a dark, shimmering sauce. A neat, molded dome of fluffy white rice sits on the side of the plate. Fresh green cilantro leaves garnish the top. The scene is set on a light wooden bistro table with a white cotton napkin and a small side bowl of spicy green aji sauce. The lighting is natural and even.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian Fusion",
+    "cultural_origin": "Peru",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Aji Verde (green chili sauce)",
+      "Accompany with Inca Kola or a glass of red wine",
+      "Traditionally eaten with both rice and potatoes in the same meal"
+    ],
+    "hero_ingredient": "Beef Sirloin",
+    "ingredients": [
+      {
+        "name": "Beef sirloin, cut into 3cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Red onions, cut into thick wedges",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Roma tomatoes, cut into thick wedges",
+        "quantity": "4"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh cilantro, roughly chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Thick-cut potato fries, cooked",
+        "quantity": "400g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "4 tbsp"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Cooked white long-grain rice",
+        "quantity": "500g"
+      }
+    ],
+    "instructions": [
+      "Season beef chunks with salt and pepper.",
+      "Heat 2 tablespoons of oil in a wok over high heat until smoking.",
+      "Sear beef in batches until browned and medium-rare.",
+      "Remove beef from wok and set aside.",
+      "Add remaining oil to the wok.",
+      "Stir-fry onion wedges for 2 minutes until slightly charred but crisp.",
+      "Add garlic and aji amarillo paste. Stir for 30 seconds.",
+      "Return beef to the wok.",
+      "Pour in soy sauce and red wine vinegar. Toss quickly.",
+      "Add tomato wedges. Stir for 30 seconds to warm through.",
+      "Fold in the cooked potato fries and half the cilantro.",
+      "Remove from heat immediately.",
+      "Serve with white rice."
+    ],
+    "notes": [
+      "Ensure the wok is extremely hot before adding beef to achieve a smoky flavor.",
+      "Do not overcook the tomatoes; they should be warm but hold their shape.",
+      "The potatoes should be added at the very last second to maintain some crispness."
+    ],
+    "traditional_techniques": [
+      "wok hei",
+      "stir-frying",
+      "flambéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 973,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 5,
+      "protein_g": 49.5,
+      "saturated_fat_g": 12.75,
+      "sodium_mg": 1100,
+      "total_carbs_g": 81.25,
+      "total_fat_g": 50,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 189.85,
+      "cholesterol_mg": 23.41,
+      "dietary_fiber_g": 0.98,
+      "protein_g": 9.66,
+      "saturated_fat_g": 2.49,
+      "sodium_mg": 214.63,
+      "total_carbs_g": 15.85,
+      "total_fat_g": 9.76,
+      "total_sugars_g": 0.88,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 17.86,
+      "protein": 99,
+      "saturated_fat": 63.75,
+      "sodium": 47.83,
+      "total_carbs": 29.55,
+      "total_fat": 64.1
+    },
+    "serving_size_g": 512.5,
+    "total_recipe_weight_g": 2050
+  },
+  {
+    "recipe_name": "Chinese Tomato Beef Stir-Fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260507_093540_bcc13ab0.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-07T09:35:41.185521000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "chinese cuisine",
+    "visual_description": "A single portion of Chinese Tomato Beef served on a wide, shallow white porcelain plate. The dish features thick, seared chunks of beef flank coated in a glossy, vibrant red tomato sauce. Large wedges of softened, slightly charred tomatoes and translucent chunks of yellow onion are interspersed with the meat. The sauce has a rich, silken texture. Bright green scallion batons are scattered on top as a garnish. The plate is placed on a dark wood table next to a small bowl of steamed white jasmine rice and a pair of dark bamboo chopsticks. The lighting is natural and side-lit, highlighting the steam and the reflective sheen of the wok-seared ingredients. Negative space around the rim maintains a clean, modern bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Cantonese",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice",
+      "Pair with a side of blanched bok choy",
+      "Traditional family-style service"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "beef flank or sirloin, cut into 3cm chunks",
+        "quantity": "500g"
+      },
+      {
+        "name": "tomatoes, cut into wedges",
+        "quantity": "400g"
+      },
+      {
+        "name": "yellow onion, cut into 2cm chunks",
+        "quantity": "150g"
+      },
+      {
+        "name": "garlic, thinly sliced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "fresh ginger, minced",
+        "quantity": "15g"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "oyster sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Shaoxing rice wine",
+        "quantity": "15ml"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": "10g"
+      },
+      {
+        "name": "sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "45ml"
+      },
+      {
+        "name": "scallions, cut into 3cm lengths",
+        "quantity": "2 stalks"
+      }
+    ],
+    "instructions": [
+      "Mix beef with 5ml soy sauce, 5ml rice wine, and cornstarch.",
+      "Marinate for 20 minutes.",
+      "Whisk remaining soy sauce, oyster sauce, sugar, and rice wine in a bowl.",
+      "Heat 30ml oil in a wok over high heat until smoking.",
+      "Add beef chunks in a single layer.",
+      "Sear for 2 minutes until browned.",
+      "Remove beef and set aside.",
+      "Add remaining oil to the wok.",
+      "Stir-fry onions, garlic, and ginger for 1 minute.",
+      "Add tomato wedges.",
+      "Cook for 3 minutes until tomatoes soften and release juice.",
+      "Pour in the sauce mixture.",
+      "Return beef to the wok.",
+      "Toss for 1 minute to coat in thickened sauce.",
+      "Stir in scallions and remove from heat."
+    ],
+    "notes": [
+      "Velveting the beef with cornstarch ensures a tender texture.",
+      "High heat is essential for achieving wok hei aroma.",
+      "Do not overcook tomatoes to maintain their shape."
+    ],
+    "traditional_techniques": [
+      "velveting",
+      "wok hei"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 397.75,
+      "cholesterol_mg": 87.5,
+      "dietary_fiber_g": 1.98,
+      "protein_g": 37.05,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 684.75,
+      "total_carbs_g": 13.93,
+      "total_fat_g": 20.2,
+      "total_sugars_g": 5.43,
+      "trans_fat_g": 0.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.48,
+      "calories": 152.98,
+      "cholesterol_mg": 33.65,
+      "dietary_fiber_g": 0.76,
+      "protein_g": 14.25,
+      "saturated_fat_g": 2.27,
+      "sodium_mg": 263.37,
+      "total_carbs_g": 5.36,
+      "total_fat_g": 7.77,
+      "total_sugars_g": 2.09,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29.2,
+      "dietary_fiber": 7.1,
+      "protein": 74.1,
+      "saturated_fat": 29.5,
+      "sodium": 29.8,
+      "total_carbs": 5.1,
+      "total_fat": 25.9
+    },
+    "serving_size_g": 260,
+    "total_recipe_weight_g": 1040
+  }
+]

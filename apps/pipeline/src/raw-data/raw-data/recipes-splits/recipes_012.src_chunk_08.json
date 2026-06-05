@@ -1,0 +1,628 @@
+[
+  {
+    "recipe_name": "Sustainable Harvest Broth with Fermented Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_harvest_broth_with_fermented_tomato_20250702_235105_12d02265.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:51:06.017462000Z",
+    "selected_ingredients": [
+      "brown rice",
+      "corn",
+      "tomato",
+      "green pea"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian",
+    "visual_description": "A single individual portion of Sustainable Harvest Broth is presented in a handcrafted ceramic bowl with a natural, unglazed finish in a soft cream or beige tone. The bowl sits on a light, textured bamboo or reclaimed wood table surface. The broth is clear and golden-amber from the fermented tomato and vegetable scraps, forming a pool that highlights the ingredients. Cooked brown rice grains settle at the bottom, providing a grounding, earthy base. Vibrant yellow corn kernels and bright green peas are scattered naturally within the broth, showcasing their distinct shapes and colors. A few pieces of golden-brown crispy brown rice are placed subtly on the surface of the broth as a zero-waste garnish. The overall composition is minimalistic and clean, with ample negative space around the bowl. The setting includes an undyed linen napkin in a natural beige, folded simply. Soft, natural daylight illuminates the scene, casting gentle shadows and emphasizing the textures of the ingredients and ceramic. The background is clean and uncluttered, with a hint of natural plant greenery visible, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Global Plant-Forward",
+    "cultural_serving_suggestions": [
+      "Serve with mindful appreciation for natural, seasonal ingredients.",
+      "Encourage savoring each element's pure flavor."
+    ],
+    "hero_ingredient": "Fermented Tomato Water",
+    "ingredients": [
+      {
+        "name": "Tomatoes (ripe, any variety)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Mixed vegetable scraps (e.g., onion peels, carrot ends, celery tops, mushroom stems, parsley stems)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Water",
+        "quantity": "2 Liters"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5-6"
+      },
+      {
+        "name": "Brown rice (dry)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh corn kernels (from 2 medium cobs)",
+        "quantity": "approx. 200g"
+      },
+      {
+        "name": "Green peas (fresh or frozen)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil (for crispy rice)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Crispy brown rice (garnish)",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Fresh chives or parsley (optional garnish)",
+        "quantity": "finely chopped"
+      }
+    ],
+    "instructions": [
+      "Wash tomatoes. Roughly chop tomatoes. Place in clean glass jar. Add salt. Mix well. Press down to submerge tomatoes in liquid. Cover jar loosely or with airlock. Ferment at room temperature for 3-5 days. Liquid will become cloudy and tangy. Strain liquid through fine mesh sieve. Reserve liquid. Discard solids or compost.",
+      "Combine vegetable scraps, water, bay leaf, and peppercorns in large pot. Bring to boil. Reduce heat. Simmer gently for 45 minutes. Strain broth through fine mesh sieve. Discard solids or compost.",
+      "Rinse brown rice. Cook according to package directions until tender. Drain if needed. Set aside.",
+      "Heat olive oil in small pan. Add 2 tablespoons of cooked brown rice. Fry until golden and crispy. Drain on paper towel. Season lightly with salt.",
+      "In a large pot, combine strained vegetable broth and fermented tomato water. Bring to a gentle simmer.",
+      "Add corn kernels and green peas to simmering broth. Cook for 2-3 minutes until tender-crisp.",
+      "Taste broth. Season with salt and black pepper as needed.",
+      "Ladle hot broth into individual bowls. Add a portion of cooked brown rice to each bowl. Arrange corn and peas naturally in the broth. Garnish with crispy brown rice and optional chopped fresh herbs."
+    ],
+    "notes": [
+      "Adjust fermentation time for tomato water based on desired tanginess and ambient temperature.",
+      "Use freshest seasonal corn and peas for best flavor.",
+      "Compost all vegetable scraps and tomato solids after use for zero-waste practice."
+    ],
+    "traditional_techniques": [
+      "Fermentation (of tomato water)",
+      "Zero-waste broth preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 307.4,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 8.6,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 987,
+      "total_carbs_g": 57.8,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 34.2,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 1,
+      "saturated_fat_g": 0.1,
+      "sodium_mg": 110,
+      "total_carbs_g": 6.4,
+      "total_fat_g": 0.6,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 22,
+      "protein": 17,
+      "saturated_fat": 5,
+      "sodium": 43,
+      "total_carbs": 21,
+      "total_fat": 7
+    },
+    "serving_size_g": 900,
+    "total_recipe_weight_g": 3599
+  },
+  {
+    "recipe_name": "Mediterranean Vegetable Brown Rice Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_vegetable_brown_rice_bake_20250702_234935_da3ebec5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:49:35.727365000Z",
+    "selected_ingredients": [
+      "brown rice",
+      "corn",
+      "tomato",
+      "green pea"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Vegetable Brown Rice Bake is presented on a clean white porcelain dinner plate. The dish forms a slightly mounded, organic shape at the center. Brown rice grains are distinct, interspersed with vibrant, naturally colored vegetables. Bright red diced tomatoes, golden corn kernels, and vivid green peas are clearly visible, showcasing their individual textures. A generous scattering of fresh, bright green chopped parsley adds a final pop of color and freshness. The overall presentation is clean and inviting, with moderate negative space on the plate. The setting is a modern bistro, featuring a simple wooden table surface. A white cotton napkin is placed beside the plate. Natural, even lighting illuminates the scene, highlighting the dish as the focal point against a subtly blurred restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a drizzle of high-quality extra virgin olive oil.",
+      "Offer alongside crusty artisanal bread for dipping."
+    ],
+    "hero_ingredient": "Brown Rice",
+    "ingredients": [
+      {
+        "name": "Brown Rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Frozen Corn",
+        "quantity": "200g"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "300g"
+      },
+      {
+        "name": "Frozen Green Peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "600ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Dice the yellow onion. Mince the garlic cloves. Dice the ripe tomatoes into 1cm cubes.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium heat.",
+      "Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in brown rice. Toast for 2 minutes until slightly nutty.",
+      "Pour in vegetable broth. Add smoked paprika, dried oregano, salt, and black pepper. Stir well.",
+      "Bring mixture to a simmer. Stir in diced tomatoes, frozen corn, and frozen green peas.",
+      "Cover the pot tightly with a lid or foil.",
+      "Transfer pot to preheated oven. Bake for 40-45 minutes, or until liquid is absorbed and rice is tender.",
+      "Remove from oven. Let stand, covered, for 10 minutes.",
+      "Fluff rice gently with a fork.",
+      "Chop fresh parsley. Garnish each serving with chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 404.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 7.96,
+      "protein_g": 10.31,
+      "saturated_fat_g": 1.51,
+      "sodium_mg": 486.76,
+      "total_carbs_g": 71.78,
+      "total_fat_g": 9.92,
+      "total_sugars_g": 9.83,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 94.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.87,
+      "protein_g": 2.42,
+      "saturated_fat_g": 0.36,
+      "sodium_mg": 114.13,
+      "total_carbs_g": 16.83,
+      "total_fat_g": 2.33,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 28.4,
+      "protein": 20.6,
+      "saturated_fat": 7.6,
+      "sodium": 21.2,
+      "total_carbs": 26.1,
+      "total_fat": 12.7
+    },
+    "serving_size_g": 426.5,
+    "total_recipe_weight_g": 1706
+  },
+  {
+    "recipe_name": "Roasted Italian Sausage, Potato, and Broccoli Medley",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_italian_sausage%2C_potato%2C_and_broccoli_medley_20250702_234922_5b0efb37.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:49:23.341257000Z",
+    "selected_ingredients": [
+      "sausage",
+      "potato",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, showcasing a balanced individual portion. Roasted potatoes, halved or quartered, exhibit golden-brown, slightly crispy skins and fluffy interiors. Alongside, generous chunks of seared, crumbled Italian sausage are deeply browned, providing rich color and texture. Tender-crisp broccoli florets, a vibrant green, are interspersed throughout, adding freshness and color contrast. A light scattering of bright green chopped fresh parsley provides a final touch of color and freshness. The elements are arranged organically, creating a natural mound on the plate, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface, a white cotton napkin placed beside the plate, and traditional flatware. Natural, even lighting illuminates the dish, highlighting its textures and appealing colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausage",
+        "quantity": "500g (removed from casings, crumbled)"
+      },
+      {
+        "name": "Small potatoes",
+        "quantity": "750g (halved or quartered)"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500g (cut into florets)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs, chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 sprig, chopped"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2g (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped (for garnish)"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (for wedges, serving)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss potatoes with 30ml olive oil, chopped rosemary, thyme, salt, and pepper on a baking sheet.",
+      "Roast potatoes for 25-30 minutes, or until tender and golden brown. Flip halfway.",
+      "While potatoes roast, bring a pot of salted water to a boil. Blanch broccoli florets for 2 minutes. Drain immediately and plunge into ice water to stop cooking. Drain again.",
+      "In a large skillet, heat 15ml olive oil over medium-high heat. Add crumbled Italian sausage.",
+      "Cook sausage, breaking it apart with a spoon, until browned and cooked through, about 8-10 minutes. Drain excess fat.",
+      "Add minced garlic and red pepper flakes to the skillet with the sausage. Cook for 1 minute until fragrant.",
+      "Add blanched broccoli to the skillet with sausage. Toss gently to combine and heat through for 3-4 minutes.",
+      "Combine roasted potatoes with the sausage and broccoli mixture in the skillet or a large bowl. Toss gently.",
+      "Taste and adjust seasoning.",
+      "Serve immediately, garnished with fresh parsley and lemon wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 718.44,
+      "cholesterol_mg": 97.5,
+      "dietary_fiber_g": 7.82,
+      "protein_g": 28.29,
+      "saturated_fat_g": 13.3,
+      "sodium_mg": 932.64,
+      "total_carbs_g": 51.12,
+      "total_fat_g": 46.33,
+      "total_sugars_g": 4.59,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155.42,
+      "cholesterol_mg": 21.09,
+      "dietary_fiber_g": 1.69,
+      "protein_g": 6.12,
+      "saturated_fat_g": 2.88,
+      "sodium_mg": 201.76,
+      "total_carbs_g": 11.06,
+      "total_fat_g": 10.02,
+      "total_sugars_g": 0.99,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 33,
+      "dietary_fiber": 28,
+      "protein": 57,
+      "saturated_fat": 67,
+      "sodium": 41,
+      "total_carbs": 19,
+      "total_fat": 59
+    },
+    "serving_size_g": 462.25,
+    "total_recipe_weight_g": 1849
+  },
+  {
+    "recipe_name": "Mini Chicken Parmesan Pasta Cups",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mini_chicken_parmesan_pasta_cups_20250702_234917_5098a58c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:49:18.063871000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "parmesan",
+      "mozzarella",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Eight to twelve golden-brown Mini Chicken Parmesan Pasta Cups are presented on a rustic wooden serving board. Each cup is approximately 5 cm in diameter, showcasing a slightly crispy, cheesy exterior. Melted mozzarella and grated Parmesan cheese form a bubbly, golden crust on top. Visible inside are small pieces of shredded chicken intertwined with al dente pasta and hints of red marinara sauce. The cups are arranged casually, some touching, some slightly askew, reflecting a homely, comforting feel. A scattering of fresh green chopped parsley adds a touch of freshness. The board sits on a well-used wooden kitchen table under warm, natural overhead light, with a casually folded simple fabric napkin nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Small pasta (e.g., ditalini, elbow macaroni)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Marinara sauce",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Plain breadcrumbs",
+        "quantity": "45 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh parsley, chopped (for garnish)",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Grease a 12-cup mini muffin tin.",
+      "Boil chicken breast in lightly salted water until cooked through. Internal temperature must reach 75°C. Remove chicken. Shred chicken finely.",
+      "Cook pasta according to package directions until al dente. Drain well.",
+      "Heat olive oil in a small pan over medium heat. Add minced garlic. Sauté for 1 minute until fragrant. Remove from heat.",
+      "In a large bowl, combine shredded chicken, cooked pasta, sautéed garlic, grated Parmesan, shredded mozzarella, marinara sauce, egg, breadcrumbs, salt, black pepper, and oregano. Mix thoroughly.",
+      "Spoon mixture evenly into prepared mini muffin cups. Press down gently.",
+      "Bake for 18-22 minutes, or until golden brown and heated through.",
+      "Let cool in tin for 5 minutes. Carefully remove cups.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 530,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 44.1,
+      "saturated_fat_g": 7.8,
+      "sodium_mg": 1151,
+      "total_carbs_g": 41.7,
+      "total_fat_g": 18.3,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 238,
+      "cholesterol_mg": 63,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 19.9,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 519,
+      "total_carbs_g": 18.8,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 9,
+      "protein": 88,
+      "saturated_fat": 39,
+      "sodium": 50,
+      "total_carbs": 15,
+      "total_fat": 23
+    },
+    "serving_size_g": 222,
+    "total_recipe_weight_g": 887
+  },
+  {
+    "recipe_name": "Pan-Roasted Chicken with Roasted Broccoli and Creamy Thyme Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-roasted_chicken_with_roasted_broccoli_and_creamy_thyme_glaze_20250702_234600_f690aad1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T23:46:00.799479000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mayonnaise",
+      "thyme",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-roasted chicken breast, sliced diagonally into thick, juicy pieces, rests prominently on a clean white porcelain dinner plate. The chicken boasts a rich golden-brown crust from searing, revealing a tender, white interior. Alongside, vibrant green roasted broccoli florets are neatly arranged, their edges slightly charred and tender-crisp. A luscious, creamy white glaze, infused with fresh green thyme flecks, is elegantly spooned over the chicken, glistening subtly. The dish is presented on a simple wooden table surface, accompanied by a folded white cotton napkin. Natural, even lighting highlights the dish's fresh colors and textures, creating an approachable yet refined restaurant aesthetic with ample negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Broccoli heads",
+        "quantity": "2 large (approx. 800g total)"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "80g"
+      },
+      {
+        "name": "Fresh thyme, finely chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Lemon, juiced",
+        "quantity": "1 whole"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut broccoli into uniform florets. Toss florets with 30ml olive oil, salt, and pepper. Spread in a single layer on a baking sheet.",
+      "Roast broccoli for 15-20 minutes. It should be tender-crisp with slightly charred edges.",
+      "Pat chicken breasts dry with paper towels. Season generously with salt and pepper.",
+      "Heat remaining 30ml olive oil in an oven-safe skillet over medium-high heat.",
+      "Sear chicken breasts for 4-5 minutes per side until golden brown and a crust forms.",
+      "Transfer skillet to the preheated oven. Bake for 10-15 minutes, or until internal temperature of chicken reaches 75°C (167°F).",
+      "Remove chicken from skillet. Let rest on a cutting board for 5 minutes.",
+      "While chicken rests, return skillet to medium heat. Add minced garlic. Sauté for 30 seconds until fragrant.",
+      "Pour in chicken broth. Deglaze the pan, scraping up any browned bits from the bottom. Reduce liquid slightly.",
+      "Remove skillet from heat. Whisk in mayonnaise, chopped thyme, and lemon juice until smooth. Season with salt and pepper to taste.",
+      "Slice chicken breasts diagonally into 2-3 thick pieces.",
+      "Arrange sliced chicken and roasted broccoli on individual plates. Spoon the creamy thyme glaze over the chicken."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 653,
+      "cholesterol_mg": 170,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 64.7,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 360,
+      "total_carbs_g": 17.9,
+      "total_fat_g": 36.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 13.8,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 77,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 26,
+      "protein": 129,
+      "saturated_fat": 31,
+      "sodium": 16,
+      "total_carbs": 6,
+      "total_fat": 47
+    },
+    "serving_size_g": 467,
+    "total_recipe_weight_g": 1869
+  }
+]

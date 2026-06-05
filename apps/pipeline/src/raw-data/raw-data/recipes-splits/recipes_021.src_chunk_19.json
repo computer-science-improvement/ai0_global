@@ -1,0 +1,711 @@
+[
+  {
+    "recipe_name": "Homestyle Turkey & Spinach Meatballs with Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_turkey_%26_spinach_meatballs_with_tomato_rice_20250624_141216_ef201518.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:12:16.609968000Z",
+    "selected_ingredients": [
+      "milk",
+      "egg",
+      "greek yogurt",
+      "chicken stock",
+      "mincemeat",
+      "chicken",
+      "beef",
+      "turkey",
+      "spinach",
+      "carrot",
+      "banana",
+      "apple",
+      "avocado",
+      "tomato",
+      "rice",
+      "bread",
+      "onion",
+      "cucumber",
+      "coriander",
+      "garlic",
+      "ginger",
+      "chili",
+      "lime",
+      "coconut oil",
+      "olive oil",
+      "butter",
+      "maple syrup",
+      "honey",
+      "peanut butter",
+      "coconut cream"
+    ],
+    "complexity": "simple",
+    "special_requests": "make turkey mince the main protein",
+    "visual_description": "A single, modest serving of Homestyle Turkey & Spinach Meatballs with Tomato Rice is presented on a simple, everyday ceramic plate. Three to four plump, browned turkey meatballs are nestled in a rich, vibrant red tomato sauce. The meatballs appear whole and round, not sliced. Alongside, a scoop of fluffy, white rice sits, slightly separated from the sauced meatballs. The rice grains are distinct and tender. A sprinkling of fresh, bright green chopped coriander leaves rests atop the meatballs and sauce, adding a pop of color. The colors are natural and appetizing: golden-brown meatballs, deep red sauce, white rice, and green herbs. The textures are soft and comforting. The plate is placed on a well-used wooden dining table, showing natural grain and minor imperfections. A simple metal fork and spoon are casually placed next to the plate. The scene is lit with warm, cozy lighting, suggesting a relaxed family dining area with a lived-in atmosphere. The background is minimal, keeping focus on the comfort food dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Cooking",
+    "hero_ingredient": "Turkey Mince",
+    "ingredients": [
+      {
+        "name": "Turkey mince",
+        "quantity": "500g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Bread",
+        "quantity": "2 slices (for breadcrumbs)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Finely dice half of the onion and all garlic. Roughly chop spinach.",
+      "Tear bread into small pieces or process into breadcrumbs.",
+      "In a large bowl, combine turkey mince, diced onion, half of the minced garlic, chopped spinach, egg, and breadcrumbs. Season with salt and pepper. Mix well.",
+      "Form mixture into 16-20 small meatballs.",
+      "Heat 1 tablespoon olive oil in a large skillet over medium-high heat. Brown meatballs on all sides. Remove meatballs from skillet.",
+      "Add remaining 1 tablespoon olive oil to the skillet. Add remaining diced onion and garlic. Cook until softened, about 3 minutes.",
+      "Pour in crushed tomatoes and chicken stock. Add dried oregano. Bring sauce to a simmer.",
+      "Return browned meatballs to the skillet. Reduce heat to low. Cover and simmer for 20-25 minutes, or until meatballs reach an internal temperature of 75°C (167°F).",
+      "While meatballs simmer, cook rice. Rinse rice. Combine rice with 400ml water and a pinch of salt in a saucepan. Bring to a boil, then reduce heat to low. Cover and simmer for 15 minutes, or until water is absorbed and rice is tender. Stir in butter.",
+      "Serve meatballs and sauce over cooked rice. Garnish with fresh coriander."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 569,
+      "cholesterol_mg": 151,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 38,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 600,
+      "total_carbs_g": 57.8,
+      "total_fat_g": 20.3,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 115,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.7,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 121,
+      "total_carbs_g": 11.7,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 14,
+      "protein": 76,
+      "saturated_fat": 27,
+      "sodium": 26,
+      "total_carbs": 21,
+      "total_fat": 26
+    },
+    "serving_size_g": 494,
+    "total_recipe_weight_g": 1977
+  },
+  {
+    "recipe_name": "Creamy Parmesan Chicken Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_parmesan_chicken_risotto_20250624_141214_075101fe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:12:15.235203000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of creamy Parmesan chicken risotto is presented in a clean, white porcelain dinner plate. The risotto is fluid and glossy, spreading naturally across the plate, not mounded or in a ring. Its color is a rich, creamy off-white, speckled with golden-brown chicken cubes and vibrant green flecks of fresh parsley. The chicken pieces are approximately 2cm cubes, seared to a golden crust, showing tender interiors. The risotto's texture is visibly smooth and velvety, with individual al dente rice grains discernible. A light sprinkle of freshly chopped parsley and a small amount of finely grated Parmesan garnish the top. The plate is positioned on a simple light wooden table surface. A neatly folded cotton napkin rests beside the plate. Natural, even light illuminates the dish, highlighting its warmth and inviting texture. The background is minimally blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty artisan bread for dipping.",
+      "Pair with a glass of dry white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2cm cubes. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large pan over medium-high heat.",
+      "Add chicken cubes. Cook until golden brown and cooked through (internal temperature 75°C). Remove chicken from pan. Set aside.",
+      "In the same pan, add remaining 15ml olive oil and 20g butter over medium heat.",
+      "Add diced onion. Cook until softened and translucent, about 5 minutes. Do not brown.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Stir well to coat rice grains with oil and butter. Toast rice for 2 minutes.",
+      "Pour in white wine. Stir until wine is fully absorbed.",
+      "Begin adding warm chicken stock, one ladleful (about 120ml) at a time. Stir constantly.",
+      "Wait for each ladleful of stock to be almost fully absorbed before adding the next.",
+      "Continue adding stock and stirring for 18-20 minutes, until rice is al dente and creamy.",
+      "Remove from heat. Stir in remaining 40g butter and grated Parmesan cheese.",
+      "Fold in cooked chicken cubes and half of the chopped parsley.",
+      "Adjust seasoning with salt and pepper.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken stock is warm to maintain cooking temperature of the risotto.",
+      "Stirring constantly is key for creamy risotto.",
+      "Risotto should be served immediately as it loses creaminess quickly."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Tostatura",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 802.6,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 2,
+      "protein_g": 52.6,
+      "saturated_fat_g": 14.6,
+      "sodium_mg": 1402.2,
+      "total_carbs_g": 71.9,
+      "total_fat_g": 31.4,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 118.1,
+      "cholesterol_mg": 20.5,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 7.7,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 206.3,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 7,
+      "protein": 105,
+      "saturated_fat": 73,
+      "sodium": 61,
+      "total_carbs": 26,
+      "total_fat": 40
+    },
+    "serving_size_g": 679.65,
+    "total_recipe_weight_g": 2718.6
+  },
+  {
+    "recipe_name": "Sweet Potato and Spinach Salad with Grilled Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_potato_and_spinach_salad_with_grilled_chicken_20250624_141157_95a396cf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:11:57.607524000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of Sweet Potato and Spinach Salad is presented on an everyday ceramic plate. Golden-brown, caramelized 2cm sweet potato cubes are scattered among vibrant green baby spinach leaves. Lightly browned 2cm chicken chunks, pan-seared, are nestled within the vegetables. Thinly sliced red onion provides a subtle color contrast. A simple maple-dijon vinaigrette lightly coats all ingredients, giving a slight sheen. The salad components are casually mounded, allowing some natural negative space on the plate. The plate rests on a well-used wooden dining table. A simple, plain cloth napkin is casually placed beside it. Warm, cozy lighting from kitchen fixtures illuminates the scene, creating a lived-in atmosphere. A fork rests beside the plate. Portions are modest and approachable, typical of a home-cooked meal.",
+    "number_of_servings": 2,
+    "cuisine_type": "American",
+    "hero_ingredient": "Sweet Potato",
+    "ingredients": [
+      {
+        "name": "Sweet Potato",
+        "quantity": "1 medium (approx 300g), peeled and diced into 2cm cubes"
+      },
+      {
+        "name": "Chicken Breast",
+        "quantity": "1 (approx 200g), boneless, skinless, cut into 2cm chunks"
+      },
+      {
+        "name": "Baby Spinach",
+        "quantity": "100g"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1/4 small, thinly sliced"
+      },
+      {
+        "name": "Pecans or Walnuts",
+        "quantity": "30g, chopped (optional)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dressing - Olive Oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Dressing - Apple Cider Vinegar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Dressing - Dijon Mustard",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dressing - Maple Syrup",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dressing - Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Dressing - Black Pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss diced sweet potato with 1 tablespoon olive oil, salt, and pepper. Spread on a baking tray.",
+      "Roast for 20-25 minutes, or until tender and slightly caramelized. Flip halfway through cooking.",
+      "While sweet potato roasts, season chicken chunks with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a non-stick pan over medium-high heat.",
+      "Add chicken chunks. Cook for 6-8 minutes, stirring occasionally, until cooked through to 75°C internal temperature and lightly browned.",
+      "For the dressing, whisk together olive oil, apple cider vinegar, Dijon mustard, maple syrup, salt, and pepper in a small bowl.",
+      "In a large bowl, combine roasted sweet potato, cooked chicken, baby spinach, and thinly sliced red onion.",
+      "Pour dressing over the salad ingredients. Toss gently to combine.",
+      "Serve immediately, topped with chopped pecans or walnuts if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.12,
+      "calories": 729,
+      "cholesterol_mg": 85,
+      "dietary_fiber_g": 7.51,
+      "protein_g": 36.56,
+      "saturated_fat_g": 6.67,
+      "sodium_mg": 1200,
+      "total_carbs_g": 38.48,
+      "total_fat_g": 48.72,
+      "total_sugars_g": 9.98,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.56,
+      "calories": 192,
+      "cholesterol_mg": 22.35,
+      "dietary_fiber_g": 1.98,
+      "protein_g": 9.61,
+      "saturated_fat_g": 1.75,
+      "sodium_mg": 315.48,
+      "total_carbs_g": 10.12,
+      "total_fat_g": 12.81,
+      "total_sugars_g": 2.62,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 27,
+      "protein": 73,
+      "saturated_fat": 33,
+      "sodium": 52,
+      "total_carbs": 14,
+      "total_fat": 62
+    },
+    "serving_size_g": 380.25,
+    "total_recipe_weight_g": 760.5
+  },
+  {
+    "recipe_name": "Tuscan Chicken Skillet with Potatoes and Peas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan_chicken_skillet_with_potatoes_and_peas_20250624_141157_ffb668f7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:11:57.550514000Z",
+    "selected_ingredients": [
+      "potato",
+      "onion",
+      "chicken",
+      "garlic",
+      "mushroom",
+      "green pea"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic Italian skillet dish is presented on a clean white porcelain dinner plate. Tender, golden-brown chicken chunks are nestled among quartered, soft-cooked potatoes, earthy sliced cremini mushrooms, vibrant green peas, and bright red halved cherry tomatoes. Diced onions and minced garlic are integrated throughout the rich, savory pan sauce. The sauce coats all ingredients, providing a glossy finish. A light sprinkle of fresh, finely chopped parsley adds a contrasting green hue and freshness. The overall composition is natural and inviting, with moderate negative space. The dish is displayed on a simple wooden table surface, accompanied by a folded cotton napkin and standard flatware, under natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the flavorful sauce.",
+      "Pair with a dry white wine, such as a Pinot Grigio or Vermentino."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g, cut into 4-5cm chunks"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "500g, quartered"
+      },
+      {
+        "name": "Brown onion",
+        "quantity": "1 large (approx 150g), diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g, thickly sliced"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g, halved"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "2.5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, deep skillet or Dutch oven over medium-high heat. Sear chicken chunks in batches until golden brown on all sides. Remove chicken from skillet and set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Sauté for 5-7 minutes until softened. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Add quartered potatoes, sliced mushrooms, dried oregano, and dried thyme to the skillet. Cook for 5 minutes, stirring occasionally.",
+      "Pour in dry white wine. Scrape any browned bits from the bottom of the skillet. Simmer for 2 minutes.",
+      "Stir in chicken broth. Return seared chicken chunks to the skillet. Bring mixture to a gentle simmer. Cover and cook for 15-20 minutes, or until potatoes are tender and chicken reaches an internal temperature of 75°C (167°F).",
+      "Stir in frozen green peas and halved cherry tomatoes. Cook for an additional 2-3 minutes, until heated through and peas are tender-crisp.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Stufato"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 524,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 8.5,
+      "protein_g": 39.7,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 320.8,
+      "total_carbs_g": 39.8,
+      "total_fat_g": 20.8,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88,
+      "cholesterol_mg": 23.6,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 6.6,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 53.7,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 30.2,
+      "protein": 79.4,
+      "saturated_fat": 24.1,
+      "sodium": 13.9,
+      "total_carbs": 14.5,
+      "total_fat": 26.7
+    },
+    "serving_size_g": 597.8,
+    "total_recipe_weight_g": 2391.25
+  },
+  {
+    "recipe_name": "Hungarian Pork Paprikash with Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hungarian_pork_paprikash_with_bell_peppers_20250624_141143_1baf0643.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:11:44.139676000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "bell pepper",
+      "beef stock",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Hungarian Pork Paprikash is presented in a deep, clean white porcelain bowl. The dish features tender, dark brown, irregular chunks of braised pork, coated in a rich, glossy, reddish-brown sauce. Softened red and green bell pepper pieces and remnants of caramelized onions are visible within the thick, savory sauce. The stew fills the bowl generously, leaving moderate negative space around the rim. A vibrant scattering of fresh chopped parsley provides a contrasting green garnish over the top. If sour cream is used, a dollop or swirl of white sour cream adds a creamy texture and color contrast. The pork chunks are approximately 3-4 cm, the bell peppers are cut into 2-3 cm pieces, and the onions are diced. The setting is a simple wooden table with a clean white cotton napkin and standard flatware (fork and spoon) placed beside the bowl. Natural, even lighting highlights the dish against a blurred, casual restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Traditionally served with nokedli (small egg dumplings)",
+      "Boiled potatoes",
+      "Crusty bread",
+      "A dollop of sour cream on top is common"
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "800 g, cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large (approx. 400g), diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large (approx. 200g), cut into 2-3 cm pieces"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large (approx. 200g), cut into 2-3 cm pieces"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "100g (optional, for serving)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat pork chunks dry. Season pork generously with salt and black pepper. Lightly dredge pork in flour, shaking off excess.",
+      "Heat vegetable oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Sear pork in batches until browned on all sides. Do not overcrowd the pot. Remove browned pork and set aside.",
+      "Reduce heat to medium. Add diced onions to the pot. Cook, stirring occasionally, until softened and translucent, about 8-10 minutes.",
+      "Add red and green bell pepper pieces and minced garlic. Cook for 3-4 minutes until bell peppers begin to soften and garlic is fragrant.",
+      "Stir in sweet paprika, smoked paprika, caraway seeds, and tomato paste. Cook for 1 minute, stirring constantly, until fragrant.",
+      "Pour in a small amount of beef stock to deglaze the pot, scraping up any browned bits from the bottom.",
+      "Return browned pork to the pot. Pour in remaining beef stock. Bring to a simmer.",
+      "Cover the pot. Reduce heat to low. Simmer gently for 1.5 to 2 hours, or until pork is very tender. Stir occasionally to prevent sticking.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "If desired, stir in sour cream just before serving, or serve it on the side.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Paprika tempering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 707,
+      "cholesterol_mg": 175,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 51.7,
+      "saturated_fat_g": 14.7,
+      "sodium_mg": 731,
+      "total_carbs_g": 27.8,
+      "total_fat_g": 43,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108.6,
+      "cholesterol_mg": 26.8,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.9,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 112.2,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 21,
+      "protein": 103,
+      "saturated_fat": 74,
+      "sodium": 32,
+      "total_carbs": 10,
+      "total_fat": 55
+    },
+    "serving_size_g": 652,
+    "total_recipe_weight_g": 2606
+  }
+]

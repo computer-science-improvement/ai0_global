@@ -1,0 +1,620 @@
+[
+  {
+    "recipe_name": "Baked Chicken and Broccoli Pasta with Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_chicken_and_broccoli_pasta_with_mozzarella_20250624_121536_0d49e7f4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:15:37.380957000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "broccoli",
+      "rice",
+      "tomato",
+      "noodle",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of Baked Chicken and Broccoli Pasta is presented on a clean, round white porcelain dinner plate. The pasta is coated in a rich, rustic tomato sauce, with visible golden-brown chicken chunks, vibrant green broccoli florets, and soft diced tomatoes. A thick, bubbly layer of melted mozzarella cheese covers the top, showing appealing golden-brown spots and stringy textures. A few fresh basil leaves are torn and scattered over the cheese, adding a pop of green and aromatic freshness. The plate is centered on a simple wooden table surface, accompanied by a neatly folded white cotton napkin and classic silver flatware. The background is softly blurred, suggesting a modern bistro atmosphere with natural, even lighting. The entire plate is visible, showcasing a well-proportioned, appealing presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the sauce.",
+      "Offer extra grated Parmesan cheese at the table for individual preference."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "400g"
+      },
+      {
+        "name": "Pasta (e.g., rigatoni, penne)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (approx 150g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cook pasta al dente according to package directions. Drain well.",
+      "Dice chicken breast into 2cm chunks. Season chicken with salt and pepper.",
+      "Chop broccoli into small florets.",
+      "Finely dice onion. Mince garlic.",
+      "Heat olive oil in a large oven-safe pan or Dutch oven over medium-high heat.",
+      "Add chicken chunks to the pan. Sear until golden-brown on all sides. Cook chicken to an internal temperature of 75°C (167°F). Remove chicken from pan. Set aside.",
+      "Add diced onion to the same pan. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and dried oregano. Cook for 1 minute until fragrant.",
+      "Pour in diced tomatoes and chicken broth. Bring the mixture to a simmer. Cook for 10 minutes.",
+      "Stir in heavy cream and 25g of grated Parmesan cheese. Season the sauce with salt and pepper to taste.",
+      "Return cooked chicken to the sauce. Add broccoli florets. Simmer for 5 minutes.",
+      "Stir in the cooked pasta. Mix all ingredients thoroughly.",
+      "If not using an oven-safe pan, transfer the mixture to a large baking dish.",
+      "Top evenly with mozzarella cheese and the remaining 25g of grated Parmesan cheese.",
+      "Bake for 20-25 minutes, until the cheese is bubbly and golden-brown.",
+      "Let the baked pasta stand for 5 minutes before serving. Garnish with fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Soffritto (for onion and garlic base)",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 970.8,
+      "cholesterol_mg": 205.3,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 79,
+      "saturated_fat_g": 17.3,
+      "sodium_mg": 767.7,
+      "total_carbs_g": 78.3,
+      "total_fat_g": 37.2,
+      "total_sugars_g": 11.8,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155,
+      "cholesterol_mg": 32.8,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 12.6,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 122.6,
+      "total_carbs_g": 12.5,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.4,
+      "dietary_fiber": 31.2,
+      "protein": 157.9,
+      "saturated_fat": 86.6,
+      "sodium": 33.4,
+      "total_carbs": 28.5,
+      "total_fat": 47.6
+    },
+    "serving_size_g": 626,
+    "total_recipe_weight_g": 2504
+  },
+  {
+    "recipe_name": "Creamy White Bean and Roasted Garlic Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_white_bean_and_roasted_garlic_risotto_20250624_121536_a1580b95.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:15:36.843584000Z",
+    "selected_ingredients": [
+      "bean",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single serving of creamy risotto in a shallow, wide-rimmed white porcelain bowl. The risotto has a fluid, wavy consistency, not a solid mound. Whole cannellini beans are visible throughout. Small, finely diced shallots and minced garlic are integrated. Three roasted garlic cloves, golden-brown and soft, are artfully placed on top. A generous sprinkle of freshly grated Parmesan cheese covers the surface. Vibrant green fresh parsley, roughly chopped, is scattered, with a small sprig of parsley placed off-center. A light drizzle of extra virgin olive oil creates subtle glistening pools. The bowl rests on a simple, light-colored wooden table surface. A folded natural linen or white cotton napkin is placed to the left of the bowl. A silver fork with a classic design is positioned to the right. The background is softly blurred, hinting at a modern bistro setting with warm, inviting natural light. The overall scene is clean, uncrowded, and highlights the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a main course or a 'primo piatto'.",
+      "Offer with crusty Italian bread for dipping."
+    ],
+    "hero_ingredient": "White Beans",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320 grams"
+      },
+      {
+        "name": "Canned cannellini beans, drained and rinsed",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8 (6 whole, 2 minced)"
+      },
+      {
+        "name": "Vegetable broth, hot",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Unsalted butter, cold",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "80 grams"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss 6 whole garlic cloves with 1 tablespoon olive oil. Roast for 15-20 minutes until soft and golden. Set aside.",
+      "Heat 2 tablespoons olive oil in a large saucepan over medium heat. Add diced shallot and 2 minced garlic cloves. Cook 3-4 minutes until softened, do not brown.",
+      "Add Arborio rice to the saucepan. Stir for 2 minutes until grains are translucent at the edges.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add hot vegetable broth, one ladleful at a time. Stir continuously. Wait for each ladleful to be mostly absorbed before adding the next. This takes about 18-20 minutes.",
+      "Halfway through cooking, add the drained cannellini beans to the risotto.",
+      "Continue adding broth and stirring until rice is al dente (cooked but still firm to the bite) and risotto is creamy.",
+      "Remove from heat. Stir in cold butter and grated Parmesan cheese. Stir vigorously for 1-2 minutes until creamy (mantecatura).",
+      "Stir in most of the chopped fresh parsley. Season with salt and pepper to taste.",
+      "Serve immediately. Garnish each portion with roasted garlic cloves and remaining fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 760.5,
+      "cholesterol_mg": 50.1,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 23.9,
+      "saturated_fat_g": 13,
+      "sodium_mg": 875.4,
+      "total_carbs_g": 96.2,
+      "total_fat_g": 29.6,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128.1,
+      "cholesterol_mg": 8.4,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 4,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 147.5,
+      "total_carbs_g": 16.2,
+      "total_fat_g": 5,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16.7,
+      "dietary_fiber": 35.1,
+      "protein": 47.8,
+      "saturated_fat": 65.2,
+      "sodium": 38.1,
+      "total_carbs": 35,
+      "total_fat": 37.9
+    },
+    "serving_size_g": 593.6,
+    "total_recipe_weight_g": 2374.5
+  },
+  {
+    "recipe_name": "Zero-Waste Chicken Bone Broth with Fermented Vegetable Scraps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zero-waste_chicken_bone_broth_with_fermented_vegetable_scraps_20250624_121529_81ec9593.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:15:29.848047000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A clear, golden amber chicken bone broth fills a handcrafted, cream-toned ceramic bowl. Roughly chopped, vibrant green seasonal leaves (e.g., spinach) are gently submerged, showing their natural texture. A small, artful mound of varied fermented vegetable pieces (such as pale green cabbage cores, thin orange carrot tops, and reddish beet stems) rests slightly off-center in the broth, offering contrasting colors and textures. Scattered atop are irregular, golden-brown pieces of crispy chicken skin, adding a textural crunch. A sprinkle of finely chopped fresh green chives or parsley stems provides a final touch of color. The bowl sits on a light, textured reclaimed wood surface. An undyed linen napkin in natural beige is subtly placed to the side. Soft, diffused natural light illuminates the dish from above, creating gentle shadows.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Bone Broth",
+    "ingredients": [
+      {
+        "name": "Chicken bones",
+        "quantity": "1 kg (from 1-2 roasted or cooked chickens)"
+      },
+      {
+        "name": "Chicken skin",
+        "quantity": "from 1 chicken"
+      },
+      {
+        "name": "Vegetable scraps (onion skins, carrot peels, celery ends, mushroom stems)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "5 cm piece, sliced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, smashed"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "10"
+      },
+      {
+        "name": "Water",
+        "quantity": "3 litres"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fermented vegetable mix (e.g., fermented cabbage cores, radish greens, carrot tops)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Seasonal greens (e.g., spinach, kale, or bok choy)",
+        "quantity": "100 g, roughly chopped"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh chives or parsley stems",
+        "quantity": "for garnish, finely chopped"
+      }
+    ],
+    "instructions": [
+      "Place chicken bones, vegetable scraps, ginger, garlic, peppercorns, and apple cider vinegar in a large pot. Add 3 litres of cold water. Bring to a boil, then reduce heat to low. Simmer gently for 6-8 hours. Skim any foam.",
+      "Strain the broth through a fine-mesh sieve. Discard solids. Season broth with sea salt to taste.",
+      "While broth simmers, place chicken skin in a cold pan. Cook over medium-low heat until fat renders and skin is golden and crispy. This takes 10-15 minutes. Remove skin. Blot excess fat. Break into small, irregular pieces.",
+      "Reheat strained broth gently. Add seasonal greens. Cook for 1-2 minutes until just wilted.",
+      "Ladle hot broth with greens into bowls. Add a spoonful of fermented vegetable mix to each bowl. Garnish with crispy chicken skin pieces and chopped fresh chives or parsley stems."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 174,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 19.4,
+      "saturated_fat_g": 3,
+      "sodium_mg": 1113,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 46,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 5.1,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 296,
+      "total_carbs_g": 0.9,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 0.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 10,
+      "dietary_fiber": 5,
+      "protein": 39,
+      "saturated_fat": 15,
+      "sodium": 48,
+      "total_carbs": 1,
+      "total_fat": 12
+    },
+    "serving_size_g": 376.25,
+    "total_recipe_weight_g": 1505
+  },
+  {
+    "recipe_name": "Rustic Chicken and White Bean Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_chicken_and_white_bean_stew_20250624_121523_2579cdae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:15:23.994667000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Rustic Chicken and White Bean Stew is presented in a deep, rustic ceramic bowl with a slightly irregular rim, sitting on a well-used wooden dining table. The stew features thick, tender chunks of golden-brown chicken, nestled among plump white cannellini beans and vibrant red diced tomatoes. The rich, savory tomato sauce coats all ingredients, with visible flecks of dried oregano. The chicken pieces are irregularly shaped, showcasing their hearty texture. Fresh green chopped parsley is sprinkled over the top, providing a pop of color. A simple, everyday fork rests casually beside the bowl. The setting includes a casually folded linen napkin and a slice of crusty artisan bread on a small side plate, slightly overlapping the main bowl. Warm, natural lighting from a kitchen window or overhead fixture illuminates the scene, creating a cozy, lived-in atmosphere. The background is minimally blurred, showing hints of a homely kitchen environment without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean Inspired",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Canned cannellini beans, drained and rinsed",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4 cm chunks. Season chicken with salt and pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add chicken chunks. Sear chicken until golden brown on all sides. Remove chicken from pot. Set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in dried oregano, diced tomatoes, and chicken broth. Bring to a simmer.",
+      "Return chicken to the pot. Reduce heat to low. Cover and simmer for 20 minutes.",
+      "Stir in drained cannellini beans. Continue to simmer, uncovered, for 10 minutes. Ensure chicken reaches an internal temperature of 75°C.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve hot. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 481.7,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 10.5,
+      "protein_g": 40.8,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 1054.8,
+      "total_carbs_g": 32.7,
+      "total_fat_g": 20,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 83.1,
+      "cholesterol_mg": 23.3,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 7,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 181.9,
+      "total_carbs_g": 5.6,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 38,
+      "protein": 82,
+      "saturated_fat": 21,
+      "sodium": 46,
+      "total_carbs": 12,
+      "total_fat": 26
+    },
+    "serving_size_g": 579.5,
+    "total_recipe_weight_g": 2318
+  },
+  {
+    "recipe_name": "Mixed Greens Salad with Pan-Seared Chicken and Apple",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mixed_greens_salad_with_pan-seared_chicken_and_apple_20250624_121515_af49311b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:15:16.205637000Z",
+    "selected_ingredients": [
+      "chicken",
+      "apple"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, fresh salad is presented on a round, clean white porcelain dinner plate. A generous bed of verdant mixed greens forms the base, offering varied leaf shapes and shades of green. Scattered across the greens are tender, pan-seared chicken breast pieces, diced into uniform 1.5 cm cubes, showing a light golden exterior. Bright julienned apple strips provide pops of light yellow and red, while thin, translucent slices of red onion add a delicate purple hue. Crisp, thinly sliced celery half-moons are interspersed, adding a subtle texture. Toasted pecan halves, a rich golden-brown, are sprinkled evenly, providing visual contrast and a nutty element. A light, glossy drizzle of maple-Dijon vinaigrette coats the ingredients, reflecting light without pooling. The overall composition is artfully arranged, allowing individual components to be distinctly visible while creating a cohesive, inviting presentation. The plate rests on a light wooden table surface, beside a neatly folded grey cotton napkin. Soft, even natural light illuminates the dish, highlighting its fresh colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Mixed Greens",
+    "ingredients": [
+      {
+        "name": "Chicken breast, boneless, skinless",
+        "quantity": "300g"
+      },
+      {
+        "name": "Mixed greens",
+        "quantity": "200g"
+      },
+      {
+        "name": "Apple (e.g., Honeycrisp or Fuji)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/4 medium"
+      },
+      {
+        "name": "Celery",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Pecans, halves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10g"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and pepper.",
+      "Heat 10ml olive oil in a skillet over medium-high heat. Sear chicken breasts 4 minutes per side until golden brown.",
+      "Reduce heat to medium-low. Cook chicken 8-10 minutes more, turning occasionally, until internal temperature reaches 75°C. Remove from skillet. Let rest 5 minutes.",
+      "While chicken rests, toast pecans in a dry skillet over medium heat for 3-5 minutes, stirring, until fragrant. Let cool.",
+      "Wash and dry mixed greens.",
+      "Core and julienne the apple. Thinly slice the red onion. Slice celery into thin half-moons.",
+      "Dice the rested chicken into 1.5 cm cubes.",
+      "For dressing: In a small bowl, whisk together apple cider vinegar, Dijon mustard, maple syrup, salt, and pepper. Slowly whisk in remaining 20ml olive oil until emulsified.",
+      "In a large bowl, combine mixed greens, julienned apple, sliced red onion, sliced celery, and diced chicken.",
+      "Pour dressing over salad ingredients. Toss gently to coat.",
+      "Divide salad among four plates. Sprinkle toasted pecans over each serving. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.3,
+      "calories": 326,
+      "cholesterol_mg": 64,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 25.6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 115,
+      "total_carbs_g": 14.4,
+      "total_fat_g": 19.1,
+      "total_sugars_g": 9.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.4,
+      "calories": 141,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 11.1,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 50,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21,
+      "dietary_fiber": 12,
+      "protein": 51,
+      "saturated_fat": 13,
+      "sodium": 5,
+      "total_carbs": 5,
+      "total_fat": 24
+    },
+    "serving_size_g": 232,
+    "total_recipe_weight_g": 927
+  }
+]

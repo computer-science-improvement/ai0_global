@@ -1,0 +1,690 @@
+[
+  {
+    "recipe_name": "Chickpea and Sumac Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chickpea_and_sumac_salad_20250623_140801_84c1b7e7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:08:01.671191000Z",
+    "selected_ingredients": [
+      "chickpea"
+    ],
+    "complexity": "simple",
+    "special_requests": "middel eastern cuisine",
+    "visual_description": "The Chickpea and Sumac Salad is presented in a deep, rustic ceramic bowl, resting on a well-worn wooden kitchen table. The vibrant medley of colors is prominent: creamy yellow chickpeas, bright red diced tomatoes, crisp green diced cucumber and bell pepper, and thin purple slivers of red onion. Freshly chopped parsley and mint are generously scattered throughout, adding verdant flecks and texture. The simple lemon-sumac dressing lightly coats all components, creating a subtle sheen. Portions are hearty and natural, with ingredients casually overlapping. A few pieces of torn, lightly toasted pita bread are arranged casually beside the bowl. The setting includes an everyday ceramic plate with a slight imperfection, a simple metal fork, and a folded paper towel, all illuminated by warm, inviting kitchen light, creating a comforting, lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Middle Eastern",
+    "cultural_origin": "Middle Eastern",
+    "cultural_serving_suggestions": [
+      "Serve with fresh pita bread for scooping",
+      "Can be accompanied by labneh (strained yogurt) on the side"
+    ],
+    "hero_ingredient": "Chickpea",
+    "ingredients": [
+      {
+        "name": "Canned chickpeas",
+        "quantity": "800 g (2 x 400g cans), drained and rinsed"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "0.5 small, thinly sliced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "0.5 bunch, chopped"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "0.25 bunch, chopped"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground sumac",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Drain and thoroughly rinse the canned chickpeas. Set aside.",
+      "Dice the cucumber, tomatoes, and green bell pepper into small, uniform cubes.",
+      "Thinly slice the red onion.",
+      "Finely chop the fresh parsley and mint.",
+      "In a large mixing bowl, combine the drained chickpeas, diced cucumber, diced tomatoes, diced green bell pepper, thinly sliced red onion, chopped parsley, and chopped mint.",
+      "In a separate small bowl, whisk together the olive oil, fresh lemon juice, ground sumac, salt, and black pepper until well combined.",
+      "Pour the dressing over the chickpea and vegetable mixture. Toss gently to ensure all ingredients are evenly coated.",
+      "Serve immediately or chill in the refrigerator for 15-20 minutes to allow flavors to meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 432,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 16.8,
+      "protein_g": 17.4,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 684,
+      "total_carbs_g": 54.2,
+      "total_fat_g": 19.4,
+      "total_sugars_g": 13.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 4.6,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 179,
+      "total_carbs_g": 14.2,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 60,
+      "protein": 35,
+      "saturated_fat": 13,
+      "sodium": 30,
+      "total_carbs": 20,
+      "total_fat": 25
+    },
+    "serving_size_g": 382,
+    "total_recipe_weight_g": 1527
+  },
+  {
+    "recipe_name": "Bocados de Limón y Vino Blanco con Crujiente de Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bocados_de_lim%C3%B3n_y_vino_blanco_con_crujiente_de_pasta_20250623_140708_bb63cd7a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:07:09.235204000Z",
+    "selected_ingredients": [
+      {
+        "name": "pasta"
+      },
+      {
+        "name": "bread"
+      },
+      {
+        "name": "white wine"
+      },
+      {
+        "name": "lemon"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegan Spanish",
+    "visual_description": "The dish is a sophisticated presentation of miniature sweet bites, arranged with architectural precision on an elegant, matte white ceramic platter, reflecting a modern Spanish aesthetic. Six to nine perfectly uniform pieces are artfully spaced, emphasizing abundant negative space. Each piece features a golden-brown, 2.5 cm cubed vegan torrija, its exterior lightly crisped from olive oil frying, revealing a soft, tender interior. Adjacent to each torrija cube, a translucent, pale yellow white wine-lemon gelée cube shimmers, offering a visual contrast in texture and color. A delicate, irregular shard of golden, crispy pasta is elegantly positioned, adding a sharp, angular element and a contrasting texture. The overall color palette is warm gold, subtle yellow, and pristine white. A single, vibrant green micro mint leaf provides a precise, minimalist garnish, adding a fresh pop of color. Dramatic professional lighting casts soft shadows, highlighting the textures and forms. The setting features a luxurious white Carrara marble surface and a pristine, precisely folded white linen napkin in the background, creating an ultra-minimalist and refined composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve alongside small cups of chilled sweet Moscatel wine or a light, refreshing non-alcoholic citrus infusion.",
+      "Offer as part of a larger dessert tasting menu.",
+      "Present on a modern, minimalist serving tray made from natural materials like light wood or unglazed ceramic."
+    ],
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "stale white bread",
+        "quantity": "200g"
+      },
+      {
+        "name": "unsweetened plant-based milk (almond or soy)",
+        "quantity": "250ml"
+      },
+      {
+        "name": "granulated sugar (for torrijas)",
+        "quantity": "50g"
+      },
+      {
+        "name": "lemon zest",
+        "quantity": "Zest of 1 large lemon"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "10ml"
+      },
+      {
+        "name": "olive oil (for frying)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "fresh lemon juice",
+        "quantity": "50ml"
+      },
+      {
+        "name": "granulated sugar (for gelée)",
+        "quantity": "50g"
+      },
+      {
+        "name": "agar-agar powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "fresh lasagna pasta sheets",
+        "quantity": "2 sheets"
+      },
+      {
+        "name": "olive oil (for pasta)",
+        "quantity": "15ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "sugar (for pasta)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "micro mint leaves or delicate lemon balm leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut bread into 2.5 cm uniform cubes. In a shallow dish, whisk plant milk, 50g sugar, lemon zest, and vanilla. Briefly soak bread cubes, turning to absorb liquid evenly. Do not let them get soggy.",
+      "Heat 30ml olive oil in a non-stick pan over medium heat. Fry soaked bread cubes until golden brown and slightly crisp on all sides. Transfer to a wire rack to drain excess oil.",
+      "In a small saucepan, combine white wine, lemon juice, 50g sugar, and agar-agar. Bring to a simmer, whisking constantly until agar-agar is fully dissolved (about 2 minutes).",
+      "Pour gelée mixture into a shallow, flat dish to a thickness of about 0.5 cm. Chill until firm (at least 1 hour).",
+      "Once firm, cut gelée into 2.5 cm cubes or small irregular shapes.",
+      "Preheat oven to 160°C. Lightly brush lasagna sheets with 15ml olive oil. Sprinkle with a pinch of salt and sugar. Bake for 8-12 minutes, or until golden brown and very crisp. Watch carefully to prevent burning.",
+      "Once cooled, break pasta sheets into irregular, delicate shards.",
+      "On an elegant serving platter, artfully arrange 6-9 torrija cubes. Place one gelée piece next to or slightly on top of each torrija cube. Carefully insert a crispy pasta shard into or alongside each assembly. Garnish with a single micro mint or lemon balm leaf. Serve immediately."
+    ],
+    "notes": [
+      "For best results, use day-old bread for the torrijas.",
+      "Ensure gelée is fully set before cutting to maintain clean edges.",
+      "Pasta shards are very delicate; handle with care."
+    ],
+    "traditional_techniques": [
+      "Soaking and frying bread (similar to traditional Torrijas preparation)",
+      "Infusion (lemon zest into milk)"
+    ]
+  },
+  {
+    "recipe_name": "Creamy Chicken and Asparagus Rigatoni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_asparagus_rigatoni_20250623_140622_27410356.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:06:23.000622000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken",
+      "asparagus",
+      "parmesan",
+      "oregano"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Chicken and Asparagus Rigatoni is presented on a clean, round white porcelain dinner plate. The rigatoni pasta is cooked al dente, generously coated in a rich, velvety parmesan cream sauce. Tender, golden-brown pan-seared chicken breast pieces, cut into irregular 3 cm chunks, are interspersed throughout the pasta. Vibrant green asparagus florets, blanched to tender-crisp, add pops of color and texture. A light scattering of freshly grated Parmigiano Reggiano cheese tops the dish, along with a few fresh oregano leaves for garnish. The sauce has a glossy sheen, indicating a well-emulsified texture. The overall presentation is professional yet inviting, with moderate negative space on the plate. The dish is set on a simple light wooden table surface. A polished silver fork rests beside the plate on a folded white cotton napkin. Natural, even lighting illuminates the dish from above, highlighting the textures and colors. The background is minimally blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce",
+      "Pair with a simple green salad dressed with vinaigrette"
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Parmigiano Reggiano, freshly grated",
+        "quantity": "80 g, plus more for serving"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dry white wine (e.g., Pinot Grigio)",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh oregano leaves, chopped",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a rolling boil. Add rigatoni. Cook according to package directions until al dente. Reserve 250 ml of pasta cooking water. Drain pasta.",
+      "Cut chicken breasts into irregular 3 cm chunks. Season chicken with salt and pepper.",
+      "Heat 15 ml olive oil in a large skillet over medium-high heat. Add chicken chunks. Sear until golden brown and cooked through, approximately 4-5 minutes, ensuring internal temperature reaches 75°C. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add remaining 15 ml olive oil and butter to the skillet. Add diced shallot. Sauté until softened, about 3 minutes. Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in white wine. Deglaze the skillet, scraping up any browned bits from the bottom. Simmer for 1 minute.",
+      "Add chicken broth and heavy cream to the skillet. Bring to a gentle simmer. Add chopped fresh oregano. Season with salt and pepper.",
+      "While sauce simmers, trim woody ends from asparagus spears. Cut asparagus into 3-4 cm florets. Add asparagus florets to the simmering sauce. Cook for 3-4 minutes until tender-crisp.",
+      "Return cooked chicken chunks to the skillet with the sauce and asparagus. Add cooked rigatoni to the skillet. Add 60 ml of reserved pasta water. Add 80 g grated Parmigiano Reggiano.",
+      "Toss well to coat pasta and ingredients evenly with the sauce. Add more reserved pasta water, 30 ml at a time, until the sauce reaches desired consistency and emulsifies. Taste and adjust seasoning.",
+      "Serve immediately, garnished with additional grated Parmigiano Reggiano and fresh oregano."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust pasta water quantity to achieve your preferred sauce consistency; it should be creamy but not overly thick."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Deglazing",
+      "Emulsifying with pasta water"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 793,
+      "cholesterol_mg": 132,
+      "dietary_fiber_g": 4.5,
+      "protein_g": 47.4,
+      "saturated_fat_g": 17.4,
+      "sodium_mg": 484,
+      "total_carbs_g": 68.9,
+      "total_fat_g": 34.5,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 198,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.8,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 121,
+      "total_carbs_g": 17.2,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44,
+      "dietary_fiber": 16,
+      "protein": 95,
+      "saturated_fat": 87,
+      "sodium": 21,
+      "total_carbs": 25,
+      "total_fat": 44
+    },
+    "serving_size_g": 401.25,
+    "total_recipe_weight_g": 1605
+  },
+  {
+    "recipe_name": "Paneer Tikka Masala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_paneer_tikka_masala_20250623_140509_1545c351.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:05:10.730362000Z",
+    "selected_ingredients": [
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Serve the Paneer Tikka Masala in a traditional hammered copper kadai bowl on a dark reclaimed wood table. The hero ingredient consists of large, 3cm cubes of roasted paneer, featuring visible charred edges and a firm texture. The thick, vibrant orange-red tomato gravy coats the cheese evenly without being watery. A light swirl of white heavy cream and a sprinkle of crushed green dried fenugreek leaves decorate the surface. Freshly chopped bright green cilantro provides a sharp color contrast. Beside the bowl, place a stack of two charred garlic naan pieces and a small stainless steel ramekin containing thinly sliced pickled red onion rings. Use natural, warm side-lighting to emphasize the sauce's glossy sheen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "North Indian",
+    "cultural_serving_suggestions": [
+      "Serve with buttered garlic naan or tandoori roti",
+      "Accompany with long-grain basmati rice",
+      "Provide a side of lachha pyaz (pickled onion rings) and lemon wedges",
+      "Serve in a copper karahi for authentic presentation"
+    ],
+    "hero_ingredient": "Paneer",
+    "ingredients": [
+      {
+        "name": "Paneer",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Kashmiri chili powder",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Tomato puree",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Dried fenugreek leaves",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 tsp"
+      }
+    ],
+    "instructions": [
+      "Cut paneer into 3 cm cubes.",
+      "Whisk yogurt, 1 tbsp ginger-garlic paste, half the garam masala, half the chili powder, and lemon juice in a bowl.",
+      "Fold paneer cubes into marinade. Refrigerate for 30 minutes.",
+      "Preheat oven to 220°C. Roast paneer on a lined tray for 10 minutes until edges char.",
+      "Heat oil and butter in a heavy pan over medium heat.",
+      "Sauté finely diced onions until deep golden brown.",
+      "Add remaining ginger-garlic paste and spices. Cook for 1 minute.",
+      "Pour in tomato puree and salt. Simmer for 15 minutes until oil separates.",
+      "Stir in heavy cream and crushed dried fenugreek leaves.",
+      "Add roasted paneer chunks to the sauce. Simmer for 3 minutes.",
+      "Garnish with chopped cilantro."
+    ],
+    "notes": [
+      "Do not overcook paneer in the sauce to maintain a soft, non-rubbery texture",
+      "Kashmiri chili powder provides the signature red color without extreme heat",
+      "Ensure the onions are well-browned for a deep, authentic base flavor"
+    ],
+    "traditional_techniques": [
+      "Tandoor cooking",
+      "Tempering spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 652,
+      "cholesterol_mg": 110,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 26.9,
+      "saturated_fat_g": 27.9,
+      "sodium_mg": 886,
+      "total_carbs_g": 22.3,
+      "total_fat_g": 50.6,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 217.3,
+      "cholesterol_mg": 36.7,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 9,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 295.3,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 16.9,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36.7,
+      "dietary_fiber": 14.6,
+      "protein": 53.8,
+      "saturated_fat": 139.5,
+      "sodium": 38.5,
+      "total_carbs": 8.1,
+      "total_fat": 77.8
+    },
+    "serving_size_g": 300,
+    "total_recipe_weight_g": 1200
+  },
+  {
+    "recipe_name": "Deconstructed Osso Buco with Saffron Orzo and Gremolata Air",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_deconstructed_osso_buco_with_saffron_orzo_and_gremolata_air_20250623_140424_ca184f06.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:04:25.053509000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italian experimental avant garde cuisine",
+    "visual_description": "A single portion of Deconstructed Osso Buco is presented on a clean, round white porcelain plate, resting on a simple light wooden table. Golden-yellow saffron orzo, cooked to a creamy, fluid consistency, forms the base. A generous mound of tender, shredded dark brown beef is nestled atop the orzo. A glossy, deep mahogany reduction sauce from the braising liquid is drizzled over the beef and orzo, adding depth and shine. Adjacent, a delicate, airy cloud of vibrant green gremolata foam, flecked with tiny parsley bits, provides striking contrast. Moderate negative space on the plate ensures balanced composition. A simple cotton napkin and standard silver flatware are neatly arranged beside the plate. Natural, even light illuminates the dish, highlighting rich colors and inviting textures. The background softly blurs, hinting at a casual yet elegant bistro setting, maintaining focus on the culinary artistry.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of crisp white wine or a medium-bodied red.",
+      "Traditionally, Osso Buco is served with risotto alla Milanese, so the orzo risottata is a nod to this.",
+      "A side of simple blanched green beans or asparagus could complement the richness."
+    ],
+    "hero_ingredient": "Braised Beef Shank",
+    "ingredients": [
+      {
+        "name": "Beef Shanks",
+        "quantity": "4 pieces, approximately 300g each, cross-cut"
+      },
+      {
+        "name": "Orzo Pasta",
+        "quantity": "300g"
+      },
+      {
+        "name": "Saffron Threads",
+        "quantity": "0.5g"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Celery Stalk",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmigiano Reggiano",
+        "quantity": "80g, freshly grated"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "1 bunch, finely chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, zested and juiced"
+      },
+      {
+        "name": "Lecithin Powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Season beef shanks with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat.",
+      "Sear shanks on all sides until deeply browned. Remove shanks.",
+      "Add diced onion, carrot, and celery to the pot. Sauté until softened, 8-10 minutes.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring.",
+      "Pour in white wine, scraping up browned bits. Simmer for 2 minutes.",
+      "Return seared beef shanks to the pot. Add beef broth until shanks are mostly submerged.",
+      "Bring to a gentle simmer. Cover pot and transfer to a preheated oven at 160°C (325°F).",
+      "Braise for 2.5-3 hours, or until beef is fork-tender.",
+      "Remove beef shanks. Let cool slightly. Strain braising liquid through a fine-mesh sieve into a saucepan.",
+      "Skim excess fat from liquid. Reduce liquid over medium-high heat until it thickens to a rich sauce.",
+      "Shred beef meat from bones, discarding bones. Keep shredded beef warm.",
+      "In a separate medium saucepan, melt 20g butter over medium heat. Add orzo pasta and toast for 1 minute, stirring.",
+      "Add saffron threads. Begin adding warm beef broth (from reduced braising liquid or fresh) to the orzo, one ladleful at a time.",
+      "Stir constantly. Allow each addition to be absorbed before adding more. Continue until orzo is al dente and creamy, 15-18 minutes.",
+      "Stir in remaining 30g butter and grated Parmigiano Reggiano until melted and creamy. Season with salt and pepper. Orzo should be fluid.",
+      "In a tall, narrow container, combine 50ml water, 2g lecithin powder, lemon zest, 1 minced garlic clove, and 2 tablespoons chopped fresh parsley.",
+      "Use an immersion blender to create a stable foam.",
+      "Ladle saffron orzo onto the center of each plate. Top with a mound of shredded braised beef.",
+      "Drizzle generously with the reduced braising sauce. Gently spoon a cloud of gremolata air beside the beef. Serve immediately."
+    ],
+    "notes": [
+      "For best flavor, braise the beef a day ahead. The flavors meld and deepen. Reheat gently before serving.",
+      "The gremolata air is best made just before serving to maintain its light, airy texture.",
+      "Adjust consistency of orzo with more warm broth if needed."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Risottata",
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1311,
+      "cholesterol_mg": 303,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 99,
+      "saturated_fat_g": 28.3,
+      "sodium_mg": 851,
+      "total_carbs_g": 68,
+      "total_fat_g": 66.8,
+      "total_sugars_g": 5,
+      "trans_fat_g": 2.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 162,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 12.3,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 105,
+      "total_carbs_g": 8.4,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 101,
+      "dietary_fiber": 17,
+      "protein": 198,
+      "saturated_fat": 141,
+      "sodium": 37,
+      "total_carbs": 25,
+      "total_fat": 86
+    },
+    "serving_size_g": 807.5,
+    "total_recipe_weight_g": 3230.5
+  }
+]

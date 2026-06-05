@@ -1,0 +1,661 @@
+[
+  {
+    "recipe_name": "Roasted Bell Pepper and Anchovy Linguine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_bell_pepper_and_anchovy_linguine_20250701_150511_accc7afa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:05:12.266933000Z",
+    "selected_ingredients": [
+      "bell pepper",
+      "green onion",
+      "pasta",
+      "anchovy"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Roasted Bell Pepper and Anchovy Linguine is presented in a clean, white porcelain bowl, showcasing a vibrant interplay of colors and textures. The golden linguine is lightly coated in a glossy, emulsified sauce infused with dissolved anchovy and garlic. Interspersed throughout are tender, char-kissed strips of roasted red and yellow bell peppers, adding sweet notes and visual depth. Fresh green onion slices are sprinkled generously over the top, providing a crisp green contrast and aromatic freshness. A light dusting of finely grated Pecorino Romano cheese adds a subtle white accent. The dish is arranged with a natural, flowing elegance, allowing the individual components to be clearly seen without being overcrowded. Moderate negative space frames the central portion, inviting appreciation of each element. The scene is set on a simple wooden table, with natural, even lighting from above. A folded cotton napkin and standard European flatware rest beside the bowl, completing the approachable bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread to sop up the delicious sauce.",
+      "Pair with a light, crisp white wine, such as a Vermentino or Pinot Grigio."
+    ],
+    "hero_ingredient": "Anchovy",
+    "ingredients": [
+      {
+        "name": "Linguine pasta",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Anchovy fillets in oil",
+        "quantity": "8 (about 25 grams)"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "5 ml (1 teaspoon)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 ml (2 tablespoons), chopped"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Cut bell peppers into 1.5 cm wide strips. Toss with 15 ml olive oil, salt, and pepper on a baking sheet. Roast for 20-25 minutes until tender and slightly charred. Set aside.",
+      "Bring a large pot of salted water to a boil. Add linguine and cook according to package directions until al dente.",
+      "While pasta cooks, thinly slice green onions, separating white and green parts. Mince garlic.",
+      "Heat remaining 45 ml olive oil in a large skillet over medium-low heat. Add anchovy fillets. Cook, stirring, until anchovies dissolve into a paste, about 2-3 minutes.",
+      "Add minced garlic and red pepper flakes to the skillet. Cook for 1 minute until fragrant. Do not brown garlic.",
+      "Add the white parts of the green onions to the skillet. Sauté for 2 minutes until softened.",
+      "Drain pasta, reserving 250 ml of pasta water. Add pasta directly to the skillet with the anchovy mixture. Add roasted bell peppers.",
+      "Add 125 ml of reserved pasta water. Toss vigorously to combine. The sauce should emulsify and coat the pasta. Add more pasta water, 30 ml at a time, if needed for desired consistency.",
+      "Stir in chopped fresh parsley and the green parts of the green onions. Season with salt and pepper to taste.",
+      "Serve immediately with grated Parmesan cheese."
+    ],
+    "notes": [
+      "The anchovies dissolve completely, leaving behind a rich, savory umami flavor, not a 'fishy' taste.",
+      "Adjust red pepper flakes to your preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Soffritto (aromatic base)",
+      "Emulsifying pasta sauce with pasta water"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 549,
+      "cholesterol_mg": 5,
+      "dietary_fiber_g": 6,
+      "protein_g": 16.6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 242,
+      "total_carbs_g": 83.3,
+      "total_fat_g": 16.3,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 278,
+      "cholesterol_mg": 3,
+      "dietary_fiber_g": 3,
+      "protein_g": 8.4,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 123,
+      "total_carbs_g": 42.2,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 2,
+      "dietary_fiber": 21,
+      "protein": 33,
+      "saturated_fat": 13,
+      "sodium": 11,
+      "total_carbs": 30,
+      "total_fat": 21
+    },
+    "serving_size_g": 197.5,
+    "total_recipe_weight_g": 790
+  },
+  {
+    "recipe_name": "Braised Chicken with Thyme Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_chicken_with_thyme_potatoes_20250701_150505_64a0d7f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:05:05.997548000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "chicken stock",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate. A golden-brown, seared bone-in chicken thigh, with crispy skin, is positioned as the focal point. Rustic chunks of tender, braised potatoes, some with subtly browned edges, are arranged around the chicken. Soft, caramelized onion pieces are nestled among the potatoes and chicken. A rich, glossy, reduced pan sauce pools elegantly around the ingredients, adding depth and moisture. The color palette features the deep amber of the chicken skin, pale yellow potatoes, and the savory brown of the sauce, accented by fresh green thyme sprigs. The composition is balanced and inviting, showcasing refined rustic appeal. A cotton napkin is placed beside the plate on a simple wooden table surface under natural, even lighting. This is a single, refined restaurant-style portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the savory sauce.",
+      "A simple green salad with a light vinaigrette makes a good accompaniment."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx 800g-1kg total)"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 medium, sliced"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold)",
+        "quantity": "600g, cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "6 sprigs, plus extra for garnish"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Season chicken thighs generously with salt and black pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 5-7 minutes until golden brown and crispy.",
+      "Flip chicken. Sear other side for 3-4 minutes. Remove chicken. Set aside.",
+      "Add sliced onions to the pot. Sauté for 8-10 minutes until softened and lightly caramelized.",
+      "Add minced garlic and thyme sprigs. Sauté for 1 minute until fragrant.",
+      "Deglaze the pot with white wine, if using. Scrape up any browned bits. Reduce liquid by half.",
+      "Pour in chicken stock. Bring to a simmer.",
+      "Return chicken thighs to the pot, skin-side up.",
+      "Add potato chunks around the chicken. Ensure potatoes are partially submerged in the liquid.",
+      "Cover the pot. Transfer to the preheated oven.",
+      "Braise for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender.",
+      "Remove lid. Increase oven temperature to 200°C (400°F) for 10-15 minutes to crisp chicken skin, if desired.",
+      "Rest chicken briefly before serving."
+    ],
+    "notes": [
+      "Using bone-in, skin-on chicken thighs adds more flavor and helps keep the chicken moist during braising.",
+      "Adjust the amount of chicken stock to ensure potatoes are partially submerged but not swimming. The sauce should be rich, not watery."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 705,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 46.2,
+      "saturated_fat_g": 10.1,
+      "sodium_mg": 296,
+      "total_carbs_g": 33.4,
+      "total_fat_g": 41.4,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 34,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 50,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 7,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 15,
+      "protein": 92,
+      "saturated_fat": 50,
+      "sodium": 13,
+      "total_carbs": 12,
+      "total_fat": 53
+    },
+    "serving_size_g": 589,
+    "total_recipe_weight_g": 2356
+  },
+  {
+    "recipe_name": "Sustainable Beer-Braised Chicken with Quick-Pickled Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sustainable_beer-braised_chicken_with_quick-pickled_beans_20250701_150440_ca0acc5a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:04:40.891492000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cashew",
+      "bean",
+      "chili",
+      "beer",
+      "hot sauce",
+      "garlic"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Sustainable Beer-Braised Chicken is presented on a handcrafted, matte cream-colored ceramic plate, leaving generous negative space. A bone-in, skin-on chicken thigh, its skin deeply golden and crisped, rests as the central focus. Beneath it, a rich, dark brown braising liquid pools naturally. To one side, a small, artful mound of quick-pickled black beans, glossy and dark, with visible slivers of bright red chili and minced garlic, adds a contrasting texture and color. A generous, organic swirl of creamy white cashew sauce is drizzled across the chicken and beans. The dish is garnished simply with a few fresh, vibrant green parsley leaves. The entire plate is visible, placed on a light, textured reclaimed wood surface. An undyed linen napkin in natural beige is casually draped nearby. Soft, diffused natural light illuminates the scene, highlighting the dish's earthy color palette and organic forms, with a clean, minimalist background that hints at natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Dried black beans",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks, diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "6"
+      },
+      {
+        "name": "Dried red chilies (e.g., arbol), deseeded and chopped",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Dark beer (stout or porter)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Chicken stock (preferably homemade)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Raw cashews",
+        "quantity": "100g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley or cilantro, chopped",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "White vinegar (for pickling)",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Water (for pickling)",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Sugar (for pickling)",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Soak black beans overnight. Drain.",
+      "Boil soaked beans until tender, about 45-60 minutes. Drain. Let cool slightly.",
+      "For quick-pickled beans: In a small saucepan, combine vinegar, 125ml water, 5g salt, and sugar. Bring to a simmer until salt and sugar dissolve. Let cool.",
+      "Combine cooked beans with 1 minced garlic clove and 1 chopped dried chili. Pour cooled pickling liquid over beans. Stir. Set aside to quick-pickle for at least 30 minutes, or refrigerate for longer preservation.",
+      "For cashew cream: Soak cashews in hot water for 30 minutes. Drain. Blend cashews with 125ml fresh water and a pinch of salt until completely smooth and creamy. Set aside.",
+      "Season chicken thighs generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear chicken thighs skin-side down until skin is deeply golden and crispy, about 8-10 minutes. Remove chicken from pot. Pour off excess fat, leaving about 15ml.",
+      "Add diced onion, carrots, and celery to the pot. Sauté until softened, about 5-7 minutes. Add remaining minced garlic and chopped chilies. Cook for 1 minute until fragrant.",
+      "Pour in dark beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and reduce by half.",
+      "Stir in chicken stock and hot sauce. Bring to a gentle simmer.",
+      "Return chicken thighs to the pot, skin-side up. Ensure chicken is mostly submerged. If not, add a little more stock or water.",
+      "Reduce heat to low, cover, and braise for 45-60 minutes, or until chicken is very tender and internal temperature reaches 75°C (167°F).",
+      "Remove chicken from pot. Increase heat to medium-high. Reduce braising liquid until slightly thickened, about 5-10 minutes.",
+      "Serve each chicken thigh with a ladle of reduced braising liquid. Add a generous spoonful of quick-pickled beans alongside. Drizzle with cashew cream. Garnish with fresh parsley or cilantro."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by using bone-in chicken (bones can be used for stock) and quick-pickling beans for preservation. Save vegetable scraps for future stock."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 933,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 11.3,
+      "protein_g": 57.6,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 686,
+      "total_carbs_g": 58.3,
+      "total_fat_g": 49.9,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 121,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 7.5,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 89,
+      "total_carbs_g": 7.6,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 40,
+      "protein": 115,
+      "saturated_fat": 57,
+      "sodium": 30,
+      "total_carbs": 21,
+      "total_fat": 64
+    },
+    "serving_size_g": 769,
+    "total_recipe_weight_g": 3077
+  },
+  {
+    "recipe_name": "Broccoli and Orzo Salad with Lemon-Herb Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_broccoli_and_orzo_salad_with_lemon-herb_mozzarella_20250701_150354_39ee6b3c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:03:55.058385000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mozzarella",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Broccoli and Orzo Salad is presented on a clean, white porcelain dinner plate, showcasing a harmonious blend of textures and colors. Small, tender-crisp roasted broccoli florets, some with subtle charred edges, are interspersed with tiny, rice-shaped orzo pasta. Creamy white mozzarella, cut into 1cm cubes, provides soft contrast. Vibrant halved cherry tomatoes and thinly sliced crimson red onion add bursts of color. The salad is gently tossed, allowing the ingredients to mingle naturally, coated in a glistening lemon vinaigrette. A scattering of bright green chopped fresh parsley and golden pine nuts provides a fresh garnish. The plate is set on a simple wooden table surface, accompanied by standard flatware and a folded white cotton napkin, evoking a relaxed modern bistro ambiance with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta bread or focaccia."
+    ],
+    "hero_ingredient": "Broccoli",
+    "ingredients": [
+      {
+        "name": "Broccoli florets",
+        "quantity": "500g"
+      },
+      {
+        "name": "Orzo pasta",
+        "quantity": "250g"
+      },
+      {
+        "name": "Fresh mozzarella (bocconcini or pearls)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small (approx 80g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pine nuts",
+        "quantity": "30g (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut broccoli into small florets. Toss with 15ml olive oil, 2g salt, 1g black pepper. Spread on a baking sheet. Roast for 15-20 minutes until tender-crisp and slightly charred. Let cool.",
+      "Cook orzo pasta in salted boiling water according to package directions until al dente. Drain well. Rinse with cold water to cool quickly. Drain thoroughly again.",
+      "If using larger mozzarella, cut into 1cm cubes. In a small bowl, combine mozzarella with 5ml olive oil, 2g dried oregano, and zest of half a lemon. Toss gently.",
+      "Halve cherry tomatoes. Thinly slice or finely dice red onion. Mince garlic cloves.",
+      "Prepare dressing: In a small bowl, whisk together 40ml olive oil, juice of one lemon, minced garlic, 2g salt, and 1g black pepper.",
+      "In a large serving bowl, combine cooled orzo, roasted broccoli, marinated mozzarella, halved cherry tomatoes, and diced red onion.",
+      "Pour dressing over the salad. Toss gently to coat all ingredients.",
+      "Finely chop fresh parsley. Garnish salad with fresh parsley and pine nuts (if using). Serve chilled or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 608,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 28.2,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 847,
+      "total_carbs_g": 65.5,
+      "total_fat_g": 29.2,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 159,
+      "cholesterol_mg": 7,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 221,
+      "total_carbs_g": 17.1,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 9,
+      "dietary_fiber": 29.6,
+      "protein": 56.4,
+      "saturated_fat": 40.5,
+      "sodium": 36.8,
+      "total_carbs": 23.8,
+      "total_fat": 37.4
+    },
+    "serving_size_g": 382.75,
+    "total_recipe_weight_g": 1531
+  },
+  {
+    "recipe_name": "Fermented Chili Chicken with Pickled Radish & Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chili_chicken_with_pickled_radish_%26_rice_20250701_150320_d3291a3d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:03:20.668234000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, refined serving of Fermented Chili Chicken with Pickled Radish & Rice is presented in a handcrafted, unglazed ceramic bowl, in a natural cream or beige tone, resting on a light, textured reclaimed wood surface. A generous bed of fluffy brown rice forms the base, its earthy hue providing a natural contrast. Beside it, two to three rustic, thick chunks of seared chicken thigh, with a visibly crispy, golden-brown skin, are neatly placed. The rich, deep red-orange of the chili marinade is subtly visible on the chicken. Bright, thinly sliced pickled radishes and cucumber half-moons, vibrant pink and green respectively, are arranged alongside, adding pops of color and a fresh, crisp texture. A few fresh cilantro or mint leaves are thoughtfully placed as a natural, unfussy garnish, providing a hint of vibrant green. The composition is clean and minimalist, allowing each ingredient’s natural beauty and texture to stand out. An undyed linen napkin in a natural beige tone is casually folded nearby. Soft, natural light illuminates the dish from the side, enhancing the textures. The background is clean and uncluttered, with subtle hints of natural elements like a blurred potted plant, reinforcing the eco-conscious theme. The entire bowl is visible, with ample white space around it.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Chili Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skin-on chicken thighs",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Red chilies (e.g., Fresno or bird's eye), chopped",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic cloves, peeled",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh ginger, peeled and sliced",
+        "quantity": "20g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Water, non-chlorinated",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Radishes, thinly sliced",
+        "quantity": "150g"
+      },
+      {
+        "name": "Cucumber, thinly sliced",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh cilantro or mint, for garnish",
+        "quantity": "Small bunch"
+      },
+      {
+        "name": "Cooking oil (e.g., avocado or sunflower)",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented chili paste: Combine chopped chilies, garlic, ginger, salt, and water in a blender. Blend until smooth. Transfer to a clean, air-tight jar. Ferment at room temperature for 3-5 days, burping daily, until desired tanginess is achieved. Refrigerate.",
+      "Marinate chicken: Pat chicken thighs dry. In a bowl, coat chicken with 30g of the fermented chili paste. Marinate in the refrigerator for at least 30 minutes, or up to 4 hours.",
+      "Prepare quick pickles: In a small saucepan, combine rice vinegar, sugar, and 50ml water. Heat gently until sugar dissolves. Let cool completely. Place sliced radishes and cucumber in a clean jar. Pour cooled pickling liquid over vegetables. Ensure vegetables are submerged. Refrigerate for at least 30 minutes.",
+      "Cook rice: Rinse brown rice thoroughly. Combine rice with 600ml water in a saucepan. Bring to a boil. Reduce heat to low, cover, and simmer for 40-45 minutes, or until water is absorbed and rice is tender. Let stand, covered, for 10 minutes. Fluff with a fork.",
+      "Cook chicken: Preheat oven to 200°C (390°F). Heat cooking oil in an oven-safe skillet over medium-high heat. Place chicken thighs skin-side down in the hot skillet. Sear for 5-7 minutes until skin is golden and crispy. Flip chicken. Transfer skillet to the preheated oven. Roast for 15-20 minutes, or until internal temperature reaches 75°C (167°F). Remove from oven and let rest for 5 minutes. Cut chicken into thick, rustic chunks.",
+      "Assemble bowls: Divide cooked brown rice among four serving bowls. Arrange chicken chunks on one side of the rice. Drain pickled radishes and cucumber. Arrange pickled vegetables beside the chicken. Garnish with fresh cilantro or mint leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.5,
+      "calories": 700.6,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 4,
+      "protein_g": 34.8,
+      "saturated_fat_g": 6.9,
+      "sodium_mg": 1106.9,
+      "total_carbs_g": 73,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 15.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.4,
+      "calories": 135.8,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 6.7,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 214.5,
+      "total_carbs_g": 14.1,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 14.3,
+      "protein": 69.6,
+      "saturated_fat": 34.3,
+      "sodium": 48.1,
+      "total_carbs": 26.5,
+      "total_fat": 36.2
+    },
+    "serving_size_g": 516,
+    "total_recipe_weight_g": 2064
+  }
+]

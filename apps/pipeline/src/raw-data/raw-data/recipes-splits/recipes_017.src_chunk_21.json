@@ -1,0 +1,665 @@
+[
+  {
+    "recipe_name": "Slow-Cooked Beef Shin Ragu with Sourdough Pasta and Fermented Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-cooked_beef_shin_ragu_with_sourdough_pasta_and_fermented_tomato_20250626_091440_62fe25b6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:14:41.252144000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of slow-cooked beef shin ragu with sourdough pasta is presented in a handcrafted ceramic bowl with an earth-toned glaze. The rich, deep reddish-brown ragu, featuring tender, shredded beef chunks, is generously coated over golden, wide sourdough pasta ribbons. The pasta maintains its al dente texture, showing a slight chew. A few vibrant green fresh parsley leaves are scattered sparingly on top for a natural garnish. The composition is clean and minimalist, allowing generous negative space on the plate. The entire bowl is centered on a light, reclaimed wood table surface, revealing its natural grain. A simple, natural beige undyed linen napkin is folded beside the bowl, with a rustic, dark metal fork placed to the right. Soft, natural lighting illuminates the dish from the side, highlighting the textures of the beef, pasta, and sauce. The background is clean and unobtrusive, with a hint of natural plant life in soft focus, maintaining an eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Braised Beef Shin",
+    "ingredients": [
+      {
+        "name": "Beef shin, boneless",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Sourdough discard",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Semolina or '00' flour",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Lacto-fermented tomato puree",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Onions, diced (including outer layers)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Carrots, diced (including peel)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks, diced (including leaves)",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Beef broth (made from bones/scraps if possible)",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or basil leaves, for garnish",
+        "quantity": "small handful"
+      }
+    ],
+    "instructions": [
+      "Combine sourdough discard, flour, and eggs. Knead dough until smooth. Wrap and rest for 30 minutes.",
+      "Cut beef shin into large, thick chunks. Season with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot. Sear beef chunks on all sides until deeply browned. Remove beef.",
+      "Add diced onions, carrots, and celery to the pot. Sauté until softened, about 8 minutes. Add minced garlic; cook 1 minute.",
+      "Deglaze pot with red wine, scraping up browned bits (if using). Stir in lacto-fermented tomato puree; cook 2 minutes.",
+      "Return beef to the pot. Add beef broth, bay leaves, and thyme. Bring to a simmer.",
+      "Cover pot. Braise in oven at 160°C (325°F) for 3-4 hours, or until beef is fork-tender. Alternatively, simmer on stovetop over low heat.",
+      "Remove beef from sauce. Shred beef using two forks. Discard bay leaves and thyme sprigs. Reduce sauce over medium-high heat until thickened.",
+      "Roll out pasta dough to desired thickness. Cut into tagliatelle or pappardelle strips.",
+      "Bring a large pot of salted water to a rolling boil. Cook fresh pasta until al dente, about 2-4 minutes.",
+      "Drain pasta, reserving some pasta water. Add pasta to the ragu. Toss to coat, adding a little pasta water if needed to loosen sauce.",
+      "Serve hot. Garnish with fresh parsley or basil leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 991,
+      "cholesterol_mg": 329,
+      "dietary_fiber_g": 5.19,
+      "protein_g": 68.25,
+      "saturated_fat_g": 12.11,
+      "sodium_mg": 1317,
+      "total_carbs_g": 80.19,
+      "total_fat_g": 36.13,
+      "total_sugars_g": 6.07,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 0.68,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1.58,
+      "sodium_mg": 172,
+      "total_carbs_g": 10.46,
+      "total_fat_g": 4.71,
+      "total_sugars_g": 0.79,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 109.75,
+      "dietary_fiber": 18.54,
+      "protein": 136.49,
+      "saturated_fat": 60.53,
+      "sodium": 57.27,
+      "total_carbs": 29.16,
+      "total_fat": 46.31
+    },
+    "serving_size_g": 767,
+    "total_recipe_weight_g": 3068
+  },
+  {
+    "recipe_name": "Seared King Oyster, Pomme Puree, Black Garlic Gel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_king_oyster%2C_pomme_puree%2C_black_garlic_gel_20250626_091421_72464d63.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:14:21.437416000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "potato",
+      "onion",
+      "garlic",
+      "cheese"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, meticulously plated serving of Seared King Oyster, Pomme Puree, and Black Garlic Gel is presented on a large, round, pristine white bone china plate with a subtle, elegant rim. The plate rests on a cool, grey-veined Carrara marble surface. A velvety, creamy white quenelle of pomme puree forms the central anchor, slightly off-center. Around it, three to four perfectly seared King Oyster mushroom 'scallops' are arranged with deliberate asymmetry, their crosshatch-scored surfaces boasting a deep, rich golden-brown caramelization, contrasting with their tender, pale interior where visible. Small, precise dots and delicate swooshes of dark, glossy black garlic gel are artfully placed around the plate, providing a deep, almost inky contrast. A delicate, cloud-like wisp of airy Parmesan foam hovers over a portion of the mushrooms and puree, adding a subtle lightness. A few vibrant green chive batons, cut with absolute precision, are placed strategically to provide a pop of color and a crisp, linear element. Abundant negative space surrounds the components, emphasizing the minimalist and architectural composition. The scene is bathed in dramatic, professional lighting that creates soft shadows, enhancing the textures and dimensionality of each component. A crisp white linen napkin, folded into a precise triangle, and elegant, modern stainless steel cutlery (a fork and knife) are subtly placed to the side, maintaining an ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "King Oyster Mushroom",
+    "ingredients": [
+      {
+        "name": "King Oyster Mushrooms",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Russet Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Full-Fat Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Black Garlic Cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Agar-Agar Powder",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Soy Lecithin",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Pomme Puree: Peel and dice potatoes into 2 cm cubes. Place potatoes in a saucepan, cover with cold salted water. Bring to a boil, then reduce heat and simmer until very tender, about 15-20 minutes. Drain potatoes thoroughly. Pass potatoes through a fine-mesh sieve or potato ricer into a clean saucepan. Heat milk and butter in a separate small pan until butter is melted. Gradually whisk hot milk-butter mixture into the sieved potatoes until completely smooth and velvety. Season with salt and pepper. Keep warm.",
+      "Prepare Black Garlic Gel: Combine black garlic cloves, vegetable stock, and agar-agar in a small saucepan. Bring to a gentle simmer, stirring until agar-agar dissolves. Blend mixture until very smooth. Pass through a fine-mesh sieve into a small container. Chill until set, about 30 minutes. Once set, transfer gel to a blender and blend until smooth and pipeable. Transfer to a squeeze bottle or piping bag. Keep at room temperature.",
+      "Prepare Parmesan Air: Grate Parmesan cheese. Combine grated Parmesan and water in a small saucepan. Heat gently until Parmesan melts and mixture is warm. Do not boil. Strain liquid through a fine-mesh sieve into a tall, narrow container. Add soy lecithin. Use an immersion blender to aerate the liquid, creating a stable foam or 'air' on top. Set aside.",
+      "Prepare King Oyster Mushrooms: Wipe mushrooms clean. Cut each mushroom into 2 cm thick rounds, resembling scallops. Score one side of each mushroom round in a crosshatch pattern without cutting all the way through. Season mushroom rounds with sea salt and black pepper.",
+      "Sear Mushrooms: Heat olive oil in a large non-stick pan over medium-high heat. Once hot, place mushroom rounds scored-side down in the pan. Sear for 3-4 minutes until deeply golden brown and caramelized. Flip and sear on the other side for 2-3 minutes until tender. Remove from heat.",
+      "Plate Dish: Place a generous quenelle or dollop of pomme puree slightly off-center on each serving plate. Arrange 3-4 seared mushroom rounds artfully around the puree. Dot the plate sparingly with the black garlic gel. Gently spoon a cloud of Parmesan air over and around the mushrooms and puree. Garnish with a few precisely cut chive batons."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 636.15,
+      "cholesterol_mg": 118.58,
+      "dietary_fiber_g": 7.14,
+      "protein_g": 13.27,
+      "saturated_fat_g": 29.33,
+      "sodium_mg": 730.22,
+      "total_carbs_g": 35.88,
+      "total_fat_g": 54.69,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 1.57
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142.43,
+      "cholesterol_mg": 26.55,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 2.97,
+      "saturated_fat_g": 6.57,
+      "sodium_mg": 163.49,
+      "total_carbs_g": 8.03,
+      "total_fat_g": 12.24,
+      "total_sugars_g": 1.16,
+      "trans_fat_g": 0.35
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.53,
+      "dietary_fiber": 25.5,
+      "protein": 26.54,
+      "saturated_fat": 146.65,
+      "sodium": 31.75,
+      "total_carbs": 13.05,
+      "total_fat": 70.12
+    },
+    "serving_size_g": 446.65,
+    "total_recipe_weight_g": 1786.6
+  },
+  {
+    "recipe_name": "Mediterranean Chicken and Root Vegetable Braise",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_chicken_and_root_vegetable_braise_20250626_091401_c7f911ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:14:02.342945000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "chili",
+      "potato",
+      "garlic",
+      "carrot",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Chicken and Root Vegetable Braise is presented in a shallow white ceramic bowl. Two golden-brown, braised boneless chicken thighs are nestled amidst hearty 3cm chunks of tender, lightly browned potatoes and vibrant 2cm thick orange carrot rounds. Coarsely chopped red onion pieces and flecks of finely chopped red chili are visible within the deep reddish-brown, glossy sauce. The sauce is thick and clings to the ingredients. Fresh thyme leaves are scattered generously over the top, adding a pop of green and aromatic contrast. The composition is natural and inviting, with elements thoughtfully arranged. The bowl is centered on a light-colored wooden table surface. A simple white linen napkin is folded neatly beside the bowl. Natural, soft lighting illuminates the scene, highlighting the warmth and texture of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, Skinless Chicken Thighs",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g, peeled, cut into 3cm chunks"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "200g, peeled, cut into 2cm thick rounds"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 large, coarsely chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Red Chili",
+        "quantity": "1 medium, deseeded, finely chopped"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": "100g"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs until golden brown on all sides. Remove chicken from pot.",
+      "Add chopped red onion, carrots, and potatoes to the pot. Sauté for 5-7 minutes until slightly softened and lightly browned.",
+      "Stir in minced garlic and chopped red chili. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes and bay leaf. Stir well.",
+      "Return chicken thighs to the pot. Add chicken broth and thyme sprigs.",
+      "Bring liquid to a simmer. Reduce heat to low. Cover pot tightly.",
+      "Braise for 30-40 minutes, or until chicken reaches an internal temperature of 75°C and vegetables are tender.",
+      "Remove bay leaf and thyme sprigs before serving.",
+      "Check seasoning and adjust if needed. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 534,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 45.5,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 571,
+      "total_carbs_g": 30.7,
+      "total_fat_g": 24.7,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 93.3,
+      "cholesterol_mg": 31.5,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8,
+      "saturated_fat_g": 1,
+      "sodium_mg": 99.9,
+      "total_carbs_g": 5.4,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 18,
+      "protein": 91,
+      "saturated_fat": 29,
+      "sodium": 25,
+      "total_carbs": 11,
+      "total_fat": 32
+    },
+    "serving_size_g": 572,
+    "total_recipe_weight_g": 2288
+  },
+  {
+    "recipe_name": "Creamy Mushroom and Parmesan Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_mushroom_and_parmesan_risotto_20250626_091136_c828cb50.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:11:36.575038000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "parmesan cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of creamy mushroom and Parmesan risotto is mounded naturally in a shallow, wide-rimmed ceramic bowl. The risotto presents a harmonious blend of earthy browns from the sautéed mushroom slices and a rich, creamy white from the Arborio rice and melted Parmesan. Flecks of vibrant green parsley are stirred throughout, with a light sprinkle of fresh parsley and grated Parmesan on top. The risotto is fluid and moist, not dry or stiff. The bowl rests on a warm, well-used wooden dining table, suggesting a homely kitchen setting. A simple linen napkin is casually placed nearby. A traditional Italian fork and spoon are positioned beside the bowl, ready for dining. The lighting is soft and warm, highlighting the comforting textures of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while hot and creamy to enjoy its optimal texture.",
+      "Accompany with crusty Italian bread to sop up any remaining sauce.",
+      "Pair with a crisp, dry white wine like Pinot Grigio or Soave."
+    ],
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vegetable broth, hot",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable broth in a separate pot. Keep it simmering hot.",
+      "Clean and thinly slice the mushrooms.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium heat.",
+      "Add the finely diced onion. Sauté until translucent, about 5 minutes.",
+      "Add the minced garlic and sliced mushrooms. Cook until mushrooms release their liquid and brown, about 7-10 minutes.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes until rice grains are translucent at the edges. This is 'tostatura'.",
+      "Pour in the white wine. Stir until completely absorbed by the rice.",
+      "Add one ladleful of hot broth to the rice. Stir continuously until the liquid is absorbed.",
+      "Continue adding broth one ladleful at a time, stirring constantly. Wait for each addition to be absorbed before adding the next. This process takes 18-20 minutes.",
+      "The risotto should be creamy and al dente, with a fluid consistency.",
+      "Remove the pot from heat. Stir in the butter and grated Parmesan cheese. This is 'manteca'.",
+      "Stir vigorously for 1-2 minutes until the risotto is creamy and emulsified.",
+      "Taste and adjust seasoning with salt and black pepper.",
+      "Stir in half of the fresh chopped parsley.",
+      "Serve immediately in warm bowls."
+    ],
+    "notes": [
+      "Using good quality Arborio rice is crucial for the classic creamy texture of risotto.",
+      "Constant stirring during the broth addition is key to developing the risotto's characteristic creaminess and ensuring even cooking."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Tostatura",
+      "Manteca"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 645.5,
+      "cholesterol_mg": 54.8,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 20.9,
+      "saturated_fat_g": 13.3,
+      "sodium_mg": 1542.9,
+      "total_carbs_g": 76.2,
+      "total_fat_g": 27.6,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 96.8,
+      "cholesterol_mg": 8.2,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 3.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 231.4,
+      "total_carbs_g": 11.4,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 9,
+      "protein": 42,
+      "saturated_fat": 66,
+      "sodium": 67,
+      "total_carbs": 28,
+      "total_fat": 35
+    },
+    "serving_size_g": 666.9,
+    "total_recipe_weight_g": 2667.6
+  },
+  {
+    "recipe_name": "Pan-Seared Cod with Lemon-Herb Rice and Olive-Seaweed Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_cod_with_lemon-herb_rice_and_olive-seaweed_crumble_20250626_091134_d8ab8d4f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:11:34.617827000Z",
+    "selected_ingredients": [
+      "salad green",
+      "rice",
+      "cod",
+      "seaweed",
+      "carrot",
+      "olive"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared cod, golden-brown and flaky, rests beside a neat mound of lemon-herb basmati rice on a clean white porcelain dinner plate. Two to three vibrant orange roasted carrot batons are arranged artfully alongside the cod. A unique olive-seaweed crumble, dark and textured, is sprinkled over the cod and rice, adding a contrasting visual element. A small, fresh pile of lightly dressed mixed salad greens sits to the side, providing a pop of green. A bright lemon wedge garnishes the plate. The overall composition is professional and balanced, with moderate negative space. The dish is presented on a simple wooden table surface with natural, even lighting, featuring standard modern flatware and a folded cotton napkin beside the plate, creating a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Cod",
+    "ingredients": [
+      {
+        "name": "Cod fillets",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Black olives",
+        "quantity": "80g pitted"
+      },
+      {
+        "name": "Nori seaweed sheets",
+        "quantity": "2 sheets"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "100g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g chopped"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "10g chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves minced"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Wash and peel carrots. Cut into thick batons or wedges. Toss with 15ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 20-25 minutes until tender-crisp and slightly caramelized.",
+      "Rinse rice under cold water until water runs clear. In a medium saucepan, combine rice, vegetable broth, and a pinch of salt. Bring to a boil. Reduce heat to low. Cover and simmer for 12-15 minutes until liquid is absorbed and rice is tender. Remove from heat. Let stand covered for 5 minutes. Fluff with a fork.",
+      "While rice cooks, prepare the crumble. Finely chop pitted black olives. Tear nori sheets into small pieces. In a small dry pan, lightly toast nori pieces over medium-low heat for 1-2 minutes until fragrant and crisp. Crush into small flakes. Combine chopped olives and crushed nori in a small bowl. Set aside.",
+      "Zest half of the lemon into the cooked rice. Add half of the chopped parsley and dill. Stir gently to combine. Keep warm.",
+      "Pat cod fillets dry with paper towels. Season both sides with salt and pepper. Heat remaining 30ml olive oil and butter in a large non-stick skillet over medium-high heat until butter foams.",
+      "Carefully place cod fillets skin-side down in the hot skillet. Sear for 4-5 minutes until skin is golden and crispy. Flip fillets. Cook for another 3-4 minutes until cooked through and flaky. Internal temperature should reach 63°C (145°F).",
+      "Prepare salad dressing. Whisk remaining 15ml olive oil, red wine vinegar, minced garlic, remaining parsley, and remaining dill in a small bowl. Season with salt and pepper.",
+      "To plate, spoon a mound of lemon-herb rice onto each white porcelain dinner plate. Place a pan-seared cod fillet beside the rice. Arrange roasted carrot batons next to the cod. Sprinkle the olive-seaweed crumble generously over the cod and rice. Lightly dress the mixed salad greens with the prepared vinaigrette. Place a small pile of dressed greens on the plate. Garnish with a fresh lemon wedge."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 583,
+      "cholesterol_mg": 92.8,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 38.1,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 501,
+      "total_carbs_g": 62.3,
+      "total_fat_g": 22.6,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109,
+      "cholesterol_mg": 17.3,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.1,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 93.6,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 17,
+      "protein": 76,
+      "saturated_fat": 32,
+      "sodium": 22,
+      "total_carbs": 23,
+      "total_fat": 29
+    },
+    "serving_size_g": 535.3,
+    "total_recipe_weight_g": 2141
+  }
+]

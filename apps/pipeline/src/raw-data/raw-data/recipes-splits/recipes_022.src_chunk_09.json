@@ -1,0 +1,643 @@
+[
+  {
+    "recipe_name": "Chicken and Rice Bake with Cheesy Corn Topping",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_rice_bake_with_cheesy_corn_topping_20250624_122153_94b24ec2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:21:54.200350000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "tomato",
+      "mayonnaise",
+      "cheese",
+      "corn"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of the Chicken and Rice Bake is presented in a clean, white porcelain bowl, reflecting a simple restaurant style. The dish features golden-brown, seared chicken thighs, placed atop a bed of creamy, tomato-infused long-grain rice. The rice is studded with vibrant yellow corn kernels and finely diced red tomatoes. A thick, bubbly, golden-brown crust of melted cheese and mayonnaise covers the chicken and parts of the rice, providing a rich texture contrast. A sprinkle of fresh green chopped chives adds a pop of color. The setting is a modern bistro, with the bowl resting on a warm wooden table. A folded cotton napkin and simple silver flatware are placed beside the bowl. Natural, even lighting highlights the dish's comforting appeal. The entire plate is visible, with moderate negative space, showcasing the inviting textures and balanced colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 pieces (approx. 600g)"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium (approx. 150g), diced"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g, undrained"
+      },
+      {
+        "name": "Full-fat mayonnaise",
+        "quantity": "80g"
+      },
+      {
+        "name": "Shredded cheddar or mozzarella blend cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Frozen corn kernels",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh chives or parsley",
+        "quantity": "15g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Season chicken thighs with salt and pepper.",
+      "Heat 15ml olive oil in a large oven-safe skillet over medium-high heat. Sear chicken thighs 3-4 minutes per side until golden brown. Remove chicken.",
+      "Add remaining 15ml olive oil to the skillet. Add diced onion. Sauté 5 minutes until softened. Add minced garlic. Sauté 1 minute until fragrant.",
+      "Stir in rice, diced tomatoes (undrained), corn, and chicken broth. Bring to a simmer.",
+      "Return seared chicken thighs to the skillet, nestling them into the rice mixture.",
+      "In a small bowl, combine mayonnaise and shredded cheese.",
+      "Spread the mayonnaise-cheese mixture evenly over the chicken and rice.",
+      "Bake 25-30 minutes, or until rice is tender, liquid is absorbed, and chicken reaches 75°C internal temperature. The topping should be golden and bubbly.",
+      "Remove from oven. Let rest 5 minutes before serving. Garnish with fresh chives or parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 863,
+      "cholesterol_mg": 234,
+      "dietary_fiber_g": 4,
+      "protein_g": 46.4,
+      "saturated_fat_g": 14.9,
+      "sodium_mg": 1561,
+      "total_carbs_g": 60.4,
+      "total_fat_g": 49.7,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 146,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 7.9,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 265,
+      "total_carbs_g": 10.3,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78,
+      "dietary_fiber": 14,
+      "protein": 93,
+      "saturated_fat": 74,
+      "sodium": 68,
+      "total_carbs": 22,
+      "total_fat": 64
+    },
+    "serving_size_g": 589.75,
+    "total_recipe_weight_g": 2359
+  },
+  {
+    "recipe_name": "Hearty Beef & Root Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_%26_root_vegetable_stew_20250624_122144_94cdcce1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:21:45.427949000Z",
+    "selected_ingredients": [
+      "beef",
+      "worcestershire sauce",
+      "onion",
+      "potato",
+      "carrot"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hearty Beef & Root Vegetable Stew is presented in a deep, rustic ceramic bowl. The stew is a rich, dark brown, showcasing tender, irregular chunks of seared beef, clearly visible light orange carrot rounds, and creamy white potato chunks. All ingredients are naturally settled within the thick, glossy gravy, with some components gently overlapping. A vibrant sprinkle of bright green chopped fresh parsley sits on top, offering a fresh contrast. The bowl is filled adequately, allowing a portion of its rim to remain visible. The bowl rests on a well-worn, warm-toned wooden dining table, exhibiting its natural grain and subtle imperfections. Beside the bowl, a simple, everyday ceramic plate with a slight chip holds a torn, thick slice of crusty artisanal bread. A casually folded, plain linen napkin in a neutral tone is placed to the side. Warm, inviting lighting, resembling natural light from a kitchen window, casts soft shadows, enhancing the comforting textures of the stew. The background is subtly blurred, hinting at a simple kitchen counter, ensuring the focus remains on the inviting meal. A standard metal fork and spoon are positioned next to the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "Western Comfort",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the rich gravy."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or stewing beef",
+        "quantity": "700g, cut into 3-4 cm cubes"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "3 medium, peeled, cut into 2 cm thick rounds"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "4 medium (e.g., Russet or Yukon Gold), peeled, cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season with salt and pepper.",
+      "Heat oil in a large Dutch oven or heavy pot over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove beef and set aside.",
+      "Add diced onions to the pot. Cook until softened, about 5 minutes.",
+      "Stir in flour. Cook for 1 minute, stirring constantly.",
+      "Stir in tomato paste and dried thyme. Cook for 1 minute.",
+      "Gradually whisk in beef stock and Worcestershire sauce, scraping up any browned bits from the bottom. Bring to a simmer.",
+      "Return seared beef to the pot. Add bay leaf.",
+      "Add carrots and potatoes to the pot. Ensure vegetables are mostly submerged.",
+      "Reduce heat to low. Cover and simmer for 2 to 2.5 hours, or until beef is very tender. Stir occasionally.",
+      "Remove bay leaf. Taste and adjust seasoning as needed.",
+      "Ladle hot stew into bowls. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For extra richness, add a splash of red wine with the beef stock.",
+      "Adjust cooking time based on beef tenderness; it should be fork-tender."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 645,
+      "cholesterol_mg": 131,
+      "dietary_fiber_g": 8,
+      "protein_g": 47.1,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 571,
+      "total_carbs_g": 54.6,
+      "total_fat_g": 26.9,
+      "total_sugars_g": 10.1,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 86,
+      "cholesterol_mg": 17.6,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.3,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 76.4,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 3.6,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44,
+      "dietary_fiber": 29,
+      "protein": 94,
+      "saturated_fat": 43,
+      "sodium": 25,
+      "total_carbs": 20,
+      "total_fat": 35
+    },
+    "serving_size_g": 748,
+    "total_recipe_weight_g": 2990
+  },
+  {
+    "recipe_name": "Pollo alla Cacciatora con Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_con_tagliatelle_20250624_122106_a3e6d7fb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:21:06.859755000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "итальянская cuisine",
+    "visual_description": "A hearty single portion of Pollo alla Cacciatora is presented on a rustic, off-white ceramic plate. Two pieces of braised chicken, one thigh and one drumstick, are nestled among a generous mound of golden tagliatelle. The chicken is deeply browned, almost falling off the bone. The rich, chunky tomato-based sauce, flecked with tender red and green bell pepper strips, quartered mushrooms, and softened onions, generously coats the chicken and pasta. A scattering of fresh, bright green chopped parsley provides a pop of color. The plate sits on a well-used, warm-toned wooden dining table. A simple, silver fork and a casually placed linen napkin accompany the dish. The lighting is warm and cozy, evoking a lived-in family kitchen atmosphere. The scene is uncluttered, allowing the robust, comforting dish to be the focal point, reflecting authentic Italian home cooking.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "4 (approx. 600 g)"
+      },
+      {
+        "name": "Chicken drumsticks",
+        "quantity": "4 (approx. 600 g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, cut into thick strips"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1, cut into thick strips"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200 g, quartered"
+      },
+      {
+        "name": "Dry red wine (optional)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat chicken pieces dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, deep pot or Dutch oven over medium-high heat.",
+      "Sear chicken pieces until golden brown on all sides. Do not overcrowd the pot. Work in batches if necessary. Remove chicken and set aside.",
+      "Reduce heat to medium. Add chopped onion, red bell pepper strips, green bell pepper strips, and quartered mushrooms to the pot. Sauté until softened, about 8-10 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "If using, pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine reduces by half.",
+      "Stir in crushed tomatoes, chicken broth, rosemary sprigs, thyme sprigs, and bay leaf. Bring to a simmer.",
+      "Return seared chicken pieces to the pot. Ensure chicken is mostly submerged in the sauce.",
+      "Reduce heat to low. Cover the pot. Simmer for 45-60 minutes, or until chicken is very tender and cooked through (internal temperature 75°C).",
+      "Remove rosemary, thyme, and bay leaf sprigs.",
+      "While chicken simmers, cook tagliatelle according to package instructions until al dente. Drain well.",
+      "Serve chicken and sauce over the cooked tagliatelle. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 964.945,
+      "cholesterol_mg": 213,
+      "dietary_fiber_g": 8.701,
+      "protein_g": 66.446,
+      "saturated_fat_g": 7.693,
+      "sodium_mg": 281.664,
+      "total_carbs_g": 96.414,
+      "total_fat_g": 31.691,
+      "total_sugars_g": 14.168,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101.573,
+      "cholesterol_mg": 22.421,
+      "dietary_fiber_g": 0.916,
+      "protein_g": 6.994,
+      "saturated_fat_g": 0.81,
+      "sodium_mg": 29.649,
+      "total_carbs_g": 10.149,
+      "total_fat_g": 3.336,
+      "total_sugars_g": 1.491,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 31.08,
+      "protein": 132.89,
+      "saturated_fat": 38.47,
+      "sodium": 12.25,
+      "total_carbs": 35.06,
+      "total_fat": 40.63
+    },
+    "serving_size_g": 950,
+    "total_recipe_weight_g": 3800
+  },
+  {
+    "recipe_name": "Garlic Herb Roasted Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_herb_roasted_chicken_and_potatoes_20250624_122057_697ff770.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:57.617807000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of golden-brown roasted chicken and potatoes rests on a rustic ceramic plate. Two crispy-skinned chicken thighs are positioned naturally. Thick-cut potato wedges, roasted to a deep golden hue with soft interiors, are scattered around the chicken. Bright red, blistered cherry tomato halves and softened, light brown roasted garlic cloves are interspersed among the potatoes, adding pops of color and texture. Fresh green rosemary and thyme leaves cling to the roasted ingredients. The arrangement is casual, as if scooped directly from a family pan, filling the plate without overcrowding. The plate sits on a well-used wooden dining table. Simple, everyday flatware and a casually folded cloth napkin are nearby. Warm, natural light illuminates the scene, enhancing the comforting, homely atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Roasted Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Potatoes, medium",
+        "quantity": "1 kg, cut into 3 cm wedges"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g, halved"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "8 cloves, peeled, smashed"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Place chicken thighs, potato wedges, halved cherry tomatoes, and smashed garlic cloves in a large roasting pan.",
+      "Add rosemary sprigs and thyme sprigs to the pan.",
+      "Drizzle with olive oil. Season with salt and black pepper.",
+      "Toss all ingredients together to coat evenly.",
+      "Arrange in a single layer in the roasting pan.",
+      "Roast for 45-55 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are tender and golden.",
+      "Rest chicken for 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 600.4,
+      "cholesterol_mg": 161,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 33.2,
+      "saturated_fat_g": 8.1,
+      "sodium_mg": 654.4,
+      "total_carbs_g": 39.5,
+      "total_fat_g": 33.6,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 186.2,
+      "cholesterol_mg": 49.9,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 10.3,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 202.9,
+      "total_carbs_g": 12.2,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.7,
+      "dietary_fiber": 17.1,
+      "protein": 66.4,
+      "saturated_fat": 40.7,
+      "sodium": 28.5,
+      "total_carbs": 14.4,
+      "total_fat": 43.1
+    },
+    "serving_size_g": 322.5,
+    "total_recipe_weight_g": 1290
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs with Roasted Potatoes and Tomato Confit",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_with_roasted_potatoes_and_tomato_confit_20250624_122050_08d94111.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:20:50.503652000Z",
+    "selected_ingredients": [
+      "tomato",
+      "onion",
+      "beef",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, substantial braised beef short rib, dark and glistening, rests centrally on a clean white porcelain dinner plate. Its rich, deep brown exterior contrasts with its tender, fall-off-the-bone texture. Around the short rib, a thoughtful arrangement of golden-brown roasted potato wedges shows their crispy skins and fluffy interiors. Scattered among the potatoes are vibrant, burst confit cherry tomatoes, their slightly shriveled skins and bright red pulp adding pops of color. A glossy, reduced red wine and beef jus, infused with caramelized onions, pools elegantly beneath the meat and lightly coats the potatoes. A small sprig of fresh rosemary and a sprinkle of chopped flat-leaf parsley provide a final touch of fresh green. The dish is presented on a simple wooden table surface in a modern bistro setting, with standard silver flatware and a folded white cotton napkin beside the plate, under soft, even natural lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Braised Beef Short Rib",
+    "ingredients": [
+      {
+        "name": "Beef short ribs, bone-in",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Pat short ribs dry. Season generously with salt and pepper.",
+      "Heat 30 ml olive oil in a large Dutch oven or oven-safe pot over medium-high heat. Sear short ribs on all sides until deeply browned. Remove ribs and set aside.",
+      "Add remaining 30 ml olive oil to the pot. Add roughly chopped onions and cook until softened, about 8-10 minutes.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is reduced by half.",
+      "Return short ribs to the pot. Add beef stock, thyme, and rosemary. Bring to a simmer.",
+      "Cover the pot tightly. Transfer to the preheated oven. Braise for 2.5 to 3 hours, or until beef is very tender.",
+      "While ribs braise, prepare potatoes and tomatoes. Cut Yukon Gold potatoes into 2.5 cm wedges. Toss with olive oil, salt, and pepper. Roast on a baking sheet at 200°C for 25-30 minutes, until golden and tender. For tomato confit, toss whole cherry tomatoes with a drizzle of olive oil, salt, and pepper. Roast alongside potatoes for the last 15-20 minutes, until burst and slightly shriveled.",
+      "Once ribs are cooked, remove them from the pot. Strain the braising liquid through a fine-mesh sieve into a saucepan. Discard solids. Skim any excess fat from the liquid.",
+      "Reduce the braising liquid over medium-high heat until it thickens into a glossy sauce. Season with salt and pepper as needed.",
+      "To serve, place a single braised short rib on each plate. Arrange roasted potato wedges and confit cherry tomatoes around the rib. Drizzle generously with the reduced braising sauce. Garnish with chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1280,
+      "cholesterol_mg": 262.5,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 61.45,
+      "saturated_fat_g": 33.6,
+      "sodium_mg": 914.25,
+      "total_carbs_g": 53.9,
+      "total_fat_g": 88.18,
+      "total_sugars_g": 9.25,
+      "trans_fat_g": 3.95
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139.06,
+      "cholesterol_mg": 28.52,
+      "dietary_fiber_g": 0.84,
+      "protein_g": 6.68,
+      "saturated_fat_g": 3.65,
+      "sodium_mg": 99.32,
+      "total_carbs_g": 5.86,
+      "total_fat_g": 9.58,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.43
+    },
+    "daily_value_percentages": {
+      "cholesterol": 87.5,
+      "dietary_fiber": 27.5,
+      "protein": 122.9,
+      "saturated_fat": 168,
+      "sodium": 39.75,
+      "total_carbs": 19.6,
+      "total_fat": 113.05
+    },
+    "serving_size_g": 920.5,
+    "total_recipe_weight_g": 3682
+  }
+]

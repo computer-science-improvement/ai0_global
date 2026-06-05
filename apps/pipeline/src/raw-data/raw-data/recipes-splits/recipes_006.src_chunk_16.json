@@ -1,0 +1,651 @@
+[
+  {
+    "recipe_name": "Spicy Beef and Potato Skillet with Crispy Bacon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251024_094547_a0148010.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2025-10-24T09:45:47.967971000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "hot sauce",
+      "potato",
+      "tomato",
+      "bacon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spicy Beef and Potato Skillet is presented on a clean, white porcelain dinner plate. The dish features tender, seared beef chunks, golden-brown roasted potato cubes, and softened caramelized onions, all coated in a rich, vibrant red tomato sauce. Crispy, crumbled bacon pieces are generously scattered throughout and over the top, adding a textural contrast. Freshly chopped green chives provide a pop of color and freshness. The beef is presented as whole, substantial cubes, not sliced. The ingredients are arranged in a natural, slightly mounded composition, showcasing the varied textures and robust colors. The plate sits on a simple wooden table surface, accompanied by standard silver flatware and a folded cotton napkin beside it. Natural, even lighting highlights the savory appeal of the dish, with a softly blurred modern bistro background maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or chuck",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Yukon Gold)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Smoked bacon",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large yellow onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Hot sauce (e.g., Tabasco or sriracha)",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh chives, chopped",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 2.5 cm cubes. Pat dry. Season with salt and pepper.",
+      "Dice potatoes into 2 cm cubes. Do not peel.",
+      "Chop bacon into 1 cm pieces. Dice onion. Mince garlic.",
+      "Heat a large, heavy-bottomed skillet over medium-high heat. Add bacon. Cook until crispy. Remove bacon with a slotted spoon. Reserve 15 ml bacon fat in the skillet.",
+      "Add beef to the hot skillet. Sear on all sides until browned, about 5-7 minutes. Do not overcrowd. Cook in batches if necessary. Remove beef and set aside.",
+      "Add remaining olive oil and bacon fat to the skillet. Add diced potatoes. Cook, stirring occasionally, until golden brown and tender, about 10-12 minutes.",
+      "Add diced onion to the skillet with potatoes. Cook until softened, about 5 minutes.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in diced tomatoes, beef broth, and hot sauce. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Return seared beef to the skillet. Stir well. Reduce heat to low. Simmer, uncovered, for 15-20 minutes, or until beef is tender and sauce slightly thickens.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Stir in most of the crispy bacon. Reserve some for garnish.",
+      "Serve hot, garnished with fresh chopped chives and reserved crispy bacon."
+    ]
+  },
+  {
+    "recipe_name": "Garlic Herb Crusted Chicken Breast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251024_090210_f736fc9d.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2025-10-24T09:02:11.249044000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "breadcrumbs"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown, crispy pan-seared chicken breast, cooked whole, is centered on a clean white porcelain plate. The crusted exterior reveals visible flecks of green herbs and minced garlic, contrasting with the presumed tender, juicy interior. A vibrant lemon wedge rests beside the chicken, ready for squeezing. A small cluster of roasted cherry tomatoes, halved, and a few fresh rocket leaves are artfully arranged to add color and freshness, providing balance without overcrowding the plate. The plate is set on a simple light wooden table. A crisp white cotton napkin is placed beside standard silver flatware. The lighting is natural and even, highlighting the textures of the chicken crust and fresh accompaniments. The background features a subtle, blurred modern bistro setting, maintaining focus on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with roasted seasonal vegetables like zucchini or bell peppers.",
+      "Accompany with a simple side salad dressed with olive oil and lemon.",
+      "Offer a small bowl of couscous or quinoa."
+    ],
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, finely chopped"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "10g, finely chopped"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 lemon"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g, grated"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2, beaten"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Lemon wedges",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Butterfly each chicken breast. Pound gently to even thickness, about 1.5-2 cm. Season with salt and pepper.",
+      "Prepare three shallow dishes: one with flour, one with beaten eggs, one with a mix of panko, minced garlic, parsley, oregano, lemon zest, and Parmesan.",
+      "Dredge each chicken breast in flour, shaking off excess.",
+      "Dip floured chicken into beaten egg, ensuring full coverage.",
+      "Press chicken firmly into breadcrumb mixture, coating both sides completely.",
+      "Heat olive oil in a large oven-safe pan over medium-high heat.",
+      "Sear chicken breasts for 3-4 minutes per side until golden brown and crispy.",
+      "Transfer pan to preheated oven. Bake for 10-12 minutes, or until internal temperature reaches 75°C.",
+      "Remove from oven. Let rest 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken breasts are of similar size for even cooking.",
+      "Pounding the chicken ensures a tender, quick-cooking result."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 682,
+      "cholesterol_mg": 265.9,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 71.9,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 990.8,
+      "total_carbs_g": 33.4,
+      "total_fat_g": 27.7,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 231,
+      "cholesterol_mg": 90.1,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 24.3,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 335.6,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 9.4,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 89,
+      "dietary_fiber": 9,
+      "protein": 144,
+      "saturated_fat": 36,
+      "sodium": 43,
+      "total_carbs": 12,
+      "total_fat": 36
+    },
+    "serving_size_g": 295.3,
+    "total_recipe_weight_g": 1181
+  },
+  {
+    "recipe_name": "Braised Chicken Thighs with Grape and Elderflower Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251024_003203_db35fd52.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-24T00:32:03.656345000Z",
+    "selected_ingredients": [
+      "grape juice",
+      "elderflower liqueur"
+    ],
+    "complexity": "standard",
+    "special_requests": "Drink",
+    "visual_description": "A single, perfectly braised bone-in, skin-on chicken thigh, golden-brown and crispy, rests centered on a clean white porcelain dinner plate. The chicken is presented as a whole piece, unsliced. A rich, glossy, deep amber-hued grape and elderflower jus is generously spooned over the chicken and pooled around its base. Scattered within the jus are tender, caramelized shallot slices and earthy quartered cremini mushrooms. A fresh sprig of vibrant green thyme garnishes the dish, adding a touch of color. The plate is set on a simple wooden table surface, accompanied by standard European flatware and a folded white cotton napkin. Natural, even lighting highlights the chicken's texture and the jus's sheen, creating a refined yet approachable presentation in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty artisanal bread to soak up the jus.",
+      "Accompany with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Red grape juice",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Elderflower liqueur",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 large, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "150 g, quartered"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Place chicken thighs skin-side down. Sear until skin is deep golden brown and crispy, about 8-10 minutes. Flip and sear for 2 minutes on the other side. Remove chicken from pot and set aside.",
+      "Pour off most of the rendered chicken fat, leaving about 15 ml in the pot.",
+      "Add sliced shallots and quartered mushrooms to the pot. Sauté until softened and lightly browned, about 5-7 minutes.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Deglaze the pot with red grape juice and elderflower liqueur. Scrape up any browned bits from the bottom. Bring to a simmer and reduce by half, about 5 minutes.",
+      "Stir in chicken stock and fresh thyme sprigs. Bring to a simmer.",
+      "Return seared chicken thighs to the pot, skin-side up. Ensure chicken is partially submerged in the liquid.",
+      "Cover the pot. Transfer to the preheated oven. Braise for 45-60 minutes, or until chicken is very tender and reaches an internal temperature of 75°C.",
+      "Remove chicken from the pot. Tent with foil to keep warm.",
+      "Place the pot with the braising liquid on the stovetop over medium-high heat. Bring to a vigorous simmer. Reduce the liquid until it thickens slightly to a rich, glossy jus. This may take 10-15 minutes.",
+      "Taste the jus. Adjust seasoning with salt and pepper as needed. Remove thyme sprigs.",
+      "Serve each braised chicken thigh with a generous spoon of the grape and elderflower jus, along with the braised shallots and mushrooms."
+    ],
+    "notes": [
+      "Ensure chicken skin is very dry before searing for maximum crispiness.",
+      "The jus will thicken as it cools slightly; do not over-reduce."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Jus reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5.8,
+      "calories": 610,
+      "cholesterol_mg": 218,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 40.8,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 708,
+      "total_carbs_g": 20.9,
+      "total_fat_g": 36.3,
+      "total_sugars_g": 18.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.4,
+      "calories": 143,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 9.6,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 167,
+      "total_carbs_g": 4.9,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73,
+      "dietary_fiber": 7,
+      "protein": 82,
+      "saturated_fat": 46,
+      "sodium": 31,
+      "total_carbs": 8,
+      "total_fat": 46
+    },
+    "serving_size_g": 425,
+    "total_recipe_weight_g": 1701
+  },
+  {
+    "recipe_name": "Spicy Braised Pulled Pork with Creamy Coleslaw",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251024_000655_1275f22a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-10-24T00:06:56.617776000Z",
+    "selected_ingredients": [
+      "pork",
+      "hot sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of spicy braised pulled pork is presented on a rustic, off-white ceramic plate. The pork is piled naturally in the center, showing rich, dark red-brown hues from the hot sauce glaze, with visible strands of tender, shredded meat. The texture is moist and slightly glossy. Alongside the pork, a modest scoop of creamy coleslaw, featuring finely shredded green cabbage and bright orange grated carrot, provides a fresh contrast. The coleslaw is casually placed, not perfectly shaped. The plate sits on a well-used wooden dining table. A simple, slightly wrinkled cloth napkin is placed to the side. The scene is lit with warm, cozy lighting, evoking a relaxed family dining atmosphere. The background is a soft blur of a homely kitchen, with minimal, unobtrusive elements. The pork is presented in natural chunks/shreds, not fanned.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with soft dinner rolls or cornbread on the side.",
+      "Offer extra hot sauce for those who prefer more heat.",
+      "Traditionally eaten with hands, or with a fork."
+    ],
+    "hero_ingredient": "Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, bone-in or boneless",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Onion, large",
+        "quantity": "1, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, smashed"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Brown sugar, packed",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "500 g, shredded"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1, grated"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Pat pork shoulder dry. Season generously with salt and black pepper.",
+      "Heat a large, oven-safe pot or Dutch oven over medium-high heat. Sear pork on all sides until browned. Remove pork.",
+      "Add chopped onion and smashed garlic to the pot. Sauté for 3-4 minutes until softened.",
+      "Return pork to the pot. Add chicken or vegetable broth.",
+      "Cover the pot tightly. Braise in the preheated oven for 3-4 hours, or until pork is fork-tender.",
+      "While pork cooks, prepare the hot sauce glaze. In a small saucepan, combine apple cider vinegar, brown sugar, hot sauce, and smoked paprika. Bring to a simmer over medium heat. Cook for 5 minutes, stirring, until slightly thickened. Set aside.",
+      "For the coleslaw, combine shredded cabbage and grated carrot in a large bowl.",
+      "In a separate small bowl, whisk together mayonnaise, Dijon mustard, caster sugar, and 30 ml of the apple cider vinegar from the glaze ingredients (reserve the rest for the glaze). Season with salt and pepper.",
+      "Pour dressing over cabbage and carrot. Toss to combine. Refrigerate until serving.",
+      "Once pork is tender, remove it from the pot. Place on a cutting board. Let rest for 15 minutes.",
+      "Discard excess fat from the braising liquid if desired. Strain the liquid, reserving some for moisture if needed.",
+      "Shred the pork using two forks. Discard any bones or large pieces of fat.",
+      "Toss shredded pork with the prepared hot sauce glaze. Add a small amount of reserved braising liquid if pork seems too dry.",
+      "Serve pulled pork hot with creamy coleslaw on the side."
+    ],
+    "notes": [
+      "Pork shoulder is also known as Boston butt.",
+      "Adjust hot sauce quantity to your spice preference."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 18.6,
+      "calories": 1075,
+      "cholesterol_mg": 220,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 65.4,
+      "saturated_fat_g": 21.7,
+      "sodium_mg": 2324,
+      "total_carbs_g": 40.1,
+      "total_fat_g": 70,
+      "total_sugars_g": 27,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.7,
+      "calories": 154,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 9.4,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 333,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 10,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 73.3,
+      "dietary_fiber": 23.2,
+      "protein": 130.8,
+      "saturated_fat": 108.5,
+      "sodium": 101,
+      "total_carbs": 14.6,
+      "total_fat": 89.7
+    },
+    "serving_size_g": 698,
+    "total_recipe_weight_g": 2791
+  },
+  {
+    "recipe_name": "Spicy Beef and Mushroom Cottage Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251023_201742_4f4ff4cb.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2025-10-23T20:17:43.230302000Z",
+    "selected_ingredients": [
+      "beef",
+      "mushroom",
+      "garlic",
+      "onion",
+      "potato",
+      "hot sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spicy Beef and Mushroom Cottage Pie is presented in a white ceramic ramekin, approximately 15 cm in diameter. The top layer of creamy mashed potato is golden-brown with lightly crisped peaks, showing subtle texture from a fork or piping. The rich, dark brown beef and mushroom filling is visible around the edges of the ramekin, hinting at its savory depth. A scattering of vibrant green fresh parsley garnishes the potato topping. The ramekin sits centered on a clean white porcelain dinner plate, against a minimalist wooden table surface. Standard silver flatware is placed beside the plate, with a folded cotton napkin. The scene is illuminated by soft, natural, even lighting, creating a warm, inviting atmosphere typical of a modern bistro. The background is slightly blurred, focusing solely on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "cultural_origin": "British-inspired",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty bread for dipping."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Minced beef",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Potatoes (floury, e.g., Russet or Maris Piper)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30-45 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Milk (full-fat)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Heat olive oil in a large oven-safe pan or Dutch oven over medium-high heat. Brown minced beef. Break up clumps. Drain excess fat.",
+      "Add diced onions to the pan. Cook until softened, about 5-7 minutes.",
+      "Stir in minced garlic and sliced mushrooms. Cook for 5 minutes until mushrooms soften.",
+      "Stir in flour and tomato paste. Cook for 1 minute.",
+      "Gradually pour in beef stock, stirring constantly. Bring to a simmer.",
+      "Add hot sauce and 5 g chopped thyme. Season with salt and pepper. Simmer gently for 10 minutes, allowing sauce to thicken. Stir in 10 g chopped parsley.",
+      "Meanwhile, boil cubed potatoes in salted water until very tender, about 15-20 minutes. Drain well.",
+      "Mash potatoes with 50 g butter and warmed milk until smooth. Season with salt and pepper.",
+      "Transfer beef mixture to four individual oven-safe ramekins (approx. 15 cm diameter) or a single large oven-safe dish.",
+      "Top beef mixture evenly with mashed potatoes. Use a fork to create ridges or pipe decoratively.",
+      "Bake for 25-30 minutes, until filling is bubbly and potato topping is golden brown.",
+      "Let stand 5 minutes before serving. Garnish with remaining 5 g chopped parsley."
+    ],
+    "notes": [
+      "Adjust hot sauce quantity to personal preference for spice level.",
+      "For extra richness, a splash of cream can be added to the mashed potatoes."
+    ],
+    "traditional_techniques": [
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 858,
+      "cholesterol_mg": 168.33,
+      "dietary_fiber_g": 7.83,
+      "protein_g": 35.88,
+      "saturated_fat_g": 21.06,
+      "sodium_mg": 959.49,
+      "total_carbs_g": 61.42,
+      "total_fat_g": 51.23,
+      "total_sugars_g": 7.65,
+      "trans_fat_g": 1.86
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161,
+      "cholesterol_mg": 31.61,
+      "dietary_fiber_g": 1.47,
+      "protein_g": 6.74,
+      "saturated_fat_g": 3.95,
+      "sodium_mg": 180.19,
+      "total_carbs_g": 11.53,
+      "total_fat_g": 9.62,
+      "total_sugars_g": 1.44,
+      "trans_fat_g": 0.35
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.11,
+      "dietary_fiber": 27.96,
+      "protein": 71.76,
+      "saturated_fat": 105.3,
+      "sodium": 41.72,
+      "total_carbs": 22.33,
+      "total_fat": 65.68
+    },
+    "serving_size_g": 532.5,
+    "total_recipe_weight_g": 2130
+  }
+]

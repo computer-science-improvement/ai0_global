@@ -1,0 +1,652 @@
+[
+  {
+    "recipe_name": "Tuscan-Style Pasta with Roasted Tomatoes and Cannellini Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tuscan-style_pasta_with_roasted_tomatoes_and_cannellini_beans_20250624_121935_b3efdeb8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:19:35.643135000Z",
+    "selected_ingredients": [
+      "salad green",
+      "pasta",
+      "tomato",
+      "bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, featuring a generous, artfully mounded portion of rigatoni pasta. The pasta, cooked al dente, is coated in a rich, rustic tomato and cannellini bean sauce. Bursting, deeply colored roasted cherry tomatoes are visibly interspersed throughout the pasta, alongside tender, creamy cannellini beans. Vibrant green, wilted spinach leaves provide a fresh contrast, integrated seamlessly. The texture is inviting, with the sauce clinging well to the pasta. A garnish of fresh, whole basil leaves is scattered over the top, along with a light dusting of finely grated Parmesan cheese. The plate rests on a simple wooden table surface, accompanied by standard silver flatware and a neatly folded cotton napkin, all illuminated by natural, even lighting for a professional yet approachable bistro aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread for dipping in the sauce.",
+      "A simple green salad with a lemon vinaigrette can accompany it.",
+      "Offer additional grated Parmesan cheese or Pecorino Romano at the table for individual preference."
+    ],
+    "hero_ingredient": "Roasted Tomatoes",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "2 x 400 g cans, drained and rinsed"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, thinly sliced"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "a handful"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g, grated"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "1.5 g (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss cherry tomatoes with 15 ml olive oil, salt, and pepper. Roast for 20-25 minutes until softened and slightly caramelized.",
+      "While tomatoes roast, cook pasta according to package directions until al dente. Reserve 120 ml pasta water. Drain pasta.",
+      "Heat remaining 45 ml olive oil in a large deep skillet or Dutch oven over medium heat. Add diced onion. Cook for 5-7 minutes until softened and translucent. This is the soffritto base.",
+      "Add sliced garlic and red pepper flakes (if using). Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes and cannellini beans. Add vegetable broth. Bring to a simmer. Cook for 10 minutes, allowing sauce to thicken slightly.",
+      "Add cooked pasta to the sauce. Stir well to coat. If sauce is too thick, add reserved pasta water, 30 ml at a time, until desired consistency is reached.",
+      "Gently fold in roasted cherry tomatoes and fresh spinach. Cook for 2-3 minutes until spinach wilts.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Serve immediately, garnished with fresh basil leaves and grated Parmesan cheese."
+    ],
+    "notes": [
+      "Ensure pasta is cooked al dente for optimal texture.",
+      "Roasting the cherry tomatoes deepens their flavor and adds a smoky sweetness to the dish."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al Dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 651,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 14.9,
+      "protein_g": 27,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 795,
+      "total_carbs_g": 93.9,
+      "total_fat_g": 19.9,
+      "total_sugars_g": 9.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 1.9,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 4.7,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 139.1,
+      "total_carbs_g": 16.4,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 53,
+      "protein": 54,
+      "saturated_fat": 23,
+      "sodium": 35,
+      "total_carbs": 34,
+      "total_fat": 26
+    },
+    "serving_size_g": 571.25,
+    "total_recipe_weight_g": 2285
+  },
+  {
+    "recipe_name": "Simplified Hainanese Chicken Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_simplified_hainanese_chicken_rice_20250624_121931_06e2c431.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:19:32.276352000Z",
+    "selected_ingredients": [
+      "chicken",
+      "vegetable stock",
+      "salad green",
+      "rice",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "asian cuisine",
+    "visual_description": "A single generous serving of Simplified Hainanese Chicken Rice is presented on a simple, round, off-white ceramic plate. The centerpiece is tender, poached chicken, cut into thick, rustic chunks, with its glistening skin intact. The chicken is arranged casually on one side of the plate, not fanned. Adjacent to the chicken, a mound of fluffy, aromatic jasmine rice, cooked golden from chicken fat and stock, is mounded in a small, traditional white ceramic rice bowl. Thinly sliced cucumber rounds are neatly arranged on the plate next to the chicken, providing a fresh green contrast. A small, separate white ceramic dipping dish holds a vibrant green ginger-scallion sauce. Another small dish contains a dark, savory soy sauce. The entire setting rests on a well-used wooden kitchen table, bathed in warm, natural light. A pair of simple wooden chopsticks rests beside the plate. The scene evokes a cozy, authentic family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Southeast Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Serve with small bowls of the reserved chicken broth.",
+      "Offer chili sauce as an additional condiment.",
+      "Eat using chopsticks or a spoon and fork."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs or drumsticks",
+        "quantity": "4 pieces (approx. 800g)"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "800ml"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "50g, peeled and sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, smashed"
+      },
+      {
+        "name": "Brown onion",
+        "quantity": "1 medium, quartered"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green onions (scallions)",
+        "quantity": "3 stalks, chopped"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Neutral cooking oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse chicken pieces. Pat dry. Season with salt and white pepper.",
+      "Place chicken in a large pot. Add 10g sliced ginger, 2 smashed garlic cloves, and onion quarters. Pour 600ml vegetable stock over chicken. Ensure chicken is mostly submerged. Add water if needed.",
+      "Bring to a gentle boil. Reduce heat to low. Simmer for 20-25 minutes. Chicken internal temperature must reach 75°C (167°F).",
+      "Remove chicken from pot. Set aside to rest. Reserve poaching liquid. Skim any fat from the liquid.",
+      "Rinse jasmine rice thoroughly until water runs clear. Drain well.",
+      "Heat 15ml cooking oil in a medium pot or rice cooker pot. Add remaining 40g sliced ginger and 2 smashed garlic cloves. Sauté until fragrant, about 1 minute.",
+      "Add rinsed rice to the pot. Stir for 1 minute to coat grains. Pour 400ml reserved poaching liquid into the rice. Add salt to taste. Bring to a boil.",
+      "Reduce heat to low. Cover tightly. Cook for 15-18 minutes until liquid is absorbed and rice is tender. Let stand covered for 5 minutes after cooking.",
+      "While rice cooks, prepare ginger-scallion sauce: In a small bowl, combine 30ml light soy sauce, 15ml sesame oil, and most of the chopped green onions. Add a pinch of salt and pepper. Stir well.",
+      "Slice cucumber into thin rounds. Cut rested chicken into rustic chunks.",
+      "Serve chicken and rice immediately. Garnish chicken with remaining green onions. Serve with cucumber slices and dipping sauces on the side."
+    ],
+    "notes": [
+      "Traditionally, chicken stock and chicken fat are used for the rice. Vegetable stock is used here as per requirements.",
+      "Ensure chicken is fully cooked to 75°C (167°F) internal temperature."
+    ],
+    "traditional_techniques": [
+      "Poaching chicken",
+      "Cooking rice with aromatics"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 952.5,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 3.48,
+      "protein_g": 47.93,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 1256.75,
+      "total_carbs_g": 95.03,
+      "total_fat_g": 41.4,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 143.8,
+      "cholesterol_mg": 27.18,
+      "dietary_fiber_g": 0.52,
+      "protein_g": 7.24,
+      "saturated_fat_g": 1.48,
+      "sodium_mg": 189.77,
+      "total_carbs_g": 14.35,
+      "total_fat_g": 6.25,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 12.4,
+      "protein": 95.9,
+      "saturated_fat": 49,
+      "sodium": 54.6,
+      "total_carbs": 34.6,
+      "total_fat": 53.1
+    },
+    "serving_size_g": 662.25,
+    "total_recipe_weight_g": 2649
+  },
+  {
+    "recipe_name": "Cheesy Chicken and Potato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_chicken_and_potato_bake_20250624_121919_d87b7644.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:19:19.608856000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheddar"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Cheesy Chicken and Potato Bake sits on a matte cream ceramic plate. The dish consists of oven-roasted, golden-brown potato cubes and seared chicken chunks arranged in a natural, overlapping heap. Melted sharp cheddar cheese drapes over the components, showing bubbly textures and toasted edges. Vibrant green chopped chives are sprinkled evenly over the cheese. The arrangement is asymmetrical and casual, filling the center of the plate while leaving clean margins. The plate rests on a dark, textured wooden table next to a stainless steel fork and a neutral linen napkin. Warm, directional kitchen lighting enhances the crispy potato skins and the glossy, melted cheese. The entire plate is visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of sour cream",
+      "Pair with a fresh green salad"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Sharp cheddar cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Peel and cut potatoes into 2cm cubes.",
+      "Toss potatoes with 15ml oil, half the salt, and half the paprika.",
+      "Spread potatoes on a baking sheet.",
+      "Roast for 20 minutes.",
+      "Cut chicken into 3cm chunks.",
+      "Season chicken with remaining oil, salt, paprika, garlic powder, onion powder, and pepper.",
+      "Add chicken to the baking sheet with potatoes.",
+      "Roast for 15 minutes until chicken reaches 75°C.",
+      "Sprinkle shredded cheddar over the chicken and potatoes.",
+      "Bake 3 minutes until cheese melts and bubbles.",
+      "Garnish with finely chopped chives."
+    ],
+    "notes": [
+      "Cut potatoes into uniform cubes to ensure even roasting",
+      "Use sharp cheddar for the best flavor profile",
+      "Ensure chicken chunks are not touching to allow browning"
+    ],
+    "traditional_techniques": [
+      "Sheet pan roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 553,
+      "cholesterol_mg": 147,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 46.4,
+      "saturated_fat_g": 9,
+      "sodium_mg": 905,
+      "total_carbs_g": 37.9,
+      "total_fat_g": 23.2,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 158,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 13.3,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 258,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 17,
+      "protein": 93,
+      "saturated_fat": 45,
+      "sodium": 39,
+      "total_carbs": 14,
+      "total_fat": 30
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Fermented Lemon Chicken Pasta with Roasted Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_lemon_chicken_pasta_with_roasted_vegetables_20250624_121851_ff0ca39d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:18:51.877741000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single serving of linguine artfully coiled on a handcrafted, light cream ceramic plate, leaving generous white space around the edges. Scattered across the pasta are irregular, rustic chunks of seared chicken thigh, each with a golden-brown crust. Bright green zucchini batons, roasted until tender-crisp, and halved, burst-red cherry tomatoes are interspersed, adding vibrant pops of color. A delicate drizzle of vivid green herb oil glistens over the dish, highlighting the natural textures. The presentation is organic and unfussy, celebrating the inherent beauty of each ingredient. The plate rests on a natural light wood table surface, accompanied by a simple undyed linen napkin in beige and plain, unadorned cutlery. Soft, natural light illuminates the scene from the side, creating gentle shadows and emphasizing the fresh, clean aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Lemon Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Linguine or tagliatelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fermented lemon paste (or zest of 1 lemon + 15ml juice)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Zucchini, cut into 1cm thick batons",
+        "quantity": "2 medium (approx. 300g)"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh parsley or basil, finely chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable broth (preferably from scraps)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss zucchini batons and halved cherry tomatoes with 15ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 15-20 minutes until tender-crisp.",
+      "Cut chicken thighs into rustic 3-4cm chunks. In a bowl, combine chicken with fermented lemon paste, 15ml olive oil, salt, and pepper. Mix well to coat.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add chicken chunks in a single layer. Sear for 4-5 minutes per side until golden brown and cooked through. Ensure internal temperature reaches 75°C. Remove chicken from skillet and set aside.",
+      "Bring a large pot of salted water to a boil. Add pasta and cook according to package directions until al dente. Reserve 250ml pasta water before draining.",
+      "While pasta cooks, prepare herb oil: Blend chopped parsley or basil with remaining 15ml olive oil. Season with a pinch of salt.",
+      "In the same skillet used for chicken, add remaining 15ml olive oil and minced garlic. Sauté for 1 minute until fragrant. Pour in vegetable broth. Bring to a simmer, scraping up any browned bits from the bottom.",
+      "Add cooked pasta to the skillet with the broth. Toss to coat. Add reserved pasta water gradually, if needed, to create a light sauce that coats the pasta. Stir in roasted vegetables and seared chicken chunks.",
+      "Taste and adjust seasoning with salt and pepper. Serve immediately. Drizzle each portion with herb oil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 733.54,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 5.09,
+      "protein_g": 40.39,
+      "saturated_fat_g": 5.41,
+      "sodium_mg": 324.32,
+      "total_carbs_g": 81.87,
+      "total_fat_g": 27.13,
+      "total_sugars_g": 6.45,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149.24,
+      "cholesterol_mg": 28.69,
+      "dietary_fiber_g": 1.04,
+      "protein_g": 8.22,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 65.98,
+      "total_carbs_g": 16.66,
+      "total_fat_g": 5.52,
+      "total_sugars_g": 1.31,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 18.18,
+      "protein": 80.78,
+      "saturated_fat": 27.05,
+      "sodium": 14.1,
+      "total_carbs": 29.77,
+      "total_fat": 34.78
+    },
+    "serving_size_g": 491.5,
+    "total_recipe_weight_g": 1966
+  },
+  {
+    "recipe_name": "Chicken and Beer Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_beer_risotto_20250624_121847_a35622cd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T12:18:48.060202000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "tomato",
+      "onion",
+      "beer",
+      "parmesan cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, steaming portion of creamy, golden-hued risotto fills a rustic, deep ceramic bowl. The risotto is loose and flowing, not stiff, showcasing its velvety texture. Visible throughout are tender, irregular chunks of golden-brown seared chicken and vibrant red diced tomatoes, creating appealing color contrasts. Fine strands of freshly grated Parmesan cheese are gently melted into the rice, with additional cheese sprinkled on top. A scattering of bright green chopped parsley adds a fresh accent. The bowl rests on a warm, well-used wooden dining table, alongside a simple, casually placed linen napkin and a traditional fork. Soft, inviting kitchen lighting highlights the dish's comforting, homely appeal, emphasizing its natural, appetizing appearance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmesan cheese on the side.",
+      "Offer with crusty bread to sop up the creamy sauce.",
+      "Pair with a glass of crisp lager or a light red wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g can, undrained"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.5 liters, hot"
+      },
+      {
+        "name": "Lager or pale ale beer",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Parmesan cheese, freshly grated",
+        "quantity": "80g, plus more for serving"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Heat 15ml olive oil in a large pot or Dutch oven over medium heat. Add chicken thighs. Cook until browned and an internal temperature of 75°C (167°F) is reached, about 8-10 minutes. Remove chicken. Set aside.",
+      "Add remaining 15ml olive oil to the pot if needed. Add diced onion. Sauté until softened, about 5-7 minutes. Add minced garlic. Cook 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes until grains are translucent at the edges.",
+      "Pour in beer. Stir until completely absorbed.",
+      "Add canned diced tomatoes, undrained. Stir until liquid is mostly absorbed.",
+      "Begin adding hot chicken broth, one ladleful (about 250ml) at a time. Stir frequently. Wait until each ladleful is almost completely absorbed before adding the next. Continue for 18-20 minutes, or until rice is creamy and al dente.",
+      "While risotto cooks, dice cooked chicken into 2cm pieces.",
+      "Once risotto is done, remove from heat. Stir in diced chicken, grated Parmesan, and butter. Season with salt and pepper.",
+      "Let rest 2 minutes. Risotto should be fluid. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Soffritto (aromatic base)",
+      "Tostatura (toasting the rice)",
+      "Manteca (finishing with butter and cheese)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 800.9,
+      "cholesterol_mg": 152.5,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 46.7,
+      "saturated_fat_g": 11.6,
+      "sodium_mg": 2503.3,
+      "total_carbs_g": 78.7,
+      "total_fat_g": 31.4,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109.4,
+      "cholesterol_mg": 20.8,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 6.4,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 341.9,
+      "total_carbs_g": 10.7,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50.8,
+      "dietary_fiber": 11.6,
+      "protein": 93.4,
+      "saturated_fat": 58,
+      "sodium": 108.8,
+      "total_carbs": 28.6,
+      "total_fat": 40.3
+    },
+    "serving_size_g": 732.3,
+    "total_recipe_weight_g": 2929
+  }
+]

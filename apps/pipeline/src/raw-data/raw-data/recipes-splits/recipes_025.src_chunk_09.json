@@ -1,0 +1,673 @@
+[
+  {
+    "recipe_name": "Italian Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_chicken_and_mushroom_risotto_20250623_140103_6d632dec.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:01:04.272279000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "rice",
+      "tomato",
+      "mushroom",
+      "oregano"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of creamy Italian Chicken and Mushroom Risotto is served on a rustic off-white ceramic plate. The fluid risotto forms a low mound, naturally spreading. Visible are tender chunks of browned chicken, earthy sliced cremini mushrooms, and red diced tomatoes, all coated in creamy, al dente Arborio rice. A light scattering of grated Parmesan and vibrant green chopped fresh parsley adorns the top. The plate rests on a well-worn, warm-toned wooden dining table. A simple silver fork and spoon are casually placed beside the plate. A loosely folded linen napkin sits nearby. Warm, inviting light illuminates the scene, suggesting a cozy, lived-in family kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty Italian bread",
+      "Pair with a simple green salad dressed with olive oil and vinegar"
+    ],
+    "hero_ingredient": "Arborio Rice",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": "400g, boneless, skinless, diced into 2cm cubes"
+      },
+      {
+        "name": "Arborio Rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g, cremini or button, sliced"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "400g can, drained"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "1.5 litres, warm"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "80g, freshly grated, plus extra for serving"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "2 tablespoons, chopped (for garnish)"
+      }
+    ],
+    "instructions": [
+      "Heat 1 tablespoon olive oil in a large pot or deep skillet over medium-high heat. Add diced chicken. Cook, stirring occasionally, until browned on all sides and cooked through. Ensure internal temperature reaches 75°C. Remove chicken from pot and set aside.",
+      "Add remaining 1 tablespoon olive oil and butter to the pot. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook until mushrooms release their liquid and begin to brown, about 5-7 minutes.",
+      "Stir in Arborio rice. Cook for 2 minutes, stirring constantly, until rice grains are translucent at the edges.",
+      "Add dried oregano and drained diced tomatoes. Stir well.",
+      "Pour in one ladleful of warm chicken broth. Stir constantly until liquid is almost absorbed.",
+      "Continue adding broth, one ladleful at a time, stirring constantly and allowing each addition to be absorbed before adding the next. This process takes about 20-25 minutes. Risotto should be creamy and al dente.",
+      "Stir in cooked chicken and grated Parmesan cheese. Season with salt and black pepper to taste.",
+      "Remove from heat. Let rest for 2 minutes before serving."
+    ],
+    "notes": [
+      "Keep chicken broth warm to maintain risotto cooking temperature.",
+      "Stirring constantly is key for creamy risotto texture.",
+      "Adjust broth quantity for desired consistency; some risottos prefer more or less liquid."
+    ],
+    "traditional_techniques": [
+      "Risotto method (gradual broth addition with constant stirring)",
+      "Soffritto (for onion and garlic base)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 704,
+      "cholesterol_mg": 132,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 42.5,
+      "saturated_fat_g": 10.3,
+      "sodium_mg": 837,
+      "total_carbs_g": 76.2,
+      "total_fat_g": 26.6,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 159,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44,
+      "dietary_fiber": 12,
+      "protein": 85,
+      "saturated_fat": 52,
+      "sodium": 36,
+      "total_carbs": 28,
+      "total_fat": 34
+    },
+    "serving_size_g": 525,
+    "total_recipe_weight_g": 2100
+  },
+  {
+    "recipe_name": "Beer-Braised King Oyster Mushrooms with Fermented Capsicum Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_king_oyster_mushrooms_with_fermented_capsicum_relish_20250623_135955_5cc41794.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:59:56.058094000Z",
+    "selected_ingredients": [
+      {
+        "name": "brown rice vinegar"
+      },
+      {
+        "name": "bell pepper"
+      },
+      {
+        "name": "beer"
+      },
+      {
+        "name": "mushroom"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegan Australian",
+    "visual_description": "A single serving of Beer-Braised King Oyster Mushrooms is presented on a round, natural cream ceramic plate, with ample negative space. Two or three thick, golden-brown seared mushroom medallions, rich with dark braising liquid, are arranged organically. Their tender, meaty texture is evident. Beside them, a mound of fluffy brown rice provides a comforting base. A vibrant, ruby-red and golden-yellow dollop of finely diced fermented capsicum relish sits alongside, adding bright color and crisp texture. Fresh green thyme leaves are scattered naturally over the mushrooms. The plate rests on a light, textured reclaimed wood surface. An undyed linen napkin is folded simply. Soft, diffused natural light illuminates the dish, highlighting the ingredients' natural colors. The clean, minimalist background with natural elements enhances the eco-conscious and sustainable aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Australian",
+    "cultural_origin": "Australian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of simple steamed greens.",
+      "Accompany with a glass of Australian craft beer or local sparkling water."
+    ],
+    "hero_ingredient": "King Oyster Mushrooms",
+    "ingredients": [
+      {
+        "name": "King Oyster Mushrooms",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Red Bell Peppers (Capsicum)",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Yellow Bell Peppers (Capsicum)",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Brown Rice Vinegar",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Beer (dark ale or stout)",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Filtered Water (for brine)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Non-iodized Salt (for brine)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Cooked Brown Rice",
+        "quantity": "To serve 4 portions"
+      }
+    ],
+    "instructions": [
+      "Ferment Capsicum Relish (Prepare 5-7 days in advance): Wash bell peppers. Dice into 1 cm cubes. Prepare brine: Dissolve 15 g salt in 500 ml filtered water. Pack diced bell peppers tightly into a clean glass jar. Pour brine over, ensuring peppers are fully submerged. Use a fermentation weight if needed. Seal jar loosely or use an airlock. Let ferment at room temperature (18-24°C) for 5-7 days, or until desired tanginess is achieved. Burp jar daily if not using an airlock. Once fermented, drain bell peppers, reserving a small amount of brine. Combine fermented bell peppers with 50 ml brown rice vinegar. Adjust with reserved brine for consistency. Set aside.",
+      "Prepare Mushrooms: Trim ends of King Oyster Mushrooms. Slice into 2-3 cm thick medallions. Season mushroom medallions with salt and pepper.",
+      "Sear Mushrooms: Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat. Add mushroom medallions in a single layer. Sear 3-4 minutes per side until golden brown. Work in batches if necessary. Remove mushrooms and set aside.",
+      "Sauté Aromatics: Add diced onion to the same pot. Sauté 5-7 minutes until softened and translucent. Add minced garlic. Sauté 1 minute until fragrant.",
+      "Deglaze and Braise: Pour beer into the pot. Scrape up any browned bits from the bottom. Bring to a simmer. Add vegetable stock and fresh thyme sprigs. Return seared mushrooms to the pot. Reduce heat to low. Cover and simmer gently for 25-30 minutes, or until mushrooms are tender and have absorbed flavors. Remove thyme sprigs before serving.",
+      "Serve: Serve braised King Oyster Mushroom medallions hot alongside cooked brown rice. Spoon a generous dollop of fermented capsicum relish next to the mushrooms."
+    ],
+    "notes": [
+      "The fermented capsicum relish adds a unique tangy, umami depth. Its preparation requires several days in advance.",
+      "King Oyster mushrooms provide a substantial, meaty texture suitable for a plant-forward main course.",
+      "This recipe emphasizes seasonal ingredients and minimal waste."
+    ]
+  },
+  {
+    "recipe_name": "Beer-Braised Chicken with Cheesy Potato Mash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_chicken_with_cheesy_potato_mash_20250623_135909_637fbe44.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:59:09.630796000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "mushroom",
+      "beer",
+      "oil",
+      "oregano",
+      "bean",
+      "potato",
+      "hot sauce",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain plate, centrally featuring a golden-brown, braised chicken thigh. The chicken, tender and glistening, retains its whole, natural shape. Beside it, a generous, fluffy mound of cheesy potato mash, its surface lightly textured, hints at creamy richness. Sautéed cremini mushrooms, sliced into thick pieces, are neatly arranged near the chicken, their deep brown hues providing earthy contrast. Alongside, a small portion of whole black beans adds a dark, inviting element. A sprinkle of finely chopped fresh parsley brightens the composition with a pop of vibrant green. The overall presentation is balanced and inviting, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface and a folded cotton napkin positioned beside the plate. Natural, even lighting highlights the textures and colors of the food. The background is subtle, enhancing the casual yet refined atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Bistro",
+    "cultural_origin": "American Bistro",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 900g)"
+      },
+      {
+        "name": "Potatoes (Russet or Yukon Gold)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Lager or ale beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Canned black beans, drained and rinsed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Milk (whole or 2%)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Medium onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear chicken skin-side down until golden-brown, about 5 minutes. Flip and sear other side for 3 minutes. Remove chicken from pot.",
+      "Add remaining 15 ml olive oil to pot. Add diced onion and cook until softened, about 5 minutes. Add 2 minced garlic cloves and cook for 1 minute until fragrant.",
+      "Pour in beer and chicken broth. Scrape up any browned bits from bottom of pot. Stir in dried oregano and hot sauce. Bring liquid to a simmer.",
+      "Return chicken to pot. Liquid should cover about half of chicken. Cover pot and transfer to preheated oven. Braise for 45-60 minutes, or until chicken is tender and reaches internal temperature of 75°C (167°F).",
+      "While chicken braises, prepare potatoes. Peel potatoes and cut into 2-3 cm chunks. Place in a large pot, cover with cold salted water. Bring to a boil, then reduce heat and simmer until very tender, about 15-20 minutes.",
+      "Drain potatoes thoroughly. Return to hot pot. Add butter, milk, shredded cheese, and remaining 2 minced garlic cloves. Mash until smooth and creamy. Season with salt and pepper. Keep warm.",
+      "In a separate pan, heat a small amount of oil over medium heat. Add sliced mushrooms. Sauté until golden and tender, about 7-10 minutes. Season with salt and pepper.",
+      "Rinse and drain black beans. Gently warm in a small saucepan or microwave.",
+      "To serve, place a braised chicken thigh on each plate. Spoon a generous portion of cheesy potato mash beside chicken. Arrange sautéed mushrooms and warm black beans next to mash. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1172,
+      "cholesterol_mg": 286,
+      "dietary_fiber_g": 16,
+      "protein_g": 67.7,
+      "saturated_fat_g": 23.5,
+      "sodium_mg": 1365,
+      "total_carbs_g": 79.9,
+      "total_fat_g": 63.1,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 7.7,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 155,
+      "total_carbs_g": 9.1,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 95.33,
+      "dietary_fiber": 56.96,
+      "protein": 135.35,
+      "saturated_fat": 117.63,
+      "sodium": 59.36,
+      "total_carbs": 29.05,
+      "total_fat": 80.83
+    },
+    "serving_size_g": 880,
+    "total_recipe_weight_g": 3519
+  },
+  {
+    "recipe_name": "Fig & Melon Entremet with Brown Sugar Dacquoise",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fig_%26_melon_entremet_with_brown_sugar_dacquoise_20250623_135859_ebc231ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:59:00.017076000Z",
+    "selected_ingredients": [
+      {
+        "name": "melon"
+      },
+      {
+        "name": "fig"
+      },
+      {
+        "name": "brown sugar"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": null,
+    "visual_description": "A single, perfectly square entremet slice is centered on an elegant, round porcelain dessert plate with a subtle gold rim. The entremet stands tall, revealing distinct layers: a slender, golden-brown brown sugar dacquoise base, topped by a creamy, pale purple fig mousse, encasing a vibrant, translucent melon gelee insert. The entire structure is enveloped in a flawless, glossy mirror glaze, reflecting light dramatically. Negative space abounds, emphasizing the dessert's architectural precision. A single, delicate, thinly sliced fresh fig petal is artfully placed beside the entremet, accompanied by two tiny, glistening melon pearls, providing a final touch of color and texture. The presentation is ultra-minimalist, yet profoundly sophisticated, with sharp lines and pristine surfaces.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Pastry",
+    "cultural_origin": "French Pastry",
+    "hero_ingredient": "Fig",
+    "ingredients": [
+      {
+        "name": "large egg whites",
+        "quantity": "3 (approx. 90g)"
+      },
+      {
+        "name": "brown sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "almond flour",
+        "quantity": "70g"
+      },
+      {
+        "name": "confectioners' sugar",
+        "quantity": "30g"
+      },
+      {
+        "name": "fresh figs, ripe",
+        "quantity": "200g"
+      },
+      {
+        "name": "granulated sugar (for mousse)",
+        "quantity": "50g"
+      },
+      {
+        "name": "lemon juice",
+        "quantity": "15ml"
+      },
+      {
+        "name": "gelatin leaves (for mousse)",
+        "quantity": "4g (2 sheets)"
+      },
+      {
+        "name": "cold heavy cream (35% fat)",
+        "quantity": "200ml"
+      },
+      {
+        "name": "ripe cantaloupe or honeydew melon, pureed",
+        "quantity": "150g"
+      },
+      {
+        "name": "granulated sugar (for melon insert)",
+        "quantity": "30g"
+      },
+      {
+        "name": "gelatin leaves (for melon insert)",
+        "quantity": "2g (1 sheet)"
+      },
+      {
+        "name": "white chocolate, chopped",
+        "quantity": "75g"
+      },
+      {
+        "name": "glucose syrup",
+        "quantity": "75g"
+      },
+      {
+        "name": "condensed milk",
+        "quantity": "75g"
+      },
+      {
+        "name": "gelatin leaves (for mirror glaze)",
+        "quantity": "5g (2.5 sheets)"
+      },
+      {
+        "name": "water (for mirror glaze)",
+        "quantity": "50ml"
+      },
+      {
+        "name": "food coloring (optional, purple or green)",
+        "quantity": "few drops"
+      },
+      {
+        "name": "fresh fig (for garnish)",
+        "quantity": "1"
+      },
+      {
+        "name": "fresh melon (for pearls)",
+        "quantity": "small amount"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 170°C. Line a baking sheet with parchment.",
+      "Whip egg whites to soft peaks. Gradually add brown sugar, whip to stiff, glossy peaks.",
+      "Gently fold in sifted almond flour and confectioners' sugar.",
+      "Spread dacquoise batter thinly onto parchment, forming a 15x15 cm square. Bake 12-15 minutes until golden and set. Cool completely. Cut into four 7.5x7.5 cm squares.",
+      "Soak gelatin for melon insert in ice water. Puree melon with sugar until smooth.",
+      "Heat a small portion of melon puree gently. Squeeze excess water from gelatin, dissolve in warm puree. Combine with remaining cold puree.",
+      "Pour melon mixture into a small, shallow mold (e.g., 10x10 cm square) or four individual 5x5 cm square molds. Freeze until solid.",
+      "Soak gelatin for fig mousse in ice water. Roughly chop figs.",
+      "Blend figs, sugar, and lemon juice until smooth. Heat fig puree gently.",
+      "Squeeze excess water from gelatin, dissolve in warm fig puree. Let cool to room temperature.",
+      "Whip cold heavy cream to soft peaks. Gently fold cooled fig puree into whipped cream until combined.",
+      "Line four individual square molds (approx. 8x8 cm) with acetate strips.",
+      "Place one dacquoise square at the bottom of each mold. Pour a layer of fig mousse over dacquoise.",
+      "Place a frozen melon insert in the center of the mousse. Top with more fig mousse, filling mold to top. Smooth surface.",
+      "Freeze entremets for at least 6 hours, preferably overnight, until completely solid.",
+      "Soak gelatin for mirror glaze in ice water. Combine glucose syrup, condensed milk, and water in a saucepan. Bring to a gentle boil.",
+      "Remove from heat. Add chopped white chocolate and squeezed gelatin. Stir until smooth. Add food coloring if desired.",
+      "Blend with an immersion blender, avoiding air bubbles. Strain glaze. Let cool to 35-40°C.",
+      "Remove frozen entremets from molds and peel off acetate. Place on a wire rack over a baking sheet.",
+      "Pour mirror glaze evenly over each frozen entremet, ensuring full coverage. Let excess drip off.",
+      "Use a small offset spatula to remove drips from bottom edge. Carefully transfer glazed entremets to serving plates.",
+      "Garnish each with a thinly sliced fresh fig petal and a few small melon pearls. Serve immediately or refrigerate briefly."
+    ],
+    "traditional_techniques": [
+      "Dacquoise",
+      "Mousse",
+      "Entremet Construction",
+      "Mirror Glazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 60.7,
+      "calories": 675.3,
+      "cholesterol_mg": 76.8,
+      "dietary_fiber_g": 4,
+      "protein_g": 13.1,
+      "saturated_fat_g": 16.9,
+      "sodium_mg": 123.3,
+      "total_carbs_g": 97.3,
+      "total_fat_g": 34.8,
+      "total_sugars_g": 83.4,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 19.9,
+      "calories": 221.2,
+      "cholesterol_mg": 25.1,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 4.3,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 40.4,
+      "total_carbs_g": 31.9,
+      "total_fat_g": 11.4,
+      "total_sugars_g": 27.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 25.6,
+      "dietary_fiber": 14.1,
+      "protein": 26.2,
+      "saturated_fat": 84.6,
+      "sodium": 5.4,
+      "total_carbs": 35.4,
+      "total_fat": 44.7
+    },
+    "serving_size_g": 305.3,
+    "total_recipe_weight_g": 1221
+  },
+  {
+    "recipe_name": "Sweet and Spicy Dry Beef Fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_and_spicy_dry_beef_fry_20250623_135751_270eb99c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:57:51.487283000Z",
+    "selected_ingredients": [
+      {
+        "name": "beef"
+      },
+      {
+        "name": "chili"
+      },
+      {
+        "name": "oil"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "Indian",
+    "visual_description": "A generous, homely portion of Sweet and Spicy Dry Beef Fry is presented on a rustic, round ceramic platter. The beef cubes, approximately 2 cm, are deep brown, showing crispy edges from roasting, and are coated in a glossy, dark, sweet-spicy masala. Thinly sliced, caramelized onions are visibly intertwined with the beef, adding a rich color and texture. Bright green slit chilies and fresh curry leaves are scattered throughout, providing pops of vibrant color and a fresh aromatic contrast. The dish is arranged casually, with components touching and slightly overlapping, reflecting a natural, unpretentious home-cooked feel. The platter rests on a well-used wooden dining table. A casually placed cloth napkin and warm, cozy lighting from overhead kitchen fixtures complete the authentic family kitchen scene. The entire platter is visible, showcasing the ample portion without overcrowding.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef",
+        "quantity": "500 g, cut into 2 cm cubes"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, thinly sliced"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "4-5, slit lengthwise (adjust to taste)"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Curry leaves",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "1 tablespoon (adjust to taste)"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Black pepper powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Jaggery (or brown sugar)",
+        "quantity": "1 teaspoon, grated or crushed"
+      },
+      {
+        "name": "Coconut oil",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "125 ml (for cooking beef)"
+      }
+    ],
+    "instructions": [
+      "Wash beef cubes. Drain excess water.",
+      "Pressure cook beef with half teaspoon turmeric powder, half teaspoon salt, and 125 ml water. Cook for 6-8 whistles or until tender. Drain any remaining liquid. Set beef aside.",
+      "Heat coconut oil in a large heavy-bottomed pan or wok over medium heat.",
+      "Add sliced onions and a pinch of salt. Sauté until deeply caramelized and golden brown, about 10-15 minutes.",
+      "Add ginger-garlic paste and green chilies. Sauté for 2 minutes until fragrant.",
+      "Add curry leaves, turmeric powder, red chili powder, coriander powder, garam masala, and black pepper powder. Sauté for 1 minute until aromatic.",
+      "Add the cooked beef cubes to the pan. Mix well to coat the beef with the spices and onions.",
+      "Continue to fry the beef on medium-low heat, stirring occasionally. Fry until the beef is well-roasted, dark brown, and slightly crisp, about 15-20 minutes.",
+      "Stir in the jaggery or brown sugar. Cook for another 2 minutes until it melts and coats the beef, adding a sweet glaze.",
+      "Taste and adjust salt if needed.",
+      "Serve hot as a snack."
+    ]
+  }
+]

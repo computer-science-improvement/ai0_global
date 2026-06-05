@@ -1,0 +1,723 @@
+[
+  {
+    "recipe_name": "Clarified Chicken Consommé with Poached Chicken Roulade and Garden Brunoise",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_clarified_chicken_consomm%C3%A9_with_poached_chicken_roulade_and_garden_brunoise_20250626_093010_244e8485.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:30:11.478437000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, meticulously composed portion rests in a wide, shallow, pristine white bone china bowl. The liquid is a crystal-clear, shimmering golden consommé, profoundly clear. Elegantly centered are two to three precisely cut, circular medallions of poached chicken roulade, their pure white flesh subtly contrasted by visible green herbs. Surrounding the roulade, a scattering of vibrant, jewel-like brunoise-cut vegetables—bright orange carrot, pale green celery, translucent white leek—adds precise color and texture. A delicate swirl of verdant chive oil floats on the consommé's surface. A small sprig of micro chervil crowns the chicken. The composition rests on a premium grey-veined marble surface, flanked by a pristine white linen napkin folded into a sharp triangle and a modern, minimalist spoon. Dramatic, focused lighting with soft shadows emphasizes exquisite simplicity and abundant negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken bones (backs, wings, necks)",
+        "quantity": "2 kg"
+      },
+      {
+        "name": "Large onion, quartered",
+        "quantity": "1"
+      },
+      {
+        "name": "Carrots, roughly chopped",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, roughly chopped",
+        "quantity": "2"
+      },
+      {
+        "name": "Leek, roughly chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "10"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "5 litres"
+      },
+      {
+        "name": "Lean chicken mince",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Finely diced onion",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Finely diced carrot",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Finely diced celery",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large egg whites",
+        "quantity": "4"
+      },
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "2 (approx. 200g each)"
+      },
+      {
+        "name": "Fresh tarragon leaves, finely chopped",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh chervil leaves, finely chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Carrot, peeled, very finely diced (brunoise)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Celery stalk, very finely diced (brunoise)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Leek (white part), very finely diced (brunoise)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Micro chervil or micro tarragon",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken Stock: Combine chicken bones, onion, carrots, celery, leek, thyme, bay leaves, and peppercorns in a large stockpot. Add cold water. Bring slowly to a simmer, skimming impurities. Reduce heat to low. Simmer gently for 4-6 hours. Strain stock through a fine-mesh sieve lined with cheesecloth. Cool completely. Degrease thoroughly.",
+      "Prepare Chicken Roulade: Pound chicken breasts to an even 0.5 cm thickness. Season lightly with salt and pepper. Sprinkle half the tarragon and chervil evenly over each breast. Roll each breast tightly into a cylinder. Wrap tightly in plastic wrap or vacuum seal in sous-vide bags. Cook in a water bath at 65°C (149°F) for 1 hour. Immediately transfer to an ice bath to chill. Once chilled, unwrap and slice into 1.5 cm thick medallions. Store refrigerated.",
+      "Prepare Consommé Clarification Raft: In a large bowl, combine chicken mince, diced onion, diced carrot, diced celery, and egg whites. Mix thoroughly. Gradually whisk in 500 ml of cold, degreased chicken stock until well combined.",
+      "Clarify Consommé: Add the clarification raft mixture to the remaining cold chicken stock in a large pot. Place over medium-low heat. Stir gently but constantly until raft begins to form and float to the surface. Stop stirring. Create a small \"chimney\" in the center of the raft. Maintain a very gentle simmer for 45-60 minutes, allowing clear liquid to bubble through the chimney. Do not boil.",
+      "Strain Consommé: Carefully ladle the clear consommé through a fine-mesh sieve lined with a clean, damp cheesecloth or coffee filter. Do not press the raft. Season with salt to taste. Keep warm.",
+      "Prepare Garden Brunoise: Blanch diced carrot, celery, and leek separately in salted boiling water for 30 seconds. Immediately transfer to an ice bath. Drain well.",
+      "Prepare Chive Oil: Blanch chives in boiling water for 10 seconds. Immediately transfer to an ice bath. Drain and squeeze dry. Blend chives with olive oil and a pinch of salt until smooth. Strain through a fine-mesh sieve lined with cheesecloth.",
+      "Assemble and Serve: Gently warm sliced chicken roulade medallions in a little consommé or steam lightly. Place 2-3 roulade medallions in the center of each deep, warm serving bowl. Scatter a small amount of blanched garden brunoise around the roulade. Carefully ladle the hot, clear consommé into the bowl. Drizzle a few drops of chive oil over the surface. Garnish with micro chervil or micro tarragon. Serve immediately. Ensure chicken internal temperature reaches 75°C (167°F) during warming."
+    ],
+    "notes": [
+      "Ensure the chicken stock is thoroughly degreased for optimal consommé clarity.",
+      "Do not let the consommé boil during clarification, as it will break the raft and cloud the liquid.",
+      "Achieving proper sous-vide chicken internal temperature is crucial for food safety and tenderness.",
+      "Blanching the brunoise briefly keeps them vibrant and tender-crisp."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 452,
+      "cholesterol_mg": 96.3,
+      "dietary_fiber_g": 1.46,
+      "protein_g": 43.58,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 958.6,
+      "total_carbs_g": 11.23,
+      "total_fat_g": 28,
+      "total_sugars_g": 1.24,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 48,
+      "cholesterol_mg": 10.2,
+      "dietary_fiber_g": 0.16,
+      "protein_g": 4.62,
+      "saturated_fat_g": 0.49,
+      "sodium_mg": 101.7,
+      "total_carbs_g": 1.19,
+      "total_fat_g": 2.97,
+      "total_sugars_g": 0.13,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32.1,
+      "dietary_fiber": 5.2,
+      "protein": 87.2,
+      "saturated_fat": 23,
+      "sodium": 41.7,
+      "total_carbs": 4.1,
+      "total_fat": 35.9
+    },
+    "serving_size_g": 943,
+    "total_recipe_weight_g": 3772
+  },
+  {
+    "recipe_name": "Seared Chicken Roulade, Potato Pavé, Broccoli Emulsion, Onion Jus, Parmesan Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_roulade%2C_potato_pav%C3%A9%2C_broccoli_emulsion%2C_onion_jus%2C_parmesan_crisp_20250626_092735_d3a72a59.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:27:35.955972000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "cheese",
+      "broccoli"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, exquisitely plated starter portion sits centered on a large, round bone china plate, allowing for abundant negative space. A thick, golden-brown seared chicken roulade medallion, perfectly cooked to a tender, moist interior, is the focal point. Adjacent to it rests a precise, rectangular potato pavé, its layers visible, with a crisp, golden exterior. A small, vibrant green pool or artful swipe of smooth broccoli emulsion adds a pop of color and creamy texture. Beneath or alongside these elements, a clear, deep amber pool of glossy onion jus subtly enhances the composition. A delicate, irregularly shaped Parmesan crisp, thin and golden, leans elegantly against the chicken, providing a contrasting textural element. The overall presentation is minimalist and architectural, with each component intentionally placed to create a harmonious, flowing composition. The plate rests on a premium white Carrara marble surface. Polished silver fine-dining cutlery is neatly arranged to the right. A pristine white linen napkin, folded into a precise triangle, complements the setting. Dramatic, soft overhead lighting casts subtle shadows, highlighting the dish's textures and colors. The background is ultra-minimalist, drawing all focus to the meticulously prepared food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, skin on, bone out",
+        "quantity": "2 large (approx. 200g each)"
+      },
+      {
+        "name": "Chicken thigh meat, boneless, skinless",
+        "quantity": "100g"
+      },
+      {
+        "name": "Double cream (heavy cream)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Fresh thyme leaves, finely chopped",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh chives, finely chopped",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "As needed"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "55g"
+      },
+      {
+        "name": "Floury potatoes (e.g., Russet or Maris Piper)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Garlic clove, crushed",
+        "quantity": "1"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "150g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Soy lecithin (optional)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Yellow onions, thinly sliced",
+        "quantity": "200g"
+      },
+      {
+        "name": "Good quality chicken stock (low sodium)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sherry vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "2g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Parmigiano-Reggiano, finely grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Microgreens (for garnish)",
+        "quantity": "Small handful"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken Roulade: Trim chicken breasts. Butterfly open. Pound flat between parchment paper to uniform thickness. Season generously with salt and pepper.",
+      "Make chicken mousse: Combine chicken thigh meat, 50ml double cream, 2g fresh thyme, 2g fresh chives, 2g salt, and 0.5g white pepper in a food processor. Blend until very smooth. Pass through a fine-mesh sieve for ultra-smoothness.",
+      "Spread mousse evenly over each butterflied chicken breast. Roll tightly into a cylinder. Secure tightly with cling film, forming a compact roulade. Alternatively, use butcher's twine.",
+      "Sous-vide chicken roulades at 63°C for 1.5 hours. Alternatively, gently poach in simmering water until internal temperature reaches 75°C. Rapidly chill in an ice bath.",
+      "Once cold, remove cling film or twine. Just before serving, sear roulades in hot olive oil until golden brown and crispy on all sides. Baste with a knob of butter. Rest 5 minutes.",
+      "Prepare Potato Pavé: Peel potatoes. Slice very thinly using a mandoline (1-2mm thickness).",
+      "Combine 100ml double cream, 50ml whole milk, crushed garlic, 1 sprig fresh thyme, 5g salt, and 0.5g white pepper in a small saucepan. Heat gently; do not boil.",
+      "Lightly grease and line a small terrine mould or baking dish (approx. 10x15cm) with parchment paper.",
+      "Arrange potato slices in layers in the mould, overlapping slightly. Brush each layer with melted butter and some cream mixture. Press firmly between layers to remove air pockets. Repeat until all potatoes are used.",
+      "Bake at 160°C for 60-75 minutes, or until potatoes are tender when pierced. Place a heavy weight on top of the cooked pavé and chill overnight (or at least 4 hours) to compress.",
+      "Once chilled and compressed, remove from mould. Cut into precise rectangular portions (approx. 3x5cm). Just before serving, sear or bake pavé portions until golden and crispy on all sides.",
+      "Prepare Broccoli Emulsion: Blanch broccoli florets in generously salted boiling water for 2-3 minutes. Immediately transfer to an ice bath to stop cooking and preserve color. Drain very well.",
+      "Blend blanched broccoli with 50ml vegetable stock, 30ml extra virgin olive oil, 5g salt, and a pinch of white pepper until extremely smooth. For an airy emulsion, add 2g soy lecithin and use an immersion blender right before serving. Pass through a fine-mesh sieve for ultimate smoothness. Reheat gently before plating.",
+      "Prepare Onion Jus: Sauté thinly sliced yellow onions in a little olive oil over low heat for 20-30 minutes until deeply caramelized and sweet. Do not burn.",
+      "Deglaze pan with 50ml dry white wine. Scrape up any fond. Reduce wine by half.",
+      "Add 500ml chicken stock, 15ml sherry vinegar, 2g black peppercorns, 1 sprig fresh thyme, and 1 bay leaf. Simmer gently for 30-45 minutes, reducing by half. Skim any impurities.",
+      "Strain jus through a fine-mesh sieve, pressing solids to extract maximum flavor. Reduce further if needed for desired glossy, coating consistency. Just before serving, whisk in 5g cold unsalted butter for richness and shine. Season to taste.",
+      "Prepare Parmesan Crisp: Preheat oven to 180°C. Line a baking sheet with parchment paper.",
+      "Spread grated Parmigiano-Reggiano thinly in desired irregular, organic shapes on the parchment paper. Leave space between crisps.",
+      "Bake for 5-8 minutes, or until golden brown and crisp. Watch carefully to prevent burning. Cool on a wire rack; crisps will harden as they cool.",
+      "Assembly: Slice chilled, seared chicken roulade into 2cm thick medallions. Reheat gently if needed. Reheat potato pavé portions.",
+      "On each large, round bone china plate, spoon a small, artful pool or swipe of onion jus.",
+      "Carefully place one seared chicken medallion and one potato pavé portion beside the jus, creating an elegant composition.",
+      "Add a precise dot or small, artful streak of vibrant green broccoli emulsion. Maintain abundant negative space on the plate.",
+      "Gently lean one irregular parmesan crisp against the chicken or pavé for height and texture.",
+      "Garnish minimally with a few microgreens for a final touch of freshness and color. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 744.6,
+      "cholesterol_mg": 197.6,
+      "dietary_fiber_g": 4,
+      "protein_g": 34.9,
+      "saturated_fat_g": 23,
+      "sodium_mg": 1001.2,
+      "total_carbs_g": 28.4,
+      "total_fat_g": 71.9,
+      "total_sugars_g": 5.4,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.4,
+      "cholesterol_mg": 35.1,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.2,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 178,
+      "total_carbs_g": 5,
+      "total_fat_g": 12.8,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 14,
+      "protein": 70,
+      "saturated_fat": 115,
+      "sodium": 44,
+      "total_carbs": 10,
+      "total_fat": 92
+    },
+    "serving_size_g": 562.4,
+    "total_recipe_weight_g": 2249.5
+  },
+  {
+    "recipe_name": "Cheesy Baked Chicken with Roasted Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_baked_chicken_with_roasted_tomatoes_20250626_092631_a4cddecc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:26:31.826910000Z",
+    "selected_ingredients": [
+      "tomato",
+      "garlic",
+      "chicken",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Cheesy Baked Chicken with Roasted Tomatoes rests on a simple, off-white ceramic plate. A tender, golden-brown boneless chicken thigh is positioned centrally, generously covered with melted, bubbly mozzarella and Parmesan cheese that shows light golden-brown spots. Surrounding the chicken are halved, roasted cherry tomatoes, some burst open, revealing their juicy interior. Soft, golden-brown garlic slices are nestled among the tomatoes. The arrangement is casual and natural, typical of home cooking, with components slightly overlapping. Fresh green basil leaves are scattered over the dish, providing a pop of color. The plate is set on a well-used wooden dining table, revealing its natural grain and subtle imperfections. A simple, folded cloth napkin and standard flatware (fork and knife) are casually placed beside the plate. Warm, inviting light from a kitchen fixture illuminates the scene, creating a cozy, lived-in atmosphere. The background is minimal, suggesting a relaxed family dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to soak up the flavorful pan juices.",
+      "Accompany with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600 g)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6-8"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Shredded mozzarella cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Ensure chicken is at room temperature.",
+      "Pat chicken thighs dry with paper towels. Season chicken with salt and pepper.",
+      "Halve cherry tomatoes. Thinly slice garlic cloves.",
+      "In a large baking dish, combine chicken, halved cherry tomatoes, sliced garlic, olive oil, and dried oregano. Toss to coat all ingredients evenly.",
+      "Arrange chicken in a single layer in the dish. Distribute tomatoes and garlic around chicken.",
+      "Bake for 25 minutes, or until chicken reaches an internal temperature of 70°C.",
+      "Remove dish from oven. Sprinkle shredded mozzarella and grated Parmesan over chicken and vegetables.",
+      "Return to oven. Bake for another 10-15 minutes, or until cheese is melted, bubbly, and lightly golden. Chicken internal temperature should reach 75°C.",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Garnish with fresh basil leaves before serving."
+    ],
+    "notes": [
+      "This dish is perfect for a weeknight family meal.",
+      "Adjust garlic quantity to personal preference.",
+      "For extra flavor, use bone-in, skin-on chicken thighs and increase baking time slightly."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 466.4,
+      "cholesterol_mg": 194.1,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 47.7,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1086.5,
+      "total_carbs_g": 9.6,
+      "total_fat_g": 26.8,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 135.9,
+      "cholesterol_mg": 56.6,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 13.9,
+      "saturated_fat_g": 3,
+      "sodium_mg": 316.5,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 8,
+      "protein": 95,
+      "saturated_fat": 53,
+      "sodium": 47,
+      "total_carbs": 3,
+      "total_fat": 34
+    },
+    "serving_size_g": 343.25,
+    "total_recipe_weight_g": 1373
+  },
+  {
+    "recipe_name": "Beef Tenderloin Tartare, Black Garlic Emulsion, Sourdough Crisp",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_tenderloin_tartare%2C_black_garlic_emulsion%2C_sourdough_crisp_20250626_092523_ef2afa12.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:25:24.122359000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A pristine white Carrara marble slab serves as the minimalist canvas. Four distinct, artfully composed portions of Beef Tenderloin Tartare are arranged with precision. Each portion features a perfectly formed, glistening quenelle of ruby-red, finely diced beef, reflecting subtle highlights. Beside each quenelle, an irregular, golden-brown shard of delicate sourdough crisp stands upright, offering textural contrast. Dots of rich, obsidian-black black garlic emulsion are strategically placed around the tartare, creating a sophisticated visual flow. A few vibrant green chive batons are meticulously placed atop each tartare quenelle, providing a fresh pop of color. Abundant negative space surrounds each composition, emphasizing the architectural elegance and restraint. Dramatic, focused lighting casts subtle shadows, enhancing the dish's sculptural quality. The presentation is refined, showcasing premium ingredients with exceptional clarity and purpose.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Beef Tenderloin",
+    "ingredients": [
+      {
+        "name": "Beef Tenderloin (sashimi grade)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Capers, finely chopped",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Cornichons, finely chopped",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh Egg Yolk",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Garlic",
+        "quantity": "20 g"
+      },
+      {
+        "name": "High-Quality Mayonnaise",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Sourdough Bread, very thin slices",
+        "quantity": "4 slices"
+      },
+      {
+        "name": "Unsalted Butter, melted",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Chives, cut into small batons",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Brush sourdough slices with melted butter. Bake until golden and very crisp. Break into irregular shards. Set aside.",
+      "Blend black garlic with mayonnaise until completely smooth. Season with salt. Transfer to a piping bag or small bowl. Refrigerate.",
+      "Finely dice beef tenderloin into small, uniform cubes.",
+      "In a mixing bowl, combine diced beef with finely minced shallot, chopped capers, chopped cornichons, Dijon mustard, egg yolk, and olive oil. Gently mix.",
+      "Season beef mixture generously with sea salt and black pepper. Taste and adjust seasoning.",
+      "On a premium white sharing platter, arrange small quenelles of beef tartare. Use two spoons to form quenelles.",
+      "Artfully place sourdough crisp shards beside each tartare quenelle.",
+      "Pipe or spoon small dots of black garlic emulsion around the tartare.",
+      "Garnish each tartare quenelle with a few chive batons.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 285.8,
+      "cholesterol_mg": 86.7,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 14.9,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 521.5,
+      "total_carbs_g": 14.5,
+      "total_fat_g": 18.9,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 242,
+      "cholesterol_mg": 73.4,
+      "dietary_fiber_g": 1,
+      "protein_g": 12.6,
+      "saturated_fat_g": 4,
+      "sodium_mg": 441.5,
+      "total_carbs_g": 12.3,
+      "total_fat_g": 16,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28.9,
+      "dietary_fiber": 4.1,
+      "protein": 29.8,
+      "saturated_fat": 23.5,
+      "sodium": 22.7,
+      "total_carbs": 5.3,
+      "total_fat": 24.2
+    },
+    "serving_size_g": 118.1,
+    "total_recipe_weight_g": 472.5
+  },
+  {
+    "recipe_name": "Roasted Spanish Chicken with Paprika Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_spanish_chicken_with_paprika_potatoes_20250626_092411_18ee545f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:24:11.727533000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "potato",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Roasted Spanish Chicken with Paprika Potatoes is presented on a clean, round white porcelain plate. A golden-brown, crispy-skinned chicken thigh is centered, showcasing its succulent appearance. Surrounding the chicken are artfully arranged, rustic paprika-dusted potato wedges, their edges lightly caramelized. Vibrant halved cherry tomatoes burst with color, interspersed with tender, translucent wedges of roasted red onion and a few roasted, smashed garlic cloves. A sprinkle of fresh, bright green chopped parsley provides a contrasting garnish. The dish is arranged with moderate negative space, creating a balanced and appealing composition. The setting features a simple wooden table surface, with a cotton napkin placed neatly beside the plate and traditional European flatware. Natural, even lighting highlights the dish's rich colors and textures, creating an inviting, casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Potatoes, small (e.g., desiree or new potatoes)",
+        "quantity": "500g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Smoked paprika (pimentón dulce)",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (fan-forced 180°C).",
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Wash potatoes. Cut into 2cm thick wedges.",
+      "Peel red onion. Cut into 2cm thick wedges.",
+      "Smash garlic cloves lightly, leave skins on.",
+      "In a large bowl, combine potato wedges, onion wedges, and smashed garlic. Drizzle with 2 tablespoons olive oil and smoked paprika. Toss to coat evenly.",
+      "Arrange chicken thighs, potatoes, onion, and garlic in a single layer on a large baking tray. Do not overcrowd.",
+      "Roast for 25 minutes. Carefully flip chicken and potatoes.",
+      "Pour chicken broth over vegetables. Continue roasting for another 15 minutes.",
+      "Add cherry tomatoes to the tray. Continue roasting for 10-15 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender and golden.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 649,
+      "cholesterol_mg": 192,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 38.3,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 252,
+      "total_carbs_g": 31.9,
+      "total_fat_g": 40.8,
+      "total_sugars_g": 5,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 135,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8,
+      "saturated_fat_g": 2,
+      "sodium_mg": 52,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 8.5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 18.6,
+      "protein": 76.6,
+      "saturated_fat": 48.3,
+      "sodium": 11,
+      "total_carbs": 11.6,
+      "total_fat": 52.4
+    },
+    "serving_size_g": 481.5,
+    "total_recipe_weight_g": 1926
+  }
+]

@@ -1,0 +1,592 @@
+[
+  {
+    "recipe_name": "Hearty Lentil and Vegetable Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_lentil_and_vegetable_skillet_20250706_202219_b9ba3de0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T20:22:20.112014000Z",
+    "selected_ingredients": [
+      "green bean",
+      "tomato",
+      "spinach",
+      "cucumber",
+      "carrot"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A single, generous portion of the hearty lentil and vegetable skillet is presented in an everyday, rustic ceramic bowl. The rich, earthy brown lentils are visible, interspersed with vibrant green bean pieces, cut into 2 cm lengths, and bright orange carrot rounds, 1 cm thick. Softened red tomato chunks, 2 cm diced, and wilted dark green spinach leaves are nestled throughout. The dish is naturally piled, allowing components to slightly overlap, creating a comforting, unpretentious appearance. A scattering of fresh, chopped bright green parsley provides a pop of color. Small, pale green cucumber cubes are sprinkled on top, offering a cool, fresh contrast. The bowl sits on a well-used, light-colored wooden dining table. A simple, off-white cloth napkin is casually placed. Warm, inviting light from kitchen fixtures casts soft shadows. The background is minimal, hinting at a lived-in kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Cooking",
+    "hero_ingredient": "Green Lentils",
+    "ingredients": [
+      {
+        "name": "Green lentils",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g"
+      }
+    ],
+    "instructions": [
+      "Rinse lentils thoroughly.",
+      "Dice onion. Mince garlic.",
+      "Heat olive oil in a large skillet over medium heat. Sauté diced onion 5 minutes until soft. Add minced garlic and sauté 1 minute.",
+      "Add rinsed lentils, vegetable broth, dried thyme, and bay leaf to the skillet. Bring to a boil. Reduce heat to low, cover, and simmer 20 minutes.",
+      "While lentils simmer, trim green beans. Cut into 2 cm pieces. Peel carrots. Cut into 1 cm thick rounds. Dice tomatoes into 2 cm pieces.",
+      "Add green beans and carrots to the simmering lentils. Continue to simmer, covered, for 10-15 minutes, or until lentils are tender and vegetables are crisp-tender.",
+      "Stir in diced tomatoes and fresh spinach. Cook 2-3 minutes until spinach wilts. Remove bay leaf. Season with salt and pepper to taste.",
+      "Dice cucumber into small cubes for serving.",
+      "Ladle skillet mixture into bowls. Garnish with fresh parsley and diced cucumber. Serve warm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 353,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 16.1,
+      "protein_g": 18.2,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 299,
+      "total_carbs_g": 55.7,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 12.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 58.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 3,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 49.8,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 1.4,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 58,
+      "protein": 36,
+      "saturated_fat": 6,
+      "sodium": 13,
+      "total_carbs": 20,
+      "total_fat": 10
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2400
+  },
+  {
+    "recipe_name": "Braised Beef and Root Vegetable Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_and_root_vegetable_stew_20250706_200156_1156670b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T20:01:56.775121000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato",
+      "onion",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A hearty individual portion of braised beef and root vegetable stew is presented in a deep, wide white porcelain bowl. Large, tender 4cm beef chuck cubes, slow-braised to a rich dark brown, are nestled among rustic 3cm potato chunks and vibrant 2cm thick carrot slices. The stew is enveloped in a glossy, thick dark brown gravy, showcasing its comforting depth. A scattering of fresh, bright green chopped parsley adds a contrasting pop of color and freshness. The arrangement is natural and inviting, with elements visible and not overcrowded. The dish sits on a simple wooden table, accompanied by a silver fork and spoon, and a crisp white cotton napkin. Natural, even lighting highlights the stew's comforting textures and rich hues, set against a subtly blurred casual bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the rich gravy."
+    ],
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800 g, cut into 4 cm cubes"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600 g, waxy, peeled and cut into 3 cm chunks"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, roughly chopped"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "300 g, peeled and cut into 2 cm thick slices"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef cubes dry. Season generously with salt and pepper. Dredge beef lightly in flour.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear beef in batches until browned on all sides. Remove beef and set aside.",
+      "Add chopped onions to the pot. Cook until softened, about 5-7 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Stir in tomato paste and cook for 2 minutes. Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and reduce slightly.",
+      "Return beef to the pot. Add beef stock, thyme sprigs, and bay leaves. Bring to a gentle simmer.",
+      "Cover the pot. Transfer to a preheated oven at 160°C. Braise for 1.5 hours.",
+      "Remove pot from oven. Add carrot slices and potato chunks to the stew. Stir gently.",
+      "Return to the oven and continue to braise for another 1 to 1.5 hours, or until beef and vegetables are fork-tender.",
+      "Remove thyme sprigs and bay leaves. Season with salt and pepper to taste.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "This stew tastes even better the next day, allowing flavors to deepen.",
+      "Adjust the consistency of the gravy by simmering uncovered for a thicker result, or adding more stock for a thinner one."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 860.3,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 8,
+      "protein_g": 60.9,
+      "saturated_fat_g": 13,
+      "sodium_mg": 778,
+      "total_carbs_g": 55.1,
+      "total_fat_g": 35.1,
+      "total_sugars_g": 10.7,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 105.5,
+      "cholesterol_mg": 17.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.5,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 95.3,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 46.7,
+      "dietary_fiber": 28.6,
+      "protein": 121.8,
+      "saturated_fat": 65,
+      "sodium": 33.8,
+      "total_carbs": 20,
+      "total_fat": 45
+    },
+    "serving_size_g": 815.5,
+    "total_recipe_weight_g": 3262
+  },
+  {
+    "recipe_name": "Fermented Cherry Honey Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_cherry_honey_cream_20250706_200043_4aaa51e4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T20:00:44.007303000Z",
+    "selected_ingredients": [
+      {
+        "name": "honey"
+      },
+      {
+        "name": "apricot liqueur"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "cherry"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian",
+    "visual_description": "A generous, soft mound of off-white cream sits in a simple, unglazed ceramic bowl. Scattered throughout the cream are whole, plump, deep ruby-red fermented cherries, some peeking out from the creamy folds. The cream has a light, airy texture. A single fresh cherry, still attached to its stem, rests delicately on top as a natural garnish. The bowl is placed on a light, subtly textured reclaimed wood surface. An undyed, natural linen napkin is loosely draped beside it. Soft, diffused natural light from the side creates gentle highlights and shadows. The background is minimalist and clean, suggesting natural elements without distraction. The entire plate is visible, with ample negative space around the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Cherries",
+    "ingredients": [
+      {
+        "name": "Cherries",
+        "quantity": "500g (fresh, ripe, pitted)"
+      },
+      {
+        "name": "Raw Honey",
+        "quantity": "70g (50g for fermentation, 20g for cream)"
+      },
+      {
+        "name": "Filtered Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Full-Fat Coconut Cream",
+        "quantity": "400ml can (chilled overnight)"
+      },
+      {
+        "name": "Apricot Liqueur",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": "5ml"
+      }
+    ],
+    "instructions": [
+      "Pit cherries. Place in a clean glass jar.",
+      "Combine 50g honey, 100ml water, and 2g sea salt. Stir to dissolve.",
+      "Pour brine over cherries. Ensure cherries are submerged. Use a fermentation weight if necessary.",
+      "Cover jar with an airlock lid or burp daily. Ferment at room temperature (20-24°C) for 3-5 days. Taste for desired tanginess.",
+      "Chill coconut cream can overnight. Open can. Scoop out thick cream from top. Discard or reserve watery liquid.",
+      "In a bowl, combine thick coconut cream, 20g honey, apricot liqueur, and vanilla extract.",
+      "Whip mixture until light and fluffy.",
+      "Gently fold fermented cherries into whipped cream. Do not overmix.",
+      "Refrigerate for 30 minutes. Serve cold."
+    ],
+    "notes": [
+      "Save cherry pits and stems for a zero-waste infusion or compost.",
+      "Adjust fermentation time based on desired tanginess.",
+      "The leftover coconut water can be used in smoothies."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ]
+  },
+  {
+    "recipe_name": "Chicken Roulade, Mushroom Duxelles, Carrot Puree, Tomato Consommé",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_roulade%2C_mushroom_duxelles%2C_carrot_puree%2C_tomato_consomm%C3%A9_20250706_195951_85e9357a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T19:59:51.563299000Z",
+    "selected_ingredients": [
+      "carrot",
+      "olive oil",
+      "mushroom",
+      "chicken",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A Michelin-inspired dish presented on an elegant, large, off-white bone china plate with a subtle, textured rim. A smooth, vibrant orange carrot puree forms an organic, flowing arc on one side, showcasing its silky texture. Adjacent, two to three thick, round medallions of perfectly cooked chicken roulade are artfully arranged, revealing the rich, earthy mushroom duxelles within. The chicken has a delicate golden-brown sear on its exterior. A shimmering, translucent pool of clear, amber-hued tomato consommé is gently spooned onto the plate, creating a natural, fluid counterpoint. The composition emphasizes abundant negative space, highlighting the precise placement and pristine quality of each component. A single, small sprig of fresh micro-parsley rests delicately on the chicken. The setting is a premium grey-veined Carrara marble surface, with a pristine white linen napkin folded into a precise triangle. Dramatic, focused professional lighting casts subtle shadows, enhancing the dish's architectural precision and sophisticated simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "4 (approx. 180g each), boneless, skinless"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "45g"
+      },
+      {
+        "name": "Low-sodium chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Micro-parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Mushroom Duxelles: Finely mince mushrooms and 1 shallot. Heat 15ml olive oil and 15g butter in a pan. Add minced mushrooms, shallot, and 1 minced garlic clove. Sauté over medium-high heat until all liquid evaporates. Mixture must be dry. Season with salt and pepper. Cool completely.",
+      "Prepare Chicken Roulades: Butterfly each chicken breast. Pound gently to even thickness, approximately 1 cm. Spread cooled duxelles evenly over each chicken breast. Roll chicken tightly into a cylinder. Secure with kitchen twine. Season roulades with salt and pepper. Sear roulades in 15ml olive oil in an oven-safe pan until golden brown on all sides. Transfer pan to preheated oven at 180°C. Roast for 15-20 minutes, or until internal temperature reaches 75°C. Remove from oven. Rest 5 minutes. Remove twine. Slice into thick medallions.",
+      "Prepare Carrot Puree: Peel and chop carrots into 2cm pieces. Blanch carrots in salted boiling water until very tender. Drain well. Transfer to a blender. Add 30g butter and a splash of hot water or chicken stock. Blend until completely smooth. Pass through a fine-mesh sieve for ultimate silkiness. Season with salt. Keep warm.",
+      "Prepare Tomato Consommé: Coarsely chop tomatoes. Mince 2 garlic cloves and 1 shallot. Combine chopped tomatoes, minced garlic, minced shallot, and 2 thyme sprigs in a saucepan. Add 250ml chicken stock and 60ml white wine. Gently simmer for 20 minutes. Strain mixture through a fine-mesh sieve lined with cheesecloth without pressing. Gently heat consommé just before serving. Season to taste.",
+      "Plating: Spoon a swirl of carrot puree onto one side of the plate. Artfully arrange 2-3 thick medallions of chicken roulade next to the puree. Carefully spoon a pool of clear tomato consommé onto the plate, allowing it to naturally flow. Garnish with a single, small sprig of micro-parsley placed precisely."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 547,
+      "cholesterol_mg": 177,
+      "dietary_fiber_g": 6,
+      "protein_g": 61.9,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 276,
+      "total_carbs_g": 21.9,
+      "total_fat_g": 24.2,
+      "total_sugars_g": 11.1,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 95.8,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 10.8,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 48.2,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 4.2,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.1,
+      "dietary_fiber": 21.5,
+      "protein": 123.9,
+      "saturated_fat": 43.2,
+      "sodium": 12,
+      "total_carbs": 8,
+      "total_fat": 31
+    },
+    "serving_size_g": 571.8,
+    "total_recipe_weight_g": 2287
+  },
+  {
+    "recipe_name": "Italian Sausage with Creamy Polenta and Broccolini",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_italian_sausage_with_creamy_polenta_and_broccolini_20250706_194355_f1a1a702.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T19:43:55.393454000Z",
+    "selected_ingredients": [
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate. A generous dollop of creamy, golden polenta forms the base, its soft, inviting texture visible. Resting atop the polenta are two perfectly browned Italian sausages, their skins caramelized to a rich mahogany, showing slight char marks. The sausages are whole, plump, and uncut. Alongside, a vibrant cluster of bright green broccolini spears, tender-crisp with visible char, is artfully arranged. Thin slices of golden garlic cling to the broccolini. A scattering of fresh, finely chopped dark green parsley adds a final pop of color and freshness. The composition is balanced with moderate negative space, highlighting the rich colors and varying textures. The plate sits on a simple wooden table, accompanied by a folded white cotton napkin and classic silver flatware, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty Italian bread for dipping in leftover polenta.",
+      "Pair with a robust red wine like Chianti."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausages",
+        "quantity": "400g"
+      },
+      {
+        "name": "Polenta",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmigiano Reggiano cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Broccolini",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic cloves, sliced",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Bring broth to a simmer in a large saucepan. Gradually whisk in polenta. Reduce heat to low. Stir frequently for 20-25 minutes until thick and creamy. Stir in butter and Parmigiano Reggiano. Season with salt. Keep warm.",
+      "Heat 15ml olive oil in a large skillet over medium-high heat. Add sausages. Cook for 12-15 minutes, turning occasionally, until browned and cooked through. Remove sausages from skillet. Keep warm.",
+      "Add remaining 15ml olive oil to the same skillet. Add sliced garlic. Sauté for 30 seconds until fragrant. Add broccolini. Sauté for 5-7 minutes until tender-crisp. Season with salt and pepper.",
+      "Spoon creamy polenta onto individual plates. Place cooked sausages on top of polenta. Arrange sautéed broccolini alongside. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Slow cooking polenta for creaminess",
+      "Sautéing vegetables with garlic"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 772.8,
+      "cholesterol_mg": 122.23,
+      "dietary_fiber_g": 4.43,
+      "protein_g": 33.73,
+      "saturated_fat_g": 19.69,
+      "sodium_mg": 1769.04,
+      "total_carbs_g": 49.59,
+      "total_fat_g": 49.53,
+      "total_sugars_g": 2.79,
+      "trans_fat_g": 0.67
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 157.55,
+      "cholesterol_mg": 24.91,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 6.88,
+      "saturated_fat_g": 4.01,
+      "sodium_mg": 360.66,
+      "total_carbs_g": 10.11,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 0.57,
+      "trans_fat_g": 0.14
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.7,
+      "dietary_fiber": 15.8,
+      "protein": 67.5,
+      "saturated_fat": 98.5,
+      "sodium": 76.9,
+      "total_carbs": 18,
+      "total_fat": 63.5
+    },
+    "serving_size_g": 490.5,
+    "total_recipe_weight_g": 1962
+  }
+]

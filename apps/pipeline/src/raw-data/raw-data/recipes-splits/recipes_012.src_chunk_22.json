@@ -1,0 +1,702 @@
+[
+  {
+    "recipe_name": "Creamy Tuscan Pasta with Spinach, Artichoke, and Sun-Dried Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tuscan_pasta_with_spinach%2C_artichoke%2C_and_sun-dried_tomatoes_20250702_184931_9c2f323b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:49:32.421715000Z",
+    "selected_ingredients": [
+      "pasta",
+      "spinach",
+      "artichoke",
+      "sun dried tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous single portion of Creamy Tuscan Pasta is presented in a deep, everyday ceramic bowl with a rustic, slightly irregular rim, placed on a well-used wooden dining table. The al dente pasta strands, coated in a creamy, off-white sauce, are naturally intertwined with vibrant green wilted spinach, bright red julienned sun-dried tomatoes, and quartered pale green artichoke hearts. The dish showcases a medley of textures: the smooth sauce, the tender pasta, the soft spinach, and the slightly firmer artichoke. A light dusting of grated Parmesan cheese and a scattering of fresh chopped basil leaves provide a final touch of color and aroma. The arrangement is casual and inviting, as if served directly from the stove. A simple fork rests beside the bowl. The scene is bathed in warm, cozy kitchen lighting, with a casually placed cloth napkin and a small, empty bread plate visible in the soft background, hinting at a family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Canned artichoke hearts (drained and quartered)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Sun-dried tomatoes (in oil, drained and thinly sliced)",
+        "quantity": "80g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Onion, finely chopped",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes (optional)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh basil or parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions until al dente. Reserve 250ml pasta water. Drain pasta.",
+      "While pasta cooks, heat olive oil in a large skillet or pot over medium heat.",
+      "Add chopped onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and red pepper flakes (if using). Cook for 1 minute until fragrant.",
+      "Stir in sun-dried tomatoes and quartered artichoke hearts. Cook for 2 minutes.",
+      "Pour in heavy cream and vegetable broth. Bring to a gentle simmer.",
+      "Add fresh spinach in batches. Cook until wilted, stirring frequently.",
+      "Stir in grated Parmesan cheese until melted and sauce slightly thickens.",
+      "Add cooked pasta to the sauce. Toss to coat evenly.",
+      "If sauce is too thick, add reserved pasta water, 50ml at a time, until desired consistency.",
+      "Season with salt and black pepper to taste.",
+      "Serve immediately, garnished with fresh basil or parsley and extra grated Parmesan."
+    ],
+    "notes": [
+      "This recipe is easily adaptable; consider adding grilled chicken or shrimp for a heartier meal."
+    ],
+    "traditional_techniques": [
+      "Cooking pasta al dente"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 798.9,
+      "cholesterol_mg": 90.1,
+      "dietary_fiber_g": 9.07,
+      "protein_g": 25.87,
+      "saturated_fat_g": 18.83,
+      "sodium_mg": 788.9,
+      "total_carbs_g": 92.54,
+      "total_fat_g": 38.01,
+      "total_sugars_g": 8.89,
+      "trans_fat_g": 1.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 206.7,
+      "cholesterol_mg": 23.3,
+      "dietary_fiber_g": 2.35,
+      "protein_g": 6.69,
+      "saturated_fat_g": 4.87,
+      "sodium_mg": 204.1,
+      "total_carbs_g": 23.94,
+      "total_fat_g": 9.83,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.29
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30.02,
+      "dietary_fiber": 32.39,
+      "protein": 51.74,
+      "saturated_fat": 94.13,
+      "sodium": 34.3,
+      "total_carbs": 33.65,
+      "total_fat": 48.73
+    },
+    "serving_size_g": 386.6,
+    "total_recipe_weight_g": 1546.5
+  },
+  {
+    "recipe_name": "Chipotle Smoked Sausage and Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chipotle_smoked_sausage_and_tomato_rice_20250702_184911_a3d0fa2a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:49:12.359393000Z",
+    "selected_ingredients": [
+      "tomato",
+      "smoked sausage",
+      "chipotle chile"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, robust single serving of Chipotle Smoked Sausage and Tomato Rice is presented centrally on a clean white porcelain dinner plate. The dish features fluffy, orange-tinted long-grain rice, generously studded with thick, golden-brown seared smoked sausage chunks. Bright red diced tomatoes and vibrant green chopped cilantro are visibly mixed throughout, adding bursts of color. Interspersed are soft, translucent diced onions and tender, crimson diced bell peppers. The texture is a mix of tender rice, slightly firm sausage, and soft vegetables. A few fresh cilantro sprigs are artfully placed on top as garnish. A bright green lime wedge rests beside the rice. The plate sits on a simple wooden table surface in a modern bistro setting. A crisp white cotton napkin is folded neatly beside the plate. Natural, even lighting illuminates the scene, highlighting the dish's warmth and rich colors. The background is minimally blurred, suggesting a casual restaurant ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas.",
+      "Offer a side of pickled jalapeños or a simple salsa fresca.",
+      "Accompany with a dollop of crema or sour cream."
+    ],
+    "hero_ingredient": "Smoked Sausage",
+    "ingredients": [
+      {
+        "name": "Smoked Sausage",
+        "quantity": "400g, cut into thick rounds"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "400g, diced"
+      },
+      {
+        "name": "Chipotle Peppers in Adobo",
+        "quantity": "2-3, minced, plus 15ml adobo sauce"
+      },
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Corn (frozen or fresh)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Cilantro",
+        "quantity": "30g, chopped, for garnish"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, cut into wedges, for serving"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet or Dutch oven over medium-high heat.",
+      "Add smoked sausage thick rounds. Cook until browned and slightly crispy, about 5-7 minutes. Remove sausage from skillet. Set aside.",
+      "Add diced onion to the skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic, diced red bell pepper, ground cumin, and smoked paprika. Cook for 2 minutes until fragrant.",
+      "Stir in rice. Cook for 2 minutes, stirring constantly, until rice is lightly toasted.",
+      "Add diced tomatoes, minced chipotle peppers, and adobo sauce. Stir well.",
+      "Pour in chicken broth. Bring mixture to a boil.",
+      "Reduce heat to low. Cover skillet tightly. Simmer for 15-20 minutes, or until rice absorbs most liquid. Do not lift lid.",
+      "Stir in corn and cooked smoked sausage. Cover and cook for another 5 minutes, or until corn is heated through.",
+      "Remove from heat. Let stand, covered, for 5 minutes.",
+      "Fluff rice with a fork. Season with salt and black pepper to taste.",
+      "Garnish with fresh chopped cilantro. Serve with lime wedges."
+    ],
+    "notes": [
+      "Adjust chipotle to desired spice level.",
+      "For extra flavor, use homemade chicken broth."
+    ],
+    "traditional_techniques": [
+      "Sofrito base",
+      "One-pot rice cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 760,
+      "cholesterol_mg": 75,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 11.4,
+      "sodium_mg": 1334,
+      "total_carbs_g": 79.9,
+      "total_fat_g": 35.8,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.2,
+      "cholesterol_mg": 12.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 5.2,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 216.3,
+      "total_carbs_g": 13,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 25,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 57,
+      "sodium": 58,
+      "total_carbs": 29,
+      "total_fat": 46
+    },
+    "serving_size_g": 617,
+    "total_recipe_weight_g": 2467
+  },
+  {
+    "recipe_name": "Plant-Based Spanish Chicken & Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_plant-based_spanish_chicken_%26_tomato_rice_20250702_183359_2881e63f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:33:59.702120000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "oil",
+      "tomato",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "A single portion of Plant-Based Spanish Chicken & Tomato Rice is centrally plated on a clean, white porcelain dinner plate, showcasing a refined restaurant-style presentation. The Arborio rice, cooked to a moist, tender consistency, displays a rich red-orange hue from the crushed tomatoes and saffron. Irregular 2-3cm chunks of golden-brown seared plant-based chicken are nestled throughout the rice. Finely diced red bell pepper and onion pieces are visible, adding subtle color and texture. The dish is generously garnished with freshly chopped vibrant green flat-leaf parsley scattered across the top. The plate is positioned on a simple, light-colored wooden table surface, with a folded cotton napkin beside it. Natural, even lighting highlights the dish’s inviting colors and textures, presenting a balanced, approachable composition. No geometric arrangements are used; the elements flow organically.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly from the pan for a communal feel, or plate individually.",
+      "Accompany with crusty bread to soak up the flavorful juices.",
+      "Offer a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Plant-based chicken",
+    "ingredients": [
+      {
+        "name": "Plant-based chicken alternative",
+        "quantity": "400g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Dice onion and red bell pepper. Mince garlic. Cut plant-based chicken into 2-3cm irregular chunks.",
+      "Heat olive oil in a large, deep pan or paella pan over medium-high heat. Add plant-based chicken chunks. Sear until golden-brown, about 4-5 minutes. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion and bell pepper to the pan. Cook, stirring, until softened, about 5-7 minutes. This is the start of the sofrito.",
+      "Add minced garlic to the pan. Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes and smoked paprika. Add saffron threads. Simmer for 5 minutes, allowing flavors to meld.",
+      "Add Arborio rice to the pan. Stir for 1 minute to lightly toast the rice.",
+      "Pour in vegetable broth. Return seared plant-based chicken to the pan. Bring to a gentle simmer.",
+      "Reduce heat to low. Cover the pan. Cook for 18-20 minutes, or until rice is tender and most liquid is absorbed. Do not stir frequently.",
+      "Remove from heat. Let the dish rest, covered, for 5 minutes.",
+      "Chop fresh parsley. Fluff the rice gently with a fork. Season with salt and black pepper to taste. Garnish generously with fresh parsley before serving."
+    ],
+    "notes": [
+      "Ensure plant-based chicken alternative reaches an internal temperature of 75°C (167°F) for thorough cooking, if applicable to the specific product.",
+      "For an authentic 'socarrat' (crispy rice bottom), increase heat slightly during the last 5 minutes of cooking without stirring, but watch carefully to prevent burning."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 541,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 28.3,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 1004,
+      "total_carbs_g": 77.5,
+      "total_fat_g": 13,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 95,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1,
+      "protein_g": 5,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 177,
+      "total_carbs_g": 13.6,
+      "total_fat_g": 2.3,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 20,
+      "protein": 57,
+      "saturated_fat": 8,
+      "sodium": 44,
+      "total_carbs": 28,
+      "total_fat": 17
+    },
+    "serving_size_g": 569,
+    "total_recipe_weight_g": 2275
+  },
+  {
+    "recipe_name": "Parmesan-Horseradish Crusted Salmon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_parmesan-horseradish_crusted_salmon_20250702_183021_b51b18c1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:30:21.955348000Z",
+    "selected_ingredients": [
+      "salmon",
+      "breadcrumbs",
+      "parmesan cheese",
+      "horseradish"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared salmon fillet, approximately 180g, sits centered on a clean, round white porcelain plate. The salmon is topped with a thick, golden-brown parmesan-horseradish crust, showing rich texture and crispness. The sides of the salmon are a vibrant cooked pink. Alongside the salmon, a neatly arranged cluster of bright green roasted asparagus spears provides a contrasting color and texture. A delicate drizzle of pale yellow lemon-dill butter sauce is lightly spooned over the salmon. A fresh lemon wedge and a small sprig of fresh dill are placed beside the salmon as garnish. The plate is positioned on a simple wooden table surface, with a folded cotton napkin subtly placed to the side. The scene is bathed in natural, even lighting, with a softly blurred, unobtrusive modern bistro background, ensuring the dish remains the clear focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets, skin on, boneless",
+        "quantity": "4 x 180g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "80g"
+      },
+      {
+        "name": "Parmesan cheese, finely grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Prepared horseradish",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh dill, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large (zest and juice)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Asparagus spears, trimmed",
+        "quantity": "500g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "In a medium bowl, combine panko breadcrumbs, grated parmesan, prepared horseradish, lemon zest, 5g chopped dill, salt, and black pepper. Mix thoroughly.",
+      "Pat salmon fillets completely dry with paper towels. Season both sides with salt and pepper.",
+      "Firmly press the breadcrumb mixture onto the flesh side of each salmon fillet, creating an even crust.",
+      "Heat olive oil in a large oven-safe frying pan over medium-high heat.",
+      "Carefully place salmon fillets, crust-side down, into the hot pan. Sear for 2-3 minutes until the crust is golden brown and crispy.",
+      "Flip the salmon fillets. Add butter to the pan.",
+      "Transfer the pan to the preheated oven. Bake for 8-12 minutes, or until salmon is cooked through (internal temperature 63°C).",
+      "While salmon bakes, prepare asparagus. Toss asparagus with a drizzle of olive oil, salt, and pepper. Roast on a separate baking tray in the same oven for 8-10 minutes, or until tender-crisp.",
+      "For the sauce, melt remaining butter in a small saucepan over low heat. Add lemon juice and remaining 10g chopped dill. Stir well.",
+      "Plate one salmon fillet per person. Arrange roasted asparagus alongside the salmon. Spoon the lemon-dill butter sauce over the salmon. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the amount of horseradish to your preferred level of heat.",
+      "For an extra crispy crust, you can briefly broil the salmon for 1-2 minutes at the end of cooking, watching carefully to prevent burning."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 662,
+      "cholesterol_mg": 130,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 47.5,
+      "saturated_fat_g": 13.1,
+      "sodium_mg": 492,
+      "total_carbs_g": 23.3,
+      "total_fat_g": 41.1,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 175.1,
+      "cholesterol_mg": 34.4,
+      "dietary_fiber_g": 1,
+      "protein_g": 12.5,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 130.1,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 10.9,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43,
+      "dietary_fiber": 14,
+      "protein": 95,
+      "saturated_fat": 66,
+      "sodium": 21,
+      "total_carbs": 8,
+      "total_fat": 53
+    },
+    "serving_size_g": 378.1,
+    "total_recipe_weight_g": 1512.5
+  },
+  {
+    "recipe_name": "Spicy Indian Chicken and Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_indian_chicken_and_tomato_rice_20250702_182728_d4c19879.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T18:27:28.948954000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "tomato",
+      "chili"
+    ],
+    "complexity": "simple",
+    "special_requests": "Indian cuisine, Spicy",
+    "visual_description": "A single, home-style portion of Spicy Indian Chicken and Tomato Rice sits in a deep, rustic ceramic bowl on a well-used wooden dining table. The fluffy basmati rice is infused with a warm, inviting red-orange hue from the tomatoes and spices. Visible are tender, irregular chunks of browned chicken, not fanned or sliced, interspersed with soft, cooked tomato pieces and bright green flecks of fresh coriander. The dish appears moist and aromatic, not dry. Adjacent to the bowl, a small katori holds a dollop of creamy white raita. A simple metal tumbler and a casually placed cloth napkin complete the authentic, homely setting. Warm, natural light illuminates the scene, highlighting the comforting textures and vibrant colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of plain yogurt or cooling cucumber raita.",
+      "Offer a simple salad of sliced onions and cucumber.",
+      "Provide lime wedges for a fresh squeeze.",
+      "Traditionally eaten with a spoon or by hand."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g, cut into 2-3 cm cubes"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, finely sliced"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium, finely chopped"
+      },
+      {
+        "name": "Garlic paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Ginger paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2-3, slit lengthwise"
+      },
+      {
+        "name": "Vegetable oil or Ghee",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Hot water",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "30 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Rinse basmati rice under cold water. Soak rice for 30 minutes. Drain well.",
+      "Heat oil or ghee in a large pot or deep pan over medium heat. Add sliced onion. Sauté until golden brown.",
+      "Add ginger paste and garlic paste. Sauté for 1 minute until fragrant.",
+      "Add chicken cubes. Cook until chicken browns lightly on all sides.",
+      "Add chopped tomatoes and slit green chilies. Cook for 5 minutes until tomatoes soften.",
+      "Stir in turmeric powder, red chili powder, cumin powder, coriander powder, and salt. Cook for 2-3 minutes, stirring constantly, until spices are fragrant and oil separates.",
+      "Add drained rice to the pot. Gently stir to coat rice with the mixture.",
+      "Pour in hot water. Bring to a rolling boil.",
+      "Reduce heat to low. Cover the pot tightly. Cook for 15-20 minutes until water is absorbed and rice is cooked. Ensure chicken reaches 75°C internal temperature.",
+      "Turn off heat. Let the pot rest, covered, for 10 minutes.",
+      "Gently fluff the rice with a fork. Stir in garam masala. Garnish with fresh coriander leaves."
+    ],
+    "notes": [
+      "Adjust the amount of green chilies and red chili powder to control the spice level.",
+      "Soaking rice helps it cook evenly and remain separate.",
+      "Ensure the pot is tightly covered during cooking for best results."
+    ],
+    "traditional_techniques": [
+      "Bhooning (sautéing aromatic ingredients and spices until fragrant and oil separates)",
+      "Dum cooking (a simplified version where the dish is cooked in its own steam in a sealed pot)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 607.87,
+      "cholesterol_mg": 117.5,
+      "dietary_fiber_g": 4.89,
+      "protein_g": 30.78,
+      "saturated_fat_g": 4.05,
+      "sodium_mg": 602.48,
+      "total_carbs_g": 72.29,
+      "total_fat_g": 20.87,
+      "total_sugars_g": 4.53,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132.72,
+      "cholesterol_mg": 25.66,
+      "dietary_fiber_g": 1.07,
+      "protein_g": 6.72,
+      "saturated_fat_g": 0.88,
+      "sodium_mg": 131.54,
+      "total_carbs_g": 15.78,
+      "total_fat_g": 4.56,
+      "total_sugars_g": 0.99,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.2,
+      "dietary_fiber": 17.5,
+      "protein": 61.6,
+      "saturated_fat": 20.3,
+      "sodium": 26.2,
+      "total_carbs": 26.3,
+      "total_fat": 26.8
+    },
+    "serving_size_g": 458,
+    "total_recipe_weight_g": 1832
+  }
+]

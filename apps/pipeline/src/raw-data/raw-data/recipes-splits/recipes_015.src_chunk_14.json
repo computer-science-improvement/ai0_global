@@ -1,0 +1,674 @@
+[
+  {
+    "recipe_name": "Vietnamese Seared Pork Noodle Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vietnamese_seared_pork_noodle_salad_20250628_080058_3b62c5d0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T08:00:58.734114000Z",
+    "selected_ingredients": [
+      {
+        "name": "olive"
+      },
+      {
+        "name": "basil"
+      },
+      {
+        "name": "pork"
+      },
+      {
+        "name": "noodle"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "rice"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Vietnamese",
+    "visual_description": "Seared pork medallions, golden-brown, are artfully arranged atop a bed of soft rice vermicelli noodles. Thinly shredded green lettuce and julienned cucumber provide a fresh base. Vibrant fresh Vietnamese basil leaves and thinly sliced red onion are scattered over the dish, adding color and aromatic freshness. Sliced black olives are interspersed, offering a briny counterpoint. A light drizzle of clear Nuoc Cham dressing lightly coats the ingredients, with a small pool at the bottom of the white porcelain bowl. The dish is presented on a simple wooden table, with chopsticks resting beside the bowl, and a small ceramic spoon. Natural, even lighting highlights the dish's fresh colors and textures. A cotton napkin is neatly folded beside the setting. The background is a subtle, casual restaurant blur.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve with a small side dish of extra Nuoc Cham for dipping.",
+      "Offer fresh chili slices or chili garlic sauce for added heat."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork loin",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Thin rice vermicelli noodles",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh Vietnamese basil leaves",
+        "quantity": "1 cup"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Lettuce (e.g., butter or green leaf)",
+        "quantity": "1 small head"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Red chili, thinly sliced (optional)",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Slice pork loin into 1 cm thick medallions. Season with a pinch of sugar and black pepper. Set aside.",
+      "Prepare Nuoc Cham: Combine fish sauce, 60 ml warm water, sugar, lime juice, minced garlic, and sliced chili (if using). Stir until sugar dissolves. Set aside.",
+      "Cook rice vermicelli according to package directions. Rinse with cold water. Drain well. Set aside.",
+      "Heat vegetable oil in a large skillet over medium-high heat. Sear pork medallions 3-4 minutes per side. Cook until golden brown and cooked through. Remove from skillet. Let rest, then slice into thick chunks.",
+      "Thinly shred lettuce. Julienne cucumber. Thinly slice red onion. Halve or thinly slice black olives.",
+      "To assemble each starter bowl: Place a small bed of shredded lettuce and julienned cucumber at the bottom of a white porcelain bowl. Add a portion of rice vermicelli noodles.",
+      "Arrange pork chunks over the noodles. Scatter thinly sliced red onion, fresh basil leaves, and sliced black olives over the dish.",
+      "Spoon a generous amount of Nuoc Cham dressing over the ingredients. Serve immediately."
+    ],
+    "notes": [
+      "Ensure pork is cooked through but remains tender. Avoid overcooking.",
+      "The Nuoc Cham dressing provides the essential sweet, sour, salty, and spicy balance."
+    ],
+    "traditional_techniques": [
+      "Nuoc Cham preparation",
+      "Mise en place"
+    ]
+  },
+  {
+    "recipe_name": "Spicy Kimchi Chicken Toasts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_kimchi_chicken_toasts_20250628_075944_fa50a1ba.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:59:44.695087000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "chili",
+      "onion",
+      "oregano",
+      "carrot",
+      "bread",
+      "oil",
+      "kimchi"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Spicy Kimchi Chicken Toasts are presented generously on a rustic wooden board or a simple ceramic platter, reflecting a homestyle, unpretentious snack. Four thick slices of golden-brown, crisply toasted bread serve as the base. Each slice is piled high with a rich, vibrant mixture of finely diced chicken and bright red-orange chopped kimchi, interspersed with finely diced onion and grated carrot. The chicken is cooked to a tender, juicy texture, contrasting with the crisp bread. A light sprinkle of toasted sesame seeds or finely chopped spring onion adds a final touch of color and texture. The arrangement is casual, with some filling spilling naturally, suggesting abundance and comfort. The scene is set on a well-used wooden kitchen table, bathed in warm, natural light, with everyday ceramic plates and a casually placed cloth napkin in the background, emphasizing a relaxed family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean Inspired",
+    "hero_ingredient": "Kimchi Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thigh",
+        "quantity": "300g"
+      },
+      {
+        "name": "Kimchi",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small (about 80g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Red or green chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 small (about 50g)"
+      },
+      {
+        "name": "Rustic bread slices",
+        "quantity": "4"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Toasted sesame seeds or chopped spring onion",
+        "quantity": "For garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a large pan over medium-high heat.",
+      "Add finely diced chicken. Cook until browned and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C.",
+      "Remove chicken from pan and set aside.",
+      "Add finely diced onion to the pan. Sauté until softened, about 3 minutes.",
+      "Add minced garlic and thinly sliced chili. Sauté for 1 minute until fragrant.",
+      "Stir in chopped kimchi and grated carrot. Cook for 3-4 minutes, stirring occasionally.",
+      "Return cooked chicken to the pan. Add soy sauce and gochujang (if using). Stir well to combine.",
+      "Cook for 2-3 minutes, allowing flavors to meld.",
+      "Season with salt and black pepper to taste. Remove from heat. Stir in sesame oil.",
+      "Toast bread slices until golden brown and crisp.",
+      "Spoon generous amounts of the kimchi chicken mixture onto each toasted bread slice.",
+      "Garnish with toasted sesame seeds or chopped spring onion, if desired. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 281,
+      "cholesterol_mg": 71,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 24,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 830,
+      "total_carbs_g": 22.3,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 4.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 133,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 11.4,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 393,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 24,
+      "dietary_fiber": 10,
+      "protein": 48,
+      "saturated_fat": 14,
+      "sodium": 36,
+      "total_carbs": 8,
+      "total_fat": 16
+    },
+    "serving_size_g": 211,
+    "total_recipe_weight_g": 845
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken, Roasted Yam Puree, Tomato Confit",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken%2C_roasted_yam_puree%2C_tomato_confit_20250628_075940_1d8a97f4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:59:41.095741000Z",
+    "selected_ingredients": [
+      "yam",
+      "chicken",
+      "onion",
+      {
+        "name": "oregano",
+        "comment": "dry sticks"
+      },
+      "sesame oil",
+      "pepper",
+      "tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "no sous-vide",
+    "visual_description": "A pan-seared chicken breast, golden-brown and glistening, rests off-center on a pristine white bone china plate with a subtle, elegant pattern. The chicken, presented as a whole, succulent piece, anchors the composition. Adjacent to it, a sweeping, organic smear of vibrant orange roasted yam puree provides a warm color base. Nestled artfully on the puree, a cluster of glossy, slightly burst confit cherry tomatoes adds pops of deep red, their skins gently wrinkled. Scattered around the chicken and puree are a few deeply caramelized pearl onions, their rich brown hues contrasting with the brighter elements. A delicate drizzle of emerald-green oregano-infused olive oil, with a hint of sesame oil, creates an abstract pattern across the plate and around the components, adding aroma and sheen. The plate is set on a light grey veined marble surface. A folded white linen napkin, a single elegant fork, and a small, understated water glass occupy the vast negative space, emphasizing the dish's minimalist sophistication. Dramatic, professional lighting casts soft shadows, highlighting textures.",
+    "number_of_servings": 2,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty artisanal bread for dipping in the infused oil.",
+      "A light, crisp green salad with a simple vinaigrette."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "2 (approx. 200g each)"
+      },
+      {
+        "name": "Yam (orange sweet potato)",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "150g"
+      },
+      {
+        "name": "Pearl onions",
+        "quantity": "8-10 small"
+      },
+      {
+        "name": "Dried oregano sticks",
+        "quantity": "5g"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare oregano oil: Gently heat 40ml olive oil with dried oregano sticks in a small saucepan over low heat for 15 minutes. Do not let it fry. Strain and set aside.",
+      "Roast yam: Preheat oven to 200°C. Peel yam. Cut into 2cm cubes. Toss with 5ml olive oil, salt, and pepper. Spread on baking sheet. Roast for 20-25 minutes until very tender.",
+      "Make yam puree: Transfer roasted yam to a blender. Add butter, 50ml chicken stock, and a pinch of salt. Blend until perfectly smooth and creamy. Adjust consistency with more stock if needed. Keep warm.",
+      "Confit tomatoes: In a small oven-safe dish, combine cherry tomatoes, 5ml olive oil, smashed unpeeled garlic cloves, and thyme sprigs. Season lightly with salt. Roast in the same 200°C oven for 15-20 minutes until tomatoes are softened and slightly burst.",
+      "Caramelize pearl onions: Peel pearl onions. Heat a small pan over medium-low heat. Add 5ml olive oil. Add pearl onions. Cook slowly for 15-20 minutes, stirring occasionally, until deeply caramelized and tender. A splash of water can help deglaze.",
+      "Sear chicken: Pat chicken breasts dry. Season generously with salt and pepper. Heat a heavy-bottomed pan over medium-high heat. Add a splash of olive oil. Place chicken skin-side down. Sear for 6-8 minutes until golden brown and crispy. Flip. Cook for another 6-8 minutes until internal temperature reaches 75°C. Rest chicken for 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure yam puree is perfectly smooth. Pass through a sieve if necessary for ultra-fine dining texture.",
+      "Do not overcrowd the pan when searing chicken to ensure a good crust.",
+      "Resting the chicken is crucial for juiciness."
+    ],
+    "traditional_techniques": [
+      "Slow roasting",
+      "Confit",
+      "Pan-searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 828,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 66.2,
+      "saturated_fat_g": 13.1,
+      "sodium_mg": 261,
+      "total_carbs_g": 38.4,
+      "total_fat_g": 45.2,
+      "total_sugars_g": 9.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 158.7,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 12.7,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 50,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 25,
+      "protein": 132,
+      "saturated_fat": 66,
+      "sodium": 11,
+      "total_carbs": 14,
+      "total_fat": 58
+    },
+    "serving_size_g": 521.8,
+    "total_recipe_weight_g": 1043.6
+  },
+  {
+    "recipe_name": "Arroz con Pollo Estilo Casero",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_estilo_casero_20250628_075838_8884df46.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:58:39.110576000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Arroz con Pollo is presented on a clean, round white ceramic plate. Vibrant orange-red rice, moist and slightly saucy, forms a rustic mound. Nestled atop is a single, perfectly seared chicken thigh, its skin golden-brown and crisp, meat tender. Bright green peas are scattered throughout the rice, adding pops of color. Fresh, chopped cilantro garnishes the dish. The chicken is presented whole, not sliced. The plate sits on a simple, light-colored wooden table. A neatly folded white cotton napkin and a small rustic basket with warm corn tortillas are beside it. A small ceramic bowl of red salsa roja sits nearby. Natural, even lighting highlights the dish's rich colors and inviting textures. The presentation is clean, professional, and authentically Mexican, designed for casual yet refined dining.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas.",
+      "Offer a side of salsa roja.",
+      "Include lime wedges for squeezing over the dish."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 900g total)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Tomato, large, ripe",
+        "quantity": "2 (or 400g canned crushed tomatoes)"
+      },
+      {
+        "name": "White onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Green bell pepper, diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3g"
+      },
+      {
+        "name": "Chili powder (mild)",
+        "quantity": "5g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "3g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30g, plus extra for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat vegetable oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden brown and crispy, about 5-7 minutes. Flip and sear other side for 3-4 minutes. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion, red bell pepper, and green bell pepper to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic, cumin, oregano, chili powder, and smoked paprika. Cook for 1 minute until fragrant.",
+      "Add rice to the pot. Stir well to coat rice with vegetables and spices. Cook for 2-3 minutes, toasting the rice slightly.",
+      "If using fresh tomatoes, blend them until smooth. Add blended fresh tomatoes or canned crushed tomatoes to the pot. Stir and cook for 5 minutes, allowing moisture to evaporate slightly.",
+      "Pour in chicken broth. Bring to a simmer.",
+      "Return seared chicken thighs to the pot, nestling them into the rice mixture. Ensure chicken is mostly submerged.",
+      "Reduce heat to low. Cover the pot tightly. Cook for 20-25 minutes, or until rice is tender and chicken reaches an internal temperature of 75°C (167°F).",
+      "Stir in frozen green peas and chopped fresh cilantro. Cover and let stand for 5 minutes off heat.",
+      "Fluff rice gently with a fork. Taste and adjust seasoning."
+    ],
+    "notes": [
+      "For a spicier dish, add a diced jalapeño or serrano pepper with the bell peppers."
+    ],
+    "traditional_techniques": [
+      "Sofrito base",
+      "Toasting rice",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 857.08,
+      "cholesterol_mg": 207,
+      "dietary_fiber_g": 7.54,
+      "protein_g": 53.71,
+      "saturated_fat_g": 8.28,
+      "sodium_mg": 1013.65,
+      "total_carbs_g": 84.65,
+      "total_fat_g": 32.59,
+      "total_sugars_g": 10.16,
+      "trans_fat_g": 0.25
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119.75,
+      "cholesterol_mg": 28.93,
+      "dietary_fiber_g": 1.05,
+      "protein_g": 7.5,
+      "saturated_fat_g": 1.16,
+      "sodium_mg": 141.68,
+      "total_carbs_g": 11.83,
+      "total_fat_g": 4.55,
+      "total_sugars_g": 1.42,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 69,
+      "dietary_fiber": 26.92,
+      "protein": 107.43,
+      "saturated_fat": 41.38,
+      "sodium": 44.07,
+      "total_carbs": 30.78,
+      "total_fat": 41.78
+    },
+    "serving_size_g": 715.75,
+    "total_recipe_weight_g": 2863
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken, Kimchi Emulsion, Roasted Carrot, Garlic-Chili Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken%2C_kimchi_emulsion%2C_roasted_carrot%2C_garlic-chili_crumble_20250628_075820_27f10c11.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T07:58:20.870751000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "chili",
+      "onion",
+      "oregano",
+      "carrot",
+      "bread",
+      "oil",
+      "kimchi"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single portion of meticulously plated pan-seared chicken, presented on an elegant matte white or light grey ceramic plate. The golden-brown, perfectly seared chicken breast is positioned as the focal point, its surface exhibiting a delicate crust. Adjacent to the chicken, a vibrant, smooth, deep red kimchi emulsion forms an organic, flowing base, providing a striking color contrast. Two or three perfectly roasted baby carrots, retaining their vibrant orange hue and slight caramelization, are artfully placed next to the chicken. A minimal, artistic scattering of golden-brown garlic-chili crumble adds a textural counterpoint. The dish is sparingly garnished with a few tiny, fresh green oregano leaves, offering a subtle pop of color and freshness. The overall composition emphasizes abundant negative space, showcasing each element with architectural precision. The plate rests on a premium, light-colored marble surface, accompanied by a pristine white linen napkin folded into a precise triangle. Subtle, modern, dark grey chopsticks are positioned to the side, hinting at the dish's Korean inspiration. Dramatic, focused lighting creates soft shadows, enhancing the dish's three-dimensional quality and sophisticated simplicity.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Korean",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Aged kimchi",
+        "quantity": "200g"
+      },
+      {
+        "name": "Baby carrots",
+        "quantity": "12 small"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Small red chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Fresh oregano sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Stale sourdough bread",
+        "quantity": "2 slices"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Wash and peel baby carrots. Toss with 15 ml olive oil, salt, and pepper. Roast 20-25 minutes until tender and slightly caramelized. Set aside.",
+      "For the kimchi emulsion: Finely mince shallot and 2 garlic cloves. Coarsely chop kimchi. Heat 15 ml olive oil in a saucepan over medium heat. Sauté shallot until translucent, about 2 minutes. Add minced garlic and chopped kimchi. Cook 5 minutes, stirring occasionally.",
+      "Deglaze with chicken stock and rice vinegar. Bring to a simmer. Cook 5 minutes to reduce slightly. Transfer mixture to a high-speed blender. Blend until very smooth. Pass through a fine-mesh sieve into a clean saucepan. Keep warm.",
+      "For the garlic-chili crumble: Roughly chop stale bread. Pulse in a food processor to coarse crumbs. Finely mince remaining 2 garlic cloves and red chili. Heat 15 ml olive oil in a pan over medium heat. Add minced garlic and chili. Sauté 1 minute until fragrant. Add bread crumbs. Toast, stirring frequently, until golden brown and crispy. Season with salt. Set aside.",
+      "Prepare chicken: Pat chicken breasts very dry with paper towels. Season generously with salt and black pepper on all sides. Heat 15 ml olive oil in a heavy-bottomed, oven-safe pan over medium-high heat until shimmering.",
+      "Place chicken breasts skin-side down (if skin-on, otherwise presentation side down). Sear 4-5 minutes until deep golden brown and a crust forms. Flip chicken. Add butter to the pan. Baste chicken with melted butter. Transfer pan to preheated oven. Roast 10-12 minutes, or until internal temperature reaches 75°C (167°F).",
+      "Remove chicken from oven. Rest on a cutting board 5 minutes before plating.",
+      "To plate: Spoon a generous pool of warm kimchi emulsion onto the center of each plate, creating an organic sweep. Place one whole pan-seared chicken breast artistically atop the emulsion. Arrange 3 roasted baby carrots beside the chicken. Sprinkle garlic-chili crumble sparingly over the chicken and around the plate for texture. Garnish with a few small, fresh oregano leaves. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 549,
+      "cholesterol_mg": 169,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 59.2,
+      "saturated_fat_g": 7.6,
+      "sodium_mg": 1082,
+      "total_carbs_g": 15.8,
+      "total_fat_g": 27.4,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 16.8,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 307,
+      "total_carbs_g": 4.5,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 10,
+      "protein": 118,
+      "saturated_fat": 38,
+      "sodium": 47,
+      "total_carbs": 6,
+      "total_fat": 35
+    },
+    "serving_size_g": 352,
+    "total_recipe_weight_g": 1408
+  }
+]

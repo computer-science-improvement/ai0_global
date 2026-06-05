@@ -1,0 +1,584 @@
+[
+  {
+    "recipe_name": "Baked Lemon Cottage Cheese Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_lemon_cottage_cheese_pudding_20250903_080806_425a2fd1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:08:06.912555000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "для диабетика",
+    "visual_description": "A modest square piece of Baked Lemon Cottage Cheese Pudding sits on a simple, round, off-white ceramic plate. The pudding has a lightly golden, slightly crinkled top and a creamy, pale yellow interior, showing the subtle texture of cottage cheese. A small cluster of vibrant red raspberries is artfully placed beside the pudding. The plate rests on a well-used, light-colored wooden dining table. A simple silver fork lies casually to the right. Warm, soft kitchen lighting illuminates the scene, creating a cozy and inviting atmosphere. A casually folded cloth napkin is visible in the background, adding to the homely feel.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "cottage cheese",
+    "ingredients": [
+      {
+        "name": "cottage cheese",
+        "quantity": "500 g"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "granulated erythritol",
+        "quantity": "60 g"
+      },
+      {
+        "name": "lemon zest",
+        "quantity": "from 1 medium lemon"
+      },
+      {
+        "name": "fresh lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "fresh raspberries",
+        "quantity": "100 g (for serving)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Lightly grease a 20x20 cm baking dish.",
+      "In a large bowl, combine cottage cheese, eggs, erythritol, lemon zest, lemon juice, vanilla extract, cornstarch, and salt.",
+      "Mix well until smooth. A hand blender can be used for a creamier texture, or a whisk for a slightly coarser texture.",
+      "Pour the mixture into the prepared baking dish.",
+      "Bake for 35-45 minutes. The pudding should be set and lightly golden on top.",
+      "Remove from oven. Let it cool completely in the dish.",
+      "Cut into 4 modest square pieces. Serve chilled, topped with fresh raspberries."
+    ],
+    "notes": [
+      "This recipe uses a sugar substitute and is suitable for a diabetic diet. Adjust sweetener to your preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 157,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 0.1,
+      "protein_g": 16.6,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 483,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88,
+      "cholesterol_mg": 59,
+      "dietary_fiber_g": 0,
+      "protein_g": 9.3,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 272,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 0,
+      "protein": 33,
+      "saturated_fat": 13,
+      "sodium": 21,
+      "total_carbs": 3,
+      "total_fat": 7
+    },
+    "serving_size_g": 178,
+    "total_recipe_weight_g": 711
+  },
+  {
+    "recipe_name": "White Chocolate Brown Butter Crémeux, Spiced Plum, Hazelnut Praline",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_white_chocolate_brown_butter_cr%C3%A9meux%2C_spiced_plum%2C_hazelnut_praline_20250903_080150_3d4deb89.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:01:51.252493000Z",
+    "selected_ingredients": [
+      {
+        "name": "white chocolate"
+      },
+      {
+        "name": "butter"
+      },
+      {
+        "name": "heavy cream"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single, pristine white bone china plate holds a minimalist dessert. A perfectly formed, elongated quenelle of the pale, creamy white chocolate brown butter crémeux rests elegantly on one side, showcasing its smooth, ethereal texture. Adjacent to it, a small, organic cluster of the vibrant, dark red spiced plum compote provides a striking color contrast, with the soft, tender plum cubes visible. A scattering of golden-brown hazelnut praline, featuring irregular, crunchy shards, is artfully placed over the crémeux and compote, adding textural intrigue. Abundant negative space surrounds the components, emphasizing their precise placement and sophisticated simplicity. The dessert is presented on a high-gloss, veined grey marble surface, accompanied by a single, polished silver dessert spoon and a crisp, white linen napkin folded precisely. Dramatic professional lighting casts soft shadows, enhancing depth and dimension, while the background remains ultra-minimalist, ensuring the dish is the sole focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Serve with a small, strong cup of Mokka coffee.",
+      "Offer a glass of fine German Obstler (fruit brandy), such as a plum or hazelnut variety, as a digestif."
+    ],
+    "hero_ingredient": "White Chocolate",
+    "ingredients": [
+      {
+        "name": "White Chocolate, 35% cocoa",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Egg Yolks",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Plums",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Cinnamon Stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Star Anise",
+        "quantity": "1"
+      },
+      {
+        "name": "Vanilla Bean",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Hazelnuts, toasted",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Granulated Sugar (for praline)",
+        "quantity": "100 g"
+      }
+    ],
+    "instructions": [
+      "For the Brown Butter Crémeux: Melt 100 g unsalted butter in a saucepan over medium heat. Cook until butter solids turn golden brown and nutty aroma develops. Strain through a fine-mesh sieve. Let cool slightly.",
+      "Chop white chocolate finely. Place in a heatproof bowl.",
+      "Whisk egg yolks and 50 g granulated sugar in a separate bowl until pale.",
+      "Heat 200 ml heavy cream in a saucepan until simmering. Pour hot cream slowly over egg yolk mixture, whisking constantly.",
+      "Return mixture to saucepan. Cook over low heat, stirring constantly with a spatula, until mixture thickens slightly and coats the back of the spoon (82°C). Do not boil.",
+      "Pour hot custard over chopped white chocolate. Let sit for 1 minute. Whisk until smooth and fully emulsified. Stir in brown butter.",
+      "Strain crémeux through a fine-mesh sieve into a clean bowl. Cover surface with plastic wrap. Chill in refrigerator for at least 4 hours, or until firm.",
+      "For the Spiced Plum Compote: Halve plums, remove pits. Dice plums into 1 cm cubes.",
+      "Combine diced plums, 70 g brown sugar, 50 ml water, cinnamon stick, star anise, and scraped vanilla bean seeds in a saucepan.",
+      "Bring to a simmer over medium heat. Cook for 10-12 minutes, stirring occasionally, until plums are tender and liquid thickens slightly. Remove cinnamon stick and star anise. Let cool completely.",
+      "For the Hazelnut Praline: Spread toasted hazelnuts on a parchment-lined baking sheet.",
+      "Melt 100 g granulated sugar in a heavy-bottomed saucepan over medium heat without stirring. Once sugar starts to melt, gently swirl the pan. Cook until golden amber caramel forms.",
+      "Carefully pour caramel over toasted hazelnuts. Let cool completely and harden.",
+      "Break hardened hazelnut caramel into pieces. Process in a food processor until a coarse, crumbly praline forms. Do not over-process into a paste.",
+      "To Serve: Whip remaining 100 ml heavy cream to soft peaks.",
+      "Gently fold whipped cream into the chilled brown butter crémeux until just combined and lightened.",
+      "Spoon a quenelle or elegant swirl of crémeux onto each plate. Arrange a small, artful portion of spiced plum compote next to the crémeux.",
+      "Sprinkle hazelnut praline sparingly over and around the crémeux and compote."
+    ],
+    "notes": [
+      "Use premium quality white chocolate (minimum 35% cocoa butter) for best flavor and texture.",
+      "Ensure the crémeux is thoroughly chilled for proper consistency before folding in whipped cream.",
+      "Do not over-whip the heavy cream for the crémeux lightening, as it should remain soft and airy."
+    ],
+    "traditional_techniques": [
+      "Browning Butter (Nussbutter)",
+      "Praline Making"
+    ]
+  },
+  {
+    "recipe_name": "Mandel-Honig Delikatesse mit Orangen-Karotten Gel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mandel-honig_delikatesse_mit_orangen-karotten_gel_20250903_080052_7fabf8dc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T08:00:53.044750000Z",
+    "selected_ingredients": [
+      {
+        "name": "honey"
+      },
+      {
+        "name": "almond"
+      },
+      {
+        "name": "orange zest"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single, elegant dessert portion is presented on a pristine white bone china plate with a subtle, modern pattern. The composition is minimalist and organic, with abundant negative space. A golden-brown, round almond financier, about 6 cm in diameter, sits slightly off-center. Perched gracefully atop or beside it is a perfectly formed, pale golden honey mousse dome, approximately 5 cm in diameter, exhibiting a smooth, ethereal texture. Adjacent to these, a vibrant, translucent orange-carrot gel piece, cut into an irregular, flowing teardrop or abstract swoosh shape, provides a striking color contrast and a hint of acidity. A few irregularly shaped, glossy candied almonds are scattered precisely around the mousse and gel, offering a textural crunch and visual sparkle. The plate rests on a premium grey-veined Carrara marble surface. The scene is lit with dramatic professional lighting, casting soft, intentional shadows that enhance depth and texture. A crisp, white linen napkin, folded into a precise triangle, sits elegantly to the side. The background is ultra-minimalist, emphasizing the dessert's sophisticated simplicity and architectural precision.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Serve alongside a small glass of fine German dessert wine, such as a Riesling Spätlese or Auslese.",
+      "Accompany with a freshly brewed, strong German filter coffee or espresso."
+    ],
+    "hero_ingredient": "Honey",
+    "ingredients": [
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "70 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "4 (approx. 120 g)"
+      },
+      {
+        "name": "Orange zest",
+        "quantity": "1 orange"
+      },
+      {
+        "name": "Honey",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "2"
+      },
+      {
+        "name": "Water",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Fresh orange juice",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh carrot juice",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Sliced almonds",
+        "quantity": "30 g"
+      }
+    ],
+    "instructions": [
+      "For the Almond Financier: Preheat oven to 180°C. Brown the butter in a small saucepan until fragrant and nutty. Strain and set aside to cool slightly. Sift icing sugar, almond flour, and all-purpose flour into a bowl. Add egg whites and orange zest. Mix until just combined. Fold in the cooled browned butter. Pour batter into four individual financier molds or ring molds (approx. 6 cm diameter). Bake for 12-15 minutes, until golden brown and a skewer comes out clean. Let cool completely.",
+      "For the Honey Mousse: Soak gelatin sheets in cold water for 5 minutes. In a small saucepan, combine 50g honey and 15ml water. Bring to a boil, then remove from heat. In a stand mixer, whisk egg yolks until pale. Slowly pour the hot honey syrup into the egg yolks while whisking continuously until thick and pale (pâte à bombe). Squeeze excess water from gelatin sheets. Stir gelatin into the warm pâte à bombe until dissolved. In a separate bowl, whip heavy cream to soft peaks. Gently fold the remaining 50g honey into the whipped cream. Fold the pâte à bombe mixture into the honey cream until just combined. Fill individual silicone dome molds (approx. 5 cm diameter) with the mousse. Freeze for at least 4 hours, or until firm.",
+      "For the Orange-Carrot Gel: In a small saucepan, combine orange juice, carrot juice, caster sugar, and agar-agar powder. Bring to a boil, whisking constantly for 1 minute. Remove from heat. Stir in orange zest. Pour the mixture onto a shallow tray or plate to a thickness of about 3 mm. Refrigerate until set, about 30 minutes. Once set, cut the gel into irregular, organic teardrop shapes or free-form swooshes.",
+      "For the Candied Almonds: In a small non-stick pan, combine sliced almonds, 15g caster sugar, and 15ml water. Cook over medium heat, stirring constantly, until the water evaporates and the sugar crystallizes around the almonds. Continue cooking until the sugar caramelizes and coats the almonds. Spread onto parchment paper to cool and separate.",
+      "To Assemble: Place one financier on each serving plate, slightly off-center. Carefully demold a frozen honey mousse dome and place it on top of or slightly next to the financier. Arrange one or two organic orange-carrot gel shapes gracefully on the plate, extending away from the main components. Scatter a few candied almonds artfully around the mousse and gel for texture and visual interest. Serve immediately."
+    ],
+    "notes": [
+      "Ensure gelatin is fully dissolved in the warm pâte à bombe for a smooth mousse texture.",
+      "Work quickly when pouring the agar-agar gel, as it sets rapidly.",
+      "The financier can be baked ahead of time and stored at room temperature for up to 2 days.",
+      "The mousse can be prepared and frozen up to a week in advance."
+    ],
+    "traditional_techniques": []
+  },
+  {
+    "recipe_name": "Cottage Cheese and Turkey Stuffed Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cottage_cheese_and_turkey_stuffed_bell_peppers_20250903_075759_bb608e16.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T07:58:00.019960000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "для диабетика",
+    "visual_description": "Four vibrant bell pepper halves, deeply filled and slightly mounded, are arranged on a simple, round ceramic plate. The peppers are tender, holding their shape, with a slight char on their edges from baking. The rich, savory filling is visible, a mix of browned ground turkey, creamy white cottage cheese, and flecks of herbs, topped with a gentle golden-brown crust. A light, reddish tomato sauce pools slightly at the base of each pepper. Chopped fresh green parsley is sprinkled over the top, adding a fresh contrast. The plate sits on a well-used wooden dining table. A simple, off-white cloth napkin is casually folded beside it. A basic fork and knife are placed to the side. The background is a softly blurred, warm-toned kitchen, suggesting a cozy, lived-in family atmosphere. Natural, warm light emanates from an overhead kitchen fixture.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "A simple green salad"
+    ],
+    "hero_ingredient": "Bell Peppers",
+    "ingredients": [
+      {
+        "name": "Bell Peppers",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Lean Ground Turkey",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cottage Cheese (low fat)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Canned Diced Tomatoes (no added sugar)",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Tomato Paste (no added sugar)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Cooked Cauliflower Rice",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Dried Oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried Basil",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "for garnish, chopped"
+      },
+      {
+        "name": "Water or Low-Sodium Vegetable Broth",
+        "quantity": "125 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Halve bell peppers lengthwise. Remove seeds and membranes. Place cut-side up in a baking dish.",
+      "Heat olive oil in a large skillet over medium heat. Sauté diced onion until soft, about 5 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Add ground turkey to skillet. Cook, breaking it up, until browned. Drain any excess fat.",
+      "Stir in canned diced tomatoes, tomato paste, oregano, and basil. Simmer 5 minutes.",
+      "Remove skillet from heat. Stir in cottage cheese, cooked cauliflower rice, salt, and pepper. Mix well.",
+      "Spoon turkey and cottage cheese mixture into bell pepper halves.",
+      "Add 125 ml water or low-sodium vegetable broth to the bottom of the baking dish.",
+      "Cover baking dish with foil. Bake 30 minutes.",
+      "Uncover. Bake an additional 15-20 minutes, or until peppers are tender and filling is heated through. Internal temperature of turkey should be 75°C.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Excellent for meal prep.",
+      "Adjust seasoning to personal preference.",
+      "Can use different lean ground meats."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 362,
+      "cholesterol_mg": 96,
+      "dietary_fiber_g": 6.5,
+      "protein_g": 38.7,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 496,
+      "total_carbs_g": 23.3,
+      "total_fat_g": 12.7,
+      "total_sugars_g": 15,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 64.1,
+      "cholesterol_mg": 16.9,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.8,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 87.7,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 2.2,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 32,
+      "dietary_fiber": 23,
+      "protein": 77,
+      "saturated_fat": 15,
+      "sodium": 22,
+      "total_carbs": 8,
+      "total_fat": 16
+    },
+    "serving_size_g": 565,
+    "total_recipe_weight_g": 2260
+  },
+  {
+    "recipe_name": "Cottage Cheese and Spinach Stuffed Chicken Breast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cottage_cheese_and_spinach_stuffed_chicken_breast_20250903_073946_c2384113.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T07:39:46.629677000Z",
+    "selected_ingredients": [
+      "cottage cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "для диабетика",
+    "visual_description": "A single, golden-brown, seared and baked chicken breast rests centrally on a simple, round, off-white ceramic plate. The chicken, cooked to perfection, shows a slightly puffed shape, revealing a glimpse of the creamy, green spinach and cottage cheese mixture within. The chicken is presented whole, not sliced. Around its base, a modest scattering of vibrant red halved cherry tomatoes and fresh, bright green chopped parsley provides a fresh contrast. The plate is on a well-used, light-colored wooden dining table. A simple linen napkin sits nearby. Standard stainless steel fork and knife complete the setting. Warm light from a kitchen window illuminates the scene, highlighting natural textures and colors. The background is softly blurred, showing a lived-in kitchen environment. Portion is modest and satisfying.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "Modern American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "250g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150g, roughly chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small, finely diced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g, halved"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Pat chicken breasts dry. Carefully slice a pocket into the thickest part of each chicken breast, without cutting all the way through.",
+      "Heat 1 tablespoon olive oil in a pan over medium heat. Sauté diced onion for 3 minutes until softened. Add minced garlic and sauté for 1 minute more.",
+      "Add chopped spinach to the pan. Cook until spinach wilts, about 2-3 minutes. Remove from heat.",
+      "In a bowl, combine cottage cheese, cooked spinach mixture, oregano, salt, and pepper. Mix well.",
+      "Spoon the cottage cheese and spinach mixture evenly into the pockets of each chicken breast. Secure openings with toothpicks if needed.",
+      "Heat remaining 1 tablespoon olive oil in an oven-safe pan over medium-high heat. Sear stuffed chicken breasts for 2-3 minutes per side until lightly golden.",
+      "Transfer the pan to the preheated oven. Bake for 18-22 minutes, or until chicken reaches an internal temperature of 75°C.",
+      "Remove chicken from oven. Let rest for 5 minutes before serving.",
+      "Garnish with halved cherry tomatoes and fresh chopped parsley."
+    ],
+    "notes": [
+      "This recipe is suitable for a diabetic diet due to its low carbohydrate and high protein content. Ensure cottage cheese is low-fat and check labels for added sugars."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 394,
+      "cholesterol_mg": 156.1,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 65.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 858.2,
+      "total_carbs_g": 6.4,
+      "total_fat_g": 10.8,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124,
+      "cholesterol_mg": 49.3,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 20.6,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 271,
+      "total_carbs_g": 2,
+      "total_fat_g": 3.4,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52,
+      "dietary_fiber": 5.6,
+      "protein": 130.7,
+      "saturated_fat": 13.3,
+      "sodium": 37.3,
+      "total_carbs": 2.3,
+      "total_fat": 13.8
+    },
+    "serving_size_g": 316.7,
+    "total_recipe_weight_g": 1266.8
+  }
+]

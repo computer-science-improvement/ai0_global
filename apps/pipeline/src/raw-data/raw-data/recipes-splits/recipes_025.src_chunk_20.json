@@ -1,0 +1,662 @@
+[
+  {
+    "recipe_name": "Risotto al Grana Padano with Roasted Asparagus and Cherry Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_risotto_al_grana_padano_with_roasted_asparagus_and_cherry_tomatoes_20250623_130134_257c9694.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:01:35.063239000Z",
+    "selected_ingredients": [
+      "grana padano cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A creamy, golden-hued Risotto al Grana Padano is gracefully spread across a round, clean white porcelain plate, showcasing its fluid consistency. The Arborio rice grains are perfectly al dente, coated in a luscious sauce from the melted Grana Padano and butter. Roasted asparagus spears, tender-crisp with slightly charred tips, are artfully arranged atop the risotto, their vibrant green contrasting with the creamy base. Scattered among the asparagus are whole, glistening roasted cherry tomatoes, some slightly burst, adding pops of deep red and a touch of sweetness. Freshly torn basil leaves provide a final touch of verdant green and aromatic freshness. The dish is presented as a single, refined portion, allowing moderate negative space on the plate. The setting is a modern bistro, with a simple wooden table, a white linen napkin, and natural, even lighting, highlighting the dish's inviting textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of crisp Italian white wine, such as Pinot Grigio or Vermentino.",
+      "Offer crusty Italian bread on the side for soaking up any remaining sauce."
+    ],
+    "hero_ingredient": "Grana Padano cheese",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Grana Padano cheese",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fresh asparagus",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "a few"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable broth in a saucepan. Keep hot.",
+      "Preheat oven to 200°C. Toss trimmed asparagus spears and whole cherry tomatoes with 15 ml olive oil, salt, and pepper. Roast for 10-12 minutes until tender-crisp. Set aside.",
+      "Finely dice onion. Mince garlic.",
+      "In a large, heavy-bottomed pan, heat remaining 15 ml olive oil over medium heat. Add diced onion. Cook until translucent, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice. Toast for 2 minutes, stirring constantly, until edges become translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add hot broth, one ladle at a time. Stir continuously. Wait until each ladleful is almost fully absorbed before adding the next.",
+      "Continue adding broth and stirring for 18-20 minutes, until rice is al dente and creamy.",
+      "Remove pan from heat. Grate Grana Padano cheese. Add grated cheese and cold cubed butter to the risotto.",
+      "Stir vigorously (mantecare) until butter and cheese are fully incorporated and the risotto is smooth and very creamy.",
+      "Season with salt and freshly ground black pepper to taste.",
+      "Serve immediately. Top each portion with roasted asparagus and cherry tomatoes. Garnish with torn fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Mantecare"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 653,
+      "cholesterol_mg": 62,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 19.4,
+      "saturated_fat_g": 14.2,
+      "sodium_mg": 1331,
+      "total_carbs_g": 75.8,
+      "total_fat_g": 28.9,
+      "total_sugars_g": 4.6,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 96.2,
+      "cholesterol_mg": 9.1,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 2.9,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 196.1,
+      "total_carbs_g": 11.2,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 20.7,
+      "dietary_fiber": 14.6,
+      "protein": 38.8,
+      "saturated_fat": 70.8,
+      "sodium": 57.9,
+      "total_carbs": 27.5,
+      "total_fat": 37
+    },
+    "serving_size_g": 678.7,
+    "total_recipe_weight_g": 2714.6
+  },
+  {
+    "recipe_name": "Creamy Chicken and Mushroom Orzotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_mushroom_orzotto_20250623_130007_ce4c5e24.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:00:07.412938000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "pasta",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, inviting portion of creamy Orzotto is presented in a wide, shallow white porcelain bowl, showcasing its rich, flowing texture. The risotto, a pale golden hue, is generously studded with tender, earthy brown sautéed cremini mushrooms and finely diced caramelized onions. Nestled atop the creamy base are several irregularly shaped, golden-brown pan-seared chicken pieces, their exteriors exhibiting a beautiful sear and their interiors promising succulence. A light sprinkling of freshly grated Parmesan cheese provides a subtle white contrast, while a scattering of vibrant green chopped fresh parsley adds a pop of color and freshness. The dish is intentionally left with moderate negative space around the edges, highlighting its refined yet approachable restaurant style. The composition is organic and inviting, emphasizing the dish's comforting warmth. The bowl rests on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty Italian bread on the side for soaking up the creamy sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Orzo pasta (risoni)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken or vegetable broth, warm",
+        "quantity": "1.2 L"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Cut into 3-4 cm chunks. Season with salt and pepper.",
+      "Heat 15 ml olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken chunks until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C (167°F). Remove chicken and set aside.",
+      "Dice onion finely. Slice mushrooms. Mince garlic.",
+      "Add remaining 15 ml olive oil to the pot. Add diced onion. Sauté until translucent, about 5 minutes (soffritto).",
+      "Add minced garlic and sliced mushrooms. Cook until mushrooms are tender and browned, about 5-7 minutes.",
+      "Add Arborio rice and orzo pasta to the pot. Stir for 1 minute until grains are lightly toasted.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Begin adding warm broth, one ladleful (about 120 ml) at a time. Stir constantly. Wait until each ladleful is almost completely absorbed before adding the next.",
+      "Continue adding broth and stirring for 18-20 minutes, or until rice and orzo are al dente and creamy. The Orzotto should be fluid, not stiff.",
+      "Return cooked chicken to the pot. Stir to combine.",
+      "Remove from heat. Stir in butter and grated Parmesan cheese (mantecatura).",
+      "Season with salt and pepper to taste. Stir in chopped fresh parsley.",
+      "Serve immediately in warm, shallow bowls."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Risotto method",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 819,
+      "cholesterol_mg": 175,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 52.2,
+      "saturated_fat_g": 12.4,
+      "sodium_mg": 784,
+      "total_carbs_g": 69.8,
+      "total_fat_g": 33.9,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.4,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 110,
+      "total_carbs_g": 9.8,
+      "total_fat_g": 4.8,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 11,
+      "protein": 104,
+      "saturated_fat": 62,
+      "sodium": 34,
+      "total_carbs": 25,
+      "total_fat": 43
+    },
+    "serving_size_g": 710.5,
+    "total_recipe_weight_g": 2842
+  },
+  {
+    "recipe_name": "Fermented Blackberry & Dark Chocolate Cake with Macadamia Cream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_blackberry_%26_dark_chocolate_cake_with_macadamia_cream_20250623_125938_b933b097.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:59:38.550397000Z",
+    "selected_ingredients": [
+      "blackberry wine",
+      "flour",
+      "dark chocolate",
+      "macadamia nut",
+      "sago",
+      "icing sugar",
+      "heavy cream"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, clean-cut square portion of dark chocolate cake is centered on a handcrafted ceramic plate in an earthy cream tone. The cake exhibits a dense, moist texture with a rich, deep brown color. Beside the cake, a natural, unforced dollop of pale beige macadamia cream provides a soft contrast. Thin, irregular shards of translucent sago crisp are artfully arranged, adding a delicate, crisp texture and subtle shine. A deep, glossy purple-black reduction of fermented blackberry wine is sparingly drizzled around the plate, creating subtle organic lines. Fine, irregular dark chocolate shavings are scattered over the cake and cream, adding a final textural element. The plating is minimalistic, with ample negative space. The setting features a light, reclaimed wood table surface, an undyed linen napkin in natural beige, and soft, natural lighting. The background is clean and minimalist, with a hint of natural plant elements visible, emphasizing an eco-conscious aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Fermented Blackberry Wine",
+        "quantity": "200 ml (150 ml for cake, 50 ml for reduction)"
+      },
+      {
+        "name": "All-purpose Flour",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Dark Chocolate (70% cocoa or higher)",
+        "quantity": "130 g (100 g chopped, 30 g for shavings)"
+      },
+      {
+        "name": "Raw Macadamia Nuts",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Small Sago Pearls",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Icing Sugar",
+        "quantity": "70 g (50 g for cream, 20 g for cake)"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Line a 20x20 cm baking pan with parchment paper.",
+      "For Sago Crisp: Cook sago pearls in boiling water until translucent. Drain well. Spread thinly on a non-stick baking mat. Bake at 150°C for 30-40 minutes until dry and crisp. Break into irregular shards.",
+      "For Blackberry Wine Reduction: Simmer 50 ml blackberry wine in a small saucepan over medium heat. Reduce until syrupy. Set aside.",
+      "For Cake: Melt 100 g chopped dark chocolate and butter together in a double boiler. Stir until smooth.",
+      "In a separate bowl, whisk eggs with 20 g icing sugar and a pinch of salt until pale and fluffy.",
+      "Gradually fold melted chocolate mixture into egg mixture. Add 150 ml blackberry wine.",
+      "Sift flour and baking powder into the wet ingredients. Fold gently until just combined. Do not overmix.",
+      "Pour batter into prepared pan. Bake for 25-30 minutes, or until a skewer inserted comes out with moist crumbs.",
+      "Let cake cool completely in pan, then remove and cut into 4 equal square portions.",
+      "For Macadamia Cream: Toast macadamia nuts lightly. Blend toasted macadamia nuts with heavy cream and 50 g icing sugar until very smooth. Chill for 30 minutes.",
+      "To Serve: Place one cake portion on each plate. Dollop macadamia cream beside the cake. Drizzle blackberry wine reduction over the plate. Arrange sago crisp shards. Garnish with dark chocolate shavings."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 23.55,
+      "calories": 895,
+      "cholesterol_mg": 178,
+      "dietary_fiber_g": 6.14,
+      "protein_g": 11.39,
+      "saturated_fat_g": 30.23,
+      "sodium_mg": 81,
+      "total_carbs_g": 67.8,
+      "total_fat_g": 61.71,
+      "total_sugars_g": 28.13,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 9.75,
+      "calories": 371,
+      "cholesterol_mg": 74,
+      "dietary_fiber_g": 2.54,
+      "protein_g": 4.72,
+      "saturated_fat_g": 12.52,
+      "sodium_mg": 33,
+      "total_carbs_g": 28.07,
+      "total_fat_g": 25.55,
+      "total_sugars_g": 11.65,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.49,
+      "dietary_fiber": 21.93,
+      "protein": 22.78,
+      "saturated_fat": 151.15,
+      "sodium": 3.51,
+      "total_carbs": 24.65,
+      "total_fat": 79.12
+    },
+    "serving_size_g": 241.5,
+    "total_recipe_weight_g": 966
+  },
+  {
+    "recipe_name": "Classic Beef Tagliatelle Bolognese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_beef_tagliatelle_bolognese_20250623_125846_7d9e9c62.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:58:46.704869000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of Classic Beef Tagliatelle Bolognese is presented on a clean white porcelain dinner plate. The golden-yellow tagliatelle pasta is loosely coiled, forming a natural, appealing mound at the center. It is thoroughly coated and intertwined with the rich, deep red-brown Bolognese sauce. The sauce features finely integrated, savory ground beef, offering a hearty texture. A light dusting of pale white, freshly grated Parmigiano Reggiano cheese covers the pasta and sauce, creating a subtle contrast. A few vibrant green fresh basil leaves are artfully placed on top for a pop of color and freshness. The plate is centered on a simple, light wooden table surface, suggesting a modern bistro setting. A folded cotton napkin rests beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and inviting colors. The background is softly blurred, maintaining focus on the food while hinting at a casual, refined dining atmosphere. Standard flatware is positioned beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Offer a simple green salad dressed with vinaigrette as a side.",
+      "Provide extra grated Parmigiano Reggiano at the table for individual preference."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef mince",
+        "quantity": "600g"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "70g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmigiano Reggiano cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large heavy-bottomed pot over medium heat. Add diced onion, carrot, and celery (soffritto). Cook 8 minutes until softened.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Add beef mince. Break apart with a spoon. Brown evenly. Drain excess fat.",
+      "Stir in tomato paste. Cook 2 minutes.",
+      "Pour in red wine. Scrape up browned bits from the bottom of the pot. Simmer until wine reduces by half.",
+      "Add crushed tomatoes, beef stock, whole milk, bay leaf, and dried oregano. Stir well.",
+      "Bring mixture to a gentle simmer. Reduce heat to low. Cover pot partially. Cook 2-3 hours, stirring occasionally, until sauce thickens and flavors meld.",
+      "Season Bolognese with salt and black pepper to taste. Remove bay leaf.",
+      "Cook tagliatelle according to package directions in a large pot of salted boiling water until al dente.",
+      "Drain pasta. Add cooked tagliatelle directly to the Bolognese sauce. Toss to coat pasta evenly.",
+      "Serve immediately. Garnish each portion with freshly grated Parmigiano Reggiano and a few fresh basil leaves."
+    ],
+    "notes": [
+      "For a richer, more complex flavor, simmer the Bolognese sauce for up to 4 hours.",
+      "Traditional Bolognese often includes a small amount of pork mince for added depth of flavor."
+    ],
+    "traditional_techniques": [
+      "Soffritto (mirepoix base)",
+      "Slow simmering",
+      "Reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1009,
+      "cholesterol_mg": 136.8,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 49.4,
+      "saturated_fat_g": 15.9,
+      "sodium_mg": 1385.8,
+      "total_carbs_g": 99.2,
+      "total_fat_g": 43.9,
+      "total_sugars_g": 14.8,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142.7,
+      "cholesterol_mg": 19.3,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 196.1,
+      "total_carbs_g": 14,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45.6,
+      "dietary_fiber": 29.6,
+      "protein": 98.8,
+      "saturated_fat": 79.5,
+      "sodium": 60.3,
+      "total_carbs": 36.1,
+      "total_fat": 56.3
+    },
+    "serving_size_g": 707,
+    "total_recipe_weight_g": 2827
+  },
+  {
+    "recipe_name": "Classic Apple Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_apple_crumble_20250623_125832_c9b53dae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:58:32.537129000Z",
+    "selected_ingredients": [
+      "apple"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of classic apple crumble served in a shallow, cream-colored ceramic bowl with subtle rim imperfections. The topping is a rugged, golden-brown crust featuring coarse flour crumbs and toasted rolled oats. Soft, 2cm chunks of stewed Granny Smith apples are visible beneath the topping, with thick, caramelized amber juices bubbling slightly at the dish's edges. A single, generous pour of thick, pale yellow vanilla custard pools naturally on one side, partially melting into the warm crumble. The bowl sits on a dark, weathered oak table beside a folded linen napkin and a tarnished silver spoon. Soft, warm kitchen light emphasizes the crunchy textures and steam rising from the fruit.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve warm with hot vanilla custard",
+      "Accompany with a dollop of clotted cream",
+      "Pair with a scoop of vanilla bean ice cream"
+    ],
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Granny Smith apples",
+        "quantity": "800g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cold unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "50g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Peel, core, and cut apples into 2cm chunks.",
+      "Toss apples with 50g sugar, cinnamon, and lemon juice in a bowl.",
+      "Transfer apple mixture to a 20cm baking dish.",
+      "Cut cold butter into small cubes.",
+      "Rub butter into flour using fingertips until mixture resembles coarse breadcrumbs.",
+      "Stir in remaining 100g sugar and rolled oats.",
+      "Spread crumble topping evenly over the apples.",
+      "Bake for 35 to 40 minutes until the top is golden brown and fruit is bubbling.",
+      "Remove from oven and rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Use cold butter to ensure a crisp, crumbly texture.",
+      "Do not overwork the dough or it will become tough.",
+      "Granny Smith apples provide the best tart balance to the sweet topping."
+    ],
+    "traditional_techniques": [
+      "rubbing-in method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.5,
+      "calories": 677.4,
+      "cholesterol_mg": 53.75,
+      "dietary_fiber_g": 7.83,
+      "protein_g": 7.85,
+      "saturated_fat_g": 13.05,
+      "sodium_mg": 6,
+      "total_carbs_g": 112.1,
+      "total_fat_g": 21.95,
+      "total_sugars_g": 58.3,
+      "trans_fat_g": 0.81
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 12.65,
+      "calories": 228.5,
+      "cholesterol_mg": 18.13,
+      "dietary_fiber_g": 2.64,
+      "protein_g": 2.65,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 2.02,
+      "total_carbs_g": 37.81,
+      "total_fat_g": 7.41,
+      "total_sugars_g": 19.67,
+      "trans_fat_g": 0.27
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.9,
+      "dietary_fiber": 31.3,
+      "protein": 15.7,
+      "saturated_fat": 65.3,
+      "sodium": 0.25,
+      "total_carbs": 37.4,
+      "total_fat": 33.8
+    },
+    "serving_size_g": 296.45,
+    "total_recipe_weight_g": 1185.8
+  }
+]

@@ -1,0 +1,690 @@
+[
+  {
+    "recipe_name": "Baked Eggs with Chorizo and Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_eggs_with_chorizo_and_tomato_20250624_173131_0e04e067.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:31:31.851240000Z",
+    "selected_ingredients": [
+      {
+        "name": "egg",
+        "comment": "fry"
+      },
+      "sausage",
+      "tomato",
+      "cheese",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic cast-iron skillet holds a vibrant Spanish baked egg and chorizo dish. The rich, deep red tomato sauce forms the base, studded with irregular, golden-brown chorizo chunks. Four large eggs are nestled into the sauce, with bright yellow yolks peeking from set, creamy white albumen. A golden-brown crust of melted Manchego cheese lightly covers the eggs and sauce. Fresh, bright green chopped parsley is generously scattered over the entire dish. The skillet is placed on a simple wooden table surface, accompanied by thick slices of crusty bread. A clean white porcelain side plate and a cotton napkin are beside the skillet. Natural, even lighting highlights the dish's textures and warm colors in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the sauce and yolks.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Chorizo",
+    "ingredients": [
+      {
+        "name": "Spanish chorizo sausage",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "10 grams"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2 grams"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Manchego cheese, shredded",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Crusty bread",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Slice chorizo into 1 cm thick chunks. Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Add chorizo chunks to skillet. Cook until browned and crisp, about 5-7 minutes. Remove chorizo with a slotted spoon; set aside. Leave rendered fat in skillet.",
+      "Reduce heat to medium. Add diced onion to skillet. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in crushed tomatoes, smoked paprika, oregano, salt, and pepper. Bring to a simmer. Cook for 10 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Return cooked chorizo chunks to the skillet. Stir to combine.",
+      "Create 4 small wells in the tomato sauce. Carefully crack one egg into each well.",
+      "Sprinkle shredded Manchego cheese over the eggs and sauce.",
+      "Transfer skillet to preheated oven. Bake for 10-15 minutes, or until egg whites are set and yolks are still slightly runny.",
+      "Remove skillet from oven. Garnish generously with fresh chopped parsley.",
+      "Serve immediately directly from the skillet with crusty bread."
+    ],
+    "notes": [
+      "Use a good quality Spanish chorizo, either cooking chorizo or a cured variety that can be pan-fried."
+    ],
+    "traditional_techniques": [
+      "Sofrito"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 648,
+      "cholesterol_mg": 279,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 33.4,
+      "saturated_fat_g": 19,
+      "sodium_mg": 2150,
+      "total_carbs_g": 18.7,
+      "total_fat_g": 46.8,
+      "total_sugars_g": 8.9,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 159,
+      "cholesterol_mg": 68.4,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.2,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 527.1,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 11.5,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 93,
+      "dietary_fiber": 18,
+      "protein": 67,
+      "saturated_fat": 95,
+      "sodium": 93,
+      "total_carbs": 7,
+      "total_fat": 60
+    },
+    "serving_size_g": 408,
+    "total_recipe_weight_g": 1632
+  },
+  {
+    "recipe_name": "Fermented Beef Bone Broth with Pickled Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_beef_bone_broth_with_pickled_vegetables_20250624_173121_76c0348b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:31:21.829380000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "chili",
+      "carrot",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A clear, amber-hued beef broth fills a handcrafted, shallow ceramic bowl in a natural cream or beige tone. The broth's surface is pristine, showcasing a few carefully placed garnishes. Thin, bright orange carrot ribbons are gently curled and laid into the broth, adding a subtle pop of color and natural texture. Alongside them, translucent, pale pink quick-pickled red onion petals provide a delicate, contrasting shape. A small cluster of finely diced fermented garlic and chili rests near the edge of the bowl, its vibrant red and white hues hinting at a subtle tang. A light sprinkle of fresh, finely chopped chives adds a final touch of green and freshness. The composition is clean and minimalist, with ample negative space in the bowl, allowing each ingredient to be appreciated for its natural beauty. The bowl sits on a light, textured bamboo mat, positioned on a reclaimed wood table surface. An undyed linen napkin in natural beige is folded simply beside the bowl. Soft, diffused natural light illuminates the scene from the side, highlighting the broth's clarity and the textures of the ingredients. The background is clean and uncluttered, with a hint of natural plant foliage or a simple stone wall, maintaining an eco-conscious and serene aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beef Bone Broth",
+    "ingredients": [
+      {
+        "name": "Beef bones (marrow and knuckle)",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 whole head"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "2-3"
+      },
+      {
+        "name": "Water",
+        "quantity": "4-5 litres"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Non-iodized salt (for fermentation)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "White vinegar (for pickling)",
+        "quantity": "1/2 cup"
+      },
+      {
+        "name": "Sugar (for pickling)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh parsley or chives",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Roast beef bones at 200°C for 30 minutes until browned.",
+      "Place roasted bones, 1 roughly chopped carrot, 1 quartered onion, 4-5 unpeeled garlic cloves, 1-2 whole chilies, peppercorns, and apple cider vinegar in a large pot.",
+      "Cover with water. Bring to a boil. Reduce heat to a bare simmer. Skim any foam. Simmer for 8-12 hours.",
+      "Remove bones and solids. Strain broth through a fine-mesh sieve or cheesecloth. Discard solids. Cool broth, then refrigerate. Skim solidified fat.",
+      "For Fermented Garlic & Chili: Slice remaining garlic cloves and chilies. Place in a clean jar.",
+      "Dissolve 1 tsp non-iodized salt in 1 cup water. Pour brine over garlic and chilies. Seal jar. Leave at room temperature for 5-7 days, burping daily, until bubbly and tangy. Refrigerate.",
+      "For Quick Pickled Onion: Thinly slice remaining 1/2 red onion.",
+      "Combine 1/2 cup white vinegar, 1/2 cup water, 1 tsp sugar, and 1/2 tsp salt in a small saucepan. Bring to a simmer until dissolved.",
+      "Pour hot pickling liquid over sliced red onion in a heatproof jar. Let cool. Refrigerate for at least 30 minutes.",
+      "Prepare Garnish Carrot: Using a vegetable peeler, create thin ribbons from the remaining carrot. Blanch briefly in boiling water if desired, then shock in ice water.",
+      "Gently reheat desired amount of strained beef broth. Season with salt to taste.",
+      "Ladle hot broth into bowls. Arrange carrot ribbons, quick-pickled onion slices, and a spoonful of fermented garlic and chili in each bowl. Garnish with finely chopped parsley or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 336,
+      "cholesterol_mg": 18.2,
+      "dietary_fiber_g": 4.31,
+      "protein_g": 32.4,
+      "saturated_fat_g": 5.47,
+      "sodium_mg": 1505.6,
+      "total_carbs_g": 26.46,
+      "total_fat_g": 11.37,
+      "total_sugars_g": 9.85,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.09,
+      "calories": 29,
+      "cholesterol_mg": 1.6,
+      "dietary_fiber_g": 0.38,
+      "protein_g": 2.83,
+      "saturated_fat_g": 0.48,
+      "sodium_mg": 131.6,
+      "total_carbs_g": 2.31,
+      "total_fat_g": 0.99,
+      "total_sugars_g": 0.86,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 9,
+      "dietary_fiber": 15,
+      "protein": 65,
+      "saturated_fat": 27,
+      "sodium": 65,
+      "total_carbs": 10,
+      "total_fat": 15
+    },
+    "serving_size_g": 1144,
+    "total_recipe_weight_g": 4575
+  },
+  {
+    "recipe_name": "Bratwurst with Braised Red Cabbage and Roasted Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bratwurst_with_braised_red_cabbage_and_roasted_potatoes_20250624_173117_55ee34b0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:31:18.355852000Z",
+    "selected_ingredients": [
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "German cuisine",
+    "visual_description": "A single portion of German Bratwurst with Braised Red Cabbage and Roasted Potatoes is presented on a clean white porcelain dinner plate. A plump, golden-brown pan-fried bratwurst rests on one side. Beside it, a generous mound of vibrant, deep reddish-purple braised red cabbage, thinly shredded and glistening, adds a rich color contrast. Rustic, golden-edged potato wedges are artfully arranged near the sausage. The dish showcases varied textures: the crispy skin of the sausage, the tender, slightly yielding cabbage, and the firm, roasted potatoes. The plate is set on a simple light wooden table. A folded cotton napkin is placed beside the plate. Traditional German flatware, including a fork and knife, are neatly arranged. A small, simple white ramekin of Dijon mustard is positioned to the side. The scene is bathed in natural, even lighting, creating a warm, inviting bistro atmosphere, with a hint of a blurred traditional German beer stein in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "hero_ingredient": "Bratwurst",
+    "ingredients": [
+      {
+        "name": "Bratwurst sausages",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Red cabbage",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Tart apple",
+        "quantity": "1"
+      },
+      {
+        "name": "Smoked bacon, diced",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking tray with parchment paper.",
+      "Wash and cut potatoes into 2 cm thick wedges. Toss with 15 ml vegetable oil, salt, and pepper. Spread on baking tray.",
+      "Roast potatoes for 25-30 minutes. Turn halfway, until golden brown and tender.",
+      "While potatoes roast, prepare red cabbage. Remove outer leaves. Cut cabbage into quarters. Core. Shred thinly.",
+      "Dice onion. Peel and dice apple.",
+      "In a large pot or Dutch oven, render diced bacon over medium heat until crispy. Remove bacon bits. Leave fat in pot.",
+      "Add remaining 15 ml vegetable oil and butter to pot. Add diced onion. Sauté until translucent, about 5 minutes.",
+      "Add shredded red cabbage and diced apple to pot. Stir well.",
+      "Pour in red wine vinegar. Add sugar and caraway seeds. Season with salt and pepper.",
+      "Cover pot. Reduce heat to low. Simmer for 30-40 minutes. Stir occasionally. Cabbage should be tender.",
+      "Heat a large frying pan over medium-high heat. Add bratwurst sausages. Cook for 15-20 minutes. Turn frequently until evenly browned and cooked through. Ensure internal temperature reaches 75°C.",
+      "To serve, place a portion of braised red cabbage on a white porcelain plate. Place one bratwurst sausage next to the cabbage. Arrange roasted potato wedges beside the sausage.",
+      "Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.49,
+      "calories": 988,
+      "cholesterol_mg": 146.28,
+      "dietary_fiber_g": 10.27,
+      "protein_g": 37.3,
+      "saturated_fat_g": 22.39,
+      "sodium_mg": 1600.61,
+      "total_carbs_g": 68.83,
+      "total_fat_g": 64.96,
+      "total_sugars_g": 22.59,
+      "trans_fat_g": 1.47
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.13,
+      "calories": 150,
+      "cholesterol_mg": 22.15,
+      "dietary_fiber_g": 1.55,
+      "protein_g": 5.64,
+      "saturated_fat_g": 3.39,
+      "sodium_mg": 242.33,
+      "total_carbs_g": 10.42,
+      "total_fat_g": 9.83,
+      "total_sugars_g": 3.42,
+      "trans_fat_g": 0.22
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 37,
+      "protein": 75,
+      "saturated_fat": 112,
+      "sodium": 70,
+      "total_carbs": 25,
+      "total_fat": 100
+    },
+    "serving_size_g": 660.5,
+    "total_recipe_weight_g": 2642
+  },
+  {
+    "recipe_name": "Spanish Chicken and Tomato Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_tomato_rice_20250624_173114_8be62572.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:31:15.105834000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Chicken and Tomato Rice is presented in a shallow, wide ceramic bowl. A golden-brown, seared bone-in chicken thigh, with crispy skin, is nestled prominently on top of a vibrant orange-red bed of short-grain rice. The rice is tender, studded with soft, diced tomato pieces and flecks of minced garlic and onion. The grains are separate yet moist. Fresh, bright green chopped parsley is generously scattered over the chicken and rice, providing a contrasting color and fresh aroma. A bright yellow lemon wedge rests on the rim of the bowl, ready to be squeezed. The overall composition is rustic yet refined, showcasing the rich colors and textures of the dish. The bowl sits on a simple wooden table surface, accompanied by a folded white cotton napkin and standard flatware. Natural, even lighting highlights the dish, creating a warm, inviting atmosphere typical of a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly from the pan if serving family style, or in individual wide, shallow bowls.",
+      "Offer crusty bread to sop up the flavorful juices.",
+      "Serve with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 large (approx. 800g)"
+      },
+      {
+        "name": "Short-grain rice (e.g., Bomba or Arborio)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "pinch (approx. 0.1 g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, cut into wedges"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large, wide, shallow pan or paella pan over medium-high heat.",
+      "Sear chicken thighs skin-side down for 6-8 minutes until golden and crisp. Flip and sear for another 3-4 minutes. Remove chicken from pan. Set aside.",
+      "Reduce heat to medium. Add diced onion to the pan. Cook for 5-7 minutes until softened, stirring occasionally.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant, stirring constantly.",
+      "Stir in diced tomatoes and saffron threads. Cook for 5 minutes, mashing tomatoes slightly, to form a sofrito.",
+      "Add rice to the pan. Stir for 1-2 minutes to coat rice grains evenly.",
+      "Pour in chicken broth. Bring to a gentle simmer.",
+      "Return chicken thighs to the pan, nestling them into the rice mixture.",
+      "Reduce heat to low. Cover the pan loosely or leave uncovered if using a traditional paella pan. Cook for 20-25 minutes, or until rice is tender and most liquid is absorbed. Do not stir excessively.",
+      "Remove from heat. Cover tightly with foil or a lid. Let rest for 5-10 minutes.",
+      "Garnish with fresh chopped parsley and lemon wedges before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Avoid stirring the rice too much once the broth is added to allow the rice to cook evenly and prevent it from becoming sticky."
+    ],
+    "traditional_techniques": [
+      "Sofrito preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 819,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 42.8,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 1543,
+      "total_carbs_g": 72.2,
+      "total_fat_g": 38.8,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 156,
+      "cholesterol_mg": 35.8,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 294,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 7.4,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 16,
+      "protein": 86,
+      "saturated_fat": 48,
+      "sodium": 67,
+      "total_carbs": 26,
+      "total_fat": 50
+    },
+    "serving_size_g": 525,
+    "total_recipe_weight_g": 2100
+  },
+  {
+    "recipe_name": "Beef and Broccoli Stir-fry with Tomato",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_and_broccoli_stir-fry_with_tomato_20250624_173105_fb288ae1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T17:31:05.507203000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "onion",
+      "broccoli",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a clean, wide white porcelain bowl or a simple white dinner plate. A neat mound of fluffy brown rice anchors one side. Adjacent to the rice, generous, seared beef chunks, cut into 3 cm pieces, are arranged alongside vibrant green broccoli florets. Diced onion and quartered red tomatoes are artfully mixed within the stir-fry, adding bursts of color and texture. The ingredients are coated in a glossy, dark savory sauce. A sprinkle of thinly sliced green onions and toasted sesame seeds garnishes the top, adding freshness and visual appeal. The presentation is organized but not rigid, allowing for natural flow. A pair of dark wooden chopsticks rests beside the bowl on a simple wooden table with a folded cotton napkin, under natural, even light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Asian",
+    "cultural_origin": "East Asian Inspired",
+    "cultural_serving_suggestions": [
+      "Serve in individual bowls with chopsticks.",
+      "Offer a small side of chili garlic sauce for those desiring more heat."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or flank steak",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Water or beef broth",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Sesame seeds",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Cook brown rice according to package directions. Set aside.",
+      "Slice beef into 3 cm thick pieces. In a bowl, toss beef with 15 ml soy sauce and 5 g cornstarch. Marinate 15 minutes.",
+      "Cut broccoli into florets. Quarter tomatoes. Dice onion. Mince garlic and grate ginger.",
+      "In a small bowl, whisk together remaining 45 ml soy sauce, oyster sauce, rice vinegar, sesame oil, remaining 10 g cornstarch, and 60 ml water or broth. Set aside.",
+      "Heat 15 ml vegetable oil in a large wok or skillet over high heat. Add beef. Stir-fry 2-3 minutes until browned. Remove beef from wok. Set aside.",
+      "Add remaining 15 ml vegetable oil to wok. Add onion. Stir-fry 2 minutes until softened.",
+      "Add garlic and ginger. Stir-fry 30 seconds until fragrant.",
+      "Add broccoli florets. Stir-fry 3-4 minutes until crisp-tender.",
+      "Return beef to the wok. Add quartered tomatoes. Stir briefly.",
+      "Stir the prepared sauce mixture. Pour into the wok. Cook 1-2 minutes, stirring constantly, until sauce thickens and coats ingredients.",
+      "Remove from heat. Season with salt and pepper to taste.",
+      "Serve immediately over brown rice. Garnish with sliced green onions and sesame seeds."
+    ],
+    "notes": [
+      "Ensure your wok or skillet is very hot before adding ingredients to achieve proper stir-fry char."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.8,
+      "calories": 592,
+      "cholesterol_mg": 116,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 50.8,
+      "saturated_fat_g": 6.9,
+      "sodium_mg": 1806,
+      "total_carbs_g": 37.6,
+      "total_fat_g": 23.4,
+      "total_sugars_g": 8.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 108,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.3,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 329,
+      "total_carbs_g": 6.9,
+      "total_fat_g": 4.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38.5,
+      "dietary_fiber": 22.9,
+      "protein": 101.6,
+      "saturated_fat": 34.5,
+      "sodium": 78.5,
+      "total_carbs": 13.7,
+      "total_fat": 30
+    },
+    "serving_size_g": 548,
+    "total_recipe_weight_g": 2193
+  }
+]

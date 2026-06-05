@@ -1,0 +1,645 @@
+[
+  {
+    "recipe_name": "Moroccan Chicken Tagine with Orange and Olives",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_moroccan_chicken_tagine_with_orange_and_olives_20250623_135748_dcd2edae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:57:48.825236000Z",
+    "selected_ingredients": [
+      "orange"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Moroccan Chicken Tagine is presented in a wide, shallow, rustic ceramic bowl, showcasing its rich, inviting colors. Two golden-brown, bone-in chicken thighs, seared to perfection, rest at the center, their skin glistening with the aromatic sauce. Surrounding the chicken are vibrant orange segments, some slightly softened, interspersed with plump, bright green olives. The thick, savory braising liquid, infused with turmeric, saffron, and ginger, generously coats all elements. A sprinkle of fresh, finely chopped cilantro and parsley provides a contrasting pop of green. The dish exhibits varied textures: tender chicken, melt-in-your-mouth onions, and the slight bite of olives and oranges. It is arranged to show abundance and warmth, with moderate negative space. Served on a simple wooden table, accompanied by a small bowl of fluffy couscous and a piece of crusty bread, alongside a simple fork and spoon, all under soft, natural lighting, creating an authentic, inviting scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Moroccan",
+    "cultural_origin": "Moroccan",
+    "cultural_serving_suggestions": [
+      "Serve with fluffy couscous on the side.",
+      "Offer crusty Moroccan bread (khobz) for dipping in the rich sauce.",
+      "Serve with a small bowl of harissa for those desiring more heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Navel oranges",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Green olives (pitted)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Yellow onion, large",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "50g, chopped"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "50g, chopped"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "pinch"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Preserved lemon",
+        "quantity": "1/2, pulp removed, rind thinly sliced"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large tagine or heavy-bottomed pot over medium-high heat. Sear chicken thighs skin-side down until golden brown and crisp, about 5-7 minutes. Flip and sear other side for 3 minutes. Remove chicken. Set aside.",
+      "Add diced onion to the pot. Sauté until softened, about 5 minutes. Add minced garlic and grated ginger. Cook for 2 minutes until fragrant.",
+      "Stir in turmeric, cumin, and paprika. Cook for 1 minute, stirring constantly.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the pot. Add saffron threads and cinnamon stick.",
+      "Return chicken thighs to the pot. Add preserved lemon slices. Bring liquid to a simmer. Reduce heat to low, cover, and cook for 30 minutes.",
+      "Peel oranges. Cut into segments, removing all white pith and membranes. Discard any seeds. Add orange segments and green olives to the pot. Gently stir to combine.",
+      "Cover and continue to simmer for another 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and is very tender.",
+      "Stir in half of the chopped cilantro and parsley. Taste and adjust seasoning as needed.",
+      "Garnish with remaining fresh cilantro and parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Tagine cooking (slow braising)",
+      "Spice layering with aromatic base"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 625,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 7,
+      "protein_g": 37,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 1371.3,
+      "total_carbs_g": 24.8,
+      "total_fat_g": 42,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125,
+      "cholesterol_mg": 37.7,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 7.4,
+      "saturated_fat_g": 2,
+      "sodium_mg": 274.9,
+      "total_carbs_g": 5,
+      "total_fat_g": 8.4,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.7,
+      "dietary_fiber": 25.2,
+      "protein": 74,
+      "saturated_fat": 49.2,
+      "sodium": 59.6,
+      "total_carbs": 9,
+      "total_fat": 53.8
+    },
+    "serving_size_g": 498.9,
+    "total_recipe_weight_g": 1995.7
+  },
+  {
+    "recipe_name": "Gỏi Gà Cuốn Hành Ngâm Ớt (Chicken & Pickled Shallot Rolls with Chili)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_g%E1%BB%8Fi_g%C3%A0_cu%E1%BB%91n_h%C3%A0nh_ng%C3%A2m_%E1%BB%9Bt_%28chicken_%26_pickled_shallot_rolls_with_chili%29_20250623_135651_e7e1bf37.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:56:51.638822000Z",
+    "selected_ingredients": [
+      {
+        "name": "chicken"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "chili"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Vietnamese",
+    "visual_description": "A clean, minimalist presentation of 8-10 bite-sized Gỏi Gà Cuốn Hành Ngâm Ớt (Chicken & Pickled Shallot Rolls with Chili) arranged artistically on a light, natural-textured platter. The rolls are cut diagonally, revealing vibrant layers of shredded chicken, translucent pickled shallots and carrots, crisp green cucumber, and fresh green herbs through the delicate, translucent rice paper wrappers. The colors are fresh and natural: whites of chicken and shallots, bright orange of carrots, verdant greens of mint, cilantro, and perilla, with subtle hints of red chili. Each roll is tightly wrapped and uniform. A small, simple ceramic bowl of light amber Nước Chấm (dipping sauce) is placed beside the rolls. The platter rests on a light bamboo or reclaimed wood table surface. The background is clean and uncluttered, with soft, natural light illuminating the scene. A plain, undyed linen napkin in natural beige is subtly visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with the traditional Nước Chấm (Vietnamese dipping sauce).",
+      "Offer extra fresh herbs on the side for individual preference."
+    ],
+    "hero_ingredient": "Pickled Shallots",
+    "ingredients": [
+      {
+        "name": "Cooked chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Rice paper wrappers",
+        "quantity": "12 sheets (22 cm diameter)"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Red bird's eye chilies",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Fresh perilla leaves (Tía Tô)",
+        "quantity": "1 bunch"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Fish sauce (Nước Mắm)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fermented chili paste (optional)",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Pickled Shallots and Carrots: Combine 150 ml rice vinegar, 70 g sugar, and 150 ml water in a saucepan. Bring to a boil. Stir until sugar dissolves. Let cool. Add thinly sliced shallots, julienned carrots, and 2 thinly sliced red chilies to a clean jar. Pour cooled brine over vegetables. Seal and refrigerate for at least 4 hours.",
+      "Cook Chicken: Place chicken breast in a pot. Cover with water. Bring to a simmer. Cook for 15-20 minutes until internal temperature reaches 75°C. Remove chicken. Shred finely once cool.",
+      "Prepare Dipping Sauce (Nước Chấm): In a small bowl, combine 50 ml water, 30 g sugar, 50 ml fish sauce, 50 ml rice vinegar, 30 ml lime juice, minced garlic, and 1 thinly sliced red chili. Stir until sugar dissolves. Add fermented chili paste if desired.",
+      "Assemble Rolls: Fill a shallow dish with warm water. Dip one rice paper wrapper into water for 15-20 seconds until pliable. Lay flat on a clean surface.",
+      "Arrange a small amount of shredded chicken, pickled shallots, pickled carrots, julienned cucumber, mint, cilantro, and perilla near the bottom edge of the wrapper.",
+      "Fold the bottom edge over the filling. Fold in the sides. Roll tightly from the bottom upwards into a compact cylinder.",
+      "Repeat for remaining wrappers and filling.",
+      "Slice each roll diagonally in half. Arrange on a serving platter."
+    ],
+    "notes": [
+      "This recipe utilizes pickling for preservation, extending the life of seasonal produce.",
+      "Consider using chicken bones for stock to minimize food waste.",
+      "Source local and seasonal vegetables for freshness and sustainability."
+    ],
+    "traditional_techniques": [
+      "Pickling (Dưa Món style)",
+      "Assembling fresh spring rolls (Gỏi Cuốn)"
+    ]
+  },
+  {
+    "recipe_name": "Caramelized Onion and Roasted Tomato Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_onion_and_roasted_tomato_pasta_20250623_135525_c2d6a2ea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:55:26.335150000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of Caramelized Onion and Roasted Tomato Pasta is presented in a clean, white porcelain bowl centered on a simple wooden table. The pasta, such as penne or fusilli, forms a loose, organic mound. Interspersed throughout are halved roasted cherry tomatoes, some slightly burst, revealing their tender insides, alongside deeply caramelized, thinly sliced onions. The rich amber of the onions contrasts beautifully with the vibrant reds of the tomatoes and the golden hue of the pasta. Fresh green basil leaves, roughly chopped, are generously scattered over the top, adding a pop of color and freshness. The dish is naturally illuminated with soft, even lighting, highlighting its varied textures. A folded cotton napkin rests beside the bowl, with minimal, blurred background elements ensuring the dish remains the focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Caramelized Onions",
+    "ingredients": [
+      {
+        "name": "Short pasta (e.g., penne, fusilli)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "3, thinly sliced"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "500g, halved"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, thinly sliced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/2 bunch, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "1/2 teaspoon (optional)"
+      },
+      {
+        "name": "Parmesan cheese (or vegetarian alternative), grated",
+        "quantity": "50g (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss halved cherry tomatoes with 30ml olive oil, salt, and pepper on a baking tray. Roast for 20-25 minutes until softened and slightly browned.",
+      "While tomatoes roast, heat remaining 30ml olive oil in a large pan over medium-low heat. Add thinly sliced onions. Cook slowly for 30-40 minutes, stirring occasionally, until deeply caramelized and golden brown.",
+      "Add thinly sliced garlic and red pepper flakes (if using) to caramelized onions. Cook for 2 minutes until fragrant.",
+      "Pour in vegetable broth. Bring to a simmer, scraping up any browned bits. Remove from heat.",
+      "Cook pasta according to package directions in salted water until al dente. Reserve 100ml pasta water. Drain pasta.",
+      "Add drained pasta and roasted tomatoes to the pan with caramelized onions. Toss to combine.",
+      "Add reserved pasta water as needed to create a light sauce.",
+      "Stir in fresh chopped basil.",
+      "Serve immediately. Garnish with grated Parmesan if desired."
+    ],
+    "notes": [
+      "Caramelizing onions requires patience for best flavor.",
+      "Any short pasta shape works well for this dish."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 651,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 8.1,
+      "protein_g": 21.5,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 26,
+      "total_carbs_g": 99.1,
+      "total_fat_g": 19.2,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134,
+      "cholesterol_mg": 2,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 4.4,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 5,
+      "total_carbs_g": 20.4,
+      "total_fat_g": 4,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 29,
+      "protein": 43,
+      "saturated_fat": 22,
+      "sodium": 1,
+      "total_carbs": 36,
+      "total_fat": 25
+    },
+    "serving_size_g": 486.5,
+    "total_recipe_weight_g": 1946
+  },
+  {
+    "recipe_name": "Fermented Tomato & Basil Sorbet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_%26_basil_sorbet_20250623_135523_a744252e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:55:23.555520000Z",
+    "selected_ingredients": [
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, elegantly scooped portion of Fermented Tomato & Basil Sorbet is centered in a handcrafted, unglazed ceramic bowl in an earthy cream tone. The sorbet exhibits a soft, slightly icy texture with a natural light red-orange hue, subtly flecked with tiny dark green basil pieces. Delicately curled, translucent candied tomato skins are artfully placed on the sorbet, adding a subtle sheen and textural contrast. A single, small vibrant green basil leaf rests beside the scoop, providing a fresh pop of color. The bowl sits on a light-colored, natural reclaimed wood table surface. An undyed linen napkin in natural beige is folded neatly beside the bowl. The background is clean and minimalist, with soft, natural light illuminating the dish, emphasizing the pure beauty of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml (for brine)"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "15 g (for brine)"
+      },
+      {
+        "name": "Organic Cane Sugar",
+        "quantity": "150 g (for sorbet base)"
+      },
+      {
+        "name": "Fresh Basil Leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Reserved Tomato Skins",
+        "quantity": "from 1 kg tomatoes"
+      },
+      {
+        "name": "Organic Cane Sugar",
+        "quantity": "100 g (for candied skins)"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml (for candied skins syrup)"
+      }
+    ],
+    "instructions": [
+      "Wash tomatoes thoroughly. Cut tomatoes into rough 2-3 cm chunks. Reserve all tomato skins.",
+      "Prepare fermentation brine: Dissolve 15 g sea salt in 500 ml water. Stir well.",
+      "Place tomato chunks into a clean glass jar. Pour brine over tomatoes, ensuring they are fully submerged. Use a fermentation weight if necessary.",
+      "Cover jar loosely. Ferment at room temperature for 3 to 5 days. Taste daily for desired tanginess. Refrigerate once desired tanginess is reached.",
+      "Strain fermented tomatoes. Reserve 100 ml of the fermentation liquid. Discard remaining brine.",
+      "Combine fermented tomatoes, 150 g organic cane sugar, fresh basil leaves, lemon juice, and 100 ml reserved fermentation liquid in a blender.",
+      "Blend until completely smooth. Taste and adjust sweetness if needed. Chill the mixture thoroughly in the refrigerator for at least 4 hours.",
+      "While sorbet base chills, prepare candied tomato skins: Blanch reserved tomato skins in boiling water for 30 seconds. Immediately transfer to an ice bath.",
+      "Drain skins. In a small saucepan, combine 100 g organic cane sugar and 100 ml water. Bring to a simmer, stirring until sugar dissolves. Add blanched tomato skins.",
+      "Simmer skins gently in syrup for 10-15 minutes, until translucent. Carefully remove skins from syrup. Place them on a wire rack set over parchment paper.",
+      "Dehydrate skins in a dehydrator at 50°C (122°F) or a low oven with the door ajar until crisp, about 2-4 hours. Store in an airtight container.",
+      "Pour chilled sorbet base into an ice cream maker. Churn according to manufacturer's instructions until firm and frozen.",
+      "Transfer sorbet to an airtight container. Freeze for at least 2 hours to firm up.",
+      "To serve: Scoop sorbet into individual bowls. Garnish with crisp candied tomato skins and a small fresh basil leaf."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing tomato skins for a garnish, reducing food waste.",
+      "Fermentation enhances flavor complexity and contributes to a sustainable approach to food preservation.",
+      "Prioritize local, seasonal tomatoes for best flavor and lowest environmental impact.",
+      "Natural sweeteners are used to align with eco-conscious principles."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 62.5,
+      "calories": 290.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 3.14,
+      "protein_g": 2.52,
+      "saturated_fat_g": 0,
+      "sodium_mg": 523,
+      "total_carbs_g": 72.97,
+      "total_fat_g": 0.55,
+      "total_sugars_g": 69.21,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 20.66,
+      "calories": 96,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.04,
+      "protein_g": 0.83,
+      "saturated_fat_g": 0,
+      "sodium_mg": 172.9,
+      "total_carbs_g": 24.12,
+      "total_fat_g": 0.18,
+      "total_sugars_g": 22.88,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 12.56,
+      "protein": 5.04,
+      "saturated_fat": 0,
+      "sodium": 22.74,
+      "total_carbs": 24.32,
+      "total_fat": 0.85
+    },
+    "serving_size_g": 302.5,
+    "total_recipe_weight_g": 1210
+  },
+  {
+    "recipe_name": "Roasted Broccoli and Mushroom Pasta with Anchovy-Orange Butter and Hazelnuts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_broccoli_and_mushroom_pasta_with_anchovy-orange_butter_and_hazelnuts_20250623_135358_a46e2dea.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:53:58.630419000Z",
+    "selected_ingredients": [
+      "pasta",
+      "onion",
+      "orange",
+      "mushroom",
+      "parsley",
+      "thyme",
+      "broccoli",
+      "anchovy",
+      "hazelnut",
+      "lavender"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish presents a generous, home-style single portion of roasted broccoli and mushroom pasta on a simple, round, off-white ceramic plate. Al dente rigatoni forms the base, its golden hue contrasting with vibrant green roasted broccoli florets and earthy brown slices of cremini mushrooms, visibly mixed throughout. The vegetables show slight charring, indicating their roasting. Finely chopped fresh parsley and thyme leaves are scattered over, adding green bursts. A scattering of roughly chopped, toasted hazelnuts provides a warm, golden-brown crunch. The arrangement is natural and casual, with components touching and overlapping. The plate sits on a well-used, warm-toned wooden dining table, illuminated by cozy kitchen lighting. A casually placed cloth napkin and a simple silver fork complete the homely, inviting scene.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "cultural_origin": "Italian-inspired",
+    "hero_ingredient": "Pasta",
+    "ingredients": [
+      {
+        "name": "Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "500g"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Anchovy fillets",
+        "quantity": "6-8"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1"
+      },
+      {
+        "name": "Hazelnuts",
+        "quantity": "50g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried culinary lavender",
+        "quantity": "1/4 teaspoon (optional)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut broccoli into small florets. Slice mushrooms. Dice onion. Mince garlic.",
+      "Toss broccoli florets and sliced mushrooms with 30ml olive oil, salt, and pepper on a baking sheet. Roast for 20-25 minutes until tender and slightly charred.",
+      "While vegetables roast, cook pasta according to package directions in salted water until al dente. Reserve 120ml pasta water. Drain pasta.",
+      "In a large pan, melt butter with remaining 30ml olive oil over medium heat. Add diced onion. Sauté 5-7 minutes until softened.",
+      "Add minced garlic, finely chopped anchovy, and thyme leaves. Cook 2 minutes, stirring, until anchovy melts into a paste.",
+      "Zest the orange into the pan. Squeeze in about 15ml orange juice. Add culinary lavender, if using, very sparingly.",
+      "Add roasted broccoli and mushrooms to the pan. Toss to combine.",
+      "Add cooked pasta and reserved pasta water to the pan. Toss well to coat pasta. Cook 1-2 minutes until sauce slightly thickens.",
+      "Remove from heat. Chop fresh parsley. Roughly chop toasted hazelnuts. Stir in chopped parsley and most of the toasted hazelnuts. Season with salt and pepper to taste.",
+      "Serve immediately. Garnish with remaining hazelnuts."
+    ],
+    "notes": [
+      "Adjust the amount of anchovy and orange zest to suit your taste preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 745.7,
+      "cholesterol_mg": 20.4,
+      "dietary_fiber_g": 10.5,
+      "protein_g": 23.4,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 291.2,
+      "total_carbs_g": 95.5,
+      "total_fat_g": 31.6,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153.7,
+      "cholesterol_mg": 4.2,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 4.8,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 59.9,
+      "total_carbs_g": 19.7,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7,
+      "dietary_fiber": 37,
+      "protein": 47,
+      "saturated_fat": 35,
+      "sodium": 13,
+      "total_carbs": 35,
+      "total_fat": 41
+    },
+    "serving_size_g": 485.1,
+    "total_recipe_weight_g": 1940.5
+  }
+]

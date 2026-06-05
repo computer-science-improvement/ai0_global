@@ -1,0 +1,690 @@
+[
+  {
+    "recipe_name": "Seared Chicken Thigh with Bell Pepper-White Chocolate Emulsion and Kimchi Reduction",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_thigh_with_bell_pepper-white_chocolate_emulsion_and_kimchi_reduction_20250623_130623_4bd76f43.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:06:24.225160000Z",
+    "selected_ingredients": [
+      "bell pepper",
+      {
+        "name": "chicken",
+        "comment": "Chicken thighs"
+      },
+      "tomato",
+      "smoked salmon",
+      "cheese curd",
+      {
+        "name": "white chocolate",
+        "comment": "Must not be just the garnish"
+      },
+      "kimchi"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single seared chicken thigh, cut into two or three thick chunks, is the focal point, presented with its crispy, golden-brown skin facing upwards. It rests elegantly on a refined, organic sweep of vibrant orange-red bell pepper-white chocolate emulsion, which provides a soft, creamy base. Around the chicken, precise, small dots and delicate swirls of a deep, glossy kimchi-tomato reduction add intense color and umami. A few pristine white cheese curds are artfully arranged for textural contrast. A single, delicate shard of smoked salmon crisp stands as an architectural accent. The composition emphasizes abundant negative space on a premium white bone china plate with a subtle pattern. The setting features a luxurious grey-veined marble surface, a precisely folded white linen napkin, and traditional flatware. Dramatic professional lighting casts soft shadows, highlighting textures and colors against an ultra-minimalist background, ensuring the dish is the sole, sophisticated focus.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "hero_ingredient": "Chicken Thigh",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skin-on",
+        "quantity": "4"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Kimchi",
+        "quantity": "100 g"
+      },
+      {
+        "name": "High-quality white chocolate (30-35% cocoa)",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh cheese curds",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Smoked salmon, thinly sliced",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Xanthan gum (optional, for emulsion/reduction)",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Micro basil or chives, for garnish",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "For the Smoked Salmon Crisps: Place smoked salmon slices between two sheets of parchment paper. Press with a baking sheet. Bake 10-12 minutes until brittle and crisp. Break into small, irregular shards. Set aside.",
+      "For the Bell Pepper-White Chocolate Emulsion: Halve bell peppers. Remove seeds. Roast skin-side up on a tray until skin blisters and blackens. Cool in a covered bowl. Peel skins. Blend roasted pepper flesh with 50 ml chicken stock until very smooth. Pass through a fine sieve. Gently melt white chocolate. Combine bell pepper purée with melted white chocolate. Emulsify with a stick blender. Season with salt and pepper. Add a pinch of xanthan gum if desired for stability. Keep warm.",
+      "For the Kimchi-Tomato Reduction: Squeeze excess liquid from kimchi. Coarsely chop. Dice tomatoes. Sauté shallot and garlic in a small saucepan with a splash of olive oil until fragrant. Add chopped kimchi and diced tomatoes. Cook 5 minutes. Deglaze with white wine vinegar. Add 150 ml chicken stock and sugar. Simmer gently until reduced by half and slightly syrupy. Pass through a fine sieve, pressing solids. Season with salt and pepper. Keep warm.",
+      "For the Chicken Thighs: Pat chicken thighs dry. Score the skin in a crosshatch pattern. Season generously with salt and pepper.",
+      "Heat remaining olive oil in a heavy, oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear 8-10 minutes until skin is deeply golden and crisp. Flip chicken. Transfer skillet to preheated oven. Roast 10-12 minutes, or until internal temperature reaches 75°C. Rest chicken 5 minutes before serving. Cut chicken into two or three thick chunks for plating.",
+      "To Serve: Spoon a natural, flowing sweep of the Bell Pepper-White Chocolate Emulsion onto the center of each plate. Place 2-3 thick chunks of seared chicken thigh on the emulsion. Artistically dot the plate with small amounts of the Kimchi-Tomato Reduction. Arrange 2-3 fresh cheese curds. Place one small smoked salmon crisp precisely on the plate. Garnish with micro basil or chives. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 11.25,
+      "calories": 667.31,
+      "cholesterol_mg": 182.5,
+      "dietary_fiber_g": 3.88,
+      "protein_g": 39.44,
+      "saturated_fat_g": 16.52,
+      "sodium_mg": 976.29,
+      "total_carbs_g": 26.43,
+      "total_fat_g": 47.18,
+      "total_sugars_g": 20.96,
+      "trans_fat_g": 0.29
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.28,
+      "calories": 135.22,
+      "cholesterol_mg": 36.98,
+      "dietary_fiber_g": 0.79,
+      "protein_g": 7.99,
+      "saturated_fat_g": 3.35,
+      "sodium_mg": 197.83,
+      "total_carbs_g": 5.36,
+      "total_fat_g": 9.56,
+      "total_sugars_g": 4.25,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60.8,
+      "dietary_fiber": 13.9,
+      "protein": 78.9,
+      "saturated_fat": 82.6,
+      "sodium": 42.5,
+      "total_carbs": 9.6,
+      "total_fat": 60.5
+    },
+    "serving_size_g": 493.5,
+    "total_recipe_weight_g": 1974
+  },
+  {
+    "recipe_name": "Panang Chicken Curry with Strawberry and Cream Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_panang_chicken_curry_with_strawberry_and_cream_cheese_20250623_130556_36e32175.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:05:57.182379000Z",
+    "selected_ingredients": [
+      "strawberry",
+      "chicken",
+      "cream cheese",
+      "panang curry paste",
+      "cocoa powder"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of vibrant Panang Chicken Curry is presented in a deep, clean white porcelain bowl. The rich, creamy curry sauce, a warm reddish-orange hue, coats tender, irregularly shaped chicken chunks. Bright red bell pepper dices and crisp-tender green bean pieces add contrasting colors and textures. The sauce has a smooth, glossy finish. The bowl rests on a simple, light-colored wooden table. A smaller white bowl of fluffy white jasmine rice sits beside it. Elegant chopsticks and a traditional Thai-style spoon complete the setting. A folded white cotton napkin adds to the casual bistro atmosphere. Natural, soft, even lighting illuminates the dish, highlighting its warmth. The entire plate is visible, with moderate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with steamed jasmine rice.",
+      "Offer a side of fresh lime wedges for squeezing.",
+      "Accompany with a small bowl of fish sauce with sliced chilies for extra heat."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Panang curry paste",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Full-fat coconut milk",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Fresh strawberries",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Cream cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Kaffir lime leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm chunks. Set aside.",
+      "Wash and hull strawberries. Puree strawberries in a blender until smooth. Set aside.",
+      "Dice red bell pepper into 2 cm pieces. Trim green beans. Crush garlic. Grate ginger.",
+      "Heat vegetable oil in a large pot or wok over medium heat.",
+      "Add Panang curry paste. Stir-fry for 1 minute until fragrant.",
+      "Add crushed garlic and grated ginger. Cook for 30 seconds.",
+      "Add chicken chunks. Cook until lightly browned on all sides. Do not cook through.",
+      "Pour in coconut milk. Add kaffir lime leaves, fish sauce, palm sugar, and cocoa powder. Stir well.",
+      "Bring mixture to a gentle simmer. Reduce heat to low. Cook for 10 minutes, stirring occasionally. Ensure chicken reaches 75°C (167°F).",
+      "Add pureed strawberries and cream cheese to the curry. Stir until cream cheese is fully melted and sauce is smooth.",
+      "Add diced red bell pepper and green beans. Simmer for 3-5 minutes, until vegetables are tender-crisp.",
+      "Taste and adjust seasoning if needed. Remove kaffir lime leaves before serving.",
+      "Serve hot over steamed jasmine rice. Garnish with fresh basil leaves."
+    ],
+    "traditional_techniques": [
+      "Stir-frying curry paste",
+      "Balancing sweet, sour, salty, spicy flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.8,
+      "calories": 804,
+      "cholesterol_mg": 163,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 35.2,
+      "saturated_fat_g": 47.3,
+      "sodium_mg": 2335,
+      "total_carbs_g": 25.4,
+      "total_fat_g": 68,
+      "total_sugars_g": 17.7,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 151,
+      "cholesterol_mg": 31,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.6,
+      "saturated_fat_g": 8.9,
+      "sodium_mg": 440,
+      "total_carbs_g": 4.8,
+      "total_fat_g": 12.8,
+      "total_sugars_g": 3.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54.4,
+      "dietary_fiber": 13.3,
+      "protein": 70.5,
+      "saturated_fat": 236.6,
+      "sodium": 101.5,
+      "total_carbs": 9.3,
+      "total_fat": 87.2
+    },
+    "serving_size_g": 531.2,
+    "total_recipe_weight_g": 2124.8
+  },
+  {
+    "recipe_name": "Smoked Whitefish and Orange Potato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_whitefish_and_orange_potato_salad_20250623_130548_eca1a01d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:05:48.943681000Z",
+    "selected_ingredients": [
+      "smoked whitefish",
+      "orange"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, rustic yet refined individual portion of Smoked Whitefish and Orange Potato Salad is presented on a clean white porcelain dinner plate. The dish features substantial chunks of tender, boiled waxy potatoes, some halved, some quartered, forming the base. Interspersed are generous flakes of smoky, pale whitefish, showcasing its natural texture. Bright green flecks of freshly chopped dill are visible throughout, contrasting with the creamy white of the potatoes and the pinkish-purple of thinly sliced, quick-pickled red onion. Small, briny capers and crisp diced cucumber add textural variation. The entire salad is lightly coated in a glistening, pale orange vinaigrette, hinting at citrus notes. Garnishing the plate are several jewel-like segments of fresh orange, their bright orange flesh popping against the other ingredients. The plate sits on a simple light wooden table. A folded cotton napkin is placed to the side. The scene is bathed in natural, even light, creating a fresh and inviting atmosphere typical of a modern bistro with subtle Scandinavian influences.",
+    "number_of_servings": 4,
+    "cuisine_type": "Nordic",
+    "cultural_origin": "Scandinavian",
+    "cultural_serving_suggestions": [
+      "Serve with dark rye bread",
+      "Pair with a glass of chilled Aquavit"
+    ],
+    "hero_ingredient": "Smoked whitefish",
+    "ingredients": [
+      {
+        "name": "Smoked whitefish",
+        "quantity": "400g"
+      },
+      {
+        "name": "Waxy potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Orange",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10g"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Capers",
+        "quantity": "20g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 small"
+      }
+    ],
+    "instructions": [
+      "Boil potatoes in salted water until tender. Drain. Let cool slightly. Quarter or halve larger potatoes.",
+      "Prepare quick-pickled red onion. Thinly slice red onion. Place in a small bowl.",
+      "Combine 60ml hot water, 30ml white wine vinegar, 5g sugar, and a pinch of salt. Pour over red onion. Let sit 15 minutes. Drain.",
+      "Prepare orange vinaigrette. Zest one orange. Juice the same orange.",
+      "Whisk orange zest, orange juice, 60ml olive oil, 10g Dijon mustard, salt, and pepper in a bowl.",
+      "Flake smoked whitefish into bite-sized pieces. Remove any bones or skin.",
+      "In a large bowl, combine cooled potatoes, flaked whitefish, chopped dill, diced cucumber, drained pickled red onion, and drained capers.",
+      "Pour orange vinaigrette over ingredients. Gently toss to combine.",
+      "Segment the second orange. Remove pith and membrane. Set segments aside for garnish.",
+      "Taste and adjust seasoning. Serve immediately or at room temperature."
+    ],
+    "notes": [
+      "This dish can be served chilled or at room temperature."
+    ],
+    "traditional_techniques": [
+      "Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 508.9,
+      "cholesterol_mg": 70,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 27.8,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 1394.5,
+      "total_carbs_g": 50.4,
+      "total_fat_g": 21.9,
+      "total_sugars_g": 12,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 106.9,
+      "cholesterol_mg": 14.7,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 5.8,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 292.8,
+      "total_carbs_g": 10.6,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 27,
+      "protein": 56,
+      "saturated_fat": 17,
+      "sodium": 61,
+      "total_carbs": 18,
+      "total_fat": 28
+    },
+    "serving_size_g": 476.25,
+    "total_recipe_weight_g": 1905
+  },
+  {
+    "recipe_name": "Sausage and Bell Pepper Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sausage_and_bell_pepper_pasta_20250623_130538_475ee7a7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:05:38.625491000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of penne pasta tossed with chunky, browned Italian sausage and vibrant bell peppers is piled casually in a deep, rustic ceramic bowl. The pasta is coated in a rich, rustic red tomato sauce. Sausage is crumbled into irregular chunks. Bell peppers are cut into thick strips, showing a mix of red and yellow, slightly softened. Fresh basil leaves are torn and scattered over the top. The dish displays natural colors of red, orange, green, and warm brown sausage, with varied textures. The bowl is filled generously, allowing some negative space. The bowl sits on a well-used, warm-toned wooden dining table. A simple white ceramic plate with a fork and spoon rests on a casually folded beige linen napkin. The background is a softly blurred, cozy family kitchen with warm, inviting light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping in the sauce.",
+      "Offer grated Parmesan cheese at the table for individual topping."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Italian sausage, casings removed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red bell pepper, thick strips",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow bell pepper, thick strips",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Onion, roughly chopped",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "800g can"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "a few"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Add Italian sausage, crumbling it with a spoon. Cook until browned and cooked through, reaching an internal temperature of 75°C (167°F). Remove sausage from skillet; set aside.",
+      "Drain most of the fat from the skillet, leaving about 15ml.",
+      "Add chopped onion to the skillet. Sauté until softened, about 5 minutes.",
+      "Add bell pepper strips and minced garlic. Cook for 5-7 minutes, until peppers are slightly tender.",
+      "Pour in crushed tomatoes. Bring to a simmer. Return cooked sausage to the skillet. Season with salt and black pepper.",
+      "Reduce heat to low. Simmer sauce for 15-20 minutes, allowing flavors to meld.",
+      "While sauce simmers, add penne pasta to boiling water. Cook according to package directions until al dente.",
+      "Drain pasta. Add pasta directly to the skillet with the sauce. Toss to combine.",
+      "Serve immediately. Garnish with torn fresh basil leaves."
+    ],
+    "notes": [
+      "Adjust spice level by adding red pepper flakes to the sauce with the tomatoes."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 778,
+      "cholesterol_mg": 70,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 30.3,
+      "saturated_fat_g": 10.3,
+      "sodium_mg": 1006,
+      "total_carbs_g": 87.6,
+      "total_fat_g": 33.9,
+      "total_sugars_g": 12.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 4.9,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 162,
+      "total_carbs_g": 14.1,
+      "total_fat_g": 5.5,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23.3,
+      "dietary_fiber": 25.6,
+      "protein": 60.6,
+      "saturated_fat": 51.6,
+      "sodium": 43.8,
+      "total_carbs": 31.9,
+      "total_fat": 43.5
+    },
+    "serving_size_g": 621.5,
+    "total_recipe_weight_g": 2486
+  },
+  {
+    "recipe_name": "Seared Beef with Fermented Garlic Noodles and Pickled Squash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_beef_with_fermented_garlic_noodles_and_pickled_squash_20250623_130310_23c521b1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:03:11.226694000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "mushroom",
+      "noodle",
+      "squash",
+      "oregano",
+      "onion"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of Seared Beef with Fermented Garlic Noodles and Pickled Squash is presented on a handcrafted ceramic plate in an earthy tone, like cream or beige. The composition is minimalistic, featuring ample white space. Seared beef chunks, browned and juicy, are placed alongside a nest of buckwheat soba noodles infused with mellow garlic confit. Roasted mushroom slices, with their rich, earthy hue, are artfully arranged. Bright, quick-pickled squash half-moons and thin slices of red onion provide a vibrant counterpoint of color and texture. The natural beauty of each ingredient is highlighted, with no ornate garnishes. Fresh oregano leaves and whole golden garlic confit cloves are scattered sparingly for a touch of green. The plate rests on a light bamboo or reclaimed wood table surface. An undyed linen napkin in natural beige is subtly placed nearby. Soft, natural lighting illuminates the dish, emphasizing its textures and colors. The background is clean and minimalist, with subtle hints of green plants, reinforcing an eco-conscious and serene aesthetic. All elements contribute to an unfussy, ingredient-focused presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef top sirloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Buckwheat soba noodles",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 whole head"
+      },
+      {
+        "name": "Mixed mushrooms (cremini, shiitake)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "1 small (approx. 700g)"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fresh oregano",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare pickled squash and onion: Peel and deseed squash. Cut into 1cm thick half-moons or 2cm cubes. Thinly slice red onion.",
+      "Combine apple cider vinegar, water, honey, and a pinch of salt in a small saucepan. Bring to a boil.",
+      "Pour hot brine over squash and red onion in separate heatproof jars. Let cool. Refrigerate for at least 30 minutes.",
+      "Prepare roasted mushrooms: Brush mushrooms clean. Slice thickly or halve smaller ones. Toss with 15ml olive oil, salt, and pepper.",
+      "Roast mushrooms at 200°C for 15-20 minutes until tender and slightly browned.",
+      "Prepare garlic confit: Peel garlic cloves. Place in a small saucepan. Cover completely with 50ml olive oil. Simmer gently over very low heat for 30-40 minutes until cloves are soft and golden.",
+      "Crush half of the garlic confit cloves into a paste. Keep remaining cloves whole.",
+      "Cook noodles: Cook according to package instructions in salted water. Drain. Toss with 15ml olive oil to prevent sticking. Stir in crushed garlic confit paste and half of the fresh oregano leaves.",
+      "Sear beef: Pat beef cubes dry. Season with salt and pepper. Cut beef into 3-4 cm cubes.",
+      "Heat remaining 30ml olive oil in a heavy-bottomed pan over high heat. Sear beef cubes in batches for 2-3 minutes per side until well browned and cooked to an internal temperature of 75°C (167°F).",
+      "Rest beef for 5 minutes.",
+      "Assemble: Divide garlic noodles among 4 shallow bowls or plates. Arrange seared beef chunks, roasted mushrooms, and pickled squash and onion alongside the noodles.",
+      "Garnish with remaining fresh oregano leaves and whole garlic confit cloves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.11,
+      "calories": 769.09,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 11.33,
+      "protein_g": 53.2,
+      "saturated_fat_g": 5.26,
+      "sodium_mg": 116.66,
+      "total_carbs_g": 93.15,
+      "total_fat_g": 23.59,
+      "total_sugars_g": 14.21,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.62,
+      "calories": 117.05,
+      "cholesterol_mg": 15.97,
+      "dietary_fiber_g": 1.72,
+      "protein_g": 8.09,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 17.74,
+      "total_carbs_g": 14.17,
+      "total_fat_g": 3.59,
+      "total_sugars_g": 2.16,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 40.46,
+      "protein": 106.4,
+      "saturated_fat": 26.3,
+      "sodium": 5.07,
+      "total_carbs": 33.87,
+      "total_fat": 30.24
+    },
+    "serving_size_g": 657.5,
+    "total_recipe_weight_g": 2630
+  }
+]

@@ -1,0 +1,630 @@
+[
+  {
+    "recipe_name": "Sichuan Dry-Fried Green Beans with Crispy Tofu",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sichuan_dry-fried_green_beans_with_crispy_tofu_20250724_162015_f9b5d2bf.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T16:20:16.298961000Z",
+    "selected_ingredients": [
+      "bean",
+      "tofu"
+    ],
+    "complexity": "standard",
+    "special_requests": "chinese cuisine",
+    "visual_description": "Sichuan Dry-Fried Green Beans with Crispy Tofu is presented in a shallow, wide white porcelain bowl. Crispy golden-brown tofu cubes (2 cm) are mixed with vibrant whole green beans, showing characteristic wrinkling from dry-frying. The dish contrasts vivid green beans with golden tofu, accented by red dried chilies and dark brown fermented black beans. Finely chopped fresh spring onion greens garnish. Components are loosely mounded for a natural, flowing arrangement. The bowl rests on a simple light wooden table with a white cotton napkin. Dark wooden chopsticks are placed across the bowl rim. A small white rice bowl with steamed white rice sits nearby, completing an authentic Chinese dining setting under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Sichuan Chinese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed white rice.",
+      "Traditionally enjoyed family-style as one of several dishes."
+    ],
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Firm Tofu",
+        "quantity": "400g"
+      },
+      {
+        "name": "Green Beans",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Sichuan Peppercorns",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Dried Chilies",
+        "quantity": "8-10"
+      },
+      {
+        "name": "Fermented Black Beans (Dou Chi)",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Light Soy Sauce",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dark Soy Sauce",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Shaoxing Wine",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "for frying + 2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Spring Onion Greens",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Press tofu to remove excess water. Cut tofu into 2 cm cubes. Toss tofu cubes with cornstarch to coat.",
+      "Heat ample vegetable oil in a wok or large pan over medium-high heat. Fry tofu cubes until golden brown and crispy on all sides. Remove tofu, drain on paper towels.",
+      "Boil water in a pot with a pinch of salt. Blanch green beans for 2-3 minutes until bright green and tender-crisp. Drain well.",
+      "Heat 1 tablespoon of fresh vegetable oil in the wok over medium-high heat. Add blanched green beans. Stir-fry (dry-fry) until wrinkled and slightly charred. Remove beans from wok.",
+      "Heat 1 tablespoon of fresh vegetable oil in the wok. Add Sichuan peppercorns and dried chilies. Stir-fry briefly until fragrant. Remove peppercorns and chilies if desired.",
+      "Add minced garlic, minced ginger, and chopped fermented black beans to the wok. Sauté for 30 seconds until fragrant.",
+      "Return green beans and crispy tofu to the wok.",
+      "Add light soy sauce, dark soy sauce, Shaoxing wine, and sugar. Stir well to coat all ingredients evenly.",
+      "Drizzle with sesame oil. Toss briefly to combine. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the number of dried chilies to control the spice level.",
+      "Thoroughly pressing the tofu is essential for achieving a crispy texture when frying."
+    ],
+    "traditional_techniques": [
+      "Gan Bian (Dry-Frying)",
+      "Wok Hei"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.1,
+      "calories": 273,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 12,
+      "saturated_fat_g": 3,
+      "sodium_mg": 1029,
+      "total_carbs_g": 18.2,
+      "total_fat_g": 18.9,
+      "total_sugars_g": 5.9,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 102,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 4.5,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 383,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 18,
+      "protein": 24,
+      "saturated_fat": 15,
+      "sodium": 45,
+      "total_carbs": 7,
+      "total_fat": 24
+    },
+    "serving_size_g": 268.4,
+    "total_recipe_weight_g": 1073.5
+  },
+  {
+    "recipe_name": "Cabbage and Crispy Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cabbage_and_crispy_rice_salad_20250724_160048_a5b842f0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T16:00:49.359831000Z",
+    "selected_ingredients": [
+      {
+        "name": "kielbasa"
+      },
+      {
+        "name": "rice"
+      },
+      {
+        "name": "chili"
+      },
+      {
+        "name": "cashew"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Thai",
+    "visual_description": "A vibrant Cabbage and Crispy Rice Salad is presented centrally on a clean white porcelain dinner plate, piled into a well-proportioned mound. The finely shredded white cabbage and julienned orange carrots form a fresh base. Interspersed throughout are thin slices of red onion, chopped green onions, and bright green cilantro and mint leaves. Golden-brown, irregularly shaped crispy rice pieces add significant texture. Very finely diced, crispy kielbasa pieces are scattered subtly, providing a savory note without dominating. Thin slices of red bird’s eye chilies provide pops of color. The salad is lightly coated with a clear, zesty dressing, visible among the ingredients. The dish is garnished with roughly chopped roasted cashews and a few fresh mint sprigs. The plate sits on a simple light wooden table surface. A fork and spoon are placed beside the plate. Natural, even lighting highlights the fresh ingredients and diverse textures. The background is minimal, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "hero_ingredient": "Cabbage",
+    "ingredients": [
+      {
+        "name": "Cooked jasmine rice (day-old, cold)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Neutral oil (for frying)",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "White cabbage, finely shredded",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Carrots, julienned",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Red onion, thinly sliced",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Green onions, chopped",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh mint leaves, chopped",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Roasted cashews, roughly chopped",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fresh red bird's eye chilies, thinly sliced",
+        "quantity": "1-2 (adjust to taste)"
+      },
+      {
+        "name": "Kielbasa, very finely diced",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Palm sugar, finely grated or crushed",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Water (if needed to dissolve sugar)",
+        "quantity": "10 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare kielbasa: Cook finely diced kielbasa in a small pan over medium heat until crispy and browned. Drain on paper towel. Set aside.",
+      "Prepare crispy rice: Heat neutral oil in a wok or deep pot to 175°C. Break up cold rice. Fry rice in batches until golden brown and crispy, about 3-5 minutes per batch. Remove with a slotted spoon. Drain on paper towel. Season lightly with salt.",
+      "Prepare dressing: In a bowl, combine lime juice, fish sauce, palm sugar, minced garlic, and water. Stir until palm sugar dissolves completely.",
+      "Assemble salad: In a large mixing bowl, combine shredded cabbage, julienned carrots, sliced red onion, chopped green onions, chopped cilantro, chopped mint, sliced chilies, crispy kielbasa, and crispy rice.",
+      "Dress and serve: Pour dressing over salad. Toss gently to combine. Transfer to a serving platter. Garnish with chopped cashews. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Chicken and Vegetable Pulao",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_vegetable_pulao_20250724_154306_e625bdbd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T15:43:07.251235000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "carrot",
+      "green pea"
+    ],
+    "complexity": "simple",
+    "special_requests": "meal prep",
+    "visual_description": "A single portion of steaming chicken pulao served on a rustic, hand-painted ceramic plate. The long-grain Basmati rice is fluffy and light yellow from turmeric. Large, golden-brown seared chicken chunks are scattered throughout the rice, not sliced. Vibrant orange carrot cubes and bright green peas provide pops of color. The arrangement is natural and mounded, filling the center of the plate with visible steam rising. The setting is a well-used wooden kitchen table with a simple steel spoon and a small side bowl of white yogurt raita. Warm, natural light illuminates the textures of the rice grains and the moist, tender chicken pieces.",
+    "number_of_servings": 5,
+    "cuisine_type": "Indian",
+    "cultural_origin": "South Asian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of cucumber raita",
+      "Accompany with lime wedges and sliced raw red onions",
+      "Serve with mango pickle or papadums"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "boneless chicken thighs, 3cm chunks",
+        "quantity": "750g"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "500g"
+      },
+      {
+        "name": "carrots, 1cm dice",
+        "quantity": "200g"
+      },
+      {
+        "name": "green peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "onion, thinly sliced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic paste",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "ginger paste",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "900ml"
+      },
+      {
+        "name": "vegetable oil",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "cumin seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "turmeric powder",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "garam masala",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "salt",
+        "quantity": "2 tsp"
+      }
+    ],
+    "instructions": [
+      "Wash rice until water runs clear. Soak in cold water for 20 minutes. Drain.",
+      "Heat oil in a large pot over medium heat. Add cumin seeds. Toast for 30 seconds.",
+      "Add sliced onions. Sauté until golden brown.",
+      "Stir in ginger and garlic pastes. Cook for 1 minute.",
+      "Add chicken chunks. Brown all sides for 5 minutes.",
+      "Add diced carrots, turmeric, garam masala, and salt. Stir to coat.",
+      "Add drained rice. Stir gently for 2 minutes to toast grains.",
+      "Pour in chicken stock. Bring to a boil.",
+      "Reduce heat to low. Cover with a tight lid. Simmer for 12 minutes.",
+      "Check chicken internal temperature reaches 75°C.",
+      "Gently fold in green peas. Cover and rest off heat for 5 minutes.",
+      "Fluff with a fork before serving."
+    ],
+    "notes": [
+      "Thigh meat stays moist during reheating for meal prep.",
+      "Do not over-stir the rice to prevent breaking the long grains.",
+      "Ensure the lid is tight to trap steam effectively."
+    ],
+    "traditional_techniques": [
+      "tempering spices",
+      "dum cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 816,
+      "cholesterol_mg": 126,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 41.6,
+      "saturated_fat_g": 7.2,
+      "sodium_mg": 1660,
+      "total_carbs_g": 91.5,
+      "total_fat_g": 31.5,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 170,
+      "cholesterol_mg": 26.25,
+      "dietary_fiber_g": 1.15,
+      "protein_g": 8.67,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 345.8,
+      "total_carbs_g": 19.06,
+      "total_fat_g": 6.56,
+      "total_sugars_g": 1.02,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 19.6,
+      "protein": 83.2,
+      "saturated_fat": 36,
+      "sodium": 72.2,
+      "total_carbs": 33.3,
+      "total_fat": 40.4
+    },
+    "serving_size_g": 480,
+    "total_recipe_weight_g": 2400
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken with Lemon Caper Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_lemon_caper_sauce_20250724_143421_2c43f681.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T14:34:21.482935000Z",
+    "selected_ingredients": [
+      "caper"
+    ],
+    "complexity": "standard",
+    "special_requests": "Low carb, high fibre, rich in flavour",
+    "visual_description": "A single, golden-brown pan-seared chicken breast rests centrally on a clean white porcelain dinner plate. The chicken, cooked whole, exhibits a beautiful crust. Beside it, a neat mound of vibrant, crisp-tender green beans adds a pop of fresh green. A rich, glossy lemon-caper sauce, flecked with dark capers and bright green chopped parsley, is generously spooned over the chicken and pools elegantly around the base. A fresh lemon wedge is placed to the side for garnish. The scene is set on a simple wooden table surface, with a cotton napkin and standard flatware beside the plate, all under natural, even lighting, evoking a sophisticated yet approachable bistro atmosphere. The composition is balanced with moderate negative space, highlighting the dish as the main subject.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple side salad.",
+      "Offer crusty bread to sop up the sauce (if not strictly low-carb)."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "60g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "45g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine (e.g., Pinot Grigio)",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "240ml"
+      },
+      {
+        "name": "Capers, drained",
+        "quantity": "30g"
+      },
+      {
+        "name": "Lemon, juiced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Green beans, trimmed",
+        "quantity": "400g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Place between two sheets of plastic wrap. Pound to 1.5 cm thickness.",
+      "Combine almond flour, 3g salt, and 1g pepper in a shallow dish. Dredge each chicken breast in flour, shaking off excess.",
+      "Heat olive oil in a large skillet over medium-high heat. Add 15g butter. When foam subsides, add chicken. Sear 4-5 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken to a plate. Keep warm.",
+      "Add minced garlic to the same skillet. Sauté 30 seconds until fragrant.",
+      "Pour in white wine. Scrape up any browned bits from the bottom of the pan. Reduce by half, about 2 minutes.",
+      "Add chicken broth and capers. Bring to a simmer. Cook 3-4 minutes until slightly reduced.",
+      "Remove skillet from heat. Stir in remaining 30g butter and lemon juice until butter is melted and sauce is emulsified.",
+      "Stir in half of the chopped parsley. Taste and adjust seasoning with remaining salt and pepper.",
+      "While sauce is reducing, blanch green beans in boiling salted water for 3-4 minutes until crisp-tender. Drain well.",
+      "Return chicken to the skillet with the sauce. Spoon sauce over chicken to coat.",
+      "Serve chicken immediately with green beans. Garnish with remaining fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 611,
+      "cholesterol_mg": 186,
+      "dietary_fiber_g": 5,
+      "protein_g": 65.1,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 1028,
+      "total_carbs_g": 13,
+      "total_fat_g": 30.6,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 14.8,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 234,
+      "total_carbs_g": 3,
+      "total_fat_g": 7,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 18,
+      "protein": 130,
+      "saturated_fat": 46,
+      "sodium": 45,
+      "total_carbs": 5,
+      "total_fat": 39
+    },
+    "serving_size_g": 440,
+    "total_recipe_weight_g": 1760
+  },
+  {
+    "recipe_name": "Chicken Piccata with Lemon-Caper Sauce and Green Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_piccata_with_lemon-caper_sauce_and_green_beans_20250724_143050_90b9c218.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-24T14:30:50.466797000Z",
+    "selected_ingredients": [
+      "caper"
+    ],
+    "complexity": "standard",
+    "special_requests": "Low carb, high in fibre",
+    "visual_description": "Pan-seared chicken breast, golden-brown, glistening with lemon-caper sauce. Two whole chicken cutlets, overlapping slightly, are placed off-center on a clean white round porcelain plate. The sauce is generously spooned over the chicken, pooling slightly at the base. Capers and finely chopped fresh parsley are visible within the sauce and as garnish. Beside the chicken, a neat pile of vibrant green beans, sautéed to a tender-crisp texture, provides a contrasting color and texture. A fresh lemon wedge rests beside the chicken. The composition is balanced with moderate negative space. The setting is a modern bistro table with a simple light wooden surface. Natural, soft, even light illuminates the dish. A folded white linen napkin is positioned to the side. The plate showcases a single refined portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Capers",
+        "quantity": "30 g, drained"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "450 g, trimmed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Season with salt and pepper.",
+      "Heat 30 ml olive oil in a large skillet over medium-high heat.",
+      "Add chicken to skillet. Sear 4-5 minutes per side until golden brown and cooked through. Internal temperature must reach 75°C. Remove chicken. Set aside.",
+      "Add remaining 30 ml olive oil to skillet. Add green beans. Sauté 5-7 minutes until tender-crisp. Season with salt. Remove beans. Set aside.",
+      "Reduce heat to medium. Add butter to skillet. Once melted, add minced garlic. Cook 30 seconds until fragrant.",
+      "Pour in chicken broth and lemon juice. Bring to a simmer. Cook 2-3 minutes, scraping up browned bits.",
+      "Stir in drained capers. Simmer 1 minute. Remove from heat.",
+      "Return chicken to skillet. Spoon sauce over chicken. Garnish with fresh chopped parsley.",
+      "Serve chicken immediately with sautéed green beans."
+    ],
+    "notes": [
+      "This recipe is low carb and high in fiber.",
+      "Ensure chicken is cooked to an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 518,
+      "cholesterol_mg": 169,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 58.5,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 371,
+      "total_carbs_g": 10.4,
+      "total_fat_g": 26.8,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 45,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 15.6,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 99,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 85,
+      "dietary_fiber": 16,
+      "protein": 117,
+      "saturated_fat": 39,
+      "sodium": 16,
+      "total_carbs": 4,
+      "total_fat": 34
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1501
+  }
+]

@@ -1,0 +1,636 @@
+[
+  {
+    "recipe_name": "Baked Rigatoni with Spicy Sausage and Mozzarella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_rigatoni_with_spicy_sausage_and_mozzarella_20250701_144451_af8cfd37.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:44:52.289186000Z",
+    "selected_ingredients": [
+      "garlic",
+      "onion",
+      "sausage",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single individual portion of Baked Rigatoni with Spicy Sausage and Mozzarella is presented in a rustic, shallow, off-white ceramic bowl. The dish features a robust golden-brown and bubbly cheese crust on top, created from melted mozzarella and grated Parmesan, with inviting areas of slight caramelization. Beneath the rich, textured crust, ridged rigatoni pasta is generously coated in a vibrant red tomato sauce. Visible, irregular chunks of browned Italian sausage are interspersed throughout the pasta, along with tender, small-diced sautéed onion and finely minced garlic. A few fresh basil leaves, roughly torn, are scattered over the top, providing a contrasting green and aromatic accent. The bowl sits on a simple light wooden table surface. A fork with a dark handle rests beside the bowl on a folded natural linen napkin. Natural, even lighting illuminates the dish, emphasizing the textures of the melted cheese and the hearty sauce. The plating is clean and professional, with moderate negative space around the well-portioned serving. The entire plate is visible.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping.",
+      "Accompany with a simple green salad."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Rigatoni Pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Italian Sausage (casings removed)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow Onion (small-diced)",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic (minced)",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Crushed Tomatoes (canned)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Mozzarella Cheese (shredded)",
+        "quantity": "250g"
+      },
+      {
+        "name": "Parmesan Cheese (grated)",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30mL"
+      },
+      {
+        "name": "Fresh Basil Leaves (torn)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cook rigatoni according to package directions. Cook until al dente. Drain well.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium-high heat.",
+      "Add Italian sausage. Break up with a spoon. Cook until browned. Remove sausage from pan. Drain excess fat, leaving about 15mL in the pan.",
+      "Add small-diced onion to the pan. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Sauté for 1 minute until fragrant.",
+      "Pour in crushed tomatoes. Season with salt and black pepper. Bring to a simmer.",
+      "Return cooked sausage to the pan. Stir in the cooked rigatoni.",
+      "Add half of the shredded mozzarella and half of the grated Parmesan cheese. Stir until combined and cheese begins to melt.",
+      "Top the mixture with the remaining mozzarella and Parmesan cheese.",
+      "Bake for 20-25 minutes, or until the cheese is bubbly and golden brown.",
+      "Garnish with fresh torn basil before serving."
+    ],
+    "notes": [
+      "Please note: The provided primary ingredients (garlic, onion, sausage, cheese) are savory. As a professional chef, it is not possible to create a balanced and refined sweet dessert using these ingredients. Therefore, this recipe has been developed as a savory dish, prioritizing the use of the specified ingredients. If a sweet dessert is still desired, please provide appropriate dessert-specific ingredients."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1034,
+      "cholesterol_mg": 130.38,
+      "dietary_fiber_g": 6.15,
+      "protein_g": 51.33,
+      "saturated_fat_g": 21.29,
+      "sodium_mg": 1598.69,
+      "total_carbs_g": 89.38,
+      "total_fat_g": 51.31,
+      "total_sugars_g": 10.66,
+      "trans_fat_g": 0.65
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 200,
+      "cholesterol_mg": 25.16,
+      "dietary_fiber_g": 1.19,
+      "protein_g": 9.9,
+      "saturated_fat_g": 4.11,
+      "sodium_mg": 308.48,
+      "total_carbs_g": 17.25,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 2.06,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43.46,
+      "dietary_fiber": 21.96,
+      "protein": 102.66,
+      "saturated_fat": 106.45,
+      "sodium": 69.51,
+      "total_carbs": 32.5,
+      "total_fat": 65.78
+    },
+    "serving_size_g": 518.25,
+    "total_recipe_weight_g": 2073
+  },
+  {
+    "recipe_name": "Garlic Herb Roasted Chicken and Butternut Squash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_garlic_herb_roasted_chicken_and_butternut_squash_20250701_144446_37d5cc04.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:44:47.321344000Z",
+    "selected_ingredients": [
+      "squash",
+      "chicken",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Garlic Herb Roasted Chicken and Butternut Squash is presented on a simple, slightly imperfect off-white ceramic plate. A golden-brown, crispy-skinned roasted chicken thigh sits centrally. Around it are irregular, thick chunks of vibrant orange butternut squash, caramelized at the edges. Several whole, softened roasted garlic cloves are scattered among the squash. A fresh sprig of rosemary rests casually on the side. The arrangement is natural and inviting, as if served directly from a home kitchen. The plate sits on a well-used wooden dining table, with a casually folded, light-colored cloth napkin nearby. Warm, cozy lighting illuminates the scene, hinting at a relaxed family dinner atmosphere with minimal background clutter.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "1 medium (about 1 kg)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "8-10, whole, unpeeled"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "3 sprigs"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "Peel butternut squash. Cut into 2-3 cm thick chunks.",
+      "In a large roasting pan or on a large baking sheet, combine chicken, squash chunks, whole garlic cloves, olive oil, and rosemary sprigs.",
+      "Toss everything together until well coated.",
+      "Arrange ingredients in a single layer, ensuring chicken skin faces up.",
+      "Roast for 35-45 minutes, or until chicken skin is golden brown and crispy, and squash is tender.",
+      "Ensure chicken reaches an internal temperature of 75°C.",
+      "Remove from oven. Let rest 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 656.3,
+      "cholesterol_mg": 187.2,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 40.6,
+      "saturated_fat_g": 9.6,
+      "sodium_mg": 1142.4,
+      "total_carbs_g": 31.2,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 144.9,
+      "cholesterol_mg": 41.3,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 252.2,
+      "total_carbs_g": 6.9,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.4,
+      "dietary_fiber": 19.3,
+      "protein": 81.2,
+      "saturated_fat": 48.2,
+      "sodium": 49.7,
+      "total_carbs": 11.4,
+      "total_fat": 54.2
+    },
+    "serving_size_g": 453,
+    "total_recipe_weight_g": 1812
+  },
+  {
+    "recipe_name": "Roasted Lamb Shoulder with Pineapple Jus and Whole Wheat Dumplings",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_lamb_shoulder_with_pineapple_jus_and_whole_wheat_dumplings_20250701_144446_7b47056a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:44:46.923677000Z",
+    "selected_ingredients": [
+      "pineapple",
+      "whole wheat flour",
+      "sweet wine",
+      "lamb"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of roasted lamb shoulder is presented on a clean, white porcelain dinner plate, centrally positioned. The lamb, pulled into large, tender chunks, boasts a rich, deep brown, caramelized exterior from slow roasting. Nestled beside the lamb are three to four small, rustic spheres of whole wheat herb dumplings, light golden-brown with visible flecks of green herbs. A glossy, amber-hued pineapple-infused jus is artfully drizzled over the lamb and dumplings, pooling around the plate's base, with a few soft, caramelized pineapple chunks visible within the jus. The dish is garnished simply with a fresh sprig of rosemary. The setting is a modern bistro: a simple wooden table, a folded cotton napkin, and polished silverware are arranged beside the plate, all under natural, even lighting with a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Lamb shoulder, bone-in",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "1/2 medium"
+      },
+      {
+        "name": "Sweet wine (e.g., Marsala or Sherry)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Whole wheat flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Onion, large",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2, roughly chopped"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, smashed"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "60 ml (approx.)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Season lamb shoulder generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear lamb shoulder on all sides until deeply browned. Remove lamb from pot and set aside.",
+      "Add diced onion, chopped carrots, and chopped celery to the pot. Sauté until softened, about 8 minutes.",
+      "Add smashed garlic and cook for 1 minute until fragrant.",
+      "Deglaze the pot with sweet wine, scraping up any browned bits from the bottom. Reduce by half.",
+      "Return lamb to the pot. Add chicken broth, 2 rosemary sprigs, and 2 thyme sprigs. Bring to a simmer.",
+      "Peel and core pineapple. Cut into large 3-4 cm chunks. Add pineapple chunks to the pot.",
+      "Cover the pot and transfer to the preheated oven. Braise for 2.5-3 hours, or until lamb is fork-tender.",
+      "While lamb braises, prepare dumplings. In a bowl, combine whole wheat flour, remaining chopped rosemary and thyme, a pinch of salt. Cut in butter until crumbly.",
+      "In a separate small bowl, whisk egg with cold water. Gradually add egg mixture to flour, mixing until a soft dough forms. Do not overmix. If too dry, add a few drops more water. If too wet, add a tiny bit more flour.",
+      "Roll dough into small spheres, about 2-3 cm in diameter.",
+      "Once lamb is tender, remove from oven. Carefully transfer lamb to a cutting board. Tent with foil and let rest for 15 minutes.",
+      "Strain the braising liquid through a fine-mesh sieve into a saucepan, pressing on solids to extract all liquid. Discard solids. Skim excess fat from the jus.",
+      "Bring the jus to a gentle simmer over medium heat. Drop dumplings into the simmering jus. Cook for 10-12 minutes, or until dumplings are cooked through and fluffy.",
+      "Carve or pull roasted lamb into large, rustic chunks.",
+      "Ladle a portion of lamb, pineapple chunks, and dumplings onto each plate. Spoon generous amount of hot jus over the lamb and dumplings. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1043,
+      "cholesterol_mg": 254,
+      "dietary_fiber_g": 10.5,
+      "protein_g": 55.7,
+      "saturated_fat_g": 22.6,
+      "sodium_mg": 1162,
+      "total_carbs_g": 73.5,
+      "total_fat_g": 54.5,
+      "total_sugars_g": 26.5,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 165,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 8.8,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 184,
+      "total_carbs_g": 11.6,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 84.8,
+      "dietary_fiber": 37.4,
+      "protein": 111.5,
+      "saturated_fat": 113.2,
+      "sodium": 50.5,
+      "total_carbs": 26.7,
+      "total_fat": 69.9
+    },
+    "serving_size_g": 631.25,
+    "total_recipe_weight_g": 2525
+  },
+  {
+    "recipe_name": "Beef & Carrot Savory Tartlets",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_%26_carrot_savory_tartlets_20250701_144437_8851e75e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:44:38.084799000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot",
+      "worcestershire sauce",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Eight to twelve golden-brown mini tartlets are neatly arranged on an elegant white porcelain rectangular platter. Each tartlet, approximately 4 cm in diameter, features a crisp, flaky puff pastry shell with a slightly crimped edge. The rich, savory filling, composed of finely diced, dark brown seared beef cubes and tender, bright orange diced carrots, fills each shell precisely to the rim. A hint of glossy sauce coats the filling. Each tartlet is delicately garnished with a sprinkle of vibrant green, finely chopped fresh parsley. The overall presentation is clean and sophisticated, with moderate negative space around each canapé. The platter sits on a simple wooden table, illuminated by soft, natural, even lighting, creating a refined bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Puff pastry",
+        "quantity": "1 sheet (approx. 250 g)"
+      },
+      {
+        "name": "Onion or shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cut puff pastry into 5 cm circles. Press circles into mini muffin tins or tartlet molds. Prick bottoms with a fork. Bake 8-10 minutes until lightly golden. Remove and cool.",
+      "Dice beef into 0.5 cm cubes.",
+      "Heat olive oil in a pan over medium-high heat. Add diced beef. Sear until browned on all sides. Remove beef from pan.",
+      "Add finely diced onion and minced garlic to the same pan. Sauté 3-4 minutes until softened.",
+      "Add finely diced carrots. Cook 5-7 minutes until slightly tender.",
+      "Return beef to the pan. Add Worcestershire sauce and beef broth. Simmer 10-12 minutes until liquid reduces and beef is tender. Season with salt and pepper.",
+      "Spoon beef and carrot filling into cooled pastry shells.",
+      "Arrange tartlets on a serving platter. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure beef is cooked to an internal temperature of 75°C (167°F)."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.4,
+      "calories": 505,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 20.1,
+      "saturated_fat_g": 9.8,
+      "sodium_mg": 410,
+      "total_carbs_g": 34,
+      "total_fat_g": 31.6,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 269.3,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 10.7,
+      "saturated_fat_g": 5.2,
+      "sodium_mg": 218.7,
+      "total_carbs_g": 18.2,
+      "total_fat_g": 16.8,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14,
+      "dietary_fiber": 8,
+      "protein": 40,
+      "saturated_fat": 49,
+      "sodium": 18,
+      "total_carbs": 12,
+      "total_fat": 40
+    },
+    "serving_size_g": 187.5,
+    "total_recipe_weight_g": 749.8
+  },
+  {
+    "recipe_name": "Spanish-Style Pork and Rice with Swiss Chard",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish-style_pork_and_rice_with_swiss_chard_20250701_144433_a7b17504.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:44:33.906772000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "brown rice",
+      "corn",
+      "oregano",
+      "swiss chard",
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Spanish-style pork and rice is artfully mounded on a round white porcelain plate. The vibrant golden-orange brown rice, infused with smoked paprika, forms the base, interspersed with tender, savory 2cm chunks of seared pork. Bright yellow corn kernels, diced red tomatoes, and deep green, wilted swiss chard leaves are visibly integrated throughout the rice, adding bursts of color and texture. A sprinkle of fresh chopped parsley garnishes the top, providing a verdant contrast. The plate rests on a warm, rustic wooden table. Beside it, a small ceramic bowl holds a dollop of creamy aioli. A folded natural linen napkin and simple silver flatware complete the clean, inviting bistro setting, bathed in soft, natural overhead light.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with a side of aioli.",
+      "Offer crusty bread for dipping."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Corn kernels (fresh or frozen)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Smoked paprika (Pimentón)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "a pinch"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut pork shoulder into 2 cm chunks. Season with salt and pepper.",
+      "Heat olive oil in a large, deep skillet or Dutch oven over medium-high heat.",
+      "Add pork chunks. Sear until browned on all sides. Remove pork and set aside.",
+      "Dice onion. Mince garlic. Add onion to the skillet. Sauté until softened, about 5 minutes.",
+      "Add minced garlic, dried oregano, and smoked paprika. Cook for 1 minute until fragrant.",
+      "Add brown rice to the skillet. Stir and toast for 2 minutes.",
+      "Stir in canned diced tomatoes, corn kernels, and saffron threads. Return seared pork to the skillet.",
+      "Pour in chicken or vegetable broth. Bring mixture to a boil.",
+      "Reduce heat to low. Cover and simmer for 30-35 minutes, or until most liquid is absorbed and rice is nearly tender.",
+      "Roughly chop swiss chard. Stir swiss chard into the rice mixture. Cook, uncovered, for another 5-7 minutes, until chard is wilted and rice is fully cooked and tender.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Chop fresh parsley. Garnish each serving with fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Sofrito base",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 658,
+      "cholesterol_mg": 110,
+      "dietary_fiber_g": 7.6,
+      "protein_g": 43.1,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 399,
+      "total_carbs_g": 80.2,
+      "total_fat_g": 19.3,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.4,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 68,
+      "total_carbs_g": 13.7,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 27,
+      "protein": 86,
+      "saturated_fat": 24,
+      "sodium": 17,
+      "total_carbs": 29,
+      "total_fat": 25
+    },
+    "serving_size_g": 584.3,
+    "total_recipe_weight_g": 2337.1
+  }
+]

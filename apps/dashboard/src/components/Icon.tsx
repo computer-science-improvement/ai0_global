@@ -7,7 +7,7 @@ import type { SVGProps } from 'react';
 
 type IconName =
   | 'channels' | 'discovery' | 'graph' | 'recommendations'
-  | 'bots' | 'strategies' | 'cron'
+  | 'bots' | 'strategies' | 'cron' | 'telegraph'
   | 'chevron-left' | 'chevron-right' | 'plus'
   | 'trash' | 'refresh' | 'check' | 'x' | 'pencil'
   | 'play' | 'pause' | 'sparkle' | 'warning' | 'info';
@@ -80,6 +80,13 @@ export function Icon({ name, size = 18, ...rest }: Props) {
         <svg {...common}>
           <path d="M3 12a9 9 0 1 0 3-6.7" />
           <path d="M3 4v5h5" />
+        </svg>
+      );
+    case 'telegraph':
+      return (
+        <svg {...common}>
+          <path d="M6 3h9l4 4v14H6z" />
+          <path d="M14 3v5h5M9 13h6M9 17h6" />
         </svg>
       );
 

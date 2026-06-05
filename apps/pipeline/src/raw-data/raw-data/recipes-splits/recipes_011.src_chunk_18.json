@@ -1,0 +1,566 @@
+[
+  {
+    "recipe_name": "Tatsoi Salad with Brown Butter Pecans, Cured Egg Yolk, and Aged Cheddar",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tatsoi_salad_with_brown_butter_pecans%2C_cured_egg_yolk%2C_and_aged_cheddar_20250706_170054_f5889ae9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:00:54.498701000Z",
+    "selected_ingredients": [
+      {
+        "name": "pecan"
+      },
+      {
+        "name": "tatsoi"
+      },
+      {
+        "name": "lemon"
+      },
+      {
+        "name": "mustard"
+      },
+      {
+        "name": "egg"
+      },
+      {
+        "name": "cheddar"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "vegetarian American",
+    "visual_description": "A meticulously composed individual salad portion rests on a pristine white bone china plate. Vibrant, dark green tatsoi leaves are artfully arranged in a natural, organic mound, occupying a precise area of the expansive white negative space. A few golden-brown, whole brown butter pecan halves are scattered artfully. A delicate dusting of bright orange, finely grated cured egg yolk adds a concentrated burst of color and unique texture. Ultra-thin, translucent curls of aged cheddar are delicately draped. A subtle sheen of clear lemon-mustard vinaigrette glistens on the leaves. The composition is bathed in dramatic, professional lighting, casting soft shadows. The plate sits on a luxurious white Carrara marble surface, with a crisply folded white linen napkin, maintaining an ultra-minimalist, elegant setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Tatsoi",
+    "ingredients": [
+      {
+        "name": "Tatsoi",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Pecan Halves",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Aged Cheddar",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Fine Sea Salt",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh Lemon Juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Freshly Ground Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Flaky Sea Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare cured egg yolks: In a shallow dish, combine fine sea salt and granulated sugar. Create four small indentations in half of the mixture. Carefully place one egg yolk into each indentation. Gently cover yolks with the remaining salt-sugar mixture. Refrigerate for 12-24 hours.",
+      "Rinse cured egg yolks: Gently rinse each cured yolk under cold water to remove all salt-sugar mixture. Pat thoroughly dry with a paper towel. Dehydrate in a low oven at 60°C for 1-2 hours, or air dry until firm but still pliable. Once cooled, grate finely before serving.",
+      "Prepare brown butter pecans: Melt unsalted butter in a small saucepan over medium heat. Continue cooking until butter foams, then turns golden brown and smells nutty. Add pecan halves. Toast briefly for 1-2 minutes until fragrant. Season lightly with flaky sea salt. Transfer to a plate to cool.",
+      "Prepare lemon-mustard vinaigrette: In a small bowl, whisk together Dijon mustard, fresh lemon juice, a pinch of flaky sea salt, and freshly ground black pepper. Slowly drizzle in extra virgin olive oil while whisking continuously until the dressing is emulsified.",
+      "Assemble the salad: Gently wash and dry tatsoi leaves. In a mixing bowl, lightly toss the tatsoi leaves with a small amount of the prepared vinaigrette.",
+      "Plate: Divide the dressed tatsoi among four fine-dining plates, arranging it minimally in a natural, organic mound in the center. Artistically place a few brown butter pecan halves around the tatsoi. Grate a small amount of cured egg yolk over each salad. Using a vegetable peeler, shave ultra-thin curls of aged cheddar over the salad. Drizzle a small amount of additional vinaigrette around the plate for visual appeal. Serve immediately."
+    ],
+    "notes": [
+      "Curing the egg yolks requires advance preparation, ideally overnight. They can be cured up to 2 days ahead and stored in the refrigerator.",
+      "Ensure tatsoi leaves are thoroughly dried to allow the dressing to adhere properly and maintain crispness."
+    ]
+  },
+  {
+    "recipe_name": "Umami Garden Bites with Chicken Crackle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_umami_garden_bites_with_chicken_crackle_20250706_170009_e664ae36.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:00:10.016734000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "cherry",
+      "crab",
+      "mushroom",
+      "american cheese"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A collection of individual, savory bites is artfully arranged on a light reclaimed wood board, showcasing a minimalist and ingredient-focused presentation. Each bite features a roasted mixed mushroom base, topped with finely diced pan-seared chicken and delicate flakes of white crab meat. A vibrant, plump fermented cherry tomato and a glossy, halved pickled cherry provide bursts of red and tartness. Irregular, golden-brown shards of crispy chicken crackle are placed atop for texture. A very small, thin piece of pale yellow American cheese is subtly tucked into each bite. The composition celebrates natural colors and textures, with ample white space around each element. The entire board is visible, not overcrowded. Soft, natural light illuminates the scene, highlighting the organic forms and simple beauty of the ingredients. An undyed linen napkin in a natural beige tone is casually placed nearby, complementing the eco-conscious setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Cherry Tomatoes",
+    "ingredients": [
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Non-iodized Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Water (for brine)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken Thighs with Skin",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fresh Cherries",
+        "quantity": "150 g"
+      },
+      {
+        "name": "White Wine Vinegar",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Water (for pickling)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Mixed Mushrooms (e.g., cremini, oyster)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh Crab Meat (lump or claw)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "American Cheese",
+        "quantity": "2 thin slices"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Cherry Tomatoes: Wash cherry tomatoes. Do not pierce. Dissolve 5g non-iodized salt in 250ml water to make brine. Place tomatoes in a clean jar. Pour brine over to cover. Seal jar with an airlock or loose lid. Ferment at room temperature for 3-5 days until slightly tangy. Refrigerate.",
+      "Prepare Quick Pickled Cherries: Halve and pit fresh cherries. In a small saucepan, combine white wine vinegar, 60ml water, sugar, and a pinch of salt. Bring to a simmer. Add cherries. Remove from heat immediately. Let cool completely in the liquid. Refrigerate.",
+      "Prepare Crispy Chicken Crackle: Carefully remove skin from chicken thighs. Place skin in a cold pan. Cook over low heat, rendering fat slowly, until skin is golden and very crisp. Drain crackle on paper towels. Season with a pinch of salt. Break into small, irregular pieces.",
+      "Cook Chicken and Mushrooms: Season chicken thigh meat with salt and pepper. Pan-sear chicken thighs until cooked through and internal temperature reaches 75°C (167°F). Rest, then finely dice the cooked chicken meat. Clean mixed mushrooms. Slice larger mushrooms. Toss with olive oil, salt, and pepper. Roast mushrooms at 200°C (390°F) for 15-20 minutes until tender and lightly browned.",
+      "Assemble Bites: Drain fermented tomatoes and pickled cherries. Flake fresh crab meat. Cut American cheese slices into very small, irregular pieces. On a serving board or individual small plates, arrange roasted mushrooms as a base. Top each mushroom with a small amount of diced chicken, a few flakes of crab meat, one fermented cherry tomato, one pickled cherry half, a shard of crispy chicken crackle, and a tiny piece of American cheese. Garnish generously with snipped fresh chives."
+    ]
+  },
+  {
+    "recipe_name": "Bamboo Shoot and Cucumber Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bamboo_shoot_and_cucumber_salad_20250706_165428_668396d7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:54:28.560541000Z",
+    "selected_ingredients": [
+      "bamboo shoot",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented in a clean, white ceramic bowl, showcasing a vibrant medley of textures and colors. Thinly sliced bamboo shoots, pale cream and slightly translucent, form the base. They are interspersed with bright green julienned cucumber and dark green rehydrated wakame. Slender strands of vibrant orange julienned carrot add a pop of color and visual interest. The light amber dressing lightly coats all components, giving them a subtle sheen. The arrangement is natural and organic, with ingredients artfully distributed and some strands of cucumber and wakame gently rising above the main mound. A scattering of white toasted sesame seeds and thinly sliced bright green scallion pieces are evenly distributed over the top as a fresh garnish. The bowl sits on a light-colored wooden table, accompanied by a pair of elegant wooden chopsticks and a folded white linen napkin beside it, suggesting a modern Japanese bistro setting. Natural, even lighting illuminates the dish, highlighting its freshness and inviting textures. The entire plate is visible, with moderate negative space around the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a refreshing side dish.",
+      "Offer small individual portions as part of a multi-course Japanese meal.",
+      "Serve with steamed rice."
+    ],
+    "hero_ingredient": "Bamboo Shoot",
+    "ingredients": [
+      {
+        "name": "Bamboo shoots (pre-cooked, thinly sliced)",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cucumber (julienned)",
+        "quantity": "1 large (approx. 250g)"
+      },
+      {
+        "name": "Dried wakame seaweed (rehydrated and chopped)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Carrot (julienned)",
+        "quantity": "1 small (approx. 80g)"
+      },
+      {
+        "name": "Green onion (thinly sliced)",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "15g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh ginger (grated)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Rehydrate wakame in cold water for 5-10 minutes. Drain well. Gently squeeze out excess water. Chop into 2-3 cm pieces.",
+      "If using fresh bamboo shoots, blanch in boiling water for 5 minutes. Cool and slice thinly. If using canned, rinse thoroughly and slice thinly.",
+      "Julienne cucumber and carrot.",
+      "Combine sliced bamboo shoots, rehydrated wakame, julienned cucumber, and julienned carrot in a large mixing bowl.",
+      "Prepare the dressing: Whisk together soy sauce, rice vinegar, sesame oil, grated ginger, and sugar in a small bowl until sugar dissolves.",
+      "Pour dressing over the salad ingredients. Toss gently to coat all vegetables evenly.",
+      "Let the salad sit for 10-15 minutes to allow flavors to meld.",
+      "Divide salad among four serving bowls. Garnish each serving with thinly sliced green onion and toasted sesame seeds."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 123,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 6,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 137,
+      "total_carbs_g": 14.9,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 48,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 2.4,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 53,
+      "total_carbs_g": 5.8,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 18,
+      "protein": 12,
+      "saturated_fat": 4,
+      "sodium": 6,
+      "total_carbs": 5,
+      "total_fat": 8
+    },
+    "serving_size_g": 257.25,
+    "total_recipe_weight_g": 1029
+  },
+  {
+    "recipe_name": "Cherry, Aged Cheddar, and Umami Textures",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cherry%2C_aged_cheddar%2C_and_umami_textures_20250706_165318_ab9f06f3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:53:18.432028000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "cheddar",
+      "cherry",
+      "garlic"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single portion of the deconstructed dessert is elegantly presented on a pristine white bone china plate. The composition is artistic and minimalist, featuring abundant negative space. A smooth, pale yellow quenelle of Aged Cheddar Cremeux rests slightly off-center. Vibrant ruby-red Cherry Fluid Gel is artfully swirled or dotted around the cremeux, creating dynamic color contrast. A thin, irregular, golden-brown shard of Savory-Sweet Potato Tuile stands upright, adding architectural height and textural intrigue. A delicate dusting of deep brown Caramelized Onion Dust is precisely placed, providing a subtle earthy tone. The plate is finished with a few glistening, almost translucent micro-droplets of the Chicken Consommé Glaze, imparting a refined sheen. The overall presentation is clean, organic, and sophisticated, emphasizing the purity of each component. The plate sits on a polished white Carrara marble surface, accented by a precisely folded crisp white linen napkin. Dramatic, soft professional lighting casts subtle shadows, highlighting the dessert's textures and contours.",
+    "number_of_servings": 8,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Cherry",
+    "ingredients": [
+      {
+        "name": "Sour Cherries (frozen or fresh)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "4 g"
+      },
+      {
+        "name": "Aged Sharp Cheddar Cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Heavy Cream (35% fat)",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Egg Yolks",
+        "quantity": "4"
+      },
+      {
+        "name": "Potatoes (floury type, e.g., Russet)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic Powder (roasted)",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Yellow Onions",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Balsamic Vinegar (optional)",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Chicken Bones (roasted)",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Mirepoix (carrots, celery, onions)",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Egg Whites",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "For the Cherry Fluid Gel: Combine cherries, 100g sugar, and 100ml water in a saucepan. Simmer until cherries are soft. Blend until very smooth. Strain through a fine-mesh sieve. Whisk in agar-agar. Bring to a boil, simmer 1 minute. Pour into a shallow dish, chill until set. Re-blend the set gel until smooth and fluid. Keep refrigerated.",
+      "For the Aged Cheddar Cremeux: Grate cheddar cheese. Heat cream in a saucepan. In a bowl, whisk egg yolks with 50g sugar. Slowly temper hot cream into egg yolk mixture. Return to saucepan, cook over medium-low heat, stirring constantly, until mixture thickens slightly (nappe consistency). Do not boil. Remove from heat, stir in grated cheddar until melted and smooth. Strain through a fine-mesh sieve. Chill thoroughly for at least 4 hours, or overnight.",
+      "For the Savory-Sweet Potato Tuile: Peel and dice potatoes. Boil until very tender. Drain well, rice or mash thoroughly until no lumps remain. Combine riced potato with melted butter, 50g sugar, roasted garlic powder, and plain flour. Mix into a smooth paste. Spread extremely thin onto a silicone mat or parchment paper using an offset spatula. Bake at 150°C (300°F) for 15-20 minutes, or until golden and crisp. Break into irregular shards. Store in an airtight container.",
+      "For the Caramelized Onion Dust: Slice onions thinly. In a heavy-bottomed pan, cook onions slowly over very low heat with a pinch of salt until deeply caramelized and brown, about 45-60 minutes. Add balsamic vinegar if desired, cook until evaporated. Spread caramelized onions thinly on a baking sheet. Dehydrate in an oven at 80°C (175°F) for 4-6 hours, or until completely brittle. Blend to a fine powder. Store in an airtight container.",
+      "For the Chicken Consommé Glaze: Roast chicken bones and mirepoix until deeply golden. Transfer to a large pot, cover with 2 liters cold water. Bring to a simmer, skim impurities. Simmer gently for 4 hours. Strain broth, discard solids. Chill broth. Skim all fat. Clarify broth: whisk egg whites into the cold broth, bring to a slow simmer, allowing raft to form. Gently ladle clear consommé through a cheesecloth-lined sieve. Reduce clarified consommé over medium heat until it becomes a syrupy glaze. Stir in 50g sugar and a pinch of salt. It should be sweet with a subtle savory depth. Keep warm for plating.",
+      "To Plate: Place a small quenelle or piped line of Cheddar Cremeux off-center on a white plate. Artfully drizzle or dot the Cherry Fluid Gel around the cremeux. Arrange one or two Potato Tuile shards vertically or at an angle. Dust a small amount of Caramelized Onion Dust nearby. Finish with a few micro-droplets or a thin line of the Chicken Consommé Glaze. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 25,
+      "calories": 581.47,
+      "cholesterol_mg": 103.89,
+      "dietary_fiber_g": 2.57,
+      "protein_g": 12.57,
+      "saturated_fat_g": 19.36,
+      "sodium_mg": 215.94,
+      "total_carbs_g": 46.21,
+      "total_fat_g": 31.4,
+      "total_sugars_g": 36.33,
+      "trans_fat_g": 1.18
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 10.01,
+      "calories": 232.7,
+      "cholesterol_mg": 41.57,
+      "dietary_fiber_g": 1.03,
+      "protein_g": 5.03,
+      "saturated_fat_g": 7.75,
+      "sodium_mg": 86.41,
+      "total_carbs_g": 18.49,
+      "total_fat_g": 12.57,
+      "total_sugars_g": 14.54,
+      "trans_fat_g": 0.47
+    },
+    "daily_value_percentages": {
+      "cholesterol": 34.6,
+      "dietary_fiber": 9.2,
+      "protein": 25.1,
+      "saturated_fat": 96.8,
+      "sodium": 9.4,
+      "total_carbs": 16.8,
+      "total_fat": 40.3
+    },
+    "serving_size_g": 249.88,
+    "total_recipe_weight_g": 1999
+  },
+  {
+    "recipe_name": "Beer-Braised Chicken with Fermented Carrot Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_chicken_with_fermented_carrot_relish_20250706_165227_c041192b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T16:52:28.095347000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "garlic",
+      "beer",
+      "basil",
+      "carrot"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, generously portioned braised chicken thigh, its skin a deep golden-brown, is centered on a natural, unglazed ceramic plate in an off-white tone. Beside the chicken, several substantial chunks of roasted carrot, tender and slightly caramelized, are artfully placed, showcasing their organic shapes. A small, vibrant mound of quick fermented carrot relish, with its thinly sliced orange carrots, red chili slivers, and green flecks, adds a bright contrast without being decorative. The plating is clean and minimalist, utilizing ample white space to highlight the pure beauty and natural textures of each ingredient. A few fresh basil leaves are loosely scattered on the chicken for a subtle green accent. The plate rests on a light, textured reclaimed wood surface. An undyed linen napkin in a natural beige is folded simply to the side. Soft, diffused natural light illuminates the dish, creating gentle shadows and emphasizing the organic forms. The background is uncluttered, hinting at natural elements like a subtle plant.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "500g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "3"
+      },
+      {
+        "name": "Lager beer",
+        "quantity": "330ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "250ml"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "30ml"
+      }
+    ],
+    "instructions": [
+      "Prepare quick fermented carrot relish: Thinly slice 200g carrots. Mince 2 garlic cloves. Thinly slice 1 red chili. Combine carrots, garlic, chili in a bowl.",
+      "In a small pot, combine 250ml water, 5g sea salt, and 30ml white vinegar. Bring to a boil. Pour hot liquid over carrot mixture. Let cool completely. Refrigerate until ready to serve.",
+      "Pat chicken thighs dry. Season with sea salt and black pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear chicken skin-side down until golden brown and crisp, 6-8 minutes. Flip and sear other side for 2 minutes. Remove chicken.",
+      "Add remaining 4 garlic cloves (sliced) and 2 red chilies (sliced) to the pot. Sauté for 1 minute until fragrant.",
+      "Pour in lager beer. Scrape up any browned bits from the pot bottom. Bring to a simmer.",
+      "Cut remaining 300g carrots into 2cm chunks. Add to the pot. Return chicken to the pot, skin-side up. Pour in chicken stock. Liquid should come halfway up the chicken.",
+      "Bring to a gentle simmer. Cover pot. Transfer to a preheated oven at 170°C (340°F). Braise for 45-50 minutes, or until chicken reaches an internal temperature of 75°C. Chicken should be tender.",
+      "Remove from oven. Stir in fresh basil leaves.",
+      "Serve braised chicken and carrots with a dollop of the quick carrot relish."
+    ],
+    "notes": [
+      "Utilize chicken bones for homemade stock to minimize waste.",
+      "Compost all vegetable scraps."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Quick Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 485.33,
+      "cholesterol_mg": 135,
+      "dietary_fiber_g": 3.83,
+      "protein_g": 31.71,
+      "saturated_fat_g": 7,
+      "sodium_mg": 830.8,
+      "total_carbs_g": 17.57,
+      "total_fat_g": 29.68,
+      "total_sugars_g": 6.34,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114.1,
+      "cholesterol_mg": 31.76,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.46,
+      "saturated_fat_g": 1.65,
+      "sodium_mg": 195.48,
+      "total_carbs_g": 4.13,
+      "total_fat_g": 6.98,
+      "total_sugars_g": 1.49,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 13.68,
+      "protein": 63.42,
+      "saturated_fat": 35,
+      "sodium": 36.12,
+      "total_carbs": 6.39,
+      "total_fat": 38.05
+    },
+    "serving_size_g": 425,
+    "total_recipe_weight_g": 1700
+  }
+]

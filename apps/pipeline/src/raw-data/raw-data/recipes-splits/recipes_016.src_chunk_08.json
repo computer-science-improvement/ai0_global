@@ -1,0 +1,630 @@
+[
+  {
+    "recipe_name": "Salmon, Feta & Mint Brown Rice Patties",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_salmon%2C_feta_%26_mint_brown_rice_patties_20250627_034641_0256bebe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:46:42.112285000Z",
+    "selected_ingredients": [
+      "mint",
+      "feta cheese",
+      "brown rice",
+      "mushroom",
+      "salmon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Several golden-brown, rustic salmon patties are casually arranged on a simple, round ceramic plate with natural imperfections. The patties, approximately 2 cm thick, display a visibly crispy exterior. The interior, subtly revealed in a slightly broken patty, shows a comforting mix of light pink flaked salmon, white crumbled feta, green specks of chopped mint, and earthy brown rice and thinly sliced mushrooms. A few fresh mint leaves are loosely scattered around the patties. A bright yellow lemon wedge sits nearby, ready for squeezing. The plate rests on a well-used wooden dining table. Natural, warm light illuminates the scene, creating a homely, inviting atmosphere. A simple, casually placed cloth napkin completes the relaxed family kitchen setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cooked brown rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lemon wedges",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Season salmon fillets with salt and pepper. Bake for 12-15 minutes until cooked through. Flake salmon with a fork. Set aside.",
+      "Slice mushrooms thinly. Heat 10 ml olive oil in a pan. Sauté mushrooms until tender and lightly browned. Set aside.",
+      "Finely chop fresh mint.",
+      "In a large bowl, combine flaked salmon, cooked brown rice, crumbled feta cheese, sautéed mushrooms, chopped mint, egg, and breadcrumbs. Mix well.",
+      "Season the mixture with salt and pepper. Form into eight equal-sized patties, about 2 cm thick.",
+      "Heat remaining 20 ml olive oil in a large non-stick pan over medium heat.",
+      "Carefully place patties in the hot pan. Cook for 4-5 minutes per side, until golden brown and crispy.",
+      "Serve hot with lemon wedges."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 496.54,
+      "cholesterol_mg": 123.88,
+      "dietary_fiber_g": 2.58,
+      "protein_g": 30.02,
+      "saturated_fat_g": 8.49,
+      "sodium_mg": 435.26,
+      "total_carbs_g": 29.22,
+      "total_fat_g": 28.14,
+      "total_sugars_g": 2.79,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 187.82,
+      "cholesterol_mg": 46.86,
+      "dietary_fiber_g": 0.97,
+      "protein_g": 11.36,
+      "saturated_fat_g": 3.21,
+      "sodium_mg": 164.65,
+      "total_carbs_g": 11.05,
+      "total_fat_g": 10.65,
+      "total_sugars_g": 1.06,
+      "trans_fat_g": 0.11
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41.29,
+      "dietary_fiber": 9.2,
+      "protein": 60.04,
+      "saturated_fat": 42.46,
+      "sodium": 18.92,
+      "total_carbs": 10.62,
+      "total_fat": 36.08
+    },
+    "serving_size_g": 264.36,
+    "total_recipe_weight_g": 1057.45
+  },
+  {
+    "recipe_name": "Chicken Fried Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_fried_rice_20250627_034625_e326b254.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:46:26.374959000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "egg",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken Fried Rice is centrally mounded on a round, clean white porcelain dinner plate. The rice is golden-brown with visible darker, slightly crispy grains. Diced chicken pieces (2 cm cubes), fluffy scrambled yellow egg bits, finely diced onion, and minced garlic are mixed throughout. Thinly sliced vibrant green onion pieces are scattered over the top as a fresh garnish. The dish exhibits balanced colors: golden rice, warm brown chicken, bright yellow egg, and fresh green. Textures are firm rice, tender chicken, and soft egg. The plate rests on a simple light wooden table. A small white rice bowl and dark wooden chopsticks are beside the plate on a white cotton napkin. Natural, even lighting illuminates the scene. The background is simple and blurred, suggesting a casual bistro, highlighting the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with a small dish of chili oil or light soy sauce on the side for individual seasoning.",
+      "Traditionally eaten with chopsticks and a small rice bowl.",
+      "Often accompanied by a light, clear soup."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Day-old cooked jasmine rice",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "3 stalks"
+      }
+    ],
+    "instructions": [
+      "Dice chicken thighs into 2 cm cubes. Dice onion finely. Mince garlic. Thinly slice green onions, separating white and green parts.",
+      "Whisk eggs in a small bowl. Season with a pinch of white pepper.",
+      "Heat 15 ml vegetable oil in a large wok or skillet over medium-high heat.",
+      "Pour whisked eggs into hot wok. Scramble quickly until just set. Remove eggs from wok and set aside. Break into small pieces.",
+      "Add remaining 15 ml vegetable oil to wok. Add diced chicken. Stir-fry chicken until cooked through and lightly browned. Ensure internal temperature reaches 75°C (167°F). Remove chicken from wok.",
+      "Add diced onion and white parts of green onions to wok. Stir-fry for 2 minutes until softened.",
+      "Add minced garlic. Stir-fry for 30 seconds until fragrant.",
+      "Add day-old cooked rice to wok. Break up any clumps. Stir-fry for 3-4 minutes, pressing rice against wok to develop some crispness.",
+      "Return cooked chicken and scrambled egg to wok. Add soy sauce and white pepper. Stir-fry for 2 minutes, ensuring all ingredients are well combined and heated through.",
+      "Stir in sesame oil and green parts of green onions. Toss briefly. Serve immediately."
+    ],
+    "notes": [
+      "Using day-old, cold rice is crucial for good fried rice; fresh, warm rice tends to clump and become mushy.",
+      "Ensure the wok or skillet is very hot before adding ingredients to achieve proper stir-frying effect."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 585,
+      "cholesterol_mg": 276,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 36.7,
+      "saturated_fat_g": 5.8,
+      "sodium_mg": 1189,
+      "total_carbs_g": 49.1,
+      "total_fat_g": 25,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155,
+      "cholesterol_mg": 73,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.7,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 316,
+      "total_carbs_g": 13,
+      "total_fat_g": 6.6,
+      "total_sugars_g": 0.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 92,
+      "dietary_fiber": 7,
+      "protein": 73,
+      "saturated_fat": 29,
+      "sodium": 52,
+      "total_carbs": 18,
+      "total_fat": 32
+    },
+    "serving_size_g": 377,
+    "total_recipe_weight_g": 1507
+  },
+  {
+    "recipe_name": "Spicy Chicken, Sausage, and Bacon Warm Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chicken%2C_sausage%2C_and_bacon_warm_salad_20250627_034528_956c4e45.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:45:29.295312000Z",
+    "selected_ingredients": [
+      "salad green",
+      "chicken",
+      "bacon",
+      "sausage",
+      "tomato",
+      "chili"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, composed warm salad is presented on a clean, round white porcelain plate, set on a simple wooden table. A bed of fresh, dark green mixed salad leaves forms the base. Golden-brown seared chicken chunks are interspersed with savory crumbled sausage. Bright red halved cherry tomatoes, softened and lightly caramelized, are visible with translucent red onion slices and thin, vivid red chili rings. Crispy, golden-brown bacon bits are sprinkled generously, adding texture. A light sheen of vinaigrette coats the ingredients. The arrangement is organic yet intentional, allowing each component to be clearly seen, with moderate negative space. A white cotton napkin rests beside the plate, under natural, even lighting, against a casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600g"
+      },
+      {
+        "name": "Italian sausage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Red chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "10ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Heat a large pan over medium-high heat. Add diced bacon. Cook until crispy. Remove bacon with a slotted spoon. Drain excess fat, leaving about 15ml in the pan. Reserve crispy bacon.",
+      "Add crumbled sausage to the same pan. Cook, breaking it up with a spoon, until browned and cooked through. Remove sausage.",
+      "Add 15ml olive oil to the pan. Add chicken chunks. Sear chicken until golden brown on all sides and cooked to an internal temperature of 75°C. Remove chicken.",
+      "Add remaining 15ml olive oil to the pan. Add halved cherry tomatoes, thinly sliced red onion, and minced garlic. Sauté for 3-5 minutes until tomatoes soften slightly and onions are translucent. Add thinly sliced red chili and cook for 1 minute.",
+      "In a small bowl, whisk together 30ml olive oil, red wine vinegar, honey, Dijon mustard, salt, and pepper for the dressing.",
+      "In a large bowl, gently toss mixed salad greens with half of the dressing.",
+      "Divide dressed greens among 4 plates. Arrange cooked chicken chunks, sausage, and sautéed tomato mixture over the greens.",
+      "Sprinkle reserved crispy bacon over each salad.",
+      "Drizzle remaining dressing over the salads. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for safety.",
+      "Adjust chili amount based on desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.9,
+      "calories": 917.5,
+      "cholesterol_mg": 235,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 78.3,
+      "saturated_fat_g": 17.2,
+      "sodium_mg": 1889,
+      "total_carbs_g": 11,
+      "total_fat_g": 60.8,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 201.5,
+      "cholesterol_mg": 51.6,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 17.2,
+      "saturated_fat_g": 3.8,
+      "sodium_mg": 414.9,
+      "total_carbs_g": 2.4,
+      "total_fat_g": 13.4,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78,
+      "dietary_fiber": 8,
+      "protein": 157,
+      "saturated_fat": 86,
+      "sodium": 82,
+      "total_carbs": 4,
+      "total_fat": 78
+    },
+    "serving_size_g": 455.25,
+    "total_recipe_weight_g": 1821
+  },
+  {
+    "recipe_name": "Chicken and Egg Fried Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_egg_fried_rice_20250627_034451_c28088a2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:44:52.026728000Z",
+    "selected_ingredients": [
+      "egg",
+      "rice",
+      "onion",
+      "carrot"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous individual portion of vibrant Chicken and Egg Fried Rice is presented on a clean, round white porcelain dinner plate, centrally positioned on a simple wooden table surface. The dish showcases fluffy, individual grains of golden-hued jasmine rice, subtly toasted from stir-frying. Interspersed throughout are tender, lightly browned cubes of chicken, delicate scrambled egg pieces, and small, bright orange diced carrots alongside translucent diced onions. The overall color palette is warm and inviting, with golden rice, brown chicken, yellow egg, and orange carrots, all flecked with green from freshly sliced green onions as a garnish. The ingredients are evenly distributed, creating a balanced and appealing composition with moderate negative space around the edges of the plate. The rice is loose and free-flowing, not compacted. A pair of polished wooden chopsticks rests to the right of the plate, and a small, white ceramic rice bowl is placed slightly above, hinting at traditional East Asian dining. A neatly folded light grey cotton napkin is positioned to the left. Natural, even lighting illuminates the scene, highlighting the textures of the rice and vegetables, against a subtly blurred background suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "East Asian (Chinese-inspired)",
+    "cultural_serving_suggestions": [
+      "Serve with a small side of soy sauce or chili oil for individual seasoning.",
+      "Offer pickled daikon or cucumber as a refreshing counterpoint."
+    ],
+    "hero_ingredient": "Rice",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400g"
+      },
+      {
+        "name": "Cooked jasmine rice (cold, day-old recommended)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "15g"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "45ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare ingredients. Dice chicken, onion, and carrots. Mince garlic and grate ginger. Beat eggs.",
+      "Heat 15ml vegetable oil in a large wok or skillet over high heat. Add diced chicken. Stir-fry for 5-7 minutes until cooked through and lightly browned. Ensure internal temperature reaches 75°C. Remove chicken from wok. Set aside.",
+      "Add remaining 15ml vegetable oil to the wok. Add diced onions and carrots. Stir-fry for 3-4 minutes until softened.",
+      "Add minced garlic and grated ginger to the wok. Stir-fry for 1 minute until fragrant.",
+      "Push vegetables to one side of the wok. Pour beaten eggs into the empty space. Scramble eggs gently until just set. Break into small pieces.",
+      "Add cold cooked rice to the wok. Break up any clumps with a spatula. Stir-fry for 3-5 minutes, tossing constantly, until rice is heated through and slightly toasted.",
+      "Return cooked chicken to the wok. Pour soy sauce and sesame oil over the rice. Season with salt and white pepper.",
+      "Continue stir-frying for 2-3 minutes, ensuring all ingredients are well combined and heated through.",
+      "Taste and adjust seasoning if needed.",
+      "Serve hot, garnished with sliced green onions."
+    ],
+    "notes": [
+      "Using day-old, cold rice is crucial for achieving distinct, non-clumpy grains.",
+      "Adjust soy sauce to taste; some prefer more or less.",
+      "The chicken should be diced into uniform 1.5 cm cubes for even cooking and presentation.",
+      "Carrots should be diced finely (0.5 cm) so they cook quickly and blend well."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (wok hei concept for high heat cooking)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 551.86,
+      "cholesterol_mg": 224.88,
+      "dietary_fiber_g": 2.36,
+      "protein_g": 41.8,
+      "saturated_fat_g": 3.55,
+      "sodium_mg": 834.75,
+      "total_carbs_g": 51.31,
+      "total_fat_g": 18.95,
+      "total_sugars_g": 3.69,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 144.09,
+      "cholesterol_mg": 58.71,
+      "dietary_fiber_g": 0.62,
+      "protein_g": 10.91,
+      "saturated_fat_g": 0.93,
+      "sodium_mg": 217.95,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 4.95,
+      "total_sugars_g": 0.96,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 8,
+      "protein": 84,
+      "saturated_fat": 18,
+      "sodium": 36,
+      "total_carbs": 19,
+      "total_fat": 24
+    },
+    "serving_size_g": 383,
+    "total_recipe_weight_g": 1532
+  },
+  {
+    "recipe_name": "Smoked Sausage & Herbed Mushroom Okra Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_sausage_%26_herbed_mushroom_okra_bites_20250627_034335_6e37bcc7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:43:35.443259000Z",
+    "selected_ingredients": [
+      "okra",
+      "mushroom",
+      "smoked sausage",
+      "thyme",
+      "rosemary"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A rustic ceramic platter holds 10-12 inviting Smoked Sausage & Herbed Mushroom Okra Bites. Each medium-sized okra pod is halved lengthwise, revealing a generous, savory filling. The okra's vibrant green skin contrasts with the earthy brown of the finely diced smoked sausage and cremini mushrooms, sautéed until tender. Flecks of fresh green thyme and rosemary are visible throughout the rich, textured filling. The okra halves are arranged casually, some touching, others slightly askew, on the platter. A few stray herb leaves are scattered for a natural look. The scene is set on a well-worn wooden kitchen table, bathed in warm, soft, natural light, emphasizing a homely, comforting aesthetic. No decorative elements, just the appetizing food.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Smoked Sausage",
+    "ingredients": [
+      {
+        "name": "Okra",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Smoked Sausage",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "3 grams"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Blanch okra. Bring a pot of salted water to a boil. Add whole okra pods. Cook for 2 minutes. Drain immediately. Plunge into ice water. Drain well.",
+      "Halve each okra pod lengthwise. Gently scoop out most seeds and some pulp with a small spoon. Create a cavity.",
+      "Heat olive oil in a skillet over medium heat. Add diced smoked sausage. Cook until lightly browned and fat renders, about 5 minutes. Remove sausage, leave fat.",
+      "Add diced onion to skillet. Cook until softened, about 3 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add finely diced mushrooms to skillet. Cook until mushrooms release liquid and brown, about 5-7 minutes.",
+      "Return cooked sausage to skillet. Stir in fresh thyme and rosemary. Season with salt and black pepper. Mix well.",
+      "Spoon sausage and mushroom mixture into hollowed okra halves. Fill generously.",
+      "Arrange stuffed okra bites on a baking sheet. Bake for 10-12 minutes, or until heated through and okra is tender-crisp.",
+      "Serve immediately on a platter."
+    ],
+    "notes": [
+      "For optimal flavor, ensure smoked sausage and mushrooms are well browned.",
+      "Adjust seasoning to taste."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 230.5,
+      "cholesterol_mg": 37.5,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 11.5,
+      "saturated_fat_g": 5.5,
+      "sodium_mg": 458,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 17.8,
+      "total_sugars_g": 2.9,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 136.1,
+      "cholesterol_mg": 22.1,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 6.8,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 270.3,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 12.5,
+      "dietary_fiber": 11,
+      "protein": 22.9,
+      "saturated_fat": 27.7,
+      "sodium": 19.9,
+      "total_carbs": 3.4,
+      "total_fat": 22.8
+    },
+    "serving_size_g": 169.5,
+    "total_recipe_weight_g": 677.8
+  }
+]

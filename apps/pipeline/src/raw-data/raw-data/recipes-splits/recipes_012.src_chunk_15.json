@@ -1,0 +1,722 @@
+[
+  {
+    "recipe_name": "Chicken and Potato Croquettes with Tomato-Pea Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_potato_croquettes_with_tomato-pea_relish_20250702_205105_69ea2d44.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:51:06.408749000Z",
+    "selected_ingredients": [
+      "potato",
+      "chicken",
+      "tomato",
+      "green pea"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Three oblong, golden-brown Chicken and Potato Croquettes are elegantly arranged on a clean white porcelain plate. They possess a visibly crisp, textured exterior. A vibrant, chunky Tomato-Pea Relish is spooned generously alongside the croquettes. The relish showcases small, diced red tomatoes and bright green whole peas, offering a fresh contrast to the fried croquettes. A few small, fresh basil leaves are scattered over the relish for a pop of color and aroma. The dish is presented on a simple wooden table, with a neatly folded cotton napkin and standard European flatware positioned beside the plate. Natural, even lighting highlights the dish's textures and colors, creating an inviting, professional bistro atmosphere. The background is minimal, keeping focus on the perfectly portioned starter.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp white wine or sparkling water.",
+      "Offer standard European flatware."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breast",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Starchy potatoes (e.g., Russet)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large eggs, beaten",
+        "quantity": "2"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Vegetable oil for frying",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Ripe tomatoes, small diced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Green peas (fresh or frozen)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Shallot, finely minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh basil leaves, small",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Boil chicken breast in lightly salted water until cooked through. Internal temperature must reach 75°C (167°F). Remove chicken, cool slightly, then finely dice or shred.",
+      "Peel and cube potatoes. Boil potatoes in salted water until very tender, about 15-20 minutes. Drain well and mash until smooth. Set aside.",
+      "In a large pan, melt butter over medium heat. Add diced onion and sauté until translucent, about 5 minutes. Add minced garlic and cook for 1 minute more.",
+      "Add milk to the pan and bring to a simmer. Remove from heat.",
+      "Combine mashed potatoes, diced chicken, sautéed onion and garlic mixture, chopped parsley, salt, and pepper in a large bowl. Mix thoroughly.",
+      "Divide the mixture into 12 equal portions. Shape each portion into an oblong or cylindrical croquette, about 7-8 cm long.",
+      "Set up a breading station: one plate with flour, one bowl with beaten eggs, and one plate with Panko breadcrumbs.",
+      "Dredge each croquette in flour, shaking off excess. Dip in beaten egg, allowing excess to drip off. Roll in Panko breadcrumbs, pressing gently to coat completely.",
+      "Place breaded croquettes on a baking sheet. Chill in the refrigerator for at least 30 minutes to firm up.",
+      "Prepare the tomato-pea relish: In a small bowl, combine diced tomatoes, green peas, minced shallot, olive oil, red wine vinegar, salt, and pepper. Mix well.",
+      "Heat vegetable oil in a deep pot or Dutch oven to 175°C (350°F). Do not overcrowd the pot.",
+      "Fry croquettes in batches for 4-6 minutes, turning occasionally, until golden brown and crisp. Use a slotted spoon to remove.",
+      "Drain fried croquettes on a wire rack lined with paper towels.",
+      "Serve 3 croquettes per person, accompanied by a generous spoonful of tomato-pea relish. Garnish with small fresh basil leaves."
+    ],
+    "notes": [
+      "Chilling the croquettes is crucial for them to hold their shape during frying.",
+      "Ensure the chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Use a thermometer to maintain the oil temperature for best frying results."
+    ],
+    "traditional_techniques": [
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 836,
+      "cholesterol_mg": 175.5,
+      "dietary_fiber_g": 7.2,
+      "protein_g": 39.5,
+      "saturated_fat_g": 8.7,
+      "sodium_mg": 776.8,
+      "total_carbs_g": 78.5,
+      "total_fat_g": 41.1,
+      "total_sugars_g": 8.5,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 186,
+      "cholesterol_mg": 39.1,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.8,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 173.1,
+      "total_carbs_g": 17.5,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58.5,
+      "dietary_fiber": 25.5,
+      "protein": 78.9,
+      "saturated_fat": 43.3,
+      "sodium": 33.8,
+      "total_carbs": 28.6,
+      "total_fat": 52.7
+    },
+    "serving_size_g": 448.8,
+    "total_recipe_weight_g": 1795
+  },
+  {
+    "recipe_name": "Fermented Chili Chicken with Noodles and Crispy Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chili_chicken_with_noodles_and_crispy_rice_20250702_203659_2635c3a9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:36:59.732840000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "rice",
+      "garlic",
+      "noodle"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Fermented Chili Chicken with Noodles is presented in a handcrafted, unglazed cream-colored ceramic bowl on a light bamboo mat. Tender rice noodles rest in a clear, savory broth. Substantial, irregularly cut chunks of seared chicken, with a deep caramelized crust from the fermented chili marinade, are scattered atop. Bright green, wilted seasonal greens, like bok choy leaves, intertwine with the noodles. Golden-brown crispy rice bits are sprinkled for textural contrast. Garnish is simple: thin slices of fresh green onion and chopped cilantro leaves. The minimalistic composition emphasizes natural textures and colors, with ample negative space. The setting features an undyed linen napkin in natural beige and soft, diffused natural light, creating an eco-conscious, serene ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (boneless, skinless)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cooked rice (day-old)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Dried noodles (e.g., rice vermicelli)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fermented chili paste",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Seasonal greens (e.g., bok choy, spinach, kale)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "3, sliced"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": "Small bunch, roughly chopped"
+      },
+      {
+        "name": "Water or vegetable broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Neutral oil (e.g., sunflower or canola)",
+        "quantity": "30 ml"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm chunks. In a bowl, combine fermented chili paste, minced garlic, grated ginger, soy sauce, rice vinegar, and sesame oil. Add chicken chunks. Toss to coat. Marinate for at least 30 minutes, or up to 4 hours in the refrigerator.",
+      "Heat 15 ml neutral oil in a large non-stick pan over medium-high heat. Add day-old cooked rice. Press down lightly to form a layer. Cook undisturbed for 5-7 minutes until bottom is golden and crispy. Break into small crispy bits. Remove from pan. Set aside.",
+      "Heat remaining 15 ml neutral oil in the same pan over medium-high heat. Add marinated chicken chunks in a single layer. Cook for 4-5 minutes per side until browned and cooked through (internal temperature 75°C). Remove chicken. Set aside.",
+      "Add 500 ml water or vegetable broth to the pan. Bring to a simmer. Add noodles and seasonal greens. Cook according to noodle package directions, usually 3-5 minutes, until noodles are tender and greens are wilted.",
+      "Divide noodles and greens among 4 bowls. Top with cooked chicken chunks. Spoon some of the noodle broth over the chicken and noodles.",
+      "Sprinkle generously with crispy rice bits, sliced green onions, and fresh cilantro. Serve immediately."
+    ],
+    "notes": [
+      "For zero-waste, save chicken bones (if using bone-in chicken) and vegetable scraps (e.g., tough green stems, onion peels) to make a flavorful broth for future use.",
+      "Fermenting your own chili paste: Blend fresh chilies with salt and a little water, then ferment at room temperature for 5-7 days until bubbly and sour.",
+      "Day-old rice is ideal for crisping as it is drier."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.25,
+      "calories": 649.5,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 38.1,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 1311.3,
+      "total_carbs_g": 59.9,
+      "total_fat_g": 24.1,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.05,
+      "calories": 124.3,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.3,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 251,
+      "total_carbs_g": 11.5,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 0.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 9.4,
+      "protein": 76.2,
+      "saturated_fat": 24,
+      "sodium": 57,
+      "total_carbs": 21.8,
+      "total_fat": 30.8
+    },
+    "serving_size_g": 522.5,
+    "total_recipe_weight_g": 2090
+  },
+  {
+    "recipe_name": "Hearty Chicken and Vegetable Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken_and_vegetable_skillet_20250702_203157_0a012a98.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:31:58.375247000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean",
+      "onion",
+      "bell pepper",
+      "corn",
+      "garlic",
+      "mushroom",
+      "vegetable stock",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty Chicken and Vegetable Skillet is presented on a clean white porcelain dinner plate, set on a simple wooden table. The dish features golden-brown seared chicken chunks, approximately 2.5 cm, nestled among a colorful medley of roasted vegetables. Diced red onion and vibrant red and yellow bell pepper strips are visibly tender, alongside earthy quartered cremini mushrooms and bright green broccoli florets. Plump white cannellini beans and sweet corn kernels add texture and color. A rich, savory sauce lightly coats all components, hinting at smoked paprika and herbs. The arrangement is natural and inviting, with moderate negative space. A cotton napkin is placed beside the plate. Natural, even lighting highlights the dish's warmth and appealing textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned cannellini beans, rinsed and drained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Frozen corn kernels",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 2.5 cm chunks. Season chicken with salt, pepper, and smoked paprika.",
+      "Heat olive oil in a large, deep skillet or Dutch oven over medium-high heat.",
+      "Add chicken chunks to the hot skillet. Sear until golden brown on all sides. Cook to an internal temperature of 75°C (167°F). Remove chicken from skillet and set aside.",
+      "Dice the red onion. Mince the garlic cloves. Slice bell peppers into 1 cm wide strips. Quarter the cremini mushrooms. Cut broccoli into small florets.",
+      "Add diced onion, minced garlic, and bell pepper strips to the same skillet. Sauté for 5-7 minutes until softened.",
+      "Stir in quartered mushrooms and broccoli florets. Cook for 3-4 minutes, stirring occasionally.",
+      "Add rinsed cannellini beans, frozen corn, and dried oregano to the skillet. Pour in vegetable stock. Bring to a simmer.",
+      "Return seared chicken to the skillet. Stir gently to combine. Cover and simmer for 5-7 minutes, allowing flavors to meld and vegetables to finish cooking.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 589,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 17.1,
+      "protein_g": 47,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 580,
+      "total_carbs_g": 55.6,
+      "total_fat_g": 20.9,
+      "total_sugars_g": 12.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 81,
+      "cholesterol_mg": 19,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 6.5,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 80,
+      "total_carbs_g": 7.7,
+      "total_fat_g": 2.9,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 60.9,
+      "protein": 94,
+      "saturated_fat": 23.4,
+      "sodium": 25.2,
+      "total_carbs": 20.2,
+      "total_fat": 26.8
+    },
+    "serving_size_g": 726.25,
+    "total_recipe_weight_g": 2905
+  },
+  {
+    "recipe_name": "Fermented Chili Pork with Roasted Vegetables and Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chili_pork_with_roasted_vegetables_and_brown_rice_20250702_201947_f2e8ca6e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:19:48.161623000Z",
+    "selected_ingredients": [
+      "pork",
+      "hot sauce",
+      "chili",
+      "bell pepper",
+      "onion",
+      "brown rice"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Fermented Chili Pork is arranged on a round, matte cream-colored ceramic plate, emphasizing negative space. Two substantial, irregular chunks of dark, caramelized pork, seared to a deep mahogany, are placed off-center. Adjacent, large wedges of roasted red and yellow bell peppers and thick slices of red onion are loosely scattered, showing natural char and softened edges. A neat mound of fluffy, earthy brown rice sits on the opposite side. A subtle sheen from the savory, fermented chili glaze coats the pork and vegetables. The composition is clean and minimalist, celebrating ingredient beauty. The plate rests on a light, textured reclaimed wood surface. A simple, undyed linen napkin is beside the plate. Soft, natural light illuminates the scene, highlighting textures. A hint of green foliage in the background suggests a natural, eco-conscious environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork Shoulder",
+        "quantity": "600g"
+      },
+      {
+        "name": "Brown Rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Yellow Bell Pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fermented Chili Paste",
+        "quantity": "60g"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Water or Vegetable Broth",
+        "quantity": "400ml"
+      }
+    ],
+    "instructions": [
+      "Rinse brown rice. Combine rice and 400ml water or vegetable broth in a pot. Bring to a boil. Reduce heat to low, cover, and simmer for 40-45 minutes until water is absorbed and rice is tender. Let stand covered for 5 minutes. Fluff with a fork.",
+      "Preheat oven to 200°C. Cut pork shoulder into 4-5cm chunks. Pat pork dry. Season pork with 2g salt and 1g black pepper. Cut bell peppers into large wedges. Cut red onion into thick wedges. In a large bowl, toss bell pepper wedges and onion wedges with 15ml olive oil, 2g salt, and 1g black pepper.",
+      "Heat remaining 15ml olive oil in a large oven-safe pan or Dutch oven over medium-high heat. Sear pork chunks on all sides until golden brown. Remove pork from pan.",
+      "Add seasoned bell peppers and onions to the same pan. Roast in the preheated oven for 15 minutes.",
+      "While vegetables roast, smash garlic cloves. Combine fermented chili paste, soy sauce, rice vinegar, maple syrup, and smashed garlic in a small bowl. Whisk until smooth.",
+      "After 15 minutes, remove pan from oven. Add seared pork chunks back to the pan with the roasted vegetables. Pour the chili glaze over the pork and vegetables. Toss gently to coat. Return pan to oven. Continue roasting for another 20-25 minutes, or until pork is cooked through and tender.",
+      "Remove from oven. Let pork and vegetables rest in the pan for 5 minutes. Serve warm alongside fluffy brown rice."
+    ],
+    "notes": [
+      "Zero-waste: Reserve vegetable trimmings (ends of bell peppers, onion skins) for making vegetable broth or composting."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 5.3,
+      "calories": 586,
+      "cholesterol_mg": 88,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 32,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 1339,
+      "total_carbs_g": 60.2,
+      "total_fat_g": 24,
+      "total_sugars_g": 14.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.2,
+      "calories": 128.4,
+      "cholesterol_mg": 19.3,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 292.9,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 18,
+      "protein": 64,
+      "saturated_fat": 34,
+      "sodium": 58,
+      "total_carbs": 22,
+      "total_fat": 31
+    },
+    "serving_size_g": 456.75,
+    "total_recipe_weight_g": 1827
+  },
+  {
+    "recipe_name": "Hearty Beef and Pork Pasta and Potato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_and_pork_pasta_and_potato_bake_20250702_201516_f79c52a8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T20:15:17.145759000Z",
+    "selected_ingredients": [
+      "pork",
+      "pasta",
+      "rice",
+      "potato",
+      "garlic",
+      "ketchup",
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A deep, white ceramic rectangular baking dish sits on a simple light wooden table. The \"Hearty Beef and Pork Pasta and Potato Bake\" is the centerpiece. The top layer of mashed potatoes is golden brown, with peaks and valleys from being spread, lightly crisped in places, and a subtle sheen from melted cheddar cheese. A rich, savory meat and pasta filling peeks out slightly from the edges where the potato topping meets the dish. The meat sauce is a deep reddish-brown, flecked with finely diced vegetables like carrots and celery. The pasta beneath is visible as sturdy, al dente elbow macaroni or ziti, coated in the robust sauce. The dish is presented as a generous, comforting portion, ready to be served family-style or scooped onto individual plates. A single, small, fresh green parsley sprig garnishes one corner for a touch of vibrant color. Natural, even lighting illuminates the dish, highlighting its textures and warmth. A simple, clean white cotton napkin is folded neatly beside the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad",
+      "Serve with crusty bread"
+    ],
+    "hero_ingredient": "Ground Beef and Pork",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "500g"
+      },
+      {
+        "name": "Ground pork",
+        "quantity": "500g"
+      },
+      {
+        "name": "Elbow macaroni or ziti pasta",
+        "quantity": "300g"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6-8, minced"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "60g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "100g, shredded"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare vegetables: Dice onion, carrots, and celery. Mince garlic.",
+      "Cook pasta: Boil pasta according to package directions until al dente. Drain.",
+      "Brown meat: Heat olive oil in a large pot or Dutch oven. Add ground beef and pork. Brown thoroughly. Drain excess fat.",
+      "Sauté aromatics: Add diced onion, carrots, and celery to the pot. Cook until softened, about 8-10 minutes. Add minced garlic. Cook 1 minute more until fragrant.",
+      "Build sauce: Stir in tomato paste. Cook for 2 minutes. Add ketchup, beef broth, Worcestershire sauce, dried thyme, and bay leaf. Bring to a simmer. Reduce heat. Simmer 20-25 minutes, stirring occasionally, until sauce thickens. Season with salt and pepper. Remove bay leaf.",
+      "Prepare mashed potatoes: Peel and quarter potatoes. Boil in salted water until very tender. Drain well. Mash potatoes with milk and butter until smooth. Season with salt and pepper.",
+      "Assemble bake: Preheat oven to 190°C. Spread cooked pasta evenly in a 23x33 cm baking dish. Spoon meat sauce over pasta. Top with mashed potatoes, spreading evenly to cover. Sprinkle shredded cheddar cheese over potatoes.",
+      "Bake: Bake for 25-30 minutes, or until topping is golden brown and filling is bubbly. Let stand 10 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 6.8,
+      "calories": 1495,
+      "cholesterol_mg": 237.8,
+      "dietary_fiber_g": 11.6,
+      "protein_g": 74.7,
+      "saturated_fat_g": 31.8,
+      "sodium_mg": 1170.8,
+      "total_carbs_g": 122.3,
+      "total_fat_g": 77.8,
+      "total_sugars_g": 17.2,
+      "trans_fat_g": 1.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 160,
+      "cholesterol_mg": 25.4,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 125.2,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 79,
+      "dietary_fiber": 41,
+      "protein": 149,
+      "saturated_fat": 159,
+      "sodium": 51,
+      "total_carbs": 44,
+      "total_fat": 100
+    },
+    "serving_size_g": 935,
+    "total_recipe_weight_g": 3741
+  }
+]

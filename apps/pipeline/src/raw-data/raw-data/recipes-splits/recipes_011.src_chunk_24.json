@@ -1,0 +1,657 @@
+[
+  {
+    "recipe_name": "Fermented Lemon Chicken with Roasted Root Vegetables and Whole Wheat Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_lemon_chicken_with_roasted_root_vegetables_and_whole_wheat_pasta_20250706_132724_76ba3d23.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T13:27:25.019381000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Fermented Lemon Chicken with Roasted Root Vegetables and Whole Wheat Pasta is presented on a handcrafted matte white ceramic plate. Two golden-brown roasted chicken thigh chunks are centrally placed. Roasted carrot chunks, parsnip wedges, and small roasted potatoes are scattered organically around the chicken. Whole wheat penne, lightly coated in a glistening, light pan sauce, is arranged loosely alongside. The dish showcases earthy colors: golden chicken, vibrant orange carrots, creamy parsnips, and rustic potato skins, contrasted by natural beige pasta. Fresh rosemary sprigs and finely chopped parsley provide a natural green accent. Ample negative space highlights the ingredients. The setting features a light, textured reclaimed wood surface, an undyed beige linen napkin, and soft natural lighting. A subtle green plant in the background reinforces the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Lemon Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 pieces (approx. 180g each)"
+      },
+      {
+        "name": "Whole wheat penne",
+        "quantity": "350 g"
+      },
+      {
+        "name": "Carrots, peeled and cut into 3 cm chunks",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Parsnips, peeled and cut into 3 cm wedges",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Small potatoes, halved or quartered",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fermented lemon slices (thin)",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Fermented lemon brine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh rosemary, chopped",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh thyme, chopped",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Chicken stock (made from scraps if possible)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped (for garnish)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. In a bowl, combine chicken with 30 ml fermented lemon brine, 2 minced garlic cloves, half of the rosemary, half of the thyme, 15 ml olive oil, salt, and pepper. Marinate for at least 30 minutes, or up to 4 hours refrigerated.",
+      "Preheat oven to 200°C (390°F).",
+      "On a large baking sheet, toss carrots, parsnips, and potatoes with 15 ml olive oil, remaining garlic, remaining rosemary, remaining thyme, salt, and pepper. Spread in a single layer.",
+      "Place marinated chicken thighs among the vegetables on the baking sheet. Add fermented lemon slices to the baking sheet.",
+      "Roast for 25-35 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and vegetables are tender and lightly caramelized. Turn vegetables once halfway through.",
+      "While chicken and vegetables roast, cook penne according to package directions in salted water until al dente. Drain, reserving 120 ml pasta water.",
+      "Remove chicken and vegetables from the oven. Transfer chicken and lemon slices to a plate. Tent with foil to rest.",
+      "Place the baking sheet over medium heat on the stovetop (if oven-safe, otherwise transfer pan drippings to a skillet). Add remaining 30 ml fermented lemon brine and chicken stock. Scrape up any browned bits from the bottom of the pan. Bring to a simmer, reducing slightly to form a light sauce.",
+      "Add cooked penne to the pan sauce. Toss to coat, adding reserved pasta water as needed to achieve a light, cohesive sauce.",
+      "Serve pasta and roasted vegetables onto plates. Top each portion with 1-2 pieces of roasted chicken and some fermented lemon slices. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by encouraging the use of chicken scraps for stock and highlighting the use of fermented ingredients. Use seasonal root vegetables for best flavor and sustainability.",
+      "Fermented lemons add a unique tangy, umami depth. If making your own, allow at least 1-2 weeks for fermentation."
+    ],
+    "traditional_techniques": [
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 861,
+      "cholesterol_mg": 198,
+      "dietary_fiber_g": 14.76,
+      "protein_g": 49.82,
+      "saturated_fat_g": 6.46,
+      "sodium_mg": 1004,
+      "total_carbs_g": 100.42,
+      "total_fat_g": 29.53,
+      "total_sugars_g": 9.92,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 2.44,
+      "protein_g": 8.23,
+      "saturated_fat_g": 1.07,
+      "sodium_mg": 166,
+      "total_carbs_g": 16.59,
+      "total_fat_g": 4.88,
+      "total_sugars_g": 1.64,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 66,
+      "dietary_fiber": 52.7,
+      "protein": 99.6,
+      "saturated_fat": 32.3,
+      "sodium": 43.6,
+      "total_carbs": 36.5,
+      "total_fat": 37.9
+    },
+    "serving_size_g": 605,
+    "total_recipe_weight_g": 2420
+  },
+  {
+    "recipe_name": "Homestyle Ham and Cheese Toasts",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_ham_and_cheese_toasts_20250706_132712_14a75b5b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T13:27:12.985756000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bread",
+      "onion",
+      "potato",
+      "mustard",
+      "apple",
+      "rice",
+      "chicken stock",
+      "bell pepper",
+      "flour",
+      "beef",
+      "pasta",
+      "garlic",
+      "sugar",
+      "coffee",
+      "milk",
+      "ham",
+      "parsley",
+      "noodle",
+      "cheese",
+      "vegetable stock",
+      "cottage cheese",
+      "cucumber",
+      "dill",
+      "duck",
+      "macaroni",
+      "carrot",
+      "egg",
+      "cabbage",
+      "bay leaf",
+      "rye bread",
+      "banana",
+      "tea"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A casual serving of golden-brown Ham and Cheese Toasts is presented on a rustic wooden cutting board. Each toast features a generous, bubbly layer of melted, golden-orange cheddar cheese covering thinly sliced, savory ham. The bread edges are crisp and lightly toasted, showing a pleasing golden-brown color. A few fresh green parsley leaves are scattered over the top, adding a touch of vibrant color. The arrangement is unpretentious, with toasts slightly overlapping or nestled together, inviting easy sharing. The setting is a well-used wooden kitchen table, with warm, inviting lighting, reflecting a comfortable, lived-in atmosphere. The portions are hearty, with each toast appearing substantial and comforting. The entire board is visible, showcasing the simple, homely presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Ham",
+    "ingredients": [
+      {
+        "name": "Bread slices",
+        "quantity": "8"
+      },
+      {
+        "name": "Sliced ham",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Shredded cheese (e.g., Cheddar or Gruyere)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dijon mustard (optional)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Lightly butter one side of each bread slice.",
+      "Spread a thin layer of mustard on the unbuttered side of each slice, if using.",
+      "Layer ham slices evenly over the mustard side of each bread slice.",
+      "Top generously with shredded cheese.",
+      "Place the toasts on a baking tray.",
+      "Bake for 8-10 minutes. Cheese should be melted and bubbly. Bread edges should be golden.",
+      "Remove from oven.",
+      "Garnish with fresh chopped parsley.",
+      "Serve warm immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.1,
+      "calories": 480.4,
+      "cholesterol_mg": 93.6,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 28.2,
+      "saturated_fat_g": 15.8,
+      "sodium_mg": 1247,
+      "total_carbs_g": 30.1,
+      "total_fat_g": 27.6,
+      "total_sugars_g": 4,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.8,
+      "calories": 283,
+      "cholesterol_mg": 55.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 16.6,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 734.6,
+      "total_carbs_g": 17.7,
+      "total_fat_g": 16.3,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31.2,
+      "dietary_fiber": 6.2,
+      "protein": 56.3,
+      "saturated_fat": 79,
+      "sodium": 54.2,
+      "total_carbs": 10.9,
+      "total_fat": 35.5
+    },
+    "serving_size_g": 169.8,
+    "total_recipe_weight_g": 679
+  },
+  {
+    "recipe_name": "Poulet à la Normande",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poulet_%C3%A0_la_normande_20250706_132540_2772ad63.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T13:25:40.642660000Z",
+    "selected_ingredients": [
+      "cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Poulet à la Normande served in a wide, shallow white porcelain bowl. One whole bone-in chicken thigh with deeply bronzed, crispy skin sits centrally. It is surrounded by golden-brown sautéed button mushroom halves and thick-cut roasted apple wedges. A rich, ivory-colored cream sauce coats the bottom of the bowl, dotted with fresh thyme leaves. The setting is a modern French bistro with a light oak table, a crisp white cotton napkin, and polished silver cutlery. Natural side lighting highlights the velvety texture of the sauce and the rustic, seared surfaces of the fruit and meat. The arrangement is organic and clean, emphasizing fresh ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with crusty baguette slices to soak up the cream sauce",
+      "Pair with a glass of dry Normandy cider",
+      "Accompany with simple steamed green beans or buttery mashed potatoes"
+    ],
+    "hero_ingredient": "Heavy Cream",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in and skin-on",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Dry apple cider",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Button mushrooms, halved",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granny Smith apples, cut into 8 wedges each",
+        "quantity": "2"
+      },
+      {
+        "name": "Shallots, finely diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Melt butter in a large skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden and crisp.",
+      "Flip chicken and sear for 2 minutes. Remove chicken from pan.",
+      "Add mushrooms and apple wedges to the same pan. Sauté for 5 minutes until browned.",
+      "Add diced shallots and cook for 1 minute.",
+      "Pour in dry cider and scrape the bottom of the pan to deglaze.",
+      "Return chicken to the pan and add thyme sprigs.",
+      "Simmer over medium-low heat for 20 minutes until chicken reaches 75°C internally.",
+      "Remove chicken, apples, and mushrooms. Set aside on a warm plate.",
+      "Stir heavy cream into the pan juices. Simmer for 5 minutes until sauce thickens.",
+      "Return chicken and vegetables to the pan to coat in the sauce. Serve immediately."
+    ],
+    "notes": [
+      "Ensure the cider is dry, not sweet, to maintain the savory balance of the dish.",
+      "Use a meat thermometer to confirm the chicken thigh reaches exactly 75°C at the thickest part."
+    ],
+    "traditional_techniques": [
+      "deglazing",
+      "reduction",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 665,
+      "cholesterol_mg": 205,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 30.5,
+      "saturated_fat_g": 22.5,
+      "sodium_mg": 413,
+      "total_carbs_g": 17.8,
+      "total_fat_g": 52.4,
+      "total_sugars_g": 10.3,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 190,
+      "cholesterol_mg": 58.57,
+      "dietary_fiber_g": 0.66,
+      "protein_g": 8.71,
+      "saturated_fat_g": 6.43,
+      "sodium_mg": 118,
+      "total_carbs_g": 5.09,
+      "total_fat_g": 14.97,
+      "total_sugars_g": 2.94,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 8,
+      "protein": 61,
+      "saturated_fat": 113,
+      "sodium": 18,
+      "total_carbs": 6,
+      "total_fat": 67
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Spanish Braised Chicken with Potatoes and Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_braised_chicken_with_potatoes_and_tomatoes_20250706_132406_87c05db4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T13:24:06.650502000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Braised Chicken with Potatoes and Tomatoes is presented in a deep, rustic white ceramic bowl. A golden-brown, braised chicken thigh rests prominently, its skin slightly crisped. Around the chicken, quartered new potatoes, tender and imbued with flavor, are nestled within a rich, thick tomato-based sauce. The sauce, a deep reddish-orange, contains visible pieces of softened tomato, onion, and bell pepper, hinting at the smoky paprika. Freshly chopped vibrant green parsley is scattered generously over the dish, providing a bright contrast. The textures are hearty and rustic. The dish is placed on a simple, light wooden table. A folded linen napkin and a dark metal spoon are positioned beside the bowl. Natural, even lighting highlights the dish's warmth and depth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the sauce",
+      "Accompany with a simple green salad dressed with olive oil and vinegar"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "500g, quartered"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "125ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Heat olive oil in a large braising pot or Dutch oven over medium-high heat. Sear chicken thighs skin-side down until golden brown and crisp, about 5-7 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pot and set aside.",
+      "Add diced onion and red bell pepper to the pot. Sauté, stirring occasionally, until softened, about 5-7 minutes.",
+      "Stir in minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "If using, deglaze the pot with white wine. Scrape up any browned bits from the bottom. Cook for 2 minutes.",
+      "Stir in crushed tomatoes, chicken stock, and bay leaf. Bring the mixture to a simmer.",
+      "Return the seared chicken thighs to the pot. Add the quartered potatoes. Ensure potatoes are mostly submerged in the liquid.",
+      "Cover the pot and reduce heat to low. Simmer for 30-40 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender.",
+      "Remove the bay leaf from the pot. Taste the stew and adjust seasoning as needed with salt and pepper.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches a safe internal temperature of 75°C (167°F).",
+      "For richer flavor, use bone-in, skin-on chicken thighs."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 705,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 47.9,
+      "saturated_fat_g": 9.7,
+      "sodium_mg": 550,
+      "total_carbs_g": 40.7,
+      "total_fat_g": 38,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 112,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 88,
+      "total_carbs_g": 6.5,
+      "total_fat_g": 6,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 21,
+      "protein": 96,
+      "saturated_fat": 49,
+      "sodium": 24,
+      "total_carbs": 15,
+      "total_fat": 49
+    },
+    "serving_size_g": 629,
+    "total_recipe_weight_g": 2515
+  },
+  {
+    "recipe_name": "Chicken Ballotine with Cherry Gastrique and Tomato Essence",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_ballotine_with_cherry_gastrique_and_tomato_essence_20250706_132317_e0601309.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T13:23:18.117869000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "bell pepper",
+      "breadcrumbs",
+      "cherry"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Украинская cuisine",
+    "visual_description": "The canapés are presented as 8-12 exquisite, artfully arranged bites on a polished dark grey slate slab or black porcelain platter. Each delicate, perfectly seared chicken ballotine slice, 1.5 cm thick and circular, displays a golden crust and tender interior with finely diced red bell pepper. A single, glistening drop of vibrant crimson cherry gastrique is meticulously placed beside each chicken piece. A whisper of golden, toasted panko crumble is scattered precisely, offering textural contrast. A barely perceptible, clear droplet of concentrated tomato essence rests near the ballotine, providing a pure, savory note. The composition emphasizes abundant negative space, highlighting pristine execution and sophisticated simplicity. A few micro-dill sprigs add a fresh green accent. The scene is lit dramatically, casting soft shadows, with a pristine white linen napkin folded precisely in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Ukrainian",
+    "cultural_origin": "Ukrainian",
+    "cultural_serving_suggestions": [
+      "Serve with very small, delicate glasses of chilled Ukrainian horilka.",
+      "Present alongside a selection of artisanal pickled vegetables, served separately as a palate cleanser."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Tart cherries",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "2 small"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Chicken Ballotine: Trim chicken breasts. Butterfly open. Pound to 5mm thickness. Finely dice 10g red bell pepper. Finely mince 1 shallot. Sauté diced bell pepper and minced shallot until tender. Cool. Season pounded chicken with salt and pepper. Spread thin layer of bell pepper mixture on one side. Roll chicken tightly into small cylinders. Wrap each in cling film, twist ends to secure. Cook ballotines sous-vide at 63°C for 1.5 hours, or poach gently in simmering water until internal temperature reaches 75°C. Chill immediately in an ice bath. Unwrap. Slice into 1.5 cm thick rounds. Sear slices lightly in a hot pan with butter for golden crust just before serving.",
+      "Make Cherry Gastrique: Pit 100g tart cherries. Roughly chop. Finely mince second shallot. In a small saucepan, combine minced shallot, sugar, and white wine vinegar. Cook until sugar dissolves. Add chopped cherries. Simmer gently 10 minutes until softened. Strain through fine-mesh sieve, pressing solids. Discard solids. Return liquid to saucepan. Reduce over medium-low heat until syrupy. Season with pinch of salt. Keep warm.",
+      "Prepare Tomato Essence: Chop ripe tomatoes. Blend briefly. Pass tomato pulp through cheesecloth-lined sieve overnight in refrigerator to collect clear essence. Do not press. Gently reduce tomato essence by half over very low heat until concentrated. Do not boil vigorously. Season with tiny pinch of salt.",
+      "Toast Panko Crumble: Heat olive oil in small pan. Add panko breadcrumbs. Toast over medium heat, stirring constantly, until golden brown and crisp. Season with tiny pinch of salt. Drain on paper towel.",
+      "Plate and Serve: Arrange 8-12 seared chicken ballotine slices artistically on a dark slate slab or black porcelain platter. Place a single drop of cherry gastrique beside each chicken piece. Scatter toasted panko crumble precisely around chicken. Place a clear droplet of tomato essence near each ballotine. Garnish with a few micro-dill sprigs."
+    ],
+    "notes": [
+      "Ensure all components are prepared just before serving to maintain optimal temperature and texture.",
+      "The chicken ballotine can be prepared in advance and chilled. Sear just before plating.",
+      "For the tomato essence, patience is key for a truly clear, concentrated liquid."
+    ],
+    "traditional_techniques": [
+      "Sous-vide",
+      "Reduction",
+      "Precision Knife Work",
+      "Straining"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.8,
+      "calories": 311,
+      "cholesterol_mg": 91,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 33.8,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 337,
+      "total_carbs_g": 21.7,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.6,
+      "calories": 134,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 14.6,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 146,
+      "total_carbs_g": 9.4,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30,
+      "dietary_fiber": 8,
+      "protein": 68,
+      "saturated_fat": 15,
+      "sodium": 15,
+      "total_carbs": 8,
+      "total_fat": 12
+    },
+    "serving_size_g": 231.5,
+    "total_recipe_weight_g": 926
+  }
+]

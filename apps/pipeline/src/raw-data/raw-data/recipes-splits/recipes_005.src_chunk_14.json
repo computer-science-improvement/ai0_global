@@ -1,0 +1,636 @@
+[
+  {
+    "recipe_name": "Spicy Pineapple and Beef Mince Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_060411_9856a6bf.jpg",
+    "dish_type": "cake",
+    "flavor_profile": "sweet",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-06T06:04:12.500761000Z",
+    "selected_ingredients": [
+      "beef",
+      "pineapple",
+      "breadcrumbs",
+      "almond",
+      "hot sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single thick wedge of the golden-brown mince cake rests on a speckled ceramic plate. A whole caramelized pineapple ring crowns the top, showing dark charred edges. Small cubes of yellow pineapple and ivory almond slivers are embedded in the savory-sweet beef base. The texture is dense and moist. The entire round cake sits in the background on a dark wooden table. A simple white linen napkin and a silver fork are placed to the side. Soft, warm kitchen light creates gentle shadows. The arrangement is natural and uncrowded, highlighting the rustic, homemade quality of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "cultural_origin": "Anglo-American Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of thick vanilla cream",
+      "Pair with a slice of sharp aged cheddar cheese",
+      "Traditional accompaniment of warm custard"
+    ],
+    "hero_ingredient": "Pineapple",
+    "ingredients": [
+      {
+        "name": "Ground beef",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh pineapple rings",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Diced pineapple",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fine breadcrumbs",
+        "quantity": "100g"
+      },
+      {
+        "name": "Flaked almonds",
+        "quantity": "50g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "20g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Grease a 15cm round cake tin.",
+      "Brown the ground beef in a pan over medium heat.",
+      "Drain any excess fat from the pan.",
+      "Add the diced pineapple and brown sugar to the beef.",
+      "Stir in the cinnamon, salt, and hot sauce.",
+      "Sauté for 5 minutes until the liquid reduces.",
+      "Remove from heat and cool slightly.",
+      "Mix in the breadcrumbs, flaked almonds, and beaten egg.",
+      "Place the pineapple rings at the bottom of the cake tin.",
+      "Press the beef mixture firmly over the pineapple rings.",
+      "Bake for 30 minutes.",
+      "Rest the cake for 10 minutes before handling.",
+      "Invert the cake onto a flat serving plate."
+    ],
+    "notes": [
+      "Use lean ground beef to prevent the cake from becoming greasy",
+      "Toast the almonds before adding to the mix for enhanced flavor",
+      "Ensure the pineapple rings are dried with a paper towel before placing in the tin"
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Baking"
+    ]
+  },
+  {
+    "recipe_name": "Japanese Hamburger Steak (Hambāgu)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_020810_576ffdff.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-06T02:08:10.699600000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "汉堡肉饼 cuisine",
+    "visual_description": "A thick, oval-shaped beef patty sits centrally on a clean white porcelain plate. The meat is unsliced and coated in a glossy, dark mahogany-colored demi-glace sauce that pools slightly at the base. Beside the patty, three bright green steamed broccoli florets and two polished, honey-glazed carrot batons provide vibrant color. A small, neat scoop of creamy Japanese potato salad sits to the side. The beef surface shows a rich, seared crust under the thick glaze. The setting includes a pair of dark wood chopsticks resting on a ceramic holder and a small bowl of fluffy, short-grain white rice. Natural side-lighting highlights the moist texture of the meat and the reflective sheen of the savory sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese Modern",
+    "cultural_origin": "Japanese Yōshoku",
+    "cultural_serving_suggestions": [
+      "Serve with a side bowl of steamed short-grain white rice",
+      "Accompany with miso soup",
+      "Provide chopsticks as the primary utensil",
+      "Include a side of Japanese-style potato salad"
+    ],
+    "hero_ingredient": "Ground Beef",
+    "ingredients": [
+      {
+        "name": "Ground beef (20% fat)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Egg, lightly beaten",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Nutmeg, ground",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Red wine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Ketchup",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Tonkatsu sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Sauté diced onions in oil until translucent. Cool completely.",
+      "Soak panko in milk for 5 minutes.",
+      "Combine beef, cooled onions, soaked panko, egg, salt, pepper, and nutmeg in a bowl.",
+      "Knead mixture until sticky and pale.",
+      "Divide into 4 oval patties.",
+      "Toss each patty between hands to remove air bubbles (kuki-nuki technique).",
+      "Make a small indentation in the center of each patty.",
+      "Heat oil in a skillet over medium heat.",
+      "Sear patties for 3 minutes until browned.",
+      "Flip patties. Add 30ml water to the pan.",
+      "Cover and steam for 5 minutes.",
+      "Remove patties. Drain excess fat from the pan.",
+      "Add wine, ketchup, and tonkatsu sauce to the same pan.",
+      "Simmer until thickened. Whisk in butter.",
+      "Return patties to the pan to coat with glaze."
+    ],
+    "notes": [
+      "Chilling the meat before mixing prevents the fat from melting.",
+      "The center indentation prevents the patty from bulging during cooking.",
+      "The air-slapping technique is essential for a smooth texture without cracks."
+    ],
+    "traditional_techniques": [
+      "kuki-nuki",
+      "steam-frying",
+      "glazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8,
+      "calories": 577,
+      "cholesterol_mg": 162,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 30,
+      "saturated_fat_g": 14.5,
+      "sodium_mg": 1172,
+      "total_carbs_g": 23.6,
+      "total_fat_g": 38.4,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 3.6,
+      "calories": 256,
+      "cholesterol_mg": 72,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 13.3,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 521,
+      "total_carbs_g": 10.5,
+      "total_fat_g": 17.1,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0.7
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54,
+      "dietary_fiber": 3,
+      "protein": 60,
+      "saturated_fat": 73,
+      "sodium": 51,
+      "total_carbs": 9,
+      "total_fat": 49
+    },
+    "serving_size_g": 225,
+    "total_recipe_weight_g": 900
+  },
+  {
+    "recipe_name": "Jinghua Beef Meat Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_020627_312eb608.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-06T02:06:28.573157000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "肉饼 cuisine",
+    "visual_description": "A single, large circular Jinghua beef meat pie sits centered on a clean white porcelain plate. The pie features a deeply golden-brown, flaky, pan-seared crust with visible concentric layers. The pie is cut into four clean wedges, revealing the moist, dark savory beef and bright green scallion filling inside. A small, elegant ceramic side dish containing dark Chinkiang vinegar and thin julienne strips of fresh ginger is placed at the 2 o'clock position. The setting is a dark wood bistro table with natural side lighting. A pair of dark wood chopsticks rests on a ceramic holder to the right. The presentation is minimal and focused, highlighting the contrast between the crispy exterior and succulent interior.",
+    "number_of_servings": 4,
+    "cuisine_type": "Northern Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve with Chinkiang black vinegar and ginger slivers",
+      "Pair with a light millet porridge or egg drop soup",
+      "Provide chili oil for extra heat"
+    ],
+    "hero_ingredient": "Ground Beef",
+    "ingredients": [
+      {
+        "name": "All-purpose flour",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Warm water (approx 50°C)",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground beef (20% fat)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Sichuan peppercorns",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Boiling water (for peppercorns)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Ginger, minced",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Scallions, finely chopped",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "45 ml"
+      }
+    ],
+    "instructions": [
+      "Mix flour and salt in a large bowl.",
+      "Gradually add warm water while stirring with chopsticks.",
+      "Knead into a smooth dough for 10 minutes.",
+      "Cover and rest dough for 45 minutes.",
+      "Steep Sichuan peppercorns in boiling water for 15 minutes, then strain.",
+      "Combine beef, ginger, soy sauce, and Shaoxing wine.",
+      "Slowly stir peppercorn water into beef in one direction until absorbed.",
+      "Mix in sesame oil and chopped scallions.",
+      "Divide dough into 4 equal portions.",
+      "Roll one portion into a large, thin rectangle.",
+      "Spread a quarter of the beef filling over 3/4 of the dough.",
+      "Fold the dough in thirds to create multiple layers, sealing the edges.",
+      "Gently flatten with a rolling pin into a square or circle.",
+      "Heat 10ml oil in a flat skillet over medium-low heat.",
+      "Fry pie for 5-7 minutes per side until golden brown and crispy.",
+      "Repeat for remaining portions.",
+      "Drain on a wire rack for 2 minutes before serving."
+    ],
+    "notes": [
+      "Do not overwork the meat once scallions are added to keep them fresh.",
+      "Ensure the dough is rolled very thin for maximum layers.",
+      "Low heat is essential to cook the beef through without burning the crust."
+    ],
+    "traditional_techniques": [
+      "Dough resting",
+      "Water-binding filling",
+      "Layered folding",
+      "Pan-searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 983,
+      "cholesterol_mg": 117,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 38.7,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 987,
+      "total_carbs_g": 97.2,
+      "total_fat_g": 44.9,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 255,
+      "cholesterol_mg": 30.3,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 10,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 256,
+      "total_carbs_g": 25.2,
+      "total_fat_g": 11.6,
+      "total_sugars_g": 0.2,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 15,
+      "protein": 77,
+      "saturated_fat": 69,
+      "sodium": 43,
+      "total_carbs": 35,
+      "total_fat": 58
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1544
+  },
+  {
+    "recipe_name": "Dark Chocolate Dandelion Crémeux with Honey Tuile and Blueberry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_013827_60ec9634.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-06T01:38:28.472476000Z",
+    "selected_ingredients": [
+      "dandelion green",
+      "honey",
+      "dark chocolate",
+      "milk",
+      "flour",
+      "blueberry"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish features a single, smooth dome of dark chocolate crémeux positioned slightly off-center on a matte white designer plate. A vibrant, deep purple blueberry coulis is applied in organic, fluid droplets of varying sizes around the base. Resting atop the chocolate is a delicate, translucent honey tuile, shattered into an architectural shard. Two blanched, vibrant green dandelion micro-leaves provide a sharp color contrast. The setting is a grey-veined Carrara marble surface under dramatic side-lighting, creating soft shadows. A single silver dessert spoon rests to the right. The composition emphasizes negative space and natural textures, highlighting the glossy finish of the chocolate and the crisp edges of the honey tuile.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of late-harvest dessert wine",
+      "Present on chilled bone china to maintain the crémeux texture"
+    ],
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "70% dark chocolate",
+        "quantity": "150g"
+      },
+      {
+        "name": "whole milk",
+        "quantity": "250ml"
+      },
+      {
+        "name": "dandelion greens",
+        "quantity": "100g"
+      },
+      {
+        "name": "honey",
+        "quantity": "60g"
+      },
+      {
+        "name": "all-purpose flour",
+        "quantity": "40g"
+      },
+      {
+        "name": "fresh blueberries",
+        "quantity": "150g"
+      },
+      {
+        "name": "egg yolks",
+        "quantity": "3 large"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "20g"
+      }
+    ],
+    "instructions": [
+      "Blanch dandelion greens in boiling water for 30 seconds. Shock in ice water. Drain and pat dry.",
+      "Blend blanched greens with milk until smooth. Strain through a fine-mesh sieve into a saucepan.",
+      "Heat infused milk to 80°C. Do not boil.",
+      "Whisk egg yolks with 30g honey until pale.",
+      "Slowly pour hot milk into yolks while whisking. Return mixture to the pan.",
+      "Cook over low heat to 82°C. Stir constantly until thickened.",
+      "Place chopped chocolate in a bowl. Pour hot custard over chocolate. Let sit for 1 minute.",
+      "Emulsify with an immersion blender until glossy. Pour into molds and chill for 4 hours.",
+      "Mix flour, melted butter, and remaining honey into a smooth paste.",
+      "Spread paste thinly onto a silicone mat. Bake at 170°C for 6 minutes until golden. Cool and break into shards.",
+      "Simmer blueberries and sugar in a small pan for 8 minutes. Strain through a fine sieve to create a smooth coulis.",
+      "Demold the crémeux onto a plate. Garnish with honey tuile shards and blueberry coulis."
+    ],
+    "notes": [
+      "Use high-quality honey like wildflower or acacia for the tuile",
+      "Ensure the crémeux is fully set before demolding to maintain the clean edge"
+    ],
+    "traditional_techniques": [
+      "emulsification",
+      "infusion",
+      "tempering",
+      "reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 28.2,
+      "calories": 495,
+      "cholesterol_mg": 169,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 9.3,
+      "saturated_fat_g": 15.7,
+      "sodium_mg": 63.3,
+      "total_carbs_g": 53.3,
+      "total_fat_g": 27.9,
+      "total_sugars_g": 35.4,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.1,
+      "calories": 230,
+      "cholesterol_mg": 78.6,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 4.3,
+      "saturated_fat_g": 7.3,
+      "sodium_mg": 29.4,
+      "total_carbs_g": 24.8,
+      "total_fat_g": 13,
+      "total_sugars_g": 16.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56.3,
+      "dietary_fiber": 18.2,
+      "protein": 18.6,
+      "saturated_fat": 78.5,
+      "sodium": 2.8,
+      "total_carbs": 19.4,
+      "total_fat": 35.8
+    },
+    "serving_size_g": 215,
+    "total_recipe_weight_g": 861
+  },
+  {
+    "recipe_name": "Crab and Cheddar Macaroni Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_012922_5ae648a6.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-06T01:29:23.377358000Z",
+    "selected_ingredients": [
+      "crab",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of the macaroni bake sits on a cream-colored ceramic plate with slight rim imperfections. The pasta is enrobed in a thick, creamy cheese sauce. Large, visible white and pink chunks of crab meat are distributed throughout the dish. The top features a rustic, uneven crust of melted golden-brown cheddar and toasted, crunchy breadcrumbs. A light sprinkle of finely chopped green parsley adds a touch of color. The plate is set on a well-worn oak dining table. A simple stainless steel fork rests on a plain white cloth napkin nearby. Warm, soft kitchen lighting illuminates the steam rising from the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp green side salad",
+      "Accompany with buttered crusty bread"
+    ],
+    "hero_ingredient": "crab",
+    "ingredients": [
+      {
+        "name": "macaroni pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "lump crab meat",
+        "quantity": "450g"
+      },
+      {
+        "name": "sharp cheddar cheese, grated",
+        "quantity": "250g"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "all-purpose flour",
+        "quantity": "40g"
+      },
+      {
+        "name": "whole milk",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5g"
+      },
+      {
+        "name": "salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "panko breadcrumbs",
+        "quantity": "50g"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Boil macaroni in salted water for 8 minutes. Drain.",
+      "Melt butter in a large saucepan over medium heat.",
+      "Whisk in flour. Cook for 1 minute.",
+      "Gradually whisk in milk. Simmer until thickened.",
+      "Remove from heat. Stir in 200g cheddar, mustard, salt, and pepper.",
+      "Fold in cooked macaroni and crab meat chunks gently.",
+      "Transfer mixture to a 2-liter baking dish.",
+      "Top with remaining 50g cheddar and breadcrumbs.",
+      "Bake for 20 minutes until the top is golden and bubbling.",
+      "Garnish with parsley before serving."
+    ],
+    "notes": [
+      "Use lump crab meat for the best texture",
+      "Do not overmix the crab to keep the chunks intact",
+      "Ensure the milk is added slowly to avoid lumps in the sauce"
+    ],
+    "traditional_techniques": [
+      "roux making",
+      "baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 991.25,
+      "cholesterol_mg": 216.5,
+      "dietary_fiber_g": 3.58,
+      "protein_g": 57.05,
+      "saturated_fat_g": 23.18,
+      "sodium_mg": 1189,
+      "total_carbs_g": 101.06,
+      "total_fat_g": 39.71,
+      "total_sugars_g": 11.75,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 220.28,
+      "cholesterol_mg": 48.11,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 12.68,
+      "saturated_fat_g": 5.15,
+      "sodium_mg": 264.22,
+      "total_carbs_g": 22.46,
+      "total_fat_g": 8.82,
+      "total_sugars_g": 2.61,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72.17,
+      "dietary_fiber": 12.79,
+      "protein": 114.1,
+      "saturated_fat": 115.9,
+      "sodium": 51.7,
+      "total_carbs": 36.75,
+      "total_fat": 50.91
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  }
+]

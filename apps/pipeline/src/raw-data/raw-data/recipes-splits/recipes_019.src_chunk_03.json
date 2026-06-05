@@ -1,0 +1,594 @@
+[
+  {
+    "recipe_name": "Pan-Seared Chicken with Fermented Cabbage & Root Crisps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_with_fermented_cabbage_%26_root_crisps_20250625_084058_5756d2e3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:40:59.534883000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken thigh, skin-on, sits prominently on a handcrafted, matte cream-colored ceramic plate. The chicken skin is a rich, deep golden-brown and visibly crispy, while the meat appears juicy. Adjacent to the chicken, a neat, slightly mounded portion of quick-fermented green cabbage presents a pale, vibrant green hue with a tender, slightly translucent texture. Scattered around the main components are thin, irregular, golden-brown root vegetable crisps, showcasing their brittle, airy texture. The plating is minimalistic, with ample white space on the plate, emphasizing the natural beauty and distinct textures of each ingredient. The chicken is presented as a whole piece, not sliced. The table surface is light, natural bamboo or reclaimed wood. An undyed linen napkin in a natural beige tone is subtly placed beside the plate. Soft, diffused natural light illuminates the scene, creating gentle shadows. The background is clean and uncluttered, with a hint of blurred green foliage, suggesting an eco-conscious and natural setting. The overall presentation is simple, clean, and highlights the sustainable elements of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, skin-on, bone-in",
+        "quantity": "4"
+      },
+      {
+        "name": "Green cabbage",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "15 g (for cabbage), plus more for seasoning"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented cabbage: Remove outer leaves from cabbage. Shred remaining cabbage thinly. Place shredded cabbage in a large bowl. Add 15 g fine sea salt. Massage cabbage vigorously with hands for 5-7 minutes until it softens and releases liquid.",
+      "Pack massaged cabbage tightly into a clean 1-liter glass jar. Pour released liquid over cabbage. If liquid does not cover cabbage, add filtered water until cabbage is fully submerged. Ensure no cabbage bits float. Seal jar. Let ferment at room temperature for 2-3 days, or until desired tanginess is achieved. Refrigerate after fermentation.",
+      "Prepare root crisps: Wash carrots and parsnips thoroughly. Use a vegetable peeler to create long, thin strips of peels. Discard any remaining root cores or save for stock. In a bowl, toss peels with 15 ml olive oil and a pinch of salt. Spread peels in a single layer on a baking sheet lined with parchment paper.",
+      "Preheat oven to 180°C. Bake root crisps for 10-15 minutes, or until golden brown and crispy. Watch carefully to prevent burning. Remove from oven and cool on a wire rack.",
+      "Cook chicken: Pat chicken thighs dry with paper towels. Season generously with salt and black pepper on all sides. Heat remaining 15 ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Place chicken thighs skin-side down in the hot skillet. Sear for 8-10 minutes until skin is deeply golden brown and crispy. Do not move chicken during this time.",
+      "Flip chicken thighs. Transfer skillet to preheated oven. Bake for 15-20 minutes, or until internal temperature reaches 75°C. Remove chicken from oven and let rest for 5 minutes.",
+      "To serve: Place one seared chicken thigh on each plate. Spoon a generous portion of fermented cabbage beside the chicken. Artfully arrange a scattering of crispy root vegetable peels around the dish. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 604,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 8.55,
+      "protein_g": 40.09,
+      "saturated_fat_g": 9.62,
+      "sodium_mg": 1696,
+      "total_carbs_g": 26.75,
+      "total_fat_g": 38.35,
+      "total_sugars_g": 14.21,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 177,
+      "cholesterol_mg": 55,
+      "dietary_fiber_g": 2.51,
+      "protein_g": 11.75,
+      "saturated_fat_g": 2.82,
+      "sodium_mg": 497,
+      "total_carbs_g": 7.84,
+      "total_fat_g": 11.24,
+      "total_sugars_g": 4.16,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.67,
+      "dietary_fiber": 30.54,
+      "protein": 80.18,
+      "saturated_fat": 48.1,
+      "sodium": 73.76,
+      "total_carbs": 9.73,
+      "total_fat": 49.17
+    },
+    "serving_size_g": 341,
+    "total_recipe_weight_g": 1365
+  },
+  {
+    "recipe_name": "Roasted Cherry Tomato and Thyme Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_cherry_tomato_and_thyme_soup_20250625_084033_bfb951bb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:40:33.486671000Z",
+    "selected_ingredients": [
+      "cherry"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Roasted Cherry Tomato and Thyme Soup is presented in a deep, rustic ceramic bowl with natural imperfections. The soup has a rich, deep red color and a smooth, velvety texture. It fills the bowl generously, leaving appropriate negative space around the rim. A small, vibrant sprig of fresh thyme is placed gently on the soup's surface as a simple, functional garnish. The bowl sits on a well-used wooden dining table, showcasing its natural grain. A casually folded, off-white cloth napkin is placed beside the bowl. The scene is illuminated by warm, natural kitchen lighting, creating a comforting, lived-in atmosphere. The focus is entirely on the inviting, homely soup.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Vegetable",
+    "hero_ingredient": "Cherry",
+    "ingredients": [
+      {
+        "name": "Cherries, pitted",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Red onion, roughly chopped",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, unpeeled",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "6"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Balsamic vinegar (optional)",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Combine pitted cherries, cherry tomatoes, roughly chopped red onion, and unpeeled garlic cloves on a large baking tray.",
+      "Drizzle with olive oil. Add thyme sprigs. Season with salt and pepper.",
+      "Roast for 30-35 minutes. Vegetables should be soft and slightly caramelized.",
+      "Remove garlic from skins. Discard thyme sprigs.",
+      "Transfer roasted vegetables and cherries to a large pot.",
+      "Pour in vegetable stock. Add balsamic vinegar if using.",
+      "Bring to a simmer over medium heat. Cook for 10 minutes.",
+      "Use an immersion blender to blend soup until smooth. Alternatively, blend in batches in a regular blender.",
+      "Adjust seasoning as needed.",
+      "Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 262,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 4.2,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 263,
+      "total_carbs_g": 33,
+      "total_fat_g": 14.4,
+      "total_sugars_g": 20.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 44,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 0.7,
+      "saturated_fat_g": 0.3,
+      "sodium_mg": 44,
+      "total_carbs_g": 5.5,
+      "total_fat_g": 2.4,
+      "total_sugars_g": 3.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 19,
+      "protein": 8,
+      "saturated_fat": 10,
+      "sodium": 11,
+      "total_carbs": 12,
+      "total_fat": 18
+    },
+    "serving_size_g": 599,
+    "total_recipe_weight_g": 2396
+  },
+  {
+    "recipe_name": "Savory Buckwheat Waffles with Fermented Tofu and Radish Green Pesto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_buckwheat_waffles_with_fermented_tofu_and_radish_green_pesto_20250625_084021_c9bda6ab.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:40:22.262978000Z",
+    "selected_ingredients": [
+      "tofu",
+      "buckwheat groat",
+      "olive oil",
+      "radish"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "plant-based, waffles, 180g of tofu, all ingredients inside, no sugar, seasonings",
+    "visual_description": "A single savory buckwheat waffle, golden-brown with crisp edges, rests centrally on a handcrafted, cream-toned ceramic plate. A few thick, seared tofu cubes, displaying a subtle golden crust from cooking, are arranged naturally on one side of the waffle. Thin, vibrant pink radish rounds are artfully scattered, creating a fresh contrast. A small dollop of deep green radish green pesto is placed beside the waffle, adding a rich color accent. The plating is minimalistic, with ample negative space. The table surface is light, natural wood or stone. An undyed linen napkin in a natural beige tone is subtly visible. Soft, natural light illuminates the dish from the side, highlighting textures and colors. The background is clean and uncluttered, with a hint of a green plant, reinforcing the eco-conscious theme. The overall presentation is clean, simple, and showcases the inherent beauty of each ingredient.",
+    "number_of_servings": 1,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "cultural_serving_suggestions": [
+      "Serve as a standalone main course.",
+      "Pair with a simple fermented vegetable side, such as quick-pickled cucumber or sauerkraut."
+    ],
+    "hero_ingredient": "Tofu",
+    "ingredients": [
+      {
+        "name": "Firm Tofu",
+        "quantity": "180 g"
+      },
+      {
+        "name": "Buckwheat Flour",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Water or unsweetened plant milk",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Radishes with greens",
+        "quantity": "4-5 medium"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Soy Sauce or Tamari",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Miso Paste",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Press tofu for 30 minutes to remove excess water. Cut pressed tofu into 2 cm thick cubes.",
+      "Combine soy sauce, rice vinegar, and miso paste in a bowl. Add tofu cubes. Gently toss to coat. Marinate for at least 15 minutes.",
+      "Wash radishes and separate greens. Thinly slice radishes into rounds. Set aside.",
+      "For the pesto, combine radish greens, 20 ml olive oil, peeled garlic clove, lemon juice, salt, and pepper in a small food processor. Blend until smooth. Add a splash of water if needed to reach desired consistency.",
+      "In a separate bowl, whisk together buckwheat flour, baking powder, and 2g salt. Gradually add water or plant milk, whisking until a smooth batter forms. Do not overmix.",
+      "Preheat waffle iron. Lightly grease if necessary. Pour enough batter for one waffle. Cook according to waffle iron instructions until golden brown and crisp.",
+      "Heat remaining 10 ml olive oil in a non-stick pan over medium-high heat. Add marinated tofu cubes. Cook for 4-5 minutes, turning occasionally, until all sides are golden and slightly crispy.",
+      "Place the cooked buckwheat waffle on a plate. Arrange seared tofu cubes on top. Scatter thin radish rounds around the tofu. Spoon radish green pesto alongside or over the tofu and waffle. Serve immediately."
+    ],
+    "notes": [
+      "Pressing tofu is crucial for texture and flavor absorption.",
+      "Adjust pesto consistency by adding more water or olive oil.",
+      "This recipe emphasizes zero-waste by utilizing radish greens."
+    ],
+    "traditional_techniques": [
+      "Fermentation (implied in miso and soy sauce, quick pickling for radish)",
+      "Zero-Waste Cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 678.5,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 9.5,
+      "protein_g": 26.1,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 2070.3,
+      "total_carbs_g": 60.3,
+      "total_fat_g": 41.3,
+      "total_sugars_g": 3.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 4.9,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 388.4,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 7.7,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 34,
+      "protein": 52,
+      "saturated_fat": 30,
+      "sodium": 90,
+      "total_carbs": 22,
+      "total_fat": 53
+    },
+    "serving_size_g": 533,
+    "total_recipe_weight_g": 533
+  },
+  {
+    "recipe_name": "Spicy Chocolate-Strawberry Glazed Pork Tenderloin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_chocolate-strawberry_glazed_pork_tenderloin_20250625_084013_8504bee2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:40:14.108208000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "hot sauce",
+      "garlic",
+      "strawberry"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of golden-brown seared pork tenderloin medallions rests on a clean white porcelain dinner plate. The pork, cut into thick, succulent rounds, is glistening, generously coated with a rich, glossy dark chocolate-strawberry glaze. The deep reddish-brown sauce has subtle hints of strawberry and a smooth, thick texture. Freshly chopped bright green chives are scattered over the pork, providing a vibrant color contrast. The plate is positioned on a simple light wooden table surface, accompanied by standard silver flatware and a neatly folded white cotton napkin beside it. Natural, soft, even lighting illuminates the dish, highlighting its textures and colors against a gently blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Pork Tenderloin",
+    "ingredients": [
+      {
+        "name": "Pork Tenderloin",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Dark Chocolate (70% or higher)",
+        "quantity": "50 grams, finely chopped"
+      },
+      {
+        "name": "Hot Sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Strawberries",
+        "quantity": "200 grams, hulled and quartered"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large, finely minced"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "5 grams, finely chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Pat pork tenderloin dry. Season generously with salt and pepper.",
+      "Heat olive oil in an oven-safe skillet over medium-high heat.",
+      "Sear pork tenderloin on all sides until golden brown, about 8-10 minutes total.",
+      "Transfer skillet to preheated oven. Roast for 10-15 minutes, until internal temperature reaches 63°C. Remove pork from skillet, rest on a cutting board, tent with foil.",
+      "Return skillet to medium heat. Add shallot and minced garlic to skillet. Sauté for 2 minutes until fragrant.",
+      "Pour in apple cider vinegar. Scrape up any browned bits from the bottom of the skillet. Reduce liquid by half.",
+      "Add chicken broth, hot sauce, and quartered strawberries to the skillet. Bring to a simmer. Cook for 5-7 minutes, until strawberries soften.",
+      "Remove skillet from heat. Stir in chopped dark chocolate and butter until melted and smooth. Season sauce with salt and pepper to taste.",
+      "Slice rested pork tenderloin into thick medallions, approximately 2.5 cm thick.",
+      "Arrange pork medallions on serving plates. Spoon generous amount of warm glaze over pork.",
+      "Garnish with fresh chopped chives. Serve immediately."
+    ],
+    "notes": [
+      "Adjust hot sauce quantity to your preferred spice level.",
+      "Ensure pork reaches 63°C for medium-rare; it will continue cooking while resting."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 375,
+      "cholesterol_mg": 106.5,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 34.4,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 790.8,
+      "total_carbs_g": 15.5,
+      "total_fat_g": 20.5,
+      "total_sugars_g": 7.6,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 114,
+      "cholesterol_mg": 32.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 10.5,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 241.3,
+      "total_carbs_g": 4.7,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35.5,
+      "dietary_fiber": 11.8,
+      "protein": 68.7,
+      "saturated_fat": 46.5,
+      "sodium": 34.4,
+      "total_carbs": 5.6,
+      "total_fat": 26.3
+    },
+    "serving_size_g": 327.7,
+    "total_recipe_weight_g": 1310.8
+  },
+  {
+    "recipe_name": "Caramelized Apple & Onion Tarte Tatin with Crispy Chicken Skin Brittle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_apple_%26_onion_tarte_tatin_with_crispy_chicken_skin_brittle_20250625_084006_b57df604.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T08:40:06.536761000Z",
+    "selected_ingredients": [
+      "apple",
+      "onion",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegantly cut triangular slice of Caramelized Apple & Onion Tarte Tatin rests on a clean white porcelain dessert plate. The tarte features deeply caramelized, tender apple wedges and translucent, sweet onion rings, gleaming with a rich amber hue from the caramel, topped by a golden-brown, flaky puff pastry crust. Around the base of the tart slice, small, irregular shards of glossy, golden-amber crispy chicken skin brittle are artfully scattered, adding a unique textural and visual contrast. A very light dusting of white icing sugar delicately graces the top of the tarte. The overall presentation is clean, balanced, and professional, showcasing the distinct textures and warm colors of the dessert. The setting is a modern bistro with a simple wooden table surface, a single silver dessert fork placed beside the plate, and a folded cotton napkin. Natural, even lighting highlights the dish, with a softly blurred restaurant-style background maintaining a casual yet refined atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Dessert",
+    "cultural_origin": "Modern French-Inspired",
+    "cultural_serving_suggestions": [
+      "Serve warm with a scoop of vanilla bean ice cream or a dollop of crème fraîche to complement the sweetness and provide a creamy contrast."
+    ],
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Apples (firm, sweet-tart like Honeycrisp or Granny Smith)",
+        "quantity": "4 medium (about 600g)"
+      },
+      {
+        "name": "Sweet onions (e.g., Vidalia or Walla Walla)",
+        "quantity": "2 medium (about 300g)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "80g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Puff pastry sheet (all-butter recommended)",
+        "quantity": "1 sheet (about 300g), thawed"
+      },
+      {
+        "name": "Chicken skin (from breast or thigh, trimmed of all fat)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Icing sugar (for dusting)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Prepare chicken skin brittle: Lay chicken skin flat on a baking sheet lined with parchment paper. Bake for 20-25 minutes, or until very crispy and golden brown. Drain excess fat. Break into small, irregular shards. In a small saucepan, combine 30g granulated sugar with 15ml water. Heat until sugar dissolves and turns light amber caramel. Toss crispy chicken skin shards in caramel. Spread on parchment paper to cool and harden. Break into smaller brittle pieces.",
+      "Prepare fruit and onions: Peel, core, and cut apples into 1.5 cm thick wedges. Slice onions into thin rings.",
+      "Make caramel base: In a 24 cm oven-safe, heavy-bottomed skillet (preferably cast iron), melt 80g butter over medium heat. Add 120g granulated sugar and 15ml water. Cook without stirring until sugar melts and turns deep amber caramel. Remove from heat.",
+      "Arrange apples and onions: Carefully arrange apple wedges and onion rings tightly in concentric circles over the caramel in the skillet. Fill gaps as much as possible.",
+      "Add salt: Sprinkle a pinch of salt over the fruit and onions.",
+      "Top with pastry: Place the puff pastry sheet over the apples and onions, tucking the edges down around the fruit inside the skillet.",
+      "Bake tarte: Bake for 30-35 minutes, or until pastry is golden brown and puffed.",
+      "Cool slightly: Remove from oven. Let cool in the skillet for 5-10 minutes. This helps the caramel set slightly and prevents sticking.",
+      "Invert tarte: Place a large serving plate over the skillet. Carefully and confidently invert the skillet onto the plate. Lift the skillet slowly.",
+      "Serve: Dust lightly with icing sugar. Scatter crispy chicken skin brittle around the tarte slices. Serve warm."
+    ],
+    "notes": [
+      "Ensure chicken skin is trimmed of all fat for the best brittle texture and flavor.",
+      "Be careful when making caramel; it is very hot.",
+      "The combination of apple and onion creates a unique sweet-savory depth that balances the dessert."
+    ],
+    "traditional_techniques": [
+      "Caramelization",
+      "Pâtisserie"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 40,
+      "calories": 931,
+      "cholesterol_mg": 111,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 12.2,
+      "saturated_fat_g": 28.3,
+      "sodium_mg": 331,
+      "total_carbs_g": 101.5,
+      "total_fat_g": 54.1,
+      "total_sugars_g": 60.3,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.6,
+      "calories": 270,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 3.5,
+      "saturated_fat_g": 8.2,
+      "sodium_mg": 96,
+      "total_carbs_g": 29.4,
+      "total_fat_g": 15.7,
+      "total_sugars_g": 17.5,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37,
+      "dietary_fiber": 23,
+      "protein": 24,
+      "saturated_fat": 142,
+      "sodium": 14,
+      "total_carbs": 37,
+      "total_fat": 69
+    },
+    "serving_size_g": 345,
+    "total_recipe_weight_g": 1380
+  }
+]

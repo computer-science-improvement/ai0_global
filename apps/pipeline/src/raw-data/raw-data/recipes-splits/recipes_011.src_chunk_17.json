@@ -1,0 +1,759 @@
+[
+  {
+    "recipe_name": "Orecchiette with Sausage and Broccoli Rabe",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orecchiette_with_sausage_and_broccoli_rabe_20250706_171627_246cd08b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:16:27.769080000Z",
+    "selected_ingredients": [
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Orecchiette with Sausage and Broccoli Rabe is served in a shallow white porcelain bowl. The little ear pasta is tossed with vibrant green, tender-crisp broccoli rabe florets and leaves. Large, 2cm rustic chunks of seared pork sausage are scattered throughout, showing a deep golden-brown crust from the pan. The pasta is coated in a glossy, translucent emulsion of olive oil, garlic, and starch. Fine shavings of Pecorino Romano cheese and small red chili flakes are sprinkled over the top. The bowl rests on a rustic dark wood table with a neutral linen napkin. Natural daylight emphasizes the contrast between the dark greens and the caramelized meat.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Puglia, Italy",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Altamura bread",
+      "Pair with a glass of Primitivo red wine",
+      "Drizzle with fresh raw olive oil at the table"
+    ],
+    "hero_ingredient": "Italian Pork Sausage",
+    "ingredients": [
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Italian pork sausage",
+        "quantity": "450g"
+      },
+      {
+        "name": "Broccoli rabe",
+        "quantity": "500g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "2g"
+      },
+      {
+        "name": "Pecorino Romano cheese, grated",
+        "quantity": "40g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Boil 4 liters of salted water in a large pot.",
+      "Remove sausage casings and break meat into 2cm chunks.",
+      "Heat olive oil in a wide pan over medium-high heat.",
+      "Brown sausage chunks for 6 minutes until golden and cooked through.",
+      "Remove sausage from pan and set aside, leaving the fat.",
+      "Add garlic and chili flakes to the pan. Sauté for 1 minute.",
+      "Trim broccoli rabe into 4cm pieces.",
+      "Cook orecchiette in the boiling water according to package directions.",
+      "Add broccoli rabe to the pasta water 4 minutes before the pasta is al dente.",
+      "Reserve 200ml of pasta water and drain the pasta and greens.",
+      "Add pasta, greens, and sausage chunks to the garlic oil.",
+      "Pour in 100ml of reserved water. Toss vigorously over high heat.",
+      "Remove from heat. Stir in Pecorino Romano until a glossy sauce forms."
+    ],
+    "notes": [
+      "Use bronze-die pasta for better sauce adhesion",
+      "Ensure the sausage is browned well for maximum flavor",
+      "Do not overcook the broccoli rabe to maintain its bright green color"
+    ],
+    "traditional_techniques": [
+      "mantecatura",
+      "blanching"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 822,
+      "cholesterol_mg": 88.8,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 35,
+      "saturated_fat_g": 12.8,
+      "sodium_mg": 2030.3,
+      "total_carbs_g": 81.8,
+      "total_fat_g": 39.7,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 228.7,
+      "cholesterol_mg": 24.7,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 9.7,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 564.8,
+      "total_carbs_g": 22.8,
+      "total_fat_g": 11,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30,
+      "dietary_fiber": 23,
+      "protein": 70,
+      "saturated_fat": 64,
+      "sodium": 88,
+      "total_carbs": 30,
+      "total_fat": 51
+    },
+    "serving_size_g": 359.5,
+    "total_recipe_weight_g": 1438
+  },
+  {
+    "recipe_name": "Creamy Tuscan Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_tuscan_chicken_pasta_20250706_171442_b1acb738.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:14:42.547429000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Tuscan Chicken Pasta is artfully plated on a round, clean white porcelain dinner plate. The creamy fettuccine, intertwined with golden-brown chicken chunks and vibrant green spinach, forms a neat mound in the center. Interspersed are deep red sun-dried tomato slices and earthy brown mushroom slices. The chicken chunks are irregularly shaped, about 2 cm, displaying a seared crust. A light drizzle of the creamy sauce coats the pasta, showing its rich texture. A sprinkle of freshly grated Parmesan cheese and finely chopped fresh basil leaves garnish the top, adding contrasting color and freshness. The arrangement is organic, allowing ingredients to show naturally. The plate is positioned on a simple light wooden table. A folded white cotton napkin and classic silver fork and spoon are placed beside the plate, with a small Italian-style bread roll. Natural, soft lighting highlights the textures and colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty Italian bread for dipping in the sauce.",
+      "Pair with a glass of dry white wine, like a Chianti Classico."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs, boneless, skinless",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Fettuccine pasta",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Brown mushrooms, sliced",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Sun-dried tomatoes, oil-packed, drained and sliced",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Yellow onion, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2 g (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Sear chicken thighs 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken. Let rest. Cut into 2 cm chunks.",
+      "Add diced onion to the skillet. Sauté 3 minutes until softened.",
+      "Add minced garlic and sliced mushrooms. Sauté 5-7 minutes until mushrooms are tender and browned.",
+      "Stir in sun-dried tomatoes and red pepper flakes (if using). Cook 1 minute.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Add heavy cream and grated Parmesan cheese. Stir until cheese is melted and sauce slightly thickens.",
+      "While sauce simmers, cook fettuccine according to package directions in salted water until al dente. Drain, reserving 120 ml pasta water.",
+      "Add fresh spinach to the sauce. Cook until wilted, about 1-2 minutes.",
+      "Add cooked pasta and chicken chunks to the sauce. Toss to combine. If sauce is too thick, add reserved pasta water as needed.",
+      "Taste and adjust seasoning with salt and pepper."
+    ],
+    "notes": [
+      "For extra richness, add a knob of butter at the end.",
+      "Adjust red pepper flakes to desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 968,
+      "cholesterol_mg": 253,
+      "dietary_fiber_g": 6.62,
+      "protein_g": 50.39,
+      "saturated_fat_g": 22.83,
+      "sodium_mg": 1124,
+      "total_carbs_g": 76.69,
+      "total_fat_g": 52.03,
+      "total_sugars_g": 10.44,
+      "trans_fat_g": 1.07
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 199.16,
+      "cholesterol_mg": 52.06,
+      "dietary_fiber_g": 1.36,
+      "protein_g": 10.37,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 231.18,
+      "total_carbs_g": 15.78,
+      "total_fat_g": 10.7,
+      "total_sugars_g": 2.15,
+      "trans_fat_g": 0.22
+    },
+    "daily_value_percentages": {
+      "cholesterol": 84.4,
+      "dietary_fiber": 23.6,
+      "protein": 100.8,
+      "saturated_fat": 114.2,
+      "sodium": 48.9,
+      "total_carbs": 27.9,
+      "total_fat": 66.7
+    },
+    "serving_size_g": 486.15,
+    "total_recipe_weight_g": 1944.6
+  },
+  {
+    "recipe_name": "Roasted Venison Loin with Plum Glaze and Potato Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_venison_loin_with_plum_glaze_and_potato_gratin_20250706_171433_11a2ea6a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:14:34.082690000Z",
+    "selected_ingredients": [
+      "venison",
+      "plum",
+      "potato",
+      "onion",
+      "kale"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, refined portion is presented on a clean, white round porcelain plate set on a simple light wooden table. The dish features thick, roasted venison chunks, a golden-brown square of potato gratin, and a vibrant green mound of sautéed kale. The venison, cooked to a medium-rare pink interior, shows a beautifully seared, deep brown crust. A glossy, dark ruby-red plum glaze is generously spooned over the venison, pooling slightly on the plate. The potato gratin exhibits distinct, thinly sliced potato layers within a creamy, golden-brown top. The kale is tender-crisp, displaying its natural deep green color. A small, fresh thyme sprig garnishes the plate. The composition is balanced with appropriate negative space. Standard silver flatware and a folded white cotton napkin are placed beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and colors in a modern bistro setting.",
+    "number_of_servings": 104,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Venison Loin",
+    "ingredients": [
+      {
+        "name": "Venison loin",
+        "quantity": "19 kg"
+      },
+      {
+        "name": "Fresh ripe plums",
+        "quantity": "5.5 kg"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "21 kg"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "3.5 kg"
+      },
+      {
+        "name": "Kale",
+        "quantity": "7.5 kg"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "52"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "10 bunches"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "10 sprigs"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1.5 L"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Beef or venison stock",
+        "quantity": "4 L"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "2 L"
+      },
+      {
+        "name": "Balsamic vinegar",
+        "quantity": "500 mL"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "10 L"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C for potato gratin.",
+      "Peel and thinly slice 21 kg potatoes.",
+      "Finely mince 1.5 kg onions and 26 garlic cloves.",
+      "In large pots, melt 500 g butter. Add minced onions and garlic. Sauté until translucent.",
+      "Pour in 10 L heavy cream. Bring to a simmer. Season with salt, pepper, and nutmeg.",
+      "Layer sliced potatoes in large baking dishes. Pour cream mixture over potatoes.",
+      "Bake for 45-60 minutes, or until golden and tender. Let cool slightly.",
+      "Pit and quarter 5.5 kg plums.",
+      "In large saucepans, melt 250 g butter. Add 2 kg chopped onions and remaining 26 minced garlic cloves. Sauté until soft.",
+      "Add quartered plums, 2 L red wine, 4 L beef stock, 500 mL balsamic vinegar, and 200 g brown sugar.",
+      "Bring to a boil. Reduce heat. Simmer for 30-40 minutes, stirring occasionally, until plums are very soft and liquid has reduced.",
+      "Strain mixture through a fine-mesh sieve, pressing solids to extract all liquid. Discard solids.",
+      "Return strained glaze to clean saucepans. Simmer gently until thickened to desired consistency. Season with salt and pepper. Keep warm.",
+      "Preheat oven to 200°C for venison.",
+      "Trim any silver skin from 19 kg venison loins. Season venison generously with salt and pepper.",
+      "In large, heavy-bottomed pans, heat 1 L olive oil over high heat.",
+      "Sear venison loins on all sides until deeply browned, about 2-3 minutes per side.",
+      "Transfer seared venison to large roasting pans. Add fresh thyme and rosemary sprigs.",
+      "Roast in preheated oven for 15-25 minutes, or until internal temperature reaches 54-57°C for medium-rare.",
+      "Remove venison from oven. Rest for 10-15 minutes before slicing.",
+      "Wash and trim 7.5 kg kale. Remove tough stems. Roughly chop leaves.",
+      "Blanch kale in large pots of boiling salted water for 2-3 minutes until tender-crisp.",
+      "Drain kale well. Immediately plunge into ice bath to stop cooking. Drain again thoroughly.",
+      "In large sauté pans, melt 250 g butter. Add 500 mL olive oil.",
+      "Add kale. Sauté for 5-7 minutes until heated through and tender. Season with salt and pepper.",
+      "Slice rested venison loins into thick chunks.",
+      "Cut potato gratin into individual square portions.",
+      "Place a portion of potato gratin on each plate.",
+      "Arrange 2-3 chunks of venison beside the gratin.",
+      "Place a mound of sautéed kale next to the venison.",
+      "Spoon plum glaze generously over venison.",
+      "Garnish with a small fresh thyme sprig."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.9,
+      "calories": 1026.9,
+      "cholesterol_mg": 318.7,
+      "dietary_fiber_g": 8.8,
+      "protein_g": 52.2,
+      "saturated_fat_g": 34.4,
+      "sodium_mg": 946.3,
+      "total_carbs_g": 59.1,
+      "total_fat_g": 65.8,
+      "total_sugars_g": 15.8,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 139,
+      "cholesterol_mg": 43.1,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.1,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 128.1,
+      "total_carbs_g": 8,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 106,
+      "dietary_fiber": 31,
+      "protein": 104,
+      "saturated_fat": 172,
+      "sodium": 41,
+      "total_carbs": 21,
+      "total_fat": 84
+    },
+    "serving_size_g": 738.6,
+    "total_recipe_weight_g": 76813
+  },
+  {
+    "recipe_name": "Fermented Bell Pepper & King Oyster Mushroom Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_bell_pepper_%26_king_oyster_mushroom_pasta_20250706_171015_4c97f827.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:10:15.508256000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta",
+      "bell pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "plant-based",
+    "visual_description": "A single portion of Fermented Bell Pepper & King Oyster Mushroom Pasta is presented on a handcrafted, matte cream ceramic plate. The pasta, rigatoni, is generously coated in a vibrant, rustic orange-red sauce derived from blended fermented bell peppers, showing subtle flecks of green herbs. Scattered among the pasta are thick, seared King Oyster Mushroom discs, their surfaces a rich golden-brown with visible caramelization, providing a hearty, unsliced presence. The composition is natural and unforced, with ample white space on the plate. Fresh, roughly chopped parsley is sprinkled over the dish for a pop of green. The setting features a light, textured reclaimed wood table, an undyed linen napkin in beige, and soft, diffused natural light from the side. The background is clean and minimalist, allowing the dish to be the focal point.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "King Oyster Mushroom",
+    "ingredients": [
+      {
+        "name": "King Oyster Mushrooms",
+        "quantity": "4 large (approx. 400g)"
+      },
+      {
+        "name": "Red Bell Peppers",
+        "quantity": "3 (approx. 450g)"
+      },
+      {
+        "name": "Pasta (e.g., Rigatoni or Penne)",
+        "quantity": "320g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Nutritional Yeast",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "small bunch, for garnish"
+      },
+      {
+        "name": "Water",
+        "quantity": "500ml (for fermentation brine)"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "10g (for fermentation brine)"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented bell peppers: Wash 2 red bell peppers. Coarsely chop the peppers, including cores and seeds for zero-waste. Combine 500ml water and 10g sea salt to create a 2% brine. Submerge chopped peppers in the brine in a clean jar. Seal loosely. Let ferment at room temperature for 2-3 days until slightly tangy. Alternatively, use pre-fermented bell peppers.",
+      "Slice King Oyster Mushrooms: Cut each mushroom into thick discs, approximately 2cm thick. Season with salt and pepper.",
+      "Cook pasta: Bring a large pot of salted water to a rolling boil. Add pasta. Cook according to package directions until al dente. Reserve 250ml pasta cooking water. Drain pasta.",
+      "Sear mushrooms: Heat 30ml olive oil in a large pan over medium-high heat. Add mushroom discs. Sear 3-4 minutes per side until golden brown and tender. Remove mushrooms from pan. Set aside.",
+      "Sauté aromatics: Dice remaining red bell pepper, red onion, and mince garlic. Add remaining 30ml olive oil to the same pan. Add diced bell pepper and onion. Sauté 5-7 minutes until softened. Add minced garlic. Sauté 1 minute until fragrant.",
+      "Create sauce: Add the fermented bell peppers and their brine to the pan with aromatics. Stir in nutritional yeast and vegetable broth. Bring to a simmer. Cook 5 minutes. Use an immersion blender to blend the sauce until mostly smooth but still with some texture. If too thick, add reserved pasta water.",
+      "Combine: Add cooked pasta to the sauce. Toss to coat evenly. Gently fold in the seared King Oyster Mushroom pieces.",
+      "Plate: Divide pasta among 4 plates. Garnish with fresh, roughly chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 537.8,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 9.7,
+      "protein_g": 19.5,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 1025,
+      "total_carbs_g": 81.5,
+      "total_fat_g": 16,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128.4,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 4.7,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 244.8,
+      "total_carbs_g": 19.5,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 34.6,
+      "protein": 39,
+      "saturated_fat": 11.5,
+      "sodium": 44.6,
+      "total_carbs": 29.6,
+      "total_fat": 20.5
+    },
+    "serving_size_g": 418.75,
+    "total_recipe_weight_g": 1675
+  },
+  {
+    "recipe_name": "Cheesy Baked Latin Chicken and Rice Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_baked_latin_chicken_and_rice_gratin_20250706_170258_44b5ba8c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:02:59.321962000Z",
+    "selected_ingredients": [
+      "bean",
+      "rice",
+      "onion",
+      "chicken",
+      "bell pepper",
+      "jalapeno chile",
+      "garlic",
+      "chili",
+      "annatto",
+      "mustard",
+      "squash",
+      "beer",
+      "paprika",
+      "oregano",
+      "tomato",
+      "potato",
+      "corn",
+      "cheese",
+      "basil",
+      "breadcrumbs",
+      "mushroom",
+      "carrot",
+      "broccoli"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Cheesy Baked Latin Chicken and Rice Gratin is presented on a clean, round white porcelain dinner plate, centered on a simple wooden table. The gratin features a golden-brown, bubbly cheese and breadcrumb crust, with hints of vibrant green basil. Beneath the crust, tender chunks of seared chicken are visible, nestled within a rich, reddish-orange rice bed, colored by annatto and tomato. Colorful, cooked-through vegetables like orange butternut squash cubes, white potato pieces, green broccoli florets, and brown mushroom slices are interspersed throughout. The chicken pieces are whole, un-sliced chunks. The composition is balanced and inviting, with moderate negative space on the plate. A folded white cotton napkin rests beside the plate. The scene is bathed in natural, even lighting, suggesting a relaxed, modern bistro atmosphere, with a subtly blurred background focusing solely on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Latin American",
+    "cultural_origin": "Latin American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a light vinaigrette.",
+      "Offer a side of your favorite hot sauce or a fresh salsa for added zest."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Long grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned black beans, drained and rinsed",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1 (approx. 200 g)"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 (approx. 200 g)"
+      },
+      {
+        "name": "Jalapeño chile",
+        "quantity": "1-2 (approx. 20-40 g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-6 (approx. 20 g)"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground annatto (achiote) powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Russet potato",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Canned or frozen corn kernels",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Light lager beer",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Shredded Monterey Jack or cheddar cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Large carrot",
+        "quantity": "1 (approx. 100 g)"
+      },
+      {
+        "name": "Broccoli florets",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Cut chicken thighs into 2-3 cm chunks. Toss chicken with Dijon mustard, 5 ml salt, and 2 ml black pepper.",
+      "Heat 15 ml olive oil in a large oven-safe skillet or Dutch oven over medium-high heat. Sear chicken chunks until golden brown on all sides. Do not overcrowd. Cook in batches if necessary. Remove chicken and set aside.",
+      "Dice onion, red bell pepper, and carrot into 1 cm pieces. Mince jalapeño (remove seeds for less heat). Mince garlic.",
+      "Add remaining 15 ml olive oil to the same skillet. Sauté diced onion, bell pepper, and carrot for 5-7 minutes until softened. Add minced jalapeño and garlic. Cook for 2 minutes more until fragrant.",
+      "Stir in chili powder, annatto powder, smoked paprika, and dried oregano. Cook for 1 minute, stirring constantly, until aromatic.",
+      "Add rice to the skillet. Stir for 2 minutes to toast slightly.",
+      "Pour in beer, chicken broth, and diced tomatoes. Bring to a boil. Reduce heat to low, cover, and simmer for 10 minutes.",
+      "Stir in drained black beans and corn kernels.",
+      "Cut butternut squash, potato, and cremini mushrooms into 2-3 cm pieces. Cut broccoli into small florets. Toss all cut vegetables with 15 ml olive oil, 2 ml salt, and 1 ml black pepper on a baking sheet. Roast in the preheated oven for 15-20 minutes until tender-crisp.",
+      "Combine the partially cooked rice mixture, seared chicken chunks, and roasted vegetables in a large baking dish (or use the oven-safe skillet if large enough). Stir gently to combine.",
+      "Grate cheese. Roughly chop fresh basil leaves. In a small bowl, mix grated cheese, chopped basil, and panko breadcrumbs.",
+      "Sprinkle the cheese mixture evenly over the gratin in the baking dish.",
+      "Bake for 20-25 minutes, or until the gratin is bubbly and the cheese topping is golden brown and crispy.",
+      "Remove from oven. Let rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust jalapeño quantity to your preferred spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1306,
+      "cholesterol_mg": 201,
+      "dietary_fiber_g": 22.07,
+      "protein_g": 64.42,
+      "saturated_fat_g": 13.23,
+      "sodium_mg": 1574.76,
+      "total_carbs_g": 143.05,
+      "total_fat_g": 36.98,
+      "total_sugars_g": 14.26,
+      "trans_fat_g": 0.45
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 116,
+      "cholesterol_mg": 17.91,
+      "dietary_fiber_g": 1.97,
+      "protein_g": 5.74,
+      "saturated_fat_g": 1.18,
+      "sodium_mg": 140.34,
+      "total_carbs_g": 12.75,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1.27,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 79,
+      "protein": 129,
+      "saturated_fat": 66,
+      "sodium": 68,
+      "total_carbs": 52,
+      "total_fat": 47
+    },
+    "serving_size_g": 1122.15,
+    "total_recipe_weight_g": 4488.6
+  }
+]

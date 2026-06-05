@@ -1,0 +1,706 @@
+[
+  {
+    "recipe_name": "Beer-Braised Chicken Thighs with Cheesy Potato Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251025_232750_f79d0491.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 18,
+    "timestamp": "2025-10-25T23:27:51.142242000Z",
+    "selected_ingredients": [
+      "chicken",
+      "beer",
+      "tomato",
+      "chili",
+      "hot sauce",
+      "cheese",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single braised chicken thigh, skin-on and golden-brown, sits proudly on a bed of creamy, golden-crusted potato gratin. The chicken, tender and succulent, shows the deep color from its beer-braise. Thinly sliced potatoes form neat layers within the gratin, revealing a soft, cheesy interior beneath a bubbly, slightly browned top. A rich, reddish-brown tomato-chili sauce, glossy and thick, is generously spooned over the chicken and around the plate. The dish is garnished with a sprinkle of vibrant green chopped chives or parsley. It is presented on a clean white porcelain dinner plate, set on a simple wooden table with a folded cotton napkin and standard cutlery, under natural, even lighting in a modern bistro setting. The overall composition is balanced and inviting, emphasizing the comforting and hearty nature of the meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Rustic",
+    "hero_ingredient": "Beer-Braised Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800 g)"
+      },
+      {
+        "name": "Amber beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Onion, medium",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Fresh red chili",
+        "quantity": "1, deseeded and minced (e.g., jalapeño)"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Russet potatoes",
+        "quantity": "900 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley or chives, chopped",
+        "quantity": "15 g, for garnish"
+      },
+      {
+        "name": "Hot sauce (e.g., Tabasco)",
+        "quantity": "5 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Pat chicken thighs dry. Season with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Sear chicken thighs skin-side down until golden brown and crispy, about 5-7 minutes. Flip and sear other side for 3 minutes. Remove chicken and set aside.",
+      "Add diced onion, minced garlic, and minced chili to the pot. Sauté until softened, about 5 minutes.",
+      "Stir in tomato paste and cook for 1 minute.",
+      "Deglaze the pot with beer, scraping up any browned bits. Bring to a simmer.",
+      "Add crushed tomatoes and chicken broth. Bring to a simmer. Return chicken thighs to the pot, skin-side up. Ensure chicken is partially submerged in liquid. Cover and transfer to preheated oven.",
+      "Braise for 45-60 minutes, or until chicken reaches an internal temperature of 75°C and is very tender.",
+      "While chicken braises, prepare potato gratin. Peel potatoes and slice very thinly (2-3 mm) using a mandoline or sharp knife.",
+      "Butter a 20x20 cm baking dish. Arrange a layer of potato slices in the dish. Season lightly with salt and pepper. Sprinkle with some Gruyère cheese.",
+      "Repeat layering potatoes and cheese until all potatoes are used. Pour heavy cream evenly over the potatoes. Top with remaining Gruyère and Parmesan cheese.",
+      "Bake gratin in the same 180°C oven as the chicken for 45-60 minutes, or until potatoes are tender and top is golden brown and bubbly.",
+      "Once chicken is cooked, remove from oven. Carefully remove chicken thighs from the pot and set aside. Place pot with braising liquid on stovetop over medium-high heat.",
+      "Reduce braising liquid by simmering until it thickens to a sauce consistency, about 10-15 minutes. Stir in hot sauce. Taste and adjust seasoning.",
+      "To serve, place a portion of cheesy potato gratin on a plate. Top with a braised chicken thigh. Spoon generous amount of the rich tomato-chili sauce over and around the chicken. Garnish with fresh chopped parsley or chives."
+    ],
+    "notes": [
+      "For extra flavor, consider browning the potatoes slightly in butter before layering for the gratin.",
+      "The braising liquid can be strained for a smoother sauce, if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1301,
+      "cholesterol_mg": 365.9,
+      "dietary_fiber_g": 7.02,
+      "protein_g": 70.22,
+      "saturated_fat_g": 40.9,
+      "sodium_mg": 1478.5,
+      "total_carbs_g": 54.08,
+      "total_fat_g": 88.97,
+      "total_sugars_g": 9.26,
+      "trans_fat_g": 2.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 162,
+      "cholesterol_mg": 45.5,
+      "dietary_fiber_g": 0.87,
+      "protein_g": 8.74,
+      "saturated_fat_g": 5.09,
+      "sodium_mg": 183.9,
+      "total_carbs_g": 6.73,
+      "total_fat_g": 11.07,
+      "total_sugars_g": 1.15,
+      "trans_fat_g": 0.26
+    },
+    "daily_value_percentages": {
+      "cholesterol": 122,
+      "dietary_fiber": 25.1,
+      "protein": 140.4,
+      "saturated_fat": 204.5,
+      "sodium": 64.3,
+      "total_carbs": 19.7,
+      "total_fat": 114.1
+    },
+    "serving_size_g": 803.75,
+    "total_recipe_weight_g": 3215
+  },
+  {
+    "recipe_name": "Korean Black Pepper Beef with Glazed Carrots",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251025_165126_64471884.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2025-10-25T16:51:27.343150000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot",
+      "black pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Korean Black Pepper Beef is presented on a clean, round white porcelain plate. The dish features seared beef strips, cut against the grain into 5mm thick pieces, glistening with a dark, rich, peppery sauce. Alongside, vibrant orange carrot batons, cooked until tender-crisp, are coated in the same glossy sauce. A sprinkle of thinly sliced green spring onions and toasted white sesame seeds provides a fresh, textural contrast and pop of color over the beef and carrots. The overall composition is organic and inviting, with moderate negative space. The plate rests on a simple light wooden table. A set of elegant metal chopsticks lies beside the plate. The lighting is natural and even, highlighting the dish's appealing textures and warm tones.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed white rice.",
+      "Accompany with various banchan (small side dishes) like kimchi or pickled radishes.",
+      "Serve in individual bowls for a family-style meal."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or tenderloin",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "3 cm piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Sesame seeds",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Slice beef against the grain into 5 mm thick strips.",
+      "In a bowl, combine beef, 30 ml soy sauce, 15 ml mirin, 5 ml sesame oil, and cornstarch. Mix well. Marinate for 15 minutes.",
+      "Peel carrots. Cut into 1 cm thick batons.",
+      "Mince garlic. Grate ginger.",
+      "Heat 15 ml vegetable oil in a large wok or pan over high heat.",
+      "Add beef in a single layer. Sear for 2-3 minutes until browned. Do not overcrowd. Cook in batches if necessary. Remove beef and set aside.",
+      "Add remaining 15 ml vegetable oil to the wok. Add carrots. Stir-fry for 5 minutes until slightly tender-crisp.",
+      "Add minced garlic and grated ginger to the carrots. Stir-fry for 1 minute until fragrant.",
+      "Return beef to the wok.",
+      "Add remaining 30 ml soy sauce, 15 ml mirin, 10 ml sesame oil, brown sugar, and a generous amount of freshly ground black pepper (about 8g).",
+      "Stir-fry for 2-3 minutes until sauce thickens and coats beef and carrots.",
+      "Taste and adjust seasoning, adding more black pepper if desired.",
+      "Slice spring onions thinly."
+    ],
+    "notes": [
+      "Adjust the amount of black pepper to your preference; this dish is meant to be peppery.",
+      "For best results, use a hot wok to achieve a good sear on the beef."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (bokkeum style)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 7.6,
+      "calories": 390,
+      "cholesterol_mg": 89,
+      "dietary_fiber_g": 3,
+      "protein_g": 34.7,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 1059,
+      "total_carbs_g": 22,
+      "total_fat_g": 17.6,
+      "total_sugars_g": 11.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.8,
+      "calories": 144,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 12.8,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 391,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29.5,
+      "dietary_fiber": 10.7,
+      "protein": 69.4,
+      "saturated_fat": 17,
+      "sodium": 46,
+      "total_carbs": 8,
+      "total_fat": 22.5
+    },
+    "serving_size_g": 270.6,
+    "total_recipe_weight_g": 1082.2
+  },
+  {
+    "recipe_name": "Mediterranean Chicken & Olive Lettuce Wraps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251025_101148_7e7f78c3.jpg",
+    "dish_type": "snack",
+    "flavor_profile": "savory",
+    "ingredients_count": 9,
+    "timestamp": "2025-10-25T10:11:48.649924000Z",
+    "selected_ingredients": [
+      "salad green",
+      "olive",
+      "oregano",
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Mediterranean Chicken & Olive Lettuce Wraps are presented casually on a rustic, matte ceramic platter or a light wooden serving board. Several individual lettuce cups, made from crisp butter lettuce leaves, are filled generously with the savory chicken and olive mixture. The shredded chicken, cooked until tender, exhibits a light, natural hue. It is visibly mixed with dark, glossy halved Kalamata olives and flecks of vibrant green fresh oregano. The mixture has a slightly moist sheen from the olive oil and lemon dressing. The lettuce cups are arranged organically, some slightly overlapping, with sufficient negative space around them. A small lemon wedge and a sprinkle of fresh oregano leaves garnish the platter. The setting features a well-used wooden dining table, with warm, cozy lighting, evoking a relaxed homestyle family kitchen atmosphere. The entire platter is visible, showcasing the dish as the main subject.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve as part of a mezze spread with other small dishes.",
+      "Offer alongside a simple cucumber and tomato salad.",
+      "Provide extra lemon wedges for individual preference."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100g"
+      },
+      {
+        "name": "Fresh oregano, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Butter lettuce or Romaine hearts",
+        "quantity": "12-16 leaves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Lemon, juiced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Place chicken breasts in a pot. Cover with water. Bring to a simmer over medium heat. Cook for 15-20 minutes, or until internal temperature reaches 75°C (167°F).",
+      "Remove chicken from water. Let cool slightly. Shred chicken into small pieces using two forks.",
+      "Halve or quarter the pitted Kalamata olives.",
+      "In a large bowl, combine shredded chicken, chopped oregano, and prepared olives.",
+      "In a small bowl, whisk together olive oil, lemon juice, minced garlic, salt, and black pepper to create the dressing.",
+      "Pour dressing over the chicken mixture. Toss gently to coat all ingredients evenly.",
+      "Wash and thoroughly dry lettuce leaves.",
+      "Spoon the chicken and olive mixture into individual lettuce cups. Arrange on a serving platter. Serve immediately."
+    ],
+    "notes": [
+      "Ensure lettuce leaves are very dry to prevent a watery wrap.",
+      "For extra flavor, you can lightly toast the oregano before adding it to the chicken mixture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 241,
+      "cholesterol_mg": 80,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 29.3,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 439,
+      "total_carbs_g": 7.3,
+      "total_fat_g": 13,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 108,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 13.1,
+      "saturated_fat_g": 1,
+      "sodium_mg": 196,
+      "total_carbs_g": 3.3,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 0.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27,
+      "dietary_fiber": 14,
+      "protein": 59,
+      "saturated_fat": 11,
+      "sodium": 19,
+      "total_carbs": 3,
+      "total_fat": 17
+    },
+    "serving_size_g": 223.75,
+    "total_recipe_weight_g": 895
+  },
+  {
+    "recipe_name": "Spiced Banana Carrot Raisin Mini Cakes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251025_084014_f8c7d3cf.jpg",
+    "dish_type": "petit_four",
+    "flavor_profile": "sweet",
+    "ingredients_count": 18,
+    "timestamp": "2025-10-25T08:40:15.048988000Z",
+    "selected_ingredients": [
+      "banana",
+      "carrot",
+      "raisin",
+      "flour",
+      "milk",
+      "cinnamon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Six to nine perfectly uniform, golden-brown Spiced Banana Carrot Raisin Mini Cakes are arranged artfully on an elegant white French porcelain rectangular platter. Each mini cake, about 4 cm in diameter, has a delicate, moist crumb visible at the top. A swirl of smooth, off-white cream cheese frosting crowns each cake, lightly dusted with a whisper of ground cinnamon. The cakes are positioned with natural, flowing asymmetry, allowing each piece to be distinct yet part of a cohesive presentation. The setting is a warm, homely family kitchen, featuring a well-used wooden dining table. A casually placed linen napkin in a muted tone rests nearby. Warm, cozy lighting illuminates the scene, highlighting the natural colors and inviting textures of the miniature sweets. The overall impression is one of simple elegance and homemade charm.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Banana",
+    "ingredients": [
+      {
+        "name": "Ripe bananas, mashed",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Carrots, grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Raisins",
+        "quantity": "80 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "2.5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Cream cheese, softened",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "120 g"
+      },
+      {
+        "name": "Milk (for frosting)",
+        "quantity": "15-30 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Line a mini muffin tin with paper liners or grease well.",
+      "In a large bowl, whisk together flour, granulated sugar, brown sugar, cinnamon, baking powder, baking soda, and salt.",
+      "In a separate medium bowl, whisk together mashed bananas, egg, vegetable oil, milk, and vanilla extract.",
+      "Pour the wet ingredients into the dry ingredients. Mix until just combined. Do not overmix.",
+      "Fold in grated carrots and raisins.",
+      "Divide batter evenly among the mini muffin cups. Fill each cup about two-thirds full.",
+      "Bake for 12-15 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Remove mini cakes from oven. Let cool in the tin for 5 minutes, then transfer to a wire rack to cool completely.",
+      "To make the cream cheese frosting: In a bowl, beat softened cream cheese and butter until smooth.",
+      "Gradually add powdered sugar and vanilla extract. Beat until creamy.",
+      "Add milk, 5 ml at a time, until frosting reaches a smooth, spreadable consistency.",
+      "Once mini cakes are completely cool, pipe or spread a small swirl of cream cheese frosting on top of each."
+    ],
+    "notes": [
+      "Ensure bananas are very ripe for best flavor and sweetness.",
+      "Do not overmix the batter to keep the cakes tender.",
+      "Store frosted mini cakes in an airtight container in the refrigerator for up to 3 days."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 67.11,
+      "calories": 912.18,
+      "cholesterol_mg": 89.95,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 10.6,
+      "saturated_fat_g": 12.71,
+      "sodium_mg": 637.05,
+      "total_carbs_g": 139.99,
+      "total_fat_g": 35.75,
+      "total_sugars_g": 89.38,
+      "trans_fat_g": 0.55
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 21.17,
+      "calories": 287.75,
+      "cholesterol_mg": 28.37,
+      "dietary_fiber_g": 1.61,
+      "protein_g": 3.34,
+      "saturated_fat_g": 4.01,
+      "sodium_mg": 200.96,
+      "total_carbs_g": 44.16,
+      "total_fat_g": 11.28,
+      "total_sugars_g": 28.19,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44.98,
+      "dietary_fiber": 18.21,
+      "protein": 21.2,
+      "saturated_fat": 63.55,
+      "sodium": 27.7,
+      "total_carbs": 50.91,
+      "total_fat": 45.83
+    },
+    "serving_size_g": 317,
+    "total_recipe_weight_g": 1268
+  },
+  {
+    "recipe_name": "Chicken and Bell Pepper Paella",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251024_222747_cb1e8c02.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2025-10-24T22:27:47.866473000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant Chicken and Bell Pepper Paella is presented in a traditional wide, shallow, polished steel paella pan, centered on a simple wooden bistro table. The Bomba rice, cooked to al dente perfection, exhibits a rich golden-orange hue from saffron and smoked paprika, with a desirable crispy 'socarrat' visible at the pan's edges. Succulent, golden-brown seared chicken chunks are nestled throughout the rice. Bright red and green bell pepper pieces, diced into 1 cm cubes, provide contrasting color and texture. A generous scattering of fresh, finely chopped green parsley garnishes the top. Two plump lemon wedges are placed along the rim of the pan. The paella pan sits on a clean white porcelain trivet, with a folded cotton napkin beside it. Natural, even lighting highlights the dish's textures and colors. The background is a subtly blurred, warm-toned restaurant interior, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve directly from the paella pan at the table.",
+      "Offer extra lemon wedges for individual squeezing.",
+      "Accompany with crusty bread for soaking up juices."
+    ],
+    "hero_ingredient": "Saffron-infused Bomba rice",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Bomba rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1, large"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1, medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "800 ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Smoked paprika (Pimentón de la Vera)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3 cm chunks. Season with salt and pepper.",
+      "Heat 30 ml olive oil in a 32 cm paella pan over medium-high heat. Sear chicken chunks until golden brown on all sides. Remove chicken and set aside. Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Dice onion and bell peppers into 1 cm pieces. Mince garlic.",
+      "Add remaining 30 ml olive oil to the pan. Add diced onion and cook until softened, about 5 minutes.",
+      "Add diced red and green bell peppers. Cook for 5-7 minutes until slightly tender.",
+      "Stir in minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes. Cook for 5 minutes, stirring occasionally, until sauce thickens. This is the sofrito.",
+      "Return seared chicken to the pan. Stir to combine with the sofrito.",
+      "Add Bomba rice to the pan. Stir for 1 minute to coat rice grains with the sofrito and oil.",
+      "Gently warm chicken stock. Add saffron threads to the warm stock. Pour saffron-infused stock evenly over the rice.",
+      "Distribute ingredients evenly in the pan. Do not stir the rice after this point.",
+      "Bring liquid to a boil. Reduce heat to medium-low. Simmer for 15-20 minutes, or until most liquid is absorbed and rice is al dente.",
+      "Increase heat to medium-high for the last 2-3 minutes to create a 'socarrat' (crispy rice crust at the bottom). Listen for crackling sounds. Do not burn.",
+      "Remove paella from heat. Cover pan with foil or a clean kitchen towel. Let rest for 5-10 minutes.",
+      "Garnish with fresh chopped parsley and lemon wedges before serving."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Socarrat"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 716,
+      "cholesterol_mg": 164,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 36.9,
+      "saturated_fat_g": 6.4,
+      "sodium_mg": 347,
+      "total_carbs_g": 74,
+      "total_fat_g": 30,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 128,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 1,
+      "protein_g": 6.6,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 62,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 20,
+      "protein": 74,
+      "saturated_fat": 32,
+      "sodium": 15,
+      "total_carbs": 27,
+      "total_fat": 38
+    },
+    "serving_size_g": 559,
+    "total_recipe_weight_g": 2235
+  }
+]

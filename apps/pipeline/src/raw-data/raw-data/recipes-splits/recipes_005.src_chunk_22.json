@@ -1,0 +1,585 @@
+[
+  {
+    "recipe_name": "Chipotle and Beer Braised Beef",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_130135_e6a454a7.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2026-05-04T13:01:35.844106000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "beer",
+      "chipotle chile",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of three large, fork-tender chunks of braised beef served in a shallow, matte-black ceramic bowl. The beef is coated in a thick, glossy, deep mahogany sauce made from reduced beer and chipotle. Bright green cilantro leaves and crisp, circular radish slices provide a vibrant color contrast atop the meat. Three charred lime wedges sit on the rim of the bowl. The background features a light-colored wooden bistro table with a folded cream cotton napkin. A small side stack of warm, hand-pressed corn tortillas rests on a small wooden board. Natural window light highlights the rich texture of the beef and the steam rising from the sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas",
+      "Accompany with a side of pickled red onions",
+      "Pair with a cold Mexican lager"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck roast, cut into 5cm chunks",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "White onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Chipotle peppers in adobo sauce, minced",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Mexican lager beer",
+        "quantity": "355 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Dried Mexican oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Radishes, thinly sliced",
+        "quantity": "3"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "4"
+      }
+    ],
+    "instructions": [
+      "Pat beef dry and season with salt and pepper.",
+      "Heat oil in a heavy pot over medium-high heat.",
+      "Sear beef chunks until browned on all sides. Remove beef.",
+      "Sauté onion in the same pot until translucent.",
+      "Add garlic, chipotle peppers, oregano, and cumin. Stir for 1 minute.",
+      "Pour in beer to deglaze the pot. Scrape the bottom.",
+      "Add crushed tomatoes and beef stock.",
+      "Return beef to the pot. Bring to a simmer.",
+      "Cover and reduce heat to low. Simmer for 2.5 hours until meat is tender.",
+      "Remove lid. Simmer for 15 minutes to thicken sauce.",
+      "Garnish with cilantro, radishes, and lime."
+    ],
+    "notes": [
+      "Use a Dutch oven for even heat distribution during the long braise.",
+      "Ensure the sauce coats the back of a spoon before serving.",
+      "For extra heat, increase the amount of chipotle adobo sauce."
+    ],
+    "traditional_techniques": [
+      "braising",
+      "slow cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 776,
+      "cholesterol_mg": 195,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 49.5,
+      "saturated_fat_g": 19.8,
+      "sodium_mg": 1100,
+      "total_carbs_g": 15.8,
+      "total_fat_g": 54.5,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.25
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 194,
+      "cholesterol_mg": 48.8,
+      "dietary_fiber_g": 0.78,
+      "protein_g": 12.4,
+      "saturated_fat_g": 4.95,
+      "sodium_mg": 275,
+      "total_carbs_g": 3.95,
+      "total_fat_g": 13.6,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.06
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 11,
+      "protein": 99,
+      "saturated_fat": 99,
+      "sodium": 48,
+      "total_carbs": 6,
+      "total_fat": 70
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Apple, Pear, and Honey Entremet with Cherry Mirror Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_124546_edcb30aa.jpg",
+    "dish_type": "cake",
+    "flavor_profile": "sweet",
+    "ingredients_count": 11,
+    "timestamp": "2026-05-04T12:45:54.394756000Z",
+    "selected_ingredients": [
+      "apple",
+      "pear",
+      "honey",
+      "cherry"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single slice of a circular entremet sits on a white porcelain plate with a thin gold rim. The slice reveals clear horizontal layers: a golden honey biscuit base, light cream honey mousse, and a vibrant center of translucent diced apple and pear gelée. The exterior features a deep, glossy crimson cherry mirror glaze with a glass-like reflection. One whole poached cherry sits atop the slice. A single thin line of honey is drizzled with architectural precision across the negative space of the white marble surface. Dramatic professional lighting creates soft shadows. The composition focuses on the contrast between the sharp red glaze and the pale, structured interior layers.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Patisserie",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve on chilled fine porcelain",
+      "Pair with a light Sauternes or late-harvest Riesling",
+      "Use a silver dessert fork"
+    ],
+    "hero_ingredient": "Honey",
+    "ingredients": [
+      {
+        "name": "Apples, diced 5mm",
+        "quantity": "150g"
+      },
+      {
+        "name": "Pears, diced 5mm",
+        "quantity": "150g"
+      },
+      {
+        "name": "Wildflower honey",
+        "quantity": "150g"
+      },
+      {
+        "name": "Cherry puree",
+        "quantity": "100g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Gelatin leaves",
+        "quantity": "15g"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "20g"
+      },
+      {
+        "name": "Glucose syrup",
+        "quantity": "50g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "Sauté apple and pear cubes with 30g honey until tender.",
+      "Stir in 4g bloomed gelatin into the warm fruit.",
+      "Pour fruit mixture into 10cm ring molds and freeze until solid.",
+      "Whisk 1 egg and 40g honey until pale and thick.",
+      "Fold in 50g flour and 20g melted butter.",
+      "Bake biscuit on a tray at 180°C for 10 minutes.",
+      "Cut the cooled biscuit into 10cm circles.",
+      "Whisk 2 egg yolks and 80g honey over a double boiler to 82°C.",
+      "Incorporate 6g bloomed gelatin into the honey mixture.",
+      "Whip 150ml cream to soft peaks and fold into the honey base.",
+      "Place biscuit in 12cm molds and fill halfway with mousse.",
+      "Press the frozen fruit gelée into the center.",
+      "Cover with remaining mousse and freeze for 4 hours.",
+      "Boil cherry puree, sugar, and glucose syrup.",
+      "Add 5g bloomed gelatin and cool the glaze to 32°C.",
+      "Place frozen entremet on a wire rack and pour glaze over.",
+      "Garnish with a single poached cherry."
+    ],
+    "notes": [
+      "Ensure the entremet is completely frozen before glazing for a smooth finish",
+      "The mirror glaze must be exactly 32°C to achieve the correct thickness"
+    ],
+    "traditional_techniques": [
+      "Mise en place",
+      "Mirror glazing",
+      "Mousse emulsification",
+      "Gelée setting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 45.9,
+      "calories": 529.2,
+      "cholesterol_mg": 155.1,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 9.1,
+      "saturated_fat_g": 11.9,
+      "sodium_mg": 45.8,
+      "total_carbs_g": 77.7,
+      "total_fat_g": 20.2,
+      "total_sugars_g": 57.1,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 18.6,
+      "calories": 214.9,
+      "cholesterol_mg": 63,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 3.7,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 18.6,
+      "total_carbs_g": 31.6,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 23.2,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51.7,
+      "dietary_fiber": 9.6,
+      "protein": 18.2,
+      "saturated_fat": 59.5,
+      "sodium": 2,
+      "total_carbs": 28.3,
+      "total_fat": 25.9
+    },
+    "serving_size_g": 246.25,
+    "total_recipe_weight_g": 985
+  },
+  {
+    "recipe_name": "Warm Banana and Oat Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_115724_403fff6e.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-04T11:57:25.360446000Z",
+    "selected_ingredients": [
+      "banana",
+      "milk",
+      "oats"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, circular portion of warm, golden-brown oat pudding sits in the center of a shallow white porcelain bowl. The pudding surface shows toasted, whole rolled oats and visible chunks of softened banana. A thick, pale cream-colored spiced milk sauce pools around the base. Two thick, diagonal-cut chunks of pan-seared, caramelized banana are placed on top of the pudding. A light dusting of ground cinnamon and a single mint leaf provide color contrast. The scene is set on a dark oak bistro table with a folded linen napkin and a silver dessert spoon. Natural side-lighting highlights the steam and the glossy texture of the warm sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve immediately while warm",
+      "Accompany with a silver dessert spoon",
+      "Pair with a strong breakfast tea or coffee"
+    ],
+    "hero_ingredient": "Caramelized Banana",
+    "ingredients": [
+      {
+        "name": "Ripe bananas",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "200g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "70g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Toast oats in a pan for 5 minutes.",
+      "Mash 2 bananas in a large bowl.",
+      "Whisk eggs, 50g sugar, and 250ml milk into the mash.",
+      "Fold in toasted oats and cinnamon.",
+      "Divide mixture into 4 buttered ramekins.",
+      "Bake for 25 minutes.",
+      "Simmer remaining milk, sugar, and vanilla in a saucepan.",
+      "Reduce sauce by one-third.",
+      "Cut remaining bananas into thick diagonal chunks.",
+      "Sear banana chunks in butter until caramelized.",
+      "Place pudding in the center of a bowl.",
+      "Pour milk sauce around the pudding base.",
+      "Top with caramelized banana chunks."
+    ],
+    "notes": [
+      "Ensure oats are well-toasted for a nutty flavor.",
+      "Use very ripe bananas for the pudding base."
+    ],
+    "traditional_techniques": [
+      "Oven roasting",
+      "Pan searing"
+    ]
+  },
+  {
+    "recipe_name": "Warm Banana and Oat Pudding",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_115126_9e78fcc9.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-04T11:51:27.420788000Z",
+    "selected_ingredients": [
+      "banana",
+      "milk",
+      "oats"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, circular portion of warm, golden-brown oat pudding sits in the center of a shallow white porcelain bowl. The pudding surface shows toasted, whole rolled oats and visible chunks of softened banana. A thick, pale cream-colored spiced milk sauce pools around the base. Two thick, diagonal-cut chunks of pan-seared, caramelized banana are placed on top of the pudding. A light dusting of ground cinnamon and a single mint leaf provide color contrast. The scene is set on a dark oak bistro table with a folded linen napkin and a silver dessert spoon. Natural side-lighting highlights the steam and the glossy texture of the warm sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve immediately while warm",
+      "Accompany with a silver dessert spoon",
+      "Pair with a strong breakfast tea or coffee"
+    ],
+    "hero_ingredient": "Caramelized Banana",
+    "ingredients": [
+      {
+        "name": "Ripe bananas",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "200g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "70g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Toast oats in a pan for 5 minutes.",
+      "Mash 2 bananas in a large bowl.",
+      "Whisk eggs, 50g sugar, and 250ml milk into the mash.",
+      "Fold in toasted oats and cinnamon.",
+      "Divide mixture into 4 buttered ramekins.",
+      "Bake for 25 minutes.",
+      "Simmer remaining milk, sugar, and vanilla in a saucepan.",
+      "Reduce sauce by one-third.",
+      "Cut remaining bananas into thick diagonal chunks.",
+      "Sear banana chunks in butter until caramelized.",
+      "Place pudding in the center of a bowl.",
+      "Pour milk sauce around the pudding base.",
+      "Top with caramelized banana chunks."
+    ],
+    "notes": [
+      "Ensure oats are well-toasted for a nutty flavor.",
+      "Use very ripe bananas for the pudding base."
+    ],
+    "traditional_techniques": [
+      "Oven roasting",
+      "Pan searing"
+    ]
+  },
+  {
+    "recipe_name": "Baked Banana and Oat Pudding with Cardamom Milk",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260504_115010_9bc3c49a.jpg",
+    "dish_type": "dessert",
+    "flavor_profile": "sweet",
+    "ingredients_count": 9,
+    "timestamp": "2026-05-04T11:50:11.109306000Z",
+    "selected_ingredients": [
+      "banana",
+      "milk",
+      "oats"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of baked oat pudding served in a shallow, wide-rimmed white porcelain bowl. The pudding is a thick, textured square with a golden-brown crust and visible toasted oat grains. A pool of creamy, pale-yellow saffron milk surrounds the base. Resting on the pudding is a whole banana half, seared to a deep mahogany brown with a glistening caramelized surface. Vibrant green slivered pistachios and thin red saffron threads are scattered precisely over the top. The setting features a dark walnut wood table, a neutral linen napkin, and a small polished brass spoon. The lighting is soft, natural, and directional, emphasizing the contrast between the crisp pudding edges and the smooth milk.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve warm as a concluding course for a celebratory meal",
+      "Accompany with a small cup of masala chai",
+      "Use a traditional brass or silver spoon for an authentic feel"
+    ],
+    "hero_ingredient": "Banana",
+    "ingredients": [
+      {
+        "name": "Ripe bananas",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Ghee",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Jaggery or dark brown sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Green cardamom pods, crushed",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Saffron strands",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Slivered pistachios",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 pinch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Toast oats in 20g ghee over medium heat until fragrant.",
+      "Mash three bananas in a large bowl.",
+      "Mix mashed bananas, toasted oats, jaggery, salt, and 100ml milk.",
+      "Pour mixture into a greased baking dish.",
+      "Bake for 25 minutes until firm and golden.",
+      "Simmer remaining milk with cardamom and saffron in a small pot.",
+      "Reduce milk by one-third over low heat.",
+      "Slice remaining banana into four long halves.",
+      "Sear banana halves in remaining ghee until caramelized.",
+      "Cut baked pudding into four thick squares.",
+      "Place one square in each shallow bowl.",
+      "Pour warm saffron milk around the pudding base.",
+      "Place one caramelized banana half on top.",
+      "Garnish with slivered pistachios."
+    ],
+    "notes": [
+      "Ensure the bananas are very ripe for maximum sweetness",
+      "The milk reduction should be thick enough to coat the back of a spoon",
+      "Do not overbake to maintain a moist interior texture"
+    ],
+    "traditional_techniques": [
+      "tempering spices",
+      "milk reduction",
+      "toasting grains in ghee"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 25,
+      "calories": 552.6,
+      "cholesterol_mg": 37.9,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 11.4,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 113.7,
+      "total_carbs_g": 88.5,
+      "total_fat_g": 19.2,
+      "total_sugars_g": 47.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 7.3,
+      "calories": 161.3,
+      "cholesterol_mg": 11.1,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 3.3,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 33.2,
+      "total_carbs_g": 25.8,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 14,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 12.6,
+      "dietary_fiber": 27.9,
+      "protein": 22.8,
+      "saturated_fat": 47.5,
+      "sodium": 4.9,
+      "total_carbs": 32.2,
+      "total_fat": 24.6
+    },
+    "serving_size_g": 342.5,
+    "total_recipe_weight_g": 1370
+  }
+]

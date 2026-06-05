@@ -1,0 +1,698 @@
+[
+  {
+    "recipe_name": "Belgian Beef and Beer Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_belgian_beef_and_beer_stew_20250702_220424_07d993e2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T22:04:24.967721000Z",
+    "selected_ingredients": [
+      "beef",
+      "dark beer",
+      "potato",
+      "mushroom",
+      "green bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A hearty Belgian Beef and Beer Stew is presented on a clean, white porcelain dinner plate, showcasing a rich, deep mahogany-brown stew. Large, tender chunks of braised beef are nestled within the thick, glossy sauce, which has a subtle sheen from the dark beer reduction. Small, golden-brown sautéed mushroom halves are scattered within the stew, adding earthy notes. Beside the stew, a neat cluster of vibrant, crisp-tender blanched green bean batons provides a contrasting splash of emerald green. Nearby, several creamy, irregular chunks of boiled potato are carefully placed. The entire dish is garnished with a sprinkle of bright green, freshly chopped parsley and a few scattered pieces of crispy, golden-brown bacon lardons, adding texture and a smoky aroma. The plate is well-proportioned with moderate negative space, appearing inviting and comforting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Belgian",
+    "cultural_origin": "Belgian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty artisanal bread for dipping in the rich sauce.",
+      "Traditionally, Carbonnade is often served with Belgian fries (frites) or boiled potatoes.",
+      "A glass of the same dark Belgian beer used in the stew is a traditional accompaniment."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Dark Belgian Beer",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Button Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Green Beans",
+        "quantity": "250g"
+      },
+      {
+        "name": "Smoked Bacon (lardons)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "15g"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "5 sprigs"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear beef in batches until browned on all sides. Remove beef and set aside.",
+      "Add bacon lardons to the pot. Cook until crispy. Remove bacon and set aside, leaving rendered fat.",
+      "Add sliced onions to the pot. Sauté until softened and lightly caramelized, about 8-10 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Stir in flour. Cook for 1 minute, stirring constantly.",
+      "Gradually pour in dark beer, scraping up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return seared beef to the pot. Add beef broth, Dijon mustard, brown sugar, thyme sprigs, and bay leaves.",
+      "Bring to a gentle simmer. Reduce heat to low, cover, and braise for 2 to 2.5 hours, or until beef is very tender. Stir occasionally.",
+      "While beef braises, prepare potatoes, mushrooms, and green beans.",
+      "Boil or steam potato chunks until tender, about 15-20 minutes. Drain well.",
+      "Sauté halved mushrooms in a separate pan with a touch of olive oil until golden brown and tender. Season with salt and pepper.",
+      "Blanch green beans in boiling salted water for 3-4 minutes until crisp-tender. Drain.",
+      "Once beef is tender, remove thyme sprigs and bay leaves from the stew.",
+      "Taste and adjust seasoning. The stew should be rich and slightly thickened.",
+      "To serve, spoon a portion of the beef stew onto each plate.",
+      "Arrange boiled potato chunks, sautéed mushrooms, and blanched green bean batons neatly beside or around the stew.",
+      "Garnish the stew with reserved crispy bacon lardons and fresh chopped parsley."
+    ],
+    "notes": [
+      "The stew benefits from being made a day ahead, allowing flavors to deepen. Reheat gently on the stovetop.",
+      "Adjust the sweetness and tanginess with brown sugar and mustard to your preference.",
+      "Ensure the beer is a good quality dark Belgian ale, as its flavor is central to the dish."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing",
+      "Mirepoix/aromatics"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 925,
+      "cholesterol_mg": 168,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 70,
+      "saturated_fat_g": 16.6,
+      "sodium_mg": 738,
+      "total_carbs_g": 54.3,
+      "total_fat_g": 43.4,
+      "total_sugars_g": 10.5,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 114,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2,
+      "sodium_mg": 91,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 27,
+      "protein": 140,
+      "saturated_fat": 83,
+      "sodium": 32,
+      "total_carbs": 20,
+      "total_fat": 56
+    },
+    "serving_size_g": 815,
+    "total_recipe_weight_g": 3260
+  },
+  {
+    "recipe_name": "Chicken, Potato, and Macaroni Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken%2C_potato%2C_and_macaroni_gratin_20250702_220419_a8386fe5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T22:04:19.717100000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of golden-brown Chicken, Potato, and Macaroni Gratin is presented on a clean white porcelain dinner plate. The gratin is a substantial square cut, showcasing a creamy interior with tender, thinly sliced potato rounds, diced chicken pieces, and small elbow macaroni pasta. The top crust is deeply golden and bubbly, with visible melted Parmesan cheese, hinting at its rich, savory flavor. A few fresh thyme leaves are scattered on top as a simple, aromatic garnish. The plate is set on a simple wooden table surface. A neatly folded cotton napkin and standard silver flatware (fork and knife) are placed beside the plate. The scene is illuminated by soft, natural, even lighting, creating a warm and inviting casual bistro atmosphere, with a blurred, unobtrusive background. The gratin maintains its structural integrity, yet conveys a tender, comforting texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve directly from the baking dish or individual ramekins.",
+      "Often accompanied by a simple green salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs or breasts",
+        "quantity": "600g"
+      },
+      {
+        "name": "Russet or Yukon Gold potatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Elbow macaroni",
+        "quantity": "200g"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "150g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "60g"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1 (about 100g)"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Freshly grated nutmeg",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Season chicken with salt and pepper. Heat olive oil in a large pan over medium-high heat. Sear chicken until golden brown on all sides and cooked through, 7-9 minutes, ensuring internal temperature reaches 75°C. Remove, let cool slightly, then dice into 1.5 cm cubes.",
+      "Preheat oven to 180°C. Peel potatoes. Using a mandoline or sharp knife, slice potatoes into thin 2-3 mm rounds. Place in cold water to prevent browning.",
+      "Cook macaroni according to package instructions until al dente. Drain well.",
+      "Melt butter in a medium saucepan over medium heat. Add diced onion and cook until softened, about 5 minutes. Add minced garlic and cook for 1 minute more. Stir in flour to form a roux; cook for 2 minutes, stirring constantly.",
+      "Gradually whisk in milk, ensuring no lumps. Add thyme sprigs and bay leaf. Bring to a simmer, whisking, until sauce thickens. Remove from heat. Remove thyme sprigs and bay leaf. Stir in grated Gruyère, salt, pepper, and nutmeg until cheese melts and sauce is smooth.",
+      "Lightly grease a 20x30 cm baking dish. Drain potato slices. Layer half of the potato slices evenly in the bottom of the dish. Top with half of the cooked macaroni and half of the diced chicken. Pour half of the béchamel sauce over the layers. Repeat with remaining potato, macaroni, chicken, and sauce. Sprinkle evenly with grated Parmesan cheese.",
+      "Bake for 35-45 minutes, or until potatoes are tender, sauce is bubbly, and top is golden brown. If top browns too quickly, cover loosely with foil. Let rest 10 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken is cooked to 75°C.",
+      "Do not overcrowd the baking dish for even cooking and browning."
+    ],
+    "traditional_techniques": [
+      "Béchamel sauce",
+      "Gratin technique (layering and baking to create a golden crust)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1036,
+      "cholesterol_mg": 223,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 70.5,
+      "saturated_fat_g": 23.8,
+      "sodium_mg": 1007.1,
+      "total_carbs_g": 83.1,
+      "total_fat_g": 47.6,
+      "total_sugars_g": 12.7,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.1,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 144.5,
+      "total_carbs_g": 11.9,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 19,
+      "protein": 141,
+      "saturated_fat": 119,
+      "sodium": 44,
+      "total_carbs": 30,
+      "total_fat": 61
+    },
+    "serving_size_g": 697,
+    "total_recipe_weight_g": 2787
+  },
+  {
+    "recipe_name": "Crispy Bacon & Gherkin Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_bacon_%26_gherkin_bites_20250702_220048_04b4ced8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T22:00:49.458188000Z",
+    "selected_ingredients": [
+      {
+        "name": "gherkin"
+      },
+      {
+        "name": "onion"
+      },
+      {
+        "name": "bacon"
+      },
+      {
+        "name": "mustard"
+      },
+      {
+        "name": "tomato"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Australian",
+    "visual_description": "Crispy Bacon & Gherkin Bites are arranged elegantly on a modern, clean wooden board or dark slate platter. There are 8-12 uniform, golden-brown bacon cups, each forming a small, irregular bowl shape. Inside each bacon cup is a generous mound of creamy, light tan filling, made from finely diced, deeply caramelized onions and small green gherkin pieces. The texture of the filling appears smooth and rich, contrasting with the crisp, slightly uneven edges of the bacon. Each bite is topped with a small, neat pile of vibrant red, finely diced cherry tomatoes, adding a pop of fresh color. A few tiny, bright green snips of fresh chives are scattered over the top of the tomato. The overall composition is clean and inviting, with moderate negative space between each canapé. The lighting is natural and even, highlighting the textures and colors. The background is a simple, blurred modern bistro setting, suggesting a casual yet refined atmosphere. White porcelain side plates are subtly visible nearby.",
+    "number_of_servings": 4,
+    "cuisine_type": "Australian",
+    "cultural_origin": "Australian",
+    "cultural_serving_suggestions": [
+      "Serve chilled or at room temperature as a sophisticated appetizer.",
+      "Ideal for informal gatherings, cocktail parties, or as part of a larger grazing platter.",
+      "Can be prepared ahead of time and assembled just before serving."
+    ],
+    "hero_ingredient": "Bacon",
+    "ingredients": [
+      {
+        "name": "Streaky bacon rashers",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Brown onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Gherkins (cornichons)",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Cream cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Line a muffin tin with bacon rashers, pressing them into cup shapes. Bake for 15-20 minutes until crispy. Drain excess fat. Set aside to cool.",
+      "Peel and finely dice brown onions. Heat olive oil in a pan over medium-low heat. Add diced onions. Cook slowly for 20-25 minutes until deeply caramelized and soft. Stir occasionally. Season with a pinch of salt and pepper. Let cool.",
+      "Finely dice gherkins. Set aside.",
+      "Finely dice cherry tomatoes. Set aside for garnish.",
+      "In a small bowl, combine cooled caramelized onions, diced gherkins, cream cheese, and 10 ml Dijon mustard. Mix well until combined. Season with salt and pepper to taste.",
+      "Spoon the onion-gherkin mixture into each cooled bacon cup. Arrange bites on a serving platter.",
+      "Garnish each bite with a small amount of diced cherry tomato. Drizzle remaining 5 ml Dijon mustard over the bites, if desired. Finely snip fresh chives over the canapés before serving."
+    ]
+  },
+  {
+    "recipe_name": "Thai Corn and Eggplant Fritters with Spicy Basil Relish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_thai_corn_and_eggplant_fritters_with_spicy_basil_relish_20250702_215856_69f15fc3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:58:56.986288000Z",
+    "selected_ingredients": [
+      "corn",
+      "smoked paprika",
+      "eggplant",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "Thai cuisine",
+    "visual_description": "A single serving of Thai Corn and Eggplant Fritters is artfully arranged on a clean, round white porcelain dinner plate. Three to four golden-brown, irregularly shaped corn fritters, approximately 5-6 cm in diameter, are stacked casually or placed beside each other. Their surfaces show crisp, slightly browned edges and visible corn kernels. Adjacent to the fritters is a generous portion of the vibrant spicy eggplant relish. The relish features tender, dark purple eggplant cubes (2 cm) mixed with thinly sliced red onion, bright green basil leaves, and flecks of red bird's eye chili, creating a rich textural and color contrast. A small, neat mound of steamed jasmine rice is presented in a traditional white ceramic rice bowl beside the main plate. The scene is set on a simple, light-colored wooden table surface, characteristic of a modern bistro. A neatly folded white cotton napkin rests beside the plate. The lighting is natural and even, highlighting the dish's textures and colors. A pair of polished stainless steel chopsticks and a traditional Thai spoon are positioned for serving, completing an authentic and inviting presentation. The background is minimal, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "hero_ingredient": "Corn Fritters",
+    "ingredients": [
+      {
+        "name": "Fresh corn kernels",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Eggplant (Thai or small Asian)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Thai red curry paste",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Palm sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Fresh lime juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Bird's eye chilies",
+        "quantity": "2-4 (or to taste)"
+      },
+      {
+        "name": "Fresh basil leaves (Thai holy basil preferred)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500 ml (for frying)"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "2 stalks"
+      }
+    ],
+    "instructions": [
+      "Prepare fritter batter: Combine corn kernels, flour, egg, red curry paste, smoked paprika, 15 ml fish sauce, and 5 g palm sugar in a bowl. Mix well. Finely chop spring onions and stir into batter.",
+      "Heat oil for frying: Pour vegetable oil into a deep pan or wok. Heat to 170°C (340°F).",
+      "Fry fritters: Spoon batter into hot oil, about 2 tablespoons per fritter. Fry for 3-4 minutes per side, until golden brown and cooked through. Work in batches to avoid overcrowding. Remove fritters and drain on paper towels.",
+      "Prepare eggplant: Dice eggplant into 2 cm cubes. If using Thai eggplant, no need to peel. If using larger eggplant, you may peel partially. Set aside.",
+      "Prepare relish aromatics: Mince garlic and bird's eye chilies. Thinly slice red onion.",
+      "Cook relish: In a separate pan, heat 15 ml of the frying oil. Add minced garlic, chilies, and red onion. Sauté for 2 minutes until fragrant.",
+      "Add eggplant: Add diced eggplant to the pan. Stir-fry for 5-7 minutes until tender. If needed, add a splash of water to prevent sticking.",
+      "Season relish: Stir in remaining 15 ml fish sauce, 15 g palm sugar, and lime juice. Cook for 1 minute until sugar dissolves and sauce thickens slightly.",
+      "Finish relish: Stir in fresh basil leaves until wilted. Remove from heat.",
+      "Plate and serve: Arrange corn fritters on a serving plate. Spoon spicy eggplant relish alongside or on top. Serve immediately with steamed jasmine rice."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.7,
+      "calories": 383,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 9.6,
+      "saturated_fat_g": 3.5,
+      "sodium_mg": 284,
+      "total_carbs_g": 42.2,
+      "total_fat_g": 20.7,
+      "total_sugars_g": 15.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.6,
+      "calories": 133,
+      "cholesterol_mg": 16,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 3.3,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 99,
+      "total_carbs_g": 14.7,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 16,
+      "dietary_fiber": 26,
+      "protein": 19,
+      "saturated_fat": 18,
+      "sodium": 12,
+      "total_carbs": 15,
+      "total_fat": 27
+    },
+    "serving_size_g": 288,
+    "total_recipe_weight_g": 1151
+  },
+  {
+    "recipe_name": "Seared Beef with Fermented Farro and Pickled Radish",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_beef_with_fermented_farro_and_pickled_radish_20250702_215220_addd9d18.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-02T21:52:21.060284000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single individual portion of seared beef with fermented farro and pickled radish is presented on a handcrafted, light cream ceramic plate with a natural, unglazed rim. The beef, a thick, seared chunk, exhibits a rich, dark crust and a subtly pink interior, resting elegantly on one side of the plate. Adjacent to the beef is a free-flowing, creamy mound of pearled farro, its earthy, pale beige grains flecked with finely chopped green parsley. A small, artful cluster of vibrant, translucent pink quick-pickled radish slices is arranged delicately on the farro or beside it, providing a striking color contrast and crisp texture. A thin, glossy drizzle of amber-toned beef jus enhances the beef. The plating emphasizes negative space, allowing each ingredient to stand out. The scene is set on a light, textured bamboo surface, with a simple, undyed linen napkin in natural beige. Soft, natural light illuminates the dish, highlighting its organic textures. The background is clean and minimalistic, with a hint of natural greenery, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Minimalistic",
+    "cultural_origin": "Modern Sustainable",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin or top round steaks",
+        "quantity": "4 x 180g (approx. 720g total)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pearled farro",
+        "quantity": "200g"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "60 ml (optional)"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Lacto-fermented vegetable brine (e.g., from sauerkraut)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "30g (optional)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g (optional)"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Radishes",
+        "quantity": "1 bunch (approx. 150g)"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Beef trimmings (from steaks, if any)",
+        "quantity": "as needed"
+      },
+      {
+        "name": "Water or vegetable broth (for jus)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh thyme sprig",
+        "quantity": "1 (optional)"
+      }
+    ],
+    "instructions": [
+      "Begin quick-pickled radishes: Thinly slice radishes. Combine apple cider vinegar, 120 ml water, 15g sugar, and 5g salt in a small pot. Bring to a simmer, stirring until sugar and salt dissolve. Pour hot brine over sliced radishes. Set aside to cool and pickle for at least 30 minutes.",
+      "Prepare beef jus: If using beef trimmings, place them in a small saucepan. Add 250 ml water or vegetable broth and thyme sprig if using. Bring to a simmer. Reduce heat and gently simmer for 15-20 minutes until slightly reduced. Strain and set aside.",
+      "Start fermented farro: Finely dice the onion and mince the garlic. Heat a large saucepan over medium heat. Add a splash of olive oil. Sauté onion until softened, about 5 minutes. Add garlic and cook for 1 minute until fragrant.",
+      "Add farro to the saucepan. Stir for 1 minute. If using, deglaze with white wine, scraping up any browned bits. Cook until wine evaporates.",
+      "Add vegetable broth to farro, one ladle at a time, stirring frequently. Allow each addition to be mostly absorbed before adding more, similar to risotto. Cook for 20-25 minutes, until farro is tender but still has a slight bite.",
+      "Stir in the lacto-fermented vegetable brine during the last 5 minutes of farro cooking. If using, stir in Parmesan cheese and butter until creamy. Season farro with salt and pepper to taste. Keep warm.",
+      "Prepare beef: Pat beef steaks dry with paper towels. Season generously with salt and pepper on all sides.",
+      "Heat a heavy-bottomed pan or cast-iron skillet over high heat. Add 15 ml olive oil. Once shimmering, carefully place beef steaks in the hot pan. Sear for 3-4 minutes per side for medium-rare, or until desired doneness. Adjust time for thickness.",
+      "Remove beef from pan. Let rest on a cutting board for 5 minutes.",
+      "To plate: Place a mound of fermented farro slightly off-center on each plate. Rest a seared beef steak beside the farro. Arrange a small cluster of quick-pickled radish slices on or next to the farro. Drizzle a small amount of the prepared beef jus around the beef. Garnish with fresh chopped parsley or clean radish greens. Serve immediately."
+    ],
+    "notes": [
+      "Use high-quality beef from sustainable sources for best flavor and ethical practice.",
+      "Vegetable scraps from other cooking can be used to make the vegetable broth for the farro, minimizing waste.",
+      "The fermented vegetable brine adds a unique tang and complexity, supporting the sustainable, gut-healthy theme."
+    ],
+    "traditional_techniques": [
+      "Quick Pickling",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.75,
+      "calories": 685.5,
+      "cholesterol_mg": 166,
+      "dietary_fiber_g": 6.44,
+      "protein_g": 62.45,
+      "saturated_fat_g": 10.46,
+      "sodium_mg": 1977.75,
+      "total_carbs_g": 45.4,
+      "total_fat_g": 26.83,
+      "total_sugars_g": 6.72,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.56,
+      "calories": 102.7,
+      "cholesterol_mg": 24.87,
+      "dietary_fiber_g": 0.96,
+      "protein_g": 9.36,
+      "saturated_fat_g": 1.57,
+      "sodium_mg": 296.29,
+      "total_carbs_g": 6.8,
+      "total_fat_g": 4.02,
+      "total_sugars_g": 1.01,
+      "trans_fat_g": 0.15
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 23,
+      "protein": 125,
+      "saturated_fat": 52,
+      "sodium": 86,
+      "total_carbs": 17,
+      "total_fat": 34
+    },
+    "serving_size_g": 667.5,
+    "total_recipe_weight_g": 2670
+  }
+]

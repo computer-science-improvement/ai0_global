@@ -1,0 +1,594 @@
+[
+  {
+    "recipe_name": "Clear Tomato Consommé with Cured Egg Yolk",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_clear_tomato_consomm%C3%A9_with_cured_egg_yolk_20250625_163805_33699d4a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:38:05.694816000Z",
+    "selected_ingredients": [
+      "egg",
+      "tomato"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single small starter portion of Clear Tomato Consommé is elegantly presented in a shallow, handcrafted ceramic bowl of a creamy beige hue. The consommé, a translucent, warm amber liquid, fills the base of the bowl. Finely grated bright orange cured egg yolk is delicately sprinkled across the surface, creating a subtle contrast. A few tiny, vibrant green basil leaves are artfully placed, offering a pop of color without overwhelming the minimalist aesthetic. The composition is clean and uncluttered, emphasizing negative space around the central element. The bowl rests on a light, textured reclaimed wood table surface, accompanied by an undyed natural beige linen napkin. Soft, natural lighting illuminates the scene, with a clean, unobtrusive background hinting at natural elements.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Tomato",
+    "ingredients": [
+      {
+        "name": "Ripe tomatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "4"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "4 small"
+      },
+      {
+        "name": "High-quality olive oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Combine fine sea salt and granulated sugar in a shallow dish.",
+      "Create four small indentations in the salt-sugar mixture.",
+      "Carefully place one egg yolk into each indentation.",
+      "Gently cover each yolk completely with the remaining salt-sugar mixture.",
+      "Cover the dish and refrigerate for 4-7 days, until yolks are firm and translucent.",
+      "Once cured, gently rinse egg yolks under cold water to remove salt-sugar mixture.",
+      "Pat yolks completely dry with a paper towel. Store in an airtight container in the refrigerator.",
+      "For the consommé, roughly chop ripe tomatoes. Do not remove skins or seeds.",
+      "Place chopped tomatoes in a blender. Blend until a fine pulp forms.",
+      "Line a fine-mesh sieve with a clean cheesecloth or coffee filter. Place over a bowl.",
+      "Pour the tomato pulp into the lined sieve. Allow the liquid to drip through slowly, undisturbed, overnight in the refrigerator.",
+      "Discard the tomato pulp (or reserve for other uses like a sauce base). The collected liquid is your clear tomato consommé.",
+      "Gently warm the consommé in a small saucepan over low heat. Do not boil.",
+      "Season the warm consommé with a pinch of salt to taste.",
+      "Pour the warm consommé into four small, shallow serving bowls.",
+      "Using a fine grater, grate a small amount of cured egg yolk over each bowl of consommé.",
+      "Place one small fresh basil leaf gently on top of the grated yolk in each bowl.",
+      "Drizzle a few drops of high-quality olive oil over each serving.",
+      "Finish with a fresh grind of black pepper."
+    ],
+    "notes": [
+      "The tomato pulp leftover from the consommé can be used to make a flavorful tomato sauce or soup base, ensuring zero waste.",
+      "Adjust curing time for egg yolks based on desired firmness; longer curing yields a firmer, more intensely flavored yolk."
+    ],
+    "traditional_techniques": [
+      "Fermentation (egg curing)",
+      "Clarification (consommé)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 50,
+      "calories": 304,
+      "cholesterol_mg": 184,
+      "dietary_fiber_g": 3,
+      "protein_g": 5,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 19691,
+      "total_carbs_g": 60.4,
+      "total_fat_g": 6.2,
+      "total_sugars_g": 56.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.5,
+      "calories": 82.3,
+      "cholesterol_mg": 49.8,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 1.3,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 5334,
+      "total_carbs_g": 16.4,
+      "total_fat_g": 1.7,
+      "total_sugars_g": 15.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 11,
+      "protein": 10,
+      "saturated_fat": 9,
+      "sodium": 856,
+      "total_carbs": 22,
+      "total_fat": 8
+    },
+    "serving_size_g": 369.15,
+    "total_recipe_weight_g": 1476.6
+  },
+  {
+    "recipe_name": "No-Bake Vanilla Bean Cheesecake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_no-bake_vanilla_bean_cheesecake_20250625_163718_69bf9c1d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:37:19.357651000Z",
+    "selected_ingredients": [
+      "cream cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "Mayonnaise-free",
+    "visual_description": "A single portion of No-Bake Vanilla Bean Cheesecake is presented in a clear, round dessert glass. The bottom layer showcases a compacted, golden-brown digestive biscuit crust, providing a stable base. Above it, the main body of the cheesecake rises, a creamy, off-white, smooth mixture with visible specks of vanilla bean. The top surface is gently mounded, reflecting its homemade preparation. A scattering of fresh, vibrant red raspberries and deep blue blueberries rests casually on the cheesecake's surface, adding natural color and a soft texture contrast. The dessert glass sits directly on a well-worn wooden dining table, under warm, inviting kitchen lighting, evoking a cozy, lived-in atmosphere. The scene is simple, highlighting the comforting, approachable nature of the dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve chilled as a satisfying end to a family meal, often alongside a cup of coffee or tea."
+    ],
+    "hero_ingredient": "Cream Cheese",
+    "ingredients": [
+      {
+        "name": "Cream Cheese",
+        "quantity": "400 g, full-fat, softened"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vanilla Bean Paste",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "200 ml, cold"
+      },
+      {
+        "name": "Digestive Biscuits",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "75 g, melted"
+      }
+    ],
+    "instructions": [
+      "Crush digestive biscuits into fine crumbs. Mix with melted butter.",
+      "Press biscuit mixture firmly into the bottom of four individual dessert glasses or ramekins. Chill for 15 minutes.",
+      "In a large bowl, beat softened cream cheese, sugar, and vanilla bean paste until smooth and creamy.",
+      "In a separate cold bowl, whip heavy cream until stiff peaks form.",
+      "Gently fold whipped cream into the cream cheese mixture until just combined. Do not overmix.",
+      "Spoon cheesecake mixture over chilled biscuit crusts.",
+      "Smooth the tops.",
+      "Chill cheesecakes for at least 4 hours, or preferably overnight, until set.",
+      "Serve cold."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 30.98,
+      "calories": 923.19,
+      "cholesterol_mg": 201.31,
+      "dietary_fiber_g": 1.13,
+      "protein_g": 9.94,
+      "saturated_fat_g": 46.29,
+      "sodium_mg": 449.81,
+      "total_carbs_g": 54.89,
+      "total_fat_g": 75.33,
+      "total_sugars_g": 36.89,
+      "trans_fat_g": 2.64
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 13.32,
+      "calories": 397.07,
+      "cholesterol_mg": 86.59,
+      "dietary_fiber_g": 0.48,
+      "protein_g": 4.28,
+      "saturated_fat_g": 19.91,
+      "sodium_mg": 193.47,
+      "total_carbs_g": 23.61,
+      "total_fat_g": 32.4,
+      "total_sugars_g": 15.87,
+      "trans_fat_g": 1.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 4,
+      "protein": 20,
+      "saturated_fat": 231,
+      "sodium": 20,
+      "total_carbs": 20,
+      "total_fat": 97
+    },
+    "serving_size_g": 232.5,
+    "total_recipe_weight_g": 930
+  },
+  {
+    "recipe_name": "Roasted Carrot and Citrus Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_carrot_and_citrus_salad_20250625_163636_9a57730a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:36:37.141670000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "The dish presents a minimalist, artistic composition on a pristine white bone china plate. Vibrant roasted baby carrots, some whole and some halved lengthwise, display subtle caramelization and rich color variations. Interspersed are precise, irregular chunks of seared chicken breast, showcasing a golden-brown crust. Bright, jewel-toned segments of navel orange and ruby red grapefruit add bursts of citrusy color, meticulously freed of pith. A delicate drizzle of honey-lemon vinaigrette glistens on components. The salad is garnished sparsely with finely chopped toasted pistachios and a few sprigs of fresh micro-cilantro, providing subtle green accent and textural contrast. Abundant negative space surrounds the composition, emphasizing quality and precise placement. The plate sits on a smooth, grey-veined marble surface. A pristine white linen napkin and elegant, minimalist flatware complete a luxurious, modern fine-dining tableau under dramatic professional lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Carrots",
+    "ingredients": [
+      {
+        "name": "Baby carrots",
+        "quantity": "400g"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "100g"
+      },
+      {
+        "name": "Navel oranges",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Pink grapefruit",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Shelled pistachios",
+        "quantity": "50g"
+      },
+      {
+        "name": "Micro-cilantro",
+        "quantity": "20g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "20ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and trim baby carrots. Toss with 15ml olive oil, salt, and pepper.",
+      "Roast carrots on a baking sheet for 20-25 minutes, or until tender-crisp and slightly caramelized.",
+      "While carrots roast, prepare chicken. Pat chicken breast dry. Season with salt and pepper.",
+      "Heat 15ml olive oil in a pan over medium-high heat. Sear chicken breast for 4-5 minutes per side until golden brown and internal temperature reaches 75°C.",
+      "Remove chicken from pan. Rest for 5 minutes. Cut into small, irregular chunks.",
+      "Segment oranges and grapefruit. Remove all white pith.",
+      "Toast pistachios in a dry pan over medium heat for 3-4 minutes until fragrant. Roughly chop.",
+      "Prepare dressing: Whisk honey, lemon juice, Dijon mustard, and a pinch of salt and pepper in a small bowl.",
+      "Arrange roasted carrots, citrus segments, and chicken chunks artfully on 4 plates.",
+      "Drizzle dressing over the salad components.",
+      "Garnish with chopped pistachios and micro-cilantro."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.31,
+      "calories": 293,
+      "cholesterol_mg": 21.25,
+      "dietary_fiber_g": 7.13,
+      "protein_g": 12.52,
+      "saturated_fat_g": 1.87,
+      "sodium_mg": 301.25,
+      "total_carbs_g": 33.55,
+      "total_fat_g": 13.75,
+      "total_sugars_g": 21.53,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.44,
+      "calories": 98,
+      "cholesterol_mg": 7.11,
+      "dietary_fiber_g": 2.39,
+      "protein_g": 4.19,
+      "saturated_fat_g": 0.63,
+      "sodium_mg": 100.84,
+      "total_carbs_g": 11.23,
+      "total_fat_g": 4.6,
+      "total_sugars_g": 7.21,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7.08,
+      "dietary_fiber": 25.46,
+      "protein": 25.04,
+      "saturated_fat": 9.35,
+      "sodium": 13.1,
+      "total_carbs": 12.2,
+      "total_fat": 17.63
+    },
+    "serving_size_g": 298.75,
+    "total_recipe_weight_g": 1195
+  },
+  {
+    "recipe_name": "Fudgy Chocolate Brownies",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fudgy_chocolate_brownies_20250625_163631_6e43e1a1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:36:32.480260000Z",
+    "selected_ingredients": [
+      "chocolate"
+    ],
+    "complexity": "simple",
+    "special_requests": "Mayonnaise-free",
+    "visual_description": "A single generous square of fudgy chocolate brownie rests on a simple, well-loved ceramic dessert plate. The brownie has a deep, rich brown color with a slightly crackled, matte top surface. Its edges are clean, indicating a soft, dense interior. The texture appears moist and dense, characteristic of a fudgy brownie, with no visible dryness. A few small, natural crumbs might be scattered casually around the base of the brownie on the plate. The plate itself is off-white or cream-colored, with a slight rustic imperfection. It sits on a warm, worn wooden kitchen table. The lighting is soft and natural, suggesting a cozy, lived-in family kitchen environment. A simple, folded cloth napkin in a neutral tone is casually placed beside the plate. The scene is unpretentious, inviting, and focused on comfort.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve warm or at room temperature",
+      "Pair with a scoop of vanilla ice cream",
+      "Enjoy with a glass of milk or coffee"
+    ],
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "150g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "200g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "80g"
+      },
+      {
+        "name": "Unsweetened cocoa powder",
+        "quantity": "30g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 175°C. Line a 20x20 cm baking pan with parchment paper.",
+      "Melt chocolate and butter together in a heatproof bowl set over a pot of simmering water. Stir until smooth. Remove from heat.",
+      "In a separate large bowl, whisk granulated sugar and eggs until light and fluffy.",
+      "Stir vanilla extract into the egg mixture.",
+      "Gradually fold the melted chocolate mixture into the egg mixture until just combined. Do not overmix.",
+      "Sift flour and cocoa powder into the wet mixture. Add salt. Fold gently until no dry streaks remain.",
+      "Pour batter into the prepared baking pan. Spread evenly.",
+      "Bake for 25-30 minutes. A toothpick inserted into the center should come out with moist crumbs, not wet batter.",
+      "Cool completely in the pan on a wire rack before cutting into squares."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 62.4,
+      "calories": 914.5,
+      "cholesterol_mg": 222,
+      "dietary_fiber_g": 8.8,
+      "protein_g": 12.5,
+      "saturated_fat_g": 33.8,
+      "sodium_mg": 259,
+      "total_carbs_g": 93.2,
+      "total_fat_g": 56.9,
+      "total_sugars_g": 65.9,
+      "trans_fat_g": 1.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 30.6,
+      "calories": 447.8,
+      "cholesterol_mg": 108.7,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 6.1,
+      "saturated_fat_g": 16.5,
+      "sodium_mg": 126.8,
+      "total_carbs_g": 45.6,
+      "total_fat_g": 27.9,
+      "total_sugars_g": 32.3,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 31.4,
+      "protein": 25,
+      "saturated_fat": 168.8,
+      "sodium": 11.3,
+      "total_carbs": 33.9,
+      "total_fat": 73
+    },
+    "serving_size_g": 204.3,
+    "total_recipe_weight_g": 817
+  },
+  {
+    "recipe_name": "Dark Chocolate Crémeux, Hazelnut Sable, Raspberry Fluid Gel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dark_chocolate_cr%C3%A9meux%2C_hazelnut_sable%2C_raspberry_fluid_gel_20250625_163601_8dcc06d6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-25T16:36:02.124311000Z",
+    "selected_ingredients": [
+      "chocolate"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Mayonnaise-free",
+    "visual_description": "A single portion of Dark Chocolate Crémeux, Hazelnut Sable, and Raspberry Fluid Gel is artfully arranged on a pristine white bone china plate. Abundant negative space highlights each element. The dark chocolate crémeux, a velvety, deep brown, forms a perfectly glossy quenelle, showcasing its smooth texture. Adjacent, a crisp, golden-brown hazelnut sable shard, irregularly broken, offers contrasting crumbly texture. A vibrant crimson raspberry fluid gel is delicately swiped across the plate, providing a bright, tart accent. Two fresh, ruby-red raspberries are precisely placed, their natural form complementing the refined composition. The dish rests on a premium white Carrara marble, illuminated by dramatic professional lighting, enhancing its sophisticated, minimalist elegance. A precisely folded white linen napkin completes the luxurious setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Dark Chocolate",
+    "ingredients": [
+      {
+        "name": "Dark Chocolate (70-75% cocoa solids)",
+        "quantity": "150 g, finely chopped"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Granulated sugar (for crémeux)",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "75 g, cold, diced"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Hazelnut flour",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Egg yolk (for sable)",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh raspberries (for fluid gel)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar (for fluid gel)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Fresh raspberries (for garnish)",
+        "quantity": "12"
+      }
+    ],
+    "instructions": [
+      "Prepare Hazelnut Sable:",
+      "Combine diced cold butter, icing sugar, almond flour, hazelnut flour, plain flour, and salt in a bowl. Rub butter into dry ingredients until crumbly.",
+      "Add the egg yolk. Mix briefly until a dough forms. Do not overmix.",
+      "Form the dough into a disc. Wrap in cling film. Chill for 30 minutes.",
+      "Preheat oven to 160°C.",
+      "Roll the chilled dough 3 mm thick between two sheets of parchment paper.",
+      "Cut into desired shapes, such as 5 cm squares or circles.",
+      "Bake for 12-15 minutes, or until golden brown. Cool completely on a wire rack.",
+      "Prepare Dark Chocolate Crémeux:",
+      "Finely chop the dark chocolate. Place it in a heatproof bowl.",
+      "In a separate bowl, whisk the 3 egg yolks and 30 g granulated sugar until pale and creamy.",
+      "Heat heavy cream and whole milk in a saucepan until simmering.",
+      "Slowly pour the hot cream mixture over the egg yolk mixture, whisking constantly.",
+      "Return the entire mixture to the saucepan. Cook over medium-low heat, stirring constantly with a spatula, until the mixture slightly thickens (nappe consistency, 82-84°C). Do not boil.",
+      "Pour the hot custard through a fine-mesh sieve directly over the chopped chocolate.",
+      "Let sit for 1 minute. Emulsify with an immersion blender or spatula until smooth and glossy.",
+      "Pour the crémeux into a shallow dish. Cover the surface directly with cling film to prevent a skin from forming.",
+      "Chill for a minimum of 4 hours, or preferably overnight, until firm.",
+      "Prepare Raspberry Fluid Gel:",
+      "Blend fresh raspberries, 20 g granulated sugar, and water until smooth.",
+      "Pass the mixture through a fine-mesh sieve to remove all seeds and pulp.",
+      "Transfer the strained liquid to a small saucepan. Whisk in the agar-agar powder.",
+      "Bring the mixture to a boil, whisking constantly. Boil for 1 minute.",
+      "Pour the hot gel into a shallow dish. Chill until set, approximately 30 minutes.",
+      "Once set, transfer the firm gel to a blender. Blend until completely smooth and fluid.",
+      "Pass the fluid gel through a fine-mesh sieve for ultimate smoothness.",
+      "Transfer the finished fluid gel to a squeeze bottle or piping bag. Keep chilled until plating.",
+      "Assembly and Plating:",
+      "Place one hazelnut sable piece slightly off-center on each serving plate.",
+      "Using a warmed spoon, form a perfect quenelle of the dark chocolate crémeux. Carefully place it next to the sable.",
+      "Artfully place a few dots or a delicate smear of the raspberry fluid gel around the crémeux and sable.",
+      "Arrange 2-3 fresh raspberries beside the crémeux for added color and freshness.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 31.5,
+      "calories": 897.02,
+      "cholesterol_mg": 328.22,
+      "dietary_fiber_g": 8.84,
+      "protein_g": 13.51,
+      "saturated_fat_g": 24.65,
+      "sodium_mg": 78.22,
+      "total_carbs_g": 71.51,
+      "total_fat_g": 54.02,
+      "total_sugars_g": 37.25,
+      "trans_fat_g": 1.07
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.54,
+      "calories": 328.5,
+      "cholesterol_mg": 120.19,
+      "dietary_fiber_g": 3.24,
+      "protein_g": 4.95,
+      "saturated_fat_g": 9.03,
+      "sodium_mg": 28.64,
+      "total_carbs_g": 26.19,
+      "total_fat_g": 19.78,
+      "total_sugars_g": 13.64,
+      "trans_fat_g": 0.39
+    },
+    "daily_value_percentages": {
+      "cholesterol": 109,
+      "dietary_fiber": 32,
+      "protein": 27,
+      "saturated_fat": 123,
+      "sodium": 3,
+      "total_carbs": 26,
+      "total_fat": 69
+    },
+    "serving_size_g": 273.06,
+    "total_recipe_weight_g": 1092.25
+  }
+]

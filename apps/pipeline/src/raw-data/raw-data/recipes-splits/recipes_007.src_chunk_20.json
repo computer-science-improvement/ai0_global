@@ -1,0 +1,654 @@
+[
+  {
+    "recipe_name": "Hearty Beef Chili with Red Wine, Dark Chocolate, Pineapple & Seared Salmon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef_chili_with_red_wine%2C_dark_chocolate%2C_pineapple_%26_seared_salmon_20250902_090136_6c0b1958.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T09:01:37.325758000Z",
+    "selected_ingredients": [
+      "beef",
+      "chili",
+      "pineapple",
+      "dark chocolate",
+      "salmon",
+      "red wine",
+      "mint"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, hearty portion of chili is presented in a deep, rustic ceramic bowl. The rich, dark red-brown chili, with tender beef cubes and kidney beans, fills the bowl, showing a thick, comforting texture. A golden-crusted, pan-seared salmon fillet rests prominently atop the chili, its flaky interior visible. A vibrant spoonful of finely diced pineapple and chopped fresh mint relish is casually placed over the salmon and chili. A few whole fresh mint leaves garnish the dish. The bowl sits on a well-used, warm-toned wooden dining table. Alongside, a simple metal fork and a crumpled cloth napkin are casually arranged. Warm, soft kitchen lighting creates a cozy, inviting family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Fusion",
+    "cultural_origin": "American Fusion",
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "700 g, diced into 2.5 cm cubes"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cayenne pepper",
+        "quantity": "2 g (optional)"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dark chocolate",
+        "quantity": "30 g, 70% cocoa, finely chopped"
+      },
+      {
+        "name": "Canned kidney beans",
+        "quantity": "400 g, rinsed and drained"
+      },
+      {
+        "name": "Pineapple",
+        "quantity": "200 g, fresh, diced into 1 cm cubes"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Salmon fillets",
+        "quantity": "4 (approx. 150 g each), skin on or off"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Season beef cubes with salt and pepper. Sear beef in batches until browned on all sides. Remove beef and set aside.",
+      "Add onion, garlic, and red bell pepper to the pot. Sauté until softened, about 5-7 minutes.",
+      "Stir in chili powder, cumin, oregano, and cayenne pepper. Cook for 1 minute until fragrant.",
+      "Add tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return beef to the pot. Add crushed tomatoes and beef broth. Bring to a boil, then reduce heat to low.",
+      "Cover and simmer for 1.5 to 2 hours, or until beef is very tender. Stir occasionally.",
+      "Stir in chopped dark chocolate and kidney beans. Simmer uncovered for another 15 minutes, allowing chili to thicken. Season with salt and pepper to taste.",
+      "While chili simmers, prepare pineapple-mint relish: Combine diced pineapple and half of the chopped mint in a small bowl. Stir gently.",
+      "Heat a separate pan over medium-high heat. Season salmon fillets with salt and pepper.",
+      "Add a small amount of oil to the pan. Place salmon fillets skin-side down (if applicable). Sear for 4-5 minutes until skin is crispy. Flip and cook for another 3-4 minutes, or until cooked through and flaky.",
+      "To serve, ladle a generous portion of chili into individual bowls. Place one seared salmon fillet on top or alongside the chili. Spoon a portion of the pineapple-mint relish over the salmon and chili. Garnish with remaining fresh mint."
+    ],
+    "notes": [
+      "The dark chocolate adds depth and richness to the chili without making it sweet.",
+      "Adjust chili powder and cayenne to your preferred spice level.",
+      "The pineapple-mint relish provides a fresh, bright contrast to the savory chili and rich salmon."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1160.94,
+      "cholesterol_mg": 205.23,
+      "dietary_fiber_g": 17.39,
+      "protein_g": 84.57,
+      "saturated_fat_g": 13.09,
+      "sodium_mg": 1990.97,
+      "total_carbs_g": 61.29,
+      "total_fat_g": 46.39,
+      "total_sugars_g": 18.62,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 110.27,
+      "cholesterol_mg": 19.5,
+      "dietary_fiber_g": 1.65,
+      "protein_g": 8.03,
+      "saturated_fat_g": 1.24,
+      "sodium_mg": 189.12,
+      "total_carbs_g": 5.82,
+      "total_fat_g": 4.41,
+      "total_sugars_g": 1.77,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68.41,
+      "dietary_fiber": 62.11,
+      "protein": 169.14,
+      "saturated_fat": 65.45,
+      "sodium": 86.56,
+      "total_carbs": 22.29,
+      "total_fat": 59.47
+    },
+    "serving_size_g": 1052.75,
+    "total_recipe_weight_g": 4211
+  },
+  {
+    "recipe_name": "Seared Beef Medallions and Salmon with Chili-Chocolate Reduction and Grilled Pineapple",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_beef_medallions_and_salmon_with_chili-chocolate_reduction_and_grilled_pineapple_20250902_085930_3130b347.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T08:59:31.316622000Z",
+    "selected_ingredients": [
+      "beef",
+      "chili",
+      "pineapple",
+      "dark chocolate",
+      "salmon",
+      "red wine",
+      "mint"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean, round white porcelain dinner plate. A seared beef medallion, displaying a deep brown crust and a hint of pink interior, sits prominently at the center. Beside it, a pan-seared salmon fillet with crispy, golden-brown skin and flaky, pale orange flesh is artfully placed. A rich, glossy, dark brown chili-chocolate reduction is elegantly spooned over the beef. Two golden-brown grilled pineapple wedges, showing distinct char marks, are arranged to add a vibrant color contrast. Fresh green mint leaves are scattered lightly over the dish for a pop of color and freshness. The arrangement is balanced, with moderate negative space. Ingredients are cut into clean, distinct forms: thick beef medallions, whole salmon fillets, and wedges of pineapple. The overall presentation is professional and approachable.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Fusion",
+    "cultural_origin": "Fusion",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef Sirloin Medallions",
+        "quantity": "4 x 180g pieces"
+      },
+      {
+        "name": "Salmon Fillets",
+        "quantity": "4 x 150g pieces, skin on"
+      },
+      {
+        "name": "Pineapple",
+        "quantity": "1 small, fresh, cored and cut into 8 wedges"
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Dark Chocolate",
+        "quantity": "30g, 70% cocoa, finely chopped"
+      },
+      {
+        "name": "Red Chili",
+        "quantity": "1, small, finely minced (seeds removed for less heat)"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2, finely minced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh Mint",
+        "quantity": "15g, leaves picked"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Season beef medallions and salmon fillets generously with salt and pepper.",
+      "Heat 15 ml olive oil in a large oven-safe pan over medium-high heat. Sear beef medallions 3 minutes per side for medium-rare. Transfer beef to a plate, tent with foil. Keep pan.",
+      "Add remaining 15 ml olive oil to the same pan. Sear salmon fillets, skin-side down, for 4-5 minutes until skin is crisp. Flip and cook for another 2-3 minutes, or until cooked to desired doneness. Transfer salmon to a plate, tent with foil. Keep pan.",
+      "Add shallots and garlic to the pan. Sauté 2 minutes until fragrant.",
+      "Pour in red wine. Scrape up any browned bits. Reduce by half, about 3-4 minutes.",
+      "Stir in beef stock and minced chili. Bring to a simmer. Reduce heat to low.",
+      "Whisk in chopped dark chocolate and butter until melted and sauce is smooth and slightly thickened. Season with salt and pepper. Keep warm.",
+      "Heat a grill pan or outdoor grill to medium-high. Grill pineapple wedges 2-3 minutes per side until lightly caramelized and grill marks appear.",
+      "To serve, place a beef medallion and a salmon fillet on each plate. Spoon chili-chocolate reduction over beef. Arrange grilled pineapple wedges beside. Garnish with fresh mint leaves."
+    ],
+    "notes": [
+      "Adjust chili amount to your spice preference.",
+      "Do not overcook the beef or salmon to maintain their tender textures.",
+      "The sauce can be made slightly thicker by simmering longer if preferred."
+    ],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.8,
+      "calories": 933,
+      "cholesterol_mg": 246.5,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 53.6,
+      "saturated_fat_g": 17.7,
+      "sodium_mg": 964.2,
+      "total_carbs_g": 26.4,
+      "total_fat_g": 56.3,
+      "total_sugars_g": 16.8,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 150,
+      "cholesterol_mg": 39.5,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.6,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 154.7,
+      "total_carbs_g": 4.2,
+      "total_fat_g": 9,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 82,
+      "dietary_fiber": 17,
+      "protein": 107,
+      "saturated_fat": 89,
+      "sodium": 42,
+      "total_carbs": 10,
+      "total_fat": 72
+    },
+    "serving_size_g": 623.4,
+    "total_recipe_weight_g": 2493.6
+  },
+  {
+    "recipe_name": "Apple and Toasted Almond Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_apple_and_toasted_almond_salad_20250902_083425_cabdd87f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T08:34:26.227621000Z",
+    "selected_ingredients": [
+      "apple",
+      "almond",
+      "honey",
+      "mustard",
+      "butter"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "A vibrant Apple and Toasted Almond Salad is presented in a shallow, rustic white ceramic bowl on a well-used wooden kitchen table. The salad features crisp, thinly sliced red and green apples interspersed with delicate mixed greens. Thinly sliced red onion adds a pop of purple, while thinly sliced celery provides additional texture. Golden toasted slivered almonds are scattered generously throughout the salad. The honey-mustard vinaigrette lightly coats the ingredients, creating a glossy sheen without pooling. The arrangement is casual and mounded, showcasing natural textures and colors. A simple, folded cloth napkin and a set of everyday metal cutlery rest beside the bowl. Warm, soft light from an overhead kitchen fixture illuminates the scene, enhancing the homely, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Home",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [],
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Crisp apples",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "150g"
+      },
+      {
+        "name": "Slivered almonds",
+        "quantity": "50g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1g"
+      }
+    ],
+    "instructions": [
+      "Melt butter in a small pan over medium heat.",
+      "Add slivered almonds to the pan. Cook, stirring frequently, until almonds are golden brown. This takes 3-5 minutes.",
+      "Remove almonds from heat. Transfer to a plate to cool. Set aside.",
+      "In a small bowl, whisk together olive oil, apple cider vinegar, Dijon mustard, and honey.",
+      "Season the dressing with salt and black pepper. Whisk again until well combined.",
+      "Wash and thoroughly dry the mixed salad greens.",
+      "Core the apples. Slice them thinly or dice into small, uniform cubes.",
+      "Peel the red onion. Slice it very thinly.",
+      "Wash the celery stalks. Thinly slice them.",
+      "In a large salad bowl, combine the mixed greens, sliced apples, red onion, and celery.",
+      "Add the cooled toasted almonds to the salad bowl.",
+      "Pour the prepared honey-mustard vinaigrette over the salad ingredients.",
+      "Gently toss the salad until all ingredients are evenly coated with the dressing.",
+      "Serve immediately."
+    ],
+    "notes": [],
+    "traditional_techniques": [],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.4,
+      "calories": 308,
+      "cholesterol_mg": 8,
+      "dietary_fiber_g": 5,
+      "protein_g": 4.1,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 267,
+      "total_carbs_g": 24.4,
+      "total_fat_g": 23.5,
+      "total_sugars_g": 16.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2,
+      "calories": 138,
+      "cholesterol_mg": 4,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 1.8,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 119,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 10.5,
+      "total_sugars_g": 7.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 4,
+      "dietary_fiber": 18,
+      "protein": 8,
+      "saturated_fat": 22,
+      "sodium": 12,
+      "total_carbs": 9,
+      "total_fat": 30
+    },
+    "serving_size_g": 223.5,
+    "total_recipe_weight_g": 894
+  },
+  {
+    "recipe_name": "Mandel Financier, Kirsch-Gel, Blaubeer-Mousse",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mandel_financier%2C_kirsch-gel%2C_blaubeer-mousse_20250902_080154_ff548a3d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T08:01:55.691979000Z",
+    "selected_ingredients": [
+      {
+        "name": "blueberry"
+      },
+      {
+        "name": "cherry"
+      },
+      {
+        "name": "almond"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single, golden-brown Mandel Financier, baked to perfection, anchors the left side of a pristine white designer plate. Adjacent to it, a light purple quenelle of airy Blaubeer-Mousse rests gracefully. Vibrant, translucent Kirsch-Gel is artfully piped in small, irregular dots around the financier and mousse. Irregular, golden-brown Mandel Crumble pieces are scattered delicately across the plate, providing textural contrast. A small, clear pool of ruby-red Kirsch-Consommé is gently poured on the right side, reflecting the dramatic professional lighting. The plate features abundant negative space. The setting includes a premium white Carrara marble surface, a polished silver dessert fork, and a precisely folded white linen napkin, creating an ultra-minimalist, elegant presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Served as a sophisticated individual plated dessert in a fine-dining setting."
+    ],
+    "hero_ingredient": "Cherry",
+    "ingredients": [
+      {
+        "name": "Unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "120g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "70g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "4 (approx. 120g)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "2ml"
+      },
+      {
+        "name": "Fresh cherries, pitted",
+        "quantity": "350g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "90g"
+      },
+      {
+        "name": "Water",
+        "quantity": "180ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "8ml"
+      },
+      {
+        "name": "Fresh blueberries",
+        "quantity": "150g"
+      },
+      {
+        "name": "Gelatin sheet",
+        "quantity": "1 (2g)"
+      },
+      {
+        "name": "Heavy cream, chilled",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 strip"
+      }
+    ],
+    "instructions": [
+      "Prepare Financier: Melt 100g butter until browned. Strain. Combine 60g almond flour, 120g icing sugar, 30g plain flour, and salt. Whisk in egg whites and vanilla extract. Fold in brown butter. Pour into greased financier moulds. Bake at 180°C for 12-15 minutes until golden. Cool.",
+      "Prepare Kirsch-Gel: Blend 200g pitted cherries with 50ml water and 30g granulated sugar. Strain mixture to remove solids. Heat strained liquid with 2g agar-agar powder. Bring to a boil, simmer 1 minute. Stir in 5ml lemon juice. Pour into a shallow tray. Chill until set. Cut into small, irregular pieces or blend into a smooth gel.",
+      "Prepare Blaubeer-Mousse: Soak 1 gelatin sheet in cold water. Blend 150g blueberries with 30ml water and 40g granulated sugar. Heat blueberry mixture gently. Squeeze excess water from gelatin and dissolve into warm blueberry mixture. Cool completely. Whip 150ml heavy cream to soft peaks. Gently fold blueberry mixture into whipped cream. Chill for 2 hours.",
+      "Prepare Mandel Crumble: Combine 40g almond flour, 40g plain flour, 30g granulated sugar. Cut in 30g cold diced butter until crumbly. Spread on a baking sheet. Bake at 160°C for 10-12 minutes until golden. Cool.",
+      "Prepare Kirsch-Consommé: Combine 150g pitted cherries, 100ml water, 20g granulated sugar, lemon zest, and a pinch of salt. Simmer gently for 15 minutes. Strain through a fine-mesh sieve, pressing solids. Chill consommé until very cold.",
+      "Assemble: Place one Mandel Financier on each plate. Pipe or quenelle a portion of Blaubeer-Mousse next to the financier. Arrange small pieces of Kirsch-Gel around the financier. Sprinkle Mandel Crumble over the plate. Gently pour a small pool of Kirsch-Consommé onto the plate. Serve immediately."
+    ],
+    "notes": [
+      "Ensure all components are thoroughly chilled before assembly for optimal texture and presentation.",
+      "The Kirsch-Gel can be a smooth purée if preferred, or cut into precise small cubes for a different visual effect."
+    ],
+    "traditional_techniques": [
+      "Precision pastry work"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 51.6,
+      "calories": 810,
+      "cholesterol_mg": 91,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 12.6,
+      "saturated_fat_g": 22.4,
+      "sodium_mg": 67,
+      "total_carbs_g": 91.7,
+      "total_fat_g": 45.3,
+      "total_sugars_g": 69.6,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 14.3,
+      "calories": 225,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 3.5,
+      "saturated_fat_g": 6.2,
+      "sodium_mg": 19,
+      "total_carbs_g": 25.4,
+      "total_fat_g": 12.6,
+      "total_sugars_g": 19.3,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30,
+      "dietary_fiber": 20,
+      "protein": 25,
+      "saturated_fat": 112,
+      "sodium": 3,
+      "total_carbs": 33,
+      "total_fat": 58
+    },
+    "serving_size_g": 360.5,
+    "total_recipe_weight_g": 1442
+  },
+  {
+    "recipe_name": "Caramelized Apple Cubes, Raisin Fluid Gel, Vanilla Bean Crème, Crisp Apple Tuile",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_apple_cubes%2C_raisin_fluid_gel%2C_vanilla_bean_cr%C3%A8me%2C_crisp_apple_tuile_20250902_080054_e8bf3b09.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T08:00:54.730439000Z",
+    "selected_ingredients": [
+      {
+        "name": "raisin"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "apple"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "The dessert is presented on a large, round, matte white designer plate. A small, artfully composed cluster of golden-brown, glossy caramelized apple cubes sits slightly off-center. Each cube is precisely cut and retains a tender-crisp texture. Adjacent to the apples, a fluid, organic swirl of deep ruby-toned raisin fluid gel provides a vibrant contrast, its surface shimmering. Beside the apples, a delicate, airy quenelle of creamy white vanilla bean crème offers a soft, elegant counterpoint. A single, translucent, crisp apple tuile stands vertically or is gently laid across the other elements, adding architectural precision and a delicate texture. The composition utilizes abundant negative space, highlighting each component's distinct color, form, and texture. The setting features a polished grey marble surface, a pristine white linen napkin folded into a precise triangle, and an ultra-minimalist background. Professional, dramatic lighting casts gentle shadows, enhancing the depth and elegance of the presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern German",
+    "cultural_origin": "German",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Firm Apples (e.g., Honeycrisp, Granny Smith)",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Golden Raisins",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Vanilla Bean",
+        "quantity": "1"
+      },
+      {
+        "name": "Lemon Juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Gelatin Sheets",
+        "quantity": "4 (2g each)"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Raisin Fluid Gel: Hydrate 2 gelatin sheets in cold water. Combine raisins, 50g sugar, and 100ml water in a saucepan. Simmer 5 minutes. Remove from heat. Stir in squeezed gelatin sheets until dissolved. Blend mixture until very smooth. Strain through a fine-mesh sieve. Chill until set (at least 2 hours). Once set, blend again until a fluid gel consistency is achieved. Transfer to a squeeze bottle or piping bag. Keep chilled.",
+      "Prepare Vanilla Bean Crème: Hydrate 2 gelatin sheets in cold water. Split vanilla bean, scrape seeds. Combine heavy cream, remaining 100g sugar, vanilla bean, and seeds in a saucepan. Heat gently until sugar dissolves and cream is warm (do not boil). Remove vanilla bean. Stir in squeezed gelatin sheets until dissolved. Strain. Pour into a shallow dish. Chill until set (at least 3 hours). Once set, whisk or gently blend the set cream until smooth and light, forming a crème. Transfer to a piping bag. Keep chilled.",
+      "Prepare Caramelized Apple Cubes: Peel, core, and dice 3 apples into 1.5 cm cubes. Melt butter in a non-stick pan over medium heat. Add apple cubes and 20g sugar. Cook, stirring occasionally, until apples are tender-crisp and deeply caramelized, about 8-10 minutes. Finish with lemon juice. Set aside.",
+      "Prepare Crisp Apple Tuile: Thinly slice remaining apple using a mandoline, creating paper-thin rounds. Place slices on a parchment-lined baking sheet. Bake at 100°C (212°F) for 60-90 minutes, or until completely dry and crisp. Cool completely. Store in an airtight container.",
+      "To Serve: On each plate, arrange a cluster of warm caramelized apple cubes. Pipe a fluid, organic swirl of raisin fluid gel alongside. Place a delicate quenelle or piped dot of vanilla bean crème. Finish with one crisp apple tuile, standing vertically or gently laid across the elements. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Precise Caramelization",
+      "Fluid Gel Preparation",
+      "Stabilized Crème Production",
+      "Dehydration for Tuile"
+    ]
+  }
+]

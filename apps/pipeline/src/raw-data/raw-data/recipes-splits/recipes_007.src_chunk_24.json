@@ -1,0 +1,680 @@
+[
+  {
+    "recipe_name": "Slow-Braised Beef with Fermented Napa and Citrus-Nut Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_slow-braised_beef_with_fermented_napa_and_citrus-nut_crumble_20250901_205225_9b9e72ec.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-01T20:52:25.410402000Z",
+    "selected_ingredients": [
+      "beef",
+      "peanut",
+      "mushroom",
+      "grape",
+      "grapefruit",
+      "chinese napa cabbage"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Greek cuisine cuisine",
+    "visual_description": "A single, substantial chunk of slow-braised beef, its surface a rich, deep brown, rests centrally on a handcrafted matte cream-colored ceramic plate. The beef glistens with a reduction of its savory braising liquid, which pools subtly around its base. Beside the beef, a vibrant, pale green mound of finely shredded fermented napa cabbage provides a striking color contrast. Scattered artfully around the plate are several earthy, roasted cremini mushroom halves and a few jewel-toned, plump roasted red grapes. A delicate sprinkle of golden-brown, coarsely crushed peanuts and bright yellow grapefruit zest, the 'Citrus-Nut Crumble,' adorns the beef and surrounding elements, adding textural interest. The composition is clean and minimalist, with ample negative space. The plate itself has a natural, slightly irregular edge, reflecting traditional pottery. The setting features a light, reclaimed wood table surface, an undyed linen napkin in a natural beige tone, and a simple, elegant Greek-style fork and knife. Soft, diffused natural light illuminates the scene, highlighting the organic textures and natural colors of the ingredients against a clean, uncluttered background with a hint of blurred greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Greek",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with a slice of rustic artisanal bread, such as lagana, to soak up the rich sauce.",
+      "Pair with a glass of dry Greek red wine, like an Agiorgitiko or Xinomavro.",
+      "Offer a small bowl of Kalamata olives as an additional simple accompaniment."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or shin",
+        "quantity": "1 kg, cut into 5 cm chunks"
+      },
+      {
+        "name": "Napa cabbage",
+        "quantity": "1 small head (approx. 500 g), shredded"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "15 g (for cabbage)"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g, halved or thickly sliced"
+      },
+      {
+        "name": "Red grapes",
+        "quantity": "200 g, on the stem"
+      },
+      {
+        "name": "Grapefruit",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Unsalted peanuts",
+        "quantity": "50 g, roasted"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped (for garnish)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Napa Cabbage: Shred napa cabbage. Massage with 15 g sea salt until liquid releases. Pack tightly into a clean jar. Weigh down cabbage to keep it submerged in its brine. Seal loosely. Ferment at room temperature for 3-5 days. Refrigerate once desired tang is achieved.",
+      "Sear Beef: Pat beef chunks dry. Season generously with salt and pepper. Heat olive oil in a large, heavy-bottomed pot over medium-high heat. Sear beef in batches until deeply browned on all sides. Remove beef and set aside.",
+      "Sauté Aromatics: Add diced onion to the pot. Cook until softened, about 5 minutes. Add minced garlic and cook for 1 minute until fragrant.",
+      "Deglaze and Braise: Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer. Add beef stock, oregano, and bay leaves. Return seared beef to the pot. Add whole grape clusters. Bring to a gentle simmer. Cover the pot. Transfer to a preheated oven at 150°C for 2.5-3 hours, or until beef is fork-tender.",
+      "Roast Mushrooms: During the last 30 minutes of braising, toss halved or sliced mushrooms with a drizzle of olive oil, salt, and pepper. Roast on a baking sheet at 200°C for 15-20 minutes until tender and lightly browned.",
+      "Prepare Citrus-Nut Crumble: Zest the grapefruit. Segment the grapefruit, reserving any juice. Coarsely chop roasted peanuts. Combine grapefruit zest and chopped peanuts.",
+      "Finish Sauce: Remove beef and grapes from the pot. Strain the braising liquid, discarding solids. Return liquid to the pot. Reduce over medium heat until slightly thickened. Adjust seasoning.",
+      "Assemble and Serve: Place a generous portion of tender braised beef on each plate. Spoon reduced sauce over the beef. Arrange a portion of fermented napa cabbage alongside. Add roasted mushrooms and a few roasted grapes. Sprinkle generously with the grapefruit-peanut crumble. Garnish with fresh parsley."
+    ],
+    "notes": [
+      "Utilize beef trimmings and vegetable scraps (onion peels, mushroom stems) to create a flavorful stock, embodying zero-waste principles.",
+      "The fermented napa cabbage can be prepared several days in advance, enhancing its probiotic benefits and depth of flavor."
+    ],
+    "traditional_techniques": [
+      "Braising (similar to Stifado or Kleftiko, adapted for modern simplicity)",
+      "Fermentation (modern application of traditional preservation)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 880,
+      "cholesterol_mg": 225,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 87.2,
+      "saturated_fat_g": 17.3,
+      "sodium_mg": 499,
+      "total_carbs_g": 28.3,
+      "total_fat_g": 51.4,
+      "total_sugars_g": 17.1,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 13.7,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 78,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75,
+      "dietary_fiber": 18,
+      "protein": 174,
+      "saturated_fat": 87,
+      "sodium": 22,
+      "total_carbs": 10,
+      "total_fat": 66
+    },
+    "serving_size_g": 637.5,
+    "total_recipe_weight_g": 2550
+  },
+  {
+    "recipe_name": "Candied Pork Belly, Dark Beer Caramel, Spiced Carrot Crémeux",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_candied_pork_belly%2C_dark_beer_caramel%2C_spiced_carrot_cr%C3%A9meux_20250901_200152_8d857514.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-01T20:01:52.530200000Z",
+    "selected_ingredients": [
+      {
+        "name": "pork"
+      },
+      {
+        "name": "dark beer"
+      },
+      {
+        "name": "carrot"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "A single, elegant dessert portion rests on an expensive bone china plate, stark white with a subtle pattern, offering abundant negative space. A smooth, pale orange Spiced Carrot Crémeux is piped in a graceful, organic swoosh across one side. Standing proudly, a single, translucent Candied Pork Belly Crisp (2x5 cm) shimmers golden-amber, showcasing its delicate, glass-like texture. Glossy, deep amber dots and a delicate trail of Dark Beer Caramel Fluid Gel are artfully placed around the crémeux, creating visual movement. A vibrant green micro marigold leaf adds a precise pop of color. The composition is bathed in dramatic professional lighting, casting soft shadows. The setting is a premium grey veined marble surface, with a pristine white linen napkin folded precisely, and elegant silver flatware.",
+    "number_of_servings": 4,
+    "cuisine_type": "German Modern",
+    "cultural_origin": "German",
+    "hero_ingredient": "Candied Pork Belly",
+    "ingredients": [
+      {
+        "name": "Pork belly, skinless",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Dark German beer (e.g., Doppelbock)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Glucose syrup",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Water (for caramel)",
+        "quantity": "20 ml"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "2 g (1 sheet)"
+      },
+      {
+        "name": "Carrots, peeled",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Full-fat cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "2"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Unsalted butter, cold, diced",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Ground nutmeg",
+        "quantity": "0.5 g"
+      },
+      {
+        "name": "Ground clove",
+        "quantity": "0.2 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Micro marigold leaves",
+        "quantity": "4-8 small leaves"
+      }
+    ],
+    "instructions": [
+      "Slice pork belly into very thin, 1 mm thick slices. Aim for 2x5 cm rectangles.",
+      "Place slices between parchment paper. Press under a weight for 30 minutes.",
+      "Simmer 50 g sugar and 50 ml water in a small saucepan. Dissolve sugar completely.",
+      "Dip each pork slice into the sugar syrup. Place on a silicone mat or parchment paper.",
+      "Bake at 150°C for 20-25 minutes. Bake until golden brown and very crisp.",
+      "Sprinkle with a pinch of fine sea salt immediately after baking. Cool completely on a wire rack.",
+      "Bloom gelatin in cold water.",
+      "Reduce dark beer in a saucepan over medium heat to 50 ml. Set aside.",
+      "Combine 100 g sugar and 20 ml water in a heavy-bottomed saucepan. Cook over medium heat without stirring.",
+      "Cook until a deep amber caramel forms. Carefully whisk in glucose syrup.",
+      "Slowly pour in the warm reduced beer. Whisk constantly. Be careful, mixture will bubble vigorously.",
+      "Remove from heat. Whisk until smooth.",
+      "Squeeze excess water from bloomed gelatin. Whisk into the warm caramel until dissolved.",
+      "Pass through a fine-mesh sieve. Pour into a shallow dish. Chill until set, at least 2 hours.",
+      "Blend the set gel in a high-speed blender until perfectly smooth and fluid. Transfer to a squeeze bottle. Keep chilled.",
+      "Dice carrots finely. Steam or boil until very tender.",
+      "Blend cooked carrots until perfectly smooth puree. You need 100 g of carrot puree. Push through a fine-mesh sieve.",
+      "Combine cream, egg yolks, 30 g sugar, cinnamon, nutmeg, clove, and salt in a saucepan.",
+      "Cook over low heat, stirring constantly, until mixture thickens slightly (nappe consistency). Do not boil.",
+      "Remove from heat. Whisk in carrot puree.",
+      "Whisk in cold diced butter, piece by piece, until fully emulsified and smooth.",
+      "Pass through a fine-mesh sieve. Pour into a shallow dish. Cover surface with plastic wrap. Chill completely, at least 4 hours.",
+      "Transfer crémeux to a piping bag before plating.",
+      "Pipe an organic swoosh of Spiced Carrot Crémeux onto one side of a chilled plate.",
+      "Artistically place one Candied Pork Belly Crisp upright into the crémeux.",
+      "Dot Dark Beer Caramel Fluid Gel around the crémeux and on the plate. Create intentional patterns.",
+      "Garnish with 1-2 micro marigold leaves near the crémeux. Serve immediately."
+    ],
+    "notes": [
+      "Ensure all components are perfectly chilled before assembly for optimal texture and temperature contrast."
+    ]
+  },
+  {
+    "recipe_name": "Refined Apple and Cinnamon Composition with Rum Raisins",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_refined_apple_and_cinnamon_composition_with_rum_raisins_20250901_200054_43d37545.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-01T20:00:55.387098000Z",
+    "selected_ingredients": [
+      {
+        "name": "raisin"
+      },
+      {
+        "name": "apple"
+      },
+      {
+        "name": "cinnamon"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "German",
+    "visual_description": "The dessert presents a sophisticated, minimalist composition on an elegant bone china plate. A creamy, pale yellow vanilla bean sauce forms an organic, free-flowing pool at the base. Gently set upon it is a perfectly formed, smooth quenelle of pale beige cinnamon-apple mousse, its surface pristine. Alongside, a small, artfully arranged mound of golden spiced apple confit, featuring tender 5mm apple cubes glistening with a subtle caramel hue. Scattered around are dark, plump rum-soaked raisins, offering deep color contrast. Two or three irregular, golden-brown strudel shards stand vertically, providing architectural height and a crisp texture. A single, delicate sprig of vibrant green micro apple mint adds a final touch of freshness and color. The composition emphasizes natural forms and abundant negative space on a premium white marble surface.",
+    "number_of_servings": 4,
+    "cuisine_type": "German",
+    "cultural_origin": "German",
+    "cultural_serving_suggestions": [
+      "Traditionally enjoyed with a cup of strong German coffee (Filterkaffee)",
+      "Paired with a glass of Riesling Eiswein (ice wine) for a luxurious experience"
+    ],
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Apple purée (from tart apples)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Heavy cream (35% fat), cold",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Apples (e.g., Honeycrisp or Braeburn), peeled, cored, diced into 5mm cubes",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Ground cloves",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Apple brandy (Apfelkorn) or apple juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Golden raisins",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Dark rum",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Hot water",
+        "quantity": "20 ml"
+      },
+      {
+        "name": "Phyllo dough sheets",
+        "quantity": "2"
+      },
+      {
+        "name": "Melted unsalted butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Vanilla bean, split and scraped",
+        "quantity": "1"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh micro herbs (e.g., apple mint or bronze fennel) or thin apple slice curl",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Combine raisins, rum, and hot water in a small bowl. Let soak for at least 30 minutes. Drain before use.",
+      "Melt butter in a small saucepan over medium heat. Add diced apples, brown sugar, 2g cinnamon, and cloves. Cook until apples are tender but hold shape, 8-10 minutes. Add apple brandy, cook 1 minute. Cool.",
+      "In a saucepan, combine milk, 50ml cream, and vanilla bean. Simmer. Infuse 10 minutes. Whisk egg yolks and 30g sugar until pale. Remove vanilla pod. Gradually whisk hot milk into yolks. Return to saucepan. Cook over low heat, stirring, until sauce thickens (82-85°C). Do not boil. Strain. Chill over ice bath.",
+      "Bloom gelatin in cold water. Heat apple purée with 50g sugar and 5g cinnamon until sugar dissolves. Squeeze gelatin; stir into warm purée. Cool to room temperature. Whip 200ml cold heavy cream to soft peaks. Fold apple mixture into whipped cream. Pour into silicone molds or shallow dish. Chill 4 hours, or until set.",
+      "Preheat oven to 180°C. Lay phyllo sheets flat. Brush with melted butter. Sprinkle with 5g sugar and pinch cinnamon. Top with second phyllo sheet, brush, sprinkle. Cut into irregular shards. Bake 5-7 minutes, until golden and crisp. Cool on wire rack.",
+      "Unmold cinnamon-apple mousse. Spoon vanilla bean sauce onto each plate. Arrange spiced apple confit beside mousse. Scatter rum-soaked raisins. Place strudel shards vertically into mousse and confit. Garnish with micro herbs or apple curl."
+    ],
+    "notes": [
+      "For best results, prepare rum-soaked raisins and vanilla bean sauce a day in advance.",
+      "Ensure all components are chilled properly before assembly for optimal texture and temperature contrast.",
+      "Adjust sweetness of apple confit based on the tartness of the apples used."
+    ],
+    "traditional_techniques": [
+      "Infusion",
+      "Tempering",
+      "Folding",
+      "Baking"
+    ]
+  },
+  {
+    "recipe_name": "Apple and Corn Green Salad with Honey-Mustard Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_apple_and_corn_green_salad_with_honey-mustard_vinaigrette_20250901_192151_f4ac0697.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-01T19:21:52.022253000Z",
+    "selected_ingredients": [
+      "apple",
+      "salad green",
+      "corn"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of Apple and Corn Green Salad is presented on an everyday, slightly off-white ceramic plate, resting on a well-used wooden kitchen table. Mixed salad greens form a natural, mounded base. Diced red apple pieces and bright yellow corn kernels are scattered generously over the greens, creating a colorful contrast. Thinly sliced red onion rings are interspersed throughout, adding a pop of purple. A light drizzle of golden honey-mustard vinaigrette coats the ingredients, glistening slightly. The arrangement is casual and unpretentious, with components naturally overlapping, evoking a comforting, homemade feel. A simple fork and knife with plain handles are placed beside the plate, accompanied by a casually folded beige linen napkin. The scene is bathed in warm, natural kitchen light, highlighting the fresh textures and vibrant colors of the salad.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Home",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Mixed salad greens",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Apple (e.g., Fuji or Honeycrisp), cored and diced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Sweet corn kernels (fresh, frozen, or canned, drained)",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Red onion, thinly sliced",
+        "quantity": "0.5 medium"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1.25 ml"
+      }
+    ],
+    "instructions": [
+      "Wash and dry mixed salad greens. Place in a large bowl.",
+      "Core apples. Dice apples into 1 cm cubes. Add to the bowl.",
+      "If using frozen corn, thaw and drain. If using canned corn, drain well. Add corn kernels to the bowl.",
+      "Thinly slice the red onion. Add to the bowl.",
+      "In a small bowl, whisk together olive oil, apple cider vinegar, Dijon mustard, honey, salt, and black pepper until emulsified.",
+      "Pour the dressing over the salad ingredients.",
+      "Gently toss until all ingredients are evenly coated.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.3,
+      "calories": 265,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 3.6,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 347,
+      "total_carbs_g": 34,
+      "total_fat_g": 14.9,
+      "total_sugars_g": 19.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.7,
+      "calories": 102,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2,
+      "protein_g": 1.4,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 134,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 7.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 19,
+      "protein": 7,
+      "saturated_fat": 10,
+      "sodium": 15,
+      "total_carbs": 12,
+      "total_fat": 19
+    },
+    "serving_size_g": 259.7,
+    "total_recipe_weight_g": 1038.8
+  },
+  {
+    "recipe_name": "Seared Chicken Medallions, Kumara Puree, Lemon-Grape Agrodolce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_chicken_medallions%2C_kumara_puree%2C_lemon-grape_agrodolce_20250901_185940_8eadea9b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-01T18:59:40.996665000Z",
+    "selected_ingredients": [
+      "orange",
+      "grape",
+      "kumara",
+      "peanut",
+      "chicken",
+      "lemon",
+      "milk"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Greek cusine cuisine",
+    "visual_description": "Plated on a pristine white bone china plate. A smooth, pale orange-yellow kumara puree forms an elegant, organic smear. A golden-brown seared chicken medallion, 1.5 cm thick, rests beside it. Two bright orange segments are artfully placed. A vibrant lemon-grape agrodolce, with halved red grapes, is delicately drizzled over chicken and puree, creating a flowing pattern. A whisper of finely crushed toasted peanuts provides textural contrast, sparingly scattered. A single small mint leaf adds green. Abundant negative space enhances the minimalist composition. The setting features a polished grey veined marble surface, a pristine white linen napkin, and elegant silver flatware. Dramatic professional lighting creates soft shadows, highlighting architectural precision.",
+    "number_of_servings": 4,
+    "cuisine_type": "Greek Modern",
+    "cultural_origin": "Greek",
+    "cultural_serving_suggestions": [
+      "Serve with a small glass of crisp white Greek wine, such as Assyrtiko.",
+      "Offer a light, crusty piece of bread on the side to gently sop up any remaining sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "2 (approx. 400g total)"
+      },
+      {
+        "name": "Kumara (sweet potato)",
+        "quantity": "2 medium (approx. 400g)"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red grapes, seedless",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsalted, roasted peanuts",
+        "quantity": "20g"
+      },
+      {
+        "name": "Full-fat milk",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "4-6 small"
+      }
+    ],
+    "instructions": [
+      "Slice each chicken breast horizontally into two thinner medallions. Season generously with salt and pepper.",
+      "Peel kumara. Cut into 2cm cubes. Boil in salted water until very tender (approx. 15-20 minutes). Drain well.",
+      "Pass cooked kumara through a fine-mesh sieve or mash very smoothly. Add milk, 10ml olive oil, and a pinch of salt. Whisk until perfectly smooth. Keep warm.",
+      "Supremé the orange. Reserve segments.",
+      "Halve grapes. In a small saucepan, combine 10ml olive oil, white wine vinegar, honey, juice from half a lemon, and halved grapes. Bring to a gentle simmer. Cook 5 minutes until grapes soften and liquid reduces to a light glaze. Season with salt. Remove from heat. Stir in a few fresh thyme leaves.",
+      "Heat 10ml olive oil in a heavy-bottomed pan over medium-high heat. Sear chicken medallions 3-4 minutes per side until golden brown and cooked through (internal temperature 75°C). Squeeze juice from the remaining half lemon over chicken in the last minute of cooking.",
+      "Finely chop or crush roasted peanuts into a coarse powder.",
+      "On each plate, spoon an elegant smear of kumara puree. Place one seared chicken medallion next to the puree. Arrange two bright orange segments artfully around the chicken. Drizzle the lemon-grape agrodolce over and around the chicken. Sprinkle a very small amount of crushed peanuts over the agrodolce and chicken. Garnish with a small fresh mint leaf."
+    ],
+    "notes": [],
+    "traditional_techniques": [
+      "Searing",
+      "Pureeing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 405,
+      "cholesterol_mg": 86,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 35.6,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 311,
+      "total_carbs_g": 36.1,
+      "total_fat_g": 13.7,
+      "total_sugars_g": 17.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 123,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 10.8,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 94,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 4.1,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 21,
+      "protein": 71,
+      "saturated_fat": 13,
+      "sodium": 14,
+      "total_carbs": 13,
+      "total_fat": 18
+    },
+    "serving_size_g": 330.8,
+    "total_recipe_weight_g": 1323.1
+  }
+]

@@ -1,0 +1,722 @@
+[
+  {
+    "recipe_name": "Atlantic Crab Rillette, Bitter Chocolate Tuile, Chili-Lemon Gel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_atlantic_crab_rillette%2C_bitter_chocolate_tuile%2C_chili-lemon_gel_20250706_153900_edb1ab93.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T15:39:00.864244000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "hot sauce",
+      "crab",
+      "lemon"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "On an oversized, pristine white bone china rectangular platter, arrange 8-10 small, elegant quenelles of the pale, creamy Atlantic crab rillette. Each quenelle is positioned with ample negative space, creating an artful, minimalist composition. Beside each rillette quenelle, place a single, irregularly shaped, ultra-thin bitter dark chocolate tuile, its deep brown color contrasting with the rillette. A tiny, precise dot or delicate swirl of vibrant, translucent chili-lemon fluid gel is placed thoughtfully on or beside each rillette, adding a pop of bright yellow-orange. A few tiny, perfectly cut chive batons are scattered sparingly for a touch of green. The platter rests on a polished, light grey veined marble surface. A pristine white linen napkin, precisely folded into a sharp triangle, is placed elegantly to the side. Dramatic professional lighting creates soft shadows, enhancing the textures and forms. The background is an ultra-minimalist, soft grey, ensuring maximum focus on the dish's sophisticated simplicity and abundant negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Fresh Atlantic crab meat, picked",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Shallot, finely minced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Crème fraîche",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh chives, finely chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 lemon"
+      },
+      {
+        "name": "High-quality dark chocolate (70-85% cocoa)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Egg white",
+        "quantity": "1"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Hot sauce (e.g., Tabasco)",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Prepare the Crab Rillette: Melt 30g butter in a small saucepan over low heat.",
+      "Add minced shallot. Sauté until translucent, about 3-4 minutes. Do not brown.",
+      "Add white wine. Increase heat to medium. Reduce liquid by half, about 2-3 minutes.",
+      "Remove from heat. Let the shallot mixture cool slightly.",
+      "Gently fold picked crab meat into the shallot mixture. Be careful not to break up the crab too much.",
+      "Add crème fraîche, chopped chives, and lemon zest. Mix gently.",
+      "Season with salt and white pepper to taste. Mix again lightly.",
+      "Cover and chill the rillette for at least 1 hour, or until firm.",
+      "Prepare the Bitter Chocolate Tuiles: Melt 20g dark chocolate and remaining 50g butter gently over a double boiler or in a microwave. Stir until smooth.",
+      "In a separate bowl, whisk egg white and icing sugar until just combined.",
+      "Fold the melted chocolate-butter mixture into the egg white mixture.",
+      "Sift in flour and a pinch of salt. Mix until just combined. Do not overmix.",
+      "Spread the batter very thinly onto a silicone mat or parchment paper using an offset spatula. Create irregular, organic shapes.",
+      "Bake in a preheated oven at 160°C for 5-8 minutes, or until crisp and set. Watch carefully to prevent burning.",
+      "Cool completely on the mat. Tuiles will crisp as they cool.",
+      "Prepare the Chili-Lemon Fluid Gel: Combine lemon juice, hot sauce, 2g agar-agar, and a pinch of salt in a small saucepan.",
+      "Bring to a gentle simmer over medium heat, whisking constantly for 1-2 minutes until agar-agar is fully dissolved.",
+      "Pour the mixture into a shallow dish. Chill until set, about 30 minutes.",
+      "Once set, transfer the gel to a high-speed blender. Blend until completely smooth and fluid.",
+      "Pass the fluid gel through a fine-mesh sieve for ultimate smoothness.",
+      "Transfer the fluid gel to a squeeze bottle or piping bag for plating.",
+      "Assemble the Dish: On a large, pristine white rectangular platter, arrange 8-10 small, elegant quenelles of the chilled crab rillette. Use two spoons to form quenelles.",
+      "Beside each rillette quenelle, place one irregularly shaped, crisp bitter dark chocolate tuile.",
+      "Apply a tiny, precise dot or delicate swirl of the vibrant chili-lemon fluid gel on or beside each rillette quenelle.",
+      "Garnish sparingly with a few tiny, perfectly cut chive batons."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.749,
+      "calories": 485.21,
+      "cholesterol_mg": 132.125,
+      "dietary_fiber_g": 2.491,
+      "protein_g": 21.634,
+      "saturated_fat_g": 20.965,
+      "sodium_mg": 407.49,
+      "total_carbs_g": 16.783,
+      "total_fat_g": 35.348,
+      "total_sugars_g": 7.57,
+      "trans_fat_g": 1.015
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.58,
+      "calories": 204.3,
+      "cholesterol_mg": 55.63,
+      "dietary_fiber_g": 1.05,
+      "protein_g": 9.11,
+      "saturated_fat_g": 8.83,
+      "sodium_mg": 171.57,
+      "total_carbs_g": 7.07,
+      "total_fat_g": 14.88,
+      "total_sugars_g": 3.19,
+      "trans_fat_g": 0.43
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44.04,
+      "dietary_fiber": 8.9,
+      "protein": 43.27,
+      "saturated_fat": 104.83,
+      "sodium": 17.72,
+      "total_carbs": 6.1,
+      "total_fat": 45.32
+    },
+    "serving_size_g": 237.5,
+    "total_recipe_weight_g": 950
+  },
+  {
+    "recipe_name": "Hungarian Beef Goulash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hungarian_beef_goulash_20250706_152753_6f2fa519.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T15:27:53.855253000Z",
+    "selected_ingredients": [
+      "beef",
+      "carrot",
+      "garlic",
+      "onion",
+      "tomato",
+      "potato",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented in a wide, shallow white porcelain bowl on a dark oak table. The focus is a hearty portion of Hungarian beef stew. The beef is cut into 3cm chunks, appearing dark red and tender. Vibrant orange carrots are cut into 2cm rounds. Potatoes are 2cm cubes, absorbing the deep red sauce. The sauce is thick and glossy, colored intensely by sweet paprika. Red bell peppers are cut into 2cm squares. A single dollop of white sour cream is placed on the side. A sprig of fresh parsley is the garnish. A side of crusty rye bread rests on a small ceramic plate next to the bowl. Natural light creates soft shadows and highlights the rich textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hungarian",
+    "cultural_origin": "Hungarian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Galuska or Nokedli dumplings",
+      "Accompany with pickled cucumbers or fermented cabbage",
+      "Provide thick slices of fresh rye bread for dipping"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Sweet Hungarian Paprika",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Lard or vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Caraway seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 3cm chunks.",
+      "Finely dice onions and mince garlic.",
+      "Cut carrots into 2cm rounds and potatoes into 2cm cubes.",
+      "Dice tomatoes and cut bell pepper into 2cm squares.",
+      "Heat lard in a heavy pot over medium heat.",
+      "Sauté onions until translucent and golden.",
+      "Remove pot from heat and stir in paprika and caraway seeds.",
+      "Add beef chunks and return to heat.",
+      "Sear meat for 5 minutes until browned.",
+      "Add garlic, tomatoes, and bell pepper.",
+      "Pour in beef stock and add bay leaf.",
+      "Cover and simmer on low heat for 90 minutes.",
+      "Add potatoes and carrots.",
+      "Simmer for 30 minutes until vegetables are tender.",
+      "Season with salt and pepper."
+    ],
+    "notes": [
+      "Do not boil the paprika over high heat to avoid bitterness.",
+      "The stew is even better when reheated the next day.",
+      "Ensure the beef is chuck or a similar braising cut for tenderness."
+    ],
+    "traditional_techniques": [
+      "pörkölt technique",
+      "tempering paprika",
+      "slow braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 756,
+      "cholesterol_mg": 162.3,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 44.6,
+      "saturated_fat_g": 17.8,
+      "sodium_mg": 1195,
+      "total_carbs_g": 39.1,
+      "total_fat_g": 46.1,
+      "total_sugars_g": 10.9,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129.8,
+      "cholesterol_mg": 27.9,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 7.7,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 205.1,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 7.9,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 54.1,
+      "dietary_fiber": 30.7,
+      "protein": 89.2,
+      "saturated_fat": 89,
+      "sodium": 52,
+      "total_carbs": 14.2,
+      "total_fat": 59.1
+    },
+    "serving_size_g": 582.5,
+    "total_recipe_weight_g": 2330
+  },
+  {
+    "recipe_name": "Roasted Okra and Cheesy Rice Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_okra_and_cheesy_rice_salad_20250706_151914_d1dd9c34.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T15:19:14.936251000Z",
+    "selected_ingredients": [
+      "pork",
+      "rice",
+      "cheese",
+      "okra"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Roasted Okra and Cheesy Rice Salad is presented in a deep, everyday ceramic bowl on a well-used wooden dining table. A generous base of fluffy long-grain rice is intermingled with vibrant, lightly browned roasted okra halves. Bright red and green bell pepper dice, finely diced red onion, and small cubes of yellow cheddar cheese are evenly distributed, adding pops of color and texture. Chopped fresh parsley is scattered throughout, contributing a fresh green hue. The ingredients are casually arranged, overlapping naturally. The dressing lightly coats all components. The table setting is simple, featuring a basic fork and a casually placed cloth napkin. Warm, cozy kitchen lighting highlights its comforting, homely appeal, typical of a family kitchen table.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Southern",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve as a hearty side dish alongside grilled chicken or BBQ ribs.",
+      "Accompany with a slice of cornbread.",
+      "Enjoy as a light main course for a casual lunch."
+    ],
+    "hero_ingredient": "Okra",
+    "ingredients": [
+      {
+        "name": "Long-grain rice",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh okra",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Cook rice according to package directions. Let cool completely.",
+      "Preheat oven to 200°C. Line a baking sheet with parchment paper.",
+      "Wash and trim okra. Halve larger okra lengthwise. Toss okra with 15 ml olive oil, salt, and pepper.",
+      "Spread okra in a single layer on the baking sheet. Roast for 15-20 minutes, or until tender and lightly browned. Let cool.",
+      "Dice cheddar cheese into 1 cm cubes.",
+      "Finely dice red and green bell peppers, red onion, and celery.",
+      "In a small bowl, whisk together remaining 45 ml olive oil, apple cider vinegar, Dijon mustard, garlic powder, onion powder, smoked paprika, salt, and black pepper for the dressing.",
+      "In a large bowl, combine cooled rice, roasted okra, diced cheese, bell peppers, red onion, and celery.",
+      "Pour dressing over the salad ingredients. Toss gently to combine. Ensure all ingredients are coated.",
+      "Stir in chopped fresh parsley.",
+      "Chill salad for at least 30 minutes before serving for flavors to meld."
+    ],
+    "notes": [
+      "Roasting the okra helps to reduce its natural sliminess and enhances its flavor.",
+      "Ensure rice and okra are completely cooled before mixing to prevent the salad from becoming soggy.",
+      "Adjust seasoning of the dressing to your preference."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 531.1,
+      "cholesterol_mg": 39.38,
+      "dietary_fiber_g": 6.21,
+      "protein_g": 16.32,
+      "saturated_fat_g": 9.99,
+      "sodium_mg": 349.52,
+      "total_carbs_g": 56.26,
+      "total_fat_g": 27.3,
+      "total_sugars_g": 6.41,
+      "trans_fat_g": 0.49
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.7,
+      "cholesterol_mg": 9.17,
+      "dietary_fiber_g": 1.45,
+      "protein_g": 3.8,
+      "saturated_fat_g": 2.33,
+      "sodium_mg": 81.38,
+      "total_carbs_g": 13.1,
+      "total_fat_g": 6.36,
+      "total_sugars_g": 1.49,
+      "trans_fat_g": 0.11
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13.1,
+      "dietary_fiber": 22.2,
+      "protein": 32.6,
+      "saturated_fat": 50,
+      "sodium": 15.2,
+      "total_carbs": 20.5,
+      "total_fat": 35
+    },
+    "serving_size_g": 429.5,
+    "total_recipe_weight_g": 1718
+  },
+  {
+    "recipe_name": "Cucumber, Bell Pepper, and Tomato Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cucumber%2C_bell_pepper%2C_and_tomato_salad_20250706_151444_dc70b972.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T15:14:44.888538000Z",
+    "selected_ingredients": [
+      "bell pepper",
+      "tomato",
+      "cucumber"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented on a clean, round white porcelain plate. A vibrant mound of diced cucumbers, red and yellow bell peppers, and halved cherry tomatoes forms the base. Interspersed throughout are thinly sliced red onion, creamy white crumbles of feta cheese, and dark, briny Kalamata olive halves. The fresh green hues of chopped parsley and mint leaves are visible, adding bright accents. A glistening red wine vinaigrette lightly coats the ingredients, enhancing their natural colors. The arrangement is organic yet composed, showcasing varied textures—crisp vegetables, soft cheese, and firm olives. The plate is set on a light wooden table, accompanied by a simple white linen napkin and a small, rustic ceramic bowl for a side of crusty bread, reflecting a modern bistro setting with a Mediterranean touch. Natural, even lighting highlights the freshness of the ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Served with warm crusty bread for dipping in olive oil.",
+      "Often accompanied by grilled fish or souvlaki.",
+      "Traditionally paired with a glass of retsina or local white wine."
+    ],
+    "hero_ingredient": "Cucumber",
+    "ingredients": [
+      {
+        "name": "English cucumbers",
+        "quantity": "2, diced into 1 cm cubes"
+      },
+      {
+        "name": "Bell peppers (red and yellow)",
+        "quantity": "2, cored, seeded, and diced into 1 cm cubes"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g, halved"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1/2, thinly sliced"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100 g, crumbled"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "80 g, pitted and halved"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 g, chopped"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "In a large bowl, combine diced cucumbers, bell peppers, and halved cherry tomatoes. Add thinly sliced red onion, crumbled feta cheese, pitted Kalamata olives, chopped fresh parsley, and chopped fresh mint.",
+      "In a small bowl, whisk together extra virgin olive oil, red wine vinegar, Dijon mustard, minced garlic, and dried oregano. Season with salt and black pepper.",
+      "Pour the vinaigrette over the salad ingredients. Gently toss to coat all components evenly.",
+      "Serve immediately or chill briefly before serving."
+    ],
+    "notes": [
+      "For best flavor, allow the salad to sit for 15-20 minutes before serving. This lets the flavors meld."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 352.53,
+      "cholesterol_mg": 22.25,
+      "dietary_fiber_g": 6.18,
+      "protein_g": 6.98,
+      "saturated_fat_g": 7,
+      "sodium_mg": 620.1,
+      "total_carbs_g": 20.16,
+      "total_fat_g": 29.04,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 89.92,
+      "cholesterol_mg": 5.68,
+      "dietary_fiber_g": 1.58,
+      "protein_g": 1.78,
+      "saturated_fat_g": 1.79,
+      "sodium_mg": 158.37,
+      "total_carbs_g": 5.15,
+      "total_fat_g": 7.42,
+      "total_sugars_g": 2.48,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7.42,
+      "dietary_fiber": 22.05,
+      "protein": 13.97,
+      "saturated_fat": 35,
+      "sodium": 26.96,
+      "total_carbs": 7.33,
+      "total_fat": 37.23
+    },
+    "serving_size_g": 391.58,
+    "total_recipe_weight_g": 1566.3
+  },
+  {
+    "recipe_name": "Chicken and Artichoke Tagliatelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_artichoke_tagliatelle_20250706_150429_e94d1192.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T15:04:30.351614000Z",
+    "selected_ingredients": [
+      "pasta",
+      "artichoke",
+      "basil",
+      "parmesan",
+      "chicken",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Chicken and Artichoke Tagliatelle is centrally arranged on a round, clean white porcelain plate. Golden-seared chicken chunks are nestled among vibrant yellow tagliatelle, which is lightly coated in a creamy, lemon-infused sauce. Pale green artichoke quarters and bright red cherry tomato halves add pops of color and texture. Freshly torn dark green basil leaves and a dusting of grated Parmesan cheese garnish the top. The arrangement is organic and inviting. The plate sits on a simple wooden table surface in a modern bistro setting. Silver Italian flatware is placed beside the plate. A folded white linen napkin complements the clean aesthetic. Natural, even lighting illuminates the dish, highlighting its textures and fresh ingredients. The background is minimal and unobtrusive, suggesting a casual yet refined dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately, offering extra grated Parmesan cheese at the table.",
+      "Accompanied by crusty bread for dipping in the sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Jarred artichoke hearts, quartered",
+        "quantity": "300g (drained weight)"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "100g, plus more for serving"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (juice and zest)"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "150g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breasts into 2-3 cm thick chunks. Season chicken generously with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken chunks. Sear until golden brown and cooked through, about 5-7 minutes. Ensure internal temperature reaches 75°C (167°F). Remove chicken from skillet; set aside.",
+      "Reduce heat to medium. Add butter to the skillet. Add minced garlic; sauté for 1 minute until fragrant.",
+      "Stir in quartered artichoke hearts and halved cherry tomatoes. Cook for 3-4 minutes.",
+      "Pour in chicken broth. Bring to a simmer. Cook for 5 minutes, reducing liquid slightly.",
+      "Meanwhile, cook tagliatelle according to package instructions until al dente. Reserve 120ml pasta cooking water before draining.",
+      "Add heavy cream, lemon juice, and lemon zest to the skillet with the vegetables. Stir well. Add 80g grated Parmesan cheese. Stir until melted and sauce thickens slightly.",
+      "Return cooked chicken chunks to the skillet. Add drained tagliatelle and half of the fresh basil leaves, torn. Toss everything gently to combine. Add reserved pasta water as needed to create a light, cohesive sauce.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust the amount of pasta water to achieve desired sauce consistency."
+    ],
+    "traditional_techniques": [
+      "Sautéing",
+      "Al dente pasta",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1020,
+      "cholesterol_mg": 217,
+      "dietary_fiber_g": 8.4,
+      "protein_g": 86.1,
+      "saturated_fat_g": 16.8,
+      "sodium_mg": 1435,
+      "total_carbs_g": 89.4,
+      "total_fat_g": 34.6,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 180,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 15.2,
+      "saturated_fat_g": 3,
+      "sodium_mg": 253,
+      "total_carbs_g": 15.8,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72,
+      "dietary_fiber": 30,
+      "protein": 172,
+      "saturated_fat": 84,
+      "sodium": 62,
+      "total_carbs": 33,
+      "total_fat": 44
+    },
+    "serving_size_g": 568,
+    "total_recipe_weight_g": 2272
+  }
+]

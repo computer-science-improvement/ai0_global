@@ -4,6 +4,7 @@ import { ClaudeAgent }             from '../../common/ai/agents/claude.agent';
 import { PostValidator }           from '../../common/ai/validators/post.validator';
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }       from '../../publishers/telegram.publisher';
+import { TelegraphService, buildRecipeNodes, fmtNum } from '../../publishers/telegraph.service';
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
 import { PublicationsRepository }  from '../../stats/publications.repository';
 import { RECIPES_CHANNEL_SKILL }   from '../../common/ai/skills/recipes-channel.skill';
@@ -18,8 +19,17 @@ import { RecipesRepository, RecipeRow } from './recipes.repository';
 
 const CAPTION_MAX = 1024;
 const REPLY_MAX   = 4096;
+// Recipe translation uses Sonnet, not the default Haiku — Haiku produces poor
+// Ukrainian (invented verb forms, wrong noun cases). Pinned snapshot for
+// stability. Override via RECIPE_TRANSLATE_MODEL env if needed.
+const TRANSLATE_MODEL = process.env.RECIPE_TRANSLATE_MODEL || 'claude-sonnet-4-5-20250929';
 const USER_AGENT  =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36';
+
+/** Escape the 3 chars that break Telegram HTML parse_mode. */
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
 
 @Injectable()
 export class RecipesStrategy implements ContentStrategy, OnModuleInit {
@@ -31,6 +41,7 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     private readonly validator:    PostValidator,
     private readonly registry:     ContentStrategyRegistry,
     private readonly publisher:    TelegramPublisher,
+    private readonly telegraph:    TelegraphService,
     private readonly repo:         RecipesRepository,
     private readonly notifier:     TelegramNotifier,
     private readonly publications: PublicationsRepository,
@@ -59,8 +70,23 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     const uk = await this.resolveTranslation(row);
     if (!uk) return; // translation unavailable/failed (sentinel already handled)
 
-    const caption   = this.buildCaption(uk.titleUk, row.category, uk.ingredientsUk);
-    const replyText = this.buildReply(uk.instructionsUk);
+    // Variant A: build a Telegraph page with the FULL recipe, then post the
+    // photo with a short caption + link. The page always "fits" (Instant View),
+    // so no overflow handling and no reply message. If Telegraph is
+    // unavailable / fails, fall back to the inline caption + reply layout so a
+    // post still goes out.
+    const telegraphUrl = await this.ensureTelegraph(row, uk);
+    const nutri        = this.nutritionLine(row);
+
+    let caption: string;
+    let replyText: string | undefined;
+    if (telegraphUrl) {
+      caption   = this.buildLinkCaption(uk.titleUk, row.category, telegraphUrl, nutri);
+      replyText = undefined;
+    } else {
+      caption   = this.buildCaption(uk.titleUk, row.category, uk.ingredientsUk, nutri);
+      replyText = this.buildReply(uk.instructionsUk) || undefined;
+    }
 
     let imageBuffer: Buffer;
     try {
@@ -72,7 +98,7 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
 
     try {
       const messageId = await this.publisher.publishPrompt(
-        { imageBuffer, caption, replyText: replyText || undefined },
+        { imageBuffer, caption, replyText },
         { id: channelId },
       );
       await this.repo.markPosted(row.id);
@@ -114,7 +140,7 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     const raw = await this.claude.chat([
       { role: 'system', content: RECIPE_TRANSLATE_PROMPT.system },
       { role: 'user',   content: buildRecipeTranslateUserMessage(row) },
-    ]);
+    ], { model: TRANSLATE_MODEL });
 
     const fail = async (why: string) => {
       this.logger.warn(`Translation rejected (${row.id}): ${why} — writing skip sentinel`);
@@ -150,14 +176,71 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     return uk;
   }
 
-  private buildCaption(title: string, category: string | null, ingredients: string): string {
+  /**
+   * Return the Telegraph page URL for this recipe, creating + caching it on
+   * first use. Returns null (→ inline fallback) when Telegraph is unconfigured
+   * or page creation fails — never throws.
+   */
+  private async ensureTelegraph(
+    row: RecipeRow,
+    uk: { titleUk: string; ingredientsUk: string; instructionsUk: string },
+  ): Promise<string | null> {
+    if (row.telegraph_url) return row.telegraph_url;
+    try {
+      if (!(await this.telegraph.available())) return null;
+      const nodes = buildRecipeNodes({
+        title:          uk.titleUk,
+        category:       row.category,
+        ingredientsUk:  uk.ingredientsUk,
+        instructionsUk: uk.instructionsUk,
+        imageUrl:       row.image_url,
+        nutrition: {
+          kcal:         row.kcal,
+          proteinG:     row.protein_g,
+          fatG:         row.fat_g,
+          carbsG:       row.carbs_g,
+          servingSizeG: row.serving_size_g,
+        },
+      });
+      const page = await this.telegraph.createPage({ title: uk.titleUk, nodes });
+      await this.repo.saveTelegraph(row.id, page);
+      return page.url;
+    } catch (err: any) {
+      this.logger.warn(`Telegraph page failed (${row.id}): ${err.message} — inline fallback`);
+      return null;
+    }
+  }
+
+  /** Compact per-serving macros line for captions. Empty when no data. */
+  private nutritionLine(row: RecipeRow): string {
+    const kcal = fmtNum(row.kcal, 0);
+    const p = fmtNum(row.protein_g), f = fmtNum(row.fat_g), c = fmtNum(row.carbs_g);
+    const parts: string[] = [];
+    if (kcal) parts.push(`🔥 ${kcal} ккал`);
+    if (p)    parts.push(`Б ${p}`);
+    if (f)    parts.push(`Ж ${f}`);
+    if (c)    parts.push(`В ${c}`);
+    return parts.length ? `${parts.join(' · ')} (на порцію)` : '';
+  }
+
+  /** Short Variant-A caption: title + cuisine + macros + Instant-View link. */
+  private buildLinkCaption(title: string, category: string | null, url: string, nutri: string): string {
+    const parts = [`<b>${escapeHtml(title)}</b>`];
+    if (category) parts.push(`🍽️ ${escapeHtml(category)}`);
+    if (nutri)    parts.push(escapeHtml(nutri));
+    parts.push(`📖 <a href="${escapeHtml(url)}">Повний рецепт</a>`);
+    return parts.join('\n\n');
+  }
+
+  private buildCaption(title: string, category: string | null, ingredients: string, nutri: string): string {
     const header = `<b>${title}</b>`;
     const meta   = category ? `🍽️ ${category}` : '';
+    const nut    = nutri || '';
     const ingHdr = '📝 Інгредієнти:';
-    const fixed  = [header, meta, `${ingHdr}\n`].filter(Boolean).join('\n\n');
+    const fixed  = [header, meta, nut, `${ingHdr}\n`].filter(Boolean).join('\n\n');
     const budget = CAPTION_MAX - fixed.length;
     const lines  = this.fitLines(ingredients, budget);
-    return [header, meta, `${ingHdr}\n${lines}`].filter(Boolean).join('\n\n');
+    return [header, meta, nut, `${ingHdr}\n${lines}`].filter(Boolean).join('\n\n');
   }
 
   private buildReply(instructions: string): string {

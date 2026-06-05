@@ -1,0 +1,583 @@
+[
+  {
+    "recipe_name": "Rustic Italian Sausage and Potato Roast",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_italian_sausage_and_potato_roast_20250630_040951_2ed81ac0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:09:52.217774000Z",
+    "selected_ingredients": [
+      "sausage",
+      "potato",
+      "tomato",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Rustic Italian Sausage and Potato Roast rests on a clean, white porcelain dinner plate, centrally placed on a simple wooden table. Four whole, pan-seared Italian sausages, deeply browned and glistening, are nestled amidst a vibrant medley of golden-brown roasted potato wedges, burst cherry tomatoes, and caramelized onion wedges. Melted, bubbly provolone cheese, with hints of golden crust, generously drapes over the sausages and vegetables, creating an inviting texture. Fresh, vibrant green basil leaves are scattered artfully across the dish, providing a contrasting pop of color and freshness. The composition is organic and balanced, showcasing the natural textures and colors of the ingredients. A folded white cotton napkin and polished traditional flatware are placed beside the plate. The scene is bathed in soft, natural, even lighting, with a clean, unobtrusive bistro-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping.",
+      "Pair with a simple green salad dressed with vinaigrette."
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Italian sausages",
+        "quantity": "4 links (approximately 450 g)"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 ml"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1 ml"
+      },
+      {
+        "name": "Provolone cheese, sliced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut potatoes into 2 cm thick wedges. Halve cherry tomatoes. Slice onion into 1 cm thick wedges. Mince garlic.",
+      "Heat 15 ml olive oil in a large oven-safe skillet over medium-high heat.",
+      "Add Italian sausages. Brown on all sides, about 8 minutes total. Remove sausages from skillet.",
+      "Add onion wedges to the skillet. Sauté until softened, about 5 minutes.",
+      "Add potato wedges, cherry tomatoes, and minced garlic to the skillet. Toss with remaining 15 ml olive oil, dried oregano, salt, and black pepper.",
+      "Nestle browned sausages among vegetables in the skillet.",
+      "Transfer skillet to preheated oven. Roast for 25 minutes.",
+      "Remove skillet from oven. Arrange sliced provolone cheese evenly over sausages and vegetables.",
+      "Return to oven. Roast until potatoes are tender and cheese is melted and bubbly, about 10-15 minutes more.",
+      "Garnish with fresh basil leaves before serving."
+    ],
+    "notes": [
+      "For a spicier dish, use hot Italian sausages or add a pinch of red pepper flakes with the seasonings."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 678,
+      "cholesterol_mg": 117,
+      "dietary_fiber_g": 5.1,
+      "protein_g": 32.3,
+      "saturated_fat_g": 18,
+      "sodium_mg": 1354,
+      "total_carbs_g": 36.6,
+      "total_fat_g": 46.6,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 160,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 7.6,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 319,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 11,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 18,
+      "protein": 65,
+      "saturated_fat": 90,
+      "sodium": 59,
+      "total_carbs": 13,
+      "total_fat": 60
+    },
+    "serving_size_g": 424.1,
+    "total_recipe_weight_g": 1696.4
+  },
+  {
+    "recipe_name": "Chicken Skin Sable, Passionfruit Crémeux, Hibiscus Gel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_skin_sable%2C_passionfruit_cr%C3%A9meux%2C_hibiscus_gel_20250630_040807_5c3ff647.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:08:07.722076000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, exquisitely plated dessert on a pristine white bone china plate with a subtle, modern rim. The composition is minimalist and organic, leaving abundant negative space. A flowing, curvilinear smear of pale yellow passionfruit crémeux forms the base, its smooth, creamy texture evident. Scattered across and beside the crémeux are irregular, golden-brown shards of chicken fat sable, exhibiting a crisp, crumbly texture. Small, glistening cubes of vibrant, deep ruby-red hibiscus gel are strategically placed, adding a sharp color contrast and a hint of translucency. Perched delicately atop the crémeux or alongside it, are one or two paper-thin, golden-amber crispy chicken skin shards, their irregular edges and brittle texture providing an unexpected visual and textural element. The entire plate rests on a polished white Carrara marble surface. A single, perfectly folded white linen napkin in a precise triangle lies nearby. Dramatic, professional lighting casts soft shadows, highlighting the dish's architectural precision and sophisticated simplicity. The background is blurred and ultra-minimalist, drawing all focus to the meticulously crafted dessert.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "hero_ingredient": "Chicken Skin",
+    "ingredients": [
+      {
+        "name": "Chicken skin, from 2 large chicken breasts",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Unsalted butter, cold, cubed",
+        "quantity": "100 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Passionfruit puree (unsweetened)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Whole egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Dried hibiscus flowers",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "For the Crispy Chicken Skin and Rendered Fat:",
+      "Remove chicken skin from breasts. Scrape off excess fat from skin. Cut skin into 5x5 cm pieces.",
+      "Place skin pieces in a cold pan over low heat. Render slowly for 20-30 minutes until golden and crisp. Flip occasionally. Chicken skin must reach 75°C internal temperature.",
+      "Remove crispy skin. Drain on paper towels. Season lightly with fine sea salt. Reserve rendered chicken fat (approximately 50g).",
+      "For the Chicken Fat Sable:",
+      "Combine flour, icing sugar, and salt in a bowl. Add cold butter and 30g of rendered chicken fat.",
+      "Rub fat and butter into flour mixture until coarse crumbs form.",
+      "Form dough into a disc. Wrap in cling film. Chill for 30 minutes.",
+      "Preheat oven to 160°C. Roll dough between two sheets of parchment paper to 3mm thickness.",
+      "Cut dough into irregular shards or small squares. Place on a baking sheet.",
+      "Bake for 12-15 minutes until lightly golden. Cool completely on a wire rack.",
+      "For the Passionfruit Crémeux:",
+      "Whisk passionfruit puree, granulated sugar, egg yolks, and whole egg in a heatproof bowl.",
+      "Set bowl over a saucepan of simmering water (bain-marie). Whisk continuously until mixture thickens (82°C).",
+      "Remove from heat. Strain through a fine-mesh sieve into a clean bowl.",
+      "Cover surface with cling film. Chill until firm, at least 2 hours.",
+      "For the Hibiscus Gel:",
+      "Combine dried hibiscus flowers and water in a saucepan. Bring to a simmer. Steep for 10 minutes.",
+      "Strain liquid through a fine-mesh sieve. Discard flowers. Reheat liquid.",
+      "Whisk in agar-agar powder. Bring to a boil for 1 minute, whisking constantly.",
+      "Pour liquid into a shallow dish. Chill until set, about 30 minutes.",
+      "Once set, cut gel into small irregular cubes or blend into a smooth gel using an immersion blender.",
+      "Assembly:",
+      "Spoon a generous dollop of passionfruit crémeux onto one side of each plate. Use the back of the spoon to create a graceful, organic smear.",
+      "Arrange a few irregular pieces of chicken fat sable artfully on the plate, some on the crémeux, some in the negative space.",
+      "Dot the plate with small cubes or artistic streaks of hibiscus gel.",
+      "Place 1-2 shards of crispy chicken skin delicately on or near the crémeux for height and texture.",
+      "Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 30,
+      "calories": 765,
+      "cholesterol_mg": 298.7,
+      "dietary_fiber_g": 5,
+      "protein_g": 16.5,
+      "saturated_fat_g": 20.8,
+      "sodium_mg": 259.8,
+      "total_carbs_g": 68,
+      "total_fat_g": 48.3,
+      "total_sugars_g": 34.5,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.4,
+      "calories": 290,
+      "cholesterol_mg": 113.3,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 6.3,
+      "saturated_fat_g": 7.9,
+      "sodium_mg": 98.5,
+      "total_carbs_g": 25.8,
+      "total_fat_g": 18.3,
+      "total_sugars_g": 13.1,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 99.6,
+      "dietary_fiber": 17.7,
+      "protein": 33,
+      "saturated_fat": 104.2,
+      "sodium": 11.3,
+      "total_carbs": 24.7,
+      "total_fat": 61.9
+    },
+    "serving_size_g": 263.75,
+    "total_recipe_weight_g": 1055
+  },
+  {
+    "recipe_name": "Pan-Seared Yellowfin Tuna with Lemon-Caper Butter and Mediterranean Quinoa Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_yellowfin_tuna_with_lemon-caper_butter_and_mediterranean_quinoa_salad_20250630_040706_b0d65dc5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:07:07.387412000Z",
+    "selected_ingredients": [
+      "yellowfin tuna"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant seared yellowfin tuna steak, a thick medallion, rests cleanly on a white round porcelain dinner plate. Its exterior boasts a rich, golden-brown sear, contrasting with the tender, pinkish-red interior visible from the cut side. Beside it, a generous, slightly mounded portion of Mediterranean quinoa salad bursts with color: halved crimson cherry tomatoes, diced green cucumber, finely diced red onion, and halved dark Kalamata olives, all intertwined with fresh green parsley and mint. A glistening drizzle of golden lemon-caper butter lightly coats the tuna. The plate features moderate negative space, ensuring the dish is the focal point. A fresh lemon wedge and a small sprig of mint provide a final touch. The setting is a modern bistro: a simple wooden table, a white cotton napkin, and standard flatware, all under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with fresh crusty bread for dipping.",
+      "Pair with a light, crisp white wine."
+    ],
+    "hero_ingredient": "Yellowfin Tuna",
+    "ingredients": [
+      {
+        "name": "Yellowfin tuna steaks",
+        "quantity": "4 x 180g pieces"
+      },
+      {
+        "name": "Quinoa",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Kalamata olives",
+        "quantity": "80g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "15g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "2"
+      },
+      {
+        "name": "Capers",
+        "quantity": "30g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Rinse quinoa thoroughly. Combine quinoa and vegetable broth in a saucepan.",
+      "Bring to a boil. Reduce heat, cover, and simmer for 15 minutes, or until liquid is absorbed and quinoa is fluffy. Let stand 5 minutes, then fluff with a fork.",
+      "Halve cherry tomatoes. Dice cucumber. Finely dice red onion. Halve pitted Kalamata olives. Chop parsley and mint.",
+      "In a large bowl, combine cooked quinoa, halved cherry tomatoes, diced cucumber, finely diced red onion, halved Kalamata olives, chopped parsley, and chopped mint.",
+      "Dress the quinoa salad with 15ml olive oil and the juice of 1/2 lemon. Season with salt and pepper. Toss gently to combine.",
+      "Pat tuna steaks dry with paper towels. Season generously with salt and black pepper on both sides.",
+      "Heat remaining 15ml olive oil in a large non-stick skillet over high heat until shimmering.",
+      "Carefully place tuna steaks in the hot skillet. Sear for 2 minutes per side for medium-rare doneness. Adjust time for preferred doneness.",
+      "Remove tuna from skillet and set aside on a plate to rest.",
+      "Reduce heat to medium. Add butter to the same skillet. Once melted and bubbling, add capers and the juice of the remaining 1/2 lemon. Stir for 30 seconds.",
+      "To serve, spoon a generous portion of Mediterranean quinoa salad onto each plate. Place one seared tuna steak beside the salad. Drizzle the lemon-caper butter over the tuna. Garnish with a lemon wedge or fresh herb sprig."
+    ],
+    "notes": [
+      "For medium-rare tuna, sear for 2 minutes per side. For more well-done, increase cooking time as desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 637,
+      "cholesterol_mg": 116.9,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 51.4,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 620.3,
+      "total_carbs_g": 44.4,
+      "total_fat_g": 28.6,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 112,
+      "cholesterol_mg": 20.5,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 9,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 108.7,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 5,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 26.8,
+      "protein": 102.7,
+      "saturated_fat": 50.9,
+      "sodium": 27,
+      "total_carbs": 16.2,
+      "total_fat": 36.6
+    },
+    "serving_size_g": 570.5,
+    "total_recipe_weight_g": 2282
+  },
+  {
+    "recipe_name": "Spicy Mushroom Ceviche",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_mushroom_ceviche_20250630_040149_f9c8955d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:01:49.504586000Z",
+    "selected_ingredients": [
+      {
+        "name": "thai chili"
+      },
+      {
+        "name": "szechuan peppercorn"
+      },
+      {
+        "name": "ginger"
+      },
+      {
+        "name": "coriander"
+      },
+      {
+        "name": "onion"
+      }
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian Peruvian",
+    "visual_description": "A small, homely portion of spicy mushroom ceviche is presented in a simple, off-white ceramic bowl, placed on a well-used wooden kitchen table. Thinly sliced brown mushrooms are tossed with vibrant, thinly sliced red onion, finely chopped fresh coriander, and bright yellow choclo kernels. The ingredients are naturally arranged, slightly overlapping, showcasing the interplay of earthy mushroom tones with the sharp red and green accents. A few pieces of golden, crunchy cancha corn are scattered alongside the bowl on the table. The dish is illuminated by warm, natural light, highlighting the fresh textures and inviting colors. The overall scene is casual and comforting, typical of a family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "hero_ingredient": "Mushrooms",
+    "ingredients": [
+      {
+        "name": "Brown mushrooms",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh coriander",
+        "quantity": "1/2 bunch"
+      },
+      {
+        "name": "Limes",
+        "quantity": "6-8 (for 120 ml juice)"
+      },
+      {
+        "name": "Thai chili",
+        "quantity": "1-2, deseeded (adjust to taste)"
+      },
+      {
+        "name": "Szechuan peppercorns",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Choclo (Peruvian corn)",
+        "quantity": "1 cup, cooked"
+      },
+      {
+        "name": "Cancha (toasted corn)",
+        "quantity": "1/2 cup"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Clean mushrooms. Slice thinly.",
+      "Peel and thinly slice red onion into half-moons. Rinse under cold water. Drain well.",
+      "Finely chop coriander.",
+      "Juice limes. Strain to remove pulp.",
+      "Finely mince Thai chili. Peel and finely mince ginger. Lightly crush Szechuan peppercorns.",
+      "Finely chop celery.",
+      "In a non-reactive bowl, combine lime juice, minced chili, minced ginger, crushed Szechuan peppercorns, chopped celery, and a pinch of salt. Stir well. This is the 'leche de tigre'.",
+      "Add sliced mushrooms, sliced red onion, and chopped coriander to the 'leche de tigre'. Gently toss to coat.",
+      "Marinate for 15-20 minutes in the refrigerator. Stir occasionally.",
+      "Taste and adjust salt if needed.",
+      "Serve immediately in individual small bowls. Garnish with cooked choclo kernels. Serve cancha on the side."
+    ]
+  },
+  {
+    "recipe_name": "Miso-Glazed Eggplant & Tofu Bites",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_miso-glazed_eggplant_%26_tofu_bites_20250630_040057_7c14c47f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T04:00:57.594114000Z",
+    "selected_ingredients": [
+      {
+        "name": "eggplant"
+      },
+      {
+        "name": "parmesan"
+      },
+      {
+        "name": "dark miso"
+      },
+      {
+        "name": "oregano"
+      },
+      {
+        "name": "yellowfin tuna"
+      },
+      {
+        "name": "smoked tofu"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": null,
+    "visual_description": "An elegant display of 8-10 bite-sized Miso-Glazed Eggplant & Tofu Bites arranged on a pristine, unglazed handcrafted ceramic platter in a soft cream hue. Each piece features a roasted eggplant cube and a golden-brown seared smoked tofu cube, tossed in a glossy dark miso glaze. A delicate, small, perfectly seared yellowfin tuna cube rests atop each duo, its pale pink interior contrasting with a lightly seared exterior. Finely grated Parmesan adds a savory white dust. Fresh, vibrant green oregano sprigs are thoughtfully placed, providing a pop of color. The arrangement is organic and unforced, with ample negative space. A light, natural reclaimed wood surface and soft, diffused natural light enhance the earthy tones and textures, creating a clean, understated scene highlighting the sustainable ingredients.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Fusion",
+    "hero_ingredient": "Eggplant",
+    "ingredients": [
+      {
+        "name": "Eggplant",
+        "quantity": "2 medium (approx. 600g), cut into 2cm cubes"
+      },
+      {
+        "name": "Smoked Tofu",
+        "quantity": "200g block, cut into 2cm cubes"
+      },
+      {
+        "name": "Yellowfin Tuna",
+        "quantity": "100g sashimi-grade, cut into 1cm cubes"
+      },
+      {
+        "name": "Dark Miso Paste",
+        "quantity": "50g"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Fresh Oregano",
+        "quantity": "10g, finely chopped, plus extra sprigs for garnish"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "30g, finely grated"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Toss eggplant cubes with 15ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 20-25 minutes until tender and lightly browned.",
+      "While eggplant roasts, prepare miso glaze. In a small bowl, whisk together dark miso paste, maple syrup, and rice vinegar until smooth.",
+      "Heat remaining 15ml olive oil in a non-stick pan over medium-high heat. Add smoked tofu cubes. Sear for 5-7 minutes, turning occasionally, until golden brown and slightly crispy on all sides.",
+      "Add miso glaze to the pan with tofu. Toss gently to coat. Cook for 1-2 minutes until glaze thickens slightly and adheres to tofu. Remove from heat.",
+      "Quickly sear each side of the tuna cubes for 30 seconds. Season with a pinch of salt.",
+      "In a large bowl, combine roasted eggplant and glazed tofu. Gently fold in chopped fresh oregano.",
+      "Arrange eggplant and tofu bites on a clean, light-colored serving platter. Place a small piece of seared tuna on top of each bite.",
+      "Lightly sprinkle with grated Parmesan cheese. Garnish with small sprigs of fresh oregano. Serve immediately."
+    ],
+    "notes": [
+      "This recipe emphasizes plant-forward ingredients with a small accent of sustainably sourced tuna.",
+      "The miso glaze utilizes fermentation for flavor depth."
+    ]
+  }
+]

@@ -1,0 +1,671 @@
+[
+  {
+    "recipe_name": "Chicken and Potato Tomato Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_potato_tomato_bake_20250624_104451_ef1aac5a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:51.862244000Z",
+    "selected_ingredients": [
+      "tomato",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of a Rustic Chicken and Potato Tomato Bake is presented on a simple, round, off-white ceramic plate with a slightly raised rim, placed on a well-used wooden dining table. The plate holds one golden-brown roasted bone-in chicken thigh, nestled amongst thick, roasted potato wedges and tender, burst cherry tomato halves. Roughly chopped red onion and smashed garlic cloves are interspersed throughout the dish, all glistening lightly from olive oil. A scattering of fresh, bright green chopped parsley provides a final touch. The chicken skin is slightly crispy, the potatoes show soft interiors and lightly browned edges. The overall arrangement is natural and casual, with components touching and overlapping, reflecting a comforting, home-cooked meal. The scene is lit by warm, cozy light, suggesting a relaxed family dinner. A casually placed, folded beige linen napkin and a simple water glass sit nearby. The background is slightly blurred, hinting at a lived-in kitchen environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in chicken thighs",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "New potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season chicken generously with salt and pepper.",
+      "Cut potatoes into thick wedges. Halve cherry tomatoes. Cut red onion into thick wedges. Smash garlic cloves.",
+      "In a large roasting pan, combine potato wedges, halved cherry tomatoes, red onion wedges, and smashed garlic.",
+      "Drizzle vegetables with olive oil. Sprinkle with dried oregano, salt, and pepper. Toss to coat evenly.",
+      "Nestle seasoned chicken thighs among the vegetables in the pan. Pour chicken broth into the pan.",
+      "Bake for 35-45 minutes. Chicken internal temperature must reach 75°C. Potatoes should be tender and lightly browned.",
+      "Remove pan from oven. Let the bake rest for 5 minutes.",
+      "Chop fresh parsley. Garnish the bake with chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 690,
+      "cholesterol_mg": 165,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 40,
+      "saturated_fat_g": 8.9,
+      "sodium_mg": 280,
+      "total_carbs_g": 46.1,
+      "total_fat_g": 39,
+      "total_sugars_g": 6.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 118,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.9,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 48,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 6.7,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 25.4,
+      "protein": 80,
+      "saturated_fat": 44.5,
+      "sodium": 12.2,
+      "total_carbs": 16.8,
+      "total_fat": 50
+    },
+    "serving_size_g": 584,
+    "total_recipe_weight_g": 2335.9
+  },
+  {
+    "recipe_name": "Roasted Chicken with Preserved Lemon & Seasonal Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_with_preserved_lemon_%26_seasonal_vegetables_20250624_104448_d753244d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:48.449Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "Single roasted chicken thigh, golden-brown and crisp-skinned, placed slightly off-center on a round, handcrafted ceramic plate in a natural cream tone. Around the chicken, arrange generous, rustic chunks of roasted carrots, parsnips, and potato wedges, interspersed with vibrant green broccoli florets. The vegetables show slight charring and tender edges. A generous sprinkle of bright green preserved lemon and herb gremolata rests atop the chicken and a few scattered pieces on the vegetables. The plate rests on a light, reclaimed wood surface. A natural, undyed linen napkin is folded loosely beside it. Soft, diffused natural light illuminates the scene from the side, creating gentle shadows. Background is minimalist, perhaps a subtle out-of-focus plant.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 pieces"
+      },
+      {
+        "name": "Preserved lemon rind",
+        "quantity": "1/2 piece"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Parsnips",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Small waxy potatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "Optional, for deglazing"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and cut carrots and parsnips into thick chunks. Cut potatoes into wedges. Cut broccoli into florets.",
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Arrange chicken thighs, carrot chunks, parsnip chunks, and potato wedges on a large baking tray. Drizzle with olive oil. Add 2 crushed garlic cloves to the tray. Roast for 30 minutes.",
+      "After 30 minutes, add broccoli florets to the tray. Continue roasting for 15-20 minutes, or until chicken internal temperature reaches 75°C and vegetables are tender-crisp.",
+      "While chicken roasts, finely chop the preserved lemon rind (discard pulp). Finely chop fresh parsley and mint. Mince the remaining fresh garlic clove.",
+      "Combine chopped preserved lemon, parsley, mint, and minced garlic in a small bowl to make the gremolata.",
+      "Remove chicken and vegetables from oven. Let chicken rest for 5 minutes.",
+      "Plate a roasted chicken thigh with an assortment of roasted vegetables. Spoon gremolata over the chicken and vegetables. Serve immediately."
+    ],
+    "notes": [
+      "This recipe emphasizes using seasonal produce. Adjust vegetables based on availability.",
+      "Save vegetable scraps and chicken bones to make homemade stock, reducing food waste.",
+      "Preserved lemons can be made at home from excess lemons, enhancing the zero-waste approach."
+    ],
+    "traditional_techniques": [
+      "Roasting",
+      "Preservation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 666,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 9.5,
+      "protein_g": 45.1,
+      "saturated_fat_g": 9,
+      "sodium_mg": 959,
+      "total_carbs_g": 42.1,
+      "total_fat_g": 36.5,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132,
+      "cholesterol_mg": 37,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 8.9,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 190,
+      "total_carbs_g": 8.3,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 34,
+      "protein": 90,
+      "saturated_fat": 45,
+      "sodium": 42,
+      "total_carbs": 15,
+      "total_fat": 47
+    },
+    "serving_size_g": 504.5,
+    "total_recipe_weight_g": 2018
+  },
+  {
+    "recipe_name": "Paneer Makhani Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_paneer_makhani_curry_20250624_104446_e13b7578.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:46.781668000Z",
+    "selected_ingredients": [
+      "paneer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Paneer Makhani Curry is presented in a deep, pristine white porcelain bowl. The curry itself is a vibrant, rich orange-red, its smooth, velvety gravy glistening from the butter and cream. Generous 2cm cubes of light golden-brown paneer are nestled within the sauce, some peeking out. The dish is garnished with a generous sprinkle of bright green, freshly chopped coriander leaves, and a delicate swirl of fresh cream on top. The bowl sits on a simple light wooden table. Beside it, a small, elegant white porcelain bowl holds fluffy, perfectly cooked basmati rice. A warm, folded piece of garlic naan bread rests gracefully beside the main bowl. The scene is illuminated by soft, natural, even light, creating a professional yet inviting atmosphere, with a subtle, blurred restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with basmati rice, naan bread, or roti.",
+      "Accompaniments such as raita (yogurt dip) or pickled onions are common."
+    ],
+    "hero_ingredient": "Paneer",
+    "ingredients": [
+      {
+        "name": "Paneer",
+        "quantity": "400g block, cut into 2cm cubes"
+      },
+      {
+        "name": "Ripe Tomatoes",
+        "quantity": "500g, pureed"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "20g"
+      },
+      {
+        "name": "Cashew Nuts",
+        "quantity": "50g, soaked in hot water"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cumin Seeds",
+        "quantity": "5g"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "3g"
+      },
+      {
+        "name": "Coriander Powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Red Chili Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "5g"
+      },
+      {
+        "name": "Kasuri Methi (Dried Fenugreek Leaves)",
+        "quantity": "5g, crushed"
+      },
+      {
+        "name": "Fresh Cream",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "5g (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh Coriander Leaves",
+        "quantity": "30g, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Soak cashew nuts in hot water for 20 minutes. Drain. Blend cashews with 50ml fresh water to a very smooth paste. Set aside.",
+      "Heat 15ml oil in a separate non-stick pan over medium heat. Lightly pan-fry paneer 2cm cubes until golden on all sides. Remove and set aside.",
+      "In a large heavy-bottomed pan, heat butter and remaining 15ml oil over medium heat.",
+      "Add cumin seeds. Let them splutter, about 10 seconds.",
+      "Add finely diced onion. Sauté until translucent and lightly golden, about 5-7 minutes.",
+      "Stir in ginger-garlic paste. Cook for 1 minute until fragrant.",
+      "Reduce heat to low. Add turmeric powder, coriander powder, and red chili powder. Stir for 30 seconds.",
+      "Pour in tomato puree. Add salt and sugar (if using). Increase heat to medium. Cook, stirring occasionally, until the mixture thickens and oil begins to separate from the sides, about 10-15 minutes.",
+      "Stir in the prepared cashew paste. Cook for 2-3 minutes, stirring constantly to prevent sticking.",
+      "Add 150ml water. Bring the gravy to a gentle simmer. Cook for 5 minutes.",
+      "Gently add the pan-fried paneer cubes to the simmering gravy. Simmer for another 5 minutes.",
+      "Stir in garam masala and crushed kasuri methi.",
+      "Remove the pan from heat. Stir in the fresh cream.",
+      "Garnish generously with fresh chopped coriander leaves. Serve hot."
+    ],
+    "traditional_techniques": [
+      "Tempering spices (Tadka)",
+      "Slow simmering gravy"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.2,
+      "calories": 616,
+      "cholesterol_mg": 125.4,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 24.1,
+      "saturated_fat_g": 25.6,
+      "sodium_mg": 530.4,
+      "total_carbs_g": 27,
+      "total_fat_g": 48.5,
+      "total_sugars_g": 12.4,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 180,
+      "cholesterol_mg": 36.7,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 7.1,
+      "saturated_fat_g": 7.5,
+      "sodium_mg": 155.3,
+      "total_carbs_g": 7.9,
+      "total_fat_g": 14.2,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42,
+      "dietary_fiber": 19,
+      "protein": 48,
+      "saturated_fat": 128,
+      "sodium": 23,
+      "total_carbs": 10,
+      "total_fat": 62
+    },
+    "serving_size_g": 341.6,
+    "total_recipe_weight_g": 1366.5
+  },
+  {
+    "recipe_name": "Hearty Chicken, Mushroom, and Tomato Rice Bake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_chicken%2C_mushroom%2C_and_tomato_rice_bake_20250624_104446_067d7833.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:46.440010000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "mushroom",
+      "garlic",
+      "rice",
+      "cheese"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hearty Chicken, Mushroom, and Tomato Rice Bake is presented on a simple, round, off-white ceramic plate. The dish features tender, golden-brown chicken chunks nestled within a creamy, tomato-infused rice mixture. Soft, earthy brown mushroom slices and bright red diced tomatoes are visibly integrated throughout the rice. The top is covered with a golden, bubbly layer of melted cheddar cheese, with some crispy edges. The rice has absorbed the broth, maintaining a moist, comforting texture, not dry. A few flecks of green from optional fresh parsley garnish are scattered on top. The plate is placed on a well-used wooden dining table. A simple fork and knife rest beside the plate. The scene is bathed in warm, inviting kitchen lighting, evoking a relaxed, lived-in family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Button mushrooms",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Grated cheddar cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "small bunch, for garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Cut chicken thighs into 3 cm chunks. Season with salt and pepper.",
+      "Slice mushrooms. Dice onion. Mince garlic.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium-high heat.",
+      "Add chicken chunks. Brown on all sides. Cook until internal temperature reaches 75°C. Remove chicken from skillet. Set aside.",
+      "Add diced onion to the skillet. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and sliced mushrooms. Cook for 3-5 minutes until mushrooms are tender.",
+      "Stir in uncooked rice, diced tomatoes (undrained), dried oregano, salt, and pepper. Mix well.",
+      "Pour in chicken broth. Bring mixture to a simmer.",
+      "Return browned chicken to the skillet. Nestle chicken into the rice mixture.",
+      "Cover the skillet tightly with a lid or foil. Transfer to the preheated oven.",
+      "Bake for 20-25 minutes, or until most liquid is absorbed and rice is tender.",
+      "Remove from oven. Sprinkle grated cheddar cheese evenly over the top.",
+      "Return to oven, uncovered. Bake for another 10-15 minutes, or until cheese is melted and bubbly and lightly golden.",
+      "Let stand 5 minutes before serving. Garnish with fresh parsley if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 723,
+      "cholesterol_mg": 189.4,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 50.3,
+      "saturated_fat_g": 11.7,
+      "sodium_mg": 1099.6,
+      "total_carbs_g": 63.4,
+      "total_fat_g": 29.9,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115,
+      "cholesterol_mg": 30.1,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 174.7,
+      "total_carbs_g": 10.1,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63.1,
+      "dietary_fiber": 13.4,
+      "protein": 100.7,
+      "saturated_fat": 58.6,
+      "sodium": 47.8,
+      "total_carbs": 23,
+      "total_fat": 38.3
+    },
+    "serving_size_g": 629.25,
+    "total_recipe_weight_g": 2517
+  },
+  {
+    "recipe_name": "Hearty Mexican Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_mexican_chicken_and_rice_20250624_104445_58918b70.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:44:45.566006000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "corn"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of Hearty Mexican Chicken and Rice is presented on an everyday, slightly off-white ceramic plate with a subtle, rustic texture, resting on a well-used wooden dining table. The dish features a golden-brown, seared chicken thigh, nestled among fluffy, vibrant orange-red rice. The rice is studded with bright yellow corn kernels and finely diced red bell pepper and onion, creating a colorful, inviting texture. Fresh, chopped coriander leaves are scattered over the top, adding a pop of green. The chicken is whole, not sliced, showcasing its tender, cooked-through appearance. A lime wedge sits casually on the side of the plate. In the background, a simple, folded white cloth napkin and a rustic fork are visible. Warm, soft kitchen lighting casts gentle shadows, enhancing the comforting, homemade feel of the meal, with subtle, natural clutter visible on the table.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn or flour tortillas",
+      "Offer a side of salsa or pickled jalapeños"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800 g)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Canned diced tomatoes, undrained",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Frozen corn kernels",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Onion, medium",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g, or to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g, or to taste"
+      },
+      {
+        "name": "Fresh coriander/cilantro",
+        "quantity": "30 g, chopped for garnish"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1, cut into wedges for serving"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat vegetable oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 5-7 minutes until golden brown and crispy. Flip and sear for another 3-4 minutes. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion and red bell pepper to the pot. Cook for 5 minutes until softened, stirring occasionally.",
+      "Add minced garlic, ground cumin, dried oregano, and chili powder. Cook for 1 minute until fragrant.",
+      "Add uncooked rice to the pot. Stir well to coat the rice with the aromatics and spices. Toast rice for 2-3 minutes, stirring constantly.",
+      "Pour in diced tomatoes (undrained) and chicken broth. Stir to combine, scraping up any browned bits from the bottom of the pot.",
+      "Return seared chicken thighs to the pot, nestling them into the rice mixture. Bring liquid to a boil.",
+      "Reduce heat to low, cover the pot tightly, and simmer for 20 minutes. Do not lift the lid.",
+      "Stir in frozen corn kernels. Re-cover and cook for another 5-10 minutes, or until all liquid is absorbed and rice is tender. Ensure chicken reaches an internal temperature of 75°C (167°F).",
+      "Remove pot from heat. Let it rest, covered, for 5-10 minutes before serving.",
+      "Garnish with fresh chopped coriander. Serve hot with lime wedges."
+    ],
+    "notes": [
+      "Allowing the rice to rest after cooking is crucial for a fluffy texture.",
+      "Adjust chili powder to your preferred spice level."
+    ],
+    "traditional_techniques": [
+      "Sofrito (sautéing aromatics)",
+      "Toasting rice"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 923,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 5.8,
+      "protein_g": 47,
+      "saturated_fat_g": 10,
+      "sodium_mg": 1386,
+      "total_carbs_g": 83.9,
+      "total_fat_g": 40.1,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 148,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.5,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 222,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 21,
+      "protein": 94,
+      "saturated_fat": 50,
+      "sodium": 60,
+      "total_carbs": 31,
+      "total_fat": 51
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  }
+]

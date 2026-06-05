@@ -1,0 +1,635 @@
+[
+  {
+    "recipe_name": "Lemon Ricotta Pasta with Asparagus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon_ricotta_pasta_with_asparagus_20250723_194208_0834209c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T19:42:09.348628000Z",
+    "selected_ingredients": [
+      "ricotta",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of Lemon Ricotta Pasta with Asparagus rests in a shallow white porcelain bowl, centered on a simple wooden table. The pasta, likely linguine or fettuccine, is gently coiled, coated in a light, creamy, pale yellow ricotta sauce. Bright green asparagus pieces, cut into uniform 3 cm lengths, are interspersed throughout the pasta, showcasing their tender-crisp texture. A scattering of finely grated Parmigiano Reggiano adds a delicate white dusting. Freshly torn basil leaves provide vibrant green accents and aromatic contrast. The dish has a natural, flowing arrangement, avoiding rigid shapes. A cotton napkin is folded neatly beside the plate. Natural, even lighting illuminates the scene, highlighting the dish's fresh colors and inviting texture. Traditional European flatware is placed to the side.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up sauce.",
+      "Pair with a crisp white wine."
+    ],
+    "hero_ingredient": "Ricotta",
+    "ingredients": [
+      {
+        "name": "Pasta (e.g., fettuccine, linguine)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Asparagus spears",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large (zest and juice)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Parmigiano Reggiano (freshly grated)",
+        "quantity": "50 g, plus extra for serving"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "2.5 ml"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "small bunch, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cook pasta according to package directions until al dente. Reserve 250 ml pasta water before draining.",
+      "While pasta cooks, trim woody ends from asparagus. Cut asparagus into 3 cm pieces.",
+      "Heat olive oil in a large pan over medium heat. Add minced garlic and red pepper flakes. Sauté for 30 seconds until fragrant. Do not brown.",
+      "Add asparagus pieces to the pan. Sauté for 3-4 minutes until tender-crisp.",
+      "In a large bowl, combine ricotta, lemon zest, lemon juice, Parmigiano Reggiano, salt, and pepper. Mix well.",
+      "Add cooked pasta and sautéed asparagus to the ricotta mixture.",
+      "Add 120 ml reserved pasta water. Toss gently to coat. Add more pasta water, 30 ml at a time, until a creamy sauce forms.",
+      "Stir in fresh basil.",
+      "Serve immediately. Garnish with extra Parmigiano Reggiano."
+    ],
+    "notes": [
+      "This dish is best served immediately to maintain creamy texture."
+    ],
+    "traditional_techniques": [
+      "Al dente pasta cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 614,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 26.8,
+      "saturated_fat_g": 8.8,
+      "sodium_mg": 260,
+      "total_carbs_g": 81.5,
+      "total_fat_g": 20.2,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 227,
+      "cholesterol_mg": 15.8,
+      "dietary_fiber_g": 1.9,
+      "protein_g": 9.9,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 95.9,
+      "total_carbs_g": 30.1,
+      "total_fat_g": 7.5,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 14,
+      "dietary_fiber": 19,
+      "protein": 54,
+      "saturated_fat": 44,
+      "sodium": 11,
+      "total_carbs": 30,
+      "total_fat": 26
+    },
+    "serving_size_g": 270.75,
+    "total_recipe_weight_g": 1083
+  },
+  {
+    "recipe_name": "Homestyle Sausage and Potato Skillet with Fried Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_sausage_and_potato_skillet_with_fried_egg_20250723_181511_b0008c85.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T18:15:12.409165000Z",
+    "selected_ingredients": [
+      "sausage",
+      "egg",
+      "sour cream",
+      "cheese",
+      "cucumber"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A Homestyle Sausage and Potato Skillet is presented on a rustic, everyday ceramic plate, sitting on a well-used wooden dining table. The scene is bathed in warm, cozy kitchen lighting. Diced, golden-brown potatoes are mixed with thick, seared sausage chunks and tender, caramelized onions, forming a hearty base. A perfectly fried egg, with a slightly runny yolk, rests on top of the skillet mixture. A generous dollop of creamy white sour cream sits beside the egg, and a light sprinkle of shredded cheddar cheese melts gently over the warm ingredients. The components are naturally arranged, touching and slightly overlapping, conveying a casual, comforting feel. Beside the main dish, a small mound of thinly sliced, fresh green cucumber rounds, lightly tossed with chopped green dill, adds a vibrant, fresh contrast. The entire plate is visible, with modest, satisfying portions, reflecting a homely family meal. Standard eating utensils are casually placed nearby.",
+    "number_of_servings": 1,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Pork sausage",
+        "quantity": "150 grams"
+      },
+      {
+        "name": "Potato",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "20 grams"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Dice the potato into 1.5 cm cubes. Chop the onion. Mince the garlic. Slice the cucumber into thin rounds.",
+      "Heat 5 ml vegetable oil in a medium skillet over medium-high heat. Add the pork sausage. Cook until browned on all sides, about 5-7 minutes. Remove sausage from skillet. Set aside. Slice the cooked sausage into thick chunks.",
+      "Add remaining 10 ml vegetable oil to the skillet. Add diced potatoes and chopped onion. Season with salt and pepper. Cook, stirring occasionally, until potatoes are tender and golden brown, about 15-20 minutes.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Return the sliced sausage chunks to the skillet with the potatoes and onions. Stir to combine. Keep warm.",
+      "While the skillet mixture cooks, prepare the egg. Heat a small non-stick pan over medium heat. Fry the egg to your preferred doneness, sunny-side up or over easy. Season with salt and pepper.",
+      "In a small bowl, combine sliced cucumber with chopped fresh dill. Season lightly with salt and pepper. Toss gently.",
+      "Spoon the sausage and potato mixture onto a single serving plate. Place the fried egg on top. Dollop with sour cream. Sprinkle with shredded cheddar cheese. Serve the cucumber salad on the side."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 989,
+      "cholesterol_mg": 326,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 38.8,
+      "saturated_fat_g": 24.4,
+      "sodium_mg": 1267,
+      "total_carbs_g": 46.1,
+      "total_fat_g": 72.2,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 159.1,
+      "cholesterol_mg": 52.4,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.2,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 203.9,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 11.6,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 108.7,
+      "dietary_fiber": 24.6,
+      "protein": 77.6,
+      "saturated_fat": 122,
+      "sodium": 55.1,
+      "total_carbs": 16.8,
+      "total_fat": 92.6
+    },
+    "serving_size_g": 621.5,
+    "total_recipe_weight_g": 621.5
+  },
+  {
+    "recipe_name": "Sausage and Potato Hash with Fried Egg",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sausage_and_potato_hash_with_fried_egg_20250723_181005_73306896.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T18:10:06.394657000Z",
+    "selected_ingredients": [
+      "sausage",
+      "egg",
+      "sour cream",
+      "cheese",
+      "potato",
+      "cucumber"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of hearty sausage and potato hash is presented on a simple, off-white ceramic plate. The hash forms a loose, rustic mound, featuring golden-brown diced potatoes, crumbled browned sausage pieces, and softened translucent diced onions. Melted yellow cheddar cheese is visibly mixed throughout, creating a comforting texture. A perfectly fried egg with a glossy, runny yolk rests gently on top of the hash, slightly off-center. A generous dollop of creamy white sour cream is placed beside the hash on the plate. Freshly chopped bright green parsley is scattered over the egg and hash, providing a vibrant contrast. Alongside the hash, several thick slices of fresh green cucumber are casually arranged. The plate is set on a well-used wooden dining table, illuminated by warm, natural kitchen lighting, evoking a relaxed family meal atmosphere. A simple cloth napkin is casually placed nearby.",
+    "number_of_servings": 1,
+    "cuisine_type": "American",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Fresh Pork Sausage",
+        "quantity": "100g"
+      },
+      {
+        "name": "Potato",
+        "quantity": "1 medium (approx. 200g)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1/4 medium (approx. 50g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Sour Cream",
+        "quantity": "30g"
+      },
+      {
+        "name": "Cheddar Cheese",
+        "quantity": "30g (shredded)"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1/4 medium (approx. 50g)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "5g (chopped)"
+      }
+    ],
+    "instructions": [
+      "Peel potato. Dice potato into 1 cm cubes.",
+      "Dice onion into 1 cm pieces. Mince garlic.",
+      "Remove sausage from casing if links. Break into small pieces.",
+      "Heat olive oil in a non-stick pan over medium-high heat.",
+      "Add sausage. Cook, breaking up with a spoon, until browned. Remove sausage. Leave fat in pan.",
+      "Add diced potato to pan. Cook 8-10 minutes. Stir occasionally. Potatoes should be tender and browned.",
+      "Add onion and garlic to pan. Cook 3-4 minutes. Onions should soften.",
+      "Return sausage to pan. Stir to combine.",
+      "Add shredded cheddar. Stir until cheese melts. Season with salt and pepper.",
+      "In a separate small pan, fry egg to desired doneness.",
+      "Slice cucumber into rounds or dice.",
+      "Plate hash. Top with fried egg. Add a dollop of sour cream. Sprinkle with fresh parsley. Serve with cucumber."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 895.2,
+      "cholesterol_mg": 311.2,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 35.1,
+      "saturated_fat_g": 23.1,
+      "sodium_mg": 979.2,
+      "total_carbs_g": 44.5,
+      "total_fat_g": 65,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 168.4,
+      "cholesterol_mg": 58.6,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 6.6,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 184.2,
+      "total_carbs_g": 8.4,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 103.73,
+      "dietary_fiber": 22.24,
+      "protein": 70.22,
+      "saturated_fat": 115.74,
+      "sodium": 42.57,
+      "total_carbs": 16.17,
+      "total_fat": 83.28
+    },
+    "serving_size_g": 531.5,
+    "total_recipe_weight_g": 531.5
+  },
+  {
+    "recipe_name": "Spanish Pork and Potato Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_pork_and_potato_stew_20250723_175902_fb7b9cf6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T17:59:03.336009000Z",
+    "selected_ingredients": [
+      "pork",
+      "potato",
+      "garlic",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A hearty single portion of Spanish Pork and Potato Stew is presented in a white, shallow ceramic bowl, centrally placed on a simple wooden table. Tender, browned pork chunks (3-4 cm cubes) and rustic potato wedges (4-5 cm) are coated in a rich, reddish-brown sauce. Visible pieces of soft, diced red bell pepper and sautéed onion are interspersed. The stew boasts a warm color palette of deep browns, reds, and golden yellows. A generous sprinkle of vibrant green, freshly chopped flat-leaf parsley provides a fresh contrast on top. The composition is balanced, with moderate negative space around the mounded stew. A white cotton napkin is neatly folded beside the bowl. Natural, even lighting illuminates the dish, highlighting its textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread for dipping into the rich sauce.",
+      "Pair with a robust red wine."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork shoulder or leg",
+        "quantity": "800g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1 (approx 200g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Medium red bell pepper",
+        "quantity": "1 (approx 150g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "10g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Dry white wine or broth",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Chicken or vegetable broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Cut pork into 3-4 cm cubes. Season with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Brown pork cubes in batches until golden on all sides. Remove pork and set aside.",
+      "Add chopped onion and diced red bell pepper to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic and smoked paprika. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste. Cook for 2 minutes.",
+      "Pour in dry white wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return pork to the pot. Add bay leaf and 500ml broth. Bring to a boil, then reduce heat to low. Cover and simmer for 60 minutes.",
+      "Peel potatoes and cut into 4-5 cm wedges. Add potatoes to the pot. Ensure potatoes are mostly submerged; add more broth if needed.",
+      "Continue simmering, covered, for another 30-40 minutes, or until pork and potatoes are very tender. Internal temperature of pork must reach 75°C (167°F).",
+      "Remove bay leaf. Adjust seasoning with salt and pepper.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Slow braising (estofado)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 761.06,
+      "cholesterol_mg": 146,
+      "dietary_fiber_g": 6.47,
+      "protein_g": 45.88,
+      "saturated_fat_g": 14.03,
+      "sodium_mg": 981.22,
+      "total_carbs_g": 38.15,
+      "total_fat_g": 43.5,
+      "total_sugars_g": 6.44,
+      "trans_fat_g": 0.16
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119.24,
+      "cholesterol_mg": 22.87,
+      "dietary_fiber_g": 1.01,
+      "protein_g": 7.19,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 153.74,
+      "total_carbs_g": 5.98,
+      "total_fat_g": 6.82,
+      "total_sugars_g": 1.01,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 23,
+      "protein": 92,
+      "saturated_fat": 70,
+      "sodium": 43,
+      "total_carbs": 14,
+      "total_fat": 56
+    },
+    "serving_size_g": 638.25,
+    "total_recipe_weight_g": 2553
+  },
+  {
+    "recipe_name": "Pan-Seared Pork Medallions with Apple-Onion Compote and Potato Puree",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_pork_medallions_with_apple-onion_compote_and_potato_puree_20250723_175802_6738d8b8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T17:58:02.717002000Z",
+    "selected_ingredients": [
+      "pork",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Pan-Seared Pork Medallions is presented on a clean, round white porcelain plate. Three golden-brown seared pork medallions, each 2-3 cm thick, are neatly arranged on one side. Their caramelized crust contrasts with the tender interior. A smooth mound of creamy white potato puree sits opposite the pork, appearing velvety. A small, artful spoon of glistening, amber apple-onion compote is placed beside the pork, adding color. The dish is garnished with bright green, finely chopped fresh chives. The plate rests on a light wooden table. Standard silver flatware and a white cotton napkin are beside the plate. Natural, even light illuminates the dish, highlighting textures and colors against a soft bistro background. The entire plate is visible, showcasing a balanced restaurant-style presentation with ample negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Pork Tenderloin",
+    "ingredients": [
+      {
+        "name": "Pork tenderloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Yukon Gold)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "80g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Apples (e.g., Fuji or Honeycrisp)",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "10g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Apple-Onion Compote: Finely dice apples and onion.",
+      "Heat 15ml olive oil in a small saucepan over medium heat.",
+      "Add onion; sauté until translucent, about 5 minutes.",
+      "Add apples, red wine vinegar, and sugar. Cook, stirring occasionally, until apples soften and liquid reduces, about 15-20 minutes.",
+      "Compote should be thick. Season with salt and pepper. Keep warm.",
+      "Prepare Potato Puree: Peel and dice potatoes into 2 cm cubes.",
+      "Place potatoes in a large pot. Cover with cold salted water by 2 cm.",
+      "Bring to a boil. Reduce heat and simmer until very tender, about 15-20 minutes. Drain well.",
+      "Heat milk and 50g butter in a small saucepan until butter melts and milk is warm.",
+      "Pass hot potatoes through a potato ricer or mash thoroughly. Gradually whisk in warm milk mixture until smooth and creamy. Season with salt and pepper. Keep warm.",
+      "Prepare Pork Medallions: Pat pork tenderloin dry. Remove silver skin. Cut tenderloin into 2-3 cm thick medallions.",
+      "Season generously with salt and pepper.",
+      "Heat remaining 15ml olive oil and 30g butter in a large skillet over medium-high heat. Add thyme and rosemary sprigs.",
+      "Add pork medallions to skillet. Sear 3-4 minutes per side until golden brown and internal temperature reaches 63°C.",
+      "Remove pork from skillet. Let rest on a cutting board for 5 minutes. Internal temperature will rise to 65-68°C.",
+      "To serve: Place a mound of potato puree on each plate. Arrange 3-4 pork medallions beside the puree. Spoon apple-onion compote next to pork. Garnish with finely chopped fresh chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 629.92,
+      "cholesterol_mg": 136,
+      "dietary_fiber_g": 7.29,
+      "protein_g": 37.54,
+      "saturated_fat_g": 13.63,
+      "sodium_mg": 588.02,
+      "total_carbs_g": 58.14,
+      "total_fat_g": 29.6,
+      "total_sugars_g": 17.56,
+      "trans_fat_g": 0.69
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.23,
+      "calories": 116.81,
+      "cholesterol_mg": 25.22,
+      "dietary_fiber_g": 1.35,
+      "protein_g": 6.96,
+      "saturated_fat_g": 2.53,
+      "sodium_mg": 109.04,
+      "total_carbs_g": 10.78,
+      "total_fat_g": 5.49,
+      "total_sugars_g": 3.26,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45.33,
+      "dietary_fiber": 26.04,
+      "protein": 75.08,
+      "saturated_fat": 68.15,
+      "sodium": 25.57,
+      "total_carbs": 21.14,
+      "total_fat": 37.95
+    },
+    "serving_size_g": 539.25,
+    "total_recipe_weight_g": 2157
+  }
+]

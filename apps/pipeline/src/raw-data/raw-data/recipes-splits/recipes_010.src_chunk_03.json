@@ -1,0 +1,629 @@
+[
+  {
+    "recipe_name": "Savory Spinach and Green Onion Pancakes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_spinach_and_green_onion_pancakes_20250714_012846_722aac74.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T01:28:47.111296000Z",
+    "selected_ingredients": [
+      "spinach",
+      "green onion",
+      "olive oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of golden-brown savory pancakes is casually stacked on an everyday round ceramic plate. The pancakes, roughly 8 cm in diameter, are speckled with vibrant green flecks of finely chopped spinach and thinly sliced green onion. Edges are slightly crisp, centers appear soft. The plate sits on a well-used light wooden kitchen table, showing natural grain. A small, rustic bowl of simple soy-ginger dipping sauce is placed beside the pancakes. A crumpled cloth napkin and a set of standard metal flatware are casually arranged next to the plate. Lighting is warm and inviting, typical of a cozy kitchen. The background is softly blurred, hinting at a lived-in family dining area with minimal, natural clutter. The overall presentation is homely, unpretentious, and comforting.",
+    "number_of_servings": 3,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Spinach",
+    "ingredients": [
+      {
+        "name": "Fresh spinach",
+        "quantity": "300g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Wash and roughly chop spinach. Thinly slice green onions.",
+      "In a large bowl, whisk together flour, baking powder, salt, and black pepper.",
+      "Add egg and milk to the dry ingredients. Whisk until a smooth batter forms.",
+      "Gently fold in the chopped spinach and sliced green onions into the batter.",
+      "Heat 10ml of olive oil in a large frying pan over medium heat.",
+      "Pour approximately 60ml of batter per pancake into the hot pan. Cook 3-4 minutes per side until golden brown and cooked through.",
+      "Repeat with remaining batter, adding more olive oil to the pan as needed. Serve immediately."
+    ],
+    "notes": [
+      "For a simple dipping sauce, combine 60ml soy sauce, 30ml rice vinegar, 10g grated fresh ginger, and 5ml sesame oil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 413,
+      "cholesterol_mg": 68,
+      "dietary_fiber_g": 4.7,
+      "protein_g": 14.5,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 981,
+      "total_carbs_g": 57,
+      "total_fat_g": 13.3,
+      "total_sugars_g": 4.7,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145,
+      "cholesterol_mg": 24,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 5.1,
+      "saturated_fat_g": 1,
+      "sodium_mg": 344,
+      "total_carbs_g": 20,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 17,
+      "protein": 29,
+      "saturated_fat": 14,
+      "sodium": 43,
+      "total_carbs": 21,
+      "total_fat": 17
+    },
+    "serving_size_g": 285,
+    "total_recipe_weight_g": 855
+  },
+  {
+    "recipe_name": "Creamy Chicken and Spinach Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_chicken_and_spinach_risotto_20250714_012706_c125a646.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T01:27:07.214385000Z",
+    "selected_ingredients": [
+      "spinach",
+      "green onion",
+      "olive oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The Creamy Chicken and Spinach Risotto is presented in a deep, everyday ceramic bowl with a slightly irregular rim, resting on a well-used wooden dining table. The risotto forms a natural, slightly free-flowing mound, showcasing its creamy, fluid consistency. Bright green, roughly chopped spinach leaves are visibly integrated throughout the golden-hued rice. Tender, golden-brown chicken chunks are interspersed, adding a contrasting texture and color. A generous sprinkle of finely sliced vibrant green onion tops the dish, providing a fresh garnish. The scene is illuminated by warm, inviting kitchen lighting, creating a cozy, lived-in atmosphere. A simple, silver fork and spoon rest beside the bowl on a casually placed, plain cloth napkin. The background is minimal, hinting at a family kitchen with natural imperfections.",
+    "number_of_servings": 3,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken into 2cm cubes. Season with salt and pepper.",
+      "Heat 15ml olive oil in a large pan over medium-high heat. Add chicken. Sear until golden brown and cooked through, about 5-7 minutes. Internal temperature should reach 75°C. Remove chicken from pan. Set aside.",
+      "In the same pan, add remaining 15ml olive oil. Add diced onion. Cook until softened, about 3-4 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pan. Stir for 1-2 minutes until edges are translucent.",
+      "Pour in white wine. Stir until absorbed.",
+      "Add one ladle of warm chicken broth to the rice. Stir constantly until liquid is absorbed.",
+      "Continue adding broth one ladle at a time, stirring until each addition is absorbed before adding the next. This process takes about 18-20 minutes. The risotto should be creamy and al dente.",
+      "Remove from heat. Stir in roughly chopped spinach. Stir until wilted. Add cooked chicken, three-quarters of the sliced green onions, grated Parmesan cheese, and butter. Stir well until creamy.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Ladle risotto into bowls. Garnish with remaining sliced green onions."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 790.43,
+      "cholesterol_mg": 121.17,
+      "dietary_fiber_g": 3.74,
+      "protein_g": 52.05,
+      "saturated_fat_g": 10.79,
+      "sodium_mg": 808.57,
+      "total_carbs_g": 77.99,
+      "total_fat_g": 26.99,
+      "total_sugars_g": 2.58,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101.73,
+      "cholesterol_mg": 15.59,
+      "dietary_fiber_g": 0.48,
+      "protein_g": 6.7,
+      "saturated_fat_g": 1.39,
+      "sodium_mg": 104.06,
+      "total_carbs_g": 10.04,
+      "total_fat_g": 3.47,
+      "total_sugars_g": 0.33,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40.4,
+      "dietary_fiber": 13.4,
+      "protein": 104.1,
+      "saturated_fat": 54,
+      "sodium": 35.2,
+      "total_carbs": 28.4,
+      "total_fat": 34.6
+    },
+    "serving_size_g": 777,
+    "total_recipe_weight_g": 2331
+  },
+  {
+    "recipe_name": "Broccoli and Tofu Salad with Sesame Dressing",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_broccoli_and_tofu_salad_with_sesame_dressing_20250714_010341_ce508735.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T01:03:42.208020000Z",
+    "selected_ingredients": [
+      "broccoli",
+      "egg",
+      "tofu"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented on a clean white porcelain dinner plate, showcasing a vibrant array of colors and textures. A base of fresh, crisp mixed greens provides a verdant backdrop. Artfully arranged atop the greens are tender-crisp roasted broccoli florets, displaying slight charring for depth. Golden-brown, crispy pan-fried tofu cubes are interspersed throughout, offering a contrasting texture. Quartered hard-boiled eggs, with their distinct white and yellow, are placed strategically. Thinly sliced red bell pepper adds a bright pop of color. The entire salad is lightly coated in a glossy, light brown sesame dressing. It is garnished with a sprinkle of toasted sesame seeds and thinly sliced green onions, adding a delicate finish. The dish is presented with a simple cotton napkin beside the plate, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian",
+    "cultural_serving_suggestions": [
+      "Served alongside steamed rice as part of a larger meal."
+    ],
+    "hero_ingredient": "Broccoli",
+    "ingredients": [
+      {
+        "name": "Broccoli",
+        "quantity": "500 g, cut into small florets"
+      },
+      {
+        "name": "Firm Tofu",
+        "quantity": "400 g block, pressed and cut into 2 cm cubes"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "4, hard-boiled"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1 medium, thinly sliced"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": "3 stalks, thinly sliced"
+      },
+      {
+        "name": "Toasted Sesame Seeds",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Mixed Greens",
+        "quantity": "100 g (optional)"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Toasted Sesame Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "15 g, grated"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Water",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss broccoli florets with 15 ml olive oil, salt, and pepper. Roast for 15-20 minutes until tender-crisp and slightly charred.",
+      "While broccoli roasts, press tofu to remove excess water. Cut tofu into 2 cm cubes. Heat 30 ml vegetable oil in a large non-stick pan over medium-high heat. Add tofu cubes in a single layer. Pan-fry until golden brown and crispy on all sides, about 5-7 minutes. Drain on paper towels.",
+      "Hard-boil eggs. Cool, peel, and quarter or dice them.",
+      "Prepare dressing: Whisk together soy sauce, rice vinegar, sesame oil, maple syrup, grated ginger, minced garlic, and water in a small bowl.",
+      "In a large bowl, combine roasted broccoli, crispy tofu, and thinly sliced red bell pepper. Add thinly sliced green onions.",
+      "Pour dressing over the salad ingredients. Toss gently to coat.",
+      "Arrange mixed greens on serving plates if using. Spoon salad mixture over greens.",
+      "Arrange quartered or diced hard-boiled eggs on top. Garnish with toasted sesame seeds and additional sliced green onions. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 419.6,
+      "cholesterol_mg": 186.5,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 21.2,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 1116.3,
+      "total_carbs_g": 21.9,
+      "total_fat_g": 30.2,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 100.8,
+      "cholesterol_mg": 44.8,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 5.1,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 268.2,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 2.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62,
+      "dietary_fiber": 20,
+      "protein": 42,
+      "saturated_fat": 23,
+      "sodium": 49,
+      "total_carbs": 8,
+      "total_fat": 39
+    },
+    "serving_size_g": 416.3,
+    "total_recipe_weight_g": 1665
+  },
+  {
+    "recipe_name": "Fermented Chili Basil Rice Bowl with Pickled Bell Pepper and Crispy Shallot",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_chili_basil_rice_bowl_with_pickled_bell_pepper_and_crispy_shallot_20250714_010031_58e9791c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T01:00:31.808100000Z",
+    "selected_ingredients": [
+      "basil",
+      "chili",
+      "rice",
+      "onion",
+      "bean",
+      "bell pepper"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "Thai cuisine",
+    "visual_description": "The dish is presented in a handcrafted, off-white ceramic bowl, embodying a natural, minimalist aesthetic. A mound of pristine jasmine rice forms the base. Centrally, a generous dollop of deep crimson-green fermented chili basil paste, with a coarse texture, sits atop the rice. Around the rice, vibrant red bell pepper strips, thinly sliced and quick-pickled, are arranged alongside crisp, bright green blanched long beans, cut into 5cm segments. Golden-brown crispy shallots are scattered over the paste and vegetables. Fresh, glossy Thai basil leaves are sparsely placed. The composition is clean, with ample negative space. Soft, diffused natural light illuminates the dish. The bowl rests on a light, reclaimed wood surface with a natural beige undyed linen napkin and simple wooden chopsticks completing the eco-conscious setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Serve with a side of lime wedges to squeeze over the dish for added brightness.",
+      "Offer a small bowl of fish sauce (Nam Pla) for those who prefer extra savory depth.",
+      "Traditionally eaten with a spoon and fork, or chopsticks in some contexts."
+    ],
+    "hero_ingredient": "Fermented Chili Basil Paste",
+    "ingredients": [
+      {
+        "name": "Jasmine rice",
+        "quantity": "250g"
+      },
+      {
+        "name": "Red chilies",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "20g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Thai basil leaves",
+        "quantity": "50g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "50g"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "150g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 (for serving)"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "to taste (optional)"
+      }
+    ],
+    "instructions": [
+      "Prepare Fermented Chili Basil Paste: Combine chilies, garlic, 1 shallot, Thai basil leaves, 10g salt, and 50ml water in a blender. Blend until a coarse paste forms. Transfer to a clean jar. Seal loosely. Ferment at room temperature for 24-48 hours until slightly tangy. Refrigerate after fermentation.",
+      "Prepare Pickled Bell Pepper: Cut bell pepper into thin strips. In a saucepan, combine 100ml rice vinegar, 50g sugar, and 5g salt. Heat until sugar and salt dissolve. Cool the pickling liquid completely. Pour over bell pepper strips in a jar. Refrigerate for at least 1 hour.",
+      "Prepare Crispy Shallots: Thinly slice remaining 1 large shallot. Heat 100ml vegetable oil in a small pan over medium heat. Fry shallot slices until golden brown and crispy. Drain on paper towel. Reserve the shallot-infused oil.",
+      "Cook Rice: Rinse 250g jasmine rice under cold water until water runs clear. In a pot, combine rinsed rice, 500ml water (using water infused with bell pepper cores/stems for zero-waste flavor, then strained, is recommended), and a pinch of salt. Bring to a boil. Reduce heat to low, cover, and cook for 12-15 minutes until water is absorbed. Let stand, covered, for 5 minutes.",
+      "Blanch Green Beans: Trim 150g green beans. Bring a pot of salted water to a rolling boil. Blanch green beans for 2-3 minutes until tender-crisp. Drain immediately and plunge into ice water to stop cooking. Drain well.",
+      "Assemble Bowls: Divide cooked jasmine rice among 4 individual serving bowls. Top each rice portion with a generous spoonful of the fermented chili basil paste. Arrange pickled bell pepper strips and blanched green beans around the rice. Garnish with crispy shallots and a few fresh Thai basil leaves. Serve immediately, with lime wedges and fish sauce on the side if desired."
+    ],
+    "notes": [
+      "For enhanced zero-waste flavor, use bell pepper cores and stems to infuse the water for cooking the rice. Strain before adding rice.",
+      "The fermented chili basil paste can be made days in advance. The longer it ferments, the deeper the tangy flavor."
+    ],
+    "traditional_techniques": [
+      "Fermentation",
+      "Quick Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 12.5,
+      "calories": 547,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4.22,
+      "protein_g": 7.04,
+      "saturated_fat_g": 3.74,
+      "sodium_mg": 983.4,
+      "total_carbs_g": 73.73,
+      "total_fat_g": 24.78,
+      "total_sugars_g": 19.25,
+      "trans_fat_g": 0.07
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4.46,
+      "calories": 195,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.51,
+      "protein_g": 2.51,
+      "saturated_fat_g": 1.33,
+      "sodium_mg": 350.6,
+      "total_carbs_g": 26.29,
+      "total_fat_g": 8.83,
+      "total_sugars_g": 6.86,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 15.1,
+      "protein": 14.1,
+      "saturated_fat": 18.7,
+      "sodium": 42.8,
+      "total_carbs": 26.8,
+      "total_fat": 31.8
+    },
+    "serving_size_g": 280.5,
+    "total_recipe_weight_g": 1122
+  },
+  {
+    "recipe_name": "Fermented Tomato Pasta with Crispy Mushroom",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_pasta_with_crispy_mushroom_20250714_005529_b13ed5da.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-14T00:55:30.189899000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Rigatoni pasta is artfully coiled in the center of a handcrafted, off-white ceramic bowl with an organic, slightly irregular rim. The pasta is coated in a rich, reddish-orange fermented tomato sauce, showing visible chunks of tomato and a glossy sheen. Scattered naturally over the pasta are several pieces of golden-brown, crispy king oyster mushroom 'bacon,' their irregular shapes providing textural contrast. A vibrant green basil oil is drizzled sparingly over the dish, creating delicate pools and streaks of color. The overall plating is clean and minimalist, with ample white space around the food. The bowl rests on a light, naturally textured reclaimed wood surface. An undyed linen napkin in a muted beige tone is folded neatly beside the bowl. Soft, natural light illuminates the scene from the side, casting gentle shadows and highlighting the ingredients' natural textures. The background is clean and uncluttered, with a subtle hint of green foliage from a nearby plant providing a touch of organic life. The entire plate is visible, showcasing a refined, restaurant-style portion that celebrates the inherent beauty of each sustainable ingredient.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Tomatoes and King Oyster Mushrooms",
+    "ingredients": [
+      {
+        "name": "Rigatoni pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Ripe tomatoes (e.g., Roma or beefsteak)",
+        "quantity": "700 g"
+      },
+      {
+        "name": "King oyster mushrooms",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Nutritional yeast",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Tamari or soy sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Non-chlorinated water (for brine)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fine sea salt (for brine)",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Prepare fermented tomatoes: Wash and quarter tomatoes. Combine non-chlorinated water and 10 g fine sea salt to make brine. Place tomatoes in a clean jar. Pour brine over tomatoes, ensuring they are fully submerged. Seal jar loosely. Ferment at room temperature for 3-5 days. Burp daily. Refrigerate when desired tang is reached.",
+      "Prepare mushroom 'bacon': Preheat oven to 180°C. Thinly slice king oyster mushrooms lengthwise into 3 mm strips. In a bowl, whisk together 30 ml olive oil, tamari, nutritional yeast, smoked paprika, salt, and pepper. Toss mushroom slices in marinade. Spread mushrooms in a single layer on a baking tray. Bake for 20-25 minutes, flipping halfway, until crispy and golden brown. Set aside.",
+      "Make basil oil: Wash basil leaves. Blanch basil briefly in boiling water, then immediately transfer to ice bath. Squeeze out excess water. Blend blanched basil with 70 ml olive oil and a pinch of salt until smooth. Set aside.",
+      "Cook pasta: Bring a large pot of salted water to a boil. Add rigatoni. Cook according to package directions until al dente.",
+      "Prepare sauce: While pasta cooks, finely mince garlic cloves. In a large skillet, heat remaining 20 ml olive oil over medium heat. Add minced garlic. Sauté for 1 minute until fragrant. Add fermented tomatoes and their liquid to the skillet. Break down tomatoes with a spoon. Simmer for 10-15 minutes, allowing sauce to reduce and flavors to meld. Season with salt and pepper to taste.",
+      "Combine and serve: Drain pasta, reserving 100 ml pasta water. Add cooked pasta to the skillet with the tomato sauce. Toss to coat. Add a splash of reserved pasta water if needed to achieve desired consistency. Plate individual portions of pasta. Top each with crispy mushroom 'bacon'. Drizzle generously with basil oil. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 663.3,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.62,
+      "protein_g": 20.94,
+      "saturated_fat_g": 3.58,
+      "sodium_mg": 1450.11,
+      "total_carbs_g": 90.13,
+      "total_fat_g": 25.42,
+      "total_sugars_g": 8.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124.6,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.62,
+      "protein_g": 3.93,
+      "saturated_fat_g": 0.67,
+      "sodium_mg": 272.18,
+      "total_carbs_g": 16.92,
+      "total_fat_g": 4.77,
+      "total_sugars_g": 1.61,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 30.8,
+      "protein": 41.9,
+      "saturated_fat": 17.9,
+      "sodium": 63,
+      "total_carbs": 32.8,
+      "total_fat": 32.6
+    },
+    "serving_size_g": 532.78,
+    "total_recipe_weight_g": 2131.1
+  }
+]

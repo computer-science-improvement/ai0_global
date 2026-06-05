@@ -1,0 +1,590 @@
+[
+  {
+    "recipe_name": "Gà Xào Sả Ớt (Lemongrass Chili Chicken Stir-fry)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_g%C3%A0_x%C3%A0o_s%E1%BA%A3_%E1%BB%9Bt_%28lemongrass_chili_chicken_stir-fry%29_20250902_063100_c87a4933.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T06:31:00.887144000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "brown rice",
+      "chili",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "Vietnamese cuisine",
+    "visual_description": "A single portion of Gà Xào Sả Ớt is presented on a clean white porcelain dinner plate. Fluffy, amber-hued brown rice is neatly mounded on one side. Alongside, golden-brown, seared chicken thigh chunks (approximately 2.5 cm) are artfully arranged, coated in a glistening, savory sauce. Interspersed among the chicken are translucent, tender onion wedges, vibrant green and white thin slices of lemongrass, and bright red chili rings. The dish offers a textural contrast of tender chicken and slightly crisp-tender vegetables. A scattering of fresh, bright green cilantro leaves provides a final pop of color and freshness. The plate features moderate negative space. The setting is a modern bistro: a simple wooden table surface, a grey cotton napkin folded beside the plate, and a pair of traditional wooden chopsticks resting diagonally. Natural, even lighting illuminates the dish from above, creating subtle highlights. The background is softly blurred, hinting at a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Vietnamese",
+    "cultural_origin": "Vietnamese",
+    "cultural_serving_suggestions": [
+      "Serve with a small bowl of Nước Chấm (Vietnamese dipping sauce) on the side.",
+      "Offer fresh herbs like mint, Thai basil, and perilla leaves for diners to add to their preference.",
+      "Traditionally eaten with chopsticks and a spoon."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, boneless, skinless",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200 g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh red chilies",
+        "quantity": "2-3 (adjust to taste)"
+      },
+      {
+        "name": "Lemongrass",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Water or chicken stock",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "optional, for serving"
+      }
+    ],
+    "instructions": [
+      "Cook 300g brown rice according to package directions. Set aside.",
+      "Cut chicken thighs into 2.5 cm chunks.",
+      "Mince 2 cloves garlic. Thinly slice the white part of 1 stalk lemongrass.",
+      "In a bowl, combine chicken, minced garlic, half of sliced lemongrass, 30 ml fish sauce, 15 ml soy sauce, and 5g sugar. Mix well. Marinate for 20 minutes.",
+      "Peel and slice onion into thin wedges. Mince remaining 2 cloves garlic. Thinly slice remaining 1 stalk lemongrass. Slice chilies thinly.",
+      "Heat 15 ml vegetable oil in a large wok or skillet over high heat. Add marinated chicken in a single layer. Sear chicken for 3-4 minutes until golden brown and cooked through (internal temperature 75°C). Remove chicken from wok.",
+      "Add remaining 15 ml vegetable oil to the wok. Add sliced onion, minced garlic, sliced lemongrass, and sliced chilies. Stir-fry for 3-4 minutes until fragrant and onion softens.",
+      "Return seared chicken to the wok. Add remaining 15 ml fish sauce, 5g sugar, and 60 ml water or chicken stock. Stir well. Cook for 2-3 minutes until sauce thickens slightly and coats chicken.",
+      "Divide cooked brown rice among 4 plates. Spoon chicken stir-fry next to rice. Garnish with fresh cilantro. Serve immediately, with lime wedges if desired."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "traditional_techniques": [
+      "Xào (Stir-frying)",
+      "Ướp (Marinating)",
+      "Nước Mắm (Fish Sauce) as a key flavoring agent"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 592,
+      "cholesterol_mg": 144,
+      "dietary_fiber_g": 3.7,
+      "protein_g": 33,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 1570,
+      "total_carbs_g": 68.4,
+      "total_fat_g": 20.3,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.6,
+      "calories": 132,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 7.4,
+      "saturated_fat_g": 1,
+      "sodium_mg": 351,
+      "total_carbs_g": 15.3,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 48,
+      "dietary_fiber": 13,
+      "protein": 66,
+      "saturated_fat": 24,
+      "sodium": 68,
+      "total_carbs": 25,
+      "total_fat": 26
+    },
+    "serving_size_g": 448,
+    "total_recipe_weight_g": 1790
+  },
+  {
+    "recipe_name": "Spicy Thai Chicken with Basil and Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_thai_chicken_with_basil_and_brown_rice_20250902_062942_365a9f3e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T06:29:42.612172000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "brown rice",
+      "chili",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Spicy Thai Chicken with Basil and Brown Rice is presented on a clean white porcelain dinner plate, set on a simple wooden table surface in a modern bistro setting. A mound of fluffy, earthy brown rice anchors one side of the plate. Adjacent to the rice, the stir-fried chicken mixture is artfully arranged. The chicken, cut into irregular 2.5 cm cubes, is seared to a golden-brown, coated in a glossy, savory dark sauce. Thinly sliced, translucent onions are interspersed throughout, along with vibrant green, wilted Thai basil leaves and bright red flecks of chili. The overall composition is balanced with moderate negative space. A few fresh basil leaves are scattered as a garnish, and a lime wedge sits beside the dish. Chopsticks rest next to the plate on a cotton napkin. The scene is bathed in natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Traditionally served with a side of 'Prik Nam Pla' (fish sauce with sliced chilies and lime juice) for extra spice.",
+      "Often topped with a fried egg ('Dao Kai') in Thailand."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Brown Rice",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Water",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Boneless, Skinless Chicken Thighs",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "6 cloves"
+      },
+      {
+        "name": "Fresh Red Bird's Eye Chilies",
+        "quantity": "4-6, to taste"
+      },
+      {
+        "name": "Small Onion",
+        "quantity": "1 (about 100 grams)"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Light Soy Sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Oyster Sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Palm Sugar",
+        "quantity": "10 grams"
+      },
+      {
+        "name": "Fresh Thai Basil Leaves",
+        "quantity": "1 large bunch (about 50 grams)"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Rinse brown rice thoroughly. Combine rice and water in a saucepan. Bring to a boil, then reduce heat to low. Cover and simmer for 30-40 minutes, or until water is absorbed and rice is tender. Let stand, covered, for 10 minutes. Fluff with a fork.",
+      "Cut chicken thighs into 2.5 cm cubes. Set aside.",
+      "Finely mince garlic. Thinly slice chilies. Thinly slice onion.",
+      "In a small bowl, whisk together fish sauce, light soy sauce, oyster sauce, and palm sugar. Set aside.",
+      "Heat vegetable oil in a large wok or skillet over medium-high heat. Add minced garlic and sliced chilies. Stir-fry for 30 seconds until fragrant.",
+      "Add cubed chicken to the wok. Stir-fry for 4-5 minutes until seared and cooked through to 75°C (167°F).",
+      "Add sliced onion to the wok. Stir-fry for 2 minutes until slightly softened.",
+      "Pour the prepared sauce mixture over the chicken and vegetables. Toss to coat evenly. Cook for 1-2 minutes until sauce slightly thickens.",
+      "Remove wok from heat. Stir in fresh Thai basil leaves until wilted.",
+      "Serve immediately over fluffy brown rice. Garnish with lime wedges."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Pad)",
+      "Balancing five fundamental Thai flavors: sweet, sour, salty, spicy, and umami"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.3,
+      "calories": 532,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 34.4,
+      "saturated_fat_g": 3.6,
+      "sodium_mg": 1882,
+      "total_carbs_g": 56.6,
+      "total_fat_g": 18.9,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.8,
+      "calories": 133,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.6,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 471,
+      "total_carbs_g": 14.1,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 10,
+      "protein": 69,
+      "saturated_fat": 18,
+      "sodium": 82,
+      "total_carbs": 21,
+      "total_fat": 24
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Vanilla Sugar Cookies",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_vanilla_sugar_cookies_20250902_051850_f02745bd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T05:18:50.944012000Z",
+    "selected_ingredients": [
+      "flour",
+      "vanilla",
+      "margarine"
+    ],
+    "complexity": "simple",
+    "special_requests": "Dairy free, soy free, egg free",
+    "visual_description": "A small stack of three to four circular Vanilla Sugar Cookies sits casually on an everyday, off-white ceramic plate. The cookies exhibit golden-brown edges and a slightly paler, soft-looking center. A generous, uneven dusting of white icing sugar covers the top surfaces, suggesting a homemade touch. The cookies appear naturally crumbly, showcasing their simple texture. The plate rests on a well-worn wooden kitchen table. A simple, folded cloth napkin is placed beside the plate. Warm, cozy light illuminates the scene, enhancing the comforting appeal. A slightly out-of-focus, homely mug might be visible in the background, adding to the relaxed family dining atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Vanilla",
+    "ingredients": [
+      {
+        "name": "Dairy-free margarine",
+        "quantity": "125 g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Line a baking tray with parchment paper.",
+      "Cream margarine and caster sugar in a bowl until light and fluffy.",
+      "Stir in vanilla extract.",
+      "Gradually add flour and salt. Mix until a soft dough forms. Do not overmix.",
+      "Wrap dough in cling film. Chill for 30 minutes.",
+      "On a lightly floured surface, roll dough to 5 mm thickness.",
+      "Cut dough into simple shapes, such as circles, using a cookie cutter.",
+      "Place cookies on the prepared baking tray. Leave space between them.",
+      "Bake for 10-12 minutes. Edges should be lightly golden.",
+      "Remove from oven. Let cool on the tray for 5 minutes.",
+      "Transfer cookies to a wire rack to cool completely.",
+      "Dust with icing sugar before serving."
+    ],
+    "notes": [
+      "Ensure margarine is dairy-free and soy-free for dietary requirements."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 28.7,
+      "calories": 521,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.4,
+      "protein_g": 5,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 414,
+      "total_carbs_g": 66.9,
+      "total_fat_g": 25.5,
+      "total_sugars_g": 29.1,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 25.7,
+      "calories": 466,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 4.5,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 370,
+      "total_carbs_g": 59.9,
+      "total_fat_g": 22.8,
+      "total_sugars_g": 26,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 5,
+      "protein": 10,
+      "saturated_fat": 26,
+      "sodium": 18,
+      "total_carbs": 24,
+      "total_fat": 33
+    },
+    "serving_size_g": 111.8,
+    "total_recipe_weight_g": 447
+  },
+  {
+    "recipe_name": "Savory Green Bean and Carrot Tartlets",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_green_bean_and_carrot_tartlets_20250902_045309_ef5e0251.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T04:53:09.579701000Z",
+    "selected_ingredients": [
+      "green bean",
+      "carrot"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A rustic wooden board, slightly worn, holds 10-12 golden-brown Savory Green Bean and Carrot Tartlets. The tartlets are arranged casually, some touching, on a simple, light-colored ceramic platter placed on the wooden board. Each tartlet has a puffed, flaky puff pastry base, with a visible, slightly darker golden edge. The center of each tartlet features a creamy, off-white spread of herbed cream cheese. Vibrant green blanched green beans, cut into whole lengths, and thin, bright orange carrot batons are neatly arranged on top of the cream cheese, showcasing their natural colors and fresh texture. A few tiny flecks of fresh green dill and chives are visible within the cream cheese. The tartlets are modest in size, approximately 6 cm square, and appear invitingly bite-sized. The scene is set on a well-used wooden dining table, illuminated by warm, soft kitchen lighting. A casually folded, light linen cloth napkin is placed nearby. The background is a relaxed family dining area, slightly out of focus, suggesting a comfortable, lived-in atmosphere. The overall presentation is homely and approachable, emphasizing the tartlets' comfort-food appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve immediately as a starter or appetizer.",
+      "Arrange on a tiered serving stand for a party."
+    ],
+    "hero_ingredient": "Green Beans",
+    "ingredients": [
+      {
+        "name": "Puff pastry sheet",
+        "quantity": "1 (approx. 300g)"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "200g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cream cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh dill, chopped",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh chives, chopped",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Egg, large",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking tray with parchment paper.",
+      "Unroll puff pastry. Cut into 12 equal squares or rounds (approx. 6x6 cm). Place on the prepared baking tray.",
+      "Score a border 1 cm from the edge of each pastry piece with a knife. Do not cut through.",
+      "Trim green beans. Cut carrots into thin batons (approx. 3 cm long).",
+      "Blanch green beans and carrot batons in boiling salted water for 2 minutes. Drain immediately. Rinse with cold water to stop cooking. Pat dry.",
+      "In a small bowl, combine cream cheese, chopped dill, chopped chives, garlic powder, salt, and pepper. Mix well.",
+      "Whisk the egg with 1 tablespoon of water to create an egg wash.",
+      "Spread a tablespoon of the cream cheese mixture onto the center of each pastry piece, within the scored border.",
+      "Arrange 2-3 green beans and a few carrot batons neatly over the cream cheese mixture on each pastry.",
+      "Brush the pastry borders with egg wash.",
+      "Bake for 15-18 minutes, or until pastry is golden brown and puffed. Serve warm or at room temperature."
+    ],
+    "notes": [
+      "Ensure green beans and carrots are patted dry after blanching to prevent soggy pastry.",
+      "For a spicier kick, add a pinch of red pepper flakes to the cream cheese mixture."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 620,
+      "cholesterol_mg": 84,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 9.8,
+      "saturated_fat_g": 22.7,
+      "sodium_mg": 459,
+      "total_carbs_g": 42.2,
+      "total_fat_g": 45.4,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 294,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 4.6,
+      "saturated_fat_g": 10.8,
+      "sodium_mg": 218,
+      "total_carbs_g": 20,
+      "total_fat_g": 21.6,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 9,
+      "protein": 20,
+      "saturated_fat": 114,
+      "sodium": 20,
+      "total_carbs": 15,
+      "total_fat": 58
+    },
+    "serving_size_g": 210.5,
+    "total_recipe_weight_g": 842
+  },
+  {
+    "recipe_name": "Bacon-Wrapped Green Bean Bundles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_bacon-wrapped_green_bean_bundles_20250902_045031_fa244ed4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-02T04:50:31.669952000Z",
+    "selected_ingredients": [
+      "green bean"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A rustic wooden serving board holds 10-12 bacon-wrapped green bean bundles. Each bundle features vibrant green, tender-crisp blanched green beans, tightly encased in golden-brown, crispy smoked streaky bacon. The bacon shows rendered fat and a crinkled texture. Green bean tips peek out naturally. A light, glossy drizzle of dark balsamic glaze adds sheen and color contrast. Small, fresh flat-leaf parsley sprigs are casually placed amongst bundles as a functional garnish, adding a pop of green. The bundles are arranged in a loose, asymmetrical pattern, distinct yet cohesive. The board sits on a well-used wooden kitchen table, bathed in warm, soft light from an overhead fixture. A light linen napkin and a simple ceramic bowl are visible in the background.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Green bean",
+    "ingredients": [
+      {
+        "name": "Fresh green beans",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Smoked streaky bacon",
+        "quantity": "10 rashers"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Balsamic glaze",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Line a baking tray with parchment paper.",
+      "Trim the ends off the green beans.",
+      "Bring a pot of salted water to a boil. Blanch green beans for 2 minutes. Drain immediately. Plunge into ice water to stop cooking. Drain thoroughly. Pat dry.",
+      "Cut each bacon rasher in half widthwise.",
+      "Gather 4-5 green beans into a small bundle. Wrap each bundle tightly with a half-rasher of bacon. Secure with a wooden toothpick.",
+      "Arrange bundles on the prepared baking tray. Drizzle lightly with olive oil. Sprinkle with garlic powder, salt, and black pepper.",
+      "Bake for 20-25 minutes. Bacon should be crispy. Green beans should be tender-crisp.",
+      "Remove toothpicks before serving. Drizzle with balsamic glaze if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3,
+      "calories": 189,
+      "cholesterol_mg": 19.4,
+      "dietary_fiber_g": 2.85,
+      "protein_g": 9.39,
+      "saturated_fat_g": 3.42,
+      "sodium_mg": 663,
+      "total_carbs_g": 11.84,
+      "total_fat_g": 12.03,
+      "total_sugars_g": 7.03,
+      "trans_fat_g": 0.04
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2.26,
+      "calories": 142,
+      "cholesterol_mg": 14.59,
+      "dietary_fiber_g": 2.14,
+      "protein_g": 7.06,
+      "saturated_fat_g": 2.57,
+      "sodium_mg": 498.5,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 9.05,
+      "total_sugars_g": 5.29,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 6,
+      "dietary_fiber": 10,
+      "protein": 19,
+      "saturated_fat": 17,
+      "sodium": 29,
+      "total_carbs": 4,
+      "total_fat": 15
+    },
+    "serving_size_g": 133,
+    "total_recipe_weight_g": 531
+  }
+]

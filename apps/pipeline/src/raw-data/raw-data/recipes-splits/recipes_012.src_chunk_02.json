@@ -1,0 +1,683 @@
+[
+  {
+    "recipe_name": "Pineapple and Ham Stuffed Chicken with Tomato Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pineapple_and_ham_stuffed_chicken_with_tomato_glaze_20250703_024208_bc329595.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T02:42:09.014692000Z",
+    "selected_ingredients": [
+      "tomato",
+      "pineapple",
+      "ham",
+      "flour"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, plump, golden-brown pan-seared and baked chicken breast, precisely stuffed and presented as a thick medallion, rests centered on a clean white porcelain dinner plate. The chicken boasts a rich, slightly crisp exterior, hinting at its tender interior. A vibrant, rustic red tomato glaze, with a subtle sheen, is generously spooned over the chicken and pools elegantly around its base. Small flecks of green fresh thyme leaves are scattered artfully over the chicken and glaze, providing a fresh, aromatic contrast. The plate features moderate negative space, allowing the dish to breathe. The setting is a modern bistro, with a simple light wooden table surface. A neatly folded white cotton napkin and polished silver flatware are placed beside the plate. Natural, soft, even lighting illuminates the dish, emphasizing its inviting textures and colors against a gently blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180-200g each), boneless, skinless"
+      },
+      {
+        "name": "Smoked ham",
+        "quantity": "150g, finely diced"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "100g, finely diced"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 small, finely chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "200ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "20g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Butterfly each chicken breast. Pound gently to an even 1 cm thickness.",
+      "Heat 10ml olive oil in a pan. Sauté diced ham until lightly browned. Add diced pineapple; cook 2 minutes. Remove from heat. Set aside.",
+      "Lay pounded chicken breasts flat. Spoon ham and pineapple mixture onto one half of each breast. Fold the other half over. Secure edges with toothpicks.",
+      "Season chicken with salt and pepper. Lightly dust both sides with flour.",
+      "Heat remaining olive oil and butter in an oven-safe skillet over medium-high heat. Sear stuffed chicken 3-4 minutes per side until golden brown.",
+      "Transfer skillet to preheated oven. Bake 15-20 minutes, or until internal temperature reaches 75°C.",
+      "While chicken bakes, prepare glaze: In a saucepan, sauté chopped onion in 10ml olive oil until softened. Add minced garlic; cook 1 minute.",
+      "Stir in crushed tomatoes and chicken stock. Add 1 sprig of thyme. Bring to a simmer. Reduce heat to low. Cook 10-15 minutes until slightly thickened.",
+      "Remove thyme sprig from glaze. Season with salt and pepper. Keep warm.",
+      "Remove chicken from oven. Let rest 5 minutes. Remove toothpicks.",
+      "Plate one stuffed chicken breast per serving. Spoon tomato glaze generously over and around chicken. Garnish with fresh thyme leaves."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety.",
+      "Fresh pineapple offers a brighter flavor; canned pineapple should be well-drained."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 538,
+      "cholesterol_mg": 192,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 69.5,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 648,
+      "total_carbs_g": 16.4,
+      "total_fat_g": 20.4,
+      "total_sugars_g": 6.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 119,
+      "cholesterol_mg": 42,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 15.3,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 143,
+      "total_carbs_g": 3.6,
+      "total_fat_g": 4.5,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 8,
+      "protein": 139,
+      "saturated_fat": 32,
+      "sodium": 28,
+      "total_carbs": 6,
+      "total_fat": 26
+    },
+    "serving_size_g": 453,
+    "total_recipe_weight_g": 1813
+  },
+  {
+    "recipe_name": "Spicy Red Lentil & Mushroom Hash with Poached Egg and Cheddar",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_red_lentil_%26_mushroom_hash_with_poached_egg_and_cheddar_20250703_023338_5fee0b7f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T02:33:38.968632000Z",
+    "selected_ingredients": [
+      "cheddar",
+      "egg",
+      "onion",
+      "hot sauce",
+      "garlic",
+      "red lentil",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "A single portion of Spicy Red Lentil & Mushroom Hash is presented on a clean, round white porcelain dinner plate. A generous, rustic mound of the hash, composed of earthy red lentils, tender sliced mushrooms, and small diced onions, occupies the center. The hash exhibits warm brown and reddish hues with specks of green herbs. Resting perfectly atop the hash is a single, flawlessly poached egg with a creamy white exterior. Golden-orange melted cheddar cheese is draped over parts of the egg and hash, showing a slight bubbling texture. The plate has moderate negative space, allowing the dish to be the focal point. A sprinkle of bright green chopped chives provides a fresh contrast and visual lift. The scene is set on a simple light-toned wooden table surface. Standard silver flatware is neatly placed beside the plate. A folded cotton napkin rests nearby. Natural, even lighting illuminates the dish, highlighting its textures and vibrant colors. The background is subtle, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Red Lentils",
+    "ingredients": [
+      {
+        "name": "Red lentils, dry",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Medium yellow onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Mixed mushrooms (cremini, shiitake)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "150 g"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh chives or parsley, chopped",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Rinse red lentils. Combine lentils and 500 ml vegetable broth in a saucepan. Bring to a boil, then reduce heat. Simmer for 15-20 minutes until tender. Drain any excess liquid. Season with salt and pepper.",
+      "While lentils cook, prepare vegetables. Dice onions into small cubes. Thinly slice mushrooms. Mince garlic.",
+      "Heat olive oil and butter in a large sauté pan over medium-high heat. Add diced onions. Sauté for 5-7 minutes until softened and translucent. Add sliced mushrooms. Cook for 8-10 minutes until mushrooms release their liquid and brown. Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add cooked lentils to the mushroom and onion mixture. Stir in remaining 250 ml vegetable broth and 30 ml hot sauce. Cook for 5-7 minutes, stirring occasionally, until liquid is absorbed and hash is well combined. Season with salt and pepper to taste.",
+      "Fill a wide, shallow pot with water. Add white vinegar. Bring to a gentle simmer. Crack each egg into a small bowl. Carefully slide each egg into the simmering water. Poach for 3-4 minutes until whites are set and yolks are still runny. Remove eggs with a slotted spoon. Drain excess water.",
+      "Preheat oven broiler. Spoon individual portions of hot lentil hash onto oven-safe plates or into small gratin dishes. Place one poached egg on top of each portion of hash. Sprinkle grated cheddar cheese over the egg and hash.",
+      "Broil for 1-2 minutes, watching carefully, until cheese is melted and bubbly. Remove from oven.",
+      "Garnish each plate with chopped fresh chives or parsley. Drizzle remaining hot sauce over the hash, if desired. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 602,
+      "cholesterol_mg": 242,
+      "dietary_fiber_g": 8.7,
+      "protein_g": 32.4,
+      "saturated_fat_g": 14.7,
+      "sodium_mg": 1451,
+      "total_carbs_g": 49.7,
+      "total_fat_g": 32.1,
+      "total_sugars_g": 7.9,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 46,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 6.2,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 275,
+      "total_carbs_g": 9.4,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80.7,
+      "dietary_fiber": 31.2,
+      "protein": 64.9,
+      "saturated_fat": 73.3,
+      "sodium": 63.1,
+      "total_carbs": 18.1,
+      "total_fat": 41.1
+    },
+    "serving_size_g": 526.8,
+    "total_recipe_weight_g": 2107
+  },
+  {
+    "recipe_name": "Coq au Bière with Garlic Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_coq_au_bi%C3%A8re_with_garlic_rice_20250703_023231_600dd763.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T02:32:31.958629000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "rice",
+      "beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, robust portion of Coq au Bière is presented on a clean white porcelain dinner plate, set on a simple wooden table surface in a modern bistro setting. A single, golden-brown seared chicken thigh sits prominently, bathed in a rich, dark amber sauce with visible chunks of braised carrots, celery, and halved cremini mushrooms. The sauce has a glossy, thick texture. Beside the chicken, a neat mound of fluffy, white garlic rice provides a bright contrast. The chicken skin is slightly crisp, while the meat appears tender and falling off the bone. A scattering of vibrant green chopped fresh parsley garnishes the dish, adding a pop of color. The composition is balanced, with moderate negative space. A cotton napkin and standard flatware are placed beside the plate. The scene is illuminated by natural, even lighting, creating a warm and inviting atmosphere. The overall presentation is professional and approachable.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Belgian",
+    "cultural_origin": "French Belgian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty baguette to sop up the rich sauce."
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4"
+      },
+      {
+        "name": "Smoked bacon lardons",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, peeled and sliced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, sliced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200 g, halved"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Belgian ale (e.g., Dubbel or Tripel)",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Garlic cloves (for rice)",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 1 tablespoon olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear chicken skin-side down until golden brown and crispy, about 5-7 minutes. Flip and sear other side for 3 minutes. Remove chicken. Set aside.",
+      "Add lardons to the pot. Cook until crispy, about 5-7 minutes. Remove lardons with a slotted spoon. Reserve rendered fat.",
+      "Add diced onion, sliced carrots, and sliced celery to the pot. Sauté in bacon fat until softened, about 8-10 minutes.",
+      "Add minced garlic and halved mushrooms. Cook for 3-5 minutes until mushrooms soften.",
+      "Sprinkle flour over vegetables. Stir constantly for 1 minute.",
+      "Pour in Belgian ale and chicken stock. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return chicken to the pot. Add thyme sprigs and bay leaf. Ensure chicken is mostly submerged.",
+      "Reduce heat to low. Cover and simmer for 45-60 minutes, or until chicken is very tender and reaches an internal temperature of 75°C (167°F).",
+      "While chicken braises, prepare garlic rice. Rinse rice under cold water until clear. Drain well.",
+      "In a medium saucepan, melt butter with 1 tablespoon olive oil over medium heat. Add 2 minced garlic cloves. Sauté for 1 minute until fragrant.",
+      "Add rinsed rice to the saucepan. Stir to coat. Add 600 ml water and a pinch of salt. Bring to a boil.",
+      "Reduce heat to low. Cover and simmer for 15-18 minutes, or until water is absorbed and rice is tender. Remove from heat. Let stand covered for 5 minutes. Fluff with a fork.",
+      "Once chicken is cooked, remove chicken, thyme, and bay leaf from the pot. Increase heat to medium-high. Simmer sauce, stirring occasionally, until slightly thickened, about 5-10 minutes.",
+      "Return cooked lardons to the sauce. Adjust seasoning with salt and pepper.",
+      "Serve braised chicken with a generous portion of garlic rice. Spoon rich sauce and vegetables over chicken. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Deglazing",
+      "Mirepoix preparation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1098.8,
+      "cholesterol_mg": 225.08,
+      "dietary_fiber_g": 4.12,
+      "protein_g": 57.84,
+      "saturated_fat_g": 17.25,
+      "sodium_mg": 1481.84,
+      "total_carbs_g": 78.11,
+      "total_fat_g": 54.83,
+      "total_sugars_g": 4.23,
+      "trans_fat_g": 0.24
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 140,
+      "cholesterol_mg": 28.67,
+      "dietary_fiber_g": 0.52,
+      "protein_g": 7.37,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 188.77,
+      "total_carbs_g": 9.95,
+      "total_fat_g": 6.98,
+      "total_sugars_g": 0.54,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 75.03,
+      "dietary_fiber": 14.71,
+      "protein": 115.67,
+      "saturated_fat": 86.23,
+      "sodium": 64.43,
+      "total_carbs": 28.4,
+      "total_fat": 70.29
+    },
+    "serving_size_g": 785,
+    "total_recipe_weight_g": 3140
+  },
+  {
+    "recipe_name": "Spicy Cheddar Egg Rice Bowl",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_cheddar_egg_rice_bowl_20250703_023217_1cdbe746.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T02:32:17.891202000Z",
+    "selected_ingredients": [
+      "cheddar",
+      "egg",
+      "bread",
+      "onion",
+      "hot sauce",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The dish is presented in a deep, clean white porcelain bowl, centered on a simple wooden table. Fluffy white long-grain rice forms the base, generously topped with bright yellow, melting grated sharp cheddar cheese. A perfectly fried egg, with a vibrant orange-yellow runny yolk and crisp white edges, rests prominently on the cheese. Around the egg, a scattering of golden-brown, crispy caramelized onion strands adds texture. Irregularly shaped, golden-brown garlic bread croutons are interspersed, offering crunchy contrast. A bold zig-zag of bright red hot sauce visually connects the elements, providing a dynamic color pop. Freshly chopped green chives are lightly sprinkled over, adding a final touch of freshness. The scene is lit with natural, even light, with a cotton napkin beside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Fried Egg",
+    "ingredients": [
+      {
+        "name": "Long-grain white rice",
+        "quantity": "250 g (dry)"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Sharp cheddar cheese",
+        "quantity": "150 g, grated"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, thinly sliced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "Day-old bread (sourdough or rustic loaf)",
+        "quantity": "2 thick slices, cut into 1.5 cm cubes"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Hot sauce (e.g., sriracha or similar)",
+        "quantity": "40 ml, plus more for serving"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh chives or spring onion greens",
+        "quantity": "15 g, finely chopped"
+      }
+    ],
+    "instructions": [
+      "Rinse rice thoroughly. Combine 250 g rice with 500 ml water in a saucepan. Bring to a boil. Reduce heat to low, cover, and simmer for 15 minutes, or until water is absorbed. Let stand covered for 5 minutes. Fluff with a fork.",
+      "Heat 15 ml olive oil and 15 g butter in a large skillet over medium heat. Add thinly sliced onion. Sauté, stirring occasionally, for 10-12 minutes until deeply caramelized and crispy. Remove from skillet and set aside.",
+      "In the same skillet, add remaining 15 ml olive oil and 15 g butter. Add bread cubes and minced garlic. Toast over medium heat, stirring frequently, for 5-7 minutes until golden brown and crispy. Season with a pinch of salt. Remove from skillet.",
+      "Heat a non-stick pan over medium heat. Add a small amount of oil if needed. Crack eggs into the pan. Fry eggs to your desired doneness, preferably with a runny yolk. Season with salt and pepper.",
+      "Divide cooked rice among 4 individual serving bowls. Top each rice portion with a generous amount of grated cheddar cheese. The warmth of the rice will start to melt the cheese.",
+      "Place one fried egg on top of the cheese in each bowl. Arrange a portion of crispy onions and garlic croutons around the egg.",
+      "Drizzle hot sauce generously over the egg and cheese. Garnish with fresh chopped chives or spring onion greens. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.8,
+      "calories": 660,
+      "cholesterol_mg": 242,
+      "dietary_fiber_g": 2.1,
+      "protein_g": 22.7,
+      "saturated_fat_g": 14.6,
+      "sodium_mg": 679,
+      "total_carbs_g": 65.4,
+      "total_fat_g": 31.6,
+      "total_sugars_g": 4.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 186,
+      "cholesterol_mg": 68,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 6.4,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 192,
+      "total_carbs_g": 18.5,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81,
+      "dietary_fiber": 8,
+      "protein": 45,
+      "saturated_fat": 73,
+      "sodium": 30,
+      "total_carbs": 24,
+      "total_fat": 41
+    },
+    "serving_size_g": 354,
+    "total_recipe_weight_g": 1416
+  },
+  {
+    "recipe_name": "Crab, Potato, and Butternut Squash Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crab%2C_potato%2C_and_butternut_squash_gratin_20250703_022705_2f95426e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-03T02:27:06.012420000Z",
+    "selected_ingredients": [
+      "onion",
+      "potato",
+      "squash",
+      "cheddar",
+      "crab",
+      "hot sauce",
+      "verjus",
+      "dark beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous rectangular portion of a baked gratin rests centrally on a clean, round white porcelain dinner plate. The gratin features a golden-brown, bubbling crust of melted cheddar cheese on top, with slight charring at the edges indicating crispy texture. Beneath the crust, layers of thinly sliced, tender light-yellow potatoes and pale orange butternut squash are visible, interspersed with creamy white cheese sauce and delicate chunks of white crab meat. The potatoes and squash maintain their thinly sliced, slightly overlapping shapes, providing a subtle textural pattern. A few small, bright green fresh thyme leaves are scattered artfully over the gratin's surface, adding a pop of color and freshness. The plate is positioned on a simple wooden table surface, suggesting a modern bistro setting. To the left, a neatly folded light grey cotton napkin and a set of polished silver flatware (fork and knife) are arranged. Natural, even lighting illuminates the dish, highlighting its warmth and rich textures, with a soft, inviting background blur of a restaurant interior. The entire plate is visible, with moderate negative space around the gratin, creating a professional yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Crab",
+    "ingredients": [
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 200g), finely diced"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "700g, peeled and thinly sliced (2-3mm thick)"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "500g, peeled, deseeded, and thinly sliced (2-3mm thick)"
+      },
+      {
+        "name": "Sharp cheddar cheese",
+        "quantity": "200g, grated"
+      },
+      {
+        "name": "Lump crab meat",
+        "quantity": "250g, picked over for shells"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "60g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "500ml (whole milk recommended)"
+      },
+      {
+        "name": "Dark beer",
+        "quantity": "250ml (e.g., stout or porter)"
+      },
+      {
+        "name": "Verjus",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "10ml (e.g., Tabasco or Louisiana style)"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "5g, chopped (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Olive oil or butter",
+        "quantity": "for greasing dish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F). Lightly grease a 2.5-liter gratin dish.",
+      "In a large saucepan, melt butter over medium heat. Add diced onion. Cook until softened and translucent, about 5-7 minutes.",
+      "Stir in flour. Cook for 1-2 minutes, stirring constantly, to form a roux.",
+      "Gradually whisk in dark beer, then verjus, until smooth. Slowly add milk, whisking continuously to prevent lumps.",
+      "Bring the sauce to a gentle simmer, stirring, until it thickens. Remove from heat.",
+      "Stir in 150g of grated cheddar cheese and the hot sauce until cheese is melted and sauce is smooth. Season with salt and pepper.",
+      "Arrange half of the thinly sliced potatoes in an even layer in the prepared gratin dish. Top with half of the butternut squash slices.",
+      "Distribute half of the lump crab meat evenly over the squash.",
+      "Ladle half of the cheese sauce over the layers.",
+      "Repeat with the remaining potatoes, squash, crab, and cheese sauce.",
+      "Sprinkle the remaining 50g of grated cheddar cheese over the top.",
+      "Bake for 50-60 minutes, or until potatoes and squash are tender and the top is golden brown and bubbling.",
+      "Let the gratin rest for 10 minutes before serving. Garnish with fresh thyme leaves if desired."
+    ],
+    "notes": [
+      "The verjus provides a subtle tang that brightens the rich cheese sauce.",
+      "Adjust hot sauce to desired spice level."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 973.5,
+      "cholesterol_mg": 215.5,
+      "dietary_fiber_g": 8.3,
+      "protein_g": 36.7,
+      "saturated_fat_g": 35.5,
+      "sodium_mg": 1199.8,
+      "total_carbs_g": 72.2,
+      "total_fat_g": 60.1,
+      "total_sugars_g": 13.2,
+      "trans_fat_g": 2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 145.5,
+      "cholesterol_mg": 32.2,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 5.5,
+      "saturated_fat_g": 5.3,
+      "sodium_mg": 179.4,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 9,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71.8,
+      "dietary_fiber": 29.8,
+      "protein": 73.4,
+      "saturated_fat": 177.3,
+      "sodium": 52.2,
+      "total_carbs": 26.2,
+      "total_fat": 77.1
+    },
+    "serving_size_g": 669.3,
+    "total_recipe_weight_g": 2677
+  }
+]

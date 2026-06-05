@@ -1,0 +1,764 @@
+[
+  {
+    "recipe_name": "Confit Pork Shoulder with Carrot Kimchi and Barley Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_confit_pork_shoulder_with_carrot_kimchi_and_barley_salad_20250701_143650_69a29a78.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:36:50.731698000Z",
+    "selected_ingredients": [
+      "pork",
+      "carrot"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single, refined portion of Confit Pork Shoulder with Carrot Kimchi and Barley Salad. Presented on a handcrafted, matte ceramic plate in earthy beige with ample negative space. A mound of tender pearl barley salad forms the base, featuring small diced carrots, cucumber, and fresh herbs. Adjacent, two or three substantial, crisped confit pork shoulder chunks are placed. The pork has a golden-brown crust, its natural, rustic shape preserved. No slicing or fanning. Beside the pork, a vibrant pile of bright orange carrot kimchi adds a pop of color, with thinly julienned carrots and napa cabbage. The organic composition celebrates natural beauty. The eco-conscious setting includes a reclaimed wood table, undyed linen napkin, and soft, natural lighting. Minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Confit Pork Shoulder",
+    "ingredients": [
+      {
+        "name": "Pork shoulder, boneless",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Coarse sea salt",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Black peppercorns, crushed",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "4"
+      },
+      {
+        "name": "Pork fat or lard, rendered",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "500 g (400g for kimchi, 100g for salad)"
+      },
+      {
+        "name": "Napa cabbage",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Korean chili flakes (gochugaru)",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh ginger, grated",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Green onions, sliced",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15 ml (optional)"
+      },
+      {
+        "name": "Water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Pearled barley",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Vegetable stock",
+        "quantity": "600 ml"
+      },
+      {
+        "name": "Cucumber, diced small",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Confit Pork:",
+      "Cut pork shoulder into 4 equal chunks.",
+      "Rub pork with coarse salt, crushed peppercorns. Add bay leaves, thyme, smashed garlic.",
+      "Place pork in non-reactive container. Refrigerate 24-48 hours.",
+      "Rinse pork thoroughly. Pat dry completely.",
+      "Place pork in oven-safe pot. Cover completely with rendered pork fat.",
+      "Cook in oven at 140°C for 3-4 hours. Pork is fork-tender when done.",
+      "Remove pork from fat. Strain fat and reserve.",
+      "Cool pork. Break into large chunks. Do not slice.",
+      "To serve, crisp pork chunks in hot pan or under broiler until golden.",
+      "Prepare Carrot Kimchi:",
+      "Wash carrots. Do not peel. Cut into thin julienne or matchsticks.",
+      "Slice Napa cabbage thinly.",
+      "Combine julienned carrots, sliced cabbage, chili flakes, minced garlic, grated ginger, sliced green onions, fine sea salt, sugar, fish sauce (if using), and water in bowl.",
+      "Mix well. Massage vegetables to release liquid.",
+      "Pack tightly into clean glass jar. Press to remove air. Ensure vegetables submerged.",
+      "Seal jar loosely. Place on plate.",
+      "Ferment at room temperature for 3-5 days. Taste daily. Refrigerate when desired sourness is reached.",
+      "Prepare Barley Salad:",
+      "Rinse barley.",
+      "Combine barley and vegetable stock in pot. Bring to boil.",
+      "Reduce heat. Cover. Simmer 30-40 minutes until tender, liquid absorbed.",
+      "Cool cooked barley.",
+      "Combine barley, diced carrots, diced cucumber, chopped cilantro, and chopped parsley in bowl.",
+      "Whisk lemon juice and olive oil. Season with salt and pepper.",
+      "Pour dressing over barley. Toss gently.",
+      "Assembly:",
+      "Place generous barley salad on each plate.",
+      "Arrange crisped confit pork chunks on top or alongside.",
+      "Add spoonful of carrot kimchi next to pork.",
+      "Garnish with fresh herb sprigs."
+    ],
+    "notes": [
+      "Kimchi fermentation time varies with temperature; taste daily."
+    ],
+    "traditional_techniques": [
+      "Confit",
+      "Fermentation"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 1214,
+      "cholesterol_mg": 223,
+      "dietary_fiber_g": 14.5,
+      "protein_g": 67.7,
+      "saturated_fat_g": 26,
+      "sodium_mg": 3887,
+      "total_carbs_g": 63.6,
+      "total_fat_g": 79.5,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 194.2,
+      "cholesterol_mg": 36,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 10.8,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 622,
+      "total_carbs_g": 10.2,
+      "total_fat_g": 12.7,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74,
+      "dietary_fiber": 52,
+      "protein": 135,
+      "saturated_fat": 130,
+      "sodium": 169,
+      "total_carbs": 23,
+      "total_fat": 102
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  },
+  {
+    "recipe_name": "Key Lime Cheesecake with Milk Chocolate Crust",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_key_lime_cheesecake_with_milk_chocolate_crust_20250701_143649_d2c5876a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:36:50.416480000Z",
+    "selected_ingredients": [
+      "key lime juice",
+      "olive oil",
+      "cream cheese",
+      "milk chocolate",
+      "vanilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegant slice of Key Lime Cheesecake rests on a clean, round white porcelain plate. The cheesecake exhibits a creamy, smooth texture with a delicate pale green hue in its filling. A distinct, dark brown milk chocolate crust forms the base, visible beneath the lighter filling. The slice is cleanly cut, showing precise layers. A very light, glossy drizzle of golden-green extra virgin olive oil subtly garnishes the top surface, along with a few delicate, bright green lime zest curls. The plate is positioned on a simple, light-colored wooden table surface, suggesting a modern bistro setting. A silver fork is placed beside the plate on a folded white cotton napkin. Natural, even lighting illuminates the dish, highlighting its refined presentation and inviting textures, with a soft, unobtrusive background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Key Lime",
+    "ingredients": [
+      {
+        "name": "milk chocolate digestive biscuits",
+        "quantity": "150 g"
+      },
+      {
+        "name": "unsalted butter, melted",
+        "quantity": "50 g"
+      },
+      {
+        "name": "cream cheese, softened",
+        "quantity": "450 g"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "key lime juice",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "extra virgin olive oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "lime zest curls",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "fresh mint sprigs",
+        "quantity": "Optional, for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Crush biscuits into fine crumbs.",
+      "Mix crumbs with melted butter.",
+      "Press mixture firmly into a 20 cm springform pan.",
+      "Bake crust 10 minutes. Cool completely.",
+      "Beat softened cream cheese and sugar until smooth.",
+      "Beat in eggs one at a time.",
+      "Mix in key lime juice, vanilla extract, and salt. Do not overmix.",
+      "Pour filling over cooled crust.",
+      "Bake 45-50 minutes, until edges are set but center slightly jiggles.",
+      "Turn off oven. Leave cheesecake in oven with door ajar for 1 hour.",
+      "Remove from oven. Cool completely on wire rack.",
+      "Refrigerate cheesecake at least 4 hours, or overnight.",
+      "Slice chilled cheesecake. Drizzle each slice with olive oil.",
+      "Garnish with lime zest curls and mint."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 48.7,
+      "calories": 860,
+      "cholesterol_mg": 234.5,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 12.5,
+      "saturated_fat_g": 36.3,
+      "sodium_mg": 561.7,
+      "total_carbs_g": 68.2,
+      "total_fat_g": 60.7,
+      "total_sugars_g": 54.9,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 20.1,
+      "calories": 354,
+      "cholesterol_mg": 96.6,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 5.2,
+      "saturated_fat_g": 15,
+      "sodium_mg": 231.5,
+      "total_carbs_g": 28.1,
+      "total_fat_g": 25,
+      "total_sugars_g": 22.6,
+      "trans_fat_g": 0.7
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78.2,
+      "dietary_fiber": 4.2,
+      "protein": 25.1,
+      "saturated_fat": 181.4,
+      "sodium": 24.4,
+      "total_carbs": 24.8,
+      "total_fat": 77.8
+    },
+    "serving_size_g": 242.65,
+    "total_recipe_weight_g": 970.6
+  },
+  {
+    "recipe_name": "Orecchiette with Italian Sausage, Asparagus, and Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_orecchiette_with_italian_sausage%2C_asparagus%2C_and_mushrooms_20250701_143649_a10e9856.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:36:49.877739000Z",
+    "selected_ingredients": [
+      "pasta",
+      "italian sausage",
+      "onion",
+      "garlic",
+      "mushroom",
+      "asparagus"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of Orecchiette pasta is neatly arranged in a wide-rimmed white porcelain pasta bowl. The al dente pasta forms a base, generously tossed with golden-brown crumbled Italian sausage. Vibrant green asparagus pieces, cut into 3cm batons, and earthy sautéed mushroom slices are evenly distributed throughout, creating a balanced visual. A light, glossy sauce coats each ingredient, reflecting the natural light. The dish is garnished with a fresh sprinkle of finely grated Parmigiano-Reggiano and bright green chopped parsley. The bowl sits on a simple rustic wooden table surface. A white linen napkin and classic silver fork are placed beside the bowl. Natural, even lighting illuminates the dish, highlighting its textures and rich colors. The background is clean and unobtrusive, maintaining focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping into the sauce.",
+      "Offer extra grated Parmigiano-Reggiano at the table for individual preference.",
+      "Pair with a light-bodied Italian white wine like Pinot Grigio or Vermentino."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Orecchiette pasta",
+        "quantity": "320g"
+      },
+      {
+        "name": "Italian sausage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "240ml"
+      },
+      {
+        "name": "Parmigiano-Reggiano",
+        "quantity": "60g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Cook orecchiette according to package directions until al dente. Reserve 120ml pasta water. Drain pasta.",
+      "Remove casings from Italian sausage. Crumble sausage into a large skillet over medium-high heat. Cook until browned and cooked through. Break up any large pieces. Drain excess fat.",
+      "Dice onion finely. Mince garlic. Add 1 tbsp olive oil to the skillet with the sausage. Add diced onion. Sauté until softened, about 3-4 minutes.",
+      "Add minced garlic and red pepper flakes. Sauté for 1 minute until fragrant.",
+      "Slice mushrooms. Add sliced mushrooms to the skillet. Cook until softened and lightly browned, about 5-7 minutes.",
+      "Pour in dry white wine. Scrape up any browned bits from the bottom of the skillet. Simmer until wine is mostly evaporated, about 2-3 minutes.",
+      "Add chicken broth. Bring to a gentle simmer. Cook for 5 minutes to reduce slightly.",
+      "Trim woody ends from asparagus. Cut asparagus into 3cm batons. Blanch asparagus in boiling water for 2 minutes until bright green and crisp-tender. Immediately transfer to an ice bath to stop cooking. Drain well.",
+      "Add cooked orecchiette, blanched asparagus, and reserved pasta water to the skillet. Toss to combine. Stir in grated Parmigiano-Reggiano. Season with salt and black pepper to taste.",
+      "Chop fresh parsley. Stir in fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure pasta is cooked al dente for optimal texture.",
+      "Adjust red pepper flakes to desired spice level."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 821,
+      "cholesterol_mg": 90,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 38,
+      "saturated_fat_g": 15,
+      "sodium_mg": 1008,
+      "total_carbs_g": 71.8,
+      "total_fat_g": 42,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 188,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.7,
+      "saturated_fat_g": 3.4,
+      "sodium_mg": 231,
+      "total_carbs_g": 16.4,
+      "total_fat_g": 9.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30,
+      "dietary_fiber": 20,
+      "protein": 76,
+      "saturated_fat": 75,
+      "sodium": 44,
+      "total_carbs": 26,
+      "total_fat": 54
+    },
+    "serving_size_g": 437,
+    "total_recipe_weight_g": 1747
+  },
+  {
+    "recipe_name": "Spezzatino di Manzo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spezzatino_di_manzo_20250701_143616_8d07e032.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:36:17.014723000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "beef stock"
+    ],
+    "complexity": "simple",
+    "special_requests": "Italien cuisine",
+    "visual_description": "A hearty single portion of Spezzatino di Manzo rests on a simple, round, off-white ceramic plate with a slightly rustic edge. The stew features generous, irregularly cut, fork-tender beef chunks bathed in a rich, dark reddish-brown sauce. Visible pieces of softened, diced carrots, celery, and translucent onion are interspersed throughout the sauce, adding texture and natural color. A few fresh parsley leaves are roughly chopped and sprinkled over the top as a functional garnish, adding a touch of vibrant green. The plate is positioned on a well-used, warm-toned wooden dining table, suggesting a homely family kitchen setting. Beside the plate, a simple silver fork and a crumpled linen napkin are casually placed. In the background, a small basket holds slices of crusty Italian bread, ready for dipping. Warm, cozy lighting from an overhead kitchen fixture illuminates the scene, highlighting the comforting steam gently rising from the stew. The overall presentation is unpretentious and inviting, emphasizing comfort and rustic appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Served traditionally with creamy polenta",
+      "Warm crusty Italian bread for dipping",
+      "Alongside mashed potatoes or pasta"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef stewing cuts",
+        "quantity": "800 g, cut into 3-4 cm chunks"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh rosemary sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season with salt and pepper.",
+      "Heat olive oil in a large heavy-bottomed pot over medium-high heat.",
+      "Brown beef chunks in batches until deep golden. Remove beef and set aside.",
+      "Reduce heat to medium. Add diced onion, carrots, and celery. Cook 8-10 minutes until softened, forming a soffritto.",
+      "Add minced garlic and tomato paste. Cook 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up browned bits. Cook until wine mostly evaporates, 3-5 minutes.",
+      "Return browned beef to the pot. Add crushed tomatoes, beef stock, rosemary sprig, and bay leaf.",
+      "Bring to a gentle simmer. Reduce heat to low. Cover pot tightly.",
+      "Simmer 2 to 2.5 hours, or until beef is fork-tender. Stir occasionally.",
+      "Remove rosemary sprig and bay leaf before serving. Adjust seasoning as needed."
+    ],
+    "notes": [
+      "For best flavor, prepare the day before and gently reheat. The flavors meld beautifully overnight."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 645.86,
+      "cholesterol_mg": 150,
+      "dietary_fiber_g": 3.79,
+      "protein_g": 60.19,
+      "saturated_fat_g": 11.94,
+      "sodium_mg": 708.08,
+      "total_carbs_g": 16.88,
+      "total_fat_g": 34.32,
+      "total_sugars_g": 7.82,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107.42,
+      "cholesterol_mg": 24.95,
+      "dietary_fiber_g": 0.63,
+      "protein_g": 10.01,
+      "saturated_fat_g": 1.99,
+      "sodium_mg": 117.77,
+      "total_carbs_g": 2.81,
+      "total_fat_g": 5.71,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 50,
+      "dietary_fiber": 13.5,
+      "protein": 120.4,
+      "saturated_fat": 59.7,
+      "sodium": 30.8,
+      "total_carbs": 6.1,
+      "total_fat": 44
+    },
+    "serving_size_g": 601.25,
+    "total_recipe_weight_g": 2405
+  },
+  {
+    "recipe_name": "Brasato di Manzo al Vino Rosso",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_brasato_di_manzo_al_vino_rosso_20250701_143527_10a2187b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:35:28.259082000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "beef stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "Italien cuisine",
+    "visual_description": "A single portion of Brasato di Manzo al Vino Rosso is presented on a clean, white porcelain dinner plate. Large, irregular chunks of dark, fork-tender braised beef are artfully arranged atop a creamy bed of bright yellow polenta. The beef glistens, generously coated in a rich, deep reddish-brown wine reduction sauce, highlighting its velvety texture. A vibrant green gremolata, made with finely minced parsley and lemon zest, is sprinkled over the beef and sauce, providing a fresh contrast. The plate is moderately spaced, allowing for negative space around the elements. The setting features a simple wooden table, a folded cotton napkin, and traditional Italian flatware, all under natural, even lighting to enhance the dish's rustic elegance and warmth.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with creamy polenta or mashed potatoes (Purè di Patate).",
+      "Garnish with Gremolata (minced fresh parsley, lemon zest, garlic).",
+      "Pair with a robust dry red wine, such as Barolo or Nebbiolo.",
+      "Offer crusty Italian bread to sop up the rich sauce."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "1 kg, cut into 5cm chunks"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 large, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "750 ml (e.g., Barolo, Nebbiolo)"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "for gremolata (optional)"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper. Dredge beef lightly in flour.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear beef chunks in batches until deeply browned on all sides. Do not overcrowd the pot. Remove seared beef and set aside.",
+      "Reduce heat to medium. Add diced onions, carrots, and celery to the pot. Sauté for 8-10 minutes until softened and lightly browned.",
+      "Add minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and cook for 5 minutes, allowing alcohol to evaporate.",
+      "Return seared beef to the pot. Add beef stock, rosemary, thyme, and bay leaves. Ensure beef is mostly submerged. Add more stock if needed.",
+      "Bring to a gentle simmer. Cover the pot tightly. Transfer to a preheated oven at 160°C (325°F).",
+      "Braise for 2.5 to 3 hours, or until beef is fork-tender. Check periodically and stir.",
+      "Remove pot from oven. Remove beef chunks from sauce and set aside. Discard herb sprigs and bay leaves.",
+      "Strain sauce through a fine-mesh sieve into a saucepan. Press solids to extract liquid. Discard solids.",
+      "Simmer strained sauce over medium heat until it reduces and thickens to a desired consistency. Season with salt and pepper.",
+      "Return beef chunks to the thickened sauce. Gently warm through. Cook beef to internal temperature of 75°C (167°F).",
+      "Serve immediately."
+    ],
+    "notes": [
+      "For best results, braise the beef slowly for maximum tenderness. This dish often tastes even better the next day, allowing flavors to deepen.",
+      "The quality of red wine significantly impacts the final flavor of the sauce. Use a wine you would enjoy drinking."
+    ],
+    "traditional_techniques": [
+      "Braising (Brasato)",
+      "Soffritto (aromatic base)",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 967,
+      "cholesterol_mg": 210,
+      "dietary_fiber_g": 3.4,
+      "protein_g": 69.1,
+      "saturated_fat_g": 16.8,
+      "sodium_mg": 1105,
+      "total_carbs_g": 24.7,
+      "total_fat_g": 48.3,
+      "total_sugars_g": 8,
+      "trans_fat_g": 2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 161,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 11.5,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 184,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 8.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 70,
+      "dietary_fiber": 12,
+      "protein": 138,
+      "saturated_fat": 84,
+      "sodium": 48,
+      "total_carbs": 9,
+      "total_fat": 62
+    },
+    "serving_size_g": 600,
+    "total_recipe_weight_g": 2400
+  }
+]

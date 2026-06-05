@@ -1,0 +1,672 @@
+[
+  {
+    "recipe_name": "Arroz con Pollo a la Cerveza",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_a_la_cerveza_20250623_140305_93a8bb3d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:03:05.934825000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "chili",
+      "beer"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo a la Cerveza is presented on a clean white porcelain dinner plate. A generous mound of golden-green rice, infused with cilantro and aji amarillo, forms the base. Two pieces of richly browned chicken, a bone-in thigh and drumstick, are nestled invitingly atop the rice. Visible within the rice are vibrant green peas and tender diced carrots, adding color and texture. The chicken skin is crisp; the meat is succulent. The rice appears fluffy and moist. A small, separate white bowl holds a bright red salsa criolla, composed of thinly sliced red onion and minced cilantro, with a hint of red chili. The setting is a modern bistro, featuring a simple wooden table surface and a folded cotton napkin beside the plate. Natural, even lighting illuminates the dish, highlighting its authentic colors and textures. The background is minimal, creating a focused, inviting presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "cultural_origin": "Peruvian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Salsa Criolla (red onion, lime, aji limo, cilantro).",
+      "Offer lime wedges for diners to squeeze over their portion."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs and drumsticks, bone-in, skin-on",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Long-grain rice",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Lager beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Aji Amarillo paste",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Red onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Lime, for serving",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Pat chicken pieces dry. Season with salt and pepper.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat. Sear chicken pieces until golden brown on all sides. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add diced red onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic, diced red bell pepper, and diced carrot. Cook for 3 minutes.",
+      "Stir in aji amarillo paste, cumin powder, and dried oregano. Cook for 2 minutes, stirring constantly.",
+      "Pour in beer. Scrape up any browned bits from the bottom of the pot. Bring to a simmer.",
+      "Return seared chicken to the pot. Add chicken broth. Bring liquid to a gentle boil.",
+      "Reduce heat to low. Cover and simmer for 20 minutes, or until chicken is nearly cooked through (internal temperature 75°C).",
+      "Stir in rice and two-thirds of the chopped cilantro. Distribute rice evenly around chicken pieces.",
+      "Cover the pot tightly. Cook on low heat for 20 minutes, or until rice absorbs all liquid and is tender. Do not lift lid during cooking.",
+      "Remove pot from heat. Stir in frozen peas. Fluff rice gently with a fork.",
+      "Cover and let rest for 5 minutes.",
+      "Serve hot, garnished with remaining fresh cilantro. Offer lime wedges on the side."
+    ],
+    "notes": [
+      "Adjust aji amarillo paste to control spice level.",
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for safety."
+    ],
+    "traditional_techniques": [
+      "Aderezo (Peruvian sofrito base)",
+      "Braising",
+      "Absorption method for rice"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 710.1,
+      "cholesterol_mg": 131.6,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 30.9,
+      "saturated_fat_g": 7.2,
+      "sodium_mg": 1059.2,
+      "total_carbs_g": 71.7,
+      "total_fat_g": 29.3,
+      "total_sugars_g": 4.33,
+      "trans_fat_g": 0.03
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149.5,
+      "cholesterol_mg": 27.7,
+      "dietary_fiber_g": 0.82,
+      "protein_g": 6.5,
+      "saturated_fat_g": 1.52,
+      "sodium_mg": 223,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 6.17,
+      "total_sugars_g": 0.91,
+      "trans_fat_g": 0.01
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43.9,
+      "dietary_fiber": 13.9,
+      "protein": 61.7,
+      "saturated_fat": 36,
+      "sodium": 46.1,
+      "total_carbs": 26.1,
+      "total_fat": 37.6
+    },
+    "serving_size_g": 475,
+    "total_recipe_weight_g": 1900
+  },
+  {
+    "recipe_name": "Pollo a la Cerveza con Champiñones",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_a_la_cerveza_con_champi%C3%B1ones_20250623_140240_f4e460a7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:02:41.103912000Z",
+    "selected_ingredients": [
+      "chicken",
+      "chili",
+      "garlic",
+      "tomato",
+      "beer",
+      "mushroom",
+      "onion",
+      "oil",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features two golden-brown, skin-on chicken thighs nestled atop a bed of fluffy, white long-grain rice. The chicken remains whole, showcasing a crispy, rendered skin glistening with a rich, reddish-brown beer and tomato reduction. Thickly quartered cremini mushrooms and softened diced onions are scattered throughout the sauce, providing earthy texture. Bright green rounds of sliced serrano chili and fresh cilantro leaves offer a vibrant color contrast against the deep savory tones of the braise. Served in a shallow, wide white porcelain bowl, the arrangement is natural and rustic yet clean. A wedge of lime sits on the side. The lighting is soft and natural, highlighting the glossy sauce and the steam rising from the succulent meat.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas",
+      "Provide fresh lime wedges for acidity",
+      "Accompany with a side of pickled red onions"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in and skin-on",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cremini mushrooms, quartered",
+        "quantity": "250 g"
+      },
+      {
+        "name": "White onion, medium diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Serrano chilies, sliced into rounds",
+        "quantity": "2"
+      },
+      {
+        "name": "Roma tomatoes, diced",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Lager beer",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Neutral cooking oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Cook rice in 600 ml salted water until tender. Keep warm.",
+      "Season chicken thighs generously with salt.",
+      "Heat oil in a large heavy skillet over medium-high heat.",
+      "Sear chicken skin-side down until golden and crisp. Flip and sear for 2 minutes. Remove from pan.",
+      "Sauté diced onion and quartered mushrooms in the same skillet for 5 minutes.",
+      "Add minced garlic and sliced chilies. Stir for 1 minute.",
+      "Add diced tomatoes. Cook until they begin to break down.",
+      "Pour in beer. Scrape the bottom of the pan to release browned bits.",
+      "Return chicken to the skillet. Cover and simmer on low for 20 minutes.",
+      "Uncover and simmer for 10 minutes to thicken the sauce.",
+      "Verify chicken internal temperature reaches 75°C.",
+      "Place whole chicken thighs over a bed of rice. Spoon sauce and mushrooms over the top. Garnish with cilantro."
+    ],
+    "notes": [
+      "Ensure the skillet is not overcrowded when searing chicken to maintain skin crispness",
+      "Use a Mexican lager for a more authentic flavor profile",
+      "Always check chicken temperature at the thickest part of the thigh"
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 864,
+      "cholesterol_mg": 168,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 47.1,
+      "saturated_fat_g": 9.5,
+      "sodium_mg": 1133,
+      "total_carbs_g": 74.3,
+      "total_fat_g": 38.1,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 172.8,
+      "cholesterol_mg": 33.6,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 9.4,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 226.6,
+      "total_carbs_g": 14.9,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 11.4,
+      "protein": 94.2,
+      "saturated_fat": 47.5,
+      "sodium": 49.3,
+      "total_carbs": 27,
+      "total_fat": 48.8
+    },
+    "serving_size_g": 500,
+    "total_recipe_weight_g": 2000
+  },
+  {
+    "recipe_name": "Creamy Baked Chicken and Rice Casserole",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_baked_chicken_and_rice_casserole_20250623_140238_d024a2c9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:02:39.075385000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "rice",
+      "tomato",
+      "mushroom",
+      "oregano",
+      "corn",
+      "swiss chard",
+      "bread",
+      "beef",
+      "pasta",
+      "pork",
+      "chili",
+      "onion",
+      "bean",
+      "potato",
+      "apple",
+      "mustard",
+      "sausage",
+      "yeast",
+      "salmon",
+      "grape",
+      "italian sausage",
+      "green bean",
+      "oil",
+      "basil"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty, comforting baked casserole presented in a rustic ceramic baking dish, as if just pulled from a family oven. The surface features a golden-brown, bubbly layer of melted cheddar cheese, with some areas showing a deeper caramelization. Beneath the cheese, tender, chunky pieces of chicken are visible, alongside plump, cooked long-grain rice. Interspersed throughout are soft, earthy slices of mushroom, bright yellow corn kernels, and dark green, wilted Swiss chard pieces, all unified by a creamy, tomato-infused sauce. The chicken pieces are irregularly cut into thick chunks. The overall color palette is warm and inviting, dominated by golden cheese, white rice, and varied greens, reds, and browns from the vegetables and chicken. The dish is served on a simple, well-used wooden dining table, perhaps with a casually draped checkered cloth napkin to one side. A single portion is scooped onto an everyday ceramic plate, showing the generous mix of ingredients. Natural, warm light from a kitchen window or overhead fixture illuminates the scene, creating a cozy, lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve directly from the baking dish at the center of the table.",
+      "Accompany with a simple green salad with a vinaigrette dressing.",
+      "Offer warm crusty bread on the side for soaking up the sauce."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "600 g, boneless, skinless"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cheddar cheese",
+        "quantity": "200 g, grated"
+      },
+      {
+        "name": "Diced tomatoes",
+        "quantity": "400 g can, undrained"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200 g, sliced"
+      },
+      {
+        "name": "Corn kernels",
+        "quantity": "200 g, frozen or canned, drained"
+      },
+      {
+        "name": "Swiss chard",
+        "quantity": "150 g, tough stems removed, chopped"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Grease a 2.5-liter baking dish.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add sliced mushrooms. Cook until mushrooms release their liquid and start to brown, about 7-8 minutes.",
+      "Add chicken breasts to the skillet. Cook until lightly browned on all sides, about 3 minutes per side. Remove chicken from skillet and set aside.",
+      "In the same skillet, melt butter over medium heat. Stir in flour. Cook for 1 minute, stirring constantly, to form a roux.",
+      "Gradually whisk in chicken broth and milk until smooth. Bring to a simmer, stirring, until sauce thickens slightly, about 3-4 minutes.",
+      "Stir in diced tomatoes, corn kernels, chopped Swiss chard, oregano, salt, and black pepper.",
+      "Add uncooked rice to the sauce mixture. Stir to combine.",
+      "Return chicken breasts to the skillet, nestling them into the rice mixture. Ensure chicken is submerged in the liquid.",
+      "Cover the skillet or transfer mixture to the prepared baking dish and cover tightly with foil.",
+      "Bake for 30 minutes.",
+      "Remove from oven. Uncover. Stir the rice gently. The rice should be mostly cooked.",
+      "Sprinkle grated cheddar cheese evenly over the top of the casserole.",
+      "Return to oven, uncovered. Bake for another 15-20 minutes, or until chicken is cooked through (internal temperature 75°C), rice is tender, and cheese is melted and bubbly.",
+      "Let casserole rest for 5-10 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust salt and pepper to personal preference.",
+      "Swiss chard can be replaced with spinach or kale if preferred."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 862,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 6.2,
+      "protein_g": 73.9,
+      "saturated_fat_g": 18.1,
+      "sodium_mg": 1738,
+      "total_carbs_g": 82.2,
+      "total_fat_g": 38.1,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 115,
+      "cholesterol_mg": 27,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 9.8,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 231,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 5.1,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 22,
+      "protein": 148,
+      "saturated_fat": 90,
+      "sodium": 76,
+      "total_carbs": 30,
+      "total_fat": 49
+    },
+    "serving_size_g": 752,
+    "total_recipe_weight_g": 3007
+  },
+  {
+    "recipe_name": "Pan-Seared Beef Steaks with Garlic Herb Butter",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_beef_steaks_with_garlic_herb_butter_20250623_140236_2fc8bd30.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:02:36.635491000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of pan-seared beef steak is presented on a clean, round white porcelain plate. The steak, a thick, rich brown cut, retains its robust shape, showcasing a perfectly seared crust and succulent interior. Adjacent to the steak are vibrant green asparagus spears, roasted to a tender-crisp texture. A generous dollop of creamy, pale yellow garlic herb butter, flecked with dark green rosemary and thyme, melts gently atop the warm beef, creating small rivulets of glistening richness. The plate features thoughtful negative space, allowing each element to stand out. The scene is set on a simple wooden table, with a neatly folded cotton napkin and standard silver flatware beside the plate. Natural, even lighting illuminates the dish, highlighting its textures and inviting colors against a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "hero_ingredient": "Beef Steak",
+    "ingredients": [
+      {
+        "name": "Beef Sirloin Steaks",
+        "quantity": "800g (4 x 200g steaks)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "100g, softened"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "2 sprigs, leaves chopped"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "4 sprigs, leaves chopped"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": "400g, trimmed"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "Freshly ground, to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Prepare beef: Pat steaks dry. Season generously with sea salt and black pepper.",
+      "Roast asparagus: Toss asparagus with 15ml olive oil, salt, and pepper. Spread on a baking tray. Roast for 10-12 minutes until tender-crisp.",
+      "Make garlic herb butter: In a small bowl, combine softened butter, minced garlic, chopped rosemary, and chopped thyme leaves. Mix well.",
+      "Sear beef: Heat remaining 15ml olive oil in a large, heavy-bottomed pan over medium-high heat until shimmering. Add steaks. Sear 3-4 minutes per side for medium-rare, or until desired doneness.",
+      "Finish steaks: Remove steaks from pan. Rest on a cutting board for 5 minutes.",
+      "Serve: Top each steak with a generous dollop of garlic herb butter. Serve immediately with roasted asparagus."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 574,
+      "cholesterol_mg": 196,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 48.4,
+      "saturated_fat_g": 18.7,
+      "sodium_mg": 111,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 40.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 1.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 200,
+      "cholesterol_mg": 69,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 16.9,
+      "saturated_fat_g": 6.5,
+      "sodium_mg": 39,
+      "total_carbs_g": 1.8,
+      "total_fat_g": 14,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 8,
+      "protein": 97,
+      "saturated_fat": 94,
+      "sodium": 5,
+      "total_carbs": 2,
+      "total_fat": 52
+    },
+    "serving_size_g": 286.4,
+    "total_recipe_weight_g": 1145.6
+  },
+  {
+    "recipe_name": "Sweet Polenta Cakes with Basil-Caramelized Onion Jam and Basil Dust",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_polenta_cakes_with_basil-caramelized_onion_jam_and_basil_dust_20250623_140134_2faee860.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:01:34.641365000Z",
+    "selected_ingredients": [
+      {
+        "name": "basil"
+      },
+      {
+        "name": "polenta"
+      },
+      {
+        "name": "onion"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": null,
+    "visual_description": "The dish is presented on an exquisite, matte white bone china plate, allowing for abundant negative space. Two to three perfectly round or square sweet polenta cakes, each approximately 3 cm in diameter and 1.5 cm thick, are arranged in a natural, slightly asymmetric cluster on one side of the plate. The polenta cakes are a delicate, pale yellow, with a smooth, firm texture. Adjacent to each polenta cake, or subtly overlapping, is a small, glossy quenelle or a precisely placed dollop of the basil-caramelized onion jam. The jam is a deep, rich amber color, almost translucent, with a perfectly smooth, refined texture, hinting at its concentrated sweetness. A vibrant, emerald-green basil dust is delicately scattered across the plate, creating an artistic, ephemeral pattern and enhancing the visual contrast. The overall composition is clean, architectural, and highly refined, emphasizing the purity of ingredients and precision of execution. The setting features a superpremium wooden table, a pristine white linen napkin folded into a precise triangle, and dramatic professional lighting casting soft shadows to enhance depth. The entire plate is visible, showcasing the minimalist elegance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Modern",
+    "hero_ingredient": "Polenta",
+    "ingredients": [
+      {
+        "name": "Fine polenta",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Vanilla bean paste",
+        "quantity": "2 ml"
+      },
+      {
+        "name": "Sweet onion",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "70 g"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Maltodextrin",
+        "quantity": "10 g"
+      }
+    ],
+    "instructions": [
+      "Melt 10 g butter in a heavy-bottomed saucepan over medium-low heat. Add sliced onion. Cook slowly, stirring occasionally, for 25-30 minutes until deeply caramelized and very tender. Do not brown quickly.",
+      "Add 70 g sugar, apple cider vinegar, and 50 ml water. Bring to a simmer. Cook for 10-15 minutes, stirring, until liquid reduces and mixture is jam-like.",
+      "Stir in 30 g basil leaves. Cook for 1 minute until wilted. Transfer mixture to a high-speed blender. Blend until very smooth. Strain through a fine-mesh sieve. Chill completely.",
+      "In a saucepan, bring milk, 50 g sugar, pinch of salt, and vanilla bean paste to a gentle simmer.",
+      "Slowly whisk in polenta in a steady stream to prevent lumps. Reduce heat to low. Cook, stirring frequently, for 15-20 minutes until polenta is thick and creamy.",
+      "Stir in 30 g butter until melted and fully incorporated. Pour hot polenta onto a parchment-lined baking sheet. Spread evenly to 1.5 cm thickness.",
+      "Chill for at least 2 hours until firm. Once firm, use a small, sharp round or square cutter (e.g., 3-4 cm diameter) to cut out 8-12 individual cakes.",
+      "Blanch 20 g basil leaves in boiling water for 10 seconds. Immediately transfer to an ice bath. Drain well. Squeeze out excess water. Pat very dry with paper towels.",
+      "Combine blanched basil, maltodextrin, and a pinch of salt in a spice grinder or small food processor. Process until a fine, vibrant green powder forms. Sieve for a finer dust. Store in an airtight container.",
+      "Arrange 2-3 chilled polenta cakes per serving on minimalist plates. Place a small, artful dollop or quenelle of the chilled basil-caramelized onion jam beside or on top of each cake. Lightly dust the plate and cakes with basil dust. Serve immediately."
+    ],
+    "notes": [
+      "Ensure the onion is truly caramelized slowly for deep sweetness and no bitterness.",
+      "The basil dust provides a fresh, aromatic counterpoint and visual pop.",
+      "The polenta should be firm enough to cut cleanly but still melt in the mouth."
+    ]
+  }
+]

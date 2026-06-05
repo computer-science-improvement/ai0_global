@@ -1,0 +1,512 @@
+[
+  {
+    "recipe_name": "Fermented Poblano & Avocado Tartines",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_poblano_%26_avocado_tartines_20250628_090440_aa19d228.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:04:41.063244000Z",
+    "selected_ingredients": [
+      "avocado",
+      "poblano chile",
+      "cumin",
+      "chihuahua cheese",
+      "annatto",
+      "thyme"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian, yummy, Only not Mexican food cuisine",
+    "visual_description": "The dish presents individual, rustic flatbreads, each a warm, pale orange hue from the annatto, with flecks of dark green thyme baked into their soft, slightly blistered surface. A generous, creamy layer of vibrant green avocado and subtly textured fermented poblano spread is spooned onto each flatbread. The spread shows soft, mashed avocado interspersed with small, irregular pieces of the unique, pale green fermented poblano. A scattering of finely crumbled creamy white Chihuahua cheese rests atop the spread, providing a textural contrast. A few delicate fresh thyme sprigs are placed casually on each tartine. The tartines are arranged naturally on a large, light-colored, handcrafted ceramic platter or a reclaimed wood board, allowing ample negative space. The setting features a light bamboo table surface, an undyed linen napkin in beige, and soft natural lighting from the side, with a clean, minimalist background showing subtle plant elements. The composition is clean and ingredient-focused.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented Poblano",
+    "ingredients": [
+      {
+        "name": "Fermented Poblano Chiles",
+        "quantity": "2 large (pre-fermented)"
+      },
+      {
+        "name": "Ripe Avocados",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "10g (plus extra for garnish)"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Chihuahua Cheese",
+        "quantity": "50g"
+      },
+      {
+        "name": "Annatto Powder",
+        "quantity": "3g"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "250g"
+      },
+      {
+        "name": "Warm Water",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Active Dry Yeast",
+        "quantity": "7g"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30ml (plus extra for drizzling)"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "5g (plus extra for seasoning)"
+      },
+      {
+        "name": "Lime Juice",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Prepare Flatbread Dough: In a bowl, combine warm water, yeast, and sugar. Let stand 5 minutes until foamy.",
+      "Add flour, annatto powder, 5g chopped fresh thyme, 5g salt, and 15ml olive oil. Mix until a shaggy dough forms.",
+      "Knead Dough: Turn dough onto a lightly floured surface. Knead 8-10 minutes until smooth and elastic.",
+      "First Rise: Place dough in a lightly oiled bowl. Cover with a cloth. Let rise in a warm place 1 hour, or until doubled.",
+      "Shape Flatbreads: Punch down dough. Divide into 8 equal pieces. Roll each piece into an oval, about 5mm thick.",
+      "Cook Flatbreads: Heat a dry cast-iron pan or griddle over medium-high heat. Cook each flatbread 2-3 minutes per side, until puffed and lightly charred. Stack on a plate, cover to keep warm.",
+      "Prepare Poblano-Avocado Spread: In a bowl, mash avocados. Add chopped fermented poblano, ground cumin, remaining 5g chopped fresh thyme, lime juice, and a pinch of salt. Mix well. Do not overmix.",
+      "Assemble Tartines: Spread a generous amount of poblano-avocado mixture onto each warm flatbread.",
+      "Garnish: Crumble Chihuahua cheese over the spread. Drizzle with a little olive oil. Garnish with fresh thyme sprigs. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Poblano and Avocado Quesadillas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poblano_and_avocado_quesadillas_20250628_090334_1a431bd2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:03:35.375048000Z",
+    "selected_ingredients": [
+      "avocado",
+      "poblano chile",
+      "cumin",
+      "chihuahua cheese",
+      "annatto"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian, yummy cuisine",
+    "visual_description": "The quesadillas are golden brown, with a slightly crisp exterior. They are cut into irregular wedges, revealing a warm, creamy interior. Inside, pockets of melted, vibrant orange-hued chihuahua cheese mingle with soft, pale green mashed avocado. Darker green, smoky diced poblano pieces and translucent onion flecks are visible throughout the filling. The quesadillas are casually piled on a rustic ceramic serving plate with natural imperfections, placed on a well-used wooden dining table. A small bowl of vibrant green chopped cilantro is positioned nearby for garnish. Fresh lime wedges are scattered around the plate, adding a bright color contrast. Warm, cozy light illuminates the scene, highlighting the comforting textures and inviting colors of the snack.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a side of salsa verde or pico de gallo.",
+      "Offer extra lime wedges for squeezing.",
+      "Present on a large, communal platter for sharing."
+    ],
+    "hero_ingredient": "Poblano Chile",
+    "ingredients": [
+      {
+        "name": "Corn or wheat tortillas",
+        "quantity": "8 small or 4 large"
+      },
+      {
+        "name": "Poblano chiles",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Chihuahua cheese",
+        "quantity": "200 g, shredded"
+      },
+      {
+        "name": "Avocado",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Annatto powder",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "50 g, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 whole, cut into wedges"
+      }
+    ],
+    "instructions": [
+      "Roast poblano chiles. Place on a baking sheet. Broil until skin is blistered and charred, about 5-7 minutes per side.",
+      "Transfer roasted chiles to a bowl. Cover tightly with plastic wrap. Let steam for 10 minutes.",
+      "Peel, seed, and dice roasted poblanos into small cubes.",
+      "In a small bowl, combine shredded chihuahua cheese with annatto powder. Mix well.",
+      "Heat olive oil in a pan over medium heat. Add diced onion. Cook until softened, about 3 minutes.",
+      "Add minced garlic and diced poblano. Cook for 2 minutes. Stir in ground cumin. Remove from heat.",
+      "Halve and pit avocados. Scoop out flesh. Lightly mash with a fork. Season with salt.",
+      "Warm tortillas in a dry pan.",
+      "Lay a warm tortilla flat. Spread a thin layer of mashed avocado on one half.",
+      "Spoon some poblano-onion mixture over avocado.",
+      "Sprinkle generously with annatto-spiced chihuahua cheese.",
+      "Fold the other half of the tortilla over to create a half-moon.",
+      "Cook quesadilla in a dry or lightly oiled pan over medium heat. Cook until cheese is melted and tortilla is golden brown and crisp, about 3-4 minutes per side.",
+      "Repeat for remaining quesadillas.",
+      "Cut each quesadilla into 2-3 wedges.",
+      "Serve immediately with fresh cilantro and lime wedges."
+    ],
+    "traditional_techniques": [
+      "Roasting chiles for charring and steaming to remove skin",
+      "Melting cheese within tortillas"
+    ]
+  },
+  {
+    "recipe_name": "Honey Financiers with Sweet Wine Gel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_honey_financiers_with_sweet_wine_gel_20250628_090154_50b80075.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:01:54.842216000Z",
+    "selected_ingredients": [
+      {
+        "name": "honey"
+      },
+      {
+        "name": "butter"
+      },
+      {
+        "name": "sweet wine"
+      },
+      {
+        "name": "flour"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": null,
+    "visual_description": "Six to nine perfectly uniform miniature financiers are elegantly arranged on a pristine white Carrara marble serving platter. Each financier, a golden-brown rectangle with subtly crisp edges, is coated in a delicate, translucent honey glaze that reflects the light. A precisely placed, vibrant dollop of clear, shimmering sweet wine gel rests atop each financier, providing a striking contrast in color and texture. The composition is minimalist and organic, with ample negative space enhancing the architectural precision of each petit four. The presentation is elevated by the luxurious marble surface, a pristine white linen napkin folded into a precise triangle, and dramatic professional lighting that casts subtle, artistic shadows, emphasizing the refined simplicity and flawless execution.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "cultural_origin": "French",
+    "hero_ingredient": "Honey",
+    "ingredients": [
+      {
+        "name": "Unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "Honey (e.g., acacia or orange blossom)",
+        "quantity": "30g"
+      },
+      {
+        "name": "Large egg whites",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Sweet white wine (e.g., Sauternes, Ice Wine)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Honey",
+        "quantity": "50g"
+      },
+      {
+        "name": "Water",
+        "quantity": "20ml"
+      },
+      {
+        "name": "Gelatin powder",
+        "quantity": "1g"
+      }
+    ],
+    "instructions": [
+      "Melt butter in a small saucepan over medium heat. Cook until golden brown and nutty (beurre noisette). Strain through a fine-mesh sieve. Let cool slightly.",
+      "In a separate bowl, whisk almond flour, all-purpose flour, powdered sugar, and salt.",
+      "Lightly whisk egg whites until just frothy. Do not whip to peaks.",
+      "Add 30g honey and egg whites to dry ingredients. Mix gently until just combined.",
+      "Gradually fold in the cooled brown butter until smooth. Do not overmix.",
+      "Cover batter and refrigerate for at least 1 hour, preferably overnight.",
+      "Preheat oven to 180°C (350°F). Lightly butter and flour miniature financier molds.",
+      "Fill molds two-thirds full with batter.",
+      "Bake for 12-15 minutes, or until edges are golden brown and centers are set.",
+      "Remove from oven. Let cool in molds, then transfer to a wire rack to cool completely.",
+      "For Sweet Wine Gel: In a small saucepan, whisk sweet wine and agar-agar. Bring to a boil, reduce heat, and simmer for 2 minutes, stirring constantly.",
+      "Pour gel mixture into a shallow dish. Refrigerate until firm (at least 1 hour).",
+      "Once firm, cut gel into cubes. Transfer to a blender. Blend on high speed until completely smooth and fluid.",
+      "Pass gel through a fine-mesh sieve for ultimate smoothness. Store in an airtight container in the refrigerator.",
+      "For Honey Glaze: Bloom gelatin powder in 10ml cold water.",
+      "Combine 50g honey and remaining 10ml water in a small saucepan. Heat gently until warm.",
+      "Remove from heat. Stir in bloomed gelatin until dissolved.",
+      "Let glaze cool to lukewarm, about 30°C (86°F), before using. It should be thin but able to coat a spoon.",
+      "Place cooled financiers on a wire rack set over parchment paper.",
+      "Carefully spoon or brush a thin, even layer of honey glaze over each financier, allowing excess to drip off. Let glaze set slightly.",
+      "Just before serving, place a small, artful dollop of the sweet wine gel on top of each financier."
+    ],
+    "notes": [
+      "For best results, prepare financier batter the day before.",
+      "Ensure sweet wine gel is completely smooth for a professional finish.",
+      "The honey glaze should be thin enough to coat without being thick or opaque."
+    ],
+    "traditional_techniques": [
+      "Buerre Noisette"
+    ]
+  },
+  {
+    "recipe_name": "Hearty Mexican Black Bean and Hominy Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_mexican_black_bean_and_hominy_stew_20250628_090149_9adc2831.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:01:50.086688000Z",
+    "selected_ingredients": [
+      "avocado",
+      "hominy corn",
+      "cotija cheese",
+      "cumin",
+      "black bean",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian, filling, italian cuisine",
+    "visual_description": "A rustic, deep terracotta ceramic bowl sits on a worn wooden dining table. The bowl is filled with a rich, dark brown black bean and hominy stew, its surface dotted with vibrant red tomato pieces and golden hominy. Steam gently rises. On top, generous chunks of bright green diced avocado are casually placed, alongside generous crumbles of white, salty Cotija cheese. Fresh, vibrant green cilantro leaves are scattered over the top. The stew has a thick, hearty texture. A simple, rough-textured linen napkin in a muted earth tone is casually draped beside the bowl. A traditional clay water pitcher and a stack of warm corn tortillas are in the soft-focused background. Warm, natural light illuminates the scene, creating a cozy, inviting atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for dipping.",
+      "Offer lime wedges on the side for a fresh squeeze.",
+      "Serve with a side of pickled jalapeños or a simple salsa roja."
+    ],
+    "hero_ingredient": "Black Bean",
+    "ingredients": [
+      {
+        "name": "Black beans",
+        "quantity": "400g (canned, rinsed)"
+      },
+      {
+        "name": "Hominy corn",
+        "quantity": "400g (canned, rinsed)"
+      },
+      {
+        "name": "Diced tomatoes",
+        "quantity": "400g (canned)"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (diced)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves (minced)"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "10g"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "15g"
+      },
+      {
+        "name": "Avocado",
+        "quantity": "2 medium (diced)"
+      },
+      {
+        "name": "Cotija cheese",
+        "quantity": "50g (crumbled)"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30g (chopped)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic, cumin powder, and chili powder. Cook for 1 minute until fragrant.",
+      "Stir in rinsed black beans, rinsed hominy, diced tomatoes, and vegetable broth.",
+      "Bring the stew to a simmer. Reduce heat to low. Cover and cook for 20 minutes, allowing flavors to meld.",
+      "Season with salt and black pepper to taste.",
+      "Ladle generous portions of hot stew into individual serving bowls.",
+      "Top each bowl with diced avocado and crumbled cotija cheese.",
+      "Garnish with fresh chopped cilantro. Serve immediately."
+    ],
+    "notes": [
+      "For extra heat, add a pinch of cayenne pepper with the chili powder.",
+      "This stew thickens as it cools; add a splash of broth when reheating if desired."
+    ],
+    "traditional_techniques": [
+      "Sofrito (sautéing aromatics and spices as a base)",
+      "Simmering (slow cooking to meld flavors)"
+    ]
+  },
+  {
+    "recipe_name": "Financier de Porc Doux with Ginger-Apple Compote, Coconut Sorbet, and Almond Lace",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_financier_de_porc_doux_with_ginger-apple_compote%2C_coconut_sorbet%2C_and_almond_lace_20250628_090101_b58a0da4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-28T09:01:02.118192000Z",
+    "selected_ingredients": [
+      {
+        "name": "pork"
+      },
+      {
+        "name": "ginger"
+      },
+      {
+        "name": "sugar"
+      },
+      {
+        "name": "cinnamon"
+      },
+      {
+        "name": "almond"
+      },
+      {
+        "name": "coconut"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Australian",
+    "visual_description": "A single, elegantly plated dessert centered on a pristine white bone china plate. The focal point is a golden-brown, rectangular Financier de Porc Doux, its top a rich, caramelized hue. Beside it, a perfectly formed, smooth quenelle of creamy white Coconut Sorbet glistens. Adjacent, a small, artfully placed dollop of Ginger-Apple Compote, with visible diced apple and ginger flecks, offers a warm, amber tone. A delicate, golden Almond Lace Tuile, thin and crisp, stands vertically for height and texture. Abundant negative space emphasizes the minimalist, sophisticated composition. The setting is a premium white Carrara marble surface, with dramatic professional lighting creating subtle shadows. A perfectly folded white linen napkin is placed subtly to the side. The presentation is clean, precise, highlighting luxurious ingredients and masterful execution.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Australian",
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Rendered pork fat (lard)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Icing sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "4 (from large eggs)"
+      },
+      {
+        "name": "Green apples",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Coconut cream (full fat)",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Pinch of salt",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Flaked almonds",
+        "quantity": "20 g"
+      }
+    ],
+    "instructions": [
+      "Prepare Financiers: Melt butter in a saucepan over medium heat until browned and nutty (brown butter). Strain through a fine sieve into a bowl. Add rendered pork fat to brown butter. Let cool slightly.",
+      "Whisk icing sugar, almond flour, and plain flour in a large bowl. Add egg whites. Whisk until smooth. Slowly whisk in brown butter and pork fat mixture until fully combined.",
+      "Cover batter. Refrigerate for at least 1 hour.",
+      "Preheat oven to 180°C. Grease and flour four financier molds. Fill molds two-thirds full with batter.",
+      "Bake 15-18 minutes, or until golden brown and edges are crisp. Cool on a wire rack.",
+      "Prepare Ginger-Apple Compote: Peel, core, and dice apples into 1 cm cubes. Peel and finely grate ginger.",
+      "Combine diced apples, grated ginger, cinnamon stick, granulated sugar, and lemon juice in a small saucepan. Cook over medium-low heat. Stir occasionally until apples are tender and liquid has reduced to a syrupy consistency, about 15-20 minutes. Remove cinnamon stick. Cool completely.",
+      "Prepare Coconut Sorbet: Combine coconut cream, granulated sugar, water, and salt in a saucepan. Heat gently, stirring until sugar dissolves. Do not boil. Chill mixture thoroughly.",
+      "Churn mixture in an ice cream maker according to manufacturer's instructions until frozen. Transfer to a freezer-safe container. Freeze until firm.",
+      "Prepare Almond Lace Tuiles: Whisk 20g icing sugar, 10g plain flour, and 1 egg white until smooth. Stir in 15g melted butter. Stir in flaked almonds.",
+      "Spread thin circles of batter onto a silicone mat or parchment-lined baking sheet. Bake at 160°C for 5-7 minutes, until golden and crisp. Immediately shape over a rolling pin or cylinder if desired for a curved shape. Cool completely.",
+      "Assembly: Place one financier on each plate. Form a quenelle of coconut sorbet next to the financier. Spoon a small amount of ginger-apple compote artfully beside the sorbet. Lean an almond lace tuile against the financier or sorbet for height."
+    ]
+  }
+]

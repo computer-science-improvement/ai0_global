@@ -1,0 +1,665 @@
+[
+  {
+    "recipe_name": "Kuzu Yahni (Turkish Lamb Stew)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_kuzu_yahni_%28turkish_lamb_stew%29_20250624_023608_49f200a2.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:36:09.273515000Z",
+    "selected_ingredients": [
+      "lamb",
+      "rosemary",
+      "parsley",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "turkish cuisine",
+    "visual_description": "A single, inviting portion of Kuzu Yahni is artfully presented on a clean, round white porcelain plate. Succulent, tender chunks of braised lamb, approximately 3-4 cm cubes, are nestled amidst a rich, deep reddish-brown tomato and onion-based sauce. The lamb exhibits a slight char from initial searing, providing textural contrast. Visible elements include softened onion wedges and vibrant green specks of finely chopped fresh parsley, scattered generously over the top. The stew has a comforting, slightly glossy sheen. A few small, fresh rosemary sprigs are subtly placed for aromatic accent. The composition is balanced, with moderate negative space. The dish is photographed in a modern bistro setting, on a simple wooden table, with natural, even lighting. A crisp white cotton napkin is folded neatly beside the plate, accompanied by standard European flatware. The presentation is professional and approachable, highlighting the dish's hearty appeal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Turkish",
+    "cultural_origin": "Turkish",
+    "cultural_serving_suggestions": [
+      "Serve with Pirinç Pilavı (Turkish Rice Pilaf) or Bulgur Pilavı (Bulgur Pilaf).",
+      "Offer a side of plain yogurt or Çoban Salatasu (Shepherd's Salad).",
+      "Provide fresh Turkish bread (ekmek) for dipping into the sauce."
+    ],
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Lamb leg or shoulder",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Large onions",
+        "quantity": "2, cut into thick wedges"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4, minced"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Lamb or beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2 small"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30 grams, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pul Biber (Turkish red pepper flakes)",
+        "quantity": "5 grams"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "5 grams"
+      }
+    ],
+    "instructions": [
+      "Cut lamb into 3-4 cm cubes. Season with salt and black pepper.",
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Sear lamb cubes in batches until browned on all sides. Remove lamb from pot.",
+      "Add onion wedges to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add minced garlic, tomato paste, pul biber, and cumin. Cook for 2 minutes, stirring constantly.",
+      "Return lamb to the pot. Add diced tomatoes, lamb broth, and rosemary sprigs.",
+      "Bring to a simmer. Reduce heat to low, cover, and cook for 1.5-2 hours, or until lamb is very tender.",
+      "Stir occasionally to prevent sticking.",
+      "Remove rosemary sprigs before serving.",
+      "Stir in most of the fresh parsley. Reserve some for garnish.",
+      "Taste and adjust seasoning if needed."
+    ],
+    "notes": [
+      "For best flavor, use good quality lamb and let the stew simmer slowly.",
+      "The rosemary provides a subtle aromatic note, complementing the traditional Turkish spices."
+    ],
+    "traditional_techniques": [
+      "Yahni (slow braising/stewing)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 647,
+      "cholesterol_mg": 160,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 56.7,
+      "saturated_fat_g": 13,
+      "sodium_mg": 539,
+      "total_carbs_g": 16.2,
+      "total_fat_g": 38,
+      "total_sugars_g": 6.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 122,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 10.7,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 102,
+      "total_carbs_g": 3.1,
+      "total_fat_g": 7.2,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.3,
+      "dietary_fiber": 13.5,
+      "protein": 113.4,
+      "saturated_fat": 65.2,
+      "sodium": 23.4,
+      "total_carbs": 5.9,
+      "total_fat": 48.8
+    },
+    "serving_size_g": 528.5,
+    "total_recipe_weight_g": 2114
+  },
+  {
+    "recipe_name": "Chicken and Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_and_mushroom_risotto_20250624_023605_7ecd3166.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:36:06.049163000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "garlic",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Serve the risotto on a flat white porcelain dinner plate. The consistency is fluid and spreads naturally across the plate, appearing free-flowing rather than molded. The rice grains are distinct, coated in a glossy, creamy sauce. Large 3cm chunks of golden-brown seared chicken thighs are distributed throughout the rice. Sliced cremini and shiitake mushrooms show deep caramelization and earthy brown tones. The dish features a pale golden hue. Finely minced flat-leaf parsley provides a vibrant green contrast. A light dusting of finely grated Parmesan cheese covers the surface. The arrangement is organic. Beside the plate sits a heavy silver spoon and a folded white cotton napkin on a light oak table. Natural side lighting highlights the creamy texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while the consistency remains fluid",
+      "Accompany with a crisp dry white wine such as Pinot Grigio",
+      "Provide extra grated Parmesan at the table"
+    ],
+    "hero_ingredient": "Mixed Mushrooms",
+    "ingredients": [
+      {
+        "name": "boneless skinless chicken thighs",
+        "quantity": "500g"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "400g"
+      },
+      {
+        "name": "mixed mushrooms (cremini and shiitake)",
+        "quantity": "300g"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "chicken stock",
+        "quantity": "1.2L"
+      },
+      {
+        "name": "dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "20ml"
+      },
+      {
+        "name": "fresh flat-leaf parsley",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3cm chunks.",
+      "Dice onion into 5mm pieces.",
+      "Mince garlic cloves.",
+      "Slice mushrooms into 5mm thick pieces.",
+      "Heat 20ml olive oil in a wide pan over medium-high heat.",
+      "Sear chicken chunks until browned and internal temperature reaches 75°C.",
+      "Remove chicken from pan and set aside.",
+      "Add mushrooms to the same pan. Sauté until moisture evaporates and edges brown.",
+      "Remove mushrooms and set aside.",
+      "Melt 20g butter in the pan. Add onion and garlic.",
+      "Cook until softened but not browned.",
+      "Add rice. Stir 2 minutes to toast the grains until edges are translucent.",
+      "Pour in white wine. Stir until liquid is fully absorbed.",
+      "Add 200ml warm stock. Stir continuously until liquid is absorbed.",
+      "Repeat stock additions one ladle at a time, stirring constantly, until rice is tender but firm.",
+      "Return chicken and mushrooms to the pan.",
+      "Remove from heat.",
+      "Vigorously stir in remaining 30g butter and Parmesan cheese to create a creamy emulsion.",
+      "Season with salt and pepper. Fold in chopped parsley."
+    ],
+    "notes": [
+      "Keep the chicken stock at a low simmer in a separate pot to maintain cooking temperature.",
+      "Stirring constantly is essential to release rice starches for a creamy texture.",
+      "Ensure chicken reaches the safety temperature of 75°C during the initial searing phase."
+    ],
+    "traditional_techniques": [
+      "tostatura",
+      "mantecatura",
+      "sautéing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 875,
+      "cholesterol_mg": 158,
+      "dietary_fiber_g": 2.5,
+      "protein_g": 52,
+      "saturated_fat_g": 13.2,
+      "sodium_mg": 1450,
+      "total_carbs_g": 91,
+      "total_fat_g": 33.5,
+      "total_sugars_g": 2.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 203,
+      "cholesterol_mg": 36.6,
+      "dietary_fiber_g": 0.58,
+      "protein_g": 12.06,
+      "saturated_fat_g": 3.06,
+      "sodium_mg": 336.2,
+      "total_carbs_g": 21.1,
+      "total_fat_g": 7.77,
+      "total_sugars_g": 0.65,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53,
+      "dietary_fiber": 9,
+      "protein": 104,
+      "saturated_fat": 66,
+      "sodium": 63,
+      "total_carbs": 33,
+      "total_fat": 43
+    },
+    "serving_size_g": 431,
+    "total_recipe_weight_g": 1725
+  },
+  {
+    "recipe_name": "Apple and Honey Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_apple_and_honey_crumble_20250624_023518_4d35a03b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:35:19.401265000Z",
+    "selected_ingredients": [
+      "apple",
+      "honey"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Apple and Honey Crumble is served in a warm, cream-colored ceramic bowl with slight imperfections, placed on a well-worn wooden dining table. The golden-brown, rustic crumble topping, made from oats and flour, is unevenly scattered over the tender, diced apples. The apples, softened and slightly caramelized from baking with honey and cinnamon, bubble gently beneath the topping, showing warm, golden hues. A small scoop of melting vanilla ice cream rests on the side of the crumble, slightly softening into the warm dessert. The scene is bathed in a soft, warm light, evoking a cozy, lived-in kitchen atmosphere. A simple, everyday spoon rests beside the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Home Style",
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Apples (e.g., Gala, Honeycrisp)",
+        "quantity": "4 medium"
+      },
+      {
+        "name": "Honey",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Plain Flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Rolled Oats",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Light Brown Sugar",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Unsalted Butter, cold, cubed",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Pinch of Salt",
+        "quantity": "2 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Peel, core, and dice apples into 2 cm cubes.",
+      "In a large bowl, toss diced apples with honey and ground cinnamon.",
+      "Spread apple mixture evenly into a 20x20 cm baking dish.",
+      "In a separate bowl, combine plain flour, rolled oats, light brown sugar, and salt.",
+      "Add cold, cubed unsalted butter to the dry ingredients.",
+      "Use your fingertips or a pastry blender to cut in the butter until the mixture resembles coarse crumbs.",
+      "Sprinkle the crumble topping evenly over the apples in the baking dish.",
+      "Bake for 30-35 minutes, or until the topping is golden brown and the apple filling is bubbly and tender."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 35.7,
+      "calories": 654,
+      "cholesterol_mg": 53.8,
+      "dietary_fiber_g": 8.4,
+      "protein_g": 8.9,
+      "saturated_fat_g": 13.3,
+      "sodium_mg": 205.8,
+      "total_carbs_g": 109.3,
+      "total_fat_g": 22.7,
+      "total_sugars_g": 56.8,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.5,
+      "calories": 210.6,
+      "cholesterol_mg": 17.3,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 2.9,
+      "saturated_fat_g": 4.3,
+      "sodium_mg": 66.2,
+      "total_carbs_g": 35.2,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 18.3,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 30,
+      "protein": 18,
+      "saturated_fat": 66,
+      "sodium": 9,
+      "total_carbs": 40,
+      "total_fat": 29
+    },
+    "serving_size_g": 310.7,
+    "total_recipe_weight_g": 1242.7
+  },
+  {
+    "recipe_name": "Dhania Paneer Masala",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_dhania_paneer_masala_20250624_023322_78a011f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:33:23.345722000Z",
+    "selected_ingredients": [
+      "paneer",
+      "coriander",
+      "greek yogurt"
+    ],
+    "complexity": "standard",
+    "special_requests": "Indian cuisine",
+    "visual_description": "A single portion of vibrant green Dhania Paneer Masala is served in a deep white porcelain bowl, centrally placed on a light wooden table. The curry is rich and creamy, showcasing a deep, natural green hue from fresh coriander. Approximately six to eight 2cm golden-brown pan-seared paneer cubes are nestled within. A generous swirl of thick white Greek yogurt is artfully drizzled over the top, creating a beautiful contrast. A few fresh coriander sprigs are delicately placed as a garnish. Beside the bowl, a small mound of fluffy basmati rice and a piece of freshly baked naan bread are present. The background is a soft, blurred restaurant setting with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm Basmati rice.",
+      "Accompany with fresh naan, roti, or chapati.",
+      "Offer a side of cooling raita or pickled onions."
+    ],
+    "hero_ingredient": "Paneer",
+    "ingredients": [
+      {
+        "name": "Paneer",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium, finely diced"
+      },
+      {
+        "name": "Tomato puree",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Green chillies",
+        "quantity": "2-3, or to taste"
+      },
+      {
+        "name": "Ghee or cooking oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "1.5 teaspoons"
+      },
+      {
+        "name": "Red chilli powder (optional, for color)",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Hot water",
+        "quantity": "250 ml"
+      }
+    ],
+    "instructions": [
+      "Cut paneer into 2 cm cubes. Lightly pan-sear paneer until golden. Set aside.",
+      "In a blender, combine fresh coriander leaves, green chillies, ginger, and garlic. Add a splash of water. Blend to a smooth paste.",
+      "Heat ghee in a large pan over medium heat. Add finely diced onions. Sauté until translucent.",
+      "Add tomato puree. Cook until oil separates from the mixture.",
+      "Stir in turmeric powder, cumin powder, coriander powder, and red chilli powder. Cook spices for 1 minute, stirring constantly.",
+      "Add the coriander-chilli paste. Cook for 5-7 minutes, stirring frequently, until the raw aroma disappears.",
+      "Add 250 ml hot water. Bring the gravy to a simmer.",
+      "Add seared paneer cubes to the simmering gravy. Simmer for 5 minutes.",
+      "Stir in garam masala and salt to taste. Cook until the internal temperature of paneer reaches 75°C.",
+      "Remove from heat. Swirl in 50g of Greek yogurt.",
+      "Garnish with fresh coriander leaves. Serve hot."
+    ],
+    "notes": [
+      "Adjust the number of green chillies to control the spice level.",
+      "For best flavor, allow the curry to rest for a few minutes before serving."
+    ],
+    "traditional_techniques": [
+      "Layering of spices",
+      "Slow cooking of masalas"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 451,
+      "cholesterol_mg": 87,
+      "dietary_fiber_g": 3.2,
+      "protein_g": 22.9,
+      "saturated_fat_g": 20.3,
+      "sodium_mg": 58,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 31.2,
+      "total_sugars_g": 8.4,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 132,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 6.7,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 17,
+      "total_carbs_g": 4.4,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29,
+      "dietary_fiber": 11,
+      "protein": 46,
+      "saturated_fat": 101,
+      "sodium": 3,
+      "total_carbs": 5,
+      "total_fat": 40
+    },
+    "serving_size_g": 342.5,
+    "total_recipe_weight_g": 1370
+  },
+  {
+    "recipe_name": "Frango Assado com Batatas e Cebolas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_frango_assado_com_batatas_e_cebolas_20250624_023250_f0fa45ef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:32:51.264307000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "Brasil",
+    "visual_description": "A single bone-in, skin-on roasted chicken thigh is placed prominently on a clean white porcelain dinner plate. The chicken skin is deep golden-brown and visibly crispy, seasoned with herbs and spices. Surrounding the chicken, roasted potato quarters exhibit tender interiors with slightly browned, crisp edges. Caramelized onion wedges, soft and translucent, are scattered among the potatoes. A vibrant sprinkle of fresh green chopped parsley is scattered over the entire dish, providing a fresh contrast. The plate rests on a simple, light-colored wooden table surface. Beside the plate, a neatly folded white cotton napkin and standard silver flatware (fork and knife) are present. In the background, slightly out of focus, small white ceramic bowls hold portions of fluffy white rice and golden farofa. Natural, even lighting illuminates the scene, highlighting the textures and colors of the food. The overall presentation is inviting, warm, and casually elegant, reminiscent of a Brazilian home-style meal served in a modern bistro.",
+    "number_of_servings": 4,
+    "cuisine_type": "Brazilian",
+    "cultural_origin": "Brazilian",
+    "cultural_serving_suggestions": [
+      "Serve hot with white rice (arroz branco).",
+      "Serve with toasted cassava flour (farofa).",
+      "A simple green salad (salada verde) is a common accompaniment."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "New potatoes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (400°F).",
+      "Pat chicken thighs dry. Place in a large bowl.",
+      "Mince garlic. Juice the lime. Add minced garlic, lime juice, 30ml olive oil, paprika, cumin, oregano, salt, and pepper to chicken.",
+      "Mix well. Ensure chicken is fully coated. Marinate for at least 30 minutes, or up to 2 hours refrigerated.",
+      "Scrub potatoes. Quarter them. Cut onions into thick wedges.",
+      "In a separate large bowl, combine quartered potatoes and onion wedges.",
+      "Drizzle with remaining 30ml olive oil. Season with salt and pepper. Toss to coat.",
+      "Arrange chicken pieces in a single layer in a large roasting pan.",
+      "Scatter potatoes and onions around chicken in the pan.",
+      "Roast for 45-60 minutes. Chicken internal temperature must reach 75°C (167°F).",
+      "Turn potatoes and onions halfway through roasting.",
+      "Chicken skin should be golden and crispy. Potatoes should be tender and lightly browned.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Chop fresh parsley. Garnish generously with chopped parsley before serving."
+    ],
+    "notes": [
+      "Marinating the chicken for a longer period enhances its flavor significantly.",
+      "Adjust salt and pepper to personal taste."
+    ],
+    "traditional_techniques": [
+      "Marinating",
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 725,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 41.6,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 1170,
+      "total_carbs_g": 38.8,
+      "total_fat_g": 45,
+      "total_sugars_g": 6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 166,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 9.5,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 267,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 10.3,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 25,
+      "protein": 83,
+      "saturated_fat": 51,
+      "sodium": 51,
+      "total_carbs": 14,
+      "total_fat": 58
+    },
+    "serving_size_g": 437.5,
+    "total_recipe_weight_g": 1750
+  }
+]

@@ -1,0 +1,609 @@
+[
+  {
+    "recipe_name": "Roasted Red Cabbage Steaks with Herbed Couscous",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_red_cabbage_steaks_with_herbed_couscous_20250903_055942_dfa9fabb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T05:59:42.615595000Z",
+    "selected_ingredients": [
+      "red cabbage",
+      "couscous"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegan",
+    "visual_description": "A single roasted red cabbage steak, thick and caramelized with deep purple hues, anchors the plate. It is nestled beside a fluffy mound of golden herbed couscous, flecked with bright green parsley and mint. To the side, a vibrant pink-purple pile of thinly shredded quick-pickled red cabbage adds a contrasting pop of color and texture. The roasted cabbage shows tender, slightly crisp edges from the roasting process, maintaining its thick slice form. The couscous is light and airy. The entire presentation rests on a handcrafted ceramic plate in an earthy cream tone, allowing ample negative space. The table surface is reclaimed wood, featuring a natural, undyed linen napkin. Soft, natural light illuminates the dish from the side, creating subtle shadows and highlighting the organic textures. The background is clean and minimalist, with a hint of natural greenery. The dish is presented as a refined, individual restaurant portion, emphasizing the pure beauty of each ingredient.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "cultural_origin": "Modern Sustainable",
+    "cultural_serving_suggestions": [
+      "Served with appreciation for local, seasonal produce.",
+      "Encourages mindful eating and zero-waste practices."
+    ],
+    "hero_ingredient": "Red Cabbage",
+    "ingredients": [
+      {
+        "name": "Red cabbage",
+        "quantity": "1 medium head (about 800g)"
+      },
+      {
+        "name": "Medium grain couscous",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g, chopped"
+      },
+      {
+        "name": "Fresh mint",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "5"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking tray with parchment paper.",
+      "Remove outer leaves from red cabbage. Trim ends. Cut cabbage into four thick 'steaks', about 2.5 cm thick. Reserve remaining cabbage trimmings for pickling.",
+      "Place cabbage steaks on the prepared tray. Drizzle with 30ml olive oil. Season with salt and pepper.",
+      "Roast for 25-30 minutes. Flip halfway. Cabbage should be tender and slightly caramelized.",
+      "While cabbage roasts, prepare quick-pickled cabbage. Thinly shred the reserved cabbage trimmings.",
+      "In a small saucepan, combine apple cider vinegar, 100ml water, sugar, bay leaf, and peppercorns. Bring to a simmer. Stir until sugar dissolves.",
+      "Place shredded cabbage in a heatproof bowl. Pour hot pickling liquid over cabbage. Let sit for at least 15 minutes.",
+      "For couscous, bring vegetable broth to a boil in a medium saucepan. Add a pinch of salt. Remove from heat.",
+      "Stir in couscous. Cover tightly. Let stand for 5 minutes.",
+      "Fluff couscous with a fork. Stir in chopped parsley, mint, lemon zest, and 15ml olive oil. Season with salt and pepper.",
+      "To serve, place one roasted red cabbage steak on each plate. Spoon herbed couscous next to it. Drain quick-pickled cabbage and place a small portion beside the couscous.",
+      "Drizzle with remaining 15ml olive oil and a squeeze of fresh lemon juice."
+    ],
+    "notes": [
+      "The quick-pickled cabbage can be made ahead and stored in the refrigerator for up to a week. It enhances the zero-waste aspect by utilizing cabbage trimmings."
+    ],
+    "traditional_techniques": [
+      "Fermentation (quick pickling)",
+      "Zero-waste cooking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 383.1,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 9.7,
+      "saturated_fat_g": 2,
+      "sodium_mg": 128.9,
+      "total_carbs_g": 54.7,
+      "total_fat_g": 14.4,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 105.7,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 2.7,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 35.6,
+      "total_carbs_g": 15.1,
+      "total_fat_g": 4,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 29,
+      "protein": 19,
+      "saturated_fat": 10,
+      "sodium": 6,
+      "total_carbs": 20,
+      "total_fat": 18
+    },
+    "serving_size_g": 362.5,
+    "total_recipe_weight_g": 1450
+  },
+  {
+    "recipe_name": "Rye and Havarti Smørrebrød with Pickled Red Onion",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rye_and_havarti_sm%C3%B8rrebr%C3%B8d_with_pickled_red_onion_20250903_050457_f52c36da.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T05:04:57.849405000Z",
+    "selected_ingredients": [
+      "cheese",
+      "rye bread"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Four individual open-faced smørrebrød are presented on a light wooden serving board. Each piece features a base of thinly sliced dark rye bread, generously buttered. Layered atop the rye are two to three thin, creamy slices of pale yellow Havarti cheese. A small, vibrant pink mound of thinly sliced pickled red onion rings is carefully placed on the cheese, providing a contrasting color and texture. Each smørrebrød is crowned with a fresh, bright green sprig of dill. The composition is clean and organized, with moderate negative space between each piece. The dark bread, pale cheese, pink onions, and green dill create a natural, appealing color balance. The textures are distinct: firm rye, smooth cheese, crisp onions, and delicate herbs. The presentation is professional and approachable, reflecting a modern bistro setting with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Scandinavian",
+    "cultural_origin": "Danish",
+    "cultural_serving_suggestions": [
+      "Serve as a light lunch or snack.",
+      "Often accompanied by a cold beer or a shot of aquavit.",
+      "Presented on a communal board for sharing, or individually on small plates."
+    ],
+    "hero_ingredient": "Havarti cheese",
+    "ingredients": [
+      {
+        "name": "Dark rye bread",
+        "quantity": "8 slices"
+      },
+      {
+        "name": "Havarti cheese",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "Water",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Prepare pickled red onions: Thinly slice the red onion into rings. In a small saucepan, combine vinegar, sugar, water, and a pinch of salt. Bring to a boil, stirring until sugar dissolves. Remove from heat. Place sliced onions in a heatproof jar. Pour hot pickling liquid over onions. Let cool, then refrigerate for at least 30 minutes.",
+      "Slice rye bread into desired serving sizes. Each slice should be a single portion.",
+      "Butter each slice of rye bread evenly.",
+      "Slice Havarti cheese into thin pieces, approximately 2-3 mm thick.",
+      "Arrange 2-3 slices of Havarti cheese on each buttered rye bread slice.",
+      "Drain pickled red onions. Place a small mound of pickled red onions on top of the cheese.",
+      "Garnish each smørrebrød with a fresh sprig of dill."
+    ],
+    "notes": [
+      "For variety, consider adding thinly sliced radishes or cucumber for extra crunch.",
+      "Other mild, firm cheeses like Jarlsberg or Swiss can be substituted for Havarti."
+    ],
+    "traditional_techniques": [
+      "Pickling"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.75,
+      "calories": 503,
+      "cholesterol_mg": 79.75,
+      "dietary_fiber_g": 5.12,
+      "protein_g": 18.19,
+      "saturated_fat_g": 17.37,
+      "sodium_mg": 612,
+      "total_carbs_g": 43.59,
+      "total_fat_g": 28.68,
+      "total_sugars_g": 8.07,
+      "trans_fat_g": 0.95
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 2,
+      "calories": 268,
+      "cholesterol_mg": 42.53,
+      "dietary_fiber_g": 2.73,
+      "protein_g": 9.7,
+      "saturated_fat_g": 9.26,
+      "sodium_mg": 326,
+      "total_carbs_g": 23.25,
+      "total_fat_g": 15.29,
+      "total_sugars_g": 4.31,
+      "trans_fat_g": 0.51
+    },
+    "daily_value_percentages": {
+      "cholesterol": 27,
+      "dietary_fiber": 18,
+      "protein": 36,
+      "saturated_fat": 87,
+      "sodium": 27,
+      "total_carbs": 16,
+      "total_fat": 37
+    },
+    "serving_size_g": 187.5,
+    "total_recipe_weight_g": 750
+  },
+  {
+    "recipe_name": "Savory Rye Tartine with Sautéed Mushrooms and Crispy Bacon",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_rye_tartine_with_saut%C3%A9ed_mushrooms_and_crispy_bacon_20250903_050402_cbe6eabc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T05:04:02.916617000Z",
+    "selected_ingredients": [
+      "cheese",
+      "rye bread",
+      "bacon",
+      "worcestershire sauce",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single savory tartine is centered on a round, clean white porcelain plate. The base is a thick slice of golden-brown toasted rye bread. It is generously piled with deeply browned, thickly sliced sautéed mushrooms, interspersed with irregular chunks of crisp, reddish-brown bacon. A layer of melted Gruyère cheese, golden and bubbly with slightly caramelized edges, covers the toppings. A sprinkle of bright green chopped fresh parsley provides a final touch of color. The setting is a simple wooden table, with a neatly folded white cotton napkin and standard modern flatware beside the plate. Natural, even lighting illuminates the dish, with a softly blurred casual bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Bistro",
+    "cultural_origin": "Modern European",
+    "hero_ingredient": "Gruyère Cheese",
+    "ingredients": [
+      {
+        "name": "Thick-cut rye bread",
+        "quantity": "4 slices"
+      },
+      {
+        "name": "Smoked bacon",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Mixed mushrooms (e.g., cremini, oyster)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Gruyère cheese, grated",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cook bacon in a large pan over medium heat until very crispy. Remove bacon. Drain excess fat, leaving approximately 15ml in the pan. Chop bacon roughly.",
+      "Add butter to the same pan. Sauté diced onion 3 minutes until softened.",
+      "Add thickly sliced mushrooms to the pan. Sauté 5-7 minutes until browned and tender.",
+      "Stir in minced garlic and fresh thyme. Cook 1 minute until fragrant. Season mushroom mixture with salt and black pepper. Remove from heat.",
+      "Toast rye bread slices until golden brown.",
+      "Brush one side of each toasted rye slice with Worcestershire sauce.",
+      "Divide mushroom mixture evenly over the Worcestershire-brushed side of each rye slice.",
+      "Top mushrooms with chopped crispy bacon.",
+      "Sprinkle generously with grated Gruyère cheese.",
+      "Place tartines on a baking tray. Bake 8-10 minutes, or until cheese is melted and bubbly. For extra browning, broil briefly.",
+      "Garnish with chopped fresh parsley. Serve immediately."
+    ],
+    "notes": [
+      "Use high-quality fresh ingredients for best flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.6,
+      "calories": 737,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 41.5,
+      "saturated_fat_g": 21.2,
+      "sodium_mg": 1794,
+      "total_carbs_g": 33,
+      "total_fat_g": 48,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 243,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 13.7,
+      "saturated_fat_g": 7,
+      "sodium_mg": 592,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 15.8,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 19.1,
+      "protein": 82.9,
+      "saturated_fat": 106.2,
+      "sodium": 78,
+      "total_carbs": 12,
+      "total_fat": 61.5
+    },
+    "serving_size_g": 303.25,
+    "total_recipe_weight_g": 1213
+  },
+  {
+    "recipe_name": "Crispy Cheddar and Lap Cheong Wontons",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_crispy_cheddar_and_lap_cheong_wontons_20250903_050000_ba59efe6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T05:00:00.562491000Z",
+    "selected_ingredients": [
+      "cheddar"
+    ],
+    "complexity": "standard",
+    "special_requests": "chinese cuisine",
+    "visual_description": "Crispy Cheddar and Lap Cheong Wontons are presented casually on a rustic wooden sharing board. Each golden-brown wonton, folded into a distinct \"nurse's cap\" shape, boasts a visibly crisp, bubbly texture. The wontons are arranged organically, allowing moderate negative space, with a small pile of finely shredded spring onion greens scattered lightly for color contrast. A small ceramic dipping bowl holds a dark, savory soy-ginger sauce, and another contains bright red chili oil. The rich, golden fried exterior contrasts with the slight melt of the cheddar and the vibrant green of the scallions peeking from the filling. The overall presentation is clean, inviting, and professional, suitable for a modern bistro setting, with natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese Fusion",
+    "cultural_origin": "Chinese Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with a side of light soy sauce mixed with a dash of rice vinegar and finely minced ginger.",
+      "Offer a separate small bowl of chili oil for those who prefer more heat.",
+      "Traditionally shared among diners."
+    ],
+    "hero_ingredient": "Cheddar",
+    "ingredients": [
+      {
+        "name": "Cheddar cheese",
+        "quantity": "200 g, finely shredded"
+      },
+      {
+        "name": "Lap Cheong (Chinese sausage)",
+        "quantity": "100 g, finely diced"
+      },
+      {
+        "name": "Spring onions",
+        "quantity": "3, thinly sliced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": "10 g, grated"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Wonton wrappers",
+        "quantity": "24 sheets"
+      },
+      {
+        "name": "Egg",
+        "quantity": "1, beaten"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500 ml"
+      }
+    ],
+    "instructions": [
+      "In a bowl, combine shredded cheddar, diced lap cheong, sliced spring onions, grated ginger, soy sauce, sesame oil, and white pepper. Mix well.",
+      "Lay out a wonton wrapper. Place a spoonful (about 15g) of the filling in the center.",
+      "Moisten the edges of the wrapper with beaten egg. Fold into a triangle, pressing to seal. Bring the two bottom corners together and overlap, sealing with egg wash to form a 'nurse's cap' shape.",
+      "Heat vegetable oil in a wok or deep pot to 175\b0C.",
+      "Fry wontons in batches for 2-3 minutes until golden brown and crispy. Do not overcrowd the wok.",
+      "Remove wontons with a slotted spoon. Drain on a wire rack lined with paper towels.",
+      "Serve hot."
+    ],
+    "notes": [
+      "Ensure oil temperature is maintained for even cooking.",
+      "Do not overfill wontons to prevent bursting during frying."
+    ],
+    "traditional_techniques": [
+      "Wonton wrapping",
+      "Deep frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 779,
+      "cholesterol_mg": 124,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 24.6,
+      "saturated_fat_g": 20,
+      "sodium_mg": 1241,
+      "total_carbs_g": 36.9,
+      "total_fat_g": 60.3,
+      "total_sugars_g": 3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 415,
+      "cholesterol_mg": 66,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 13.1,
+      "saturated_fat_g": 10.7,
+      "sodium_mg": 662,
+      "total_carbs_g": 19.7,
+      "total_fat_g": 32.2,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 6,
+      "protein": 49,
+      "saturated_fat": 100,
+      "sodium": 54,
+      "total_carbs": 13,
+      "total_fat": 77
+    },
+    "serving_size_g": 188,
+    "total_recipe_weight_g": 751
+  },
+  {
+    "recipe_name": "Aged Cheddar and Chive Scones",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_aged_cheddar_and_chive_scones_20250903_045620_59b30e0b.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-09-03T04:56:20.733172000Z",
+    "selected_ingredients": [
+      "cheddar"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Three to four golden-brown, irregularly round scones, approximately 5-6 cm in diameter, are arranged casually on a clean, round white porcelain dinner plate. Their tops are glossy from the egg wash, with hints of slightly browned, melted aged cheddar peeking through. Flecks of vibrant green, finely chopped chives are visible throughout the scones. One scone is gently broken open to reveal a light, airy, and flaky interior texture with pockets of melted cheese. A small, elegant ceramic ramekin holds a dollop of unsalted butter or chive-infused cream cheese, positioned beside the scones. The plate sits on a simple wooden table surface, accompanied by a folded light grey linen napkin. Natural, soft, overhead lighting illuminates the scene, with a softly blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "hero_ingredient": "Aged Cheddar",
+    "ingredients": [
+      {
+        "name": "Plain flour",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cold unsalted butter, diced",
+        "quantity": "75 g"
+      },
+      {
+        "name": "Aged cheddar cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh chives, finely chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cold full-fat milk",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Large egg, beaten (for egg wash)",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking tray with parchment paper.",
+      "Combine flour, baking powder, and salt in a large bowl.",
+      "Add diced cold butter. Rub butter into flour mixture using fingertips until it resembles coarse breadcrumbs.",
+      "Stir in grated cheddar and chopped chives.",
+      "Pour in cold milk. Mix gently with a knife or spatula until a shaggy dough forms. Do not overmix.",
+      "Turn dough onto a lightly floured surface. Gently bring together into a cohesive ball. Pat dough to 2.5 cm thickness.",
+      "Cut out scones using a 5-6 cm round cutter. Avoid twisting the cutter.",
+      "Place scones on the prepared baking tray. Brush tops with beaten egg wash.",
+      "Bake for 15-18 minutes, or until golden brown and cooked through.",
+      "Serve warm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 498.5,
+      "cholesterol_mg": 94.13,
+      "dietary_fiber_g": 1.88,
+      "protein_g": 15,
+      "saturated_fat_g": 15.94,
+      "sodium_mg": 963.15,
+      "total_carbs_g": 50.87,
+      "total_fat_g": 26.14,
+      "total_sugars_g": 2.34,
+      "trans_fat_g": 0.9
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 338,
+      "cholesterol_mg": 63.81,
+      "dietary_fiber_g": 1.27,
+      "protein_g": 10.17,
+      "saturated_fat_g": 10.8,
+      "sodium_mg": 653,
+      "total_carbs_g": 34.49,
+      "total_fat_g": 17.72,
+      "total_sugars_g": 1.59,
+      "trans_fat_g": 0.61
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31,
+      "dietary_fiber": 7,
+      "protein": 30,
+      "saturated_fat": 80,
+      "sodium": 42,
+      "total_carbs": 18,
+      "total_fat": 34
+    },
+    "serving_size_g": 147.5,
+    "total_recipe_weight_g": 590
+  }
+]

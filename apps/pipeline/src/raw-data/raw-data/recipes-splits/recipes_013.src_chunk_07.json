@@ -1,0 +1,592 @@
+[
+  {
+    "recipe_name": "Beef and Rice Stuffed Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beef_and_rice_stuffed_tomatoes_20250701_150250_59f64697.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:02:51.374612000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "rice",
+      "cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "One plump, ruby-red Beef and Rice Stuffed Tomato sits centrally on a clean, round white porcelain plate. The tomato is whole, its top sliced off and set slightly askew, revealing the rich, savory filling within. The filling consists of finely diced beef, fluffy white rice, vibrant red tomato pieces, and aromatic herbs, all gently mounded inside the tomato cavity. A golden-brown, bubbly crust of melted mozzarella cheese covers the top, with hints of fresh green parsley sprigs scattered over. The tomato itself is tender, slightly collapsed from baking, but retaining its shape. The plate has ample negative space. A simple wooden table surface, a folded cotton napkin, and modern flatware accompany the dish. Natural, even lighting highlights the dish's inviting warmth and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with olive oil and lemon.",
+      "Offer crusty bread for dipping in the tomato juices."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Large firm tomatoes",
+        "quantity": "4"
+      },
+      {
+        "name": "Lean ground beef",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cooked long-grain rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh basil, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Lightly grease a baking dish.",
+      "Wash tomatoes. Slice off the top 1 cm from each tomato. Scoop out the pulp and seeds. Reserve the pulp. Invert tomato shells on paper towels to drain.",
+      "Chop the reserved tomato pulp finely.",
+      "Heat olive oil in a large pan over medium heat. Add diced onion. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add ground beef to the pan. Break it up with a spoon. Cook until browned, ensuring no pink remains. Drain excess fat.",
+      "Stir in tomato paste. Cook for 1 minute.",
+      "Add chopped tomato pulp and beef broth. Bring to a simmer. Cook for 5 minutes, allowing liquid to reduce slightly.",
+      "Remove from heat. Stir in cooked rice, chopped parsley, and chopped basil. Season with salt and black pepper to taste. Mix well.",
+      "Spoon the beef and rice mixture into each hollowed tomato shell. Do not overfill.",
+      "Place stuffed tomatoes in the prepared baking dish. Bake for 30 minutes.",
+      "Remove dish from oven. Sprinkle shredded mozzarella cheese generously over each tomato.",
+      "Return to oven. Bake for another 10-15 minutes, or until cheese is melted and golden brown and internal temperature of beef is 75°C."
+    ],
+    "notes": [
+      "Choose firm, ripe tomatoes that can hold their shape during baking.",
+      "Any leftover filling can be served as a side dish or frozen for later use."
+    ]
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Thighs with Herbed White Bean Ragout",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_thighs_with_herbed_white_bean_ragout_20250701_150126_0a13f6f3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:01:27.356594000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bean",
+      "green onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single pan-seared boneless chicken thigh, golden-brown with a lightly crisp exterior, rests centrally on a creamy, rich white bean ragout. The chicken is presented as a whole, substantial piece. The ragout is a loose, slightly chunky blend of tender cannellini beans, halved vibrant red cherry tomatoes, and finely minced shallots and garlic, infused with fresh thyme. Thinly sliced bright green green onions and a few fresh parsley leaves are scattered over the dish, providing a fresh, verdant contrast. The dish is served on a clean, round white porcelain plate, allowing for moderate negative space. The plate is set on a simple light wooden table, accompanied by a folded white cotton napkin and standard silver flatware. Natural, even lighting highlights the textures and colors. The background is subtly blurred, suggesting a casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread to soak up the delicious ragout."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 150g each)"
+      },
+      {
+        "name": "Canned cannellini beans, rinsed and drained",
+        "quantity": "2 x 400g cans"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "300 ml"
+      },
+      {
+        "name": "Cherry tomatoes, halved",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Shallots, finely minced",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Green onions, thinly sliced",
+        "quantity": "4-5 stalks"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken thighs. Sear for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add butter and minced shallots to the skillet. Sauté for 3 minutes until softened. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth. Scrape up any browned bits from the bottom of the skillet. Bring to a simmer.",
+      "Add rinsed cannellini beans, halved cherry tomatoes, and thyme sprigs to the skillet. Simmer for 8-10 minutes, stirring occasionally, until tomatoes soften slightly and sauce thickens. Season the ragout with salt and pepper.",
+      "Return chicken thighs to the skillet with the ragout. Spoon some ragout over the chicken. Cook for 1-2 minutes to reheat.",
+      "Serve chicken thighs immediately over the herbed white bean ragout. Garnish each portion with thinly sliced green onions and chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 531.9,
+      "cholesterol_mg": 172.2,
+      "dietary_fiber_g": 16.5,
+      "protein_g": 46.5,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 903.9,
+      "total_carbs_g": 47.7,
+      "total_fat_g": 19.5,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99.9,
+      "cholesterol_mg": 32.4,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 8.7,
+      "saturated_fat_g": 1.1,
+      "sodium_mg": 169.8,
+      "total_carbs_g": 9,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.02
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57,
+      "dietary_fiber": 59,
+      "protein": 93,
+      "saturated_fat": 28,
+      "sodium": 39,
+      "total_carbs": 17,
+      "total_fat": 25
+    },
+    "serving_size_g": 532.25,
+    "total_recipe_weight_g": 2129
+  },
+  {
+    "recipe_name": "Ginger Pork and Shiitake with Dashi Glaze",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_ginger_pork_and_shiitake_with_dashi_glaze_20250701_150100_20475700.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T15:01:01.730823000Z",
+    "selected_ingredients": [
+      {
+        "name": "soy sauce"
+      },
+      {
+        "name": "dashi"
+      },
+      {
+        "name": "sesame oil"
+      },
+      {
+        "name": "ginger"
+      },
+      {
+        "name": "shiitake mushroom"
+      },
+      {
+        "name": "pork"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": null,
+    "visual_description": "The dish is presented on a clean, round white porcelain plate. Three to four thick, pan-seared pork medallions, exhibiting a rich golden-brown crust, are arranged centrally. Each pork chunk is coated in a glossy, amber-brown dashi-ginger glaze. Sautéed shiitake mushroom slices, also gleaming with glaze, are scattered alongside, adding earthy tones. The dish is garnished with thinly sliced green onions for vibrant color. Moderate negative space is maintained on the plate. A small, elegant white ceramic bowl of perfectly steamed white rice accompanies the main plate. Traditional wooden chopsticks rest beside the rice bowl. The setting is a simple wooden table surface with natural, even lighting and a subtle modern bistro background, showcasing an authentic Japanese culinary aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed white rice.",
+      "Offer a small dish of pickled ginger or daikon as a palate cleanser.",
+      "Use traditional Japanese bowls for rice and a shallow plate for the main dish."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork loin",
+        "quantity": "600g, cut into 2 cm thick medallions"
+      },
+      {
+        "name": "Fresh shiitake mushrooms",
+        "quantity": "200g, stems removed, caps sliced 5mm thick"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "40g, peeled and grated"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Mirin",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Sake",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dashi stock",
+        "quantity": "120ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks, thinly sliced for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat pork medallions dry. Season lightly with salt and black pepper.",
+      "Prepare dashi glaze: In a small bowl, whisk together soy sauce, mirin, sake, and dashi stock.",
+      "In another small bowl, dissolve cornstarch in cold water to make a slurry. Set aside.",
+      "Heat 15ml vegetable oil in a large non-stick pan over medium-high heat.",
+      "Add pork medallions to the hot pan. Sear for 3-4 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove pork from pan. Set aside.",
+      "Add remaining 15ml vegetable oil to the same pan. Add sliced shiitake mushrooms. Sauté for 3-4 minutes until softened and lightly browned.",
+      "Add grated ginger to the pan with shiitake. Sauté for 1 minute until fragrant.",
+      "Pour dashi glaze mixture into the pan. Bring to a simmer.",
+      "Stir in cornstarch slurry gradually until sauce thickens to a glossy consistency.",
+      "Return seared pork medallions to the pan. Turn to coat pork and shiitake thoroughly with the glaze. Cook for 1-2 minutes until heated through.",
+      "Stir in sesame oil.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure pork reaches an internal temperature of 75°C for food safety.",
+      "Adjust ginger quantity to personal preference for more or less pungency."
+    ],
+    "traditional_techniques": [
+      "Glazing (Teriyaki/Tsukudani style reduction)"
+    ]
+  },
+  {
+    "recipe_name": "Spinach and Ricotta Gnudi with Brown Butter and Sage",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spinach_and_ricotta_gnudi_with_brown_butter_and_sage_20250701_145935_f51084bd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:59:35.600155000Z",
+    "selected_ingredients": [
+      "spinach",
+      "ricotta",
+      "cottage cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A small starter portion of delicate, pillowy Spinach and Ricotta Gnudi, artfully arranged on a pristine white porcelain dinner plate. Each gnudi, roughly 4cm in diameter and irregularly shaped, boasts a pale green hue from the finely chopped spinach, contrasting with creamy white interior peeking through. They are lightly coated in a shimmering, nutty brown butter sauce, which collects subtly at the base. Fresh, vibrant green sage leaves, some whole and some lightly fried to a crisp, are scattered elegantly over and around the gnudi. The composition is organic, with moderate negative space, showcasing the gnudi as the focal point. The plate rests on a simple wooden table, illuminated by soft, natural, even lighting, creating a warm, inviting atmosphere suitable for a casual bistro setting. A folded white linen napkin is placed beside the plate. The presentation is clean, professional, and highlights the dish's fresh ingredients and inviting texture.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a crisp, dry white wine like Pinot Grigio.",
+      "Offer fresh, crusty bread for dipping in the leftover brown butter sauce."
+    ],
+    "hero_ingredient": "Ricotta",
+    "ingredients": [
+      {
+        "name": "Fresh spinach",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Cottage cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "All-purpose flour, plus more for dusting",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Nutmeg, freshly grated",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "20"
+      }
+    ],
+    "instructions": [
+      "Wash spinach thoroughly. Blanch spinach in boiling salted water for 1 minute. Drain immediately. Plunge into ice water to stop cooking. Squeeze out all excess water very thoroughly. Finely chop the spinach.",
+      "Place ricotta and cottage cheese in a fine-mesh sieve lined with cheesecloth. Let drain over a bowl in the refrigerator for at least 30 minutes, or up to 2 hours, to remove excess moisture.",
+      "In a large bowl, combine drained ricotta, cottage cheese, chopped spinach, grated Parmesan, egg, flour, nutmeg, salt, and pepper. Mix gently until just combined. Do not overmix.",
+      "Lightly flour a clean work surface. Scoop small portions of the mixture, about 20-25 grams each. Gently roll each portion into an irregular, roughly 4cm oval or dumpling shape. Dust lightly with flour. Arrange gnudi on a floured baking sheet.",
+      "Bring a large pot of salted water to a gentle simmer. Carefully drop gnudi into the simmering water in batches. Do not overcrowd the pot.",
+      "Cook gnudi for 3-4 minutes, or until they float to the surface and are cooked through. Remove with a slotted spoon. Place on a warm plate.",
+      "While gnudi cook, melt butter in a large skillet over medium heat. Cook until butter turns golden brown and smells nutty. Add sage leaves. Cook until sage is crisp. Remove from heat.",
+      "Divide cooked gnudi among four starter plates. Drizzle generously with brown butter and crisp sage leaves. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Draining ricotta",
+      "Hand-forming gnudi",
+      "Browning butter (beurre noisette)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 445.35,
+      "cholesterol_mg": 147.38,
+      "dietary_fiber_g": 2.06,
+      "protein_g": 18.53,
+      "saturated_fat_g": 20.91,
+      "sodium_mg": 517.93,
+      "total_carbs_g": 17.05,
+      "total_fat_g": 34.36,
+      "total_sugars_g": 2.81,
+      "trans_fat_g": 0.75
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 207.14,
+      "cholesterol_mg": 68.55,
+      "dietary_fiber_g": 0.96,
+      "protein_g": 8.62,
+      "saturated_fat_g": 9.72,
+      "sodium_mg": 240.9,
+      "total_carbs_g": 7.93,
+      "total_fat_g": 15.98,
+      "total_sugars_g": 1.31,
+      "trans_fat_g": 0.35
+    },
+    "daily_value_percentages": {
+      "cholesterol": 49,
+      "dietary_fiber": 7,
+      "protein": 37,
+      "saturated_fat": 105,
+      "sodium": 23,
+      "total_carbs": 6,
+      "total_fat": 44
+    },
+    "serving_size_g": 215,
+    "total_recipe_weight_g": 860
+  },
+  {
+    "recipe_name": "Spanish Braised Chicken with Tomatoes and Garlic",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_braised_chicken_with_tomatoes_and_garlic_20250701_145925_d4ad9990.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:59:26.292620000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "chili",
+      "tomato",
+      "onion",
+      "oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Braised Chicken is presented on a clean, white porcelain plate. A golden-brown, tender chicken thigh rests centrally, generously coated and surrounded by a rich, deep red tomato-garlic sauce. The rustic, slightly chunky sauce features diced red bell pepper and minced garlic. Freshly chopped vibrant green parsley garnishes the dish. Plating is balanced with moderate negative space. The dish sits on a simple wooden table in a modern bistro setting. A white cotton napkin is placed beside the plate. Natural, even lighting illuminates the scene. Traditional Spanish crusty bread, cut into thick chunks, is in a small rustic bowl nearby, perfect for dipping. The background is minimally blurred, suggesting a casual restaurant environment.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread (Pan de Pueblo) to soak up the sauce",
+      "Serve alongside a simple rice pilaf or roasted potatoes",
+      "Pair with a dry Spanish red wine like Rioja or Tempranillo"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large (approx. 200g)"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "6"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Fresh red chili, thinly sliced (optional)",
+        "quantity": "1"
+      },
+      {
+        "name": "Diced tomatoes, canned",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, until golden brown and crispy, about 5-7 minutes. Flip and sear other side for 3-4 minutes. Remove chicken from pot. Set aside.",
+      "Reduce heat to medium. Add diced onion to the pot. Cook until softened, about 5 minutes.",
+      "Add minced garlic, diced red bell pepper, and sliced fresh chili (if using). Cook for 3-4 minutes until fragrant.",
+      "Stir in smoked paprika and dried oregano. Cook for 1 minute.",
+      "Pour in diced tomatoes and chicken broth. Bring to a simmer. Scrape up any browned bits from the bottom of the pot.",
+      "Return seared chicken thighs to the pot. Ensure chicken is mostly submerged in sauce. If not, add a little more broth.",
+      "Cover the pot. Reduce heat to low. Simmer for 30-40 minutes, or until chicken is very tender and cooked to an internal temperature of 75°C (167°F).",
+      "Taste sauce and adjust seasoning with salt and pepper as needed.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Sofrito (base of aromatics)",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 559,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 3.6,
+      "protein_g": 39,
+      "saturated_fat_g": 9,
+      "sodium_mg": 1035,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 37.6,
+      "total_sugars_g": 6.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 121,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 8.5,
+      "saturated_fat_g": 2,
+      "sodium_mg": 224.1,
+      "total_carbs_g": 3,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 12.7,
+      "protein": 78,
+      "saturated_fat": 45.2,
+      "sodium": 45,
+      "total_carbs": 5,
+      "total_fat": 48.2
+    },
+    "serving_size_g": 462,
+    "total_recipe_weight_g": 1847
+  }
+]

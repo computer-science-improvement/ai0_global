@@ -1,0 +1,607 @@
+[
+  {
+    "recipe_name": "Cheesy Sausage and Potato Stuffed Bell Pepper",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_sausage_and_potato_stuffed_bell_pepper_20250713_163210_8dfa4c13.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T16:32:11.229207000Z",
+    "selected_ingredients": [
+      {
+        "name": "potato",
+        "comment": "mashed"
+      },
+      "onion",
+      "tomato",
+      "sausage",
+      "cheese",
+      "bell pepper"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generously stuffed bell pepper half sits on a simple, round, off-white ceramic plate. The bell pepper, a vibrant red, is halved lengthwise, revealing the hearty golden-brown crumbled sausage, creamy white mashed potato, and tender diced onion and tomato within. Melted, bubbly cheddar cheese forms a golden crust over the top, with some delightful browning at the edges. Small, green flecks of fresh parsley are sprinkled over the cheese. The stuffing is naturally mounded, filling the bell pepper completely. The plate is positioned slightly off-center on a well-used, warm-toned wooden dining table. A casually folded, plain cloth napkin in a neutral tone rests beside the plate. Standard silver flatware is placed for a single diner. Warm, soft light emanates from an unseen kitchen fixture, casting gentle shadows and highlighting the comforting textures of the dish. The background is minimal, showing just a hint of the cozy, lived-in family kitchen environment.",
+    "number_of_servings": 1,
+    "cuisine_type": "American",
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Pork sausage, casings removed",
+        "quantity": "150g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Tomato, diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Potato, peeled and cubed",
+        "quantity": "200g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "15g"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "for garnish (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Boil potato cubes in salted water until tender. Drain well. Mash potatoes with milk, butter, salt, and pepper until smooth. Set aside.",
+      "Heat olive oil in a skillet over medium heat. Add crumbled sausage. Cook until browned and cooked through. Break up sausage with a spoon. Remove excess fat.",
+      "Add diced onion and minced garlic to the skillet with sausage. Cook until onion softens, about 5 minutes.",
+      "Stir in diced tomato. Cook for 3-5 minutes until tomato softens slightly. Season with salt and pepper.",
+      "Slice bell pepper in half lengthwise. Remove seeds and membranes.",
+      "In a bowl, combine mashed potato, sausage mixture, and half of the grated cheese. Mix well.",
+      "Spoon the mixture evenly into the bell pepper halves.",
+      "Place stuffed bell peppers in a baking dish.",
+      "Bake for 20-25 minutes, or until bell peppers are tender.",
+      "Top each bell pepper half with remaining grated cheese. Bake for another 5-10 minutes, until cheese is melted and bubbly.",
+      "Garnish with fresh parsley if desired. Serve hot."
+    ]
+  },
+  {
+    "recipe_name": "Caramelized Onion and Wild Mushroom Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_caramelized_onion_and_wild_mushroom_risotto_20250713_162659_bc491738.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T16:26:59.538745000Z",
+    "selected_ingredients": [
+      "onion",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "plant-based",
+    "visual_description": "A single serving of creamy Caramelized Onion and Wild Mushroom Risotto is presented in a deep, clean white porcelain bowl. The risotto is free-flowing and mounded naturally, showcasing its rich, velvety texture. Tender, earthy brown wild mushroom slices are visibly integrated throughout the creamy, off-white Arborio rice. Hints of deeply caramelized, golden-brown onion threads are intertwined, adding depth. The dish is garnished with a generous sprinkle of vibrant green, finely chopped fresh parsley over the top. A subtle sheen from a final drizzle of high-quality olive oil catches the light. The bowl is centered on a simple, matte wooden table surface. A neatly folded light grey cotton napkin is placed to the side, accompanied by standard silver flatware. Natural, even light illuminates the scene, highlighting the dish as the focal point with a clean, unobtrusive background that suggests a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately while hot and creamy."
+    ],
+    "hero_ingredient": "Arborio Rice",
+    "ingredients": [
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onions, thinly sliced",
+        "quantity": "2 large (about 400g)"
+      },
+      {
+        "name": "Mixed wild mushrooms, sliced",
+        "quantity": "300g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320g"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml (optional)"
+      },
+      {
+        "name": "Hot vegetable broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Vegan Parmesan, grated",
+        "quantity": "60g"
+      },
+      {
+        "name": "Vegan butter",
+        "quantity": "30g (optional)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Heat 15 ml olive oil in a large pot over medium-low heat. Add sliced onions. Cook slowly for 25-30 minutes, stirring occasionally, until deeply golden brown and caramelized. Remove onions and set aside.",
+      "Add remaining 15 ml olive oil to the same pot over medium-high heat. Add sliced mushrooms. Cook for 5-7 minutes until browned and tender. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Stir for 2 minutes to toast the grains.",
+      "Pour in white wine (if using). Stir until fully absorbed.",
+      "Add one ladle of hot vegetable broth. Stir constantly until liquid is absorbed.",
+      "Continue adding broth, one ladle at a time, stirring constantly and allowing each addition to be absorbed before adding the next. This takes about 20-25 minutes. The risotto should be creamy and al dente.",
+      "Remove from heat. Stir in caramelized onions, vegan Parmesan, and vegan butter (if using). Season with salt and black pepper.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Risotto Method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 540,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 4,
+      "protein_g": 10.1,
+      "saturated_fat_g": 7.2,
+      "sodium_mg": 612,
+      "total_carbs_g": 81.2,
+      "total_fat_g": 17.1,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 2.2,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 136,
+      "total_carbs_g": 18,
+      "total_fat_g": 3.8,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 14,
+      "protein": 20,
+      "saturated_fat": 36,
+      "sodium": 27,
+      "total_carbs": 30,
+      "total_fat": 22
+    },
+    "serving_size_g": 450,
+    "total_recipe_weight_g": 1800
+  },
+  {
+    "recipe_name": "Murgh Pulao",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_murgh_pulao_20250713_162427_c03aaf7a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T16:24:27.865697000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Murgh Pulao is presented in a deep, clean white porcelain bowl, showcasing a harmonious blend of textures and colors. Fluffy, long-grained Basmati rice, infused with saffron's golden hue, forms the base. Tender, browned chicken chunks are nestled within the rice, their surfaces showing a slight char from searing. Visible strands of caramelized onion 'birista' add a deep brown contrast. Freshly chopped green cilantro and mint leaves are generously sprinkled, providing vibrant color and freshness. The composition is natural and inviting, with moderate negative space. The bowl rests on a simple, light wooden table. A folded cotton napkin is placed beside the bowl. A small, round ceramic bowl of raita (yogurt dip) and a lime wedge are placed as traditional accompaniments. The scene is illuminated by soft, natural, even lighting from the side, creating subtle shadows and highlighting the dish's inviting textures. The background features a blurred, casual restaurant setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs",
+        "quantity": "800 grams"
+      },
+      {
+        "name": "Basmati rice",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Onions",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "100 grams"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Green chilies",
+        "quantity": "2"
+      },
+      {
+        "name": "Ghee or cooking oil",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Whole spices (cardamom, cloves, cinnamon stick, bay leaf)",
+        "quantity": "small quantity"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "0.25 cup chopped"
+      },
+      {
+        "name": "Fresh mint leaves",
+        "quantity": "0.25 cup chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Wash basmati rice. Soak in water for 30 minutes. Drain well.",
+      "Cut chicken thighs into 2-3 large chunks each. Pat dry. Season with salt, turmeric powder, and 1 tablespoon ginger-garlic paste. Mix well.",
+      "Thinly slice all onions. Heat 2 tablespoons ghee in a large heavy-bottomed pot over medium-high heat. Fry two-thirds of the sliced onions until deeply golden brown and crispy. Remove and set aside on a paper towel. These are fried onions (birista).",
+      "In the same pot, add remaining ghee. Add whole spices. Sauté for 30 seconds until fragrant.",
+      "Add remaining sliced onions. Sauté until translucent, about 5 minutes.",
+      "Add remaining ginger-garlic paste and chopped green chilies. Sauté for 1 minute.",
+      "Add chopped tomatoes. Cook until soft and mushy, about 5-7 minutes.",
+      "Reduce heat to low. Stir in red chili powder, coriander powder, and garam masala. Cook for 1 minute.",
+      "Add yogurt gradually, stirring constantly to prevent curdling. Cook for 2 minutes.",
+      "Add chicken chunks to the pot. Stir to coat. Cook on medium heat until chicken is seared on all sides, about 8-10 minutes. Internal temperature of chicken must reach 75°C (167°F).",
+      "Add 500 ml water to the chicken. Bring to a boil. Reduce heat, cover, and simmer for 15 minutes. Remove chicken from gravy; set aside. Keep gravy warm.",
+      "In a separate large pot, bring 1.5 litres of salted water to a rolling boil. Add drained rice. Cook until 70% done, about 5-7 minutes. Rice should still be firm. Drain rice immediately.",
+      "In the heavy-bottomed pot with the gravy, spread half of the par-boiled rice evenly over the gravy. Arrange cooked chicken chunks over the rice layer.",
+      "Sprinkle half of the fried onions, cilantro, and mint over the chicken. Top with remaining rice.",
+      "Garnish with remaining fried onions, cilantro, and mint. Drizzle 1 tablespoon ghee over the top.",
+      "Cover the pot tightly with a lid or foil. Place on low heat. Cook for 15-20 minutes. This is 'dum' cooking.",
+      "Gently fluff Murgh Pulao with a fork before serving. Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 947.8,
+      "cholesterol_mg": 233.7,
+      "dietary_fiber_g": 5.55,
+      "protein_g": 47.08,
+      "saturated_fat_g": 15.81,
+      "sodium_mg": 681.61,
+      "total_carbs_g": 99.16,
+      "total_fat_g": 38.73,
+      "total_sugars_g": 7.87,
+      "trans_fat_g": 0.51
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152.87,
+      "cholesterol_mg": 37.7,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 7.59,
+      "saturated_fat_g": 2.55,
+      "sodium_mg": 109.9,
+      "total_carbs_g": 16,
+      "total_fat_g": 6.25,
+      "total_sugars_g": 1.27,
+      "trans_fat_g": 0.08
+    },
+    "daily_value_percentages": {
+      "cholesterol": 77.9,
+      "dietary_fiber": 19.8,
+      "protein": 94.2,
+      "saturated_fat": 79.1,
+      "sodium": 29.6,
+      "total_carbs": 36.1,
+      "total_fat": 49.7
+    },
+    "serving_size_g": 620,
+    "total_recipe_weight_g": 2480
+  },
+  {
+    "recipe_name": "Spicy Creamy Chicken and Mushroom Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_creamy_chicken_and_mushroom_pasta_20250713_161126_3906ac1a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T16:11:27.092078000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mushroom",
+      "chicken",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "simple",
+    "special_requests": "Slightly spicy",
+    "visual_description": "A single portion of Spicy Creamy Chicken and Mushroom Pasta rests on a simple, off-white ceramic plate. The golden-brown seared chicken cubes are nestled among al dente penne pasta, coated in a rich, creamy, slightly orange-tinted sauce. Earthy, sliced brown mushrooms and tender diced onions are visible throughout. A scattering of bright green chopped fresh parsley provides a pop of color and freshness. The pasta is naturally piled, with components casually overlapping. The plate sits on a well-used, warm-toned wooden dining table in a homely family kitchen setting. A casually placed cloth napkin and standard silver fork and spoon are beside the plate. Warm, cozy lighting from overhead kitchen fixtures illuminates the scene, creating a comforting, inviting atmosphere, with a hint of natural clutter in the soft-focus background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Penne pasta",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Brown mushrooms",
+        "quantity": "250 grams"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 grams, grated"
+      }
+    ],
+    "instructions": [
+      "Dice chicken breast into 2 cm cubes. Season with salt and pepper.",
+      "Slice mushrooms. Dice onion. Mince garlic.",
+      "Cook penne pasta according to package directions until al dente. Drain, reserve 100 ml pasta water.",
+      "Heat olive oil in a large skillet over medium-high heat. Add chicken cubes. Sear chicken until golden brown and cooked through, reaching an internal temperature of 75°C. Remove chicken from skillet. Set aside.",
+      "Add onion to skillet. Sauté until softened, about 3 minutes. Add mushrooms. Cook until tender and browned, about 5-7 minutes. Add minced garlic and red pepper flakes. Cook for 1 minute until fragrant.",
+      "Pour in chicken broth and heavy cream. Bring to a simmer. Cook for 2-3 minutes until slightly thickened.",
+      "Return cooked chicken to skillet. Add cooked pasta. Toss to combine. If sauce is too thick, add reserved pasta water as needed.",
+      "Stir in grated Parmesan cheese and chopped fresh parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 852,
+      "cholesterol_mg": 203,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 57.7,
+      "saturated_fat_g": 19.1,
+      "sodium_mg": 367,
+      "total_carbs_g": 66.5,
+      "total_fat_g": 38.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 198,
+      "cholesterol_mg": 47.2,
+      "dietary_fiber_g": 1,
+      "protein_g": 13.4,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 85.3,
+      "total_carbs_g": 15.4,
+      "total_fat_g": 9,
+      "total_sugars_g": 1.7,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 15,
+      "protein": 115,
+      "saturated_fat": 96,
+      "sodium": 16,
+      "total_carbs": 24,
+      "total_fat": 50
+    },
+    "serving_size_g": 430.5,
+    "total_recipe_weight_g": 1722
+  },
+  {
+    "recipe_name": "Beer-Poached Chicken & Crispy Rice Cakes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-poached_chicken_%26_crispy_rice_cakes_20250713_160706_d02477d3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T16:07:06.848143000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "beer",
+      "hot sauce"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single starter portion is elegantly presented on a handcrafted ceramic plate in a warm cream hue, set against a light, reclaimed wood surface. Two perfectly golden-brown, crispy pan-fried rice cakes, approximately 6 cm in diameter and 1 cm thick, form the base. Each rice cake is topped with a delicate mound of shredded beer-poached chicken, its light tan color providing a subtle contrast. Thinly sliced, vibrant pink quick-pickled red onion rings are artfully placed beside the chicken, adding a pop of color and a fresh, tangy element. A rich, deep red hot sauce is artfully drizzled in a controlled, organic pattern over the chicken and around the plate, enhancing both color and flavor. A few sprigs of fresh, bright green cilantro leaves are scattered sparingly as a natural garnish. The composition emphasizes negative space, allowing each ingredient to stand out. The scene is bathed in soft, natural daylight, highlighting the textures and natural colors. An undyed beige linen napkin and a simple, unadorned fork rest beside the plate, with a subtle plant in the blurred background, reinforcing the eco-conscious and minimalist aesthetic.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cooked short-grain rice (day-old preferred)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Light lager or pale ale beer",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Hot sauce",
+        "quantity": "30ml"
+      },
+      {
+        "name": "White vinegar",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch, plus more for seasoning"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Cooking oil (neutral)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh cilantro or chives",
+        "quantity": "A few sprigs (optional)"
+      }
+    ],
+    "instructions": [
+      "Slice red onion thinly into rings.",
+      "Combine white vinegar, water, sugar, and pinch of salt in a small saucepan. Bring to boil. Stir until dissolved.",
+      "Pour hot liquid over sliced onions in a heatproof jar. Cool. Refrigerate 30 minutes.",
+      "Place chicken thighs in a small pot. Cover with beer. Add salt and pepper.",
+      "Bring to gentle simmer. Reduce heat to low. Poach chicken 12-15 minutes, until internal temperature reaches 75°C (167°F).",
+      "Remove chicken. Cool slightly. Shred chicken using two forks.",
+      "Season cooked rice with salt. Form into 8 small, flat, round cakes (5-6 cm diameter, 1 cm thick).",
+      "Heat cooking oil in a non-stick pan over medium-high heat.",
+      "Place rice cakes in hot oil. Cook 3-4 minutes per side, until golden and crispy.",
+      "Remove from pan. Drain on paper towel.",
+      "Arrange 2 crispy rice cakes per plate. Top each with shredded chicken.",
+      "Drain pickled onions. Place a few rings next to chicken.",
+      "Drizzle hot sauce over chicken and plate. Garnish with fresh cilantro or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 324.8,
+      "cholesterol_mg": 93.8,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 15.7,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 147,
+      "total_carbs_g": 22.2,
+      "total_fat_g": 13.9,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.9,
+      "calories": 114.2,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 5.5,
+      "saturated_fat_g": 1,
+      "sodium_mg": 51.7,
+      "total_carbs_g": 7.8,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 31.3,
+      "dietary_fiber": 3.3,
+      "protein": 31.5,
+      "saturated_fat": 14,
+      "sodium": 6.4,
+      "total_carbs": 8.1,
+      "total_fat": 17.9
+    },
+    "serving_size_g": 284.3,
+    "total_recipe_weight_g": 1137
+  }
+]

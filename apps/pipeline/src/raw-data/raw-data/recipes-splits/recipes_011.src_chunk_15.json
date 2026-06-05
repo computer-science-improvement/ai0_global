@@ -1,0 +1,706 @@
+[
+  {
+    "recipe_name": "Aromatic Fish and Rice Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_aromatic_fish_and_rice_pilaf_20250706_183112_c7e75a1c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T18:31:12.699472000Z",
+    "selected_ingredients": [
+      {
+        "name": "rice",
+        "comment": "basmati"
+      },
+      "fish"
+    ],
+    "complexity": "simple",
+    "special_requests": "not spicy, without Chicken broth",
+    "visual_description": "A single portion of Aromatic Fish and Rice Pilaf is presented in a simple, deep ceramic bowl with a slightly rustic texture. The fluffy basmati rice, gently tinted golden from turmeric, is mixed with tender, opaque white chunks of flaked white fish, approximately 4cm pieces. Soft, translucent onion and diced tomato pieces are visible throughout, along with vibrant green fresh cilantro leaves generously scattered on top. The pilaf is naturally mounded, creating a comforting, unpretentious look. The bowl rests on a well-worn, light-colored wooden dining table. A simple, folded linen napkin and a traditional metal serving spoon are casually placed nearby. Warm, diffused natural light illuminates the scene, evoking a homely kitchen atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "South Asian",
+    "cultural_origin": "South Asian",
+    "cultural_serving_suggestions": [
+      "Serve with plain yogurt or a simple cucumber raita (yogurt mixed with grated cucumber and a pinch of salt)."
+    ],
+    "hero_ingredient": "White Fish",
+    "ingredients": [
+      {
+        "name": "Basmati rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "White fish fillets (e.g., cod, tilapia)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large (approx. 150 g)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium (approx. 200 g)"
+      },
+      {
+        "name": "Vegetable oil or ghee",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "1.5 teaspoons"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1.5 teaspoons, or to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "0.5 teaspoon, or to taste"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "30 g (small bunch)"
+      },
+      {
+        "name": "Water or fish stock",
+        "quantity": "600 ml"
+      }
+    ],
+    "instructions": [
+      "Rinse basmati rice. Soak 20 minutes. Drain well.",
+      "Cut fish into 4 cm chunks. Season with salt and pepper.",
+      "Chop onion finely. Mince garlic and ginger. Dice tomatoes.",
+      "Heat oil in large pot or deep pan over medium heat.",
+      "Add cumin seeds. Sauté until fragrant.",
+      "Add chopped onion. Cook until translucent.",
+      "Add minced garlic and ginger. Sauté 1 minute.",
+      "Add diced tomatoes. Cook until softened.",
+      "Add coriander powder, turmeric powder, salt, and pepper. Stir 30 seconds.",
+      "Add drained basmati rice. Stir gently 2 minutes to coat.",
+      "Pour in 600 ml water. Bring to a boil.",
+      "Gently place fish chunks on top of rice. Do not stir.",
+      "Reduce heat to low. Cover tightly. Cook 15-18 minutes until water absorbed and rice tender.",
+      "Remove from heat. Let stand, covered, 10 minutes.",
+      "Fluff rice gently with fork. Garnish with fresh chopped cilantro."
+    ],
+    "traditional_techniques": [
+      "Dum cooking (steaming in a sealed pot)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 477,
+      "cholesterol_mg": 54,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 29.1,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 966,
+      "total_carbs_g": 68.5,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 3.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 103,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 6.3,
+      "saturated_fat_g": 0.2,
+      "sodium_mg": 208,
+      "total_carbs_g": 14.7,
+      "total_fat_g": 1.9,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.9,
+      "dietary_fiber": 11.7,
+      "protein": 58.3,
+      "saturated_fat": 4.1,
+      "sodium": 42,
+      "total_carbs": 24.9,
+      "total_fat": 11.1
+    },
+    "serving_size_g": 464.8,
+    "total_recipe_weight_g": 1859.2
+  },
+  {
+    "recipe_name": "Creamy Indian Butter Chicken with Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_indian_butter_chicken_with_potatoes_20250706_182419_e32861f1.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T18:24:19.414258000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "chili",
+      "cream"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Indian Butter Chicken with Potatoes is presented in a deep, pristine white ceramic bowl. The rich, vibrant orange-red curry fills the bowl, exhibiting a smooth, velvety texture. Tender, golden-brown seared chicken chunks are nestled within the sauce. Quartered roasted potatoes, with slightly browned edges, are partially submerged, adding visual weight and texture. A delicate swirl of fresh cream adorns the top, complemented by a generous sprinkle of bright green, finely chopped fresh cilantro leaves. The dish is placed on a simple, light-colored wooden table surface. Beside the bowl, a white porcelain dinner plate awaits, ready for basmati rice or naan. Small, polished stainless steel Katori bowls, holding potential accompaniments like raita or pickled onions, complete the authentic Indian dining setup. Natural, even lighting highlights the dish's inviting colors and textures, creating a professional yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with fluffy basmati rice or warm naan bread.",
+      "Offer a side of cooling raita (yogurt with cucumber and spices) or pickled onions.",
+      "Enjoy family-style, allowing diners to scoop curry onto their rice or bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "700 grams"
+      },
+      {
+        "name": "Medium potatoes, peeled and quartered",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Large onion, finely chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Crushed tomatoes (canned)",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Cashews, soaked in hot water for 15 minutes",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Kashmiri chili powder",
+        "quantity": "2 teaspoons"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Whole green cardamom pods",
+        "quantity": "4"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1 (2.5 cm piece)"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "150 millilitres"
+      },
+      {
+        "name": "Unsalted butter or ghee",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Dried fenugreek leaves (Kasuri Methi), crushed",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "0.5 teaspoon (optional, to balance acidity)"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4 cm chunks. Season with salt and 1 teaspoon Kashmiri chili powder. Set aside.",
+      "Heat half the butter/ghee in a large pot or Dutch oven over medium-high heat. Sear chicken chunks in batches until golden brown on all sides. Remove chicken and set aside. Cook to internal temperature of 75°C (167°F).",
+      "Reduce heat to medium. Add remaining butter/ghee. Add bay leaf, cinnamon stick, cardamom pods, and cloves. Sauté for 30 seconds until fragrant.",
+      "Add chopped onion. Cook until softened and translucent, about 5-7 minutes.",
+      "Stir in ginger-garlic paste. Cook for 1 minute until aromatic.",
+      "Add remaining Kashmiri chili powder, cumin, coriander, and turmeric. Cook for 30 seconds, stirring constantly.",
+      "Pour in crushed tomatoes. Bring to a simmer. Add soaked cashews. Cook for 10-15 minutes, stirring occasionally, until sauce thickens and oil separates.",
+      "Remove whole spices (bay leaf, cinnamon, cardamom, cloves). Carefully transfer sauce to a blender. Blend until completely smooth. Strain through a fine-mesh sieve back into the pot for a silkier sauce (optional).",
+      "Return seared chicken to the pot with the smooth sauce. Add quartered potatoes. Stir to combine.",
+      "Add 150 millilitres of water. Bring to a gentle simmer. Cover and cook for 20-25 minutes, or until chicken is cooked through and potatoes are tender. Stir occasionally to prevent sticking.",
+      "Stir in heavy cream, crushed fenugreek leaves, salt, and sugar (if using). Simmer for 5 minutes, uncovered, until sauce reaches desired consistency.",
+      "Remove from heat. Discard any remaining whole spices if desired. Garnish generously with fresh chopped cilantro before serving."
+    ],
+    "notes": [
+      "For best flavor, marinate chicken for at least 30 minutes, or up to 4 hours in the refrigerator.",
+      "Adjust the amount of Kashmiri chili powder to control the color and mild heat.",
+      "Soaking cashews helps achieve a smoother sauce."
+    ],
+    "traditional_techniques": [
+      "Tempering spices (Tadka)",
+      "Slow simmering",
+      "Use of ghee"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 705.3,
+      "cholesterol_mg": 240.13,
+      "dietary_fiber_g": 5.36,
+      "protein_g": 44.39,
+      "saturated_fat_g": 20.07,
+      "sodium_mg": 165.76,
+      "total_carbs_g": 32.99,
+      "total_fat_g": 44.85,
+      "total_sugars_g": 8,
+      "trans_fat_g": 0.94
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 145.2,
+      "cholesterol_mg": 49.43,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 9.14,
+      "saturated_fat_g": 4.13,
+      "sodium_mg": 34.13,
+      "total_carbs_g": 6.79,
+      "total_fat_g": 9.23,
+      "total_sugars_g": 1.65,
+      "trans_fat_g": 0.19
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80.04,
+      "dietary_fiber": 19.15,
+      "protein": 88.78,
+      "saturated_fat": 100.36,
+      "sodium": 7.21,
+      "total_carbs": 12,
+      "total_fat": 57.5
+    },
+    "serving_size_g": 485.75,
+    "total_recipe_weight_g": 1943
+  },
+  {
+    "recipe_name": "Brasato di Manzo con Polenta Cremosa e Zucca Arrosto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_brasato_di_manzo_con_polenta_cremosa_e_zucca_arrosto_20250706_180759_6e2bf1ae.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T18:08:00.459618000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "garlic",
+      "corn",
+      "squash",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is centrally presented on a clean, round white porcelain dinner plate. A generous, free-flowing mound of creamy, golden polenta forms the base. Nestled atop are two to three substantial, irregularly shaped chunks of rich, dark brown braised beef, glistening from its deep red-brown tomato and red wine sauce which pools slightly. Alongside, a vibrant scattering of roasted butternut squash cubes, lightly caramelized and golden-orange, and bright yellow corn kernels adds color and varied texture. A light dusting of finely grated pale yellow Parmesan cheese and fresh, finely chopped green parsley provides a fresh accent. The setting is a modern bistro, with a simple light wooden table. A folded cotton napkin sits beside the plate. Natural, soft lighting illuminates the scene, highlighting the food's rich colors and textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of robust red wine, such as Chianti or Barolo.",
+      "Offer crusty bread for soaking up the rich sauce.",
+      "Enjoy as a hearty main course during colder months."
+    ],
+    "hero_ingredient": "Beef Chuck",
+    "ingredients": [
+      {
+        "name": "Beef Chuck",
+        "quantity": "1 kg, cut into 5-6 cm chunks"
+      },
+      {
+        "name": "Canned Diced Tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Celery Stalks",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Red Wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "4 sprigs"
+      },
+      {
+        "name": "Bay Leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Butternut Squash",
+        "quantity": "800 g, peeled, deseeded, cut into 2 cm cubes"
+      },
+      {
+        "name": "Fresh Corn Kernels",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Fine Cornmeal (Polenta)",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Water or Vegetable Broth",
+        "quantity": "1.2 litres"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Grated Parmesan Cheese",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Pat beef chunks dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat. Sear beef chunks on all sides until deeply browned. Remove beef and set aside.",
+      "Add diced onion, carrots, and celery to the pot. Cook, stirring occasionally, for 8-10 minutes until softened.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Deglaze the pot with red wine, scraping up any browned bits. Bring to a simmer and cook for 2 minutes.",
+      "Return beef to the pot. Add diced tomatoes, beef broth, rosemary, thyme, and bay leaf. Bring to a simmer.",
+      "Reduce heat to low. Cover and braise for 2.5-3 hours, or until beef is fork-tender. Stir occasionally.",
+      "While beef braises, preheat oven to 200°C. Toss butternut squash cubes with a drizzle of olive oil, salt, and pepper on a baking sheet. Roast for 20-25 minutes, or until tender and lightly caramelized. Add corn kernels to the baking sheet for the last 10 minutes of roasting.",
+      "Prepare polenta: Bring water or vegetable broth to a boil in a medium saucepan. Slowly whisk in cornmeal, stirring constantly to prevent lumps.",
+      "Reduce heat to low. Cook polenta, stirring frequently, for 20-25 minutes, until thick and creamy. Add more liquid if needed.",
+      "Stir butter and 40 g of Parmesan cheese into the polenta. Season with salt.",
+      "Remove braised beef from sauce. Shred or cut into large chunks. Skim any excess fat from the sauce. Remove herbs and bay leaf.",
+      "Serve braised beef chunks over creamy polenta. Spoon roasted squash and corn alongside. Garnish with remaining grated Parmesan and fresh chopped parsley."
+    ],
+    "notes": [
+      "For deeper flavor, braise the beef a day ahead and gently reheat. The flavors meld beautifully overnight.",
+      "Adjust sauce consistency by simmering longer for a thicker sauce, or adding more broth if too thick."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1321.17,
+      "cholesterol_mg": 229.5,
+      "dietary_fiber_g": 14.55,
+      "protein_g": 84.84,
+      "saturated_fat_g": 22.83,
+      "sodium_mg": 1811.1,
+      "total_carbs_g": 102.45,
+      "total_fat_g": 55.87,
+      "total_sugars_g": 15.83,
+      "trans_fat_g": 1.63
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 91.79,
+      "cholesterol_mg": 15.9,
+      "dietary_fiber_g": 1.01,
+      "protein_g": 5.89,
+      "saturated_fat_g": 1.59,
+      "sodium_mg": 125.8,
+      "total_carbs_g": 7.12,
+      "total_fat_g": 3.88,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0.11
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76.5,
+      "dietary_fiber": 52,
+      "protein": 169.7,
+      "saturated_fat": 114.1,
+      "sodium": 78.7,
+      "total_carbs": 37.3,
+      "total_fat": 71.6
+    },
+    "serving_size_g": 1439.25,
+    "total_recipe_weight_g": 5757
+  },
+  {
+    "recipe_name": "Beet Risotto with Seared Scallops",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beet_risotto_with_seared_scallops_20250706_180120_4472c868.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T18:01:20.707076000Z",
+    "selected_ingredients": [
+      "beet",
+      "scallop",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A vibrant, creamy beet risotto forms the base, presented as a free-flowing, rich magenta pool on a clean white porcelain dinner plate. The risotto is cooked to a fluid, al dente consistency, with visible rice grains suspended within the smooth, earthy beet purée. Four perfectly seared sea scallops, each with a beautiful golden-brown crust and opaque, tender centers, are arranged artfully atop the risotto. The scallops are whole, plump, and not sliced. A scattering of bright green, finely chopped fresh parsley provides a striking color contrast against the deep red risotto and golden scallops. The dish is centrally placed on a simple wooden table surface. A white cotton napkin and classic silver flatware are neatly arranged beside the plate. Natural, even lighting highlights the dish's textures and colors, creating an inviting, casual bistro atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread.",
+      "Pair with a crisp, dry white wine like Pinot Grigio or Sauvignon Blanc.",
+      "Finish the meal with espresso."
+    ],
+    "hero_ingredient": "Scallop",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Fresh beets",
+        "quantity": "2-3 medium (approx. 400 g)"
+      },
+      {
+        "name": "Large sea scallops",
+        "quantity": "16"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Vegetable or chicken broth",
+        "quantity": "1.2-1.5 liters"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley or chives",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Roast whole beets until tender, about 45-60 minutes. Peel roasted beets. Puree beets in a blender with a splash of broth until smooth. Set aside.",
+      "Warm broth in a saucepan. Keep it simmering gently.",
+      "Finely dice shallot and mince garlic.",
+      "In a large, heavy-bottomed pot or Dutch oven, heat 15 ml olive oil over medium heat. Add diced shallot. Cook until translucent, about 3-4 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes until edges of grains are translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Add a ladleful of warm broth to the rice. Stir constantly until absorbed. Stir in the beet puree. Continue adding broth, one ladleful at a time, stirring frequently until each addition is absorbed before adding more. This takes about 18-20 minutes. The risotto should be creamy and al dente.",
+      "Remove risotto from heat. Stir in cold, cubed butter and grated Parmesan cheese. Season with salt and pepper to taste. Cover. Let rest 2 minutes.",
+      "While risotto rests, prepare scallops. Pat scallops very dry with paper towels. Season generously with salt and pepper.",
+      "Heat remaining 15 ml olive oil in a large non-stick pan over high heat until shimmering. Place scallops in a single layer, ensuring not to overcrowd the pan. Sear undisturbed for 2-3 minutes until a deep golden-brown crust forms. Flip scallops. Sear for another 1-2 minutes until cooked through and opaque. Cook scallops to an internal temperature of 63°C (145°F).",
+      "Spoon a generous portion of beet risotto onto each plate. Arrange 4 seared scallops on top of the risotto.",
+      "Finely chop fresh parsley or chives. Sprinkle over scallops and risotto. Serve immediately."
+    ],
+    "notes": [
+      "Ensure scallops are very dry before searing for best crust.",
+      "Adjust broth quantity for desired risotto consistency."
+    ],
+    "traditional_techniques": [
+      "Mantecare",
+      "Soffritto",
+      "Tostatura"
+    ]
+  },
+  {
+    "recipe_name": "Cubi di Formaggio Dolce con Mela e Malto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cubi_di_formaggio_dolce_con_mela_e_malto_20250706_180103_8f8f6ae7.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T18:01:03.751366000Z",
+    "selected_ingredients": [
+      {
+        "name": "monterey jack cheese"
+      },
+      {
+        "name": "malt syrup"
+      },
+      {
+        "name": "apple liqueur"
+      },
+      {
+        "name": "flour"
+      },
+      {
+        "name": "lemon"
+      },
+      {
+        "name": "cream"
+      }
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Italian",
+    "visual_description": "Eight perfectly uniform, glossy cubes of 'Cubi di Formaggio Dolce con Mela e Malto' are meticulously arranged on a pristine white Carrara marble slab. Each cube, approximately 3x3x3 cm, boasts a flawless, translucent amber malt syrup mirror glaze that catches the light. The underlying layers of pale cream Monterey Jack mousse, light golden dacquoise, and subtle amber apple gelee are subtly visible through the glaze's depth. Abundant negative space surrounds the precise arrangement. Each cube is crowned with a single, delicate curl of candied lemon peel or micro-shavings of fresh lemon zest, and accompanied by a tiny, vibrant green micro-mint sprig placed just beside it. The presentation is ultra-minimalist, showcasing the architectural precision and sophisticated simplicity of each petit four, set against a backdrop of dramatic professional lighting with soft, intentional shadows. An elegant Italian porcelain platter could also be used.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve chilled as a refined conclusion to a multi-course Italian fine dining experience.",
+      "Present on an elegant serving platter or tiered stand for communal enjoyment, characteristic of 'petit four' service in Italian patisseries.",
+      "Pair with a delicate espresso or a small glass of Moscato d'Asti."
+    ],
+    "hero_ingredient": "Monterey Jack Cheese",
+    "ingredients": [
+      {
+        "name": "Egg whites",
+        "quantity": "30g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "15g"
+      },
+      {
+        "name": "Almond flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "5g"
+      },
+      {
+        "name": "Malt syrup",
+        "quantity": "7g (for dacquoise), 15g (for glaze)"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 1/4 lemon (for dacquoise), pinch (for mousse)"
+      },
+      {
+        "name": "Apple liqueur",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "15ml (for gelee), 15ml (for glaze)"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "4ml"
+      },
+      {
+        "name": "Gelatin sheets",
+        "quantity": "1g (for gelee), 1g (for mousse), 1.5g (for glaze)"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Monterey Jack cheese",
+        "quantity": "25g, finely grated"
+      },
+      {
+        "name": "White chocolate",
+        "quantity": "20g, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "small piece (for garnish)"
+      },
+      {
+        "name": "Fresh micro herbs (e.g., mint, basil)",
+        "quantity": "8 tiny sprigs"
+      }
+    ],
+    "instructions": [
+      "Prepare Lemon-Malt Dacquoise: Preheat oven to 170°C. Whip egg whites to soft peaks. Gradually add 15g granulated sugar, whip to stiff peaks. Gently fold in almond flour, all-purpose flour, 7g malt syrup, and lemon zest. Spread mixture thinly (approx. 0.5 cm) onto a silicone mat or parchment-lined baking sheet. Bake 10-12 minutes until light golden. Cool completely. Cut into 3x3 cm squares.",
+      "Prepare Apple Liqueur Gelee: Bloom 1g gelatin sheet in ice water. Heat 30ml apple liqueur, 15ml water, 5g granulated sugar, and 4ml lemon juice until sugar dissolves. Squeeze excess water from gelatin; stir into hot liquid until dissolved. Pour gelee into a small, shallow container (approx. 0.5 cm deep). Chill until firm. Cut into 3x3 cm squares.",
+      "Prepare Monterey Jack Cream Mousse: Bloom 1g gelatin sheet in ice water. Gently heat 25g grated Monterey Jack cheese with 10ml of the heavy cream in a small saucepan until cheese melts into cream. Do not boil. Strain through a fine-mesh sieve into a bowl, discard solids. Squeeze excess water from gelatin; stir into warm cheese cream until dissolved. Let cool completely. In a separate bowl, whip remaining 50ml heavy cream with 8g granulated sugar and pinch of lemon zest to soft peaks. Gently fold cooled cheese cream mixture into whipped cream until just combined.",
+      "Assemble Cubes: Line small square silicone molds (approx. 3x3x3 cm) or a small rectangular mold. Place a dacquoise square at the bottom of each mold. Pipe or spoon Monterey Jack cream mousse over dacquoise, filling halfway. Place an apple liqueur gelee square on top of mousse. Top with more mousse, leveling the surface. Freeze cubes for at least 4 hours, or until completely solid.",
+      "Prepare Malt Syrup Mirror Glaze: Bloom 1.5g gelatin sheets in ice water. In a saucepan, combine 15ml water, 30g granulated sugar, and 15g malt syrup. Bring to a boil, then remove from heat. Add 20g chopped white chocolate and squeezed gelatin sheets. Stir until melted and smooth. Emulsify with an immersion blender, avoiding air bubbles. Strain glaze through a fine-mesh sieve. Cool glaze to 30-32°C.",
+      "Glaze and Garnish: Place frozen cubes on a wire rack set over a tray. Pour cooled mirror glaze evenly over each frozen cube, ensuring full coverage. Let excess glaze drip off. Carefully transfer glazed cubes to a serving platter using an offset spatula. Garnish each cube with a tiny, delicate curl of candied lemon peel or micro-shavings of fresh lemon zest and a single micro herb sprig."
+    ],
+    "notes": [
+      "Ensure all components are thoroughly chilled or frozen before assembly and glazing for clean cuts and a perfect finish.",
+      "Achieving the correct glaze temperature (30-32°C) is crucial for a smooth, even coating.",
+      "Use high-quality Monterey Jack cheese for optimal flavor balance in the mousse."
+    ],
+    "traditional_techniques": [
+      "Precise temperature control for glazes and mousses",
+      "Layering and assembly in molds for architectural desserts"
+    ]
+  }
+]

@@ -1,0 +1,651 @@
+[
+  {
+    "recipe_name": "Hearty Turkey Noodle Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_turkey_noodle_soup_20250810_125524_b4854bbc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T12:55:25.198070000Z",
+    "selected_ingredients": [
+      "turkey",
+      "noodle"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, steaming portion of Hearty Turkey Noodle Soup is presented in a rustic, deep ceramic bowl. The golden egg noodles are visibly intertwined with tender, small diced pieces of turkey. Bright orange diced carrots and pale green diced celery and onion pieces add natural color and texture. A sprinkle of fresh, chopped parsley provides a vibrant green garnish on top. The broth is rich and clear. The bowl sits on a well-used, warm-toned wooden dining table, characteristic of a homely family kitchen. The background is softly blurred, hinting at a cozy, lived-in atmosphere. Warm, natural light illuminates the scene, creating subtle highlights on the broth. A simple, everyday ceramic spoon rests beside the bowl. A plain, light-colored cloth napkin is casually placed nearby, completing the relaxed, comfortable setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Turkey breast",
+        "quantity": "500 g, diced into 2 cm cubes"
+      },
+      {
+        "name": "Egg noodles",
+        "quantity": "200 g, medium width"
+      },
+      {
+        "name": "Chicken or turkey broth",
+        "quantity": "2 litres"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, diced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 ml, chopped, for garnish"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large pot or Dutch oven over medium-high heat.",
+      "Add diced turkey breast to the pot. Cook, stirring occasionally, until turkey is browned and cooked through. Break up any large pieces. Ensure internal temperature reaches 75°C. Remove turkey from pot and set aside.",
+      "Add diced onion, carrots, and celery to the same pot. Sauté for 5-7 minutes until vegetables begin to soften.",
+      "Stir in minced garlic, dried thyme, and bay leaf. Cook for 1 minute until fragrant.",
+      "Return the cooked turkey to the pot. Pour in the chicken or turkey broth.",
+      "Bring the soup to a boil. Reduce heat to low, cover, and simmer for 15 minutes to allow flavors to meld.",
+      "Add egg noodles to the simmering soup. Cook according to package directions, typically 7-10 minutes, until noodles are tender.",
+      "Remove the bay leaf. Season the soup generously with salt and black pepper to taste.",
+      "Ladle the hot soup into individual bowls. Garnish each serving with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 425,
+      "cholesterol_mg": 120,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 46.2,
+      "saturated_fat_g": 3,
+      "sodium_mg": 653,
+      "total_carbs_g": 27.6,
+      "total_fat_g": 13.2,
+      "total_sugars_g": 7.1,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 53.7,
+      "cholesterol_mg": 15.2,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 5.8,
+      "saturated_fat_g": 0.4,
+      "sodium_mg": 82.5,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 1.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 11,
+      "protein": 92,
+      "saturated_fat": 15,
+      "sodium": 28,
+      "total_carbs": 10,
+      "total_fat": 17
+    },
+    "serving_size_g": 791.5,
+    "total_recipe_weight_g": 3166
+  },
+  {
+    "recipe_name": "Paneer and Red Lentil Tikki",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_paneer_and_red_lentil_tikki_20250810_125517_d0e4cd8d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T12:55:17.943832000Z",
+    "selected_ingredients": [
+      "paneer",
+      "red lentil",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Golden-brown, circular tikkis, approximately 6-7 cm in diameter, arranged on a clean white porcelain platter. Each tikki has a crisp, golden exterior and a soft, flavorful interior, flecked with finely chopped green coriander. They are artfully placed, slightly overlapping, creating an inviting, professional presentation. Beside the tikkis, a small ceramic ramekin holds a vibrant green mint chutney, adding a pop of color. A fresh lemon wedge is positioned nearby for garnish. The scene is set on a simple wooden table, with natural, even lighting. A folded cotton napkin rests casually beside the platter. This setup highlights the tikkis as the central focus, presented as refined finger foods for a casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with a side of cooling mint or tamarind chutney.",
+      "Accompanied by a cup of hot Indian chai (tea).",
+      "Can be served as an appetizer or a light snack."
+    ],
+    "hero_ingredient": "Paneer",
+    "ingredients": [
+      {
+        "name": "Red Lentils (Masoor Dal)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Paneer",
+        "quantity": "200g"
+      },
+      {
+        "name": "Rice Flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Ginger-Garlic Paste",
+        "quantity": "10g"
+      },
+      {
+        "name": "Green Chili",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh Coriander Leaves",
+        "quantity": "30g"
+      },
+      {
+        "name": "Cumin Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Coriander Powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Turmeric Powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "3g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "70ml"
+      },
+      {
+        "name": "Lemon Wedge",
+        "quantity": "4"
+      },
+      {
+        "name": "Mint Chutney",
+        "quantity": "for serving"
+      }
+    ],
+    "instructions": [
+      "Rinse red lentils. Cook lentils in 300ml water until soft. Drain excess water. Mash lentils.",
+      "Grate paneer into a large mixing bowl.",
+      "Finely chop onion, green chili, and fresh coriander leaves.",
+      "Heat 10ml oil in a small pan. Sauté chopped onion until translucent.",
+      "Add ginger-garlic paste and chopped green chili. Sauté for 1 minute.",
+      "Stir in cumin powder, coriander powder, turmeric powder, and garam masala. Cook spices for 30 seconds until fragrant.",
+      "Add sautéed mixture to the grated paneer and mashed lentils. Add chopped fresh coriander and rice flour. Season with salt.",
+      "Mix all ingredients thoroughly to form a firm dough. Adjust rice flour if mixture is too sticky.",
+      "Divide mixture into 16 equal portions. Form each portion into a round, flat patty (tikki) approximately 6 cm in diameter.",
+      "Heat remaining 60ml vegetable oil in a large non-stick pan over medium heat.",
+      "Shallow fry tikkis in batches for 3-4 minutes per side, until golden brown and crisp.",
+      "Drain tikkis on paper towels to remove excess oil.",
+      "Serve hot with mint chutney and a lemon wedge."
+    ],
+    "traditional_techniques": [
+      "Tempering spices"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 464.31,
+      "cholesterol_mg": 40,
+      "dietary_fiber_g": 4.6,
+      "protein_g": 17.97,
+      "saturated_fat_g": 10.66,
+      "sodium_mg": 310.99,
+      "total_carbs_g": 32.64,
+      "total_fat_g": 29.8,
+      "total_sugars_g": 3.31,
+      "trans_fat_g": 0.45
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 321.65,
+      "cholesterol_mg": 27.71,
+      "dietary_fiber_g": 3.19,
+      "protein_g": 12.45,
+      "saturated_fat_g": 7.38,
+      "sodium_mg": 215.44,
+      "total_carbs_g": 22.61,
+      "total_fat_g": 20.64,
+      "total_sugars_g": 2.29,
+      "trans_fat_g": 0.31
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13.3,
+      "dietary_fiber": 16.4,
+      "protein": 35.9,
+      "saturated_fat": 53.3,
+      "sodium": 13.5,
+      "total_carbs": 11.9,
+      "total_fat": 38.2
+    },
+    "serving_size_g": 144.35,
+    "total_recipe_weight_g": 577.4
+  },
+  {
+    "recipe_name": "Homestyle Turkey Noodle Patties",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_turkey_noodle_patties_20250810_125424_454cafee.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T12:54:24.571255000Z",
+    "selected_ingredients": [
+      "turkey",
+      "noodle"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "Two golden-brown, slightly irregular turkey noodle patties are casually placed on a simple, round, off-white ceramic plate. The patties show a rustic, homemade texture. A small, white ceramic ramekin, about 5 cm in diameter, holds the dark amber dipping sauce and is placed next to the patties. A sprinkle of fresh, vibrant green chopped parsley is scattered over the patties. The plate rests on a well-used, light-colored wooden dining table with visible grain. A simple, folded off-white cotton napkin is casually placed to the side. The lighting is warm and inviting, typical of a home kitchen, conveying comfort and approachability.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Ground Turkey",
+    "ingredients": [
+      {
+        "name": "Ground turkey",
+        "quantity": "500g"
+      },
+      {
+        "name": "Thin egg noodles",
+        "quantity": "150g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Plain breadcrumbs",
+        "quantity": "60g"
+      },
+      {
+        "name": "Small onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Soy sauce (for dipping sauce)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Rice vinegar (for dipping sauce)",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Honey (for dipping sauce)",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Fresh ginger (for dipping sauce)",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Cook noodles according to package directions. Drain well. Chop noodles roughly into shorter strands.",
+      "In a large pan, cook ground turkey over medium heat until browned. Break up meat with a spoon. Drain any excess fat.",
+      "Dice the onion finely. Mince the garlic cloves. Add diced onion and minced garlic to the pan with the cooked turkey. Cook until softened, about 5 minutes.",
+      "Transfer cooked turkey mixture to a large mixing bowl. Add chopped noodles, egg, breadcrumbs, chopped fresh parsley, salt, and pepper.",
+      "Mix ingredients thoroughly by hand until well combined.",
+      "Form the mixture into 8-10 small, rustic patties, each about 2 cm thick and 7-8 cm in diameter.",
+      "Heat vegetable oil in a large non-stick pan over medium heat.",
+      "Place patties in the hot oil. Cook for 4-5 minutes per side until golden brown and cooked through. Ensure internal temperature reaches 75°C.",
+      "While patties cook, prepare the dipping sauce. Grate the fresh ginger. Combine soy sauce, rice vinegar, honey, and grated ginger in a small bowl. Stir well.",
+      "Serve patties warm with the dipping sauce on the side."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 543,
+      "cholesterol_mg": 174,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 37.9,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 1576,
+      "total_carbs_g": 43.4,
+      "total_fat_g": 25,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 207,
+      "cholesterol_mg": 66,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 14.5,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 601,
+      "total_carbs_g": 16.5,
+      "total_fat_g": 9.5,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 58,
+      "dietary_fiber": 8,
+      "protein": 76,
+      "saturated_fat": 23,
+      "sodium": 69,
+      "total_carbs": 16,
+      "total_fat": 32
+    },
+    "serving_size_g": 262.25,
+    "total_recipe_weight_g": 1049
+  },
+  {
+    "recipe_name": "Savory Ground Turkey and Egg Noodles",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_ground_turkey_and_egg_noodles_20250810_125320_6efa7c06.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T12:53:20.804457000Z",
+    "selected_ingredients": [
+      "turkey",
+      "noodle"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Savory Ground Turkey and Egg Noodles is presented in a deep, off-white ceramic bowl, typical of home kitchenware. The pale yellow egg noodles are naturally intertwined with the rich, savory ground turkey mixture. The ground turkey appears as small, browned crumbles, mixed with thinly sliced sautéed mushrooms and finely diced onions. The creamy, light brown sauce evenly coats all components. A generous sprinkle of fresh, chopped green parsley adds a vibrant contrast on top. The bowl sits on a well-used wooden dining table. A simple, casually folded white cloth napkin is placed beside it. The lighting is warm and inviting, suggesting a cozy kitchen atmosphere. The background is blurred, showing subtle hints of a lived-in home kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Homestyle American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve hot as a comforting main course.",
+      "Pair with a simple green salad or crusty bread."
+    ],
+    "hero_ingredient": "Ground Turkey",
+    "ingredients": [
+      {
+        "name": "Ground turkey",
+        "quantity": "500g"
+      },
+      {
+        "name": "Egg noodles",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "100g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "15g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "a few sprigs"
+      }
+    ],
+    "instructions": [
+      "Boil a large pot of salted water. Add egg noodles. Cook according to package directions until al dente. Drain well.",
+      "Heat olive oil in a large skillet over medium-high heat. Add ground turkey. Break it apart with a spoon. Cook until browned and cooked through. Drain any excess fat. Remove turkey from skillet and set aside.",
+      "Add diced onion to the same skillet. Sauté for 3-4 minutes until softened. Add minced garlic and sliced mushrooms. Cook for another 5-7 minutes until mushrooms are tender and browned.",
+      "Sprinkle flour over the vegetables. Stir well. Cook for 1 minute.",
+      "Gradually pour in chicken broth, stirring constantly to prevent lumps. Bring to a simmer. Cook for 5 minutes, stirring occasionally, until sauce thickens slightly.",
+      "Reduce heat to low. Stir in sour cream until smooth. Do not boil after adding sour cream.",
+      "Return cooked turkey to the skillet. Stir to combine with the sauce and vegetables. Season with salt and black pepper to taste.",
+      "Add drained egg noodles to the skillet. Toss gently to coat all noodles and turkey with the sauce.",
+      "Serve immediately. Garnish with chopped fresh parsley."
+    ],
+    "notes": [
+      "Adjust consistency of sauce with more broth if a looser consistency is desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 599.47,
+      "cholesterol_mg": 129.75,
+      "dietary_fiber_g": 3.37,
+      "protein_g": 41.37,
+      "saturated_fat_g": 6.67,
+      "sodium_mg": 233.33,
+      "total_carbs_g": 62.47,
+      "total_fat_g": 20.78,
+      "total_sugars_g": 5.13,
+      "trans_fat_g": 0.18
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 133.62,
+      "cholesterol_mg": 28.92,
+      "dietary_fiber_g": 0.75,
+      "protein_g": 9.22,
+      "saturated_fat_g": 1.49,
+      "sodium_mg": 51.9,
+      "total_carbs_g": 13.92,
+      "total_fat_g": 4.63,
+      "total_sugars_g": 1.14,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 43.3,
+      "dietary_fiber": 12,
+      "protein": 82.7,
+      "saturated_fat": 33.4,
+      "sodium": 10.1,
+      "total_carbs": 22.7,
+      "total_fat": 26.6
+    },
+    "serving_size_g": 448.625,
+    "total_recipe_weight_g": 1794.5
+  },
+  {
+    "recipe_name": "Homestyle Turkey Shepherd's Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_turkey_shepherd%27s_pie_20250810_125114_6b70ecb9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-08-10T12:51:14.583370000Z",
+    "selected_ingredients": [
+      "turkey"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Homestyle Turkey Shepherd's Pie sits in a rustic, deep ceramic bowl or individual gratin dish. The mashed potato topping is golden brown with subtle peaks and valleys, showing hints of the creamy texture. Some of the rich, savory ground turkey and diced vegetable filling (bright orange diced carrots, vibrant green peas) peeks through from beneath the potato crust. The dish is placed on a well-worn, light wooden kitchen table. A simple, off-white ceramic plate with a slight imperfection is beneath the bowl. A plain, folded linen napkin in a neutral tone rests casually beside it. The lighting is warm and inviting, typical of a cozy kitchen. The scene is unpretentious, focusing on comforting, hearty food. No decorative garnishes, just the natural appeal of the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "cultural_origin": "American Comfort",
+    "cultural_serving_suggestions": [
+      "Serve hot with a simple side salad.",
+      "Offer crusty bread for dipping into the savory filling."
+    ],
+    "hero_ingredient": "Ground Turkey",
+    "ingredients": [
+      {
+        "name": "Ground turkey",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Potatoes (e.g., Russet or Maris Piper)",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Milk",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley (for garnish, optional)",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Peel and dice potatoes into 2 cm cubes. Place in a large pot. Cover with cold salted water. Bring to a boil. Cook until fork-tender, about 15-20 minutes.",
+      "While potatoes cook, peel and finely dice the onion. Peel and mince garlic cloves. Peel and dice carrots into small, uniform cubes.",
+      "Heat olive oil in a large oven-safe skillet or Dutch oven over medium-high heat. Add ground turkey. Break up with a spoon. Cook until browned, about 5-7 minutes. Drain any excess fat.",
+      "Add diced onion and carrots to the skillet with the turkey. Cook, stirring occasionally, until vegetables soften, about 5-8 minutes. Add minced garlic and dried thyme. Cook for 1 minute until fragrant.",
+      "Stir in tomato paste and Worcestershire sauce. Cook for 2 minutes, stirring constantly. Pour in chicken stock. Bring to a simmer. Reduce heat to low. Simmer for 5-7 minutes until sauce slightly thickens.",
+      "Stir in frozen peas. Remove from heat. Season turkey mixture with salt and pepper to taste.",
+      "Drain cooked potatoes well. Return to the hot pot. Add milk and butter. Mash until smooth and creamy. Season with salt and pepper.",
+      "Pour the turkey and vegetable mixture into a 20 cm x 30 cm baking dish or individual oven-safe ramekins. Spread evenly.",
+      "Spoon the mashed potatoes over the turkey mixture. Spread evenly to cover. Create peaks and swirls with a fork for texture.",
+      "Preheat oven to 190°C (375°F). Bake for 25-30 minutes, or until the potato topping is golden brown and the filling is bubbling. Ensure internal temperature of turkey reaches 75°C (167°F).",
+      "Remove from oven. Let rest for 5 minutes before serving. Garnish with fresh chopped parsley if desired."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.3,
+      "calories": 537,
+      "cholesterol_mg": 117,
+      "dietary_fiber_g": 8.6,
+      "protein_g": 37.4,
+      "saturated_fat_g": 7.1,
+      "sodium_mg": 708,
+      "total_carbs_g": 49.8,
+      "total_fat_g": 21.3,
+      "total_sugars_g": 8.3,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99.3,
+      "cholesterol_mg": 21.7,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 6.9,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 130.7,
+      "total_carbs_g": 9.2,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39,
+      "dietary_fiber": 31,
+      "protein": 75,
+      "saturated_fat": 36,
+      "sodium": 31,
+      "total_carbs": 18,
+      "total_fat": 27
+    },
+    "serving_size_g": 541,
+    "total_recipe_weight_g": 2165
+  }
+]

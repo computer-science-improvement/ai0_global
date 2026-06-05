@@ -1,0 +1,633 @@
+[
+  {
+    "recipe_name": "Korean Braised Beef with Potatoes and Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_korean_braised_beef_with_potatoes_and_brown_rice_20250706_175214_df416719.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:52:15.135281000Z",
+    "selected_ingredients": [
+      "onion",
+      "garlic",
+      "beef",
+      "potato",
+      "brown rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Korean Braised Beef with Potatoes and Brown Rice is presented in a wide, shallow white porcelain bowl. Fluffy brown rice occupies one half of the bowl, neatly mounded. The other half features tender, rich brown beef chunks and golden-brown potato wedges, artfully arranged. The beef, cut into thick, irregular chunks, shows a glistening, tender texture. The potato wedges are soft and yielding, absorbing the deep brown braising liquid. A generous amount of the savory, glossy braising sauce is spooned over the beef and potatoes, creating a harmonious blend of colors and textures. The dish is garnished with vibrant green diagonal slices of fresh green onions and a sprinkle of light brown toasted sesame seeds, adding freshness and a subtle crunch. The background features a simple wooden table surface, a grey cotton napkin folded beside the bowl, and a set of traditional Korean chopsticks and a Korean spoon resting on the table. Natural, even light illuminates the dish, highlighting its rich colors and inviting textures. The overall presentation is clean, professional, and authentic to Korean culinary aesthetics.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with an assortment of traditional banchan (small side dishes) such as kimchi, pickled radish, or seasoned spinach.",
+      "Enjoy with a Korean-style spoon for the braising liquid and rice, and chopsticks for the beef and potatoes.",
+      "Often served as a comforting main course, especially during colder months."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck or short ribs",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Large potato",
+        "quantity": "1 (about 300 g)"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Mirin (rice wine)",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Sugar or honey",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "10 g (optional)"
+      },
+      {
+        "name": "Water or beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 4-5 cm thick chunks. Pat dry.",
+      "Peel potato. Cut into large wedges or 3-4 cm thick pieces.",
+      "Peel and roughly chop onion.",
+      "Peel and mince garlic and ginger.",
+      "Heat vegetable oil in a large pot or Dutch oven over medium-high heat.",
+      "Brown beef chunks on all sides. Remove beef from pot. Set aside.",
+      "Add chopped onion to the pot. Sauté until softened, about 5 minutes.",
+      "Stir in minced garlic and ginger. Cook for 1 minute until fragrant.",
+      "Return beef to the pot.",
+      "In a separate bowl, whisk together soy sauce, mirin, sesame oil, sugar/honey, and gochujang (if using).",
+      "Pour sauce mixture and water/broth over beef. Bring to a simmer.",
+      "Reduce heat to low. Cover and braise for 1.5 hours.",
+      "Add potato wedges to the pot. Continue to braise for another 30-40 minutes, or until beef is very tender and potatoes are cooked through.",
+      "While beef braises, cook brown rice according to package instructions. Typically, combine 250g brown rice with 500ml water in a pot. Bring to a boil, then reduce heat, cover, and simmer for 40-45 minutes until water is absorbed.",
+      "Slice green onions for garnish.",
+      "Taste braising liquid. Adjust seasoning if needed.",
+      "Serve braised beef and potatoes over cooked brown rice. Garnish with sliced green onions and toasted sesame seeds."
+    ],
+    "notes": [
+      "For deeper flavor, you can marinate the beef in the sauce ingredients for at least 1 hour or overnight before browning and braising."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Layering of savory and sweet flavors"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.1,
+      "calories": 952,
+      "cholesterol_mg": 140,
+      "dietary_fiber_g": 5.2,
+      "protein_g": 63.5,
+      "saturated_fat_g": 14.5,
+      "sodium_mg": 457,
+      "total_carbs_g": 74.8,
+      "total_fat_g": 39.8,
+      "total_sugars_g": 12.5,
+      "trans_fat_g": 1.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.7,
+      "calories": 168,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 11.2,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 81,
+      "total_carbs_g": 13.2,
+      "total_fat_g": 7,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 19,
+      "protein": 127,
+      "saturated_fat": 73,
+      "sodium": 20,
+      "total_carbs": 27,
+      "total_fat": 51
+    },
+    "serving_size_g": 566,
+    "total_recipe_weight_g": 2264
+  },
+  {
+    "recipe_name": "Apple Cinnamon Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_apple_cinnamon_crumble_20250706_173934_5fddbd19.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:39:34.434053000Z",
+    "selected_ingredients": [
+      "apple",
+      "cinnamon",
+      "oats",
+      "sugar"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of apple cinnamon crumble served in a small, round white ceramic ramekin. The topping features a rugged, golden-brown crust of toasted oats and butter clumps with visible granules of sugar. Deep amber apple juices bubble slightly around the inner rim of the dish. Inside, thick 2cm apple wedges are softened and coated in a dark cinnamon glaze. The ramekin sits on a weathered dark wood table. A simple stainless steel dessert spoon rests on a folded cream linen napkin next to the dish. Warm, soft kitchen lighting highlights the crunchy texture of the oats and the gentle steam rising from the center.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve with a dollop of thick clotted cream",
+      "Pour warm vanilla custard over the portion",
+      "Accompany with a scoop of vanilla bean ice cream"
+    ],
+    "hero_ingredient": "Apples",
+    "ingredients": [
+      {
+        "name": "Apples (Granny Smith, peeled, cored, 2cm wedges)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "100g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Unsalted butter (cold, cubed)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "10ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Peel, core, and cut apples into 2cm wedges.",
+      "Toss apples with 50g sugar, 2g cinnamon, and lemon juice in a large bowl.",
+      "Transfer the apple mixture into a 20cm baking dish.",
+      "Combine flour, oats, remaining 50g sugar, and 3g cinnamon in a separate bowl.",
+      "Rub cold butter cubes into the flour mixture using fingertips.",
+      "Stop when the mixture forms coarse, pea-sized clumps.",
+      "Spread the oat crumble topping evenly over the apples.",
+      "Bake for 35 to 40 minutes until the topping is golden and crisp.",
+      "Cool for 10 minutes before serving to allow juices to thicken."
+    ],
+    "notes": [
+      "Use tart apples to balance the sweetness of the sugar",
+      "Keep butter very cold to ensure a crumbly rather than greasy texture",
+      "Add a pinch of salt to the crumble topping to enhance the flavor"
+    ],
+    "traditional_techniques": [
+      "rubbing in"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 25,
+      "calories": 588.2,
+      "cholesterol_mg": 53.75,
+      "dietary_fiber_g": 8.68,
+      "protein_g": 6.62,
+      "saturated_fat_g": 13.16,
+      "sodium_mg": 5.75,
+      "total_carbs_g": 89.82,
+      "total_fat_g": 22.49,
+      "total_sugars_g": 46.11,
+      "trans_fat_g": 0.68
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 9.71,
+      "calories": 228.4,
+      "cholesterol_mg": 20.87,
+      "dietary_fiber_g": 3.37,
+      "protein_g": 2.57,
+      "saturated_fat_g": 5.11,
+      "sodium_mg": 2.23,
+      "total_carbs_g": 34.88,
+      "total_fat_g": 8.73,
+      "total_sugars_g": 17.91,
+      "trans_fat_g": 0.26
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.9,
+      "dietary_fiber": 31,
+      "protein": 13.2,
+      "saturated_fat": 65.8,
+      "sodium": 0.3,
+      "total_carbs": 32.7,
+      "total_fat": 28.8
+    },
+    "serving_size_g": 257.5,
+    "total_recipe_weight_g": 1030
+  },
+  {
+    "recipe_name": "Beetroot Risotto with Seared Scallops",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beetroot_risotto_with_seared_scallops_20250706_173526_87a1451f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:35:26.597941000Z",
+    "selected_ingredients": [
+      "beet",
+      "scallop",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of vibrant magenta beetroot risotto is artfully spooned onto a clean, round white porcelain dinner plate, forming a natural, organic mound with moderate negative space. The risotto appears creamy and fluid, not stiff. Four plump, golden-brown seared sea scallops, with pearly white interiors visible, are placed elegantly on top of the risotto. A scattering of bright green chopped fresh flat-leaf parsley provides a vivid color contrast. A fresh lemon wedge rests beside the scallops. The plate is set on a simple, light-colored wooden table surface, capturing the natural light of a modern bistro. A neatly folded white cotton napkin lies beside the plate. The background is softly blurred, hinting at a casual restaurant atmosphere, keeping the focus entirely on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "hero_ingredient": "Sea Scallops",
+    "ingredients": [
+      {
+        "name": "Fresh beetroot",
+        "quantity": "400 g, peeled and quartered"
+      },
+      {
+        "name": "Large sea scallops",
+        "quantity": "16, patted very dry"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.2 litres, warm"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 large, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Grated Parmesan cheese",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60 g, cold, cut into cubes"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, cut into wedges"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Freshly ground black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Roast quartered beetroot for 30-40 minutes until tender. Let cool slightly. Purée roasted beetroot in a food processor until smooth. Set aside.",
+      "Heat 15 ml olive oil in a large, heavy-bottomed pot over medium heat. Add diced shallot. Sauté until softened, about 3 minutes. Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes until rice edges become translucent.",
+      "Pour in white wine. Stir until completely absorbed.",
+      "Stir in the beetroot purée until well combined.",
+      "Add one ladle of warm vegetable broth to the rice. Stir continuously until liquid is absorbed.",
+      "Continue adding broth, one ladle at a time, stirring constantly and waiting for each addition to be absorbed before adding the next. This process takes about 18-20 minutes. The risotto should be creamy and the rice tender but still have a slight bite (al dente).",
+      "Remove risotto from heat. Stir in cold butter cubes and grated Parmesan cheese. Stir vigorously for 1-2 minutes until butter and cheese are fully incorporated and risotto is creamy (mantecaura). Season with salt and pepper to taste. Cover and let rest for 2 minutes.",
+      "While risotto rests, heat remaining 15 ml olive oil in a large non-stick pan over high heat until shimmering. Season scallops generously with salt and pepper.",
+      "Place scallops in the hot pan without overcrowding. Sear for 2-3 minutes per side until a deep golden-brown crust forms and scallops are opaque through the center. Do not overcook.",
+      "Spoon a generous portion of creamy beetroot risotto onto the center of each white porcelain plate. Arrange 4 seared scallops on top of the risotto. Garnish with chopped fresh parsley and a lemon wedge. Serve immediately."
+    ]
+  },
+  {
+    "recipe_name": "Sun-Dried Tomato and Greens Risotto",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sun-dried_tomato_and_greens_risotto_20250706_171810_908f4c90.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:18:11.342442000Z",
+    "selected_ingredients": [
+      "broccoli rabe",
+      "sun dried tomato",
+      "spinach",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "vegetarian",
+    "visual_description": "The creamy, golden risotto is served in a rustic, wide ceramic bowl, showing its fluid, unctuous consistency. Flecks of vibrant green from the tender, chopped broccoli rabe are interspersed with the deep, reddish-orange hues of thinly sliced sun-dried tomatoes and wilted spinach. A generous mound of freshly grated Parmesan cheese melts gently into the warm grains, creating delicate white streaks. A small swirl of bright green extra virgin olive oil glistens on top. The dish is placed on a well-worn wooden kitchen table, alongside a simple fork and spoon. A casually folded linen napkin and a small, plain water glass complete the homely, inviting scene under warm, ambient kitchen lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve immediately in wide, shallow bowls.",
+      "Offer extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Arborio Rice",
+    "ingredients": [
+      {
+        "name": "Arborio rice",
+        "quantity": "320 g"
+      },
+      {
+        "name": "Broccoli rabe",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Sun-dried tomatoes (oil-packed)",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1.2 L"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2, minced"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "100 g, freshly grated"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable broth in a saucepan. Keep it simmering on low heat.",
+      "Trim and chop broccoli rabe into 2 cm pieces. Blanch in boiling water for 2 minutes. Drain and set aside.",
+      "Drain sun-dried tomatoes and thinly slice.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium heat.",
+      "Add finely diced onion. Cook until translucent, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add Arborio rice to the pot. Stir constantly for 2 minutes until grains are slightly translucent at the edges.",
+      "If using, add white wine. Stir until completely absorbed.",
+      "Begin adding hot broth, one ladleful (about 125 ml) at a time. Stir continuously. Allow each ladleful to be almost fully absorbed before adding the next.",
+      "After about 10 minutes of adding broth, stir in the blanched broccoli rabe and sliced sun-dried tomatoes.",
+      "Continue adding broth and stirring. After approximately 18-20 minutes, when the rice is al dente (tender with a slight bite), stir in the fresh spinach. Cook until spinach wilts.",
+      "Remove from heat. Stir in 80 g of grated Parmesan cheese. Season with salt and black pepper to taste. The risotto should be creamy and fluid (all'onda).",
+      "Let risotto rest for 1 minute before serving."
+    ],
+    "notes": [
+      "Stir risotto continuously for creamy texture.",
+      "Add broth gradually, allowing each addition to absorb."
+    ],
+    "traditional_techniques": [
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 568.1,
+      "cholesterol_mg": 22,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 20.3,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 1007,
+      "total_carbs_g": 78.3,
+      "total_fat_g": 18.2,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 120.7,
+      "cholesterol_mg": 5,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 4.3,
+      "saturated_fat_g": 1.3,
+      "sodium_mg": 214,
+      "total_carbs_g": 16.6,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 7.3,
+      "dietary_fiber": 20.9,
+      "protein": 40.6,
+      "saturated_fat": 30.6,
+      "sodium": 43.8,
+      "total_carbs": 28.5,
+      "total_fat": 23.3
+    },
+    "serving_size_g": 471,
+    "total_recipe_weight_g": 1883
+  },
+  {
+    "recipe_name": "Rustic Venison and Plum Stew",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_venison_and_plum_stew_20250706_171701_b55f89a4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T17:17:01.501894000Z",
+    "selected_ingredients": [
+      "venison",
+      "plum",
+      "potato",
+      "onion",
+      "kale"
+    ],
+    "complexity": "standard",
+    "special_requests": "Stew",
+    "visual_description": "A hearty individual portion of rustic venison and plum stew is presented in a wide, shallow white porcelain bowl, set on a simple light wooden table. Large, tender, irregular chunks of braised venison are nestled amongst rustic, 3 cm diced potato cubes, coarsely diced onions, and vibrant roughly chopped kale. Halved deep purple plums add a pop of color and subtle sweetness. The stew features a rich, glossy, deep reddish-brown sauce, thick enough to coat all ingredients. A single sprig of fresh thyme garnishes the top, adding a touch of green. The overall composition is professional yet approachable, with moderate negative space. A neatly folded cotton napkin rests beside the bowl. Natural, even lighting illuminates the dish, highlighting its textures and inviting warmth against a subtly blurred modern bistro background.",
+    "number_of_servings": 104,
+    "cuisine_type": "Rustic European",
+    "hero_ingredient": "Venison",
+    "ingredients": [
+      {
+        "name": "Venison shoulder, trimmed and cut into 5 cm chunks",
+        "quantity": "25 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 L"
+      },
+      {
+        "name": "Large yellow onions, coarsely diced",
+        "quantity": "5 kg"
+      },
+      {
+        "name": "Carrots, peeled and 3 cm diced",
+        "quantity": "3 kg"
+      },
+      {
+        "name": "Celery stalks, 3 cm diced",
+        "quantity": "2 kg"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "0.5 kg"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "0.5 kg"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "5 L"
+      },
+      {
+        "name": "Beef or venison broth",
+        "quantity": "20 L"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "30 leaves"
+      },
+      {
+        "name": "Large plums, halved and pitted",
+        "quantity": "5 kg"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold), peeled and 3 cm diced",
+        "quantity": "15 kg"
+      },
+      {
+        "name": "Kale, tough stems removed, roughly chopped",
+        "quantity": "5 kg"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat large stockpots over high heat. Add olive oil.",
+      "Working in batches, sear venison chunks until deeply browned on all sides. Remove venison from pots. Set aside.",
+      "Reduce heat to medium. Add onions, carrots, and celery to pots. Cook until softened, about 10-12 minutes.",
+      "Add minced garlic. Cook for 2 minutes until fragrant.",
+      "Sprinkle flour over vegetables. Cook, stirring constantly, for 3 minutes to create a roux.",
+      "Gradually pour in red wine, scraping up any browned bits from the bottom of the pots. Bring to a simmer.",
+      "Stir in beef broth and tomato paste. Return seared venison to the pots. Add thyme sprigs and bay leaves.",
+      "Bring stew to a boil, then reduce heat to low. Cover and simmer for 2-3 hours, or until venison is very tender.",
+      "Add diced potatoes and halved plums to the pots. Continue to simmer, uncovered, for 20-30 minutes, or until potatoes are tender.",
+      "Stir in chopped kale. Cook for 5-7 minutes, until kale is wilted and tender-crisp.",
+      "Remove bay leaves and thyme sprigs. Season stew generously with salt and black pepper to taste.",
+      "Serve hot."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 607,
+      "cholesterol_mg": 156.25,
+      "dietary_fiber_g": 8.29,
+      "protein_g": 62.74,
+      "saturated_fat_g": 4.07,
+      "sodium_mg": 756.67,
+      "total_carbs_g": 51.13,
+      "total_fat_g": 16.38,
+      "total_sugars_g": 11.55,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 75,
+      "cholesterol_mg": 19.32,
+      "dietary_fiber_g": 1.02,
+      "protein_g": 7.76,
+      "saturated_fat_g": 0.5,
+      "sodium_mg": 93.55,
+      "total_carbs_g": 6.32,
+      "total_fat_g": 2.02,
+      "total_sugars_g": 1.43,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 52.1,
+      "dietary_fiber": 29.6,
+      "protein": 125.5,
+      "saturated_fat": 20.4,
+      "sodium": 32.9,
+      "total_carbs": 18.6,
+      "total_fat": 21
+    },
+    "serving_size_g": 808.85,
+    "total_recipe_weight_g": 84120
+  }
+]

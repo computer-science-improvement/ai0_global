@@ -14,6 +14,8 @@ const RAW = {
   visual_description: 'Golden-brown.',
   ingredients: [{ name: 'Potato', quantity: '1 kg' }, { name: 'Butter', quantity: '150 g' }],
   instructions: ['Melt butter.', 'Slice potato.'],
+  serving_size_g: 258,
+  nutrition_per_serving: { calories: 84.55, protein_g: 4.43, total_fat_g: 0.35, total_carbs_g: 15.93 },
 };
 
 test('slugify lowercases, strips punctuation, dashes spaces', () => {
@@ -39,7 +41,20 @@ test('mapRecipe maps all fields onto the normalized shape', () => {
   assert.equal(r.category, 'French');
   assert.deepEqual(r.tags, ['main', 'savory', 'french', 'potato']);
   assert.equal(r.post_text, null);
+  // Per-serving macros re-mapped from raw (no AI).
+  assert.equal(r.kcal, 84.55);
+  assert.equal(r.protein_g, 4.43);
+  assert.equal(r.fat_g, 0.35);
+  assert.equal(r.carbs_g, 15.93);
+  assert.equal(r.serving_size_g, 258);
   assert.deepEqual(r.raw, RAW); // full source object preserved losslessly
+});
+
+test('mapRecipe: missing nutrition → null macros', () => {
+  const r = mapRecipe({ recipe_name: 'No Nutrition', image_url: 'x', ingredients: [], instructions: [] });
+  assert.equal(r.kcal, null);
+  assert.equal(r.protein_g, null);
+  assert.equal(r.serving_size_g, null);
 });
 
 test('normalizeAll drops malformed entries and exact dupes, uniquifies slug collisions', () => {

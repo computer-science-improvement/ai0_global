@@ -1,0 +1,698 @@
+[
+  {
+    "recipe_name": "Gourmet Beef Burger with Cranberry Compote and Parmesan Crisps",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_gourmet_beef_burger_with_cranberry_compote_and_parmesan_crisps_20250624_141058_ee1e46ef.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:10:58.805810000Z",
+    "selected_ingredients": [
+      "beef",
+      "bread",
+      "parmesan cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "Burger with cranberry sauce",
+    "visual_description": "A gourmet beef burger stands proudly on a clean white porcelain dinner plate, centered with ample negative space. The thick, char-grilled beef patty, cooked to a juicy medium, is topped with a generous spoon of vibrant, glistening cranberry compote. Beneath, a crisp green butter lettuce leaf provides a fresh base. Thin, translucent slices of red onion and a bright red tomato slice add color and texture. A golden, irregularly shaped parmesan crisp perches delicately on the compote. The burger is encased in a perfectly toasted, glossy brioche bun. Beside the burger, a small mound of golden, crispy thick-cut potato wedges is neatly arranged. The setting features a simple light wooden table surface, a folded white cotton napkin, and standard silver flatware. Natural, even lighting highlights the burger's textures and rich colors, creating an inviting, casual dining presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crispy potato wedges or french fries.",
+      "Offer dill pickle spears on the side."
+    ],
+    "hero_ingredient": "Beef Patty",
+    "ingredients": [
+      {
+        "name": "Ground Beef (80/20 chuck)",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Brioche Burger Buns",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Parmesan Cheese, grated",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh or Frozen Cranberries",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Butter Lettuce Leaves",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Tomato, sliced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red Onion, thinly sliced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Mayonnaise (optional)",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Garlic Powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Onion Powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Olive Oil or Cooking Spray",
+        "quantity": "as needed"
+      }
+    ],
+    "instructions": [
+      "Prepare Cranberry Compote: Combine cranberries, sugar, and water in a small saucepan. Bring to a simmer over medium heat. Cook for 10-15 minutes, stirring occasionally, until cranberries burst and sauce thickens. Remove from heat. Cool completely.",
+      "Form Beef Patties: Gently mix ground beef with salt, black pepper, garlic powder, and onion powder. Do not overmix. Divide mixture into 4 equal portions. Form each portion into a patty, slightly wider than the burger buns. Press a shallow thumbprint into the center of each patty to prevent bulging during cooking.",
+      "Make Parmesan Crisps: Preheat oven to 180°C. Line a baking sheet with parchment paper. Spoon grated parmesan into 4 small, separate mounds on the parchment. Bake for 5-7 minutes, or until golden brown and crisp. Carefully remove and let cool on the baking sheet; they will crisp up as they cool.",
+      "Cook Patties: Heat a large skillet or grill pan over medium-high heat. Add a little olive oil or cooking spray. Place patties in the hot pan. Cook for 4-5 minutes per side for medium-rare, or adjust to desired doneness. Rest cooked patties on a wire rack for 5 minutes.",
+      "Toast Buns: While patties rest, lightly butter the cut sides of the brioche buns. Place buns cut-side down on the same skillet or grill pan. Toast for 1-2 minutes until golden brown.",
+      "Assemble Burgers: Spread mayonnaise (if using) on the bottom half of each toasted bun. Place a butter lettuce leaf on top. Add a cooked beef patty. Spoon a generous amount of cooled cranberry compote over the patty. Layer with a slice of tomato and a few thin red onion rings. Top with a parmesan crisp. Place the top bun half over the assembled burger."
+    ],
+    "notes": [
+      "Do not overmix the ground beef when forming patties; this keeps them tender and juicy.",
+      "Adjust cooking time for the beef patties based on your preferred doneness.",
+      "The cranberry compote can be made a day in advance and stored in the refrigerator."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 19,
+      "calories": 965,
+      "cholesterol_mg": 193,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 44.1,
+      "saturated_fat_g": 21.8,
+      "sodium_mg": 977,
+      "total_carbs_g": 63.7,
+      "total_fat_g": 59.8,
+      "total_sugars_g": 25.6,
+      "trans_fat_g": 1.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4.9,
+      "calories": 247,
+      "cholesterol_mg": 49,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 11.3,
+      "saturated_fat_g": 5.6,
+      "sodium_mg": 250,
+      "total_carbs_g": 16.3,
+      "total_fat_g": 15.3,
+      "total_sugars_g": 6.6,
+      "trans_fat_g": 0.4
+    },
+    "daily_value_percentages": {
+      "cholesterol": 64,
+      "dietary_fiber": 17,
+      "protein": 88,
+      "saturated_fat": 109,
+      "sodium": 42,
+      "total_carbs": 23,
+      "total_fat": 77
+    },
+    "serving_size_g": 390,
+    "total_recipe_weight_g": 1560
+  },
+  {
+    "recipe_name": "Potato, Egg, and Sausage Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_potato%2C_egg%2C_and_sausage_salad_20250624_141051_99740387.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:10:52.852202000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "potato",
+      "sausage",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous individual portion of a hearty potato salad is presented on an everyday off-white ceramic plate with natural imperfections. Diced potatoes, coarsely chopped hard-boiled eggs, and pan-fried sausage pieces are mixed with halved cherry tomatoes and finely diced red onion. The salad is tossed in a simple golden vinaigrette, lightly coating all ingredients. Shredded cheddar cheese is visible throughout. The components are naturally intertwined, showcasing the creamy yellow of eggs, the varying browns of sausage, the vibrant reds of tomatoes and onion, and the pale yellow of potatoes. A sprinkle of bright green chopped parsley adds a fresh contrast. The plate rests on a well-worn wooden kitchen table, next to a casually folded checkered cloth napkin. Warm, soft light illuminates the dish, suggesting a cozy family meal. The overall presentation is homely and unpretentious, reflecting comfort food at a family kitchen table.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Waxy potatoes",
+        "quantity": "750 g"
+      },
+      {
+        "name": "Pork sausage",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "4"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Cheddar cheese, shredded",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Apple cider vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Boil eggs: Place eggs in a saucepan. Cover with cold water. Bring to a rolling boil. Reduce heat to low. Cook for 9 minutes. Drain and cool under cold water. Peel and coarsely chop eggs.",
+      "Cook potatoes: Wash potatoes. Cut into 2 cm cubes. Place in a large pot. Cover with cold salted water. Bring to a boil. Cook until tender, about 10-15 minutes. Drain well. Let cool slightly.",
+      "Cook sausage: Slice sausage into 1 cm thick rounds. Heat a frying pan over medium heat. Add sausage rounds. Cook until browned and cooked through, about 5-7 minutes. Drain on paper towels. Cut larger rounds into halves or quarters.",
+      "Prepare vegetables: Halve cherry tomatoes. Finely dice the red onion.",
+      "Make dressing: In a small bowl, whisk together olive oil, apple cider vinegar, Dijon mustard, salt, and pepper until emulsified.",
+      "Assemble salad: In a large bowl, combine the slightly cooled potato cubes, chopped eggs, cooked sausage pieces, halved cherry tomatoes, and diced red onion.",
+      "Dress salad: Pour the vinaigrette over the salad ingredients. Toss gently to coat all components.",
+      "Add cheese and parsley: Fold in the shredded cheddar cheese and most of the chopped fresh parsley. Reserve some parsley for garnish.",
+      "Serve: Transfer the salad to a serving bowl or individual plates. Garnish with remaining fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 641,
+      "cholesterol_mg": 253,
+      "dietary_fiber_g": 5.7,
+      "protein_g": 25.3,
+      "saturated_fat_g": 13.9,
+      "sodium_mg": 615,
+      "total_carbs_g": 40.3,
+      "total_fat_g": 42.7,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 149,
+      "cholesterol_mg": 58.6,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 5.9,
+      "saturated_fat_g": 3.2,
+      "sodium_mg": 142.7,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 84.3,
+      "dietary_fiber": 20.4,
+      "protein": 50.6,
+      "saturated_fat": 69.5,
+      "sodium": 26.8,
+      "total_carbs": 14.6,
+      "total_fat": 54.8
+    },
+    "serving_size_g": 431.25,
+    "total_recipe_weight_g": 1725
+  },
+  {
+    "recipe_name": "Korean Gochujang Chicken Pasta",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_korean_gochujang_chicken_pasta_20250624_141039_6adf3487.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:10:39.617330000Z",
+    "selected_ingredients": [
+      "pasta",
+      "tomato",
+      "cucumber",
+      "hot sauce",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish is presented on a clean white porcelain dinner plate, showcasing a single individual portion. Rigatoni pasta, coated in a vibrant red-orange gochujang sauce, forms the base. Generous, irregular chunks of seared, golden-brown chicken thigh are nestled throughout the pasta. Bright red halved cherry tomatoes and crisp green cucumber batons are scattered across the dish, providing fresh color and textural contrast. The arrangement is organic and balanced, allowing for moderate negative space. The dish is garnished with thinly sliced green onions and a sprinkle of toasted sesame seeds. The setting features a simple wooden table surface. A set of clean stainless steel chopsticks rests beside the plate, alongside a small, simple white rice bowl and a folded cotton napkin. Lighting is natural and even, creating a restaurant-style background with a casual atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with small side dishes (banchan) like kimchi or pickled radish for a traditional Korean dining experience.",
+      "Offer extra gochujang on the side for those who prefer more heat."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Rigatoni or Penne pasta",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200 g"
+      },
+      {
+        "name": "English cucumber",
+        "quantity": "1"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Honey or sugar",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4 cm chunks. Season with salt and pepper. Set aside.",
+      "Mince garlic and grate ginger. Thinly slice onion.",
+      "In a small bowl, whisk together gochujang, soy sauce, sesame oil, rice vinegar, and honey. Set aside.",
+      "Bring a large pot of salted water to a boil. Cook pasta according to package directions until al dente. Drain, reserving 125 ml pasta water.",
+      "While pasta cooks, heat 1 tbsp vegetable oil in a large skillet over medium-high heat.",
+      "Add chicken chunks to the skillet. Sear chicken for 4-5 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken from skillet. Set aside.",
+      "Add remaining 1 tbsp vegetable oil to the same skillet. Add sliced onion. Cook 3-4 minutes until softened.",
+      "Add minced garlic and grated ginger to the skillet. Cook 1 minute until fragrant.",
+      "Pour the gochujang sauce into the skillet. Bring to a simmer. Cook 1 minute.",
+      "Add cooked pasta to the skillet with the sauce. Toss to coat. Add reserved pasta water as needed to create a glossy sauce.",
+      "Return seared chicken to the skillet. Toss gently to combine.",
+      "Halve cherry tomatoes. Cut cucumber into 5 cm batons.",
+      "Serve pasta and chicken immediately. Garnish with halved cherry tomatoes, cucumber batons, thinly sliced green onions, and toasted sesame seeds."
+    ],
+    "traditional_techniques": [
+      "Marinating protein for flavor infusion",
+      "Stir-frying aromatics for sauce base"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4,
+      "calories": 609,
+      "cholesterol_mg": 123,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 36,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 1084,
+      "total_carbs_g": 74,
+      "total_fat_g": 19.6,
+      "total_sugars_g": 9.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1,
+      "calories": 151,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 8.9,
+      "saturated_fat_g": 0.8,
+      "sodium_mg": 269,
+      "total_carbs_g": 18.4,
+      "total_fat_g": 4.9,
+      "total_sugars_g": 2.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 41,
+      "dietary_fiber": 21,
+      "protein": 72,
+      "saturated_fat": 16,
+      "sodium": 47,
+      "total_carbs": 27,
+      "total_fat": 25
+    },
+    "serving_size_g": 403.25,
+    "total_recipe_weight_g": 1613
+  },
+  {
+    "recipe_name": "Cheesy Chicken and Potato Gratin",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_chicken_and_potato_gratin_20250624_141009_db554934.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:10:09.438035000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "onion",
+      "tomato",
+      "beef stock"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A rustic yet refined single portion of Cheesy Chicken and Potato Gratin is presented on a clean, round white porcelain plate, showcasing a generous rectangular slice from the baked dish. The top layer of thinly sliced potatoes exhibits a beautiful golden-brown crust, lightly crisped from baking, with melted, bubbly Gruyere cheese forming a rich, savory blanket. Beneath the potato and cheese, succulent, tender chunks of seared chicken are nestled in a rich, reddish-brown tomato and beef stock sauce, visible where the gratin slice is cut. A few vibrant green flecks of fresh chopped parsley are scattered across the top for a touch of freshness. The plate is positioned on a simple, light-colored wooden table surface, accompanied by a folded white cotton napkin and standard silver flatware. Natural, even lighting highlights the textures and warm colors of the dish, creating an inviting and wholesome appearance in a modern bistro setting. The background is subtly blurred, maintaining focus on the food while suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "cultural_origin": "European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600g"
+      },
+      {
+        "name": "Potatoes (Russet or Yukon Gold)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Gruyere cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Yellow onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g can"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 tablespoon, chopped"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F). Lightly grease a 25x35 cm baking dish.",
+      "Heat olive oil in a large oven-safe pan or Dutch oven over medium-high heat. Sear chicken chunks until golden brown on all sides. Remove chicken from pan. Set aside.",
+      "Add butter to the same pan. Reduce heat to medium. Add diced onions. Cook until softened and translucent, about 8-10 minutes.",
+      "Add minced garlic and chopped thyme. Cook for 1 minute until fragrant.",
+      "Stir in flour. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in beef stock and diced tomatoes. Bring to a simmer. Cook, stirring, until sauce slightly thickens, about 5 minutes.",
+      "Return seared chicken to the sauce. Stir to coat. Season with salt and pepper.",
+      "While sauce simmers, par-cook potatoes. Place sliced potatoes in a large pot. Cover with cold water and milk. Add a pinch of salt. Bring to a boil, then reduce heat and simmer for 5-7 minutes, until potatoes are tender-crisp but still hold their shape. Drain well.",
+      "Pour the chicken and sauce mixture into the prepared baking dish. Spread evenly.",
+      "Arrange the par-cooked potato slices over the chicken mixture, overlapping slightly.",
+      "Sprinkle grated Gruyere cheese evenly over the potatoes.",
+      "Bake for 30-35 minutes, or until potatoes are tender and the cheese is golden brown and bubbly.",
+      "Let rest for 5 minutes before serving. Garnish with fresh parsley."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 777,
+      "cholesterol_mg": 213,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 48.8,
+      "saturated_fat_g": 17.1,
+      "sodium_mg": 1081,
+      "total_carbs_g": 52,
+      "total_fat_g": 41.6,
+      "total_sugars_g": 9,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107,
+      "cholesterol_mg": 29,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 6.7,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 148,
+      "total_carbs_g": 7.1,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 71,
+      "dietary_fiber": 25,
+      "protein": 98,
+      "saturated_fat": 86,
+      "sodium": 47,
+      "total_carbs": 19,
+      "total_fat": 53
+    },
+    "serving_size_g": 728.25,
+    "total_recipe_weight_g": 2913
+  },
+  {
+    "recipe_name": "Pollo alla Cacciatora",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_alla_cacciatora_20250624_140956_a3764309.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T14:09:57.168753000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Pollo alla Cacciatora is presented on a wide, matte white porcelain plate. Two whole, bone-in chicken thighs are stacked slightly in the center, featuring deeply browned, caramelized skin. A thick, rustic sauce covers the base of the plate, filled with visible small cubes of orange carrots, green celery, and translucent onions. Whole, dark purple kalamata olives are nestled within the vibrant red tomato sauce. A light dusting of bright green chopped parsley and a single fresh rosemary sprig garnish the top. Two thick batons of grilled sourdough bread lean against the side of the chicken. The lighting is natural and soft, emphasizing the glossy texture of the braised sauce and the crispness of the chicken skin.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with toasted sourdough bread to soak up the sauce",
+      "Accompany with a glass of medium-bodied Italian red wine",
+      "Place on a bed of soft, buttery polenta"
+    ],
+    "hero_ingredient": "Chicken thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "8 pieces"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Carrots, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Celery stalks, small dice",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Dry red wine (Chianti)",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "2 sprigs"
+      },
+      {
+        "name": "Fresh sage leaves",
+        "quantity": "4"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley, chopped",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide braising pan over medium-high heat.",
+      "Place chicken skin-side down in the pan.",
+      "Sear for 6 minutes until the skin is deep golden and crisp.",
+      "Flip chicken and cook for 2 minutes.",
+      "Remove chicken from pan and set aside.",
+      "Add onion, carrot, and celery to the remaining fat.",
+      "Sauté vegetables for 8 minutes until softened.",
+      "Stir in garlic, rosemary, and sage. Cook for 1 minute.",
+      "Pour in red wine. Scrape the bottom of the pan to deglaze.",
+      "Simmer wine for 3 minutes until reduced by half.",
+      "Add crushed tomatoes and stir to combine.",
+      "Place chicken thighs back into the sauce.",
+      "Cover and simmer on low heat for 25 minutes.",
+      "Check internal temperature of chicken reaches 75°C.",
+      "Stir in olives and simmer uncovered for 5 minutes.",
+      "Remove rosemary sprigs before serving.",
+      "Garnish with chopped parsley."
+    ],
+    "notes": [
+      "Always use a meat thermometer to ensure chicken reaches the safe internal temperature of 75°C",
+      "Browning the skin thoroughly at the start is essential for the final texture",
+      "The sauce should be thick and chunky, not watery"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 669,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 41.5,
+      "saturated_fat_g": 8.6,
+      "sodium_mg": 1604,
+      "total_carbs_g": 17.4,
+      "total_fat_g": 45.8,
+      "total_sugars_g": 7.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 48,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 11.1,
+      "saturated_fat_g": 2.3,
+      "sodium_mg": 428,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 12.2,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 15,
+      "protein": 83,
+      "saturated_fat": 43,
+      "sodium": 70,
+      "total_carbs": 6,
+      "total_fat": 59
+    },
+    "serving_size_g": 375,
+    "total_recipe_weight_g": 1500
+  }
+]

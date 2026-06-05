@@ -1,0 +1,753 @@
+[
+  {
+    "recipe_name": "Braised Beef Short Ribs with Garlic Mashed Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_with_garlic_mashed_potatoes_20250630_001226_cfb55027.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T00:12:26.780112000Z",
+    "selected_ingredients": [
+      "beef",
+      "potato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of braised beef short ribs and garlic mashed potatoes. Two succulent, dark brown beef short rib chunks are centrally placed on a round white porcelain plate. The meat is fork-tender, showing moist, shredded edges. Beside the ribs, a neat scoop of creamy, pale yellow garlic mashed potatoes sits. A rich, glossy red wine reduction sauce is generously spooned over the short ribs, pooling slightly around the base. A small sprig of fresh chives garnishes the potatoes, adding a touch of vibrant green. The plate sits on a simple, dark wooden table, accompanied by a folded grey cotton napkin and classic silver cutlery. Natural, even overhead lighting highlights the textures and deep colors of the dish, creating an inviting, refined presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern American",
+    "cultural_origin": "American",
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Bone-in beef short ribs",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1, diced"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2, diced"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6, minced"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh chives",
+        "quantity": "For garnish, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Pat short ribs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven over medium-high heat. Sear short ribs on all sides until deep golden brown. Remove ribs from pot. Set aside.",
+      "Add diced onion, carrots, and celery to the pot. Sauté for 8-10 minutes until softened.",
+      "Stir in minced garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Deglaze the pot, scraping up any browned bits from the bottom. Simmer for 3 minutes until slightly reduced.",
+      "Add beef broth, thyme sprigs, and rosemary sprigs. Bring liquid to a simmer.",
+      "Return seared short ribs to the pot. Ensure ribs are mostly submerged in liquid. Cover the Dutch oven.",
+      "Transfer to preheated oven. Braise for 3 to 3.5 hours, or until beef is fork-tender and nearly falling off the bone.",
+      "While ribs braise, prepare mashed potatoes. Peel and cube Yukon Gold potatoes.",
+      "Place cubed potatoes in a large pot. Cover with cold salted water. Bring to a boil. Cook for 15-20 minutes until very tender. Drain well.",
+      "Return drained potatoes to the hot pot. Add butter, heavy cream, and a pinch of salt and pepper. Mash until smooth and creamy.",
+      "Once ribs are done, carefully remove them from the pot. Set aside. Discard herb sprigs.",
+      "Strain the braising liquid through a fine-mesh sieve into a saucepan. Discard solids.",
+      "Skim any excess fat from the strained liquid. Bring to a simmer over medium-high heat. Reduce the sauce for 10-15 minutes until it thickens slightly and becomes glossy.",
+      "Taste and adjust seasoning for both sauce and mashed potatoes.",
+      "Serve one or two short rib chunks per plate with a generous scoop of garlic mashed potatoes. Spoon the rich reduction sauce over the short ribs. Garnish with fresh chopped chives."
+    ],
+    "notes": [
+      "Braising time may vary depending on the thickness and cut of the short ribs. Ensure the meat is truly fall-off-the-bone tender for best results."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1441.73,
+      "cholesterol_mg": 373.15,
+      "dietary_fiber_g": 7.71,
+      "protein_g": 63.49,
+      "saturated_fat_g": 47.98,
+      "sodium_mg": 428.94,
+      "total_carbs_g": 57.26,
+      "total_fat_g": 104.91,
+      "total_sugars_g": 7.81,
+      "trans_fat_g": 3.13
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 151.76,
+      "cholesterol_mg": 39.28,
+      "dietary_fiber_g": 0.81,
+      "protein_g": 6.68,
+      "saturated_fat_g": 5.05,
+      "sodium_mg": 45.15,
+      "total_carbs_g": 6.03,
+      "total_fat_g": 11.04,
+      "total_sugars_g": 0.82,
+      "trans_fat_g": 0.33
+    },
+    "daily_value_percentages": {
+      "cholesterol": 124.4,
+      "dietary_fiber": 27.5,
+      "protein": 127,
+      "saturated_fat": 239.9,
+      "sodium": 18.6,
+      "total_carbs": 20.8,
+      "total_fat": 134.5
+    },
+    "serving_size_g": 950,
+    "total_recipe_weight_g": 3800
+  },
+  {
+    "recipe_name": "Japanese Soufflé Cheesecake with Roasted Apple Compote and Dark Chocolate Drizzle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_japanese_souffl%C3%A9_cheesecake_with_roasted_apple_compote_and_dark_chocolate_drizzle_20250630_000149_f79b2a56.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T00:01:50.287433000Z",
+    "selected_ingredients": [
+      {
+        "name": "apple"
+      },
+      {
+        "name": "egg white"
+      },
+      {
+        "name": "dark chocolate"
+      },
+      {
+        "name": "vanilla"
+      }
+    ],
+    "complexity": "standard",
+    "special_requests": "Japanese",
+    "visual_description": "A single, generous slice of Japanese Soufflé Cheesecake is elegantly presented on a clean white porcelain dessert plate. The cheesecake slice is tall, with a light, airy, cloud-like interior and a delicate, uniform golden-brown crust on top. Beside the cheesecake, a small, artful mound of roasted apple compote showcases soft, slightly caramelized apple chunks in warm, inviting tones. A fine, delicate drizzle of glossy dark chocolate ganache cascades gracefully over one side of the cheesecake and extends onto the plate, creating subtle, elegant lines. A light, almost imperceptible dusting of powdered sugar rests on the cheesecake's surface. The plate sits on a simple, light-toned wooden table. A folded, plain cotton napkin and a small, unglazed ceramic tea cup are placed subtly beside the plate, hinting at a quiet, refined Japanese dining experience. Natural, even lighting illuminates the dish, emphasizing its soft textures and balanced colors. The entire plate is visible, with moderate negative space, creating a professional yet approachable composition.",
+    "number_of_servings": 4,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve chilled.",
+      "Accompanied by a cup of freshly brewed green tea."
+    ],
+    "hero_ingredient": "Soufflé Cheesecake",
+    "ingredients": [
+      {
+        "name": "Cream cheese, softened",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "4"
+      },
+      {
+        "name": "Egg whites",
+        "quantity": "4"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Cake flour, sifted",
+        "quantity": "40 g"
+      },
+      {
+        "name": "Cornstarch, sifted",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Medium apples (e.g., Fuji or Honeycrisp), peeled, cored, diced",
+        "quantity": "2"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Granulated sugar (for compote)",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Dark chocolate (70% cacao), chopped",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Powdered sugar, for dusting",
+        "quantity": "As needed"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C. Line a 20 cm round springform pan with parchment paper.",
+      "For apple compote: Combine diced apples, 20g sugar, lemon juice, and a splash of water in a small saucepan. Cook over medium heat until apples soften, about 10 minutes. Mash lightly. Set aside.",
+      "For cheesecake batter: In a heatproof bowl set over a saucepan of simmering water, combine cream cheese, butter, and milk. Stir until smooth and melted. Remove from heat.",
+      "Whisk egg yolks into the cream cheese mixture until well combined. Stir in vanilla extract.",
+      "Sift cake flour and cornstarch directly into the cream cheese mixture. Whisk until no lumps remain. Set aside.",
+      "In a separate clean bowl, beat egg whites with an electric mixer until foamy. Gradually add 80g granulated sugar, beating until soft peaks form. Do not overbeat.",
+      "Gently fold one-third of the egg white mixture into the cream cheese batter to lighten it. Then fold in the remaining egg whites in two additions until just combined. Do not deflate the mixture.",
+      "Pour batter into the prepared springform pan. Tap pan gently to release air bubbles.",
+      "Place springform pan in a larger roasting pan. Pour hot water into the roasting pan to create a water bath, reaching halfway up the side of the springform pan.",
+      "Bake for 60-70 minutes, or until the top is golden brown and the center is set but still slightly wobbly. Cook to internal temperature of 75°C.",
+      "Turn off oven. Leave cheesecake in oven with door ajar for 30 minutes to cool gradually. This prevents cracking.",
+      "Remove cheesecake from oven and water bath. Cool completely on a wire rack. Chill in refrigerator for at least 4 hours, preferably overnight.",
+      "For chocolate drizzle: Heat heavy cream in a small saucepan until simmering. Pour hot cream over chopped dark chocolate in a bowl. Let sit for 1 minute, then whisk until smooth. Let cool slightly to thicken.",
+      "To serve: Slice chilled cheesecake. Plate with a spoonful of roasted apple compote. Drizzle with chocolate sauce. Dust lightly with powdered sugar."
+    ],
+    "notes": [
+      "Ensure egg whites are whipped to soft peaks, not stiff, for the characteristic soufflé texture.",
+      "Cooling the cheesecake gradually in the oven prevents it from cracking.",
+      "For best results, chill the cheesecake overnight."
+    ],
+    "traditional_techniques": [
+      "Water bath baking (for delicate texture)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 30.63,
+      "calories": 707.28,
+      "cholesterol_mg": 289.28,
+      "dietary_fiber_g": 3.39,
+      "protein_g": 13.57,
+      "saturated_fat_g": 26.66,
+      "sodium_mg": 283.44,
+      "total_carbs_g": 63.16,
+      "total_fat_g": 46.04,
+      "total_sugars_g": 45.95,
+      "trans_fat_g": 0.42
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 9.82,
+      "calories": 226.87,
+      "cholesterol_mg": 92.79,
+      "dietary_fiber_g": 1.09,
+      "protein_g": 4.35,
+      "saturated_fat_g": 8.55,
+      "sodium_mg": 90.92,
+      "total_carbs_g": 20.26,
+      "total_fat_g": 14.77,
+      "total_sugars_g": 14.74,
+      "trans_fat_g": 0.13
+    },
+    "daily_value_percentages": {
+      "cholesterol": 96.43,
+      "dietary_fiber": 12.11,
+      "protein": 27.14,
+      "saturated_fat": 133.3,
+      "sodium": 12.32,
+      "total_carbs": 22.97,
+      "total_fat": 59.03
+    },
+    "serving_size_g": 311.75,
+    "total_recipe_weight_g": 1247
+  },
+  {
+    "recipe_name": "Tepache de Piña con Fruta Fermentada y Crema de Vainilla",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tepache_de_pi%C3%B1a_con_fruta_fermentada_y_crema_de_vainilla_20250630_000048_248c5d21.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-30T00:00:48.867317000Z",
+    "selected_ingredients": [
+      {
+        "name": "vanilla"
+      },
+      {
+        "name": "plum"
+      },
+      {
+        "name": "cinnamon"
+      },
+      {
+        "name": "cream"
+      },
+      {
+        "name": "pineapple"
+      }
+    ],
+    "complexity": "sustainable",
+    "special_requests": "vegetarian Mexican",
+    "visual_description": "A minimalistic presentation showcases vibrant colors and natural textures. A small, clear glass holds the effervescent golden-brown Tepache, its surface shimmering with tiny bubbles. Beside it, a handcrafted, unglazed ceramic bowl in an earthy cream tone contains the Plum-Pineapple Compote. The compote is a rustic mix of deep purple plum pieces and pale yellow pineapple cubes, glistening with reduced syrup. A generous dollop of creamy, off-white spiced coconut cream sits atop the compote, its smooth texture contrasting with the fruit. The arrangement rests on a light, reclaimed wood surface. A simple, undyed linen napkin is casually placed. Soft, natural light illuminates the scene, highlighting each ingredient's pure beauty. The background is clean and minimal, with a hint of green.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve Tepache chilled as a refreshing beverage.",
+      "The compote can be enjoyed as a light dessert or a topping for other Mexican sweet breads."
+    ],
+    "hero_ingredient": "Pineapple",
+    "ingredients": [
+      {
+        "name": "Pineapple peel and core",
+        "quantity": "From 1 large pineapple"
+      },
+      {
+        "name": "Piloncillo (or dark brown sugar)",
+        "quantity": "250g (200g for tepache, 50g for compote)"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "1"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "2"
+      },
+      {
+        "name": "Filtered water",
+        "quantity": "2 litres"
+      },
+      {
+        "name": "Fresh plums, diced",
+        "quantity": "300g"
+      },
+      {
+        "name": "Pineapple flesh, small cubes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Vanilla bean, split and scraped (or vanilla extract)",
+        "quantity": "1/2 or 1 tsp"
+      },
+      {
+        "name": "Water",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Cinnamon powder",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Full-fat coconut cream, chilled overnight",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Powdered sugar (optional)",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "For the Tepache:",
+      "Clean pineapple peel and core. Do not wash too thoroughly to preserve natural yeasts.",
+      "Combine peel, core, 200g piloncillo, cinnamon stick, and cloves in a large glass jar.",
+      "Add 2 litres filtered water. Stir to dissolve sugar.",
+      "Cover jar with cheesecloth. Secure with rubber band.",
+      "Ferment at room temperature for 2-4 days. Stir daily. Skim any foam.",
+      "Strain liquid into clean bottles. Discard solids. Seal bottles. Refrigerate. Consume within 5 days.",
+      "For the Plum-Pineapple Compote:",
+      "Combine diced plums, pineapple cubes, 50g piloncillo, 50ml water, vanilla bean (or extract), and cinnamon powder in a saucepan.",
+      "Bring to a simmer over medium heat.",
+      "Cook 15-20 minutes. Stir occasionally. Cook until fruit is soft. Liquid reduces to a syrupy consistency.",
+      "Remove vanilla bean pod. Let cool.",
+      "For the Spiced Coconut Cream:",
+      "Scoop thick coconut cream from chilled can. Leave liquid behind.",
+      "Whip coconut cream with vanilla extract, cinnamon powder, and powdered sugar (if using).",
+      "Whip until light and fluffy.",
+      "Assembly:",
+      "Pour chilled Tepache into small glasses.",
+      "Spoon compote into small bowls.",
+      "Add a dollop of spiced coconut cream on top of the compote.",
+      "Serve Tepache alongside the compote."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing pineapple skins and core for the Tepache.",
+      "Fermentation time for Tepache varies based on ambient temperature; taste daily for desired tang."
+    ],
+    "traditional_techniques": [
+      "Fermentation (Tepache)"
+    ]
+  },
+  {
+    "recipe_name": "Rustic Beef and Chicken Ragout with Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_beef_and_chicken_ragout_with_mushrooms_20250629_235447_d1512565.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-29T23:54:47.913361000Z",
+    "selected_ingredients": [
+      "chicken",
+      "beef",
+      "onion",
+      "mushroom",
+      "garlic",
+      "tomato",
+      "rice",
+      "worcestershire sauce"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Rustic Beef and Chicken Ragout is presented in a clean, white, shallow porcelain bowl, centered on a simple wooden table. The rich, dark brown ragout, featuring tender 3cm chunks of seared beef and chicken, is generously spooned into the bowl. Quartered, earthy mushrooms, diced caramelized onions, and soft pieces of tomato are visibly integrated throughout the thick sauce, creating a harmonious blend of textures and natural, warm colors. A sprinkle of fresh, vibrant green chopped parsley garnishes the top, adding a pop of freshness. Alongside the bowl, a small mound of fluffy white rice is neatly placed. The overall presentation is professional yet approachable, with moderate negative space. Natural, even lighting highlights the dish's comforting appeal, set against a subtle, casual bistro background with a simple cotton napkin and standard flatware.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic European",
+    "cultural_origin": "European",
+    "hero_ingredient": "Beef and Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "400g"
+      },
+      {
+        "name": "Beef chuck, stewing beef",
+        "quantity": "400g"
+      },
+      {
+        "name": "Large onion",
+        "quantity": "1"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs and beef chuck into 3cm chunks. Season generously with salt and pepper.",
+      "Heat olive oil in a large Dutch oven or heavy-bottomed pot over medium-high heat.",
+      "Sear beef chunks in batches until browned on all sides. Remove and set aside.",
+      "Sear chicken chunks in batches until browned. Remove and set aside. Ensure chicken reaches an internal temperature of 75°C (167°F) during cooking.",
+      "Add diced onion to the pot. Sauté until softened and translucent, about 5-7 minutes.",
+      "Add minced garlic and quartered mushrooms. Cook for 5 minutes until mushrooms soften.",
+      "Stir in tomato paste and cook for 2 minutes, stirring constantly.",
+      "Deglaze the pot with Worcestershire sauce, scraping up any browned bits from the bottom.",
+      "Return seared beef and chicken to the pot. Add diced tomatoes and beef broth. Bring to a simmer.",
+      "Reduce heat to low, cover, and simmer for 1.5 to 2 hours, or until beef is fork-tender. Stir occasionally.",
+      "While ragout simmers, cook rice according to package directions.",
+      "Taste ragout and adjust seasoning as needed.",
+      "Serve hot ragout over or alongside the cooked rice. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2,
+      "calories": 765,
+      "cholesterol_mg": 215,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 51.9,
+      "saturated_fat_g": 11.4,
+      "sodium_mg": 959,
+      "total_carbs_g": 57.6,
+      "total_fat_g": 36.2,
+      "total_sugars_g": 9.1,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 123,
+      "cholesterol_mg": 35,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.4,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 154,
+      "total_carbs_g": 9.3,
+      "total_fat_g": 5.8,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72,
+      "dietary_fiber": 14,
+      "protein": 104,
+      "saturated_fat": 57,
+      "sodium": 42,
+      "total_carbs": 21,
+      "total_fat": 46
+    },
+    "serving_size_g": 621,
+    "total_recipe_weight_g": 2484
+  },
+  {
+    "recipe_name": "Pollo Ahumado con Consomé de Jitomate y Tortellini de Huitlacoche",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_ahumado_con_consom%C3%A9_de_jitomate_y_tortellini_de_huitlacoche_20250629_234035_b5dbfee6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-29T23:40:36.036057000Z",
+    "selected_ingredients": [
+      "chicken",
+      "pasta",
+      "tomato"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "Мексиканский cuisine",
+    "visual_description": "The dish is presented on a pristine, large, round bone china plate with a wide, minimalist white rim. A single, thick, golden-skinned pan-seared smoked chicken breast, crisp and tender, rests elegantly on one side. Adjacent are three perfectly formed, delicate masa tortellini, their pale dough encasing a rich, dark huitlacoche filling. A small, clear, amber-hued pool of intensely flavored smoked tomato consommé flows gently. Abundant negative space emphasizes precision. Micro cilantro sprigs are meticulously placed, providing a precise color pop. The plate is on a premium grey-veined marble surface. A pristine white linen napkin, folded precisely, and minimalist flatware complete the sophisticated tableau under dramatic, focused lighting. The entire plate is visible, showcasing the refined portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Traditionally, corn-based dishes like masa tortellini would be served immediately to maintain texture.",
+      "The consommé can be poured tableside for an added element of sophisticated service."
+    ],
+    "hero_ingredient": "Smoked Chicken",
+    "ingredients": [
+      {
+        "name": "boneless, skin-on chicken breasts",
+        "quantity": "2 large (approx. 250g each)"
+      },
+      {
+        "name": "fine sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "wood chips for smoking (e.g., applewood or mesquite)",
+        "quantity": "as needed"
+      },
+      {
+        "name": "masa harina",
+        "quantity": "200g"
+      },
+      {
+        "name": "warm water",
+        "quantity": "150ml (approx., adjust as needed)"
+      },
+      {
+        "name": "salt",
+        "quantity": "2g"
+      },
+      {
+        "name": "fresh huitlacoche (corn smut)",
+        "quantity": "150g"
+      },
+      {
+        "name": "white onion, finely diced",
+        "quantity": "30g"
+      },
+      {
+        "name": "garlic, minced",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "5ml"
+      },
+      {
+        "name": "epazote leaves, finely chopped (optional)",
+        "quantity": "2g"
+      },
+      {
+        "name": "ripe Roma tomatoes, halved",
+        "quantity": "500g"
+      },
+      {
+        "name": "white onion, roughly chopped",
+        "quantity": "100g"
+      },
+      {
+        "name": "garlic, crushed",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "high-quality chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "cilantro sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "salt",
+        "quantity": "3g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "1g"
+      },
+      {
+        "name": "egg white, lightly whisked",
+        "quantity": "1"
+      },
+      {
+        "name": "micro cilantro or finely diced Fresno chili",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Smoked Chicken:",
+      "Season chicken breasts with salt and pepper.",
+      "Cold smoke chicken breasts for 30 minutes to 1 hour using a smoking gun or smoker box.",
+      "Preheat oven to 75°C.",
+      "Sear chicken skin-side down in an oven-safe, heavy-bottomed pan with olive oil until golden and crispy. Approximately 4-5 minutes.",
+      "Flip chicken. Transfer pan to preheated oven. Cook until internal temperature reaches 75°C (approx. 15-20 minutes). Rest chicken 5 minutes before slicing.",
+      "Prepare Huitlacoche Tortellini Filling:",
+      "Heat olive oil in a small pan. Sauté diced onion until translucent. Add minced garlic and cook 1 minute.",
+      "Add huitlacoche. Cook, stirring occasionally, until moisture evaporates and huitlacoche is tender, about 8-10 minutes.",
+      "Stir in chopped epazote (if using). Season with a pinch of salt. Let cool completely.",
+      "Prepare Masa Tortellini:",
+      "In a bowl, combine masa harina and salt. Gradually add warm water, mixing until a soft, pliable dough forms. Knead lightly for 2-3 minutes.",
+      "Roll dough very thin between two sheets of plastic wrap or parchment paper.",
+      "Cut out small rounds (approx. 4-5 cm diameter). Place a small amount of huitlacoche filling in the center of each round.",
+      "Fold dough over to form a half-moon. Pinch edges to seal. Bring ends together to form a tortellini shape.",
+      "Set aside on a lightly floured surface.",
+      "Prepare Smoked Tomato Consommé:",
+      "Roast halved tomatoes, chopped onion, and crushed garlic on a baking sheet at 200°C until softened and slightly charred, about 20-25 minutes.",
+      "Transfer roasted vegetables to a pot. Add chicken stock, cilantro, bay leaf, salt, and pepper. Bring to a simmer. Cook for 20 minutes.",
+      "Strain mixture through a fine-mesh sieve, pressing solids to extract all liquid. Discard solids.",
+      "Return liquid to a clean pot. Bring to a gentle simmer. Whisk in egg white.",
+      "As egg white coagulates, it will form a raft, trapping impurities. Gently simmer for 10-15 minutes without disturbing the raft.",
+      "Carefully ladle the clear consommé through a cheesecloth-lined sieve. Keep warm.",
+      "Cook Tortellini:",
+      "Bring a pot of salted water to a gentle boil.",
+      "Carefully drop tortellini into boiling water. Cook for 3-5 minutes, or until they float and are tender. Remove with a slotted spoon.",
+      "Plate the Dish:",
+      "Slice the rested chicken breast into two thick, even pieces or medallions per serving. Place them slightly offset on one side of a large, warm plate.",
+      "Arrange 3-4 cooked tortellini organically near the chicken.",
+      "Pour a small pool of warm, clear smoked tomato consommé onto the plate next to the other elements.",
+      "Garnish with micro cilantro or a few specks of finely diced Fresno chili for color and slight heat."
+    ],
+    "traditional_techniques": [
+      "Masa preparation",
+      "Consommé clarification",
+      "Smoking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 554,
+      "cholesterol_mg": 115,
+      "dietary_fiber_g": 7.1,
+      "protein_g": 38.8,
+      "saturated_fat_g": 5.4,
+      "sodium_mg": 1213,
+      "total_carbs_g": 49.7,
+      "total_fat_g": 23.1,
+      "total_sugars_g": 5.5,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 126,
+      "cholesterol_mg": 26,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.8,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 276,
+      "total_carbs_g": 11.3,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 38,
+      "dietary_fiber": 25,
+      "protein": 78,
+      "saturated_fat": 27,
+      "sodium": 53,
+      "total_carbs": 18,
+      "total_fat": 30
+    },
+    "serving_size_g": 440,
+    "total_recipe_weight_g": 1760
+  }
+]

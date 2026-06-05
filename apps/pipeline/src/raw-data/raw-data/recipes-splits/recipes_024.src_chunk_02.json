@@ -1,0 +1,675 @@
+[
+  {
+    "recipe_name": "Penne with Sausage and Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_penne_with_sausage_and_peppers_20250624_032134_a2b1df61.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:21:35.319992000Z",
+    "selected_ingredients": [
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A generous, home-style portion of Penne with Sausage and Peppers rests on a round, rustic ceramic plate. The penne pasta is coated in a rich, savory tomato sauce. Interspersed throughout are substantial chunks of browned Italian sausage and vibrant, tender-crisp strips of red and yellow bell peppers and diced onions. A scattering of fresh, bright green basil leaves provides a pop of color and freshness. The dish has a comforting, slightly rustic appearance, with the ingredients naturally intertwined. The plate sits on a well-used wooden dining table, alongside a simple fork and a cloth napkin. Warm, inviting light from a nearby kitchen window illuminates the dish, highlighting its textures and inviting colors. A small bowl of grated Parmesan cheese is visible in the background, ready for serving.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread for dipping sauce."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Penne pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Italian sausage",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Yellow bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh basil",
+        "quantity": "1/4 cup"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red pepper flakes",
+        "quantity": "1/2 teaspoon (optional)"
+      }
+    ],
+    "instructions": [
+      "Cook penne pasta according to package directions. Cook until al dente. Reserve 125 ml pasta water. Drain pasta.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Add Italian sausage meat. Break it apart with a spoon. Cook until browned. Drain excess fat.",
+      "Add diced onion and bell pepper strips to skillet. Cook 5-7 minutes until softened.",
+      "Stir in minced garlic and red pepper flakes (if using). Cook 1 minute until fragrant.",
+      "Pour in crushed tomatoes and chicken broth. Bring to a simmer.",
+      "Reduce heat to low. Simmer 10-15 minutes. Sauce should thicken slightly.",
+      "Add cooked penne to the sauce. Toss to coat. If sauce is too thick, add reserved pasta water as needed.",
+      "Stir in fresh chopped basil. Season with salt and black pepper.",
+      "Serve immediately. Top with grated Parmesan cheese."
+    ],
+    "notes": [
+      "Adjust red pepper flakes to desired spice level.",
+      "Freshly grated Parmesan is recommended for best flavor."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 757,
+      "cholesterol_mg": 68,
+      "dietary_fiber_g": 6.7,
+      "protein_g": 33,
+      "saturated_fat_g": 10,
+      "sodium_mg": 775,
+      "total_carbs_g": 86,
+      "total_fat_g": 31,
+      "total_sugars_g": 11.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 130,
+      "cholesterol_mg": 12,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 5.7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 133,
+      "total_carbs_g": 14.8,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 23,
+      "dietary_fiber": 24,
+      "protein": 66,
+      "saturated_fat": 50,
+      "sodium": 34,
+      "total_carbs": 31,
+      "total_fat": 40
+    },
+    "serving_size_g": 583.25,
+    "total_recipe_weight_g": 2333
+  },
+  {
+    "recipe_name": "Chicken Parmesan with Spaghetti",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_parmesan_with_spaghetti_20250624_032133_58a8d42d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:21:34.501187000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "pasta"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown chicken cutlet, generously topped with melted, bubbly mozzarella and Parmesan cheese, rests on a bed of perfectly cooked spaghetti. A rich, vibrant red marinara sauce pools around the chicken and coats the pasta. The chicken cutlet is a thick, substantial piece, not sliced. Fresh green basil leaves are scattered over the dish for a pop of color and freshness. The dish is presented on a simple, slightly off-white ceramic plate with natural imperfections, placed on a well-used wooden dining table. A basic silver fork lies beside the plate. The scene is illuminated by warm, cozy light, typical of a family kitchen, creating a lived-in, comforting atmosphere. The portion is modest and homely, filling the plate adequately without overcrowding.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian-American",
+    "cultural_origin": "Italian-American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with vinaigrette.",
+      "Offer crusty bread for dipping in the extra sauce."
+    ],
+    "hero_ingredient": "Breaded Chicken Cutlet",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "4 (about 180g each)"
+      },
+      {
+        "name": "Spaghetti",
+        "quantity": "400g"
+      },
+      {
+        "name": "Marinara sauce",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Mozzarella cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "50g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100g"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g (plus more for pasta water)"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "10g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Prepare chicken: Place each chicken breast between two sheets of plastic wrap. Pound to 1.5 cm thickness using a mallet or rolling pin.",
+      "Set up breading station: Place flour in a shallow dish. Whisk eggs in a second shallow dish. Combine breadcrumbs, garlic powder, oregano, salt, and pepper in a third shallow dish.",
+      "Dredge each chicken cutlet in flour, shaking off excess. Dip in egg, coating completely. Press into breadcrumb mixture, ensuring full coverage.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Sear breaded chicken for 3-4 minutes per side until golden brown. Do not fully cook through. Transfer chicken to a plate.",
+      "Pour half of the marinara sauce into the skillet. Arrange seared chicken cutlets over the sauce.",
+      "Top each chicken cutlet with remaining marinara sauce. Sprinkle generously with mozzarella cheese, then Parmesan cheese.",
+      "Bake for 15-20 minutes, or until chicken reaches an internal temperature of 75°C and cheese is bubbly and golden.",
+      "While chicken bakes, cook spaghetti according to package directions in salted boiling water until al dente. Drain well.",
+      "Serve baked chicken parmesan over a bed of spaghetti. Garnish with fresh basil leaves."
+    ],
+    "notes": [
+      "Pounding the chicken ensures even cooking and tenderness.",
+      "Using an oven-safe skillet reduces cleanup."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1626,
+      "cholesterol_mg": 638,
+      "dietary_fiber_g": 9.8,
+      "protein_g": 107.4,
+      "saturated_fat_g": 24.7,
+      "sodium_mg": 1351,
+      "total_carbs_g": 142.4,
+      "total_fat_g": 69,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 1.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 215,
+      "cholesterol_mg": 84,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 14.2,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 179,
+      "total_carbs_g": 18.8,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 213,
+      "dietary_fiber": 35,
+      "protein": 215,
+      "saturated_fat": 124,
+      "sodium": 59,
+      "total_carbs": 52,
+      "total_fat": 88
+    },
+    "serving_size_g": 756.5,
+    "total_recipe_weight_g": 3026
+  },
+  {
+    "recipe_name": "Classic Cottage Pie",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_cottage_pie_20250624_032110_d323668c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:21:11.099291000Z",
+    "selected_ingredients": [
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generous serving of Classic Cottage Pie is presented in a rustic, round ceramic baking dish, or scooped onto an everyday ceramic plate. The mashed potato topping is golden-brown with distinct, comforting fork marks creating a textured crust. The rich, savory ground beef and vegetable filling, featuring diced carrots and green peas, peeks out from the sides. The dish sits on a well-used wooden dining table. A simple, sturdy fork is placed casually beside the plate. A loosely folded plain cloth napkin adds to the homely atmosphere. The lighting is warm and inviting, typical of a cozy kitchen. The background is minimal and slightly blurred, suggesting a lived-in family dining area.",
+    "number_of_servings": 4,
+    "cuisine_type": "Comfort Food",
+    "hero_ingredient": "Potato",
+    "ingredients": [
+      {
+        "name": "Potatoes",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Ground beef",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Worcestershire sauce",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Dried thyme",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Place peeled, large chunks of potato in a large pot. Cover with cold salted water. Bring to a boil. Cook until very tender, about 15-20 minutes. Drain well.",
+      "Return drained potatoes to the hot pot. Add butter and warm milk. Mash until smooth. Season with salt and pepper. Set aside.",
+      "Heat a large oven-safe skillet or Dutch oven over medium-high heat. Add ground beef. Cook, breaking it up, until browned. Drain excess fat.",
+      "Add diced onion and small cubed carrots to the skillet with the beef. Cook for 5-7 minutes until softened.",
+      "Stir in tomato paste, Worcestershire sauce, and dried thyme. Cook for 1 minute. Pour in beef broth. Bring to a simmer. Cook for 5-7 minutes, stirring occasionally, until sauce slightly thickens. Stir in frozen peas.",
+      "Spread the beef mixture evenly in the skillet. Spoon mashed potatoes over the beef, spreading to the edges. Create peaks with a fork for texture.",
+      "Preheat oven to 190°C. Bake for 25-30 minutes, until the potato topping is golden brown and the filling is bubbly.",
+      "Let stand for 5 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.5,
+      "calories": 779,
+      "cholesterol_mg": 168,
+      "dietary_fiber_g": 7.7,
+      "protein_g": 49.4,
+      "saturated_fat_g": 16.5,
+      "sodium_mg": 381,
+      "total_carbs_g": 57.2,
+      "total_fat_g": 38.2,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.1,
+      "calories": 115,
+      "cholesterol_mg": 25,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 7.3,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 56,
+      "total_carbs_g": 8.4,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.4,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 56,
+      "dietary_fiber": 27,
+      "protein": 99,
+      "saturated_fat": 83,
+      "sodium": 17,
+      "total_carbs": 21,
+      "total_fat": 49
+    },
+    "serving_size_g": 677.3,
+    "total_recipe_weight_g": 2709
+  },
+  {
+    "recipe_name": "Chicken Shahi Korma",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_shahi_korma_20250624_032054_d42d361e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:20:55.405294000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "Indian cuisine",
+    "visual_description": "A single portion of Chicken Shahi Korma is presented on a clean, white porcelain dinner plate. Medium chunks of tender chicken are nestled in a rich, smooth, light golden-yellow sauce. The sauce glistens with a creamy, moderate thickness, pooling elegantly around the chicken. A delicate swirl of fresh cream and a few vibrant saffron strands adorn the top, alongside a sprinkle of finely chopped fresh cilantro leaves, adding a pop of green. The overall arrangement is organic and flowing, showcasing the ingredients naturally without overcrowding the plate. The dish is accompanied by a small, fluffy pile of steamed basmati rice and a folded piece of warm naan bread beside the plate. A small, simple white bowl holds a side of fresh raita. The setting features a simple wooden table surface, with natural, even lighting. Traditional Indian flatware is placed beside a cotton napkin, creating an authentic yet contemporary dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve with warm Basmati rice.",
+      "Serve with fresh naan bread or roti.",
+      "Offer a side of cooling raita (yogurt dip).",
+      "Serve with lachha pyaaz (pickled onion salad) for an authentic touch."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Onions, large",
+        "quantity": "2"
+      },
+      {
+        "name": "Ghee or vegetable oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Green cardamom pods",
+        "quantity": "6"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "2.5 cm"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Ground turmeric",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Ground coriander",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Kashmiri chili powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Cashews, raw",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Blanched almonds",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Warm water",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Saffron strands",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Kewra water or rose water",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 3-4 cm medium chunks. Place in a bowl.",
+      "Whisk yogurt with 2.5 g turmeric, 5 g coriander, 2.5 g cumin, and half the ginger-garlic paste. Add to chicken. Mix well. Marinate for at least 30 minutes, or up to 4 hours in refrigerator.",
+      "Slice onions thinly. Heat 30 ml ghee in a heavy-bottomed pan over medium heat. Fry onions until deeply golden brown and crispy. Remove with slotted spoon. Drain on paper towel. Crush fried onions coarsely once cooled.",
+      "Soak cashews and almonds in 60 ml warm water for 15 minutes. Drain. Blend with 60 ml fresh water to a very smooth paste. Set aside.",
+      "In the same pan, add remaining 30 ml ghee. Add green cardamom, cloves, cinnamon stick, and bay leaf. Sauté for 30 seconds until fragrant.",
+      "Add remaining ginger-garlic paste. Sauté for 1 minute until raw smell disappears.",
+      "Add remaining ground turmeric, coriander, cumin, and Kashmiri chili powder. Sauté for 30 seconds, adding a splash of water if spices stick.",
+      "Add marinated chicken to the pan. Sear chicken chunks on all sides until lightly browned, about 5-7 minutes.",
+      "Stir in the crushed fried onions and the nut paste. Mix well. Cook for 2-3 minutes, stirring constantly.",
+      "Reduce heat to low. Cover the pan. Simmer for 15-20 minutes, or until chicken is cooked through (internal temperature 75°C). Stir occasionally to prevent sticking.",
+      "Stir in heavy cream, saffron strands, kewra/rose water, garam masala, salt, and sugar. Mix gently.",
+      "Simmer for another 2-3 minutes until sauce thickens slightly. Do not boil vigorously after adding cream.",
+      "Remove bay leaf, cinnamon stick, and whole cardamom pods if desired before serving.",
+      "Garnish with fresh chopped cilantro."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for safety.",
+      "Adjust chili powder to your preferred spice level.",
+      "For best results, use good quality saffron and fresh ingredients."
+    ],
+    "traditional_techniques": [
+      "Marination for tenderization and flavor infusion.",
+      "Browning onions (birista) for depth and sweetness.",
+      "Tempering whole spices (tadka) in ghee to release aromatics.",
+      "Using nut pastes for thickening and creating a rich, creamy texture.",
+      "Slow simmering (similar to dum cooking principles) for flavor development."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 749,
+      "cholesterol_mg": 276.03,
+      "dietary_fiber_g": 4,
+      "protein_g": 39.86,
+      "saturated_fat_g": 22.96,
+      "sodium_mg": 195.31,
+      "total_carbs_g": 21.7,
+      "total_fat_g": 55.38,
+      "total_sugars_g": 9.98,
+      "trans_fat_g": 1.15
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.29,
+      "calories": 175.66,
+      "cholesterol_mg": 64.76,
+      "dietary_fiber_g": 0.94,
+      "protein_g": 9.35,
+      "saturated_fat_g": 5.39,
+      "sodium_mg": 45.82,
+      "total_carbs_g": 5.09,
+      "total_fat_g": 12.99,
+      "total_sugars_g": 2.34,
+      "trans_fat_g": 0.27
+    },
+    "daily_value_percentages": {
+      "cholesterol": 92,
+      "dietary_fiber": 14.3,
+      "protein": 79.7,
+      "saturated_fat": 114.8,
+      "sodium": 8.5,
+      "total_carbs": 7.9,
+      "total_fat": 71
+    },
+    "serving_size_g": 426.25,
+    "total_recipe_weight_g": 1705
+  },
+  {
+    "recipe_name": "Rustic Sheet Pan Thyme Chicken and Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_sheet_pan_thyme_chicken_and_potatoes_20250624_031941_ad5b69ee.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T03:19:42.315278000Z",
+    "selected_ingredients": [
+      "chicken",
+      "thyme",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Rustic Sheet Pan Thyme Chicken and Potatoes is presented on an everyday, slightly off-white ceramic plate with a subtle, irregular rim, placed on a well-used, warm-toned wooden dining table. The plate holds two golden-brown, bone-in chicken thighs with crispy skin, nestled amongst generous, tender-crisp roasted potato chunks and caramelized red onion wedges. Scattered fresh thyme sprigs, some slightly crisped from roasting, add natural green accents. The chicken is visibly juicy, with savory drippings coating the potatoes. The natural colors of the roasted ingredients dominate: deep golden-browns, soft yellows, and hints of purple from the onion. The arrangement is organic and unforced, as if scooped directly from the pan, with components touching and slightly overlapping. A simple silver fork and knife with worn handles rest beside the plate on a plain, casually folded linen napkin. Warm, inviting light from an overhead kitchen fixture illuminates the scene, highlighting the comforting textures and inviting steam. The background is a soft blur of a lived-in kitchen, hinting at a cozy family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken bone-in, skin-on thighs or drumsticks",
+        "quantity": "8 pieces (approx. 1.2 kg total)"
+      },
+      {
+        "name": "Potatoes (Yukon Gold or Russet)",
+        "quantity": "800 g, scrubbed and cut into 3 cm chunks"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1 large, cut into 8 wedges"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": "6-8 sprigs, plus extra for garnish"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, smashed and peeled"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g (or to taste)"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "5 g (or to taste)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a large sheet pan with parchment paper.",
+      "In a large bowl, combine chicken pieces, potato chunks, red onion wedges, thyme sprigs, and smashed garlic cloves.",
+      "Drizzle with olive oil. Season generously with salt and black pepper.",
+      "Toss all ingredients until evenly coated.",
+      "Arrange chicken and vegetables in a single layer on the prepared sheet pan. Ensure chicken skin faces up.",
+      "Roast for 30 minutes.",
+      "Flip potatoes and onion wedges. Continue roasting for another 20-30 minutes, or until chicken reaches an internal temperature of 75°C and potatoes are tender and golden-brown.",
+      "Remove from oven. Let rest 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 953,
+      "cholesterol_mg": 285,
+      "dietary_fiber_g": 5.9,
+      "protein_g": 71.1,
+      "saturated_fat_g": 13.9,
+      "sodium_mg": 1210,
+      "total_carbs_g": 42.4,
+      "total_fat_g": 57.6,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 166,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 1,
+      "protein_g": 12.4,
+      "saturated_fat_g": 2.4,
+      "sodium_mg": 211,
+      "total_carbs_g": 7.4,
+      "total_fat_g": 10,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 95,
+      "dietary_fiber": 21,
+      "protein": 142,
+      "saturated_fat": 70,
+      "sodium": 53,
+      "total_carbs": 15,
+      "total_fat": 74
+    },
+    "serving_size_g": 573.75,
+    "total_recipe_weight_g": 2295
+  }
+]

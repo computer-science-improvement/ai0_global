@@ -1,0 +1,684 @@
+[
+  {
+    "recipe_name": "Celery and Roasted Chicken Salad with Lemon-Herb Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_celery_and_roasted_chicken_salad_with_lemon-herb_vinaigrette_20250624_104701_d9557430.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:01.587073000Z",
+    "selected_ingredients": [
+      "celery",
+      "spinach",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The salad is presented on a clean, round white porcelain dinner plate, showcasing a vibrant and artfully arranged composition. A bed of fresh, dark green spinach leaves forms the base, upon which thinly sliced, crisp green celery pieces are scattered. Bright red cherry tomato halves and translucent, very thinly sliced red onion rings provide pops of color and visual interest. Diced cucumber cubes add another layer of fresh green. Interspersed among the vegetables are small, irregular chunks of roasted chicken breast, displaying a lightly browned exterior and moist interior. A golden-green lemon-herb vinaigrette lightly coats all ingredients, with subtle pooling at the bottom of the plate. The entire arrangement is organic and flowing, with moderate negative space. A sprinkle of toasted almond slivers adds a textural contrast on top. The plate rests on a simple wooden table surface, accompanied by a folded white cotton napkin and standard silver flatware. Natural, even lighting illuminates the dish, highlighting its fresh textures and colors, with a soft, blurred restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Celery",
+    "ingredients": [
+      {
+        "name": "Celery",
+        "quantity": "4 stalks, thinly sliced on the bias"
+      },
+      {
+        "name": "Fresh Spinach",
+        "quantity": "200 g, washed and dried"
+      },
+      {
+        "name": "Chicken Breast",
+        "quantity": "250 g, boneless, skinless"
+      },
+      {
+        "name": "Cherry Tomatoes",
+        "quantity": "200 g, halved"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 large, diced into 1 cm cubes"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": "1/2 small, very thinly sliced"
+      },
+      {
+        "name": "Toasted Almond Slivers",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Extra Virgin Olive Oil",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Fresh Lemon Juice",
+        "quantity": "40 ml"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fresh Dill",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "2 ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Season chicken breast with salt and pepper. Roast until internal temperature reaches 75°C, about 20-25 minutes. Let cool. Cut into irregular 2 cm chunks.",
+      "Prepare vegetables. Thinly slice celery on the bias. Wash and dry spinach. Halve cherry tomatoes. Dice cucumber into 1 cm cubes. Very thinly slice red onion.",
+      "Prepare dressing. In a small bowl, whisk together olive oil, lemon juice, Dijon mustard, chopped fresh dill, and chopped fresh parsley. Season with salt and black pepper.",
+      "In a large salad bowl, combine sliced celery, spinach, halved cherry tomatoes, diced cucumber, and thinly sliced red onion. Add the roasted chicken chunks.",
+      "Pour dressing over the salad ingredients. Toss gently to coat all components evenly.",
+      "Divide salad among four plates. Garnish each serving with toasted almond slivers. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 382.9,
+      "cholesterol_mg": 53.1,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 25.4,
+      "saturated_fat_g": 3.3,
+      "sodium_mg": 1218.6,
+      "total_carbs_g": 13.4,
+      "total_fat_g": 28.2,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 117.1,
+      "cholesterol_mg": 16.2,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1,
+      "sodium_mg": 372.7,
+      "total_carbs_g": 4.1,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 18,
+      "dietary_fiber": 20,
+      "protein": 51,
+      "saturated_fat": 17,
+      "sodium": 53,
+      "total_carbs": 5,
+      "total_fat": 36
+    },
+    "serving_size_g": 327,
+    "total_recipe_weight_g": 1307.8
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Cordon Bleu with Dijon Cream Sauce",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_cordon_bleu_with_dijon_cream_sauce_20250624_104700_a13d37a0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:01.318381000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "cheese",
+      "mustard",
+      "pork"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A pan-seared chicken breast, golden-brown and crisp, is cut diagonally into two thick pieces, revealing a molten core of thinly sliced smoked ham and melted Gruyère cheese. The chicken rests slightly off-center on a clean, round white porcelain dinner plate. A creamy, pale yellow Dijon sauce is elegantly spooned around the base of the chicken, forming an appealing pool. A small sprig of fresh green parsley or finely chopped chives garnishes the dish, adding a pop of color. The overall presentation is professional and balanced, with moderate negative space. The setting is a modern bistro, featuring a simple wooden table surface. Standard silver flatware, a fork and knife, are placed neatly beside the plate. A folded cotton napkin rests nearby. Natural, even lighting illuminates the scene, highlighting the textures and colors of the dish. The background is softly blurred, suggesting a casual restaurant atmosphere without distraction.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed haricots verts (green beans) or roasted new potatoes.",
+      "Accompany with a crisp green salad dressed with a light vinaigrette."
+    ],
+    "hero_ingredient": "Chicken Breast",
+    "ingredients": [
+      {
+        "name": "Chicken breasts, boneless, skinless",
+        "quantity": "4 x 200g"
+      },
+      {
+        "name": "Thinly sliced smoked ham",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Gruyère cheese, sliced",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Large eggs, beaten",
+        "quantity": "2"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Small onion, finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "180 ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C (375°F).",
+      "Butterfly each chicken breast. Pound gently to an even thickness of about 1.5 cm.",
+      "Season chicken lightly with salt and pepper.",
+      "Place 2-3 slices of smoked ham and a few slices of Gruyère cheese on one half of each chicken breast.",
+      "Fold the other half over. Secure edges with toothpicks if needed.",
+      "Set up three dredging stations: one plate with flour, one bowl with beaten eggs, one plate with Panko breadcrumbs.",
+      "Dredge each chicken breast first in flour, shaking off excess. Then dip in egg, letting excess drip off. Finally, coat thoroughly in Panko breadcrumbs, pressing gently to adhere.",
+      "Heat butter and olive oil in a large oven-safe skillet over medium-high heat.",
+      "Add breaded chicken breasts to the hot skillet. Sear for 3-4 minutes per side until golden brown.",
+      "Transfer skillet with chicken to the preheated oven. Bake for 15-20 minutes, or until internal temperature reaches 75°C (167°F).",
+      "While chicken bakes, prepare the sauce. In a small saucepan, sauté finely diced onion in a teaspoon of oil until softened, about 3 minutes.",
+      "If using, deglaze with white wine, scraping up any browned bits. Reduce by half.",
+      "Stir in chicken broth. Bring to a simmer. Reduce by half.",
+      "Whisk in heavy cream and Dijon mustard. Simmer gently for 5-7 minutes, until sauce thickens slightly.",
+      "Season sauce with salt and pepper to taste. Keep warm.",
+      "Remove chicken from oven. Let rest for 5 minutes. Remove toothpicks.",
+      "Slice each chicken breast diagonally in half. Arrange on plates. Spoon Dijon cream sauce around chicken. Garnish with fresh chopped parsley. Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Pounding the chicken to an even thickness ensures even cooking."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Sauce reduction",
+      "Mise en place"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1067,
+      "cholesterol_mg": 383,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 90.1,
+      "saturated_fat_g": 25.1,
+      "sodium_mg": 1703,
+      "total_carbs_g": 46.5,
+      "total_fat_g": 54.1,
+      "total_sugars_g": 5.1,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 204,
+      "cholesterol_mg": 73,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 17.3,
+      "saturated_fat_g": 4.8,
+      "sodium_mg": 326,
+      "total_carbs_g": 8.9,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 128,
+      "dietary_fiber": 9,
+      "protein": 180,
+      "saturated_fat": 126,
+      "sodium": 74,
+      "total_carbs": 17,
+      "total_fat": 69
+    },
+    "serving_size_g": 522,
+    "total_recipe_weight_g": 2088
+  },
+  {
+    "recipe_name": "Smoky Yogurt Chicken with Skillet Flatbread",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoky_yogurt_chicken_with_skillet_flatbread_20250624_104659_b994a46c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:47:00.066934000Z",
+    "selected_ingredients": [
+      "greek yogurt",
+      "egg",
+      "hickory smoke salt",
+      "whole wheat flour",
+      "sugar",
+      "yeast"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of Smoky Yogurt Chicken with Skillet Flatbread is presented on a simple, round, off-white ceramic plate. A rustic, golden-brown skillet flatbread, slightly puffed and with visible char marks, rests on one side of the plate. Thick pieces of seared chicken, with a visible golden-brown crust and hints of creamy white yogurt marinade, are arranged naturally next to the flatbread. The chicken shows clear evidence of being cooked through. A sprinkle of bright green chopped parsley or chives adds a fresh accent. The setting is a well-used wooden dining table, with warm, cozy lighting, suggesting a relaxed family kitchen. A casually placed cloth napkin and standard flatware complete the homely, lived-in atmosphere. The background is minimal, keeping focus on the comfort food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic American",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 600g)"
+      },
+      {
+        "name": "Plain Greek yogurt",
+        "quantity": "250g"
+      },
+      {
+        "name": "Hickory smoke salt",
+        "quantity": "10g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Garlic powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Onion powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Whole wheat flour",
+        "quantity": "300g"
+      },
+      {
+        "name": "Warm water (40-45°C)",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Active dry yeast",
+        "quantity": "7g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh parsley or chives, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      }
+    ],
+    "instructions": [
+      "Combine 150g Greek yogurt, 5g hickory smoke salt, black pepper, garlic powder, and onion powder in a bowl. Mix well.",
+      "Add chicken thighs to the yogurt mixture. Coat thoroughly. Marinate for at least 30 minutes at room temperature, or up to 4 hours in the refrigerator.",
+      "For the flatbread dough, combine warm water, sugar, and yeast in a small bowl. Let sit for 5-10 minutes until foamy.",
+      "In a large bowl, whisk together whole wheat flour and 5g salt.",
+      "Add the bloomed yeast mixture, remaining 100g Greek yogurt, egg, and 15ml olive oil to the flour. Mix until a shaggy dough forms.",
+      "Turn dough onto a lightly floured surface. Knead for 5-7 minutes until smooth and elastic.",
+      "Lightly oil a clean bowl. Place dough in bowl, turn to coat. Cover with a clean cloth. Let rise in a warm place for 1 hour, or until doubled in size.",
+      "Heat 15ml olive oil in a large cast-iron skillet or non-stick pan over medium-high heat.",
+      "Remove chicken from marinade, shaking off excess. Place chicken in hot skillet. Sear for 5-7 minutes per side, until golden brown and cooked through. Internal temperature should reach 75°C (167°F).",
+      "Remove chicken from skillet. Let rest on a cutting board for 5 minutes.",
+      "While chicken rests, punch down flatbread dough. Divide into 4 equal portions. Roll each portion into a rough 20cm circle.",
+      "Heat the same skillet (or a clean one) over medium-high heat. Cook one flatbread at a time for 2-3 minutes per side, until puffed and lightly browned. Sprinkle a pinch of hickory smoke salt on each flatbread as it cooks.",
+      "Slice chicken into thick pieces.",
+      "Serve sliced chicken immediately with warm flatbreads. Garnish with chopped fresh parsley or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 648.03,
+      "cholesterol_mg": 223.75,
+      "dietary_fiber_g": 9.1,
+      "protein_g": 50.34,
+      "saturated_fat_g": 5.14,
+      "sodium_mg": 1607.8,
+      "total_carbs_g": 62.93,
+      "total_fat_g": 22.69,
+      "total_sugars_g": 5.62,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.69,
+      "calories": 180.06,
+      "cholesterol_mg": 62.17,
+      "dietary_fiber_g": 2.53,
+      "protein_g": 13.99,
+      "saturated_fat_g": 1.43,
+      "sodium_mg": 446.74,
+      "total_carbs_g": 17.48,
+      "total_fat_g": 6.3,
+      "total_sugars_g": 1.56,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74.6,
+      "dietary_fiber": 32.5,
+      "protein": 100.7,
+      "saturated_fat": 25.7,
+      "sodium": 69.9,
+      "total_carbs": 22.9,
+      "total_fat": 29.1
+    },
+    "serving_size_g": 359.9,
+    "total_recipe_weight_g": 1439.6
+  },
+  {
+    "recipe_name": "Spanish Chicken and Potato Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_and_potato_skillet_20250624_104657_e076f790.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:58.337916000Z",
+    "selected_ingredients": [
+      "chicken",
+      "cheese",
+      "onion",
+      "tomato",
+      "potato",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Chicken and Potato Skillet is presented on a clean white porcelain dinner plate, centered. A golden-brown, seared chicken thigh sits prominently. Rustic, tender potato wedges, their skins lightly crisped, are arranged around the chicken. Blistered, vibrant red cherry tomatoes are scattered among the potatoes and softened, caramelized red onion wedges. Melted, golden-brown Manchego cheese lightly coats the chicken and vegetables, adding a rich texture. Freshly chopped green parsley is sprinkled generously over the entire dish, providing a contrasting color and freshness. The composition is balanced and inviting, with moderate negative space. The plate rests on a simple wooden table surface, accompanied by a fork and knife, and a folded cotton napkin beside the plate. Natural, even lighting highlights the textures and colors of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the flavorful pan juices.",
+      "Accompany with a simple green salad dressed with olive oil and vinegar."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800 g)"
+      },
+      {
+        "name": "Small new potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Manchego cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry. Season generously with salt, pepper, and smoked paprika.",
+      "Halve small potatoes. Quarter red onion. Mince garlic.",
+      "Heat olive oil in a large oven-safe skillet over medium-high heat.",
+      "Place chicken thighs skin-side down in skillet. Sear 8-10 minutes until skin is golden and crispy. Flip chicken. Sear 2 minutes.",
+      "Remove chicken from skillet. Set aside.",
+      "Add potatoes and red onion to skillet. Sauté 5-7 minutes until slightly softened and browned.",
+      "Add minced garlic and dried oregano. Sauté 1 minute until fragrant.",
+      "Return chicken to skillet, nestling among vegetables. Add cherry tomatoes and chicken broth.",
+      "Bring liquid to a simmer. Transfer skillet to preheated oven.",
+      "Bake 20-25 minutes, or until chicken reaches internal temperature of 75°C and potatoes are tender. Stir occasionally.",
+      "Grate Manchego cheese. Sprinkle over chicken and vegetables.",
+      "Return skillet to oven for 5 minutes, or until cheese is melted and bubbly.",
+      "Remove from oven. Let rest 5 minutes.",
+      "Chop fresh parsley. Garnish dish generously before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C for food safety."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Skillet Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 711,
+      "cholesterol_mg": 205,
+      "dietary_fiber_g": 5.4,
+      "protein_g": 47.8,
+      "saturated_fat_g": 13.8,
+      "sodium_mg": 515,
+      "total_carbs_g": 30.8,
+      "total_fat_g": 42.5,
+      "total_sugars_g": 6.1,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 153,
+      "cholesterol_mg": 44,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 10.3,
+      "saturated_fat_g": 3,
+      "sodium_mg": 111,
+      "total_carbs_g": 6.6,
+      "total_fat_g": 9.1,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 68,
+      "dietary_fiber": 19,
+      "protein": 96,
+      "saturated_fat": 69,
+      "sodium": 22,
+      "total_carbs": 11,
+      "total_fat": 54
+    },
+    "serving_size_g": 465.25,
+    "total_recipe_weight_g": 1861
+  },
+  {
+    "recipe_name": "Creamy Garlic Herb Chicken with Rice Pilaf",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_creamy_garlic_herb_chicken_with_rice_pilaf_20250624_104648_343a20e0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T10:46:49.012499000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mayonnaise",
+      "onion",
+      "garlic",
+      "carrot",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Creamy Garlic Herb Chicken is presented on a clean, round white porcelain plate. Two golden-brown seared chicken thighs, cooked to tender perfection, are placed slightly overlapping towards the center. The chicken is generously coated with a rich, creamy off-white garlic sauce, speckled with finely diced, tender orange carrots and translucent pieces of sautéed onion. Beside the chicken, a neat, slightly mounded portion of fluffy white rice pilaf, subtly infused with fresh green chopped parsley, sits invitingly. A light drizzle of the creamy sauce pools around the base of the chicken and on the plate, adding to the visual appeal. The dish is garnished with a sprinkle of vibrant green fresh parsley. The setting is a modern bistro table with a simple wooden surface, a crisp white cotton napkin folded neatly beside the plate, and standard silver flatware. Natural, even light illuminates the dish, highlighting its textures and inviting colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 pieces (approx. 720-800g total)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 large, diced into small cubes"
+      },
+      {
+        "name": "Mayonnaise",
+        "quantity": "60g"
+      },
+      {
+        "name": "Basmati or long-grain rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "Dry white wine (optional)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "5g, leaves picked"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "10g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Water",
+        "quantity": "600ml"
+      }
+    ],
+    "instructions": [
+      "Prepare chicken: Pat chicken thighs dry. Season generously with salt and black pepper.",
+      "Sear chicken: Heat olive oil in a large, oven-safe pan over medium-high heat. Sear chicken until golden brown on both sides, about 4-5 minutes per side. Cook until internal temperature reaches 75°C (167°F). Remove chicken from pan and set aside.",
+      "Sauté aromatics: Add diced onion to the same pan. Sauté until softened, about 3 minutes. Add minced garlic and diced carrots. Sauté for another 3-4 minutes until slightly tender.",
+      "Deglaze: Pour in white wine (if using), scraping up any browned bits from the bottom of the pan. Reduce liquid by half, about 2 minutes.",
+      "Add broth and herbs: Stir in chicken broth and fresh thyme leaves. Bring the mixture to a gentle simmer.",
+      "Create sauce: Reduce heat to low. Whisk in mayonnaise until the sauce is smooth and creamy. Do not boil the sauce after adding mayonnaise.",
+      "Return chicken: Return seared chicken thighs to the pan, nestling them into the sauce. Simmer gently for 2-3 minutes to warm chicken through and coat with sauce.",
+      "Cook rice: While chicken simmers, prepare the rice. Rinse rice thoroughly under cold water. Combine rinsed rice with 600ml water and a pinch of salt in a medium saucepan. Bring to a boil, then reduce heat to low, cover, and cook for 15 minutes. Remove from heat and let stand, covered, for 5 minutes. Fluff with a fork and stir in half of the chopped fresh parsley.",
+      "Serve: Plate a generous portion of the herb rice pilaf. Place one or two creamy garlic chicken thighs beside the rice. Spoon additional sauce, carrots, and onions over the chicken and rice. Garnish with the remaining fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.1,
+      "calories": 815,
+      "cholesterol_mg": 253,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 43.4,
+      "saturated_fat_g": 7.7,
+      "sodium_mg": 338,
+      "total_carbs_g": 71.8,
+      "total_fat_g": 36.7,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 157,
+      "cholesterol_mg": 49,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 65,
+      "total_carbs_g": 13.8,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 84,
+      "dietary_fiber": 11,
+      "protein": 87,
+      "saturated_fat": 39,
+      "sodium": 15,
+      "total_carbs": 26,
+      "total_fat": 47
+    },
+    "serving_size_g": 520,
+    "total_recipe_weight_g": 2080
+  }
+]

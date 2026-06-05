@@ -1,0 +1,640 @@
+[
+  {
+    "recipe_name": "Arroz con Pollo Mexicano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_mexicano_20250701_144121_318da7f4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:41:22.480517000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "onion",
+      "chili",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Arroz con Pollo is presented on a pristine white ceramic dinner plate. Two golden-brown, skin-on chicken thighs, cooked whole, are prominently positioned atop a generous bed of vibrant, moist orange-red long-grain rice. The rice is studded with finely diced white onion, red bell pepper, and specks of green jalapeño, offering a rich tapestry of color and texture. Fresh, bright green chopped cilantro is sprinkled generously over the chicken and rice. A quartered lime wedge rests beside the chicken. The plate maintains moderate negative space. The setting includes a simple wooden table, a folded white cotton napkin, and a small ceramic bowl of vibrant salsa roja. A stack of warm corn tortillas in a woven basket completes the authentic Mexican dining experience under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas.",
+      "Offer a side of salsa roja or pico de gallo.",
+      "Accompany with refried beans or a simple green salad.",
+      "Serve with a Mexican agua fresca."
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 medium (approx. 800 g)"
+      },
+      {
+        "name": "Long-grain white rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "White onion, diced",
+        "quantity": "1 medium (approx. 150 g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Jalapeño, deseeded and minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper, diced",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lime, cut into wedges",
+        "quantity": "1"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat. Sear chicken skin-side down until golden brown and crispy, about 5-7 minutes. Flip and sear other side for 3-5 minutes. Remove chicken. Set aside.",
+      "Reduce heat to medium. Add diced onion, minced garlic, minced jalapeño, and diced bell pepper to the pot. Sauté until softened, about 5-7 minutes.",
+      "Add rice to the pot. Stir constantly for 2-3 minutes until lightly toasted.",
+      "Stir in ground cumin and dried oregano for 1 minute. Pour in crushed tomatoes and chicken broth. Scrape bottom of pot to loosen any browned bits. Bring to a simmer. Season with salt and pepper.",
+      "Return seared chicken thighs to the pot, nestling them into the rice mixture. Ensure chicken is partially submerged.",
+      "Cover the pot tightly. Reduce heat to low. Simmer for 20-25 minutes, or until rice is tender and liquid is absorbed. Chicken should reach an internal temperature of 75°C (167°F).",
+      "Remove from heat. Let rest, covered, for 10 minutes before serving.",
+      "Garnish with fresh chopped cilantro and serve with lime wedges."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Sofrito",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 46,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 897,
+      "total_carbs_g": 68.1,
+      "total_fat_g": 38.2,
+      "total_sugars_g": 5.6,
+      "trans_fat_g": 0.01
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.4,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 143,
+      "total_carbs_g": 10.9,
+      "total_fat_g": 6.1,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 14,
+      "protein": 92,
+      "saturated_fat": 46,
+      "sodium": 39,
+      "total_carbs": 25,
+      "total_fat": 49
+    },
+    "serving_size_g": 625.5,
+    "total_recipe_weight_g": 2502
+  },
+  {
+    "recipe_name": "Fermented White Bean & Turkey Starter",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_white_bean_%26_turkey_starter_20250701_144121_1fbfb225.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:41:22.208417000Z",
+    "selected_ingredients": [
+      "bean",
+      "onion",
+      "turkey",
+      "broccoli"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single starter portion is elegantly plated on a handcrafted matte cream ceramic plate with a subtle organic rim. A generous, smooth dollop of creamy off-white tangy white bean paste forms the base, positioned slightly off-center to allow for negative space. Three to four golden-brown, pan-seared turkey medallions or small chunks are arranged naturally around the bean paste, showcasing their tender texture. Scattered vibrantly across the plate are thin, translucent slices of fuchsia-toned quick-pickled red onion, adding a pop of color and a delicate crunch. Crisp-tender, deep green broccoli florets and thinly sliced broccoli stem rounds are strategically placed to complement the other components, highlighting the dish's zero-waste ethos. The overall composition is clean and minimalist, emphasizing natural ingredient colors and textures. The plate rests on a light, reclaimed wood table surface, accompanied by an undyed natural linen napkin. Soft, diffused natural light illuminates the dish from the side, enhancing its fresh appearance. A clean, blurred background subtly features a small, green potted plant, reinforcing the eco-conscious theme.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Fermented White Beans",
+    "ingredients": [
+      {
+        "name": "Cooked white beans",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Brown onion",
+        "quantity": "0.5 small"
+      },
+      {
+        "name": "Turkey breast",
+        "quantity": "150g"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": "1 small head (approx 200g)"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15g"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 clove"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "White wine vinegar",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "10g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Quick-Pickled Red Onion: Thinly slice the small red onion. In a small saucepan, combine 100ml water, 50ml white wine vinegar, 10g sugar, and 2g salt. Bring to a boil. Pour hot brine over sliced red onion in a heatproof bowl. Let cool to room temperature. This can be made ahead.",
+      "Prepare Tangy White Bean Paste: Roughly chop the half brown onion and garlic clove. Sauté in 5ml olive oil until softened. In a food processor, combine cooked white beans, sautéed onion and garlic, 15ml olive oil, and fresh parsley. Add 15ml of the pickling liquid from the red onions. Blend until smooth and creamy. Season with salt and pepper to taste.",
+      "Prepare Turkey: Cut turkey breast into small medallions or 2-3cm chunks. Season with salt and pepper. Heat 10ml olive oil in a pan over medium-high heat. Sear turkey pieces for 2-3 minutes per side until golden brown and cooked through. Ensure internal temperature reaches 75°C.",
+      "Prepare Broccoli: Separate broccoli florets. Peel and thinly slice the broccoli stem into rounds (zero-waste). Steam florets and stem slices until crisp-tender, about 3-4 minutes. Season lightly with salt.",
+      "Assemble the Starter: Place a dollop of the tangy white bean paste slightly off-center on each plate. Arrange 3-4 pieces of seared turkey naturally around the paste. Scatter some quick-pickled red onion slices over and around the turkey. Place steamed broccoli florets and stem slices artfully on the plate. Drizzle with remaining 5ml olive oil."
+    ],
+    "notes": [
+      "For true fermentation of white beans, soak dried beans overnight, cook until tender, then combine with a small amount of brine from existing lacto-fermented vegetables (like sauerkraut) and let sit at room temperature for 1-2 days before blending into paste. Adjust consistency with water or olive oil.",
+      "Utilize all parts of the broccoli, including the stem, for a zero-waste approach. Broccoli leaves can also be blanched and added if desired.",
+      "Source ingredients locally and seasonally to reduce environmental impact and ensure freshness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.5,
+      "calories": 219,
+      "cholesterol_mg": 28.5,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 17.4,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 46,
+      "total_carbs_g": 19.2,
+      "total_fat_g": 8.7,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.1,
+      "calories": 98,
+      "cholesterol_mg": 12.7,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 7.8,
+      "saturated_fat_g": 0.6,
+      "sodium_mg": 20.5,
+      "total_carbs_g": 8.5,
+      "total_fat_g": 3.9,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 9.5,
+      "dietary_fiber": 18.9,
+      "protein": 34.8,
+      "saturated_fat": 6.9,
+      "sodium": 2,
+      "total_carbs": 7,
+      "total_fat": 11.1
+    },
+    "serving_size_g": 224.3,
+    "total_recipe_weight_g": 897.1
+  },
+  {
+    "recipe_name": "Open-Faced Turkey and Bacon Melt with Dijon Béchamel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_open-faced_turkey_and_bacon_melt_with_dijon_b%C3%A9chamel_20250701_144116_7851c90d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:41:17.066985000Z",
+    "selected_ingredients": [
+      "bread",
+      "cheese",
+      "turkey",
+      "mustard",
+      "bacon"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generously portioned open-faced sandwich sits centered on a clean white porcelain dinner plate. The base is a thick slice of golden-brown toasted artisanal sourdough bread. Neatly folded slices of roasted turkey breast are layered beneath a thick, creamy layer of golden-brown Dijon béchamel sauce, which is bubbly and slightly caramelized from baking. Crispy, irregular pieces of crumbled smoked bacon are scattered generously over the melted béchamel. A vibrant sprinkle of finely chopped fresh chives adds a contrasting green hue. The dish presents a warm palette of golden browns, creamy whites, and hints of pinks from the turkey, balanced by the dark red-brown of the bacon and the green of the chives. The plate is positioned on a simple wooden table surface, accompanied by standard silver flatware and a folded white cotton napkin. Natural, even lighting highlights the textures and colors, creating an inviting, professional yet approachable presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a vinaigrette",
+      "Accompany with small pickled gherkins or cornichons on the side"
+    ],
+    "hero_ingredient": "Turkey",
+    "ingredients": [
+      {
+        "name": "Artisanal Sourdough Bread",
+        "quantity": "8 slices"
+      },
+      {
+        "name": "Sliced Roasted Turkey Breast",
+        "quantity": "400 grams"
+      },
+      {
+        "name": "Smoked Streaky Bacon",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Gruyère Cheese",
+        "quantity": "200 grams, grated"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "50 grams"
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": "500 millilitres, warm"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": "30 millilitres, plus more for spreading"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "15 grams, finely chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "pinch, freshly grated"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking tray with parchment paper.",
+      "Place bacon strips on the prepared baking tray. Bake for 15-20 minutes until crispy. Drain bacon on paper towels. Crumble once cool.",
+      "For the Dijon Béchamel: Melt butter in a medium saucepan over medium heat. Whisk in flour to form a roux. Cook for 1 minute, stirring constantly.",
+      "Gradually whisk in warm milk, a little at a time, until smooth and lump-free. Bring to a simmer, whisking continuously, until sauce thickens, about 5-7 minutes.",
+      "Remove from heat. Stir in grated Gruyère, 30 millilitres Dijon mustard, salt, pepper, and nutmeg until cheese is melted and sauce is smooth.",
+      "Lightly toast sourdough bread slices.",
+      "Spread a thin layer of Dijon mustard on one side of each toasted bread slice.",
+      "Layer each bread slice generously with folded turkey slices. Spoon a liberal amount of Dijon Béchamel over the turkey, ensuring full coverage.",
+      "Place assembled open-faced sandwiches on a baking tray. Bake for 8-10 minutes, or until béchamel is bubbly and golden-brown. For extra browning, briefly broil for 1-2 minutes, watching carefully to prevent burning.",
+      "Transfer sandwiches to serving plates. Sprinkle generously with crumbled crispy bacon and finely chopped fresh chives. Serve immediately."
+    ],
+    "notes": [
+      "Use high-quality roasted turkey breast for the best flavor and texture.",
+      "Ensure béchamel is smooth and thick for optimal coverage and richness."
+    ],
+    "traditional_techniques": [
+      "Béchamel sauce"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 984.5,
+      "cholesterol_mg": 185.6,
+      "dietary_fiber_g": 2.7,
+      "protein_g": 61.6,
+      "saturated_fat_g": 26,
+      "sodium_mg": 1976.7,
+      "total_carbs_g": 56.2,
+      "total_fat_g": 50.4,
+      "total_sugars_g": 8.7,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 223.1,
+      "cholesterol_mg": 42.1,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 14,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 448,
+      "total_carbs_g": 12.7,
+      "total_fat_g": 11.4,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61.9,
+      "dietary_fiber": 9.5,
+      "protein": 123.2,
+      "saturated_fat": 130.2,
+      "sodium": 85.9,
+      "total_carbs": 20.4,
+      "total_fat": 64.6
+    },
+    "serving_size_g": 441.25,
+    "total_recipe_weight_g": 1765
+  },
+  {
+    "recipe_name": "Arroz con Pollo",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_arroz_con_pollo_20250701_144112_5cb120f4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:41:13.153552000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "onion",
+      "tomato",
+      "white wine",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Arroz con Pollo presented on a clean white porcelain plate. Two whole, bone-in chicken thighs with deeply browned, crispy skin sit atop a bed of golden, saffron-stained rice. The rice grains are plump and distinct, interspersed with fine bits of softened onion and concentrated red tomato. The dish shows vibrant yellow and orange hues from the saffron and paprika. A generous sprinkle of bright green, finely chopped parsley is scattered over the top. A single lemon wedge is placed neatly on the side. The plate sits on a light oak wooden table with a folded white cotton napkin. Lighting is bright, natural, and even, highlighting the textures of the crispy skin and the moist rice grains.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spain",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Alioli (garlic mayonnaise)",
+      "Accompany with crusty bread and a glass of chilled white wine",
+      "Present in a traditional terracotta cazuela for family-style dining"
+    ],
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "800g"
+      },
+      {
+        "name": "Bomba or Calasparra rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Onion, finely diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Tomatoes, grated",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "150ml"
+      },
+      {
+        "name": "Chicken stock, hot",
+        "quantity": "700ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "1 pinch"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper.",
+      "Heat olive oil in a wide shallow pan over medium-high heat.",
+      "Sear chicken skin-side down until golden and crispy.",
+      "Flip and brown the other side. Remove chicken from pan.",
+      "Add onion to the same pan. Sauté until translucent.",
+      "Stir in garlic and grated tomato. Cook until liquid evaporates and mixture darkens.",
+      "Add smoked paprika and rice. Stir to coat rice in oil for 2 minutes.",
+      "Pour in white wine. Deglaze the pan. Simmer until wine reduces by half.",
+      "Add hot stock and saffron. Stir once to distribute.",
+      "Place chicken thighs back into the pan on top of the rice.",
+      "Simmer undisturbed over medium-low heat for 18-20 minutes.",
+      "Ensure chicken reaches internal temperature of 75°C.",
+      "Remove from heat. Cover with a clean cloth. Rest for 5 minutes.",
+      "Garnish with fresh parsley before serving."
+    ],
+    "notes": [
+      "Do not stir the rice once the stock is added to allow a crust to form on the bottom.",
+      "Use a wide pan to ensure even rice cooking."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "rice absorption method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 808,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.4,
+      "protein_g": 33.2,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1414,
+      "total_carbs_g": 67.3,
+      "total_fat_g": 40.6,
+      "total_sugars_g": 3.9,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 171.7,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 7.1,
+      "saturated_fat_g": 2,
+      "sodium_mg": 300.5,
+      "total_carbs_g": 14.3,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 8.6,
+      "protein": 66.4,
+      "saturated_fat": 46.5,
+      "sodium": 61.5,
+      "total_carbs": 24.5,
+      "total_fat": 52.1
+    },
+    "serving_size_g": 470.5,
+    "total_recipe_weight_g": 1882
+  },
+  {
+    "recipe_name": "Spanish Chicken with Saffron Rice and Roasted Squash",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_with_saffron_rice_and_roasted_squash_20250701_144059_b1926d39.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-01T14:40:59.830648000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "garlic",
+      "squash"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Chicken with Saffron Rice and Roasted Squash is presented on a clean white porcelain dinner plate. Golden-brown chicken chunks, seared for a tender interior, are arranged atop a vibrant, al dente saffron rice, infused with diced red bell pepper and minced garlic. Roasted butternut squash wedges, caramelized and slightly browned, are nestled alongside the chicken, showcasing their soft texture. The dish displays a warm palette of golden yellows, deep oranges, and touches of verdant green from fresh chopped parsley. A bright lemon wedge sits beside the main elements. The composition is balanced with moderate negative space, highlighting the distinct textures. The plate rests on a simple wooden table, accompanied by a folded cotton napkin and standard flatware, under natural, even lighting in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with a simple green salad dressed with a light vinaigrette.",
+      "Offer crusty bread for soaking up the flavorful juices.",
+      "Pair with a dry Spanish white wine or a refreshing sangria."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 grams, cut into 4-5 cm chunks"
+      },
+      {
+        "name": "Arborio or Calasparra rice",
+        "quantity": "300 grams"
+      },
+      {
+        "name": "Butternut squash",
+        "quantity": "500 grams, peeled and cut into 2 cm wedges"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium, diced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "pinch (about 0.1 gram)"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "2 tablespoons, chopped"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1, cut into wedges"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Toss butternut squash wedges with 1 tablespoon olive oil, salt, and pepper. Spread on a baking sheet. Roast for 20-25 minutes until tender and slightly caramelized. Set aside.",
+      "Season chicken chunks with salt, pepper, and smoked paprika.",
+      "Heat 2 tablespoons olive oil in a large, deep skillet or Dutch oven over medium-high heat. Add chicken chunks. Sear for 3-4 minutes per side until golden brown. Do not cook through. Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add diced onion and red bell pepper to the skillet. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic to the skillet. Cook for 1 minute until fragrant.",
+      "Stir in the rice. Cook for 2 minutes, stirring constantly, to lightly toast the grains.",
+      "Pour in chicken broth. Add saffron threads. Bring to a simmer. Return seared chicken chunks to the skillet, nestling them into the rice.",
+      "Cover and reduce heat to low. Simmer for 18-20 minutes, or until rice is tender and most liquid is absorbed. Do not stir excessively. Check chicken internal temperature reaches 75°C.",
+      "Remove from heat. Let stand, covered, for 5 minutes.",
+      "Gently fold in the roasted butternut squash. Taste and adjust seasoning.",
+      "Serve immediately, garnished with fresh chopped parsley and lemon wedges."
+    ],
+    "traditional_techniques": [
+      "Sofrito (for the rice base)"
+    ]
+  }
+]

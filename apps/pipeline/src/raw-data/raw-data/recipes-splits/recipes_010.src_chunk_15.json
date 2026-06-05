@@ -1,0 +1,633 @@
+[
+  {
+    "recipe_name": "Classic Banana Pancakes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_banana_pancakes_20250713_102125_23a82087.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T10:21:25.546947000Z",
+    "selected_ingredients": [
+      "whole wheat flour",
+      "milk",
+      "sugar",
+      "banana",
+      "egg",
+      "butter",
+      "cinnamon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A stack of three golden-brown pancakes rests on a simple, round ceramic plate with natural imperfections. The pancakes are fluffy, with visible pockets. Slices of ripe banana are casually placed around the base of the pancake stack and on top. A small pat of unsalted butter, slightly melted, sits on the topmost pancake. A rich amber maple syrup is drizzled generously over the stack, glistening. The plate is centered on a well-used wooden dining table. A simple fork and a crumpled cloth napkin are nearby. Warm, soft kitchen lighting illuminates the scene, creating a cozy, inviting atmosphere. The overall presentation is unpretentious and comforting.",
+    "number_of_servings": 3,
+    "cuisine_type": "American",
+    "cultural_origin": "American",
+    "cultural_serving_suggestions": [
+      "Drizzle with maple syrup",
+      "Serve with fresh fruit"
+    ],
+    "hero_ingredient": "Banana",
+    "ingredients": [
+      {
+        "name": "Whole wheat flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Ripe banana",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30 g (for batter) plus more for cooking"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "Pinch"
+      }
+    ],
+    "instructions": [
+      "Mash ripe bananas in a large bowl.",
+      "Add egg, milk, 30 g melted butter, granulated sugar, and ground cinnamon to mashed bananas. Whisk until well combined.",
+      "In a separate bowl, combine whole wheat flour, baking powder, and salt.",
+      "Add dry ingredients to the wet banana mixture. Mix gently until just combined. Do not overmix; lumps are fine.",
+      "Heat a large frying pan or griddle over medium heat. Lightly butter the pan.",
+      "Pour approximately 60 ml of batter per pancake onto the hot pan.",
+      "Cook for 2-3 minutes per side, until golden brown and bubbles form on the surface. Flip and cook until cooked through.",
+      "Repeat with remaining batter, adding more butter to the pan as needed.",
+      "Serve pancakes warm."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 10,
+      "calories": 424,
+      "cholesterol_mg": 91,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 12,
+      "saturated_fat_g": 7.3,
+      "sodium_mg": 108,
+      "total_carbs_g": 68.7,
+      "total_fat_g": 13.5,
+      "total_sugars_g": 23.2,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 4.2,
+      "calories": 177,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 5,
+      "saturated_fat_g": 3,
+      "sodium_mg": 45,
+      "total_carbs_g": 28.7,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 9.7,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30,
+      "dietary_fiber": 27,
+      "protein": 24,
+      "saturated_fat": 36,
+      "sodium": 5,
+      "total_carbs": 25,
+      "total_fat": 17
+    },
+    "serving_size_g": 239.5,
+    "total_recipe_weight_g": 718.5
+  },
+  {
+    "recipe_name": "Classic Apple Crumble",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_apple_crumble_20250713_102122_69c21850.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T10:21:22.871195000Z",
+    "selected_ingredients": [
+      "apple"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of classic apple crumble served in a shallow, cream-colored ceramic bowl with subtle rim imperfections. The topping is a rugged, golden-brown crust featuring coarse flour crumbs and toasted rolled oats. Soft, 2cm chunks of stewed Granny Smith apples are visible beneath the topping, with thick, caramelized amber juices bubbling slightly at the dish's edges. A single, generous pour of thick, pale yellow vanilla custard pools naturally on one side, partially melting into the warm crumble. The bowl sits on a dark, weathered oak table beside a folded linen napkin and a tarnished silver spoon. Soft, warm kitchen light emphasizes the crunchy textures and steam rising from the fruit.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve warm with hot vanilla custard",
+      "Accompany with a dollop of clotted cream",
+      "Pair with a scoop of vanilla bean ice cream"
+    ],
+    "hero_ingredient": "Apple",
+    "ingredients": [
+      {
+        "name": "Granny Smith apples",
+        "quantity": "800g"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "150g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "200g"
+      },
+      {
+        "name": "Cold unsalted butter",
+        "quantity": "100g"
+      },
+      {
+        "name": "Rolled oats",
+        "quantity": "50g"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Peel, core, and cut apples into 2cm chunks.",
+      "Toss apples with 50g sugar, cinnamon, and lemon juice in a bowl.",
+      "Transfer apple mixture to a 20cm baking dish.",
+      "Cut cold butter into small cubes.",
+      "Rub butter into flour using fingertips until mixture resembles coarse breadcrumbs.",
+      "Stir in remaining 100g sugar and rolled oats.",
+      "Spread crumble topping evenly over the apples.",
+      "Bake for 35 to 40 minutes until the top is golden brown and fruit is bubbling.",
+      "Remove from oven and rest for 5 minutes before serving."
+    ],
+    "notes": [
+      "Use cold butter to ensure a crisp, crumbly texture.",
+      "Do not overwork the dough or it will become tough.",
+      "Granny Smith apples provide the best tart balance to the sweet topping."
+    ],
+    "traditional_techniques": [
+      "rubbing-in method"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 37.5,
+      "calories": 677.4,
+      "cholesterol_mg": 53.75,
+      "dietary_fiber_g": 7.83,
+      "protein_g": 7.85,
+      "saturated_fat_g": 13.05,
+      "sodium_mg": 6,
+      "total_carbs_g": 112.1,
+      "total_fat_g": 21.95,
+      "total_sugars_g": 58.3,
+      "trans_fat_g": 0.81
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 12.65,
+      "calories": 228.5,
+      "cholesterol_mg": 18.13,
+      "dietary_fiber_g": 2.64,
+      "protein_g": 2.65,
+      "saturated_fat_g": 4.4,
+      "sodium_mg": 2.02,
+      "total_carbs_g": 37.81,
+      "total_fat_g": 7.41,
+      "total_sugars_g": 19.67,
+      "trans_fat_g": 0.27
+    },
+    "daily_value_percentages": {
+      "cholesterol": 17.9,
+      "dietary_fiber": 31.3,
+      "protein": 15.7,
+      "saturated_fat": 65.3,
+      "sodium": 0.25,
+      "total_carbs": 37.4,
+      "total_fat": 33.8
+    },
+    "serving_size_g": 296.45,
+    "total_recipe_weight_g": 1185.8
+  },
+  {
+    "recipe_name": "Pineapple Coconut Chicken Curry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pineapple_coconut_chicken_curry_20250713_101258_e54eb667.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T10:12:58.798033000Z",
+    "selected_ingredients": [
+      "pineapple",
+      "coconut"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous serving of Pineapple Coconut Chicken Curry is presented in a simple, deep ceramic bowl, placed on a well-worn wooden kitchen table. Steamed white jasmine rice forms a base, generously topped with the vibrant, creamy curry. The sauce is a warm yellow-orange hue, flecked with small, soft pieces of caramelized onion, garlic, and ginger. Succulent 3 cm chunks of chicken breast are visible, simmered until tender. Bright 2 cm chunks of pineapple are nestled throughout, offering a contrasting sweet-tart note and adding pops of golden color. A light scattering of fresh chopped cilantro adds a touch of green. The overall impression is hearty, comforting, and visually inviting, typical of a home-cooked meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Southeast Asian",
+    "cultural_serving_suggestions": [
+      "Serve immediately with steamed jasmine rice.",
+      "Offer a side of fresh lime wedges for squeezing.",
+      "Serve with a simple green salad."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "600 g, cut into 3 cm chunks"
+      },
+      {
+        "name": "Fresh pineapple",
+        "quantity": "300 g, peeled and cut into 2 cm chunks"
+      },
+      {
+        "name": "Coconut milk",
+        "quantity": "400 ml can"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2 cm piece, grated"
+      },
+      {
+        "name": "Curry powder",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "1/2 teaspoon (optional)"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1/2 teaspoon"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "2 tablespoons, chopped, for garnish"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "250 g, uncooked"
+      }
+    ],
+    "instructions": [
+      "Cook jasmine rice according to package directions. Set aside.",
+      "Heat vegetable oil in a large pot or deep skillet over medium heat.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic and grated ginger. Cook for 1 minute until fragrant.",
+      "Stir in curry powder and chili flakes. Cook for 30 seconds.",
+      "Add chicken chunks to the pot. Sear chicken until lightly browned on all sides. Internal temperature must reach 75°C (167°F).",
+      "Pour in coconut milk. Add fish sauce, salt, and black pepper. Stir well.",
+      "Bring the curry to a gentle simmer. Reduce heat to low. Cover and cook for 15 minutes, or until chicken is cooked through.",
+      "Stir in pineapple chunks. Cook for another 5 minutes, allowing pineapple to heat through and slightly soften.",
+      "Taste and adjust seasoning if needed.",
+      "Serve hot over cooked jasmine rice. Garnish with fresh chopped cilantro."
+    ],
+    "notes": [
+      "For a spicier curry, increase red chili flakes or add a fresh chopped chili with the aromatics.",
+      "Chicken thighs can be used instead of breast for a richer flavor."
+    ]
+  },
+  {
+    "recipe_name": "Beer-Braised Lamb Croquettes with Garlic Aioli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_beer-braised_lamb_croquettes_with_garlic_aioli_20250713_100933_309132c0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T10:09:34.390552000Z",
+    "selected_ingredients": [
+      "lamb",
+      "beer",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "Three golden-brown, elongated oval croquettes are artfully arranged on a clean white porcelain plate, slightly off-center to allow for negative space. Each croquette boasts a crispy, light golden-brown panko crust with subtle textural variations. A generous dollop of creamy, off-white garlic aioli sits beside the croquettes, its smooth surface contrasting with the croquettes' texture. A delicate sprinkle of finely chopped fresh parsley adds a vibrant green accent over the aioli and croquettes. The background features a simple wooden table surface, with a silver fork and knife placed neatly beside the plate on a folded white cotton napkin. Natural, even lighting highlights the textures and colors of the dish, creating a professional yet approachable presentation. The entire plate is visible, showcasing a balanced and appealing starter portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Lamb",
+    "ingredients": [
+      {
+        "name": "Lamb shoulder, boneless",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Dark beer (e.g., stout)",
+        "quantity": "330 ml"
+      },
+      {
+        "name": "Garlic cloves, crushed",
+        "quantity": "4"
+      },
+      {
+        "name": "Onion, chopped",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, chopped",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk, chopped",
+        "quantity": "1"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Eggs, beaten",
+        "quantity": "2"
+      },
+      {
+        "name": "Panko breadcrumbs",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Vegetable oil, for frying",
+        "quantity": "As needed"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "For Garlic Aioli:",
+        "quantity": ""
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic clove, minced",
+        "quantity": "1"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Olive oil (light)",
+        "quantity": "150 ml"
+      },
+      {
+        "name": "Fresh parsley, finely chopped, for garnish",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Season lamb shoulder generously with salt and pepper.",
+      "Heat a heavy-bottomed pot over medium-high heat. Sear lamb on all sides until browned. Remove lamb.",
+      "Add onion, carrot, and celery to the pot. Sauté 5 minutes until softened.",
+      "Add crushed garlic, bay leaf, and thyme. Cook 1 minute until fragrant.",
+      "Return lamb to the pot. Pour in beer and beef stock.",
+      "Bring liquid to a simmer. Cover pot tightly. Transfer to preheated oven. Braise 2.5 to 3 hours, or until lamb is fork-tender.",
+      "Remove lamb from pot. Shred meat using two forks. Discard any large fat pieces.",
+      "Strain braising liquid into a saucepan. Discard solids. Reduce liquid over medium-high heat until thickened, about 10-15 minutes. You should have about 50 ml of rich sauce.",
+      "Combine shredded lamb with 30 ml of reduced sauce. Mix well. Chill lamb mixture 1 hour until firm.",
+      "Form chilled lamb mixture into 12 elongated oval or cylindrical croquettes.",
+      "Set up a breading station: one bowl with flour, one with beaten eggs, one with panko breadcrumbs.",
+      "Dredge each croquette in flour, then egg, then panko. Ensure full coating.",
+      "For Garlic Aioli: Whisk egg yolk, minced garlic, Dijon mustard, and lemon juice in a bowl.",
+      "Slowly drizzle in olive oil while continuously whisking until aioli is thick and emulsified. Season with salt.",
+      "Heat vegetable oil in a deep pan to 170°C. Oil should be deep enough to submerge croquettes.",
+      "Carefully fry croquettes in batches for 3-4 minutes until golden brown and crispy. Do not overcrowd the pan.",
+      "Remove croquettes with a slotted spoon. Drain on paper towels.",
+      "Serve 3 croquettes per plate with a dollop of garlic aioli. Garnish with finely chopped fresh parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1069,
+      "cholesterol_mg": 237,
+      "dietary_fiber_g": 4,
+      "protein_g": 40.6,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 585,
+      "total_carbs_g": 67.8,
+      "total_fat_g": 68.7,
+      "total_sugars_g": 4.5,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 416,
+      "cholesterol_mg": 92,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 15.8,
+      "saturated_fat_g": 5.7,
+      "sodium_mg": 227,
+      "total_carbs_g": 26.4,
+      "total_fat_g": 26.7,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78.9,
+      "dietary_fiber": 14.3,
+      "protein": 81.2,
+      "saturated_fat": 74,
+      "sodium": 25.4,
+      "total_carbs": 24.7,
+      "total_fat": 88.1
+    },
+    "serving_size_g": 257,
+    "total_recipe_weight_g": 1028
+  },
+  {
+    "recipe_name": "Chicken Shoyu Ramen",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_shoyu_ramen_20250713_100843_dfab3225.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T10:08:43.528637000Z",
+    "selected_ingredients": [
+      "egg",
+      "noodle",
+      "soy sauce",
+      "chicken",
+      "garlic"
+    ],
+    "complexity": "standard",
+    "special_requests": "don't have mirin",
+    "visual_description": "A single, elegantly plated bowl of Chicken Shoyu Ramen is centered on a simple wooden table. A deep white ceramic ramen bowl holds clear, amber broth and fresh, wavy noodles. Thick chunks of seared chicken are arranged atop the noodles. Vibrant green blanched bok choy leaves provide fresh contrast. A perfectly soft-boiled egg, halved lengthwise, reveals its jammy golden yolk. The dish is garnished with thinly sliced bright green spring onions, a dark green rectangular nori sheet, and golden-brown roasted garlic cloves. The balanced composition is inviting. Dark wooden chopsticks rest beside the bowl on a light cotton napkin.",
+    "number_of_servings": 3,
+    "cuisine_type": "Japanese",
+    "cultural_origin": "Japanese",
+    "cultural_serving_suggestions": [
+      "Serve immediately in deep ceramic ramen bowls.",
+      "Offer additional condiments like chili oil (rayu) on the side.",
+      "Use chopsticks for eating noodles and solids, a large ceramic spoon for broth."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fresh ramen noodles",
+        "quantity": "270g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "1 whole head plus 3 cloves"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "100ml"
+      },
+      {
+        "name": "High-quality chicken broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "30g"
+      },
+      {
+        "name": "Spring onions (scallions)",
+        "quantity": "3-4 stalks"
+      },
+      {
+        "name": "Nori (seaweed sheets)",
+        "quantity": "3 sheets"
+      },
+      {
+        "name": "Bok choy or spinach",
+        "quantity": "150g"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "A few drops"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Cut off the top of the whole garlic head. Drizzle with olive oil. Wrap in foil. Roast for 30-40 minutes until very soft. Squeeze out cloves. Mash half for broth, reserve half for garnish.",
+      "Season chicken thighs with salt and pepper. Sear in a hot pan until golden brown on both sides. Transfer seared chicken to a pot. Add 1.5 litres chicken broth, 3 smashed garlic cloves, and 30g sliced ginger. Simmer gently for 20-25 minutes until chicken reaches 75°C internal temperature and is tender. Remove chicken. Shred into bite-sized pieces or slice into thick chunks. Strain broth, discard aromatics. Keep broth warm.",
+      "Bring a small pot of water to a rolling boil. Gently lower 3 eggs into the boiling water. Cook for exactly 6.5 minutes. Immediately transfer eggs to an ice bath. Peel carefully. Slice each egg in half lengthwise.",
+      "In a small saucepan, combine 100ml soy sauce, 50ml water, and 1 teaspoon sugar. Bring to a simmer. Stir until sugar dissolves. Remove from heat. This is your shoyu tare.",
+      "Briefly blanch 150g bok choy or spinach in the hot chicken broth for 1 minute until tender-crisp. Remove and drain.",
+      "Bring a large pot of water to a rolling boil. Cook 270g fresh ramen noodles according to package instructions (usually 2-3 minutes). Drain well.",
+      "Divide the shoyu tare evenly among 3 large ramen bowls. Add 500ml hot chicken broth to each bowl. Stir to combine. Add a portion of cooked noodles to each bowl. Arrange shredded chicken, blanched greens, and half a soft-boiled egg in each bowl. Garnish with thinly sliced spring onions, a sheet of nori, and a few roasted garlic cloves. Drizzle with a few drops of sesame oil. Serve immediately."
+    ],
+    "notes": [],
+    "traditional_techniques": [
+      "Broth making (Dashi-style principles)",
+      "Preparing Ajitama (marinated soft-boiled eggs)",
+      "Assembling ramen bowls with specific tare and toppings"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 550,
+      "cholesterol_mg": 340,
+      "dietary_fiber_g": 4.1,
+      "protein_g": 45.5,
+      "saturated_fat_g": 6,
+      "sodium_mg": 4281,
+      "total_carbs_g": 44.3,
+      "total_fat_g": 24.6,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 62.1,
+      "cholesterol_mg": 38.4,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 5.1,
+      "saturated_fat_g": 0.7,
+      "sodium_mg": 483.3,
+      "total_carbs_g": 5,
+      "total_fat_g": 2.8,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 113,
+      "dietary_fiber": 15,
+      "protein": 91,
+      "saturated_fat": 30,
+      "sodium": 186,
+      "total_carbs": 16,
+      "total_fat": 32
+    },
+    "serving_size_g": 886,
+    "total_recipe_weight_g": 2658
+  }
+]

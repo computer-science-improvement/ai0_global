@@ -1,0 +1,611 @@
+[
+  {
+    "recipe_name": "Baked Macaroni with Italian Sausage and Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_baked_macaroni_with_italian_sausage_and_mushrooms_20250706_194043_56cf9114.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T19:40:43.625268000Z",
+    "selected_ingredients": [
+      "egg",
+      "cheese",
+      "sausage",
+      "macaroni",
+      "onion",
+      "bread",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous single serving of baked macaroni is presented in a clean, white, shallow dinner bowl. The rich golden-brown topping, formed by baked breadcrumbs and melted Parmesan, crowns the macaroni, with hints of bubbly, rich red tomato sauce peeking through. Tender elbow macaroni is perfectly coated in a creamy, savory cheese sauce, interspersed with substantial chunks of browned Italian sausage and earthy, sliced cremini mushrooms. Vibrant green flecks of fresh chopped parsley are scattered artistically over the top. The dish exhibits comforting textures and appealing natural colors. The bowl rests on a simple wooden table surface, accompanied by a small side of crisp green salad in a matching white bowl and a thick slice of crusty artisanal bread. A folded white cotton napkin lies beside the plate. Natural, soft lighting illuminates the scene, highlighting the dish's warmth and inviting textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian American",
+    "cultural_origin": "Italian American",
+    "cultural_serving_suggestions": [
+      "Serve with a simple, undressed green salad.",
+      "Offer crusty Italian bread for dipping into the sauce.",
+      "Provide extra grated Parmesan cheese at the table."
+    ],
+    "hero_ingredient": "Italian Sausage",
+    "ingredients": [
+      {
+        "name": "Macaroni",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Italian Sausage (mild or hot)",
+        "quantity": "500 g, casings removed"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": "300 g, sliced"
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": "700 g can"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Shredded Mozzarella Cheese",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Grated Parmesan Cheese",
+        "quantity": "50 g, plus extra for serving"
+      },
+      {
+        "name": "Large Eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Panko Breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30 g, chopped, for garnish"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": "5 g (optional)"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C. Grease a 2.5-liter baking dish.",
+      "Cook macaroni according to package directions until al dente. Drain and set aside.",
+      "Heat olive oil in a large skillet over medium-high heat. Add Italian sausage. Break it up with a spoon. Cook until browned and cooked through, about 8-10 minutes. Drain excess fat.",
+      "Add diced onion to the skillet. Cook until softened, about 5 minutes.",
+      "Add sliced mushrooms and minced garlic. Cook until mushrooms release their liquid and brown, about 7-8 minutes.",
+      "Stir in crushed tomatoes and red pepper flakes (if using). Bring to a simmer. Reduce heat to low. Cook for 10 minutes, stirring occasionally.",
+      "In a separate saucepan, melt butter. Whisk in flour to form a roux. Cook for 1 minute.",
+      "Gradually whisk in milk until smooth and thickened, about 3-4 minutes. Season with salt and pepper.",
+      "In a large bowl, whisk eggs. Slowly whisk in a ladleful of the hot milk mixture to temper the eggs. Add the tempered egg mixture back into the remaining milk mixture. Stir well.",
+      "Combine cooked macaroni, sausage-mushroom-tomato mixture, milk sauce, shredded mozzarella, and 25g Parmesan in the large bowl. Mix thoroughly.",
+      "Pour mixture into the prepared baking dish.",
+      "In a small bowl, combine panko breadcrumbs and remaining 25g Parmesan. Sprinkle evenly over the top of the macaroni mixture.",
+      "Bake for 25-30 minutes, or until bubbling and the topping is golden brown.",
+      "Let rest for 5 minutes before serving. Garnish with fresh chopped parsley."
+    ],
+    "notes": [
+      "For a spicier dish, use hot Italian sausage and increase red pepper flakes.",
+      "Leftovers can be stored in an airtight container in the refrigerator for up to 3 days."
+    ],
+    "traditional_techniques": [
+      "Roux preparation for béchamel base"
+    ]
+  },
+  {
+    "recipe_name": "Chicken Cacciatore",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_20250706_193359_5cdbc346.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T19:34:00.116950000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "high protein",
+    "visual_description": "A single portion of rustic chicken cacciatore served in a shallow, cream-colored ceramic bowl with minor surface imperfections. Two whole, bone-in chicken thighs are the centerpiece, their skin appearing dark golden and tender from braising. The chicken is partially submerged in a thick, chunky tomato sauce featuring visible pieces of softened translucent onions and whole black olives. A single fresh rosemary sprig is placed casually on top. The bowl sits on a weathered dark wood kitchen table. Beside the bowl is a thick piece of torn crusty bread. The scene is illuminated by warm, soft overhead kitchen lighting, creating a cozy, authentic Italian home-dining atmosphere. A simple linen napkin and a stainless steel fork are placed to the left of the bowl.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty sourdough bread to soak up the tomato sauce",
+      "Pair with a side of simple polenta or rustic mashed potatoes",
+      "Traditional family-style dining involves placing the skillet in the center of the table"
+    ],
+    "hero_ingredient": "Braised Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in skin-on",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Canned crushed tomatoes",
+        "quantity": "800 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Black olives, pitted",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5 g"
+      }
+    ],
+    "instructions": [
+      "Season chicken thighs with salt and pepper on all sides.",
+      "Heat olive oil in a large deep skillet over medium-high heat.",
+      "Sear chicken skin-side down for 6 minutes until golden brown.",
+      "Flip chicken and sear for 4 minutes. Remove chicken from skillet.",
+      "Add diced onion to the skillet. Sauté for 5 minutes until soft.",
+      "Stir in minced garlic. Cook for 1 minute until fragrant.",
+      "Add crushed tomatoes, oregano, and the rosemary sprig.",
+      "Place chicken back into the skillet, nestled into the sauce.",
+      "Simmer on low heat for 30 minutes until chicken reaches 75°C internally.",
+      "Stir in the olives 5 minutes before serving."
+    ],
+    "notes": [
+      "Use bone-in thighs for maximum flavor and protein content",
+      "Ensure the sauce reduces until thick to concentrate the savory tomato profile",
+      "Always check the thickest part of the chicken for a safe internal temperature of 75°C"
+    ],
+    "traditional_techniques": [
+      "braising",
+      "soffritto",
+      "searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 588,
+      "cholesterol_mg": 154,
+      "dietary_fiber_g": 6,
+      "protein_g": 32.2,
+      "saturated_fat_g": 10.5,
+      "sodium_mg": 1716,
+      "total_carbs_g": 20.6,
+      "total_fat_g": 42.3,
+      "total_sugars_g": 10,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 152,
+      "cholesterol_mg": 39.8,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 8.3,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 444.8,
+      "total_carbs_g": 5.3,
+      "total_fat_g": 11,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 51,
+      "dietary_fiber": 21,
+      "protein": 64,
+      "saturated_fat": 53,
+      "sodium": 75,
+      "total_carbs": 7,
+      "total_fat": 54
+    },
+    "serving_size_g": 386,
+    "total_recipe_weight_g": 1543
+  },
+  {
+    "recipe_name": "Mushroom, Green Bean & Pear Salad",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mushroom%2C_green_bean_%26_pear_salad_20250706_191948_33115311.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T19:19:48.465355000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "veal",
+      "green pea",
+      "grape",
+      "green bean",
+      "pear"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Mushroom, Green Bean & Pear Salad is presented on a clean, round white porcelain plate. A vibrant bed of fresh mixed salad greens forms the base. Roasted mushrooms, halved or quartered and golden-brown, are scattered artfully, providing an earthy contrast. Crisp-tender green beans, cut into 3 cm pieces, intermingle with bright green peas, adding varied verdant hues. Diced pear cubes, with creamy white flesh, and halved red grapes, showcasing deep ruby tones, are interspersed, contributing sweet, juicy notes. The composition is lightly coated with a glistening vinaigrette. A sprinkle of fresh, finely chopped parsley adds a final vibrant green touch. The plate rests on a simple wooden table, with a cotton napkin, under natural, even lighting, creating a casual bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "Mushroom",
+    "ingredients": [
+      {
+        "name": "Mushrooms",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh green beans",
+        "quantity": "250g"
+      },
+      {
+        "name": "Frozen green peas",
+        "quantity": "150g"
+      },
+      {
+        "name": "Pear (firm)",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Red grapes (seedless)",
+        "quantity": "150g"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "100g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "White balsamic vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Honey (optional)",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1/2 tsp"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1/4 tsp"
+      },
+      {
+        "name": "Fresh parsley or chives (chopped)",
+        "quantity": "2 tbsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Halve or quarter mushrooms. Toss with 1 tbsp olive oil, salt, and pepper. Roast for 15-20 minutes until tender and browned.",
+      "Bring a pot of salted water to a boil. Blanch green beans for 2-3 minutes until crisp-tender. Immediately transfer to an ice bath. Drain well. Cut beans into 3 cm pieces.",
+      "Blanch green peas in the same boiling water for 1 minute. Drain and refresh in cold water.",
+      "Core and dice the pear into 1.5 cm cubes. Halve the red grapes.",
+      "In a small bowl, whisk together remaining olive oil, white balsamic vinegar, Dijon mustard, honey (if using), salt, and pepper for the dressing.",
+      "In a large bowl, combine roasted mushrooms, blanched green beans, green peas, diced pear, and halved grapes.",
+      "Add mixed salad greens to the bowl. Pour dressing over the salad ingredients. Toss gently to combine.",
+      "Divide the salad among four plates. Garnish with fresh chopped parsley or chives."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.44,
+      "calories": 256.9,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 6.76,
+      "protein_g": 7.13,
+      "saturated_fat_g": 1.98,
+      "sodium_mg": 324.2,
+      "total_carbs_g": 29.35,
+      "total_fat_g": 14.55,
+      "total_sugars_g": 19.44,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.43,
+      "calories": 76.9,
+      "cholesterol_mg": 0,
+      "dietary_fiber_g": 2.02,
+      "protein_g": 2.14,
+      "saturated_fat_g": 0.59,
+      "sodium_mg": 97,
+      "total_carbs_g": 8.78,
+      "total_fat_g": 4.35,
+      "total_sugars_g": 5.82,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 0,
+      "dietary_fiber": 24.1,
+      "protein": 14.3,
+      "saturated_fat": 9.9,
+      "sodium": 14.1,
+      "total_carbs": 10.7,
+      "total_fat": 18.7
+    },
+    "serving_size_g": 334.2,
+    "total_recipe_weight_g": 1336.7
+  },
+  {
+    "recipe_name": "Poulet Suprême, Tomate Confite et Jus Ailé",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poulet_supr%C3%AAme%2C_tomate_confite_et_jus_ail%C3%A9_20250706_191814_51895145.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T19:18:14.669039000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "garlic"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, perfectly pan-seared chicken supreme, skin crisp and golden-brown, rests elegantly on a pristine white bone china plate with a subtle, organic rim. The chicken, presented whole, dominates the left side of the plate, its natural form preserved. A glistening, dark amber chicken jus, infused with garlic and tomato essence, forms an organic, flowing pool beneath and around the chicken, reflecting light. To the right, a small, vibrant cluster of burst and softened confit cherry tomatoes, their skins gently wrinkled, adds a pop of rich red and orange. Beside the tomatoes, a small, artfully sculpted quenelle of creamy, pale beige garlic purée provides a soft textural contrast. A single, delicate sprig of fresh chervil or tarragon is precisely placed on the chicken or jus, offering a touch of verdant green and aromatic freshness. Abundant negative space surrounds the components, emphasizing the minimalist and architectural precision of the plating. The plate sits on a premium grey veined marble surface, accompanied by a single, precisely folded white linen napkin and polished silver flatware. Dramatic professional lighting casts soft shadows, highlighting the textures and rich colors of the dish against an ultra-minimalist background, creating a scene of sophisticated culinary artistry.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "hero_ingredient": "Chicken Supreme",
+    "ingredients": [
+      {
+        "name": "Chicken supremes (bone-in, skin-on)",
+        "quantity": "4 (approx. 250g each)"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "12"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "White wine (dry)",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh chervil or tarragon sprigs",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "For Confit Tomatoes and Garlic: Place cherry tomatoes and 8 unpeeled garlic cloves in a small baking dish. Drizzle with 30ml olive oil. Add 2 thyme sprigs. Season lightly with salt. Roast for 45-60 minutes, until tomatoes burst and garlic is soft. Peel garlic cloves after roasting.",
+      "For Garlic Purée: Peel 4 raw garlic cloves. Blanch in boiling water for 1 minute. Drain. Repeat blanching twice more. Combine blanched garlic with 2 roasted confit garlic cloves and 10g butter. Mash to a smooth purée. Season with salt.",
+      "For Chicken Jus Ailé: Finely dice shallots. In a saucepan, heat 10ml olive oil. Sauté shallots until translucent. Add 2 roasted confit garlic cloves and 2 thyme sprigs. Deglaze with white wine; reduce by half. Add chicken stock. Simmer gently for 20 minutes, reducing liquid by half. Strain through a fine-mesh sieve. Discard solids. Return liquid to pan. Whisk in 20g cold butter. Keep warm.",
+      "For Chicken Suprêmes: Pat chicken supremes dry. Season generously with salt and pepper. Heat remaining 10ml olive oil in an oven-safe skillet over medium-high heat. Place chicken skin-side down. Sear for 6-8 minutes until skin is deeply golden and crispy. Flip chicken. Transfer skillet to preheated oven. Roast for 15-20 minutes, or until internal temperature reaches 75°C. Let rest 5 minutes before plating.",
+      "To Serve: Spoon a natural pool of chicken jus onto each plate. Place one rested chicken supreme on top. Arrange a small cluster of confit cherry tomatoes beside the chicken. Add a small, elegant quenelle of garlic purée. Garnish with a small sprig of fresh chervil or tarragon."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 719.2,
+      "cholesterol_mg": 236.9,
+      "dietary_fiber_g": 3,
+      "protein_g": 56.4,
+      "saturated_fat_g": 14.6,
+      "sodium_mg": 569.9,
+      "total_carbs_g": 16.4,
+      "total_fat_g": 45.4,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 123.4,
+      "cholesterol_mg": 40.6,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 9.7,
+      "saturated_fat_g": 2.5,
+      "sodium_mg": 97.8,
+      "total_carbs_g": 2.8,
+      "total_fat_g": 7.8,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 78.9,
+      "dietary_fiber": 10.7,
+      "protein": 112.7,
+      "saturated_fat": 73.2,
+      "sodium": 24.8,
+      "total_carbs": 6,
+      "total_fat": 58.2
+    },
+    "serving_size_g": 583,
+    "total_recipe_weight_g": 2332
+  },
+  {
+    "recipe_name": "Black Bean and Rice Salad with Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_black_bean_and_rice_salad_with_chicken_20250706_190543_f09fb928.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-06T19:05:43.796302000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice",
+      "green pea",
+      "chili",
+      "bean",
+      "basil"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A hearty Black Bean and Rice Salad is presented in a wide, shallow ceramic bowl, characteristic of home kitchenware. The components are naturally arranged, with a generous portion filling the bowl. Diced chicken cubes are interspersed among the fluffy, cooled white rice and dark, glossy black beans. Bright green peas and flecks of finely diced red chili add pops of color. Chopped fresh basil leaves are scattered throughout, providing an aromatic garnish. The ingredients are lightly coated in a simple, clear dressing, giving them a slight sheen. The salad appears fresh and wholesome. The bowl sits on a well-used, light-colored wooden dining table, illuminated by warm, natural kitchen light. A simple cloth napkin and everyday flatware are casually placed beside the bowl, suggesting a relaxed family meal.",
+    "number_of_servings": 4,
+    "cuisine_type": "American",
+    "hero_ingredient": "Black Bean",
+    "ingredients": [
+      {
+        "name": "Cooked chicken breast",
+        "quantity": "300g"
+      },
+      {
+        "name": "Cooked long-grain rice, cooled",
+        "quantity": "250g"
+      },
+      {
+        "name": "Canned black beans, rinsed and drained",
+        "quantity": "400g"
+      },
+      {
+        "name": "Frozen green peas, thawed",
+        "quantity": "150g"
+      },
+      {
+        "name": "Red chili, deseeded and finely diced",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh basil leaves, chopped",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "5ml"
+      },
+      {
+        "name": "Ground cumin (optional)",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "3g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "1g"
+      }
+    ],
+    "instructions": [
+      "Cook chicken breast until internal temperature reaches 75°C (167°F). Dice chicken into 1.5 cm cubes. Set aside to cool.",
+      "Ensure cooked rice is completely cooled. Fluff with a fork.",
+      "Rinse and drain canned black beans thoroughly.",
+      "Thaw frozen green peas. Optionally, blanch quickly for brighter color, then cool.",
+      "Finely dice the deseeded red chili. Chop fresh basil leaves.",
+      "Prepare the dressing: In a small bowl, whisk together olive oil, lime juice, honey, ground cumin (if using), salt, and black pepper.",
+      "In a large mixing bowl, combine the diced chicken, cooled rice, black beans, green peas, diced chili, and chopped basil.",
+      "Pour the dressing over the salad ingredients. Toss gently to coat everything evenly.",
+      "Taste and adjust seasoning if needed. Serve chilled or at room temperature."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.4,
+      "calories": 501.8,
+      "cholesterol_mg": 63.8,
+      "dietary_fiber_g": 10.8,
+      "protein_g": 36.4,
+      "saturated_fat_g": 2.9,
+      "sodium_mg": 637,
+      "total_carbs_g": 49.5,
+      "total_fat_g": 17.5,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 161.5,
+      "cholesterol_mg": 20.5,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 11.7,
+      "saturated_fat_g": 0.9,
+      "sodium_mg": 205,
+      "total_carbs_g": 15.9,
+      "total_fat_g": 5.6,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 21,
+      "dietary_fiber": 39,
+      "protein": 73,
+      "saturated_fat": 15,
+      "sodium": 28,
+      "total_carbs": 18,
+      "total_fat": 22
+    },
+    "serving_size_g": 310.8,
+    "total_recipe_weight_g": 1243
+  }
+]

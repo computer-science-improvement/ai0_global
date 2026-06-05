@@ -1,0 +1,705 @@
+[
+  {
+    "recipe_name": "Spanish Chicken and Chorizo with Crispy Potatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251031_082419_907f116b.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-31T08:24:19.851718000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "cheese",
+      "onion",
+      "sausage"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish Chicken and Chorizo with Crispy Potatoes is presented on a round, rustic white ceramic plate. A whole, seared chicken thigh, its skin golden and crisp, is the focal point. Thick-sliced, caramelized chorizo rounds are scattered around the chicken. Diced potatoes, roasted to a golden brown with slightly crisp edges, are nestled among tender, translucent slices of caramelized onion and vibrant red bell pepper pieces. A rich, savory sauce lightly coats the ingredients. Melted, bubbly Manchego cheese forms a golden crust over elements of the dish. The dish is garnished with a generous sprinkle of freshly chopped flat-leaf parsley, adding a pop of fresh green color. The arrangement is organic and inviting, with moderate negative space. A simple, modern bistro setting with a natural wood table, a white cotton napkin, and basic flatware (fork and knife) completes the scene, under natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the flavorful sauce.",
+      "Pair with a robust Spanish red wine, such as Rioja or Tempranillo."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Chorizo sausage, large",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Potatoes, waxy",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Onion, large",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "pinch (optional)"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Manchego cheese",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "small bunch"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat 1 tbsp olive oil in a large oven-safe skillet over medium-high heat. Sear chicken thighs skin-side down for 5-7 minutes until golden and crispy. Flip and sear for another 3 minutes. Remove chicken from skillet; set aside.",
+      "Slice chorizo into 1 cm thick rounds. Add to the same skillet. Cook for 3-5 minutes until browned and fat is rendered. Remove chorizo; set aside, reserving rendered fat in skillet.",
+      "Dice potatoes into 2 cm cubes. Slice onion thinly. Mince garlic. Dice red bell pepper into 2 cm pieces.",
+      "Add remaining 1 tbsp olive oil to skillet if needed. Add potatoes, onion, and bell pepper. Sauté for 8-10 minutes until vegetables soften and potatoes begin to brown.",
+      "Stir in smoked paprika and saffron (if using). Cook for 1 minute until fragrant.",
+      "Add minced garlic. Cook for 1 minute more.",
+      "Pour in chicken stock. Bring to a simmer. Return seared chicken thighs and cooked chorizo to the skillet, nestling them among the vegetables.",
+      "Transfer skillet to preheated oven. Bake for 25 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and potatoes are tender.",
+      "Grate Manchego cheese. Sprinkle over the chicken and vegetables. Return to oven for 5-7 minutes, until cheese is melted and bubbly.",
+      "Finely chop fresh parsley. Garnish generously before serving."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Braising",
+      "Layering flavors with paprika and saffron"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1093,
+      "cholesterol_mg": 308,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 70.5,
+      "saturated_fat_g": 22.5,
+      "sodium_mg": 1267,
+      "total_carbs_g": 37.2,
+      "total_fat_g": 72.7,
+      "total_sugars_g": 6.2,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 181,
+      "cholesterol_mg": 51,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 11.7,
+      "saturated_fat_g": 3.7,
+      "sodium_mg": 210,
+      "total_carbs_g": 6.2,
+      "total_fat_g": 12,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 103,
+      "dietary_fiber": 20,
+      "protein": 141,
+      "saturated_fat": 113,
+      "sodium": 55,
+      "total_carbs": 14,
+      "total_fat": 93
+    },
+    "serving_size_g": 604,
+    "total_recipe_weight_g": 2417
+  },
+  {
+    "recipe_name": "Mediterranean Chicken with Spiced Eggplant and Almonds",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251031_035240_cd5e52be.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 16,
+    "timestamp": "2025-10-31T03:52:41.010939000Z",
+    "selected_ingredients": [
+      "beef",
+      "chicken",
+      "onion",
+      "chicken stock",
+      "salad green",
+      "bell pepper",
+      "beef stock",
+      "garlic",
+      "almond",
+      "ginger",
+      "basil",
+      "oil",
+      "butter",
+      "parsley",
+      "vegetable stock",
+      "mayonnaise",
+      "thyme",
+      "walnut",
+      "dill",
+      "spinach",
+      "egg",
+      "hazelnut",
+      "paprika",
+      "pistachio",
+      "scallop",
+      "buttermilk",
+      "coconut milk",
+      "cinnamon",
+      "cumin",
+      "eggplant",
+      "anise",
+      "cardamom",
+      "egg white",
+      "avocado"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The Mediterranean Chicken with Spiced Eggplant and Almonds is presented on a clean, white porcelain dinner plate, centered on a rustic wooden table. A single golden-brown pan-seared chicken thigh, unsliced, sits prominently. Beside it, a vibrant mound of spiced eggplant and red bell pepper cubes, deeply caramelized and tender, is gently nestled with wilted dark green spinach. The eggplant cubes retain their distinct shape and deep purple hue, contrasting with the bright red bell pepper. The dish is garnished generously with finely chopped fresh parsley, providing a pop of green, and a scattering of golden-toasted slivered almonds, adding texture and visual appeal. The composition is balanced with moderate negative space. A cotton napkin is placed beside the plate. The natural lighting highlights the rich, earthy colors and varied textures of the dish, evoking a warm, inviting casual dining experience.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with a side of fluffy couscous or warm crusty bread to soak up the juices.",
+      "A simple green salad with lemon vinaigrette complements the rich flavors."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Eggplant",
+        "quantity": "1 large (approx. 400g), cut into 2 cm cubes"
+      },
+      {
+        "name": "Red Bell Pepper",
+        "quantity": "1, deseeded, cut into 2 cm cubes"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium, finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves, minced"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": "1 cm piece, grated"
+      },
+      {
+        "name": "Fresh Spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Blanched Slivered Almonds",
+        "quantity": "50g"
+      },
+      {
+        "name": "Paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": "2g"
+      },
+      {
+        "name": "Chicken Stock",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15g, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season with salt, pepper, and 5g paprika.",
+      "Heat 15 ml olive oil in a large pan over medium-high heat.",
+      "Sear chicken thighs for 5-7 minutes per side until golden brown and cooked through (internal temperature 75°C). Remove chicken and set aside.",
+      "Add remaining 15 ml olive oil to the pan. Add eggplant and bell pepper cubes. Sauté for 8-10 minutes until softened and lightly browned.",
+      "Add diced onion, minced garlic, grated ginger, remaining 5g paprika, cumin, and cinnamon to the pan. Cook for 3-4 minutes until fragrant.",
+      "Pour in chicken stock. Bring to a simmer, scraping up any browned bits from the pan. Cook for 5 minutes until liquid slightly reduces.",
+      "Stir in fresh spinach until wilted.",
+      "Return chicken thighs to the pan. Coat with the eggplant and spinach mixture.",
+      "Toast slivered almonds in a dry pan over medium heat for 2-3 minutes until golden.",
+      "Garnish with fresh chopped parsley and toasted almonds before serving."
+    ],
+    "notes": [
+      "Adjust paprika and cumin quantities to your preferred spice level.",
+      "For a richer flavor, marinate chicken in spices for 30 minutes before cooking."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 519,
+      "cholesterol_mg": 196,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 37.9,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 861,
+      "total_carbs_g": 19.3,
+      "total_fat_g": 34.4,
+      "total_sugars_g": 7.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 107,
+      "cholesterol_mg": 41,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 7.8,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 178,
+      "total_carbs_g": 4,
+      "total_fat_g": 7.1,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 29,
+      "protein": 76,
+      "saturated_fat": 34,
+      "sodium": 37,
+      "total_carbs": 7,
+      "total_fat": 44
+    },
+    "serving_size_g": 484,
+    "total_recipe_weight_g": 1935
+  },
+  {
+    "recipe_name": "Spicy Pork and Soba Noodle Stir-fry",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251030_192300_1d65823b.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2025-10-30T19:23:00.997113000Z",
+    "selected_ingredients": [
+      "pork",
+      "onion",
+      "chili bean paste",
+      "soba noodle",
+      "garlic",
+      "sesame oil"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, modest portion of Spicy Pork and Soba Noodle Stir-fry is presented in an everyday ceramic bowl. The base consists of pale brown soba noodles, loosely intertwined. Tender, thinly sliced pork strips, exhibiting a rich, glossy brown hue from the stir-fry sauce, are artfully arranged atop the noodles. Interspersed are soft, translucent slices of onion and specks of minced garlic. A vibrant green garnish of diagonally sliced green onions and a sprinkle of toasted sesame seeds adds a fresh contrast and textural interest. The dish is placed on a well-used wooden dining table, accompanied by a pair of simple wooden chopsticks resting beside the bowl. The setting evokes a warm, cozy, homely family kitchen atmosphere with soft, inviting lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Asian",
+    "cultural_origin": "Asian Fusion",
+    "cultural_serving_suggestions": [
+      "Serve with chopsticks.",
+      "Offer a small side dish of pickled daikon or kimchi."
+    ],
+    "hero_ingredient": "Pork",
+    "ingredients": [
+      {
+        "name": "Pork loin",
+        "quantity": "500g, thinly sliced into 0.5 cm strips"
+      },
+      {
+        "name": "Soba noodles",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 large, thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves, minced"
+      },
+      {
+        "name": "Chili bean paste (Doubanjiang)",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Neutral cooking oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2 stalks, diagonally sliced, for garnish"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "1 teaspoon, for garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare pork: Slice pork loin thinly against the grain into 0.5 cm strips.",
+      "Cook soba noodles: Boil 2 litres of water in a large pot. Add soba noodles and cook according to package directions, typically 4-5 minutes. Drain immediately and rinse with cold water to prevent sticking. Set aside.",
+      "Heat wok or large skillet: Add 2 tablespoons of neutral cooking oil over medium-high heat.",
+      "Stir-fry pork: Add pork strips to the hot wok. Stir-fry for 3-4 minutes until cooked through and lightly browned. Ensure internal temperature reaches 75°C (167°F). Remove pork from wok and set aside.",
+      "Sauté aromatics: Add sliced onion to the wok. Sauté for 2-3 minutes until softened. Add minced garlic and sauté for 30 seconds until fragrant.",
+      "Add chili bean paste and sauce: Stir in chili bean paste, soy sauce, rice vinegar, and sugar. Cook for 1 minute, stirring constantly, until sauce thickens slightly.",
+      "Combine: Return cooked pork to the wok. Add drained soba noodles. Toss everything together to coat evenly with the sauce. Cook for 1-2 minutes until noodles are heated through.",
+      "Finish: Remove from heat. Drizzle with 1 tablespoon of sesame oil.",
+      "Serve: Transfer to serving bowls. Garnish generously with diagonally sliced green onions and toasted sesame seeds."
+    ],
+    "traditional_techniques": [
+      "Stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1,
+      "calories": 406,
+      "cholesterol_mg": 91,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 38.6,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 979,
+      "total_carbs_g": 26.3,
+      "total_fat_g": 17.1,
+      "total_sugars_g": 3.6,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 127,
+      "cholesterol_mg": 28.5,
+      "dietary_fiber_g": 1,
+      "protein_g": 12.1,
+      "saturated_fat_g": 1,
+      "sodium_mg": 305.7,
+      "total_carbs_g": 8.2,
+      "total_fat_g": 5.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 30,
+      "dietary_fiber": 12,
+      "protein": 77,
+      "saturated_fat": 16,
+      "sodium": 43,
+      "total_carbs": 10,
+      "total_fat": 22
+    },
+    "serving_size_g": 320.3,
+    "total_recipe_weight_g": 1281
+  },
+  {
+    "recipe_name": "Creamy Roasted Butternut Squash and Leek Soup",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251030_141252_18b8bf85.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 11,
+    "timestamp": "2025-10-30T14:12:53.659537000Z",
+    "selected_ingredients": [
+      "squash",
+      "cucumber",
+      "leek"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of creamy, golden-orange butternut squash and leek soup is presented in a rustic, deep ceramic bowl with natural imperfections. The soup fills the bowl, exhibiting a smooth, velvety texture with subtle specks of leek. Thin, vibrant green cucumber ribbons are artfully draped across one side of the soup, adding a fresh, crisp visual contrast. A sprinkle of finely chopped fresh chives or parsley garnishes the center, introducing a pop of dark green. The bowl rests on a well-used wooden dining table. A simple, off-white cloth napkin is casually placed beside it. Warm, cozy kitchen lighting illuminates the scene, creating an inviting, homely atmosphere. The background is minimally cluttered, focusing entirely on the comforting dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Butternut Squash",
+    "ingredients": [
+      {
+        "name": "Butternut squash",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Leeks",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Heavy cream (optional)",
+        "quantity": "125 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley or chives",
+        "quantity": "15 g, chopped"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C. Line a baking tray with parchment paper.",
+      "Peel and deseed the butternut squash. Cut into 2-3 cm cubes.",
+      "Trim the leeks. Slice the white and light green parts into 1 cm thick rounds. Rinse thoroughly to remove dirt.",
+      "Toss squash cubes and leek rounds with 30 ml olive oil, salt, and pepper on the baking tray.",
+      "Roast for 25-30 minutes. Vegetables should be tender and slightly caramelized.",
+      "While vegetables roast, dice the onion. Mince the garlic.",
+      "Heat remaining 30 ml olive oil in a large pot over medium heat.",
+      "Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook for 1 minute until fragrant.",
+      "Add roasted squash and leeks to the pot. Pour in vegetable broth.",
+      "Bring to a simmer. Cook for 10 minutes to allow flavors to meld.",
+      "Carefully transfer soup to a blender or use an immersion blender. Blend until smooth and creamy.",
+      "Return soup to the pot. Stir in heavy cream, if using. Heat gently.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "For garnish, use a vegetable peeler to create long, thin ribbons from the fresh cucumber.",
+      "Ladle hot soup into individual bowls. Garnish with cucumber ribbons and chopped fresh parsley or chives. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 439,
+      "cholesterol_mg": 38,
+      "dietary_fiber_g": 8.39,
+      "protein_g": 6.49,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 797,
+      "total_carbs_g": 52.26,
+      "total_fat_g": 25.95,
+      "total_sugars_g": 14.49,
+      "trans_fat_g": 0.38
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 59,
+      "cholesterol_mg": 5,
+      "dietary_fiber_g": 1.13,
+      "protein_g": 0.88,
+      "saturated_fat_g": 1.23,
+      "sodium_mg": 107,
+      "total_carbs_g": 7.05,
+      "total_fat_g": 3.5,
+      "total_sugars_g": 1.95,
+      "trans_fat_g": 0.05
+    },
+    "daily_value_percentages": {
+      "cholesterol": 13,
+      "dietary_fiber": 30,
+      "protein": 13,
+      "saturated_fat": 46,
+      "sodium": 35,
+      "total_carbs": 19,
+      "total_fat": 33
+    },
+    "serving_size_g": 741.3,
+    "total_recipe_weight_g": 2965.2
+  },
+  {
+    "recipe_name": "Sausage and Sauerkraut Soup with Dill",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20251030_140025_0eed6268.jpg",
+    "dish_type": "soup",
+    "flavor_profile": "savory",
+    "ingredients_count": 14,
+    "timestamp": "2025-10-30T14:00:26.500261000Z",
+    "selected_ingredients": [
+      "sausage",
+      "dill"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The rich, amber-colored soup is presented in a deep, rustic ceramic bowl. Thick, golden-brown sausage rounds, about 1 cm thick, are nestled amongst tender, pale yellow diced potatoes (1.5 cm cubes) and finely shredded, pale green sauerkraut. Scattered throughout are small, bright orange diced carrots (1 cm cubes) and translucent diced onions. The soup has a moderate viscosity, appearing hearty and comforting. A generous dollop of creamy white sour cream sits atop the center, slowly melting. It is generously garnished with vibrant green, freshly chopped dill. The bowl rests on a simple wooden table, accompanied by a folded white cotton napkin and a traditional metal soup spoon. Natural, even lighting highlights the soup's warm tones and fresh garnishes, with a softly blurred casual bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Eastern European",
+    "cultural_origin": "Eastern European",
+    "cultural_serving_suggestions": [
+      "Serve with dark rye bread or pumpernickel bread.",
+      "Offer extra sour cream on the side.",
+      "Serve with a small side of pickled vegetables."
+    ],
+    "hero_ingredient": "Sausage",
+    "ingredients": [
+      {
+        "name": "Smoked pork sausage",
+        "quantity": "400g"
+      },
+      {
+        "name": "Fresh dill",
+        "quantity": "30g"
+      },
+      {
+        "name": "Sauerkraut, drained",
+        "quantity": "500g"
+      },
+      {
+        "name": "Potatoes, peeled, diced",
+        "quantity": "300g"
+      },
+      {
+        "name": "Onion, diced",
+        "quantity": "1 medium (approx. 150g)"
+      },
+      {
+        "name": "Carrot, diced",
+        "quantity": "1 medium (approx. 100g)"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Chicken or Vegetable Broth",
+        "quantity": "1.5 litres"
+      },
+      {
+        "name": "Sour cream",
+        "quantity": "100g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Sweet paprika",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Slice sausage into 1 cm thick rounds.",
+      "Heat oil in a large pot over medium heat. Add sausage slices. Cook until browned, about 5-7 minutes. Remove sausage and set aside.",
+      "Add diced onion and carrot to the pot. Sauté until softened, about 5 minutes.",
+      "Add minced garlic and paprika. Cook for 1 minute until fragrant.",
+      "Stir in drained sauerkraut, diced potatoes, and bay leaf.",
+      "Pour in chicken broth. Bring to a simmer.",
+      "Reduce heat to low. Cover and cook for 20-25 minutes, or until potatoes are tender.",
+      "Return cooked sausage to the pot. Simmer for 5 minutes to heat through.",
+      "Remove bay leaf.",
+      "Stir in half of the fresh dill.",
+      "Season with salt and pepper to taste.",
+      "Ladle soup into bowls. Garnish each serving with a dollop of sour cream and remaining fresh dill."
+    ],
+    "notes": [
+      "Adjust sauerkraut quantity based on desired tanginess.",
+      "Smoked sausage adds depth; choose a good quality variety."
+    ],
+    "traditional_techniques": [
+      "Browning sausage for flavor development.",
+      "Building a flavorful base with sautéed aromatics.",
+      "Slow simmering to meld flavors."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 549,
+      "cholesterol_mg": 85,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 24.1,
+      "saturated_fat_g": 12.2,
+      "sodium_mg": 3152,
+      "total_carbs_g": 33.2,
+      "total_fat_g": 36.9,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 70,
+      "cholesterol_mg": 11,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 3.1,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 405,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 26,
+      "protein": 48,
+      "saturated_fat": 61,
+      "sodium": 137,
+      "total_carbs": 12,
+      "total_fat": 47
+    },
+    "serving_size_g": 779,
+    "total_recipe_weight_g": 3117
+  }
+]

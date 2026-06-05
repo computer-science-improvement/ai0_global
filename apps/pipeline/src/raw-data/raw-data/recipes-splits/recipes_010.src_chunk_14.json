@@ -1,0 +1,578 @@
+[
+  {
+    "recipe_name": "Spanish Chicken Croquettes with Garlic Aioli",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish_chicken_croquettes_with_garlic_aioli_20250713_114816_f8bed237.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T11:48:17.298580000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "vegetarian",
+    "visual_description": "The Spanish Chicken Croquettes are presented on a clean, round white porcelain plate, embodying a refined yet approachable bistro style. Three to four golden-brown, elongated oval croquettes are neatly arranged in a slight curve or diagonal across the plate. Their exterior is visibly crisp and textured from the breadcrumb coating, with a rich, uniform golden hue. A small, elegant swirl or dollop of pale yellow garlic aioli sits beside the croquettes, offering a creamy contrast. A light dusting of smoked paprika or a sprinkle of finely chopped fresh parsley may subtly garnish the aioli or croquettes for a touch of color. The croquettes, when cut open, reveal a creamy, off-white interior flecked with tender, shredded chicken. The plate rests on a simple, light-colored wooden table surface. A folded cotton napkin and a polished fork are placed beside the plate. The scene is illuminated by soft, natural, even lighting from the side, casting gentle shadows and highlighting the textures. The background is minimally blurred, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve as part of a selection of \"tapas\" or small plates.",
+      "Offer with additional lemon wedges for fresh acidity.",
+      "Pair with a dry sherry (Jerez) or a light-bodied Spanish white wine."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Cooked chicken breast",
+        "quantity": "300g (shredded)"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "60g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "60g (for béchamel)"
+      },
+      {
+        "name": "Whole milk",
+        "quantity": "500ml (warm)"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small (finely diced)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "2 (minced)"
+      },
+      {
+        "name": "Nutmeg",
+        "quantity": "pinch (grated)"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Eggs",
+        "quantity": "2 (beaten, for coating)"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g (for dredging)"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": "150g (Panko or fine)"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "1 litre (for deep frying)"
+      },
+      {
+        "name": "Egg yolk",
+        "quantity": "1 large (for aioli)"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1 (minced, for aioli)"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "150ml (light flavored, for aioli)"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "15ml (for aioli)"
+      }
+    ],
+    "instructions": [
+      "Prepare béchamel base: Melt butter in a large pan over medium heat. Add diced onion. Cook until translucent, about 5 minutes. Add minced garlic. Cook 1 minute more.",
+      "Stir in 60g plain flour. Cook 2 minutes, stirring constantly, to make a roux.",
+      "Gradually whisk in warm milk until mixture is smooth and thick. Cook for 5-7 minutes, stirring, until very thick and pulling away from the sides of the pan.",
+      "Remove from heat. Stir in shredded cooked chicken, nutmeg, salt, and pepper. Mix well.",
+      "Spread mixture onto a shallow dish. Cover with cling film, pressing directly onto surface. Chill for at least 4 hours, or preferably overnight, until firm.",
+      "Prepare breading station: Place 50g plain flour in one shallow dish, beaten eggs in another, and breadcrumbs in a third.",
+      "Shape croquettes: Take about 25g of chilled mixture per croquette. Form into small cylinders or oval shapes.",
+      "Coat croquettes: Roll each croquette in flour, then dip in beaten egg, then roll generously in breadcrumbs. Ensure full coating.",
+      "Heat oil: Heat vegetable oil in a deep pot or fryer to 175°C.",
+      "Fry croquettes: Fry croquettes in batches for 3-4 minutes until golden brown and crispy. Ensure internal temperature reaches 75°C. Do not overcrowd the pot.",
+      "Drain: Remove croquettes with a slotted spoon. Place on paper towels to drain excess oil.",
+      "Make aioli: In a small bowl, whisk egg yolk, minced garlic, lemon juice, and a pinch of salt.",
+      "Slowly drizzle in olive oil while continuously whisking until a thick, emulsified aioli forms.",
+      "Serve: Serve croquettes hot with garlic aioli on the side."
+    ],
+    "notes": [
+      "Ensure the croquette mixture is thoroughly chilled for easier shaping.",
+      "Maintain oil temperature for even frying and golden crust."
+    ],
+    "traditional_techniques": [
+      "Making a classic béchamel sauce (for the croquette base)",
+      "Emulsifying aioli by hand"
+    ]
+  },
+  {
+    "recipe_name": "Chocolate Beet Mousse Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chocolate_beet_mousse_cake_20250713_114733_ef73a57f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T11:47:34.210817000Z",
+    "selected_ingredients": [
+      "beet",
+      "chocolate"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegant slice of Chocolate Beet Mousse Cake is presented on a pristine white porcelain dinner plate, centrally placed with moderate negative space. The cake slice reveals distinct, clean layers: a thin, dark chocolate biscuit base, followed by a vibrant, smooth magenta beet mousse layer, topped with a rich, dark chocolate mousse layer, all encased in a glossy, reflective dark chocolate mirror glaze. The mousse layers are impeccably smooth with a creamy texture, contrasting with the slightly firm biscuit. Garnishes are minimal and precise: a cluster of bright red fresh raspberries and two small, irregular dark chocolate shards are placed delicately on top, providing color contrast and subtle height. The plate sits on a simple wooden table surface in a modern bistro setting, accompanied by a single polished silver dessert fork and spoon positioned to the right. Natural, even lighting illuminates the dish, highlighting its clean lines and appealing textures against a subtly blurred, casual restaurant background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Pastry",
+    "hero_ingredient": "Chocolate",
+    "ingredients": [
+      {
+        "name": "Red beets",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Dark chocolate (70% cocoa)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Egg yolks",
+        "quantity": "3"
+      },
+      {
+        "name": "Gelatin leaves",
+        "quantity": "6 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "400 ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cocoa powder",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Glucose syrup",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh raspberries",
+        "quantity": "50 g"
+      }
+    ],
+    "instructions": [
+      "Roast beets: Preheat oven to 180°C. Wash beets. Wrap in foil. Roast until tender, about 45-60 minutes. Cool. Peel beets. Puree until smooth. Set aside 100g puree.",
+      "Make chocolate biscuit base: Melt 50g dark chocolate with 50g butter. Whisk 2 egg yolks with 50g sugar until pale. Fold in melted chocolate mixture. Sift in 30g flour and 15g cocoa powder. Mix until just combined. Spread thinly onto a baking tray lined with parchment paper. Bake 10-12 minutes. Cool. Cut into a 15 cm circle or desired shape. Place in a cake ring on a serving plate.",
+      "Prepare beet mousse: Soak 3g gelatin leaves in cold water. In a saucepan, combine 100g beet puree, 50g sugar, and 30ml water. Heat gently until sugar dissolves. Squeeze excess water from gelatin. Stir into warm beet mixture until dissolved. Let cool slightly. Whip 200ml heavy cream to soft peaks. Gently fold beet mixture into whipped cream. Pour over chocolate biscuit base in the cake ring. Chill 30 minutes to set.",
+      "Prepare chocolate mousse: Soak remaining 3g gelatin leaves in cold water. Melt remaining 150g dark chocolate. In a saucepan, combine remaining 50g sugar and 30ml water. Heat until sugar dissolves. Add 1 egg yolk. Whisk constantly over low heat until mixture thickens slightly (do not boil). Squeeze excess water from gelatin. Stir into warm egg mixture until dissolved. Stir in melted chocolate. Let cool slightly. Whip remaining 200ml heavy cream to soft peaks. Gently fold chocolate mixture into whipped cream. Pour over beet mousse layer. Smooth top. Chill at least 4 hours, preferably overnight, until firm.",
+      "Make chocolate mirror glaze: In a small saucepan, combine 50g dark chocolate, 30g glucose syrup, and 30ml water. Heat gently, stirring, until chocolate is melted and mixture is smooth. Remove from heat. Let cool to 30-35°C (lukewarm).",
+      "Glaze cake: Carefully remove cake from cake ring. Place on a wire rack over a baking tray. Pour lukewarm glaze evenly over cake, ensuring full coverage. Let excess drip off. Transfer cake to a clean serving plate.",
+      "Garnish: Arrange fresh raspberries artfully on top of the cake. Add a few small, thin chocolate shards for texture and height. Serve chilled."
+    ]
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Thighs with Herb Gravy",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_thighs_with_herb_gravy_20250713_105608_928e3000.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T10:56:08.914254000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, golden-brown pan-seared chicken thigh, skin crispy and deeply caramelized, sits centrally on an off-white ceramic plate. The chicken is cooked whole, displaying its natural form. Beside it, a modest pile of rustic roasted potato wedges, their skins slightly browned and interiors fluffy, are casually arranged. A vibrant green mound of tender-crisp blanched green beans rests nearby. A rich, savory herb gravy is generously drizzled over the chicken and potatoes, pooling slightly on the plate. A small sprig of fresh rosemary or thyme garnishes the dish. The entire plate is visible, showcasing a comforting, hearty portion. The setting is a well-used wooden dining table, with warm, natural light illuminating the scene. A casually folded beige cloth napkin and simple, everyday flatware complete the homely, lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes (e.g., Yukon Gold or Russet)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Green beans",
+        "quantity": "300g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 small, diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves, minced"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500ml"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig, chopped"
+      },
+      {
+        "name": "Fresh thyme",
+        "quantity": "1 sprig, chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and cut potatoes into rustic 2cm wedges. Toss with 15ml olive oil, salt, and pepper. Spread on a baking sheet. Roast for 30-35 minutes, or until golden and tender.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "Heat remaining 15ml olive oil in a large oven-safe skillet over medium-high heat. Place chicken thighs skin-side down. Sear for 8-10 minutes until skin is deeply golden and crispy.",
+      "Flip chicken. Transfer skillet to the preheated oven. Bake for 15-20 minutes, or until internal temperature reaches 75°C. Remove chicken from skillet. Set aside on a plate, tent with foil.",
+      "While chicken bakes, trim green beans. Blanch in boiling salted water for 3-4 minutes until tender-crisp. Drain immediately.",
+      "Place skillet (with pan drippings) over medium heat on the stovetop. Add diced onion. Sauté for 3-4 minutes until softened. Add minced garlic and chopped rosemary and thyme. Cook for 1 minute until fragrant.",
+      "Sprinkle flour into the skillet. Whisk constantly for 1 minute to create a roux.",
+      "Gradually pour in chicken broth, whisking constantly to prevent lumps. Bring to a simmer. Cook for 5-7 minutes, stirring occasionally, until gravy thickens to desired consistency. Season with salt and pepper to taste.",
+      "Serve each chicken thigh with a portion of roasted potatoes and green beans. Drizzle generously with herb gravy."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 651,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 6,
+      "protein_g": 43.4,
+      "saturated_fat_g": 9.1,
+      "sodium_mg": 1030,
+      "total_carbs_g": 39.8,
+      "total_fat_g": 37.8,
+      "total_sugars_g": 4.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 109.9,
+      "cholesterol_mg": 30.4,
+      "dietary_fiber_g": 1,
+      "protein_g": 7.3,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 173.9,
+      "total_carbs_g": 6.7,
+      "total_fat_g": 6.4,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 21,
+      "protein": 87,
+      "saturated_fat": 46,
+      "sodium": 45,
+      "total_carbs": 14,
+      "total_fat": 48
+    },
+    "serving_size_g": 592,
+    "total_recipe_weight_g": 2368
+  },
+  {
+    "recipe_name": "Braised Beef with Tomatoes, Mushrooms, and Bell Peppers",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_with_tomatoes%2C_mushrooms%2C_and_bell_peppers_20250713_104326_4cfd4aa4.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T10:43:26.546972000Z",
+    "selected_ingredients": [
+      "beef",
+      "tomato",
+      "mushroom",
+      "bell pepper",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of braised beef with tomatoes, mushrooms, and bell peppers is artfully arranged in the center of a clean white porcelain dinner plate. Thick, tender chunks of rich brown braised beef are nestled among vibrant, large-diced red and green bell peppers, quartered earthy mushrooms, and soft diced onions, all coated in a glossy, deep reddish-brown tomato-based sauce. A sprinkle of freshly chopped bright green parsley provides a contrasting pop of color and freshness on top. The dish exhibits a natural, inviting presentation, showcasing the various ingredient textures and rich colors. The plate sits on a simple light wooden table surface, accompanied by a silver fork and knife, and a neatly folded white cotton napkin to the left. Natural, soft, even lighting illuminates the scene, highlighting the food's appeal against a subtly blurred, restaurant-style background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Hearty European",
+    "cultural_origin": "European",
+    "cultural_serving_suggestions": [
+      "Serve alongside creamy mashed potatoes to soak up the rich sauce.",
+      "Offer crusty bread for dipping into the braising liquid."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Diced canned tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Mashed potatoes or crusty bread",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Cut beef chuck into 4-5 cm cubes. Pat beef dry with paper towels. Season generously with salt and black pepper.",
+      "Dredge beef lightly in flour, shaking off excess.",
+      "Heat olive oil in a large heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear beef in batches until deeply browned on all sides. Do not overcrowd the pot. Remove seared beef and set aside.",
+      "Reduce heat to medium. Add diced onion and large-diced red and green bell peppers to the pot. Sauté for 7-8 minutes until softened.",
+      "Stir in minced garlic and tomato paste. Cook for 1 minute until fragrant.",
+      "Add quartered cremini mushrooms to the pot. Cook for 3-4 minutes until softened.",
+      "Return seared beef to the pot. Stir in diced canned tomatoes, beef broth, and bay leaf. Bring mixture to a simmer.",
+      "Reduce heat to low. Cover the pot tightly. Braise for 2 to 2.5 hours, or until beef is very tender. Stir occasionally to prevent sticking.",
+      "Remove bay leaf. Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 804,
+      "cholesterol_mg": 200,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 71.7,
+      "saturated_fat_g": 16.2,
+      "sodium_mg": 823,
+      "total_carbs_g": 23.3,
+      "total_fat_g": 45.4,
+      "total_sugars_g": 9.3,
+      "trans_fat_g": 1.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 129,
+      "cholesterol_mg": 32,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 11.5,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 132,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67,
+      "dietary_fiber": 17,
+      "protein": 143,
+      "saturated_fat": 81,
+      "sodium": 36,
+      "total_carbs": 8,
+      "total_fat": 58
+    },
+    "serving_size_g": 625,
+    "total_recipe_weight_g": 2500
+  },
+  {
+    "recipe_name": "Classic Banana Cinnamon Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_classic_banana_cinnamon_cake_20250713_102213_d9f8a83d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-13T10:22:14.182577000Z",
+    "selected_ingredients": [
+      "whole wheat flour",
+      "milk",
+      "sugar",
+      "banana",
+      "egg",
+      "butter",
+      "cinnamon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single, generously thick slice of Classic Banana Cinnamon Cake rests on an everyday, slightly imperfect cream-colored ceramic plate. The cake slice reveals a moist, golden-brown crumb speckled with dark banana bits. Its top crust is a rich, even golden-brown. A light dusting of powdered sugar is subtly sprinkled over the top of the slice. In the soft-focused background, the remainder of the round, rustic cake sits on a simple wire cooling rack on a well-used wooden dining table. The setting evokes a homely family kitchen with warm, natural light filtering in, highlighting the comforting texture of the cake. A casual, folded linen napkin and a simple silver fork are placed beside the plate. The overall scene is warm, inviting, and unpretentious, emphasizing the homemade quality of the dessert.",
+    "number_of_servings": 3,
+    "cuisine_type": "American Comfort",
+    "hero_ingredient": "Banana",
+    "ingredients": [
+      {
+        "name": "Whole wheat flour",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Ripe bananas, mashed",
+        "quantity": "2 medium (approx. 250 g)"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1"
+      },
+      {
+        "name": "Milk",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Unsalted butter, melted",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Ground cinnamon",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.25 teaspoon"
+      },
+      {
+        "name": "Powdered sugar",
+        "quantity": "for dusting"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour a 15 cm round cake pan.",
+      "In a large bowl, whisk together whole wheat flour, granulated sugar, baking powder, baking soda, ground cinnamon, and salt.",
+      "In a separate bowl, combine mashed bananas, egg, milk, and melted butter. Mix well.",
+      "Pour the wet ingredients into the dry ingredients. Stir until just combined. Do not overmix.",
+      "Pour batter into the prepared cake pan. Smooth the top.",
+      "Bake for 30-35 minutes, or until a wooden skewer inserted into the center comes out clean.",
+      "Remove cake from oven. Let cool in the pan for 10 minutes.",
+      "Invert cake onto a wire rack. Let cool completely.",
+      "Lightly dust cooled cake with powdered sugar before serving."
+    ],
+    "notes": [
+      "Use very ripe bananas for the best flavor and sweetness.",
+      "Ensure butter is melted but not hot before mixing with other wet ingredients."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 33.3,
+      "calories": 555,
+      "cholesterol_mg": 107,
+      "dietary_fiber_g": 7.5,
+      "protein_g": 10.7,
+      "saturated_fat_g": 11.5,
+      "sodium_mg": 572,
+      "total_carbs_g": 89.4,
+      "total_fat_g": 20.2,
+      "total_sugars_g": 44.9,
+      "trans_fat_g": 0.7
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 14.7,
+      "calories": 244,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 3.3,
+      "protein_g": 4.7,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 252,
+      "total_carbs_g": 39.3,
+      "total_fat_g": 8.9,
+      "total_sugars_g": 19.7,
+      "trans_fat_g": 0.3
+    },
+    "daily_value_percentages": {
+      "cholesterol": 36,
+      "dietary_fiber": 27,
+      "protein": 21,
+      "saturated_fat": 58,
+      "sodium": 25,
+      "total_carbs": 32,
+      "total_fat": 26
+    },
+    "serving_size_g": 227.53,
+    "total_recipe_weight_g": 682.6
+  }
+]

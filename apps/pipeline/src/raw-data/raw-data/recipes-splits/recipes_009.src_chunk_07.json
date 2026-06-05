@@ -1,0 +1,601 @@
+[
+  {
+    "recipe_name": "Homestyle Lemon Drizzle Cake",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_homestyle_lemon_drizzle_cake_20250723_221116_70180fc0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T22:11:17.275466000Z",
+    "selected_ingredients": [
+      "lemon"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A golden-brown loaf cake sits on a simple, off-white ceramic plate, presented as a generous, homely slice. The top of the cake shows a slightly cracked, sugary crust from the lemon drizzle, which has soaked into the moist, pale yellow crumb. Tiny flecks of lemon zest are visible throughout the cake. The slice is placed naturally, with the remaining whole loaf visible in the soft-focus background on a wooden cutting board. The setting is a well-used, light-colored wooden kitchen table. Warm, cozy lighting illuminates the scene, suggesting a relaxed family dining area. A casually folded linen napkin rests beside the plate. The overall presentation is rustic and comforting, emphasizing expertly prepared home baking.",
+    "number_of_servings": 4,
+    "cuisine_type": "Classic Home Baking",
+    "hero_ingredient": "Lemon",
+    "ingredients": [
+      {
+        "name": "Unsalted butter",
+        "quantity": "125g, softened"
+      },
+      {
+        "name": "Caster sugar",
+        "quantity": "125g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Self-raising flour",
+        "quantity": "150g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "from 2 lemons"
+      },
+      {
+        "name": "Milk",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Caster sugar (for drizzle)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Lemon juice (for drizzle)",
+        "quantity": "from 2 lemons"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (160°C fan). Grease and line a 900g loaf tin.",
+      "Cream softened butter and 125g caster sugar in a large bowl until light and fluffy.",
+      "Beat in eggs one at a time until combined.",
+      "Gently fold in self-raising flour and lemon zest until just combined.",
+      "Stir in milk to loosen the batter.",
+      "Pour batter into the prepared loaf tin. Smooth the top.",
+      "Bake for 35-40 minutes, or until a skewer inserted into the center comes out clean.",
+      "While cake bakes, prepare the drizzle. Combine 100g caster sugar and lemon juice in a small bowl. Stir until sugar dissolves.",
+      "Once cake is out of the oven, immediately prick the top all over with a skewer or fork.",
+      "Pour the lemon drizzle evenly over the hot cake.",
+      "Let cake cool completely in the tin before slicing and serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 56.25,
+      "calories": 626.53,
+      "cholesterol_mg": 161.26,
+      "dietary_fiber_g": 1.08,
+      "protein_g": 7.62,
+      "saturated_fat_g": 17.14,
+      "sodium_mg": 207.43,
+      "total_carbs_g": 87.07,
+      "total_fat_g": 28.68,
+      "total_sugars_g": 57.58,
+      "trans_fat_g": 0.95
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 31.03,
+      "calories": 345.67,
+      "cholesterol_mg": 88.97,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 4.21,
+      "saturated_fat_g": 9.46,
+      "sodium_mg": 114.44,
+      "total_carbs_g": 48.04,
+      "total_fat_g": 15.83,
+      "total_sugars_g": 31.77,
+      "trans_fat_g": 0.52
+    },
+    "daily_value_percentages": {
+      "cholesterol": 53.75,
+      "dietary_fiber": 3.86,
+      "protein": 15.25,
+      "saturated_fat": 85.71,
+      "sodium": 9.02,
+      "total_carbs": 31.66,
+      "total_fat": 36.77
+    },
+    "serving_size_g": 181.25,
+    "total_recipe_weight_g": 725
+  },
+  {
+    "recipe_name": "Sweet-Sour Chicken Tteokbokki",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet-sour_chicken_tteokbokki_20250723_215543_d538d4cd.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T21:55:43.671582000Z",
+    "selected_ingredients": [
+      "chicken",
+      "soy sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "I want a recepie of Tteokbokki in sweet-sour sauce. With a little bit of spice or even without it",
+    "visual_description": "A single serving of Sweet-Sour Chicken Tteokbokki is presented in a modest, round, shallow ceramic bowl with slightly raised edges, common in Korean home kitchens. The dish features a natural, casual arrangement of components. Chewy white rice cakes are mixed with tender, golden-brown chicken chunks, vibrant orange thin carrot slices, translucent thin onion slices, and bright green bell pepper strips. All ingredients are coated in a glossy, amber-hued sweet-sour sauce, which is visibly viscous but still fluid, pooling slightly at the bottom. A scattering of fresh green scallion slices and white toasted sesame seeds provides a simple, functional garnish on top. The plate is adequately filled without being overcrowded. The bowl rests on a well-used light wooden dining table. A pair of simple metal chopsticks are casually placed next to the bowl. A small, white, round side dish holding a few pieces of pale yellow danmuji (pickled radish) sits nearby. A casually folded, slightly wrinkled fabric napkin is placed to the side. The scene is illuminated by warm, soft lighting, mimicking a cozy family kitchen atmosphere with natural, lived-in clutter in the background.",
+    "number_of_servings": 5,
+    "cuisine_type": "Korean",
+    "hero_ingredient": "Tteokbokki Rice Cakes",
+    "ingredients": [
+      {
+        "name": "Korean Rice Cakes (Tteokbokki Tteok)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Boneless, Skinless Chicken Thighs",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": "45 g"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Onion, thinly sliced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot, thinly sliced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green Bell Pepper, cut into strips",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Water or Chicken Broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Scallions, chopped",
+        "quantity": "2 stalks"
+      },
+      {
+        "name": "Toasted Sesame Seeds",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Soak rice cakes in warm water for 15 minutes if hard. Drain well.",
+      "Cut chicken thighs into 3 cm bite-sized chunks.",
+      "In a bowl, whisk together soy sauce, rice vinegar, sugar, minced garlic, and water or broth. Set aside.",
+      "Heat vegetable oil in a large pan or wok over medium-high heat.",
+      "Add chicken chunks to the hot pan. Sear chicken for 5-7 minutes until browned on all sides. Cook chicken to an internal temperature of 75°C (167°F).",
+      "Add sliced onion, carrot, and green bell pepper to the pan. Stir-fry for 3-4 minutes until vegetables slightly soften.",
+      "Add soaked and drained rice cakes to the pan. Pour the prepared sweet-sour sauce over all ingredients.",
+      "Bring the mixture to a simmer. Reduce heat to medium-low. Cook for 8-10 minutes, stirring occasionally, until rice cakes are tender and sauce has thickened to a glossy consistency.",
+      "Remove from heat. Stir in sesame oil.",
+      "Garnish with chopped scallions and toasted sesame seeds before serving."
+    ]
+  },
+  {
+    "recipe_name": "Sweet and Sour Spicy Chicken Tteokbokki",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sweet_and_sour_spicy_chicken_tteokbokki_20250723_215512_7a7e5465.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T21:55:12.932828000Z",
+    "selected_ingredients": [
+      "chicken",
+      "soy sauce"
+    ],
+    "complexity": "simple",
+    "special_requests": "I want a recepie of Tteokbokki in sweet-sour sauce. With a little bit of spice",
+    "visual_description": "A generous individual portion of Sweet and Sour Spicy Chicken Tteokbokki is presented in a deep, rustic red-brown ceramic Korean serving bowl. The dish features a vibrant, glossy orange-red sauce coating tender white garaetteok rice cakes and diced, golden-brown chicken chunks. Rectangular slices of pale fish cake are interspersed throughout. The components are naturally piled in the bowl, with some sauce pooling at the bottom. The top is garnished simply with thinly sliced green onions and a light sprinkling of toasted sesame seeds. The bowl sits on a well-used, warm-toned wooden dining table, showing natural wear. Adjacent to the main dish, a small, imperfect ceramic dish holds a side of bright yellow danmuji (pickled radish). Metal chopsticks rest casually beside the bowl. The scene is bathed in warm, soft kitchen lighting, creating a cozy, lived-in family dining atmosphere with minimal, unobtrusive background clutter.",
+    "number_of_servings": 5,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with small side dishes (banchan) like danmuji (pickled radish) or kimchi.",
+      "Often enjoyed communally from a large serving pot or individually in deep bowls.",
+      "Use metal chopsticks and a small metal spoon for the sauce."
+    ],
+    "hero_ingredient": "Tteok (Korean Rice Cakes)",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "500 grams"
+      },
+      {
+        "name": "Korean rice cakes (Garaetteok)",
+        "quantity": "600 grams"
+      },
+      {
+        "name": "Rectangular fish cakes (Eomuk)",
+        "quantity": "200 grams"
+      },
+      {
+        "name": "Onion, medium",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "4 stalks"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "60 grams"
+      },
+      {
+        "name": "Gochugaru (Korean chili flakes)",
+        "quantity": "15 grams"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "45 ml"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "30 grams"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "10 ml"
+      },
+      {
+        "name": "Dried anchovy and kelp broth (or water)",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Toasted sesame oil",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "5 grams"
+      }
+    ],
+    "instructions": [
+      "Soak rice cakes in warm water for 10 minutes. Drain well.",
+      "Cut chicken thighs into 2 cm (0.8 inch) dice. Cut fish cakes into 4 cm (1.6 inch) rectangular slices. Thinly slice onion. Chop green onions into 5 cm (2 inch) pieces.",
+      "In a bowl, combine gochujang, gochugaru, soy sauce, sugar, rice vinegar, and fish sauce. Mix well to form the sauce.",
+      "Heat a large pot or deep pan over medium-high heat. Add chicken and cook until lightly browned on all sides, about 5 minutes. Ensure chicken reaches 75°C (167°F) internal temperature.",
+      "Add sliced onion and minced garlic to the pot. Sauté for 2 minutes until fragrant.",
+      "Pour in the anchovy and kelp broth (or water). Bring to a boil.",
+      "Stir in the prepared sauce. Mix until dissolved.",
+      "Add soaked rice cakes and fish cakes to the pot. Reduce heat to medium.",
+      "Simmer for 10-15 minutes, stirring occasionally, until rice cakes are tender and the sauce has thickened to a glossy consistency.",
+      "Stir in the chopped green onions. Cook for 1 minute more.",
+      "Remove from heat. Drizzle with toasted sesame oil. Serve immediately."
+    ],
+    "notes": [
+      "Adjust the amount of gochugaru to control the spice level.",
+      "For a sweeter sauce, add a bit more sugar or Korean corn syrup (mulyeot).",
+      "If rice cakes are frozen, thaw them completely before soaking."
+    ],
+    "traditional_techniques": [
+      "Making Dashima-Myeolchi Yuksu (Kelp and Anchovy Broth)",
+      "Simmering (Jorim)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 8.41,
+      "calories": 583,
+      "cholesterol_mg": 143.2,
+      "dietary_fiber_g": 3.57,
+      "protein_g": 30.93,
+      "saturated_fat_g": 2.62,
+      "sodium_mg": 1348.4,
+      "total_carbs_g": 82.8,
+      "total_fat_g": 11.81,
+      "total_sugars_g": 11.64,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.78,
+      "calories": 123,
+      "cholesterol_mg": 30.3,
+      "dietary_fiber_g": 0.75,
+      "protein_g": 6.55,
+      "saturated_fat_g": 0.55,
+      "sodium_mg": 285.4,
+      "total_carbs_g": 17.52,
+      "total_fat_g": 2.5,
+      "total_sugars_g": 2.46,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47.74,
+      "dietary_fiber": 12.75,
+      "protein": 61.86,
+      "saturated_fat": 13.1,
+      "sodium": 58.62,
+      "total_carbs": 30.11,
+      "total_fat": 15.14
+    },
+    "serving_size_g": 472.5,
+    "total_recipe_weight_g": 2362.5
+  },
+  {
+    "recipe_name": "Spicy Sweet and Sour Chicken Tteokbokki",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spicy_sweet_and_sour_chicken_tteokbokki_20250723_215308_4caec976.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T21:53:08.721174000Z",
+    "selected_ingredients": [
+      "chicken",
+      "green onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "Korean cuisine, I want a recepie of tokpokki in sweet-sour sauce. With a little bit of spice",
+    "visual_description": "A single, modest portion of Spicy Sweet and Sour Chicken Tteokbokki is presented in a deep, rustic Korean ceramic bowl with a subtle, traditional pattern. The bowl is filled with plump, cylindrical garaetteok rice cakes, tender diced chicken pieces, and vibrant diagonal cuts of green onion, all generously coated in a glistening, thick, reddish-orange sauce. The sauce appears glossy and clings to the ingredients, showing a slight sheen. The colors are natural and inviting: the deep red-orange of the sauce, the creamy white of the rice cakes, the cooked brown of the chicken, and the bright green of the scallions. The arrangement is casual and organic, as if scooped directly from a family pot, with components touching and overlapping naturally. The dish is placed on a well-used, warm-toned wooden dining table. Alongside the bowl, a pair of traditional Korean metal chopsticks rests casually. A small, simple ceramic dish holds a serving of bright red kimchi, and another holds pale yellow danmuji (pickled radish). A folded, everyday cloth napkin is placed nearby. The scene is bathed in warm, soft lighting, evoking a cozy, lived-in kitchen atmosphere, with a hint of natural clutter in the background.",
+    "number_of_servings": 5,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve hot with a side of steamed white rice.",
+      "Always accompany with traditional Korean banchan such as kimchi and danmuji (pickled yellow radish).",
+      "A simple clear broth soup is also a common accompaniment."
+    ],
+    "hero_ingredient": "Garaetteok (Korean Rice Cakes)",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (boneless, skinless)",
+        "quantity": "750 g"
+      },
+      {
+        "name": "Garaetteok (Korean cylindrical rice cakes)",
+        "quantity": "750 g"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "1 large bunch"
+      },
+      {
+        "name": "Water or anchovy broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Gochujang (Korean chili paste)",
+        "quantity": "4 tablespoons"
+      },
+      {
+        "name": "Gochugaru (Korean chili powder)",
+        "quantity": "1-2 tablespoons"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "name": "Rice vinegar",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Minced garlic",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Minced ginger",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "1/2 teaspoon"
+      }
+    ],
+    "instructions": [
+      "If using hard rice cakes, soak them in warm water for 20-30 minutes until soft. Drain well.",
+      "Dice chicken into 2-3 cm cubes. Cut green onions into 4-5 cm diagonal pieces.",
+      "In a medium bowl, combine gochujang, gochugaru, soy sauce, sugar, rice vinegar, minced garlic, minced ginger, and black pepper. Mix well until smooth.",
+      "Heat cooking oil in a large pot or deep pan over medium-high heat. Add diced chicken. Cook, stirring occasionally, until chicken is browned on all sides and cooked through. Ensure internal temperature reaches 75°C (167°F).",
+      "Add the drained rice cakes and the prepared sauce to the pot with the chicken. Stir to coat all ingredients evenly.",
+      "Pour in 500 ml of water or anchovy broth. Bring to a boil. Reduce heat to medium-low. Simmer for 10-15 minutes, stirring occasionally, until rice cakes are tender and the sauce has thickened to a glossy consistency.",
+      "Stir in the diagonal green onion pieces during the last 2 minutes of cooking. Cook until bright green and slightly softened.",
+      "Remove from heat. Drizzle with sesame oil. Sprinkle with toasted sesame seeds. Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Gochujang-based sauce preparation",
+      "Simmering for tteokbokki texture"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 9,
+      "calories": 751.5,
+      "cholesterol_mg": 141,
+      "dietary_fiber_g": 2.8,
+      "protein_g": 47.7,
+      "saturated_fat_g": 4.7,
+      "sodium_mg": 891.8,
+      "total_carbs_g": 92.6,
+      "total_fat_g": 22.1,
+      "total_sugars_g": 10.4,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.9,
+      "calories": 158.8,
+      "cholesterol_mg": 29.8,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 10.1,
+      "saturated_fat_g": 1,
+      "sodium_mg": 188.5,
+      "total_carbs_g": 19.6,
+      "total_fat_g": 4.7,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 47,
+      "dietary_fiber": 10.1,
+      "protein": 95.3,
+      "saturated_fat": 23.4,
+      "sodium": 38.8,
+      "total_carbs": 33.7,
+      "total_fat": 28.3
+    },
+    "serving_size_g": 473.2,
+    "total_recipe_weight_g": 2366.2
+  },
+  {
+    "recipe_name": "Pad Krapow Pet (Spicy Ground Duck Stir-fry)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pad_krapow_pet_%28spicy_ground_duck_stir-fry%29_20250723_210353_1cc7733d.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-07-23T21:03:54.236877000Z",
+    "selected_ingredients": [
+      "duck",
+      "dried chili",
+      "garlic",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "Thai cuisine",
+    "visual_description": "A single serving of Pad Krapow Pet is presented on a simple, round ceramic plate with a natural, slightly off-white glaze. The plate rests on a well-used, light-colored wooden dining table. On the left side of the plate, a generous portion of steaming white jasmine rice is mounded. To the right, the spicy ground duck stir-fry is piled, showcasing its rich brown color with flecks of red chili and vibrant green holy basil leaves. The textures are varied, with the soft, fluffy rice contrasting the finely minced, browned duck and the slightly wilted, crinkled basil leaves. A few individual basil leaves are scattered loosely on top of the duck mixture. The dish is casually arranged, allowing components to touch naturally. A simple, dark wooden chopstick pair rests diagonally on the table beside the plate. The scene is lit by warm, natural light, creating a cozy, homely atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thai",
+    "cultural_serving_suggestions": [
+      "Served with a side of plain jasmine rice.",
+      "Often topped with a fried egg (kai dao) if desired.",
+      "A small bowl of prik nam pla (fish sauce with sliced chilies) is a common condiment for added spice."
+    ],
+    "hero_ingredient": "Duck",
+    "ingredients": [
+      {
+        "name": "Ground duck",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Jasmine rice",
+        "quantity": "300 g (uncooked)"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "10, peeled"
+      },
+      {
+        "name": "Dried bird's eye chilies",
+        "quantity": "5-7, rehydrated"
+      },
+      {
+        "name": "Holy basil leaves",
+        "quantity": "1 large bunch (about 2 cups packed)"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Oyster sauce",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Dark soy sauce",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Water",
+        "quantity": "60 ml"
+      }
+    ],
+    "instructions": [
+      "Cook jasmine rice according to package directions. Keep warm.",
+      "Pound garlic and rehydrated dried chilies in a mortar and pestle to a coarse paste. Alternatively, finely chop them.",
+      "Heat vegetable oil in a wok or large frying pan over high heat.",
+      "Add garlic-chili paste. Stir-fry for 30 seconds until fragrant.",
+      "Add ground duck. Break it apart with a spatula. Stir-fry until browned and cooked through, about 5-7 minutes.",
+      "Add fish sauce, oyster sauce, dark soy sauce, and sugar. Stir well to combine.",
+      "Add water. Simmer for 1 minute.",
+      "Add holy basil leaves. Stir-fry quickly until basil wilts, about 30 seconds.",
+      "Remove from heat immediately.",
+      "Serve hot alongside cooked jasmine rice."
+    ],
+    "notes": [
+      "Ensure the duck is cooked to an internal temperature of 74°C (165°F)."
+    ],
+    "traditional_techniques": [
+      "Stir-frying",
+      "Pounding (using mortar and pestle)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 2.1,
+      "calories": 785.8,
+      "cholesterol_mg": 112.5,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 31,
+      "saturated_fat_g": 12.8,
+      "sodium_mg": 1187.2,
+      "total_carbs_g": 66.2,
+      "total_fat_g": 42.4,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 192.7,
+      "cholesterol_mg": 27.6,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 7.6,
+      "saturated_fat_g": 3.1,
+      "sodium_mg": 291.2,
+      "total_carbs_g": 16.2,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 0.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 37.5,
+      "dietary_fiber": 4.8,
+      "protein": 61.9,
+      "saturated_fat": 64,
+      "sodium": 51.6,
+      "total_carbs": 24.1,
+      "total_fat": 54.3
+    },
+    "serving_size_g": 407.75,
+    "total_recipe_weight_g": 1631
+  }
+]

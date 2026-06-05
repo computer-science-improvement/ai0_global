@@ -1,0 +1,662 @@
+[
+  {
+    "recipe_name": "Roasted Chicken Thighs with Mustard Potatoes and Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_thighs_with_mustard_potatoes_and_tomatoes_20250623_141956_8f7387c0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:19:56.649921000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "tomato",
+      "mustard"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single generous portion of roasted chicken and potatoes sits on a simple, off-white ceramic plate. One whole, bone-in, skin-on chicken thigh, with crispy golden-brown skin, is the focal point, resting slightly off-center. Around it, rustic 2 cm potato wedges, roasted to a tender interior and golden-brown exterior, are naturally scattered. Bright red, burst cherry tomatoes are nestled among the potatoes, adding vibrant color. A few fresh rosemary sprigs are casually placed for garnish. Components naturally touch and overlap, creating an unpretentious presentation. The plate rests on a well-used wooden dining table, illuminated by warm kitchen lighting, reflecting a homely family kitchen atmosphere. A simple fork, knife, and crumpled cloth napkin complete the scene, emphasizing hearty, satisfying comfort food.",
+    "number_of_servings": 4,
+    "cuisine_type": "European",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 200g each)"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "800g"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh rosemary, chopped",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Wash and cut potatoes into 2 cm wedges. Place in a large roasting pan.",
+      "In a small bowl, combine 30g Dijon mustard, 30ml olive oil, 4 minced garlic cloves, 1 tablespoon chopped fresh rosemary, 5g salt, and 2g black pepper.",
+      "Add mustard mixture to potatoes. Toss to coat evenly. Spread potatoes in a single layer in the roasting pan.",
+      "Pat chicken thighs dry. Season all sides with salt and black pepper.",
+      "Place chicken thighs on top of potatoes in the roasting pan.",
+      "Scatter 250g cherry tomatoes around chicken and potatoes.",
+      "Pour 120ml chicken broth into the pan.",
+      "Roast for 40-50 minutes, or until chicken internal temperature reaches 75°C and potatoes are tender and golden-brown.",
+      "Rest chicken 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 722.4,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 5.51,
+      "protein_g": 45.36,
+      "saturated_fat_g": 9.89,
+      "sodium_mg": 772.58,
+      "total_carbs_g": 39.07,
+      "total_fat_g": 43.02,
+      "total_sugars_g": 3.39,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 139.26,
+      "cholesterol_mg": 36.24,
+      "dietary_fiber_g": 1.06,
+      "protein_g": 8.74,
+      "saturated_fat_g": 1.91,
+      "sodium_mg": 149.03,
+      "total_carbs_g": 7.53,
+      "total_fat_g": 8.29,
+      "total_sugars_g": 0.65,
+      "trans_fat_g": 0.04
+    },
+    "daily_value_percentages": {
+      "cholesterol": 62.67,
+      "dietary_fiber": 19.68,
+      "protein": 90.72,
+      "saturated_fat": 49.45,
+      "sodium": 33.59,
+      "total_carbs": 14.21,
+      "total_fat": 55.15
+    },
+    "serving_size_g": 518.75,
+    "total_recipe_weight_g": 2075
+  },
+  {
+    "recipe_name": "Korean Beef Bulgogi with Mushroom and Brown Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_korean_beef_bulgogi_with_mushroom_and_brown_rice_20250623_141929_57a6cd74.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:19:29.709785000Z",
+    "selected_ingredients": [
+      "beef",
+      "brown rice",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Korean Beef Bulgogi with Mushroom and Brown Rice is presented on a clean, round white porcelain plate. A neat, slightly mounded portion of fluffy brown rice occupies one side of the plate. Adjacent to the rice, a generous pile of dark, glossy beef bulgogi is arranged, showcasing the tender, thinly sliced beef mixed with translucent, caramelized onion strips and earthy, sautéed shiitake mushrooms. The dish is vibrant with contrasting colors: the deep caramel brown of the beef and mushrooms, the light tan of the brown rice, and bright green accents from freshly chopped green onions sprinkled over the bulgogi. A scattering of golden-brown toasted sesame seeds adds texture and visual interest. The presentation is professional yet approachable, with moderate negative space. The plate rests on a simple wooden table, accompanied by a set of dark wooden chopsticks, a small white bowl of vibrant red kimchi, and a small dish of ssamjang. A crisp white cotton napkin is folded beside the plate, all under soft, natural, even lighting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Korean",
+    "cultural_origin": "Korean",
+    "cultural_serving_suggestions": [
+      "Serve with various banchan (side dishes) such as kimchi, pickled radishes, and seasoned spinach.",
+      "Offer fresh lettuce leaves for ssam (wraps) and ssamjang (spicy dipping sauce)."
+    ],
+    "hero_ingredient": "Marinated Beef",
+    "ingredients": [
+      {
+        "name": "Beef sirloin",
+        "quantity": "600g"
+      },
+      {
+        "name": "Brown rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Shiitake mushrooms",
+        "quantity": "200g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Green onions",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Fresh ginger",
+        "quantity": "2cm piece"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "80ml"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Brown sugar",
+        "quantity": "20g"
+      },
+      {
+        "name": "Asian pear",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "5g"
+      },
+      {
+        "name": "Toasted sesame seeds",
+        "quantity": "10g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Rinse brown rice thoroughly. Cook according to package directions until tender.",
+      "Thinly slice beef sirloin against the grain into bite-sized pieces.",
+      "Slice onion thinly. Slice shiitake mushrooms.",
+      "Mince garlic. Grate ginger. Grate Asian pear.",
+      "Prepare bulgogi marinade: Combine soy sauce, sesame oil, brown sugar, minced garlic, grated ginger, grated Asian pear, and black pepper in a large bowl. Whisk well.",
+      "Add sliced beef and thinly sliced onion to the marinade. Toss to coat all pieces evenly. Marinate for at least 30 minutes at room temperature, or up to 4 hours in the refrigerator.",
+      "Heat vegetable oil in a large pan or wok over high heat until shimmering.",
+      "Add marinated beef and onions in batches. Do not overcrowd the pan. Stir-fry quickly for 2-3 minutes per batch until beef is browned and cooked through. Ensure beef reaches an internal temperature of 75°C (167°F). Remove cooked beef and onions from the pan and set aside.",
+      "In the same pan, add sliced shiitake mushrooms. Sauté for 3-5 minutes until tender and lightly browned.",
+      "Return cooked beef and onions to the pan with the mushrooms. Toss to combine.",
+      "Chop green onions.",
+      "Serve the bulgogi mixture immediately alongside the cooked brown rice.",
+      "Garnish generously with chopped green onions and toasted sesame seeds."
+    ],
+    "traditional_techniques": [
+      "Marinating with fruit",
+      "Quick stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 4.81,
+      "calories": 585.9,
+      "cholesterol_mg": 118.5,
+      "dietary_fiber_g": 4.65,
+      "protein_g": 50.34,
+      "saturated_fat_g": 7.28,
+      "sodium_mg": 239.6,
+      "total_carbs_g": 36.73,
+      "total_fat_g": 26.23,
+      "total_sugars_g": 10.07,
+      "trans_fat_g": 0.66
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 1.25,
+      "calories": 152.7,
+      "cholesterol_mg": 30.9,
+      "dietary_fiber_g": 1.21,
+      "protein_g": 13.12,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 62.5,
+      "total_carbs_g": 9.58,
+      "total_fat_g": 6.84,
+      "total_sugars_g": 2.63,
+      "trans_fat_g": 0.17
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.5,
+      "dietary_fiber": 16.59,
+      "protein": 100.67,
+      "saturated_fat": 36.4,
+      "sodium": 10.42,
+      "total_carbs": 13.36,
+      "total_fat": 33.63
+    },
+    "serving_size_g": 383.6,
+    "total_recipe_weight_g": 1534.4
+  },
+  {
+    "recipe_name": "Spanish-Style Chicken and Rice",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish-style_chicken_and_rice_20250623_141923_d4a7b850.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:19:23.528032000Z",
+    "selected_ingredients": [
+      "chicken",
+      "rice"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Spanish-Style Chicken and Rice is presented on a clean white porcelain dinner plate. The saffron-infused golden bomba rice forms a slightly mounded base, interspersed with vibrant red and green diced bell peppers and bright green peas. Substantial, golden-brown seared chicken chunks are nestled atop and within the rice. A generous sprinkle of fresh, chopped parsley provides a fresh green contrast. The plating is clean and inviting, with moderate negative space. The plate rests on a simple wooden table, accompanied by a silver fork and knife on a white cotton napkin. Natural, even lighting illuminates the dish in a modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with a side of crusty bread."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Bomba rice",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (approx. 150 g)"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1 medium (approx. 180 g)"
+      },
+      {
+        "name": "Green bell pepper",
+        "quantity": "1 medium (approx. 180 g)"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "200 g (drained weight)"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "80 ml"
+      },
+      {
+        "name": "Smoked paprika (pimentón dulce)",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Saffron threads",
+        "quantity": "0.1 g"
+      },
+      {
+        "name": "Frozen peas",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken chunks dry. Season with salt and pepper. Cut chicken thighs into 4 cm chunks.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken chunks until golden brown on all sides. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion and bell peppers to the pot. Sauté for 8-10 minutes until softened.",
+      "Add minced garlic, smoked paprika, and diced tomatoes. Cook for 2 minutes, stirring constantly.",
+      "Pour in white wine. Scrape the bottom of the pot to deglaze. Cook until wine is almost evaporated.",
+      "Stir in the bomba rice. Cook for 2 minutes, stirring to coat the grains.",
+      "Add chicken broth and saffron (steeped in 30 ml warm broth). Bring to a simmer.",
+      "Return seared chicken chunks to the pot. Stir gently.",
+      "Reduce heat to low, cover the pot, and cook for 18-20 minutes, or until rice is tender and liquid is absorbed. Do not stir during cooking.",
+      "Remove from heat. Stir in frozen peas. Cover and let rest for 5 minutes.",
+      "Fluff the rice gently with a fork. Check seasoning and adjust.",
+      "Serve immediately, garnished with fresh chopped parsley."
+    ],
+    "notes": [
+      "For best results, use good quality smoked paprika and authentic saffron threads."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Searing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 674.26,
+      "cholesterol_mg": 202.5,
+      "dietary_fiber_g": 4.3,
+      "protein_g": 41.84,
+      "saturated_fat_g": 4.56,
+      "sodium_mg": 1449.63,
+      "total_carbs_g": 74.04,
+      "total_fat_g": 20.86,
+      "total_sugars_g": 6.98,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 106.73,
+      "cholesterol_mg": 32.05,
+      "dietary_fiber_g": 0.68,
+      "protein_g": 6.62,
+      "saturated_fat_g": 0.72,
+      "sodium_mg": 229.46,
+      "total_carbs_g": 11.72,
+      "total_fat_g": 3.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 67.5,
+      "dietary_fiber": 15.36,
+      "protein": 83.68,
+      "saturated_fat": 22.8,
+      "sodium": 63.03,
+      "total_carbs": 26.92,
+      "total_fat": 26.74
+    },
+    "serving_size_g": 631.75,
+    "total_recipe_weight_g": 2527
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs with Red Wine Jus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_with_red_wine_jus_20250623_141819_76745da8.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:18:19.487989000Z",
+    "selected_ingredients": [
+      "beef"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, generous portion of deeply caramelized, fork-tender braised beef short ribs rests on a clean white porcelain dinner plate. The beef, presented as substantial, rustic chunks, boasts a rich, dark brown crust. It is bathed in a glossy, dark red wine jus that pools elegantly beneath and lightly coats the meat. Alongside, vibrant glazed carrots, cut into thick batons, and small, roasted new potatoes, halved, add bursts of color and texture. A sprinkle of fresh, finely chopped parsley provides a bright green counterpoint. The plate is set on a simple wooden table, with a neatly folded cotton napkin and standard European flatware beside it, under natural, even lighting, creating an inviting bistro ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Bistro",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a crusty baguette to soak up the rich jus.",
+      "Pair with a simple green salad dressed with a vinaigrette."
+    ],
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Beef Short Ribs (bone-in)",
+        "quantity": "1.8 kg"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium, roughly chopped"
+      },
+      {
+        "name": "Celery Stalks",
+        "quantity": "2, roughly chopped"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": "1 large, roughly chopped"
+      },
+      {
+        "name": "Garlic Cloves",
+        "quantity": "4, smashed"
+      },
+      {
+        "name": "Dry Red Wine (e.g., Cabernet Sauvignon)",
+        "quantity": "750 ml"
+      },
+      {
+        "name": "Beef Stock",
+        "quantity": "700 ml"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh Thyme Sprigs",
+        "quantity": "5"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Fresh Rosemary Sprig",
+        "quantity": "1"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Pearl Onions",
+        "quantity": "150 g, peeled"
+      },
+      {
+        "name": "Small New Potatoes",
+        "quantity": "400 g, halved"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "15 g, chopped for garnish"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 160°C.",
+      "Season beef short ribs generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat.",
+      "Sear short ribs on all sides until deeply browned. Remove ribs and set aside.",
+      "Add chopped carrots, celery, and onion to the pot. Sauté until softened, about 8 minutes.",
+      "Add garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Bring to a simmer and reduce by half.",
+      "Return short ribs to the pot. Add beef stock, thyme, bay leaves, and rosemary. Liquid should mostly cover the ribs. Add more stock if needed.",
+      "Bring liquid to a gentle simmer. Cover the pot tightly.",
+      "Transfer pot to the preheated oven. Braise for 3 to 3.5 hours, or until beef is fork-tender.",
+      "Remove pot from oven. Carefully remove short ribs from the pot and set aside.",
+      "Strain the braising liquid through a fine-mesh sieve into a clean saucepan. Discard solids.",
+      "Skim any excess fat from the sauce. Bring sauce to a simmer over medium heat. Reduce until slightly thickened and glossy.",
+      "While sauce reduces, boil pearl onions and new potatoes in salted water until tender. Drain.",
+      "For plating, gently warm the short ribs in a small amount of the reduced jus.",
+      "Serve short ribs with pearl onions and new potatoes. Spoon generous amount of red wine jus over the meat and vegetables. Garnish with fresh chopped parsley."
+    ],
+    "traditional_techniques": [
+      "Braising",
+      "Sauce Reduction"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 1882.3,
+      "cholesterol_mg": 342,
+      "dietary_fiber_g": 6.3,
+      "protein_g": 83.4,
+      "saturated_fat_g": 56.5,
+      "sodium_mg": 897.5,
+      "total_carbs_g": 41.5,
+      "total_fat_g": 139,
+      "total_sugars_g": 10,
+      "trans_fat_g": 5.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 169.6,
+      "cholesterol_mg": 30.8,
+      "dietary_fiber_g": 0.6,
+      "protein_g": 7.5,
+      "saturated_fat_g": 5.1,
+      "sodium_mg": 80.9,
+      "total_carbs_g": 3.7,
+      "total_fat_g": 12.5,
+      "total_sugars_g": 0.9,
+      "trans_fat_g": 0.5
+    },
+    "daily_value_percentages": {
+      "cholesterol": 114,
+      "dietary_fiber": 23,
+      "protein": 167,
+      "saturated_fat": 283,
+      "sodium": 39,
+      "total_carbs": 15,
+      "total_fat": 178
+    },
+    "serving_size_g": 1110,
+    "total_recipe_weight_g": 4440
+  },
+  {
+    "recipe_name": "One-Pan Roasted Chicken with Potatoes and Tomatoes",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_one-pan_roasted_chicken_with_potatoes_and_tomatoes_20250623_141751_514a05a3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T14:17:51.650547000Z",
+    "selected_ingredients": [
+      "chicken",
+      "onion",
+      "potato",
+      "tomato"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single portion of roasted chicken with potatoes, onions, and tomatoes is casually plated on a rustic, off-white ceramic dinner plate with subtle imperfections. The golden-brown roasted chicken thigh, with its crisped skin, is the focal point, positioned slightly off-center. Generously sized roasted potato wedges, their skins browned and interiors tender, are arranged around it. Thick wedges of caramelized onion and vibrant red cherry tomatoes, some slightly burst, nestle among the potatoes. A light scattering of fresh, chopped green parsley provides a functional garnish. Components touch and overlap, reflecting a comforting, home-cooked meal. The plate sits on a warm, well-used wooden dining table. Simple flatware and a folded cloth napkin are placed alongside, under warm, inviting kitchen light, creating a relaxed, lived-in atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic Comfort",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 150-200g each)"
+      },
+      {
+        "name": "Potatoes (e.g., Maris Piper or Russet)",
+        "quantity": "800g"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "4 cloves"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Cut potatoes into thick wedges. Cut onions into large wedges.",
+      "In a large bowl, combine chicken thighs, potato wedges, onion wedges, and cherry tomatoes. Drizzle with olive oil.",
+      "Add minced garlic, dried oregano, salt, and black pepper. Toss well to coat all ingredients.",
+      "Spread ingredients in a single layer on a large baking sheet. Do not overcrowd. Use two sheets if necessary.",
+      "Roast for 40-50 minutes. Flip chicken and vegetables halfway through roasting.",
+      "Chicken is cooked when its internal temperature reaches 75°C. Potatoes should be tender and browned.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "For crispier vegetables, avoid overcrowding the baking sheet."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 685,
+      "cholesterol_mg": 164.5,
+      "dietary_fiber_g": 6.9,
+      "protein_g": 42.2,
+      "saturated_fat_g": 8.4,
+      "sodium_mg": 634,
+      "total_carbs_g": 44.9,
+      "total_fat_g": 38,
+      "total_sugars_g": 5.7,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 131.5,
+      "cholesterol_mg": 31.6,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 121.7,
+      "total_carbs_g": 8.6,
+      "total_fat_g": 7.3,
+      "total_sugars_g": 1.1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 55,
+      "dietary_fiber": 25,
+      "protein": 84,
+      "saturated_fat": 42,
+      "sodium": 28,
+      "total_carbs": 16,
+      "total_fat": 49
+    },
+    "serving_size_g": 521,
+    "total_recipe_weight_g": 2084
+  }
+]

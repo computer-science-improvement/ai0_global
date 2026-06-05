@@ -138,6 +138,13 @@ create table if not exists recipes (
   ingredients_uk  TEXT,
   instructions_uk TEXT,
   translated_at   TIMESTAMPTZ,
+  telegraph_url   TEXT,
+  telegraph_path  TEXT,
+  kcal            numeric,
+  protein_g       numeric,
+  fat_g           numeric,
+  carbs_g         numeric,
+  serving_size_g  numeric,
   raw          jsonb,
   created_at   timestamptz not null default now()
 );

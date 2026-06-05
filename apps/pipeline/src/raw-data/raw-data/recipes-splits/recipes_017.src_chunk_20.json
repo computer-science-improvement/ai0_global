@@ -1,0 +1,667 @@
+[
+  {
+    "recipe_name": "Poulet Roulade, Maïs Textures, Jus de Volaille",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_poulet_roulade%2C_ma%C3%AFs_textures%2C_jus_de_volaille_20250626_091906_b48a4586.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:19:07.140844000Z",
+    "selected_ingredients": [
+      "chicken",
+      "corn"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single starter portion is elegantly presented on a pristine white bone china plate with a subtle, organic rim. The plating features abundant negative space, highlighting the dish's architectural precision and minimalist aesthetic. A vibrant, velvety pool of smooth sweet corn puree, a rich yellow hue, forms an organic, flowing base on one side of the plate. Two precisely cut, thick medallions of golden-brown pan-seared chicken roulade are nestled artfully atop the corn puree, revealing a tender, juicy interior. A small, concentrated pool of glistening, dark amber chicken jus is artfully drizzled around the base of the chicken and puree, adding depth and contrast. A scattering of golden, crispy corn kernels provides a textural counterpoint. The dish is subtly garnished with a few delicate green micro herbs, adding a touch of freshness and color. The setting features a premium white Carrara marble surface. A pristine white linen napkin, precisely folded into a triangle, rests beside the plate. Dramatic professional lighting creates soft shadows, emphasizing the dish's contours. The background is ultra-minimalist, ensuring maximum focus on the culinary artistry.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern French",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breasts",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Fresh corn kernels",
+        "quantity": "400g (from 3-4 cobs)"
+      },
+      {
+        "name": "Chicken stock (high quality)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Garlic clove",
+        "quantity": "1"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "2"
+      },
+      {
+        "name": "Micro herbs (e.g., chervil, bronze fennel)",
+        "quantity": "small handful"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken breasts dry. Butterfly each breast. Gently pound to an even 1 cm thickness.",
+      "Season chicken lightly with salt and pepper.",
+      "Finely dice the shallot and garlic. Sauté in 10g butter until translucent. Cool.",
+      "Spread a thin layer of sautéed shallot and garlic mixture over each chicken breast.",
+      "Carefully roll each chicken breast into a tight cylinder. Secure with kitchen twine.",
+      "Preheat oven to 180°C. Heat olive oil in an oven-safe pan over medium-high heat.",
+      "Sear chicken roulades until golden brown on all sides. Transfer pan to preheated oven.",
+      "Roast roulades for 10-12 minutes, or until internal temperature reaches 75°C. Rest for 5 minutes.",
+      "While chicken cooks, prepare corn. Reserve 50g corn kernels for crisping. Sauté remaining 350g corn with 20g butter and thyme sprigs for 5 minutes.",
+      "Add heavy cream to sautéed corn. Simmer for 3 minutes. Remove thyme.",
+      "Blend corn mixture in a high-speed blender until perfectly smooth. Pass through a fine-mesh sieve. Season with salt and white pepper. Keep warm.",
+      "For crispy corn, pat reserved 50g corn kernels very dry. Deep fry or air fry until golden and crisp. Season with salt.",
+      "For jus, simmer chicken stock in a small saucepan over medium-low heat. Reduce by half until syrupy. Stir in remaining 20g butter. Season to taste.",
+      "To plate, remove twine from chicken roulades. Slice each roulade into two thick medallions. Place 2-3 spoonfuls of warm corn puree on one side of a white plate, creating a natural, organic shape.",
+      "Arrange two chicken roulade medallions elegantly on the corn puree.",
+      "Spoon a small amount of rich chicken jus around the base of the chicken and puree.",
+      "Scatter a few crispy corn kernels precisely over the dish for texture.",
+      "Garnish with a few delicate micro herbs. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 568,
+      "cholesterol_mg": 194.9,
+      "dietary_fiber_g": 3.1,
+      "protein_g": 61.7,
+      "saturated_fat_g": 11.9,
+      "sodium_mg": 890.4,
+      "total_carbs_g": 22.1,
+      "total_fat_g": 26.2,
+      "total_sugars_g": 4.3,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127,
+      "cholesterol_mg": 43.8,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 13.9,
+      "saturated_fat_g": 2.7,
+      "sodium_mg": 199.9,
+      "total_carbs_g": 5,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 65,
+      "dietary_fiber": 11,
+      "protein": 123,
+      "saturated_fat": 60,
+      "sodium": 39,
+      "total_carbs": 8,
+      "total_fat": 34
+    },
+    "serving_size_g": 445.5,
+    "total_recipe_weight_g": 1782
+  },
+  {
+    "recipe_name": "Seared King Oyster, Pomme Puree, Black Garlic Gel",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_seared_king_oyster%2C_pomme_puree%2C_black_garlic_gel_20250626_091904_d32db5aa.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:19:05.064728000Z",
+    "selected_ingredients": [
+      "mushroom",
+      "potato",
+      "onion",
+      "garlic",
+      "cheese"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single, meticulously plated serving of Seared King Oyster, Pomme Puree, and Black Garlic Gel is presented on a large, round, pristine white bone china plate with a subtle, elegant rim. The plate rests on a cool, grey-veined Carrara marble surface. A velvety, creamy white quenelle of pomme puree forms the central anchor, slightly off-center. Around it, three to four perfectly seared King Oyster mushroom 'scallops' are arranged with deliberate asymmetry, their crosshatch-scored surfaces boasting a deep, rich golden-brown caramelization, contrasting with their tender, pale interior where visible. Small, precise dots and delicate swooshes of dark, glossy black garlic gel are artfully placed around the plate, providing a deep, almost inky contrast. A delicate, cloud-like wisp of airy Parmesan foam hovers over a portion of the mushrooms and puree, adding a subtle lightness. A few vibrant green chive batons, cut with absolute precision, are placed strategically to provide a pop of color and a crisp, linear element. Abundant negative space surrounds the components, emphasizing the minimalist and architectural composition. The scene is bathed in dramatic, professional lighting that creates soft shadows, enhancing the textures and dimensionality of each component. A crisp white linen napkin, folded into a precise triangle, and elegant, modern stainless steel cutlery (a fork and knife) are subtly placed to the side, maintaining an ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern European",
+    "hero_ingredient": "King Oyster Mushroom",
+    "ingredients": [
+      {
+        "name": "King Oyster Mushrooms",
+        "quantity": "4 large"
+      },
+      {
+        "name": "Russet Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Unsalted Butter",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Full-Fat Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Black Garlic Cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Vegetable Stock",
+        "quantity": "50 ml"
+      },
+      {
+        "name": "Agar-Agar Powder",
+        "quantity": "1 g"
+      },
+      {
+        "name": "Parmesan Cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Water",
+        "quantity": "200 ml"
+      },
+      {
+        "name": "Soy Lecithin",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Fresh Chives",
+        "quantity": "1 small bunch"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Prepare Pomme Puree: Peel and dice potatoes into 2 cm cubes. Place potatoes in a saucepan, cover with cold salted water. Bring to a boil, then reduce heat and simmer until very tender, about 15-20 minutes. Drain potatoes thoroughly. Pass potatoes through a fine-mesh sieve or potato ricer into a clean saucepan. Heat milk and butter in a separate small pan until butter is melted. Gradually whisk hot milk-butter mixture into the sieved potatoes until completely smooth and velvety. Season with salt and pepper. Keep warm.",
+      "Prepare Black Garlic Gel: Combine black garlic cloves, vegetable stock, and agar-agar in a small saucepan. Bring to a gentle simmer, stirring until agar-agar dissolves. Blend mixture until very smooth. Pass through a fine-mesh sieve into a small container. Chill until set, about 30 minutes. Once set, transfer gel to a blender and blend until smooth and pipeable. Transfer to a squeeze bottle or piping bag. Keep at room temperature.",
+      "Prepare Parmesan Air: Grate Parmesan cheese. Combine grated Parmesan and water in a small saucepan. Heat gently until Parmesan melts and mixture is warm. Do not boil. Strain liquid through a fine-mesh sieve into a tall, narrow container. Add soy lecithin. Use an immersion blender to aerate the liquid, creating a stable foam or 'air' on top. Set aside.",
+      "Prepare King Oyster Mushrooms: Wipe mushrooms clean. Cut each mushroom into 2 cm thick rounds, resembling scallops. Score one side of each mushroom round in a crosshatch pattern without cutting all the way through. Season mushroom rounds with sea salt and black pepper.",
+      "Sear Mushrooms: Heat olive oil in a large non-stick pan over medium-high heat. Once hot, place mushroom rounds scored-side down in the pan. Sear for 3-4 minutes until deeply golden brown and caramelized. Flip and sear on the other side for 2-3 minutes until tender. Remove from heat.",
+      "Plate Dish: Place a generous quenelle or dollop of pomme puree slightly off-center on each serving plate. Arrange 3-4 seared mushroom rounds artfully around the puree. Dot the plate sparingly with the black garlic gel. Gently spoon a cloud of Parmesan air over and around the mushrooms and puree. Garnish with a few precisely cut chive batons."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 636.15,
+      "cholesterol_mg": 118.58,
+      "dietary_fiber_g": 7.14,
+      "protein_g": 13.27,
+      "saturated_fat_g": 29.33,
+      "sodium_mg": 730.22,
+      "total_carbs_g": 35.88,
+      "total_fat_g": 54.69,
+      "total_sugars_g": 5.2,
+      "trans_fat_g": 1.57
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 142.43,
+      "cholesterol_mg": 26.55,
+      "dietary_fiber_g": 1.6,
+      "protein_g": 2.97,
+      "saturated_fat_g": 6.57,
+      "sodium_mg": 163.49,
+      "total_carbs_g": 8.03,
+      "total_fat_g": 12.24,
+      "total_sugars_g": 1.16,
+      "trans_fat_g": 0.35
+    },
+    "daily_value_percentages": {
+      "cholesterol": 39.53,
+      "dietary_fiber": 25.5,
+      "protein": 26.54,
+      "saturated_fat": 146.65,
+      "sodium": 31.75,
+      "total_carbs": 13.05,
+      "total_fat": 70.12
+    },
+    "serving_size_g": 446.65,
+    "total_recipe_weight_g": 1786.6
+  },
+  {
+    "recipe_name": "Roasted Chicken with Mediterranean Vegetables and Orange Vinaigrette",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_roasted_chicken_with_mediterranean_vegetables_and_orange_vinaigrette_20250626_091803_c347b3bc.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:18:04.352396000Z",
+    "selected_ingredients": [
+      "salad green",
+      "cheese",
+      "egg",
+      "onion",
+      "tomato",
+      "garlic",
+      "bell pepper",
+      "chicken",
+      "orange"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish presents roasted chicken thighs with crispy, golden-brown skin and tender meat, centrally placed on a clean white porcelain plate. Surrounding the chicken are vibrantly colored, caramelized roasted vegetables: thick strips of red and yellow bell peppers, quartered red tomatoes, and large wedges of red onion, all tender-crisp from roasting, alongside soft roasted garlic cloves. A generous scattering of crumbled white feta cheese rests over the warm vegetables. Adjacent to the roasted elements, a fresh mound of mixed green salad, lightly dressed with a bright orange vinaigrette, adds a contrasting cool and crisp texture. Two halves of a perfectly soft-boiled egg are nestled within the greens. The overall composition is balanced and inviting, with natural lighting highlighting the rich colors and textures. A cotton napkin is neatly folded beside the plate.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "cultural_origin": "Mediterranean",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800g total)"
+      },
+      {
+        "name": "Red onion",
+        "quantity": "1 large (approx. 200g), cut into 8 wedges"
+      },
+      {
+        "name": "Bell peppers (red and yellow)",
+        "quantity": "2 medium (approx. 300g total), deseeded, cut into thick strips"
+      },
+      {
+        "name": "Tomatoes",
+        "quantity": "2 medium (approx. 200g total), halved"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6, peeled and smashed"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Mixed salad greens",
+        "quantity": "200g"
+      },
+      {
+        "name": "Feta cheese",
+        "quantity": "100g, crumbled"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Orange",
+        "quantity": "1 large, zest and juice"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Honey or maple syrup",
+        "quantity": "5ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Place chicken thighs, onion wedges, bell pepper strips, tomato halves, and smashed garlic on a large baking tray.",
+      "Drizzle with 45ml olive oil. Season generously with salt, pepper, and oregano. Toss to coat.",
+      "Roast for 30-40 minutes, or until chicken internal temperature reaches 75°C and vegetables are tender and caramelized. Flip chicken once halfway.",
+      "While chicken roasts, prepare soft-boiled eggs. Bring a small pot of water to a boil. Gently add eggs. Cook for 6-7 minutes for a jammy yolk. Immediately transfer to an ice bath. Peel once cool.",
+      "For the orange vinaigrette, whisk together orange zest, orange juice, red wine vinegar, honey, and remaining 15ml olive oil in a small bowl. Season with salt and pepper.",
+      "Halve the peeled soft-boiled eggs.",
+      "To plate, arrange a chicken thigh on each plate. Surround with roasted vegetables. Scatter crumbled feta cheese over the vegetables.",
+      "Place a portion of mixed salad greens beside the roasted elements. Drizzle salad with orange vinaigrette. Place soft-boiled egg halves on the salad."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.5,
+      "calories": 748,
+      "cholesterol_mg": 304,
+      "dietary_fiber_g": 5.3,
+      "protein_g": 46.1,
+      "saturated_fat_g": 14.8,
+      "sodium_mg": 665,
+      "total_carbs_g": 20.9,
+      "total_fat_g": 52.6,
+      "total_sugars_g": 12.4,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 141.4,
+      "cholesterol_mg": 57.3,
+      "dietary_fiber_g": 1,
+      "protein_g": 8.7,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 125.6,
+      "total_carbs_g": 3.9,
+      "total_fat_g": 9.9,
+      "total_sugars_g": 2.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 101,
+      "dietary_fiber": 19,
+      "protein": 92,
+      "saturated_fat": 74,
+      "sodium": 29,
+      "total_carbs": 8,
+      "total_fat": 67
+    },
+    "serving_size_g": 529,
+    "total_recipe_weight_g": 2117
+  },
+  {
+    "recipe_name": "Pan-Seared Chicken Supreme, Tomato Consommé Gel, Black Garlic Puree, Pearl Onion Confit",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pan-seared_chicken_supreme%2C_tomato_consomm%C3%A9_gel%2C_black_garlic_puree%2C_pearl_onion_confit_20250626_091728_1bad766c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:17:29.070215000Z",
+    "selected_ingredients": [
+      "chicken",
+      "tomato",
+      "onion",
+      "garlic"
+    ],
+    "complexity": "fine-dining",
+    "special_requests": "",
+    "visual_description": "A single pan-seared chicken supreme, its skin a rich golden-brown and exquisitely crisp, rests slightly off-center on a large, round, matte white bone china plate. Beneath and to one side, a sweeping, elegant smear of deep, glossy black garlic puree provides a dramatic, dark counterpoint. Artistically scattered around the chicken are translucent, vibrant red shards of firm yet yielding tomato consommé gel, catching the light. A few perfectly tender, glistening pearl onions, subtly caramelized, are arranged with precision. The overall composition is organic and flowing, with abundant negative space on the pristine white plate, emphasizing the architectural precision of each element. A few delicate sprigs of micro basil provide a subtle green accent. The setting is a luxury white Carrara marble surface, with a precisely folded white linen napkin and minimalist modern silverware. Dramatic professional lighting casts soft shadows, enhancing the dish's sophisticated elegance against an ultra-minimalist background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Chicken Supreme",
+    "ingredients": [
+      {
+        "name": "Chicken supremes (skin-on, bone-in chicken breast)",
+        "quantity": "4 (approx. 250g each)"
+      },
+      {
+        "name": "Ripe vine tomatoes",
+        "quantity": "500g"
+      },
+      {
+        "name": "Shallots",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Black garlic cloves",
+        "quantity": "12"
+      },
+      {
+        "name": "Pearl onions",
+        "quantity": "200g"
+      },
+      {
+        "name": "Chicken stock",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Agar-agar powder",
+        "quantity": "2g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "50ml"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "30g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "Freshly ground, to taste"
+      },
+      {
+        "name": "Micro basil",
+        "quantity": "For garnish"
+      }
+    ],
+    "instructions": [
+      "Prepare Tomato Consommé: Roughly chop vine tomatoes, 1 shallot, 2 garlic cloves. Combine with 1 thyme sprig, bay leaf, white wine, and 200ml chicken stock. Simmer 20 minutes. Strain through a fine-mesh sieve, pressing solids for liquid. Cool. Clarify consommé: Whisk 1 egg white into cold consommé. Gently heat, stirring until raft forms. Simmer 10 minutes. Strain through cheesecloth-lined sieve. Reduce consommé by half for intensity. Season.",
+      "Make Tomato Consommé Gel: Heat clarified tomato consommé. Whisk in agar-agar powder until dissolved. Pour thin layer onto a shallow tray. Chill until set. Cut into irregular shards or small cubes.",
+      "Prepare Black Garlic Puree: Combine black garlic cloves with 50ml chicken stock and 1 tablespoon olive oil. Blend until perfectly smooth. Pass through a fine-mesh sieve for silky texture. Season lightly with salt.",
+      "Cook Pearl Onion Confit: Peel pearl onions. Heat 1 tablespoon olive oil and 10g butter in small pan. Add pearl onions, 1 thyme sprig. Cook over very low heat 20-25 minutes, stirring occasionally, until tender and lightly caramelized. Season. Keep warm.",
+      "Cook Chicken Supremes: Preheat oven to 200°C. Pat chicken supremes dry. Season generously with salt and pepper. Heat remaining olive oil in an oven-safe skillet over medium-high heat. Place chicken skin-side down. Sear 6-8 minutes until skin is deeply golden and crisp. Flip chicken. Add remaining butter and 1 thyme sprig to pan. Baste chicken. Transfer skillet to oven. Roast 10-12 minutes, or until internal temperature reaches 75°C. Rest chicken 5 minutes before plating.",
+      "Plate Dish: On each plate, create a sweeping, artistic smear of black garlic puree. Place one rested chicken supreme off-center. Artistically arrange several pearl onion confit around the chicken. Scatter irregular shards of tomato consommé gel. Garnish with a few delicate sprigs of micro basil."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 685,
+      "cholesterol_mg": 183,
+      "dietary_fiber_g": 4.8,
+      "protein_g": 58.6,
+      "saturated_fat_g": 10.2,
+      "sodium_mg": 283,
+      "total_carbs_g": 28.3,
+      "total_fat_g": 35.8,
+      "total_sugars_g": 14.5,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 114,
+      "cholesterol_mg": 30,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 9.7,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 47,
+      "total_carbs_g": 4.7,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 2.4,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 61,
+      "dietary_fiber": 17,
+      "protein": 117,
+      "saturated_fat": 51,
+      "sodium": 12,
+      "total_carbs": 10,
+      "total_fat": 46
+    },
+    "serving_size_g": 602,
+    "total_recipe_weight_g": 2408
+  },
+  {
+    "recipe_name": "Spanish-Style Beef and Chicken Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_spanish-style_beef_and_chicken_skillet_20250626_091608_435a5de5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-26T09:16:08.909956000Z",
+    "selected_ingredients": [
+      "beef",
+      "garlic",
+      "onion",
+      "potato",
+      "bell pepper",
+      "tomato",
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A generous single portion of Spanish-Style Beef and Chicken Skillet rests in a shallow, clean white porcelain bowl. The dish features a rich, savory medley of ingredients. Tender, browned 3cm beef cubes and 3cm chicken chunks are interspersed with golden 2cm potato cubes, vibrant red and yellow diced bell peppers, and softened diced onions, all coated in a reddish-brown, aromatic tomato-based sauce. The ingredients are naturally arranged, showcasing their distinct shapes and textures. A generous scattering of bright green chopped fresh parsley provides a fresh contrast on top. The plate is positioned on a simple wooden table surface in a modern bistro setting. A crisp white cotton napkin is folded neatly beside the bowl. Natural, even light illuminates the dish, highlighting its warmth and rustic elegance. The background is minimally blurred, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Spanish",
+    "cultural_origin": "Spanish",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the flavorful sauce.",
+      "Offer a simple green salad dressed with olive oil and vinegar.",
+      "Pair with a robust Spanish red wine."
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "boneless beef chuck",
+        "quantity": "500g"
+      },
+      {
+        "name": "boneless, skinless chicken thighs",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yukon Gold potatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "red bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "yellow bell pepper",
+        "quantity": "1 large"
+      },
+      {
+        "name": "brown onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "canned diced tomatoes",
+        "quantity": "400g"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "10g"
+      },
+      {
+        "name": "ground cumin",
+        "quantity": "5g"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "3g"
+      },
+      {
+        "name": "salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "chicken broth",
+        "quantity": "250ml"
+      },
+      {
+        "name": "fresh parsley, chopped",
+        "quantity": "15g"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large, heavy-bottomed skillet over medium-high heat.",
+      "Add beef cubes, cut into 3cm cubes. Sear until browned on all sides. Remove beef from skillet. Set aside.",
+      "Add chicken cubes, cut into 3cm cubes, to the same skillet. Sear until browned on all sides. Ensure chicken reaches 75°C (167°F). Remove chicken from skillet. Set aside.",
+      "Reduce heat to medium. Add diced onion to the skillet. Sauté until softened, about 5 minutes.",
+      "Add diced red and yellow bell peppers. Cook for 5-7 minutes until slightly tender.",
+      "Stir in minced garlic, smoked paprika, ground cumin, and dried oregano. Cook for 1 minute until fragrant.",
+      "Pour in diced tomatoes and chicken broth. Bring to a simmer.",
+      "Add potato cubes, cut into 2cm cubes, to the skillet. Return seared beef and chicken to the skillet. Stir to combine.",
+      "Reduce heat to low. Cover skillet. Simmer for 30-40 minutes, or until beef and potatoes are tender. Stir occasionally.",
+      "Season with salt and black pepper to taste.",
+      "Garnish generously with fresh chopped parsley before serving."
+    ],
+    "traditional_techniques": [
+      "Sofrito",
+      "Simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 592.5,
+      "cholesterol_mg": 222.5,
+      "dietary_fiber_g": 7.8,
+      "protein_g": 54.6,
+      "saturated_fat_g": 6.8,
+      "sodium_mg": 735.2,
+      "total_carbs_g": 38.4,
+      "total_fat_g": 24.9,
+      "total_sugars_g": 10.8,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 88.4,
+      "cholesterol_mg": 33.2,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1,
+      "sodium_mg": 109.7,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 3.7,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 74.2,
+      "dietary_fiber": 27.9,
+      "protein": 109.2,
+      "saturated_fat": 34.2,
+      "sodium": 32,
+      "total_carbs": 14,
+      "total_fat": 31.9
+    },
+    "serving_size_g": 670.2,
+    "total_recipe_weight_g": 2680.6
+  }
+]

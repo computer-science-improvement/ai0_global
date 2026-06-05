@@ -1,0 +1,689 @@
+[
+  {
+    "recipe_name": "Chicken Cacciatore with White Beans",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_cacciatore_with_white_beans_20250627_031018_baed76fb.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:10:19.126632000Z",
+    "selected_ingredients": [
+      "chicken",
+      "mushroom",
+      "tomato",
+      "bell pepper",
+      "onion",
+      "oregano",
+      "basil",
+      "garlic",
+      "chili",
+      "bean"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Chicken Cacciatore with White Beans is presented in a rustic, deep white porcelain bowl, positioned on a simple wooden table surface. A golden-brown, seared bone-in chicken thigh is the focal point, nestled in a rich, simmering tomato and vegetable sauce. The sauce is vibrant with thick chunks of red bell pepper, tender diced onion, and earthy sliced mushrooms. Creamy cannellini beans are visible, integrated throughout the savory sauce. The dish is garnished with a generous sprinkle of fresh, roughly chopped basil leaves, adding a pop of green. A subtle dusting of red chili flakes enhances visual texture. A white cotton napkin is neatly folded beside the bowl. Natural, even lighting highlights the steam rising and the varying textures, creating an inviting, approachable restaurant-style presentation. The entire plate is visible, with moderate negative space. A piece of crusty Italian bread sits to the side.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty Italian bread to sop up the sauce",
+      "Accompany with a simple green salad dressed with vinaigrette",
+      "Can be served over polenta or pasta like tagliatelle"
+    ],
+    "hero_ingredient": "Bone-in chicken thighs",
+    "ingredients": [
+      {
+        "name": "Bone-in, skin-on chicken thighs",
+        "quantity": "4 pieces (approx. 800g)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large, diced"
+      },
+      {
+        "name": "Red bell pepper",
+        "quantity": "1, cut into 2 cm chunks"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, minced"
+      },
+      {
+        "name": "White mushrooms",
+        "quantity": "200 g, thickly sliced"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Red chili flakes",
+        "quantity": "2 g (or to taste)"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "125 ml (e.g., Chianti or Merlot)"
+      },
+      {
+        "name": "Canned diced tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Canned cannellini beans",
+        "quantity": "400 g, rinsed and drained"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "large handful, roughly chopped"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry with paper towels. Season generously with salt and black pepper.",
+      "Heat olive oil in a large, heavy-bottomed pot or Dutch oven over medium-high heat.",
+      "Sear chicken thighs, skin-side down, for 6-8 minutes until golden brown and crispy. Flip and sear for another 3-4 minutes. Remove chicken and set aside.",
+      "Reduce heat to medium. Add diced onion and bell pepper chunks to the pot. Sauté for 5-7 minutes until softened.",
+      "Add minced garlic, dried oregano, and red chili flakes. Cook for 1 minute until fragrant.",
+      "Stir in thickly sliced mushrooms. Cook for 3-5 minutes until mushrooms release their liquid and begin to brown.",
+      "Pour in red wine. Scrape up any browned bits from the bottom of the pot. Cook until wine is mostly evaporated, about 2 minutes.",
+      "Add diced tomatoes, chicken broth, and rinsed cannellini beans. Bring to a simmer.",
+      "Return seared chicken thighs to the pot, nestling them into the sauce. Ensure chicken internal temperature reaches 75°C (167°F) during cooking.",
+      "Reduce heat to low, cover, and simmer for 30-40 minutes, or until chicken is tender and cooked through.",
+      "Stir in fresh basil just before serving. Taste and adjust seasoning as needed.",
+      "Serve hot directly from the pot or plated individually."
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 737,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 11,
+      "protein_g": 53.4,
+      "saturated_fat_g": 9.2,
+      "sodium_mg": 716,
+      "total_carbs_g": 39.5,
+      "total_fat_g": 38.3,
+      "total_sugars_g": 8.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 113,
+      "cholesterol_mg": 28,
+      "dietary_fiber_g": 1.7,
+      "protein_g": 8.2,
+      "saturated_fat_g": 1.4,
+      "sodium_mg": 110,
+      "total_carbs_g": 6.1,
+      "total_fat_g": 5.9,
+      "total_sugars_g": 1.3,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 39,
+      "protein": 107,
+      "saturated_fat": 46,
+      "sodium": 31,
+      "total_carbs": 14,
+      "total_fat": 49
+    },
+    "serving_size_g": 652,
+    "total_recipe_weight_g": 2608
+  },
+  {
+    "recipe_name": "Butter Chicken (Murgh Makhani)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_butter_chicken_%28murgh_makhani%29_20250627_030941_6d23ef14.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:09:42.365320000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "The dish features large, charred chunks of succulent chicken submerged in a vibrant, velvety orange-red tomato gravy. The chicken is presented as whole 4cm cubes, never sliced. A delicate swirl of white heavy cream decorates the surface, contrasting with the rich sauce. Freshly chopped bright green cilantro and a sprinkle of crushed dried fenugreek leaves provide texture. The meal is served in a traditional hammered copper bowl placed on a dark wooden table. Beside the bowl lies a piece of charred garlic naan and a small mound of fluffy basmati rice. A side of thinly sliced red onion rings and a lemon wedge add authentic color. Natural, warm lighting highlights the glossy sheen of the butter-enriched sauce.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Northern India",
+    "cultural_serving_suggestions": [
+      "Serve with warm garlic naan",
+      "Accompany with steamed basmati rice",
+      "Include lachha pyaz (sliced red onion salad with lemon)",
+      "Provide fresh lime wedges"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs (boneless, skinless), cut into 4cm chunks",
+        "quantity": "800g"
+      },
+      {
+        "name": "Greek yogurt",
+        "quantity": "120g"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Kashmiri chili powder",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Tomato puree (passata)",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Dried fenugreek leaves (Kasuri Methi)",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Honey",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Whisk yogurt, 1 tbsp ginger-garlic paste, 1 tsp chili powder, and lemon juice in a bowl.",
+      "Add chicken chunks to the marinade. Refrigerate for 1 hour.",
+      "Heat a heavy-bottomed pan over high heat. Sear chicken until charred and internal temperature reaches 75°C. Remove chicken.",
+      "Melt butter in the same pan. Add remaining ginger-garlic paste. Sauté for 1 minute.",
+      "Add tomato puree and remaining chili powder. Simmer for 15 minutes until sauce thickens.",
+      "Stir in garam masala, honey, and salt.",
+      "Return chicken chunks to the pan. Mix well.",
+      "Pour in heavy cream. Add crushed dried fenugreek leaves. Simmer for 2 minutes.",
+      "Serve immediately."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for safety.",
+      "Kashmiri chili powder provides the signature red color without excessive heat.",
+      "Crushing fenugreek leaves between palms releases maximum aroma."
+    ],
+    "traditional_techniques": [
+      "Tandoor-style searing",
+      "Spice tempering",
+      "Slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.8,
+      "calories": 677.8,
+      "cholesterol_mg": 252.8,
+      "dietary_fiber_g": 2.9,
+      "protein_g": 57.8,
+      "saturated_fat_g": 19.2,
+      "sodium_mg": 790.5,
+      "total_carbs_g": 13.9,
+      "total_fat_g": 43,
+      "total_sugars_g": 8.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.5,
+      "calories": 207.6,
+      "cholesterol_mg": 77.4,
+      "dietary_fiber_g": 0.9,
+      "protein_g": 17.7,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 242.1,
+      "total_carbs_g": 4.3,
+      "total_fat_g": 13.2,
+      "total_sugars_g": 2.7,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 84.3,
+      "dietary_fiber": 10.4,
+      "protein": 115.6,
+      "saturated_fat": 96,
+      "sodium": 34.4,
+      "total_carbs": 5.1,
+      "total_fat": 55.1
+    },
+    "serving_size_g": 326.5,
+    "total_recipe_weight_g": 1306
+  },
+  {
+    "recipe_name": "Cheesy Tex-Mex Stuffed Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_cheesy_tex-mex_stuffed_chicken_20250627_030546_c198e983.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:05:46.835004000Z",
+    "selected_ingredients": [
+      "taco cheese"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "One golden-brown seared chicken breast, sliced diagonally into two thick pieces, reveals a vibrant, melted taco cheese, black bean, and corn filling. The filling bursts with orange cheese, dark beans, and yellow corn. The chicken exterior is crisp with a slight char. A generous drizzle of creamy, pale green avocado crema cascades over the chicken. Bright green chopped cilantro is sprinkled over the dish. A fresh lime wedge sits beside the chicken. The chicken is centered on a clean, round white porcelain plate. A cotton napkin is folded neatly beside the plate on a simple wooden table. Natural, even lighting highlights the dish, with a subtle, blurred modern bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Tex-Mex",
+    "cultural_origin": "Tex-Mex",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas or steamed rice.",
+      "Offer additional lime wedges for extra zest.",
+      "Serve with a side of mild salsa or pico de gallo."
+    ],
+    "hero_ingredient": "Chicken breast",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken breasts",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Taco cheese, shredded",
+        "quantity": "200g"
+      },
+      {
+        "name": "Black beans, canned, rinsed and drained",
+        "quantity": "100g"
+      },
+      {
+        "name": "Corn kernels (frozen or canned, drained)",
+        "quantity": "100g"
+      },
+      {
+        "name": "Red bell pepper, finely diced",
+        "quantity": "1 small"
+      },
+      {
+        "name": "Red onion, finely diced",
+        "quantity": "0.5 small"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Chili powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": "3g"
+      },
+      {
+        "name": "Smoked paprika",
+        "quantity": "2g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "for garnish"
+      },
+      {
+        "name": "Lime wedges",
+        "quantity": "for serving"
+      },
+      {
+        "name": "Avocado",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Sour cream or Greek yogurt",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Lime juice",
+        "quantity": "15ml"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Heat 15ml olive oil in a large oven-safe pan over medium heat. Add finely diced red onion and red bell pepper. Sauté 3-4 minutes until softened. Add minced garlic. Cook 1 minute more.",
+      "Stir in black beans, corn, chili powder, cumin, and smoked paprika. Cook 2 minutes. Remove from heat. Stir in 100g shredded taco cheese. Set aside.",
+      "Pound chicken breasts to 1.5 cm thickness. Season both sides with salt and pepper.",
+      "Divide filling evenly among chicken breasts. Place filling on one half of each breast. Fold other half over filling. Secure edges with toothpicks if needed.",
+      "Return pan to medium-high heat. Add more olive oil if needed. Sear stuffed chicken breasts 3-4 minutes per side until golden brown.",
+      "Transfer pan to preheated oven. Bake 15-20 minutes, or until internal temperature reaches 75°C. Remove chicken from oven. Let rest 5 minutes.",
+      "While chicken bakes, prepare avocado crema. Combine avocado, sour cream, lime juice, and salt in a blender. Blend until smooth.",
+      "Slice each chicken breast diagonally into two thick pieces. Arrange on plates. Drizzle with avocado crema. Garnish with fresh cilantro and lime wedges. Serve immediately."
+    ],
+    "notes": [
+      "Do not overstuff chicken breasts to prevent filling from leaking.",
+      "Ensure chicken reaches an internal temperature of 75°C for food safety."
+    ],
+    "traditional_techniques": [
+      "Searing",
+      "Baking"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 722,
+      "cholesterol_mg": 217,
+      "dietary_fiber_g": 9.2,
+      "protein_g": 76.7,
+      "saturated_fat_g": 17,
+      "sodium_mg": 1045,
+      "total_carbs_g": 23.2,
+      "total_fat_g": 37.7,
+      "total_sugars_g": 4.2,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 178,
+      "cholesterol_mg": 54,
+      "dietary_fiber_g": 2.3,
+      "protein_g": 19,
+      "saturated_fat_g": 4.2,
+      "sodium_mg": 258,
+      "total_carbs_g": 5.7,
+      "total_fat_g": 9.3,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72,
+      "dietary_fiber": 33,
+      "protein": 153,
+      "saturated_fat": 85,
+      "sodium": 45,
+      "total_carbs": 8,
+      "total_fat": 48
+    },
+    "serving_size_g": 404.5,
+    "total_recipe_weight_g": 1618
+  },
+  {
+    "recipe_name": "Chicken Enchiladas Rojas",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_chicken_enchiladas_rojas_20250627_030448_ce3500ca.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:04:48.804287000Z",
+    "selected_ingredients": [
+      "tortilla"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single serving of two to three golden-brown Chicken Enchiladas Rojas is centrally placed on a clean white porcelain dinner plate. They are generously coated in a rich, deep red chile sauce, with melted, bubbly Monterey Jack cheese forming a slightly browned crust. Shredded chicken peeks from under some cheese. Fresh, chopped cilantro adds a vibrant green accent. A delicate drizzle of pale white Mexican crema streaks across the enchiladas. The plate rests on a simple, light-colored wooden table, suggesting a modern bistro setting. An off-white cotton napkin is neatly folded beside the plate. The background is softly blurred, focusing on the dish while hinting at a casual restaurant atmosphere. Natural, even lighting highlights textures and colors. The presentation is clean, professional, and inviting, with appropriate negative space.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with a side of Mexican rice and refried beans.",
+      "Offer additional salsa or pickled jalapeños on the side.",
+      "Serve family-style directly from the baking dish for a communal meal."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Corn tortillas",
+        "quantity": "12 (15 cm diameter)"
+      },
+      {
+        "name": "Chicken breast",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Ancho chiles, dried",
+        "quantity": "3"
+      },
+      {
+        "name": "Guajillo chiles, dried",
+        "quantity": "3"
+      },
+      {
+        "name": "White onion, diced",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "3"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Cumin, ground",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "3 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Monterey Jack cheese, shredded",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Mexican crema or sour cream",
+        "quantity": "60 ml"
+      }
+    ],
+    "instructions": [
+      "Place chicken breast in a pot. Cover with water. Boil until cooked through, about 20 minutes. Internal temperature must reach 75°C. Remove chicken. Shred when cool enough to handle. Set aside.",
+      "Remove stems and seeds from dried chiles. Place chiles in a bowl. Cover with hot water. Let soak 20 minutes until softened.",
+      "Drain chiles. Blend chiles with 250 ml chicken broth until smooth. Strain mixture through a fine-mesh sieve into a bowl. Discard solids. This is your chile paste.",
+      "Heat 15 ml vegetable oil in a large saucepan over medium heat. Sauté half of the diced onion until translucent, about 5 minutes. Add minced garlic. Cook 1 minute more.",
+      "Pour chile paste into the saucepan. Stir in remaining 250 ml chicken broth, cumin, and oregano. Bring to a simmer. Cook 10 minutes, stirring occasionally, until sauce thickens slightly. Season with salt. Keep warm.",
+      "Preheat oven to 190°C. Lightly grease a 23x33 cm baking dish.",
+      "Heat remaining 15 ml vegetable oil in a skillet over medium heat. Quickly dip each tortilla in the warm enchilada sauce to coat lightly. Then, quickly pass each coated tortilla through the hot oil for 10-15 seconds per side to soften slightly. Do not fry until crispy.",
+      "Lay a tortilla flat. Fill with a portion of shredded chicken and some shredded cheese. Roll tightly. Place seam-side down in the prepared baking dish.",
+      "Repeat with remaining tortillas, chicken, and cheese until dish is full. Pour remaining enchilada sauce evenly over the rolled enchiladas. Sprinkle with remaining shredded cheese.",
+      "Bake 20-25 minutes, or until cheese is melted and bubbly and sauce is simmering.",
+      "Remove from oven. Let rest 5 minutes. Garnish with fresh cilantro and a drizzle of Mexican crema or sour cream before serving."
+    ],
+    "traditional_techniques": [
+      "Rehydrating and blending dried chiles for sauce (salsa roja)",
+      "Lightly frying tortillas to soften before filling (pasando por aceite)"
+    ]
+  },
+  {
+    "recipe_name": "Braised Beef Short Ribs with Rich Gravy",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_braised_beef_short_ribs_with_rich_gravy_20250627_030309_d0bb3546.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-27T03:03:09.858756000Z",
+    "selected_ingredients": [
+      "hp steak sauce",
+      "beef stock",
+      "marmite"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, bone-in braised beef short rib, deeply browned and fall-off-the-bone tender, rests centrally on a clean white porcelain dinner plate. A generous dollop of creamy, smooth mashed potatoes sits beside the rib. Scattered artfully around are several thick chunks of roasted root vegetables, including caramelized orange carrots and pale yellow parsnips. A glossy, rich dark brown gravy, made from the braising liquid, is generously spooned over the short rib and pools invitingly at the base of the mashed potatoes. The dish is lightly garnished with a sprinkle of finely chopped fresh green parsley, adding a pop of color. The presentation is professional and approachable, set on a simple wooden table surface in a modern bistro setting, with a white cotton napkin beside the plate, under natural, even lighting. The entire plate is visible, showcasing a well-proportioned single portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "British",
+    "cultural_origin": "British",
+    "cultural_serving_suggestions": [
+      "Serve with traditional mashed potatoes.",
+      "Accompany with seasonal roasted root vegetables like carrots and parsnips."
+    ],
+    "hero_ingredient": "Beef Short Ribs",
+    "ingredients": [
+      {
+        "name": "Beef Short Ribs",
+        "quantity": "1.5 kg"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Onions",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Carrots",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "1 litre"
+      },
+      {
+        "name": "HP Steak Sauce",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Marmite",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4"
+      },
+      {
+        "name": "Bay leaves",
+        "quantity": "2"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Cold water",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Fresh parsley",
+        "quantity": "for garnish"
+      }
+    ],
+    "instructions": [
+      "Pat beef short ribs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe Dutch oven over medium-high heat.",
+      "Sear ribs on all sides until deeply browned. Remove ribs from pot.",
+      "Add roughly chopped onions, carrots, and celery to the pot. Sauté until softened, about 8-10 minutes.",
+      "Add smashed garlic and tomato paste. Cook for 2 minutes, stirring constantly.",
+      "Pour in red wine, scraping up any browned bits from the bottom. Simmer for 5 minutes until reduced by half.",
+      "Stir in beef stock, HP steak sauce, Marmite, thyme, and bay leaves. Bring to a simmer.",
+      "Return seared ribs to the pot. Ensure ribs are mostly submerged. Add more stock if needed.",
+      "Cover pot tightly. Transfer to a preheated oven at 160°C (325°F).",
+      "Braise for 2.5 to 3 hours, or until beef is fork-tender.",
+      "Carefully remove ribs from pot. Strain braising liquid through a fine-mesh sieve into a saucepan. Discard solids.",
+      "Skim any excess fat from the strained liquid. Bring to a simmer over medium heat.",
+      "Mix cornstarch with cold water to create a slurry. Whisk slurry into the simmering sauce. Simmer until sauce thickens slightly to a gravy consistency.",
+      "Adjust seasoning of gravy with salt and pepper.",
+      "Serve ribs with gravy spooned over. Garnish with chopped fresh parsley."
+    ],
+    "traditional_techniques": [
+      "Braising"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 3.6,
+      "calories": 1446,
+      "cholesterol_mg": 356.25,
+      "dietary_fiber_g": 2.54,
+      "protein_g": 91.4,
+      "saturated_fat_g": 42.21,
+      "sodium_mg": 795.49,
+      "total_carbs_g": 23.21,
+      "total_fat_g": 110.35,
+      "total_sugars_g": 9.61,
+      "trans_fat_g": 2.81
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.43,
+      "calories": 171.3,
+      "cholesterol_mg": 42.19,
+      "dietary_fiber_g": 0.3,
+      "protein_g": 10.83,
+      "saturated_fat_g": 5,
+      "sodium_mg": 94.22,
+      "total_carbs_g": 2.75,
+      "total_fat_g": 13.07,
+      "total_sugars_g": 1.14,
+      "trans_fat_g": 0.33
+    },
+    "daily_value_percentages": {
+      "cholesterol": 118.75,
+      "dietary_fiber": 9.07,
+      "protein": 182.8,
+      "saturated_fat": 211.05,
+      "sodium": 34.59,
+      "total_carbs": 8.44,
+      "total_fat": 141.47
+    },
+    "serving_size_g": 844.25,
+    "total_recipe_weight_g": 3377
+  }
+]

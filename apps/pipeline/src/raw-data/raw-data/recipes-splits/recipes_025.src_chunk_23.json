@@ -1,0 +1,667 @@
+[
+  {
+    "recipe_name": "Zero-Waste Noodles with Fermented Black Beans & Asparagus",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_zero-waste_noodles_with_fermented_black_beans_%26_asparagus_20250623_125057_ba8864c0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:50:57.539021000Z",
+    "selected_ingredients": [
+      "pasta",
+      "sausage",
+      "onion",
+      "cheddar",
+      "garlic",
+      "bread",
+      "bacon",
+      "heavy cream",
+      "asparagus",
+      "basil"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "chinese cuisine",
+    "visual_description": "A single serving of stir-fried noodles rests on a handcrafted, cream-toned ceramic plate with a natural, unglazed rim. The wide wheat noodles form a cohesive base, lightly coated in a dark, glossy sauce. Scattered throughout are vibrant green asparagus pieces, cut diagonally, showcasing their crisp-tender texture. Thinly sliced rounds of caramelized lap cheong and cured pork belly add savory depth and visual interest. A scattering of minced fermented black beans provides dark specks. The dish is garnished simply with fresh, thinly sliced green scallions. The overall presentation is minimalistic and clean, with ample negative space. It is placed on a light bamboo table surface. A pair of dark wooden chopsticks rests beside the plate. Soft, natural light illuminates the dish from the side, highlighting its textures. A small, unbleached linen napkin in beige is folded neatly nearby. The background is clean and slightly blurred, with hints of natural greenery.",
+    "number_of_servings": 4,
+    "cuisine_type": "Chinese",
+    "cultural_origin": "Chinese",
+    "cultural_serving_suggestions": [
+      "Serve immediately with chopsticks.",
+      "Offer a small side dish of quick-pickled asparagus stems (from the tough ends) or a fermented chili paste for an added layer of flavor and zero-waste element."
+    ],
+    "hero_ingredient": "Fermented Black Beans",
+    "ingredients": [
+      {
+        "name": "Wide wheat noodles (or dried pasta like fettuccine)",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Chinese lap cheong (cured pork sausage)",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Cured pork belly (bacon)",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh asparagus",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Fermented black beans (douchi)",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Soy sauce",
+        "quantity": "3 tbsp"
+      },
+      {
+        "name": "Shaoxing wine",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Sesame oil",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "White pepper",
+        "quantity": "0.5 tsp"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Water or zero-waste vegetable stock",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Scallions, green parts",
+        "quantity": "2, sliced"
+      }
+    ],
+    "instructions": [
+      "Prepare zero-waste stock: Collect asparagus ends, onion root, and outer layers. Simmer in 200 ml water for 15 minutes. Strain and set aside 100 ml.",
+      "Thinly slice lap cheong and cured pork belly into 2 mm rounds.",
+      "Slice onion thinly. Mince garlic.",
+      "Trim asparagus. Cut tender spears diagonally into 3 cm pieces. Reserve tough ends for stock.",
+      "Soak fermented black beans in 2 tbsp hot water for 5 minutes. Lightly mash.",
+      "In a small bowl, combine soy sauce, Shaoxing wine, sesame oil, white pepper, cornstarch, and 100 ml prepared stock. Mix well.",
+      "Cook noodles according to package directions until al dente. Drain and rinse with cold water to prevent sticking. Toss with a drizzle of oil.",
+      "Heat vegetable oil in a large wok or skillet over high heat until shimmering.",
+      "Add lap cheong and cured pork belly. Stir-fry for 2-3 minutes until fragrant and lightly crispy. Remove from wok and set aside, leaving rendered fat.",
+      "Add onion and garlic to the wok. Stir-fry for 1 minute until fragrant.",
+      "Add asparagus pieces. Stir-fry for 2-3 minutes until bright green and crisp-tender.",
+      "Return lap cheong and cured pork belly to the wok. Add mashed fermented black beans.",
+      "Pour the sauce mixture into the wok. Bring to a simmer, stirring until thickened.",
+      "Add cooked noodles to the wok. Toss vigorously to coat all ingredients evenly with the sauce.",
+      "Stir-fry for another 2 minutes until heated through and well combined.",
+      "Transfer to serving plates. Garnish with sliced scallions."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing asparagus ends and onion scraps to create a flavorful vegetable stock. It also features fermented black beans, a traditional Chinese ingredient, for deep umami.",
+      "For a more plant-forward version, increase asparagus quantity and reduce or omit cured meats, substituting with pan-fried firm tofu or mushrooms."
+    ],
+    "traditional_techniques": [
+      "Stir-frying (Chao)",
+      "Using fermented ingredients (Douchi)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0.8,
+      "calories": 697.2,
+      "cholesterol_mg": 57.5,
+      "dietary_fiber_g": 6.1,
+      "protein_g": 26.8,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 1516.1,
+      "total_carbs_g": 84.6,
+      "total_fat_g": 25.5,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 208.7,
+      "cholesterol_mg": 17.2,
+      "dietary_fiber_g": 1.8,
+      "protein_g": 8,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 453.8,
+      "total_carbs_g": 25.3,
+      "total_fat_g": 7.6,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 19.2,
+      "dietary_fiber": 21.8,
+      "protein": 53.6,
+      "saturated_fat": 30.5,
+      "sodium": 65.9,
+      "total_carbs": 30.8,
+      "total_fat": 32.7
+    },
+    "serving_size_g": 334.1,
+    "total_recipe_weight_g": 1337
+  },
+  {
+    "recipe_name": "Lemon-Herb Chicken and Crab Linguine",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_lemon-herb_chicken_and_crab_linguine_20250623_124908_40d11402.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:49:09.386469000Z",
+    "selected_ingredients": [
+      "pasta",
+      "chicken",
+      "onion",
+      "garlic",
+      "crab",
+      "lemon",
+      "olive",
+      "basil",
+      "parmesan",
+      "olive oil"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Lemon-Herb Chicken and Crab Linguine is presented on a clean, white porcelain dinner plate, centered on a simple wooden table. Golden-brown seared chicken medallions, cut into thick chunks, are nestled among al dente linguine lightly coated in a glistening lemon-herb sauce. Flakes of white crab meat are distributed throughout. Halved Kalamata olives provide dark accents. Fresh green, coarsely chopped basil leaves and a light dusting of grated Parmesan cheese are visible. The dish shows a natural, flowing arrangement with moderate negative space. Standard silver flatware rests beside the plate on a cotton napkin. Natural, even lighting creates a casual bistro atmosphere in the minimal background, highlighting the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to soak up the sauce",
+      "Pair with a light white wine like Pinot Grigio or Sauvignon Blanc"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken breast",
+        "quantity": "450 g"
+      },
+      {
+        "name": "Linguine pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "White crab meat",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "4"
+      },
+      {
+        "name": "Kalamata olives, pitted",
+        "quantity": "80 g"
+      },
+      {
+        "name": "Fresh basil leaves",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Parmesan cheese, grated",
+        "quantity": "60 g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Cut chicken breast into 2.5 cm thick medallions or thick chunks. Season chicken with salt and pepper.",
+      "Heat 30 ml olive oil in a large skillet over medium-high heat. Sear chicken medallions 4-5 minutes per side until golden brown and cooked to an internal temperature of 75°C. Remove chicken from skillet. Set aside.",
+      "Dice onion. Mince garlic. Slice olives in half. Coarsely chop basil.",
+      "Add remaining 30 ml olive oil to the same skillet. Reduce heat to medium. Add diced onion. Sauté 5 minutes until softened.",
+      "Add minced garlic. Sauté 1 minute until fragrant.",
+      "Pour in chicken broth. Bring to a simmer. Scrape up any browned bits from the bottom of the skillet.",
+      "Zest half the lemon directly into the skillet. Squeeze juice from the entire lemon into the skillet. Stir well.",
+      "Cook linguine according to package directions in salted water until al dente. Reserve 120 ml pasta cooking water. Drain linguine.",
+      "Add cooked linguine, seared chicken, crab meat, and sliced olives to the skillet with the sauce. Toss to combine.",
+      "Add reserved pasta water if needed to create a light sauce. Toss gently.",
+      "Stir in chopped basil and half the grated Parmesan cheese. Toss again.",
+      "Taste and adjust seasoning with salt and pepper as needed.",
+      "Serve immediately. Garnish each portion with remaining grated Parmesan."
+    ],
+    "notes": [
+      "Ensure chicken reaches 75°C internal temperature for food safety."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 853,
+      "cholesterol_mg": 136.5,
+      "dietary_fiber_g": 5.5,
+      "protein_g": 64.4,
+      "saturated_fat_g": 6.3,
+      "sodium_mg": 1144.1,
+      "total_carbs_g": 84.6,
+      "total_fat_g": 27.7,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 199,
+      "cholesterol_mg": 31.9,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 15.1,
+      "saturated_fat_g": 1.5,
+      "sodium_mg": 267.5,
+      "total_carbs_g": 19.8,
+      "total_fat_g": 6.5,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 45,
+      "dietary_fiber": 20,
+      "protein": 129,
+      "saturated_fat": 31,
+      "sodium": 50,
+      "total_carbs": 31,
+      "total_fat": 35
+    },
+    "serving_size_g": 427.8,
+    "total_recipe_weight_g": 1711
+  },
+  {
+    "recipe_name": "Smoked Oyster and Spinach Ricotta Cannelloni",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_smoked_oyster_and_spinach_ricotta_cannelloni_20250623_124716_650df3c9.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:47:16.967039000Z",
+    "selected_ingredients": [
+      "pasta",
+      "ricotta",
+      "cheddar",
+      "spinach",
+      "smoked oyster"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Smoked Oyster and Spinach Ricotta Cannelloni is presented in a white porcelain oval baking dish, resting on a simple wooden table. Four golden-brown cannelloni tubes, generously filled and baked, are coated in a rich, bubbling cheddar sauce. The sauce shows creamy texture and a warm, golden hue. Hints of vibrant green spinach peek from the ends of the pasta, providing a color contrast. Several whole, glistening smoked oysters are strategically placed on top of the cheesy crust, their dark, glossy surface adding visual interest. The dish is garnished with a light scattering of fresh, finely chopped parsley for a pop of bright green. The entire plate is visible, with moderate negative space. A neatly folded white cotton napkin rests beside the dish. Natural, even lighting illuminates the scene, highlighting the textures and warm tones. The background suggests a modern bistro setting, subtly blurred to keep focus on the dish.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Italian",
+    "hero_ingredient": "Smoked Oyster",
+    "ingredients": [
+      {
+        "name": "Cannelloni tubes",
+        "quantity": "16 (approx. 250g)"
+      },
+      {
+        "name": "Ricotta cheese",
+        "quantity": "500g"
+      },
+      {
+        "name": "Fresh spinach",
+        "quantity": "200g"
+      },
+      {
+        "name": "Smoked oysters in oil",
+        "quantity": "2 cans (approx. 85g each), drained"
+      },
+      {
+        "name": "Cheddar cheese, grated",
+        "quantity": "200g"
+      },
+      {
+        "name": "Milk",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "50g"
+      },
+      {
+        "name": "Garlic clove, minced",
+        "quantity": "2"
+      },
+      {
+        "name": "Nutmeg, grated",
+        "quantity": "Pinch"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "2 tablespoons"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 190°C.",
+      "Blanch spinach briefly. Squeeze out excess water. Roughly chop.",
+      "In a bowl, combine ricotta, chopped spinach, minced garlic, salt, and pepper. Mix well.",
+      "Gently fold in half of the drained smoked oysters into the ricotta mixture. Keep some whole oysters for topping.",
+      "Carefully fill each cannelloni tube with the ricotta-spinach-oyster mixture. Use a piping bag or small spoon.",
+      "Prepare the cheddar sauce: Melt butter in a saucepan over medium heat. Add flour. Cook for 1 minute, stirring constantly, to form a roux.",
+      "Gradually whisk in milk until smooth and thickened. Bring to a gentle simmer.",
+      "Remove from heat. Stir in 150g of grated cheddar cheese and a pinch of nutmeg. Season with salt and pepper.",
+      "Pour a thin layer of cheddar sauce into the bottom of a large ovenproof dish.",
+      "Arrange filled cannelloni tubes in a single layer over the sauce.",
+      "Pour remaining cheddar sauce evenly over the cannelloni. Ensure all tubes are covered.",
+      "Sprinkle remaining 50g grated cheddar cheese over the top.",
+      "Place remaining whole smoked oysters on top of the cheese.",
+      "Bake for 25-30 minutes, or until cannelloni is tender and cheese is golden and bubbling.",
+      "Remove from oven. Let rest for 5 minutes.",
+      "Garnish with fresh chopped parsley before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 944,
+      "cholesterol_mg": 173.54,
+      "dietary_fiber_g": 3.59,
+      "protein_g": 50.34,
+      "saturated_fat_g": 27.35,
+      "sodium_mg": 800.39,
+      "total_carbs_g": 74.28,
+      "total_fat_g": 48.78,
+      "total_sugars_g": 12.2,
+      "trans_fat_g": 1.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 184,
+      "cholesterol_mg": 33.77,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 9.8,
+      "saturated_fat_g": 5.32,
+      "sodium_mg": 155.76,
+      "total_carbs_g": 14.46,
+      "total_fat_g": 9.49,
+      "total_sugars_g": 2.37,
+      "trans_fat_g": 0.27
+    },
+    "daily_value_percentages": {
+      "cholesterol": 57.85,
+      "dietary_fiber": 12.82,
+      "protein": 100.68,
+      "saturated_fat": 136.75,
+      "sodium": 34.8,
+      "total_carbs": 27.01,
+      "total_fat": 62.54
+    },
+    "serving_size_g": 513.88,
+    "total_recipe_weight_g": 2055.5
+  },
+  {
+    "recipe_name": "Hearty Beef, Potato & Sauerkraut Skillet",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_hearty_beef%2C_potato_%26_sauerkraut_skillet_20250623_124710_fda50d1c.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:47:10.861958000Z",
+    "selected_ingredients": [
+      "beef",
+      "sauerkraut",
+      "smoked tofu",
+      "taleggio cheese",
+      "potato"
+    ],
+    "complexity": "simple",
+    "special_requests": "Chinese cuisine",
+    "visual_description": "A single generous serving of a hearty beef, potato, and sauerkraut skillet, presented on a simple, well-used ceramic plate with natural imperfections. The dish features tender, rich brown beef chunks, soft, creamy potato cubes, and vibrant yellow-green strands of sauerkraut, all coated in a thick, savory sauce. Melted, creamy taleggio cheese is visibly integrated, adding a pale, golden sheen. Small, dark cubes of smoked tofu are interspersed throughout. The components are naturally piled in the center of the plate, slightly overlapping, creating a comforting, unpretentious mound. A sprinkle of fresh, bright green chopped parsley adds a touch of freshness. The plate is set on a warm, rustic wooden dining table, possibly with a casually placed cloth napkin. Soft, warm kitchen lighting illuminates the dish, highlighting its textures and natural colors. The overall scene conveys a lived-in, family kitchen atmosphere, emphasizing homely comfort and satisfying portions.",
+    "number_of_servings": 4,
+    "cuisine_type": "European Comfort",
+    "hero_ingredient": "Braised Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "600 g"
+      },
+      {
+        "name": "Potatoes",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Sauerkraut",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Smoked tofu",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Taleggio cheese",
+        "quantity": "150 g"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "3 cloves"
+      },
+      {
+        "name": "Beef broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "15 g"
+      }
+    ],
+    "instructions": [
+      "Heat oil in a large, heavy-bottomed skillet or Dutch oven over medium-high heat.",
+      "Season beef cubes with salt and pepper. Add beef to the skillet in batches. Sear until browned on all sides. Remove beef from skillet.",
+      "Add chopped onion to the skillet. Sauté until softened, about 5 minutes.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Return beef to the skillet. Add diced potatoes and drained sauerkraut. Stir to combine.",
+      "Pour in beef broth. Bring to a simmer.",
+      "Reduce heat to low. Cover and simmer for 60-75 minutes, or until beef is very tender and potatoes are cooked through. Stir occasionally.",
+      "Stir in diced smoked tofu. Cook for 5 minutes to heat through.",
+      "Remove skillet from heat. Stir in cubed Taleggio cheese until melted and creamy.",
+      "Taste and adjust seasoning with salt and pepper.",
+      "Serve hot, garnished with fresh chopped parsley."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 646,
+      "cholesterol_mg": 131,
+      "dietary_fiber_g": 7,
+      "protein_g": 55.3,
+      "saturated_fat_g": 12,
+      "sodium_mg": 1890,
+      "total_carbs_g": 33.5,
+      "total_fat_g": 33.1,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 101,
+      "cholesterol_mg": 20,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 8.6,
+      "saturated_fat_g": 1.9,
+      "sodium_mg": 295,
+      "total_carbs_g": 5.2,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 0.8,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 44,
+      "dietary_fiber": 25,
+      "protein": 111,
+      "saturated_fat": 60,
+      "sodium": 82,
+      "total_carbs": 12,
+      "total_fat": 42
+    },
+    "serving_size_g": 640.5,
+    "total_recipe_weight_g": 2562
+  },
+  {
+    "recipe_name": "Savory Baked Rice with Chinese Sausage and Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_savory_baked_rice_with_chinese_sausage_and_cheese_20250623_124607_db60d82f.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T12:46:07.574129000Z",
+    "selected_ingredients": [
+      "chinese sausage",
+      "cocoa powder",
+      "cheese",
+      "parsley",
+      "rice"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "The dish is plated on a simple, round ceramic plate with a natural glaze. A generous single portion of Savory Baked Rice occupies the center, piled naturally. The rice is tender, its grains plump, boasting a warm, light brown color. Visible within the rice are inviting, browned thin slices of Chinese sausage, some peeking out, others nestled amongst the grains. Melted, golden-orange grated cheese is generously stirred through the rice, creating creamy pockets, and a light sprinkle rests on top, slightly bubbly. Fresh, vibrant green chopped parsley is scattered over the rice, providing a fresh contrast. The casual arrangement suggests a home-cooked meal. The plate sits on a well-worn wooden kitchen table, next to a plain fork and a simple, folded paper towel. Warm, soft light illuminates the scene, highlighting textures and inviting colors.",
+    "number_of_servings": 4,
+    "cuisine_type": "Fusion",
+    "cultural_origin": "Fusion",
+    "hero_ingredient": "Chinese Sausage",
+    "ingredients": [
+      {
+        "name": "Chinese sausage",
+        "quantity": "200g"
+      },
+      {
+        "name": "Rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Chicken or Vegetable Broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Cocoa powder",
+        "quantity": "5g"
+      },
+      {
+        "name": "Cheese",
+        "quantity": "150g"
+      },
+      {
+        "name": "Fresh Parsley",
+        "quantity": "30g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Slice Chinese sausage thinly.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium heat. Add diced onion. Cook until softened, about 5 minutes.",
+      "Add minced garlic. Cook 1 minute more.",
+      "Add sliced Chinese sausage to the pot. Cook until lightly browned and some fat renders. Remove sausage; set aside, reserving a small amount for topping.",
+      "Add rice to the pot. Stir for 2 minutes until grains are translucent.",
+      "Stir in cocoa powder. Pour in broth. Bring mixture to a simmer. Season with salt and pepper.",
+      "Return most of the cooked sausage to the pot. Stir gently to combine. Cover tightly with a lid.",
+      "Bake in a preheated oven at 180°C for 20 minutes.",
+      "Remove from oven. Stir in half of the grated cheese and half of the chopped parsley. Top with remaining cheese and reserved sausage.",
+      "Cover again. Let stand 5 minutes to allow cheese to melt.",
+      "Garnish with remaining fresh parsley. Serve immediately."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.5,
+      "calories": 715,
+      "cholesterol_mg": 85,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 27.4,
+      "saturated_fat_g": 16.3,
+      "sodium_mg": 1555,
+      "total_carbs_g": 69.9,
+      "total_fat_g": 36.5,
+      "total_sugars_g": 3.8,
+      "trans_fat_g": 0.5
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.4,
+      "calories": 179,
+      "cholesterol_mg": 21,
+      "dietary_fiber_g": 0.5,
+      "protein_g": 6.9,
+      "saturated_fat_g": 4.1,
+      "sodium_mg": 390,
+      "total_carbs_g": 17.5,
+      "total_fat_g": 9.2,
+      "total_sugars_g": 1,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 28,
+      "dietary_fiber": 8,
+      "protein": 55,
+      "saturated_fat": 81,
+      "sodium": 68,
+      "total_carbs": 25,
+      "total_fat": 47
+    },
+    "serving_size_g": 398.7,
+    "total_recipe_weight_g": 1594.8
+  }
+]

@@ -1,0 +1,677 @@
+[
+  {
+    "recipe_name": "Sourdough Chocolate Cake with Cultured Cream and Berry Preserve",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_sourdough_chocolate_cake_with_cultured_cream_and_berry_preserve_20250624_025725_1256d2fe.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:57:25.682232000Z",
+    "selected_ingredients": [
+      "dark chocolate",
+      "flour",
+      "butter",
+      "heavy cream"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single slice of Sourdough Chocolate Cake is centrally placed on a round, matte, light-beige handcrafted ceramic plate, leaving ample negative space. The cake, a rich dark brown, exhibits a moist, dense crumb. A generous, irregular dollop of off-white cultured cream rests beside the cake slice, its soft texture visible. Adjacent to the cream, a small, vibrant pile of jewel-toned berry preserve, showcasing whole and slightly mashed berries, adds a natural burst of color. The plate sits on a light, textured reclaimed wood surface. An undyed linen napkin in a natural beige tone is loosely draped to one side. Soft, diffused natural light illuminates the scene from the left, creating subtle shadows and highlighting the organic textures of the cake, cream, and preserve. The background is clean and minimalist, with a hint of green from a blurred plant.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Dark chocolate",
+    "ingredients": [
+      {
+        "name": "Dark chocolate (70% cacao)",
+        "quantity": "150 g"
+      },
+      {
+        "name": "All-purpose flour",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Heavy cream (35% fat)",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Active sourdough starter",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "2"
+      },
+      {
+        "name": "Maple syrup",
+        "quantity": "130 g"
+      },
+      {
+        "name": "Seasonal berries (e.g., raspberries, blueberries)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Baking soda",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Vanilla extract",
+        "quantity": "5 ml"
+      },
+      {
+        "name": "Buttermilk (for culturing cream)",
+        "quantity": "15 ml"
+      }
+    ],
+    "instructions": [
+      "Prepare berry preserve. Combine 200g seasonal berries and 30g maple syrup in a small pot. Simmer 10 minutes. Mash lightly. Cool completely.",
+      "Prepare cultured cream. Whisk 250ml heavy cream with 15ml buttermilk. Cover. Let sit at room temperature 12-24 hours until thickened. Refrigerate.",
+      "Preheat oven to 170°C. Grease and flour a 20cm round cake pan.",
+      "Melt 150g dark chocolate and 100g butter together. Let cool slightly.",
+      "In a large bowl, whisk 2 large eggs and 100g maple syrup. Stir in cooled chocolate-butter mixture and 100g active sourdough starter.",
+      "In a separate bowl, combine 100g all-purpose flour, 5g baking soda, and 2g sea salt.",
+      "Add dry ingredients to wet ingredients. Mix until just combined. Stir in 5ml vanilla extract.",
+      "Pour batter into prepared pan. Bake 25-30 minutes, or until a toothpick inserted comes out with moist crumbs.",
+      "Cool cake in pan for 10 minutes. Invert onto a wire rack. Cool completely.",
+      "To serve, slice cake. Top each slice with a dollop of cultured cream and a spoonful of berry preserve."
+    ],
+    "notes": [
+      "This recipe emphasizes zero-waste by utilizing sourdough discard and seasonal fruits for preservation. The cultured cream reduces dairy waste and adds complexity.",
+      "Adjust maple syrup quantity based on desired sweetness and berry tartness."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 33,
+      "calories": 908,
+      "cholesterol_mg": 217,
+      "dietary_fiber_g": 7.3,
+      "protein_g": 12.1,
+      "saturated_fat_g": 37.7,
+      "sodium_mg": 487,
+      "total_carbs_g": 77.2,
+      "total_fat_g": 62.6,
+      "total_sugars_g": 39.4,
+      "trans_fat_g": 1.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 11.6,
+      "calories": 319,
+      "cholesterol_mg": 76,
+      "dietary_fiber_g": 2.6,
+      "protein_g": 4.3,
+      "saturated_fat_g": 13.3,
+      "sodium_mg": 171,
+      "total_carbs_g": 27.2,
+      "total_fat_g": 22,
+      "total_sugars_g": 13.9,
+      "trans_fat_g": 0.6
+    },
+    "daily_value_percentages": {
+      "cholesterol": 72,
+      "dietary_fiber": 26,
+      "protein": 24,
+      "saturated_fat": 189,
+      "sodium": 21,
+      "total_carbs": 28,
+      "total_fat": 80
+    },
+    "serving_size_g": 284.25,
+    "total_recipe_weight_g": 1137
+  },
+  {
+    "recipe_name": "Pakistani Chicken Karahi with Bell Peppers and Mild Cheese",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pakistani_chicken_karahi_with_bell_peppers_and_mild_cheese_20250624_025659_54e3cb08.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:56:59.673114000Z",
+    "selected_ingredients": [
+      "chicken",
+      "bell pepper",
+      "cheese",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "pakistani cuisine",
+    "visual_description": "A single portion of Pakistani Chicken Karahi is presented in a deep, rustic white porcelain karahi bowl, positioned centrally on a simple light wooden table surface. The dish features tender, slightly browned chicken chunks and vibrant diced bell peppers (red, green, yellow) and onions, all coated in a rich, reddish-brown, slightly thick gravy. The sauce has a subtle creamy sheen from the melted cheese, integrated to enhance richness without dominating. The karahi is generously garnished with bright green chopped fresh coriander and delicate, thin julienne strips of fresh ginger, adding freshness and aromatic contrast. A warm, fluffy piece of naan bread is placed on a clean white side plate beside the karahi. A folded cotton napkin and simple, traditional Pakistani flatware (a fork and spoon) rest neatly beside the main bowl. The scene is illuminated by soft, natural, even lighting from the side, highlighting the textures and vibrant colors of the dish. The background is minimal, suggesting a modern bistro atmosphere with clean lines, ensuring the focus remains on the authentic and appealing presentation of the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Pakistani",
+    "cultural_origin": "Pakistani",
+    "cultural_serving_suggestions": [
+      "Serve hot with freshly baked naan bread, roti, or chapati.",
+      "Offer a simple side salad (kachumber) or raita (yogurt dip) for balance."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless chicken, cut into 3 cm chunks",
+        "quantity": "1 kg"
+      },
+      {
+        "name": "Onions, finely diced",
+        "quantity": "2 medium (approx. 300g)"
+      },
+      {
+        "name": "Mixed bell peppers (red, green, yellow), diced into 2 cm pieces",
+        "quantity": "2 large (approx. 400g)"
+      },
+      {
+        "name": "Tomatoes, pureed",
+        "quantity": "400g"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Green chilies, slit lengthwise",
+        "quantity": "3-4"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "100g"
+      },
+      {
+        "name": "Mild cheddar or mozzarella cheese, grated",
+        "quantity": "100g"
+      },
+      {
+        "name": "Cooking oil",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "1.5 teaspoons (or to taste)"
+      },
+      {
+        "name": "Red chili powder",
+        "quantity": "1 teaspoon (or to taste)"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "0.5 teaspoon"
+      },
+      {
+        "name": "Coriander powder",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Cumin powder",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Fresh coriander, chopped",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Fresh ginger, julienned",
+        "quantity": "1 tablespoon"
+      }
+    ],
+    "instructions": [
+      "Heat oil in a large karahi or deep pan over medium-high heat.",
+      "Add diced onions. Sauté until translucent, about 5-7 minutes.",
+      "Add chicken chunks. Sear chicken until lightly browned on all sides, about 8-10 minutes.",
+      "Stir in ginger-garlic paste. Cook for 2 minutes until fragrant.",
+      "Add pureed tomatoes, salt, red chili powder, turmeric powder, coriander powder, and cumin powder. Mix well.",
+      "Increase heat to high. Cook, stirring frequently, until oil separates from the masala, about 10-15 minutes. This is 'bhunai'.",
+      "Reduce heat to medium. Stir in yogurt until fully incorporated.",
+      "Add diced bell peppers and slit green chilies. Mix gently.",
+      "Cover the pan. Simmer for 15-20 minutes, or until chicken is tender and cooked through (internal temperature 75°C).",
+      "Stir in grated cheese until melted and incorporated, creating a subtle creaminess.",
+      "Sprinkle with garam masala. Stir once more.",
+      "Garnish with fresh chopped coriander and ginger juliennes before serving."
+    ],
+    "notes": [
+      "Ensure chicken reaches an internal temperature of 75°C (167°F) for food safety.",
+      "Adjust spice levels to personal preference. For more heat, add extra green chilies or red chili powder."
+    ],
+    "traditional_techniques": [
+      "Bhunai (intensive sautéing of spices and meat to develop deep flavor)",
+      "Dum (slow cooking under cover to tenderize and meld flavors)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 824,
+      "cholesterol_mg": 242,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 87.7,
+      "saturated_fat_g": 10.3,
+      "sodium_mg": 1235,
+      "total_carbs_g": 21.7,
+      "total_fat_g": 41.8,
+      "total_sugars_g": 11.7,
+      "trans_fat_g": 0.3
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 134,
+      "cholesterol_mg": 39,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 14.3,
+      "saturated_fat_g": 1.7,
+      "sodium_mg": 201,
+      "total_carbs_g": 3.5,
+      "total_fat_g": 6.8,
+      "total_sugars_g": 1.9,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 80.7,
+      "dietary_fiber": 17.5,
+      "protein": 175.4,
+      "saturated_fat": 51.5,
+      "sodium": 53.7,
+      "total_carbs": 7.9,
+      "total_fat": 53.6
+    },
+    "serving_size_g": 615,
+    "total_recipe_weight_g": 2460
+  },
+  {
+    "recipe_name": "Fermented Tomato & Garlic Braised Chicken with Crispy Mushrooms",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_fermented_tomato_%26_garlic_braised_chicken_with_crispy_mushrooms_20250624_025633_b55372e3.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:56:33.700379000Z",
+    "selected_ingredients": [
+      "chicken",
+      "garlic",
+      "tomato",
+      "mushroom"
+    ],
+    "complexity": "sustainable",
+    "special_requests": "",
+    "visual_description": "A single portion of Fermented Tomato & Garlic Braised Chicken is presented on a handcrafted ceramic plate in a creamy beige tone. A whole, bone-in, skin-on chicken thigh, deeply browned from braising, sits centrally. The skin is visibly crisp, while the meat is tender. A rich, glossy, reddish-brown braising sauce, infused with fermented tomato and garlic, pools generously around the chicken. Thinly sliced, deeply caramelized crispy mushrooms are scattered over and beside the chicken, adding a darker textural contrast. A few fresh green parsley or thyme leaves provide a subtle pop of color. The plating is minimalistic, with ample white space on the plate. The scene is set on a light, naturally textured bamboo or reclaimed wood table surface. An undyed linen napkin in a natural beige tone is folded neatly beside the plate. Soft, diffused natural lighting illuminates the dish, highlighting its organic textures. The background is clean and uncluttered, with a hint of natural greenery from a plant, emphasizing an eco-conscious and serene dining experience. The entire plate is visible, showcasing a refined restaurant portion.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern Sustainable",
+    "hero_ingredient": "Chicken Thighs",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 (approx. 800g)"
+      },
+      {
+        "name": "Lacto-fermented cherry tomatoes (drained)",
+        "quantity": "200g"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "6"
+      },
+      {
+        "name": "Cremini mushrooms",
+        "quantity": "250g"
+      },
+      {
+        "name": "Onion, medium",
+        "quantity": "1"
+      },
+      {
+        "name": "Carrot, medium",
+        "quantity": "1"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1"
+      },
+      {
+        "name": "Chicken stock (homemade preferred)",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Sea salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Fresh parsley or thyme, for garnish",
+        "quantity": "Small bunch"
+      }
+    ],
+    "instructions": [
+      "Pat chicken thighs dry. Season generously with salt and pepper.",
+      "Heat olive oil in a large oven-safe pot or Dutch oven over medium-high heat. Place chicken thighs skin-side down. Sear until skin is crispy and golden brown, about 8-10 minutes. Render fat. Flip chicken. Sear for 2 minutes. Remove chicken from pot. Reserve rendered fat.",
+      "Dice onion, carrot, and celery into small cubes. Add to the pot with rendered chicken fat. Sauté until softened, about 5-7 minutes.",
+      "Mince garlic. Add to the pot. Cook for 1 minute until fragrant.",
+      "Roughly chop fermented cherry tomatoes. Add to the pot. Stir well. Cook for 2 minutes.",
+      "Pour in chicken stock. Bring to a simmer. Scrape up any browned bits from the bottom of the pot.",
+      "Return chicken thighs to the pot, skin-side up. Ensure chicken is partially submerged in liquid. Cover the pot. Transfer to a preheated oven at 170°C (340°F). Braise for 45-60 minutes, or until chicken is tender and internal temperature reaches 75°C (167°F).",
+      "While chicken braises, prepare mushrooms. Slice mushroom caps thinly. Reserve stems for stock or drying. Heat a separate pan over medium-high heat. Add a small amount of olive oil. Add sliced mushrooms. Cook, stirring occasionally, until crispy and browned, about 8-10 minutes. Season with salt.",
+      "Once chicken is cooked, remove from oven. Carefully remove chicken thighs from the pot. Set aside. Place pot with braising liquid on stovetop over high heat. Bring liquid to a vigorous simmer. Reduce liquid until slightly thickened, about 5-7 minutes. Adjust seasoning if needed.",
+      "To serve, place one braised chicken thigh on each plate. Spoon generous amount of reduced braising liquid over chicken. Top with crispy mushroom slices. Garnish with fresh parsley or thyme leaves."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 545,
+      "cholesterol_mg": 188,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 41,
+      "saturated_fat_g": 9.3,
+      "sodium_mg": 1089,
+      "total_carbs_g": 12,
+      "total_fat_g": 37.7,
+      "total_sugars_g": 5.3,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 125,
+      "cholesterol_mg": 43,
+      "dietary_fiber_g": 0.8,
+      "protein_g": 9.4,
+      "saturated_fat_g": 2.1,
+      "sodium_mg": 249,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 63,
+      "dietary_fiber": 13,
+      "protein": 82,
+      "saturated_fat": 47,
+      "sodium": 47,
+      "total_carbs": 4,
+      "total_fat": 48
+    },
+    "serving_size_g": 437.5,
+    "total_recipe_weight_g": 1750
+  },
+  {
+    "recipe_name": "Tagliatelle with Wild Mushroom Ragu",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_tagliatelle_with_wild_mushroom_ragu_20250624_025516_236e1157.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:55:17.474387000Z",
+    "selected_ingredients": [
+      "pasta",
+      "mushroom"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single generous portion of Tagliatelle with Wild Mushroom Ragu is presented in a shallow, white porcelain pasta bowl. The long, flat tagliatelle noodles are gracefully intertwined with rich, dark brown mushroom ragu. The ragu features tender, varied mushroom pieces, some sliced and some whole, showcasing their natural shapes and earthy tones. Small, finely diced pieces of carrot and celery are visible within the robust sauce, adding subtle color. A vibrant sprinkle of fresh, chopped flat-leaf parsley is scattered over the top, providing a pop of green. A generous mound of freshly grated Parmigiano-Reggiano cheese rests centrally, adding a creamy white contrast. The dish has a natural, flowing arrangement, indicating it has been tossed directly with the sauce. The bowl sits on a simple wooden table surface, accompanied by a silver fork and a folded white cotton napkin. Natural, even lighting highlights the textures and deep colors of the dish, creating an inviting, casual dining ambiance.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with extra grated Parmigiano-Reggiano cheese at the table.",
+      "Offer crusty Italian bread for 'scarpetta' (soaking up leftover sauce)."
+    ],
+    "hero_ingredient": "Wild Mushrooms",
+    "ingredients": [
+      {
+        "name": "Tagliatelle pasta",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Mixed wild mushrooms (cremini, shiitake, oyster)",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery stalk",
+        "quantity": "1"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Vegetable broth",
+        "quantity": "500 ml"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Fresh flat-leaf parsley",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Parmigiano-Reggiano cheese",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Clean mushrooms. Slice larger mushrooms; leave smaller ones whole.",
+      "Dice onion, carrot, and celery into small, uniform pieces for soffritto.",
+      "Mince garlic.",
+      "Heat olive oil in a large pot or Dutch oven over medium heat.",
+      "Add diced onion, carrot, and celery. Cook 8-10 minutes until softened and translucent. Do not brown.",
+      "Add minced garlic. Cook 1 minute until fragrant.",
+      "Stir in tomato paste. Cook 2 minutes, stirring constantly.",
+      "Add sliced mushrooms to the pot. Increase heat to medium-high. Sauté mushrooms 8-10 minutes until browned and tender. Cook off moisture.",
+      "Pour in red wine. Deglaze the pot, scraping up any browned bits. Simmer 3-5 minutes until wine reduces by half.",
+      "Add vegetable broth. Bring to a simmer. Reduce heat to low. Cover and cook 20-25 minutes, allowing flavors to meld and sauce to thicken slightly.",
+      "Season mushroom ragu with salt and pepper to taste.",
+      "While ragu simmers, cook tagliatelle according to package directions in salted boiling water until al dente.",
+      "Reserve 120 ml pasta cooking water. Drain pasta.",
+      "Add drained tagliatelle directly to the mushroom ragu. Toss to coat pasta evenly.",
+      "If sauce is too thick, add reserved pasta water a little at a time until desired consistency is reached.",
+      "Chop fresh parsley.",
+      "Serve immediately. Garnish each portion with chopped parsley and grated Parmigiano-Reggiano cheese."
+    ],
+    "traditional_techniques": [
+      "Soffritto"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 628,
+      "cholesterol_mg": 9,
+      "dietary_fiber_g": 8.2,
+      "protein_g": 22.7,
+      "saturated_fat_g": 4.6,
+      "sodium_mg": 299,
+      "total_carbs_g": 89.6,
+      "total_fat_g": 19.5,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0.2
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 169,
+      "cholesterol_mg": 2,
+      "dietary_fiber_g": 2.2,
+      "protein_g": 6.1,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 80,
+      "total_carbs_g": 24.1,
+      "total_fat_g": 5.2,
+      "total_sugars_g": 1.8,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 3,
+      "dietary_fiber": 29,
+      "protein": 45,
+      "saturated_fat": 23,
+      "sodium": 13,
+      "total_carbs": 33,
+      "total_fat": 30
+    },
+    "serving_size_g": 372.55,
+    "total_recipe_weight_g": 1490.2
+  },
+  {
+    "recipe_name": "Brown Sugar Cherry Layer Cake with Lemon Buttercream",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_brown_sugar_cherry_layer_cake_with_lemon_buttercream_20250624_025516_b67a344e.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-24T02:55:16.721249000Z",
+    "selected_ingredients": [
+      "cherry",
+      "butter",
+      "brown sugar",
+      "lemon",
+      "flour",
+      "milk"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single, elegant slice of Brown Sugar Cherry Layer Cake is presented on a clean, round white porcelain dessert plate. The cake features two golden-brown layers, each approximately 4 cm thick, separated by a generous, vibrant red cherry compote filling with visible halved cherries. A smooth, pale yellow lemon buttercream evenly coats the cake top and sides, showing clean, professional lines. The slice is cleanly cut, revealing the distinct layers and the glistening cherry filling. A few fresh, whole cherries and a delicate curl of lemon zest are artfully placed beside the slice as garnish. The plate rests on a simple, light wooden table surface, with a folded white cotton napkin positioned to the side. Natural, soft lighting illuminates the cake, highlighting its textures and colors against a subtly blurred, casual bistro background.",
+    "number_of_servings": 4,
+    "cuisine_type": "Modern",
+    "hero_ingredient": "Cherry",
+    "ingredients": [
+      {
+        "name": "Unsalted butter, softened",
+        "quantity": "175 g"
+      },
+      {
+        "name": "Light brown sugar",
+        "quantity": "175 g"
+      },
+      {
+        "name": "Large eggs",
+        "quantity": "3"
+      },
+      {
+        "name": "Plain flour",
+        "quantity": "225 g"
+      },
+      {
+        "name": "Baking powder",
+        "quantity": "2 tsp"
+      },
+      {
+        "name": "Milk",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh or frozen cherries, pitted",
+        "quantity": "300 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Lemon juice",
+        "quantity": "1 tbsp"
+      },
+      {
+        "name": "Unsalted butter, softened (for buttercream)",
+        "quantity": "200 g"
+      },
+      {
+        "name": "Icing sugar, sifted",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Lemon juice (for buttercream)",
+        "quantity": "2 tbsp"
+      },
+      {
+        "name": "Salt",
+        "quantity": "0.5 tsp"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C. Grease and flour two 18 cm round cake tins. Line bottoms with baking paper.",
+      "Cream softened butter and brown sugar in a large bowl until light and fluffy.",
+      "Beat in eggs one at a time. Mix well after each addition.",
+      "Sift flour, baking powder, and salt together. Fold into butter mixture alternately with milk. Begin and end with flour.",
+      "Divide batter evenly between prepared tins. Smooth tops.",
+      "Bake 25-30 minutes. Cakes are done when a skewer inserted into the center comes out clean.",
+      "Cool cakes in tins for 10 minutes. Invert onto a wire rack. Remove paper. Cool completely.",
+      "For cherry filling, combine pitted cherries, granulated sugar, and lemon juice in a saucepan.",
+      "Cook over medium heat 8-10 minutes. Stir occasionally. Cherries should soften and release juice. Sauce will thicken slightly.",
+      "Remove from heat. Let cool completely.",
+      "For lemon buttercream, beat softened butter in a stand mixer until creamy.",
+      "Gradually add sifted icing sugar. Beat until light and fluffy.",
+      "Add lemon zest and lemon juice. Beat until smooth and well combined.",
+      "To assemble, place one cooled cake layer on a serving plate.",
+      "Spread half of the cherry filling evenly over the cake layer, leaving a small border.",
+      "Spread about one-third of the buttercream over the cherry filling.",
+      "Place the second cake layer on top. Gently press down.",
+      "Spread remaining cherry filling over the second layer.",
+      "Apply remaining buttercream over the top and sides of the cake. Smooth with an offset spatula.",
+      "Refrigerate 30 minutes to set buttercream before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 154.95,
+      "calories": 1604,
+      "cholesterol_mg": 344,
+      "dietary_fiber_g": 3.13,
+      "protein_g": 13,
+      "saturated_fat_g": 50.02,
+      "sodium_mg": 361,
+      "total_carbs_g": 212.79,
+      "total_fat_g": 81.59,
+      "total_sugars_g": 166.68,
+      "trans_fat_g": 3.12
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 33.97,
+      "calories": 352,
+      "cholesterol_mg": 75,
+      "dietary_fiber_g": 0.69,
+      "protein_g": 2.86,
+      "saturated_fat_g": 10.97,
+      "sodium_mg": 79,
+      "total_carbs_g": 46.65,
+      "total_fat_g": 17.89,
+      "total_sugars_g": 36.54,
+      "trans_fat_g": 0.68
+    },
+    "daily_value_percentages": {
+      "cholesterol": 115,
+      "dietary_fiber": 11,
+      "protein": 26,
+      "saturated_fat": 250,
+      "sodium": 16,
+      "total_carbs": 77,
+      "total_fat": 105
+    },
+    "serving_size_g": 456.125,
+    "total_recipe_weight_g": 1824.5
+  }
+]

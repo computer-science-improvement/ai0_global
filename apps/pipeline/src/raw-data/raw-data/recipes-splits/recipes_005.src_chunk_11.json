@@ -1,0 +1,702 @@
+[
+  {
+    "recipe_name": "Picadillo à la Habanera",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_193948_dbd82e12.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 15,
+    "timestamp": "2026-05-06T19:39:48.595864000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "garlic",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "Gluten-free, ground beef",
+    "visual_description": "The Picadillo is presented in a shallow, wide white porcelain bowl. The ground beef appears as moist, browned crumbles coated in a glossy, deep red tomato and spice reduction. Small 1-centimeter cubes of vibrant green and red bell peppers are distributed evenly throughout the dish. Briny green olive halves and small dark capers offer sharp visual highlights against the dark meat. The dish occupies the center of the bowl with moderate negative space around the edges. Beside the beef sits a neat mound of steamed, fluffy white long-grain rice. The scene is set on a light oak table with a crisp white cotton napkin. Natural, soft daylight emphasizes the textures of the sauce and the individual grains of rice.",
+    "number_of_servings": 4,
+    "cuisine_type": "Caribbean",
+    "cultural_origin": "Cuban",
+    "cultural_serving_suggestions": [
+      "Serve with white long-grain rice",
+      "Accompany with black beans (frijoles negros)",
+      "Include fried sweet plantains (maduros)"
+    ],
+    "hero_ingredient": "Ground beef",
+    "ingredients": [
+      {
+        "name": "Lean ground beef",
+        "quantity": "500 g"
+      },
+      {
+        "name": "Yellow onion, diced",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Green bell pepper, diced into 1cm cubes",
+        "quantity": "1"
+      },
+      {
+        "name": "Red bell pepper, diced into 1cm cubes",
+        "quantity": "1"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Gluten-free beef stock",
+        "quantity": "250 ml"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Ground cumin",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Dried oregano",
+        "quantity": "2 g"
+      },
+      {
+        "name": "Bay leaf",
+        "quantity": "1"
+      },
+      {
+        "name": "Pitted green olives, halved",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Capers, drained",
+        "quantity": "15 g"
+      },
+      {
+        "name": "Salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet over medium heat.",
+      "Add diced onions and bell peppers to the pan.",
+      "Sauté vegetables for 6 minutes until softened.",
+      "Stir in minced garlic and cook for 1 minute.",
+      "Add ground beef to the skillet.",
+      "Brown beef thoroughly until no pink remains.",
+      "Break meat into small, uniform crumbles with a wooden spoon.",
+      "Stir in cumin and dried oregano.",
+      "Add tomato paste and cook for 2 minutes.",
+      "Pour in crushed tomatoes and beef stock.",
+      "Add the bay leaf to the mixture.",
+      "Simmer uncovered for 20 minutes until the sauce thickens.",
+      "Fold in the halved olives and capers.",
+      "Season with salt and pepper.",
+      "Remove the bay leaf before serving."
+    ],
+    "notes": [
+      "Ensure the beef stock is certified gluten-free.",
+      "The sauce should be thick and moist, not runny.",
+      "Do not overcook the peppers to maintain their color."
+    ],
+    "traditional_techniques": [
+      "sofrito",
+      "slow simmering"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 381,
+      "cholesterol_mg": 87.5,
+      "dietary_fiber_g": 4.9,
+      "protein_g": 29,
+      "saturated_fat_g": 6.1,
+      "sodium_mg": 840,
+      "total_carbs_g": 19.9,
+      "total_fat_g": 20.6,
+      "total_sugars_g": 9.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 100.3,
+      "cholesterol_mg": 23,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 7.6,
+      "saturated_fat_g": 1.6,
+      "sodium_mg": 221.1,
+      "total_carbs_g": 5.2,
+      "total_fat_g": 5.4,
+      "total_sugars_g": 2.6,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 29.2,
+      "dietary_fiber": 17.5,
+      "protein": 58,
+      "saturated_fat": 30.5,
+      "sodium": 36.5,
+      "total_carbs": 7.2,
+      "total_fat": 26.4
+    },
+    "serving_size_g": 380,
+    "total_recipe_weight_g": 1520
+  },
+  {
+    "recipe_name": "Peruvian Lomo Saltado",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_193744_304b576f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 13,
+    "timestamp": "2026-05-06T19:37:45.065489000Z",
+    "selected_ingredients": [
+      "beef",
+      "onion",
+      "garlic",
+      "tomato",
+      "bell pepper"
+    ],
+    "complexity": "standard",
+    "special_requests": "Gluten-free",
+    "visual_description": "A single portion of Lomo Saltado is presented on a clean white porcelain plate. The dish features 3cm seared beef tenderloin cubes with a dark, glossy crust. Thick-cut red onion wedges and bright red tomato wedges are tossed with yellow bell pepper batons, showing vibrant colors and slight char marks. The ingredients are arranged in a natural, mounded pile, coated in a shimmering dark brown sauce. Golden-brown potato batons are interspersed throughout the beef and vegetables. A neat mound of fluffy white rice sits adjacent to the stir-fry. The scene is set on a rustic wooden bistro table with a linen napkin and a small bowl of green chili sauce. Natural light highlights the textures.",
+    "number_of_servings": 4,
+    "cuisine_type": "Peruvian",
+    "cultural_origin": "Peru",
+    "cultural_serving_suggestions": [
+      "Serve with Aji Verde (spicy green chili sauce)",
+      "Accompany with Inca Kola or a Pisco Sour",
+      "Traditionally eaten using a fork and spoon"
+    ],
+    "hero_ingredient": "Beef tenderloin",
+    "ingredients": [
+      {
+        "name": "Beef tenderloin, 3cm cubes",
+        "quantity": "600g"
+      },
+      {
+        "name": "Red onions, thick wedges",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Roma tomatoes, thick wedges",
+        "quantity": "3 units"
+      },
+      {
+        "name": "Yellow bell pepper, batons",
+        "quantity": "2 units"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Tamari (Gluten-free soy sauce)",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Red wine vinegar",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fresh cilantro, chopped",
+        "quantity": "15g"
+      },
+      {
+        "name": "Russet potatoes, 1cm batons",
+        "quantity": "450g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "500ml"
+      },
+      {
+        "name": "Long grain white rice",
+        "quantity": "300g"
+      },
+      {
+        "name": "Fine sea salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Peel potatoes and cut into 1cm batons.",
+      "Soak batons in cold water for 20 minutes.",
+      "Drain and dry potatoes completely with a towel.",
+      "Heat oil to 180°C in a heavy pot.",
+      "Fry potatoes until golden and crisp. Drain on paper.",
+      "Season potatoes with salt immediately.",
+      "Boil rice in 450ml salted water until tender. Keep warm.",
+      "Season beef cubes with salt and pepper.",
+      "Heat a wok over high heat with 15ml oil until smoking.",
+      "Sear beef cubes in batches until heavily browned. Remove.",
+      "Add onions and peppers to the wok. Sáuté for 2 minutes.",
+      "Add garlic. Stir for 30 seconds.",
+      "Return beef to the wok. Add tomato wedges.",
+      "Pour in tamari and vinegar. Toss for 1 minute over high heat.",
+      "Fold in cilantro and fried potatoes. Serve immediately with rice."
+    ],
+    "notes": [
+      "Ensure the wok is smoking hot for authentic flavor",
+      "Remove tomato seeds to prevent the sauce from becoming watery",
+      "Use Tamari specifically to maintain the gluten-free requirement"
+    ],
+    "traditional_techniques": [
+      "Wok stir-frying",
+      "Potato deep-frying",
+      "Deglazing"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 884.5,
+      "cholesterol_mg": 105,
+      "dietary_fiber_g": 5.61,
+      "protein_g": 50.24,
+      "saturated_fat_g": 9,
+      "sodium_mg": 1470,
+      "total_carbs_g": 92.05,
+      "total_fat_g": 33.96,
+      "total_sugars_g": 5.73,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 124.49,
+      "cholesterol_mg": 14.78,
+      "dietary_fiber_g": 0.79,
+      "protein_g": 7.07,
+      "saturated_fat_g": 1.27,
+      "sodium_mg": 206.9,
+      "total_carbs_g": 12.96,
+      "total_fat_g": 4.78,
+      "total_sugars_g": 0.81,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 35,
+      "dietary_fiber": 20,
+      "protein": 100.5,
+      "saturated_fat": 45,
+      "sodium": 63.9,
+      "total_carbs": 33.5,
+      "total_fat": 43.5
+    },
+    "serving_size_g": 710.5,
+    "total_recipe_weight_g": 2842
+  },
+  {
+    "recipe_name": "French Stuffed Tomatoes (Tomates Farcies)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_172446_d33cb095.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 10,
+    "timestamp": "2026-05-06T17:24:46.781868000Z",
+    "selected_ingredients": [
+      "tomato"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single large, vibrant red beefsteak tomato sits centered on a clean white porcelain plate. The tomato skin is slightly puckered and glistening with olive oil from roasting. A golden-brown, crispy crust of herbed breadcrumbs crowns the top, where the tomato lid is propped at a slight angle. The stuffing inside is visible, showing succulent chunks of seasoned ground meat and flecks of bright green parsley. A light drizzle of natural tomato jus surrounds the base. The setting is a modern bistro with a light oak wood table. A folded white cotton napkin and polished silver fork and knife lie to the side. Natural light highlights the textures of the charred skin and the porous, crunchy topping.",
+    "number_of_servings": 4,
+    "cuisine_type": "French Rustic",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a side of steamed long-grain rice to soak up the juices",
+      "Accompany with a crisp green salad dressed in a simple vinaigrette",
+      "Provide a fresh baguette for cleaning the plate"
+    ],
+    "hero_ingredient": "Beefsteak Tomato",
+    "ingredients": [
+      {
+        "name": "Large beefsteak tomatoes",
+        "quantity": "4 units"
+      },
+      {
+        "name": "Ground pork or veal",
+        "quantity": "400 g"
+      },
+      {
+        "name": "Shallot, finely diced",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Fresh parsley, chopped",
+        "quantity": "30 g"
+      },
+      {
+        "name": "Fresh thyme leaves",
+        "quantity": "1 tsp"
+      },
+      {
+        "name": "Dry breadcrumbs",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Large egg",
+        "quantity": "1 unit"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Sea salt and black pepper",
+        "quantity": "to taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 180°C.",
+      "Slice off the top 2 cm of each tomato to create a lid. Keep lids.",
+      "Scoop out the tomato flesh and seeds into a bowl. Reserve the juices.",
+      "Lightly salt the inside of the hollowed tomatoes. Invert them on paper towels for 10 minutes.",
+      "Sauté shallots and garlic in olive oil until soft.",
+      "In a large bowl, mix ground meat, sautéed aromatics, parsley, thyme, breadcrumbs, and egg.",
+      "Season the meat mixture generously with salt and pepper.",
+      "Fill each tomato cavity with the meat mixture, mounding it slightly at the top.",
+      "Place tomatoes in a baking dish. Pour reserved juices into the bottom of the dish.",
+      "Place the tomato lids on top of the meat filling.",
+      "Drizzle with olive oil. Roast for 45 minutes until the meat is cooked through and tomatoes are tender.",
+      "Baste tomatoes with the pan juices halfway through cooking."
+    ],
+    "notes": [
+      "Ensure tomatoes are firm so they hold their shape during roasting",
+      "Internal temperature of the meat filling should reach 75°C",
+      "If tops brown too quickly, cover loosely with foil"
+    ],
+    "traditional_techniques": [
+      "hollowing",
+      "slow roasting",
+      "persillade"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 445.2,
+      "cholesterol_mg": 126.5,
+      "dietary_fiber_g": 3.9,
+      "protein_g": 23.7,
+      "saturated_fat_g": 9,
+      "sodium_mg": 480.3,
+      "total_carbs_g": 20.9,
+      "total_fat_g": 30.2,
+      "total_sugars_g": 7.8,
+      "trans_fat_g": 0.1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 127.2,
+      "cholesterol_mg": 36.1,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 6.8,
+      "saturated_fat_g": 2.6,
+      "sodium_mg": 137.2,
+      "total_carbs_g": 6,
+      "total_fat_g": 8.6,
+      "total_sugars_g": 2.2,
+      "trans_fat_g": 0.03
+    },
+    "daily_value_percentages": {
+      "cholesterol": 42.2,
+      "dietary_fiber": 13.9,
+      "protein": 47.4,
+      "saturated_fat": 45,
+      "sodium": 20.9,
+      "total_carbs": 7.6,
+      "total_fat": 38.7
+    },
+    "serving_size_g": 350,
+    "total_recipe_weight_g": 1400
+  },
+  {
+    "recipe_name": "Braised Beef Ragù with Pappardelle",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_152203_d96a886a.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-06T15:22:03.559298000Z",
+    "selected_ingredients": [
+      "beef",
+      "pasta"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A wide, shallow white ceramic bowl presents a generous serving of broad pappardelle pasta ribbons. The noodles are evenly coated in a rich, glossy mahogany-hued sauce. Substantial 3cm chunks of braised beef are distributed naturally throughout the dish, showing a tender, succulent texture. Small, softened bits of carrot and celery are visible within the thick sauce. A delicate layer of finely grated Parmesan is sprinkled over the center, garnished with a single fresh rosemary sprig. The bowl rests on a dark oak table next to a folded cream linen napkin. Soft, natural side-lighting highlights the ribbons' curves and the meat's savory sheen, creating a warm, inviting restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Italian Rustic",
+    "cultural_origin": "Italian",
+    "cultural_serving_suggestions": [
+      "Serve with crusty ciabatta bread to mop up the sauce",
+      "Pair with a full-bodied Italian red wine like Chianti",
+      "Offer additional grated Parmesan and red chili flakes at the table"
+    ],
+    "hero_ingredient": "Beef",
+    "ingredients": [
+      {
+        "name": "Beef chuck",
+        "quantity": "600g"
+      },
+      {
+        "name": "Pappardelle pasta",
+        "quantity": "400g"
+      },
+      {
+        "name": "Yellow onion",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Carrot",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Celery",
+        "quantity": "1 stalk"
+      },
+      {
+        "name": "Garlic",
+        "quantity": "2 cloves"
+      },
+      {
+        "name": "Dry red wine",
+        "quantity": "200ml"
+      },
+      {
+        "name": "Beef stock",
+        "quantity": "400ml"
+      },
+      {
+        "name": "Tomato paste",
+        "quantity": "30g"
+      },
+      {
+        "name": "Fresh rosemary",
+        "quantity": "1 sprig"
+      },
+      {
+        "name": "Extra virgin olive oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Parmesan cheese",
+        "quantity": "50g"
+      }
+    ],
+    "instructions": [
+      "Cut beef into 3cm chunks.",
+      "Finely dice onion, carrot, and celery to create a soffritto.",
+      "Heat oil in a heavy-based pot over medium-high heat.",
+      "Brown beef chunks on all sides. Remove beef from pot.",
+      "Add diced vegetables to the pot. Sauté until soft.",
+      "Stir in tomato paste and minced garlic. Cook for 2 minutes.",
+      "Return beef to the pot. Pour in red wine. Scrape the bottom to deglaze.",
+      "Add beef stock and rosemary sprig. Cover with a lid.",
+      "Simmer on low heat for 90 minutes until beef is tender.",
+      "Cook pappardelle in boiling salted water until al dente. Drain.",
+      "Toss pasta directly into the ragù pot. Mix gently to coat.",
+      "Serve in warm bowls. Top with grated Parmesan."
+    ],
+    "notes": [
+      "Ensure the beef is cooked until it pulls apart easily with a fork",
+      "Add a splash of pasta water if the sauce becomes too thick during mixing",
+      "Always salt the pasta water generously to enhance the flavor of the noodles"
+    ],
+    "traditional_techniques": [
+      "Soffritto",
+      "Slow-braising",
+      "Mantecatura"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 932,
+      "cholesterol_mg": 121,
+      "dietary_fiber_g": 4.4,
+      "protein_g": 47.8,
+      "saturated_fat_g": 15.5,
+      "sodium_mg": 676,
+      "total_carbs_g": 82,
+      "total_fat_g": 40.3,
+      "total_sugars_g": 4.9,
+      "trans_fat_g": 0.8
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 233,
+      "cholesterol_mg": 30.3,
+      "dietary_fiber_g": 1.1,
+      "protein_g": 12,
+      "saturated_fat_g": 3.9,
+      "sodium_mg": 169,
+      "total_carbs_g": 20.5,
+      "total_fat_g": 10.1,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 40,
+      "dietary_fiber": 16,
+      "protein": 96,
+      "saturated_fat": 78,
+      "sodium": 29,
+      "total_carbs": 30,
+      "total_fat": 52
+    },
+    "serving_size_g": 400,
+    "total_recipe_weight_g": 1600
+  },
+  {
+    "recipe_name": "Thai Crab Fried Rice (Khao Pad Poo)",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/generated_image_20260506_150250_4fa4113f.jpg",
+    "dish_type": "main",
+    "flavor_profile": "savory",
+    "ingredients_count": 12,
+    "timestamp": "2026-05-06T15:02:51.277778000Z",
+    "selected_ingredients": [
+      "crab",
+      "rice",
+      "onion"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A mound of pale golden jasmine rice is presented in a shallow white porcelain bowl. Large, intact chunks of snowy-white jumbo lump crab meat sit prominently on top as the focal point. The rice grains are distinct and glistening, mixed with translucent diced onions and bright yellow egg ribbons. Three thick diagonal slices of cool cucumber and a vibrant green lime wedge are placed neatly on the side of the plate. A small ceramic condiment dish of chili-flecked fish sauce sits nearby. The lighting is bright and natural, highlighting the moist texture of the crab and the fluffy grains of rice against a minimalist wooden table surface.",
+    "number_of_servings": 4,
+    "cuisine_type": "Thai",
+    "cultural_origin": "Thailand",
+    "cultural_serving_suggestions": [
+      "Serve with Prik Nam Pla (fish sauce with sliced bird's eye chilies)",
+      "Accompany with fresh cucumber slices to cleanse the palate",
+      "Provide a lime wedge to squeeze over the rice for acidity"
+    ],
+    "hero_ingredient": "Jumbo lump crab meat",
+    "ingredients": [
+      {
+        "name": "Cooked jasmine rice (chilled)",
+        "quantity": "600g"
+      },
+      {
+        "name": "Jumbo lump crab meat",
+        "quantity": "300g"
+      },
+      {
+        "name": "White onion, finely diced",
+        "quantity": "100g"
+      },
+      {
+        "name": "Eggs, lightly beaten",
+        "quantity": "3 large"
+      },
+      {
+        "name": "Garlic, minced",
+        "quantity": "15g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Fish sauce",
+        "quantity": "15ml"
+      },
+      {
+        "name": "Light soy sauce",
+        "quantity": "10ml"
+      },
+      {
+        "name": "White sugar",
+        "quantity": "5g"
+      },
+      {
+        "name": "Ground white pepper",
+        "quantity": "2g"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "10g"
+      },
+      {
+        "name": "Cucumber, sliced into thick rounds",
+        "quantity": "1/2 piece"
+      },
+      {
+        "name": "Lime",
+        "quantity": "1 piece"
+      }
+    ],
+    "instructions": [
+      "Heat vegetable oil in a wok over high heat.",
+      "Add diced onion and minced garlic.",
+      "Stir-fry 1 minute until fragrant.",
+      "Push aromatics to the side of the wok.",
+      "Pour eggs into the center.",
+      "Scramble eggs until barely set.",
+      "Add chilled rice to the wok.",
+      "Break up rice clumps with a spatula.",
+      "Toss rice vigorously with eggs and aromatics.",
+      "Season with fish sauce, soy sauce, sugar, and white pepper.",
+      "Stir-fry 3 minutes until rice is lightly toasted.",
+      "Gently fold in the lump crab meat chunks.",
+      "Heat through for 1 minute without breaking the crab.",
+      "Remove from heat.",
+      "Garnish with fresh cilantro."
+    ],
+    "notes": [
+      "Use day-old chilled rice for a better texture and to prevent mushiness.",
+      "Fold the crab in at the very end to keep the lumps whole and impressive.",
+      "High heat is essential to achieve the smoky wok hei flavor."
+    ],
+    "traditional_techniques": [
+      "wok hei",
+      "high-heat stir-frying"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.25,
+      "calories": 384.5,
+      "cholesterol_mg": 177.8,
+      "dietary_fiber_g": 1.5,
+      "protein_g": 22.25,
+      "saturated_fat_g": 2.2,
+      "sodium_mg": 975,
+      "total_carbs_g": 48,
+      "total_fat_g": 11.5,
+      "total_sugars_g": 2.75,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.35,
+      "calories": 106.9,
+      "cholesterol_mg": 49.4,
+      "dietary_fiber_g": 0.4,
+      "protein_g": 6.18,
+      "saturated_fat_g": 0.61,
+      "sodium_mg": 271,
+      "total_carbs_g": 13.3,
+      "total_fat_g": 3.2,
+      "total_sugars_g": 0.76,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 59.3,
+      "dietary_fiber": 5.4,
+      "protein": 44.5,
+      "saturated_fat": 11,
+      "sodium": 42.4,
+      "total_carbs": 17.5,
+      "total_fat": 14.7
+    },
+    "serving_size_g": 360,
+    "total_recipe_weight_g": 1439
+  }
+]

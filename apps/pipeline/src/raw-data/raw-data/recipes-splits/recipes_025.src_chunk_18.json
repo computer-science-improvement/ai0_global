@@ -1,0 +1,724 @@
+[
+  {
+    "recipe_name": "Authentic Indian Butter Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_authentic_indian_butter_chicken_20250623_130936_1c889ba5.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:09:36.867080000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of rich, creamy Indian Butter Chicken is presented in a deep, pristine white porcelain bowl. The vibrant orange-red curry sauce, glossy from butter and cream, generously coats substantial chunks of tender, braised chicken. The chicken pieces are whole, not sliced. A delicate swirl of white heavy cream is artfully drizzled over the surface, creating a visual contrast. Fresh, bright green chopped coriander leaves are scattered generously on top, adding a pop of color and freshness. The bowl is positioned centrally on a simple, light-colored wooden table surface. A neatly folded white cotton napkin rests beside the bowl. In the background, a small, separate white bowl holds fluffy basmati rice, and a piece of golden-brown naan bread is casually placed, completing the authentic Indian dining experience. The scene is illuminated by natural, even lighting, highlighting the textures and rich colors of the dish. The overall presentation is clean, professional, and inviting, with moderate negative space to focus on the food.",
+    "number_of_servings": 4,
+    "cuisine_type": "Indian",
+    "cultural_origin": "Indian",
+    "cultural_serving_suggestions": [
+      "Serve hot with fluffy basmati rice",
+      "Serve with warm naan bread or roti for scooping the sauce",
+      "Offer a side of sliced red onion and lemon wedges"
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "700 g"
+      },
+      {
+        "name": "Plain yogurt",
+        "quantity": "100 g"
+      },
+      {
+        "name": "Ginger-garlic paste",
+        "quantity": "20 g"
+      },
+      {
+        "name": "Turmeric powder",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Kashmiri red chili powder",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": "10 g"
+      },
+      {
+        "name": "Salt",
+        "quantity": "to taste"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50 g"
+      },
+      {
+        "name": "Vegetable oil",
+        "quantity": "15 ml"
+      },
+      {
+        "name": "Green cardamom pods",
+        "quantity": "4"
+      },
+      {
+        "name": "Onion",
+        "quantity": "1 medium (diced)"
+      },
+      {
+        "name": "Cashews",
+        "quantity": "30 g (soaked in warm water)"
+      },
+      {
+        "name": "Crushed tomatoes",
+        "quantity": "400 g can"
+      },
+      {
+        "name": "Kasoori methi (dried fenugreek leaves)",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Granulated sugar",
+        "quantity": "5 g"
+      },
+      {
+        "name": "Heavy cream",
+        "quantity": "100 ml"
+      },
+      {
+        "name": "Fresh coriander leaves",
+        "quantity": "30 g (chopped for garnish)"
+      }
+    ],
+    "instructions": [
+      "Cut chicken thighs into 4 cm chunks. Place in a bowl.",
+      "Add yogurt, ginger-garlic paste, 5g turmeric, 5g chili powder, 5g garam masala, and salt to chicken. Mix well. Marinate for at least 30 minutes, or overnight in the refrigerator.",
+      "Heat 15 ml oil and 25g butter in a large pot or Dutch oven over medium-high heat.",
+      "Add marinated chicken. Sear chicken chunks in batches until lightly browned. Do not overcrowd the pot. Remove chicken and set aside.",
+      "Add remaining 25g butter to the pot. Add diced onion and green cardamom pods. Sauté until onion is translucent and soft, about 8-10 minutes.",
+      "Add remaining 5g chili powder, 5g turmeric, and 5g garam masala. Cook for 1 minute until fragrant.",
+      "Drain soaked cashews. Blend cashews with a small amount of water until a smooth paste forms.",
+      "Add cashew paste to the pot. Cook for 2-3 minutes, stirring constantly.",
+      "Pour in crushed tomatoes. Bring to a simmer. Cook for 10-15 minutes, stirring occasionally, until sauce thickens and oil separates.",
+      "Return seared chicken to the pot. Stir to coat. Cover and simmer on low heat for 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F).",
+      "Crush kasoori methi between your palms. Add to the sauce. Stir in sugar.",
+      "Stir in heavy cream. Simmer for 2-3 minutes. Do not boil after adding cream.",
+      "Taste and adjust salt if needed. Garnish with fresh chopped coriander before serving."
+    ],
+    "traditional_techniques": [
+      "Marination for tenderization and flavor infusion",
+      "Layering of spices (Bhunao technique)",
+      "Use of Kasoori Methi for characteristic aroma",
+      "Slow simmering for depth of flavor"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 608.8,
+      "cholesterol_mg": 229.1,
+      "dietary_fiber_g": 5,
+      "protein_g": 37.3,
+      "saturated_fat_g": 18.1,
+      "sodium_mg": 665.2,
+      "total_carbs_g": 18.5,
+      "total_fat_g": 44.3,
+      "total_sugars_g": 8.1,
+      "trans_fat_g": 1
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.3,
+      "calories": 151.6,
+      "cholesterol_mg": 57.1,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 9.3,
+      "saturated_fat_g": 4.5,
+      "sodium_mg": 165.7,
+      "total_carbs_g": 4.6,
+      "total_fat_g": 11,
+      "total_sugars_g": 2,
+      "trans_fat_g": 0.2
+    },
+    "daily_value_percentages": {
+      "cholesterol": 76,
+      "dietary_fiber": 18,
+      "protein": 75,
+      "saturated_fat": 91,
+      "sodium": 29,
+      "total_carbs": 7,
+      "total_fat": 57
+    },
+    "serving_size_g": 401.5,
+    "total_recipe_weight_g": 1606
+  },
+  {
+    "recipe_name": "Rustic Roasted Chicken and Vegetables",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_rustic_roasted_chicken_and_vegetables_20250623_130934_94939b4a.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:09:35.218119000Z",
+    "selected_ingredients": [
+      "chicken",
+      "potato",
+      "garlic",
+      "mushroom",
+      "tomato",
+      "onion"
+    ],
+    "complexity": "simple",
+    "special_requests": "",
+    "visual_description": "A single serving of rustic roasted chicken and vegetables is presented on a round, off-white ceramic plate, resting on a well-worn wooden dining table. A golden-brown roasted chicken thigh, with crispy skin, is slightly off-center. Around it are naturally arranged roasted potato wedges, their skins blistered, alongside halved cremini mushrooms, caramelized red onion wedges, and burst cherry tomatoes. Smashed, browned garlic cloves are tucked among the components. Fresh rosemary leaves are scattered over the dish. The elements touch and overlap, forming an inviting, natural pile. Warm, diffused lighting suggests a cozy kitchen. A simple silver fork and knife are placed casually beside the plate. The background softly blurs, hinting at a lived-in kitchen.",
+    "number_of_servings": 4,
+    "cuisine_type": "Rustic",
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken thighs, bone-in, skin-on",
+        "quantity": "4 pieces (approx. 800g total)"
+      },
+      {
+        "name": "Potatoes (small, waxy), halved or quartered",
+        "quantity": "600g"
+      },
+      {
+        "name": "Cremini mushrooms, halved",
+        "quantity": "200g"
+      },
+      {
+        "name": "Red onion, cut into 8 wedges",
+        "quantity": "1 large"
+      },
+      {
+        "name": "Garlic cloves, smashed",
+        "quantity": "6"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "200g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60ml"
+      },
+      {
+        "name": "Fresh rosemary sprigs",
+        "quantity": "3"
+      },
+      {
+        "name": "Salt",
+        "quantity": "5g"
+      },
+      {
+        "name": "Black pepper, freshly ground",
+        "quantity": "2g"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C.",
+      "Pat chicken thighs dry with paper towels. Season generously with salt and pepper.",
+      "In a large roasting pan, combine potatoes, mushrooms, onion wedges, garlic cloves, and cherry tomatoes.",
+      "Drizzle vegetables with olive oil. Add rosemary sprigs. Season with salt and pepper. Toss to coat evenly.",
+      "Arrange vegetables in a single layer in the roasting pan.",
+      "Place seasoned chicken thighs skin-side up among the vegetables. Ensure chicken skin is exposed for crisping.",
+      "Roast for 35-45 minutes. Chicken internal temperature must reach 75°C. Potatoes should be tender and lightly browned.",
+      "If chicken skin is not crisp enough, increase oven temperature to 220°C for the last 5-10 minutes. Monitor closely.",
+      "Remove from oven. Let rest 5 minutes before serving."
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 745,
+      "cholesterol_mg": 180,
+      "dietary_fiber_g": 6.4,
+      "protein_g": 43.9,
+      "saturated_fat_g": 10,
+      "sodium_mg": 642,
+      "total_carbs_g": 43.8,
+      "total_fat_g": 44.3,
+      "total_sugars_g": 6.8,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 138,
+      "cholesterol_mg": 33,
+      "dietary_fiber_g": 1.2,
+      "protein_g": 8.1,
+      "saturated_fat_g": 1.8,
+      "sodium_mg": 119,
+      "total_carbs_g": 8.1,
+      "total_fat_g": 8.2,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 60,
+      "dietary_fiber": 23,
+      "protein": 88,
+      "saturated_fat": 50,
+      "sodium": 28,
+      "total_carbs": 16,
+      "total_fat": 57
+    },
+    "serving_size_g": 540.5,
+    "total_recipe_weight_g": 2162
+  },
+  {
+    "recipe_name": "Saumon Poêlé, Fondue de Poireaux et Céleri, Riz au Thym",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_saumon_po%C3%AAl%C3%A9%2C_fondue_de_poireaux_et_c%C3%A9leri%2C_riz_au_thym_20250623_130834_8f235994.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:08:34.944061000Z",
+    "selected_ingredients": [
+      "leek",
+      "celery",
+      "salmon",
+      "rice",
+      "thyme"
+    ],
+    "complexity": "standard",
+    "special_requests": "French cuisine",
+    "visual_description": "A single portion of pan-seared salmon is presented on a clean, round white porcelain dinner plate. The salmon fillet, with its golden-brown, crisped skin facing upwards, is placed slightly off-center. Beside it, a generous, artfully mounded portion of creamy, pale white thyme-infused rice forms a soft base. Nestled next to the rice, a vibrant, tender leek and celery fondue, with its soft green and white hues, adds a gentle contrast. A small, fresh sprig of green thyme rests delicately on the salmon or fondue, and a bright yellow lemon wedge is positioned nearby. The plate has ample negative space, showcasing the professional arrangement. The setting is a modern bistro: a simple, light-colored wooden table surface, with a classic silver fork and knife set beside the plate, and a folded white linen napkin. Natural, even lighting illuminates the dish, emphasizing the textures: flaky salmon, soft rice, and tender vegetables, creating an inviting and refined presentation.",
+    "number_of_servings": 4,
+    "cuisine_type": "French",
+    "cultural_origin": "French",
+    "cultural_serving_suggestions": [
+      "Serve with a glass of dry white wine, such as Sancerre or Sauvignon Blanc.",
+      "Accompany with a simple green salad dressed with a light vinaigrette.",
+      "Offer crusty baguette slices for dipping into the fondue."
+    ],
+    "hero_ingredient": "Salmon",
+    "ingredients": [
+      {
+        "name": "Salmon fillets",
+        "quantity": "4 (approx. 180-200g each)"
+      },
+      {
+        "name": "Leeks",
+        "quantity": "2 large"
+      },
+      {
+        "name": "Celery stalks",
+        "quantity": "2"
+      },
+      {
+        "name": "Arborio rice",
+        "quantity": "200g"
+      },
+      {
+        "name": "Fresh thyme sprigs",
+        "quantity": "4-5"
+      },
+      {
+        "name": "Unsalted butter",
+        "quantity": "50g"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "name": "Dry white wine",
+        "quantity": "100ml"
+      },
+      {
+        "name": "Chicken or vegetable stock",
+        "quantity": "500ml, hot"
+      },
+      {
+        "name": "Heavy cream or crème fraîche",
+        "quantity": "50ml (optional)"
+      },
+      {
+        "name": "Shallot",
+        "quantity": "1, small"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Lemon",
+        "quantity": "1 (for wedges)"
+      }
+    ],
+    "instructions": [
+      "Clean leeks thoroughly. Slice thinly into rounds. Dice celery into small pieces. Mince shallot.",
+      "For the rice: Heat 1 tablespoon olive oil in a medium saucepan over medium heat. Sauté minced shallot 1 minute until fragrant. Add Arborio rice. Stir 2 minutes until rice grains are translucent at the edges.",
+      "Pour in dry white wine. Cook, stirring, until wine is fully absorbed. Begin adding hot stock, 150ml at a time. Stir frequently. Allow each addition to be mostly absorbed before adding more. Continue until rice is creamy and al dente, about 18-20 minutes. Stir in fresh thyme leaves from 2 sprigs. Season with salt and pepper. Cover and set aside.",
+      "For the leek and celery fondue: In a separate large pan, melt butter over medium-low heat. Add sliced leeks and diced celery. Cook gently, stirring occasionally, for 15-20 minutes until vegetables are very soft and tender. Do not allow them to brown. Season with salt and pepper. If desired, stir in heavy cream or crème fraîche for richness. Keep warm.",
+      "For the salmon: Pat salmon fillets very dry with paper towels. Season generously with salt and black pepper on all sides. Heat remaining 1 tablespoon olive oil in a large, non-stick skillet over medium-high heat.",
+      "Place salmon fillets skin-side down in the hot skillet. Sear 4-5 minutes until skin is crispy and golden brown. Flip the fillets. Cook 2-3 minutes more until salmon is cooked to your desired doneness. A medium-rare to medium internal temperature is ideal for salmon.",
+      "To plate: Spoon a generous portion of creamy thyme rice onto the center of each white dinner plate. Create a small well in the rice. Spoon a mound of leek and celery fondue into the well or alongside the rice.",
+      "Carefully place one seared salmon fillet beside the fondue, showcasing its crispy skin. Garnish each plate with a fresh thyme sprig and a lemon wedge.",
+      "Serve immediately."
+    ],
+    "traditional_techniques": [
+      "Poêler (pan-searing)",
+      "Faire revenir (sautéing)",
+      "Fondue (cooking vegetables until very soft)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 890,
+      "cholesterol_mg": 146.6,
+      "dietary_fiber_g": 3.8,
+      "protein_g": 47,
+      "saturated_fat_g": 16.2,
+      "sodium_mg": 608.4,
+      "total_carbs_g": 62.2,
+      "total_fat_g": 47.9,
+      "total_sugars_g": 7,
+      "trans_fat_g": 0.6
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 155,
+      "cholesterol_mg": 25.5,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.2,
+      "saturated_fat_g": 2.8,
+      "sodium_mg": 105.8,
+      "total_carbs_g": 10.8,
+      "total_fat_g": 8.3,
+      "total_sugars_g": 1.2,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 48.9,
+      "dietary_fiber": 13.5,
+      "protein": 94,
+      "saturated_fat": 81.2,
+      "sodium": 26.5,
+      "total_carbs": 22.6,
+      "total_fat": 61.4
+    },
+    "serving_size_g": 575,
+    "total_recipe_weight_g": 2300
+  },
+  {
+    "recipe_name": "Pollo con Mole Poblano",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_pollo_con_mole_poblano_20250623_130730_f8e8ede0.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:07:31.153267000Z",
+    "selected_ingredients": [
+      "dark chocolate"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A whole, tender chicken leg quarter, glistening with a rich, dark mole poblano sauce, is centrally placed on a clean, white porcelain dinner plate. The mole sauce, a deep reddish-brown hue with subtle hints of black, completely coats the chicken, showcasing its smooth, velvety texture. Beside the chicken, a neat, slightly irregular mound of fluffy white rice provides a clean contrast. The plate features moderate negative space, allowing each component to stand out. A light sprinkle of toasted sesame seeds and a few fresh cilantro leaves are scattered over the mole-coated chicken, adding subtle textural contrast and a pop of green. Two warm corn tortillas, lightly folded, are placed neatly beside the rice. The setting is a modern bistro table with a simple wooden surface. A cotton napkin rests beside the plate. Lighting is natural and even, highlighting the deep colors and textures of the dish. The background is minimal, suggesting a casual restaurant atmosphere.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mexican",
+    "cultural_origin": "Mexican",
+    "cultural_serving_suggestions": [
+      "Serve with warm corn tortillas for scooping the mole sauce.",
+      "Offer a side of simple white rice.",
+      "Accompany with a traditional Mexican beverage like horchata or agua fresca.",
+      "Serve a small bowl of pickled red onions or jalapeños on the side for optional acidity."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Chicken leg quarters",
+        "quantity": "4"
+      },
+      {
+        "name": "Ancho chiles",
+        "quantity": "25g"
+      },
+      {
+        "name": "Mulato chiles",
+        "quantity": "25g"
+      },
+      {
+        "name": "Pasilla chiles",
+        "quantity": "25g"
+      },
+      {
+        "name": "Roma tomatoes",
+        "quantity": "2 medium (approx. 200g)"
+      },
+      {
+        "name": "Tomatillos",
+        "quantity": "2 medium (approx. 100g)"
+      },
+      {
+        "name": "White onion",
+        "quantity": "1/2 medium (approx. 75g), roughly chopped"
+      },
+      {
+        "name": "Garlic cloves",
+        "quantity": "3, peeled"
+      },
+      {
+        "name": "Dark chocolate (70-85% cacao)",
+        "quantity": "50g, finely chopped"
+      },
+      {
+        "name": "Almonds",
+        "quantity": "30g"
+      },
+      {
+        "name": "Sesame seeds",
+        "quantity": "15g (plus extra for garnish)"
+      },
+      {
+        "name": "Pumpkin seeds (pepitas)",
+        "quantity": "15g"
+      },
+      {
+        "name": "Cinnamon stick",
+        "quantity": "5g (approx. 1/2 stick)"
+      },
+      {
+        "name": "Cloves",
+        "quantity": "3"
+      },
+      {
+        "name": "Star anise",
+        "quantity": "1/2"
+      },
+      {
+        "name": "Black peppercorns",
+        "quantity": "2g"
+      },
+      {
+        "name": "Cumin seeds",
+        "quantity": "1g"
+      },
+      {
+        "name": "Coriander seeds",
+        "quantity": "1g"
+      },
+      {
+        "name": "Stale bread or corn tortilla",
+        "quantity": "1 slice or 1, torn"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "750ml"
+      },
+      {
+        "name": "Lard or vegetable oil",
+        "quantity": "30ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Sugar",
+        "quantity": "Pinch (optional)"
+      },
+      {
+        "name": "Fresh cilantro",
+        "quantity": "For garnish"
+      },
+      {
+        "name": "White rice",
+        "quantity": "For serving"
+      },
+      {
+        "name": "Corn tortillas",
+        "quantity": "For serving"
+      }
+    ],
+    "instructions": [
+      "Season chicken leg quarters with salt. In a large pot, brown chicken in a little oil over medium-high heat. Add 500ml chicken broth. Bring to a simmer. Cook until chicken is tender and cooked through, about 25-30 minutes. Remove chicken. Strain broth; set aside.",
+      "Toast dried chiles in a dry pan over medium heat for 1-2 minutes until fragrant. Do not burn. Remove stems and seeds. Soak chiles in hot water for 20 minutes until softened. Drain.",
+      "In the same dry pan, roast tomatoes, tomatillos, onion, and garlic until lightly charred and softened.",
+      "In a clean dry pan, toast almonds, pumpkin seeds, and 10g sesame seeds until fragrant. Separately, toast cinnamon, cloves, star anise, peppercorns, cumin seeds, and coriander seeds until fragrant.",
+      "Briefly fry the stale bread/tortilla in a little oil until golden.",
+      "Combine soaked chiles, roasted vegetables, toasted nuts, toasted spices, fried bread, and 250ml reserved chicken broth in a blender. Blend until very smooth. Strain through a fine-mesh sieve into a bowl, pressing solids to extract all liquid. Discard solids.",
+      "Heat 30ml lard or oil in a large pot or Dutch oven over medium heat. Pour in the strained mole sauce. Bring to a simmer, stirring constantly to prevent sticking. Cook for 20-30 minutes, stirring occasionally, until sauce thickens and darkens.",
+      "Stir in the chopped dark chocolate until fully melted and incorporated. Add a pinch of sugar if needed to balance flavors. Adjust salt.",
+      "Add cooked chicken to the mole sauce. Simmer gently for 10 minutes to heat through and allow flavors to meld. Serve hot with white rice and warm corn tortillas."
+    ],
+    "traditional_techniques": [
+      "Tostado (toasting dry ingredients like chiles, nuts, and spices)",
+      "Licuado (blending ingredients until very smooth)",
+      "Colado (straining the sauce for a fine texture)",
+      "Frito (frying the mole base in lard/oil before simmering)"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 1.3,
+      "calories": 1036,
+      "cholesterol_mg": 330,
+      "dietary_fiber_g": 9,
+      "protein_g": 71.8,
+      "saturated_fat_g": 21,
+      "sodium_mg": 876,
+      "total_carbs_g": 26.7,
+      "total_fat_g": 72.6,
+      "total_sugars_g": 11,
+      "trans_fat_g": 0.4
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0.2,
+      "calories": 148,
+      "cholesterol_mg": 47,
+      "dietary_fiber_g": 1.3,
+      "protein_g": 10.3,
+      "saturated_fat_g": 3,
+      "sodium_mg": 125,
+      "total_carbs_g": 3.8,
+      "total_fat_g": 10.4,
+      "total_sugars_g": 1.6,
+      "trans_fat_g": 0.1
+    },
+    "daily_value_percentages": {
+      "cholesterol": 110,
+      "dietary_fiber": 32,
+      "protein": 144,
+      "saturated_fat": 105,
+      "sodium": 38,
+      "total_carbs": 10,
+      "total_fat": 93
+    },
+    "serving_size_g": 700,
+    "total_recipe_weight_g": 2800
+  },
+  {
+    "recipe_name": "Mediterranean Lemon Herb Roasted Chicken",
+    "image_url": "https://storage.googleapis.com/epicure-generated-images-kaikaku-bi/recipe_mediterranean_lemon_herb_roasted_chicken_20250623_130634_9eaecdb6.jpg",
+    "dish_type": null,
+    "flavor_profile": null,
+    "ingredients_count": null,
+    "timestamp": "2025-06-23T13:06:35.212006000Z",
+    "selected_ingredients": [
+      "chicken"
+    ],
+    "complexity": "standard",
+    "special_requests": "",
+    "visual_description": "A single portion of Mediterranean Lemon Herb Roasted Chicken is elegantly presented on a round, matte white porcelain dinner plate. Two golden-brown, pan-seared and roasted boneless chicken thighs, each tender and glistening, are positioned slightly off-center. Surrounding the chicken are vibrant, roasted vegetables: several bright red, plump cherry tomatoes, thick-cut planks of tender-crisp zucchini with slight char marks, and soft, caramelized red onion wedges. A light, savory pan sauce, infused with lemon and herbs, is artfully drizzled over the chicken and vegetables. Fresh sprigs of green oregano and thyme, along with a bright yellow lemon wedge, are placed strategically as a garnish, adding color and freshness. The arrangement is organic and balanced, allowing for moderate negative space. The plate rests on a simple, light-colored wooden table surface, accompanied by a folded cream-colored cotton napkin and standard silver flatware. Natural, even lighting illuminates the dish, highlighting its textures and colors in a clean, modern bistro setting.",
+    "number_of_servings": 4,
+    "cuisine_type": "Mediterranean",
+    "cultural_origin": "Mediterranean",
+    "cultural_serving_suggestions": [
+      "Serve with crusty bread to sop up the pan juices.",
+      "A simple green salad with a vinaigrette complements the richness.",
+      "Roasted potatoes or couscous can be served on the side."
+    ],
+    "hero_ingredient": "Chicken",
+    "ingredients": [
+      {
+        "name": "Boneless, skinless chicken thighs",
+        "quantity": "4 (approx. 180g each)"
+      },
+      {
+        "name": "Olive oil",
+        "quantity": "60 ml"
+      },
+      {
+        "name": "Garlic cloves, minced",
+        "quantity": "4"
+      },
+      {
+        "name": "Fresh lemon juice",
+        "quantity": "30 ml"
+      },
+      {
+        "name": "Lemon zest",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "name": "Fresh oregano, chopped",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Fresh thyme, chopped",
+        "quantity": "1 tablespoon"
+      },
+      {
+        "name": "Cherry tomatoes",
+        "quantity": "250 g"
+      },
+      {
+        "name": "Zucchini, cut into thick planks",
+        "quantity": "2 medium"
+      },
+      {
+        "name": "Red onion, cut into wedges",
+        "quantity": "1 medium"
+      },
+      {
+        "name": "Chicken broth",
+        "quantity": "120 ml"
+      },
+      {
+        "name": "Salt",
+        "quantity": "To taste"
+      },
+      {
+        "name": "Black pepper",
+        "quantity": "To taste"
+      }
+    ],
+    "instructions": [
+      "Preheat oven to 200°C (390°F).",
+      "Pat chicken thighs dry. Season with salt and pepper.",
+      "In a large oven-safe skillet, heat 30 ml olive oil over medium-high heat.",
+      "Sear chicken thighs skin-side down (if skin-on) or presentation-side down for 4-5 minutes until golden brown. Flip and sear for another 3 minutes.",
+      "Remove chicken from skillet and set aside.",
+      "Add remaining 30 ml olive oil to the skillet. Add minced garlic, cherry tomatoes, zucchini planks, and red onion wedges. Season with salt and pepper.",
+      "Sauté vegetables for 5-7 minutes until slightly softened.",
+      "Return chicken to the skillet, nesting it among the vegetables.",
+      "In a small bowl, whisk together lemon juice, lemon zest, chopped oregano, chopped thyme, and chicken broth.",
+      "Pour mixture over chicken and vegetables in the skillet.",
+      "Transfer skillet to the preheated oven. Roast for 15-20 minutes, or until chicken reaches an internal temperature of 75°C (167°F) and vegetables are tender-crisp.",
+      "Remove from oven. Let chicken rest in the skillet for 5 minutes before serving."
+    ],
+    "notes": [
+      "Ensure chicken is thoroughly cooked to 75°C (167°F) for safety.",
+      "Do not overcrowd the skillet during searing to ensure proper browning.",
+      "Adjust herbs based on personal preference; fresh is highly recommended for flavor."
+    ],
+    "traditional_techniques": [
+      "Pan-searing",
+      "Roasting"
+    ],
+    "nutrition_per_serving": {
+      "added_sugars_g": 0,
+      "calories": 482,
+      "cholesterol_mg": 243,
+      "dietary_fiber_g": 3.5,
+      "protein_g": 40.8,
+      "saturated_fat_g": 5.9,
+      "sodium_mg": 318,
+      "total_carbs_g": 13,
+      "total_fat_g": 27.8,
+      "total_sugars_g": 7.2,
+      "trans_fat_g": 0
+    },
+    "nutrition_per_100g": {
+      "added_sugars_g": 0,
+      "calories": 99,
+      "cholesterol_mg": 50,
+      "dietary_fiber_g": 0.7,
+      "protein_g": 8.4,
+      "saturated_fat_g": 1.2,
+      "sodium_mg": 65,
+      "total_carbs_g": 2.7,
+      "total_fat_g": 5.7,
+      "total_sugars_g": 1.5,
+      "trans_fat_g": 0
+    },
+    "daily_value_percentages": {
+      "cholesterol": 81,
+      "dietary_fiber": 13,
+      "protein": 82,
+      "saturated_fat": 30,
+      "sodium": 14,
+      "total_carbs": 5,
+      "total_fat": 36
+    },
+    "serving_size_g": 486.5,
+    "total_recipe_weight_g": 1946
+  }
+]
